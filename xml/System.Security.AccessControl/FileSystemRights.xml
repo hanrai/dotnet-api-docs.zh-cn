@@ -1,5 +1,5 @@
 <Type Name="FileSystemRights" FullName="System.Security.AccessControl.FileSystemRights">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="28a93ba05b0e69fd177a9b7bab5ea9c9e7caa52d" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56775581" /></Metadata><TypeSignature Language="C#" Value="public enum FileSystemRights" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9680f2545ad8c2d906759bc695a74bbdf099d2e4" /><Meta Name="ms.sourcegitcommit" Value="f61362e4134a78bac27d2c8136823a467216f4ab" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/15/2019" /><Meta Name="ms.locfileid" Value="65629439" /></Metadata><TypeSignature Language="C#" Value="public enum FileSystemRights" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed FileSystemRights extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Security.AccessControl.FileSystemRights" />
   <TypeSignature Language="VB.NET" Value="Public Enum FileSystemRights" />
@@ -30,7 +30,7 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>定义要在创建访问和审核规则时使用的访问权限。</summary>
+    <summary>定义要创建访问和审核规则时使用的访问权限。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
@@ -39,10 +39,10 @@
   
  使用<xref:System.Security.AccessControl.FileSystemRights>枚举时创建的访问规则带有<xref:System.Security.AccessControl.FileSystemAccessRule>类或与创建审核的规则<xref:System.Security.AccessControl.FileSystemAuditRule>类。  
   
- 此枚举包含几个粒度级的系统权限值和是这些粒度值的组合的多个值。  它是更轻松地使用如 FullControl、 读取和写入，而不是单独指定每个组件值的组合值。  
+ 此枚举包含几个粒度级的系统权限值和是这些粒度值的组合的多个值。  是易于使用的组合值，如`FullControl`， `Read`，和`Write`，而不是单独指定每个组件值。  
   
-   
-  
+`CreateDirectories`并`CreateFiles`权限需要`Synchronize`右。 如果未显式设置`Synchronize`值时创建文件或目录，则将自动设置为你。
+
 ## Examples  
  下面的代码示例使用<xref:System.Security.AccessControl.FileSystemRights.FullControl>枚举指定访问规则，然后从文件删除访问规则。  你必须提供有效的用户或组帐户以运行此示例。  
   
@@ -80,7 +80,7 @@
       </ReturnValue>
       <MemberValue>4</MemberValue>
       <Docs>
-        <summary>指定将数据追加到文件末尾的权限。</summary>
+        <summary>指定要追加到文件末尾的数据的权限。</summary>
       </Docs>
     </Member>
     <Member MemberName="ChangePermissions">
@@ -109,7 +109,7 @@
       </ReturnValue>
       <MemberValue>262144</MemberValue>
       <Docs>
-        <summary>指定更改与文件或文件夹关联的安全和审核规则的权限。</summary>
+        <summary>指定更改的安全和审核规则关联的文件或文件夹的权限。</summary>
       </Docs>
     </Member>
     <Member MemberName="CreateDirectories">
@@ -138,15 +138,8 @@
       </ReturnValue>
       <MemberValue>4</MemberValue>
       <Docs>
-        <summary>指定创建文件夹的权限。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 此权限需要同步值。  请注意，是否创建的文件或文件夹时未显式设置同步值，同步值将会自动设置为你。  
-  
- ]]></format>
-        </remarks>
+        <summary>指定创建此权限的文件夹的权限需要<c>同步</c>值。</summary>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="CreateFiles">
@@ -175,15 +168,8 @@
       </ReturnValue>
       <MemberValue>2</MemberValue>
       <Docs>
-        <summary>指定创建文件的权限。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 此权限需要同步值。  请注意，是否创建的文件或文件夹时未显式设置同步值，同步值将会自动设置为你。  
-  
- ]]></format>
-        </remarks>
+        <summary>指定要创建的文件的权限。 此权限要求<c>同步</c>值。</summary>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Delete">
@@ -241,7 +227,7 @@
       </ReturnValue>
       <MemberValue>64</MemberValue>
       <Docs>
-        <summary>指定删除文件夹和该文件夹中包含的所有文件的权限。</summary>
+        <summary>指定删除文件夹，然后在该文件夹中包含的任何文件的权限。</summary>
       </Docs>
     </Member>
     <Member MemberName="ExecuteFile">
@@ -270,7 +256,7 @@
       </ReturnValue>
       <MemberValue>32</MemberValue>
       <Docs>
-        <summary>指定运行应用程序文件的权限。</summary>
+        <summary>指定要运行应用程序文件的权限。</summary>
       </Docs>
     </Member>
     <Member MemberName="FullControl">
@@ -299,7 +285,7 @@
       </ReturnValue>
       <MemberValue>2032127</MemberValue>
       <Docs>
-        <summary>指定对文件夹或文件进行完全控制以及修改访问控制和审核规则的权限。  此值表示允许对文件进行任何操作的权限，并且它是此枚举中的所有权限的组合。</summary>
+        <summary>指定对文件夹或文件，进行完全控制并进行修改访问控制和审核规则的权限。  此值表示允许对文件进行任何操作的权限，并且它是此枚举中的所有权限的组合。</summary>
       </Docs>
     </Member>
     <Member MemberName="ListDirectory">
@@ -357,7 +343,7 @@
       </ReturnValue>
       <MemberValue>197055</MemberValue>
       <Docs>
-        <summary>指定读、写、列出文件夹内容、删除文件夹和文件以及运行应用程序文件的权限。  此权限包括 <see cref="F:System.Security.AccessControl.FileSystemRights.ReadAndExecute" /> 权限、<see cref="F:System.Security.AccessControl.FileSystemRights.Write" /> 权限和 <see cref="F:System.Security.AccessControl.FileSystemRights.Delete" /> 权限。</summary>
+        <summary>指定的权限读取、 写入、 列出文件夹内容、 删除文件夹和文件，和运行应用程序文件。  此权限包括<see cref="F:System.Security.AccessControl.FileSystemRights.ReadAndExecute" />没错，<see cref="F:System.Security.AccessControl.FileSystemRights.Write" />右，和<see cref="F:System.Security.AccessControl.FileSystemRights.Delete" />右。</summary>
       </Docs>
     </Member>
     <Member MemberName="Read">
@@ -386,7 +372,7 @@
       </ReturnValue>
       <MemberValue>131209</MemberValue>
       <Docs>
-        <summary>指定以只读方式打开和复制文件夹或文件的权限。  此权限包括 <see cref="F:System.Security.AccessControl.FileSystemRights.ReadData" /> 权限、<see cref="F:System.Security.AccessControl.FileSystemRights.ReadExtendedAttributes" /> 权限、<see cref="F:System.Security.AccessControl.FileSystemRights.ReadAttributes" /> 权限和 <see cref="F:System.Security.AccessControl.FileSystemRights.ReadPermissions" /> 权限。</summary>
+        <summary>指定的权限打开和复制文件夹或文件为只读的。  此权限包括<see cref="F:System.Security.AccessControl.FileSystemRights.ReadData" />没错，<see cref="F:System.Security.AccessControl.FileSystemRights.ReadExtendedAttributes" />右，<see cref="F:System.Security.AccessControl.FileSystemRights.ReadAttributes" />右，和<see cref="F:System.Security.AccessControl.FileSystemRights.ReadPermissions" />右。</summary>
       </Docs>
     </Member>
     <Member MemberName="ReadAndExecute">
@@ -415,7 +401,7 @@
       </ReturnValue>
       <MemberValue>131241</MemberValue>
       <Docs>
-        <summary>指定以只读方式打开和复制文件夹或文件以及运行应用程序文件的权限。  此权限包括 <see cref="F:System.Security.AccessControl.FileSystemRights.Read" /> 权限和 <see cref="F:System.Security.AccessControl.FileSystemRights.ExecuteFile" /> 权限。</summary>
+        <summary>指定打开和复制文件夹或文件为只读的以及运行应用程序文件的权限。  此权限包括 <see cref="F:System.Security.AccessControl.FileSystemRights.Read" /> 权限和 <see cref="F:System.Security.AccessControl.FileSystemRights.ExecuteFile" /> 权限。</summary>
       </Docs>
     </Member>
     <Member MemberName="ReadAttributes">
@@ -444,7 +430,7 @@
       </ReturnValue>
       <MemberValue>128</MemberValue>
       <Docs>
-        <summary>指定从文件夹或文件打开和复制文件系统特性的权限。  例如，此值指定查看文件创建日期或修改日期的权限。  这不包括读取数据、扩展文件系统属性或访问和审核规则的权限。</summary>
+        <summary>指定打开和复制文件夹或文件从文件系统属性的权限。  例如，此值指定的权限来查看文件创建或修改日期。  这不包括读取数据、扩展文件系统属性或访问和审核规则的权限。</summary>
       </Docs>
     </Member>
     <Member MemberName="ReadData">
@@ -502,7 +488,7 @@
       </ReturnValue>
       <MemberValue>8</MemberValue>
       <Docs>
-        <summary>指定从文件夹或文件打开和复制扩展文件系统特性的权限。  例如，此值指定查看作者和内容信息的权限。  这不包括读取数据、文件系统属性或访问和审核规则的权限。</summary>
+        <summary>指定打开和复制扩展的文件系统属性从文件夹或文件的权限。  例如，此值指定查看作者和内容信息的权限。  这不包括读取数据、文件系统属性或访问和审核规则的权限。</summary>
       </Docs>
     </Member>
     <Member MemberName="ReadPermissions">
@@ -531,7 +517,7 @@
       </ReturnValue>
       <MemberValue>131072</MemberValue>
       <Docs>
-        <summary>指定从文件夹或文件打开和复制访问和审核规则的权限。  这不包括读取数据、文件系统特性或扩展文件系统特性的权限。</summary>
+        <summary>指定打开和复制访问和审核规则从一个文件夹或文件的权限。  这不包括读取数据、 文件系统属性的权限或扩展文件系统属性。</summary>
       </Docs>
     </Member>
     <Member MemberName="Synchronize">
@@ -560,17 +546,8 @@
       </ReturnValue>
       <MemberValue>1048576</MemberValue>
       <Docs>
-        <summary>指定应用程序是否能够等待文件句柄，以便与 I/O 操作的完成保持同步。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 同步值自动设置时允许访问，并且自动排除时拒绝访问。  
-  
- 若要创建的文件或文件夹的权限需要此值。  请注意，是否创建文件时未显式设置此值，值将会自动设置为你。  
-  
- ]]></format>
-        </remarks>
+        <summary>指定应用程序是否能够等待文件句柄与 I/O 操作的完成同步。 此值是允许访问时，自动设置和自动排除时拒绝访问。</summary>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="TakeOwnership">
@@ -599,7 +576,7 @@
       </ReturnValue>
       <MemberValue>524288</MemberValue>
       <Docs>
-        <summary>指定更改文件夹或文件的所有者的权限。  请注意：资源的所有者对该资源拥有完全权限。</summary>
+        <summary>指定更改文件夹或文件的所有者的权限。  请注意，资源的所有者对该资源的完全访问权限。</summary>
       </Docs>
     </Member>
     <Member MemberName="Traverse">
@@ -628,7 +605,7 @@
       </ReturnValue>
       <MemberValue>32</MemberValue>
       <Docs>
-        <summary>指定列出文件夹的内容以及运行该文件夹中所包含的应用程序的权限。</summary>
+        <summary>指定列出文件夹内容以及运行在该文件夹中包含的应用程序的权限。</summary>
       </Docs>
     </Member>
     <Member MemberName="Write">
@@ -657,7 +634,7 @@
       </ReturnValue>
       <MemberValue>278</MemberValue>
       <Docs>
-        <summary>指定创建文件夹和文件以及向文件添加数据或从文件移除数据的权限。  此权限包括 <see cref="F:System.Security.AccessControl.FileSystemRights.WriteData" /> 权限、<see cref="F:System.Security.AccessControl.FileSystemRights.AppendData" /> 权限、<see cref="F:System.Security.AccessControl.FileSystemRights.WriteExtendedAttributes" /> 权限和 <see cref="F:System.Security.AccessControl.FileSystemRights.WriteAttributes" /> 权限。</summary>
+        <summary>指定要创建文件夹和文件，并可以添加或从文件中删除数据的权限。  此权限包括<see cref="F:System.Security.AccessControl.FileSystemRights.WriteData" />没错，<see cref="F:System.Security.AccessControl.FileSystemRights.AppendData" />右，<see cref="F:System.Security.AccessControl.FileSystemRights.WriteExtendedAttributes" />右，和<see cref="F:System.Security.AccessControl.FileSystemRights.WriteAttributes" />右。</summary>
       </Docs>
     </Member>
     <Member MemberName="WriteAttributes">
@@ -686,7 +663,7 @@
       </ReturnValue>
       <MemberValue>256</MemberValue>
       <Docs>
-        <summary>指定打开文件系统特性以及将文件系统特性写入文件夹或文件的权限。 这不包括写入数据、扩展特性以及写入访问和审核规则的功能。</summary>
+        <summary>指定打开和文件系统特性写入文件夹或文件的权限。 这不包括写入数据、 扩展的属性或访问和审核规则的功能。</summary>
       </Docs>
     </Member>
     <Member MemberName="WriteData">
@@ -715,7 +692,7 @@
       </ReturnValue>
       <MemberValue>2</MemberValue>
       <Docs>
-        <summary>指定打开和写入文件或文件夹的权限。  这不包括打开和写入文件系统特性、扩展文件系统特性或访问和审核规则的权限。</summary>
+        <summary>指定打开和写入文件或文件夹的权限。  这不包括打开和写入文件系统属性，扩展文件系统特性或访问和审核规则的权限。</summary>
       </Docs>
     </Member>
     <Member MemberName="WriteExtendedAttributes">
@@ -744,7 +721,7 @@
       </ReturnValue>
       <MemberValue>16</MemberValue>
       <Docs>
-        <summary>指定打开文件夹或文件的扩展文件系统特性以及将扩展文件系统特性写入文件夹或文件的权限。  这不包括写入数据、特性或访问和审核规则的功能。</summary>
+        <summary>指定打开和扩展的文件系统特性写入文件夹或文件的权限。  这不包括写入数据、 属性或访问和审核规则的功能。</summary>
       </Docs>
     </Member>
   </Members>

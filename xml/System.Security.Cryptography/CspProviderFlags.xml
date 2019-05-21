@@ -1,5 +1,5 @@
 <Type Name="CspProviderFlags" FullName="System.Security.Cryptography.CspProviderFlags">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c3c72d4407274fa336c27eae0fab8c3b36ea919c" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58703924" /></Metadata><TypeSignature Language="C#" Value="public enum CspProviderFlags" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bbcf30153fa7a3b414fd3ed0bb2386f797bac519" /><Meta Name="ms.sourcegitcommit" Value="f61362e4134a78bac27d2c8136823a467216f4ab" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/15/2019" /><Meta Name="ms.locfileid" Value="65629316" /></Metadata><TypeSignature Language="C#" Value="public enum CspProviderFlags" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed CspProviderFlags extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.CspProviderFlags" />
   <TypeSignature Language="VB.NET" Value="Public Enum CspProviderFlags" />
@@ -39,7 +39,16 @@
   </Attributes>
   <Docs>
     <summary>指定修改加密服务提供程序 (CSP) 行为的标志。</summary>
-    <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+  
+> [!IMPORTANT]
+>  `CreateEphemeralKey`标志提供具有更可靠清理临时密钥。 如果未使用此标志，公共语言运行时 (CLR) 时创建一个 RSA 对象生成一个随机命名的键。 当对象已完成或已释放的时会删除密钥。 模拟生效时，不显式调用`Dispose`会导致出现问题。 例如，如果使用模拟，创建一个 RSA 对象，并不将其释放它，终结器线程 （它不模拟） 可能无法删除密钥，，然后引发异常。 此异常未得到处理，并可以终止此过程。 分配给键的资源不会恢复，从而导致内存泄漏。 <xref:System.Security.Permissions.KeyContainerPermission>需抑制的此标志。  
+  
+ ]]></format>
+        </remarks>
     <related type="Article" href="~/docs/standard/security/cryptographic-services.md">加密服务</related>
   </Docs>
   <Members>
@@ -73,16 +82,7 @@
       <MemberValue>128</MemberValue>
       <Docs>
         <summary>创建一个在关闭关联的 Rivest-Shamir-Adleman (RSA) 对象时释放的临时密钥。 如果希望密钥与 RSA 对象无关，则不要使用此标志。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
-  
-> [!IMPORTANT]
->  CreateEphemeralKey 标志提供具有更可靠清理临时密钥。 如果未使用此标志，公共语言运行时 (CLR) 时创建一个 RSA 对象生成一个随机命名的键。 当对象已完成或已释放的时会删除密钥。 模拟生效时，不显式调用`Dispose`会导致出现问题。 例如，如果使用模拟，创建一个 RSA 对象，并不将其释放它，终结器线程 （它不模拟） 可能无法删除密钥，，然后引发异常。 此异常未得到处理，并可以终止此过程。 分配给键的资源不会恢复，从而导致内存泄漏。 <xref:System.Security.Permissions.KeyContainerPermission>需抑制的此标志。  
-  
- ]]></format>
-        </remarks>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="NoFlags">
@@ -148,7 +148,7 @@
       </ReturnValue>
       <MemberValue>64</MemberValue>
       <Docs>
-        <summary>防止 CSP 显示此上下文的任何用户界面 (UI)。</summary>
+        <summary>阻止 CSP 显示此上下文的任何用户界面 (UI)。</summary>
       </Docs>
     </Member>
     <Member MemberName="UseArchivableKey">
@@ -249,7 +249,7 @@
       </ReturnValue>
       <MemberValue>8</MemberValue>
       <Docs>
-        <summary>使用当前密钥中的密钥信息。</summary>
+        <summary>使用当前密钥的密钥信息。</summary>
       </Docs>
     </Member>
     <Member MemberName="UseMachineKeyStore">

@@ -1,5 +1,5 @@
 <Type Name="Marshal" FullName="System.Runtime.InteropServices.Marshal">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="65175403b6ff654dc9b0bdba61783b88bdd4a657" /><Meta Name="ms.sourcegitcommit" Value="0b4deef443af9fe6334aa34b8a17190223bf0486" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/14/2019" /><Meta Name="ms.locfileid" Value="65609615" /></Metadata><TypeSignature Language="C#" Value="public static class Marshal" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f50859363fd37688e070eaa6e1cd762332366c0e" /><Meta Name="ms.sourcegitcommit" Value="f61362e4134a78bac27d2c8136823a467216f4ab" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/15/2019" /><Meta Name="ms.locfileid" Value="65629396" /></Metadata><TypeSignature Language="C#" Value="public static class Marshal" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit Marshal extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.Marshal" />
   <TypeSignature Language="VB.NET" Value="Public Class Marshal" />
@@ -4075,15 +4075,16 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- <xref:System.Runtime.InteropServices.Marshal.GetLastWin32Error%2A> 公开 Win32 [GetLastError](https://go.microsoft.com/fwlink/?LinkId=148657) kernel32.dll 的函数。 此方法存在的原因是不安全直接进行平台调用来调用`GetLastError`获取此信息。 如果你想要访问此错误代码，则必须调用<xref:System.Runtime.InteropServices.Marshal.GetLastWin32Error%2A>而不是编写您自己的平台调用定义`GetLastError`并调用它。 公共语言运行时可以覆盖的 api 的内部调用`GetLastError`由操作系统维护。  
+## Remarks
+
+在 Windows 系统上<xref:System.Runtime.InteropServices.Marshal.GetLastWin32Error%2A>公开 Win32 [GetLastError](/windows/desktop/ms679360) kernel32.dll 的函数。 此方法存在的原因是不可靠地直接进行平台调用来调用`GetLastError`获取此信息。 如果你想要访问此错误代码，则必须调用<xref:System.Runtime.InteropServices.Marshal.GetLastWin32Error%2A>而不是编写您自己的平台调用定义`GetLastError`并调用它。 公共语言运行时可以覆盖的 api 的内部调用`GetLastError`由操作系统维护。  
+
+可以使用此方法以获取错误代码，当用户应用才<xref:System.Runtime.InteropServices.DllImportAttribute?displayProperty=nameWithType>到的方法签名并设置<xref:System.Runtime.InteropServices.DllImportAttribute.SetLastError?displayProperty=nameWithType>字段`true`。 这一过程因所使用的源语言而异：C#和C++都`false`默认情况下，但`Declare`语句在 Visual Basic 中的是`true`。  
   
- 可以使用此方法以获取错误代码，当用户应用才<xref:System.Runtime.InteropServices.DllImportAttribute?displayProperty=nameWithType>到的方法签名并设置<xref:System.Runtime.InteropServices.DllImportAttribute.SetLastError>字段`true`。 这一过程因所使用的源语言而异：C#和C++都`false`默认情况下，但`Declare`语句在 Visual Basic 中的是`true`。  
-  
-   
-  
+没有行为的区别`GetLastWin32Error`.NET Core 和.NET Framework 上的方法时<xref:System.Runtime.InteropServices.DllImportAttribute.SetLastError?displayProperty=nameWithType>是`true`。 .NET Framework 上`GetLastWin32Error`方法可以保留到下一次的 P/Invoke 调用中的错误信息。 .NET Core 上清除错误信息 P/Invoke 调用之前和`GetLastWin32Error`表示仅错误的最后一个方法调用中的信息。
+
 ## Examples  
- 下面的示例演示如何调用 <xref:System.Runtime.InteropServices.Marshal.GetLastWin32Error%2A> 方法。 该示例首先演示了调用方法并不显示错误，然后演示调用并显示错误的方法。  
+ 下面的示例调用`GetLastWin32Error`方法。 该示例首先演示了调用方法并不显示错误，然后演示调用并显示错误的方法。  
   
  [!code-csharp[Runtime.InteropServices.Marshal.GetLastWin32Error#1](~/samples/snippets/csharp/VS_Snippets_CLR/Runtime.InteropServices.Marshal.GetLastWin32Error/cs/example.cs#1)]
  [!code-vb[Runtime.InteropServices.Marshal.GetLastWin32Error#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/Runtime.InteropServices.Marshal.GetLastWin32Error/vb/example.vb#1)]  
