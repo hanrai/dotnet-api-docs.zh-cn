@@ -1,5 +1,5 @@
 <Type Name="DateTime" FullName="System.DateTime">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c9b5da39d5bfa9906a438d8fd308ba48ecf563ef" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58721010" /></Metadata><TypeSignature Language="C#" Value="public struct DateTime : IComparable, IComparable&lt;DateTime&gt;, IConvertible, IEquatable&lt;DateTime&gt;, IFormattable, System.Runtime.Serialization.ISerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="91169d10702e47411d36a73b04e6db423760541f" /><Meta Name="ms.sourcegitcommit" Value="9a6da88bd5455e8274257ca7ad259b42f1de114f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/22/2019" /><Meta Name="ms.locfileid" Value="66005814" /></Metadata><TypeSignature Language="C#" Value="public struct DateTime : IComparable, IComparable&lt;DateTime&gt;, IConvertible, IEquatable&lt;DateTime&gt;, IFormattable, System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit DateTime extends System.ValueType implements class System.IComparable, class System.IComparable`1&lt;valuetype System.DateTime&gt;, class System.IConvertible, class System.IEquatable`1&lt;valuetype System.DateTime&gt;, class System.IFormattable, class System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.DateTime" />
   <TypeSignature Language="VB.NET" Value="Public Structure DateTime&#xA;Implements IComparable, IComparable(Of DateTime), IConvertible, IEquatable(Of DateTime), IFormattable, ISerializable" />
@@ -5111,7 +5111,7 @@ juillet 2009
 |-----|-----|-----|  
 |`s` 不包含时区信息。|无。|<xref:System.DateTimeKind.Unspecified?displayProperty=nameWithType>|
 |`s` 包含时区信息。|为在本地时区内时间|<xref:System.DateTimeKind.Local?displayProperty=nameWithType>|
-|`s` 包含时区信息和样式包括<xref:System.Globalization.DateTimeStyles.AdjustToUniversal?displayProperty=nameWithType>标志。 |为协调世界时 (UTC) |<xref:System.DateTimeKind.Utc?displayProperty=nameWithType>|
+|`s` 包含时区信息和样式包括<xref:System.Globalization.DateTimeStyles.AdjustToUniversal?displayProperty=nameWithType>标志。|为协调世界时 (UTC)|<xref:System.DateTimeKind.Utc?displayProperty=nameWithType>|
 |`s` 包含 Z 或格林威治标准时间的时区指示符，并`styles`包括<xref:System.Globalization.DateTimeStyles.RoundtripKind?displayProperty=nameWithType>。|无。|<xref:System.DateTimeKind.Utc>| 
 
 ## <a name="example"></a>示例
@@ -7137,18 +7137,17 @@ juillet 2009
 ## Remarks  
  当前值<xref:System.DateTime>对象的格式使用定义的模式<xref:System.Globalization.DateTimeFormatInfo.LongDatePattern%2A>与当前线程区域性关联的属性。 返回值是通过指定"D"返回的值相同[标准 DateTime 格式字符串](~/docs/standard/base-types/standard-date-and-time-format-strings.md)与<xref:System.DateTime.ToString%28System.String%29>方法。  
   
-> [!IMPORTANT]
->  返回的字符串<xref:System.DateTime.ToLongDateString%2A>方法是区分区域性的。 它反映当前区域性定义的模式<xref:System.Globalization.DateTimeFormatInfo>对象。 例如，对于 EN-US 区域性，标准的长日期模式为"dddd，MMMMdd，yyyy";对于 DE-DE 区域性中，它是"dddd，d。 MMMMyyyy";对于 JA-JP 区域性，它是"yyyy？M？d'？ '"。 以便它不同于标准的长日期格式字符串，也可以定制特定计算机上的特定格式字符串。  
+> [!NOTE]
+>  返回的字符串<xref:System.DateTime.ToLongDateString%2A>方法是区分区域性的。 它反映当前区域性定义的模式<xref:System.Globalization.DateTimeFormatInfo.LongDatePattern?displayProperty=nameWithType>属性。 例如，对于 EN-US 区域性，标准的长日期模式通常是"dddd，MMMM dd，yyyy";对于 DE-DE 区域性中，它是"dddd，d。 MMMM yyyy";对于 JA-JP 区域性，它是"yyyy '年 AM 月日必须"。 请注意，其值可以有所不同的.NET 实现和它的版本、 操作系统和其版本和用户自定义。
+
+[!INCLUDE[culture-sensitive formatting](~/includes/thread-formatting.md)]
   
- 有关当前线程区域性的详细信息，请参阅<xref:System.Threading.Thread.CurrentCulture%2A>属性。 有关格式字符、 格式模式和输出它们生成的详细信息，请参阅[格式设置类型](~/docs/standard/base-types/formatting-types.md)主题。 有关更改与格式字符关联的格式模式的详细信息，请参阅<xref:System.Globalization.DateTimeFormatInfo>类。  
+## Examples
+
+下面的示例演示<xref:System.DateTime.ToLongDateString%2A>方法。  
   
-   
-  
-## Examples  
- 下面的示例演示<xref:System.DateTime.ToLongDateString%2A>方法。  
-  
- [!code-csharp[DateTime.ToShortLongString#1](~/samples/snippets/csharp/VS_Snippets_CLR/DateTime.ToShortLongString/cs/sls.cs#1)]
- [!code-vb[DateTime.ToShortLongString#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/DateTime.ToShortLongString/vb/sls.vb#1)]  
+[!code-csharp[DateTime.ToShortLongString#1](~/samples/snippets/csharp/VS_Snippets_CLR/DateTime.ToShortLongString/cs/sls.cs#1)]
+[!code-vb[DateTime.ToShortLongString#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/DateTime.ToShortLongString/vb/sls.vb#1)]  
   
  ]]></format>
         </remarks>
@@ -7201,14 +7200,13 @@ juillet 2009
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当前值<xref:System.DateTime>对象的格式使用定义的模式<xref:System.Globalization.DateTimeFormatInfo.LongTimePattern%2A?displayProperty=nameWithType>与当前线程区域性关联的属性。 返回值是通过指定"T"返回的值相同[标准日期和时间格式字符串](~/docs/standard/base-types/standard-date-and-time-format-strings.md)与<xref:System.DateTime.ToString%28System.String%29>方法。  
+
+当前值<xref:System.DateTime>对象的格式使用定义的模式<xref:System.Globalization.DateTimeFormatInfo.LongTimePattern%2A?displayProperty=nameWithType>与当前线程区域性关联的属性。 返回值是通过指定"T"返回的值相同[标准日期和时间格式字符串](~/docs/standard/base-types/standard-date-and-time-format-strings.md)与<xref:System.DateTime.ToString%28System.String%29>方法。  
   
-> [!IMPORTANT]
->  返回的字符串<xref:System.DateTime.ToLongTimeString%2A>方法是区分区域性的。 它反映定义的模式<xref:System.Globalization.DateTimeFormatInfo.LongTimePattern%2A>属性的当前区域性的<xref:System.Globalization.DateTimeFormatInfo>对象。 例如，对于 EN-US 区域性，标准很长时间模式为"h:mm: ss tt";对于 DE-DE 区域性中，它是"hh: mm:";对于 JA-JP 区域性，它是"h:mm: ss"。 以便它不同于标准很长时间格式字符串，也可以定制特定计算机上的特定格式字符串。  
-  
- 有关当前线程区域性的详细信息，请参阅<xref:System.Threading.Thread.CurrentCulture%2A>属性。 有关格式字符、 格式模式和输出它们生成的详细信息，请参阅[格式设置类型](~/docs/standard/base-types/formatting-types.md)主题。 有关更改与格式字符关联的格式模式的详细信息，请参阅<xref:System.Globalization.DateTimeFormatInfo>类。  
-  
-   
+> [!NOTE]
+>  返回的字符串<xref:System.DateTime.ToLongTimeString%2A>方法是区分区域性的。 它反映当前区域性定义的模式<xref:System.Globalization.DateTimeFormatInfo.LongTimePattern%2A?displayProperty=nameWithType>属性。 例如，对于 EN-US 区域性，标准很长时间模式为"h:mm: ss tt";对于 DE-DE 区域性中，它是"hh: mm:";对于 JA-JP 区域性，它是"h:mm: ss"。 请注意，其值可以有所不同的.NET 实现和它的版本、 操作系统和其版本和用户自定义。
+
+[!INCLUDE[culture-sensitive-formatting](~/includes/thread-formatting.md)]
   
 ## Examples  
  下面的示例演示<xref:System.DateTime.ToLongTimeString%2A>方法。  
@@ -7320,13 +7318,11 @@ juillet 2009
 ## Remarks  
  当前值<xref:System.DateTime>对象的格式使用定义的模式<xref:System.Globalization.DateTimeFormatInfo.ShortDatePattern%2A?displayProperty=nameWithType>与当前线程区域性关联的属性。 返回值是通过指定"d"返回的值相同[标准 DateTime 格式字符串](~/docs/standard/base-types/standard-date-and-time-format-strings.md)与<xref:System.DateTime.ToString%28System.String%29>方法。  
   
-> [!IMPORTANT]
->  返回的字符串<xref:System.DateTime.ToShortDateString%2A>方法是区分区域性的。 它反映当前区域性定义的模式<xref:System.Globalization.DateTimeFormatInfo>对象。 例如，对于 EN-US 区域性，标准的短日期模式是"年-月-日";对于 DE-DE 区域性中，它是"dd。MM.yyyy";对于 JA-JP 区域性，它是"yyyy/M/d"。 以便它不同于标准的短日期格式字符串，也可以定制特定计算机上的特定格式字符串。  
-  
- 有关当前线程区域性的详细信息，请参阅<xref:System.Threading.Thread.CurrentCulture%2A?displayProperty=nameWithType>属性。 有关格式字符、 格式模式和输出它们生成的详细信息，请参阅[格式设置类型](~/docs/standard/base-types/formatting-types.md)主题。 有关更改与格式字符关联的格式模式的详细信息，请参阅<xref:System.Globalization.DateTimeFormatInfo>类。  
-  
-   
-  
+> [!NOTE]
+>  返回的字符串<xref:System.DateTime.ToShortDateString%2A>方法是区分区域性的。 它反映当前区域性定义的模式<xref:System.Globalization.DateTimeFormatInfo.ShortDatePattern?displayProperty=nameWithType>属性。 例如，对于 EN-US 区域性，标准的短日期模式是"年-月-日";对于 DE-DE 区域性中，它是"dd。MM.yyyy";对于 JA-JP 区域性，它是"yyyy/MM/dd"。 请注意，其值可以有所不同的.NET 实现和它的版本、 操作系统和其版本和用户自定义。
+
+[!INCLUDE[culture-sensitive formatting](~/includes/thread-formatting.md)]
+
 ## Examples  
  下面的示例演示<xref:System.DateTime.ToShortDateString%2A>方法。 它还表明，调用的结果<xref:System.DateTime.ToShortDateString%2A>方法等同于调用<xref:System.DateTime.ToString%28System.String%29?displayProperty=nameWithType>使用"d"作为 format 参数的方法。  
   
@@ -7383,16 +7379,15 @@ juillet 2009
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- 当前值<xref:System.DateTime>对象的格式使用定义的模式<xref:System.Globalization.DateTimeFormatInfo.ShortTimePattern%2A?displayProperty=nameWithType>与当前线程区域性关联的属性。 返回值是通过指定"t"返回的值相同[标准 DateTime 格式字符串](~/docs/standard/base-types/standard-date-and-time-format-strings.md)与<xref:System.DateTime.ToString%28System.String%29>方法。  
+## Remarks
+
+当前值<xref:System.DateTime>对象的格式使用定义的模式<xref:System.Globalization.DateTimeFormatInfo.ShortTimePattern%2A?displayProperty=nameWithType>与当前线程区域性关联的属性。 返回值是通过指定"t"返回的值相同[标准 DateTime 格式字符串](~/docs/standard/base-types/standard-date-and-time-format-strings.md)与<xref:System.DateTime.ToString%28System.String%29>方法。  
   
-> [!IMPORTANT]
->  返回的字符串<xref:System.DateTime.ToShortTimeString%2A>方法是区分区域性的。 它反映当前区域性定义的模式<xref:System.Globalization.DateTimeFormatInfo>对象。 例如，对于 EN-US 区域性，标准短时间模式为"h:mm tt";对于 DE-DE 区域性中，它是"hh: mm";对于 JA-JP 区域性，它是"H:mm"。 以便它不同于标准短时间格式字符串，也可以定制特定计算机上的特定格式字符串。  
-  
- 有关当前线程区域性的详细信息，请参阅<xref:System.Threading.Thread.CurrentCulture%2A>属性。 有关格式字符、 格式模式和输出它们生成的详细信息，请参阅[格式设置类型](~/docs/standard/base-types/formatting-types.md)主题。 有关更改与格式字符关联的格式模式的详细信息，请参阅<xref:System.Globalization.DateTimeFormatInfo>类。  
-  
-   
-  
+> [!NOTE]
+>  返回的字符串<xref:System.DateTime.ToShortTimeString%2A>方法是区分区域性的。 它反映当前区域性定义的模式<xref:System.Globalization.DateTimeFormatInfo.ShortTimePattern?displayProperty=nameWithType>属性。 例如，对于 EN-US 区域性，标准短时间模式为"h:mm tt";对于 DE-DE 区域性中，它是"hh: mm";对于 JA-JP 区域性，它是"H:mm"。 请注意，其值可以有所不同的.NET 实现和它的版本、 操作系统和其版本和用户自定义。 
+
+[!INCLUDE[culture-sensitive formatting](~/includes/thread-formatting.md)]
+
 ## Examples  
  下面的示例演示<xref:System.DateTime.ToShortTimeString%2A>方法。  
   
@@ -7469,7 +7464,7 @@ juillet 2009
 ## Remarks  
  当前值<xref:System.DateTime>对象的格式使用常规日期和时间格式说明符 (G)。 若要设置使用特定的日期和时间格式说明符的格式，请调用<xref:System.DateTime.ToString%28System.String%29>方法。 若要设置其特定区域性使用的常规日期和时间格式说明符 (G) 格式，请调用<xref:System.DateTime.ToString%28System.IFormatProvider%29>方法。 若要使用特定的日期和时间格式说明符和特定区域性的约定对其设置的格式，请调用<xref:System.DateTime.ToString%28System.String%2CSystem.IFormatProvider%29>方法。  
   
- 此方法使用派生自当前区域性的格式设置信息。 具体而言，它结合了返回的自定义格式字符串<xref:System.Globalization.DateTimeFormatInfo.ShortDatePattern%2A>并<xref:System.Globalization.DateTimeFormatInfo.LongTimePattern%2A>的属性<xref:System.Globalization.DateTimeFormatInfo>返回的对象`Thread.CurrentThread.CurrentCulture.DateTimeFormat`属性。 有关详情，请参阅<xref:System.Globalization.CultureInfo.CurrentCulture%2A?displayProperty=nameWithType>。 另一个重载<xref:System.DateTime.ToString%2A>方法使您能够指定的区域性的格式设置的使用并定义输出模式的<xref:System.DateTime>值。  
+ 此方法使用派生自当前区域性的格式设置信息。 具体而言，它结合了返回的自定义格式字符串<xref:System.Globalization.DateTimeFormatInfo.ShortDatePattern%2A>并<xref:System.Globalization.DateTimeFormatInfo.LongTimePattern%2A>的属性<xref:System.Globalization.DateTimeFormatInfo>返回的对象`Thread.CurrentThread.CurrentCulture.DateTimeFormat`属性。 有关更多信息，请参见<xref:System.Globalization.CultureInfo.CurrentCulture%2A?displayProperty=nameWithType>。 另一个重载<xref:System.DateTime.ToString%2A>方法使您能够指定的区域性的格式设置的使用并定义输出模式的<xref:System.DateTime>值。  
   
    
   
@@ -7553,7 +7548,7 @@ juillet 2009
   
 -   实现一个自定义对象<xref:System.IFormatProvider>接口。 其<xref:System.IFormatProvider.GetFormat%2A>方法将返回<xref:System.Globalization.DateTimeFormatInfo>提供格式设置信息的对象。  
   
- 如果`provider`是`null`，则<xref:System.Globalization.DateTimeFormatInfo>使用与当前区域性关联的对象。 有关详情，请参阅<xref:System.Globalization.CultureInfo.CurrentCulture%2A?displayProperty=nameWithType>。  
+ 如果`provider`是`null`，则<xref:System.Globalization.DateTimeFormatInfo>使用与当前区域性关联的对象。 有关更多信息，请参见<xref:System.Globalization.CultureInfo.CurrentCulture%2A?displayProperty=nameWithType>。  
   
    
   
@@ -7728,7 +7723,7 @@ juillet 2009
   
 -   实现一个自定义对象<xref:System.IFormatProvider>接口。 其<xref:System.IFormatProvider.GetFormat%2A>方法将返回<xref:System.Globalization.DateTimeFormatInfo>提供格式设置信息的对象。  
   
- 如果`provider`是`null`，则<xref:System.Globalization.DateTimeFormatInfo>关联与当前使用区域性。 有关详情，请参阅<xref:System.Globalization.CultureInfo.CurrentCulture%2A?displayProperty=nameWithType>。  
+ 如果`provider`是`null`，则<xref:System.Globalization.DateTimeFormatInfo>关联与当前使用区域性。 有关更多信息，请参见<xref:System.Globalization.CultureInfo.CurrentCulture%2A?displayProperty=nameWithType>。  
   
    
   
