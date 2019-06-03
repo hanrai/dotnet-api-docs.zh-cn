@@ -1,5 +1,5 @@
 <Type Name="Span&lt;T&gt;" FullName="System.Span&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c8645be1b7a27ef7833a8e8354da2899e84a3309" /><Meta Name="ms.sourcegitcommit" Value="7a844d353e1b3079aa7c0d47a6d2c3b3ce8f9647" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/21/2019" /><Meta Name="ms.locfileid" Value="65960853" /></Metadata><TypeSignature Language="C#" Value="public struct Span&lt;T&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8eab7c9327b9fcef036c512c99bdc56c5c4c3cd7" /><Meta Name="ms.sourcegitcommit" Value="0de246131f8a87c71d008d055adec7bf72470c4f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/29/2019" /><Meta Name="ms.locfileid" Value="66301948" /></Metadata><TypeSignature Language="C#" Value="public struct Span&lt;T&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit Span`1&lt;T&gt; extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Span`1" />
   <TypeSignature Language="VB.NET" Value="Public Structure Span(Of T)" />
@@ -41,7 +41,7 @@
 `Span<T>` 是[ref 结构](~/docs/csharp/language-reference/keywords/ref.md#ref-struct-types)堆栈，而不是托管堆上分配。 Ref 结构类型有多种限制，以确保它们不能至托管堆，包括不能装箱，它们不能分配给类型的变量提升<xref:System.Object>，`dynamic`为任何接口类型，也不能是中的字段引用类型，并且它们不能使用跨`await`和`yield`边界。 此外，对两个方法调用<xref:System.Span%601.Equals(System.Object)>并<xref:System.Span%601.GetHashCode%2A>，引发<xref:System.NotSupportedException>。 
 
 > [!IMPORTANT]
-> 它是仅限堆栈的类型，因为`Span<T>`不合适，则需要将对缓冲区的引用存储在堆上的很多情况下。 这是如此，例如，进行 asynchrous 方法调用的例程。 对于这种情况下，可以使用免费赠送<xref:System.Memory%601?displayProperty=nameWithType>和<xref:System.ReadOnlyMemory%601?displayProperty=nameWithType>类型。
+> 它是仅限堆栈的类型，因为`Span<T>`不合适，则需要将对缓冲区的引用存储在堆上的很多情况下。 这是如此，例如，进行异步方法调用的例程。 对于这种情况下，可以使用补充<xref:System.Memory%601?displayProperty=nameWithType>和<xref:System.ReadOnlyMemory%601?displayProperty=nameWithType>类型。
 
 表示不可变的或只读结构的范围，对于使用<xref:System.ReadOnlySpan%601?displayProperty=nameWithType>。
 
@@ -193,18 +193,18 @@
         <Parameter Name="length" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="array">源数组中。</param>
+        <param name="array">源数组。</param>
         <param name="start">要包括在新的 <see cref="T:System.Span`1" /> 内的第一个元素的索引。</param>
         <param name="length">要包括在新的 <see cref="T:System.Span`1" /> 中的元素数。</param>
         <summary>从指定索引开始，创建包含数组的指定元素数的新 <see cref="T:System.Span`1" /> 对象。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="array" /> 是 <see langword="null" />，但 <paramref name="start" /> 或 <paramref name="length" /> 不为零。
 
-或
+- 或 -
 
 <paramref name="start" /> 在数组的界限外。
 
-或
+- 或 -
 
 <paramref name="start" /> 和 <paramref name="length" /> 超过数组中的元素数。</exception>
         <exception cref="T:System.TypeMismatchException"><paramref name="T" /> 为引用类型，并且 <paramref name="array" /> 不是 <paramref name="T" /> 类型的数组。</exception>
@@ -765,7 +765,7 @@
         <Parameter Name="span" Type="System.Span&lt;T&gt;" />
       </Parameters>
       <Docs>
-        <param name="span">要转换为对象<see cref="T:System.ReadOnlySpan`1" />。</param>
+        <param name="span">要转换为 <see cref="T:System.ReadOnlySpan`1" /> 的对象。</param>
         <summary>定义 <see cref="T:System.Span`1" /> 到 <see cref="T:System.ReadOnlySpan`1" /> 的隐式转换。</summary>
         <returns>与当前实例对应的只读范围。</returns>
         <remarks>To be added.</remarks>
@@ -835,7 +835,7 @@
         <param name="left">要比较的第一个范围。</param>
         <param name="right">要比较的第二个范围。</param>
         <summary>返回一个值，该值指示两个 <see cref="T:System.Span`1" /> 对象是否不相等。</summary>
-        <returns><see langword="true" /> 如果两个<see cref="T:System.Span`1" />对象是否不相等; 否则为<see langword="false" />。</returns>
+        <returns>如果两个 <see cref="T:System.Span`1" /> 对象不相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
