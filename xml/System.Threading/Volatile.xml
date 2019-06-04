@@ -1,5 +1,5 @@
 <Type Name="Volatile" FullName="System.Threading.Volatile">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6d84379ea86886f54d6dc46257755f49460aecec" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58721654" /></Metadata><TypeSignature Language="C#" Value="public static class Volatile" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9b7add34f0fb3f46000bec226abf37058fae4f20" /><Meta Name="ms.sourcegitcommit" Value="0de246131f8a87c71d008d055adec7bf72470c4f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/29/2019" /><Meta Name="ms.locfileid" Value="66302018" /></Metadata><TypeSignature Language="C#" Value="public static class Volatile" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit Volatile extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Volatile" />
   <TypeSignature Language="VB.NET" Value="Public Class Volatile" />
@@ -46,10 +46,11 @@
     > [!NOTE]
     >  调用这些方法之一，会影响单个内存访问。 若要提供有效字段的同步，请对该字段的所有访问必须都使用<xref:System.Threading.Volatile.Read%2A?displayProperty=nameWithType>和<xref:System.Threading.Volatile.Write%2A?displayProperty=nameWithType>。  
   
--   在 C# 中，使用`volatile`字段上的修饰符可保证每次访问该字段，使用<xref:System.Threading.Volatile.Read%2A?displayProperty=nameWithType>并<xref:System.Threading.Volatile.Write%2A?displayProperty=nameWithType>方法，但`volatile`修饰符不能应用于数组元素。 <xref:System.Threading.Volatile.Read%2A?displayProperty=nameWithType>和<xref:System.Threading.Volatile.Write%2A?displayProperty=nameWithType>方法适用于数组元素。  
+-   在C#，并使用`volatile`字段上的修饰符可保证每次访问该字段是易失性内存的操作，但`volatile`修饰符不能应用于数组元素。 <xref:System.Threading.Volatile.Read%2A?displayProperty=nameWithType>和<xref:System.Threading.Volatile.Write%2A?displayProperty=nameWithType>方法适用于数组元素。  
   
  ]]></format>
     </remarks>
+    <related type="Article" href="/dotnet/csharp/language-reference/keywords/volatile">易失关键字 (C#引用)</related>
   </Docs>
   <Members>
     <MemberGroup MemberName="Read">
@@ -1162,7 +1163,7 @@
       <Docs>
         <param name="location">将值写入的字段。</param>
         <param name="value">要写入的值。 立即写入一个值，以使该值对计算机中的所有处理器都可见。</param>
-        <summary>将指定的值写入指定字段。 在需要它的系统上，插入一个内存屏障，阻止处理器对内存操作重新排序，如下所示：如果在代码中使用此方法之前出现内存操作，则处理器无法在使用此方法后将其移动。</summary>
+        <summary>将指定的值写入指定字段。 在需要它的系统上，插入一个内存屏障，阻止处理器对内存操作重新排序，如下所示：如果在代码中读取或写入出现此方法之前，处理器不能将其移到此方法之后。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
