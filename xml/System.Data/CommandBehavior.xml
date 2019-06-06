@@ -1,5 +1,5 @@
 <Type Name="CommandBehavior" FullName="System.Data.CommandBehavior">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="06bf0e5f9cd0830b6df366d100746730876bffda" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58692856" /></Metadata><TypeSignature Language="C#" Value="public enum CommandBehavior" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8dc33ced8e52016db3b9d4d5cbce685de60f0ab5" /><Meta Name="ms.sourcegitcommit" Value="9a6da88bd5455e8274257ca7ad259b42f1de114f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/22/2019" /><Meta Name="ms.locfileid" Value="66006814" /></Metadata><TypeSignature Language="C#" Value="public enum CommandBehavior" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed CommandBehavior extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Data.CommandBehavior" />
   <TypeSignature Language="VB.NET" Value="Public Enum CommandBehavior" />
@@ -38,15 +38,21 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.CommandBehavior>通过使用值<xref:System.Data.IDbCommand.ExecuteReader%2A>方法的<xref:System.Data.IDbCommand>和从它派生的任何类。  
+ `CommandBehavior`通过使用值<xref:System.Data.IDbCommand.ExecuteReader%2A>方法的<xref:System.Data.IDbCommand>和任何实现类。  
   
  可能使用这些值的按位组合。  
   
- <xref:System.Data.CommandBehavior> 用于定义时，将忽略<xref:System.Data.Sql.SqlNotificationRequest>或<xref:System.Data.SqlClient.SqlDependency>并因此不能使用。 使用构造函数不需要`CommandBehavior`这两种情况中的参数。  
-  
+`CommandBehavior` 用于定义时，将忽略<xref:System.Data.Sql.SqlNotificationRequest>或<xref:System.Data.SqlClient.SqlDependency>并因此不能使用。 使用构造函数不需要`CommandBehavior`这两种情况中的参数。  
+
+### <a name="notes-on-individual-enumeration-members"></a>有关单独的枚举成员的说明
+
+使用时`KeyInfo`，SQL Server 的.NET Framework 数据提供程序位于与正在执行的语句`SET FMTONLY OFF`和`SET NO_BROWSETABLE ON`。 用户应注意潜在的负面影响，如使用的干扰`SET FMTONLY ON`语句。 有关详细信息，请参阅 [SET FMTONLY (Transact-SQL)](/sql/t-sql/statements/set-fmtonly-transact-sql)。
+
 > [!NOTE]
->  使用 SequentialAccess 检索大值和二进制数据。 否则为<xref:System.OutOfMemoryException>可能会出现，连接将被关闭。  
-  
+>  使用`SequentialAccess`检索大值和二进制数据。 否则为<xref:System.OutOfMemoryException>可能会出现，连接将被关闭。  
+
+当指定`SequentialAccess`，需要从它们的返回的顺序中的列读取，虽然不需要读取每个列。 位置或该位置之前的数据后已经读过的数据返回的流中的某个位置，不能再从读取`DataReader`。 当使用<xref:System.Data.OleDb.OleDbDataReader>，直到读过它，您可以重新读取当前列的值。 当使用<xref:System.Data.SqlClient.SqlDataReader>，可以一次读取某列的值。  
+
  ]]></format>
     </remarks>
   </Docs>
@@ -153,17 +159,8 @@
       </ReturnValue>
       <MemberValue>4</MemberValue>
       <Docs>
-        <summary>查询返回列和主键信息。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 当 KeyInfo 用于执行命令时，该提供程序会将额外的结果集中现有的主键列以及时间戳列。  
-  
- 当使用 KeyInfo 时，SQL Server 的.NET Framework 数据提供程序之前使用 SET FMTONLY OFF 和 SET NO_BROWSETABLE ON 正在执行的语句。 用户应该注意潜在的副作用，例如对 SET FMTONLY ON 语句的使用产生的干扰。 有关详细信息，请参阅 [SET FMTONLY (Transact-SQL)](/sql/t-sql/statements/set-fmtonly-transact-sql)。
-  
- ]]></format>
-        </remarks>
+        <summary>查询返回列和主键信息。 提供程序将额外的列附加到现有主键和时间戳列的结果集。</summary>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="SchemaOnly">
@@ -234,14 +231,7 @@
       <MemberValue>16</MemberValue>
       <Docs>
         <summary>提供一种方法，以便 <see langword="DataReader" /> 处理包含带有大型二进制值的列的行。 <see langword="SequentialAccess" /> 不是加载整行，而是使 <see langword="DataReader" /> 能够以数据流的加载数据。 然后可以使用 <see langword="GetBytes" /> 或 <see langword="GetChars" /> 方法来指定开始读取操作的字节位置，以及正在返回的数据的有限缓冲区大小。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 当指定`SequentialAccess`，需要从它们的返回的顺序中的列读取，虽然不需要读取每个列。 位置或该位置之前的数据后已经读过的数据返回的流中的某个位置，不能再从读取`DataReader`。 当使用<xref:System.Data.OleDb.OleDbDataReader>，直到读过它，您可以重新读取当前列的值。 当使用<xref:System.Data.SqlClient.SqlDataReader>，可以一次读取某列的值。  
-  
- ]]></format>
-        </remarks>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="SingleResult">

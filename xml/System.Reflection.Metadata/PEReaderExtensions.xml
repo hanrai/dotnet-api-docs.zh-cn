@@ -1,5 +1,5 @@
 <Type Name="PEReaderExtensions" FullName="System.Reflection.Metadata.PEReaderExtensions">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="24f516cc92caebe3d926f835aca27e544e037854" /><Meta Name="ms.sourcegitcommit" Value="434f60616a9793fa8436744549fc856e94f7a648" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/25/2018" /><Meta Name="ms.locfileid" Value="39781061" /></Metadata><TypeSignature Language="C#" Value="public static class PEReaderExtensions" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="eaf0b4815c08b5267fbb739b74f1875e4a7d5514" /><Meta Name="ms.sourcegitcommit" Value="9a6da88bd5455e8274257ca7ad259b42f1de114f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/22/2019" /><Meta Name="ms.locfileid" Value="66006296" /></Metadata><TypeSignature Language="C#" Value="public static class PEReaderExtensions" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit PEReaderExtensions extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.Metadata.PEReaderExtensions" />
   <TypeSignature Language="VB.NET" Value="Public Module PEReaderExtensions" />
@@ -7,18 +7,23 @@
   <TypeSignature Language="F#" Value="type PEReaderExtensions = class" />
   <AssemblyInfo>
     <AssemblyName>System.Reflection.Metadata</AssemblyName>
+    <AssemblyVersion>1.0.22.0</AssemblyVersion>
     <AssemblyVersion>1.3.0.0</AssemblyVersion>
     <AssemblyVersion>1.4.1.0</AssemblyVersion>
     <AssemblyVersion>1.4.2.0</AssemblyVersion>
     <AssemblyVersion>1.4.3.0</AssemblyVersion>
+    <AssemblyVersion>1.4.4.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
   <Interfaces />
   <Attributes>
-    <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1">
+    <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;dotnet-uwp-10.0;netcore-3.0">
       <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)</AttributeName>
+    </Attribute>
+    <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1">
+      <AttributeName>System.ComponentModel.EditorBrowsable</AttributeName>
     </Attribute>
   </Attributes>
   <Docs>
@@ -35,10 +40,12 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Metadata</AssemblyName>
+        <AssemblyVersion>1.0.22.0</AssemblyVersion>
         <AssemblyVersion>1.3.0.0</AssemblyVersion>
         <AssemblyVersion>1.4.1.0</AssemblyVersion>
         <AssemblyVersion>1.4.2.0</AssemblyVersion>
         <AssemblyVersion>1.4.3.0</AssemblyVersion>
+        <AssemblyVersion>1.4.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.Metadata.MetadataReader</ReturnType>
@@ -47,10 +54,13 @@
         <Parameter Name="peReader" Type="System.Reflection.PortableExecutable.PEReader" RefType="this" />
       </Parameters>
       <Docs>
-        <param name="peReader">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="peReader">当前的 <see cref="T:System.Reflection.PortableExecutable.PEReader" /> 实例。</param>
+        <summary>从 <see cref="T:System.Reflection.PortableExecutable.PEReader" /> 中获取一个 <see cref="T:System.Reflection.Metadata.MetadataReader" />。</summary>
+        <returns>元数据读取器。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="peReader" /> 为 <see langword="null" />。</exception>
+        <exception cref="T:System.PlatformNotSupportedException">当前平台是大端。</exception>
+        <exception cref="T:System.IO.IOException">从基础流中读取时出现 IO 错误。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetMetadataReader">
@@ -62,10 +72,12 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Metadata</AssemblyName>
+        <AssemblyVersion>1.0.22.0</AssemblyVersion>
         <AssemblyVersion>1.3.0.0</AssemblyVersion>
         <AssemblyVersion>1.4.1.0</AssemblyVersion>
         <AssemblyVersion>1.4.2.0</AssemblyVersion>
         <AssemblyVersion>1.4.3.0</AssemblyVersion>
+        <AssemblyVersion>1.4.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.Metadata.MetadataReader</ReturnType>
@@ -75,11 +87,14 @@
         <Parameter Name="options" Type="System.Reflection.Metadata.MetadataReaderOptions" />
       </Parameters>
       <Docs>
-        <param name="peReader">To be added.</param>
-        <param name="options">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="peReader">当前的 <see cref="T:System.Reflection.PortableExecutable.PEReader" /> 实例。</param>
+        <param name="options">一个表示元数据读取配置的枚举值。</param>
+        <summary>获取元数据读取器，其中包含 <see cref="T:System.Reflection.PortableExecutable.PEReader" /> 中指定的元数据读取配置。</summary>
+        <returns>一个元数据读取器，其中包含指定的元数据读取配置。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="peReader" /> 为 <see langword="null" />。</exception>
+        <exception cref="T:System.PlatformNotSupportedException">当前平台是大端。</exception>
+        <exception cref="T:System.IO.IOException">从基础流中读取时出现 IO 错误。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetMetadataReader">
@@ -91,10 +106,12 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Metadata</AssemblyName>
+        <AssemblyVersion>1.0.22.0</AssemblyVersion>
         <AssemblyVersion>1.3.0.0</AssemblyVersion>
         <AssemblyVersion>1.4.1.0</AssemblyVersion>
         <AssemblyVersion>1.4.2.0</AssemblyVersion>
         <AssemblyVersion>1.4.3.0</AssemblyVersion>
+        <AssemblyVersion>1.4.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.Metadata.MetadataReader</ReturnType>
@@ -105,12 +122,16 @@
         <Parameter Name="utf8Decoder" Type="System.Reflection.Metadata.MetadataStringDecoder" />
       </Parameters>
       <Docs>
-        <param name="peReader">To be added.</param>
-        <param name="options">To be added.</param>
-        <param name="utf8Decoder">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="peReader">当前的 <see cref="T:System.Reflection.PortableExecutable.PEReader" /> 实例。</param>
+        <param name="options">一个表示元数据读取配置的枚举值。</param>
+        <param name="utf8Decoder">一个包含编码配置的元数据字符串解码器。</param>
+        <summary>获取元数据读取器，其中包含 <see cref="T:System.Reflection.PortableExecutable.PEReader" /> 中指定的的元数据读取配置和编码配置。</summary>
+        <returns>&gt;一个元数据读取器，其中包含指定的元数据读取配置和编码配置。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="peReader" /> 为 <see langword="null" />。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="utf8Decoder" /> 的编码不是 <see cref="T:System.Text.UTF8Encoding" />。</exception>
+        <exception cref="T:System.PlatformNotSupportedException">当前平台是大端。</exception>
+        <exception cref="T:System.IO.IOException">从基础流中读取时出现 IO 错误。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetMethodBody">
@@ -122,10 +143,12 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Metadata</AssemblyName>
+        <AssemblyVersion>1.0.22.0</AssemblyVersion>
         <AssemblyVersion>1.3.0.0</AssemblyVersion>
         <AssemblyVersion>1.4.1.0</AssemblyVersion>
         <AssemblyVersion>1.4.2.0</AssemblyVersion>
         <AssemblyVersion>1.4.3.0</AssemblyVersion>
+        <AssemblyVersion>1.4.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.Metadata.MethodBodyBlock</ReturnType>
@@ -135,11 +158,15 @@
         <Parameter Name="relativeVirtualAddress" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="peReader">To be added.</param>
-        <param name="relativeVirtualAddress">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="peReader">当前的 <see cref="T:System.Reflection.PortableExecutable.PEReader" /> 实例。</param>
+        <param name="relativeVirtualAddress">相对虚拟地址 (RVA)。</param>
+        <summary>返回方法的主体块，其中包含指定的相对虚拟地址 (RVA)；</summary>
+        <returns>方法块主体实例。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="peReader" /> 为 <see langword="null" />。</exception>
+        <exception cref="T:System.BadImageFormatException">未在元数据中找到主体或主体无效。</exception>
+        <exception cref="T:System.InvalidOperationException">存储此方法的部分不可用。</exception>
+        <exception cref="T:System.IO.IOException">从基础流中读取时出现 IO 错误。</exception>
       </Docs>
     </Member>
   </Members>

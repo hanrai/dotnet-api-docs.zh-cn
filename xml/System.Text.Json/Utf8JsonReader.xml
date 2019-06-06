@@ -1,5 +1,5 @@
 <Type Name="Utf8JsonReader" FullName="System.Text.Json.Utf8JsonReader">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="cfe620a074fff1eeb0f7eccb868308146b5c66e4" /><Meta Name="ms.sourcegitcommit" Value="2767b5903996fbd7e2b81eda1114dfc9d0d9db63" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/02/2019" /><Meta Name="ms.locfileid" Value="65006713" /></Metadata><TypeSignature Language="C#" Value="public struct Utf8JsonReader" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f992d9ddc5811a697ecad197058d154e3b4fbc4c" /><Meta Name="ms.sourcegitcommit" Value="ef1f0c8985003a14413f66c3de381b8f3b6e4436" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/30/2019" /><Meta Name="ms.locfileid" Value="66380672" /></Metadata><TypeSignature Language="C#" Value="public struct Utf8JsonReader" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit Utf8JsonReader extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Text.Json.Utf8JsonReader" />
   <TypeSignature Language="VB.NET" Value="Public Structure Utf8JsonReader" />
@@ -28,7 +28,9 @@
 `Utf8JsonReader` 进程的文本按顺序不使用缓存并默认情况下为严格遵循[JSON RFC](https://tools.ietf.org/html/rfc8259)。
 
 当`Utf8JsonReader`遇到无效的 JSON，则会引发<xref:System.Text.Json.JsonReaderException>与行数和字节位置如下基本错误信息： 在行上。
+
 由于此类型是 ref 结构，它不直接支持异步。 但是，它提供对以读取不完整的数据并提供更多的数据后，请继续阅读可重入性的支持。
+
 若要能够设置读取时的最大深度或允许跳过注释，创建的实例<xref:System.Text.Json.JsonReaderState>并将它传递给读取器。
 
  ]]></format>
@@ -229,9 +231,11 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTime" />。</summary>
+        <returns>如果可成功解析整个 UTF-8 编码的令牌值，则为日期和时间。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
+        <exception cref="T:System.FormatException">JSON 令牌值的格式不受支持。 仅支持部分 ISO 8601 格式。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetDateTimeOffset">
@@ -251,9 +255,11 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTimeOffset" />。</summary>
+        <returns>如果可成功解析整个 UTF-8 编码的令牌值，则为日期和时间值。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
+        <exception cref="T:System.FormatException">JSON 令牌值的格式不受支持。 仅支持部分 ISO 8601 格式。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetDecimal">
@@ -339,9 +345,11 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Guid" />。</summary>
+        <returns>如果可成功解析整个 UTF-8 编码的令牌值，则为 GUID 值。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
+        <exception cref="T:System.FormatException">Guid 不支持 JSON 令牌值的格式。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetInt32">
@@ -473,9 +481,9 @@ JSON 令牌值表示小于 <see cref="F:System.Int64.MinValue" /> 或大于 <see
         <remarks>To be added.</remarks>
         <exception cref="T:System.InvalidOperationException">JSON 令牌值不是字符串（即，不是 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。
 
-或
+- 或 -
 
-JSON 字符串包含无效的 utf-8 字节或无效的 UTF 16 位替代。</exception>
+JSON 字符串包含无效的 UTF-8 字节或无效的 UTF-16 替代项。</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -621,7 +629,12 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <remarks>To be added.</remarks>
         <exception cref="T:System.Text.Json.JsonReaderException">遇到无效的 JSON 令牌。
             
-或
+- 或 -
+
+当前深度超过由最大深度决定的递归限值。</exception>
+        <exception cref="T:System.Text.Json.JsonException">根据 JSON RFC，遇到无效的 JSON 令牌。
+        
+- 或 -
 
 当前深度超过由最大深度决定的递归限值。</exception>
       </Docs>
@@ -645,10 +658,17 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="otherUtf8Text" Type="System.ReadOnlySpan&lt;System.Byte&gt;" />
       </Parameters>
       <Docs>
-        <param name="otherUtf8Text">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="otherUtf8Text">要进行比较的 UTF-8 编码文本。</param>
+        <summary>将 UTF-8 编码文本与源中未转义的 JSON 令牌值进行比较；如果匹配，则返回 <see langword="true" />。</summary>
+        <returns>如果源中的 JSON 令牌值与 UTF-8 编码查找文本匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <remarks>
+          <format><![CDATA[
+          
+如果查找文本是无效的 utf-8 文本，该方法将返回`false`因为不能有无效-8 中的 JSON 有效负载。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.InvalidOperationException">JSON 令牌不是字符串（即，其类型不同于 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。</exception>
       </Docs>
     </Member>
     <Member MemberName="TextEquals">
@@ -670,10 +690,17 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="otherText" Type="System.ReadOnlySpan&lt;System.Char&gt;" />
       </Parameters>
       <Docs>
-        <param name="otherText">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="otherText">要进行比较的 UTF-16 编码文本。</param>
+        <summary>将 UTF-16 编码文本与源中未转义的 JSON 令牌值相比较；如果匹配，则返回 true。</summary>
+        <returns>如果源中的 JSON 令牌值与 UTF-16 编码查找文本匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <remarks>
+          <format><![CDATA[
+          
+如果查找文本是无效或不完整的 utf-16 文本 （例如不成对的代理），该方法返回`false`由于无法在 JSON 有效负载无效 utf-16。
+            
+            ]]></format>
+        </remarks>
+        <exception cref="T:System.InvalidOperationException">JSON 文本不是字符串（其类型不是 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。</exception>
       </Docs>
     </Member>
     <Member MemberName="TokenType">
@@ -716,10 +743,11 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="value" Type="System.DateTime" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="value">在此方法返回时，包含已解析的值。</param>
+        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTime" />。</summary>
+        <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.DateTime" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="TryGetDateTimeOffset">
@@ -741,10 +769,11 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="value" Type="System.DateTimeOffset" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="value">在此方法返回时，包含已解析的值。</param>
+        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTimeOffset" />。</summary>
+        <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.DateTimeOffset" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="TryGetDecimal">
@@ -820,10 +849,17 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="value" Type="System.Guid" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">在此方法返回时，包含已解析的值。</param>
+        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Guid" />。</summary>
+        <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Guid" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+
+此方法只能分析<xref:System.Guid>使用连字符和不使用任何周围修饰的值。 
+
+         ]]></format>
+         </remarks>
+         <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="TryGetInt32">

@@ -1,5 +1,5 @@
 <Type Name="PipeWriter" FullName="System.IO.Pipelines.PipeWriter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e2f146380d236a95e84925bb8544a9b5b326c911" /><Meta Name="ms.sourcegitcommit" Value="2767b5903996fbd7e2b81eda1114dfc9d0d9db63" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/02/2019" /><Meta Name="ms.locfileid" Value="64996763" /></Metadata><TypeSignature Language="C#" Value="public abstract class PipeWriter : System.Buffers.IBufferWriter&lt;byte&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0b622dc070ab36dcf6b941c734e30c03d2c0237d" /><Meta Name="ms.sourcegitcommit" Value="0de246131f8a87c71d008d055adec7bf72470c4f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/29/2019" /><Meta Name="ms.locfileid" Value="66301880" /></Metadata><TypeSignature Language="C#" Value="public abstract class PipeWriter : System.Buffers.IBufferWriter&lt;byte&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit PipeWriter extends System.Object implements class System.Buffers.IBufferWriter`1&lt;unsigned int8&gt;" />
   <TypeSignature Language="DocId" Value="T:System.IO.Pipelines.PipeWriter" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class PipeWriter&#xA;Implements IBufferWriter(Of Byte)" />
@@ -67,8 +67,8 @@
         <Parameter Name="bytes" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="bytes">写入到的字节数<see cref="T:System.Span`1" />或<see cref="T:System.Memory`1" />。</param>
-        <summary>通知<see cref="T:System.IO.Pipelines.PipeWriter" />该<paramref name="bytes" />字节已写入到输出<see cref="T:System.Span`1" />或<see cref="T:System.Memory`1" />。 你必须请求新的缓冲区之后调用<see cref="M:System.IO.Pipelines.PipeWriter.Advance(System.Int32)" />继续编写更多的数据; 不能写入以前获取的缓冲区。</summary>
+        <param name="bytes">写入到 <see cref="T:System.Span`1" /> 或 <see cref="T:System.Memory`1" /> 的字节数。</param>
+        <summary>通知 <see cref="T:System.IO.Pipelines.PipeWriter" />：已向输出 <see cref="T:System.Span`1" /> 或 <see cref="T:System.Memory`1" /> 写入 <paramref name="bytes" /> 字节。 必须在调用 <see cref="M:System.IO.Pipelines.PipeWriter.Advance(System.Int32)" /> 之后请求新的缓冲区，才能继续写入更多数据；无法写入到之前获取的缓冲区。</summary>
         <remarks>To be added.</remarks>
         <inheritdoc />
       </Docs>
@@ -90,7 +90,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回的只写<see cref="T:System.IO.Stream" />包装<see cref="T:System.IO.Pipelines.PipeWriter" />。</summary>
+        <summary>返回包装 <see cref="T:System.IO.Pipelines.PipeWriter" /> 的只写 <see cref="T:System.IO.Stream" />。</summary>
         <returns><see cref="T:System.IO.Stream" /></returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -160,9 +160,9 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="dotnet-plat-ext-3.0" />
       </Parameters>
       <Docs>
-        <param name="source">将从中复制内容流。</param>
+        <param name="source">将从中复制内容的流。</param>
         <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="P:System.Threading.CancellationToken.None" />。</param>
-        <summary>异步从指定的流中读取字节并将其写入<see cref="T:System.IO.Pipelines.PipeWriter" />。</summary>
+        <summary>从指定的流中异步读取字节并将其写入到 <see cref="T:System.IO.Pipelines.PipeWriter" /> 中。</summary>
         <returns>表示异步复制操作的任务。</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -185,10 +185,10 @@
         <Parameter Name="writerOptions" Type="System.IO.Pipelines.StreamPipeWriterOptions" Index="1" FrameworkAlternate="dotnet-plat-ext-3.0" />
       </Parameters>
       <Docs>
-        <param name="stream">To be added.</param>
-        <param name="writerOptions">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="stream">管道编写器要包装的流。</param>
+        <param name="writerOptions">用于配置管道编写器的选项。</param>
+        <summary>创建包装指定的 <see cref="T:System.IO.Stream" /> 的 <see cref="T:System.IO.Pipelines.PipeWriter" />。</summary>
+        <returns>包装 <see cref="T:System.IO.Stream" /> 的 <see cref="T:System.IO.Pipelines.PipeWriter" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -241,8 +241,8 @@
       </Parameters>
       <Docs>
         <param name="sizeHint">返回的 <see cref="T:System.Memory`1" /> 的长度下限。 如果为 0，则返回任意大小的非空内存缓冲区。</param>
-        <summary>返回<see cref="T:System.Memory`1" />要写入到的是至少请求的大小，由指定<paramref name="sizeHint" />参数。</summary>
-        <returns>内存缓冲区的至少<paramref name="sizeHint" />字节。 如果<paramref name="sizeHint" />为 0，则返回任意大小的非空缓冲区。</returns>
+        <summary>返回要写入到的 <see cref="T:System.Memory`1" />，其大小按 <paramref name="sizeHint" /> 参数指定至少为所请求的大小。</summary>
+        <returns>至少 <paramref name="sizeHint" /> 字节的内存缓冲区。 如果 <paramref name="sizeHint" /> 是 0，则返回任意大小的非空缓冲区。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
@@ -281,9 +281,9 @@
         <Parameter Name="sizeHint" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="sizeHint">返回的 <see cref="T:System.Span`1" /> 的长度下限。 如果为 0，则返回任意大小的非空缓冲区。</param>
-        <summary>返回<see cref="T:System.Span`1" />要写入到的是至少请求的大小，由指定<paramref name="sizeHint" />参数。</summary>
-        <returns>缓冲区，至少<paramref name="sizeHint" />字节。 如果<paramref name="sizeHint" />为 0，则返回任意大小的非空缓冲区。</returns>
+        <param name="sizeHint">返回的 <see cref="T:System.Span`1" /> 的长度下限。 如果为 0，则返回任意大小的非存缓冲区。</param>
+        <summary>返回要写入到的 <see cref="T:System.Span`1" />，其大小按 <paramref name="sizeHint" /> 参数指定至少为所请求的大小。</summary>
+        <returns>至少 <paramref name="sizeHint" /> 字节的缓冲区。 如果 <paramref name="sizeHint" /> 是 0，则返回任意大小的非空缓冲区。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 

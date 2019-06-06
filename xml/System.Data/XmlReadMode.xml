@@ -1,5 +1,5 @@
 <Type Name="XmlReadMode" FullName="System.Data.XmlReadMode">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a5a6a6cbf395a227f8a3c516b5cdbb7f1cadcea1" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58693780" /></Metadata><TypeSignature Language="C#" Value="public enum XmlReadMode" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a5f18cde616de164446c89aa573066e2444e6afc" /><Meta Name="ms.sourcegitcommit" Value="9a6da88bd5455e8274257ca7ad259b42f1de114f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/22/2019" /><Meta Name="ms.locfileid" Value="66006357" /></Metadata><TypeSignature Language="C#" Value="public enum XmlReadMode" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed XmlReadMode extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Data.XmlReadMode" />
   <TypeSignature Language="VB.NET" Value="Public Enum XmlReadMode" />
@@ -31,11 +31,19 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置时使用此枚举成员`ReadMode`参数的<xref:System.Data.DataSet.ReadXml%2A>方法。  
+ 设置时使用此枚举成员`ReadMode`参数的<xref:System.Data.DataSet.ReadXml%2A?displayProperty=nameWithType>方法。  
   
 > [!NOTE]
 >  `Auto` 模式可能会比设置较低<xref:System.Data.XmlReadMode>为显式选项。  
+
+`Auto` 执行这些操作最适合：  
   
+- 如果数据是 DiffGram，集的 XML 读取模式到`DiffGram`。  
+
+- 如果数据集已拥有的架构，或如果文档包含内联架构，集的 XML 读取模式到`ReadSchema`。  
+  
+- 如果数据集不具有架构和文档不包含内联架构，集的 XML 读取模式到`InferSchema`。
+
  ]]></format>
     </remarks>
   </Docs>
@@ -70,25 +78,8 @@
       </ReturnValue>
       <MemberValue>0</MemberValue>
       <Docs>
-        <summary>默认。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 执行这些操作最适合：  
-  
- 如果数据为 DiffGram，则设置`XmlReadMode`到`DiffGram`。  
-  
- - 或 -  
-  
- 如果数据集已拥有的架构，或该文档包含内联架构，则设置`XmlReadMode`到`ReadSchema`。  
-  
- - 或 -  
-  
- 如果数据集不具有架构和文档不包含内联架构，则设置`XmlReadMode`到`InferSchema`。  
-  
- ]]></format>
-        </remarks>
+        <summary>默认的读取模式。</summary>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="DiffGram">
@@ -121,15 +112,10 @@
       </ReturnValue>
       <MemberValue>4</MemberValue>
       <Docs>
-        <summary>读取 DiffGram，将 DiffGram 中的更改应用到 <see cref="T:System.Data.DataSet" />。 语义与 <see cref="M:System.Data.DataSet.Merge(System.Data.DataSet)" /> 操作的语义相同。 与 <see cref="M:System.Data.DataSet.Merge(System.Data.DataSet)" /> 操作一样，保留 <see cref="P:System.Data.DataRow.RowState" /> 值。 对 <see cref="M:System.Data.DataSet.ReadXml(System.Xml.XmlReader)" /> 的 DiffGram 输入只能使用 <see cref="M:System.Data.DataSet.WriteXml(System.IO.Stream)" /> 中的 DiffGram 输出来获得。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 目标<xref:System.Data.DataSet>必须具有相同的架构<xref:System.Data.DataSet>在其上<xref:System.Data.DataSet.WriteXml%2A>如此 DiffGram 的调用。 否则 DiffGram 合并操作失败，并且会引发异常。  
-  
- ]]></format>
-        </remarks>
+        <summary>读取 DiffGram，将 DiffGram 中的更改应用到 <see cref="T:System.Data.DataSet" />。 语义与 <see cref="M:System.Data.DataSet.Merge(System.Data.DataSet)" /> 操作的语义相同。 与 <see cref="M:System.Data.DataSet.Merge(System.Data.DataSet)" /> 操作一样，保留 <see cref="P:System.Data.DataRow.RowState" /> 值。 对 <see cref="M:System.Data.DataSet.ReadXml(System.Xml.XmlReader)" /> 的 DiffGram 输入只能使用 <see cref="M:System.Data.DataSet.WriteXml(System.IO.Stream)" /> 中的 DiffGram 输出来获得。
+        
+目标 <see cref="T:System.Data.DataSet" /> 必须与在其中将 <see cref="Overload:System.Data.DataSet.WriteXml" /> 作为 DiffGram 调用的 <see cref="T:System.Data.DataSet" /> 具有相同架构。 否则，DiffGram 合并操作会失败并引发异常。</summary>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Fragment">

@@ -1,5 +1,5 @@
 <Type Name="Utf8JsonWriter" FullName="System.Text.Json.Utf8JsonWriter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b4b7b0497772f410974a25727535fde4953c5d22" /><Meta Name="ms.sourcegitcommit" Value="95e24aee1283af2f120fc5da4b0bdc0712ab698f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/06/2019" /><Meta Name="ms.locfileid" Value="65156002" /></Metadata><TypeSignature Language="C#" Value="public sealed class Utf8JsonWriter : IAsyncDisposable, IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="034cf5e0f42e28ed370f3808a6f6cc66720c30a5" /><Meta Name="ms.sourcegitcommit" Value="ef1f0c8985003a14413f66c3de381b8f3b6e4436" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/30/2019" /><Meta Name="ms.locfileid" Value="66381211" /></Metadata><TypeSignature Language="C#" Value="public sealed class Utf8JsonWriter : IAsyncDisposable, IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit Utf8JsonWriter extends System.Object implements class System.IAsyncDisposable, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Text.Json.Utf8JsonWriter" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Utf8JsonWriter&#xA;Implements IAsyncDisposable, IDisposable" />
@@ -31,8 +31,10 @@
 `Utf8JsonWriter` 写入的文本按顺序不使用缓存并默认情况下遵循[JSON RFC](https://tools.ietf.org/html/rfc8259)，除了编写注释。
 
 尝试编写无效的 JSON 验证时的方法已启用，则会引发<xref:System.InvalidOperationException>使用特定于上下文的错误消息。
+
 由于此类型是 ref 结构，它不直接支持异步。 但是，它提供对可重入性编写部分数据，若要继续在区块中编写的支持。
-若要在格式化输出缩进和空白区域或跳过验证，创建的实例<xref:System.Text.Json.JsonWriterState>并将其在传递到编写器。
+
+若要在格式化输出缩进和空白区域或跳过验证，创建的实例<xref:System.Text.Json.JsonWriterOptions>并将其传入到编写器。
 
  ]]></format>
     </remarks>
@@ -54,10 +56,11 @@
         <Parameter Name="options" Type="System.Text.Json.JsonWriterOptions" />
       </Parameters>
       <Docs>
-        <param name="bufferWriter">To be added.</param>
-        <param name="options">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="bufferWriter">用于编写 JSON 文本的目标。</param>
+        <param name="options">定义 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 的自定义行为。默认情况下，它会编写最小化的 JSON（不含额外空格）并根据 JSON RFC 验证正在编写的 JSON 在结构上是否有效。</param>
+        <summary>使用指定的 <see cref="T:System.Buffers.IBufferWriter&lt;System.Byte&gt;" /> 构造新的 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 实例。</summary>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="bufferWriter" /> 为 <see langword="null" />。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -76,10 +79,11 @@
         <Parameter Name="options" Type="System.Text.Json.JsonWriterOptions" />
       </Parameters>
       <Docs>
-        <param name="utf8Json">To be added.</param>
-        <param name="options">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="utf8Json">用于编写 JSON 文本的目标。</param>
+        <param name="options">定义 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 的自定义行为。默认情况下，它会编写最小化的 JSON（不含额外空格）并根据 JSON RFC 验证正在编写的 JSON 在结构上是否有效。</param>
+        <summary>使用指定的 <paramref name="utf8Json" /> 构造新的 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 实例。</summary>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="utf8Json" /> 为 <see langword="null" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="BytesCommitted">
@@ -98,10 +102,17 @@
         <ReturnType>System.Int64</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取目前为止 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 为 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 的当前实例提交到输出的字节总数。
-这指示 <see cref="T:System.Buffers.IBufferWriter`1" /> 的升级程度。</summary>
+        <summary>获取目前为止当前实例提交到输出的字节总数。</summary>
         <value>总字节数的已提交到由输出<see cref="T:System.Text.Json.Utf8JsonWriter" />到目前为止。</value>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format><![CDATA[
+          
+情况下<xref:System.Buffers.IBufferWriter%601>，此属性指示 IBufferWriter 具有高级多少。
+
+情况下<xref:System.IO.Stream>，此属性指示数据量写入流。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="BytesPending">
@@ -120,7 +131,7 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>获取目前为止由 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 编写但尚未刷新到输出并提交的字节数。</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -174,8 +185,16 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>提交尚未刷新的所有剩余 JSON 文本，并释放当前实例使用的所有资源。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+这对于 IBufferWriter，推进基础<xref:System.Buffers.IBufferWriter`1>根据到目前为止已写入。
+
+在 Stream 的情况下，这将数据写入到流并将其刷新。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="DisposeAsync">
@@ -198,9 +217,17 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary>异步提交尚未刷新的所有剩余 JSON 文本，并释放当前实例使用的所有资源。</summary>
         <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format><![CDATA[
+          
+这对于 IBufferWriter，推进基础<xref:System.Buffers.IBufferWriter`1>根据到目前为止已写入。
+          
+在 Stream 的情况下，这将数据写入到流并将其刷新。
+            
+            ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Flush">
@@ -220,8 +247,17 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>提交目前为止编写的 JSON 文本，使其对输出目标可见。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+这对于 IBufferWriter，推进基础<xref:System.Buffers.IBufferWriter`1>根据到目前为止已写入。
+
+情况下<xref:System.IO.Stream>，这将数据写入到流，并将其刷新。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ObjectDisposedException">已释放此实例。</exception>
       </Docs>
     </Member>
     <Member MemberName="FlushAsync">
@@ -242,9 +278,18 @@
       </Parameters>
       <Docs>
         <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>异步提交目前为止编写的 JSON 文本，使其对输出目标可见。</summary>
         <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format><![CDATA[
+          
+这对于 IBufferWriter，推进基础<xref:System.Buffers.IBufferWriter`1>根据到目前为止已写入。
+
+情况下<xref:System.IO.Stream>，这将数据写入到流，并以异步方式监视取消请求时对其进行刷新。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ObjectDisposedException">已释放此实例。</exception>
       </Docs>
     </Member>
     <Member MemberName="Options">
@@ -263,7 +308,7 @@
         <ReturnType>System.Text.Json.JsonWriterOptions</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>获取使用此实例编写 JSON 时的自定义行为，以指示在编写时是否格式化输出以及是否跳过结构化 JSON 验证。</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -285,8 +330,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>重置此实例的内部状态，以便可以重复使用它。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+<xref:System.Text.Json.Utf8JsonWriter>将继续使用原始的编写器选项和原始输出 (要么<xref:System.Buffers.IBufferWriter`1>或<xref:System.IO.Stream>) 作为目标。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ObjectDisposedException">已释放此实例。</exception>
       </Docs>
     </Member>
     <Member MemberName="Reset">
@@ -308,9 +360,17 @@
         <Parameter Name="bufferWriter" Type="System.Buffers.IBufferWriter&lt;System.Byte&gt;" />
       </Parameters>
       <Docs>
-        <param name="bufferWriter">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="bufferWriter">用于编写 JSON 文本的目标。</param>
+        <summary>重置此实例的内部状态，以便可以结合 <see cref="T:System.Buffers.IBufferWriter`1" /> 的新实例重复使用它。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+<xref:System.Text.Json.Utf8JsonWriter>将继续使用原始的编写器选项，但现在将写入到`bufferWriter`作为新的目标。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="bufferWriter" /> 为 <see langword="null" />。</exception>
+        <exception cref="T:System.ObjectDisposedException">已释放此实例。</exception>
       </Docs>
     </Member>
     <Member MemberName="Reset">
@@ -332,9 +392,17 @@
         <Parameter Name="utf8Json" Type="System.IO.Stream" />
       </Parameters>
       <Docs>
-        <param name="utf8Json">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8Json">用于编写 JSON 文本的目标。</param>
+        <summary>重置此实例的内部状态，以便可以结合 <see cref="T:System.IO.Stream" /> 的新实例重复使用它。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+<xref:System.Text.Json.Utf8JsonWriter>将继续使用原始的编写器选项，但现在写入`utf8Json`作为新的目标。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="utf8Json" /> 为 <see langword="null" />。</exception>
+        <exception cref="T:System.ObjectDisposedException">已释放此实例。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteBoolean">
@@ -357,10 +425,18 @@
         <Parameter Name="value" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <param name="value">要写为 JSON 文本“true”或“false”且作为名称/值对的值。</param>
+        <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.Boolean" /> 值（写为 JSON 文本“true”或“false”）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteBoolean">
@@ -383,10 +459,18 @@
         <Parameter Name="value" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要写为 JSON 文本“true”或“false”且作为名称/值对的值。</param>
+        <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.Boolean" /> 值（写为 JSON 文本“true”或“false”）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteBoolean">
@@ -409,10 +493,18 @@
         <Parameter Name="value" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要写为 JSON 文本“true”或“false”且作为名称/值对的值。</param>
+        <summary>编写指定为字符串的属性名称和 <see cref="T:System.Boolean" /> 值（写为 JSON 文本“true”或“false”）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteBooleanValue">
@@ -435,9 +527,9 @@
       </Parameters>
       <Docs>
         <param name="value">要编写为 JSON 文本“true”或“false”且作为 JSON 数组元素的值。</param>
-        <summary>编写 <see cref="T:System.Boolean" /> 值（编写为 JSON 文本“true”或“false”）作为 JSON 数组的元素。</summary>
+        <summary>编写 <see cref="T:System.Boolean" /> 值（写为 JSON 文本“true”或“false”）作为 JSON 数组的元素。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteCommentValue">
@@ -459,9 +551,20 @@
         <Parameter Name="utf8Value" Type="System.ReadOnlySpan&lt;System.Byte&gt;" />
       </Parameters>
       <Docs>
-        <param name="utf8Value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8Value">要在 /*..*/ 中编写为 JSON 注释的 UTF-8 编码值。</param>
+        <summary>将 UTF-8 文本值编写为 JSON 注释。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+写入之前未转义的注释值。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的值太大。
+        
+- 或 -
+
+<paramref name="utf8Value" /> 包含注释分隔符（即 */）。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteCommentValue">
@@ -483,9 +586,20 @@
         <Parameter Name="value" Type="System.ReadOnlySpan&lt;System.Char&gt;" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="value">要在 /*..*/ 中编写为 UTF-8 转码 JSON 注释的 UTF-16 编码值。</param>
+        <summary>将 UTF-16 文本值编写为 JSON 注释。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+写入之前未转义的注释值。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的值太大。
+        
+- 或 -
+
+<paramref name="value" /> 包含注释分隔符（即 */）。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteCommentValue">
@@ -507,9 +621,20 @@
         <Parameter Name="value" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="value">要在 /*..*/ 中编写为 UTF-8 转码 JSON 注释的 UTF-16 编码值。</param>
+        <summary>将字符串文本值编写为 JSON 注释。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+写入之前未转义的注释值。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的值太大。
+        
+- 或 -
+
+<paramref name="value" /> 包含注释分隔符（即 */）。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteEndArray">
@@ -531,7 +656,7 @@
       <Docs>
         <summary>编写 JSON 数组的结尾。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteEndObject">
@@ -553,7 +678,7 @@
       <Docs>
         <summary>编写 JSON 对象的结尾。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNull">
@@ -575,9 +700,17 @@
         <Parameter Name="utf8PropertyName" Type="System.ReadOnlySpan&lt;System.Byte&gt;" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <summary>编写指定为字节只读范围的属性名称和 JSON 文本“null”，作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNull">
@@ -599,9 +732,17 @@
         <Parameter Name="propertyName" Type="System.ReadOnlySpan&lt;System.Char&gt;" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <summary>编写指定为只读字符范围的属性名称和 JSON 文本“null”，作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNull">
@@ -623,9 +764,17 @@
         <Parameter Name="propertyName" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <summary>编写指定为字符串的属性名称和 JSON 文本“null”，作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNullValue">
@@ -647,7 +796,7 @@
       <Docs>
         <summary>编写 JSON 文本“NULL”作为 JSON 数组的元素。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -670,10 +819,18 @@
         <Parameter Name="value" Type="System.Decimal" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.Decimal" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -696,10 +853,18 @@
         <Parameter Name="value" Type="System.Double" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.Double" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -722,10 +887,18 @@
         <Parameter Name="value" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.Int32" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -748,10 +921,18 @@
         <Parameter Name="value" Type="System.Int64" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.Int64" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -774,10 +955,18 @@
         <Parameter Name="value" Type="System.Single" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.Single" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -805,10 +994,18 @@
         <Parameter Name="value" Type="System.UInt32" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.UInt32" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -836,10 +1033,18 @@
         <Parameter Name="value" Type="System.UInt64" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.UInt64" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -862,10 +1067,18 @@
         <Parameter Name="value" Type="System.Decimal" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.Decimal" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -888,10 +1101,18 @@
         <Parameter Name="value" Type="System.Double" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.Double" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+          
+属性名称被转义，才能写入。
+          
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -914,10 +1135,18 @@
         <Parameter Name="value" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.Int32" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -940,10 +1169,18 @@
         <Parameter Name="value" Type="System.Int64" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.Int64" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -966,10 +1203,18 @@
         <Parameter Name="value" Type="System.Single" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.Single" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -997,10 +1242,18 @@
         <Parameter Name="value" Type="System.UInt32" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.UInt32" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -1028,10 +1281,18 @@
         <Parameter Name="value" Type="System.UInt64" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.UInt64" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -1054,10 +1315,18 @@
         <Parameter Name="value" Type="System.Decimal" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字符串的属性名称和 <see cref="T:System.Decimal" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -1080,10 +1349,18 @@
         <Parameter Name="value" Type="System.Double" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字符串的属性名称和 <see cref="T:System.Double" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -1106,10 +1383,18 @@
         <Parameter Name="value" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字符串的属性名称和 <see cref="T:System.Int32" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -1132,10 +1417,18 @@
         <Parameter Name="value" Type="System.Int64" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字符串的属性名称和 <see cref="T:System.Int64" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -1158,10 +1451,18 @@
         <Parameter Name="value" Type="System.Single" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字符串的属性名称和 <see cref="T:System.Single" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -1189,10 +1490,18 @@
         <Parameter Name="value" Type="System.UInt32" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字符串的属性名称和 <see cref="T:System.UInt32" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumber">
@@ -1220,10 +1529,18 @@
         <Parameter Name="value" Type="System.UInt64" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字符串的属性名称和 <see cref="T:System.UInt64" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumberValue">
@@ -1246,9 +1563,9 @@
       </Parameters>
       <Docs>
         <param name="value">要以 JSON 数字形式作为 JSON 数组的元素编写的值。</param>
-        <summary>编写 <see cref="T:System.Decimal" /> 值（作为 JSON 数字）作为 JSON 数组的元素。</summary>
-        <remarks>将写入<see cref="T:System.Decimal" />使用默认<see cref="T:System.Buffers.StandardFormat" />(即，G)。</remarks>
-        <exception cref="T:System.InvalidOperationException">要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+        <summary>编写 <see cref="T:System.Decimal" /> 值（写为 JSON 数字）作为 JSON 数组的元素。</summary>
+        <remarks>此方法写入<see cref="T:System.Decimal" />值使用默认<see cref="T:System.Buffers.StandardFormat" />(即，G)。</remarks>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumberValue">
@@ -1271,9 +1588,9 @@
       </Parameters>
       <Docs>
         <param name="value">要以 JSON 数字形式作为 JSON 数组的元素编写的值。</param>
-        <summary>编写 <see cref="T:System.Double" /> 值（作为 JSON 数字）作为 JSON 数组的元素。</summary>
-        <remarks>将写入<see cref="T:System.Double" />使用默认<see cref="T:System.Buffers.StandardFormat" />(即，G)。</remarks>
-        <exception cref="T:System.InvalidOperationException">要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+        <summary>编写 <see cref="T:System.Double" /> 值（写为 JSON 数字）作为 JSON 数组的元素。</summary>
+        <remarks>此方法写入<see cref="T:System.Double" />值使用默认<see cref="T:System.Buffers.StandardFormat" />(即，G)。</remarks>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumberValue">
@@ -1296,9 +1613,9 @@
       </Parameters>
       <Docs>
         <param name="value">要以 JSON 数字形式作为 JSON 数组的元素编写的值。</param>
-        <summary>编写 <see cref="T:System.Int32" /> 值（作为 JSON 数字）作为 JSON 数组的元素。</summary>
-        <remarks>将写入<see cref="T:System.Int32" />使用默认<see cref="T:System.Buffers.StandardFormat" />(即，G)。 例如，32767。</remarks>
-        <exception cref="T:System.InvalidOperationException">要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+        <summary>编写 <see cref="T:System.Int32" /> 值（写为 JSON 数字）作为 JSON 数组的元素。</summary>
+        <remarks>此方法写入<see cref="T:System.Int32" />值使用默认<see cref="T:System.Buffers.StandardFormat" />(即，G)。 例如，32767。</remarks>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumberValue">
@@ -1321,9 +1638,9 @@
       </Parameters>
       <Docs>
         <param name="value">要以 JSON 数字形式作为 JSON 数组的元素编写的值。</param>
-        <summary>编写 <see cref="T:System.Int64" /> 值（作为 JSON 数字）作为 JSON 数组的元素。</summary>
-        <remarks>将写入<see cref="T:System.Int64" />使用默认<see cref="T:System.Buffers.StandardFormat" />(即，G)。 例如，32767。</remarks>
-        <exception cref="T:System.InvalidOperationException">要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+        <summary>编写 <see cref="T:System.Int64" /> 值（写为 JSON 数字）作为 JSON 数组的元素。</summary>
+        <remarks>此方法写入<see cref="T:System.Int64" />值使用默认<see cref="T:System.Buffers.StandardFormat" />(即，G)。 例如，32767。</remarks>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumberValue">
@@ -1346,9 +1663,9 @@
       </Parameters>
       <Docs>
         <param name="value">要以 JSON 数字形式作为 JSON 数组的元素编写的值。</param>
-        <summary>编写 <see cref="T:System.Single" /> 值（作为 JSON 数字）作为 JSON 数组的元素。</summary>
-        <remarks>将写入<see cref="T:System.Single" />使用默认<see cref="T:System.Buffers.StandardFormat" />(即，G)。</remarks>
-        <exception cref="T:System.InvalidOperationException">要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+        <summary>编写 <see cref="T:System.Single" /> 值（写为 JSON 数字）作为 JSON 数组的元素。</summary>
+        <remarks>此方法写入<see cref="T:System.Single" />值使用默认<see cref="T:System.Buffers.StandardFormat" />(即，G)。</remarks>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumberValue">
@@ -1376,9 +1693,9 @@
       </Parameters>
       <Docs>
         <param name="value">要以 JSON 数字形式作为 JSON 数组的元素编写的值。</param>
-        <summary>编写 <see cref="T:System.UInt32" /> 值（作为 JSON 数字）作为 JSON 数组的元素。</summary>
-        <remarks>将写入<see cref="T:System.UInt32" />使用默认<see cref="T:System.Buffers.StandardFormat" />(即，G)。 例如，32767。</remarks>
-        <exception cref="T:System.InvalidOperationException">要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+        <summary>编写 <see cref="T:System.UInt32" /> 值（写为 JSON 数字）作为 JSON 数组的元素。</summary>
+        <remarks>此方法写入<see cref="T:System.UInt32" />值使用默认<see cref="T:System.Buffers.StandardFormat" />(即，G)。 例如，32767。</remarks>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteNumberValue">
@@ -1406,9 +1723,9 @@
       </Parameters>
       <Docs>
         <param name="value">要以 JSON 数字形式作为 JSON 数组的元素编写的值。</param>
-        <summary>编写 <see cref="T:System.UInt64" /> 值（作为 JSON 数字）作为 JSON 数组的元素。</summary>
-        <remarks>将写入<see cref="T:System.UInt64" />使用默认<see cref="T:System.Buffers.StandardFormat" />(即，G)。 例如，32767。</remarks>
-        <exception cref="T:System.InvalidOperationException">要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+        <summary>编写 <see cref="T:System.UInt64" /> 值（写为 JSON 数字）作为 JSON 数组的元素。</summary>
+        <remarks>此方法写入<see cref="T:System.UInt64" />值使用默认<see cref="T:System.Buffers.StandardFormat" />(即，G)。 例如，32767。</remarks>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStartArray">
@@ -1432,9 +1749,9 @@
         <remarks>To be added.</remarks>
         <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1000。
 
-或
+- 或 -
 
-如果这将导致要编写的 JSON 无效（启用验证时）。</exception>
+系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStartArray">
@@ -1456,9 +1773,20 @@
         <Parameter Name="utf8PropertyName" Type="System.ReadOnlySpan&lt;System.Byte&gt;" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 数组的 UTF-8 编码属性名称。</param>
+        <summary>编写 JSON 数组的开头，将指定为字节只读范围的属性名称作为键。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1000。
+
+- 或 - 
+系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStartArray">
@@ -1480,9 +1808,20 @@
         <Parameter Name="propertyName" Type="System.ReadOnlySpan&lt;System.Char&gt;" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 数字的 UTF-16 编码属性名称。</param>
+        <summary>编写 JSON 数组的开头，将指定为只读字符范围的属性名称作为键。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1000。
+
+- 或 - 
+系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStartArray">
@@ -1504,9 +1843,20 @@
         <Parameter Name="propertyName" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 数字的 UTF-16 编码属性名称。</param>
+        <summary>编写 JSON 数组的开头，将指定为字符串的属性名称作为键。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1000。
+
+- 或 - 
+系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStartObject">
@@ -1530,9 +1880,9 @@
         <remarks>To be added.</remarks>
         <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1000。
 
-或
+- 或 -
 
-要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStartObject">
@@ -1554,9 +1904,20 @@
         <Parameter Name="utf8PropertyName" Type="System.ReadOnlySpan&lt;System.Byte&gt;" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <summary>编写 JSON 对象的开头，将指定为字节只读范围的属性名称作为键。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1000。 
+
+- 或 - 
+系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStartObject">
@@ -1578,9 +1939,20 @@
         <Parameter Name="propertyName" Type="System.ReadOnlySpan&lt;System.Char&gt;" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <summary>编写 JSON 对象的开头，将指定为只读字符范围的属性名称作为键。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1000。 
+
+- 或 - 
+系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStartObject">
@@ -1602,9 +1974,20 @@
         <Parameter Name="propertyName" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <summary>编写 JSON 对象的开头，将指定为字符串的属性名称作为键。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1000。 
+
+- 或 - 
+系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1627,10 +2010,18 @@
         <Parameter Name="value" Type="System.DateTime" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写 UTF-8 属性名称和 <see cref="T:System.DateTime" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1653,10 +2044,18 @@
         <Parameter Name="value" Type="System.DateTimeOffset" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写 UTF-8 属性名称和 <see cref="T:System.DateTimeOffset" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1679,10 +2078,18 @@
         <Parameter Name="value" Type="System.Guid" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写 UTF-8 属性名称和 <see cref="T:System.Guid" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1705,10 +2112,18 @@
         <Parameter Name="utf8Value" Type="System.ReadOnlySpan&lt;System.Byte&gt;" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <param name="utf8Value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <param name="utf8Value">要以 JSON 字符串形式作为名称/值对的一部分编写的 UTF-8 编码值。</param>
+        <summary>编写 UTF-8 属性名称和 UTF-8 文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称和值写入之前进行转义。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1731,10 +2146,18 @@
         <Parameter Name="value" Type="System.ReadOnlySpan&lt;System.Char&gt;" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <param name="value">要以 UTF-8 转码的 JSON 字符串形式作为名称/值对的一部分编写的 UTF-16 编码值。</param>
+        <summary>编写 UTF-8 属性名称和 UTF-16 文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称和值写入之前进行转义。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1757,10 +2180,18 @@
         <Parameter Name="value" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="utf8PropertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+        <param name="value">要以 UTF-8 转码的 JSON 字符串形式作为名称/值对的一部分编写的 UTF-16 编码值。</param>
+        <summary>编写 UTF-8 属性名称和字符串文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称和值写入之前进行转义。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1783,10 +2214,18 @@
         <Parameter Name="value" Type="System.DateTime" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.DateTime" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1809,10 +2248,18 @@
         <Parameter Name="value" Type="System.DateTimeOffset" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.DateTimeOffset" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1835,10 +2282,18 @@
         <Parameter Name="value" Type="System.Guid" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.Guid" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1861,10 +2316,18 @@
         <Parameter Name="utf8Value" Type="System.ReadOnlySpan&lt;System.Byte&gt;" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="utf8Value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="utf8Value">要以 JSON 字符串形式作为名称/值对的一部分编写的 UTF-8 编码值。</param>
+        <summary>编写 UTF-16 属性名称和 UTF-8 文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称和值写入之前进行转义。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1887,10 +2350,18 @@
         <Parameter Name="value" Type="System.ReadOnlySpan&lt;System.Char&gt;" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 UTF-8 转码的 JSON 字符串形式作为名称/值对的一部分编写的 UTF-16 编码值。</param>
+        <summary>编写 UTF-16 属性名称和 UTF-16 文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称和值写入之前进行转义。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1913,10 +2384,18 @@
         <Parameter Name="value" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 UTF-8 转码的 JSON 字符串形式作为名称/值对的一部分编写的 UTF-16 编码值。</param>
+        <summary>编写 UTF-16 属性名称和字符串文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称和值写入之前进行转义。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1939,10 +2418,18 @@
         <Parameter Name="value" Type="System.DateTime" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字符串的属性名称和 <see cref="T:System.DateTime" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1965,10 +2452,18 @@
         <Parameter Name="value" Type="System.DateTimeOffset" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字符串的属性名称和 <see cref="T:System.DateTimeOffset" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -1991,10 +2486,18 @@
         <Parameter Name="value" Type="System.Guid" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+        <summary>编写指定为字符串的属性名称和 <see cref="T:System.Guid" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -2017,10 +2520,18 @@
         <Parameter Name="utf8Value" Type="System.ReadOnlySpan&lt;System.Byte&gt;" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="utf8Value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="utf8Value">要以 JSON 字符串形式作为名称/值对的一部分编写的 UTF-8 编码值。</param>
+        <summary>编写指定为字符串的属性名称和 UTF-8 文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称和值写入之前进行转义。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -2043,10 +2554,18 @@
         <Parameter Name="value" Type="System.ReadOnlySpan&lt;System.Char&gt;" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 UTF-8 转码的 JSON 字符串形式作为名称/值对的一部分编写的 UTF-16 编码值。</param>
+        <summary>编写指定为字符串的属性名称和 UTF-16 文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称和值写入之前进行转义。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteString">
@@ -2069,10 +2588,18 @@
         <Parameter Name="value" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="propertyName">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+        <param name="value">要以 UTF-8 转码的 JSON 字符串形式作为名称/值对的一部分编写的 UTF-16 编码值。</param>
+        <summary>编写指定为字符串的属性名称和字符串文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+        <remarks>
+          <format><![CDATA[
+
+属性名称和值写入之前进行转义。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStringValue">
@@ -2095,9 +2622,9 @@
       </Parameters>
       <Docs>
         <param name="value">要以 JSON 字符串形式作为 JSON 数组的元素编写的值。</param>
-        <summary>编写 <see cref="T:System.DateTime" /> 值（作为 JSON 字符串）作为 JSON 数组的元素。</summary>
-        <remarks>将写入<see cref="T:System.DateTime" />使用往返 (O) <see cref="T:System.Buffers.StandardFormat" /> 。 例如，2017年-06-12T05:30:45.7680000。</remarks>
-        <exception cref="T:System.InvalidOperationException">要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+        <summary>编写 <see cref="T:System.DateTime" /> 值（写为 JSON 字符串）作为 JSON 数组的元素。</summary>
+        <remarks>此方法写入<see cref="T:System.DateTime" />使用往返 (O) <see cref="T:System.Buffers.StandardFormat" />。 例如，2017年-06-12T05:30:45.7680000。</remarks>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStringValue">
@@ -2120,9 +2647,9 @@
       </Parameters>
       <Docs>
         <param name="value">要以 JSON 字符串形式作为 JSON 数组的元素编写的值。</param>
-        <summary>编写 <see cref="T:System.DateTimeOffset" /> 值（作为 JSON 字符串）作为 JSON 数组的元素。</summary>
-        <remarks>将写入<see cref="T:System.DateTimeOffset" />使用往返 (O) <see cref="T:System.Buffers.StandardFormat" />。 例如，2017年-06-12T05:30:45.7680000-07:00。</remarks>
-        <exception cref="T:System.InvalidOperationException">要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+        <summary>编写 <see cref="T:System.DateTimeOffset" /> 值（写为 JSON 字符串）作为 JSON 数组的元素。</summary>
+        <remarks>此方法写入<see cref="T:System.DateTimeOffset" />使用往返 (O) <see cref="T:System.Buffers.StandardFormat" />。 例如，2017年-06-12T05:30:45.7680000-07:00。</remarks>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStringValue">
@@ -2145,9 +2672,9 @@
       </Parameters>
       <Docs>
         <param name="value">要以 JSON 字符串形式作为 JSON 数组的元素编写的值。</param>
-        <summary>编写 <see cref="T:System.Guid" /> 值（作为 JSON 字符串）作为 JSON 数组的元素。</summary>
-        <remarks>将写入<see cref="T:System.Guid" />使用默认<see cref="T:System.Buffers.StandardFormat" />(即，具有)，与窗体： nnnnnnnn-nnnn-nnnn-nnnn-nnnnnnnnnnnn。</remarks>
-        <exception cref="T:System.InvalidOperationException">要编写的 JSON 数据将是无效的 JSON（同时启用验证）。</exception>
+        <summary>编写 <see cref="T:System.Guid" /> 值（写为 JSON 字符串）作为 JSON 数组的元素。</summary>
+        <remarks>此方法写入<see cref="T:System.Guid" />值使用默认<see cref="T:System.Buffers.StandardFormat" />(即，具有)，与窗体： nnnnnnnn-nnnn-nnnn-nnnn-nnnnnnnnnnnn。</remarks>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStringValue">
@@ -2169,9 +2696,17 @@
         <Parameter Name="utf8Value" Type="System.ReadOnlySpan&lt;System.Byte&gt;" />
       </Parameters>
       <Docs>
-        <param name="utf8Value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="utf8Value">要编写为 JSON 数组的 JSON 字符串元素的 UTF-8 编码值。</param>
+        <summary>编写 UTF-8 文本值（写为 JSON 字符串）作为 JSON 数组的元素。</summary>
+        <remarks>
+          <format><![CDATA[
+
+值被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的值太大。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStringValue">
@@ -2193,9 +2728,17 @@
         <Parameter Name="value" Type="System.ReadOnlySpan&lt;System.Char&gt;" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="value">作为 JSON 数组的 UTF-8 转码的 JSON 字符串元素编写的 UTF-16 编码值。</param>
+        <summary>编写 UTF-16 文本值（写为 JSON 字符串）作为 JSON 数组的元素。</summary>
+        <remarks>
+          <format><![CDATA[
+
+值被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的值太大。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStringValue">
@@ -2217,9 +2760,17 @@
         <Parameter Name="value" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="value">作为 JSON 数组的 UTF-8 转码的 JSON 字符串元素编写的 UTF-16 编码值。</param>
+        <summary>编写字符串文本值（写为 JSON 字符串）作为 JSON 数组的元素。</summary>
+        <remarks>
+          <format><![CDATA[
+
+值被转义，才能写入。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">指定的值太大。</exception>
+        <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
       </Docs>
     </Member>
   </Members>

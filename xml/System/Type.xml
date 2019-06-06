@@ -1,5 +1,5 @@
 <Type Name="Type" FullName="System.Type">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c13fa7b3afc18c9fbda4a9976478c70d9f148788" /><Meta Name="ms.sourcegitcommit" Value="7555c040bd7cb677d117ddf03e647aa7bf625bfc" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/08/2019" /><Meta Name="ms.locfileid" Value="65440874" /></Metadata><TypeSignature Language="C#" Value="public abstract class Type : System.Reflection.MemberInfo, System.Reflection.IReflect, System.Runtime.InteropServices._Type" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="436ffc4abbdaf99d1afde6b5f524d719511a0370" /><Meta Name="ms.sourcegitcommit" Value="9a6da88bd5455e8274257ca7ad259b42f1de114f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/22/2019" /><Meta Name="ms.locfileid" Value="66008787" /></Metadata><TypeSignature Language="C#" Value="public abstract class Type : System.Reflection.MemberInfo, System.Reflection.IReflect, System.Runtime.InteropServices._Type" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract serializable beforefieldinit Type extends System.Reflection.MemberInfo implements class System.Reflection.IReflect, class System.Runtime.InteropServices._Type" />
   <TypeSignature Language="DocId" Value="T:System.Type" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class Type&#xA;Inherits MemberInfo&#xA;Implements _Type, IReflect" />
@@ -391,7 +391,7 @@
 |逗号 （，）|程序集名称前面。|  
 |加号 （+）|位于嵌套的类。|  
 |句点 （.）|表示命名空间标识符。|  
-|方括号 ([])|后一个类型名称，表示该类型的数组。<br /><br /> 或<br /><br /> 对于泛型类型，包含泛型类型参数列表。<br /><br /> 或<br /><br /> 类型参数列表中包含的程序集限定类型。|  
+|方括号 ([])|后一个类型名称，表示该类型的数组。<br /><br /> - 或 -<br /><br /> 对于泛型类型，包含泛型类型参数列表。<br /><br /> - 或 -<br /><br /> 类型参数列表中包含的程序集限定类型。|  
   
  例如，一个类的程序集限定名称可能如下所示：  
   
@@ -1281,7 +1281,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <param name="filter">对照 <paramref name="filterCriteria" /> 比较接口的委托。</param>
         <param name="filterCriteria">确定接口是否应包括在返回数组中的搜索判据。</param>
         <summary>返回表示接口（由当前 <see cref="T:System.Type" /> 所实现或继承）的筛选列表的 <see cref="T:System.Type" /> 对象数组。</summary>
-        <returns>一个表示当前 <see cref="T:System.Type" /> 实现或继承的接口的筛选列表的 <see cref="T:System.Type" /> 对象数组，或者类型 <see cref="T:System.Type" /> 的空数组（如果当前 <see cref="T:System.Type" /> 没有实现或继承匹配筛选器的接口）。</returns>
+        <returns>一个 <see cref="T:System.Type" /> 对象的数组，它表示由当前 <see cref="T:System.Type" /> 实现或继承的接口的已筛选的列表；如果当前 <see cref="T:System.Type" /> 未实现或继承与筛选器相匹配的接口，则为空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1356,31 +1356,32 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <Parameter Name="filterCriteria" Type="System.Object" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="memberType">指示要搜索的成员类型的对象。</param>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="memberType">枚举值的按位组合，它指示要搜索的成员的类型。</param>
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
-        <param name="filter">执行比较的委托，如果当前被检查的成员匹配 <see langword="true" />，则返回 <paramref name="filterCriteria" />；否则返回 <see langword="false" />。 可以使用该类提供的 <see langword="FilterAttribute" />、<see langword="FilterName" /> 和 <see langword="FilterNameIgnoreCase" /> 委托。 第一个委托使用 <see langword="FieldAttributes" />、<see langword="MethodAttributes" /> 和 <see langword="MethodImplAttributes" /> 的字段作为搜索判据，另两个委托使用 <see langword="String" /> 对象作为搜索判据。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
+        <param name="filter">执行比较的委托，如果当前被检查的成员匹配 <see langword="true" />，则返回 <paramref name="filterCriteria" />；否则返回 <see langword="false" />。</param>
         <param name="filterCriteria">确定成员是否在 <see langword="MemberInfo" /> 对象数组中返回的搜索判据。  
   
 <see langword="FieldAttributes" />、<see langword="MethodAttributes" /> 和 <see langword="MethodImplAttributes" /> 的字段可以和该类提供的 <see langword="FilterAttribute" /> 委托一起使用。</param>
         <summary>返回指定成员类型的 <see cref="T:System.Reflection.MemberInfo" /> 对象的筛选数组。</summary>
         <returns>指定成员类型的 <see cref="T:System.Reflection.MemberInfo" /> 对象的筛选数组。  
   
-或 
-如果当前 <see cref="T:System.Reflection.MemberInfo" /> 没有匹配筛选判据的 <see cref="T:System.Type" /> 类型成员，则为 <paramref name="memberType" /> 类型的空数组。</returns>
+- 或 - 
+如果当前 <see cref="T:System.Type" /> 没有与筛选条件相匹配的 <paramref name="memberType" /> 类型的成员，则为空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- 此方法由派生类中重写。  
+## Remarks
+
+此方法由派生类中重写。  
   
- 成员包括属性、 方法、 字段、 事件和等等。  
-  
+成员包括属性、 方法、 字段、 事件和等等。  
+
+有关`FindMembers`方法已成功检索成员信息`bindingAttr`自变量必须包含至少一个<xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType>和<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType>，以及至少一个<xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>和<xref:System.Reflection.BindingFlags.Public?displayProperty=nameWithType>。 
+
  以下<xref:System.Reflection.BindingFlags>的筛选器标志可以用于定义要在搜索中包括的成员：  
-  
--   您必须指定这两`BindingFlags.Instance`或`BindingFlags.Static`为了获取返回。  
   
 -   指定`BindingFlags.Instance`若要在搜索中包括实例成员。  
   
@@ -1396,14 +1397,18 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
  有关更多信息，请参见<xref:System.Reflection.BindingFlags?displayProperty=nameWithType>。  
   
- 有效值<xref:System.Type.MemberType%2A>中定义<xref:System.Reflection.MemberInfo>。 如果没有找到任何此类成员，则返回空数组。  
+若要获取类初始值设定项 （静态构造函数） 使用此方法，必须指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
   
- 若要获取类初始值设定项 (.cctor) 使用此方法，必须指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
-  
- 如果当前<xref:System.Type>表示泛型类型或泛型方法的类型参数<xref:System.Type.FindMembers%2A>处理声明的类约束和接口约束类型参数的任何成员。  
-  
-   
-  
+如果当前<xref:System.Type>表示泛型类型或泛型方法的类型参数<xref:System.Type.FindMembers%2A>处理声明的类约束和接口约束类型参数的任何成员。  
+
+`filter`参数可以是自定义类型的委托<xref:System.Reflection.MemberFilter>，也可以是以下预定义委托之一：
+
+- <xref:System.Type.FilterAttribute?displayProperty=nameWithType>它使用<xref:System.Reflection.FieldAttributes>， <xref:System.Reflection.MethodAttributes>，或<xref:System.Reflection.MethodImplAttributes>位掩码为`filterCriteria`值。
+
+- <xref:System.Type.FilterName?displayProperty=nameWithType>该文件将执行的每个成员名称区分大小写比较的字符串传递给`filterCriteria`。
+
+- <xref:System.Type.FilterNameIgnoreCase?displayProperty=nameWithType>该文件将执行的每个成员名称不区分大小写比较的字符串传递给`filterCriteria`。
+
 ## Examples  
  下面的示例查找与指定的搜索条件匹配的类中的所有成员，然后显示匹配的成员。  
   
@@ -1787,7 +1792,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>当在派生类中重写时，实现 <see cref="P:System.Type.Attributes" /> 属性 (Property)，并获取指示与 <see cref="T:System.Type" /> 关联的属性 (Attribute) 的位屏蔽。</summary>
+        <summary>在派生类中重写时，实现 <see cref="P:System.Type.Attributes" /> 属性，并获取枚举值的按位组合（它指示与 <see cref="T:System.Type" /> 关联的特性）。</summary>
         <returns>表示 <see cref="T:System.Reflection.TypeAttributes" /> 的属性集的 <see cref="T:System.Type" /> 对象。</returns>
         <remarks>To be added.</remarks>
         <altmember cref="P:System.Type.Attributes" />
@@ -1846,7 +1851,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
       <Docs>
         <param name="types">表示需要的构造函数的参数个数、顺序和类型的 <see cref="T:System.Type" /> 对象的数组。  
   
-或 
+- 或 - 
 <see cref="T:System.Type" /> 对象的空数组，用于获取不带参数的构造函数。 这样的空数组由 <see langword="static" /> 字段 <see cref="F:System.Type.EmptyTypes" /> 提供。</param>
         <summary>搜索其参数与指定数组中的类型匹配的公共实例构造函数。</summary>
         <returns>为表示某个公共实例构造函数（该构造函数的参数与参数类型数组中的类型匹配）的对象（如果找到的话）；否则为 <see langword="null" />。</returns>
@@ -1854,7 +1859,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法的重载查找公共实例构造函数并不能用于获取类初始值设定项 (.cctor)。 若要获取类初始值设定项，请使用采用重载<xref:System.Reflection.BindingFlags>，并指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
+ 此方法的重载查找公共实例构造函数并不能用于获取类初始值设定项 （静态构造函数）。 若要获取类初始值设定项，请使用采用重载<xref:System.Reflection.BindingFlags>，并指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
   
  如果请求的构造函数为非公共，此方法返回`null`。  
   
@@ -1876,7 +1881,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="types" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
 <paramref name="types" /> 的其中一个元素为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="types" /> 是多维的。</exception>
         <altmember cref="T:System.Reflection.ConstructorInfo" />
@@ -1927,20 +1932,20 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <Parameter Name="modifiers" Type="System.Reflection.ParameterModifier[]" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
         <param name="binder">一个对象，该对象定义一组属性并启用绑定，而绑定可能涉及选择重载方法、强制参数类型和通过反射调用成员。  
   
-或 
+- 或 - 
 要使用 <see langword="Nothing" /> 的空引用（在 Visual Basic 中为 <see cref="P:System.Type.DefaultBinder" />）。</param>
         <param name="types"><see cref="T:System.Type" /> 对象的数组，表示构造函数要获取的参数的个数、顺序和类型。  
   
-或 
+- 或 - 
 获取不使用参数的构造函数的 <see cref="T:System.Type" /> 类型的空数组（即 Type[] types = new Type[0]）。  
   
-或 
+- 或 - 
  <see cref="F:System.Type.EmptyTypes" />。</param>
         <param name="modifiers"><see cref="T:System.Reflection.ParameterModifier" /> 对象的数组，表示与参数类型数组中的相应元素关联的特性。 默认的联编程序不处理此参数。</param>
         <summary>使用指定绑定约束搜索其参数与指定自变量类型和修饰符匹配的构造函数。</summary>
@@ -1961,7 +1966,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
  有关更多信息，请参见<xref:System.Reflection.BindingFlags?displayProperty=nameWithType>。  
   
- 若要获取类初始值设定项 (.cctor) 使用此方法的重载，必须指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
+ 若要获取类初始值设定项 （静态构造函数） 使用此方法的重载，必须指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
   
 > [!NOTE]
 >  查找构造函数和方法时，不能省略参数。 调用时，仅可以省略参数。  
@@ -1981,14 +1986,14 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="types" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
 <paramref name="types" /> 的其中一个元素为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="types" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="modifiers" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="types" /> 和 <paramref name="modifiers" /> 的长度不相同。</exception>
         <altmember cref="T:System.Reflection.ConstructorInfo" />
         <altmember cref="T:System.Reflection.BindingFlags" />
@@ -2042,18 +2047,18 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <Parameter Name="modifiers" Type="System.Reflection.ParameterModifier[]" Index="4" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
         <param name="binder">一个对象，该对象定义一组属性并启用绑定，而绑定可能涉及选择重载方法、强制参数类型和通过反射调用成员。  
   
-或 
+- 或 - 
 要使用 <see langword="Nothing" /> 的空引用（在 Visual Basic 中为 <see cref="P:System.Type.DefaultBinder" />）。</param>
         <param name="callConvention">对象，用于指定要使用的一套规则，这些规则涉及参数的顺序和布局、传递返回值的方式、用于参数的寄存器和清理堆栈的方式。</param>
         <param name="types"><see cref="T:System.Type" /> 对象的数组，表示构造函数要获取的参数的个数、顺序和类型。  
   
-或 
+- 或 - 
 获取不使用参数的构造函数的 <see cref="T:System.Type" /> 类型的空数组（即 Type[] types = new Type[0]）。</param>
         <param name="modifiers"><see cref="T:System.Reflection.ParameterModifier" /> 对象的数组，表示与 <paramref name="types" /> 数组中的相应元素关联的特性。 默认的联编程序不处理此参数。</param>
         <summary>用指定绑定约束和指定调用约定，搜索其参数与指定参数类型及修饰符匹配的构造函数。</summary>
@@ -2076,18 +2081,18 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
  有关更多信息，请参见<xref:System.Reflection.BindingFlags?displayProperty=nameWithType>。  
   
- 若要获取类初始值设定项 (.cctor) 使用此方法，必须指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
+ 若要获取类初始值设定项 （静态构造函数） 使用此方法，必须指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
   
  下表显示了返回通过基类的成员`Get`方法反射的类型上时。  
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -2113,14 +2118,14 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="types" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
 <paramref name="types" /> 的其中一个元素为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="types" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="modifiers" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="types" /> 和 <paramref name="modifiers" /> 的长度不相同。</exception>
         <altmember cref="T:System.Reflection.ConstructorInfo" />
         <altmember cref="T:System.Reflection.BindingFlags" />
@@ -2167,18 +2172,18 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <Parameter Name="modifiers" Type="System.Reflection.ParameterModifier[]" Index="4" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
         <param name="binder">一个对象，该对象定义一组属性并启用绑定，而绑定可能涉及选择重载方法、强制参数类型和通过反射调用成员。  
   
-或 
+- 或 - 
 要使用 <see langword="Nothing" /> 的空引用（在 Visual Basic 中为 <see cref="P:System.Type.DefaultBinder" />）。</param>
         <param name="callConvention">对象，用于指定要使用的一套规则，这些规则涉及参数的顺序和布局、传递返回值的方式、用于参数的寄存器和清理堆栈的方式。</param>
         <param name="types"><see cref="T:System.Type" /> 对象的数组，表示构造函数要获取的参数的个数、顺序和类型。  
   
-或 
+- 或 - 
 获取不使用参数的构造函数的 <see cref="T:System.Type" /> 类型的空数组（即 Type[] types = new Type[0]）。</param>
         <param name="modifiers"><see cref="T:System.Reflection.ParameterModifier" /> 对象的数组，表示与 <paramref name="types" /> 数组中的相应元素关联的特性。 默认的联编程序不处理此参数。</param>
         <summary>当在派生类中重写时，使用指定的绑定约束和指定的调用约定搜索其参数与指定的自变量类型和修饰符匹配的构造函数。</summary>
@@ -2207,14 +2212,14 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="types" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
 <paramref name="types" /> 的其中一个元素为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="types" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="modifiers" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="types" /> 和 <paramref name="modifiers" /> 的长度不相同。</exception>
         <exception cref="T:System.NotSupportedException">当前的类型是 <see cref="T:System.Reflection.Emit.TypeBuilder" /> 或 <see cref="T:System.Reflection.Emit.GenericTypeParameterBuilder" />。</exception>
         <altmember cref="T:System.Reflection.ConstructorInfo" />
@@ -2287,12 +2292,12 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -2300,7 +2305,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 3.  自定义特性不是通用类型系统的一部分。  
   
- 调用此方法的重载<xref:System.Type.GetConstructors%28System.Reflection.BindingFlags%29>方法重载中，使用<xref:System.Reflection.BindingFlags.Public?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Public?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType>在 Visual Basic 中)。 它将找不到类初始值设定项 (.cctor)。 若要查找类初始值设定项，请使用采用重载<xref:System.Reflection.BindingFlags>，并指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
+ 调用此方法的重载<xref:System.Type.GetConstructors%28System.Reflection.BindingFlags%29>方法重载中，使用<xref:System.Reflection.BindingFlags.Public?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Public?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType>在 Visual Basic 中)。 它将找不到类初始值设定项 （静态构造函数）。 若要查找类初始值设定项，请使用采用重载<xref:System.Reflection.BindingFlags>，并指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
   
  如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.ConstructorInfo>替换为适当的类型参数的类型参数的对象。 例如，如果类`C<T>`具有一个构造函数`C(T t1)`(`Sub New(ByVal t1 As T)`在 Visual Basic 中)，则调用<xref:System.Type.GetConstructors%2A>上`C<int>`返回<xref:System.Reflection.ConstructorInfo>表示`C(int t1)`C# 中 (`Sub New(ByVal t1 As Integer)`在 Visual Basic 中)。  
   
@@ -2387,42 +2392,36 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+若为 <see cref="F:System.Reflection.BindingFlags.Default" />，则返回空数组。</param>
         <summary>当在派生类中重写时，使用指定 <see cref="T:System.Type" /> 搜索为当前 <see langword="BindingFlags" /> 定义的构造函数。</summary>
         <returns>表示为当前 <see cref="T:System.Reflection.ConstructorInfo" /> 定义的匹配指定绑定约束的所有构造函数的 <see cref="T:System.Type" /> 对象数组，包括类型初始值设定项（如果定义的话）。 如果当前 <see cref="T:System.Reflection.ConstructorInfo" /> 没有定义构造函数，或者定义的构造函数都不符合绑定约束，或者当前 <see cref="T:System.Type" /> 表示泛型类型或泛型方法定义的类型参数，则返回 <see cref="T:System.Type" /> 类型的空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Type.GetConstructors%2A>方法不按特定顺序，如按声明顺序返回构造函数。 你的代码一定不能依赖于构造函数的返回的顺序因为顺序而变化。  
+ 
+`bindingAttr` 可用于指定是否只返回公共构造函数或公共和非公共构造函数。  
   
- `bindingAttr` 可用于指定是否只返回公共构造函数或公共和非公共构造函数。  
+以下<xref:System.Reflection.BindingFlags>的筛选器标志可用于定义要包括在搜索中的构造函数：  
   
- 完全匹配项不存在，如果`binder`将尝试强制转换中指定的参数类型`types`才能选择匹配项的数组。 如果`binder`无法选择匹配项，然后`null`返回。  
+- 指定`BindingFlags.Static`连同`BindingFlags.NonPublic`检索类初始值设定项 （静态构造函数）。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。
+
+- 指定`BindingFlags.Instance`以及一个或两个`BindingFlags.Public`和`BindingFlags.NonPublic`检索实例构造函数。   
   
- 以下<xref:System.Reflection.BindingFlags>的筛选器标志可用于定义要包括在搜索中的构造函数：  
+有关更多信息，请参见<xref:System.Reflection.BindingFlags?displayProperty=nameWithType>。  
+
+<xref:System.Type.GetConstructors%2A>方法不按特定顺序，如按声明顺序返回构造函数。 你的代码一定不能依赖于构造函数的返回的顺序因为顺序而变化。  
+
+如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.ConstructorInfo>替换为适当的类型参数的类型参数的对象。 例如，如果类`C<T>`具有一个构造函数`C(T t1)`(`Sub New(ByVal t1 As T)`在 Visual Basic 中)，则调用<xref:System.Type.GetConstructors%2A>上`C<int>`返回<xref:System.Reflection.ConstructorInfo>表示`C(int t1)`C# 中 (`Sub New(ByVal t1 As Integer)`在 Visual Basic 中)。  
   
--   您必须指定这两`BindingFlags.Instance`或`BindingFlags.Static`为了获取返回。  
-  
--   指定`BindingFlags.Public`若要在搜索中包括公共构造函数。  
-  
--   指定`BindingFlags.NonPublic`若要在搜索中包括非公共构造函数 （即私有、 内部和受保护的构造函数）。 基类的构造函数不会返回。  
-  
- 有关更多信息，请参见<xref:System.Reflection.BindingFlags?displayProperty=nameWithType>。  
-  
- 若要获取类初始值设定项 (.cctor) 使用此方法的重载，必须指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
-  
- 如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.ConstructorInfo>替换为适当的类型参数的类型参数的对象。 例如，如果类`C<T>`具有一个构造函数`C(T t1)`(`Sub New(ByVal t1 As T)`在 Visual Basic 中)，则调用<xref:System.Type.GetConstructors%2A>上`C<int>`返回<xref:System.Reflection.ConstructorInfo>表示`C(int t1)`C# 中 (`Sub New(ByVal t1 As Integer)`在 Visual Basic 中)。  
-  
- 如果当前<xref:System.Type>表示泛型类型参数，<xref:System.Type.GetConstructors%2A>方法返回一个空数组。  
-  
-   
+如果当前<xref:System.Type>表示泛型类型参数，<xref:System.Type.GetConstructors%2A>方法返回一个空数组。  
   
 ## Examples  
- 此示例中显示的输出<xref:System.Type.GetConstructors>从类具有两个实例构造函数和一个静态构造函数重载。  
+
+此示例中显示的输出<xref:System.Type.GetConstructors>从类具有两个实例构造函数和一个静态构造函数重载。  
   
  [!code-cpp[Classic Type.GetConstructors Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Type.GetConstructors Example/CPP/source1.cpp#1)]
  [!code-csharp[Classic Type.GetConstructors Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Type.GetConstructors Example/CS/source1.cs#1)]
@@ -2503,7 +2502,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <summary>搜索为设置了 <see cref="T:System.Type" /> 的当前 <see cref="T:System.Reflection.DefaultMemberAttribute" /> 定义的成员。</summary>
         <returns>表示当前 <see cref="T:System.Reflection.MemberInfo" /> 的所有默认成员的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
+- 或 - 
 如果当前 <see cref="T:System.Reflection.MemberInfo" /> 没有默认成员，则为 <see cref="T:System.Type" /> 类型的空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -2519,12 +2518,12 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -2649,7 +2648,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentException">当前类型不是一个枚举。  
   
-或 
+- 或 - 
  <paramref name="value" /> 既不是当前类型，也不具有与当前类型相同的基础类型。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> 为 <see langword="null" />。</exception>
       </Docs>
@@ -2735,7 +2734,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         </remarks>
         <exception cref="T:System.ArgumentException">当前类型不是一个枚举。  
   
-或 
+- 或 - 
 枚举类型无效，因为它包含多个实例字段。</exception>
       </Docs>
     </Member>
@@ -2833,12 +2832,12 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -2905,10 +2904,10 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
       </Parameters>
       <Docs>
         <param name="name">字符串包含由当前的 <see cref="T:System.Type" /> 声明或继承的事件的名称。</param>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
         <summary>当在派生类中重写时，使用指定绑定约束，返回表示指定事件的 <see cref="T:System.Reflection.EventInfo" /> 对象。</summary>
         <returns>如找到，则为表示由当前 <see cref="T:System.Type" /> 声明或继承的指定公共事件的对象；否则为 <see langword="null" />。</returns>
         <remarks>
@@ -3004,7 +3003,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <summary>返回由当前 <see cref="T:System.Type" /> 声明或继承的所有公共事件。</summary>
         <returns>表示由当前 <see cref="T:System.Reflection.EventInfo" /> 声明或继承的所有公共事件的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
+- 或 - 
 如果当前 <see cref="T:System.Reflection.EventInfo" /> 没有默认成员，则为 <see cref="T:System.Type" /> 类型的空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -3020,12 +3019,12 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -3089,14 +3088,15 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
-  
-或 
-零，以返回 <see langword="null" />。</param>
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。
+
+- 或 -
+
+ 若为 <see cref="F:System.Reflection.BindingFlags.Default" />，则返回空数组。</param>
         <summary>当在派生类中重写时，使用指定绑定约束，搜索由当前 <see cref="T:System.Type" /> 声明或继承的事件。</summary>
         <returns><see cref="T:System.Reflection.EventInfo" /> 对象的数组，表示当前 <see cref="T:System.Type" /> 所声明或继承的与指定绑定约束匹配的所有事件。  
   
-或 
+- 或 - 
 如果当前 <see cref="T:System.Reflection.EventInfo" /> 没有事件，或者如果没有一个事件匹配绑定约束，则为 <see cref="T:System.Type" /> 类型的空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -3260,10 +3260,10 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
       </Parameters>
       <Docs>
         <param name="name">包含要获取的数据字段的名称的字符串。</param>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
         <summary>使用指定绑定约束搜索指定字段。</summary>
         <returns>表示符合指定需求的字段的对象（如果找到的话）；否则为 <see langword="null" />。</returns>
         <remarks>
@@ -3274,12 +3274,12 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -3374,7 +3374,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <summary>返回当前 <see cref="T:System.Type" /> 的所有公共字段。</summary>
         <returns>表示为当前 <see cref="T:System.Reflection.FieldInfo" /> 定义的所有公共字段的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
+- 或 - 
 如果没有为当前 <see cref="T:System.Reflection.FieldInfo" /> 定义的公共字段，则为 <see cref="T:System.Type" /> 类型的空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -3386,12 +3386,12 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -3454,42 +3454,48 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
-  
-或 
-零，以返回 <see langword="null" />。</param>
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。
+
+- 或 -
+
+ 若为 <see cref="F:System.Reflection.BindingFlags.Default" />，则返回空数组。</param>
         <summary>当在派生类中重写时，使用指定绑定约束，搜索为当前 <see cref="T:System.Type" /> 定义的字段。</summary>
         <returns>表示为当前 <see cref="T:System.Reflection.FieldInfo" /> 定义的匹配指定绑定约束的所有字段的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
+- 或 - 
 如果没有为当前 <see cref="T:System.Reflection.FieldInfo" /> 定义的字段，或者如果没有一个定义的字段匹配绑定约束，则为 <see cref="T:System.Type" /> 类型的空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Type.GetFields%2A>方法不返回字段按特定顺序，如按字母顺序或按声明顺序。 你的代码一定不能依赖于字段的返回的顺序因为顺序而变化。  
+
+有关`GetFields(BindingFlags)`若要成功检索属性信息的重载`bindingAttr`参数必须包含至少一个<xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType>和<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType>，以及至少一个<xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>和<xref:System.Reflection.BindingFlags.Public?displayProperty=nameWithType>。 
+
+以下<xref:System.Reflection.BindingFlags>的筛选器标志可以用于定义要在搜索中包括哪些字段：  
   
- 以下<xref:System.Reflection.BindingFlags>的筛选器标志可以用于定义要在搜索中包括哪些字段：  
+- 指定`BindingFlags.Instance`可以包含实例方法。 
+
+- 指定`BindingFlags.Static`可以包含静态方法。 
+    
+- 指定`BindingFlags.Public`若要在搜索中包括公共字段。  
   
--   您必须指定这两`BindingFlags.Instance`或`BindingFlags.Static`为了获取返回。  
+- 指定`BindingFlags.NonPublic`若要在搜索中包括非公共字段 （即私有、 内部和受保护字段）。 仅保护，以及返回基类上的内部字段;不会返回基类上的私有字段。  
   
--   指定`BindingFlags.Public`若要在搜索中包括公共字段。  
+- 指定`BindingFlags.FlattenHierarchy`用以`public`和`protected`层次结构; 上的静态成员`private`中继承的类的静态成员不包括。  
+
+- 指定`BindingFlags.Default`单独以返回一个空<xref:System.Reflection.PropertyInfo>数组。
+
+以下<xref:System.Reflection.BindingFlags>修饰符标志可以用于更改搜索的工作原理：  
   
--   指定`BindingFlags.NonPublic`若要在搜索中包括非公共字段 （即私有、 内部和受保护字段）。 仅保护，以及返回基类上的内部字段;不会返回基类上的私有字段。  
+- `BindingFlags.DeclaredOnly` 若要搜索仅上声明的字段<xref:System.Type>，不只是继承的字段。  
   
--   指定`BindingFlags.FlattenHierarchy`用以`public`和`protected`层次结构; 上的静态成员`private`中继承的类的静态成员不包括。  
+有关更多信息，请参见<xref:System.Reflection.BindingFlags?displayProperty=nameWithType>。  
   
- 以下<xref:System.Reflection.BindingFlags>修饰符标志可以用于更改搜索的工作原理：  
-  
--   `BindingFlags.DeclaredOnly` 若要搜索仅上声明的字段<xref:System.Type>，不只是继承的字段。  
-  
- 有关更多信息，请参见<xref:System.Reflection.BindingFlags?displayProperty=nameWithType>。  
-  
+<xref:System.Type.GetFields%2A>方法不返回字段按特定顺序，如按字母顺序或按声明顺序。 你的代码一定不能依赖于字段的返回的顺序因为顺序而变化。  
+
  如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.FieldInfo>替换为适当的类型参数的类型参数的对象。  
   
  如果当前<xref:System.Type>表示的类型参数的泛型类型或泛型方法定义中，在此方法搜索类约束的公共字段。  
-  
-   
   
 ## Examples  
  下面的示例演示使用的`GetFields(BindingFlags)`方法。  
@@ -3880,7 +3886,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <param name="name">包含要获取的接口名称的字符串。 对于泛型接口，这是重整名称。</param>
         <param name="ignoreCase"><see langword="true" /> 表示对于用来指定简单接口名称的 <paramref name="name" /> 部分（该部分指定命名空间大小写必须正确）忽略其大小写。  
   
-或 
+- 或 - 
  <see langword="false" /> 表示对 <paramref name="name" /> 的所有部分执行区分大小写的搜索。</param>
         <summary>当在派生类中重写时，搜索指定的接口，指定是否要对接口名称执行不区分大小写的搜索。</summary>
         <returns>表示具有指定名称且由当前的 <see cref="T:System.Type" /> 实现或继承的接口的对象（如果找到的话）；否则为 <see langword="null" />。</returns>
@@ -3980,14 +3986,14 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         </remarks>
         <exception cref="T:System.ArgumentException">当前类型未实现 <paramref name="interfaceType" />。  
   
-或 
+- 或 - 
 <paramref name="interfaceType" /> 参数未引用接口。  
   
-或
+- 或 -
 
 当前实例或 <paramref name="interfaceType" /> 参数是开放式泛型类型；即，<see cref="P:System.Type.ContainsGenericParameters" /> 属性将返回 <see langword="true" />。
 
-或
+- 或 -
 
 
  <paramref name="interfaceType" /> 是一个泛型接口，而当前类型是一个数组类型。</exception>
@@ -4033,7 +4039,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <summary>当在派生类中重写时，获取由当前 <see cref="T:System.Type" /> 实现或继承的所有接口。</summary>
         <returns>表示由当前 <see cref="T:System.Type" /> 实现或继承的所有接口的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
+- 或 - 
 如果没有由当前 <see cref="T:System.Type" /> 实现或继承的接口，则为 <see cref="T:System.Type" /> 类型的空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -4121,18 +4127,18 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
  <xref:System.Type.GetMember%2A>方法不返回成员在特定的顺序，如按字母顺序或按声明顺序。 你的代码一定不能依赖于成员的返回的顺序因为顺序而变化。  
   
- 此方法的重载将找不到类初始值设定项 (.cctor)。 若要查找类初始值设定项，请使用采用重载<xref:System.Reflection.BindingFlags>，并指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
+ 此方法的重载将找不到类初始值设定项 （静态构造函数）。 若要查找类初始值设定项，请使用采用重载<xref:System.Reflection.BindingFlags>，并指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
   
  下表显示了返回通过基类的成员`Get`方法反射的类型上时。  
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -4205,10 +4211,10 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
       </Parameters>
       <Docs>
         <param name="name">包含要获取的成员的名称的字符串。</param>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，返回空数组。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回空数组。</param>
         <summary>使用指定绑定约束搜索指定成员。</summary>
         <returns>一个表示具有指定名称的公共成员的 <see cref="T:System.Reflection.MemberInfo" /> 对象数组（如果找到的话）；否则为空数组。</returns>
         <remarks>
@@ -4239,7 +4245,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
  有关更多信息，请参见<xref:System.Reflection.BindingFlags?displayProperty=nameWithType>。  
   
- 若要获取类初始值设定项 (.cctor) 使用此方法的重载，必须指定".cctor"对于`name`，并<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中) 为`bindingAttr`。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
+ 若要获取类初始值设定项 （静态构造函数） 使用此方法的重载，必须指定"静态构造函数"的`name`，并<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中) 的`bindingAttr`. 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
   
  如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.MemberInfo>具有类型参数替换为适当的类型参数。  
   
@@ -4308,10 +4314,10 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
       <Docs>
         <param name="name">包含要获取的成员的名称的字符串。</param>
         <param name="type">要搜索的值。</param>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，返回空数组。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回空数组。</param>
         <summary>使用指定绑定约束搜索指定成员类型的指定成员。</summary>
         <returns>一个表示具有指定名称的公共成员的 <see cref="T:System.Reflection.MemberInfo" /> 对象数组（如果找到的话）；否则为空数组。</returns>
         <remarks>
@@ -4340,7 +4346,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
  有关更多信息，请参见<xref:System.Reflection.BindingFlags?displayProperty=nameWithType>。  
   
- 若要获取类初始值设定项 (.cctor) 使用此方法的重载，必须指定".cctor"对于`name`，<xref:System.Reflection.MemberTypes.Constructor?displayProperty=nameWithType>有关`type`，和<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>中Visual Basic) 为`bindingAttr`。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
+ 若要获取类初始值设定项 （静态构造函数） 使用此方法的重载，必须指定"静态构造函数"的`name`，<xref:System.Reflection.MemberTypes.Constructor?displayProperty=nameWithType>有关`type`，和<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or`<xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中) 为`bindingAttr`。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
   
  如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.MemberInfo>具有类型参数替换为适当的类型参数。  
   
@@ -4417,28 +4423,29 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <summary>返回为当前 <see cref="T:System.Type" /> 的所有公共成员。</summary>
         <returns>表示当前 <see cref="T:System.Reflection.MemberInfo" /> 的所有公共成员的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
+- 或 - 
 如果当前 <see cref="T:System.Reflection.MemberInfo" /> 没有公共成员，则为 <see cref="T:System.Type" /> 类型的空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- 成员包括属性、 方法、 字段、 事件和等等。  
+## Remarks
+
+成员包括属性、 方法、 构造函数、 字段、 事件和嵌套的类型。
   
  <xref:System.Type.GetMembers%2A>方法不返回成员在特定的顺序，如按字母顺序或按声明顺序。 你的代码一定不能依赖于成员的返回的顺序因为顺序而变化。  
   
- 调用此方法的重载<xref:System.Type.GetMembers%28System.Reflection.BindingFlags%29>方法重载中，使用<xref:System.Reflection.BindingFlags.Public?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Public?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType>在 Visual Basic 中)。 它将找不到类初始值设定项 (.cctor)。 若要查找类初始值设定项，请使用采用重载<xref:System.Reflection.BindingFlags>，并指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
+ 调用此方法的重载<xref:System.Type.GetMembers%28System.Reflection.BindingFlags%29>方法重载中，使用<xref:System.Reflection.BindingFlags.Public?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Public?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType>在 Visual Basic 中)。 它将找不到类初始值设定项 （静态构造函数）。 若要查找类初始值设定项，请调用<xref:System.Type.GetMembers(System.Reflection.BindingFlags)>重载，并指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
   
  下表显示了返回通过基类的成员`Get`方法反射的类型上时。  
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -4448,9 +4455,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
  如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.MemberInfo>替换为适当的类型参数的类型参数的对象。  
   
- 如果当前<xref:System.Type>表示泛型类型或泛型方法，则此方法的定义中的类型参数搜索类约束的成员或成员的<xref:System.Object>如果没有类约束。  
-  
-   
+ 如果当前<xref:System.Type>表示泛型类型或泛型方法，则此方法的定义中的类型参数搜索类约束的成员或成员的<xref:System.Object>如果没有类约束。 
   
 ## Examples  
  下面的代码示例演示如何使用<xref:System.Type.GetMembers>方法重载来收集有关指定类的所有公共成员的信息。  
@@ -4503,49 +4508,52 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-如果为零 (<see cref="F:System.Reflection.BindingFlags.Default" />)，则返回空数组。</param>
+- 或 - 
+ 若为 <see cref="F:System.Reflection.BindingFlags.Default" />，则返回空数组。</param>
         <summary>当在派生类中重写时，使用指定绑定约束，搜索为当前 <see cref="T:System.Type" /> 定义的成员。</summary>
         <returns>表示为当前 <see cref="T:System.Reflection.MemberInfo" /> 定义的匹配指定绑定约束的所有成员的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
-如果没有为当前 <see cref="T:System.Reflection.MemberInfo" /> 定义的成员，或者如果没有一个定义的成员匹配绑定约束，则为 <see cref="T:System.Type" /> 类型的空数组。</returns>
+- 或 - 
+如果没有为当前 <see cref="T:System.Type" /> 定义成员，或者定义的成员均与绑定约束不匹配，则为空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- 成员包括属性、 方法、 字段、 事件和等等。  
+## Remarks
+
+成员包括属性、 方法、 构造函数、 字段、 事件和嵌套的类型。
+
+有关`GetMethods(BindingFlags)`重载，若要成功检索方法信息`bindingAttr`自变量必须包含至少一个<xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType>和<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType>，以及至少一个<xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>和<xref:System.Reflection.BindingFlags.Public?displayProperty=nameWithType>。 唯一的例外是方法调用与<xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>，表示返回有关嵌套类型的成员信息。
+
+以下<xref:System.Reflection.BindingFlags>的筛选器标志可以用于定义要在搜索中包括的成员： 
+
+- 指定`BindingFlags.Instance`可以包含实例方法。 
+
+- 指定`BindingFlags.Static`可以包含静态方法。 
   
- <xref:System.Type.GetMembers%2A>方法不返回成员在特定的顺序，如按字母顺序或按声明顺序。 你的代码一定不能依赖于成员的返回的顺序因为顺序而变化。  
+- 指定`BindingFlags.Public`若要在搜索中包括公共方法。  
   
- 以下<xref:System.Reflection.BindingFlags>的筛选器标志可以用于定义要在搜索中包括的成员：  
+- 指定`BindingFlags.NonPublic`若要在搜索中包括非公共方法 （即私有、 内部和受保护方法）。 仅保护并返回基的类上的内部方法;在基类上的私有方法不会返回。  
   
--   您必须指定这两`BindingFlags.Instance`或`BindingFlags.Static`为了获取返回。  
+- 指定`BindingFlags.FlattenHierarchy`用以`public`和`protected`层次结构; 上的静态成员`private`中继承的类的静态成员不包括。  
+
+- 指定`BindingFlags.Default`单独以返回一个空<xref:System.Reflection.MethodInfo>数组。
+
+以下<xref:System.Reflection.BindingFlags>修饰符标志可以用于更改搜索的工作原理：  
   
--   指定`BindingFlags.Public`若要在搜索中包括公共成员。  
+- `BindingFlags.DeclaredOnly` 若要搜索仅在声明的成员<xref:System.Type>，不只是继承的成员。  
   
--   指定`BindingFlags.NonPublic`若要在搜索中包括非公共成员 （即私有、 内部和受保护成员）。 仅保护和基类上的内部成员; 不返回在基类上的私有成员不会返回。  
+有关更多信息，请参见<xref:System.Reflection.BindingFlags?displayProperty=nameWithType>。  
+
+<xref:System.Type.GetMembers%2A>方法不返回成员在特定的顺序，如按字母顺序或按声明顺序。 你的代码一定不能依赖于成员的返回的顺序因为顺序而变化。  
+
+ 若要获取类初始值设定项 （静态构造函数） 使用此方法的重载，必须指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
   
--   指定`BindingFlags.FlattenHierarchy`用以`public`和`protected`层次结构; 上的静态成员`private`中继承的类的静态成员不包括。  
-  
- 以下<xref:System.Reflection.BindingFlags>修饰符标志可以用于更改搜索的工作原理：  
-  
--   `BindingFlags.DeclaredOnly` 若要搜索仅在声明的成员<xref:System.Type>，不只是继承的成员。  
-  
- 调用此方法仅含`Public`标志或仅`NonPublic`标志将返回指定的成员，并且不需要任何其他标志。  
-  
- 有关更多信息，请参见<xref:System.Reflection.BindingFlags?displayProperty=nameWithType>。  
-  
- 若要获取类初始值设定项 (.cctor) 使用此方法的重载，必须指定<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> (<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> `Or` <xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>在 Visual Basic 中)。 此外可以获取类初始值设定项使用<xref:System.Type.TypeInitializer%2A>属性。  
-  
- 如果当前表示构造泛型类型，此方法返回<xref:System.Reflection.MemberInfo>替换为适当的类型参数的类型参数的对象。  
+ 如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.MemberInfo>替换为适当的类型参数的类型参数的对象。  
   
  如果当前<xref:System.Type>表示泛型类型或泛型方法，则此方法的定义中的类型参数搜索类约束的成员或成员的<xref:System.Object>如果没有类约束。  
-  
-   
-  
+
 ## Examples  
  下面的代码示例演示如何使用<xref:System.Type.GetMembers%28System.Reflection.BindingFlags%29>方法重载来收集有关指定类的所有公共实例成员的信息。  
   
@@ -4630,7 +4638,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 -   调用<xref:System.Type.GetMethods>方法来检索包含所有属于一种类型的公共方法的数组。 然后可以循环访问来识别重复的方法名为`name`。  
   
- 如果当前表示构造泛型类型，此方法返回<xref:System.Reflection.MethodInfo>具有类型参数替换为适当的类型参数。  
+ 如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.MethodInfo>具有类型参数替换为适当的类型参数。  
   
  如果当前<xref:System.Type>表示泛型类型或泛型方法，则此方法的定义中的类型参数搜索类约束的方法或方法的<xref:System.Object>如果没有类约束。  
   
@@ -4695,10 +4703,10 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
       </Parameters>
       <Docs>
         <param name="name">包含要获取的方法名称的字符串。</param>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
         <summary>使用指定绑定约束搜索指定方法。</summary>
         <returns>表示符合指定要求的方法的对象（如果找到的话）；否则为 <see langword="null" />。</returns>
         <remarks>
@@ -4807,7 +4815,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <param name="name">包含要获取的公共方法的名称的字符串。</param>
         <param name="types">表示此方法要获取的参数的个数、顺序和类型的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
+- 或 - 
 空的 <see cref="T:System.Type" /> 对象数组（由 <see cref="F:System.Type.EmptyTypes" /> 字段提供），用来获取不采用参数的方法。</param>
         <summary>搜索其参数与指定参数类型匹配的指定公共方法。</summary>
         <returns>表示其参数与指定参数类型匹配的公共方法的对象（如果找到的话）；否则为 <see langword="null" />。</returns>
@@ -4854,7 +4862,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
 或 
  <paramref name="types" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
 <paramref name="types" /> 的其中一个元素为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="types" /> 是多维的。</exception>
         <altmember cref="T:System.Reflection.MethodInfo" />
@@ -4939,7 +4947,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <param name="name">包含要获取的公共方法的名称的字符串。</param>
         <param name="types">表示此方法要获取的参数的个数、顺序和类型的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
+- 或 - 
 空的 <see cref="T:System.Type" /> 对象数组（由 <see cref="F:System.Type.EmptyTypes" /> 字段提供），用来获取不采用参数的方法。</param>
         <param name="modifiers"><see cref="T:System.Reflection.ParameterModifier" /> 对象的数组，表示与 <paramref name="types" /> 数组中的相应元素关联的特性。 仅当通过 COM 互操作进行调用时才使用，而且仅处理通过引用传递的参数。 默认的联编程序不处理此参数。</param>
         <summary>搜索其参数与指定参数类型及修饰符匹配的指定公共方法。</summary>
@@ -4955,7 +4963,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
 > [!NOTE]
 >  查找构造函数和方法时，不能省略参数。 调用时，仅可以省略参数。  
   
- 如果当前表示构造泛型类型，此方法返回<xref:System.Reflection.MethodInfo>具有类型参数替换为适当的类型参数。  
+ 如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.MethodInfo>具有类型参数替换为适当的类型参数。  
   
  如果当前<xref:System.Type>表示泛型类型或泛型方法，则此方法的定义中的类型参数搜索类约束的方法或方法的<xref:System.Object>如果没有类约束。  
   
@@ -4970,11 +4978,11 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
 或 
  <paramref name="types" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
 <paramref name="types" /> 的其中一个元素为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="types" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="modifiers" /> 是多维的。</exception>
         <altmember cref="T:System.Reflection.MethodInfo" />
         <altmember cref="T:System.String" />
@@ -5062,17 +5070,17 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
       </Parameters>
       <Docs>
         <param name="name">包含要获取的方法名称的字符串。</param>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
         <param name="binder">一个对象，该对象定义一组属性并启用绑定，而绑定可能涉及选择重载方法、强制参数类型和通过反射调用成员。  
   
-或 
+- 或 - 
 要使用 <see langword="Nothing" /> 的空引用（在 Visual Basic 中为 <see cref="P:System.Type.DefaultBinder" />）。</param>
         <param name="types">表示此方法要获取的参数的个数、顺序和类型的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
+- 或 - 
 空的 <see cref="T:System.Type" /> 对象数组（由 <see cref="F:System.Type.EmptyTypes" /> 字段提供），用来获取不采用参数的方法。</param>
         <param name="modifiers"><see cref="T:System.Reflection.ParameterModifier" /> 对象的数组，表示与 <paramref name="types" /> 数组中的相应元素关联的特性。 仅当通过 COM 互操作进行调用时才使用，而且仅处理通过引用传递的参数。 默认的联编程序不处理此参数。</param>
         <summary>使用指定绑定约束，搜索其参数与指定参数类型及修饰符匹配的指定方法。</summary>
@@ -5104,7 +5112,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
 > [!NOTE]
 >  查找构造函数和方法时，不能省略参数。 调用时，仅可以省略参数。  
   
- 如果当前表示构造泛型类型，此方法返回<xref:System.Reflection.MethodInfo>具有类型参数替换为适当的类型参数。  
+ 如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.MethodInfo>具有类型参数替换为适当的类型参数。  
   
  如果当前<xref:System.Type>表示泛型类型或泛型方法，则此方法的定义中的类型参数搜索类约束的方法或方法的<xref:System.Object>如果没有类约束。  
   
@@ -5131,11 +5139,11 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
 或 
  <paramref name="types" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
 <paramref name="types" /> 的其中一个元素为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="types" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="modifiers" /> 是多维的。</exception>
         <altmember cref="T:System.Reflection.MethodInfo" />
         <altmember cref="T:System.String" />
@@ -5228,18 +5236,18 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
       </Parameters>
       <Docs>
         <param name="name">包含要获取的方法名称的字符串。</param>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
         <param name="binder">一个对象，该对象定义一组属性并启用绑定，而绑定可能涉及选择重载方法、强制参数类型和通过反射调用成员。  
   
-或 
+- 或 - 
 要使用 <see langword="Nothing" /> 的空引用（在 Visual Basic 中为 <see cref="P:System.Type.DefaultBinder" />）。</param>
         <param name="callConvention">该对象用于指定要使用的一套规则，这些规则涉及自变量的顺序和布局、传递返回值的方式、用于自变量的寄存器和清理堆栈的方式。</param>
         <param name="types">表示此方法要获取的参数的个数、顺序和类型的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
+- 或 - 
 空的 <see cref="T:System.Type" /> 对象数组（由 <see cref="F:System.Type.EmptyTypes" /> 字段提供），用来获取不采用参数的方法。</param>
         <param name="modifiers"><see cref="T:System.Reflection.ParameterModifier" /> 对象的数组，表示与 <paramref name="types" /> 数组中的相应元素关联的特性。 仅当通过 COM 互操作进行调用时才使用，而且仅处理通过引用传递的参数。 默认的联编程序不处理此参数。</param>
         <summary>用指定的绑定约束和指定的调用约定，搜索参数与指定的参数类型及修饰符相匹配的指定方法。</summary>
@@ -5254,12 +5262,12 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -5288,7 +5296,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
 > [!NOTE]
 >  查找构造函数和方法时，不能省略参数。 调用时，仅可以省略参数。  
   
- 如果当前表示构造泛型类型，此方法返回<xref:System.Reflection.MethodInfo>具有类型参数替换为适当的类型参数。  
+ 如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.MethodInfo>具有类型参数替换为适当的类型参数。  
   
  如果当前<xref:System.Type>表示泛型类型或泛型方法，则此方法的定义中的类型参数搜索类约束的方法或方法的<xref:System.Object>如果没有类约束。  
   
@@ -5315,11 +5323,11 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
 或 
  <paramref name="types" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
 <paramref name="types" /> 的其中一个元素为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="types" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="modifiers" /> 是多维的。</exception>
         <altmember cref="T:System.Reflection.MethodInfo" />
         <altmember cref="T:System.String" />
@@ -5412,21 +5420,21 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
       </Parameters>
       <Docs>
         <param name="name">包含要获取的方法名称的字符串。</param>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
         <param name="binder">一个对象，该对象定义一组属性并启用绑定，而绑定可能涉及选择重载方法、强制参数类型和通过反射调用成员。  
   
-或 
+- 或 - 
 要使用 <see langword="Nothing" /> 的空引用（在 Visual Basic 中为 <see cref="P:System.Type.DefaultBinder" />）。</param>
         <param name="callConvention">该对象，用于指定要使用的一套规则，这些规则涉及自变量的顺序和布局、传递返回值的方式、用于自变量的寄存器以及哪个进程清理堆栈。</param>
         <param name="types">表示此方法要获取的参数的个数、顺序和类型的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
+- 或 - 
 一个类型为 <see cref="T:System.Type" />（即 Type[] types = new Type[0]）的空数组，用于获取一个不带参数的方法。  
   
-或 
+- 或 - 
  <see langword="null" />。 如果 <paramref name="types" /> 为 <see langword="null" />，则参数不匹配。</param>
         <param name="modifiers"><see cref="T:System.Reflection.ParameterModifier" /> 对象的数组，表示与 <paramref name="types" /> 数组中的相应元素关联的特性。 默认的联编程序不处理此参数。</param>
         <summary>当在派生类中重写时，使用指定的绑定约束和指定的调用约定搜索其参数与指定的自变量类型和修饰符匹配的指定方法。</summary>
@@ -5463,10 +5471,10 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="types" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="modifiers" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="types" /> 和 <paramref name="modifiers" /> 的长度不相同。</exception>
         <exception cref="T:System.NotSupportedException">当前的类型是 <see cref="T:System.Reflection.Emit.TypeBuilder" /> 或 <see cref="T:System.Reflection.Emit.GenericTypeParameterBuilder" />。</exception>
         <altmember cref="T:System.Reflection.MethodInfo" />
@@ -5569,13 +5577,14 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <summary>返回为当前 <see cref="T:System.Type" /> 的所有公共方法。</summary>
         <returns>表示为当前 <see cref="T:System.Reflection.MethodInfo" /> 定义的所有公共方法的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
+- 或 - 
 如果没有为当前 <see cref="T:System.Reflection.MethodInfo" /> 定义的公共方法，则为 <see cref="T:System.Type" /> 类型的空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- <xref:System.Type.GetMethods%2A>方法不返回方法按特定顺序，如按字母顺序或按声明顺序。 你的代码一定不能依赖于方法的返回的顺序因为顺序而变化。  
+## Remarks
+
+<xref:System.Type.GetMethods%2A>方法不返回方法按特定顺序，如按字母顺序或按声明顺序。 你的代码一定不能依赖于方法的返回的顺序因为顺序而变化。  
   
  此调用所返回的方法的数组中不包括构造函数。 单独调用`GetConstructors()`获取构造函数方法。  
   
@@ -5583,12 +5592,12 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -5599,7 +5608,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
 > [!NOTE]
 >  查找构造函数和方法时，不能省略参数。 调用时，仅可以省略参数。  
   
- 如果当前表示构造泛型类型，此方法返回<xref:System.Reflection.MethodInfo>替换为适当的类型参数的类型参数的对象。  
+ 如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.MethodInfo>替换为适当的类型参数的类型参数的对象。  
   
  如果当前<xref:System.Type>表示泛型类型或泛型方法，则此方法的定义中的类型参数搜索类约束的方法或方法的<xref:System.Object>如果没有类约束。  
   
@@ -5645,45 +5654,48 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
-  
-或 
-零，以返回 <see langword="null" />。</param>
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。
+
+- 或 -
+
+ 若为 <see cref="F:System.Reflection.BindingFlags.Default" />，则返回空数组。</param>
         <summary>当在派生类中重写时，使用指定绑定约束，搜索为当前 <see cref="T:System.Type" /> 定义的方法。</summary>
         <returns>表示为当前 <see cref="T:System.Reflection.MethodInfo" /> 定义的匹配指定绑定约束的所有方法的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
+- 或 - 
 如果没有为当前 <see cref="T:System.Reflection.MethodInfo" /> 定义的方法，或者如果没有一个定义的方法匹配绑定约束，则为 <see cref="T:System.Type" /> 类型的空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Type.GetMethods%2A>方法不返回方法按特定顺序，如按字母顺序或按声明顺序。 你的代码一定不能依赖于方法的返回的顺序因为顺序而变化。  
+
+有关`GetMethods(BindingFlags)`重载，若要成功检索方法信息`bindingAttr`自变量必须包含至少一个<xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType>和<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType>，以及至少一个<xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>和<xref:System.Reflection.BindingFlags.Public?displayProperty=nameWithType>。 
   
  以下<xref:System.Reflection.BindingFlags>的筛选器标志可以用于定义要在搜索中包括的方法：  
   
--   您必须指定这两`BindingFlags.Instance`或`BindingFlags.Static`为了获取返回。  
+- 指定`BindingFlags.Instance`可以包含实例方法。 
+
+- 指定`BindingFlags.Static`可以包含静态方法。 
   
--   指定`BindingFlags.Public`若要在搜索中包括公共方法。  
+- 指定`BindingFlags.Public`若要在搜索中包括公共方法。  
   
--   指定`BindingFlags.NonPublic`若要在搜索中包括非公共方法 （即私有、 内部和受保护方法）。 仅保护并返回基的类上的内部方法;在基类上的私有方法不会返回。  
+- 指定`BindingFlags.NonPublic`若要在搜索中包括非公共方法 （即私有、 内部和受保护方法）。 仅保护并返回基的类上的内部方法;在基类上的私有方法不会返回。  
   
--   指定`BindingFlags.FlattenHierarchy`用以`public`和`protected`层次结构; 上的静态成员`private`中继承的类的静态成员不包括。  
+- 指定`BindingFlags.FlattenHierarchy`用以`public`和`protected`层次结构; 上的静态成员`private`中继承的类的静态成员不包括。  
+
+- 指定`BindingFlags.Default`单独以返回一个空<xref:System.Reflection.MethodInfo>数组。
   
  以下<xref:System.Reflection.BindingFlags>修饰符标志可以用于更改搜索的工作原理：  
   
--   `BindingFlags.DeclaredOnly` 若要搜索仅上声明的方法<xref:System.Type>，不只是继承的方法。  
+- `BindingFlags.DeclaredOnly` 若要搜索仅上声明的方法<xref:System.Type>，不只是继承的方法。  
   
  有关更多信息，请参见<xref:System.Reflection.BindingFlags?displayProperty=nameWithType>。  
+
+<xref:System.Type.GetMethods%2A>方法不返回方法按特定顺序，如按字母顺序或按声明顺序。 你的代码一定不能依赖于方法的返回的顺序因为顺序而变化。  
+
+如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.MethodInfo>替换为适当的类型参数的类型参数的对象。  
   
-> [!NOTE]
->  查找构造函数和方法时，不能省略参数。 调用时，仅可以省略参数。  
-  
- 如果当前表示构造泛型类型，此方法返回<xref:System.Reflection.MethodInfo>替换为适当的类型参数的类型参数的对象。  
-  
- 如果当前<xref:System.Type>表示泛型类型或泛型方法，则此方法的定义中的类型参数搜索类约束的方法或方法的<xref:System.Object>如果没有类约束。  
-  
-   
+如果当前<xref:System.Type>表示泛型类型或泛型方法，则此方法的定义中的类型参数搜索类约束的方法或方法的<xref:System.Object>如果没有类约束。 
   
 ## Examples  
  下面的示例使用两个公共方法和一个受保护的方法创建一个类，创建`Type`对象对应于`MyTypeClass`，获取所有公共和非公共方法，并显示它们的名称。  
@@ -5760,12 +5772,12 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -5827,10 +5839,10 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
       </Parameters>
       <Docs>
         <param name="name">包含要获取的嵌套类型的名称的字符串。</param>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
         <summary>当在派生类中重写时，使用指定绑定约束搜索指定嵌套类型。</summary>
         <returns>表示符合指定要求的嵌套类型的对象（如果找到的话）；否则为 <see langword="null" />。</returns>
         <remarks>
@@ -5930,12 +5942,12 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -6001,10 +6013,10 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
         <summary>当在派生类中重写时，使用指定绑定约束搜索嵌套在当前 <see cref="T:System.Type" /> 中的类型。</summary>
         <returns><see cref="T:System.Type" /> 对象数组，这些对象表示嵌套在当前 <see cref="T:System.Type" /> 中的所有与指定的绑定约束匹配的类型（搜索是非递归的）；如果没有找到与绑定约束匹配的嵌套类型，则为 <see cref="T:System.Type" /> 类型的空数组。</returns>
         <remarks>
@@ -6102,7 +6114,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <summary>返回为当前 <see cref="T:System.Type" /> 的所有公共属性。</summary>
         <returns>表示当前 <see cref="T:System.Reflection.PropertyInfo" /> 的所有公共属性的 <see cref="T:System.Type" /> 对象数组。  
   
-或 
+- 或 - 
 如果当前 <see cref="T:System.Reflection.PropertyInfo" /> 没有公共属性，则为 <see cref="T:System.Type" /> 类型的空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -6118,12 +6130,12 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -6131,7 +6143,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 3.  自定义特性不是通用类型系统的一部分。  
   
- 如果当前表示构造泛型类型，此方法返回<xref:System.Reflection.PropertyInfo>替换为适当的类型参数的类型参数的对象。  
+ 如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.PropertyInfo>替换为适当的类型参数的类型参数的对象。  
   
  如果当前<xref:System.Type>表示的类型参数的泛型类型或泛型方法定义中，在此方法搜索类约束的属性。  
   
@@ -6186,42 +6198,46 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
-  
-或 
-零，以返回 <see langword="null" />。</param>
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。
+
+- 或 -
+
+ 若为 <see cref="F:System.Reflection.BindingFlags.Default" />，则返回空数组。</param>
         <summary>当在派生类中重写时，使用指定绑定约束，搜索当前 <see cref="T:System.Type" /> 的属性。</summary>
-        <returns>表示当前 <see cref="T:System.Reflection.PropertyInfo" /> 的匹配指定绑定约束的所有属性的 <see cref="T:System.Type" /> 对象数组。  
+        <returns>一个对象数组，它表示当前 <see cref="T:System.Type" /> 中与指定的绑定约束匹配的所有属性。  
   
-或 
+- 或 - 
 如果当前 <see cref="T:System.Reflection.PropertyInfo" /> 没有属性，或者如果没有一个属性匹配绑定约束，则为 <see cref="T:System.Type" /> 类型的空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果它具有至少一个访问器，它是公共的属性被视为公共反射。 否则，该属性被视为私有的并且必须使用<xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> (在 Visual Basic 中，将使用的值合并`Or`) 来获取它。  
+
+有关`GetProperties(BindingFlags)`若要成功检索属性信息的重载`bindingAttr`参数必须包含至少一个<xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType>和<xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType>，以及至少一个<xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType>和<xref:System.Reflection.BindingFlags.Public?displayProperty=nameWithType>。 
+
+以下<xref:System.Reflection.BindingFlags>的筛选器标志可以用于定义要在搜索中包括的属性：  
   
- <xref:System.Type.GetProperties%2A>方法不返回属性按特定顺序，如按字母顺序或按声明顺序。 你的代码一定不能依赖于属性的返回的顺序因为顺序而变化。  
+- 指定`BindingFlags.Instance`可以包含实例方法。 
+
+- 指定`BindingFlags.Static`可以包含静态方法。 
   
- 以下<xref:System.Reflection.BindingFlags>标志可以用于定义其嵌套的筛选器类型要在搜索中包括：  
+- 指定`BindingFlags.Public`若要在搜索中包括的公共属性。 如果它具有至少一个访问器，它是公共的属性被视为公共反射。 
   
--   您必须指定这两`BindingFlags.Instance`或`BindingFlags.Static`为了获取返回。  
+- 指定`BindingFlags.NonPublic`若要在搜索中包括非公共属性 （即私有、 内部和受保护属性）。 仅保护并返回基的类上的内部属性;不返回私有基类上的属性。  
   
--   指定`BindingFlags.Public`若要在搜索中包括的公共属性。  
-  
--   指定`BindingFlags.NonPublic`若要在搜索中包括非公共属性 （即私有、 内部和受保护属性）。 仅保护并返回基的类上的内部属性;不返回私有基类上的属性。  
-  
--   指定`BindingFlags.FlattenHierarchy`用以`public`和`protected`层次结构; 上的静态成员`private`中继承的类的静态成员不包括。  
-  
+- 指定`BindingFlags.FlattenHierarchy`用以`public`和`protected`层次结构; 上的静态成员`private`中继承的类的静态成员不包括。  
+
+- 指定`BindingFlags.Default`单独以返回一个空<xref:System.Reflection.PropertyInfo>数组。
+
  以下<xref:System.Reflection.BindingFlags>修饰符标志可以用于更改搜索的工作原理：  
   
--   `BindingFlags.DeclaredOnly` 若要搜索上声明属性<xref:System.Type>，不只是继承的属性。  
+- `BindingFlags.DeclaredOnly` 若要搜索上声明属性<xref:System.Type>，不只是继承的属性。  
   
  有关更多信息，请参见<xref:System.Reflection.BindingFlags?displayProperty=nameWithType>。  
   
- 如果它具有至少一个访问器，它是公共的属性被视为公共反射。 否则，该属性被视为私有的并且必须使用<xref:System.Reflection.BindingFlags.NonPublic?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.Instance?displayProperty=nameWithType> &#124; <xref:System.Reflection.BindingFlags.Static?displayProperty=nameWithType> (在 Visual Basic 中，将使用的值合并`Or`) 来获取它。  
-  
- 如果当前表示构造泛型类型，此方法返回<xref:System.Reflection.PropertyInfo>替换为适当的类型参数的类型参数的对象。  
+<xref:System.Type.GetProperties%2A>方法不返回属性按特定顺序，如按字母顺序或按声明顺序。 你的代码一定不能依赖于属性的返回的顺序因为顺序而变化。  
+
+ 如果当前<xref:System.Type>表示构造泛型类型，此方法返回<xref:System.Reflection.PropertyInfo>替换为适当的类型参数的类型参数的对象。  
   
  如果当前<xref:System.Type>表示的类型参数的泛型类型或泛型方法定义中，在此方法搜索类约束的属性。  
   
@@ -6385,10 +6401,10 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
       </Parameters>
       <Docs>
         <param name="name">包含要获取的属性名的字符串。</param>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
         <summary>使用指定的绑定约束搜索指定属性。</summary>
         <returns>表示符合指定要求的属性的对象（如果找到的话）；否则为 <see langword="null" />。</returns>
         <remarks>
@@ -6571,7 +6587,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <param name="name">包含要获取的公共属性名的字符串。</param>
         <param name="types">一个 <see cref="T:System.Type" /> 对象数组，表示要获取的索引属性的参数的数目、顺序和类型。  
   
-或 
+- 或 - 
 获取未被索引的属性的 <see cref="T:System.Type" /> 类型的空数组（即 Type[] types = new Type[0]）。</param>
         <summary>搜索其参数与指定自变量类型匹配的指定公共属性。</summary>
         <returns>表示其参数与指定参数类型匹配的公共属性的对象（如果找到的话）；否则为 <see langword="null" />。</returns>
@@ -6660,7 +6676,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <param name="returnType">属性的返回类型。</param>
         <param name="types">一个 <see cref="T:System.Type" /> 对象数组，表示要获取的索引属性的参数的数目、顺序和类型。  
   
-或 
+- 或 - 
 获取未被索引的属性的 <see cref="T:System.Type" /> 类型的空数组（即 Type[] types = new Type[0]）。</param>
         <summary>搜索其参数与指定自变量类型匹配的指定公共属性。</summary>
         <returns>表示其参数与指定参数类型匹配的公共属性的对象（如果找到的话）；否则为 <see langword="null" />。</returns>
@@ -6688,7 +6704,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <exception cref="T:System.Reflection.AmbiguousMatchException">找到多个具有指定名称且与指定自变量类型匹配的属性。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="types" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="types" /> 是多维的。</exception>
         <exception cref="T:System.NullReferenceException"><paramref name="types" /> 的元素为 <see langword="null" />。</exception>
@@ -6741,7 +6757,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
         <param name="returnType">属性的返回类型。</param>
         <param name="types">一个 <see cref="T:System.Type" /> 对象数组，表示要获取的索引属性的参数的数目、顺序和类型。  
   
-或 
+- 或 - 
 获取未被索引的属性的 <see cref="T:System.Type" /> 类型的空数组（即 Type[] types = new Type[0]）。</param>
         <param name="modifiers"><see cref="T:System.Reflection.ParameterModifier" /> 对象的数组，表示与 <paramref name="types" /> 数组中的相应元素关联的特性。 默认的联编程序不处理此参数。</param>
         <summary>搜索其参数与指定自变量类型及修饰符匹配的指定公共属性。</summary>
@@ -6785,10 +6801,10 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
  <paramref name="types" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="types" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="modifiers" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="types" /> 和 <paramref name="modifiers" /> 的长度不相同。</exception>
         <exception cref="T:System.NullReferenceException"><paramref name="types" /> 的元素为 <see langword="null" />。</exception>
         <altmember cref="T:System.Reflection.PropertyInfo" />
@@ -6840,18 +6856,18 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
       </Parameters>
       <Docs>
         <param name="name">包含要获取的属性名的字符串。</param>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
         <param name="binder">一个对象，该对象定义一组属性并启用绑定，而绑定可能涉及选择重载方法、强制参数类型和通过反射调用成员。  
   
-或 
+- 或 - 
 要使用 <see langword="Nothing" /> 的空引用（在 Visual Basic 中为 <see cref="P:System.Type.DefaultBinder" />）。</param>
         <param name="returnType">属性的返回类型。</param>
         <param name="types">一个 <see cref="T:System.Type" /> 对象数组，表示要获取的索引属性的参数的数目、顺序和类型。  
   
-或 
+- 或 - 
 获取未被索引的属性的 <see cref="T:System.Type" /> 类型的空数组（即 Type[] types = new Type[0]）。</param>
         <param name="modifiers"><see cref="T:System.Reflection.ParameterModifier" /> 对象的数组，表示与 <paramref name="types" /> 数组中的相应元素关联的特性。 默认的联编程序不处理此参数。</param>
         <summary>使用指定的绑定约束，搜索参数与指定的自变量类型及修饰符匹配的指定属性。</summary>
@@ -6868,12 +6884,12 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -6919,10 +6935,10 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
  <paramref name="types" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="types" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="modifiers" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="types" /> 和 <paramref name="modifiers" /> 的长度不相同。</exception>
         <exception cref="T:System.NullReferenceException"><paramref name="types" /> 的元素为 <see langword="null" />。</exception>
         <altmember cref="T:System.Reflection.PropertyInfo" />
@@ -6972,18 +6988,18 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
       </Parameters>
       <Docs>
         <param name="name">包含要获取的属性名的字符串。</param>
-        <param name="bindingAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。  
+        <param name="bindingAttr">枚举值的按位组合，这些值指定如何进行搜索。  
   
-或 
-零，以返回 <see langword="null" />。</param>
+- 或 - 
+ 若为 <see cref="System.Reflection.BindingFlags.Default" />，则返回 <see langword="null" />。</param>
         <param name="binder">一个对象，该对象定义一组属性并启用绑定，而绑定可能涉及选择重载成员、强制自变量类型和通过反射调用成员。  
   
-或 
+- 或 - 
 要使用 <see langword="Nothing" /> 的空引用（在 Visual Basic 中为 <see cref="P:System.Type.DefaultBinder" />）。</param>
         <param name="returnType">属性的返回类型。</param>
         <param name="types">一个 <see cref="T:System.Type" /> 对象数组，表示要获取的索引属性的参数的数目、顺序和类型。  
   
-或 
+- 或 - 
 获取未被索引的属性的 <see cref="T:System.Type" /> 类型的空数组（即 Type[] types = new Type[0]）。</param>
         <param name="modifiers"><see cref="T:System.Reflection.ParameterModifier" /> 对象的数组，表示与 <paramref name="types" /> 数组中的相应元素关联的特性。 默认的联编程序不处理此参数。</param>
         <summary>当在派生类中重写时，使用指定的绑定约束搜索其参数与指定的参数类型和修饰符匹配的指定属性。</summary>
@@ -7020,14 +7036,14 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
 或 
  <paramref name="types" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
 <paramref name="types" /> 的其中一个元素为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="types" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="modifiers" /> 是多维的。  
   
-或 
+- 或 - 
  <paramref name="types" /> 和 <paramref name="modifiers" /> 的长度不相同。</exception>
         <exception cref="T:System.NotSupportedException">当前的类型是 <see cref="T:System.Reflection.Emit.TypeBuilder" />、<see cref="T:System.Reflection.Emit.EnumBuilder" /> 或 <see cref="T:System.Reflection.Emit.GenericTypeParameterBuilder" />。</exception>
         <altmember cref="T:System.Reflection.PropertyInfo" />
@@ -7152,12 +7168,12 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -7179,7 +7195,7 @@ TopNamespace.Sub\+Namespace.ContainingClass+NestedClass, MyAssembly, Version=1.3
 |分隔符|含义|  
 |---------------|-------------|  
 |反斜杠 (\\)|转义符。|  
-|反撇号 （'） |位于一个或多个数字表示的类型参数，位于末尾的泛型类型的名称数。|  
+|反撇号 （'）|位于一个或多个数字表示的类型参数，位于末尾的泛型类型的名称数。|  
 |方括号 ([])|泛型类型参数列表，用于构造泛型类型; 括起来在类型参数列表中，则将程序集限定的类型。|  
 |逗号 （，）|程序集名称前面。|  
 |句点 （.）|表示命名空间标识符。|  
@@ -7262,10 +7278,10 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
         <exception cref="T:System.Reflection.TargetInvocationException">调用了类初始值设定项，且该项引发了异常。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="typeName" /> 表示将指针类型、<see langword="ByRef" /> 类型或 <see cref="T:System.Void" /> 作为其类型参数之一的泛型类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示具有错误的类型参数数目的泛型类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示泛型类型，并且其类型参数之一不满足相应类型参数的约束。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="typeName" /> 表示 <see cref="T:System.TypedReference" /> 的数组。</exception>
         <exception cref="T:System.IO.FileLoadException"><block subset="none" type="note">
@@ -7278,7 +7294,7 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
  找到了程序集或其依赖项之一，但无法加载它们。</exception>
         <exception cref="T:System.BadImageFormatException">程序集或其依赖项之一无效。  
   
-或 
+- 或 - 
 当前加载的是公共语言运行时 2.0 版或更高版本，而程序集使用更高的版本编译。</exception>
         <altmember cref="T:System.String" />
         <altmember cref="T:System.TypeLoadException" />
@@ -7351,12 +7367,12 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -7378,7 +7394,7 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
 |分隔符|含义|  
 |---------------|-------------|  
 |反斜杠 (\\)|转义符。|  
-|反撇号 （'） |位于一个或多个数字表示的类型参数，位于末尾的泛型类型的名称数。|  
+|反撇号 （'）|位于一个或多个数字表示的类型参数，位于末尾的泛型类型的名称数。|  
 |方括号 ([])|泛型类型参数列表，用于构造泛型类型; 括起来在类型参数列表中，则将程序集限定的类型。|  
 |逗号 （，）|程序集名称前面。|  
 |句点 （.）|表示命名空间标识符。|  
@@ -7461,25 +7477,25 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
         <exception cref="T:System.Reflection.TargetInvocationException">调用了类初始值设定项，且该项引发了异常。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="throwOnError" /> 是 <see langword="true" />，且找不到该类型。  
   
-或 
+- 或 - 
  <paramref name="throwOnError" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 包含无效字符，例如嵌入的制表符。 
-或 
+- 或 - 
  <paramref name="throwOnError" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 为空字符串。  
   
-或 
+- 或 - 
  <paramref name="throwOnError" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 表示大小无效的数组类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示 <see cref="T:System.TypedReference" /> 的数组。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="throwOnError" /> 是 <see langword="true" />，且 <paramref name="typeName" /> 包含无效的语法。 例如："MyType[,*,]"。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示将指针类型、<see langword="ByRef" /> 类型或 <see cref="T:System.Void" /> 作为其类型参数之一的泛型类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示具有错误的类型参数数目的泛型类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示泛型类型，并且其类型参数之一不满足相应类型参数的约束。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><paramref name="throwOnError" /> 的值为 <see langword="true" />，且未找到程序集或程序集的某个依赖项。</exception>
         <exception cref="T:System.IO.FileLoadException"><block subset="none" type="note">
@@ -7492,7 +7508,7 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
  找到了程序集或其依赖项之一，但无法加载它们。</exception>
         <exception cref="T:System.BadImageFormatException">程序集或其依赖项之一无效。  
   
-或 
+- 或 - 
 当前加载的是公共语言运行时 2.0 版或更高版本，而程序集使用更高的版本编译。</exception>
         <altmember cref="T:System.String" />
         <altmember cref="T:System.TypeLoadException" />
@@ -7565,12 +7581,12 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
   
 |成员类型|Static|非静态|  
 |-----------------|------------|-----------------|  
-|构造函数|否|否|  
-|字段|否|可以。 字段始终是按名称和签名隐藏。|  
-|Event|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
-|方法|否|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
-|嵌套的类型|否|否|  
-|属性|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|构造函数|No|No|  
+|字段|No|可以。 字段始终是按名称和签名隐藏。|  
+|事件|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
+|方法|No|可以。 方法 （包括虚拟和非虚拟） 可以隐藏通过名称或按名称和签名隐藏。|  
+|嵌套的类型|No|No|  
+|Property|不适用|通用类型系统规则是继承是实现的属性的方法相同。 反射将属性视为由名称和签名隐藏。 请参阅备注 2 下面。|  
   
 1.  按名称和签名隐藏会考虑所有的签名，包括自定义修饰符，部分返回类型、 参数类型、 标记和非托管调用约定。 这是二进制比较。  
   
@@ -7592,7 +7608,7 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
 |分隔符|含义|  
 |---------------|-------------|  
 |反斜杠 (\\)|转义符。|  
-|反撇号 （'） |位于一个或多个数字表示的类型参数，位于末尾的泛型类型的名称数。|  
+|反撇号 （'）|位于一个或多个数字表示的类型参数，位于末尾的泛型类型的名称数。|  
 |方括号 ([])|泛型类型参数列表，用于构造泛型类型; 括起来在类型参数列表中，则将程序集限定的类型。|  
 |逗号 （，）|程序集名称前面。|  
 |句点 （.）|表示命名空间标识符。|  
@@ -7666,31 +7682,31 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
         <exception cref="T:System.Reflection.TargetInvocationException">调用了类初始值设定项，且该项引发了异常。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="throwOnError" /> 是 <see langword="true" />，且找不到该类型。  
   
-或 
+- 或 - 
  <paramref name="throwOnError" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 包含无效字符，例如嵌入的制表符。 
-或 
+- 或 - 
  <paramref name="throwOnError" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 为空字符串。  
   
-或 
+- 或 - 
  <paramref name="throwOnError" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 表示大小无效的数组类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示 <see cref="T:System.TypedReference" /> 的数组。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="throwOnError" /> 是 <see langword="true" />，且 <paramref name="typeName" /> 包含无效的语法。 例如："MyType[,*,]"。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示将指针类型、<see langword="ByRef" /> 类型或 <see cref="T:System.Void" /> 作为其类型参数之一的泛型类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示具有错误的类型参数数目的泛型类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示泛型类型，并且其类型参数之一不满足相应类型参数的约束。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><paramref name="throwOnError" /> 的值为 <see langword="true" />，且未找到程序集或程序集的某个依赖项。</exception>
         <exception cref="T:System.IO.FileLoadException">找到了程序集或其依赖项之一，但无法加载它们。</exception>
         <exception cref="T:System.BadImageFormatException">程序集或其依赖项之一无效。  
   
-或 
+- 或 - 
 当前加载的是公共语言运行时 2.0 版或更高版本，而程序集使用更高的版本编译。</exception>
         <altmember cref="T:System.String" />
         <altmember cref="T:System.TypeLoadException" />
@@ -7759,25 +7775,25 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
         <exception cref="T:System.Reflection.TargetInvocationException">调用了类初始值设定项，且该项引发了异常。</exception>
         <exception cref="T:System.ArgumentException">当 <paramref name="typeName" /> 解析为类型名称和程序集名称时（例如，当简单类型名称包含未转义的特殊字符时），发生错误。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示将指针类型、<see langword="ByRef" /> 类型或 <see cref="T:System.Void" /> 作为其类型参数之一的泛型类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示具有错误的类型参数数目的泛型类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示泛型类型，并且其类型参数之一不满足相应类型参数的约束。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="typeName" /> 表示 <see cref="T:System.TypedReference" /> 的数组。</exception>
         <exception cref="T:System.IO.FileLoadException">找到了程序集或其依赖项之一，但无法加载它们。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 包含无效的程序集名称。  
   
-或 
- <paramref name="typeName" /> 是一个有效的程序集名称，不包含类型名称。</exception>
+- 或 - 
+ <paramref name="typeName" /> 是一个不含类型名称的有效程序集名称。</exception>
         <exception cref="T:System.BadImageFormatException">程序集或其依赖项之一无效。  
   
-或 
+- 或 - 
 此程序集使用高于当前所加载版本的公共语言运行时版本编译而成。</exception>
       </Docs>
     </Member>
@@ -7838,40 +7854,40 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
         <exception cref="T:System.Reflection.TargetInvocationException">调用了类初始值设定项，且该项引发了异常。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="throwOnError" /> 是 <see langword="true" />，且找不到该类型。  
   
-或 
+- 或 - 
  <paramref name="throwOnError" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 包含无效字符，例如嵌入的制表符。 
-或 
+- 或 - 
  <paramref name="throwOnError" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 为空字符串。  
   
-或 
+- 或 - 
  <paramref name="throwOnError" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 表示大小无效的数组类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示 <see cref="T:System.TypedReference" /> 的数组。</exception>
         <exception cref="T:System.ArgumentException">当 <paramref name="typeName" /> 解析为类型名称和程序集名称时（例如，当简单类型名称包含未转义的特殊字符时），发生错误。  
   
-或 
+- 或 - 
  <paramref name="throwOnError" /> 是 <see langword="true" />，且 <paramref name="typeName" /> 包含无效的语法（例如 "MyType[,*,]"）。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示将指针类型、<see langword="ByRef" /> 类型或 <see cref="T:System.Void" /> 作为其类型参数之一的泛型类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示具有错误的类型参数数目的泛型类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示泛型类型，并且其类型参数之一不满足相应类型参数的约束。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><paramref name="throwOnError" /> 的值为 <see langword="true" />，且未找到程序集或程序集的某个依赖项。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 包含无效的程序集名称。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 是一个不含类型名称的有效程序集名称。</exception>
         <exception cref="T:System.IO.FileLoadException">找到了程序集或其依赖项之一，但无法加载它们。</exception>
         <exception cref="T:System.BadImageFormatException">程序集或其依赖项之一无效。  
   
-或 
+- 或 - 
 此程序集使用高于当前所加载版本的公共语言运行时版本编译而成。</exception>
       </Docs>
     </Member>
@@ -8061,40 +8077,40 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
         <exception cref="T:System.Reflection.TargetInvocationException">调用了类初始值设定项，且该项引发了异常。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="throwOnError" /> 是 <see langword="true" />，且找不到该类型。  
   
-或 
+- 或 - 
  <paramref name="throwOnError" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 包含无效字符，例如嵌入的制表符。 
-或 
+- 或 - 
  <paramref name="throwOnError" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 为空字符串。  
   
-或 
+- 或 - 
  <paramref name="throwOnError" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 表示大小无效的数组类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示 <see cref="T:System.TypedReference" /> 的数组。</exception>
         <exception cref="T:System.ArgumentException">当 <paramref name="typeName" /> 解析为类型名称和程序集名称时（例如，当简单类型名称包含未转义的特殊字符时），发生错误。  
   
-或 
+- 或 - 
  <paramref name="throwOnError" /> 是 <see langword="true" />，且 <paramref name="typeName" /> 包含无效的语法（例如 "MyType[,*,]"）。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示将指针类型、<see langword="ByRef" /> 类型或 <see cref="T:System.Void" /> 作为其类型参数之一的泛型类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示具有错误的类型参数数目的泛型类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示泛型类型，并且其类型参数之一不满足相应类型参数的约束。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><paramref name="throwOnError" /> 的值为 <see langword="true" />，且未找到程序集或程序集的某个依赖项。</exception>
         <exception cref="T:System.IO.FileLoadException">找到了程序集或其依赖项之一，但无法加载它们。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 包含无效的程序集名称。  
   
-或 
- <paramref name="typeName" /> 是一个有效的程序集名称，不包含类型名称。</exception>
+- 或 - 
+ <paramref name="typeName" /> 是一个不含类型名称的有效程序集名称。</exception>
         <exception cref="T:System.BadImageFormatException">程序集或其依赖项之一无效。  
   
-或 
+- 或 - 
 此程序集使用高于当前所加载版本的公共语言运行时版本编译而成。</exception>
       </Docs>
     </Member>
@@ -8147,7 +8163,7 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="args" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
 <paramref name="args" /> 的其中一个或多个元素为 <see langword="null" />。</exception>
         <exception cref="T:System.Reflection.TargetInvocationException">调用类初始值设定项，并且至少一个引发异常。</exception>
       </Docs>
@@ -8376,7 +8392,7 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
         <param name="clsid">要获取的类型的 CLSID。</param>
         <param name="throwOnError"><see langword="true" /> 将引发所发生的任何异常。  
   
-或 
+- 或 - 
  <see langword="false" /> 将忽略所发生的任何异常。</param>
         <summary>获取与指定类标识符 (CLSID) 关联的类型，指定在加载该类型时如果发生错误是否引发异常。</summary>
         <returns><see langword="System.__ComObject" />，无论 CLSID 是否有效。</returns>
@@ -8531,7 +8547,7 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
         <param name="server">用于从中加载该类型的服务器。 如果服务器名称为 <see langword="null" />，则此方法会自动恢复到本地计算机上。</param>
         <param name="throwOnError"><see langword="true" /> 将引发所发生的任何异常。  
   
-或 
+- 或 - 
  <see langword="false" /> 将忽略所发生的任何异常。</param>
         <summary>从指定服务器获取与指定类标识符 (CLSID) 关联的类型，指定在加载该类型时如果发生错误是否引发异常。</summary>
         <returns><see langword="System.__ComObject" />，无论 CLSID 是否有效。</returns>
@@ -8739,7 +8755,7 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
         <param name="progID">要获取的类型的 ProgID。</param>
         <param name="throwOnError"><see langword="true" /> 将引发所发生的任何异常。  
   
-或 
+- 或 - 
  <see langword="false" /> 将忽略所发生的任何异常。</param>
         <summary>获取与指定程序标识符 (ProgID) 关联的类型，指定如果在加载该类型时发生错误是否引发异常。</summary>
         <returns>如果 <paramref name="progID" /> 是注册表中的有效项且有与之关联的类型，则为与指定程序标识符 (ProgID) 关联的类型；否则为 <see langword="null" />。</returns>
@@ -8873,7 +8889,7 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
         <param name="server">用于从中加载该类型的服务器。 如果服务器名称为 <see langword="null" />，则此方法会自动恢复到本地计算机上。</param>
         <param name="throwOnError"><see langword="true" /> 将引发所发生的任何异常。  
   
-或 
+- 或 - 
  <see langword="false" /> 将忽略所发生的任何异常。</param>
         <summary>从指定服务器获取与指定程序标识符 (progID) 关联的类型，指定如果在加载该类型时发生错误是否引发异常。</summary>
         <returns>如果 <paramref name="progID" /> 是注册表中的有效项且有与之关联的类型，则为与指定程序标识符 (ProgID) 关联的类型；否则为 <see langword="null" />。</returns>
@@ -9190,15 +9206,15 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
       <Docs>
         <param name="name">字符串，它包含要调用的构造函数、方法、属性或字段成员的名称。  
   
-或 
+- 或 - 
 空字符串 ("")，表示调用默认成员。  
   
-或 
+- 或 - 
 对于 <see langword="IDispatch" /> 成员，则为一个表示 DispID 的字符串，例如"[DispID=3]"。</param>
-        <param name="invokeAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。 访问可以是 <see langword="BindingFlags" /> 之一，如 <see langword="Public" />、<see langword="NonPublic" />、<see langword="Private" />、<see langword="InvokeMethod" /> 和 <see langword="GetField" /> 等。 查找类型无需指定。 如果省略查找的类型，则将使用 <see langword="BindingFlags.Public" /> | <see langword="BindingFlags.Instance" /> | <see langword="BindingFlags.Static" />。</param>
+        <param name="invokeAttr">枚举值的按位组合，这些值指定如何进行搜索。 访问可以是 <see langword="BindingFlags" /> 之一，如 <see langword="Public" />、<see langword="NonPublic" />、<see langword="Private" />、<see langword="InvokeMethod" /> 和 <see langword="GetField" /> 等。 查找类型无需指定。 如果省略查找的类型，则将使用 <see langword="BindingFlags.Public" /> | <see langword="BindingFlags.Instance" /> | <see langword="BindingFlags.Static" />。</param>
         <param name="binder">一个对象，该对象定义一组属性并启用绑定，而绑定可能涉及选择重载方法、强制参数类型和通过反射调用成员。  
   
-或 
+- 或 - 
 要使用 <see langword="Nothing" /> 的空引用（在 Visual Basic 中为 <see cref="P:System.Type.DefaultBinder" />）。 请注意，为了成功地使用变量参数来调用方法重载，可能必须显式定义 <see cref="T:System.Reflection.Binder" /> 对象。</param>
         <param name="target">对其调用指定成员的对象。</param>
         <param name="args">包含传递给要调用的成员的参数的数组。</param>
@@ -9289,34 +9305,34 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
         <exception cref="T:System.ArgumentNullException"><paramref name="invokeAttr" /> 不包含 <see langword="CreateInstance" />，并且 <paramref name="name" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="invokeAttr" /> 不是有效的 <see cref="T:System.Reflection.BindingFlags" /> 属性。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 不包含以下某个绑定标志：<see langword="InvokeMethod" />、<see langword="CreateInstance" />、<see langword="GetField" />、<see langword="SetField" />、<see langword="GetProperty" /> 或 <see langword="SetProperty" />。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 包含 <see langword="CreateInstance" /> 与 <see langword="InvokeMethod" />、<see langword="GetField" />、<see langword="SetField" />、<see langword="GetProperty" /> 或 <see langword="SetProperty" /> 的组合。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 同时包含 <see langword="GetField" /> 和 <see langword="SetField" />。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 同时包含 <see langword="GetProperty" /> 和 <see langword="SetProperty" />。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 包含 <see langword="InvokeMethod" /> 与 <see langword="SetField" /> 或 <see langword="SetProperty" /> 的组合。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 包含 <see langword="SetField" />，并且 <paramref name="args" /> 具有多个元素。  
   
-或 
+- 或 - 
 对 COM 对象调用了此方法，但以下绑定标志中有一个未传入：<see langword="BindingFlags.InvokeMethod" />、<see langword="BindingFlags.GetProperty" />、<see langword="BindingFlags.SetProperty" />、<see langword="BindingFlags.PutDispProperty" /> 或 <see langword="BindingFlags.PutRefDispProperty" />。  
   
-或 
+- 或 - 
 其中一个命名参数数组包含一个值为 <see langword="null" /> 的字符串。</exception>
         <exception cref="T:System.MethodAccessException">指定的成员是类初始值设定项。</exception>
         <exception cref="T:System.MissingFieldException">找不到此字段或属性。</exception>
         <exception cref="T:System.MissingMethodException">找不到与 <paramref name="args" /> 中的参数匹配的方法。  
   
-或 
+- 或 - 
 当前 <see cref="T:System.Type" /> 对象表示包含开放类型参数的类型，也就是说，<see cref="P:System.Type.ContainsGenericParameters" /> 将返回 <see langword="true" />。</exception>
         <exception cref="T:System.Reflection.TargetException">不能在 <paramref name="target" /> 上调用指定的成员。</exception>
         <exception cref="T:System.Reflection.AmbiguousMatchException">多个方法与绑定条件匹配。</exception>
@@ -9380,21 +9396,21 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
       <Docs>
         <param name="name">字符串，它包含要调用的构造函数、方法、属性或字段成员的名称。  
   
-或 
+- 或 - 
 空字符串 ("")，表示调用默认成员。  
   
-或 
+- 或 - 
 对于 <see langword="IDispatch" /> 成员，则为一个表示 DispID 的字符串，例如"[DispID=3]"。</param>
-        <param name="invokeAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。 访问可以是 <see langword="BindingFlags" /> 之一，如 <see langword="Public" />、<see langword="NonPublic" />、<see langword="Private" />、<see langword="InvokeMethod" /> 和 <see langword="GetField" /> 等。 查找类型无需指定。 如果省略查找的类型，则将使用 <see langword="BindingFlags.Public" /> | <see langword="BindingFlags.Instance" /> | <see langword="BindingFlags.Static" />。</param>
+        <param name="invokeAttr">枚举值的按位组合，这些值指定如何进行搜索。 访问可以是 <see langword="BindingFlags" /> 之一，如 <see langword="Public" />、<see langword="NonPublic" />、<see langword="Private" />、<see langword="InvokeMethod" /> 和 <see langword="GetField" /> 等。 查找类型无需指定。 如果省略查找的类型，则将使用 <see langword="BindingFlags.Public" /> | <see langword="BindingFlags.Instance" /> | <see langword="BindingFlags.Static" />。</param>
         <param name="binder">一个对象，该对象定义一组属性并启用绑定，而绑定可能涉及选择重载方法、强制参数类型和通过反射调用成员。  
   
-或 
+- 或 - 
 要使用 <see langword="Nothing" /> 的空引用（在 Visual Basic 中为 <see cref="P:System.Type.DefaultBinder" />）。 请注意，为了成功地使用变量参数来调用方法重载，可能必须显式定义 <see cref="T:System.Reflection.Binder" /> 对象。</param>
         <param name="target">对其调用指定成员的对象。</param>
         <param name="args">包含传递给要调用的成员的参数的数组。</param>
         <param name="culture">表示要使用的全局化区域设置的对象，它对区域设置特定的转换可能是必需的，比如将数字 <see cref="T:System.String" /> 转换为 <see cref="T:System.Double" />。  
   
-或 
+- 或 - 
 要使用当前线程的 <see langword="Nothing" /> 的空引用（在 Visual Basic 中为 <see cref="T:System.Globalization.CultureInfo" />）。</param>
         <summary>使用指定的绑定约束和匹配的指定参数列表及区域性来调用指定成员。</summary>
         <returns>一个对象，表示被调用成员的返回值。</returns>
@@ -9475,34 +9491,34 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
         <exception cref="T:System.ArgumentNullException"><paramref name="invokeAttr" /> 不包含 <see langword="CreateInstance" />，并且 <paramref name="name" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="invokeAttr" /> 不是有效的 <see cref="T:System.Reflection.BindingFlags" /> 属性。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 不包含以下某个绑定标志：<see langword="InvokeMethod" />、<see langword="CreateInstance" />、<see langword="GetField" />、<see langword="SetField" />、<see langword="GetProperty" /> 或 <see langword="SetProperty" />。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 包含 <see langword="CreateInstance" /> 与 <see langword="InvokeMethod" />、<see langword="GetField" />、<see langword="SetField" />、<see langword="GetProperty" /> 或 <see langword="SetProperty" /> 的组合。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 同时包含 <see langword="GetField" /> 和 <see langword="SetField" />。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 同时包含 <see langword="GetProperty" /> 和 <see langword="SetProperty" />。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 包含 <see langword="InvokeMethod" /> 与 <see langword="SetField" /> 或 <see langword="SetProperty" /> 的组合。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 包含 <see langword="SetField" />，并且 <paramref name="args" /> 具有多个元素。  
   
-或 
+- 或 - 
 对 COM 对象调用了此方法，但以下绑定标志中有一个未传入：<see langword="BindingFlags.InvokeMethod" />、<see langword="BindingFlags.GetProperty" />、<see langword="BindingFlags.SetProperty" />、<see langword="BindingFlags.PutDispProperty" /> 或 <see langword="BindingFlags.PutRefDispProperty" />。  
   
-或 
+- 或 - 
 其中一个命名参数数组包含一个值为 <see langword="null" /> 的字符串。</exception>
         <exception cref="T:System.MethodAccessException">指定的成员是类初始值设定项。</exception>
         <exception cref="T:System.MissingFieldException">找不到此字段或属性。</exception>
         <exception cref="T:System.MissingMethodException">找不到与 <paramref name="args" /> 中的参数匹配的方法。  
   
-或 
+- 或 - 
 当前 <see cref="T:System.Type" /> 对象表示包含开放类型参数的类型，也就是说，<see cref="P:System.Type.ContainsGenericParameters" /> 将返回 <see langword="true" />。</exception>
         <exception cref="T:System.Reflection.TargetException">不能在 <paramref name="target" /> 上调用指定的成员。</exception>
         <exception cref="T:System.Reflection.AmbiguousMatchException">多个方法与绑定条件匹配。</exception>
@@ -9563,15 +9579,15 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
       <Docs>
         <param name="name">字符串，它包含要调用的构造函数、方法、属性或字段成员的名称。  
   
-或 
+- 或 - 
 空字符串 ("")，表示调用默认成员。  
   
-或 
+- 或 - 
 对于 <see langword="IDispatch" /> 成员，则为一个表示 DispID 的字符串，例如"[DispID=3]"。</param>
-        <param name="invokeAttr">一个位屏蔽，由一个或多个指定搜索执行方式的 <see cref="T:System.Reflection.BindingFlags" /> 组成。 访问可以是 <see langword="BindingFlags" /> 之一，如 <see langword="Public" />、<see langword="NonPublic" />、<see langword="Private" />、<see langword="InvokeMethod" /> 和 <see langword="GetField" /> 等。 查找类型无需指定。 如果省略查找的类型，则将使用 <see langword="BindingFlags.Public" /> | <see langword="BindingFlags.Instance" /> | <see langword="BindingFlags.Static" />。</param>
+        <param name="invokeAttr">枚举值的按位组合，这些值指定如何进行搜索。 访问可以是 <see langword="BindingFlags" /> 之一，如 <see langword="Public" />、<see langword="NonPublic" />、<see langword="Private" />、<see langword="InvokeMethod" /> 和 <see langword="GetField" /> 等。 查找类型无需指定。 如果省略查找的类型，则将使用 <see langword="BindingFlags.Public" /> | <see langword="BindingFlags.Instance" /> | <see langword="BindingFlags.Static" />。</param>
         <param name="binder">一个对象，该对象定义一组属性并启用绑定，而绑定可能涉及选择重载方法、强制参数类型和通过反射调用成员。  
   
-或 
+- 或 - 
 要使用 <see cref="P:System.Type.DefaultBinder" /> 的空引用（在 Visual Basic 中为 Nothing）。 请注意，为了成功地使用变量参数来调用方法重载，可能必须显式定义 <see cref="T:System.Reflection.Binder" /> 对象。</param>
         <param name="target">对其调用指定成员的对象。</param>
         <param name="args">包含传递给要调用的成员的参数的数组。</param>
@@ -9580,7 +9596,7 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
 只有在调用 COM 组件时，默认联编程序才处理此参数。</param>
         <param name="culture">表示要使用的全局化区域设置的 <see cref="T:System.Globalization.CultureInfo" /> 对象，它对区域设置特定的转换可能是必需的，比如将数字 String 转换为 Double。  
   
-或 
+- 或 - 
 要使用当前线程的 <see langword="Nothing" /> 的空引用（在 Visual Basic 中为 <see cref="T:System.Globalization.CultureInfo" />）。</param>
         <param name="namedParameters">包含参数名称的数组，<paramref name="args" /> 数组中的值将传递给这些参数。</param>
         <summary>当在派生类中重写时，使用指定的绑定约束并匹配指定的参数列表、修饰符和区域性，调用指定成员。</summary>
@@ -9672,43 +9688,43 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
         <exception cref="T:System.ArgumentNullException"><paramref name="invokeAttr" /> 不包含 <see langword="CreateInstance" />，并且 <paramref name="name" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="args" /> 和 <paramref name="modifiers" /> 的长度不相同。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 不是有效的 <see cref="T:System.Reflection.BindingFlags" /> 属性。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 不包含以下某个绑定标志：<see langword="InvokeMethod" />、<see langword="CreateInstance" />、<see langword="GetField" />、<see langword="SetField" />、<see langword="GetProperty" /> 或 <see langword="SetProperty" />。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 包含 <see langword="CreateInstance" /> 与 <see langword="InvokeMethod" />、<see langword="GetField" />、<see langword="SetField" />、<see langword="GetProperty" /> 或 <see langword="SetProperty" /> 的组合。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 同时包含 <see langword="GetField" /> 和 <see langword="SetField" />。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 同时包含 <see langword="GetProperty" /> 和 <see langword="SetProperty" />。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 包含 <see langword="InvokeMethod" /> 与 <see langword="SetField" /> 或 <see langword="SetProperty" /> 的组合。  
   
-或 
+- 或 - 
  <paramref name="invokeAttr" /> 包含 <see langword="SetField" />，并且 <paramref name="args" /> 具有多个元素。  
   
-或 
+- 或 - 
 命名的参数数组大于参数数组。  
   
-或 
+- 或 - 
 对 COM 对象调用了此方法，但以下绑定标志中有一个未传入：<see langword="BindingFlags.InvokeMethod" />、<see langword="BindingFlags.GetProperty" />、<see langword="BindingFlags.SetProperty" />、<see langword="BindingFlags.PutDispProperty" /> 或 <see langword="BindingFlags.PutRefDispProperty" />。  
   
-或 
+- 或 - 
 其中一个命名参数数组包含一个值为 <see langword="null" /> 的字符串。</exception>
         <exception cref="T:System.MethodAccessException">指定的成员是类初始值设定项。</exception>
         <exception cref="T:System.MissingFieldException">找不到此字段或属性。</exception>
         <exception cref="T:System.MissingMethodException">找不到与 <paramref name="args" /> 中的参数匹配的方法。  
   
-或 
+- 或 - 
 找不到具有 <paramref name="namedParameters" /> 中提供的参数名称的成员。  
   
-或 
+- 或 - 
 当前 <see cref="T:System.Type" /> 对象表示包含开放类型参数的类型，也就是说，<see cref="P:System.Type.ContainsGenericParameters" /> 将返回 <see langword="true" />。</exception>
         <exception cref="T:System.Reflection.TargetException">不能在 <paramref name="target" /> 上调用指定的成员。</exception>
         <exception cref="T:System.Reflection.AmbiguousMatchException">多个方法与绑定条件匹配。</exception>
@@ -9763,7 +9779,7 @@ Type.GetType("System.Collections.Generic.Dictionary`2[System.String,[MyType,MyAs
       </ReturnValue>
       <Docs>
         <summary>获取一个值，通过该值指示 <see cref="T:System.Type" /> 是否为抽象的并且必须被重写。</summary>
-        <value>如果 <see langword="true" /> 是抽象的，则为 <see cref="T:System.Type" />；否则为 <see langword="false" />。</value>
+        <value>如果 <see cref="T:System.Type" /> 是抽象的，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -10025,7 +10041,7 @@ GetType(Array).IsAssignableFrom(type)
       </Parameters>
       <Docs>
         <param name="c">要与当前类型进行比较的类型。</param>
-        <summary>确定指定类型的实例是否可以分配给当前类型的变量。</summary>
+        <summary>确定指定类型的实例是否能分配给当前类型的变量。</summary>
         <returns>如果满足下列任一条件，则为 <see langword="true" />： 
 -   <paramref name="c" /> 和当前实例表示相同类型。  
   
@@ -10040,7 +10056,7 @@ GetType(Array).IsAssignableFrom(type)
 [!code-csharp[System.Type.IsAssignableFrom#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.type.isassignablefrom/cs/IsAssignableFrom2.cs#2)] [!code-vb[System.Type.IsAssignableFrom#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.type.isassignablefrom/vb/IsAssignableFrom2.vb#2)] 
 -   <paramref name="c" /> 表示一个值类型，并且当前实例表示 <c>Nullable&lt;c&gt;</c>（在 Visual Basic 中为 <c>Nullable(Of c)</c>）。  
   
- 如果不满足上述任何一个条件或者 <see langword="false" /> 为 <paramref name="c" />，则为 <see langword="null" />。</returns>
+ 如果不满足上述任何一个条件或者 <paramref name="c" /> 为 <see langword="false" />，则为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -10232,7 +10248,7 @@ GetType(Array).IsAssignableFrom(type)
       </ReturnValue>
       <Docs>
         <summary>获取一个值，该值指示 <see cref="T:System.Type" /> 是否由引用传递。</summary>
-        <value>如果 <see langword="true" /> 按引用传递，则为 <see cref="T:System.Type" />；否则为 <see langword="false" />。</value>
+        <value>如果 <see cref="T:System.Type" /> 按引用传递，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -10284,7 +10300,7 @@ GetType(Array).IsAssignableFrom(type)
       <Parameters />
       <Docs>
         <summary>在派生类中重写时，实现 <see cref="P:System.Type.IsByRef" /> 属性并确定<see cref="T:System.Type" /> 是否通过引用传递。</summary>
-        <returns>如果 <see langword="true" /> 按引用传递，则为 <see cref="T:System.Type" />；否则为 <see langword="false" />。</returns>
+        <returns>如果 <see cref="T:System.Type" /> 按引用传递，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <altmember cref="P:System.Type.IsByRef" />
       </Docs>
@@ -10350,7 +10366,7 @@ GetType(Array).IsAssignableFrom(type)
       </ReturnValue>
       <Docs>
         <summary>获取一个值，通过该值指示 <see cref="T:System.Type" /> 是否是一个类或委托；即，不是值类型或接口。</summary>
-        <value>如果 <see langword="true" /> 是类，则为 <see cref="T:System.Type" />；否则为 <see langword="false" />。</value>
+        <value>如果 <see cref="T:System.Type" /> 是类，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -10555,7 +10571,7 @@ GetType(Array).IsAssignableFrom(type)
       </ReturnValue>
       <Docs>
         <summary>获取一个值，通过该值指示 <see cref="T:System.Type" /> 在上下文中是否可以被承载。</summary>
-        <value>如果 <see langword="true" /> 能够在某个上下文中承载，则为 <see cref="T:System.Type" />；否则为 <see langword="false" />。</value>
+        <value>如果 <see cref="T:System.Type" /> 能够在某个上下文中承载，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -10609,7 +10625,7 @@ GetType(Array).IsAssignableFrom(type)
       <Parameters />
       <Docs>
         <summary>实现 <see cref="P:System.Type.IsContextful" /> 属性并确定 <see cref="T:System.Type" /> 在上下文中是否可以被承载。</summary>
-        <returns>如果 <see langword="true" /> 能够在某个上下文中承载，则为 <see cref="T:System.Type" />；否则为 <see langword="false" />。</returns>
+        <returns>如果 <see cref="T:System.Type" /> 能够在某个上下文中承载，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -10910,7 +10926,7 @@ GetType(Array).IsAssignableFrom(type)
       </ReturnValue>
       <Docs>
         <summary>获取一个值，该值指示当前 <see cref="T:System.Type" /> 是否表示泛型类型或方法的定义中的类型参数。</summary>
-        <value>如果 <see langword="true" /> 对象表示泛型类型定义或泛型方法定义的类型参数，则为 <see cref="T:System.Type" />；否则为 <see langword="false" />。</value>
+        <value>如果 <see cref="T:System.Type" /> 对象表示泛型类型定义或泛型方法定义的类型参数，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -10992,7 +11008,7 @@ GetType(Array).IsAssignableFrom(type)
 |开放构造的类型|<xref:System.Type.ContainsGenericParameters%2A> 属性为 `true`。<br /><br /> 示例包括具有未分配的类型参数的泛型类型、 嵌套在泛型类型定义或开放式构造类型中的类型或泛型类型具有为其类型参数<xref:System.Type.ContainsGenericParameters%2A>属性是`true`。<br /><br /> 不能创建开放式构造类型的实例。<br /><br /> 请注意，并非所有开放构造的类型是泛型。 例如，其元素类型是泛型类型定义的数组不是泛型，并指向开放式构造类型的指针不是泛型。|  
 |封闭式构造的类型|<xref:System.Type.ContainsGenericParameters%2A> 属性为 `false`。<br /><br /> 当检查以递归方式，该类型没有任何未分配的泛型参数。|  
 |Generic Type Parameter — 泛型类型参数|<xref:System.Type.IsGenericParameter%2A> 属性为 `true`。<br /><br /> <xref:System.Type.ContainsGenericParameters%2A> 属性为 `true`。<br /><br /> 在泛型类型定义中，将更高版本分配类型的占位符。|  
-|Generic Type Argument — 泛型类型变量|可以是任何类型，包括泛型类型参数。<br /><br /> 数组的形式指定类型自变量<xref:System.Type>对象传递给<xref:System.Type.MakeGenericType%2A>方法创建一个构造泛型类型时。 如果要创建的生成类型的实例<xref:System.Type.ContainsGenericParameters%2A>属性必须为`false`对于所有类型参数。|  
+|Generic Type Argument — 泛型类型参数|可以是任何类型，包括泛型类型参数。<br /><br /> 数组的形式指定类型自变量<xref:System.Type>对象传递给<xref:System.Type.MakeGenericType%2A>方法创建一个构造泛型类型时。 如果要创建的生成类型的实例<xref:System.Type.ContainsGenericParameters%2A>属性必须为`false`对于所有类型参数。|  
   
  下面的代码示例和表说明了其中的某些条款和固定条件。 `Derived`类是特定的感兴趣，因为其基类型是其类型实参列表中具有混合类型和类型参数的构造的类型。  
   
@@ -11613,7 +11629,7 @@ GetType(Array).IsAssignableFrom(type)
       </ReturnValue>
       <Docs>
         <summary>获取一个值，通过该值指示 <see cref="T:System.Type" /> 是否是嵌套的并且只对同时属于自己家族和自己程序集的类可见。</summary>
-        <value>如果 <see langword="true" /> 是嵌套的并且只对同时属于它自己的家族和它自己的程序集的类可见，则为 <see cref="T:System.Type" />；否则为 <see langword="false" />。</value>
+        <value>如果 <see cref="T:System.Type" /> 是嵌套的并且只对同时属于它自己的家族和它自己的程序集的类可见，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -11978,7 +11994,7 @@ GetType(Array).IsAssignableFrom(type)
       </ReturnValue>
       <Docs>
         <summary>获取一个值，通过该值指示 <see cref="T:System.Type" /> 是否为指针。</summary>
-        <value>如果 <see langword="true" /> 是指针，则为 <see cref="T:System.Type" />；否则为 <see langword="false" />。</value>
+        <value>如果 <see cref="T:System.Type" /> 是指针，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -12032,7 +12048,7 @@ GetType(Array).IsAssignableFrom(type)
       <Parameters />
       <Docs>
         <summary>在派生类中重写时，实现 <see cref="P:System.Type.IsPointer" /> 属性并确定 <see cref="T:System.Type" /> 是否为指针。</summary>
-        <returns>如果 <see langword="true" /> 是指针，则为 <see cref="T:System.Type" />；否则为 <see langword="false" />。</returns>
+        <returns>如果 <see cref="T:System.Type" /> 是指针，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <altmember cref="P:System.Type.IsPointer" />
       </Docs>
@@ -12483,7 +12499,7 @@ GetType(Array).IsAssignableFrom(type)
       </ReturnValue>
       <Docs>
         <summary>获取一个值，通过该值指示 <see cref="T:System.Type" /> 是否为可序列化的。</summary>
-        <value>如果 <see langword="true" /> 是可序列化的，则为 <see cref="T:System.Type" />；否则为 <see langword="false" />。</value>
+        <value>如果 <see cref="T:System.Type" /> 是可序列化的，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -13048,7 +13064,7 @@ GetType(Array).IsAssignableFrom(type)
         <exception cref="T:System.NotSupportedException">基类不支持调用的方法。 派生类必须提供一个实现。</exception>
         <exception cref="T:System.TypeLoadException">当前的类型是 <see cref="T:System.TypedReference" />。  
   
-或 
+- 或 - 
 当前的类型是 <see langword="ByRef" /> 类型。 也就是说，<see cref="P:System.Type.IsByRef" /> 返回 <see langword="true" />。</exception>
         <altmember cref="M:System.Type.MakeByRefType" />
         <altmember cref="M:System.Type.MakePointerType" />
@@ -13116,10 +13132,10 @@ GetType(Array).IsAssignableFrom(type)
         <exception cref="T:System.NotSupportedException">基类不支持调用的方法。</exception>
         <exception cref="T:System.TypeLoadException">当前的类型是 <see cref="T:System.TypedReference" />。  
   
-或 
+- 或 - 
 当前的类型是 <see langword="ByRef" /> 类型。 也就是说，<see cref="P:System.Type.IsByRef" /> 返回 <see langword="true" />。  
   
-或 
+- 或 - 
  <paramref name="rank" /> 大于 32。</exception>
         <altmember cref="M:System.Type.MakeByRefType" />
         <altmember cref="M:System.Type.MakePointerType" />
@@ -13182,7 +13198,7 @@ GetType(Array).IsAssignableFrom(type)
         <exception cref="T:System.NotSupportedException">基类不支持调用的方法。</exception>
         <exception cref="T:System.TypeLoadException">当前的类型是 <see cref="T:System.TypedReference" />。  
   
-或 
+- 或 - 
 当前的类型是 <see langword="ByRef" /> 类型。 也就是说，<see cref="P:System.Type.IsByRef" /> 返回 <see langword="true" />。</exception>
         <altmember cref="M:System.Type.MakeArrayType" />
         <altmember cref="M:System.Type.MakePointerType" />
@@ -13378,14 +13394,14 @@ GetType(Array).IsAssignableFrom(type)
         <exception cref="T:System.InvalidOperationException">当前的类型不表示泛型类型定义。 也就是说，<see cref="P:System.Type.IsGenericTypeDefinition" /> 返回 <see langword="false" />。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="typeArguments" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
 <paramref name="typeArguments" /> 的任意元素为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="typeArguments" /> 中的元素数与当前泛型类型定义中的类型参数数不同。  
   
-或 
+- 或 - 
 <paramref name="typeArguments" /> 的所有元素都不满足为当前泛型类型的相应类型参数指定的约束。  
   
-或 
+- 或 - 
  <paramref name="typeArguments" /> 包含一个元素，该元素是一个指针类型（<see cref="P:System.Type.IsPointer" /> 返回 <see langword="true" />）、by-ref 类型（<see cref="P:System.Type.IsByRef" /> 返回 <see langword="true" />）或 <see cref="T:System.Void" />。</exception>
         <exception cref="T:System.NotSupportedException">基类不支持调用的方法。 派生类必须提供一个实现。</exception>
         <altmember cref="P:System.Type.IsGenericTypeDefinition" />
@@ -13451,7 +13467,7 @@ GetType(Array).IsAssignableFrom(type)
         <exception cref="T:System.NotSupportedException">基类不支持调用的方法。</exception>
         <exception cref="T:System.TypeLoadException">当前的类型是 <see cref="T:System.TypedReference" />。  
   
-或 
+- 或 - 
 当前的类型是 <see langword="ByRef" /> 类型。 也就是说，<see cref="P:System.Type.IsByRef" /> 返回 <see langword="true" />。</exception>
         <altmember cref="M:System.Type.MakeByRefType" />
         <altmember cref="M:System.Type.MakeArrayType" />
@@ -13925,34 +13941,34 @@ GetType(Array).IsAssignableFrom(type)
         <exception cref="T:System.Reflection.TargetInvocationException">调用了类初始值设定项，且该项引发了异常。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="throwIfNotFound" /> 是 <see langword="true" />，且找不到该类型。  
   
-或 
+- 或 - 
  <paramref name="throwIfNotFound" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 包含无效字符，例如嵌入的制表符。 
-或 
+- 或 - 
  <paramref name="throwIfNotFound" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 为空字符串。  
   
-或 
+- 或 - 
  <paramref name="throwIfNotFound" /> 的值为 <see langword="true" />，且 <paramref name="typeName" /> 表示大小无效的数组类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示 <see cref="T:System.TypedReference" /> 对象数组。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="typeName" /> 不包括程序集名称。  
   
-或 
+- 或 - 
  <paramref name="throwIfNotFound" /> 为 <see langword="true" />，且 <paramref name="typeName" /> 包含无效的语法（例如 "MyType[,*,]"）。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示将指针类型、<see langword="ByRef" /> 类型或 <see cref="T:System.Void" /> 作为其类型参数之一的泛型类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示具有错误的类型参数数目的泛型类型。  
   
-或 
+- 或 - 
  <paramref name="typeName" /> 表示泛型类型，并且其类型参数之一不满足相应类型参数的约束。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><paramref name="throwIfNotFound" /> 的值为 <see langword="true" />，且未找到程序集或程序集的某个依赖项。</exception>
         <exception cref="T:System.IO.FileLoadException">找到了程序集或其依赖项之一，但无法加载它们。</exception>
         <exception cref="T:System.BadImageFormatException">程序集或其依赖项之一无效。  
   
-或 
+- 或 - 
 此程序集使用高于当前所加载版本的公共语言运行时版本编译而成。</exception>
         <altmember cref="T:System.String" />
         <altmember cref="T:System.TypeLoadException" />
