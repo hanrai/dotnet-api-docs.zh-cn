@@ -1,5 +1,5 @@
 <Type Name="HttpClientHandler" FullName="System.Net.Http.HttpClientHandler">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9302416d5699aaa4fd5e3d51fbaff9431b1eb10f" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58715649" /></Metadata><TypeSignature Language="C#" Value="public class HttpClientHandler : System.Net.Http.HttpMessageHandler" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="333edac56c7d30336b93943355dba960d3ff71e3" /><Meta Name="ms.sourcegitcommit" Value="ddce15914650a504a7399d539ac1f7cfed3c2caa" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/07/2019" /><Meta Name="ms.locfileid" Value="66759612" /></Metadata><TypeSignature Language="C#" Value="public class HttpClientHandler : System.Net.Http.HttpMessageHandler" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit HttpClientHandler extends System.Net.Http.HttpMessageHandler" />
   <TypeSignature Language="DocId" Value="T:System.Net.Http.HttpClientHandler" />
   <TypeSignature Language="VB.NET" Value="Public Class HttpClientHandler&#xA;Inherits HttpMessageHandler" />
@@ -25,11 +25,11 @@
   <Docs>
     <summary>.NET Framework 和 .NET Core 2.0 及更低版本中由 <see cref="T:System.Net.Http.HttpClient" /> 使用的默认消息处理程序。</summary>
     <remarks>
-      <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- `HttpClientHandler`类和从它派生的类使开发人员若要配置的各种选项范围从代理到身份验证。  
-  
+      <format type="text/markdown"><![CDATA[
+
+## Remarks
+ `HttpClientHandler`类和从它派生的类使开发人员若要配置的各种选项范围从代理到身份验证。
+
 ### <a name="httpclienthandler-in-net-core"></a>在.NET Core 中的 HttpClientHandler
 
 从.NET Core 2.1<xref:System.Net.Http.SocketsHttpHandler?displayProperty=nameWithType>类而不是`HttpClientHandler`提供了使用的网络 Api 的更高级别的 HTTP 的实现。 可以配置应用程序以使用`HttpClientHandler`改为通过以下方式之一：
@@ -37,31 +37,33 @@
 - 通过调用<xref:System.AppContext.SetSwitch%2A?displayProperty=nameWithType>方法，如下所示：
 
   ```csharp
-  AppContext.SetSwitch("System.Net.Http.useSocketsHttpHandler", false);
+  AppContext.SetSwitch("System.Net.Http.UseSocketsHttpHandler", false);
   ```
+
   ```vb
-  AppContext.SetSwitch("System.Net.Http.useSocketsHttpHandler", False)
-  ``` 
-通过定义`System.Net.Http.useSocketsHttpHandler`切入 *。 netcore.runtimeconfig.json*配置文件：
+  AppContext.SetSwitch("System.Net.Http.UseSocketsHttpHandler", False)
+  ```
+
+- 通过定义`System.Net.Http.UseSocketsHttpHandler`切入 *。 netcore.runtimeconfig.json*配置文件：
 
   ```json
   "runtimeOptions": {
     "configProperties": {
-        "System.Net.Http.useSocketsHttpHandler": false
+        "System.Net.Http.UseSocketsHttpHandler": false
     }
   }
   ```
-  
+
 - 通过定义一个名为环境变量`DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER`并将其设置为`false`则为 0。
 
-## Examples  
- [!code-csharp[System.Net.Http.HttpClientHandler#1](~/samples/snippets/csharp/VS_Snippets_Misc/system.net.http.httpclienthandler/cs/source.cs#1)]  
-  
+## Examples
+ [!code-csharp[System.Net.Http.HttpClientHandler#1](~/samples/snippets/csharp/VS_Snippets_Misc/system.net.http.httpclienthandler/cs/source.cs#1)]
+
  前面的代码示例使用`async Task Main()`入口点。 该功能需要 C# 7.1 或更高版本。
-  
+
  ]]></format>
     </remarks>
-    <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkID=245696">连接到 web 服务</related>
+    <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkID=245696">连接到 Web 服务</related>
     <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkId=245697">快速入门：使用 HttpClient 进行连接</related>
     <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkId=245699">如何使用 HttpClient 处理程序</related>
     <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkId=245698">如何确保 HttpClient 连接安全</related>
@@ -122,19 +124,19 @@
         <summary>获取或设置一个值，该值指示处理程序是否应跟随重定向响应。</summary>
         <value><see langword="true" /> 如果处理程序应跟随重定向响应;否则为<see langword="false" />。 默认值为 <see langword="true" />。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 设置<xref:System.Net.Http.HttpClientHandler.AllowAutoRedirect%2A>到`true`如果你想要到新位置的资源自动遵循 HTTP 重定向标头的处理程序。 要遵循的重定向的最大数目设置<xref:System.Net.Http.HttpClientHandler.MaxAutomaticRedirections%2A>属性。  
-  
- 如果<xref:System.Net.Http.HttpClientHandler.AllowAutoRedirect%2A>设置为`false`，所有来自 HTTP 响应的 HTTP 状态代码 300 到 399 返回到应用程序。  
-  
- 在自动重定向清除授权标头，且该处理程序会自动尝试到重定向的位置重新进行身份验证。 在实践中，这意味着，应用程序不能自定义身份验证将信息放到授权标头是否可能会遇到重定向。 相反，应用程序必须实现和注册自定义身份验证模块。  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ 设置<xref:System.Net.Http.HttpClientHandler.AllowAutoRedirect%2A>到`true`如果你想要到新位置的资源自动遵循 HTTP 重定向标头的处理程序。 要遵循的重定向的最大数目设置<xref:System.Net.Http.HttpClientHandler.MaxAutomaticRedirections%2A>属性。
+
+ 如果<xref:System.Net.Http.HttpClientHandler.AllowAutoRedirect%2A>设置为`false`，所有来自 HTTP 响应的 HTTP 状态代码 300 到 399 返回到应用程序。
+
+ 在自动重定向清除授权标头，且该处理程序会自动尝试到重定向的位置重新进行身份验证。 在实践中，这意味着，应用程序不能自定义身份验证将信息放到授权标头是否可能会遇到重定向。 相反，应用程序必须实现和注册自定义身份验证模块。
 
 > [!NOTE]
 >  与<xref:System.Net.Http.HttpClientHandler.AllowAutoRedirect%2A>设置为`true`，即使在重定向到 HTTP URI 从 HTTPS URI 时，.NET Framework 将遵循重定向。
 .NET core 版本 1.0、 1.1 和 2.0 版不会使用重定向从 HTTPS 到 HTTP，即使<xref:System.Net.Http.HttpClientHandler.AllowAutoRedirect%2A>设置为`true`。
-  
+
  ]]></format>
         </remarks>
       </Docs>
@@ -167,15 +169,15 @@
         <summary>获取或设置处理程序用于自动解压缩 HTTP 内容响应的解压缩方法类型。</summary>
         <value>处理程序使用的自动解压缩方法。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
+          <format type="text/markdown"><![CDATA[
 
-## Remarks  
+## Remarks
 .NET framework 4.x`System.Net.Http`二进制全局程序集缓存 (GAC) 中，默认值是<xref:System.Net.DecompressionMethods.None>。
 
 当[ `System.Net.Http` NuGet 包](https://www.nuget.org/packages/System.Net.Http/)v4.1.0 到 v4.3.2 使用，则默认为<xref:System.Net.DecompressionMethods.GZip>和<xref:System.Net.DecompressionMethods.Deflate>。
 
 NuGet 包 v4.3.2 的默认值后<xref:System.Net.DecompressionMethods.None>使用。
-  
+
  ]]></format>
         </remarks>
       </Docs>
@@ -309,13 +311,13 @@ NuGet 包 v4.3.2 的默认值后<xref:System.Net.DecompressionMethods.None>使�
         <summary>获取或设置用于通过处理程序存储服务器 Cookie 的 Cookie 容器。</summary>
         <value>用于通过处理程序存储服务器 Cookie 的 Cookie 容器。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- <xref:System.Net.Http.HttpClientHandler.CookieContainer%2A>属性提供的实例<xref:System.Net.CookieContainer>类，该类包含与此处理程序关联的 cookie。  
-  
- 如果<xref:System.Net.Http.HttpClientHandler.UseCookies%2A>属性是`true`，则<xref:System.Net.Http.HttpClientHandler.CookieContainer%2A>属性表示用来存储服务器 cookie 的 cookie 容器。 用户可以使用此属性的请求在发送之前设置自定义 cookie。 如果<xref:System.Net.Http.HttpClientHandler.UseCookies%2A>属性为 false，并且用户将添加到 cookie <xref:System.Net.Http.HttpClientHandler.CookieContainer%2A>，cookie 会被忽略，且不会发送到服务器。 设置<xref:System.Net.Http.HttpClientHandler.CookieContainer%2A>到`null`将引发异常。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ <xref:System.Net.Http.HttpClientHandler.CookieContainer%2A>属性提供的实例<xref:System.Net.CookieContainer>类，该类包含与此处理程序关联的 cookie。
+
+ 如果<xref:System.Net.Http.HttpClientHandler.UseCookies%2A>属性是`true`，则<xref:System.Net.Http.HttpClientHandler.CookieContainer%2A>属性表示用来存储服务器 cookie 的 cookie 容器。 用户可以使用此属性的请求在发送之前设置自定义 cookie。 如果<xref:System.Net.Http.HttpClientHandler.UseCookies%2A>属性为 false，并且用户将添加到 cookie <xref:System.Net.Http.HttpClientHandler.CookieContainer%2A>，cookie 会被忽略，且不会发送到服务器。 设置<xref:System.Net.Http.HttpClientHandler.CookieContainer%2A>到`null`将引发异常。
+
  ]]></format>
         </remarks>
       </Docs>
@@ -374,21 +376,21 @@ NuGet 包 v4.3.2 的默认值后<xref:System.Net.DecompressionMethods.None>使�
         <summary>获取始终返回 <see langword="true" /> 的缓存委托。</summary>
         <value>始终返回 <see langword="true" /> 的缓存委托。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 尤其是在测试方案，一种常见模式使用<xref:System.Net.Http.HttpClient>连接到具有不应验证，如自签名证书的证书的服务器。 通常为此可以使用<xref:System.Net.Http.HttpClientHandler>通过设置<xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback%2A>属性设置为始终返回一个委托`True`; 这表明证书已通过验证。 但是，并非所有实现都支持此回调中，并且某些引发<xref:System.PlatformNotSupportedException>。  
-  
- <xref:System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator%2A>属性解决此限制。 通过返回的委托<xref:System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator%2A>属性可以分配给<xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback%2A>属性，作为下面的示例执行：  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ 尤其是在测试方案，一种常见模式使用<xref:System.Net.Http.HttpClient>连接到具有不应验证，如自签名证书的证书的服务器。 通常为此可以使用<xref:System.Net.Http.HttpClientHandler>通过设置<xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback%2A>属性设置为始终返回一个委托`True`; 这表明证书已通过验证。 但是，并非所有实现都支持此回调中，并且某些引发<xref:System.PlatformNotSupportedException>。
+
+ <xref:System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator%2A>属性解决此限制。 通过返回的委托<xref:System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator%2A>属性可以分配给<xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback%2A>属性，作为下面的示例执行：
+
 ```cs
 handler.ServerCertificateCustomValidationCallback = httpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 ```
 
- 这样，<xref:System.Net.Http.HttpClientHandler>实现表示开发人员的意图的已知的对象引用标识。 如果该对象存储在<xref:System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator%2A>属性是引用等于<xref:System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator%2A>，运行时能够完全禁用验证，否则会引发的平台上<xref:System.PlatformNotSupportedException>。  
-  
- 作为额外的好处是，开发人员可以使用此属性来简化工具来标记禁用证书验证，这使得开发人员若要避免传送不安全的应用程序更轻松的危险。  
-  
+ 这样，<xref:System.Net.Http.HttpClientHandler>实现表示开发人员的意图的已知的对象引用标识。 如果该对象存储在<xref:System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator%2A>属性是引用等于<xref:System.Net.Http.HttpClientHandler.DangerousAcceptAnyServerCertificateValidator%2A>，运行时能够完全禁用验证，否则会引发的平台上<xref:System.PlatformNotSupportedException>。
+
+ 作为额外的好处是，开发人员可以使用此属性来简化工具来标记禁用证书验证，这使得开发人员若要避免传送不安全的应用程序更轻松的危险。
+
  ]]></format>
         </remarks>
       </Docs>
@@ -459,13 +461,13 @@ handler.ServerCertificateCustomValidationCallback = httpClientHandler.DangerousA
         <param name="disposing">如果释放托管资源和非托管资源，则为 <see langword="true" />；如果仅释放非托管资源，则为 <see langword="false" />。</param>
         <summary>释放由 <see cref="T:System.Net.Http.HttpClientHandler" /> 使用的非托管资源，并可根据需要释放托管资源。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 调用此方法由公共`Dispose()`方法和<xref:System.Object.Finalize%2A>方法。 `Dispose()` 调用受保护`Dispose(Boolean)`方法替换`disposing`参数设置为`true`。 <xref:System.Object.Finalize%2A> 调用`Dispose`与`disposing`设置为`false`。  
-  
- 当 `disposing` 参数为 `true` 时，此方法释放该 <xref:System.Net.Http.HttpClientHandler> 引用的、由任何托管对象持有的全部资源。 此方法调用每个引用对象的 `Dispose()` 方法。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ 调用此方法由公共`Dispose()`方法和<xref:System.Object.Finalize%2A>方法。 `Dispose()` 调用受保护`Dispose(Boolean)`方法替换`disposing`参数设置为`true`。 <xref:System.Object.Finalize%2A> 调用`Dispose`与`disposing`设置为`false`。
+
+ 当 `disposing` 参数为 `true` 时，此方法释放该 <xref:System.Net.Http.HttpClientHandler> 引用的、由任何托管对象持有的全部资源。 此方法调用每个引用对象的 `Dispose()` 方法。
+
  ]]></format>
         </remarks>
       </Docs>
@@ -498,11 +500,11 @@ handler.ServerCertificateCustomValidationCallback = httpClientHandler.DangerousA
         <summary>获取或设置处理程序遵循的重定向的最大数目。</summary>
         <value>处理程序遵循的重定向响应的最大数目。 默认值为 50。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- <xref:System.Net.Http.HttpClientHandler.MaxAutomaticRedirections%2A>属性设置为请求时要执行的重定向的最大数目<xref:System.Net.Http.HttpClientHandler.AllowAutoRedirect%2A>属性是`true`。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ <xref:System.Net.Http.HttpClientHandler.MaxAutomaticRedirections%2A>属性设置为请求时要执行的重定向的最大数目<xref:System.Net.Http.HttpClientHandler.AllowAutoRedirect%2A>属性是`true`。
+
  ]]></format>
         </remarks>
       </Docs>
@@ -570,11 +572,11 @@ handler.ServerCertificateCustomValidationCallback = httpClientHandler.DangerousA
         <summary>获取或设置处理程序使用的最大请求内容缓冲区大小。</summary>
         <value>最大请求内容缓冲区大小（以字节为单位）。 默认值为 2 GB。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 应用程序可以设置<xref:System.Net.Http.HttpClientHandler.MaxRequestContentBufferSize%2A>属性设置为较低的值来限制请求缓冲区的大小。 如果请求内容的大小大于<xref:System.Net.Http.HttpClientHandler.MaxRequestContentBufferSize%2A>属性，将引发异常。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ 应用程序可以设置<xref:System.Net.Http.HttpClientHandler.MaxRequestContentBufferSize%2A>属性设置为较低的值来限制请求缓冲区的大小。 如果请求内容的大小大于<xref:System.Net.Http.HttpClientHandler.MaxRequestContentBufferSize%2A>属性，将引发异常。
+
  ]]></format>
         </remarks>
       </Docs>
@@ -642,15 +644,15 @@ handler.ServerCertificateCustomValidationCallback = httpClientHandler.DangerousA
         <summary>获取或设置一个值，该值指示处理程序是否随请求发送授权标头。</summary>
         <value><see langword="true" /> 表示处理程序在发生身份验证之后随请求一起发送 HTTP 授权标头；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 对特定的客户端请求后<xref:System.Uri>成功进行身份验证，如果<xref:System.Net.Http.HttpClientHandler.PreAuthenticate%2A>属性是`true`并在提供凭据，<xref:System.Net.Http.HttpClientHandler>中提供的凭据列表匹配<xref:System.Net.Http.HttpClientHandler.Credentials%2A>属性。 授权标头与每个请求发送到任何<xref:System.Uri>相匹配的特定于<xref:System.Uri>直到最后一个正斜杠。  
-  
- 如果客户端请求到特定<xref:System.Uri>是不成功进行身份验证，请求使用标准身份验证过程。  
-  
- 第一个请求，除了<xref:System.Net.Http.HttpClientHandler.PreAuthenticate%2A>属性指示是否将发送到的后续请求使用的身份验证信息<xref:System.Uri>相匹配的特定于<xref:System.Uri>直到而无需等待最后一个正斜杠服务器的质询。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ 对特定的客户端请求后<xref:System.Uri>成功进行身份验证，如果<xref:System.Net.Http.HttpClientHandler.PreAuthenticate%2A>属性是`true`并在提供凭据，<xref:System.Net.Http.HttpClientHandler>中提供的凭据列表匹配<xref:System.Net.Http.HttpClientHandler.Credentials%2A>属性。 授权标头与每个请求发送到任何<xref:System.Uri>相匹配的特定于<xref:System.Uri>直到最后一个正斜杠。
+
+ 如果客户端请求到特定<xref:System.Uri>是不成功进行身份验证，请求使用标准身份验证过程。
+
+ 第一个请求，除了<xref:System.Net.Http.HttpClientHandler.PreAuthenticate%2A>属性指示是否将发送到的后续请求使用的身份验证信息<xref:System.Uri>相匹配的特定于<xref:System.Uri>直到而无需等待最后一个正斜杠服务器的质询。
+
  ]]></format>
         </remarks>
       </Docs>
@@ -723,23 +725,23 @@ handler.ServerCertificateCustomValidationCallback = httpClientHandler.DangerousA
         <summary>获取或设置处理程序使用的代理信息。</summary>
         <value>处理程序使用的代理信息。 默认值为 <see langword="null" />。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- <xref:System.Net.Http.HttpClientHandler.Proxy%2A>属性标识<xref:System.Net.WebProxy>对象，用于处理对 Internet 资源的请求。 若要指定应使用任何代理，请设置<xref:System.Net.Http.HttpClientHandler.Proxy%2A>属性设置为返回的代理实例<xref:System.Net.GlobalProxySelection.GetEmptyWebProxy%2A>方法。  
-  
- 在本地计算机或应用程序配置文件可以指定使用默认代理。 如果<xref:System.Net.Http.HttpClientHandler.Proxy%2A>指定属性，然后从的代理设置<xref:System.Net.Http.HttpClientHandler.Proxy%2A>属性重写在本地计算机或应用程序配置文件和处理程序将使用指定的代理设置。 如果未指定代理配置文件中和<xref:System.Net.Http.HttpClientHandler.Proxy%2A>属性为未指定，该处理程序使用继承自 Internet 资源管理器在本地计算机上的代理设置。 如果没有在 Internet Explorer 代理设置，该请求是直接发送到服务器。  
-  
- <xref:System.Net.Http.HttpClientHandler>类分析包含通配符字符的代理跳过列表继承从 Internet 资源管理器相同直接通过 Internet Explorer 分析时跳过列表。 例如，<xref:System.Net.Http.HttpClientHandler>类将正则表达式的分析的"nt *"从 Internet 资源管理器的跳过列表"nt。\*"。 因此的 URL" http://nt.com"将绕过代理帐户使用<xref:System.Net.Http.HttpClientHandler>类并使用 Internet Explorer。  
-  
- <xref:System.Net.Http.HttpClientHandler>类支持绕过本地代理。 类会视为目标为本地如果满足以下条件之一：  
-  
-1.  目标包含平面名称 （在 URL 中没有句点）。  
-  
-2.  目标包含与环回地址 (<xref:System.Net.IPAddress.Loopback>或<xref:System.Net.IPAddress.IPv6Loopback>) 或目标包含<xref:System.Net.IPAddress>分配给本地计算机。  
-  
-3.  目标的域后缀匹配本地计算机的域后缀 (<xref:System.Net.NetworkInformation.IPGlobalProperties.DomainName%2A>)。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ <xref:System.Net.Http.HttpClientHandler.Proxy%2A>属性标识<xref:System.Net.WebProxy>对象，用于处理对 Internet 资源的请求。 若要指定应使用任何代理，请设置<xref:System.Net.Http.HttpClientHandler.Proxy%2A>属性设置为返回的代理实例<xref:System.Net.GlobalProxySelection.GetEmptyWebProxy%2A>方法。
+
+ 在本地计算机或应用程序配置文件可以指定使用默认代理。 如果<xref:System.Net.Http.HttpClientHandler.Proxy%2A>指定属性，然后从的代理设置<xref:System.Net.Http.HttpClientHandler.Proxy%2A>属性重写在本地计算机或应用程序配置文件和处理程序将使用指定的代理设置。 如果未指定代理配置文件中和<xref:System.Net.Http.HttpClientHandler.Proxy%2A>属性为未指定，该处理程序使用继承自 Internet 资源管理器在本地计算机上的代理设置。 如果没有在 Internet Explorer 代理设置，该请求是直接发送到服务器。
+
+ <xref:System.Net.Http.HttpClientHandler>类分析包含通配符字符的代理跳过列表继承从 Internet 资源管理器相同直接通过 Internet Explorer 分析时跳过列表。 例如，<xref:System.Net.Http.HttpClientHandler>类将正则表达式的分析的"nt *"从 Internet 资源管理器的跳过列表"nt。\*"。 因此的 URL" http://nt.com"将绕过代理帐户使用<xref:System.Net.Http.HttpClientHandler>类并使用 Internet Explorer。
+
+ <xref:System.Net.Http.HttpClientHandler>类支持绕过本地代理。 类会视为目标为本地如果满足以下条件之一：
+
+1.  目标包含平面名称 （在 URL 中没有句点）。
+
+2.  目标包含与环回地址 (<xref:System.Net.IPAddress.Loopback>或<xref:System.Net.IPAddress.IPv6Loopback>) 或目标包含<xref:System.Net.IPAddress>分配给本地计算机。
+
+3.  目标的域后缀匹配本地计算机的域后缀 (<xref:System.Net.NetworkInformation.IPGlobalProperties.DomainName%2A>)。
+
  ]]></format>
         </remarks>
       </Docs>
@@ -782,11 +784,11 @@ handler.ServerCertificateCustomValidationCallback = httpClientHandler.DangerousA
         <summary>基于作为不会阻止的操作在 <see cref="T:System.Net.Http.HttpRequestMessage" /> 中提供的信息创建 <see cref="T:System.Net.Http.HttpResponseMessage" /> 的实例。</summary>
         <returns>表示异步操作的任务对象。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 此操作是不会阻止。 它将返回的实例<xref:System.Threading.Tasks.Task%601>来表示异步操作。 操作完成后，<xref:System.Threading.Tasks.Task%601.Result%2A>包含响应消息。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ 此操作是不会阻止。 它将返回的实例<xref:System.Threading.Tasks.Task%601>来表示异步操作。 操作完成后，<xref:System.Threading.Tasks.Task%601.Result%2A>包含响应消息。
+
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="request" /> 是 <see langword="null" />。</exception>
@@ -1011,11 +1013,11 @@ handler.ServerCertificateCustomValidationCallback = httpClientHandler.DangerousA
         <summary>获取或设置一个值，该值控制处理程序是否随请求一起发送默认凭据。</summary>
         <value>如果使用默认凭据，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 将此属性设置为`true`发出请求<xref:System.Net.Http.HttpClientHandler>对象应，如果请求服务器进行身份验证使用当前登录用户的凭据。 对于客户端应用程序，这是在大多数情况下所需的行为。 对于中间层应用程序，如 ASP.NET 应用程序，而不是使用此属性，通常会设置<xref:System.Net.Http.HttpClientHandler.Credentials%2A>属性设置为客户端的名义发出请求的凭据。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ 将此属性设置为`true`发出请求<xref:System.Net.Http.HttpClientHandler>对象应，如果请求服务器进行身份验证使用当前登录用户的凭据。 对于客户端应用程序，这是在大多数情况下所需的行为。 对于中间层应用程序，如 ASP.NET 应用程序，而不是使用此属性，通常会设置<xref:System.Net.Http.HttpClientHandler.Credentials%2A>属性设置为客户端的名义发出请求的凭据。
+
  ]]></format>
         </remarks>
       </Docs>

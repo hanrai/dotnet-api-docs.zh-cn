@@ -1,5 +1,5 @@
 <Type Name="ValueTask&lt;TResult&gt;" FullName="System.Threading.Tasks.ValueTask&lt;TResult&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b8dcd3b18fa5f95c701d0a7288bc673f2bffac5f" /><Meta Name="ms.sourcegitcommit" Value="2dd0eede6edd6dd3d2aa8f79010848658b967609" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/18/2019" /><Meta Name="ms.locfileid" Value="58874275" /></Metadata><TypeSignature Language="C#" Value="public struct ValueTask&lt;TResult&gt; : IEquatable&lt;System.Threading.Tasks.ValueTask&lt;TResult&gt;&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b7517ccc8093036f6b431d4f4fd4360879b7f348" /><Meta Name="ms.sourcegitcommit" Value="ddce15914650a504a7399d539ac1f7cfed3c2caa" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/07/2019" /><Meta Name="ms.locfileid" Value="66759871" /></Metadata><TypeSignature Language="C#" Value="public struct ValueTask&lt;TResult&gt; : IEquatable&lt;System.Threading.Tasks.ValueTask&lt;TResult&gt;&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit ValueTask`1&lt;TResult&gt; extends System.ValueType implements class System.IEquatable`1&lt;valuetype System.Threading.Tasks.ValueTask`1&lt;!TResult&gt;&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Tasks.ValueTask`1" />
   <TypeSignature Language="VB.NET" Value="Public Structure ValueTask(Of TResult)&#xA;Implements IEquatable(Of ValueTask(Of TResult))" />
@@ -45,6 +45,17 @@
       <format type="text/markdown"><![CDATA[ 
 
 ## Remarks  
+一个<xref:System.Threading.Tasks.ValueTask%601>实例可能是为处于等待状态或转换为<xref:System.Threading.Tasks.Task%601>使用<xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>。 一个<xref:System.Threading.Tasks.ValueTask%601>可能仅一次，等待实例中，使用者可能会调用<xref:System.Threading.Tasks.ValueTask%601.GetAwaiter>直到已完成实例。 如果不可接受的这些限制，将转换<xref:System.Threading.Tasks.ValueTask%601>到<xref:System.Threading.Tasks.Task%601>通过调用<xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>。
+
+永远不应上执行以下操作<xref:System.Threading.Tasks.ValueTask%601>实例：
+
+  - 等待实例多次。
+  - 调用<xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>多次。
+  - 使用`.Result`或`.GetAwaiter().GetResult()`时未尚未完成该操作，或多次使用。
+  - 使用多个以下方法之一来使用该实例。
+
+如果执行上述任一操作，则结果不确定。
+
 一种方法可能会返回时很可能其操作的结果将是可用以同步方式，并且当它应该能够将此值类型的实例调用相当频繁，因此，分配一个新的成本<xref:System.Threading.Tasks.Task%601>每次调用都将很高的磁盘。   
 
 有几个使用缺点<xref:System.Threading.Tasks.ValueTask%601>而不是<xref:System.Threading.Tasks.Task%601>。 例如，虽然<xref:System.Threading.Tasks.ValueTask%601>可帮助避免分配成功的结果，以同步方式是可用的情况下，它还包含两个字段，而<xref:System.Threading.Tasks.Task%601>作为引用类型是单个字段。 这意味着方法调用返回两个值得数据字段的而不是一个，这是要复制的详细数据。 这也意味着，如果返回的一个方法<xref:System.Threading.Tasks.ValueTask%601>等待 async 方法，状态机中的异步方法将为更大，因为它必须存储结构包含两个字段，而不是单个引用。   
@@ -652,11 +663,10 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 ## Remarks  
- 如果此<xref:System.Threading.Tasks.ValueTask%601>包装一个成功的结果，此属性直接返回。
+仅可以访问一次，此属性，而且在这<xref:System.Threading.Tasks.ValueTask%601>已完成。
 
- 换行时<xref:System.Threading.Tasks.Task%601>的行为<xref:System.Threading.Tasks.ValueTask%601.Result%2A>类似于访问的行为<xref:System.Threading.Tasks.Task%601.Result%2A>已包装的任务： 如果任务尚未完成，访问属性阻止调用线程，直到它完成; 如果任务已完成已成功，该属性返回结果;如果任务已出错或被取消，访问属性引发异常。 引发的异常不包装在<xref:System.AggregateException>，这是不同的行为<xref:System.Threading.Tasks.Task%601.Result%2A>在相同情况。
-  
- ]]></format>
+如果此<xref:System.Threading.Tasks.ValueTask%601>已成功完成，此属性返回生成的值。 如果此<xref:System.Threading.Tasks.ValueTask%601>已出现故障，此属性会引发异常。 引发的异常不包装在<xref:System.AggregateException>。
+]]></format>
         </remarks>
       </Docs>
     </Member>

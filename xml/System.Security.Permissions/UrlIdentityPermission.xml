@@ -1,5 +1,5 @@
 <Type Name="UrlIdentityPermission" FullName="System.Security.Permissions.UrlIdentityPermission">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="523ba30c70ddb8b30acd52f025a772f3b0f3fe4b" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56760618" /></Metadata><TypeSignature Language="C#" Value="public sealed class UrlIdentityPermission : System.Security.CodeAccessPermission" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="15ceb69cdd2ae11e7a2cb0b31e28580570dfbc33" /><Meta Name="ms.sourcegitcommit" Value="f55040f35c19a83c85beb55243330558f6e369be" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/10/2019" /><Meta Name="ms.locfileid" Value="66819005" /></Metadata><TypeSignature Language="C#" Value="public sealed class UrlIdentityPermission : System.Security.CodeAccessPermission" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit UrlIdentityPermission extends System.Security.CodeAccessPermission" />
   <TypeSignature Language="DocId" Value="T:System.Security.Permissions.UrlIdentityPermission" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class UrlIdentityPermission&#xA;Inherits CodeAccessPermission" />
@@ -36,9 +36,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 被视为完整的 URL，包括协议 （HTTP、 HTTPS、 FTP） 和文件。 例如，http://www.fourthcoffee.com/process/grind.htm是完整的 URL。  
+ 被视为完整的 URL，包括协议 （HTTP、 HTTPS、 FTP） 和文件。 例如，`http://www.fourthcoffee.com/process/grind.htm`是完整的 URL。  
   
- Url 可以匹配完全或通配符在最后一个位置，例如： http://www.fourthcoffee.com/process/*。 Url 还可以包含通配符 ("\*") 在点分隔符的前缀。 例如，URL 名称字符串http://www.fourthcoffee.com/process/grind.htm/是子集 http://\*.fourthcoffee.com/process/grind.htm/ 和 http://\*.com/process/grind.htm/。  
+ Url 可以匹配完全或通配符在最后一个位置，例如： `http://www.fourthcoffee.com/process/*`。 Url 还可以包含通配符 ("\*") 在点分隔符的前缀。 例如，URL 名称字符串`http://www.fourthcoffee.com/process/grind.htm/`是的子集`http://*.fourthcoffee.com/process/grind.htm/`和`http://*.com/process/grind.htm/`。  
   
 > [!IMPORTANT]
 >  从开始[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]，不使用标识权限。  
@@ -151,9 +151,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 被视为完整的 URL，包括协议 (HTTP、 HTTPS、 FTP) 和文件，例如： http://www.fourthcoffee.com/process/grind.htm/。  
+ 被视为完整的 URL，包括协议 (HTTP、 HTTPS、 FTP) 和文件，例如： `http://www.fourthcoffee.com/process/grind.htm/`。  
   
- Url 可以匹配完全或通配符在最后一个位置，例如： http://www.fourthcoffee.com/process/*。 Url 还可以包含通配符 ("\*") 在点分隔符的前缀。 例如，URL 名称字符串http://www.fourthcoffee.com/process/grind.htm/是子集 http://\*.fourthcoffee.com/process/grind.htm/ 和 http://\*.com/process/grind.htm/。  
+ Url 可以匹配完全或通配符在最后一个位置，例如： `http://www.fourthcoffee.com/process/*`。 Url 还可以包含通配符 ("\*") 在点分隔符的前缀。 例如，URL 名称字符串`http://www.fourthcoffee.com/process/grind.htm/`是的子集`http://*.fourthcoffee.com/process/grind.htm/`和`http://*.com/process/grind.htm/`。  
   
 > [!NOTE]
 >  从.NET Framework 版本 2.0 中，出于性能原因，一个无效的 URL 不会导致创建新的类实例时出现参数异常。  执行集合操作 （Union、 Intersect 或 IsSubsetOf） 之一时，将出现参数异常。  需按权限会导致<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>调用的安全基础结构。 请求将失败由于参数异常，从而导致<xref:System.Security.SecurityException>所引发。 在此情况下，原始<xref:System.ArgumentException>将不会看到异常。  
@@ -279,19 +279,19 @@
       </Parameters>
       <Docs>
         <param name="target">要与当前权限相交的权限。 它必须与当前权限属于同一类型。</param>
-        <summary>创建并返回一个权限，该权限是当前权限和指定权限的交集。</summary>
-        <returns>一个新权限，它表示当前权限与指定权限的交集。 如果交集为空，则此新权限为 <see langword="null" />。</returns>
+        <summary>创建并返回一个权限，该权限是当前权限与指定权限的交集。</summary>
+        <returns>表示当前权限和指定权限的交集的一个新权限。 如果交集为空，则此新权限为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 两个权限的交集是描述两者共同描述的 Url 的访问权限的权限。 只有传递两个原始权限的请求将通过该交集。 例如，交集的权限，表示访问http://www.fourthcoffee.com/process/grind.htm和表示访问权限http://www.fourthcoffee.com/* 是一个权限，表示访问http://www.fourthcoffee.com/process/grind.htm。  
+ 两个权限的交集是描述两者共同描述的 Url 的访问权限的权限。 只有传递两个原始权限的请求将通过该交集。 例如，交集的权限，表示访问`http://www.fourthcoffee.com/process/grind.htm`和表示访问权限`http://www.fourthcoffee.com/*`是一个权限，表示访问`http://www.fourthcoffee.com/process/grind.htm`。  
   
- <xref:System.Security.Permissions.UrlIdentityPermission> 支持集运算 (<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>， <xref:System.Security.Permissions.UrlIdentityPermission.Intersect%2A>，和<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>) 仅当当前权限与指定的权限的对象相等或权限之一时使用通配符运算符 ("*")。  
+ <xref:System.Security.Permissions.UrlIdentityPermission> 支持集运算 (<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>， <xref:System.Security.Permissions.UrlIdentityPermission.Intersect%2A>，并<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>) 仅当当前权限与指定的权限的对象相等或权限之一时使用通配符运算符 ("\*")。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="target" /> 参数不是 <see langword="null" />，而且与当前权限不是同一类型。  
+        <exception cref="T:System.ArgumentException"><paramref name="target" /> 参数不为 <see langword="null" />，并且与当前权限不属于同一类型。  
   
 - 或 - 
 Url 属性不是有效的 URL。</exception>
@@ -332,13 +332,13 @@ Url 属性不是有效的 URL。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果当前权限标识完全包含指定的权限的 URL 访问，则当前权限是指定权限的子集。 例如，一个权限，表示权http://www.fourthcoffee.com/process/grind.htm是表示对访问权限的子集http://www.fourthcoffee.com/*。 如果此方法返回`true`，当前权限表示对受保护资源的访问权限不超过指定的权限。  
+ 如果当前权限标识完全包含指定的权限的 URL 访问，则当前权限是指定权限的子集。 例如，一个权限，表示权`http://www.fourthcoffee.com/process/grind.htm`是表示对访问权限的子集`http://www.fourthcoffee.com/*`。 如果此方法返回`true`，当前权限表示对受保护资源的访问权限不超过指定的权限。  
   
- <xref:System.Security.Permissions.UrlIdentityPermission> 支持集运算 (<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>， <xref:System.Security.Permissions.UrlIdentityPermission.Intersect%2A>，和<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>) 仅当当前权限是否等于指定的权限或权限之一时使用通配符运算符 ("*")。  
+ <xref:System.Security.Permissions.UrlIdentityPermission> 支持集运算 (<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>， <xref:System.Security.Permissions.UrlIdentityPermission.Intersect%2A>，并<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>) 仅当当前权限是否等于指定的权限或权限之一时使用通配符运算符 ("\*")。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="target" /> 参数不是 <see langword="null" />，而且与当前权限不是同一类型。  
+        <exception cref="T:System.ArgumentException"><paramref name="target" /> 参数不为 <see langword="null" />，并且与当前权限不属于同一类型。  
   
 - 或 - 
 Url 属性不是有效的 URL。</exception>
@@ -412,11 +412,11 @@ Url 属性不是有效的 URL。</exception>
 ## Remarks  
  对的调用结果<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>方法是表示对由当前的权限，表示 URL 的访问，以及对 URL 表示的指定权限的访问权限。  
   
- <xref:System.Security.Permissions.UrlIdentityPermission>类支持集运算<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>， <xref:System.Security.Permissions.UrlIdentityPermission.Intersect%2A>，和<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>) 仅当当前权限是否等于指定的权限或权限之一使用通配符运算符 ("*") 和一个是的子集其他。  
+ <xref:System.Security.Permissions.UrlIdentityPermission>类支持集运算<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>， <xref:System.Security.Permissions.UrlIdentityPermission.Intersect%2A>，和<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>) 仅当当前权限是否等于指定的权限或权限之一使用通配符运算符 ("\*") 和一个是另一小部分。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="target" /> 参数不是 <see langword="null" />，而且与当前权限不是同一类型。  
+        <exception cref="T:System.ArgumentException"><paramref name="target" /> 参数不为 <see langword="null" />，并且与当前权限不属于同一类型。  
   
 - 或 - 
 <see cref="P:System.Security.Permissions.UrlIdentityPermission.Url" /> 属性不是有效的 URL。  
@@ -457,9 +457,9 @@ Url 属性不是有效的 URL。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 被视为完整的 URL，包括协议 (HTTP、 HTTPS、 FTP) 和文件，例如： http://www.fourthcoffee.com/process/grind.htm/。  
+ 被视为完整的 URL，包括协议 (HTTP、 HTTPS、 FTP) 和文件，例如： `http://www.fourthcoffee.com/process/grind.htm/`。  
   
- Url 可以匹配完全或通配符在最后一个位置，例如： http://www.fourthcoffee.com/process/*。  
+ Url 可以匹配完全或通配符在最后一个位置，例如： `http://www.fourthcoffee.com/process/*`。  
   
  ]]></format>
         </remarks>
