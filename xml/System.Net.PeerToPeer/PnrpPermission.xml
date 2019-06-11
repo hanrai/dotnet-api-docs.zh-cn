@@ -1,5 +1,5 @@
 <Type Name="PnrpPermission" FullName="System.Net.PeerToPeer.PnrpPermission">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7eb19c1a4766825699a4a0659d4cb7fec6503ba2" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56762906" /></Metadata><TypeSignature Language="C#" Value="public sealed class PnrpPermission : System.Security.CodeAccessPermission, System.Security.Permissions.IUnrestrictedPermission" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="35cc6e54bceafd19f471a8b506b673d622c5f5b6" /><Meta Name="ms.sourcegitcommit" Value="ddce15914650a504a7399d539ac1f7cfed3c2caa" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/07/2019" /><Meta Name="ms.locfileid" Value="66759926" /></Metadata><TypeSignature Language="C#" Value="public sealed class PnrpPermission : System.Security.CodeAccessPermission, System.Security.Permissions.IUnrestrictedPermission" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit PnrpPermission extends System.Security.CodeAccessPermission implements class System.Security.Permissions.IUnrestrictedPermission" />
   <TypeSignature Language="DocId" Value="T:System.Net.PeerToPeer.PnrpPermission" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class PnrpPermission&#xA;Inherits CodeAccessPermission&#xA;Implements IUnrestrictedPermission" />
@@ -266,19 +266,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当前<xref:System.Net.PeerToPeer.PnrpPermission>如果当前权限指定一组操作完全包含指定的权限是指定权限的子集。 例如，表示对访问权限"*C:\example.txt*"是表示对访问权限的子集"*c:\\*"。 如果此方法返回`true`，当前权限表示对受保护资源的访问权限不超过指定的权限。  
+
+当前<xref:System.Net.PeerToPeer.PnrpPermission>如果当前权限指定一组操作完全包含指定的权限是指定权限的子集。 例如，表示对访问权限"*C:\example.txt*"是表示对访问权限的子集"*c:\\*"。 如果此方法返回`true`，当前权限表示对受保护资源的访问权限不超过指定的权限。  
   
- 以下语句所需是`true`IsSubsetOf 方法的所有实现的。 X、 Y 和 Z 表示<xref:System.Security.IPermission>对象不是`null`引用 (`Nothing`在 Visual Basic 中)。  
+以下语句所需是`true`IsSubsetOf 方法的所有实现的。 X、 Y 和 Z 表示<xref:System.Security.IPermission>对象不是`null`引用 (`Nothing`在 Visual Basic 中)。
+
+- `X.IsSubsetOf(X)` 返回 `true`。
+
+- `X.IsSubsetOf(Y)` 返回值与相同`Y.IsSubsetOf(X)`当且仅当 X 和 Y 表示相同的权限集。
+
+- 如果`X.IsSubsetOf(Y)`并`Y.IsSubsetOf(Z)`两者都返回`true`，`X.IsSubsetOf(Z)`返回`true`。
   
--   X.IsSubsetOf(X) 返回`true`。  
-  
--   当且仅当 X 和 Y 表示相同的权限集，X.IsSubsetOf(Y) 返回 Y.IsSubsetOf(X) 相同的值。  
-  
--   如果两者都返回 X.IsSubsetOf(Y) 和 Y.IsSubsetOf(Z) `true`，X.IsSubsetOf(Z) 返回`true`。  
-  
--  
-  
- 如果 X 表示权限状态为一个空 IPermission 对象*无*和 Y 表示一个 IPermission 对象，它`null`引用 (`Nothing`在 Visual Basic 中)，返回 X.IsSubsetOf(Y) `true`。 如果 Z 也是空的权限，则复合设置操作 X.Union(Z)。此外返回 IsSubsetOf(Y)`true`因为<xref:System.Net.PeerToPeer.PnrpPermission.Union%2A>的两个空权限是空的权限。  
+如果 X 表示空<xref:System.Security.IPermission>具有的权限状态对象*无*，和 Y 表示<xref:System.Security.IPermission>对象，该对象`null`引用 (`Nothing`在 Visual Basic 中)，`X.IsSubsetOf(Y)`返回`true`. 如果 Z 也是空的权限，则复合集运算`X.Union(Z).IsSubsetOf(Y)`也会返回`true`因为<xref:System.Net.PeerToPeer.PnrpPermission.Union%2A>的两个空权限是空的权限。
   
  ]]></format>
         </remarks>
