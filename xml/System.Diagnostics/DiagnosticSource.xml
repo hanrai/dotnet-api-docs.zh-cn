@@ -1,5 +1,5 @@
 <Type Name="DiagnosticSource" FullName="System.Diagnostics.DiagnosticSource">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="721344c819324ed29d7c87fcc416078d9355d52b" /><Meta Name="ms.sourcegitcommit" Value="434f60616a9793fa8436744549fc856e94f7a648" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/24/2018" /><Meta Name="ms.locfileid" Value="36674154" /></Metadata><TypeSignature Language="C#" Value="public abstract class DiagnosticSource" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8cbc4935d264c7be30193ce6ff6c9af0cdfd4331" /><Meta Name="ms.sourcegitcommit" Value="f55040f35c19a83c85beb55243330558f6e369be" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/10/2019" /><Meta Name="ms.locfileid" Value="66817913" /></Metadata><TypeSignature Language="C#" Value="public abstract class DiagnosticSource" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DiagnosticSource extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.DiagnosticSource" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DiagnosticSource" />
@@ -12,14 +12,15 @@
     <AssemblyVersion>4.0.2.0</AssemblyVersion>
     <AssemblyVersion>4.0.2.1</AssemblyVersion>
     <AssemblyVersion>4.0.3.0</AssemblyVersion>
+    <AssemblyVersion>4.0.4.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>一个抽象类，它允许针对丰富数据有效负载的生产时日志记录检测代码，以在被检测的进程中使用。</summary>
+    <remarks>有关详细信息，请参阅[DiagnosticSource 用户指南](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md)。</remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -36,6 +37,7 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -58,6 +60,7 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -66,10 +69,16 @@
         <Parameter Name="name" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="name">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="name">正在写入的事件的名称。</param>
+        <summary>验证通知事件是否已启用。</summary>
+        <returns>如果通知事件已启用，为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+         <remarks>
+           <format type="text/markdown"><![CDATA[
+
+如果没有为通知昂贵的安装程序，可以在执行此安装程序之前调用 IsEnabled。 使用者不应假定，它们才会收到的通知 IsEnabled 为 true。 但是，它是可选的生成者以调用此 API。 名称应与传递给相同<see cref="M:System.Diagnostics.DiagnosticSource.Write(System.String,System.Object)" />。
+
+           ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="IsEnabled">
@@ -84,21 +93,78 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="name" Type="System.String" />
-        <Parameter Name="arg1" Type="System.Object" />
-        <Parameter Name="arg2" Type="System.Object" />
+        <Parameter Name="name" Type="System.String" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
+        <Parameter Name="arg1" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
+        <Parameter Name="arg2" Type="System.Object" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="name">To be added.</param>
-        <param name="arg1">To be added.</param>
-        <param name="arg2">To be added.</param>
+        <param name="name">正在写入的事件的名称。</param>
+        <param name="arg1">一个对象，它表示 IsEnabled 的附加上下文。 使用者应会收到 <see langword="null" />，它可能表示生成方已调用纯 IsEnabled(string) 来检查使用者是否确实要获取此类事件的通知。 基于此，生成方可使用非 <see langword="null" /> 上下文再次调用 IsEnabled(string, object, object)。</param>
+        <param name="arg2">可选。 一个对象，它表示 IsEnabled 的附加上下文。 默认值为 <see langword="null" />。 使用者应会收到 <see langword="null" />，它可能表示生成方已调用纯 IsEnabled(string) 或者已在 <paramref name="arg1" /> 中传递所有必要的上下文。</param>
+        <summary>验证通知事件是否已启用。</summary>
+        <returns>如果通知事件已启用，为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+         <remarks>
+           <format type="text/markdown"><![CDATA[
+          
+如果成本高昂的安装程序的通知，你可以调用此方法并执行安装程序前提供上下文。
+          
+           ]]></format>
+         </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnActivityExport">
+      <MemberSignature Language="C#" Value="public virtual void OnActivityExport (System.Diagnostics.Activity activity, object payload);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void OnActivityExport(class System.Diagnostics.Activity activity, object payload) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Diagnostics.DiagnosticSource.OnActivityExport(System.Diagnostics.Activity,System.Object)" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual void OnActivityExport(System::Diagnostics::Activity ^ activity, System::Object ^ payload);" />
+      <MemberSignature Language="F#" Value="abstract member OnActivityExport : System.Diagnostics.Activity * obj -&gt; unit&#xA;override this.OnActivityExport : System.Diagnostics.Activity * obj -&gt; unit" Usage="diagnosticSource.OnActivityExport (activity, payload)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Diagnostics.DiagnosticSource</AssemblyName>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="activity" Type="System.Diagnostics.Activity" Index="0" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="payload" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="activity">To be added.</param>
+        <param name="payload">To be added.</param>
         <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnActivityImport">
+      <MemberSignature Language="C#" Value="public virtual void OnActivityImport (System.Diagnostics.Activity activity, object payload);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void OnActivityImport(class System.Diagnostics.Activity activity, object payload) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Diagnostics.DiagnosticSource.OnActivityImport(System.Diagnostics.Activity,System.Object)" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual void OnActivityImport(System::Diagnostics::Activity ^ activity, System::Object ^ payload);" />
+      <MemberSignature Language="F#" Value="abstract member OnActivityImport : System.Diagnostics.Activity * obj -&gt; unit&#xA;override this.OnActivityImport : System.Diagnostics.Activity * obj -&gt; unit" Usage="diagnosticSource.OnActivityImport (activity, payload)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Diagnostics.DiagnosticSource</AssemblyName>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="activity" Type="System.Diagnostics.Activity" Index="0" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="payload" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="activity">To be added.</param>
+        <param name="payload">To be added.</param>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -114,20 +180,31 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Diagnostics.Activity</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="activity" Type="System.Diagnostics.Activity" />
-        <Parameter Name="args" Type="System.Object" />
+        <Parameter Name="activity" Type="System.Diagnostics.Activity" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
+        <Parameter Name="args" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="activity">To be added.</param>
-        <param name="args">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="activity">要启动的 <see cref="T:System.Diagnostics.Activity" />。</param>
+        <param name="args">一个对象，它表示作为事件的有效负载传递的值。</param>
+        <summary>启动 <see cref="T:System.Diagnostics.Activity" /> 并写入启动事件。</summary>
+        <returns>便于链接的已启动的活动。</returns>
+         <remarks>
+           <format type="text/markdown"><![CDATA[
+           
+<xref:System.Diagnostics.Activity>描述的逻辑操作、 其上下文和父关系; 当前<xref:System.Diagnostics.Activity>流经操作处理。
+
+此方法启动给定<xref:System.Diagnostics.Activity>，维护全局<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>和<xref:System.Diagnostics.Activity.Parent?displayProperty=nameWithType>活动的给定<xref:System.Diagnostics.Activity>，并通知使用者的一个新<xref:System.Diagnostics.Activity>已启动。 使用者可以访问<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>添加上下文和/或扩充遥测数据。
+
+生成者可能通过向使用者在有效负载中的其他详细信息。
+
+           ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="StopActivity">
@@ -142,19 +219,29 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="activity" Type="System.Diagnostics.Activity" />
-        <Parameter Name="args" Type="System.Object" />
+        <Parameter Name="activity" Type="System.Diagnostics.Activity" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
+        <Parameter Name="args" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="activity">To be added.</param>
-        <param name="args">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="activity">要停止的活动。</param>
+        <param name="args">一个对象，它表示作为事件的有效负载传递的值。</param>
+        <summary>停止给定的 <see cref="T:System.Diagnostics.Activity" />，维护全局 <see cref="P:System.Diagnostics.Activity.Current" /> 活动，并通知使用者 <see cref="T:System.Diagnostics.Activity" /> 已停止。</summary>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+生成者可能通过向使用者在有效负载中的其他详细信息。
+
+使用者可以访问<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>添加上下文和/或扩充遥测数据。
+
+
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="Write">
@@ -172,6 +259,7 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -181,10 +269,22 @@
         <Parameter Name="value" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="name">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="name">正在写入的事件的名称。</param>
+        <param name="value">一个对象，它表示作为事件的有效负载传递的值。 这通常是一个包含多个子值的匿名类型。</param>
+        <summary>提供记录复杂有效负载的通用方法。</summary>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+每个通知提供用于标识以及提供任意信息将传递给通知的对象 （通常是一个匿名类型） 的名称。  
+
+`name` 应较短。 不要使用完全限定的名称，除非您必须为避免混淆，因为`name`必须是全局唯一。 通常情况下， *componentName.eventName*，其中*componentName*并*eventName*是少于 10 个字符的字符串，是很好地折衷。
+
+通知名称不应具有`.`中这些组件名称包含点，因为，就需要这两个具有点会导致二义性。 我们建议你使用`_`相反。
+
+假定侦听器将使用字符串作为前缀来筛选的组。 因此，具有组件名称的层次结构是一个好的做法。
+
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
   </Members>

@@ -1,5 +1,5 @@
 <Type Name="AssemblyLoadContext" FullName="System.Runtime.Loader.AssemblyLoadContext">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="1fe12898361e808786693310aaf210145e2d3f9a" /><Meta Name="ms.sourcegitcommit" Value="9a6da88bd5455e8274257ca7ad259b42f1de114f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/22/2019" /><Meta Name="ms.locfileid" Value="66007908" /></Metadata><TypeSignature Language="C#" Value="public abstract class AssemblyLoadContext" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="756de86d1257118d19b330ce89f8113cfda20a94" /><Meta Name="ms.sourcegitcommit" Value="f55040f35c19a83c85beb55243330558f6e369be" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/10/2019" /><Meta Name="ms.locfileid" Value="66818909" /></Metadata><TypeSignature Language="C#" Value="public abstract class AssemblyLoadContext" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit AssemblyLoadContext extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Loader.AssemblyLoadContext" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class AssemblyLoadContext" />
@@ -123,9 +123,17 @@
         <Parameter Name="isCollectible" Type="System.Boolean" Index="0" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="isCollectible">若要启用垃圾回收，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
-        <summary>用一个值初始化 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> 类的新实例，该值指定是否已启用垃圾回收。</summary>
-        <remarks>To be added.</remarks>
+        <param name="isCollectible">要启用 <see cref="M:System.Runtime.Loader.AssemblyLoadContext.Unload" />，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />，因为启用卸载会产生性能成本。</param>
+        <summary>使用一个指示是否启用卸载的值来初始化 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> 类的新实例。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+此构造函数受到保护。 仅从调用<xref:System.Runtime.Loader.AssemblyLoadContext>类或其派生的类。
+
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -144,9 +152,9 @@
         <Parameter Name="isCollectible" Type="System.Boolean" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="name">To be added.</param>
-        <param name="isCollectible">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="name">新实例中 <see cref="P:System.Runtime.Loader.AssemblyLoadContext.Name" /> 的值。 其值可为 <see langword="null" />。</param>
+        <param name="isCollectible">要启用 <see cref="M:System.Runtime.Loader.AssemblyLoadContext.Unload" />，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />，因为启用卸载会产生性能成本。</param>
+        <summary>使用名称和指示是否启用卸载的值来初始化 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -166,8 +174,8 @@
         <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Runtime.Loader.AssemblyLoadContext&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>返回一个包含所有 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> 实例的集合。</summary>
+        <value>所有的集合<see cref="T:System.Runtime.Loader.AssemblyLoadContext" />实例。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -187,8 +195,8 @@
         <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Reflection.Assembly&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>返回一个集合，它包含在 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> 中加载的 <see cref="T:System.Reflection.Assembly" /> 实例。</summary>
+        <value>一系列<see cref="T:System.Reflection.Assembly" />中加载实例<see cref="T:System.Runtime.Loader.AssemblyLoadContext" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -208,9 +216,16 @@
         <ReturnType>System.Runtime.Loader.AssemblyLoadContext</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取由最近调用 <see cref="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection" /> 而设置的 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />。</summary>
+        <value><see cref="T:System.Runtime.Loader.AssemblyLoadContext" />到最新的调用设置<see cref="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection" />。 此值可为 <see langword="null" />。 值存储在<see cref="T:System.Threading.AsyncLocal`1" />，因此，值是唯一的每个异步上下文。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+有关详细信息，请参阅[AssemblyLoadContext.CurrentContextualReflectionContext.NET Core 中的设计文档](https://github.com/dotnet/coreclr/blob/master/Documentation/design-docs/AssemblyLoadContext.ContextualReflection.md)。
+
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Default">
@@ -258,9 +273,16 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary>将 <see cref="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext" /> 设置为 <see langword="this" /> <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />。</summary>
+        <returns>一个对象，它用于还原 <see cref="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext" /> 的先前值。 它将作为 <see cref="T:System.IDisposable" /> 在 <see langword="using" /> 块中使用。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+有关详细信息，请参阅[AssemblyLoadContext.CurrentContextualReflectionContext.NET Core 中的设计文档](https://github.com/dotnet/coreclr/blob/master/Documentation/design-docs/AssemblyLoadContext.ContextualReflection.md)。
+
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="EnterContextualReflection">
@@ -282,10 +304,17 @@
         <Parameter Name="activating" Type="System.Reflection.Assembly" Index="0" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="activating">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="activating">用于确定请求的 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> 实例的程序集。</param>
+        <summary>将 <see cref="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext" /> 设置为加载了程序集的 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />。</summary>
+        <returns>一个对象，它用于还原 <see cref="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext" /> 的先前值。 它将作为 <see cref="T:System.IDisposable" /> 在 <see langword="using" /> 块中使用。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+有关详细信息，请参阅[AssemblyLoadContext.CurrentContextualReflectionContext.NET Core 中的设计文档](https://github.com/dotnet/coreclr/blob/master/Documentation/design-docs/AssemblyLoadContext.ContextualReflection.md)。
+
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetAssemblyName">
@@ -456,18 +485,25 @@
           <format type="text/markdown"><![CDATA[
 
 ## Remarks
- <xref:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName%2A> 加载程序集通过解决<xref:System.Reflection.AssemblyName>。 这会触发完整的解决方法。 解析回退序列执行此过程：1. 方法调用<xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)>。
-         > [!IMPORTANT]
-         > <xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)> must not call this method to prevent recursive stack overflow.
-     2. Unless the assembly is loaded or an exception is thrown, the method attempts to load the assembly in the default <xref:System.Runtime.Loader.AssemblyLoadContext>.
-     3. Unless the assembly is loaded or an exception is thrown, the method fires the <xref:System.Runtime.Loader.AssemblyLoadContext.Resolving> event.
-     4. Unless the assembly is loaded or an exception is thrown, the method fires the <xref:System.AppDomain.AssemblyResolve> event.
+
+<xref:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName%2A> 加载程序集通过解决<xref:System.Reflection.AssemblyName>。 这会触发完整的解决方法。 解析回退序列执行此过程：
+
+1. 方法调用<xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)>。
+
+   > [!IMPORTANT]
+   > <xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)> 必须调用此方法，以防止递归堆栈溢出。
+
+2. 除非加载程序集或引发异常，该方法会尝试加载程序集在默认<xref:System.Runtime.Loader.AssemblyLoadContext>。
+3. 除非加载程序集或引发异常，该方法将触发<xref:System.Runtime.Loader.AssemblyLoadContext.Resolving>事件。
+4. 除非加载程序集或引发异常，该方法将触发<xref:System.AppDomain.AssemblyResolve>事件。
  
- > [!NOTE]
- > <xref:System.IO.FileLoadException> 如果引发`assemblyRef`指定完整的程序集名称和匹配的简单名称的第一个程序集具有不兼容的版本或区域性。 加载程序不会继续探测的其他程序集的简单名称相匹配。
+> [!NOTE]
+> <xref:System.IO.FileLoadException> 如果引发`assemblyRef`指定完整的程序集名称和匹配的简单名称的第一个程序集具有不兼容的版本或区域性。 加载程序不会继续探测的其他程序集的简单名称相匹配。
  
- 每个<xref:System.Runtime.Loader.AssemblyLoadContext>可以仅加载: * 的可执行程序集的一个版本。
-* 一个版本的每个区域性的附属程序集。
+每个<xref:System.Runtime.Loader.AssemblyLoadContext>可以仅加载：
+ 
+* 可执行程序集的一个版本。
+* 每个区域性的附属程序集的一个版本。
  
  ]]></format>
         </remarks>
@@ -723,8 +759,8 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> 的名称。</summary>
+        <value><see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> 的名称。 其值可为 <see langword="null" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

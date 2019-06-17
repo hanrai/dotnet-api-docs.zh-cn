@@ -1,5 +1,5 @@
 <Type Name="Environment" FullName="System.Environment">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d38348c989ef499a53e5ed5e296d99c5bcf72043" /><Meta Name="ms.sourcegitcommit" Value="2767b5903996fbd7e2b81eda1114dfc9d0d9db63" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/02/2019" /><Meta Name="ms.locfileid" Value="64996522" /></Metadata><TypeSignature Language="C#" Value="public static class Environment" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="67122888e2d5a12a6b03eff1a12290883e98622f" /><Meta Name="ms.sourcegitcommit" Value="f55040f35c19a83c85beb55243330558f6e369be" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/10/2019" /><Meta Name="ms.locfileid" Value="66818659" /></Metadata><TypeSignature Language="C#" Value="public static class Environment" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit Environment extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Environment" />
   <TypeSignature Language="VB.NET" Value="Public Class Environment" />
@@ -760,8 +760,8 @@ goto :EOF
   
  下面的示例尝试检索名为环境变量的值`Test1`从进程环境块。 如果不存在该变量，该示例将创建它，并检索其值。 此示例显示变量的值。 如果该示例创建变量，它还会调用<xref:System.Environment.GetEnvironmentVariables%28System.EnvironmentVariableTarget%29>方法的每个成员与<xref:System.EnvironmentVariableTarget>枚举，以建立可以仅从当前进程环境块检索到该变量。 最后，如果该示例创建变量，会将其删除。  
   
- [!code-csharp[System.Environment.GetEnvironmentVariable#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.environment.getenvironmentvariable/cs/getenvironmentvariableex1.cs#2)]
- [!code-vb[System.Environment.GetEnvironmentVariable#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.environment.getenvironmentvariable/vb/getenvironmentvariableex1.vb#2)]  
+ [!code-csharp[System.Environment.GetEnvironmentVariable#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.environment.getenvironmentvariable/cs/getenvironmentvariableex1.cs)]
+ [!code-vb[System.Environment.GetEnvironmentVariable#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.environment.getenvironmentvariable/vb/getenvironmentvariableex1.vb)]  
   
  ]]></format>
         </remarks>
@@ -811,7 +811,7 @@ goto :EOF
       </Parameters>
       <Docs>
         <param name="variable">环境变量名。</param>
-        <param name="target"><see cref="T:System.EnvironmentVariableTarget" /> 值之一。</param>
+        <param name="target"><see cref="T:System.EnvironmentVariableTarget" /> 值之一。 在基于 Unix 的系统上运行的 .NET Core 仅支持 <see cref="F:System.EnvironmentVariableTarget.Process" />。</param>
         <summary>从当前进程或者从当前用户或本地计算机的 Windows 操作系统注册表项检索环境变量的值。</summary>
         <returns><paramref name="variable" /> 和 <paramref name="target" /> 参数指定的环境变量的值；或者如果找不到环境变量，则返回 <see langword="null" />。</returns>
         <remarks>
@@ -837,12 +837,12 @@ goto :EOF
 
 - 通过调用定义的那些<xref:System.Environment.SetEnvironmentVariable%28System.String%2CSystem.String%29>方法或<xref:System.Environment.SetEnvironmentVariable%28System.String%2CSystem.String%2CSystem.EnvironmentVariableTarget%29>方法替换`target`的值<xref:System.EnvironmentVariableTarget.Process?displayProperty=nameWithType>。 这些环境变量保留仅直到`dotnet`进程或.NET 应用程序终止。   
   
-## Examples  
- 下面的示例创建的过程、 用户和计算机的目标的环境变量，检查是否操作系统注册表包含用户和计算机的环境变量，然后删除的环境变量。  
-  
- [!code-cpp[environment.getsetenvar#1](~/samples/snippets/cpp/VS_Snippets_CLR/environment.getsetenvar/CPP/source.cpp#1)]
- [!code-csharp[environment.getsetenvar#1](~/samples/snippets/csharp/VS_Snippets_CLR/environment.getsetenvar/CS/gsev.cs#1)]
- [!code-vb[environment.getsetenvar#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/environment.getsetenvar/VB/gsev.vb#1)]  
+## Examples
+
+下面的示例创建的环境变量<xref:System.EnvironmentVariableTarget.Process?displayProperty=nameWithType>， <xref:System.EnvironmentVariableTarget.User?displayProperty=nameWithType>，和<xref:System.EnvironmentVariableTarget.Machine>目标时，将检查操作系统注册表是否包含用户和计算机环境变量，则删除环境变量。 因为.NET 在基于 Unix 的系统上不支持每个用户和每台计算机环境变量，仅<xref:System.Environment.SetEnvironmentVariable(System.String,System.String)>并<xref:System.Environment.SetEnvironmentVariable(System.String,System.String,System.EnvironmentVariableTarget)>值为<xref:System.EnvironmentVariableTarget.Process?displayProperty=nameWithType>成功存储环境变量指向进程环境块。
+
+[!code-csharp[environment.getsetenvar#1](~/samples/snippets/csharp/VS_Snippets_CLR/environment.getsetenvar/CS/gsev.cs)]
+[!code-vb[environment.getsetenvar#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/environment.getsetenvar/VB/gsev.vb)]  
   
  ]]></format>
         </remarks>
@@ -850,7 +850,7 @@ goto :EOF
         <exception cref="T:System.ArgumentException"><paramref name="target" /> 不是有效的 <see cref="T:System.EnvironmentVariableTarget" /> 值。</exception>
         <exception cref="T:System.Security.SecurityException">调用方没有执行此操作所需的权限。</exception>
         <permission cref="T:System.Security.Permissions.EnvironmentPermission">它能够读取的值<paramref name="variable" />如果<paramref name="target" />是<see cref="F:System.EnvironmentVariableTarget.Process" />(关联枚举： <see cref="F:System.Security.Permissions.EnvironmentPermissionAccess.Read" />)， 
-或 
+or 
 对环境变量的完全访问权限如果<paramref name="target" />是<see cref="F:System.EnvironmentVariableTarget.User" />或<see cref="F:System.EnvironmentVariableTarget.Machine" />(关联枚举： <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" />)。</permission>
         <altmember cref="M:System.Environment.SetEnvironmentVariable(System.String,System.String,System.EnvironmentVariableTarget)" />
         <altmember cref="M:System.Environment.GetEnvironmentVariables" />
@@ -927,7 +927,7 @@ goto :EOF
 
 在 MacOS 和 Linux 上`GetEnvironmentVariables`方法检索的名称和值的继承自父进程启动的所有环境变量`dotnet`范围内定义过程或`dotnet`流程自身。 一次`dotnet`进程结束，这些后一种环境变量停止存在。 
 
-.NET core 不支持每台计算机或每个用户环境变量。   
+在基于 Unix 的系统上运行的.NET core 不支持每台计算机或每个用户环境变量。   
   
 ## Examples  
  下面的示例演示<xref:System.Environment.GetEnvironmentVariables%2A>方法。  
@@ -980,7 +980,7 @@ goto :EOF
         <Parameter Name="target" Type="System.EnvironmentVariableTarget" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="target"><see cref="T:System.EnvironmentVariableTarget" /> 值之一。</param>
+        <param name="target"><see cref="T:System.EnvironmentVariableTarget" /> 值之一。 在基于 Unix 的系统上运行的 .NET Core 仅支持 <see cxref="F:System.EnvironmentVariableTarget.Process" />。</param>
         <summary>从当前进程或者从当前用户或本地计算机的 Windows 操作系统注册表项检索所有环境变量名及其值。</summary>
         <returns>包含 <paramref name="target" /> 参数所指定的源中所有环境变量名及其值的字典；否则，如果找不到任何环境变量，则返回空字典。</returns>
         <remarks>
@@ -1000,19 +1000,19 @@ goto :EOF
 
 不支持每台计算机和每个用户环境变量。 一个`target`的值<xref:System.EnvironmentVariableTarget.Machine?displayProperty=nameWithType>或<xref:System.EnvironmentVariableTarget.User?displayProperty=nameWithType>返回一个空数组。
   
-## Examples  
- 下面的示例创建的过程、 用户和计算机的目标的环境变量，检查是否操作系统注册表包含用户和计算机的环境变量，然后删除的环境变量。  
-  
- [!code-cpp[environment.getsetenvar#1](~/samples/snippets/cpp/VS_Snippets_CLR/environment.getsetenvar/CPP/source.cpp#1)]
- [!code-csharp[environment.getsetenvar#1](~/samples/snippets/csharp/VS_Snippets_CLR/environment.getsetenvar/CS/gsev.cs#1)]
- [!code-vb[environment.getsetenvar#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/environment.getsetenvar/VB/gsev.vb#1)]  
+## Examples
+
+下面的示例创建的环境变量<xref:System.EnvironmentVariableTarget.Process?displayProperty=nameWithType>， <xref:System.EnvironmentVariableTarget.User?displayProperty=nameWithType>，和<xref:System.EnvironmentVariableTarget.Machine>目标时，将检查操作系统注册表是否包含用户和计算机环境变量，则删除环境变量。 因为.NET 在基于 Unix 的系统上不支持每个用户和每台计算机环境变量，仅<xref:System.Environment.SetEnvironmentVariable(System.String,System.String)>并<xref:System.Environment.SetEnvironmentVariable(System.String,System.String,System.EnvironmentVariableTarget)>值为<xref:System.EnvironmentVariableTarget.Process?displayProperty=nameWithType>成功存储环境变量指向进程环境块。
+
+[!code-csharp[environment.getsetenvar#1](~/samples/snippets/csharp/VS_Snippets_CLR/environment.getsetenvar/CS/gsev.cs)]
+[!code-vb[environment.getsetenvar#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/environment.getsetenvar/VB/gsev.vb)]  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">调用方不具有针对 <paramref name="target" /> 的指定值执行此操作的所需权限。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="target" /> 包含非法值。</exception>
         <permission cref="T:System.Security.Permissions.EnvironmentPermission">它能够读取的名称和环境变量的值，如果<paramref name="target" />是<see cref="F:System.EnvironmentVariableTarget.Process" />(关联枚举： <see cref="F:System.Security.Permissions.EnvironmentPermissionAccess.Read" />)， 
-或 
+or 
 对环境变量的完全访问权限如果<paramref name="target" />是<see cref="F:System.EnvironmentVariableTarget.User" />或<see cref="F:System.EnvironmentVariableTarget.Machine" />(关联枚举： <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" />)。</permission>
         <altmember cref="M:System.Environment.SetEnvironmentVariable(System.String,System.String,System.EnvironmentVariableTarget)" />
         <altmember cref="T:System.EnvironmentVariableTarget" />
@@ -1069,7 +1069,7 @@ goto :EOF
         <summary>获取由指定枚举标识的系统特殊文件夹的路径。</summary>
         <returns>如果指定的系统特殊文件夹实际存在于您的计算机上，则为到该文件夹的路径；否则为空字符串 ("")。  
   
-如果系统未创建文件夹、已删除现有文件夹，或者文件夹是不对应物理路径的虚拟目录（例如"我的电脑"），则该文件夹不会实际存在。</returns>
+ 如果系统未创建文件夹、已删除现有文件夹，或者文件夹是不对应物理路径的虚拟目录（例如"我的电脑"），则该文件夹不会实际存在。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1137,7 +1137,7 @@ goto :EOF
         <summary>获取由指定枚举标识的系统特殊文件夹的路径，并使用用于访问特殊文件夹的指定选项。</summary>
         <returns>如果指定的系统特殊文件夹实际存在于您的计算机上，则为到该文件夹的路径；否则为空字符串 ("")。  
   
-如果系统未创建文件夹、已删除现有文件夹，或者文件夹是不对应物理路径的虚拟目录（例如"我的电脑"），则该文件夹不会实际存在。</returns>
+ 如果系统未创建文件夹、已删除现有文件夹，或者文件夹是不对应物理路径的虚拟目录（例如"我的电脑"），则该文件夹不会实际存在。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1151,7 +1151,7 @@ goto :EOF
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="folder" /> 不是 <see cref="T:System.Environment.SpecialFolder" /> 的成员。
-或
+- 或 -
 
 <paramref name="options" /> 不是 <see cref="T:System.Environment.SpecialFolderOption" /> 的成员。</exception>
         <exception cref="T:System.PlatformNotSupportedException">不支持当前平台。</exception>
@@ -1503,7 +1503,7 @@ goto :EOF
         </remarks>
         <exception cref="T:System.InvalidOperationException">此属性不能获得系统版本。  
   
-或 
+- 或 - 
 获得的平台标识符不是 <see cref="T:System.PlatformID" /> 的成员</exception>
       </Docs>
     </Member>
@@ -1637,34 +1637,22 @@ goto :EOF
   
 -   它包含单个字符，其值为 U + 0000。  
   
-   
+## Examples
+
+下面的示例尝试检索名为环境变量的值`Test1`从进程环境块。 如果该变量不存在，此示例将创建变量，并检索其值。 此示例显示变量的值。 适用于 Windows 系统上运行的.NET 实现，它还调用<xref:System.Environment.GetEnvironmentVariables%28System.EnvironmentVariableTarget%29>方法的每个成员与<xref:System.EnvironmentVariableTarget>枚举，以建立可以仅从当前进程环境块检索到该变量。 （在基于 Unix 的系统上的.NET 实现仅支持变量进程环境块中。）最后，如果该示例创建变量，会将其删除。  
   
-## Examples  
- 下面的示例测试是否名为的环境变量`APPDOMAIN`当前进程中存在。 如果不是，它将创建它并将其设置为"True"。 如果的值`APPDOMAIN`环境变量为"True"时，它调用`Message.Display`中新的应用程序域的方法。 否则，它将执行`Message.Display`当前应用程序域中的方法。  
-  
- [!code-csharp[System.Environment.SetEnvironmentVariable#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.environment.setenvironmentvariable/cs/setenvironmentvariable1.cs#1)]
- [!code-vb[System.Environment.SetEnvironmentVariable#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.environment.setenvironmentvariable/vb/setenvironmentvariable1.vb#1)]  
-  
- 如果第一次运行该示例，该消息"正在执行域 Domain2 中的"显示到控制台。 如果使用此命令从命令行设置环境变量：  
-  
- `Set AppDomain=False`  
-  
- 此示例显示消息"在域中执行*exeName*.exe"，其中*exeName*是可执行文件的名称。  
-  
- 下面的示例尝试检索名为环境变量的值`Test1`从进程环境块。 如果该变量不存在，此示例将创建变量，并检索其值。 此示例显示变量的值。 如果该示例创建变量，它还会调用<xref:System.Environment.GetEnvironmentVariables%28System.EnvironmentVariableTarget%29>方法的每个成员与<xref:System.EnvironmentVariableTarget>枚举，以建立可以仅从当前进程环境块检索到该变量。 最后，如果该示例创建变量，会将其删除。  
-  
- [!code-csharp[System.Environment.GetEnvironmentVariable#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.environment.getenvironmentvariable/cs/getenvironmentvariableex1.cs#2)]
- [!code-vb[System.Environment.GetEnvironmentVariable#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.environment.getenvironmentvariable/vb/getenvironmentvariableex1.vb#2)]  
+ [!code-csharp[System.Environment.GetEnvironmentVariable#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.environment.getenvironmentvariable/cs/getenvironmentvariableex1.cs)]
+ [!code-vb[System.Environment.GetEnvironmentVariable#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.environment.getenvironmentvariable/vb/getenvironmentvariableex1.vb)]  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="variable" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="variable" /> 包含一个长度为零的字符串、一个初始十六进制零字符 (0x00) 或一个等号 ("=")。  
   
-或 
+- 或 - 
 <paramref name="variable" /> 或 <paramref name="value" /> 的长度大于或等于 32,767 个字符。  
   
-或 
+- 或 - 
 执行此操作期间出错。</exception>
         <exception cref="T:System.Security.SecurityException">调用方没有执行此操作所需的权限。</exception>
         <permission cref="T:System.Security.Permissions.EnvironmentPermission">对环境变量的完全访问权限。 关联的枚举： <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
@@ -1751,31 +1739,31 @@ goto :EOF
   
  如果`target`是<xref:System.EnvironmentVariableTarget.User?displayProperty=nameWithType>或<xref:System.EnvironmentVariableTarget.Machine?displayProperty=nameWithType>，我们建议的长度`value`小于 2048年个字符。  
   
-## Examples  
- 下面的示例创建的环境变量<xref:System.EnvironmentVariableTarget.Process?displayProperty=nameWithType>， <xref:System.EnvironmentVariableTarget.User?displayProperty=nameWithType>，和<xref:System.EnvironmentVariableTarget.Machine>目标时，将检查操作系统注册表是否包含用户和计算机环境变量，则删除环境变量。  
+## Examples
+
+下面的示例创建的环境变量<xref:System.EnvironmentVariableTarget.Process?displayProperty=nameWithType>， <xref:System.EnvironmentVariableTarget.User?displayProperty=nameWithType>，和<xref:System.EnvironmentVariableTarget.Machine>目标时，将检查操作系统注册表是否包含用户和计算机环境变量，则删除环境变量。 因为.NET 在基于 Unix 的系统上不支持每个用户和每台计算机环境变量，仅<xref:System.Environment.SetEnvironmentVariable(System.String,System.String)>并<xref:System.Environment.SetEnvironmentVariable(System.String,System.String,System.EnvironmentVariableTarget)>值为<xref:System.EnvironmentVariableTarget.Process?displayProperty=nameWithType>成功存储环境变量指向进程环境块。
   
- [!code-cpp[environment.getsetenvar#1](~/samples/snippets/cpp/VS_Snippets_CLR/environment.getsetenvar/CPP/source.cpp#1)]
- [!code-csharp[environment.getsetenvar#1](~/samples/snippets/csharp/VS_Snippets_CLR/environment.getsetenvar/CS/gsev.cs#1)]
- [!code-vb[environment.getsetenvar#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/environment.getsetenvar/VB/gsev.vb#1)]  
+[!code-csharp[environment.getsetenvar#1](~/samples/snippets/csharp/VS_Snippets_CLR/environment.getsetenvar/CS/gsev.cs)]
+[!code-vb[environment.getsetenvar#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/environment.getsetenvar/VB/gsev.vb)]  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="variable" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="variable" /> 包含一个长度为零的字符串、一个初始十六进制零字符 (0x00) 或一个等号 ("=")。  
   
-或 
+- 或 - 
 <paramref name="variable" /> 的长度大于或等于 32,767 个字符。  
   
-或 
+- 或 - 
  <paramref name="target" /> 不是 <see cref="T:System.EnvironmentVariableTarget" /> 枚举的一个成员。  
   
-或 
+- 或 - 
  <paramref name="target" /> 为 <see cref="F:System.EnvironmentVariableTarget.Machine" /> 或 <see cref="F:System.EnvironmentVariableTarget.User" />，且 <paramref name="variable" /> 的长度大于或等于 255。  
   
-或 
+- 或 - 
  <paramref name="target" /> 为 <see cref="F:System.EnvironmentVariableTarget.Process" />，且 <paramref name="value" /> 的长度大于或等于 32767 个字符。  
   
-或 
+- 或 - 
 执行此操作期间出错。</exception>
         <exception cref="T:System.Security.SecurityException">调用方没有执行此操作所需的权限。</exception>
         <permission cref="T:System.Security.Permissions.EnvironmentPermission">对环境变量的完全访问权限。 关联的枚举： <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>

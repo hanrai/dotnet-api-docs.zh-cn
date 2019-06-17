@@ -1,5 +1,5 @@
 <Type Name="EnvironmentVariableTarget" FullName="System.EnvironmentVariableTarget">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f4997b7f353585d40b8fbf81a71613f4d2cd3c7a" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58706418" /></Metadata><TypeSignature Language="C#" Value="public enum EnvironmentVariableTarget" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="cf96e94732478ff721feeecdd712cc5c9a16f31a" /><Meta Name="ms.sourcegitcommit" Value="f55040f35c19a83c85beb55243330558f6e369be" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/10/2019" /><Meta Name="ms.locfileid" Value="66818886" /></Metadata><TypeSignature Language="C#" Value="public enum EnvironmentVariableTarget" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed EnvironmentVariableTarget extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.EnvironmentVariableTarget" />
   <TypeSignature Language="VB.NET" Value="Public Enum EnvironmentVariableTarget" />
@@ -34,29 +34,34 @@
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- <xref:System.EnvironmentVariableTarget>的特定重载使用枚举<xref:System.Environment.SetEnvironmentVariable%2A?displayProperty=nameWithType>， <xref:System.Environment.GetEnvironmentVariable%2A?displayProperty=nameWithType>，和<xref:System.Environment.GetEnvironmentVariables%2A?displayProperty=nameWithType>方法，以指定的位置或目标，其中存储或检索到的名称和环境变量的值。  
+## Remarks
+
+<xref:System.EnvironmentVariableTarget>的特定重载使用枚举<xref:System.Environment.SetEnvironmentVariable%2A?displayProperty=nameWithType>， <xref:System.Environment.GetEnvironmentVariable%2A?displayProperty=nameWithType>，和<xref:System.Environment.GetEnvironmentVariables%2A?displayProperty=nameWithType>方法，以指定的位置或目标，其中存储或检索到的名称和环境变量的值。  
   
- 目标可以是以下三个位置之一： 
+目标可以是以下三个位置之一： 
  
- - 与当前进程关联的环境块 (`EnvironmentVariableTarget.Process`)。
+- 与当前进程关联的环境块 (`EnvironmentVariableTarget.Process`)。
 
-   用户在设置操作中创建的环境变量。 如果在进程终止，操作系统将销毁该进程中的环境变量。
+  用户在设置操作中创建的环境变量。 如果在进程终止，操作系统将销毁该进程中的环境变量。
 
- - Windows 操作系统注册表项保留为与当前用户关联的环境变量 (`EnvironmentVariableTarget.User`)。
+- Windows 操作系统注册表项保留为与当前用户关联的环境变量 (`EnvironmentVariableTarget.User`)。
  
-   当用户在设置操作中创建的环境变量时，操作系统将在系统注册表中，而非当前进程中存储的环境变量。 如果用户启动一个新进程，操作系统将复制的环境变量从注册表到该进程。 如果在进程终止，操作系统将销毁该进程中的环境变量。 但是，用户将其删除以编程方式或通过操作系统工具之前一直保留在注册表中的环境变量。  
-   
- - 保留为与本地计算机上的所有用户关联的环境变量的注册表项 (`EnvironmentVariableTarget.Machine`)。 
+  在 Windows 系统中，当用户创建的环境变量中设置操作中，操作系统将存储环境变量在系统注册表中，但不是在当前进程。 如果用户启动一个新进程，操作系统将复制的环境变量从注册表到该进程。 如果在进程终止，操作系统将销毁该进程中的环境变量。 但是，用户将其删除以编程方式或通过操作系统工具之前一直保留在注册表中的环境变量。  
 
-    当用户在设置操作中创建的环境变量时，操作系统将在系统注册表中，而非当前进程中存储的环境变量。 如果在本地计算机上的任何用户启动一个新进程，操作系统将复制的环境变量从注册表到该进程。 如果在进程终止，操作系统将销毁该进程中的环境变量。 但是，用户将其删除以编程方式或通过操作系统工具之前一直保留在注册表中的环境变量。
- 
+  在基于 Unix 的系统中，尝试创建一个环境变量`EnvironmentVariable.User`已不起作用，并尝试检索环境变量使用`EnvironmentVariable.User`返回`null`(在C#) 或`Nothing`（在 Visual Basic)。
+
+- 保留为与本地计算机上的所有用户关联的环境变量的注册表项 (`EnvironmentVariableTarget.Machine`)。 
+
+  当用户在设置操作中创建的环境变量时，操作系统将在系统注册表中，而非当前进程中存储的环境变量。 如果在本地计算机上的任何用户启动一个新进程，操作系统将复制的环境变量从注册表到该进程。 如果在进程终止，操作系统将销毁该进程中的环境变量。 但是，用户将其删除以编程方式或通过操作系统工具之前一直保留在注册表中的环境变量。
+
+  在基于 Unix 的系统中，尝试创建一个环境变量`EnvironmentVariable.Machine`已不起作用，并尝试检索环境变量使用`EnvironmentVariable.Machine`返回`null`(在C#) 或`Nothing`（在 Visual Basic)。
+
 ## Examples  
- 下面的代码示例演示了<xref:System.EnvironmentVariableTarget>中创建、 修改和删除环境变量的方法的枚举。  
+
+下面的示例使用<xref:System.EnvironmentVariableTarget>中创建、 检索和删除环境变量的方法的枚举。 该示例的输出显示了环境变量存储和检索，而不必指定`EnvironmentVariableTarget`值存储在与当前进程关联的环境块 (`EnvironmentVariableTarget.Process`)。 该示例的输出基于 Unix 的系统还定义环境变量的值而不会尝试显示`EnvironmentVariableTarget.Process`将被忽略。    
   
- [!code-cpp[environment.getsetenvar#1](~/samples/snippets/cpp/VS_Snippets_CLR/environment.getsetenvar/CPP/source.cpp#1)]
- [!code-csharp[environment.getsetenvar#1](~/samples/snippets/csharp/VS_Snippets_CLR/environment.getsetenvar/CS/gsev.cs#1)]
- [!code-vb[environment.getsetenvar#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/environment.getsetenvar/VB/gsev.vb#1)]  
+[!code-csharp[environment.getsetenvar#1](~/samples/snippets/csharp/VS_Snippets_CLR/environment.getsetenvar/CS/gsev.cs)]
+[!code-vb[environment.getsetenvar#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/environment.getsetenvar/VB/gsev.vb)]  
   
  ]]></format>
     </remarks>
@@ -91,7 +96,7 @@
       </ReturnValue>
       <MemberValue>2</MemberValue>
       <Docs>
-        <summary>在 Windows 操作系统注册表的 <see langword="HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment" /> 项中存储或从其中检索环境变量。</summary>
+        <summary>在 Windows 操作系统注册表的 <see langword="HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment" /> 项中存储或从其中检索环境变量。 此值应仅用于在 Windows 系统上运行的 .NET 实现。</summary>
       </Docs>
     </Member>
     <Member MemberName="Process">
@@ -155,7 +160,7 @@
       </ReturnValue>
       <MemberValue>1</MemberValue>
       <Docs>
-        <summary>在 Windows 操作系统注册表的 <see langword="HKEY_CURRENT_USER\Environment" /> 项中存储或从其中检索环境变量。</summary>
+        <summary>在 Windows 操作系统注册表的 <see langword="HKEY_CURRENT_USER\Environment" /> 项中存储或从其中检索环境变量。 此值应仅用于在 Windows 系统上运行的 .NET 实现。</summary>
       </Docs>
     </Member>
   </Members>

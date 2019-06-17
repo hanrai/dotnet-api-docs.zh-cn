@@ -1,5 +1,5 @@
 <Type Name="Stream" FullName="System.IO.Stream">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="956be57356bb7f5a84f5cc383e6ca764602d9630" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58730440" /></Metadata><TypeSignature Language="C#" Value="public abstract class Stream : MarshalByRefObject, IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5b93cc73b380dfde6da1e7a45348e42ee6490d29" /><Meta Name="ms.sourcegitcommit" Value="a9b8eb12d69b131f7c0de74d471798e44e863282" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/04/2019" /><Meta Name="ms.locfileid" Value="66502064" /></Metadata><TypeSignature Language="C#" Value="public abstract class Stream : MarshalByRefObject, IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract serializable beforefieldinit Stream extends System.MarshalByRefObject implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.IO.Stream" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class Stream&#xA;Inherits MarshalByRefObject&#xA;Implements IDisposable" />
@@ -880,11 +880,22 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="destination">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="destination">当前流的内容将复制到的流。</param>
+        <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+        <summary>通过指定的取消令牌，从当前流中异步读取字节并将其写入到另一个流中。</summary>
+        <returns>表示异步复制操作的任务。</returns>
+        <remarks><format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ <xref:System.IO.Stream.CopyToAsync%2A>方法使您能够执行占用大量资源的 I/O 操作而不会阻止主线程。 在 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] 应用或 [!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] 应用中一个耗时的流操作可能阻塞 UI 线程并让您的应用看起来好像不工作时，这种性能的考虑就显得尤为重要了。 结合使用异步方法`async`和`await`Visual Basic 和 C# 中的关键字。  
+  
+ 如果在完成之前，将取消该操作，则返回的任务将包含<xref:System.Threading.Tasks.TaskStatus.Canceled>值<xref:System.Threading.Tasks.Task.Status%2A>属性。  
+  
+ 在当前流中的当前位置开始复制。  
+  
+ 复制两个流之间的示例，请参阅<xref:System.IO.Stream.CopyToAsync%28System.IO.Stream%29>重载。  
+  
+ ]]></format></remarks>
       </Docs>
     </Member>
     <Member MemberName="CopyToAsync">
@@ -1162,9 +1173,20 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary>异步释放 <see cref="T:System.IO.Stream" /> 使用的非托管资源。</summary>
+        <returns>一个表示异步释放操作的任务。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ <xref:System.IO.Stream.DisposeAsync%2A>方法使您能够在不阻塞主线程的情况下执行占用大量资源的释放操作。 在 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] 应用或 [!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] 应用中一个耗时的流操作可能阻塞 UI 线程并让您的应用看起来好像不工作时，这种性能的考虑就显得尤为重要了。 结合使用异步方法`async`和`await`Visual Basic 和 C# 中的关键字。 
+ 
+ 此方法通过写入后备存储的任何更改并关闭流，以释放资源释放流。   
+  
+ 调用`DisposeAsync`允许使用的资源<xref:System.IO.Stream>重新分配用于其他目的。 有关详细信息，请参阅[清理了非托管资源](~/docs/standard/garbage-collection/unmanaged.md)。  
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="EndRead">
@@ -1689,10 +1711,21 @@
         <Parameter Name="buffer" Type="System.Span&lt;System.Byte&gt;" Index="0" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="buffer">内存的区域。 当此方法返回时，此区域的内容将替换为从当前源读取的字节。</param>
+        <summary>当在派生类中重写时，从当前流读取字节序列，并将此流中的位置提升读取的字节数。</summary>
+        <returns>读入缓冲区中的总字节数。 如果很多字节当前不可用，则这可小于在缓冲区中分配的字节数；如果已到达流结尾，则为零 (0)。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 使用<xref:System.IO.Stream.CanRead%2A>属性来确定当前实例是否支持读取。 使用<xref:System.IO.Stream.ReadAsync%2A>方法从当前流异步读取。  
+  
+ 此方法的实现读取的最多`buffer.Length`个字节从当前流，并将其在存储`buffer`。 在流中的当前位置高级通过读取; 的字节数但是，如果发生异常，该流中的当前位置保持不变。 实现返回读取的字节数。 实现将阻止直到至少一个字节的数据可供读取，在没有数据是可用的事件。 <xref:System.IO.Stream.Read%2A> 仅在流中没有更多的数据且不再需要 （如套接字已关闭或文件结尾） 时将返回 0。 实现可以自由地返回少于所请求的字节，即使尚未达到流结尾。  
+  
+ 使用<xref:System.IO.BinaryReader>读取基元数据类型。    
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Read">
@@ -1811,11 +1844,24 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="buffer">要将数据写入的内存区域。</param>
+        <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+        <summary>从当前流异步读取字节的序列，将流中的位置提升读取的字节数，并监视取消请求。</summary>
+        <returns>表示异步读取操作的任务。 其 <see cref="P:System.Threading.Tasks.ValueTask`1.Result" /> 属性的值包含读入缓冲区的总字节数。 如果很多字节当前不可用，则结果值可小于在缓冲区中分配的字节数；如果已到达流结尾，则结果值可以为 0（零）。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ <xref:System.IO.Stream.ReadAsync%2A>方法使您能够执行占用大量资源的 I/O 操作而不会阻止主线程。 在 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] 应用或 [!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] 应用中一个耗时的流操作可能阻塞 UI 线程并让您的应用看起来好像不工作时，这种性能的考虑就显得尤为重要了。 结合使用异步方法`async`和`await`Visual Basic 和 C# 中的关键字。  
+  
+ 使用<xref:System.IO.Stream.CanRead%2A>属性来确定当前实例是否支持读取。  
+  
+ 如果在完成之前，将取消该操作，则返回的任务将包含<xref:System.Threading.Tasks.TaskStatus.Canceled?displayProperty=nameWithType>值<xref:System.Threading.Tasks.Task.Status>属性。  
+  
+ 有关示例，请参阅<xref:System.IO.Stream.ReadAsync%28System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%29>重载。  
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="ReadAsync">
@@ -2311,9 +2357,18 @@
         <Parameter Name="buffer" Type="System.ReadOnlySpan&lt;System.Byte&gt;" Index="0" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="buffer">内存的区域。 此方法将此区域的内容复制到当前流。</param>
+        <summary>当在派生类中重写时，向当前流中写入字节序列，并将此流中的当前位置提升写入的字节数。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 使用<xref:System.IO.Stream.CanWrite%2A>属性来确定当前实例是否支持写入。 使用<xref:System.IO.Stream.WriteAsync%2A>方法以异步方式写入当前流。  
+  
+ 如果写入操作成功，流中的位置向前移动写入的字节数。 如果发生异常，则流中的位置保持不变。  
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Write">
@@ -2420,11 +2475,24 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="buffer">从中写入数据的内存区域。</param>
+        <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+        <summary>将字节的序列异步写入当前流，将该流中的当前位置向前移动写入的字节数，并监视取消请求。</summary>
+        <returns>表示异步写入操作的任务。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ <xref:System.IO.Stream.WriteAsync%2A>方法使您能够执行占用大量资源的 I/O 操作而不会阻止主线程。 在 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] 应用或 [!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] 应用中一个耗时的流操作可能阻塞 UI 线程并让您的应用看起来好像不工作时，这种性能的考虑就显得尤为重要了。 结合使用异步方法`async`和`await`Visual Basic 和 C# 中的关键字。  
+  
+ 使用<xref:System.IO.Stream.CanWrite%2A>属性来确定当前实例是否支持写入。  
+  
+ 如果在完成之前，将取消该操作，则返回的任务将包含<xref:System.Threading.Tasks.TaskStatus.Canceled>值<xref:System.Threading.Tasks.Task.Status%2A>属性。  
+  
+ 有关示例，请参阅<xref:System.IO.Stream.WriteAsync%28System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%29>重载。  
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="WriteAsync">

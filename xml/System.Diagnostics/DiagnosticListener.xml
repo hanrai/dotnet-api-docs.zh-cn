@@ -1,5 +1,5 @@
 <Type Name="DiagnosticListener" FullName="System.Diagnostics.DiagnosticListener">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d06b75ea5c50d51090f8554cc39caca335d4700c" /><Meta Name="ms.sourcegitcommit" Value="434f60616a9793fa8436744549fc856e94f7a648" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/24/2018" /><Meta Name="ms.locfileid" Value="36674167" /></Metadata><TypeSignature Language="C#" Value="public class DiagnosticListener : System.Diagnostics.DiagnosticSource, IDisposable, IObservable&lt;System.Collections.Generic.KeyValuePair&lt;string,object&gt;&gt;" />
+  <TypeSignature Language="C#" Value="public class DiagnosticListener : System.Diagnostics.DiagnosticSource, IDisposable, IObservable&lt;System.Collections.Generic.KeyValuePair&lt;string,object&gt;&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DiagnosticListener extends System.Diagnostics.DiagnosticSource implements class System.IDisposable, class System.IObservable`1&lt;valuetype System.Collections.Generic.KeyValuePair`2&lt;string, object&gt;&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.DiagnosticListener" />
   <TypeSignature Language="VB.NET" Value="Public Class DiagnosticListener&#xA;Inherits DiagnosticSource&#xA;Implements IDisposable, IObservable(Of KeyValuePair(Of String, Object))" />
@@ -12,6 +12,7 @@
     <AssemblyVersion>4.0.2.0</AssemblyVersion>
     <AssemblyVersion>4.0.2.1</AssemblyVersion>
     <AssemblyVersion>4.0.3.0</AssemblyVersion>
+    <AssemblyVersion>4.0.4.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Diagnostics.DiagnosticSource</BaseTypeName>
@@ -25,8 +26,15 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>提供抽象 <see cref="T:System.Diagnostics.DiagnosticSource" /> 类的实现，它表示源将其信息（事件）发送到的指定位置。</summary>
+    <remarks>
+      <format type="text/markdown">
+        
+        
+有关详细信息<xref:System.Diagnostics.DiagnosticSource>并<xref:System.Diagnostics.DiagnosticListener>类，请参见[DiagnosticSource 用户指南](https://github.com/dotnet/corefx/blob/d3942d4671919edb0cca6ddc1840190f524a809d/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md)。
+
+           </format>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -44,14 +52,21 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="name" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="name">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="name">此 <see cref="T:System.Diagnostics.DiagnosticListener" /> 的名称。</param>
+        <summary>创建一个新的 <see cref="T:System.Diagnostics.DiagnosticListener" />。</summary>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+`DiagnosticListener` 是 NotificationSource，这意味着返回的结果可用于记录通知，但它还具有<xref:System.Diagnostics.DiagnosticListener.Subscribe%2A>方法，以便可以任意转发通知。 因此，它工作是将内容从生成者转发到所有侦听器 （多重强制转换）。 通常情况下，您不应作出自己<see cref="T:System.Diagnostics.DiagnosticListener" />但使用默认值，以便通知是尽可能为公共。
+ 
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="AllListeners">
@@ -69,14 +84,20 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IObservable&lt;System.Diagnostics.DiagnosticListener&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>获取此 <see cref="T:System.Diagnostics.DiagnosticListener" /> 的侦听器的集合。</summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks><format type="text/markdown"><![CDATA[
+
+当你对此订阅时，获取所有 NotificationListeners appdomain，以及在过去发生的回调和将来的所有侦听器将来都创建的。
+
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Dispose">
@@ -97,14 +118,15 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>释放 NotificationListeners。</summary>
+        <remarks>因为它们是 （适用于可发现性） 的全局列表中，通知侦听器不骰子靠自己。 必须显式释放它们。 请注意，我们不做<c>dispose （bool)</c>模式，因为我们不想要支持将非托管状态的子类。</remarks>
       </Docs>
     </Member>
     <Member MemberName="IsEnabled">
@@ -120,14 +142,15 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>确定是否有订阅者已注册。</summary>
+        <returns>如果有订阅者已注册，为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -146,6 +169,7 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -155,8 +179,8 @@
       </Parameters>
       <Docs>
         <param name="name">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>检查是否已启用 <see cref="T:System.Diagnostics.DiagnosticListener" />。</summary>
+        <returns>如果已启用通知，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -172,21 +196,22 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="name" Type="System.String" />
-        <Parameter Name="arg1" Type="System.Object" />
-        <Parameter Name="arg2" Type="System.Object" />
+        <Parameter Name="name" Type="System.String" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
+        <Parameter Name="arg1" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
+        <Parameter Name="arg2" Type="System.Object" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
       </Parameters>
       <Docs>
         <param name="name">To be added.</param>
         <param name="arg1">To be added.</param>
         <param name="arg2">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>检查是否已启用 DiagnosticListener。</summary>
+        <returns>如果已启用，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -205,13 +230,64 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
+        <summary>获取此 <see cref="T:System.Diagnostics.DiagnosticListener" /> 的名称。</summary>
+        <value><see cref="T:System.Diagnostics.DiagnosticListener" /> 的名称。</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnActivityExport">
+      <MemberSignature Language="C#" Value="public override void OnActivityExport (System.Diagnostics.Activity activity, object payload);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance void OnActivityExport(class System.Diagnostics.Activity activity, object payload) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Diagnostics.DiagnosticListener.OnActivityExport(System.Diagnostics.Activity,System.Object)" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; override void OnActivityExport(System::Diagnostics::Activity ^ activity, System::Object ^ payload);" />
+      <MemberSignature Language="F#" Value="override this.OnActivityExport : System.Diagnostics.Activity * obj -&gt; unit" Usage="diagnosticListener.OnActivityExport (activity, payload)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Diagnostics.DiagnosticSource</AssemblyName>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="activity" Type="System.Diagnostics.Activity" Index="0" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="payload" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="activity">To be added.</param>
+        <param name="payload">To be added.</param>
         <summary>To be added.</summary>
-        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnActivityImport">
+      <MemberSignature Language="C#" Value="public override void OnActivityImport (System.Diagnostics.Activity activity, object payload);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance void OnActivityImport(class System.Diagnostics.Activity activity, object payload) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Diagnostics.DiagnosticListener.OnActivityImport(System.Diagnostics.Activity,System.Object)" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; override void OnActivityImport(System::Diagnostics::Activity ^ activity, System::Object ^ payload);" />
+      <MemberSignature Language="F#" Value="override this.OnActivityImport : System.Diagnostics.Activity * obj -&gt; unit" Usage="diagnosticListener.OnActivityImport (activity, payload)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Diagnostics.DiagnosticSource</AssemblyName>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="activity" Type="System.Diagnostics.Activity" Index="0" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="payload" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="activity">To be added.</param>
+        <param name="payload">To be added.</param>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -233,6 +309,7 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IDisposable</ReturnType>
@@ -260,20 +337,36 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IDisposable</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="observer" Type="System.IObserver&lt;System.Collections.Generic.KeyValuePair&lt;System.String,System.Object&gt;&gt;" />
-        <Parameter Name="isEnabled" Type="System.Func&lt;System.String,System.Object,System.Object,System.Boolean&gt;" />
+        <Parameter Name="observer" Type="System.IObserver&lt;System.Collections.Generic.KeyValuePair&lt;System.String,System.Object&gt;&gt;" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
+        <Parameter Name="isEnabled" Type="System.Func&lt;System.String,System.Object,System.Object,System.Boolean&gt;" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="observer">To be added.</param>
-        <param name="isEnabled">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="observer">订阅者。</param>
+        <param name="isEnabled">一个委托，它根据事件名称和最多两个上下文对象筛选事件（可为 <see langword="null" />）。</param>
+        <summary>添加订阅者。 如果 <paramref name="isEnabled" /> 参数不是 <see langword="null" />，则表示可跳过某些无用的事件来提高效率。</summary>
         <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown">
+        
+
+特定检测站点具有一个或多个调用的选项<xref:System.Diagnostics.DiagnosticListener.IsEnabled%2A>在其中它将事件的和最多两个其他 （特定于检测站点） 对象的名称传递作为参数的重载。 如果其中的任何<xref:System.Diagnostics.DiagnosticListener.IsEnabled%2A>的调用是然后这`isEnabled`使用传递的值调用谓词 (如果使用较短的重载，`null`为缺少上下文对象传递)。
+
+这使任何特定检测站点能够将最多两条信息传递到订阅服务器以进行复杂的、 有效的筛选。 这需要更多检测站点和订阅服务器代码之间的耦合。
+
+应检测特定站点可能会调用不同的重载`IsEnabled`相同的事件，首先调用<xref:System.Diagnostics.DiagnosticListener.IsEnabled(System.String)>，它调用具有两个筛选器`null`上下文对象。 如果`isEnabled`返回`true`，它使用上下文对象再次调用。 `isEnabled`筛选器应该设计为与此记住。
+
+请注意，`isEnabled`谓词是一种可选的优化，以允许检测站点以避免设置了有效负载并调用<xref:System.Diagnostics.DiagnosticListener.Write(System.String,System.Object)>时没有订阅服务器所关注它。 具体而言，检测站点已忽略选项<xref:System.Diagnostics.DiagnosticListener.IsEnabled%2A>谓词 （不调用），然后只需调用<xref:System.Diagnostics.DiagnosticListener.Write(System.String,System.Object)>。 因此，如果订阅服务器上需要筛选，则需要执行此操作本身。
+
+如果此参数为`null`，不进行筛选 (的所有重载<xref:System.Diagnostics.DiagnosticSource.IsEnabled%2A>返回`true`)。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Subscribe">
@@ -291,6 +384,7 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IDisposable</ReturnType>
@@ -300,8 +394,47 @@
         <Parameter Name="isEnabled" Type="System.Predicate&lt;System.String&gt;" />
       </Parameters>
       <Docs>
+        <param name="observer">订阅者。</param>
+        <param name="isEnabled">一个委托，它根据其名称 (<see cref="T:System.String" />) 筛选事件。 如果已启用事件，则委托应返回 <see langword="true" />。</param>
+        <summary>添加订阅者（观察者）。 如果 <paramref name="isEnabled" /> 参数不是 <see langword="null" />，则表示可跳过某些无用的事件来提高效率。</summary>
+        <returns>To be added.</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+            
+请注意，`isEnabled`谓词是一种可选的优化，以允许检测站点以避免设置了有效负载并调用<xref:System.Diagnostics.DiagnosticListener.Write(System.String,System.Object)>时没有订阅服务器所关注它。 特别是检测站点已忽略选项<xref:System.Diagnostics.DiagnosticListener.IsEnabled>谓词 （不调用），然后只需调用<xref:System.Diagnostics.DiagnosticListener.Write(System.String,System.Object)>。 因此如果订阅服务器上需要筛选，则需要执行此操作本身。
+
+如果此参数为`null`，不进行筛选 (的所有重载<xref:System.Diagnostics.DiagnosticSource.IsEnabled%2A>返回`true`)。
+
+          ]]></format>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Subscribe">
+      <MemberSignature Language="C#" Value="public virtual IDisposable Subscribe (IObserver&lt;System.Collections.Generic.KeyValuePair&lt;string,object&gt;&gt; observer, Func&lt;string,object,object,bool&gt; isEnabled, Action&lt;System.Diagnostics.Activity,object&gt; onActivityImport = null, Action&lt;System.Diagnostics.Activity,object&gt; onActivityExport = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.IDisposable Subscribe(class System.IObserver`1&lt;valuetype System.Collections.Generic.KeyValuePair`2&lt;string, object&gt;&gt; observer, class System.Func`4&lt;string, object, object, bool&gt; isEnabled, class System.Action`2&lt;class System.Diagnostics.Activity, object&gt; onActivityImport, class System.Action`2&lt;class System.Diagnostics.Activity, object&gt; onActivityExport) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Diagnostics.DiagnosticListener.Subscribe(System.IObserver{System.Collections.Generic.KeyValuePair{System.String,System.Object}},System.Func{System.String,System.Object,System.Object,System.Boolean},System.Action{System.Diagnostics.Activity,System.Object},System.Action{System.Diagnostics.Activity,System.Object})" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function Subscribe (observer As IObserver(Of KeyValuePair(Of String, Object)), isEnabled As Func(Of String, Object, Object, Boolean), Optional onActivityImport As Action(Of Activity, Object) = null, Optional onActivityExport As Action(Of Activity, Object) = null) As IDisposable" />
+      <MemberSignature Language="F#" Value="abstract member Subscribe : IObserver&lt;System.Collections.Generic.KeyValuePair&lt;string, obj&gt;&gt; * Func&lt;string, obj, obj, bool&gt; * Action&lt;System.Diagnostics.Activity, obj&gt; * Action&lt;System.Diagnostics.Activity, obj&gt; -&gt; IDisposable&#xA;override this.Subscribe : IObserver&lt;System.Collections.Generic.KeyValuePair&lt;string, obj&gt;&gt; * Func&lt;string, obj, obj, bool&gt; * Action&lt;System.Diagnostics.Activity, obj&gt; * Action&lt;System.Diagnostics.Activity, obj&gt; -&gt; IDisposable" Usage="diagnosticListener.Subscribe (observer, isEnabled, onActivityImport, onActivityExport)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Diagnostics.DiagnosticSource</AssemblyName>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.IDisposable</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="observer" Type="System.IObserver&lt;System.Collections.Generic.KeyValuePair&lt;System.String,System.Object&gt;&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="isEnabled" Type="System.Func&lt;System.String,System.Object,System.Object,System.Boolean&gt;" Index="1" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="onActivityImport" Type="System.Action&lt;System.Diagnostics.Activity,System.Object&gt;" Index="2" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="onActivityExport" Type="System.Action&lt;System.Diagnostics.Activity,System.Object&gt;" Index="3" FrameworkAlternate="netcore-3.0" />
+      </Parameters>
+      <Docs>
         <param name="observer">To be added.</param>
         <param name="isEnabled">To be added.</param>
+        <param name="onActivityImport">To be added.</param>
+        <param name="onActivityExport">To be added.</param>
         <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
@@ -319,28 +452,31 @@
         <AssemblyName>System.Diagnostics.DiagnosticSource</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>返回一个字符串，它具有此 DiagnosticListener 的名称。</summary>
+        <returns>此 DiagnosticListener 的名称。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Write">
-      <MemberSignature Language="C#" Value="public override void Write (string name, object value);" FrameworkAlternate="netcore-1.0;netcore-1.1" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance void Write(string name, object value) cil managed" FrameworkAlternate="netcore-1.0;netcore-1.1" />
-      <MemberSignature Language="DocId" Value="M:System.Diagnostics.DiagnosticListener.Write(System.String,System.Object)" FrameworkAlternate="netcore-2.1;netcore-2.0;netcore-1.0;netcore-1.1" />
-      <MemberSignature Language="VB.NET" Value="Public Overrides Sub Write (name As String, value As Object)" FrameworkAlternate="netcore-1.0;netcore-1.1" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; override void Write(System::String ^ name, System::Object ^ value);" FrameworkAlternate="netcore-1.0;netcore-1.1" />
-      <MemberSignature Language="C#" Value="public override void Write (string name, object parameters);" FrameworkAlternate="netcore-2.0;netcore-2.1" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance void Write(string name, object parameters) cil managed" FrameworkAlternate="netcore-2.0;netcore-2.1" />
-      <MemberSignature Language="VB.NET" Value="Public Overrides Sub Write (name As String, parameters As Object)" FrameworkAlternate="netcore-2.0;netcore-2.1" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; override void Write(System::String ^ name, System::Object ^ parameters);" FrameworkAlternate="netcore-2.0;netcore-2.1" />
-      <MemberSignature Language="F#" Value="override this.Write : string * obj -&gt; unit" Usage="diagnosticListener.Write (name, parameters)" />
+      <MemberSignature Language="C#" Value="public override void Write (string name, object value);" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-3.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance void Write(string name, object value) cil managed" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-3.0" />
+      <MemberSignature Language="DocId" Value="M:System.Diagnostics.DiagnosticListener.Write(System.String,System.Object)" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overrides Sub Write (name As String, value As Object)" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-3.0" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; override void Write(System::String ^ name, System::Object ^ value);" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-3.0" />
+      <MemberSignature Language="C#" Value="public override void Write (string name, object parameters);" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance void Write(string name, object parameters) cil managed" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2" />
+      <MemberSignature Language="VB.NET" Value="Public Overrides Sub Write (name As String, parameters As Object)" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; override void Write(System::String ^ name, System::Object ^ parameters);" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2" />
+      <MemberSignature Language="DocId" Value="M:System.Diagnostics.DiagnosticListener.Write(System.String,System.Object)" FrameworkAlternate="netcore-2.0" />
+      <MemberSignature Language="F#" Value="override this.Write : string * obj -&gt; unit" Usage="diagnosticListener.Write (name, parameters)" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
+      <MemberSignature Language="F#" Value="override this.Write : string * obj -&gt; unit" Usage="diagnosticListener.Write (name, parameters)" FrameworkAlternate="netcore-2.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Diagnostics.DiagnosticSource</AssemblyName>
@@ -348,14 +484,15 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="name" Type="System.String" Index="0" />
-        <Parameter Name="value" Type="System.Object" Index="1" FrameworkAlternate="netcore-1.0;netcore-1.1" />
-        <Parameter Name="parameters" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1" />
+        <Parameter Name="value" Type="System.Object" Index="1" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-3.0" />
+        <Parameter Name="parameters" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2" />
       </Parameters>
       <Docs>
         <param name="name">To be added.</param>
