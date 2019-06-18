@@ -1,0 +1,90 @@
+<Type Name="IAsyncDisposable" FullName="System.IAsyncDisposable">
+  <Metadata><Meta Name="ms.openlocfilehash" Value="82cd5c9467041839fb2a2b2ffffd03ea382f82f6" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/14/2019" /><Meta Name="ms.locfileid" Value="67134670" /></Metadata><TypeSignature Language="C#" Value="public interface IAsyncDisposable" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IAsyncDisposable" />
+  <TypeSignature Language="DocId" Value="T:System.IAsyncDisposable" />
+  <TypeSignature Language="VB.NET" Value="Public Interface IAsyncDisposable" />
+  <TypeSignature Language="C++ CLI" Value="public interface class IAsyncDisposable" />
+  <TypeSignature Language="F#" Value="type IAsyncDisposable = interface" />
+  <AssemblyInfo>
+    <AssemblyName>System.Runtime</AssemblyName>
+    <AssemblyVersion>4.2.1.0</AssemblyVersion>
+  </AssemblyInfo>
+  <AssemblyInfo>
+    <AssemblyName>netstandard</AssemblyName>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Docs>
+    <summary>提供一种用于异步释放非托管资源的机制。</summary>
+    <remarks>
+      <format type="text/markdown"><![CDATA[  
+
+## Remarks
+
+在.NET 中，通常拥有非托管的资源的类实现<xref:System.IDisposable>接口，以提供一种机制用于释放非托管资源，以同步方式。 但是，在某些情况下它们需要提供一种异步机制用于释放非托管的资源，除 （或 instead of） 同步的一个。 提供此类机制允许使用者而不会阻止很长时间的 GUI 应用程序的主线程执行占用大量资源的释放操作。
+
+<xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType>此接口的方法将返回<xref:System.Threading.Tasks.ValueTask>表示异步释放操作。 拥有非托管的资源的类实现此方法，并且这些类的使用者在不再需要时在对象上调用此方法。
+
+结合使用异步方法`async`并`await`中的关键字C#和 Visual Basic。 有关更多 insformation，请参阅[中的任务的异步编程模型C#](/dotnet/csharp/programming-guide/concepts/async/index)或[使用 Async 和 Await (Visual Basic 中) 的异步编程](/dotnet/visual-basic/programming-guide/concepts/async/)。
+
+### <a name="using-an-object-that-implements-iasyncdisposable"></a>使用实现 IAsyncDisposable 的对象
+
+如果应用程序使用实现的对象`IAsyncDisposable`，应调用对象的<xref:System.IAsyncDisposable.DisposeAsync%2A>实现完成后使用它。 若要确保即使发生异常时释放资源，请调用<xref:System.IAsyncDisposable.DisposeAsync%2A>方法内的`finally`子句`try` / `finally`语句。 有关详细信息`try` / `finally`模式，请参阅[try finally](~/docs/csharp/language-reference/keywords/try-finally.md) (C#) 或[尝试...Catch...Finally 语句](~/docs/visual-basic/language-reference/statements/try-catch-finally-statement.md)(Visual Basic 中)。
+
+### <a name="implementing-iasyncdisposable"></a>实现 IAsyncDisposable   
+    
+您可能会实现`IAsyncDisposable`在以下情况下：
+
+- 开发的异步枚举器时拥有非托管的资源。 异步枚举器使用与C#8.0 异步流功能。 有关异步流的详细信息，请参阅[教程：生成和使用异步流使用C#8.0 和.NET Core 3.0](/dotnet/csharp/tutorials/generate-consume-asynchronous-stream)。
+
+- 当您的类拥有非托管的资源并释放它们需要占用大量资源的 I/O 操作，如中间缓冲区的内容刷新到文件或通过网络来关闭连接发送数据包。
+
+使用<xref:System.IAsyncDisposable.DisposeAsync%2A>方法来执行任何清理后必须执行使用的非托管的资源，例如释放或重置非托管的资源。 有关在.NET 中的非托管资源的详细信息，请参阅[清理了非托管资源](/dotnet/standard/garbage-collection/unmanaged)。
+ 
+ ]]></format>
+</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="DisposeAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.ValueTask DisposeAsync ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype System.Threading.Tasks.ValueTask DisposeAsync() cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.IAsyncDisposable.DisposeAsync" />
+      <MemberSignature Language="VB.NET" Value="Public Function DisposeAsync () As ValueTask" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; System::Threading::Tasks::ValueTask DisposeAsync();" />
+      <MemberSignature Language="F#" Value="abstract member DisposeAsync : unit -&gt; System.Threading.Tasks.ValueTask" Usage="iAsyncDisposable.DisposeAsync " />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Runtime</AssemblyName>
+        <AssemblyVersion>4.2.1.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.ValueTask</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>以异步方式执行与释放或重置非托管资源相关的应用程序定义的任务。</summary>
+        <returns>一个表示异步释放操作的任务。</returns>
+        <remarks>
+      <format type="text/markdown"><![CDATA[  
+
+## Remarks
+
+使用此方法以异步方式关闭或释放非托管的资源，例如文件、 流和句柄由实现此接口的类的实例。 使用此方法，而不是<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>使您可以执行占用大量资源的释放操作，而不会阻止主线程的较长时间的 GUI 应用程序。
+
+> [!WARNING]
+>  如果您使用的实现的类<xref:System.IAsyncDisposable>接口，应调用其`DisposeAsync`完后使用类的实现。 有关详细信息，请参阅"使用实现 IAsyncDisposable 的对象"一节中<xref:System.IAsyncDisposable>主题。
+
+实现此方法时，请确保所有持有中传播的包含层次结构通过调用来释放资源。 例如，如果对象 A 分配一个对象 B，并且对象 B 分配对象 C，然后一个`DisposeAsync`实现必须调用`DisposeAsync`在 B 上，这又必须调用`DisposeAsync`上 c。对象还必须调用`DisposeAsync`如果基类实现其基本类的方法<xref:System.IAsyncDisposable>。
+
+如果对象的`DisposeAsync`不止一次调用方法，该对象必须忽略在第一个之后的所有调用并以同步方式返回已成功完成<xref:System.Threading.Tasks.ValueTask>。 该对象必须引发异常，如果其`DisposeAsync`多次调用方法。 不是实例方法`DisposeAsync`可能会引发<xref:System.ObjectDisposedException>已释放资源。
+ 
+ ]]></format>
+</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
