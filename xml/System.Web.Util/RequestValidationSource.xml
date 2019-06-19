@@ -1,5 +1,5 @@
 <Type Name="RequestValidationSource" FullName="System.Web.Util.RequestValidationSource">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7b4df0bf1d9c5aa56baef66d5f5d2fff18e75c52" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64061634" /></Metadata><TypeSignature Language="C#" Value="public enum RequestValidationSource" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ab5b9348d3a2dcde861eeef4c5d9c664588a26d6" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/14/2019" /><Meta Name="ms.locfileid" Value="67134725" /></Metadata><TypeSignature Language="C#" Value="public enum RequestValidationSource" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed RequestValidationSource extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Web.Util.RequestValidationSource" />
   <TypeSignature Language="VB.NET" Value="Public Enum RequestValidationSource" />
@@ -17,24 +17,32 @@
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- 可以通过实现来创建自定义请求验证类型<xref:System.Web.Util.RequestValidator>类型。 当 ASP.NET 调用<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法来验证请求，ASP.NET 将传递`requestValidationSource`参数来指定要验证的数据源。 <xref:System.Web.Util.RequestValidationSource>枚举用于指定源或类型的正在进行验证的请求数据。 该枚举指示传入的 HTTP 输入类型`value`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法。 作为一种方式回退到 HTTP 输入的基本请求验证实现，如果不希望使用自定义逻辑进行验证，可以使用枚举。  
-  
-   
+## Remarks 
+
+可以通过实现来创建自定义请求验证类型<xref:System.Web.Util.RequestValidator>类型。 当 ASP.NET 调用<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法来验证请求，ASP.NET 将传递`requestValidationSource`参数来指定要验证的数据源。 <xref:System.Web.Util.RequestValidationSource>枚举用于指定源或类型的正在进行验证的请求数据。 该枚举指示传入的 HTTP 输入类型`value`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法。 作为一种方式回退到 HTTP 输入的基本请求验证实现，如果不希望使用自定义逻辑进行验证，可以使用枚举。  
+
+下表说明的值`collectionKey`并`value`的参数<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A?displayProperty=nameWithType>方法解释的每个成员`RequestValidationSource`枚举。
+
+|枚举成员|`collectionKey` 参数|`value` 参数|
+|--|--|--|
+|`Cookies`|集合中的 cookie 的名称。|集合中的值。|
+|`Files`|集合中上传的文件的名称。|上传的文件集合中的值。|
+|`Form`|集合中的窗体参数的名称|集合中的窗体参数的值。|
+|`Headers`|集合中的 HTTP 标头名称。|集合中的 HTTP 标头的值。|
+|`Path`|`null` (`Path`不是值的集合)。|路径字段的值。|
+|`PathInfo`|`null` (`PathInfo`不是值的集合)。|PathInfo 字段的值。|
+|`QueryString`|集合中的查询字符串参数的名称。|集合中的查询字符串参数的值。|
+|`RawUrl`|`null` (`RawUrl`不是值的集合。)|RawUrl 字段的值。|
   
 ## Examples  
  下面的示例演示如何创建一个自定义请求验证程序类，允许仅特定字符串的查询字符串值。  
   
-```vb  
-Imports System  
+```vb
 Imports System.Web  
 Imports System.Web.Util  
   
 Public Class CustomRequestValidation  
     Inherits RequestValidator  
-  
-Public Sub New()  
-End Sub  
   
 Protected Overloads Overrides Function IsValidRequestString( _  
         ByVal context As HttpContext, _  
@@ -156,16 +164,6 @@ public class CustomRequestValidation : RequestValidator
       <MemberValue>2</MemberValue>
       <Docs>
         <summary>请求 Cookie。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- `collectionKey`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为集合中的 cookie 的名称。  
-  
- `value`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为集合中的值。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Files">
@@ -186,16 +184,6 @@ public class CustomRequestValidation : RequestValidator
       <MemberValue>3</MemberValue>
       <Docs>
         <summary>上载的文件。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- `collectionKey`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为集合中上传的文件的名称。  
-  
- `value`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为上传的文件集合中的值。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Form">
@@ -216,16 +204,6 @@ public class CustomRequestValidation : RequestValidator
       <MemberValue>1</MemberValue>
       <Docs>
         <summary>窗体值。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- `collectionKey`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为窗体参数在集合中的名称。  
-  
- `value`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为窗体参数在集合中的值。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Headers">
@@ -246,16 +224,6 @@ public class CustomRequestValidation : RequestValidator
       <MemberValue>7</MemberValue>
       <Docs>
         <summary>请求标头。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- `collectionKey`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为集合中的 HTTP 标头的名称。  
-  
- `value`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为集合中的 HTTP 标头的值。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Path">
@@ -276,16 +244,6 @@ public class CustomRequestValidation : RequestValidator
       <MemberValue>5</MemberValue>
       <Docs>
         <summary>虚拟路径。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- `collectionKey`的参数<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为`null`(`Path`不是值的集合)。  
-  
- `value`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为路径字段的值。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
     <Member MemberName="PathInfo">
@@ -306,16 +264,6 @@ public class CustomRequestValidation : RequestValidator
       <MemberValue>6</MemberValue>
       <Docs>
         <summary>HTTP <see cref="P:System.Web.HttpRequest.PathInfo" /> 字符串（URL 路径的扩展）。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- `collectionKey`的参数<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为`null`(`PathInfo`不是值的集合)。  
-  
- `value`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为 PathInfo 字段的值。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
     <Member MemberName="QueryString">
@@ -336,16 +284,6 @@ public class CustomRequestValidation : RequestValidator
       <MemberValue>0</MemberValue>
       <Docs>
         <summary>查询字符串。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- `collectionKey`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为集合中的查询字符串参数的名称。  
-  
- `value`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为集合中的查询字符串参数的值。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
     <Member MemberName="RawUrl">
@@ -366,16 +304,6 @@ public class CustomRequestValidation : RequestValidator
       <MemberValue>4</MemberValue>
       <Docs>
         <summary>原始 URL。 （域后的 URL 部分。）</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- `collectionKey`的参数<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为`null`。 (`RawUrl`不是值的集合。)  
-  
- `value`参数的<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>方法设置为 RawUrl 字段的值。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
   </Members>
