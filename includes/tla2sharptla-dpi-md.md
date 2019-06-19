@@ -1,1 +1,9 @@
-<span data-ttu-id="285b9-101">dpi</span><span class="sxs-lookup"><span data-stu-id="285b9-101">dpi</span></span>
+---
+ms.openlocfilehash: 2936c1a08885fccd241144eee15d97e0abecd116
+ms.sourcegitcommit: 1bb00d2f4343e73ae8d58668f02297a3cf10a4c1
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 06/15/2019
+ms.locfileid: "63869840"
+---
+<span data-ttu-id="c5de2-101">dpi</span><span class="sxs-lookup"><span data-stu-id="c5de2-101">dpi</span></span>
