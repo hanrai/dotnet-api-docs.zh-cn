@@ -1,5 +1,5 @@
 <Type Name="SignedXml" FullName="System.Security.Cryptography.Xml.SignedXml">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c1dedadb74e0944ff24d80b31fa09f5fad2c1816" /><Meta Name="ms.sourcegitcommit" Value="f55040f35c19a83c85beb55243330558f6e369be" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/10/2019" /><Meta Name="ms.locfileid" Value="66818111" /></Metadata><TypeSignature Language="C#" Value="public class SignedXml" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e630aa2ce3476b00ce50bed3c2270f34369059c5" /><Meta Name="ms.sourcegitcommit" Value="6b9d64332f31de312efea785fbb19e4d80f544d5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/12/2019" /><Meta Name="ms.locfileid" Value="67027250" /></Metadata><TypeSignature Language="C#" Value="public class SignedXml" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit SignedXml extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.Xml.SignedXml" />
   <TypeSignature Language="VB.NET" Value="Public Class SignedXml" />
@@ -27,25 +27,25 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Cryptography.Xml.SignedXml>类是万维网联合会 (W3C) 的.NET Framework 实现[XML 签名语法和处理规范](https://www.w3.org/TR/xmldsig-core/)，也称为 XMLDSIG （XML 数字签名）。  XMLDSIG 是基于标准的、 可互操作的方式进行签名并验证所有或部分 XML 文档或可从统一资源标识符 (URI) 寻址的其他数据。  
+ <xref:System.Security.Cryptography.Xml.SignedXml>类是万维网联合会 (W3C) 的.NET 实现[XML 签名语法和处理规范](https://www.w3.org/TR/xmldsig-core/)，也称为 XMLDSIG （XML 数字签名）。 XMLDSIG 是基于标准的、 可互操作的方式进行签名并验证所有或部分 XML 文档或可从统一资源标识符 (URI) 寻址的其他数据。
   
- 使用<xref:System.Security.Cryptography.Xml.SignedXml>类无论何时需要共享签名 XML 数据应用程序或组织之间以标准方式。  可以通过 XMLDSIG W3C 规范的任何一致性实现验证签名使用此类的任何数据。  
+ 使用<xref:System.Security.Cryptography.Xml.SignedXml>类无论何时需要共享签名 XML 数据应用程序或组织之间以标准方式。 可以通过 XMLDSIG W3C 规范的任何一致性实现验证签名使用此类的任何数据。
   
  <xref:System.Security.Cryptography.Xml.SignedXml>类使您可以创建 XML 数字签名的以下三种：  
   
 |签名类型|描述|  
 |--------------------|-----------------|  
 |封装的签名|签名包含在正被签名的 XML 元素。|  
-|包封签名|签名的 XML 包含在 <`Signature`> 元素。|  
+|包封签名|签名的 XML 包含在`<Signature>`元素。|  
 |内部分离的签名|签名和签名的 XML 是在同一文档中，但两个元素中包含其他。|  
   
  此外，还有第四种调用时的数据和签名是在单独的 XML 文档中的外部分离的签名的签名。 不支持外部分离的签名<xref:System.Security.Cryptography.Xml.SignedXml>类。  
   
-## <a name="the-structure-of-an--xml-signature"></a>XML 签名的结构  
- XMLDSIG 创建 <`Signature`> 元素，它包含的数字签名的 XML 文档或其他可从 URI 寻址的数据。  <`Signature`> 元素可以选择包含有关在何处可以找到将验证此签名的密钥信息和哪种加密算法用于签名。 基本结构是按如下所示：  
+## <a name="the-structure-of-an-xml-signature"></a>XML 签名的结构  
+
+XMLDSIG 创建`<Signature>`元素，它包含的数字签名的 XML 文档或其他可从 URI 寻址的数据。 `<Signature>`元素可以选择包含有关在何处可以找到将验证此签名的密钥信息和哪种加密算法用于签名。 基本结构是按如下所示：  
   
-```xml  
-  
+```xml
 <Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">  
     <SignedInfo>  
       <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>  
@@ -59,56 +59,61 @@
       </Reference>  
     </SignedInfo>  
     <SignatureValue>AnotherBase64EncodedValue===</SignatureValue>  
-  </Signature>  
-  
+</Signature>
 ```  
   
- 此结构的主要部分是：  
+此结构的主要部分是：  
   
- <`CanonicalizationMethod`> 元素  
- 指定用于重写规则`Signature`从 XML/文本元素插入签名验证的字节数。 .NET Framework 中的默认值是https://www.w3.org/TR/2001/REC-xml-c14n-20010315，用于标识可信的算法。 此元素表示由<xref:System.Security.Cryptography.Xml.SignedInfo.CanonicalizationMethod%2A?displayProperty=nameWithType>属性。  
+- `<CanonicalizationMethod>` 元素
+
+    指定用于重写规则`Signature`从 XML/文本元素插入签名验证的字节数。 在.NET 中的默认值是<http://www.w3.org/TR/2001/REC-xml-c14n-20010315>，用于标识可信的算法。 此元素表示由<xref:System.Security.Cryptography.Xml.SignedInfo.CanonicalizationMethod%2A?displayProperty=nameWithType>属性。  
   
- <`SignatureMethod`> 元素  
- 指定用于签名生成和验证，已应用到的算法 <`Signature`> 元素以生成中的值 <`SignatureValue`>。 在示例中，值http://www.w3.org/2000/09/xmldsig#rsa-sha1标识的 RSA PKCS1 sha-1 签名。 此元素表示由<xref:System.Security.Cryptography.Xml.SignedXml.SignatureMethod%2A>属性。  
+- `<SignatureMethod>` 元素
+
+   指定用于签名生成和验证，已应用到的算法`<Signature>`元素以生成中的值`<SignatureValue>`。 在上一示例中，值<http://www.w3.org/2000/09/xmldsig#rsa-sha1>标识的 RSA PKCS1 sha-1 签名。 此元素表示由<xref:System.Security.Cryptography.Xml.SignedXml.SignatureMethod%2A>属性。  
   
- <`SignatureValue`> 元素  
- 指定的加密签名 <`Signature`> 元素。 如果此签名不验证，然后的某些部分 <`Signature`> 块已被篡改，并且该文档将被视为无效。 只要 <`CanonicalizationMethod`> 值是可信任，则该值为有效防止篡改。 此元素表示由<xref:System.Security.Cryptography.Xml.SignedXml.SignatureValue%2A>属性。  
+- `<SignatureValue>` 元素
+
+   指定的加密签名`<Signature>`元素。 如果此签名不验证，然后的某些部分`<Signature>`块已被篡改，并且该文档将被视为无效。 只要`<CanonicalizationMethod>`值是可信任，则该值为有效防止篡改。 此元素表示由<xref:System.Security.Cryptography.Xml.SignedXml.SignatureValue%2A>属性。  
   
- `URI`属性的 <`Reference`> 元素  
- 指定使用的 URI 引用的数据对象。 此属性由<xref:System.Security.Cryptography.Xml.Reference.Uri%2A?displayProperty=nameWithType>属性。  
+- `URI`属性的`<Reference>`元素  
+
+   指定使用的 URI 引用的数据对象。 此属性由<xref:System.Security.Cryptography.Xml.Reference.Uri%2A?displayProperty=nameWithType>属性。  
   
--   未指定`URI`属性，即，设置<xref:System.Security.Cryptography.Xml.Reference.Uri%2A?displayProperty=nameWithType>属性设置为`null`，意味着接收应用程序需要知道对象的标识。 在大多数情况下， `null` URI 会导致引发异常。 不要使用`null`URI，除非你的应用程序进行交互操作与需要它的协议。  
+   - 未指定`URI`属性，即，设置<xref:System.Security.Cryptography.Xml.Reference.Uri%2A?displayProperty=nameWithType>属性设置为`null`，意味着接收应用程序需要知道对象的标识。 在大多数情况下， `null` URI 会导致引发异常。 不要使用`null`URI，除非你的应用程序进行交互操作与需要它的协议。  
   
--   设置`URI`属性为空字符串指示，该文档的根元素正进行签名，被包封签名的一种形式。  
+   - 设置`URI`属性为空字符串指示，该文档的根元素正进行签名，被包封签名的一种形式。  
   
--   如果的值`URI`属性开头 #，则值必须解析为当前文档中的元素。 此窗体可用于任何受支持的签名类型 （被包封签名、 包封签名或内部分离的签名）。  
+   - 如果的值`URI`属性开头 #，则值必须解析为当前文档中的元素。 此窗体可用于任何受支持的签名类型 （被包封签名、 包封签名或内部分离的签名）。  
   
--   任何其他内容被视为外部资源拆离签名和不受<xref:System.Security.Cryptography.Xml.SignedXml>类。  
+   - 任何其他内容被视为外部资源拆离签名和不受<xref:System.Security.Cryptography.Xml.SignedXml>类。  
   
- <`Transforms`> 元素  
- 包含排序的列表 <`Transform`> 描述如何签名者获取的数据对象的元素融会贯通。 转换算法是类似于规范化方法，但无需重写 <`Signature`> 元素，它将重写由标识的内容`URI`属性的 <`Reference`> 元素。 <`Transforms`> 元素都表示通过<xref:System.Security.Cryptography.Xml.TransformChain>类。  
+- `<Transforms>` 元素  
+
+   包含的排序的列表`<Transform>`描述如何签名者获取的数据对象的元素融会贯通。 转换算法是类似于规范化方法，但无需重写`<Signature>`元素，它将重写由标识的内容`URI`属性的`<Reference>`元素。 `<Transforms>`元素表示由<xref:System.Security.Cryptography.Xml.TransformChain>类。  
   
--   每个转换算法定义为采用 XML (一个 XPath 节点集) 或字节数作为输入。 如果当前数据的格式不同于转换的输入要求，应用转换规则。  
+   - 每个转换算法定义为采用 XML (一个 XPath 节点集) 或字节数作为输入。 如果当前数据的格式不同于转换的输入要求，应用转换规则。  
   
--   每个转换算法被定义为作为输出生成 XML 或字节数。  
+   - 每个转换算法被定义为作为输出生成 XML 或字节数。  
   
--   如果以字节为单位未定义的最后一个转换算法的输出 （或指定不转换），则[规范化方法](https://www.w3.org/TR/2001/REC-xml-c14n-20010315)用作隐式转换 (即使在指定了不同的算法 <`CanonicalizationMethod`> 元素)。  
+   - 如果以字节为单位未定义的最后一个转换算法的输出 （或指定不转换），则[规范化方法](https://www.w3.org/TR/2001/REC-xml-c14n-20010315)用作隐式转换 (即使中指定了不同的算法`<CanonicalizationMethod>`元素)。  
   
--   值为http://www.w3.org/2000/09/xmldsig#enveloped-signature转换算法进行编码的规则将被解释为删除 <`Signature`> 从文档元素。 否则为被包封签名的验证程序将摘要式文档，包括签名，但签名人会有融会贯通文档之前应用签名，从而导致不同的答案。  
-  
- <`DigestMethod`> 元素  
- 标识要在转换后的内容由标识应用的摘要 （加密哈希） 方法`URI`属性的 <`Reference`> 元素。 这由<xref:System.Security.Cryptography.Xml.Reference.DigestMethod%2A?displayProperty=nameWithType>属性。  
+   - 值为<http://www.w3.org/2000/09/xmldsig#enveloped-signature>转换算法进行编码的规则将被解释为删除`<Signature>`从文档元素。 否则为被包封签名的验证程序将摘要式文档，包括签名，但签名人会有融会贯通文档之前应用签名，从而导致不同的答案。  
+
+- `<DigestMethod>` 元素
+ 
+   标识要在转换后的内容由标识应用的摘要 （加密哈希） 方法`URI`属性的`<Reference>`元素。 这由<xref:System.Security.Cryptography.Xml.Reference.DigestMethod%2A?displayProperty=nameWithType>属性。  
   
 ## <a name="choosing-a-canonicalization-method"></a>选择规范化方法  
- 除非需要使用不同的值的规范与进行互操作，否则我们建议你这是 XML C14N 1.0 算法，其值是在.NET Framework 中使用默认的规范化方法https://www.w3.org/TR/2001/REC-xml-c14n-20010315。 XML C14N 1.0 算法需要支持的所有实现的 XMLDSIG，特别是因为它是隐式的最后一个转换以将应用。  
+ 除非需要使用不同的值的规范与进行互操作，否则我们建议使用默认.NET 规范化方法，这是 XML C14N 1.0 算法，其值是<http://www.w3.org/TR/2001/REC-xml-c14n-20010315>。 XML C14N 1.0 算法需要支持的所有实现的 XMLDSIG，特别是因为它是隐式的最后一个转换以将应用。  
   
- 有版本支持保留注释规范化算法。 不建议保留注释的规范化方法，因为他们违反"签名所看到的内容"原则。 也就是说中的注释 <`Signature`> 有关如何执行签名，元素不会更改处理逻辑，只是哪些签名值。 与弱签名算法，从而为包含的提供的注释允许攻击者不必要可以自由地强制执行哈希冲突，结合使用时进行篡改的文档显示合法。  在.NET Framework 中，默认情况下支持仅内置 canonicalizers。 若要支持其他或自定义 canonicalizers，请参阅<xref:System.Security.Cryptography.Xml.SignedXml.SafeCanonicalizationMethods%2A>属性。 如果文档是否使用不是由表示集合中的规范化方法<xref:System.Security.Cryptography.Xml.SignedXml.SafeCanonicalizationMethods%2A>属性，则<xref:System.Security.Cryptography.Xml.SignedXml.CheckSignature%2A>方法将返回`false`。  
+ 有版本支持保留注释规范化算法。 不建议保留注释的规范化方法，因为他们违反"签名所看到的内容"原则。 也就是说中的注释`<Signature>`元素不会更改处理逻辑的签名的执行方式，只是哪些签名值。 与弱签名算法，从而为包含的提供的注释允许攻击者不必要可以自由地强制执行哈希冲突，结合使用时进行篡改的文档显示合法。  在.NET Framework 中，默认情况下支持仅内置 canonicalizers。 若要支持其他或自定义 canonicalizers，请参阅<xref:System.Security.Cryptography.Xml.SignedXml.SafeCanonicalizationMethods%2A>属性。 如果文档是否使用不是由表示集合中的规范化方法<xref:System.Security.Cryptography.Xml.SignedXml.SafeCanonicalizationMethods%2A>属性，则<xref:System.Security.Cryptography.Xml.SignedXml.CheckSignature%2A>方法将返回`false`。  
   
 > [!NOTE]
 >  极防御性的应用程序可以删除不需要签名者中要使用的任何值<xref:System.Security.Cryptography.Xml.SignedXml.SafeCanonicalizationMethods%2A>集合。  
   
 ## <a name="are-the-reference-values-safe-from-tampering"></a>是引用值被篡改安全？  
- 是的 <`Reference`> 的值为篡改。  .NET framework 验证 <`SignatureValue`> 之前处理的任何计算 <`Reference`> 值和其关联转换，并将提前中止以避免潜在的恶意的处理指令。  
+ 是的`<Reference>`值是安全被篡改。 .NET 验证`<SignatureValue>`计算之前处理的任何`<Reference>`值和其关联转换，并将提前中止以避免潜在的恶意的处理指令。  
   
 ## <a name="choosing-the-elements-to-sign"></a>选择要签名的元素  
  我们建议你使用的值""对于`URI`属性 (或设置<xref:System.Security.Cryptography.Xml.Reference.Uri%2A>属性为空字符串)，在可能的情况。 这意味着整个文档视为摘要计算，这意味着整个文档保护不被篡改。  
@@ -120,20 +125,20 @@
  如果您需要接受仅部分受保护的文档，并且你想要确保您阅读的内容相同的受保护的签名，请使用<xref:System.Security.Cryptography.Xml.SignedXml.GetIdElement%2A>方法。  
   
 ## <a name="security-considerations-about-the-keyinfo-element"></a>有关 KeyInfo 元素的安全注意事项  
- 在可选数据 <`KeyInfo`> 元素 (即，<xref:System.Security.Cryptography.Xml.SignedXml.KeyInfo%2A>属性)，其中包含的密钥来验证签名，不应为受信任。  
+ 在可选的数据`<KeyInfo>`元素 (即，<xref:System.Security.Cryptography.Xml.SignedXml.KeyInfo%2A>属性)，其中包含的密钥来验证签名，不应为受信任。  
   
  特别地，当<xref:System.Security.Cryptography.Xml.SignedXml.KeyInfo%2A>值表示裸机 RSA、 DSA 或 ECDSA 公钥，该文档可能已被篡改，尽管<xref:System.Security.Cryptography.Xml.SignedXml.CheckSignature%2A>报告该签名有效的方法。  这可能是因为执行被篡改的只该实体必须生成新密钥并使用该新密钥重新签名被篡改的文档。 因此，除非你的应用程序验证的公钥为预期值，就像它已篡改应被视为文档。 这需要你的应用程序检查文档中嵌入的公钥，并验证其与文档上下文的已知值的列表。 例如，如果文档无法理解颁发者已知用户，会检查针对的用户所使用的已知键列表的键。  
   
  你还可以使用来处理该文档后验证密钥<xref:System.Security.Cryptography.Xml.SignedXml.CheckSignatureReturningKey%2A>方法，而不是使用<xref:System.Security.Cryptography.Xml.SignedXml.CheckSignature%2A>方法。 但是，为获得最佳安全性，您应验证的密钥事先。  
   
- 或者，请考虑尝试用户的注册公共密钥，而不是读取中的 <`KeyInfo`> 元素。  
+ 或者，请考虑尝试用户的注册公共密钥，而不是读取新增`<KeyInfo>`元素。  
   
 ## <a name="security-considerations-about-the-x509data-element"></a>有关 X509Data 元素的安全注意事项  
- 可选 <`X509Data`> 元素是子元素的 <`KeyInfo`> 元素且包含一个或多个 X509 证书或标识符的 X509 证书。 中的数据 <`X509Data`> 元素也不应继承方式受到信任。  
+ 可选`<X509Data>`元素是子元素的`<KeyInfo>`元素且包含一个或多个 X509 证书或标识符的 X509 证书。 中的数据`<X509Data>`元素也不应继承方式受到信任。  
   
- 验证具有嵌入的文档时 <`X509Data`> 元素中，.NET Framework 仅验证数据解析为 X509 证书可以成功使用其公钥来验证文档签名。 与调用不同<xref:System.Security.Cryptography.Xml.SignedXml.CheckSignature%2A>方法替换`verifySignatureOnly`参数设置为`false`、 执行不进行吊销检查、 检查没有链信任关系，和验证不会过期。 即使你的应用程序提取证书本身，并将其传递给<xref:System.Security.Cryptography.Xml.SignedXml.CheckSignature%2A>方法替换`verifySignatureOnly`参数设置为`false`，它仍不充分的验证，以防止文档被篡改。 仍需要为适用于正被签名的文档验证该证书。  
+ 验证具有嵌入的文档时`<X509Data>`元素中，.NET 仅验证数据解析为 X509 证书可以成功使用其公钥来验证文档签名。 与调用不同<xref:System.Security.Cryptography.Xml.SignedXml.CheckSignature%2A>方法替换`verifySignatureOnly`参数设置为`false`、 执行不进行吊销检查、 检查没有链信任关系，和验证不会过期。 即使你的应用程序提取证书本身，并将其传递给<xref:System.Security.Cryptography.Xml.SignedXml.CheckSignature%2A>方法替换`verifySignatureOnly`参数设置为`false`，它仍不充分的验证，以防止文档被篡改。 仍需要为适用于正被签名的文档验证该证书。  
   
- 使用嵌入的签名证书可以是否提供有用的密钥轮换策略，在 <`X509Data`> 部分或在文档内容中。 使用此方法时应用程序应手动提取证书，并执行验证类似于：  
+ 使用嵌入的签名证书可以是否提供有用的密钥轮换策略，在`<X509Data>`部分或在文档内容中。 使用此方法时应用程序应手动提取证书，并执行验证类似于：  
   
 -   证书已颁发直接或通过链由证书颁发机构 (CA) 的公共证书嵌入到应用程序。  
   
@@ -146,9 +151,9 @@
 -   证书使用者验证为适用于当前文档中。  
   
 ## <a name="choosing-the-transform-algorithm"></a>选择转换算法  
- 如果进行互操作使用的具有指定特定值 （如 XrML) 规范，然后您需要遵循规范。  如果必须被包封的签名 (例如，当对整个文档的签名)，则需要使用http://www.w3.org/2000/09/xmldsig#enveloped-signature(由<xref:System.Security.Cryptography.Xml.XmlDsigEnvelopedSignatureTransform>类)。 您可以指定隐式的 XML C14N 转换，但不需要。  对于在封装或已分离签名，没有转换是必需的。 隐式的 XML C14N 转换负责的所有内容。  
+ 如果进行互操作使用的具有指定特定值 （如 XrML) 规范，然后您需要遵循规范。 如果必须被包封的签名 (例如，当对整个文档的签名)，则需要使用<http://www.w3.org/2000/09/xmldsig#enveloped-signature>(由<xref:System.Security.Cryptography.Xml.XmlDsigEnvelopedSignatureTransform>类)。 您可以指定隐式的 XML C14N 转换，但不需要。  对于在封装或已分离签名，没有转换是必需的。 隐式的 XML C14N 转换负责的所有内容。  
   
- 与安全更新引起[Microsoft 安全公告 MS16-035](https://docs.microsoft.com/security-updates/securitybulletins/2016/ms16-035)，.NET Framework 具有受限制的转换可以是在文档验证中使用默认情况下，使用不受信任的转换导致<xref:System.Security.Cryptography.Xml.SignedXml.CheckSignature%2A>始终返回`false`。 具体而言，这需要额外的输入 （指定为 XML 中的子元素） 的转换，不再允许使用由于其滥用的可能性被恶意用户。 W3C 建议避免 XPath 和 XSLT 转换，都受到这些限制的两个主要转换。  
+ 与安全更新引起[Microsoft 安全公告 MS16-035](https://docs.microsoft.com/security-updates/securitybulletins/2016/ms16-035)，.NET 已限制转换可以是在文档验证中使用默认情况下，使用不受信任的转换导致<xref:System.Security.Cryptography.Xml.SignedXml.CheckSignature%2A>始终返回`false`。 具体而言，这需要额外的输入 （指定为 XML 中的子元素） 的转换，不再允许使用由于其滥用的可能性被恶意用户。 W3C 建议避免 XPath 和 XSLT 转换，都受到这些限制的两个主要转换。  
   
 ## <a name="the-problem-with-external-references"></a>使用外部引用问题  
  如果应用程序不会验证外部引用都不适合于当前上下文，它们可能会被滥用中提供的很多安全漏洞 （包括拒绝的服务，反射的分布式拒绝服务，信息的方式泄露、 签名跳过和远程执行代码）。 即使应用程序来验证外部引用 URI，仍两次加载资源的问题： 一旦您的应用程序时读取它，并后时<xref:System.Security.Cryptography.Xml.SignedXml>读取它。 由于没有应用程序读取和文档验证步骤具有相同的内容不能保证，签名不提供可信赖性。  
@@ -350,7 +355,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Cryptography.Xml.SignedXml.AddObject%2A>方法将添加 <`Object`> 表示的对象到要签名的元素 <`Signature`> 元素的 XML 数字签名。  
+ <xref:System.Security.Cryptography.Xml.SignedXml.AddObject%2A>方法将添加`<Object>`表示的对象到要签名的元素`<Signature>`元素的 XML 数字签名。  
   
  <xref:System.Security.Cryptography.Xml.SignedXml.AddObject%2A>方法在内部调用<xref:System.Security.Cryptography.Xml.Signature.AddObject%2A>方法<xref:System.Security.Cryptography.Xml.Signature>对象由封装<xref:System.Security.Cryptography.Xml.SignedXml>对象。  您还可以添加<xref:System.Security.Cryptography.Xml.DataObject>通过直接调用的对象<xref:System.Security.Cryptography.Xml.Signature.AddObject%2A>方法从<xref:System.Security.Cryptography.Xml.SignedXml.Signature%2A>属性。  
   
@@ -401,7 +406,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Cryptography.Xml.SignedXml.AddReference%2A>方法将添加 <`Reference`> 元素<xref:System.Security.Cryptography.Xml.SignedXml>介绍摘要方法、 摘要值和转换要用于创建 XML 数字签名的对象。  <`Reference`> 元素是子元素的 <`SignedInfo`> 元素。  
+ <xref:System.Security.Cryptography.Xml.SignedXml.AddReference%2A>方法将添加`<Reference>`元素<xref:System.Security.Cryptography.Xml.SignedXml>介绍摘要方法、 摘要值和转换要用于创建 XML 数字签名的对象。  `<Reference>`元素是子元素的`<SignedInfo>`元素。  
   
  <xref:System.Security.Cryptography.Xml.SignedXml.AddReference%2A>方法在内部调用<xref:System.Security.Cryptography.Xml.SignedInfo.AddReference%2A>方法<xref:System.Security.Cryptography.Xml.SignedInfo>对象由封装<xref:System.Security.Cryptography.Xml.SignedXml>对象。  您还可以添加<xref:System.Security.Cryptography.Xml.Reference>通过直接调用的对象<xref:System.Security.Cryptography.Xml.SignedInfo.AddReference%2A>方法从<xref:System.Security.Cryptography.Xml.SignedXml.SignedInfo%2A>属性。  
   
@@ -1051,7 +1056,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Cryptography.Xml.SignedXml.KeyInfo%2A>属性表示 <`KeyInfo`> 元素的 XML 数字签名使用<xref:System.Security.Cryptography.Xml.KeyInfo>属性中包含的对象。  <`KeyInfo`> 元素是子元素的 <`Signature`> 元素。  
+ <xref:System.Security.Cryptography.Xml.SignedXml.KeyInfo%2A>属性表示`<KeyInfo>`元素的 XML 数字签名使用<xref:System.Security.Cryptography.Xml.KeyInfo>属性中包含的对象。  `<KeyInfo>`元素是子元素的`<Signature>`元素。  
   
  使用<xref:System.Security.Cryptography.Xml.SignedXml.KeyInfo%2A>属性嵌入密钥相关的信息专门用于帮助标识所必需的验证 XML 文档密钥。  
   
@@ -1285,7 +1290,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Cryptography.Xml.SignedXml.Signature%2A>属性表示 <`Signature`> 元素的 XML 数字签名使用<xref:System.Security.Cryptography.Xml.Signature>属性中包含的对象。  <`Signature`> 元素是用于创建 XML 数字签名和验证的根元素。  
+ <xref:System.Security.Cryptography.Xml.SignedXml.Signature%2A>属性表示`<Signature>`元素的 XML 数字签名使用<xref:System.Security.Cryptography.Xml.Signature>属性中包含的对象。  `<Signature>`元素是用于创建 XML 数字签名和验证的根元素。  
   
  使用<xref:System.Security.Cryptography.Xml.SignedXml.Signature%2A>属性来检索<xref:System.Security.Cryptography.Xml.Signature>对象，由<xref:System.Security.Cryptography.Xml.SignedXml>对象。  
   
@@ -1409,9 +1414,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Cryptography.Xml.SignedXml.SignatureMethod%2A>属性表示 <`SignatureMethod`> 使用统一资源标识符 (URI) 字符串属性中包含的 XML 数字签名的元素。 <`SignatureMethod`> 元素是子元素的 <`SignedInfo`> 元素。  
+ <xref:System.Security.Cryptography.Xml.SignedXml.SignatureMethod%2A>属性表示`<SignatureMethod>`使用统一资源标识符 (URI) 字符串属性中包含的 XML 数字签名的元素。 `<SignatureMethod>`元素是子元素的`<SignedInfo>`元素。  
   
- 使用<xref:System.Security.Cryptography.Xml.SignedXml.SignatureMethod%2A>属性检索 <`SignatureMethod`> 使用 URI<xref:System.Security.Cryptography.Xml.SignedXml>对象。 此属性为只读属性。 有关以编程方式指定的 URI 的详细信息 <`SignatureMethod`> 元素，请参阅<xref:System.Security.Cryptography.Xml.SignedInfo.SignatureMethod%2A>属性。  
+ 使用<xref:System.Security.Cryptography.Xml.SignedXml.SignatureMethod%2A>属性来检索`<SignatureMethod>`使用 URI<xref:System.Security.Cryptography.Xml.SignedXml>对象。 此属性为只读属性。 有关以编程方式指定的 URI 的详细信息`<SignatureMethod>`元素，请参阅<xref:System.Security.Cryptography.Xml.SignedInfo.SignatureMethod%2A>属性。  
   
  有关详细信息`<SignatureMethod>`元素，请参阅[XMLDSIG 规范](https://www.w3.org/TR/xmldsig-core/)。  
   
@@ -1449,7 +1454,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Cryptography.Xml.SignedXml.SignatureValue%2A>属性表示 <`SignatureValue`> 元素的 XML 数字签名使用该属性中所包含的字节数组。  <`SignatureValue`> 元素是子元素的 <`Signature>`元素。  
+ <xref:System.Security.Cryptography.Xml.SignedXml.SignatureValue%2A>属性表示`<SignatureValue>`XML 数字签名使用该属性中所包含的字节数组的元素。  `<SignatureValue>`元素是子元素的`<Signature>`元素。  
   
  使用<xref:System.Security.Cryptography.Xml.SignedXml.SignatureValue%2A>属性来检索 XML 数字签名的值。  请在成功调用时，将自动填充此属性<xref:System.Security.Cryptography.Xml.SignedXml.ComputeSignature%2A>方法。  
   
@@ -1489,7 +1494,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Cryptography.Xml.SignedXml.SignedInfo%2A>属性表示 <`SignedInfo`> 元素的 XML 数字签名使用该属性中所包含的字节数组。  <`SignedInfo`> 元素是子元素的 <`Signature>`元素。  
+ <xref:System.Security.Cryptography.Xml.SignedXml.SignedInfo%2A>属性表示`<SignedInfo>`XML 数字签名使用该属性中所包含的字节数组的元素。  `<SignedInfo>`元素是子元素的`<Signature>`元素。  
   
  使用<xref:System.Security.Cryptography.Xml.SignedXml.SignedInfo%2A>属性来检索<xref:System.Security.Cryptography.Xml.SignedInfo>对象，它由<xref:System.Security.Cryptography.Xml.SignedXml>对象来创建 XML 数字签名。  
   
@@ -1613,11 +1618,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDecryptionTransformUrl>字段是"http://www.w3.org/2002/07/decrypt#XML"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDecryptionTransformUrl>字段是<http://www.w3.org/2002/07/decrypt#XML>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
- 有关详细信息，请参阅 World Wide Web 联合会 (W3C) 规范在http://www.w3.org/2002/07/decrypt#XML。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 规范](https://www.w3.org/2002/07/decrypt#XML)。  
   
  ]]></format>
         </remarks>
@@ -1651,13 +1656,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigBase64TransformUrl>字段是"http://www.w3.org/2000/09/xmldsig#base64"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigBase64TransformUrl>字段是<http://www.w3.org/2000/09/xmldsig#base64>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
  <xref:System.Security.Cryptography.Xml.XmlDsigBase64Transform>类实现所描述的转换<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigBase64TransformUrl>字段。  
   
- 有关详细信息，请参阅 World Wide Web 联合会 (W3C) 规范在http://www.w3.org/2000/09/xmldsig#base64。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 架构](https://www.w3.org/2000/09/xmldsig#base64)。  
   
    
   
@@ -1700,7 +1705,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigC14NTransformUrl>字段是`http://www.w3.org/TR/2001/REC-xml-c14n-20010315`。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigC14NTransformUrl>字段是<http://www.w3.org/TR/2001/REC-xml-c14n-20010315>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
@@ -1751,7 +1756,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigC14NWithCommentsTransformUrl>字段是`http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments`。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigC14NWithCommentsTransformUrl>字段是<http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
@@ -1794,7 +1799,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigCanonicalizationUrl>字段是`http://www.w3.org/TR/2001/REC-xml-c14n-20010315`。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigCanonicalizationUrl>字段是<http://www.w3.org/TR/2001/REC-xml-c14n-20010315>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
@@ -1837,7 +1842,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigCanonicalizationWithCommentsUrl>字段是`http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments`。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigCanonicalizationWithCommentsUrl>字段是<http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
@@ -1880,11 +1885,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigDSAUrl>字段是"http://www.w3.org/2000/09/xmldsig#dsa-sha1"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigDSAUrl>字段是<http://www.w3.org/2000/09/xmldsig#dsa-sha1>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
- 有关详细信息，请参阅 World Wide Web 联合会 (W3C) 规范在http://www.w3.org/2000/09/xmldsig#dsa-sha1。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 架构](https://www.w3.org/2000/09/xmldsig#dsa-sha1)。  
   
  ]]></format>
         </remarks>
@@ -1918,13 +1923,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigEnvelopedSignatureTransformUrl>字段是"http://www.w3.org/2000/09/xmldsig#enveloped-signature"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigEnvelopedSignatureTransformUrl>字段是<http://www.w3.org/2000/09/xmldsig#enveloped-signature>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
  <xref:System.Security.Cryptography.Xml.XmlDsigEnvelopedSignatureTransform>类实现所描述的转换<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigEnvelopedSignatureTransformUrl>字段。  
   
- 有关详细信息，请参阅 World Wide Web 联合会 (W3C) 规范在http://www.w3.org/2000/09/xmldsig#enveloped-signature。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 架构](https://www.w3.org/2000/09/xmldsig#enveloped-signature)。  
   
    
   
@@ -1967,13 +1972,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigExcC14NTransformUrl>字段是"http://www.w3.org/2001/10/xml-exc-c14n#"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigExcC14NTransformUrl>字段是<http://www.w3.org/2001/10/xml-exc-c14n#>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
  <xref:System.Security.Cryptography.Xml.XmlDsigExcC14NTransform>类实现所描述的转换<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigExcC14NTransformUrl>字段。  
   
- 有关详细信息，请参阅 World Wide Web 联合会 (W3C) 规范在http://www.w3.org/2001/10/xml-exc-c14n#。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 规范](https://www.w3.org/2001/10/xml-exc-c14n)。  
   
    
   
@@ -2016,13 +2021,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigExcC14NWithCommentsTransformUrl>字段是"http://www.w3.org/2001/10/xml-exc-c14n#WithComments"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigExcC14NWithCommentsTransformUrl>字段是<http://www.w3.org/2001/10/xml-exc-c14n#WithComments>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
  <xref:System.Security.Cryptography.Xml.XmlDsigExcC14NWithCommentsTransform>类实现所描述的转换<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigExcC14NWithCommentsTransformUrl>字段。  
   
- 有关详细信息，请参阅 World Wide Web 联合会 (W3C) 规范在http://www.w3.org/2001/10/xml-exc-c14n#WithComments。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 规范](https://www.w3.org/2001/10/xml-exc-c14n#WithComments)。  
   
    
   
@@ -2066,11 +2071,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigHMACSHA1Url>字段是"http://www.w3.org/2000/09/xmldsig#hmac-sha1"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigHMACSHA1Url>字段是<http://www.w3.org/2000/09/xmldsig#hmac-sha1>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
- 有关详细信息，请参阅 World Wide Web 联合会 (W3C) 规范在http://www.w3.org/2000/09/xmldsig#hmac-sha1。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 规范](https://www.w3.org/2000/09/xmldsig#hmac-sha1)。  
   
  ]]></format>
         </remarks>
@@ -2105,11 +2110,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigMinimalCanonicalizationUrl>字段是"http://www.w3.org/2000/09/xmldsig#minimal"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigMinimalCanonicalizationUrl>字段是<http://www.w3.org/2000/09/xmldsig#minimal>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
- 有关详细信息，请参阅 World Wide Web 联合会 (W3C) 规范在http://www.w3.org/2000/09/xmldsig#minimal。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 规范](https://www.w3.org/2000/09/xmldsig#minimal)。  
   
  ]]></format>
         </remarks>
@@ -2144,11 +2149,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigNamespaceUrl>字段是"http://www.w3.org/2000/09/xmldsig#"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigNamespaceUrl>字段是<http://www.w3.org/2000/09/xmldsig#>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
- 有关详细信息，请参阅 World Wide Web 联合会 (W3C) 规范在http://www.w3.org/2000/09/xmldsig#。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 架构](https://www.w3.org/2000/09/xmldsig)。  
   
  ]]></format>
         </remarks>
@@ -2183,11 +2188,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigRSASHA1Url>字段是"http://www.w3.org/2000/09/xmldsig#rsa-sha1"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigRSASHA1Url>字段是<http://www.w3.org/2000/09/xmldsig#rsa-sha1>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
- 有关详细信息，请参阅 World Wide Web 联合会 (W3C) 规范在http://www.w3.org/2000/09/xmldsig#rsa-sha1。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 架构](https://www.w3.org/2000/09/xmldsig#rsa-sha1)。  
   
  ]]></format>
         </remarks>
@@ -2218,11 +2223,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigRSASHA256Url>字段是"http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigRSASHA256Url>字段是<http://www.w3.org/2001/04/xmldsig-more#rsa-sha256>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
- 有关详细信息，请参阅在 World Wide Web 联合会 (W3C) 规范[ https://www.w3.org/2001/04/xmldsig-more#rsa-sha256 ](https://www.w3.org/2001/04/xmldsig-more#rsa-sha256)。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 规范](https://www.w3.org/2001/04/xmldsig-more#rsa-sha256)。  
   
  ]]></format>
         </remarks>
@@ -2253,11 +2258,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigRSASHA384Url>字段是"http://www.w3.org/2001/04/xmldsig-more#rsa-sha384"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigRSASHA384Url>字段是<http://www.w3.org/2001/04/xmldsig-more#rsa-sha384>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
- 有关详细信息，请参阅在 World Wide Web 联合会 (W3C) 规范[ https://www.w3.org/2001/04/xmldsig-more#rsa-sha384 ](https://www.w3.org/2001/04/xmldsig-more#rsa-sha384)。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 规范](https://www.w3.org/2001/04/xmldsig-more#rsa-sha384)。  
   
  ]]></format>
         </remarks>
@@ -2288,11 +2293,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigRSASHA512Url>字段是"http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigRSASHA512Url>字段是<http://www.w3.org/2001/04/xmldsig-more#rsa-sha512>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
- 有关详细信息，请参阅在 World Wide Web 联合会 (W3C) 规范[ https://www.w3.org/2001/04/xmldsig-more#rsa-sha512 ](https://www.w3.org/2001/04/xmldsig-more#rsa-sha512)。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 规范](https://www.w3.org/2001/04/xmldsig-more#rsa-sha512)。  
   
  ]]></format>
         </remarks>
@@ -2327,11 +2332,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigSHA1Url>字段是"http://www.w3.org/2000/09/xmldsig#sha1"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigSHA1Url>字段是<http://www.w3.org/2000/09/xmldsig#sha1>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
- 有关详细信息，请参阅 World Wide Web 联合会 (W3C) 规范在http://www.w3.org/2000/09/xmldsig#sha1。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 架构](https://www.w3.org/2000/09/xmldsig#sha1)。  
   
  ]]></format>
         </remarks>
@@ -2362,11 +2367,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigSHA256Url>字段是"http://www.w3.org/2001/04/xmlenc#sha256"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigSHA256Url>字段是<http://www.w3.org/2001/04/xmlenc#sha256>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
- 有关详细信息，请参阅在 World Wide Web 联合会 (W3C) 规范[ http://www.w3.org/2001/04/xmlenc#sha256 ](https://www.w3.org/2001/04/xmlenc#sha256)。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 规范](https://www.w3.org/2001/04/xmlenc#sha256)。  
   
  ]]></format>
         </remarks>
@@ -2397,11 +2402,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigSHA384Url>字段是"http://www.w3.org/2001/04/xmldsig-more#sha384"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigSHA384Url>字段是<http://www.w3.org/2001/04/xmldsig-more#sha384>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
- 有关详细信息，请参阅在 World Wide Web 联合会 (W3C) 规范[ https://www.w3.org/2001/04/xmldsig-more#sha384 ](https://www.w3.org/2001/04/xmldsig-more#sha384)。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 规范](https://www.w3.org/2001/04/xmldsig-more#sha384)。  
   
  ]]></format>
         </remarks>
@@ -2432,11 +2437,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigSHA512Url>字段是"http://www.w3.org/2001/04/xmlenc#sha512"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigSHA512Url>字段是<http://www.w3.org/2001/04/xmlenc#sha512>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
- 有关详细信息，请参阅在 World Wide Web 联合会 (W3C) 规范[ http://www.w3.org/2001/04/xmlenc#sha512 ](https://www.w3.org/2001/04/xmlenc#sha512)。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 规范](https://www.w3.org/2001/04/xmlenc#sha512)。  
   
  ]]></format>
         </remarks>
@@ -2470,13 +2475,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigXPathTransformUrl>字段是"http://www.w3.org/TR/1999/REC-xpath-19991116"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigXPathTransformUrl>字段是<http://www.w3.org/TR/1999/REC-xpath-19991116>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
  <xref:System.Security.Cryptography.Xml.XmlDsigXPathTransform>类实现所描述的转换<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigXPathTransformUrl>字段。  
   
- 有关详细信息，请参阅 World Wide Web 联合会 (W3C) 规范在http://www.w3.org/TR/1999/REC-xpath-19991116。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 规范](https://www.w3.org/TR/1999/REC-xpath-19991116)。  
   
    
   
@@ -2518,13 +2523,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigXsltTransformUrl>字段是"http://www.w3.org/TR/1999/REC-xslt-19991116"。  
+ 值<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigXsltTransformUrl>字段是<http://www.w3.org/TR/1999/REC-xslt-19991116>。  
   
  使用此字段来方便地提供到使用 XMLDSIG 的元素的 URI 属性之一的值。  
   
  <xref:System.Security.Cryptography.Xml.XmlDsigXsltTransform>类实现所描述的转换<xref:System.Security.Cryptography.Xml.SignedXml.XmlDsigXsltTransformUrl>字段。  
   
- 有关详细信息，请参阅 World Wide Web 联合会 (W3C) 规范在http://www.w3.org/TR/1999/REC-xslt-19991116。  
+ 有关详细信息，请参阅[World Wide Web 联合会 (W3C) 规范](https://www.w3.org/TR/1999/REC-xslt-19991116)。  
   
    
   
