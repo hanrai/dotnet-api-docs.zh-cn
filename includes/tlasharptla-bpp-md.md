@@ -1,1 +1,9 @@
-<span data-ttu-id="b0770-101">每像素位数 (BPP)</span><span class="sxs-lookup"><span data-stu-id="b0770-101">bits per pixel (BPP)</span></span>
+---
+ms.openlocfilehash: bc3011d632e27fc2488937ffa2daf5805c563eaf
+ms.sourcegitcommit: 1bb00d2f4343e73ae8d58668f02297a3cf10a4c1
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 06/15/2019
+ms.locfileid: "63869811"
+---
+<span data-ttu-id="617d3-101">每像素位数 (BPP)</span><span class="sxs-lookup"><span data-stu-id="617d3-101">bits per pixel (BPP)</span></span>

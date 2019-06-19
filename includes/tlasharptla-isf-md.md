@@ -1,1 +1,9 @@
-<span data-ttu-id="b3e4f-101">墨迹序列化格式 (ISF)</span><span class="sxs-lookup"><span data-stu-id="b3e4f-101">Ink Serialized Format (ISF)</span></span>
+---
+ms.openlocfilehash: 125514dc35c426a30c72f59b04d6b60b4fe2d886
+ms.sourcegitcommit: 1bb00d2f4343e73ae8d58668f02297a3cf10a4c1
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 06/15/2019
+ms.locfileid: "63878599"
+---
+<span data-ttu-id="cbe29-101">墨迹序列化格式 (ISF)</span><span class="sxs-lookup"><span data-stu-id="cbe29-101">Ink Serialized Format (ISF)</span></span>
