@@ -1,5 +1,5 @@
 <Type Name="StandardFormat" FullName="System.Buffers.StandardFormat">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="da90a2f655d10e22abd15a633053ef76e35217e6" /><Meta Name="ms.sourcegitcommit" Value="434f60616a9793fa8436744549fc856e94f7a648" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/25/2018" /><Meta Name="ms.locfileid" Value="39840208" /></Metadata><TypeSignature Language="C#" Value="public struct StandardFormat : IEquatable&lt;System.Buffers.StandardFormat&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8b64a1e722ed439af9169929498c79cbf785c38c" /><Meta Name="ms.sourcegitcommit" Value="6b9d64332f31de312efea785fbb19e4d80f544d5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/12/2019" /><Meta Name="ms.locfileid" Value="67026510" /></Metadata><TypeSignature Language="C#" Value="public struct StandardFormat : IEquatable&lt;System.Buffers.StandardFormat&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit StandardFormat extends System.ValueType implements class System.IEquatable`1&lt;valuetype System.Buffers.StandardFormat&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Buffers.StandardFormat" />
   <TypeSignature Language="VB.NET" Value="Public Structure StandardFormat&#xA;Implements IEquatable(Of StandardFormat)" />
@@ -9,6 +9,11 @@
     <AssemblyName>System.Memory</AssemblyName>
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
+    <AssemblyVersion>4.2.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <AssemblyInfo>
+    <AssemblyName>netstandard</AssemblyName>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.ValueType</BaseTypeName>
@@ -19,13 +24,19 @@
     </Interface>
   </Interfaces>
   <Attributes>
-    <Attribute FrameworkAlternate="netcore-2.1">
+    <Attribute FrameworkAlternate="netcore-3.0;netcore-2.1;netcore-2.2;netstandard-2.1">
       <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>表示不使用实际字符串的标准格式字符串。</summary>
+    <remarks> 
+      <format type="text/markdown"><![CDATA[  
+
+一个`StandardFormat`对象包含的单个字符标准格式说明符 (如 G，将，或 X) 和可选的精度说明符。 精度说明符的范围可以介于 0 到 9，也可以是这两个特殊<xref:System.Buffers.StandardFormat.NoPrecision?displayProperty=nameWithType>值。
+
+   ]]></format>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -39,18 +50,50 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="symbol" Type="System.Char" />
         <Parameter Name="precision" Type="System.Byte" />
       </Parameters>
       <Docs>
-        <param name="symbol">To be added.</param>
-        <param name="precision">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="symbol">类型特定的格式说明符，如 G、D 或 X。</param>
+        <param name="precision">可选的精度范围从 0 到 99，或者特殊值 <see cref="F:System.Buffers.StandardFormat.NoPrecision" />（默认值）。</param>
+        <summary>初始化 <see cref="T:System.Buffers.StandardFormat" /> 结构的新实例。</summary>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="symbol" /> 不为 <see cref="F:System.Buffers.StandardFormat.NoPrecision" />，并且其值大于 <see cref="F:System.Buffers.StandardFormat.MaxPrecision" />。
+
+- 或 -
+
+<paramref name="symbol" />无法转换为 <see cref="T:System.Byte" />。</exception>
       </Docs>
     </Member>
+    <MemberGroup MemberName="Equals">
+      <AssemblyInfo>
+        <AssemblyName>System.Memory</AssemblyName>
+        <AssemblyVersion>4.0.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Docs>
+        <summary>返回一个值，该值指示此实例是否与指定的对象或 <see cref="T:System.Buffers.StandardFormat" /> 相等。</summary>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+两个<xref:System.Buffers.StandardFormat>实例相等，如果他们<xref:System.Buffers.StandardFormat.Symbol>和<xref:System.Buffers.StandardFormat.Precision>属性相等。
+
+         ]]></format>
+         </remarks>
+      </Docs>
+    </MemberGroup>
     <Member MemberName="Equals">
       <MemberSignature Language="C#" Value="public bool Equals (System.Buffers.StandardFormat other);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool Equals(valuetype System.Buffers.StandardFormat other) cil managed" />
@@ -66,6 +109,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -75,8 +123,8 @@
       </Parameters>
       <Docs>
         <param name="other">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>返回一个值，该值指示指定的 <see cref="T:System.Buffers.StandardFormat" /> 是否与当前实例相等。</summary>
+        <returns>如果两个实例相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -92,6 +140,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -100,10 +153,10 @@
         <Parameter Name="obj" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="obj">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="obj">要与当前实例进行比较的对象。</param>
+        <summary>返回一个值，该值指示指定的对象是否是与当前对象相等的 <see cref="T:System.Buffers.StandardFormat" /> 对象。</summary>
+        <returns>如果两个实例相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+       <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="GetHashCode">
@@ -118,14 +171,19 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>返回此实例的哈希代码。</summary>
+        <returns>此实例的哈希代码。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -141,13 +199,18 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取一个值，该值指示格式是否已定义精度。</summary>
+        <value><see langword="true" /> 如果格式而不具有精度<see cref="F:System.Buffers.StandardFormat.NoPrecision" />; 否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -163,14 +226,25 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取一个值，该值指示当前实例是否是默认格式。</summary>
+        <value><see langword="true" /> 如果当前实例是默认格式;否则为<see langword="false" />。</value>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+默认格式的格式说明符其<xref:System.Byte>值为 0 和其精度<xref:System.Buffers.StandardFormat.NoPrecision>。
+
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="MaxPrecision">
@@ -185,14 +259,19 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Byte</ReturnType>
       </ReturnValue>
       <MemberValue>99</MemberValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>定义最大的有效精度值。</summary>
+        <remarks>有效的最大精度为 99。</remarks>
       </Docs>
     </Member>
     <Member MemberName="NoPrecision">
@@ -207,13 +286,18 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Byte</ReturnType>
       </ReturnValue>
       <MemberValue>255</MemberValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>指示某个格式不使用精度或未指定精度。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -229,6 +313,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -238,11 +327,17 @@
         <Parameter Name="right" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="left">To be added.</param>
-        <param name="right">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="left">要比较的第一个格式。</param>
+        <param name="right">要比较的第二个格式。</param>
+        <summary>返回一个值，该值指示两个 <see cref="T:System.Buffers.StandardFormat" /> 实例是否相等。</summary>
+        <returns>如果两个实例相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+       <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+两个<xref:System.Buffers.StandardFormat>实例相等，如果他们<xref:System.Buffers.StandardFormat.Symbol>和<xref:System.Buffers.StandardFormat.Precision>属性相等。
+
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Implicit">
@@ -257,6 +352,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Buffers.StandardFormat</ReturnType>
@@ -265,9 +365,9 @@
         <Parameter Name="symbol" Type="System.Char" />
       </Parameters>
       <Docs>
-        <param name="symbol">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="symbol">要转换为 <see cref="T:System.Buffers.StandardFormat" /> 值的字符。</param>
+        <summary>将字符转换为使用 <see cref="F:System.Buffers.StandardFormat.NoPrecision" /> 精度的 <see cref="T:System.Buffers.StandardFormat" /> 实例。</summary>
+        <returns>一个格式，其 <see cref="P:System.Buffers.StandardFormat.Symbol" /> 属性等于 <paramref name="symbol" />、<see cref="P:System.Buffers.StandardFormat.Precision" /> 属性等于 <see cref="F:System.Buffers.StandardFormat.NoPrecision" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -283,6 +383,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -292,11 +397,17 @@
         <Parameter Name="right" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="left">To be added.</param>
-        <param name="right">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="left">要比较的第一个格式。</param>
+        <param name="right">要比较的第二个格式。</param>
+        <summary>确定两个 <see cref="T:System.Buffers.StandardFormat" /> 实例是否不相等。</summary>
+        <returns>如果两个格式不相等，则为 <see langword="true" />，否则为 <see langword="false" />。</returns>
+       <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+两个<xref:System.Buffers.StandardFormat>实例是否不相等如果他们<xref:System.Buffers.StandardFormat.Symbol>和<xref:System.Buffers.StandardFormat.Precision>属性并不完全相同。
+
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="Parse">
@@ -311,6 +422,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Buffers.StandardFormat</ReturnType>
@@ -319,9 +435,9 @@
         <Parameter Name="format" Type="System.ReadOnlySpan&lt;System.Char&gt;" />
       </Parameters>
       <Docs>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="format">一个只读范围，包含要分析的字符。</param>
+        <summary>将 <see langword="ReadOnlySpan&lt;System.Char&gt;" /> 转换为使用 <see cref="F:System.Buffers.StandardFormat.NoPrecision" /> 精度的 <see cref="T:System.Buffers.StandardFormat" /> 实例。</summary>
+        <returns>一个值，其 <see cref="P:System.Buffers.StandardFormat.Symbol" /> 属性值是 <paramref name="format" /> 中的字符、<see cref="P:System.Buffers.StandardFormat.Precision" /> 属性值是 <see cref="F:System.Buffers.StandardFormat.NoPrecision" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -337,6 +453,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Buffers.StandardFormat</ReturnType>
@@ -345,10 +466,11 @@
         <Parameter Name="format" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="format">一个经典 .NET 标准格式字符串。</param>
+        <summary>将经典 .NET 标准格式将字符串转换为 <see cref="T:System.Buffers.StandardFormat" /> 实例。</summary>
+        <returns>一个格式。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.FormatException"><paramref name="format" /> 不是有效的标准格式字符串。</exception>
       </Docs>
     </Member>
     <Member MemberName="Precision">
@@ -363,13 +485,18 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Byte</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取格式的精度组件。</summary>
+        <value>精度组件，可以是<see cref="F:System.Buffers.StandardFormat.NoPrecision" />，或范围可以介于 0 到 9。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -385,13 +512,18 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Char</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取格式的字符组件。</summary>
+        <value>格式字符组件。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -407,14 +539,55 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>返回此格式的字符串表示形式。</summary>
+        <returns>此格式的字符串表示形式。</returns>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+字符串表示形式<xref:System.Buffers.StandardFormat>实例是一个标准的.NET 格式字符串。
+
+         ]]></format>
+         </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TryParse">
+      <MemberSignature Language="C#" Value="public static bool TryParse (ReadOnlySpan&lt;char&gt; format, out System.Buffers.StandardFormat result);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool TryParse(valuetype System.ReadOnlySpan`1&lt;char&gt; format, [out] valuetype System.Buffers.StandardFormat&amp; result) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Buffers.StandardFormat.TryParse(System.ReadOnlySpan{System.Char},System.Buffers.StandardFormat@)" />
+      <MemberSignature Language="VB.NET" Value="Public Shared Function TryParse (format As ReadOnlySpan(Of Char), ByRef result As StandardFormat) As Boolean" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; static bool TryParse(ReadOnlySpan&lt;char&gt; format, [Runtime::InteropServices::Out] System::Buffers::StandardFormat % result);" />
+      <MemberSignature Language="F#" Value="static member TryParse : ReadOnlySpan&lt;char&gt; *  -&gt; bool" Usage="System.Buffers.StandardFormat.TryParse (format, result)" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Memory</AssemblyName>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="format" Type="System.ReadOnlySpan&lt;System.Char&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="result" Type="System.Buffers.StandardFormat" RefType="out" Index="1" FrameworkAlternate="netcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="format">一个只读范围，包含要转换的字符。</param>
+        <param name="result">当方法返回时，如果操作成功，则包含已分析的 <see cref="T:System.Buffers.StandardFormat" /> 实例。</param>
+        <summary>尝试将 <see langword="ReadOnlySpan&lt;Char&gt;" /> 转换为 <see cref="T:System.Buffers.StandardFormat" /> 实例并返回一个值，该值指示分析操作是否成功。</summary>
+        <returns>如果分析操作成功，则为 <see langword="true" />，否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
