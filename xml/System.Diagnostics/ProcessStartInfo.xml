@@ -1,5 +1,5 @@
 <Type Name="ProcessStartInfo" FullName="System.Diagnostics.ProcessStartInfo">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ceb087ee2a19df0fbce2c0e86e86ebada4b3dbd6" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63887560" /></Metadata><TypeSignature Language="C#" Value="public sealed class ProcessStartInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="6aae3e941442390152c0bfe1dc86dcbf1bc45ead" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67239397" /></Metadata><TypeSignature Language="C#" Value="public sealed class ProcessStartInfo" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit ProcessStartInfo extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.ProcessStartInfo" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ProcessStartInfo" />
@@ -237,7 +237,24 @@
         <summary>获取启动应用程序时要使用的命令行参数集合。</summary>
         <value>命令行参数的集合。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[如果使用此属性来设置命令行参数，<xref:System.Diagnostics.ProcessStartInfo.Arguments>必须设置为空字符串。
+          <format type="text/markdown"><![CDATA[
+          
+`ArgumentList`这支持使用.NET Core 2.1 和.NET 标准 2.1，启动和<xref:System.Diagnostics.ProcessStartInfo.Arguments>属性是相互独立。 即，分配到的字符串`ArgumentList`不使用集合来填充<xref:System.Diagnostics.ProcessStartInfo.Arguments>属性，并将字符串分配给<xref:System.Diagnostics.ProcessStartInfo.Arguments>属性不解析为单个字符串分配给`ArgumentList`集合。 
+
+`ArgumentList` 更轻松地使用比<xref:System.Diagnostics.ProcessStartInfo.Arguments>属性。 由于每个字符串分配给集合的成员，您可以单个-而不是由双引号分隔的三重转义字符串。 例如，下面的示例包括`-full "Mary Smith"`的成员作为`ArgumentList`集合：
+
+```csharp
+info.ArgumentList.Add("-full \"Mary Smith\"";
+```
+
+向相应的分配<xref:System.Diagnostics.ProcessStartInfo.Arguments>属性是：
+
+```csharp
+info.Arguments = "-full \"\"\"Mary Smith\"\"\""
+```
+
+如果使用此属性来设置命令行参数，<xref:System.Diagnostics.ProcessStartInfo.Arguments>必须设置为空字符串。
+
 ## Examples
 
 此示例将两个参数添加到进程启动信息。
@@ -322,14 +339,19 @@ info.ArgumentList.Add("-last Smith")
       </ReturnValue>
       <Docs>
         <summary>获取或设置启动应用程序时要使用的一组命令行参数。</summary>
-        <value>单个字符串包含要传递给在 <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> 属性中指定的目标应用程序的参数。 默认值为空字符串("")。 在 Windows Vista 和早期的 Windows 操作系统上，添加至进程全径的长度的参数长度必须小于 2080。 在 Windows 7 和更高版本，此长度必须小于 32699。  
-  
-参数由目标应用程序进行分析和解释，因此必须与该应用程序的预期保持一致。 对于以下示例中所演示的 .NET 的应用程序，空格被解释为多个参数之间的分隔符。 包含空格的单个参数必须用引号引起来，但这些引号不会传递到目标应用程序。 在包括引号在内的最终已分析的自变量中，每个标记均会进行三重转义。</value>
+        <value>单个字符串包含要传递给在 <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> 属性中指定的目标应用程序的参数。 默认值为空字符串("")。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[如果使用此属性来设置命令行参数<xref:System.Diagnostics.ProcessStartInfo.ArgumentList*>不能包含任何元素。
+          <format type="text/markdown"><![CDATA[
+
+分配给字符串的长度`Arguments`属性必须是小于 32,699。
   
+参数由目标应用程序进行分析和解释，因此必须与该应用程序的预期保持一致。 对于.NET 应用程序下面的示例中所示空格被解释为多个自变量之间的分隔符中。 包含空格的单个参数必须用引号引起来，但这些引号不会传递到目标应用程序。 若要在最后一个已分析的参数中包含引号，三重转义每个标记。
+如果使用此属性来设置命令行参数<xref:System.Diagnostics.ProcessStartInfo.ArgumentList>不能包含任何元素。
+  
+`Arguments` 和<xref:System.Diagnostics.ProcessStartInfo.ArgumentList>，这支持从.NET Core 2.1 和.NET 标准 2.1 开始是相互独立。 也就是说，将字符串分配给`Arguments`属性不会填充<xref:System.Diagnostics.ProcessStartInfo.ArgumentList>集合和的成员<xref:System.Diagnostics.ProcessStartInfo.ArgumentList>集合未分配给`Arguments`属性。
+
 ## Examples  
- 下面的第一个示例创建一个小型应用程序 (argsecho.exe) 该回显到控制台其自变量。 第二个示例创建调用 argsecho.exe 演示参数属性的不同变体的应用程序。  
+ 第一个示例创建一个小型应用程序 (argsecho.exe) 该回显到控制台其自变量。 第二个示例创建的应用程序调用 argsecho.exe 为了演示不同变体`Arguments`属性。  
   
  [!code-cpp[Process.Start_static#3](~/samples/snippets/cpp/VS_Snippets_CLR/Process.Start_static/CPP/processstartstatic.cpp#3)]
  [!code-csharp[Process.Start_static#3](~/samples/snippets/csharp/VS_Snippets_CLR/Process.Start_static/CS/processstartstatic.cs#3)]
