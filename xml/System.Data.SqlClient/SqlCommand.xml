@@ -1,5 +1,5 @@
 <Type Name="SqlCommand" FullName="System.Data.SqlClient.SqlCommand">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f0181382441e1661d976dbae0ffd433f9ed5713d" /><Meta Name="ms.sourcegitcommit" Value="2767b5903996fbd7e2b81eda1114dfc9d0d9db63" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/02/2019" /><Meta Name="ms.locfileid" Value="65006408" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlCommand : System.Data.Common.DbCommand, ICloneable, IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="6800810f74d89543757e694dff504111ee83f5b4" /><Meta Name="ms.sourcegitcommit" Value="feb111e137a41d186aef01d83f04819d820520eb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/21/2019" /><Meta Name="ms.locfileid" Value="67308055" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlCommand : System.Data.Common.DbCommand, ICloneable, IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SqlCommand extends System.Data.Common.DbCommand implements class System.Data.IDbCommand, class System.ICloneable, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Data.SqlClient.SqlCommand" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SqlCommand&#xA;Inherits DbCommand&#xA;Implements ICloneable, IDisposable" />
@@ -78,7 +78,7 @@
   
  <xref:System.Data.SqlClient.SqlCommand> 以下功能用于执行命令在 SQL Server 数据库的以下方法：  
   
-|项|描述|  
+|项|说明|  
 |----------|-----------------|  
 |<xref:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery%2A>|启动的 TRANSACT-SQL 语句或由此所述的存储的过程的异步执行<xref:System.Data.SqlClient.SqlCommand>、 通常执行命令，例如插入、 删除、 更新和 SET 语句。 每次调用<xref:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery%2A>必须通过调用配对<xref:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery%2A>完成操作，通常在单独的线程上的。|  
 |<xref:System.Data.SqlClient.SqlCommand.BeginExecuteReader%2A>|启动的 TRANSACT-SQL 语句或由此所述的存储的过程的异步执行<xref:System.Data.SqlClient.SqlCommand>和一个或多个结果集从服务器检索。 每次调用<xref:System.Data.SqlClient.SqlCommand.BeginExecuteReader%2A>必须通过调用配对<xref:System.Data.SqlClient.SqlCommand.EndExecuteReader%2A>完成操作，通常在单独的线程上的。|  
@@ -107,7 +107,7 @@
   
  首先必须通过执行以下脚本创建示例数据库：  
   
-```  
+```sql
 USE [master]  
 GO  
   
@@ -298,7 +298,7 @@ GO
   
  接下来，编译并执行以下操作：  
   
-```  
+```csharp
 using System;  
 using System.Data;  
 using System.Data.SqlClient;  
@@ -711,7 +711,7 @@ class Program {
       <Docs>
         <param name="cmdText">查询的文本。</param>
         <param name="connection">表示到 SQL Server 实例的连接的 <see cref="T:System.Data.SqlClient.SqlConnection" />。</param>
-        <param name="transaction">其中执行 <see cref="T:System.Data.SqlClient.SqlCommand" /> 的 <see cref="T:System.Data.SqlClient.SqlTransaction" />。</param>
+        <param name="transaction">其中执行 <see cref="T:System.Data.SqlClient.SqlTransaction" /> 的 <see cref="T:System.Data.SqlClient.SqlCommand" /> 。</param>
         <param name="columnEncryptionSetting">加密设置。 有关详细信息，请参阅[始终加密](/sql/relational-databases/security/encryption/always-encrypted-database-engine)。</param>
         <summary>使用指定的命令文本、连接、事务和加密设置初始化 <see cref="T:System.Data.SqlClient.SqlCommand" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
@@ -776,15 +776,23 @@ class Program {
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时出现的任何错误。  
-  
+
+- 或 -
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.InvalidOperationException">名称/值对“Asynchronous Processing=true”未包含在为此 <see cref="T:System.Data.SqlClient.SqlCommand" /> 定义连接的连接字符串中。  
-  
+
+或
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -854,15 +862,23 @@ class Program {
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时出现的任何错误。  
-  
+
+或
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.InvalidOperationException">名称/值对“Asynchronous Processing=true”未包含在为此 <see cref="T:System.Data.SqlClient.SqlCommand" /> 定义连接的连接字符串中。  
-  
+
+- 或 -
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -930,15 +946,23 @@ class Program {
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时出现的任何错误。  
-  
+
+或
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.InvalidOperationException">名称/值对“Asynchronous Processing=true”未包含在为此 <see cref="T:System.Data.SqlClient.SqlCommand" /> 定义连接的连接字符串中。  
-  
+
+或
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -1002,15 +1026,23 @@ class Program {
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时出现的任何错误。  
-  
+
+或
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.InvalidOperationException">名称/值对“Asynchronous Processing=true”未包含在为此 <see cref="T:System.Data.SqlClient.SqlCommand" /> 定义连接的连接字符串中。  
-  
+
+或
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -1080,15 +1112,23 @@ class Program {
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时出现的任何错误。  
-  
+
+- 或 -
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.InvalidOperationException">名称/值对“Asynchronous Processing=true”未包含在为此 <see cref="T:System.Data.SqlClient.SqlCommand" /> 定义连接的连接字符串中。  
-  
+
+- 或 -
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -1164,15 +1204,23 @@ class Program {
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时出现的任何错误。  
-  
+
+或
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.InvalidOperationException">名称/值对“Asynchronous Processing=true”未包含在为此 <see cref="T:System.Data.SqlClient.SqlCommand" /> 定义连接的连接字符串中。  
-  
+
+或
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -1229,7 +1277,7 @@ class Program {
   
  典型<xref:System.Data.SqlClient.SqlCommand.BeginExecuteXmlReader%2A>查询可设置格式如以下 C# 示例所示：  
   
-```  
+```csharp
 SqlCommand command = new SqlCommand("SELECT ContactID, FirstName, LastName FROM dbo.Contact FOR XML AUTO, XMLDATA", SqlConn);  
 ```  
   
@@ -1254,15 +1302,23 @@ SqlCommand command = new SqlCommand("SELECT ContactID, FirstName, LastName FROM 
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时出现的任何错误。  
-  
+
+- 或 -
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.InvalidOperationException">名称/值对“Asynchronous Processing=true”未包含在为此 <see cref="T:System.Data.SqlClient.SqlCommand" /> 定义连接的连接字符串中。  
-  
+
+或
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -1313,7 +1369,7 @@ SqlCommand command = new SqlCommand("SELECT ContactID, FirstName, LastName FROM 
   
  典型<xref:System.Data.SqlClient.SqlCommand.BeginExecuteXmlReader%2A>查询可设置格式如以下 C# 示例所示：  
   
-```  
+```csharp
 SqlCommand command = new SqlCommand("SELECT ContactID, FirstName, LastName FROM Contact FOR XML AUTO, XMLDATA", SqlConn);  
 ```  
   
@@ -1344,15 +1400,23 @@ SqlCommand command = new SqlCommand("SELECT ContactID, FirstName, LastName FROM 
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时出现的任何错误。  
-  
+
+或
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.InvalidOperationException">名称/值对“Asynchronous Processing=true”未包含在为此 <see cref="T:System.Data.SqlClient.SqlCommand" /> 定义连接的连接字符串中。  
-  
+
+或
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -1554,9 +1618,9 @@ SqlCommand command = new SqlCommand("SELECT ContactID, FirstName, LastName FROM 
 ## Remarks  
  当<xref:System.Data.SqlClient.SqlCommand.CommandType%2A>属性设置为`StoredProcedure`，则<xref:System.Data.SqlClient.SqlCommand.CommandText%2A>属性应设置为存储过程的名称。 如果存储的过程名称中包含任何特殊字符使用转义字符语法，可能需要用户。 该命令执行此存储的过程时调用的一个`Execute`方法。  
   
- SQL Server Microsoft.NET Framework 数据提供程序不支持用于将参数传递到 TRANSACT-SQL 语句或存储的过程调用的命令的问号 （？） 占位符`CommandType.Text`。 在这种情况下，必须使用命名的参数。 例如：  
+ SQL Server Microsoft.NET Framework 数据提供程序不支持用于将参数传递到 TRANSACT-SQL 语句或存储的过程调用的命令的问号 （？） 占位符`CommandType.Text`。 在这种情况下，必须使用命名的参数。 例如:  
   
-```  
+```sql
 SELECT * FROM dbo.Customers WHERE CustomerID = @CustomerID  
 ```  
   
@@ -1637,7 +1701,7 @@ SELECT * FROM dbo.Customers WHERE CustomerID = @CustomerID
 >   
 >  例如，使用 30 秒超时，如果<xref:System.Data.SqlClient.SqlDataReader.Read%2A>需要两个网络数据包，则它会具有 30 秒读取两个网络数据包。 如果调用<xref:System.Data.SqlClient.SqlDataReader.Read%2A>同样，它将具有另一个 30 秒，读取它要求任何数据。  
   
-```  
+```csharp
 using System;  
 using System.Data.SqlClient;  
 ///   
@@ -1724,7 +1788,7 @@ public class A {
 ## Remarks  
  当您将设置<xref:System.Data.SqlClient.SqlCommand.CommandType%2A>属性设置为`StoredProcedure`，应设置<xref:System.Data.SqlClient.SqlCommand.CommandText%2A>属性设置为存储过程的名称。 调用 Execute 方法之一时，该命令执行此存储的过程。  
   
- SQL Server Microsoft.NET Framework 数据提供程序不支持问号 （？） 占位符用于将参数传递到 SQL 语句或存储的过程调用<xref:System.Data.SqlClient.SqlCommand.CommandType%2A>的<xref:System.Data.CommandType.Text>。 在这种情况下，必须使用命名的参数。 例如：  
+ SQL Server Microsoft.NET Framework 数据提供程序不支持问号 （？） 占位符用于将参数传递到 SQL 语句或存储的过程调用<xref:System.Data.SqlClient.SqlCommand.CommandType%2A>的<xref:System.Data.CommandType.Text>。 在这种情况下，必须使用命名的参数。 例如:  
   
  SELECT * FROM Customers WHERE CustomerID = @CustomerID  
   
@@ -2150,7 +2214,9 @@ public class A {
         <exception cref="T:System.ArgumentException"><paramref name="asyncResult" /> 参数为 null（在 Microsoft Visual Basic 中为 <see langword="Nothing" />）</exception>
         <exception cref="T:System.InvalidOperationException">不止一次为单个命令执行调用了 <see cref="M:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery(System.IAsyncResult)" />，或该方法不匹配其执行方法（例如，代码调用了 <see cref="M:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery(System.IAsyncResult)" /> 以完成对 <see cref="M:System.Data.SqlClient.SqlCommand.BeginExecuteXmlReader" /> 调用的执行。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException"><see cref="P:System.Data.SqlClient.SqlCommand.CommandTimeout" /> 中指定的时间已过，并且使用 <see cref="Overload:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery" /> 指定的异步操作不完整。  
-  
+ 
+或
+
 在某些情况下，<see cref="T:System.IAsyncResult" /> 可能不正确地设置为 <see langword="IsCompleted" />。 如果发生这种情况并且调用 <see cref="M:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery(System.IAsyncResult)" />，则 EndExecuteNonQuery 可能引发 SqlException 错误（如果 <see cref="P:System.Data.SqlClient.SqlCommand.CommandTimeout" /> 中指定的时间已过，并且使用 <see cref="Overload:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery" /> 指定的异步操作不完整）。 若要更正这种情况，应增加 CommandTimeout 的值或减少正由异步操作完成的工作。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
         <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
@@ -2377,7 +2443,7 @@ public class A {
   
  尽管<xref:System.Data.SqlClient.SqlCommand.ExecuteNonQuery%2A>返回任何行，任何输出参数或返回的数据填充映射到参数的值。  
   
- 对于 UPDATE、 INSERT 和 DELETE 语句，返回值为命令所影响的行数。 对于所有其他类型的语句，返回值为-1。
+ 对于 UPDATE、INSERT 和 DELETE 语句，返回值为该命令所影响的行数。 对于其他所有类型的语句，返回值为 -1。
 
 当存在触发器上表所, 插入或更新时，返回值包括受 insert 或 update 操作和触发器或触发器的影响的行数的行数。
 
@@ -2396,12 +2462,18 @@ public class A {
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">对锁定的行执行命令时出现异常。 当使用 Microsoft .NET Framework 1.0 版时不生成此异常。  
-  
+
+或
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.InvalidOperationException">流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -2453,17 +2525,25 @@ public class A {
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.InvalidOperationException">在完成任务前，为同一个实例多次调用 <see cref="M:System.Data.SqlClient.SqlCommand.ExecuteNonQueryAsync(System.Threading.CancellationToken)" />。  
-  
+
+- 或 -
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或 
  在连接字符串中指定 <see langword="Context Connection=true" />。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时，SQL Server 返回了一个错误。  
-  
+
+或 
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -2539,15 +2619,23 @@ public class A {
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">对锁定的行执行命令时出现异常。 当使用 Microsoft .NET Framework 1.0 版时不生成此异常。  
-  
+
+- 或 -
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.InvalidOperationException">连接的当前状态已关闭。 <see cref="M:System.Data.SqlClient.SqlCommand.ExecuteReader" /> 需要打开 <see cref="T:System.Data.SqlClient.SqlConnection" />。  
-  
+
+或
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -2617,9 +2705,13 @@ public class A {
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -2689,18 +2781,28 @@ public class A {
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.ArgumentException">无效的 <see cref="T:System.Data.CommandBehavior" /> 值。</exception>
         <exception cref="T:System.InvalidOperationException">在完成任务前，为同一个实例多次调用 <see cref="M:System.Data.SqlClient.SqlCommand.ExecuteReaderAsync" />。  
-  
+
+或
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
  在连接字符串中指定 <see langword="Context Connection=true" />。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时，SQL Server 返回了一个错误。  
-  
+
+- 或 -
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -2751,18 +2853,28 @@ public class A {
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.ArgumentException">无效的 <see cref="T:System.Data.CommandBehavior" /> 值。</exception>
         <exception cref="T:System.InvalidOperationException">在完成任务前，为同一个实例多次调用 <see cref="M:System.Data.SqlClient.SqlCommand.ExecuteReaderAsync(System.Data.CommandBehavior)" />。  
-  
+
+- 或 -
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
  在连接字符串中指定 <see langword="Context Connection=true" />。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时，SQL Server 返回了一个错误。  
-  
+
+或
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -2814,18 +2926,27 @@ public class A {
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+- 或 - 
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.ArgumentException">无效的 <see cref="T:System.Data.CommandBehavior" /> 值。</exception>
         <exception cref="T:System.InvalidOperationException">在完成任务前，为同一个实例多次调用 <see cref="M:System.Data.SqlClient.SqlCommand.ExecuteReaderAsync(System.Data.CommandBehavior,System.Threading.CancellationToken)" />。  
-  
+
+- 或 -
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
  在连接字符串中指定 <see langword="Context Connection=true" />。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时，SQL Server 返回了一个错误。  
-  
+
+或
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -2864,7 +2985,7 @@ public class A {
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="behavior">语句执行和数据检索的选项。  当设置为 <see langword="Default" /> 时，<see cref="M:System.Data.SqlClient.SqlDataReader.ReadAsync(System.Threading.CancellationToken)" /> 将在返回完整任务前读取整行。</param>
+        <param name="behavior">语句执行和数据检索的选项。  当设置为 <see langword="Default" />时， <see cref="M:System.Data.SqlClient.SqlDataReader.ReadAsync(System.Threading.CancellationToken)" /> 将在返回完整任务前读取整行。</param>
         <param name="cancellationToken">取消指令。</param>
         <summary><see cref="M:System.Data.SqlClient.SqlCommand.ExecuteReader(System.Data.CommandBehavior)" /> 的异步版本，它可以将 <see cref="P:System.Data.SqlClient.SqlCommand.CommandText" /> 发送到 <see cref="P:System.Data.SqlClient.SqlCommand.Connection" />，并生成 <see cref="T:System.Data.SqlClient.SqlDataReader" />。  
   
@@ -2879,18 +3000,28 @@ public class A {
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.ArgumentException">无效的 <see cref="T:System.Data.CommandBehavior" /> 值。</exception>
         <exception cref="T:System.InvalidOperationException">在完成任务前，为同一个实例多次调用 <see cref="M:System.Data.SqlClient.SqlCommand.ExecuteReaderAsync(System.Data.CommandBehavior,System.Threading.CancellationToken)" />。  
-  
+
+或
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
- 在连接字符串中指定 <see langword="Context Connection=true" />。</exception>
+
+或
+
+在连接字符串中指定 <see langword="Context Connection=true" />。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时，SQL Server 返回了一个错误。  
-  
+
+或
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -2942,12 +3073,10 @@ public class A {
   
  典型<xref:System.Data.SqlClient.SqlCommand.ExecuteScalar%2A>查询可设置格式如以下 C# 示例所示：  
   
-```  
+```csharp
 cmd.CommandText = "SELECT COUNT(*) FROM dbo.region";  
 Int32 count = (Int32) cmd.ExecuteScalar();  
 ```  
-  
-   
   
 ## Examples  
  下面的示例创建<xref:System.Data.SqlClient.SqlCommand>，然后执行它使用<xref:System.Data.SqlClient.SqlCommand.ExecuteScalar%2A>。 该示例传递一个表示要插入到表的新值的字符串和要用于连接到数据源的字符串。 该函数将返回新**标识**如果插入新行的列值，0 失败。  
@@ -2958,12 +3087,18 @@ Int32 count = (Int32) cmd.ExecuteScalar();
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">对锁定的行执行命令时出现异常。 当使用 Microsoft .NET Framework 1.0 版时不生成此异常。  
-  
+
+或
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.InvalidOperationException">流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -3017,17 +3152,27 @@ Int32 count = (Int32) cmd.ExecuteScalar();
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.InvalidOperationException">在完成任务前，为同一个实例多次调用 <see cref="M:System.Data.SqlClient.SqlCommand.ExecuteScalarAsync(System.Threading.CancellationToken)" />。  
-  
+
+- 或 -
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
- 在连接字符串中指定 <see langword="Context Connection=true" />。</exception>
+
+- 或 -
+
+在连接字符串中指定 <see langword="Context Connection=true" />。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时，SQL Server 返回了一个错误。  
-  
+
+- 或 -
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -3067,7 +3212,7 @@ Int32 count = (Int32) cmd.ExecuteScalar();
       <Parameters />
       <Docs>
         <summary>将 <see cref="P:System.Data.SqlClient.SqlCommand.CommandText" /> 发送到 <see cref="P:System.Data.SqlClient.SqlCommand.Connection" />，并生成一个 <see cref="T:System.Xml.XmlReader" /> 对象。</summary>
-        <returns>一个 <see cref="T:System.Xml.XmlReader" /> 对象。</returns>
+        <returns><see cref="T:System.Xml.XmlReader" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -3078,7 +3223,7 @@ Int32 count = (Int32) cmd.ExecuteScalar();
   
  典型<xref:System.Data.SqlClient.SqlCommand.ExecuteXmlReader%2A>查询可设置格式如下面的 Microsoft Visual C# 示例中所示：  
   
-```  
+```csharp
 SqlCommand command = new SqlCommand("SELECT * FROM dbo.Customers FOR XML AUTO, XMLDATA", SqlConn);  
 ```  
   
@@ -3098,12 +3243,18 @@ SqlCommand command = new SqlCommand("SELECT * FROM dbo.Customers FOR XML AUTO, X
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+- 或 -
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">对锁定的行执行命令时出现异常。 当使用 Microsoft .NET Framework 1.0 版时不生成此异常。  
-  
+
+或
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.InvalidOperationException">流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -3170,17 +3321,27 @@ SqlCommand command = new SqlCommand("SELECT * FROM dbo.Customers FOR XML AUTO, X
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.InvalidOperationException">在完成任务前，为同一个实例多次调用 <see cref="M:System.Data.SqlClient.SqlCommand.ExecuteScalarAsync(System.Threading.CancellationToken)" />。  
-  
+
+或
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
- 在连接字符串中指定 <see langword="Context Connection=true" />。</exception>
+
+或
+
+在连接字符串中指定 <see langword="Context Connection=true" />。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时，SQL Server 返回了一个错误。  
-  
+
+或
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -3235,17 +3396,27 @@ SqlCommand command = new SqlCommand("SELECT * FROM dbo.Customers FOR XML AUTO, X
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidCastException">将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.Stream" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Binary 或 VarBinary。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.IO.TextReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Char、NChar、NVarChar、VarChar 或 Xml。  
-  
+
+或
+
 将 <see cref="P:System.Data.SqlClient.SqlParameter.Value" /> 设置为 <see cref="T:System.Xml.XmlReader" /> 时，使用的是 <see cref="P:System.Data.SqlClient.SqlParameter.SqlDbType" /> 而不是 Xml。</exception>
         <exception cref="T:System.InvalidOperationException">在完成任务前，为同一个实例多次调用 <see cref="M:System.Data.SqlClient.SqlCommand.ExecuteScalarAsync(System.Threading.CancellationToken)" />。  
-  
+
+- 或 -
+
 流式处理操作期间关闭或删除了 <see cref="T:System.Data.SqlClient.SqlConnection" />。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
- 在连接字符串中指定 <see langword="Context Connection=true" />。</exception>
+
+或
+
+在连接字符串中指定 <see langword="Context Connection=true" />。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">执行命令文本时，SQL Server 返回了一个错误。  
-  
+
+- 或 -
+
 流式处理操作期间发生了超时。 有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.IO.IOException">流式处理操作期间在 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象中出现了错误。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
         <exception cref="T:System.ObjectDisposedException">流式处理操作期间关闭了 <see cref="T:System.IO.Stream" />、<see cref="T:System.Xml.XmlReader" /> 或 <see cref="T:System.IO.TextReader" /> 对象。  有关流式处理的详细信息，请参阅 [SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。</exception>
@@ -3389,7 +3560,7 @@ SqlCommand command = new SqlCommand("SELECT * FROM dbo.Customers FOR XML AUTO, X
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- SQL Server Microsoft.NET Framework 数据提供程序不支持用于将参数传递到 SQL 语句或存储的过程调用的命令的问号 （？） 占位符`CommandType.Text`。 在这种情况下，必须使用命名的参数。 例如：  
+ SQL Server Microsoft.NET Framework 数据提供程序不支持用于将参数传递到 SQL 语句或存储的过程调用的命令的问号 （？） 占位符`CommandType.Text`。 在这种情况下，必须使用命名的参数。 例如:  
   
  SELECT * FROM Customers WHERE CustomerID = @CustomerID  
   
@@ -3397,8 +3568,6 @@ SqlCommand command = new SqlCommand("SELECT * FROM dbo.Customers FOR XML AUTO, X
 >  如果在集合中的参数与要执行的查询的要求不匹配，则可能会导致错误。  
   
  有关详细信息，请参阅[配置参数和参数数据类型](~/docs/framework/data/adonet/configuring-parameters-and-parameter-data-types.md)。  
-  
-   
   
 ## Examples  
  下面的示例演示如何创建<xref:System.Data.SqlClient.SqlCommand>并将参数添加到<xref:System.Data.SqlClient.SqlParameterCollection>。  
@@ -3465,8 +3634,6 @@ SqlCommand command = new SqlCommand("SELECT * FROM dbo.Customers FOR XML AUTO, X
  输出参数 （无论是否已准备） 必须具有用户指定的数据类型。 如果指定可变长度数据类型，则必须指定最大值<xref:System.Data.SqlClient.SqlParameter.Size%2A>。  
   
  在 Visual Studio 2010 中之前,<xref:System.Data.SqlClient.SqlCommand.Prepare%2A>引发了异常。  从 Visual Studio 2010 开始，此方法不会引发异常。  
-  
-   
   
 ## Examples  
  下面的示例演示 <xref:System.Data.SqlClient.SqlCommand.Prepare%2A> 方法的用法。  
@@ -3605,7 +3772,7 @@ SqlCommand command = new SqlCommand("SELECT * FROM dbo.Customers FOR XML AUTO, X
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>将发送<see cref="P:System.Data.SqlClient.SqlCommand.CommandText" />到<see cref="P:System.Data.SqlClient.SqlCommand.Connection" />，并生成<see cref="T:System.Data.SqlClient.SqlDataReader" />。</summary>
+        <summary>将 <see cref="P:System.Data.SqlClient.SqlCommand.CommandText" /> 发送到 <see cref="P:System.Data.SqlClient.SqlCommand.Connection" />，并生成一个 <see cref="T:System.Data.SqlClient.SqlDataReader" />。</summary>
         <returns>一个 <see cref="T:System.Data.SqlClient.SqlDataReader" /> 对象。</returns>
         <remarks>To be added.</remarks>
       </Docs>
