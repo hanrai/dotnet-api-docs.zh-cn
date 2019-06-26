@@ -1,5 +1,5 @@
 <Type Name="BlobReader" FullName="System.Reflection.Metadata.BlobReader">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e2c5323265b913959dae35db83d5cff57b291e1e" /><Meta Name="ms.sourcegitcommit" Value="7555c040bd7cb677d117ddf03e647aa7bf625bfc" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/08/2019" /><Meta Name="ms.locfileid" Value="65440106" /></Metadata><TypeSignature Language="C#" Value="public struct BlobReader" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4326d8e60dc4288069af3d6be3e9db2b23ff88ed" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67249943" /></Metadata><TypeSignature Language="C#" Value="public struct BlobReader" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit BlobReader extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.Metadata.BlobReader" />
   <TypeSignature Language="VB.NET" Value="Public Structure BlobReader" />
@@ -49,13 +49,13 @@
         <Parameter Name="length" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="buffer">指向内存块的开头的指针。</param>
-        <param name="length">以字节为单位的内存块的长度。</param>
-        <summary>创建指定的内存块的读取。</summary>
+        <param name="buffer">指向内存块起始处的指针。</param>
+        <param name="length">内存块的长度（以字节为单位）。</param>
+        <summary>创建指定内存块的读取器。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> 是<see langword="null" />和<paramref name="length" />大于零。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> 为 <see langword="null" />，并且 <paramref name="length" /> 大于 0。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="length" /> 为负数。</exception>
-        <exception cref="T:System.PlatformNotSupportedException">当前平台不是小字节序。</exception>
+        <exception cref="T:System.PlatformNotSupportedException">当前平台不是 little-endian。</exception>
       </Docs>
     </Member>
     <Member MemberName="Align">
@@ -81,7 +81,7 @@
       </Parameters>
       <Docs>
         <param name="alignment">To be added.</param>
-        <summary>重新读取器向前定位所需满足给定的对齐方式的字节数。</summary>
+        <summary>按达到给定对齐状态所需的字节数向前重新定位读取器。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -103,7 +103,7 @@
         <ReturnType>System.Byte*</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个指针指向的字节读取器的当前位置。</summary>
+        <summary>获取指向读取器当前位置的字节的指针。</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -130,8 +130,8 @@
       </Parameters>
       <Docs>
         <param name="value">要查找的字节值。</param>
-        <summary>搜索指定的字节 blob 遵循当前的位置中。</summary>
-        <returns>相对于当前的位置，则为-1 如果 blob 遵循当前的位置中找不到的字节索引。</returns>
+        <summary>在当前位置之后的 blob 中搜索指定的字节。</summary>
+        <returns>相对于当前位置的索引；或者，如果在当前位置之后的 blob 中没有找到字节，则为 -1。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -156,7 +156,7 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取基础的内存块的总长度。</summary>
+        <summary>获取基础内存块的总长度。</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -182,10 +182,10 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置 blob 的开始到当前位置的偏移量。</summary>
+        <summary>获取或设置从 blob 的起始处到当前位置的偏移量。</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.BadImageFormatException">偏移量设置基础读取器的边界之外。</exception>
+        <exception cref="T:System.BadImageFormatException">偏移量会设置在基础读取器的边界之外。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReadBlobHandle">
@@ -209,7 +209,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>读取 Blob 堆句柄编码为压缩的整数。</summary>
+        <summary>读取编码为压缩整数的 Blob 堆句柄。</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -293,10 +293,10 @@
       </Parameters>
       <Docs>
         <param name="byteCount">要读取的字节数。</param>
-        <summary>读取从当前位置开始的字节数。</summary>
-        <returns>字节数组中。</returns>
+        <summary>读取从当前位置开始的字节。</summary>
+        <returns>字节数组。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.BadImageFormatException"><paramref name="byteCount" /> 不可用的字节数。</exception>
+        <exception cref="T:System.BadImageFormatException"><paramref name="byteCount" /> 个字节不可用。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReadBytes">
@@ -324,11 +324,11 @@
       </Parameters>
       <Docs>
         <param name="byteCount">要读取的字节数。</param>
-        <param name="buffer">目标缓冲区中读取的字节将写入到。</param>
-        <param name="bufferOffset">将写入中读取字节的目标缓冲区的偏移量。</param>
-        <summary>读取从当前位置开始的字节并将其写入到指定的偏移量开始的指定缓冲区。</summary>
+        <param name="buffer">将向其中写入读取字节的目标缓冲区。</param>
+        <param name="bufferOffset">将向其中写入读取字节的目标缓冲区中的偏移量。</param>
+        <summary>读取从当前位置开始的字节，并将它们写入从指定偏移量开始的指定缓冲区。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.BadImageFormatException"><paramref name="byteCount" /> 不可用的字节数。</exception>
+        <exception cref="T:System.BadImageFormatException"><paramref name="byteCount" /> 个字节不可用。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReadChar">
@@ -380,10 +380,10 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>读取压缩的无符号的整数值。 请参阅元数据规范部分 II.23.2:Blob 和签名。</summary>
-        <returns>压缩已读取的整数的值。</returns>
+        <summary>读取无符号压缩整数值。 请参阅元数据规范 II.23.2 小节：Blob 和签名。</summary>
+        <returns>读取的压缩整数的值。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.BadImageFormatException">当前的位置处的数据未压缩的有效整数。</exception>
+        <exception cref="T:System.BadImageFormatException">当前位置的数据不是有效的压缩整数。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReadCompressedSignedInteger">
@@ -408,10 +408,10 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>读取压缩的有符号的整数值。 请参阅元数据规范部分 II.23.2:Blob 和签名。</summary>
-        <returns>压缩已读取的整数的值。</returns>
+        <summary>读取带符号的压缩整数值。 请参阅元数据规范 II.23.2 小节：Blob 和签名。</summary>
+        <returns>读取的压缩整数的值。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.BadImageFormatException">当前的位置处的数据未压缩的有效整数。</exception>
+        <exception cref="T:System.BadImageFormatException">当前位置的数据不是有效的压缩整数。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReadConstant">
@@ -438,8 +438,8 @@
       </Parameters>
       <Docs>
         <param name="typeCode">To be added.</param>
-        <summary>读取的常量值 （请参阅 ECMA-335 第 II 部分 22.9） 从当前的位置。</summary>
-        <returns>装箱的常量值。 若要避免直接分配的对象使用 Read * 方法。</returns>
+        <summary>从当前位置读取一个常数值（请参阅 ECMA-335 第 II 部分 22.9 小节）。</summary>
+        <returns>装箱的常数值。 为了避免分配对象，直接使用 Read* 方法。</returns>
         <remarks>类型的常量<see cref="F:System.Reflection.Metadata.ConstantTypeCode.String" />被编码为 UTF16 字符串，使用<see cref="M:System.Reflection.Metadata.BlobReader.ReadUTF16(System.Int32)" />地读取它们。</remarks>
         <exception cref="T:System.BadImageFormatException">从 blob 中读取时出错。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="typeCode" /> 不是有效的 <see cref="T:System.Reflection.Metadata.ConstantTypeCode" />。</exception>
@@ -492,10 +492,10 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>读取<see cref="T:System.Decimal" />数。</summary>
+        <summary>读取一个 <see cref="T:System.Decimal" /> 数值。</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.BadImageFormatException">当前的位置处的数据不是有效<see cref="T:System.Decimal" />数。</exception>
+        <exception cref="T:System.BadImageFormatException">当前位置的数据不是有效的 <see cref="T:System.Decimal" /> 数值。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReadDouble">
@@ -681,8 +681,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>读取编码的序列化自定义属性值中的类型代码。</summary>
-        <returns><see cref="F:System.Reflection.Metadata.SerializationTypeCode.Invalid" /> 如果编码为无效。</returns>
+        <summary>读取以序列化自定义属性值形式编码的类型代码。</summary>
+        <returns>如果编码无效，则 <see cref="F:System.Reflection.Metadata.SerializationTypeCode.Invalid" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -708,10 +708,10 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>读取编码为压缩的整数，包含以 utf8 表示其内容后跟其长度的字符串。 Null 字符串编码为一个 0xFF 字节。</summary>
-        <returns>一个字符串值，或<see langword="null" />。</returns>
+        <summary>读取编码为压缩整数的字符串，其中包含其长度并后跟其内容（UTF8 格式）。 Null 字符串会编码为一个 0xFF 字节。</summary>
+        <returns>字符串值，或 <see langword="null" />。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.BadImageFormatException">编码是无效的。</exception>
+        <exception cref="T:System.BadImageFormatException">编码无效。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReadSignatureHeader">
@@ -763,8 +763,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>读取编码在签名中的类型代码。</summary>
-        <returns>如果编码为有效的编码的序列化自定义属性值中的类型代码或<see cref="F:System.Reflection.Metadata.SignatureTypeCode.Invalid" />的编码是否无效。</returns>
+        <summary>读取以签名形式编码的类型代码。</summary>
+        <returns>如果编码有效，则为以序列化自定义属性值形式编码的类型代码；如果编码无效，则 <see cref="F:System.Reflection.Metadata.SignatureTypeCode.Invalid" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -817,8 +817,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>读取编码为 TypeDefOrRefOrSpecEncoded 签名中的类型句柄 （请参阅 ECMA-335 II.23.2.8）。</summary>
-        <returns>句柄时的编码有效。 否则为句柄位置<see cref="P:System.Reflection.Metadata.EntityHandle.IsNil" />属性是<see langword="true" />。</returns>
+        <summary>读取以签名形式编码为 TypeDefOrRefOrSpecEncoded 的类型句柄（请参阅 ECMA-335 II.23.2.8）。</summary>
+        <returns>编码有效时的句柄。 否则，为 <see cref="P:System.Reflection.Metadata.EntityHandle.IsNil" /> 属性为 <see langword="true" /> 的句柄。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -928,10 +928,10 @@
       </Parameters>
       <Docs>
         <param name="byteCount">要读取的字节数。</param>
-        <summary>读取从当前位置开始的 UTF16 (小 endian) 编码的字符串。</summary>
+        <summary>读取从当前位置开始的 UTF16 (little-endian) 编码的字符串。</summary>
         <returns>字符串。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.BadImageFormatException"><paramref name="byteCount" /> 不可用的字节数。</exception>
+        <exception cref="T:System.BadImageFormatException"><paramref name="byteCount" /> 个字节不可用。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReadUTF8">
@@ -962,7 +962,7 @@
         <summary>读取从当前位置开始的 UTF8 编码的字符串。</summary>
         <returns>字符串。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.BadImageFormatException"><paramref name="byteCount" /> 不可用的字节数。</exception>
+        <exception cref="T:System.BadImageFormatException"><paramref name="byteCount" /> 个字节不可用。</exception>
       </Docs>
     </Member>
     <Member MemberName="RemainingBytes">
@@ -986,7 +986,7 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取从当前位置到基础的内存块的末尾的剩余字节数。</summary>
+        <summary>获取从当前位置到基础内存块末尾的剩余字节数。</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1013,7 +1013,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>将读取器重新定位到的基础的内存块的开头。</summary>
+        <summary>将读取器重新定位到基础内存块的起始位置。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1083,7 +1083,7 @@
         <ReturnType>System.Byte*</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个指针指向的字节在基础内存块的开头。</summary>
+        <summary>获取指向基础内存块起始处的字节的指针。</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1112,9 +1112,9 @@
         <Parameter Name="value" Type="System.Int32" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">压缩已读取的整数的值。</param>
-        <summary>读取压缩的无符号的整数值。 请参阅元数据规范部分 II.23.2:Blob 和签名。</summary>
-        <returns><see langword="true" /> 如果成功读取的值。 <see langword="false" /> 如果当前的位置处的数据未压缩的有效整数。</returns>
+        <param name="value">读取的压缩整数的值。</param>
+        <summary>读取无符号压缩整数值。 请参阅元数据规范 II.23.2 小节：Blob 和签名。</summary>
+        <returns>如果成功读取值，则为 <see langword="true" />。 如果当前位置的数据不是有效的压缩整数，则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1142,9 +1142,9 @@
         <Parameter Name="value" Type="System.Int32" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">压缩已读取的整数的值。</param>
-        <summary>读取压缩的有符号的整数值。 请参阅元数据规范部分 II.23.2:Blob 和签名。</summary>
-        <returns><see langword="true" /> 如果成功读取的值。 <see langword="false" /> 如果当前的位置处的数据未压缩的有效整数。</returns>
+        <param name="value">读取的压缩整数的值。</param>
+        <summary>读取带符号的压缩整数值。 请参阅元数据规范 II.23.2 小节：Blob 和签名。</summary>
+        <returns>如果成功读取值，则为 <see langword="true" />。 如果当前位置的数据不是有效的压缩整数，则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

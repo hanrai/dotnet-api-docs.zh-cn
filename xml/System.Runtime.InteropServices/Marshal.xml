@@ -1,5 +1,5 @@
 <Type Name="Marshal" FullName="System.Runtime.InteropServices.Marshal">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f50859363fd37688e070eaa6e1cd762332366c0e" /><Meta Name="ms.sourcegitcommit" Value="f61362e4134a78bac27d2c8136823a467216f4ab" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/15/2019" /><Meta Name="ms.locfileid" Value="65629396" /></Metadata><TypeSignature Language="C#" Value="public static class Marshal" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8aaa416243094146e06eadf33e09df49872e5412" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67248171" /></Metadata><TypeSignature Language="C#" Value="public static class Marshal" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit Marshal extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.Marshal" />
   <TypeSignature Language="VB.NET" Value="Public Class Marshal" />
@@ -515,7 +515,7 @@
       </Parameters>
       <Docs>
         <param name="otp">一个对象，其 CCW 包含带有引用计数的句柄。 如果 CCW 上的引用计数大于零，则该句柄是强句柄；否则为弱句柄。</param>
-        <param name="fIsWeak"><see langword="true" /> 若要更改在句柄的强度<paramref name="otp" />为弱，而无论其引用计数; 参数<see langword="false" />在重置的句柄强度<paramref name="otp" />要进行引用计数。</param>
+        <param name="fIsWeak">为 <see langword="true" /> 时，忽略 <paramref name="otp" /> 的引用计数，将其句柄强度改为弱；为 <see langword="false" /> 时，重置要进行引用计数的 <paramref name="otp" /> 上的句柄强度。</param>
         <summary>更改对象的 [COM 可调用包装器](~/docs/framework/interop/com-callable-wrapper.md) (CCW) 句柄的强度。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1805,11 +1805,12 @@
         <Parameter Name="o" Type="T" Index="1" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <typeparam name="T">托管对象的类型聚合。</typeparam>
+        <typeparam name="T">要聚合的托管对象的类型。</typeparam>
         <param name="pOuter">外部 [IUnknown](https://go.microsoft.com/fwlink/?LinkId=148003) 指针。</param>
         <param name="o">要集合的托管对象。</param>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-聚合指定类型的托管对象和指定的 COM 对象。</summary>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 聚合指定类型的托管对象和指定的 COM 对象。</summary>
         <returns>托管对象的内部 <see href="https://docs.microsoft.com/windows/desktop/api/unknwn/nn-unknwn-iunknown">IUnknown</see> 指针。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1896,7 +1897,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="t" /> 必须派生自 <see langword="__ComObject" />。  
   
-或 
+- 或 - 
  <paramref name="t" /> 是 [!INCLUDE[wrt](~/includes/wrt-md.md)] 类型。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="t" /> 参数为 <see langword="null" />。</exception>
         <exception cref="T:System.InvalidCastException"><paramref name="o" /> 不支持所有必需的接口，因此无法转换为目标类型。</exception>
@@ -1947,11 +1948,12 @@
         <Parameter Name="o" Type="T" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <typeparam name="T">要包装的对象类型。</typeparam>
+        <typeparam name="T">要包装的对象的类型。</typeparam>
         <typeparam name="TWrapper">要返回的对象的类型。</typeparam>
         <param name="o">要包装的对象。</param>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-在指定类型的对象中包装指定的 COM 对象。</summary>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 在指定类型的对象中包装指定的 COM 对象。</summary>
         <returns>新包装的对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1970,7 +1972,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><typeparamref name="T" /> 必须派生自 <see langword="__ComObject" />。  
   
-或 
+- 或 - 
  <typeparamref name="T" /> 是 [!INCLUDE[wrt](~/includes/wrt-md.md)] 类型。</exception>
         <exception cref="T:System.InvalidCastException"><paramref name="o" /> 无法转换为 <paramref name="TWrapper" />，因为它不支持所有需要的接口。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
@@ -2032,7 +2034,7 @@
       </Parameters>
       <Docs>
         <param name="ptr">指向非托管内存块的指针。</param>
-        <param name="structuretype">格式化类的类型。 这提供了删除中的缓冲区所需的布局信息<paramref name="ptr" />参数。</param>
+        <param name="structuretype">格式化类的类型。 该类型提供删除 <paramref name="ptr" /> 参数指向的缓冲区时必需的布局信息。</param>
         <summary>释放指定的非托管内存块所指向的所有子结构。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -2095,10 +2097,11 @@
         <Parameter Name="ptr" Type="System.IntPtr" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <typeparam name="T">格式化结构的类型。 这提供了删除中的缓冲区所需的布局信息<paramref name="ptr" />参数。</typeparam>
+        <typeparam name="T">格式化结构的类型。 该类型提供删除 <paramref name="ptr" /> 参数指向的缓冲区时必需的布局信息。</typeparam>
         <param name="ptr">指向非托管内存块的指针。</param>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-释放指定的非托管内存块所指向的所有指定类型的子结构。</summary>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 释放指定的非托管内存块所指向的所有指定类型的子结构。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -2626,15 +2629,15 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><typeparamref name="T" /> 参数不是接口。  
   
-或 
+- 或 - 
 该类型对 COM 不可见。  
   
-或 
+- 或 - 
 <typeparamref name="T" /> 参数是泛型类型定义。</exception>
         <exception cref="T:System.InvalidCastException"><paramref name="o" /> 参数不支持请求的接口。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="o" /> 参数为 <see langword="null" />。  
   
-或 
+- 或 - 
 <typeparamref name="T" /> 参数为 <see langword="null" />。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.GetComInterfaceForObjectInContext(System.Object,System.Type)" />
@@ -2710,15 +2713,15 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><typeparamref name="T" /> 参数不是接口。  
   
-或 
+- 或 - 
 该类型对 COM 不可见。  
   
-或 
+- 或 - 
 <typeparamref name="T" /> 参数是泛型类型定义。</exception>
         <exception cref="T:System.InvalidCastException">对象 <paramref name="o" /> 不支持请求的接口。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="o" /> 参数为 <see langword="null" />。  
   
-或 
+- 或 - 
 <typeparamref name="T" /> 参数为 <see langword="null" />。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
       </Docs>
@@ -2767,7 +2770,7 @@
       </Parameters>
       <Docs>
         <typeparam name="T"><paramref name="o" /> 的类型。</typeparam>
-        <typeparam name="TInterface">要返回的接口类型。</typeparam>
+        <typeparam name="TInterface">要返回的接口的类型。</typeparam>
         <param name="o">提供接口的对象。</param>
         <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
 返回一个指向 [IUnknown](https://go.microsoft.com/fwlink/?LinkId=148003) 接口的指针，该指针表示指定类型的对象上的指定接口。 默认情况下，启用自定义查询接口访问。</summary>
@@ -2788,10 +2791,10 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="TInterface" /> 参数不是接口。  
   
-或 
+- 或 - 
 该类型对 COM 不可见。  
   
-或 
+- 或 - 
 <typeparamref name="T" /> 参数是开放式泛型类型。</exception>
         <exception cref="T:System.InvalidCastException"><paramref name="o" /> 参数不支持 <paramref name="TInterface" /> 接口。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="o" /> 参数为 <see langword="null" />。</exception>
@@ -2845,7 +2848,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="t" /> 不是接口。  
   
-或 
+- 或 - 
 该类型对 COM 不可见。</exception>
         <exception cref="T:System.InvalidCastException"><paramref name="o" /> 不支持请求的接口。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="o" /> 为 <see langword="null" />。  
@@ -2915,7 +2918,7 @@
  <paramref name="key" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="obj" /> 不是 COM 对象。  
   
-或 
+- 或 - 
  <paramref name="obj" /> 是一个 [!INCLUDE[wrt](~/includes/wrt-md.md)] 对象。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.SetComObjectData(System.Object,System.Object,System.Object)" />
@@ -2970,7 +2973,7 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="m" /> 参数为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="m" /> 参数不是 <see cref="T:System.Reflection.MemberInfo" /> 对象。  
   
-或 
+- 或 - 
 <paramref name="m" /> 参数不是接口方法。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="T:System.Reflection.MemberInfo" />
@@ -3057,7 +3060,7 @@
         <exception cref="T:System.ArgumentException"><paramref name="t" /> 参数不是委托或泛型。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="ptr" /> 参数为 <see langword="null" />。  
   
-或 
+- 或 - 
 <paramref name="t" /> 参数为 <see langword="null" />。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
       </Docs>
@@ -3106,8 +3109,9 @@
       <Docs>
         <typeparam name="TDelegate">要返回的委托的类型。</typeparam>
         <param name="ptr">要转换的非托管函数指针。</param>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-将非托管函数指针转换为指定类型的委托。</summary>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 将非托管函数指针转换为指定类型的委托。</summary>
         <returns>指定委托类型的实例。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -3301,7 +3305,7 @@
       <Docs>
         <param name="errorCode">要转换的 HRESULT。</param>
         <summary>将指定的 HRESULT 错误代码转换为对应的 <see cref="T:System.Exception" /> 对象。</summary>
-        <returns>一个对象，表示转换后的 HRESULT 或<see langword="null" />如果 HRESULT 值并不表示错误代码 (例如，<see langword="S_OK" />或<see langword="S_FALSE" />)。</returns>
+        <returns>一个对象，表示转换后的 HRESULT；或者，如果 HRESULT 值不表示错误代码（例如，<see langword="S_OK" /> 或 <see langword="S_FALSE" />），则为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -3364,7 +3368,7 @@
         <param name="errorCode">要转换的 HRESULT。</param>
         <param name="errorInfo">指向 <see langword="IErrorInfo" /> 接口的指针，用于提供有关错误的详细信息。 可以指定 <c>IntPtr(0)</c> 以使用当前 <see langword="IErrorInfo" /> 接口，或者指定 <c>IntPtr(-1)</c> 以忽略当前 <see langword="IErrorInfo" /> 接口，仅从错误代码构造异常。</param>
         <summary>将指定的 HRESULT 错误代码转换为对应的 <see cref="T:System.Exception" /> 对象，其中包括通过此异常对象的 [IErrorInfo](https://msdn.microsoft.com/library/4dda6909-2d9a-4727-ae0c-b5f90dcfa447) 接口传递的其他错误信息。</summary>
-        <returns>一个对象，表示转换后的 HRESULT 以及信息来自<paramref name="errorInfo" />，或<see langword="null" />如果 HRESULT 值并不表示错误代码 (例如，<see langword="S_OK" />或<see langword="S_FALSE" />)。</returns>
+        <returns>一个对象，表示转换后的 HRESULT 的对象和从 <paramref name="errorInfo" /> 获得的信息；或者，如果 HRESULT 值不表示错误代码（例如，<see langword="S_OK" /> 或 <see langword="S_FALSE" />），则为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -3540,10 +3544,11 @@
         <Parameter Name="d" Type="TDelegate" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <typeparam name="TDelegate">要转换的委托类型。</typeparam>
+        <typeparam name="TDelegate">要转换的委托的类型。</typeparam>
         <param name="d">要传递给非托管代码的委托。</param>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-将指定类型的委托转换为可从非托管代码调用的函数指针。</summary>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 将指定类型的委托转换为可从非托管代码调用的函数指针。</summary>
         <returns>一个可传递给非托管代码的值，非托管代码使用该值来调用基础托管委托。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -3894,7 +3899,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="t" /> 不是 COM 的可见类型。  
   
-或 
+- 或 - 
  <paramref name="t" /> 是 [!INCLUDE[wrt](~/includes/wrt-md.md)] 类型。</exception>
         <exception cref="T:System.Runtime.InteropServices.COMException">为包含一个类型的程序集注册了该类型的类型库，但找不到类型定义。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
@@ -4138,7 +4143,7 @@
       <Docs>
         <param name="pfnMethodToWrap">指向要封送的方法的指针。</param>
         <param name="pbSignature">指向方法签名的指针。</param>
-        <param name="cbSignature">中的字节数<paramref name="pbSignature" />。</param>
+        <param name="cbSignature"><paramref name="pbSignature" /> 中的字节数。</param>
         <summary>获取指向运行时生成的函数的指针，该函数将调用从托管代码封送到非托管代码。</summary>
         <returns>指向一个函数的指针，该函数将调用从 <paramref name="pfnMethodToWrap" /> 参数封送到非托管代码。</returns>
         <remarks>
@@ -4334,8 +4339,9 @@
         <typeparam name="T">要转换的对象的类型。</typeparam>
         <param name="obj">为其获取 COM VARIANT 的对象。</param>
         <param name="pDstNativeVariant">一个指针，接收对应于 <paramref name="obj" /> 参数的 VARIANT。</param>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-将指定类型的对象转换为 COM VARIANT。</summary>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 将指定类型的对象转换为 COM VARIANT。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -4539,10 +4545,11 @@
         <Parameter Name="pSrcNativeVariant" Type="System.IntPtr" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <typeparam name="T">若要将 COM VARIANT 转换为的类型。</typeparam>
+        <typeparam name="T">要将 COM VARIANT 转换为的类型。</typeparam>
         <param name="pSrcNativeVariant">指向 COM VARIANT 的指针。</param>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-将 COM VARIANT 转换为指定类型的对象。</summary>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 将 COM VARIANT 转换为指定类型的对象。</summary>
         <returns>一个与 <paramref name="pSrcNativeVariant" /> 参数对应的指定类型的对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -4612,7 +4619,7 @@
       </Parameters>
       <Docs>
         <param name="aSrcNativeVariant">指向 COM VARIANT 数组中第一个元素的指针。</param>
-        <param name="cVars">中的 COM Variant 的计数<paramref name="aSrcNativeVariant" />。</param>
+        <param name="cVars"><paramref name="aSrcNativeVariant" /> 中的 COM VARIANT 的计数。</param>
         <summary>将 COM <see href="https://go.microsoft.com/fwlink/?LinkId=148670">VARIANT</see> 数组转换为对象数组。</summary>
         <returns>对应于 <paramref name="aSrcNativeVariant" /> 的对象数组。</returns>
         <remarks>
@@ -4683,9 +4690,10 @@
       <Docs>
         <typeparam name="T">要返回的数组的类型。</typeparam>
         <param name="aSrcNativeVariant">指向 COM VARIANT 数组中第一个元素的指针。</param>
-        <param name="cVars">中的 COM Variant 的计数<paramref name="aSrcNativeVariant" />。</param>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-将 COM VARIANT 数组转换为指定类型的数组。</summary>
+        <param name="cVars"><paramref name="aSrcNativeVariant" /> 中的 COM VARIANT 的计数。</param>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 将 COM VARIANT 数组转换为指定类型的数组。</summary>
         <returns>对应于 <paramref name="aSrcNativeVariant" /> 的 <typeparamref name="T" /> 对象的数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -4868,7 +4876,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="t" /> 并不具有 <see cref="T:System.Runtime.InteropServices.ComImportAttribute" /> 特性。  
   
-或 
+- 或 - 
  <paramref name="t" /> 是 [!INCLUDE[wrt](~/includes/wrt-md.md)] 类型。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="T:System.Runtime.InteropServices.ComImportAttribute" />
@@ -5627,7 +5635,7 @@
       <Docs>
         <param name="pfnMethodToWrap">指向要封送的方法的指针。</param>
         <param name="pbSignature">指向方法签名的指针。</param>
-        <param name="cbSignature">中的字节数<paramref name="pbSignature" />。</param>
+        <param name="cbSignature"><paramref name="pbSignature" /> 中的字节数。</param>
         <summary>获取指向运行时生成的函数的指针，该函数将调用从非托管代码封送到托管代码。</summary>
         <returns>指向一个函数的指针，该函数将调用从 <paramref name="pfnMethodToWrap" /> 封送到托管代码。</returns>
         <remarks>
@@ -5854,7 +5862,7 @@
       </Parameters>
       <Docs>
         <param name="t">指定托管类的值类型或格式化引用类型。 必须将 <see cref="T:System.Runtime.InteropServices.StructLayoutAttribute" /> 应用于该类。</param>
-        <param name="fieldName">中的字段<paramref name="t" />参数。</param>
+        <param name="fieldName"><paramref name="t" /> 参数中的字段。</param>
         <summary>返回托管类的非托管形式的字段偏移量。</summary>
         <returns>平台调用声明的指定类中 <paramref name="fieldName" /> 参数的偏移量（以字节为单位）。</returns>
         <remarks>
@@ -5912,8 +5920,9 @@
       <Docs>
         <typeparam name="T">托管值类型或格式化引用类型。 必须将 <see cref="T:System.Runtime.InteropServices.StructLayoutAttribute" /> 属性应用于该类。</typeparam>
         <param name="fieldName"><paramref name="T" /> 类型中字段的名称。</param>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-返回指定托管类的非托管形式的字段偏移量。</summary>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 返回指定托管类的非托管形式的字段偏移量。</summary>
         <returns>平台调用声明的指定类中 <paramref name="fieldName" /> 参数的偏移量（以字节为单位）。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -6241,8 +6250,9 @@
       <Docs>
         <param name="ptr">对于 Unicode 平台，表示第一个 Unicode 字符的地址。  
   
-或 
-对于 ANSI 平台，表示第一个 ANSI 字符的地址。</param>
+ - 或 -  
+  
+ 对于 ANSI 平台，表示第一个 ANSI 字符的地址。</param>
         <summary>分配托管 <see cref="T:System.String" />，并从非托管内存中存储的字符串向其复制第一个空字符之前的所有字符。</summary>
         <returns>如果 <paramref name="ptr" /> 参数的值不是 <see langword="null" />；则为具有非托管字符串副本的托管字符串；否则此方法将返回 <see langword="null" />。</returns>
         <remarks>
@@ -6302,8 +6312,9 @@
       <Docs>
         <param name="ptr">对于 Unicode 平台，表示第一个 Unicode 字符的地址。  
   
-或 
-对于 ANSI 平台，表示第一个 ANSI 字符的地址。</param>
+ - 或 -  
+  
+ 对于 ANSI 平台，表示第一个 ANSI 字符的地址。</param>
         <param name="len">要复制的字符数。</param>
         <summary>分配托管 <see cref="T:System.String" />，并从存储在非托管内存中的字符串向其复制指定数目的字符。</summary>
         <returns>如果 <paramref name="ptr" /> 参数的值不是 <see langword="null" />；则为包含本机字符串副本的托管字符串；否则此，方法将返回 <see langword="null" />。</returns>
@@ -6679,8 +6690,9 @@
         </remarks>
         <exception cref="T:System.ArgumentException">结构布局不是连续或显式的。  
   
-或 
-结构为装箱的值类型。</exception>
+ - 或 -  
+  
+ 结构为装箱的值类型。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
       </Docs>
     </Member>
@@ -6769,7 +6781,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="structureType" /> 参数布局不是连续或显式的。  
   
-或 
+- 或 - 
 <paramref name="structureType" /> 参数是泛型类型定义。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="structureType" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.MissingMethodException"><paramref name="structureType" /> 指定的类没有可访问的默认值构造函数。</exception>
@@ -6821,8 +6833,9 @@
       <Docs>
         <typeparam name="T">要将数据复制到其中的对象的类型。 这必须是格式化类或结构。</typeparam>
         <param name="ptr">指向非托管内存块的指针。</param>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-将数据从非托管内存块封送到泛型类型参数指定的类型的新分配托管对象。</summary>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 将数据从非托管内存块封送到泛型类型参数指定的类型的新分配托管对象。</summary>
         <returns>一个包含 <paramref name="ptr" /> 参数指向的数据的托管对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -6883,8 +6896,9 @@
         <typeparam name="T"><paramref name="structure" /> 的类型。 这必须是格式化的类。</typeparam>
         <param name="ptr">指向非托管内存块的指针。</param>
         <param name="structure">将数据复制到其中的对象。</param>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-将数据从非托管内存块封送到指定类型的托管内存对象。</summary>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 将数据从非托管内存块封送到指定类型的托管内存对象。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -7046,10 +7060,10 @@
         </remarks>
         <exception cref="T:System.AccessViolationException"><paramref name="ptr" /> 不是识别的格式。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 无效。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
@@ -7099,7 +7113,7 @@
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中开始读取的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前读取参数。</param>
+        <param name="ofs">额外的字节偏移量，在读取前添加到 <paramref name="ptr" /> 参数中。</param>
         <summary>从非托管内存按给定的偏移量（或索引）读取单个字节。</summary>
         <returns>从非托管内存按给定的偏移量读取的字节。</returns>
         <remarks>
@@ -7185,7 +7199,7 @@
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中源对象的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前读取参数。</param>
+        <param name="ofs">额外的字节偏移量，在读取前添加到 <paramref name="ptr" /> 参数中。</param>
         <summary>从非托管内存按给定的偏移量（或索引）读取单个字节。</summary>
         <returns>从非托管内存按给定的偏移量读取的字节。</returns>
         <remarks>
@@ -7199,7 +7213,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.AccessViolationException">基址 (<paramref name="ptr" />) 加上偏移字节 (<paramref name="ofs" />) 可产生空或无效地址。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是一个 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
       </Docs>
@@ -7287,10 +7301,10 @@
         </remarks>
         <exception cref="T:System.AccessViolationException"><paramref name="ptr" /> 不是识别的格式。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 无效。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
@@ -7340,7 +7354,7 @@
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中开始读取的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前读取参数。</param>
+        <param name="ofs">额外的字节偏移量，在读取前添加到 <paramref name="ptr" /> 参数中。</param>
         <summary>从非托管内存按给定的偏移量读取一个 16 位带符号整数。</summary>
         <returns>从非托管内存按给定的偏移量读取的 16 位带符号整数。</returns>
         <remarks>
@@ -7427,7 +7441,7 @@
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中源对象的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前读取参数。</param>
+        <param name="ofs">额外的字节偏移量，在读取前添加到 <paramref name="ptr" /> 参数中。</param>
         <summary>从非托管内存按给定的偏移量读取一个 16 位带符号整数。</summary>
         <returns>从非托管内存按给定的偏移量读取的 16 位带符号整数。</returns>
         <remarks>
@@ -7441,7 +7455,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.AccessViolationException">基址 (<paramref name="ptr" />) 加上偏移字节 (<paramref name="ofs" />) 可产生空或无效地址。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是一个 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
       </Docs>
@@ -7532,10 +7546,10 @@
         </remarks>
         <exception cref="T:System.AccessViolationException"><paramref name="ptr" /> 不是识别的格式。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 无效。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
@@ -7588,7 +7602,7 @@
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中开始读取的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前读取参数。</param>
+        <param name="ofs">额外的字节偏移量，在读取前添加到 <paramref name="ptr" /> 参数中。</param>
         <summary>从非托管内存按给定的偏移量读取一个 32 位带符号整数。</summary>
         <returns>从非托管内存中读取的 32 位带符号整数。</returns>
         <remarks>
@@ -7678,7 +7692,7 @@
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中源对象的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前读取参数。</param>
+        <param name="ofs">额外的字节偏移量，在读取前添加到 <paramref name="ptr" /> 参数中。</param>
         <summary>从非托管内存按给定的偏移量读取一个 32 位带符号整数。</summary>
         <returns>从非托管内存按给定的偏移量读取的 32 位带符号整数。</returns>
         <remarks>
@@ -7692,7 +7706,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.AccessViolationException">基址 (<paramref name="ptr" />) 加上偏移字节 (<paramref name="ofs" />) 可产生空或无效地址。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是一个 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
       </Docs>
@@ -7783,10 +7797,10 @@
         </remarks>
         <exception cref="T:System.AccessViolationException"><paramref name="ptr" /> 不是识别的格式。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 无效。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
@@ -7839,7 +7853,7 @@
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中开始读取的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前读取参数。</param>
+        <param name="ofs">额外的字节偏移量，在读取前添加到 <paramref name="ptr" /> 参数中。</param>
         <summary>从非托管内存按给定的偏移量读取一个 64 位带符号整数。</summary>
         <returns>从非托管内存按给定的偏移量读取的 64 位带符号整数。</returns>
         <remarks>
@@ -7929,7 +7943,7 @@
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中源对象的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前读取参数。</param>
+        <param name="ofs">额外的字节偏移量，在读取前添加到 <paramref name="ptr" /> 参数中。</param>
         <summary>从非托管内存按给定的偏移量读取一个 64 位带符号整数。</summary>
         <returns>从非托管内存按给定的偏移量读取的 64 位带符号整数。</returns>
         <remarks>
@@ -7943,7 +7957,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.AccessViolationException">基址 (<paramref name="ptr" />) 加上偏移字节 (<paramref name="ofs" />) 可产生空或无效地址。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是一个 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
       </Docs>
@@ -8030,10 +8044,10 @@
         </remarks>
         <exception cref="T:System.AccessViolationException"><paramref name="ptr" /> 不是识别的格式。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 无效。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
@@ -8086,7 +8100,7 @@
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中开始读取的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前读取参数。</param>
+        <param name="ofs">额外的字节偏移量，在读取前添加到 <paramref name="ptr" /> 参数中。</param>
         <summary>从非托管内存按给定的偏移量读取处理器本机大小的整数。</summary>
         <returns>从非托管内存按给定的偏移量读取的整数。</returns>
         <remarks>
@@ -8169,7 +8183,7 @@
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中源对象的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前读取参数。</param>
+        <param name="ofs">额外的字节偏移量，在读取前添加到 <paramref name="ptr" /> 参数中。</param>
         <summary>从非托管内存读取处理器本机大小的整数。</summary>
         <returns>从非托管内存按给定的偏移量读取的整数。</returns>
         <remarks>
@@ -8183,7 +8197,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.AccessViolationException">基址 (<paramref name="ptr" />) 加上偏移字节 (<paramref name="ofs" />) 可产生空或无效地址。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是一个 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
       </Docs>
@@ -8877,7 +8891,7 @@
  <paramref name="key" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="obj" /> 不是 COM 对象。  
   
-或 
+- 或 - 
  <paramref name="obj" /> 是一个 [!INCLUDE[wrt](~/includes/wrt-md.md)] 对象。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.GetComObjectData(System.Object,System.Object)" />
@@ -9086,8 +9100,9 @@
       <Parameters />
       <Docs>
         <typeparam name="T">要返回其大小的类型。</typeparam>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-返回非托管类型的大小（以字节为单位）。</summary>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 返回非托管类型的大小（以字节为单位）。</summary>
         <returns><typeparamref name="T" /> 泛型类型参数指定的类型的大小（以字节为单位）。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -9140,8 +9155,9 @@
       <Docs>
         <typeparam name="T"><paramref name="structure" /> 参数的类型。</typeparam>
         <param name="structure">要返回其大小的对象。</param>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-返回指定类型的对象的非托管大小（以字节为单位）。</summary>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 返回指定类型的对象的非托管大小（以字节为单位）。</summary>
         <returns>非托管代码中指定对象的大小（以字节为单位）。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -9727,7 +9743,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="structure" /> 为不是格式化类的引用类型。  
   
-或 
+- 或 - 
  <paramref name="structure" /> 是泛型类型的实例（仅限 .NET Framework 4.5 和更低版本）。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.DestroyStructure(System.IntPtr,System.Type)" />
@@ -9782,8 +9798,9 @@
         <param name="structure">包含要封送的数据的托管对象。 该对象必须是格式化类的结构或实例。</param>
         <param name="ptr">指向非托管内存块的指针，必须在调用此方法之前分配该指针。</param>
         <param name="fDeleteOld">如果在此方法复制该数据前在 <see cref="M:System.Runtime.InteropServices.Marshal.DestroyStructure``1(System.IntPtr)" /> 参数上调用 <paramref name="ptr" />，则为 <see langword="true" />。 该块必须包含有效的数据。 请注意，在内存块已包含数据时传递 <see langword="false" /> 可能会导致内存泄漏。</param>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-将数据从指定类型的托管对象封送到非托管内存块。</summary>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 将数据从指定类型的托管对象封送到非托管内存块。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -10121,7 +10138,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
       </Parameters>
       <Docs>
         <param name="arr">包含所需元素的数组。</param>
-        <param name="index">中的索引<paramref name="arr" />所需元素的参数。</param>
+        <param name="index">所需元素的 <paramref name="arr" /> 参数中的索引。</param>
         <summary>获取指定数组中指定索引处的元素的地址。</summary>
         <returns><paramref name="arr" /> 内的 <paramref name="index" /> 地址。</returns>
         <remarks>
@@ -10181,9 +10198,10 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
       <Docs>
         <typeparam name="T">数组的类型。</typeparam>
         <param name="arr">包含所需元素的数组。</param>
-        <param name="index">在所需元素的索引<paramref name="arr" />数组。</param>
-        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持] 
-获取指定类型的数组中指定索引处的元素地址。</summary>
+        <param name="index"><paramref name="arr" /> 数组中所需元素的索引。</param>
+        <summary>[在 .NET Framework 4.5.1 和更高版本中受支持]  
+  
+ 获取指定类型的数组中指定索引处的元素地址。</summary>
         <returns><paramref name="arr" /> 中的 <paramref name="index" /> 地址。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -10275,10 +10293,10 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
         </remarks>
         <exception cref="T:System.AccessViolationException"><paramref name="ptr" /> 不是识别的格式。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 无效。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
@@ -10329,7 +10347,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中要写入的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前写入的参数。</param>
+        <param name="ofs">额外的字节偏移量，在写入前添加到 <paramref name="ptr" /> 参数中。</param>
         <param name="val">要写入的值。</param>
         <summary>按指定偏移量将单字节值写入非托管内存。</summary>
         <remarks>
@@ -10410,7 +10428,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中目标对象的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前写入的参数。</param>
+        <param name="ofs">额外的字节偏移量，在写入前添加到 <paramref name="ptr" /> 参数中。</param>
         <param name="val">要写入的值。</param>
         <summary>按指定偏移量将单字节值写入非托管内存。</summary>
         <remarks>
@@ -10422,7 +10440,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
  ]]></format>
         </remarks>
         <exception cref="T:System.AccessViolationException">基址 (<paramref name="ptr" />) 加上偏移字节 (<paramref name="ofs" />) 可产生空或无效地址。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是一个 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
       </Docs>
@@ -10507,10 +10525,10 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
         </remarks>
         <exception cref="T:System.AccessViolationException"><paramref name="ptr" /> 不是识别的格式。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 无效。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
@@ -10582,10 +10600,10 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
         </remarks>
         <exception cref="T:System.AccessViolationException"><paramref name="ptr" /> 不是识别的格式。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 无效。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
@@ -10636,7 +10654,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
       </Parameters>
       <Docs>
         <param name="ptr">本机堆中要写入的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前写入的参数。</param>
+        <param name="ofs">额外的字节偏移量，在写入前添加到 <paramref name="ptr" /> 参数中。</param>
         <param name="val">要写入的值。</param>
         <summary>按指定偏移量将 16 位带符号整数值写入非托管内存。</summary>
         <remarks>
@@ -10708,7 +10726,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中要写入的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前写入的参数。</param>
+        <param name="ofs">额外的字节偏移量，在写入前添加到 <paramref name="ptr" /> 参数中。</param>
         <param name="val">要写入的值。</param>
         <summary>按指定偏移量将 16 位带符号整数值写入非托管内存。</summary>
         <remarks>
@@ -10789,7 +10807,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中目标对象的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前写入的参数。</param>
+        <param name="ofs">额外的字节偏移量，在写入前添加到 <paramref name="ptr" /> 参数中。</param>
         <param name="val">要写入的值。</param>
         <summary>按指定偏移量将 16 位带符号整数值写入非托管内存。</summary>
         <remarks>
@@ -10803,7 +10821,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
  ]]></format>
         </remarks>
         <exception cref="T:System.AccessViolationException">基址 (<paramref name="ptr" />) 加上偏移字节 (<paramref name="ofs" />) 可产生空或无效地址。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是一个 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
       </Docs>
@@ -10865,7 +10883,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中目标对象的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前写入的参数。</param>
+        <param name="ofs">额外的字节偏移量，在写入前添加到 <paramref name="ptr" /> 参数中。</param>
         <param name="val">要写入的值。</param>
         <summary>按指定偏移量将 16 位带符号整数值写入非托管内存。</summary>
         <remarks>
@@ -10879,7 +10897,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
  ]]></format>
         </remarks>
         <exception cref="T:System.AccessViolationException">基址 (<paramref name="ptr" />) 加上偏移字节 (<paramref name="ofs" />) 可产生空或无效地址。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是一个 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
       </Docs>
@@ -10964,10 +10982,10 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
         </remarks>
         <exception cref="T:System.AccessViolationException"><paramref name="ptr" /> 不是识别的格式。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 无效。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
@@ -11018,7 +11036,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中要写入的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前写入的参数。</param>
+        <param name="ofs">额外的字节偏移量，在写入前添加到 <paramref name="ptr" /> 参数中。</param>
         <param name="val">要写入的值。</param>
         <summary>按指定偏移量将 32 位带符号整数值写入非托管内存。</summary>
         <remarks>
@@ -11102,7 +11120,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中目标对象的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前写入的参数。</param>
+        <param name="ofs">额外的字节偏移量，在写入前添加到 <paramref name="ptr" /> 参数中。</param>
         <param name="val">要写入的值。</param>
         <summary>按指定偏移量将 32 位带符号整数值写入非托管内存。</summary>
         <remarks>
@@ -11116,7 +11134,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
  ]]></format>
         </remarks>
         <exception cref="T:System.AccessViolationException">基址 (<paramref name="ptr" />) 加上偏移字节 (<paramref name="ofs" />) 可产生空或无效地址。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是一个 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
       </Docs>
@@ -11201,10 +11219,10 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
         </remarks>
         <exception cref="T:System.AccessViolationException"><paramref name="ptr" /> 不是识别的格式。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 无效。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
@@ -11255,7 +11273,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中要写入的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前写入的参数。</param>
+        <param name="ofs">额外的字节偏移量，在写入前添加到 <paramref name="ptr" /> 参数中。</param>
         <param name="val">要写入的值。</param>
         <summary>按指定偏移量将 64 位带符号整数值写入非托管内存。</summary>
         <remarks>
@@ -11339,7 +11357,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中目标对象的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前写入的参数。</param>
+        <param name="ofs">额外的字节偏移量，在写入前添加到 <paramref name="ptr" /> 参数中。</param>
         <param name="val">要写入的值。</param>
         <summary>按指定偏移量将 64 位带符号整数值写入非托管内存。</summary>
         <remarks>
@@ -11353,7 +11371,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
  ]]></format>
         </remarks>
         <exception cref="T:System.AccessViolationException">基址 (<paramref name="ptr" />) 加上偏移字节 (<paramref name="ofs" />) 可产生空或无效地址。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是一个 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
       </Docs>
@@ -11438,10 +11456,10 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
         </remarks>
         <exception cref="T:System.AccessViolationException"><paramref name="ptr" /> 不是识别的格式。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="ptr" /> 无效。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
@@ -11492,7 +11510,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中要写入的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前写入的参数。</param>
+        <param name="ofs">额外的字节偏移量，在写入前添加到 <paramref name="ptr" /> 参数中。</param>
         <param name="val">要写入的值。</param>
         <summary>按指定的偏移量将一个处理器本机大小的整数值写入非托管内存。</summary>
         <remarks>
@@ -11575,7 +11593,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
       </Parameters>
       <Docs>
         <param name="ptr">非托管内存中目标对象的基址。</param>
-        <param name="ofs">额外的字节偏移量，将添加到<paramref name="ptr" />之前写入的参数。</param>
+        <param name="ofs">额外的字节偏移量，在写入前添加到 <paramref name="ptr" /> 参数中。</param>
         <param name="val">要写入的值。</param>
         <summary>将一个处理器本机大小的整数值写入非托管内存。</summary>
         <remarks>
@@ -11589,7 +11607,7 @@ public static void ThrowExceptionForHR(interrorCode,IntPtrerrorInfo)
  ]]></format>
         </remarks>
         <exception cref="T:System.AccessViolationException">基址 (<paramref name="ptr" />) 加上偏移字节 (<paramref name="ofs" />) 可产生空或无效地址。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是一个 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="ptr" /> 是 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 对象。 此方法不接受 <see cref="T:System.Runtime.InteropServices.ArrayWithOffset" /> 参数。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
         <altmember cref="M:System.Runtime.InteropServices.Marshal.Copy(System.Int32[],System.Int32,System.IntPtr,System.Int32)" />
       </Docs>
