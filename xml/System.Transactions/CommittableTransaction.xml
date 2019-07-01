@@ -1,5 +1,5 @@
 <Type Name="CommittableTransaction" FullName="System.Transactions.CommittableTransaction">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="464fc828a29932c8cf9248a436410338281d32e0" /><Meta Name="ms.sourcegitcommit" Value="2767b5903996fbd7e2b81eda1114dfc9d0d9db63" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/02/2019" /><Meta Name="ms.locfileid" Value="65014209" /></Metadata><TypeSignature Language="C#" Value="public sealed class CommittableTransaction : System.Transactions.Transaction, IAsyncResult, IDisposable, System.Runtime.Serialization.ISerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="051e7170b311f9af83680067a1edb706570cb5af" /><Meta Name="ms.sourcegitcommit" Value="61757d0366a172cdbc11436deb1c1ffa49d97238" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/28/2019" /><Meta Name="ms.locfileid" Value="67458325" /></Metadata><TypeSignature Language="C#" Value="public sealed class CommittableTransaction : System.Transactions.Transaction, IAsyncResult, IDisposable, System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit CommittableTransaction extends System.Transactions.Transaction implements class System.IAsyncResult, class System.IDisposable, class System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.Transactions.CommittableTransaction" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class CommittableTransaction&#xA;Inherits Transaction&#xA;Implements IAsyncResult, IDisposable, ISerializable" />
@@ -46,7 +46,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Transactions.CommittableTransaction> 类为应用程序使用事务提供了一种显式方法，而不是隐式地使用 <xref:System.Transactions.TransactionScope> 类。 与 <xref:System.Transactions.TransactionScope> 类不同，应用程序编写器需要明确调用 <xref:System.Transactions.CommittableTransaction.Commit%2A> 和 <xref:System.Transactions.Transaction.Rollback%2A> 方法以提交或中止事务。 但是，只有在事务的创建者可以提交事务。 副本可提交的事务，因此，通过获取<xref:System.Transactions.Transaction.Clone%2A>方法不是可提交。  
+ `CommittableTransaction` 类为应用程序使用事务提供了一种显式方法，而不是隐式地使用 <xref:System.Transactions.TransactionScope> 类。 与 <xref:System.Transactions.TransactionScope> 类不同，应用程序编写器需要明确调用 <xref:System.Transactions.CommittableTransaction.Commit%2A> 和 <xref:System.Transactions.Transaction.Rollback%2A> 方法以提交或中止事务。 但是，只有在事务的创建者可以提交事务。 因此，通过获取的可提交的事务副本<xref:System.Transactions.Transaction.Clone%2A?displayProperty=nameWithType>方法不是可提交。  
   
 > [!NOTE]
 >  我们建议您创建使用隐式事务<xref:System.Transactions.TransactionScope>类，以便为您自动管理环境事务上下文。 此外应使用<xref:System.Transactions.TransactionScope>和<xref:System.Transactions.DependentTransaction>跨多个函数调用或多个线程调用需要在同一事务的使用的应用程序的类。 此模型的详细信息，请参阅[实现隐式 Transaction Using Transaction Scope](~/docs/framework/data/transactions/implementing-an-implicit-transaction-using-transaction-scope.md)主题。  
@@ -56,14 +56,7 @@
  直到<xref:System.Transactions.CommittableTransaction>具有已提交，涉及事务的的所有资源仍然都锁定。  
   
  <xref:System.Transactions.CommittableTransaction> 对象不能被重用。 一旦具有已提交或回滚后，不能在事务中再次使用或设置为当前环境事务上下文。  
-  
-   
-  
-## Examples  
- 下面的示例创建两个新实例的<xref:System.Transactions.CommittableTransaction>、 提交和回滚分别返回它们。  
-  
-  
-  
+
  ]]></format>
     </remarks>
     <threadsafe>此类型是线程安全的。</threadsafe>
@@ -118,7 +111,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.PlatformNotSupportedException">尝试创建在 Windows 98、 Windows 98 Second Edition 或 Windows Millennium Edition 下的一个事务。</exception>
+        <exception cref="T:System.PlatformNotSupportedException">尝试在 Windows 98、Windows 98 Second Edition 或 Windows Millennium Edition 下创建事务。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -149,10 +142,10 @@
         <Parameter Name="timeout" Type="System.TimeSpan" />
       </Parameters>
       <Docs>
-        <param name="timeout">最大的事务可以存在，在中止之前的时间量。</param>
+        <param name="timeout">事务在中止之前能够存在的最长时间。</param>
         <summary>使用指定的 <paramref name="timeout" /> 值初始化 <see cref="T:System.Transactions.CommittableTransaction" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.PlatformNotSupportedException">尝试创建在 Windows 98、 Windows 98 Second Edition 或 Windows Millennium Edition 下的一个事务。</exception>
+        <exception cref="T:System.PlatformNotSupportedException">尝试在 Windows 98、Windows 98 Second Edition 或 Windows Millennium Edition 下创建事务。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -183,8 +176,8 @@
         <Parameter Name="options" Type="System.Transactions.TransactionOptions" />
       </Parameters>
       <Docs>
-        <param name="options">一个<see cref="T:System.Transactions.TransactionOptions" />结构，它描述要用于新事务的事务选项。</param>
-        <summary>初始化的新实例<see cref="T:System.Transactions.CommittableTransaction" />类与指定的事务选项。</summary>
+        <param name="options">一个 <see cref="T:System.Transactions.TransactionOptions" /> 结构，描述用于新事务的事务选项。</param>
+        <summary>使用指定的事务选项初始化 <see cref="T:System.Transactions.CommittableTransaction" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -195,7 +188,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.PlatformNotSupportedException">尝试创建在 Windows 98、 Windows 98 Second Edition 或 Windows Millennium Edition 下的一个事务。</exception>
+        <exception cref="T:System.PlatformNotSupportedException">尝试在 Windows 98、Windows 98 Second Edition 或 Windows Millennium Edition 下创建事务。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="options" /> 无效。</exception>
       </Docs>
     </Member>
@@ -239,12 +232,12 @@
         <Parameter Name="user_defined_state" Type="System.Object" Index="1" FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="asyncCallback"><see cref="T:System.AsyncCallback" />事务完成时调用的委托。 此参数可以是<see langword="null" />，事务的完成的这种情况下不通知应用程序。 相反，应用程序必须使用<see cref="T:System.IAsyncResult" />接口来检查完成状态并等待，或调用<see cref="M:System.Transactions.CommittableTransaction.EndCommit(System.IAsyncResult)" />为等待完成。</param>
-        <param name="callback"><see cref="T:System.AsyncCallback" />事务完成时调用的委托。 此参数可以是<see langword="null" />，事务的完成的这种情况下不通知应用程序。 相反，应用程序必须使用<see cref="T:System.IAsyncResult" />接口来检查完成状态并等待，或调用<see cref="M:System.Transactions.CommittableTransaction.EndCommit(System.IAsyncResult)" />为等待完成。</param>
-        <param name="asyncState">一个对象，可能包含与异步提交关联的任意状态信息。 此对象传递给回调，并不会解释<see cref="N:System.Transactions" />。 允许为 null 引用。</param>
-        <param name="user_defined_state">一个对象，可能包含与异步提交关联的任意状态信息。 此对象传递给回调，并不会解释<see cref="N:System.Transactions" />。 允许为 null 引用。</param>
-        <summary>开始以异步方式提交事务的尝试。</summary>
-        <returns><see cref="T:System.IAsyncResult" />来检查异步操作的状态，或要等待的时间才能完成该操作可由调用方的接口。</returns>
+        <param name="asyncCallback">在事务完成时调用的 <see cref="T:System.AsyncCallback" /> 委托。 此参数可以为 <see langword="null" />，在这种情况下，应用程序不会得到事务完成的通知。 相反，应用程序必须使用 <see cref="T:System.IAsyncResult" /> 接口来检查完成状态并根据情况等待，或调用 <see cref="M:System.Transactions.CommittableTransaction.EndCommit(System.IAsyncResult)" /> 以等待完成。</param>
+        <param name="callback">在事务完成时调用的 <see cref="T:System.AsyncCallback" /> 委托。 此参数可以为 <see langword="null" />，在这种情况下，应用程序不会得到事务完成的通知。 相反，应用程序必须使用 <see cref="T:System.IAsyncResult" /> 接口来检查完成状态并根据情况等待，或调用 <see cref="M:System.Transactions.CommittableTransaction.EndCommit(System.IAsyncResult)" /> 以等待完成。</param>
+        <param name="asyncState">一个与异步提交关联的对象，其中可能包含任意状态信息。 此对象被传递给回调，并且不会被 <see cref="N:System.Transactions" /> 解释。 null 引用是允许的。</param>
+        <param name="user_defined_state">一个与异步提交关联的对象，其中可能包含任意状态信息。 此对象被传递给回调，并且不会被 <see cref="N:System.Transactions" /> 解释。 null 引用是允许的。</param>
+        <summary>开始异步提交事务的尝试。</summary>
+        <returns>一个 <see cref="T:System.IAsyncResult" /> 接口，该接口可由调用方用于检查异步操作的状态，或用于等待操作完成。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -301,8 +294,8 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Transactions.TransactionInDoubtException"><see cref="M:System.Transactions.CommittableTransaction.Commit" /> 事务和事务上调用变得<see cref="F:System.Transactions.TransactionStatus.InDoubt" />。</exception>
-        <exception cref="T:System.Transactions.TransactionAbortedException"><see cref="M:System.Transactions.CommittableTransaction.Commit" /> 调用，并在事务回滚第一次。</exception>
+        <exception cref="T:System.Transactions.TransactionInDoubtException">在事务上调用了 <see cref="M:System.Transactions.CommittableTransaction.Commit" />，并且该事务变为 <see cref="F:System.Transactions.TransactionStatus.InDoubt" />。</exception>
+        <exception cref="T:System.Transactions.TransactionAbortedException">调用了 <see cref="M:System.Transactions.CommittableTransaction.Commit" />，并且该事务第一次回滚。</exception>
       </Docs>
     </Member>
     <Member MemberName="EndCommit">
@@ -343,8 +336,8 @@
         <Parameter Name="ar" Type="System.IAsyncResult" Index="0" FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="asyncResult"><see cref="T:System.IAsyncResult" />与异步提交关联的对象。</param>
-        <param name="ar"><see cref="T:System.IAsyncResult" />与异步提交关联的对象。</param>
+        <param name="asyncResult">与异步提交关联的 <see cref="T:System.IAsyncResult" /> 对象。</param>
+        <param name="ar">与异步提交关联的 <see cref="T:System.IAsyncResult" /> 对象。</param>
         <summary>结束异步提交事务的尝试。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -359,7 +352,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Transactions.TransactionAbortedException"><see cref="M:System.Transactions.CommittableTransaction.BeginCommit(System.AsyncCallback,System.Object)" /> 调用，并在事务回滚第一次。</exception>
+        <exception cref="T:System.Transactions.TransactionAbortedException">调用了 <see cref="M:System.Transactions.CommittableTransaction.BeginCommit(System.AsyncCallback,System.Object)" />，并且该事务第一次回滚。</exception>
       </Docs>
     </Member>
     <Member MemberName="System.IAsyncResult.AsyncState">
@@ -393,8 +386,8 @@
         <ReturnType>System.Object</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取作为最后一个参数提供的对象<see cref="M:System.Transactions.CommittableTransaction.BeginCommit(System.AsyncCallback,System.Object)" />方法调用。</summary>
-        <value>作为最后一个参数提供的对象<see cref="M:System.Transactions.CommittableTransaction.BeginCommit(System.AsyncCallback,System.Object)" />方法调用。</value>
+        <summary>获取作为 <see cref="M:System.Transactions.CommittableTransaction.BeginCommit(System.AsyncCallback,System.Object)" /> 方法调用的最后一个参数而提供的对象。</summary>
+        <value>作为 <see cref="M:System.Transactions.CommittableTransaction.BeginCommit(System.AsyncCallback,System.Object)" /> 方法调用的最后一个参数而提供的对象。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -465,8 +458,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个指示是否异步提交操作同步完成。</summary>
-        <value><see langword="true" /> 如果异步提交操作完成同步进行;否则为<see langword="false" />。 此属性始终返回<see langword="false" />即使该操作同步完成。</value>
+        <summary>获取异步提交操作是否同步完成的指示。</summary>
+        <value>如果异步提交操作同步完成，则为 <see langword="true" />；否则为 <see langword="false" />。 即使该操作同步完成，此属性也始终返回 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -501,8 +494,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个指示是否异步提交操作已完成。</summary>
-        <value>如果操作已完成，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
+        <summary>获取异步提交操作是否已完成的指示。</summary>
+        <value>如果操作完成则为 <see langword="true" />，否则为 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

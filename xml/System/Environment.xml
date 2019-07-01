@@ -1,5 +1,5 @@
 <Type Name="Environment" FullName="System.Environment">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8f90cd75a7a7c70b077c46759736bd53d521320e" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67250301" /></Metadata><TypeSignature Language="C#" Value="public static class Environment" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="2befc53c964784ef05f9a3c02e361d9e6aed9618" /><Meta Name="ms.sourcegitcommit" Value="61757d0366a172cdbc11436deb1c1ffa49d97238" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/28/2019" /><Meta Name="ms.locfileid" Value="67458488" /></Metadata><TypeSignature Language="C#" Value="public static class Environment" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit Environment extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Environment" />
   <TypeSignature Language="VB.NET" Value="Public Class Environment" />
@@ -505,15 +505,15 @@ goto :EOF
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法会终止进程，而无需运行任何活动`try` / `finally`块或终结器。  
+ 此方法会终止进程，而无需运行任何活动`try` / `finally`块或终结器。
   
- <xref:System.Environment.FailFast%2A>方法写入`message`字符串保存到 Windows 应用程序事件日志中，创建你的应用程序的转储，然后终止当前进程。 `message`字符串也包含在向 Microsoft 报告错误。  
+ `Environment.FailFast`方法写入`message`字符串保存到 Windows 应用程序事件日志中，创建你的应用程序的转储，然后终止当前进程。 `message`字符串也包含在向 Microsoft 报告错误。  
   
- 使用<xref:System.Environment.FailFast%2A>方法而不是<xref:System.Environment.Exit%2A>方法终止你的应用程序，如果你的应用程序的状态损坏无法修复，并执行应用程序`try` / `finally`块和终结器将损坏程序资源。  
+ 使用`Environment.FailFast`方法而不是<xref:System.Environment.Exit%2A>方法终止你的应用程序，如果你的应用程序的状态损坏无法修复，并执行应用程序`try` / `finally`块和终结器将损坏程序资源。  
   
  信息是通过使用 Windows 错误报告报告给 Microsoft。 有关详细信息，请参阅[Windows 错误报告：入门](https://msdn.microsoft.com/library/windows/hardware/dn641144.aspx)。  
-  
-   
+
+调用`Environment.FailFast`方法来终止执行调试程序将引发在 Visual Studio 中运行的应用程序<xref:System.ExecutionEngineException>，并自动触发[fatalExecutionEngineError 托管调试助手 (MDA)](https://github.com/dotnet/docs/blob/master/docs/framework/debug-trace-profile/fatalexecutionengineerror-mda.md).
   
 ## Examples  
  下面的示例日志条目写入 Windows 应用程序事件日志，并终止当前进程。  
@@ -573,13 +573,15 @@ goto :EOF
 ## Remarks  
  此方法会终止进程，而无需运行任何活动`try` / `finally`块或终结器。  
   
- <xref:System.Environment.FailFast%2A>方法写入`message`字符串保存到 Windows 应用程序事件日志中，创建你的应用程序的转储，然后终止当前进程。  
+ `Environment.FailFast`方法写入`message`字符串保存到 Windows 应用程序事件日志中，创建你的应用程序的转储，然后终止当前进程。  
   
  信息是通过使用 Windows 错误报告报告给 Microsoft。 有关详细信息，请参阅[Windows 错误报告：入门](https://msdn.microsoft.com/library/windows/hardware/dn641144.aspx)。 向 Microsoft 报告的错误包括`message`和`exception`提供了用于对错误分类的详细信息的信息。 尽管`exception`是未处理，因为该进程将终止，仍获取引发该异常的上下文信息。  
   
  如果`exception`是`null`，或者如果`exception`是不会引发，此方法的操作与相同<xref:System.Environment.FailFast%28System.String%29>方法重载。  
   
- 使用<xref:System.Environment.FailFast%2A>方法而不是<xref:System.Environment.Exit%2A>方法终止你的应用程序，如果你的应用程序的状态损坏无法修复，并执行应用程序`try` / `finally`块和终结器将损坏程序资源。  
+ 使用`Environment.FailFast`方法而不是<xref:System.Environment.Exit%2A>方法终止你的应用程序，如果你的应用程序的状态损坏无法修复，并执行应用程序`try` / `finally`块和终结器将损坏程序资源。  
+
+调用`Environment.FailFast`方法来终止执行调试程序将引发在 Visual Studio 中运行的应用程序<xref:System.ExecutionEngineException>，并自动触发[fatalExecutionEngineError 托管调试助手 (MDA)](https://github.com/dotnet/docs/blob/master/docs/framework/debug-trace-profile/fatalexecutionengineerror-mda.md).
   
  ]]></format>
         </remarks>
@@ -1151,7 +1153,7 @@ or
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="folder" /> 不是 <see cref="T:System.Environment.SpecialFolder" /> 的成员。
-- 或 -
+或
 
 <paramref name="options" /> 不是 <see cref="T:System.Environment.SpecialFolderOption" /> 的成员。</exception>
         <exception cref="T:System.PlatformNotSupportedException">不支持当前平台。</exception>
@@ -1503,8 +1505,8 @@ or
         </remarks>
         <exception cref="T:System.InvalidOperationException">此属性不能获得系统版本。  
   
-- 或 - 
-获得的平台标识符不是 <see cref="T:System.PlatformID" /> 的成员</exception>
+或 
+获得的平台标识符不是 <see cref="T:System.PlatformID" />的成员</exception>
       </Docs>
     </Member>
     <Member MemberName="ProcessorCount">
@@ -1652,7 +1654,7 @@ or
 - 或 - 
 <paramref name="variable" /> 或 <paramref name="value" /> 的长度大于或等于 32,767 个字符。  
   
-- 或 - 
+或 
 执行此操作期间出错。</exception>
         <exception cref="T:System.Security.SecurityException">调用方没有执行此操作所需的权限。</exception>
         <permission cref="T:System.Security.Permissions.EnvironmentPermission">对环境变量的完全访问权限。 关联的枚举： <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
@@ -1751,17 +1753,17 @@ or
         <exception cref="T:System.ArgumentNullException"><paramref name="variable" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="variable" /> 包含一个长度为零的字符串、一个初始十六进制零字符 (0x00) 或一个等号 ("=")。  
   
-- 或 - 
+或 
 <paramref name="variable" /> 的长度大于或等于 32,767 个字符。  
   
 - 或 - 
  <paramref name="target" /> 不是 <see cref="T:System.EnvironmentVariableTarget" /> 枚举的一个成员。  
   
-- 或 - 
+或 
  <paramref name="target" /> 为 <see cref="F:System.EnvironmentVariableTarget.Machine" /> 或 <see cref="F:System.EnvironmentVariableTarget.User" />，且 <paramref name="variable" /> 的长度大于或等于 255。  
   
-- 或 - 
- <paramref name="target" /> 为 <see cref="F:System.EnvironmentVariableTarget.Process" />，且 <paramref name="value" /> 的长度大于或等于 32767 个字符。  
+或 
+ <paramref name="target" /> 为 <see cref="F:System.EnvironmentVariableTarget.Process" /> ，且 <paramref name="value" /> 的长度大于或等于 32767 个字符。  
   
 - 或 - 
 执行此操作期间出错。</exception>
@@ -2139,7 +2141,7 @@ or
       </ReturnValue>
       <Docs>
         <summary>获取一个值，用以指示当前进程是否在用户交互模式中运行。</summary>
-        <value>如果当前进程在用户交互模式中运行，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
+        <value>如果当前进程在用户交互模式中运行，则为<see langword="true" /> ；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   

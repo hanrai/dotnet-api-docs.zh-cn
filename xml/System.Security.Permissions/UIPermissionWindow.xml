@@ -1,5 +1,5 @@
 <Type Name="UIPermissionWindow" FullName="System.Security.Permissions.UIPermissionWindow">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="da5150dc855b16fa31ab302c372e38b08ee4bbdb" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56791363" /></Metadata><TypeSignature Language="C#" Value="public enum UIPermissionWindow" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0b15e3f65d21ed3debba7e75607723f77aa3e55c" /><Meta Name="ms.sourcegitcommit" Value="24dc380b0d43e8919d4e0d50409e8f0aeae98713" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/27/2019" /><Meta Name="ms.locfileid" Value="67411658" /></Metadata><TypeSignature Language="C#" Value="public enum UIPermissionWindow" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed UIPermissionWindow extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Security.Permissions.UIPermissionWindow" />
   <TypeSignature Language="VB.NET" Value="Public Enum UIPermissionWindow" />
@@ -34,8 +34,45 @@
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- 此枚举由<xref:System.Security.Permissions.UIPermission>。  
+## Remarks
+
+此枚举由<xref:System.Security.Permissions.UIPermission>。  
+
+在运行应用程序时`SafeTopLevelWindows`权限，它：  
+
+- 标题栏中显示的 DNS 名称或从其加载应用程序的网站的 IP 地址。  
+  
+- 显示气球状工具提示，第一次显示时，通知用户在受限制的信任级别下运行。  
+  
+- 必须在任何时候显示其标题栏。  
+  
+- 必须显示其窗体上的窗口控件。  
+  
+- 不能在启动其主窗口最小化。  
+  
+- 无法移动其 windows 屏外。  
+  
+- 不能使用<xref:System.Windows.Forms.Form.Opacity%2A?displayProperty=nameWithType>属性以使其 windows 小于 50%透明。  
+
+- 必须只使用矩形窗口，并且必须包含窗口框架。 Windows 窗体没有设置<xref:System.Windows.Forms.Form.FormBorderStyle%2A?displayProperty=nameWithType>到<xref:System.Windows.Forms.FormBorderStyle.None?displayProperty=nameWithType>。  
+ 
+- 不能使窗口不可见。 要设置的应用程序的任何尝试<xref:System.Windows.Forms.Control.Visible%2A?displayProperty=nameWithType>属性设置为`False`将被忽略。  
+  
+- 必须具有在任务栏中的条目。  
+  
+- 已禁止访问其控件<xref:System.Windows.Forms.Control.Parent%2A>属性。 暗示，控件将还被禁止访问其同级，即同一层级的嵌套其他控件。  
+  
+- 不能控制焦点使用<xref:System.Windows.Forms.Control.Focus%2A?displayProperty=nameWithType>方法。  
+  
+- 键盘输入访问权限，以便窗体或控件仅可以为本身及其子级访问键盘事件有限制。  
+  
+- 鼠标坐标访问权限，以便窗体或控件只能读取鼠标坐标当鼠标位于其可见区域上具有限制。  
+  
+- 不能设置<xref:System.Windows.Forms.Form.TopMost%2A?displayProperty=nameWithType>属性。  
+  
+- 无法控制窗体使用的控件的 z 顺序<xref:System.Windows.Forms.Control.BringToFront%2A?displayProperty=nameWithType>和<xref:System.Windows.Forms.Control.SendToBack%2A?displayProperty=nameWithType>方法。  
+  
+ 这些限制有助于防止潜在的有害代码欺骗攻击，如模拟的受信任的系统对话框。  
   
  ]]></format>
     </remarks>
@@ -157,47 +194,11 @@
       </ReturnValue>
       <MemberValue>2</MemberValue>
       <Docs>
-        <summary>用户只能使用 <see cref="F:System.Security.Permissions.UIPermissionWindow.SafeTopLevelWindows" /> 和 <see cref="F:System.Security.Permissions.UIPermissionWindow.SafeSubWindows" /> 进行绘图，并且只能对那些顶级窗口和子窗口中的用户界面使用用户输入事件。</summary>
+        <summary>用户只能使用 <see cref="F:System.Security.Permissions.UIPermissionWindow.SafeTopLevelWindows" /> 和 <see cref="F:System.Security.Permissions.UIPermissionWindow.SafeSubWindows" /> 进行绘图，并且只能对那些顶级窗口和子窗口中的用户界面使用用户输入事件。 有关详细信息，请参阅备注部分。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- SafeTopLevelWindows 权限，你的应用程序下运行时：  
-  
--   将显示其标题栏中的 DNS 名称或从其加载应用程序的网站的 IP 地址。  
-  
--   将显示气球状工具提示，第一次显示时，通知用户在受限制的信任级别下运行。  
-  
--   必须在任何时候显示其标题栏。  
-  
--   必须显示其窗体上的窗口控件。  
-  
--   不能在启动其主窗口最小化。  
-  
--   无法移动其 windows 屏外。  
-  
--   不能使用<xref:System.Windows.Forms.Form.Opacity%2A>属性上的<xref:System.Windows.Forms.Form.Opacity%2A>将小于 50%其 windows 设为透明。  
-  
--   必须只使用矩形窗口，并且必须包含窗口框架。 Windows 窗体没有设置<xref:System.Windows.Forms.Form.FormBorderStyle%2A>到`None`。  
-  
--   不能使窗口不可见。 要设置的应用程序的任何尝试<xref:System.Windows.Forms.Control.Visible%2A>上的属性及其<xref:System.Windows.Forms.Form>对象添加到`False`将被忽略。  
-  
--   必须具有在任务栏中的条目。  
-  
--   将具有禁止访问其控件<xref:System.Windows.Forms.Control.Parent%2A>属性。 暗示，控件将还被禁止访问其同级，即同一层级的嵌套其他控件。  
-  
--   不能控制焦点使用<xref:System.Windows.Forms.Control.Focus%2A>方法。  
-  
--   将具有受限制的键盘输入的访问，以便窗体或控件仅可以为本身及其子级访问键盘事件。  
-  
--   将访问受到限制鼠标坐标，以便窗体或控件只能读取鼠标坐标当鼠标位于其可见区域上。  
-  
--   不能设置<xref:System.Windows.Forms.Form.TopMost%2A>属性。  
-  
--   无法控制窗体使用的控件的 z 顺序<xref:System.Windows.Forms.Control.BringToFront%2A>和<xref:System.Windows.Forms.Control.SendToBack%2A>方法。  
-  
- 这些限制有助于防止潜在的有害代码欺骗攻击，如模拟的受信任的系统对话框。  
-  
  ]]></format>
         </remarks>
       </Docs>
