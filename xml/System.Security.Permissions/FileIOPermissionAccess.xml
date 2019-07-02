@@ -1,5 +1,5 @@
 <Type Name="FileIOPermissionAccess" FullName="System.Security.Permissions.FileIOPermissionAccess">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b040b528be39b52b4cd1b70f377d694f4e9e371b" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56779065" /></Metadata><TypeSignature Language="C#" Value="public enum FileIOPermissionAccess" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="6d406434bd34f53c2034d75305354dc75e987a76" /><Meta Name="ms.sourcegitcommit" Value="24dc380b0d43e8919d4e0d50409e8f0aeae98713" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/27/2019" /><Meta Name="ms.locfileid" Value="67411716" /></Metadata><TypeSignature Language="C#" Value="public enum FileIOPermissionAccess" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed FileIOPermissionAccess extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Security.Permissions.FileIOPermissionAccess" />
   <TypeSignature Language="VB.NET" Value="Public Enum FileIOPermissionAccess" />
@@ -37,17 +37,18 @@
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- 此枚举用于<xref:System.Security.Permissions.FileIOPermission>类。  
-  
+## Remarks
+
+此枚举用于<xref:System.Security.Permissions.FileIOPermission>类。
+
 > [!NOTE]
->  尽管 NoAccess 和 AllAccess 是的成员<xref:System.Security.Permissions.FileIOPermissionAccess.NoAccess>，它们不是有效的参数用作<xref:System.Security.Permissions.FileIOPermission.GetPathList%2A>因为它们分别描述任何文件访问类型或所有文件访问类型和<xref:System.Security.Permissions.FileIOPermission.GetPathList%2A>需要单个文件访问类型。  
-  
-> [!NOTE]
->  向程序集的写权限相当于授予完全信任。 如果应用程序应写入到文件系统不应具有写访问权限。  
-  
+>  为提供`Write`对程序集的访问是类似于授予完全信任。 如果应用程序不应写入到文件系统，它不应具有写访问权限。  
+
+尽管`NoAccess`和`AllAccess`属于`FileIOPermissionAccess`，它们不是有效的参数用作<xref:System.Security.Permissions.FileIOPermission.GetPathList%2A?displayProperty=nameWithtype>因为它们分别描述任何文件访问类型或所有文件访问类型。 <xref:System.Security.Permissions.FileIOPermission.GetPathList%2A?displayProperty=nameWithType> 需要单个文件的访问类型。
+
  ]]></format>
     </remarks>
+    <altmember cref="T:System.IO.FileMode" />
     <altmember cref="T:System.Security.Permissions.FileIOPermission" />
     <altmember cref="T:System.Security.Permissions.FileIOPermissionAttribute" />
   </Docs>
@@ -107,17 +108,7 @@
       </ReturnValue>
       <MemberValue>4</MemberValue>
       <Docs>
-        <summary>向文件或目录追加内容的访问权限。 <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Append" /> 访问权限包括创建新的文件和目录的能力。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
-  
-> [!NOTE]
->  若要创建文件，代码还必须为授予同时追加和写入或读取访问权限。 有关更多详细信息请参阅<xref:System.IO.FileMode>。  
-  
- ]]></format>
-        </remarks>
+        <summary>向文件或目录追加内容的访问权限。 <see langword="FileIOPermissionAccess.Append" /> 访问权限包括创建新的文件和目录的能力。 要创建文件，还必须同时向代码授予 <see langword="Append" /> 权限和 <see langword="Write" /> 或 <see langword="Read" /> 权限。</summary>
       </Docs>
     </Member>
     <Member MemberName="NoAccess">
@@ -175,17 +166,8 @@
       </ReturnValue>
       <MemberValue>8</MemberValue>
       <Docs>
-        <summary>对路径本身中的信息的访问权限。 这可以保护路径中的敏感信息（如用户名）以及有关路径中显示的目录结构的信息。 此值不授予对路径所指代的文件或文件夹的访问权限。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
-  
-> [!NOTE]
->  出于性能原因，`PathDiscovery`应仅授予目录，而不授予文件。 例如，`PathDiscovery`权限应授予路径如 C:\test 和 C:\test\\，不 C:\test\example.txt。  
-  
- ]]></format>
-        </remarks>
+        <summary><para>对路径本身中的信息的访问权限。 这可以保护路径中的敏感信息（如用户名）以及有关路径中显示的目录结构的信息。 此值不授予对路径所指代的文件或文件夹的访问权限。</para>
+        <para>出于性能原因，应仅向目录授予 <see langword="PathDiscovery" />，而不向文件授予该权限。 例如，应向诸如 C:\test 和 C:\test\\ 等路径授予 <see langword="PathDiscovery" /> 权限，而不向 C:\test\example.txt 授予该权限。</para></summary>
       </Docs>
     </Member>
     <Member MemberName="Read">

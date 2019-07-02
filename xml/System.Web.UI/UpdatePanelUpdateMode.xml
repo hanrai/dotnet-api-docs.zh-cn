@@ -1,5 +1,5 @@
 <Type Name="UpdatePanelUpdateMode" FullName="System.Web.UI.UpdatePanelUpdateMode">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a9e5a9fad8308045a0550ce56dca768f1df0e774" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64061832" /></Metadata><TypeSignature Language="C#" Value="public enum UpdatePanelUpdateMode" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="103fd84d87f3c7c57b5bb2878b410659a4a35449" /><Meta Name="ms.sourcegitcommit" Value="24dc380b0d43e8919d4e0d50409e8f0aeae98713" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/27/2019" /><Meta Name="ms.locfileid" Value="67411726" /></Metadata><TypeSignature Language="C#" Value="public enum UpdatePanelUpdateMode" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed UpdatePanelUpdateMode extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Web.UI.UpdatePanelUpdateMode" />
   <TypeSignature Language="VB.NET" Value="Public Enum UpdatePanelUpdateMode" />
@@ -18,15 +18,22 @@
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- <xref:System.Web.UI.UpdatePanelUpdateMode>枚举定义的内容的可能的更新模式<xref:System.Web.UI.UpdatePanel>控件。 <xref:System.Web.UI.UpdatePanel.UpdateMode%2A>属性必须设置为的值之一<xref:System.Web.UI.UpdatePanelUpdateMode>枚举。 <xref:System.Web.UI.UpdatePanel>控件需要<xref:System.Web.UI.ScriptManager.EnablePartialRendering%2A>的属性<xref:System.Web.UI.ScriptManager>控件为`true`进行局部页面呈现的。  
+## Remarks
+
+`UpdatePanelUpdateMode`枚举由<xref:System.Web.UI.UpdatePanel.UpdateMode%2A?displayProperty=nameWithType>属性定义的内容的可能的更新模式和<xref:System.Web.UI.UpdatePanel>控件。 <xref:System.Web.UI.UpdatePanel>控件需要<xref:System.Web.UI.ScriptManager.EnablePartialRendering%2A?displayProperty=nameWithType>属性为`true`进行局部页面呈现的。  
   
- 默认值<xref:System.Web.UI.UpdatePanel.UpdateMode%2A>属性是始终。  
+默认值<xref:System.Web.UI.UpdatePanel.UpdateMode%2A?displayProperty=nameWithType>属性是`Always`。  
   
- 如果<xref:System.Web.UI.UpdatePanelUpdateMode.Always>控件位于另一个<xref:System.Web.UI.UpdatePanel>控件和父面板会更新，嵌套的面板也会更新而不考虑<xref:System.Web.UI.UpdatePanel.UpdateMode%2A>属性值。  
+如果<xref:System.Web.UI.UpdatePanel>控件位于另一个<xref:System.Web.UI.UpdatePanel>控件和父面板会更新，嵌套的面板也会更新而不考虑<xref:System.Web.UI.UpdatePanel.UpdateMode%2A>属性值。  
   
-   
+`Conditional`值更新的内容<xref:System.Web.UI.UpdatePanel>控件在以下情况下：
+
+- <xref:System.Web.UI.UpdatePanel.Update%2A?displayProperty=nameWithType>显式调用方法。  
   
+- 控件指通过使用触发器<xref:System.Web.UI.UpdatePanel.Triggers?displayProperty=nameWithType>属性，并导致回发。 在此方案中，该控件是显式触发器为更新面板内容。 触发器控件可以是内部或外部<xref:System.Web.UI.UpdatePanel>定义该触发器的控件。  
+  
+- <xref:System.Web.UI.UpdatePanel.ChildrenAsTriggers%2A?displayProperty=nameWithType>属性设置为`true`的子控件和<xref:System.Web.UI.UpdatePanel>控件导致回发。 在此方案中，子控件的<xref:System.Web.UI.UpdatePanel>控制是在用于更新面板的隐式触发器。 子控件嵌套<xref:System.Web.UI.UpdatePanel>控件不会导致外部<xref:System.Web.UI.UpdatePanel>控件以进行更新，除非它们显式定义为触发器。 
+
 ## Examples  
  下面的示例声明了两个<xref:System.Web.UI.UpdatePanel.UpdateMode%2A>控件。 第一个面板集<xref:System.Web.UI.UpdatePanel.UpdateMode%2A>属性的<xref:System.Web.UI.UpdatePanel.UpdateMode%2A>条件的控件。 第二个面板具有<xref:System.Web.UI.UpdatePanel.UpdateMode%2A>默认情况下设置为始终。 使用为异步回发控件注册这两个面板外部按钮<xref:System.Web.UI.ScriptManager.RegisterAsyncPostBackControl%2A>方法的<xref:System.Web.UI.ScriptManager>控件。 在按钮单击事件处理程序<xref:System.Web.UI.UpdatePanel.Update%2A>如果其上次更新以来所经历时间超过五秒会调用方法的第一个面板。 在此方案中，仅当最后一个面板更新超过五秒更新面板的内容。 第二个面板的内容都会进行更新。  
   
@@ -78,18 +85,13 @@
       </ReturnValue>
       <MemberValue>1</MemberValue>
       <Docs>
-        <summary><see cref="T:System.Web.UI.UpdatePanel" /> 控件的内容会在满足以下条件时进行更新：</summary>
+        <summary>指定了更新 <see cref="T:System.Web.UI.UpdatePanel" /> 控件内容的若干条件；有关信息信息，请参阅“备注”部分。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
--   如果<xref:System.Web.UI.UpdatePanel.Update%2A>方法的<xref:System.Web.UI.UpdatePanel>显式调用控件。  
-  
--   如果控件定义为触发器使用的触发器属性<xref:System.Web.UI.UpdatePanel>控件并导致回发。 在此方案中，该控件是显式触发器为更新面板内容。 触发器控件可以是内部或外部<xref:System.Web.UI.UpdatePanel>定义该触发器的控件。  
-  
--   如果<xref:System.Web.UI.UpdatePanel.ChildrenAsTriggers%2A>属性设置为`true`的子控件和<xref:System.Web.UI.UpdatePanel>控件导致回发。 在此方案中，子控件的<xref:System.Web.UI.UpdatePanel>控制是在用于更新面板的隐式触发器。 子控件嵌套<xref:System.Web.UI.UpdatePanel>控件不会导致外部<xref:System.Web.UI.UpdatePanel>控件以进行更新，除非它们显式定义为触发器。  
-  
+
  ]]></format>
         </remarks>
       </Docs>
