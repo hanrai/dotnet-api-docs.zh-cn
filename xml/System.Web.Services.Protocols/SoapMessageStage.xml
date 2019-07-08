@@ -1,5 +1,5 @@
 <Type Name="SoapMessageStage" FullName="System.Web.Services.Protocols.SoapMessageStage">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="bf6e6947fc25503ae970399c90befacd586e1f10" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64023413" /></Metadata><TypeSignature Language="C#" Value="public enum SoapMessageStage" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="007edd2a7a94426b901a0ebd1e104f1685ac347d" /><Meta Name="ms.sourcegitcommit" Value="9170ef1c277dbe29b425d453dc133624b156d393" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/01/2019" /><Meta Name="ms.locfileid" Value="67488018" /></Metadata><TypeSignature Language="C#" Value="public enum SoapMessageStage" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed SoapMessageStage extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Web.Services.Protocols.SoapMessageStage" />
   <TypeSignature Language="VB.NET" Value="Public Enum SoapMessageStage" />
@@ -20,13 +20,22 @@
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- ASP.NET 提供了可扩展性机制，用于调用 Web 服务使用 SOAP。 可扩展性机制围绕<xref:System.Web.Services.Protocols.SoapExtension>，可以检查或修改在客户端或服务器上处理的消息中的特定阶段的一条消息。 此枚举指定的处理阶段<xref:System.Web.Services.Protocols.SoapMessage>。  
-  
-   
-  
+## Remarks
+
+ASP.NET 提供了可扩展性机制，用于调用 Web 服务使用 SOAP。 可扩展性机制围绕<xref:System.Web.Services.Protocols.SoapExtension>，可以检查或修改在客户端或服务器上处理的消息中的特定阶段的一条消息。 此枚举指定的处理阶段<xref:System.Web.Services.Protocols.SoapMessage>。
+
+下表显示在 SOAP 客户端和服务器处理期间发生的每个阶段时。
+
+|`SoapMessageStage`|期间<xref:System.Web.Services.Protocols.SoapClientMessage>处理|期间<xref:System.Web.Services.Protocols.SoapServerMessage>处理|
+|---|---|---|
+|`AfterDeserialize`|之后包含来自 XML Web 服务方法调用的响应的 SOAP 消息反序列化到对象，但在客户端接收的反序列化的结果之前发生。|包含表示 XML Web 服务方法调用的 SOAP 消息的网络请求反序列化为一个对象，但在该方法之前调用对象，表示 XML Web 服务方法之后发生。|
+|`AfterSerialize`|客户端调用 XML Web 服务方法和参数序列化为 XML，但在 SOAP 之前包含该 XML 消息通过网络发送后发生。|XML Web 服务方法返回，并且任何返回值序列化为 XML，但在包含该 XML 的 SOAP 消息之前通过网络发送之后发生。|
+|`BeforeDeserialize`|已收到来自 XML Web 服务方法调用的网络响应，但之前包含 SOAP 响应消息反序列化为一个对象后发生。|由 Web 服务器，但在 SOAP 消息被反序列化为一个对象之前收到包含 XML Web 服务方法调用的 SOAP 消息的网络请求之后发生。| 
+|`BeforeSerialize`|客户端调用 XML Web 服务方法之后, 但在正在序列化的调用之前发生。|调用 XML Web 服务方法返回时，但之前的返回值进行序列化并通过网络发送回客户端之后发生。|
+
 ## Examples  
- 下面的代码示例是可实现的 SOAP 扩展的片段<xref:System.Web.Services.Protocols.SoapExtension.ProcessMessage%2A>方法。 内<xref:System.Web.Services.Protocols.SoapExtension.ProcessMessage%2A>方法中，处理<xref:System.Web.Services.Protocols.SoapMessage>处理特定于<xref:System.Web.Services.Protocols.SoapMessageStage>。  
+
+下面的示例是可实现的 SOAP 扩展的片段<xref:System.Web.Services.Protocols.SoapExtension.ProcessMessage%2A>方法。 内<xref:System.Web.Services.Protocols.SoapExtension.ProcessMessage%2A>方法中，处理<xref:System.Web.Services.Protocols.SoapMessage>处理特定于<xref:System.Web.Services.Protocols.SoapMessageStage>。  
   
  [!code-cpp[SoapMessageState#1](~/samples/snippets/cpp/VS_Snippets_Remoting/SoapMessageState/CPP/SoapMessageState.cpp#1)]
  [!code-csharp[SoapMessageState#1](~/samples/snippets/csharp/VS_Snippets_Remoting/SoapMessageState/CS/soapmessagestate.cs#1)]
@@ -59,16 +68,6 @@
       <MemberValue>8</MemberValue>
       <Docs>
         <summary>恰好在将 <see cref="T:System.Web.Services.Protocols.SoapMessage" /> 从 SOAP 消息反序列化到对象之后的阶段。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 期间<xref:System.Web.Services.Protocols.SoapClientMessage>后包含来自 XML Web 服务方法调用的响应的 SOAP 消息反序列化到对象，但在客户端接收的反序列化的结果之前处理，AfterDeserialize 阶段发生。  
-  
- 期间<xref:System.Web.Services.Protocols.SoapServerMessage>之后转换为对象，但之前对该对象表示 XML Web 方法包含表示 XML Web 服务方法调用的 SOAP 消息的网络请求进行反序列化处理，AfterDeserialize 阶段发生调用服务方法。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
     <Member MemberName="AfterSerialize">
@@ -92,16 +91,6 @@
       <MemberValue>2</MemberValue>
       <Docs>
         <summary>恰好在序列化 <see cref="T:System.Web.Services.Protocols.SoapMessage" /> 之后，但在通过网络发送 SOAP 消息之前的阶段。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 期间<xref:System.Web.Services.Protocols.SoapClientMessage>处理、 AfterSerialize 阶段之后，客户端调用 XML Web 服务方法和参数序列化为 XML，但在 SOAP 之前包含该 XML 消息通过网络发送。  
-  
- 期间<xref:System.Web.Services.Protocols.SoapServerMessage>处理、 AfterSerialize 阶段之后发生 XML Web 服务方法返回和任何返回值序列化为 XML，但在 SOAP 之前包含该 XML 消息通过网络发送。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
     <Member MemberName="BeforeDeserialize">
@@ -125,16 +114,6 @@
       <MemberValue>4</MemberValue>
       <Docs>
         <summary>恰好在将 <see cref="T:System.Web.Services.Protocols.SoapMessage" /> 从通过网络发送的 SOAP 消息反序列化到对象之前的阶段。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 期间<xref:System.Web.Services.Protocols.SoapClientMessage>后已收到来自 XML Web 服务方法调用的网络响应，但之前包含 SOAP 响应消息反序列化为一个对象处理，BeforeDeserialize 阶段发生。  
-  
- 期间<xref:System.Web.Services.Protocols.SoapServerMessage>后由 Web 服务器，但在 SOAP 消息被反序列化为一个对象之前收到包含 XML Web 服务方法调用的 SOAP 消息的网络请求处理，BeforeDeserialize 阶段发生。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
     <Member MemberName="BeforeSerialize">
@@ -158,16 +137,6 @@
       <MemberValue>1</MemberValue>
       <Docs>
         <summary>恰好在序列化 <see cref="T:System.Web.Services.Protocols.SoapMessage" /> 之前的阶段。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 期间<xref:System.Web.Services.Protocols.SoapClientMessage>处理、 BeforeSerialize 阶段发生的客户端调用 XML Web 服务方法之后, 但在正在序列化的调用之前。  
-  
- 期间<xref:System.Web.Services.Protocols.SoapServerMessage>处理 BeforeSerialize 阶段发生后调用到 XML Web 服务方法返回时，但之前的返回值进行序列化并通过网络发送回客户端。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
   </Members>
