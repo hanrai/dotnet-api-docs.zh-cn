@@ -1,5 +1,5 @@
 <Type Name="IsolationLevel" FullName="System.Transactions.IsolationLevel">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="1e828798076a8b9679543094d42bfd317b976378" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58704573" /></Metadata><TypeSignature Language="C#" Value="public enum IsolationLevel" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d1176e5be29a4b8e279db5cfaa5d4e608a7dbf0e" /><Meta Name="ms.sourcegitcommit" Value="9170ef1c277dbe29b425d453dc133624b156d393" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/01/2019" /><Meta Name="ms.locfileid" Value="67488078" /></Metadata><TypeSignature Language="C#" Value="public enum IsolationLevel" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed IsolationLevel extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Transactions.IsolationLevel" />
   <TypeSignature Language="VB.NET" Value="Public Enum IsolationLevel" />
@@ -34,7 +34,7 @@
   
  最低隔离级别， `ReadUncommitted`，允许多个事务同时对数据存储执行操作并提供了针对由于中断事务数据损坏提供任何保护。 最高的隔离级别， `Serializable`，提供高级别的保护以防止中断的事务，但要求每个事务完成之前允许其他事务对数据进行操作。  
   
- 创建事务时确定的事务的隔离级别。 默认情况下<xref:System.Transactions>基础结构创建`Serializable`事务。 您可以确定现有的事务使用的隔离级别<xref:System.Transactions.Transaction.IsolationLevel%2A>事务的属性。  
+ 创建事务时确定的事务的隔离级别。 默认情况下<xref:System.Transactions>基础结构创建`Serializable`事务。 您可以使用来确定现有事务的隔离级别<xref:System.Transactions.Transaction.IsolationLevel%2A?displayProperty=nameWithType>事务的属性。  
   
  ]]></format>
     </remarks>
@@ -229,15 +229,7 @@
       </ReturnValue>
       <MemberValue>4</MemberValue>
       <Docs>
-        <summary>可以读取可变数据。 在事务修改数据之前，它会验证在它最初读取数据之后另一个事务是否更改过这些数据。 如果数据已更新，则会引发错误。 这样，事务可获取先前提交的数据值。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 当你尝试将创建使用此隔离级别，事务提升时<xref:System.InvalidOperationException>引发并显示错误消息"具有 IsolationLevel 快照事务不能升级"。  
-  
- ]]></format>
-        </remarks>
+        <summary><para>可以读取可变数据。 在事务修改数据之前，它会验证在它最初读取数据之后另一个事务是否更改过这些数据。 如果数据已更新，则会引发错误。 这样，事务可获取先前提交的数据值。</para><para>当尝试提升已创建的 <see langword="Snapshot" /> 隔离级别的事务时，将引发 <see cref="T:System.InvalidOperationException" />，并显示错误消息“无法提升快照隔离级别的事务”。</para></summary>
       </Docs>
     </Member>
     <Member MemberName="Unspecified">

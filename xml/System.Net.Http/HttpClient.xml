@@ -1,5 +1,5 @@
 <Type Name="HttpClient" FullName="System.Net.Http.HttpClient">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e4f47e4ef7c0b519b889bd2a0533b9644056da47" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67237877" /></Metadata><TypeSignature Language="C#" Value="public class HttpClient : System.Net.Http.HttpMessageInvoker" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="939b636d24fc0ba7dfb1eb08ed2bfc24a465f26f" /><Meta Name="ms.sourcegitcommit" Value="9170ef1c277dbe29b425d453dc133624b156d393" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/01/2019" /><Meta Name="ms.locfileid" Value="67488167" /></Metadata><TypeSignature Language="C#" Value="public class HttpClient : System.Net.Http.HttpMessageInvoker" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit HttpClient extends System.Net.Http.HttpMessageInvoker" />
   <TypeSignature Language="DocId" Value="T:System.Net.Http.HttpClient" />
   <TypeSignature Language="VB.NET" Value="Public Class HttpClient&#xA;Inherits HttpMessageInvoker" />
@@ -194,8 +194,13 @@ public class GoodController : ApiController
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>初始化 <see cref="T:System.Net.Http.HttpClient" /> 类的新实例。</summary>
-        <remarks>To be added.</remarks>
+        <summary>使用释放此实例时释放的 <see cref="T:System.Net.Http.HttpClientHandler" /> 初始化 <see cref="T:System.Net.Http.HttpClient" /> 类的新实例。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[    
+## Remarks  
+使用此构造函数是等效于调用[ `HttpClient(new HttpClientHandler(), true)` ](xref:System.Net.Http.HttpClient.%23ctor(System.Net.Http.HttpMessageHandler,System.Boolean))构造函数。
+]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -224,14 +229,14 @@ public class GoodController : ApiController
       </Parameters>
       <Docs>
         <param name="handler">要用于发送请求的 HTTP 处理程序堆栈。</param>
-        <summary>用特定的处理程序初始化 <see cref="T:System.Net.Http.HttpClient" /> 类的新实例。</summary>
+        <summary>使用指定的处理程序初始化 <see cref="T:System.Net.Http.HttpClient" /> 类的新实例。 处理程序在释放此实例时被释放。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
+          <format type="text/markdown"><![CDATA[    
 ## Remarks  
- `handler` 通过调用将被释放[HttpClient.Dispose](xref:System.Net.Http.HttpMessageInvoker.Dispose)。  
-  
- ]]></format>
+使用此构造函数是等效于调用[ `HttpClient(handler, true)` ](xref:System.Net.Http.HttpClient.%23ctor(System.Net.Http.HttpMessageHandler,System.Boolean))构造函数。
+
+指定`handler`通过调用将被释放[HttpClient.Dispose](xref:System.Net.Http.HttpMessageInvoker.Dispose)。  
+]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="handler" /> 为 <see langword="null" />。</exception>
       </Docs>
@@ -263,8 +268,8 @@ public class GoodController : ApiController
       </Parameters>
       <Docs>
         <param name="handler">负责处理 HTTP 响应消息的 <see cref="T:System.Net.Http.HttpMessageHandler" />。</param>
-        <param name="disposeHandler">如果内部处理程序应由 [HttpClient.Dispose](xref:System.Net.Http.HttpMessageInvoker.Dispose) 处置，则为 <see langword="true" />，如果希望重新使用内部处理程序，则为 <see langword="false" />。</param>
-        <summary>用特定的处理程序初始化 <see cref="T:System.Net.Http.HttpClient" /> 类的新实例。</summary>
+        <param name="disposeHandler">如果内部处理程序应由 [HttpClient.Dispose](xref:System.Net.Http.HttpMessageInvoker.Dispose) 释放，则为 <see langword="true" />；如果希望重新使用内部处理程序，则为 <see langword="false" />。</param>
+        <summary>使用提供的处理程序初始化 <see cref="T:System.Net.Http.HttpClient" /> 类的新实例，并指定在释放此实例时是否应释放该处理程序。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="handler" /> 为 <see langword="null" />。</exception>
       </Docs>
