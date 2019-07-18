@@ -1,5 +1,5 @@
 <Type Name="Thread" FullName="System.Threading.Thread">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="364f25c7d0e105a33705e6a6d8354e4f5159d93d" /><Meta Name="ms.sourcegitcommit" Value="75eca440f8f4d595506405f48961f38649e160d7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/01/2019" /><Meta Name="ms.locfileid" Value="66457908" /></Metadata><TypeSignature Language="C#" Value="public sealed class Thread : System.Runtime.ConstrainedExecution.CriticalFinalizerObject, System.Runtime.InteropServices._Thread" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="3c6336f757382e846b962ab4c1a82ee9c84e86ef" /><Meta Name="ms.sourcegitcommit" Value="cfc0e4215fd0d259582ada2141878befd7c3c8c6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/12/2019" /><Meta Name="ms.locfileid" Value="67855491" /></Metadata><TypeSignature Language="C#" Value="public sealed class Thread : System.Runtime.ConstrainedExecution.CriticalFinalizerObject, System.Runtime.InteropServices._Thread" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit Thread extends System.Runtime.ConstrainedExecution.CriticalFinalizerObject implements class System.Runtime.InteropServices._Thread" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Thread" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Thread&#xA;Inherits CriticalFinalizerObject&#xA;Implements _Thread" />
@@ -585,7 +585,7 @@ Main thread: ThreadProc.Join has returned.  Press Enter to end program.
         <exception cref="T:System.PlatformNotSupportedException">仅限 .NET Core：不支持此成员。</exception>
         <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
         <exception cref="T:System.Threading.ThreadStateException">正在中止的线程当前已挂起。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">对于在线程上的高级操作。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlThread" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">对于在线程上的高级操作。 关联枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlThread" />。</permission>
         <altmember cref="T:System.Threading.ThreadAbortException" />
         <altmember cref="F:System.Threading.ThreadState.Aborted" />
         <altmember cref="F:System.Threading.ThreadState.AbortRequested" />
@@ -671,7 +671,7 @@ Main thread: ThreadProc.Join has returned.  Press Enter to end program.
         <exception cref="T:System.PlatformNotSupportedException">仅限 .NET Core：不支持此成员。</exception>
         <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
         <exception cref="T:System.Threading.ThreadStateException">正在中止的线程当前已挂起。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">对于在线程上的高级操作。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlThread" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">对于在线程上的高级操作。 关联枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlThread" />。</permission>
         <altmember cref="T:System.Threading.ThreadAbortException" />
         <altmember cref="F:System.Threading.ThreadState.Aborted" />
         <altmember cref="F:System.Threading.ThreadState.AbortRequested" />
@@ -2489,6 +2489,8 @@ Main thread: ThreadProc.Join has returned.  Press Enter to end program.
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> 的值为负数，且不等于 <see cref="F:System.Threading.Timeout.Infinite" />（以毫秒为单位）。</exception>
         <exception cref="T:System.Threading.ThreadStateException">该线程尚未启动。</exception>
         <altmember cref="T:System.Threading.ThreadState" />
+        <exception cref="T:System.ArgumentException"><paramref name="millisecondsTimeout" /> 小于 -1 (Timeout.Infinite)。</exception>
+        <exception cref="T:System.Threading.ThreadInterruptedException">线程在等待时中断。</exception>
       </Docs>
     </Member>
     <Member MemberName="Join">
@@ -3827,8 +3829,9 @@ Main thread: ThreadProc.Join has returned.  Press Enter to end program.
   
  ]]></format>
         </remarks>
+        <exception cref="T:System.PlatformNotSupportedException">仅限 .NET Core：macOS 和 Linux 平台上不支持此成员。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="state" /> 不是有效的单元状态。</exception>
-        <exception cref="T:System.Threading.ThreadStateException">线程已启动。</exception>
+        <exception cref="T:System.Threading.ThreadStateException">线程曾启动但已终止，或未在线程运行时从线程的上下文中进行调用。</exception>
       </Docs>
     </Member>
     <MemberGroup MemberName="VolatileRead">

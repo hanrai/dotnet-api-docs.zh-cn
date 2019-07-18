@@ -1,5 +1,5 @@
 <Type Name="DiagnosticListener" FullName="System.Diagnostics.DiagnosticListener">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ee69c9bbc69b712102cee4af1a8fd044575a3161" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67239464" /></Metadata><TypeSignature Language="C#" Value="public class DiagnosticListener : System.Diagnostics.DiagnosticSource, IDisposable, IObservable&lt;System.Collections.Generic.KeyValuePair&lt;string,object&gt;&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f0ca1d8fc3384f636938fa376747be0e95d7412c" /><Meta Name="ms.sourcegitcommit" Value="cfc0e4215fd0d259582ada2141878befd7c3c8c6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/12/2019" /><Meta Name="ms.locfileid" Value="67855033" /></Metadata><TypeSignature Language="C#" Value="public class DiagnosticListener : System.Diagnostics.DiagnosticSource, IDisposable, IObservable&lt;System.Collections.Generic.KeyValuePair&lt;string,object&gt;&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DiagnosticListener extends System.Diagnostics.DiagnosticSource implements class System.IDisposable, class System.IObservable`1&lt;valuetype System.Collections.Generic.KeyValuePair`2&lt;string, object&gt;&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.DiagnosticListener" />
   <TypeSignature Language="VB.NET" Value="Public Class DiagnosticListener&#xA;Inherits DiagnosticSource&#xA;Implements IDisposable, IObservable(Of KeyValuePair(Of String, Object))" />
@@ -151,7 +151,13 @@
       <Docs>
         <summary>确定是否有订阅者已注册。</summary>
         <returns>如果有订阅者已注册，为 <see langword="true" />；否则为 <see langword="false" />。</returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+如果安装程序的通知是昂贵，则可以调用`IsEnabled`之前执行此安装程序。 生成者可以根据需要调用`IsEnabled`之前调用<xref:System.Diagnostics.DiagnosticListener.IsEnabled(System.String) in performance-critical parts of the application to determine whether there are any listeners to the <xref:System.Diagnostics.DiagnosticListener>。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="IsEnabled">
@@ -318,9 +324,9 @@
         <Parameter Name="observer" Type="System.IObserver&lt;System.Collections.Generic.KeyValuePair&lt;System.String,System.Object&gt;&gt;" />
       </Parameters>
       <Docs>
-        <param name="observer">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="observer">订阅者。</param>
+        <summary>添加订阅者。</summary>
+        <returns>对允许侦听器在 <see cref="T:System.Diagnostics.DiagnosticSource" /> 发送完通知前停止接收这些通知的接口的引用。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -348,11 +354,13 @@
       </Parameters>
       <Docs>
         <param name="observer">订阅者。</param>
-        <param name="isEnabled">一个委托，它根据事件名称和最多两个上下文对象筛选事件（可为 <see langword="null" />）。</param>
-        <summary>添加订阅者。 如果 <paramref name="isEnabled" /> 参数不是 <see langword="null" />，则表示可跳过某些无用的事件来提高效率。</summary>
-        <returns>To be added.</returns>
+        <param name="isEnabled">一个委托，它根据事件名称和最多两个上下文对象筛选事件（可为 <see langword="null" />），如果不需要事件筛选器，则为 <see langword="null" />。</param>
+        <summary>添加一个订阅者，根据事件名称和最多两个上下文对象筛选事件（可选）。</summary>
+        <returns>对允许侦听器在 <see cref="T:System.Diagnostics.DiagnosticSource" /> 发送完通知前停止接收这些通知的接口的引用。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
+
+如果`isEnabled`不是`null`，则表明某些事件是无用的效率，可以跳过。
 
 特定检测站点具有一个或多个调用的选项<xref:System.Diagnostics.DiagnosticListener.IsEnabled%2A>在其中它将事件的和最多两个其他 （特定于检测站点） 对象的名称传递作为参数的重载。 如果其中的任何<xref:System.Diagnostics.DiagnosticListener.IsEnabled%2A>的调用是然后这`isEnabled`使用传递的值调用谓词 (如果使用较短的重载，`null`为缺少上下文对象传递)。
 
@@ -395,14 +403,14 @@
       <Docs>
         <param name="observer">订阅者。</param>
         <param name="isEnabled">一个委托，它根据其名称 (<see cref="T:System.String" />) 筛选事件。 如果已启用事件，则委托应返回 <see langword="true" />。</param>
-        <summary>添加订阅者（观察者）。 如果 <paramref name="isEnabled" /> 参数不是 <see langword="null" />，则表示可跳过某些无用的事件来提高效率。</summary>
-        <returns>To be added.</returns>
+        <summary>添加一个订阅者，根据事件名称筛选事件（可选）。</summary>
+        <returns>对允许侦听器在 <see cref="T:System.Diagnostics.DiagnosticSource" /> 发送完通知前停止接收这些通知的接口的引用。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
-            
-请注意，`isEnabled`谓词是一种可选的优化，以允许检测站点以避免设置了有效负载并调用<xref:System.Diagnostics.DiagnosticListener.Write(System.String,System.Object)>时没有订阅服务器所关注它。 特别是检测站点已忽略选项<xref:System.Diagnostics.DiagnosticListener.IsEnabled>谓词 （不调用），然后只需调用<xref:System.Diagnostics.DiagnosticListener.Write(System.String,System.Object)>。 因此如果订阅服务器上需要筛选，则需要执行此操作本身。
 
-如果此参数为`null`，不进行筛选 (的所有重载<xref:System.Diagnostics.DiagnosticSource.IsEnabled%2A>返回`true`)。
+如果`isEnabled`不是`null`，某些事件是不相关，可以跳过效率。 `isEnabled`谓词是一种可选的优化，以允许检测站点以避免设置了有效负载并调用<xref:System.Diagnostics.DiagnosticListener.Write(System.String,System.Object)>时没有订阅服务器所关注它。 特别是检测站点已忽略选项<xref:System.Diagnostics.DiagnosticListener.IsEnabled>谓词 （不调用），然后只需调用<xref:System.Diagnostics.DiagnosticListener.Write(System.String,System.Object)>。 因此如果订阅服务器上需要筛选，则需要执行此操作本身。
+
+如果`isEnabled`是`null`，不进行筛选 (的所有重载<xref:System.Diagnostics.DiagnosticSource.IsEnabled%2A>返回`true`)。
 
           ]]></format>
         </remarks>
@@ -433,9 +441,17 @@
         <param name="isEnabled">To be added.</param>
         <param name="onActivityImport">To be added.</param>
         <param name="onActivityExport">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary>添加一个订阅者，根据事件名称和最多两个上下文对象筛选事件（可选），并指定提供程序在进程外部导入或导出活动时调用的方法。</summary>
+        <returns>对允许侦听器在 <see cref="T:System.Diagnostics.DiagnosticSource" /> 发送完通知前停止接收这些通知的接口的引用。</returns>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+如果`isEnabled`为非 null，某些事件是无用的效率，可以跳过。  
+
+你也可以提供 onActivityImport 和 onActivityExport 方法调用时提供程序导入或导出活动从外部 （例如，从 HTTP 请求） 的过程。 这些方法之后导入或导出该活动调用，并可用于修改活动或要添加策略的传出请求。
+
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="ToString">
@@ -493,11 +509,18 @@
         <Parameter Name="parameters" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2" />
       </Parameters>
       <Docs>
-        <param name="name">To be added.</param>
-        <param name="value">To be added.</param>
-        <param name="parameters">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="name">要记录的事件的名称。</param>
+        <param name="value">一个对象，它表示事件的有效负载。</param>
+        <param name="parameters">一个对象，它表示事件的有效负载。</param>
+        <summary>记录一个通知。</summary>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+有关更多信息，请参见 <xref:System.Diagnostics.DiagnosticSource.Write%2A?displayProperty=nameWithType> 方法。
+
+         ]]></format>
+         </remarks>
+
       </Docs>
     </Member>
   </Members>

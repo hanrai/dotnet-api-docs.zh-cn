@@ -1,5 +1,5 @@
 <Type Name="Utf8Formatter" FullName="System.Buffers.Text.Utf8Formatter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="43f8a3c757079c0772a1c7891fe8a26eac733f03" /><Meta Name="ms.sourcegitcommit" Value="434f60616a9793fa8436744549fc856e94f7a648" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/25/2018" /><Meta Name="ms.locfileid" Value="39923210" /></Metadata><TypeSignature Language="C#" Value="public static class Utf8Formatter" />
+  <TypeSignature Language="C#" Value="public static class Utf8Formatter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit Utf8Formatter extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Buffers.Text.Utf8Formatter" />
   <TypeSignature Language="VB.NET" Value="Public Class Utf8Formatter" />
@@ -9,13 +9,18 @@
     <AssemblyName>System.Memory</AssemblyName>
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
+    <AssemblyVersion>4.2.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <AssemblyInfo>
+    <AssemblyName>netstandard</AssemblyName>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>提供用于将常见数据类型的格式设置为 Utf8 字符串的静态方法。</summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -30,6 +35,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -41,13 +51,27 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.Boolean" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+
+支持的格式：
+
+|格式字符串|示例结果字符串|
+|--|--|
+|G （默认值）|True/False|
+|l|true/false|
+
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryFormat">
@@ -61,6 +85,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -72,13 +101,29 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.Byte" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+
+支持的格式：
+
+|格式字符串|示例结果字符串|
+|--|--|
+|G/g （默认值）| |
+|D/d|122|
+|N/n|122|       
+|X/x|7a|
+
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryFormat">
@@ -92,6 +137,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -103,13 +153,29 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.DateTime" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+            
+支持的格式：
+
+|格式字符串|示例结果字符串|注释|
+|--|--|--|
+|G （默认值）|05/25/2017 10:30:15| |
+|R|Tue，03 2017 年 1 月 08:08:05 GMT|(RFC 1123)|
+|l|tue，03 2017 年 1 月 08:08:05 gmt|(小写 RFC 1123)|
+|O|2017-06-12T05:30:45.7680000-07:00|（往返）|
+
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryFormat">
@@ -123,6 +189,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -134,12 +205,12 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.DateTimeOffset" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -154,6 +225,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -165,13 +241,28 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.Decimal" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+            
+支持的格式：
+
+|格式字符串|示例结果字符串|注释|
+|--|--|--|
+|G/g （默认值）| |  
+|F/f|12.45|固定点|
+|E/e|1.245000e1|指数|
+
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryFormat">
@@ -185,6 +276,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -196,13 +292,28 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.Double" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+            
+支持的格式：
+
+|格式字符串|示例结果字符串|注释|
+|--|--|--|
+|G/g （默认值）| |  
+|F/f|12.45|固定点|
+|E/e|1.245000e1|指数|
+
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+ 
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryFormat">
@@ -216,6 +327,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -227,13 +343,29 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.Guid" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+            
+支持的格式：
+
+|格式字符串|结果字符串|
+|--|--|
+|D （默认值）|nnnnnnnn-nnnn-nnnn-nnnn-nnnnnnnnnnnn|
+|B|{nnnnnnnn-nnnn-nnnn-nnnn-nnnnnnnnnnnn}|
+|P|(nnnnnnnn-nnnn-nnnn-nnnn-nnnnnnnnnnnn)|
+|N|nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn|
+
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+               
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryFormat">
@@ -247,6 +379,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -258,13 +395,29 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.Int16" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+            
+支持的格式：
+
+|格式字符串|示例结果字符串|
+|--|--|
+|G/g （默认值）| |
+|D/d|32767|
+|N/n|32,767|       
+|X/x|7fff|
+
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+ 
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryFormat">
@@ -278,6 +431,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -289,13 +447,29 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.Int32" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+            
+支持的格式：
+
+|格式字符串|示例结果字符串|
+|--|--|
+|G/g （默认值）| |
+|D/d|32767|
+|N/n|32,767|       
+|X/x|7fff|
+              
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryFormat">
@@ -309,6 +483,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -320,13 +499,29 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.Int64" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+            
+支持的格式：
+
+|格式字符串|示例结果字符串|
+|--|--|
+|G/g （默认值）| |
+|D/d|32767|
+|N/n|32,767|       
+|X/x|7fff|
+              
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+ 
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryFormat">
@@ -340,9 +535,14 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netcore-2.1;netcore-2.2;netstandard-2.1">
           <AttributeName>System.CLSCompliant(false)</AttributeName>
         </Attribute>
       </Attributes>
@@ -356,13 +556,29 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.SByte" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+            
+支持的格式：
+
+|格式字符串|示例结果字符串|
+|--|--|
+|G/g （默认值）| |
+|D/d|122|
+|N/n|122|       
+|X/x|7a|
+
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+               
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryFormat">
@@ -376,6 +592,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -387,13 +608,28 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.Single" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+            
+支持的格式：
+
+|格式字符串|示例结果字符串|注释|
+|--|--|--|
+|G/g （默认值）| |  
+|F/f|12.45|固定点|
+|E/e|1.245000e1|指数|
+
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+ 
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryFormat">
@@ -407,6 +643,11 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -418,13 +659,28 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.TimeSpan" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+            
+支持的格式：
+
+|格式字符串|结果字符串|注释|
+|--|--|--|
+|c/t/T （默认值）|[-][d.]hh:mm:ss[.fffffff]|（常量格式）|
+|G|[-]d:hh:mm:ss.fffffff||（一般长型值）|
+|g|[-][d:][h]h:mm:ss[.f[f[f[f[f[f[f]]]]]]|（一般短）|
+
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryFormat">
@@ -438,9 +694,14 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netcore-2.1;netcore-2.2;netstandard-2.1">
           <AttributeName>System.CLSCompliant(false)</AttributeName>
         </Attribute>
       </Attributes>
@@ -454,13 +715,29 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.UInt16" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+            
+支持的格式：
+
+|格式字符串|示例结果字符串|
+|--|--|
+|G/g （默认值）| |
+|D/d|32767|
+|N/n|32,767|       
+|X/x|7fff|
+
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+ 
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryFormat">
@@ -474,9 +751,14 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netcore-2.1;netcore-2.2;netstandard-2.1">
           <AttributeName>System.CLSCompliant(false)</AttributeName>
         </Attribute>
       </Attributes>
@@ -490,13 +772,29 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.UInt32" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+
+支持的格式：
+
+|格式字符串|示例结果字符串|
+|--|--|
+|G/g （默认值）| |
+|D/d|32767|
+|N/n|32,767|       
+|X/x|7fff|
+
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+ 
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryFormat">
@@ -510,9 +808,14 @@
         <AssemblyName>System.Memory</AssemblyName>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netcore-2.1;netcore-2.2;netstandard-2.1">
           <AttributeName>System.CLSCompliant(false)</AttributeName>
         </Attribute>
       </Attributes>
@@ -526,13 +829,29 @@
         <Parameter Name="format" Type="System.Buffers.StandardFormat" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="value">要格式化的值。</param>
+        <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+        <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+        <param name="format">要使用的标准格式。</param>
+        <summary>将 <see cref="T:System.UInt64" /> 的格式设置为 UTF8 字符串。</summary>
+        <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+            
+支持的格式：
+
+|格式字符串|示例结果字符串|
+|--|--|
+|G/g （默认值）| |
+|D/d|32767|
+|N/n|32,767|       
+|X/x|7fff|
+
+如果方法失败，以迭代方式增加缓冲区的大小，然后重试直到成功。
+ 
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
   </Members>

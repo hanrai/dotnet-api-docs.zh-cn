@@ -1,5 +1,5 @@
 <Type Name="Activity" FullName="System.Diagnostics.Activity">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="447d0b7c665242e9f520c6575a55767cbd659554" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67239654" /></Metadata><TypeSignature Language="C#" Value="public class Activity" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="acd759fdd6beca32c0075e63f6e3aea2b7c5d7fd" /><Meta Name="ms.sourcegitcommit" Value="727af77f0b7ae2636efa3bc47000697540084461" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/15/2019" /><Meta Name="ms.locfileid" Value="67877139" /></Metadata><TypeSignature Language="C#" Value="public class Activity" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Activity extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.Activity" />
   <TypeSignature Language="VB.NET" Value="Public Class Activity" />
@@ -17,8 +17,22 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>表示具有要用于日志记录的上下文的操作。</summary>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+`Activity`具有操作名称、 ID、 开始时间和持续时间、 标记和行李。
+             
+当前活动可以访问使用静态<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>属性。
+
+活动应通过调用构造函数创建的、 根据需要，配置，然后入门<xref:System.Diagnostics.Activity.Start%2A>方法，可维护的活动和集的父-子关系<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>。
+            
+完成活动后，它应停止使用<xref:System.Diagnostics.Activity.Stop?displayProperty=nameWithType>方法。
+            
+不`Activity`方法允许异常转义作为错误输入的响应。 它们会引发并捕获 （这允许调试器和监视以查看错误），抑制异常，但该操作执行合理 （通常它不执行任何操作） 的操作。
+
+         ]]></format>
+         </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -69,8 +83,8 @@
         <ReturnType>System.Diagnostics.ActivityTraceFlags</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取与活动关联的标志（由 W3C ID 规范定义）。</summary>
+        <value>与活动关联的标志。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -226,9 +240,15 @@
         <ReturnType>System.Diagnostics.ActivityIdFormat</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>获取或设置 <see cref="T:System.Diagnostics.Activity" /> 的默认 ID 格式。</summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+`Activity`实例会尝试为 Id 使用相同的格式，作为其父级。 如果活动没有父级，则此属性确定要使用的默认格式。
+
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="Duration">
@@ -271,9 +291,15 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取或设置一个值，该值用于确定 <see cref="P:System.Diagnostics.Activity.DefaultIdFormat" /> 是否始终用于定义默认 ID 格式。</summary>
+        <value><see langword="true" /> 若要始终使用<see cref="P:System.Diagnostics.Activity.DefaultIdFormat" />; 否则为<see langword="false" />。</value>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+通常，如果<xref:System.Diagnostics.Activity.ParentId>是定义，其格式确定当前使用的格式<xref:System.Diagnostics.Activity>。 但是，如果`ForceDefaultFormat`设置为`true`，始终由 ID 格式<xref:System.Diagnostics.Activity.DefaultIdFormat>属性，即使<xref:System.Diagnostics.Activity.ParentId>定义和父具有不同的格式。
+
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetBaggageItem">
@@ -352,8 +378,8 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
         <ReturnType>System.Diagnostics.ActivityIdFormat</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取 <see cref="P:System.Diagnostics.Activity.Id" /> 的格式。</summary>
+        <value>格式为<see cref="P:System.Diagnostics.Activity.Id" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -441,7 +467,7 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
 
 如果此父<xref:System.Diagnostics.Activity>来自进程之外<xref:System.Diagnostics.Activity>不具有父级，但*可能*具有父 ID （其中已从反序列化父级）。  
 
-此属性的值可以是`null`如果这是根<see cref="T:System.Diagnostics.Activity" />(即不具有<xref:System.Diagnostics.Activity.Parent>)。  请参阅[Id 格式](href="https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md#id-format)的更多详细信息。
+此属性的值可以是`null`如果这是根<see cref="T:System.Diagnostics.Activity" />(即不具有<xref:System.Diagnostics.Activity.Parent>)。  请参阅[Id 格式](href="https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md#id-format")的更多详细信息。
 
 ]]></format>
         </remarks>
@@ -463,9 +489,15 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
         <ReturnType>System.Diagnostics.ActivitySpanId</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取父级的 <see cref="P:System.Diagnostics.Activity.SpanId" />。</summary>
+        <value>父级的<see cref="P:System.Diagnostics.Activity.SpanId" />。</value>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+如果<xref:System.Diagnostics.Activity.ParentId?displayProperty=nameWithType>采用 W3C 格式中，此属性返回<xref:System.Diagnostics.Activity.SpanId>ParentId 的一部分。  否则它将返回一个零<xref:System.Diagnostics.Activity.SpanId>。
+
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="Recorded">
@@ -484,8 +516,8 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取一个值，指示是否已设置 W3CIdFlags.Recorded 标志。</summary>
+        <value><see langword="true" /> 如果设置了 W3CIdFlags.Recorded 标志;否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -656,8 +688,8 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
         <ReturnType>System.Diagnostics.ActivitySpanId</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取 <see cref="P:System.Diagnostics.Activity.Id" /> 的 SPAN 部分。</summary>
+        <value>S p a N 一部分的 ID <see cref="P:System.Diagnostics.Activity.Id" />，如果<see cref="T:System.Diagnostics.Activity" />采用 W3C 格式; 否则为零<see langword="SpanId" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -810,8 +842,8 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
         <ReturnType>System.Diagnostics.ActivityTraceId</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取 <see cref="P:System.Diagnostics.Activity.Id" /> 的 TraceId 部分。</summary>
+        <value>TraceId 一部分的 ID <see cref="P:System.Diagnostics.Activity.Id" />，如果该 ID 有 W3C 格式; 否则为零的跟踪 Id。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -831,9 +863,17 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取 W3C <see langword="tracestate" /> 标头。</summary>
+        <value>W3C<see langword="tracestate" />标头。</value>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+`tracestate`标头用于传送到包含跟踪父代中的跟踪标识的补充信息。 `tracestate` 包含传达有关多个分布式的跟踪图形中的请求位置信息的键/值对的列表。 此信息通常由分布式的跟踪系统并不应应用于常规用途行李，因为这可能会中断的分布式跟踪的相关性。
+            
+以逻辑方式`TraceStateString`是只是一种行李 （如果流一样行李），而是因为它应为特殊情况 （它具有其自己的 HTTP 标头），如果它不使用其他行李通常会更方便/有效。
+
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
   </Members>

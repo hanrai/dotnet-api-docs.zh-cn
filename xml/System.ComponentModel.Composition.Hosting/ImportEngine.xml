@@ -1,5 +1,5 @@
 <Type Name="ImportEngine" FullName="System.ComponentModel.Composition.Hosting.ImportEngine">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="69ef581363576c62f9a76375023cc7b32a9f508a" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63906875" /></Metadata><TypeSignature Language="C#" Value="public class ImportEngine : IDisposable, System.ComponentModel.Composition.ICompositionService" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="697de33454fecd6ee59c23c4a326e406a2b08a74" /><Meta Name="ms.sourcegitcommit" Value="690605a2d62010b93e13edf329aafe2bdc57423a" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/11/2019" /><Meta Name="ms.locfileid" Value="67801264" /></Metadata><TypeSignature Language="C#" Value="public class ImportEngine : IDisposable, System.ComponentModel.Composition.ICompositionService" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ImportEngine extends System.Object implements class System.ComponentModel.Composition.ICompositionService, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Composition.Hosting.ImportEngine" />
   <TypeSignature Language="VB.NET" Value="Public Class ImportEngine&#xA;Implements ICompositionService, IDisposable" />
@@ -187,7 +187,7 @@
         <Parameter Name="disposing" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="disposing"><see langword="true" /> 表示释放托管资源和非托管资源；<see langword="false" /> 表示仅释放非托管资源。</param>
+        <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
         <summary>释放由 <see cref="T:System.ComponentModel.Composition.Hosting.ImportEngine" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -216,6 +216,9 @@
         <param name="atomicComposition">要使用的组合事务，或为 <see langword="null" /> 表示没有组合事务。</param>
         <summary>预览指定部件的所有必需的导入，从而不用实际设置导入，就确定可以满足这些导入。</summary>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ComponentModel.Composition.CompositionException">预览期间出现错误，<paramref name="atomicComposition" /> 为 <see langword="null" />。 <see cref="P:System.ComponentModel.Composition.CompositionException.Errors" /> 将包含所发生错误的集合。 预先存在的组合处于未知状态，具体取决于所发生的错误。</exception>
+        <exception cref="T:System.ComponentModel.Composition.ChangeRejectedException">预览期间出现错误，<paramref name="atomicComposition" /> 不为 <see langword="null" />。 <see cref="P:System.ComponentModel.Composition.CompositionException.Errors" /> 将包含所发生错误的集合。 预先存在的组合保持有效状态。</exception>
+        <exception cref="T:System.ObjectDisposedException">已释放了 <see cref="T:System.ComponentModel.Composition.Hosting.ImportEngine" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReleaseImports">
@@ -267,6 +270,9 @@
         <param name="part">要满足其导入的部件。</param>
         <summary>满足指定部件的导入。</summary>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="part" /> 为 <see langword="null" />。</exception>
+        <exception cref="T:System.ComponentModel.Composition.CompositionException">复合期间发生错误。 <see cref="P:System.ComponentModel.Composition.CompositionException.Errors" /> 将包含所发生错误的集合。</exception>
+        <exception cref="T:System.ObjectDisposedException">已释放了 <see cref="T:System.ComponentModel.Composition.Hosting.ImportEngine" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="SatisfyImportsOnce">
@@ -295,6 +301,9 @@
         <param name="part">要满足其导入的部件。</param>
         <summary>满足指定部件的导入，而无需注册这些导入以进行重新组合。</summary>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="part" /> 为 <see langword="null" />。</exception>
+        <exception cref="T:System.ComponentModel.Composition.CompositionException">复合期间发生错误。 <see cref="P:System.ComponentModel.Composition.CompositionException.Errors" /> 将包含所发生错误的集合。</exception>
+        <exception cref="T:System.ObjectDisposedException">已释放了 <see cref="T:System.ComponentModel.Composition.ICompositionService" />。</exception>
       </Docs>
     </Member>
   </Members>

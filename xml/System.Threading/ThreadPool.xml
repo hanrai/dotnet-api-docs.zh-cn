@@ -1,5 +1,5 @@
 <Type Name="ThreadPool" FullName="System.Threading.ThreadPool">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ad9f6d866494c9ca0078200940a3feafc462189e" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67243300" /></Metadata><TypeSignature Language="C#" Value="public static class ThreadPool" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="49c7b9dac43f96a0739f40a798bf485a9f22b0d5" /><Meta Name="ms.sourcegitcommit" Value="690605a2d62010b93e13edf329aafe2bdc57423a" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/11/2019" /><Meta Name="ms.locfileid" Value="67801534" /></Metadata><TypeSignature Language="C#" Value="public static class ThreadPool" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit ThreadPool extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Threading.ThreadPool" />
   <TypeSignature Language="VB.NET" Value="Public Class ThreadPool" />
@@ -151,7 +151,7 @@
         <returns>如果绑定了句柄，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">表示调用非托管的代码的能力。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">表示调用非托管的代码的能力。 关联枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />。</permission>
       </Docs>
     </Member>
     <Member MemberName="BindHandle">
@@ -206,7 +206,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="osHandle" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">表示调用非托管的代码的能力。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">表示调用非托管的代码的能力。 关联枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />。</permission>
       </Docs>
     </Member>
     <Member MemberName="CompletedWorkItemCount">
@@ -231,9 +231,15 @@
         <ReturnType>System.Int64</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取迄今为止已处理的工作项数。</summary>
+        <value>到目前为止已处理的工作项数目。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+如果线程池实现可能具有不同类型的工作项，计数包括所有类型。
+
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetAvailableThreads">
@@ -459,9 +465,15 @@
         <ReturnType>System.Int64</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取当前已加入处理队列的工作项数。</summary>
+        <value>当前排队等待进行处理的工作项数目。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+如果线程池实现可能具有不同类型的工作项，计数包括所有可以进行跟踪，这可能只是用户的工作项，包括任务类型。 某些实现可能还包括已排队的计时器，并等待计数中的回调。 上 Windows，计数不太可能包含数量的挂起的 IO 完成，因为它们发布到 IO 完成端口直接。
+
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <MemberGroup MemberName="QueueUserWorkItem">
@@ -1165,9 +1177,15 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取当前存在的线程池线程数。</summary>
+        <value>当前存在的线程池线程数。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+如果线程池实现可能具有不同类型的主题，计数包括所有类型。
+
+        ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="UnsafeQueueNativeOverlapped">

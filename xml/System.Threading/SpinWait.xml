@@ -1,5 +1,5 @@
 <Type Name="SpinWait" FullName="System.Threading.SpinWait">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="57ceefc45d875b50a1029cd4ac7ac8c022e3318c" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67243323" /></Metadata><TypeSignature Language="C#" Value="public struct SpinWait" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e8994780181712a1e87c32bcbd35cfe1bd7cfa94" /><Meta Name="ms.sourcegitcommit" Value="690605a2d62010b93e13edf329aafe2bdc57423a" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/11/2019" /><Meta Name="ms.locfileid" Value="67801609" /></Metadata><TypeSignature Language="C#" Value="public struct SpinWait" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit SpinWait extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Threading.SpinWait" />
   <TypeSignature Language="VB.NET" Value="Public Structure SpinWait" />
@@ -216,7 +216,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这通常称为在循环中，并且可能会更改行为基于的次数<xref:System.Threading.SpinWait.SpinOnce%2A>已对此实例到目前为止调用。 每个数值调节钮导致<xref:System.Threading.Thread.SpinWait%2A>被调用方法。 计数保持的次数<xref:System.Threading.SpinWait.SpinOnce%2A>调用时，则在达到阈值计数后和<xref:System.Threading.Thread.Yield%2A>调用方法。  
+ 此方法通常在循环中调用，并可能会改变，基于的次数行为<xref:System.Threading.SpinWait.SpinOnce%2A>已对此实例到目前为止调用。 每个数值调节钮导致<xref:System.Threading.Thread.SpinWait%2A>被调用方法。 计数保持的次数<xref:System.Threading.SpinWait.SpinOnce%2A>调用时，则在达到阈值计数后和<xref:System.Threading.Thread.Yield%2A>调用方法。  
   
  ]]></format>
         </remarks>
@@ -249,9 +249,16 @@
         <Parameter Name="sleep1Threshold" Type="System.Int32" Index="0" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="sleep1Threshold">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="sleep1Threshold">将在其后使用 <see langword="Thread.Sleep(1)" /> 的最小旋转计数。 值为 -1 将禁用 <see langword="Thread.Sleep(1)" />。</param>
+        <summary>执行单一自旋，并在达到最小旋转计数后调用 <see cref="M:System.Threading.Thread.Sleep(System.Int32)" />。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+此方法通常在循环中调用，并可能会改变，基于的次数行为<xref:System.Threading.SpinWait.SpinOnce>已对此实例到目前为止调用。
+
+        ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="sleep1Threshold" /> 小于 -1。</exception>
       </Docs>
     </Member>
     <MemberGroup MemberName="SpinUntil">
