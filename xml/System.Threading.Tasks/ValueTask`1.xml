@@ -1,5 +1,5 @@
 <Type Name="ValueTask&lt;TResult&gt;" FullName="System.Threading.Tasks.ValueTask&lt;TResult&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="bd86346459bb82d309925552cdfe0551b9211887" /><Meta Name="ms.sourcegitcommit" Value="690605a2d62010b93e13edf329aafe2bdc57423a" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/11/2019" /><Meta Name="ms.locfileid" Value="67801788" /></Metadata><TypeSignature Language="C#" Value="public struct ValueTask&lt;TResult&gt; : IEquatable&lt;System.Threading.Tasks.ValueTask&lt;TResult&gt;&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="2f4372b896320fcf53bf11ac0e31b51b6bcf2aba" /><Meta Name="ms.sourcegitcommit" Value="44248681576d2d3e55999de22512082227ce367c" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/16/2019" /><Meta Name="ms.locfileid" Value="68238751" /></Metadata><TypeSignature Language="C#" Value="public struct ValueTask&lt;TResult&gt; : IEquatable&lt;System.Threading.Tasks.ValueTask&lt;TResult&gt;&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit ValueTask`1&lt;TResult&gt; extends System.ValueType implements class System.IEquatable`1&lt;valuetype System.Threading.Tasks.ValueTask`1&lt;!TResult&gt;&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Tasks.ValueTask`1" />
   <TypeSignature Language="VB.NET" Value="Public Structure ValueTask(Of TResult)&#xA;Implements IEquatable(Of ValueTask(Of TResult))" />
@@ -45,27 +45,27 @@
       <format type="text/markdown"><![CDATA[ 
 
 ## Remarks  
-一个<xref:System.Threading.Tasks.ValueTask%601>实例可能是为处于等待状态或转换为<xref:System.Threading.Tasks.Task%601>使用<xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>。 一个<xref:System.Threading.Tasks.ValueTask%601>可能仅一次，等待实例中，使用者可能会调用<xref:System.Threading.Tasks.ValueTask%601.GetAwaiter>直到已完成实例。 如果不可接受的这些限制，将转换<xref:System.Threading.Tasks.ValueTask%601>到<xref:System.Threading.Tasks.Task%601>通过调用<xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>。
+实例可以等待或<xref:System.Threading.Tasks.Task%601>使用<xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>转换为。 <xref:System.Threading.Tasks.ValueTask%601> 实例仅可等待一次, 并且在实例完成之前, 使用者可能不会调用<xref:System.Threading.Tasks.ValueTask%601.GetAwaiter>。 <xref:System.Threading.Tasks.ValueTask%601> 如果这些限制不可接受, 请<xref:System.Threading.Tasks.ValueTask%601> <xref:System.Threading.Tasks.Task%601>通过调用<xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>将转换为。
 
-永远不应上执行以下操作<xref:System.Threading.Tasks.ValueTask%601>实例：
+永远不应对<xref:System.Threading.Tasks.ValueTask%601>实例执行以下操作:
 
   - 等待实例多次。
-  - 调用<xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>多次。
-  - 使用`.Result`或`.GetAwaiter().GetResult()`时未尚未完成该操作，或多次使用。
-  - 使用多个以下方法之一来使用该实例。
+  - 多次<xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>调用。
+  - 在`.Result`操作`.GetAwaiter().GetResult()`尚未完成或多次使用时使用或。
+  - 使用多种方法来使用此实例。
 
-如果执行上述任一操作，则结果不确定。
+如果执行上述任一操作, 则结果是不确定的。
 
-一种方法可能会返回时很可能其操作的结果将是可用以同步方式，并且当它应该能够将此值类型的实例调用相当频繁，因此，分配一个新的成本<xref:System.Threading.Tasks.Task%601>每次调用都将很高的磁盘。   
+如果某个方法可能会以同步方式使用其操作的结果, 并且应经常调用该方法, 从而导致为每个调用分配一个新<xref:System.Threading.Tasks.Task%601>的成本为不受支持, 则该方法可能返回此值类型的实例。   
 
-有几个使用缺点<xref:System.Threading.Tasks.ValueTask%601>而不是<xref:System.Threading.Tasks.Task%601>。 例如，虽然<xref:System.Threading.Tasks.ValueTask%601>可帮助避免分配成功的结果，以同步方式是可用的情况下，它还包含两个字段，而<xref:System.Threading.Tasks.Task%601>作为引用类型是单个字段。 这意味着方法调用返回两个值得数据字段的而不是一个，这是要复制的详细数据。 这也意味着，如果返回的一个方法<xref:System.Threading.Tasks.ValueTask%601>等待 async 方法，状态机中的异步方法将为更大，因为它必须存储结构包含两个字段，而不是单个引用。   
+使用<xref:System.Threading.Tasks.ValueTask%601>而不<xref:System.Threading.Tasks.Task%601>是。 例如, 虽然<xref:System.Threading.Tasks.ValueTask%601>可以在成功结果以同步<xref:System.Threading.Tasks.Task%601>方式使用的情况下帮助避免分配, 但它也包含多个字段, 而作为引用类型是单个字段。 这意味着<xref:System.Threading.Tasks.ValueTask%601>从方法返回会导致复制更多数据。 这也意味着, 如果返回的<xref:System.Threading.Tasks.ValueTask%601>方法在异步方法中等待, 则该异步方法的状态机将更大, 因为它必须存储包含多个字段而不是单个引用的结构。   
 
-对于不使用异步操作使用的结果使用 await，<xref:System.Threading.Tasks.ValueTask%601>可能会导致更复杂的编程模型，需要更多分配。 例如，考虑一种方法，可以返回<xref:System.Threading.Tasks.Task%601>与常见的结果作为缓存的任务或<xref:System.Threading.Tasks.ValueTask%601>。 如果结果的使用者想要将其用作<xref:System.Threading.Tasks.Task%601>类似的方法中<xref:System.Threading.Tasks.Task.WhenAll%2A>或<xref:System.Threading.Tasks.Task.WhenAny%2A>，则<xref:System.Threading.Tasks.ValueTask%601>必须先转换为<xref:System.Threading.Tasks.Task%601>使用<xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>，从而导致会如果可以避免的分配缓存<xref:System.Threading.Tasks.Task%601>第一个位置中已使用。   
+除了使用 await 来使用异步操作的结果以外, <xref:System.Threading.Tasks.ValueTask%601>它可能会导致更复杂的编程模型需要更多分配。 例如, 请考虑一个方法, 该方法可以<xref:System.Threading.Tasks.Task%601>将替换为缓存任务作为常见结果<xref:System.Threading.Tasks.ValueTask%601>或。 如果结果的使用者<xref:System.Threading.Tasks.Task%601>想要在类似于<xref:System.Threading.Tasks.Task.WhenAll%2A>或<xref:System.Threading.Tasks.Task.WhenAny%2A>的方法中将其用作<xref:System.Threading.Tasks.Task%601> , <xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>则<xref:System.Threading.Tasks.ValueTask%601>必须首先将转换为, 并在首先<xref:System.Threading.Tasks.Task%601>使用了缓存。   
 
-在这种情况下，应为任何异步方法的默认选择以返回<xref:System.Threading.Tasks.Task>或<xref:System.Threading.Tasks.Task%601>。 仅当性能分析证明物有所值应<xref:System.Threading.Tasks.ValueTask%601>而不是使用<xref:System.Threading.Tasks.Task%601>。 非泛型版本<xref:System.Threading.Tasks.ValueTask>不推荐用于大多数方案。 <xref:System.Threading.Tasks.Task.CompletedTask>属性应该用于在方法返回退回这种情况中的已成功完成单一实例<xref:System.Threading.Tasks.Task>以同步方式并成功完成。
+因此, 任何异步方法的默认选择都应为返回<xref:System.Threading.Tasks.Task>或。 <xref:System.Threading.Tasks.Task%601> 仅当性能分析证明需要使用时, <xref:System.Threading.Tasks.ValueTask%601>才应使用, 而<xref:System.Threading.Tasks.Task%601>不是。 大多数情况下, 不<xref:System.Threading.Tasks.ValueTask>建议使用的非泛型版本。 此属性应该用于在方法<xref:System.Threading.Tasks.Task>返回成功完成的情况下, 手动返回已成功完成的单一实例。 <xref:System.Threading.Tasks.Task.CompletedTask>
 
 > [!NOTE]
->  利用<xref:System.Threading.Tasks.ValueTask%601>开始，支持类型C#7.0，和不受任何版本的 Visual Basic。
+>  支持从C# 7.0 开始<xref:System.Threading.Tasks.ValueTask%601>使用该类型, 并且 Visual Basic 的任何版本都不支持此类型。
  ]]></format>
     </remarks>
   </Docs>
@@ -194,7 +194,7 @@
         <returns>包装在此 <see cref="T:System.Threading.Tasks.ValueTask`1" /> 中的 <see cref="T:System.Threading.Tasks.Task`1" /> 对象（如果存在），或者表示结果的新 <see cref="T:System.Threading.Tasks.Task`1" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
-此方法返回的已包装的任务对象，如果存在，或生成新的 task 对象以表示结果。
+此方法返回包装的任务对象 (如果存在), 或生成一个新的任务对象来表示结果。
           ]]></format>
         </remarks>
       </Docs>
@@ -436,10 +436,10 @@
       </ReturnValue>
       <Docs>
         <summary>获取指示此对象是否表示取消的操作的值。</summary>
-        <value><see langword="true" /> 如果此对象表示已取消的操作;否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果此对象表示取消的操作, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[
-如果<xref:System.Threading.Tasks.ValueTask`1>通过结果或备份<xref:System.Threading.Tasks.Sources.IValueTaskSource`1>，这将始终返回`false`。  如果它由<xref:System.Threading.Tasks.Task>，它将返回的任务的值<xref:System.Threading.Tasks.Task.IsCanceled>属性。
+如果通过结果或<xref:System.Threading.Tasks.Sources.IValueTaskSource`1>由支持, 则将始终返回`false`。 <xref:System.Threading.Tasks.ValueTask`1>  如果它由<xref:System.Threading.Tasks.Task>支持, 它将返回<xref:System.Threading.Tasks.Task.IsCanceled>任务的属性的值。
           ]]></format>
         </remarks>
       </Docs>
@@ -471,7 +471,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取指示此对象是否表示完成的操作的值。</summary>
-        <value><see langword="true" /> 如果此对象表示已完成的操作;否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果此对象表示已完成的操作, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks></remarks>
       </Docs>
     </Member>
@@ -502,7 +502,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取指示此对象是否表示成功完成的操作的值。</summary>
-        <value><see langword="true" /> 如果此对象表示已成功完成的操作;否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果此对象表示已成功完成的操作, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks></remarks>
       </Docs>
     </Member>
@@ -533,7 +533,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取指示此对象是否表示失败的操作的值。</summary>
-        <value><see langword="true" /> 如果此对象表示失败的操作;否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果此对象表示失败的操作, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks></remarks>
       </Docs>
     </Member>
@@ -671,9 +671,9 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 ## Remarks  
-仅可以访问一次，此属性，而且在这<xref:System.Threading.Tasks.ValueTask%601>已完成。
+此属性只能访问一次, 且仅在完成后<xref:System.Threading.Tasks.ValueTask%601>才可以访问。
 
-如果此<xref:System.Threading.Tasks.ValueTask%601>已成功完成，此属性返回生成的值。 如果此<xref:System.Threading.Tasks.ValueTask%601>已出现故障，此属性会引发异常。 引发的异常不包装在<xref:System.AggregateException>。
+如果此<xref:System.Threading.Tasks.ValueTask%601>属性已成功完成, 则此属性将返回结果值。 如果这<xref:System.Threading.Tasks.ValueTask%601>出现错误, 则此属性将引发异常。 引发的异常不会包装在中<xref:System.AggregateException>。
 ]]></format>
         </remarks>
       </Docs>

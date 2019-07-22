@@ -1,5 +1,5 @@
 <Type Name="SafeNCryptHandle" FullName="Microsoft.Win32.SafeHandles.SafeNCryptHandle">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0587dc04070c77ac04f4355a1798ec80dfeb6f41" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56775944" /></Metadata><TypeSignature Language="C#" Value="public abstract class SafeNCryptHandle : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0cbff58f64d36eb4aa11d9911a1ae313cecbd1a2" /><Meta Name="ms.sourcegitcommit" Value="ea104bc7868886a205b1df30baed6ca34ff70ecb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/20/2019" /><Meta Name="ms.locfileid" Value="68368823" /></Metadata><TypeSignature Language="C#" Value="public abstract class SafeNCryptHandle : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit SafeNCryptHandle extends Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
   <TypeSignature Language="DocId" Value="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class SafeNCryptHandle&#xA;Inherits SafeHandleZeroOrMinusOneIsInvalid" />
@@ -34,8 +34,23 @@
   </Attributes>
   <Docs>
     <summary>提供了可被下一代加密技术 (CNG) 对象使用的安全句柄。</summary>
-    <remarks>To be added.</remarks>
-    <permission cref="T:System.Security.Permissions.SecurityPermission">若要调用非托管的代码的权限。 安全操作： <see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+    <remarks>
+      <format type="text/markdown"><![CDATA[
+      
+## Remarks
+
+
+此类会将逻辑打包, 以正确复制和释放这些句柄, 以模拟本机复制。
+            
+每个打开的句柄对象可以被视为处于以下三种状态之一:
+
+- **所有者**-通过封送拆收器 (传统风格安全句柄) 创建的。 特别要注意的是, 给定的本机句柄只存在一个所有者句柄。
+- **复制**点处于刀柄状态的句柄。 如果在重复状态下释放句柄, 则只会递减持有者的引用计数, 而不是在本机句柄的版本中。
+- **持有者**-保存到本机句柄上, 并由处于重复状态的句柄引用。 当关闭所有重复的句柄时, 持有者句柄释放本机句柄。 永远不会终止持有者句柄, 因为这会导致重复句柄的终结器和持有者句柄之间出现争用。 相反, 它依赖于所有重复的句柄来完成, 并将 ref 计数递减为零。 持有者句柄的实例永远不应被任何内容引用, 但有一个重复的句柄。
+
+      ]]></format>
+    </remarks>
+    <permission cref="T:System.Security.Permissions.SecurityPermission">用于调用非托管代码的权限。 安全操作: <see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
     <forInternalUseOnly />
   </Docs>
   <Members>
@@ -67,7 +82,7 @@
       <Docs>
         <summary>初始化 <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">若要调用非托管的代码的权限。 安全操作： <see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于调用非托管代码的权限。 安全操作: <see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <forInternalUseOnly />
       </Docs>
     </Member>
@@ -166,7 +181,21 @@
       <Docs>
         <summary>释放由下一代加密技术 (CNG) 对象使用的句柄。</summary>
         <returns>如果成功释放了句柄，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+与复制类似, 释放句柄会根据句柄的状态执行不同的操作。
+            
+使用 parentHandle 值构造的实例将仅对 parentHandle 对象调用 DangerousRelease。 否则, 该行为由所有权状态决定。
+
+- **所有者**-只需调用 release P/Invoke 方法。
+- **复制**-减少当前持有者的引用计数。
+- **持有者**-调用发布 P/Invoke。 请注意, 持有者上的 ReleaseHandle 表示引用计数为零。
+
+          ]]></format>
+        </remarks>
         <forInternalUseOnly />
       </Docs>
     </Member>
