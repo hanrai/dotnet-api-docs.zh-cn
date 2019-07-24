@@ -1,5 +1,5 @@
 <Type Name="GC" FullName="System.GC">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b44a711ee888d1ea3c30d724e1959d5c05b1be32" /><Meta Name="ms.sourcegitcommit" Value="93667418e6e77da6ba7109a407c61b8969cec4ec" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/05/2019" /><Meta Name="ms.locfileid" Value="67571243" /></Metadata><TypeSignature Language="C#" Value="public static class GC" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e1c18f82901a882b133deb9d96caaf88746649d3" /><Meta Name="ms.sourcegitcommit" Value="87817aa377ffe999787a084c8e8ca669080f1e6b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/19/2019" /><Meta Name="ms.locfileid" Value="68337254" /></Metadata><TypeSignature Language="C#" Value="public static class GC" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit GC extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.GC" />
   <TypeSignature Language="VB.NET" Value="Public Class GC" />
@@ -36,13 +36,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 垃圾回收器是公共语言运行时组件，用于控制分配和释放的托管内存。 对某个对象并释放由对象分配的资源执行垃圾回收时，会影响此类中的方法。 此类中的属性系统和年龄类别或生成，分配给对象的内存中提供信息的总可用内存量。  
+ 垃圾回收器是公共语言运行时组件, 它控制托管内存的分配和释放。 此类中的方法会影响在对象上执行垃圾回收的时间, 以及释放由对象分配的资源的时间。 此类中的属性提供有关系统中可用的总内存量以及分配给对象的内存的总内存量的信息。  
   
- 垃圾回收器跟踪并回收托管内存中分配的对象。 我们会定期垃圾回收器执行垃圾回收来回收内存分配给对象没有有效的引用。 不能满足内存要求，使用可用的可用内存时自动发生垃圾回收。 或者，应用程序可以强制垃圾收集使用<xref:System.GC.Collect%2A>方法。  
+ 垃圾回收器跟踪并回收托管内存中分配的对象。 垃圾回收器会定期执行垃圾回收, 以回收分配给没有有效引用的对象的内存。 当使用可用可用内存无法满足内存请求时, 将自动进行垃圾回收。 或者, 应用程序可以使用<xref:System.GC.Collect%2A>方法强制进行垃圾回收。  
   
- 垃圾回收包括以下步骤：  
+ 垃圾回收包括以下步骤:  
   
-1.  垃圾回收器将搜索在托管代码中引用的托管对象。  
+1.  垃圾回收器搜索在托管代码中引用的托管对象。  
   
 2.  垃圾回收器尝试完成未引用的对象。  
   
@@ -50,40 +50,40 @@
   
  本主题包括以下部分：  
   
- [垃圾回收器和非托管的资源](#unmanaged)   
- [对象老化和生成](#generations)   
- [不允许垃圾回收](#NoGCRegion)  
+ [垃圾回收器和非托管资源](#unmanaged)   
+ [对象老化和代](#generations)   
+ [禁止垃圾回收](#NoGCRegion)  
   
 <a name="unmanaged"></a>   
-## <a name="the-garbage-collector-and-unmanaged-resources"></a>垃圾回收器和非托管的资源  
- 在回收中，垃圾回收器将不会释放对象如果在托管代码中找到该对象的一个或多个引用。 但是，垃圾回收器不能识别从非托管代码引用的对象，并且可能会释放正在使用非托管代码中以独占方式除非明确禁止执行此操作的对象。 <xref:System.GC.KeepAlive%2A>方法提供了一种机制，可防止垃圾回收器收集非托管代码中仍在使用的对象。  
+## <a name="the-garbage-collector-and-unmanaged-resources"></a>垃圾回收器和非托管资源  
+ 在集合期间, 如果对象在托管代码中找到对对象的一个或多个引用, 则垃圾回收器不会释放对象。 但是, 垃圾回收器不会从非托管代码识别对对象的引用, 并且可能会在非托管代码中独占使用对象, 除非明确禁止这样做。 <xref:System.GC.KeepAlive%2A>方法提供了一种机制, 该机制可防止垃圾回收器收集仍在非托管代码中使用的对象。  
   
- 除了托管的内存分配，垃圾回收器的实现不维护有关资源持有的对象，如文件句柄或数据库连接的信息。 当类型使用该类型的实例将被回收之前，必须释放的非托管的资源时，该类型可以实现终结器。  
+ 除了托管内存分配外, 垃圾回收器的实现不会维护对象所持有的资源 (例如文件句柄或数据库连接) 的相关信息。 当类型使用必须在回收类型的实例之前释放的非托管资源时, 该类型可以实现终结器。  
   
- 在大多数情况下，终结器实现通过重写<xref:System.Object.Finalize%2A?displayProperty=nameWithType>方法; 但是，在编写的类型C#或C++实现析构函数，哪些编译器将转换为的重写<xref:System.Object.Finalize%2A?displayProperty=nameWithType>。 在大多数情况下，如果对象具有一个终结器，垃圾回收器会调用它之前释放对象。 但是，垃圾回收器不需要在所有情况下; 调用终结器例如，<xref:System.GC.SuppressFinalize%2A>方法显式会被调用对象的终结器。 此外，垃圾回收器不需要使用特定的线程来完成对象，或保证的相互引用，但适用于垃圾回收的对象调用终结器的顺序。  
+ 在大多数情况下, 通过重写<xref:System.Object.Finalize%2A?displayProperty=nameWithType>方法来实现终结器; 但是, 用编写C++ <xref:System.Object.Finalize%2A?displayProperty=nameWithType> C#或实现析构函数的类型, 编译器会转换为的重写。 在大多数情况下, 如果某个对象具有终结器, 垃圾回收器将在释放该对象之前调用它。 但是, 在所有情况下, 都不需要垃圾回收器来调用终结器;例如, <xref:System.GC.SuppressFinalize%2A>方法显式阻止调用对象的终结器。 此外, 垃圾回收器不需要使用特定线程来完成对象, 也不需要确保为彼此引用但可用于垃圾回收的对象调用终结器的顺序。  
   
- 在其中必须在特定时间释放资源的情况下，类可以实现<xref:System.IDisposable>接口，其中包含<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>执行资源管理和清理任务的方法。 类实现<xref:System.IDisposable.Dispose%2A>必须指定，作为它们的类协定中，如果类使用者调用方法来清理对象。 垃圾回收器不会默认情况下，调用<xref:System.IDisposable.Dispose%2A>方法; 但是，实现<xref:System.IDisposable.Dispose%2A>方法调用中方法<xref:System.GC>类自定义的垃圾回收器终止行为。  
+ 在必须在特定时间释放资源的情况下, 类可以实现<xref:System.IDisposable>接口, 该接口包含执行资源管理和清理任务的<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>方法。 当类使用<xref:System.IDisposable.Dispose%2A>者调用方法清理对象时, 实现的类必须指定作为其类协定的一部分。 默认情况下, 垃圾回收器不会调用<xref:System.IDisposable.Dispose%2A>方法; 但是, <xref:System.IDisposable.Dispose%2A>方法的实现<xref:System.GC>可以调用类中的方法来自定义垃圾回收器的终止行为。  
   
- 有关准备对象终止和 dispose 模式的详细信息，请参阅[清理了非托管资源](~/docs/standard/garbage-collection/unmanaged.md)。  
+ 有关对象终止和释放模式的详细信息, 请参阅[清理非托管资源](~/docs/standard/garbage-collection/unmanaged.md)。  
   
 <a name="generations"></a>   
-## <a name="object-aging-and-generations"></a>对象老化和生成  
- 公共语言运行时中的垃圾收集器支持使用代对象老化。 生成是内存中对象的相对存在时间度量单位。 生成编号和年龄，对象的表示对象所属的代。 创建多个对象最近是的较新的生成，并具有较低的生成数字不是对象前面部分创建应用程序生命周期。 第 0 代中是最新代中的对象。 垃圾回收器的此实现支持三代的对象、 0、 1 和 2 代。 可以检索的值<xref:System.GC.MaxGeneration%2A>属性来确定系统支持的最大代数。  
+## <a name="object-aging-and-generations"></a>对象老化和代  
+ 公共语言运行时中的垃圾回收器支持使用代的对象老化。 代是内存中对象的相对生存期的单位。 对象的代数或 age 指示对象所属的代。 最近创建的对象是较新的生成的一部分, 其生成号比之前在应用程序生命周期中创建的对象的生成号要低。 最近一代中的对象位于第0代中。 垃圾回收器的这种实现支持三代对象, 第0代、第1代和第2代。 可以检索<xref:System.GC.MaxGeneration%2A>属性的值, 以确定系统支持的最大代数。  
   
- 对象老化允许在一组特定的生成，而无需计算所有代垃圾回收器回收应用程序。 重载<xref:System.GC.Collect%2A>方法，包括`generation`参数可用于指定最后一代进行垃圾回收。  
+ 对象老化允许应用程序以一组特定的代进行垃圾回收, 而不需要垃圾回收器来评估所有代。 包含参数的<xref:System.GC.Collect%2A>方法的重载允许您指定要进行垃圾回收的最早代。 `generation`  
   
 <a name="NoGCRegion"></a>   
-## <a name="disallowing-garbage-collection"></a>不允许垃圾回收  
- 从开始[!INCLUDE[net_v46](~/includes/net-v46-md.md)]，垃圾回收器支持无 GC 区域延迟模式，可以在垃圾收集会影响应用程序的性能的关键路径执行期间使用。 无 GC 区域延迟模式要求您指定的可以不受干扰地从垃圾回收器分配的内存量。 如果在运行时可以分配内存，运行时代码中的关键路径执行时将执行垃圾回收。  
+## <a name="disallowing-garbage-collection"></a>禁止垃圾回收  
+ 从开始, 垃圾回收器支持无 GC 区域延迟模式, 该模式可在关键路径执行期间使用, 在这种情况下, 垃圾回收可能会对应用的性能产生负面影响。 [!INCLUDE[net_v46](~/includes/net-v46-md.md)] 无 GC 区域延迟模式要求您指定可在不干扰垃圾回收器的情况下分配的内存量。 如果运行时可以分配该内存, 则运行时将不会在执行关键路径中的代码时执行垃圾回收。  
   
- 通过调用的重载之一定义的无 GC 区域的关键路径开头<xref:System.GC.TryStartNoGCRegion%2A>。 通过调用指定其关键路径的末尾<xref:System.GC.EndNoGCRegion%2A>方法。  
+ 可以通过调用的重载<xref:System.GC.TryStartNoGCRegion%2A>之一, 定义无 GC 区域的关键路径的开头。 可以通过调用<xref:System.GC.EndNoGCRegion%2A>方法来指定其关键路径的末尾。  
   
- 不能嵌套调用<xref:System.GC.TryStartNoGCRegion%2A>方法，并且你应只调用<xref:System.GC.EndNoGCRegion%2A>方法如果运行时当前处于无 GC 区域延迟模式。 换而言之，不应调用<xref:System.GC.TryStartNoGCRegion%2A>多个时间 （在第一个方法调用后，后续调用将不会成功），并且不应期望调用<xref:System.GC.EndNoGCRegion%2A>成功只是因为第一次调用到<xref:System.GC.TryStartNoGCRegion%2A>成功。  
+ 不能嵌套对方法的<xref:System.GC.TryStartNoGCRegion%2A>调用, 并且应仅在运行时<xref:System.GC.EndNoGCRegion%2A>当前处于无 GC 区域延迟模式时调用方法。 换句话说, 您不应调用<xref:System.GC.TryStartNoGCRegion%2A>多次 (在第一次调用方法后, 后续调用将不会成功), 并且您不应指望<xref:System.GC.EndNoGCRegion%2A>调用成功, <xref:System.GC.TryStartNoGCRegion%2A>因为首次调用 succeeded。  
   
    
   
 ## Examples  
- 以下示例使用多个 GC 方法以获取生成和内存块未使用的对象有关的信息并将其打印到控制台。 然后收集未使用的对象，并显示结果的内存总量。  
+ 下面的示例使用几个 GC 方法获取有关未使用的对象块的生成和内存信息, 并将其打印到控制台。 然后收集未使用的对象, 并显示生成的内存总计。  
   
  [!code-cpp[System.GC.Collect Int Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.gc.collect int example/CPP/class1.cpp#1)]
  [!code-csharp[System.GC.Collect Int Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.gc.collect int example/CS/class1.cs#1)]
@@ -142,14 +142,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在确定何时安排垃圾回收时，运行时将考虑分配托管的内存量。 一个小的托管的对象分配大量的非托管内存，如果运行时将考虑仅托管的内存，并从而低估安排垃圾回收的紧急性。 <xref:System.GC.AddMemoryPressure%2A>方法将通知此附加系统内存不足的运行时。  
+ 在确定何时计划垃圾回收时, 运行时将考虑分配多少托管内存。 如果某个小型托管对象分配了大量非托管内存, 则运行时将仅考虑托管内存, 从而低估计划垃圾回收的紧急性。 <xref:System.GC.AddMemoryPressure%2A>方法将此额外压力通知给运行时系统内存。  
   
- 在最简单的使用情况模式中，托管的对象的构造函数中的非托管的内存分配和中释放它`Dispose`或`Finalize`方法。 调用<xref:System.GC.AddMemoryPressure%2A>方法之后分配非托管的内存，并调用<xref:System.GC.RemoveMemoryPressure%2A>方法之后释放它。  
+ 在最简单的用法模式下, 托管对象在构造函数中分配非托管内存, 并`Dispose`在`Finalize`或方法中释放它。 在分配非托管内存后调用<xref:System.GC.RemoveMemoryPressure%2A> 方法,并在释放后调用方法。<xref:System.GC.AddMemoryPressure%2A>  
   
- 在更复杂的方案，其中的非托管的内存分配非常大的变化的托管对象的生存期内，可以调用<xref:System.GC.AddMemoryPressure%2A>和<xref:System.GC.RemoveMemoryPressure%2A>方法进行通信，运行时对这些增量更改。  
+ 在更复杂的情况下, 如果非托管内存分配在托管对象的生存期内发生了重大更改, 则<xref:System.GC.AddMemoryPressure%2A>可以<xref:System.GC.RemoveMemoryPressure%2A>调用和方法将这些增量更改传递给运行时。  
   
 > [!CAUTION]
->  您必须确保删除完全您添加的压力量。 如果不这样做可以会在长时间运行的应用程序中的系统性能产生负面影响。  
+>  您必须确保完全删除所添加的压力。 否则, 可能会对长时间运行的应用程序中系统的性能产生负面影响。  
   
  ]]></format>
         </remarks>
@@ -157,8 +157,8 @@
   
 或 
 在 32 位的计算机上，<paramref name="bytesAllocated" /> 大于 <see cref="F:System.Int32.MaxValue" />。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">表示操作垃圾回收优先级时调用非托管的代码的能力。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于在操作垃圾回收优先级时调用非托管代码的能力。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
       </Docs>
     </Member>
     <Member MemberName="CancelFullGCNotification">
@@ -200,12 +200,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法取消使用注册垃圾回收通知<xref:System.GC.RegisterForFullGCNotification%2A>方法。 不需要调整阈值参数值在后续调用之前调用此方法<xref:System.GC.RegisterForFullGCNotification%2A>方法。  
+ 此方法取消使用<xref:System.GC.RegisterForFullGCNotification%2A>方法注册的垃圾回收通知。 在对<xref:System.GC.RegisterForFullGCNotification%2A>方法的后续调用中调整阈值参数值之前, 无需调用此方法。  
   
    
   
 ## Examples  
- 以下示例取消垃圾回收注册。 此示例摘自一个更大的示例为提供[垃圾回收通知](~/docs/standard/garbage-collection/notifications.md)主题。  
+ 下面的示例取消垃圾回收的注册。 此示例摘自为[垃圾回收通知](~/docs/standard/garbage-collection/notifications.md)主题提供的更大示例。  
   
  [!code-cpp[GCNotification#7](~/samples/snippets/cpp/VS_Snippets_CLR/GCNotification/cpp/program.cpp#7)]
  [!code-csharp[GCNotification#7](~/samples/snippets/csharp/VS_Snippets_CLR/GCNotification/cs/Program.cs#7)]
@@ -214,8 +214,8 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">此成员在启用并发垃圾回收时不可用。 若要了解如何禁用并发垃圾回收，请参阅 [&lt;gcConcurrent&gt;](~/docs/framework/configure-apps/file-schema/runtime/gcconcurrent-element.md) 运行时设置。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
         <related type="Article" href="https://msdn.microsoft.com/library/e12d8e74-31e3-4035-a87d-f3e66f0a9b89">垃圾回收通知</related>
       </Docs>
     </Member>
@@ -276,11 +276,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此方法尝试回收无法访问的所有内存。 它执行所有生成阻碍性垃圾的回收。  
+ 使用此方法尝试回收所有无法访问的内存。 它执行所有生成的阻止垃圾回收。  
   
- 所有对象，而不考虑时间已在内存中，被都视为集合;但是，不会收集在托管代码中引用的对象。 使用此方法强制系统尝试回收的最大可用内存量。  
+ 所有对象 (无论它们处于内存中的时长) 都视为集合;但是, 不会收集在托管代码中引用的对象。 使用此方法可强制系统尝试回收最大可用内存量。  
   
- 从开始[!INCLUDE[net_v451](~/includes/net-v451-md.md)]，您可以通过设置压缩大型对象堆 (LOH)<xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A?displayProperty=nameWithType>属性设置为<xref:System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce?displayProperty=nameWithType>之前，调用<xref:System.GC.Collect%2A>方法，如下面的示例说明了。  
+ 从开始<xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A?displayProperty=nameWithType> <xref:System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce?displayProperty=nameWithType> <xref:System.GC.Collect%2A> , 你可以通过在调用方法之前将属性设置为来压缩大型对象堆 (LOH), 如下面的示例所示。 [!INCLUDE[net_v451](~/includes/net-v451-md.md)]  
   
  [!code-csharp[System.Runtime.GCSettings#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.runtime.gcsettings/cs/lohcompactionmode1.cs#1)]
  [!code-vb[System.Runtime.GCSettings#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.runtime.gcsettings/vb/lohcompactionmode1.vb#1)]  
@@ -288,7 +288,7 @@
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.GC.Collect%2A>方法在每一代的内存上执行回收。 代码生成的多个未使用的对象，然后调用<xref:System.GC.Collect%2A>方法以其从内存中清除。  
+ 下面的示例演示如何使用<xref:System.GC.Collect%2A>方法在所有内存代上执行集合。 此代码会生成大量未使用的对象, 然后调用<xref:System.GC.Collect%2A>方法以从内存中清理它们。  
   
  [!code-cpp[System.GC.Collect Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.GC.Collect Example/CPP/class1.cpp#1)]
  [!code-csharp[System.GC.Collect Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.GC.Collect Example/CS/class1.cs#1)]
@@ -341,18 +341,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此方法尝试回收无法访问的内存。 但是，使用此方法不保证回收指定的代中的所有无法访问内存。  
+ 使用此方法尝试回收不可访问的内存。 但是, 使用此方法并不保证回收指定代中所有无法访问的内存。  
   
- 如果实现对象老化，垃圾回收器不会收集对象使用生成号大于指定的代。 如果未实现对象老化，垃圾回收器会在垃圾回收期间考虑的所有对象。  
+ 如果实现了对象老化, 垃圾回收器不会收集版本号高于指定代的对象。 如果未实现对象老化, 垃圾回收器将在垃圾回收过程中考虑所有对象。  
   
- 使用<xref:System.GC.MaxGeneration%2A>属性来确定有效的最大值`generation`参数。  
+ 使用属性可确定`generation`参数的最大有效值。 <xref:System.GC.MaxGeneration%2A>  
   
- 若要让垃圾回收器考虑而不考虑其生成的所有对象，使用此方法不带参数的版本。 具有垃圾回收器回收对象基于<xref:System.GCCollectionMode>设置，请使用<xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%29?displayProperty=nameWithType>方法重载。  
+ 若要让垃圾回收器考虑所有对象, 而不管它们代有哪些, 请使用不带任何参数的此方法的版本。 若要使垃圾回收器根据<xref:System.GCCollectionMode>设置回收对象, 请<xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%29?displayProperty=nameWithType>使用方法重载。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.GC.Collect%2A>方法执行回收内存的各个层级上。 代码生成的多个未使用的对象，然后调用<xref:System.GC.Collect%2A>方法以其从内存中清除。  
+ 下面的示例演示如何使用<xref:System.GC.Collect%2A>方法来执行单个内存层上的集合。 此代码会生成大量未使用的对象, 然后调用<xref:System.GC.Collect%2A>方法以从内存中清理它们。  
   
  [!code-cpp[System.GC.Collect Int Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.gc.collect int example/CPP/class1.cpp#1)]
  [!code-csharp[System.GC.Collect Int Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.gc.collect int example/CS/class1.cs#1)]
@@ -412,20 +412,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用`mode`参数来指定是否应该进行垃圾回收立即或仅时间是否将回收对象的最佳选择。 使用此方法不保证回收指定的代中的所有无法访问内存。  
+ `mode`使用参数可以指定垃圾回收应立即发生还是仅在回收对象的最佳时间时进行。 使用此方法不能保证回收指定代中的所有无法访问的内存。  
   
- 若要调整的应用程序中的重要期间垃圾回收侵入性，请设置<xref:System.Runtime.GCSettings.LatencyMode%2A>属性。  
+ 若要在应用程序的关键期间调整垃圾回收的侵入性, 请设置<xref:System.Runtime.GCSettings.LatencyMode%2A>属性。  
   
- 垃圾回收器不会收集与生成号大于指定的对象`generation`参数。 使用<xref:System.GC.MaxGeneration%2A>属性来确定有效的最大值`generation`。  
+ 垃圾回收器不会收集版本号高于`generation`参数指定的代数的对象。 使用属性可确定的`generation`最大有效值。 <xref:System.GC.MaxGeneration%2A>  
   
- 若要让垃圾回收器考虑而不考虑其生成的所有对象，使用此方法不带参数的版本。  
+ 若要让垃圾回收器考虑所有对象, 而不管它们代有哪些, 请使用不带任何参数的此方法的版本。  
   
- 若要有垃圾回收器回收对象最多指定的代的对象，请使用<xref:System.GC.Collect%28System.Int32%29?displayProperty=nameWithType>方法重载。 当指定的最大生成时，收集的所有对象。  
+ 若要使垃圾回收器回收对象直至指定的对象生成, 请使用<xref:System.GC.Collect%28System.Int32%29?displayProperty=nameWithType>方法重载。 指定最大生成时, 将收集所有对象。  
   
    
   
 ## Examples  
- 下面的示例强制的第 2 代对象进行垃圾回收<xref:System.GCCollectionMode.Optimized>设置。  
+ 下面的示例使用<xref:System.GCCollectionMode.Optimized>设置强制执行第2代对象的垃圾回收。  
   
  [!code-csharp[System.GC.GCCollectionMode#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.GC.GCCollectionMode/cs/Program.cs#1)]
  [!code-vb[System.GC.GCCollectionMode#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.GC.GCCollectionMode/vb/program.vb#1)]  
@@ -488,20 +488,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 下表总结了的交互`mode`和`blocking`参数：  
+ 下表总结了`mode`和`blocking`参数的交互:  
   
 |`mode`|`blocking` 为 `true`|`blocking` 为 `false`|  
 |-|-|-|  
-|<xref:System.GCCollectionMode.Forced> 或 <xref:System.GCCollectionMode.Default>|尽快执行阻塞回收。 如果后台回收正在进行中以及`generation`为 0 或 1，<xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%2CSystem.Boolean%29>方法立即触发阻塞回收，并返回集合完成。 如果后台回收正在进行中和`generation`为 2，方法会等到后台回收完成，触发阻塞第 2 代回收，，然后返回。|尽快执行回收。 <xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%2CSystem.Boolean%29> 方法请求执行后台回收，但这并没有保证；阻止式回收仍可执行，具体视环境而定。 如果后台回收正在进行，该方法将立即返回。|  
+|<xref:System.GCCollectionMode.Forced> 或 <xref:System.GCCollectionMode.Default>|尽快执行阻塞回收。 如果后台回收正在进行, 并且`generation`为0或 1, 则该方法将<xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%2CSystem.Boolean%29>立即触发阻塞回收, 并在回收完成后返回。 如果后台回收正在进行, 并且`generation`为 2, 则该方法将一直等待, 直到后台收集完成, 触发一个阻止第2代回收, 然后返回。|尽快执行回收。 <xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%2CSystem.Boolean%29> 方法请求执行后台回收，但这并没有保证；阻止式回收仍可执行，具体视环境而定。 如果后台回收正在进行，该方法将立即返回。|  
 |<xref:System.GCCollectionMode.Optimized>|可能会执行阻止式回收，具体视垃圾回收器的状态和 `generation` 参数而定。 垃圾回收器会尽量提供最佳性能。|根据垃圾回收器的状态，有时可执行回收。 <xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%2CSystem.Boolean%29> 方法请求执行后台回收，但这并没有保证；阻止式回收仍可执行，具体视环境而定。 垃圾回收器会尽量提供最佳性能。 如果后台回收正在进行，该方法将立即返回。|  
   
- 如果调用<xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%2CSystem.Boolean%29>方法执行完整的阻碍性垃圾回收时，您还可以通过设置压缩大型对象堆<xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A?displayProperty=nameWithType>属性设置为<xref:System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce?displayProperty=nameWithType>之前，调用<xref:System.GC.Collect%2A>方法。  
+ 如果对<xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%2CSystem.Boolean%29>方法的调用执行完全阻止性垃圾回收, 还可以通过在调用<xref:System.GC.Collect%2A>方法之前<xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A?displayProperty=nameWithType>将属性设置为来<xref:System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce?displayProperty=nameWithType>压缩大型对象堆。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="generation" /> 无效。  
   
-或 
+- 或 - 
  <paramref name="mode" /> 不是 <see cref="T:System.GCCollectionMode" /> 值之一。</exception>
       </Docs>
     </Member>
@@ -552,16 +552,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`blocking`是`false`，GC 决定是否要执行后台任务或阻碍性垃圾回收。 如果`compacting`是`true`，它执行阻碍性垃圾回收。  
+ 如果`blocking` 为`false`, 则 GC 决定是执行后台还是阻止垃圾回收。 如果`compacting` 为`true`, 则它将执行阻止垃圾回收。  
   
- 如果`compacting`是`true`，运行时将压缩小对象堆 (SOH)。 不会压缩大型对象堆 (LOH)，除非<xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A?displayProperty=nameWithType>属性设置为<xref:System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce?displayProperty=nameWithType>。 请注意，这包括所有阻止垃圾回收，不只是完全阻止垃圾收集。  
+ 如果`compacting` 为`true`, 则运行时将压缩小对象堆 (SOH)。 如果<xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A?displayProperty=nameWithType>将属性设置为<xref:System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce?displayProperty=nameWithType>, 则不会压缩大型对象堆 (LOH)。 请注意, 这包括所有阻碍性垃圾回收, 而不只是完全阻止垃圾回收。  
   
- 您可以调用<xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%2CSystem.Boolean%2CSystem.Boolean%29>方法来减少托管的堆大小可能的最小，如下面的代码段所示。  
+ 可以调用<xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%2CSystem.Boolean%2CSystem.Boolean%29>方法, 将托管堆减小到尽可能最小的大小, 如以下代码片段所示。  
   
  [!code-csharp[System.GC.Collect#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.gc.collect/cs/collect4.cs#1)]
  [!code-vb[System.GC.Collect#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.gc.collect/vb/collect4.vb#1)]  
   
- 指定`true`为`compacting`参数可保证压缩、 完整的阻碍性垃圾回收。 设置<xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A?displayProperty=nameWithType>属性设置为<xref:System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce?displayProperty=nameWithType>可确保将压缩 LOH 和 SOH。  
+ 为参数指定`true`可保证压缩、完全阻碍性垃圾回收。`compacting` 设置属性以<xref:System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce?displayProperty=nameWithType>确保 LOH 和 SOH 都已压缩。 <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A?displayProperty=nameWithType>  
   
  ]]></format>
         </remarks>
@@ -617,7 +617,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果您实现您自己的资源管理，可能需要通过调用定期强制进行垃圾回收<xref:System.GC.Collect%2A>方法。 由于这是代价高昂的操作，可以通过最近发生垃圾回收时跳过调用来提高性能。 保存返回的值<xref:System.GC.CollectionCount%2A>后立即调用<xref:System.GC.Collect%2A>。 您需要调用下一次<xref:System.GC.Collect%2A>，返回的当前值进行比较<xref:System.GC.CollectionCount%2A>到保存的值。 如果两个值相等，没有任何集合出现在此期间，它是合乎调用<xref:System.GC.Collect%2A>试。  
+ 如果实现自己的资源管理, 则可能需要通过调用<xref:System.GC.Collect%2A>方法来定期强制进行垃圾回收。 由于这是一种代价高昂的操作, 因此可以通过在最近发生垃圾回收时跳过调用来提高性能。 在调用<xref:System.GC.CollectionCount%2A> <xref:System.GC.Collect%2A>后立即保存返回的值。 下次需要调用<xref:System.GC.Collect%2A>时, 将<xref:System.GC.CollectionCount%2A>返回的当前值与保存的值进行比较。 如果两个值相等, 则说明中间没有出现任何集合, 并且合理地调用<xref:System.GC.Collect%2A> 。  
   
  ]]></format>
         </remarks>
@@ -662,15 +662,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.GC.EndNoGCRegion%2A>方法会抛出<xref:System.InvalidOperationException>如果垃圾回收器不处于无 GC 区域延迟模式。 任何以下情况下发生这种情况：  
+ 如果垃圾回收器不处于无 GC 区域延迟模式, 则<xref:System.GC.EndNoGCRegion%2A>方法将引发。 <xref:System.InvalidOperationException> 在以下任一情况下会发生此情况:  
   
--   <xref:System.GC.TryStartNoGCRegion%2A>以前未调用方法。  
+-   之前未调用方法。 <xref:System.GC.TryStartNoGCRegion%2A>  
   
--   在调用<xref:System.GC.TryStartNoGCRegion%2A>方法返回`false`。  
+-   对<xref:System.GC.TryStartNoGCRegion%2A>方法的调用返回`false`。  
   
--   对调用<xref:System.GC.TryStartNoGCRegion%2A>方法引发了异常。  
+-   对<xref:System.GC.TryStartNoGCRegion%2A>方法的调用引发了异常。  
   
- 通过使用类似以下的代码，可以为以下任一原因防止异常：  
+ 可以通过使用如下所示的代码来防止发生异常:  
   
  [!code-csharp[System.GC.EndNoGCRegion#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.gc.endnogcregion/cs/endnogcregion1.cs#1)]
  [!code-vb[System.GC.EndNoGCRegion#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.gc.endnogcregion/vb/endnogcregion1.vb#1)]  
@@ -682,7 +682,7 @@
 或 
 无 GC 区域延迟模式已结束，可能是因为已引发垃圾回收。  
   
-或 
+- 或 - 
 内存分配超过了 <see cref="M:System.GC.TryStartNoGCRegion(System.Int64)" /> 方法调用中指定的量。</exception>
         <altmember cref="M:System.GC.TryStartNoGCRegion(System.Int64)" />
         <altmember cref="P:System.Runtime.GCSettings.LatencyMode" />
@@ -727,9 +727,9 @@
   
 ## Remarks  
 
-`GetAllocatedBytesForCurrentThread`方法返回的线程，不的垃圾回收中幸存下来的字节总数的生存期内托管堆上分配的字节总数。 返回的值也不包括任何本机分配。
+`GetAllocatedBytesForCurrentThread`方法返回在线程的生存期内在托管堆上分配的总字节数, 而不是在垃圾回收后的总字节数。 返回的值还不包括任何本机分配。
 
-此方法是在监视的度量之间的时间间隔或事件内存分配的不同方案中最有用。
+此方法对于测量时间间隔或事件之间的内存分配差异的监视方案最为有用。
 
        ]]></format>
         </remarks>
@@ -820,12 +820,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此方法来确定对象的年龄，然后使用该信息与<xref:System.GC.Collect%2A>在同一个生成对象的方法，以强制垃圾回收器收集。 例如，使用此方法时有一组对象作为一个组创建的并在同一时间变为不可访问。  
+ 使用此方法来确定对象的使用期限, 然后将该信息与<xref:System.GC.Collect%2A>方法一起使用, 以强制垃圾回收器收集同一代中的对象。 例如, 如果有一组对象以组的形式创建, 且同时变为不可访问, 则可使用此方法。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.GC.GetGeneration%2A>方法来确定对象的年龄。 此示例将执行垃圾回收来清理内存并进行比较 pre 和 post 集合在控制台中的内存总量。  
+ 下面的示例演示如何使用<xref:System.GC.GetGeneration%2A>方法来确定对象的时间。 然后, 该示例执行垃圾回收以清理内存, 并在控制台中比较 pre 和 post 收集的内存总计。  
   
  [!code-cpp[System.GC.Collect Int Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.gc.collect int example/CPP/class1.cpp#1)]
  [!code-csharp[System.GC.Collect Int Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.gc.collect int example/CS/class1.cs#1)]
@@ -880,7 +880,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示如何将<xref:System.GC.GetGeneration%2A>方法，以确定弱引用对象的年龄。  
+ 下面的示例演示如何使用<xref:System.GC.GetGeneration%2A>方法来确定弱引用对象的生存期。  
   
  [!code-cpp[System.GC.GetGenerationWeak Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.GC.GetGenerationWeak Example/CPP/systemgcgetgenerationweak.cpp#1)]
  [!code-csharp[System.GC.GetGenerationWeak Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.GC.GetGenerationWeak Example/CS/systemgcgetgenerationweak.cs#1)]
@@ -916,9 +916,9 @@
         <Parameter Name="precise" Type="System.Boolean" Index="0" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="precise">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="precise">如果为 <see langword="true" />，则收集一个精确的数字；否则，收集近似计数。 收集精确值会大大降低性能。</param>
+        <summary>获取在进程生命周期内分配的字节计数。</summary>
+        <returns>在进程生命周期内分配的总字节数。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -970,12 +970,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`forceFullCollection`参数是`true`，此方法在时系统回收垃圾和完成对象返回前等待短的时间间隔。 间隔的持续时间为内部指定的限制由已完成的垃圾回收周期的数量和恢复周期之间的内存量的更改。 垃圾回收器不保证收集所有不可访问的内存。  
+ 如果参数为`true`, 则在系统收集垃圾和终结对象时, 此方法将等待较短的时间间隔。 `forceFullCollection` 间隔的持续时间是一个内部指定的限制, 由已完成的垃圾回收周期数和循环之间的内存恢复量决定。 垃圾回收器不保证收集所有不可访问的内存。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.GC.GetTotalMemory%2A>方法以获取并显示当前分配的托管内存的字节数。  
+ 下面的示例演示如何使用<xref:System.GC.GetTotalMemory%2A>方法来获取和显示托管内存中当前分配的字节数。  
   
  [!code-cpp[System.GC.Collect Int Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.gc.collect int example/CPP/class1.cpp#1)]
  [!code-csharp[System.GC.Collect Int Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.gc.collect int example/CS/class1.cs#1)]
@@ -1035,16 +1035,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 用途<xref:System.GC.KeepAlive%2A>方法是确保对面临风险的过早地被垃圾回收器回收对象的引用是否存在。 常见的方案可能会发生这种情况是在中的托管的代码或数据，存在对该对象不引用，但仍在使用该对象处于非托管代码如 Windows Api，非托管 Dll，或使用 COM 的方法  
+ 此<xref:System.GC.KeepAlive%2A>方法的目的是确保存在对某个对象的引用, 而该对象存在于垃圾回收器过早回收的风险。 这种情况的常见情况是, 在托管代码或数据中没有对该对象的引用, 但该对象仍在非托管代码 (如 Windows Api、非托管 Dll 或使用 COM 的方法) 中使用。  
   
- 此方法引用`obj`参数，从而使该对象进行垃圾回收不符合条件从例程开始到点，按执行顺序，调用此方法。 在结束时，不，范围的起始处的说明此方法的代码位置`obj`必须可用。  
+ 此方法引用`obj`参数, 使该对象不符合从例程开始到调用此方法的点 (在执行顺序中) 的垃圾回收。 在`obj`必须可用的指令范围的末尾 (而不是开始) 对此方法进行编码。  
   
- <xref:System.GC.KeepAlive%2A>方法会执行任何操作，并生成扩展中作为参数传递的对象的生存期以外没有副作用。  
+ <xref:System.GC.KeepAlive%2A>方法不执行任何操作, 并且不会对作为参数传入的对象的生存期进行扩展, 因此不会产生副作用。  
   
    
   
 ## Examples  
- 下面的代码示例的开始处创建一个对象及其`Main`方法并不是指对象结束时，直到再次时<xref:System.GC.KeepAlive%2A>调用方法。 该对象仍然存在 30 秒持续时间内`Main`方法，即使调用<xref:System.GC.Collect%2A>和<xref:System.GC.WaitForPendingFinalizers%2A>方法。  
+ 下面的代码示例在其`Main`方法的开头创建一个对象, 在调用该<xref:System.GC.KeepAlive%2A>方法时, 该对象不会再次引用该对象。 尽管调用了`Main` <xref:System.GC.Collect%2A>和<xref:System.GC.WaitForPendingFinalizers%2A>方法, 对象仍会在方法的30秒内持续。  
   
  [!code-cpp[System.GC.KeepAlive Example2#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.GC.KeepAlive Example2/CPP/gckeepalive.cpp#1)]
  [!code-csharp[System.GC.KeepAlive Example2#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.GC.KeepAlive Example2/CS/gckeepalive.cs#1)]
@@ -1098,16 +1098,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 生成编号或年龄，对象的对象的生命周期的实现定义的相对度量。 最近创建的对象是在第 0 代和最旧的对象是否小于或等于生成返回的生成中<xref:System.GC.MaxGeneration%2A>属性。  
+ 对象的代数或 age 是对象生命周期的实现定义的相对度量值。 最近创建的对象位于第0代中, 最旧的对象在代中的生成小于或等于<xref:System.GC.MaxGeneration%2A>属性返回的代。  
   
- 垃圾回收器假定较新的内存更有可能有资格获得比旧内存垃圾回收。 因此，垃圾回收器通过调整回收内存，每次生成数字来提高其性能和<xref:System.GC.MaxGeneration%2A>属性值可以随时间增长而增加。  
+ 垃圾回收器假设较新的内存更有可能符合旧内存的垃圾回收的条件。 因此, 垃圾回收器会在每次回收内存时调整代数, 提高其性能, 而<xref:System.GC.MaxGeneration%2A>属性值会随着时间的推移而增加。  
   
- 如果实现对象老化，<xref:System.GC.MaxGeneration%2A>属性返回由系统使用的最大代数; 否则，此属性返回零。  
+ 如果实现了对象老化, 则<xref:System.GC.MaxGeneration%2A>属性将返回系统使用的最大代数; 否则, 此属性将返回零。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用 MaxGeneration 属性中使用当前显示的最大代数。  
+ 下面的示例演示如何使用 MaxGeneration 属性来显示当前正在使用的最大世代号。  
   
  [!code-cpp[System.GC.Collect Int Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.gc.collect int example/CPP/class1.cpp#1)]
  [!code-csharp[System.GC.Collect Int Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.gc.collect int example/CS/class1.cs#1)]
@@ -1115,9 +1115,9 @@
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>有关此实现中，返回的值<see cref="P:System.GC.MaxGeneration" />保证属性执行的应用程序的生存期内保持不变。  
+        <block subset="none" type="overrides"><para>对于此实现, 由<see cref="P:System.GC.MaxGeneration" />属性返回的值保证在执行应用程序的生存期内保持不变。  
   
-使用<see cref="P:System.GC.MaxGeneration" />属性来确定最大值时调用，可以指定<see cref="M:System.GC.Collect(System.Int32)" />采用 generation 参数的方法。</para></block>
+使用属性可确定在<see cref="M:System.GC.Collect(System.Int32)" />调用采用生成参数的方法时可以指定的最大值。 <see cref="P:System.GC.MaxGeneration" /></para></block>
         <altmember cref="M:System.GC.GetGeneration(System.Object)" />
       </Docs>
     </Member>
@@ -1165,34 +1165,34 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 为每一代垃圾回收器设置分配到该代的阈值。 当分配的大小超过此阈值时，在该代触发垃圾回收。 有关示例中，如果第 2 的代的阈值为 20 MB （这意味着 20 MB 可以幸存，但第 1 代集合和提升到第 2 代），超过 20 MB 了保留第 1 代和第 2 代入系统会提示，将尝试下一个垃圾回收作为第 2 代集合。 同样，如果大型对象堆 (LOH) 的阈值为 20 MB 和您的应用程序已经分配了超过 20 MB 的大型对象下, 一次垃圾回收将还尝试为第 2 代集合 （由于仅在第 2 代垃圾回收中收集 LOH）。  
+ 对于每个代, 垃圾回收器会将分配的阈值设置为该代。 当分配的大小超过此阈值时, 将在该生成上触发垃圾回收。 例如, 如果第2代的阈值为 20MB (这意味着20MB 置第1代回收, 并提升为第2代), 超过 20% 的第1代, 并提示第2代, 则将尝试下一次垃圾回收作为第2代回收。 同样, 如果大对象堆 (LOH) 的阈值为 20MB, 而你的应用已分配超过20MB 的大型对象, 则下一次垃圾回收也将作为第2代回收进行, 因为 LOH 只收集在 gen2 垃圾回收中。  
   
- `maxGenerationThreshold`和`largeObjectHeapThreshold`阈值控制完全垃圾回收发生前收到通知多少提前。 阈值越大，通知下一次完整的垃圾回收之间可能发生的多个分配。  
+ `maxGenerationThreshold` 和`largeObjectHeapThreshold`阈值控制在进行完整垃圾回收之前通知您的进度。 阈值越高, 通知与下一次完整垃圾回收之间可能发生的分配越多。  
   
- 如果公共语言运行时完全垃圾回收会对应用程序的性能产生负面影响的情况下，你可以要求在运行时即将执行完全垃圾回收和绕过该集合时得到通知自行引发集合 (使用<xref:System.GC.Collect%2A>方法) 仍有利条件时。 除了更改自己的垃圾收集计划，完整 GC 通知适合以下方案中：  
+ 如果你在某些情况下, 公共语言运行时的完整垃圾回收会对应用程序的性能产生负面影响, 则你可以要求在运行时要进行完整垃圾回收时收到通知, 并通过当条件仍有利时, 引入<xref:System.GC.Collect%2A>回收集合 (使用方法)。 除了自行更改垃圾回收计划之外, 在以下情况下, 完整的 GC 通知会很有用:  
   
--   有关完整的垃圾回收的方法监视和时，将收到通知，即将，减少实时数据大小 （例如，通过释放某些缓存条目）。 因此，当垃圾回收发生时，它便可以回收更多的内存。  
+-   你需要监视完整垃圾回收的方法, 并在收到通知时, 减少实时数据大小 (例如, 通过释放一些缓存条目)。 因此, 垃圾回收发生时, 可以回收更多内存。  
   
--   监视完整的垃圾回收完成，这样可以收集一些统计信息。  例如，你可能想要度量在 GC 完成时堆的大小，以便您知道实时数据的大小。 （完整 GC 堆后在其最小大小。）  
+-   你监视已完成的完整垃圾回收, 以便收集一些统计信息。  例如, 你可能想要在 GC 完成时测量堆的大小, 以便了解实时数据的大小。 (在完全 GC 后, 堆的大小最小。)  
   
- 表示完整的垃圾回收的内容的详细信息，请参阅[垃圾回收通知](~/docs/standard/garbage-collection/notifications.md)。  
+ 有关什么表示完整垃圾回收的详细信息, 请参阅[垃圾回收通知](~/docs/standard/garbage-collection/notifications.md)。  
   
- 当你注册垃圾回收通知时，可以时完全垃圾回收的开始时间和完成后通知您。 此模式类似于操作系统如何监视内存不足通知。  
+ 当你注册垃圾回收通知时, 你可以在完全垃圾回收接近和完成时收到通知。 此模式类似于操作系统监视内存不足通知的方式。  
   
- 使用以下准则来指定`maxGenerationThreshold`和`largeObjectHeapThreshold`参数：  
+ 指定`maxGenerationThreshold` 和`largeObjectHeapThreshold`参数时, 请遵循以下准则:  
   
--   阈值值越大，更多的分配将通知与完全垃圾回收之间发生。  
+-   阈值越大, 通知与完整垃圾回收之间发生的分配就越多。  
   
-     更大的阈值值提供了更多的运行时检查临近的回收机会。 这会增加，将会通知的可能性。 但是，因为之前运行时引入下一次回收产生更多分配，不应设置过高的阈值。  
+     较大的阈值为运行时检查接近的集合提供了更多机会。 这会增加您收到通知的可能性。 但是, 您不应将阈值设置得太高, 因为这样会导致在运行时引发下一个集合之前分配更多。  
   
-     当您自行诱导回收使用高阈值的通知时，不是运行时的下一次回收将回收将被回收更少的对象。  
+     使用高阈值的通知自行引发回收时, 回收的对象比运行时的下一个集合回收的对象更少。  
   
--   阈值越小，较少的分配通知与完全垃圾回收之间。  
+-   阈值越小, 通知与完整垃圾回收之间的分配越少。  
   
    
   
 ## Examples  
- 下面的示例演示如何注册垃圾回收通知并启动一个线程来监视垃圾回收通知的状态。 此代码示例是为提供一个更大示例的一部分[垃圾回收通知](~/docs/standard/garbage-collection/notifications.md)主题。  
+ 下面的示例演示如何注册垃圾回收通知并启动一个线程来监视垃圾回收通知的状态。 此代码示例是为[垃圾回收通知](~/docs/standard/garbage-collection/notifications.md)主题提供的更大示例的一部分。  
   
  [!code-cpp[GCNotification#2](~/samples/snippets/cpp/VS_Snippets_CLR/GCNotification/cpp/program.cpp#2)]
  [!code-csharp[GCNotification#2](~/samples/snippets/csharp/VS_Snippets_CLR/GCNotification/cs/Program.cs#2)]
@@ -1201,8 +1201,8 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="maxGenerationThreshold" /> 或 <paramref name="largeObjectHeapThreshold" /> 不在 1 和 99 之间。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
         <related type="Article" href="https://msdn.microsoft.com/library/e12d8e74-31e3-4035-a87d-f3e66f0a9b89">垃圾回收通知</related>
         <exception cref="T:System.InvalidOperationException">此成员在启用并发垃圾回收时不可用。 若要了解如何禁用并发垃圾回收，请参阅 &lt;gcConcurrent&gt; 运行时设置。</exception>
       </Docs>
@@ -1253,23 +1253,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在确定何时安排垃圾回收时，运行时将考虑分配托管的内存量。 一个小的托管的对象分配大量的非托管内存，如果运行时将考虑仅托管的内存，并从而低估安排垃圾回收的紧急性。 <xref:System.GC.AddMemoryPressure%2A>方法将通知此附加系统内存不足的运行时和<xref:System.GC.RemoveMemoryPressure%2A>方法将通知运行时已释放额外的压力。  
+ 在确定何时计划垃圾回收时, 运行时将考虑分配多少托管内存。 如果某个小型托管对象分配了大量非托管内存, 则运行时将仅考虑托管内存, 从而低估计划垃圾回收的紧急性。 方法会向运行时通知系统内存的这一额外压力, <xref:System.GC.RemoveMemoryPressure%2A>方法会通知运行时已释放额外压力。 <xref:System.GC.AddMemoryPressure%2A>  
   
- 在最简单的使用情况模式中，托管的对象的构造函数中的非托管的内存分配和中释放它`Dispose`或`Finalize`方法。 调用<xref:System.GC.AddMemoryPressure%2A>方法之后分配非托管的内存，并调用<xref:System.GC.RemoveMemoryPressure%2A>方法之后释放它。  
+ 在最简单的用法模式下, 托管对象在构造函数中分配非托管内存, 并`Dispose`在`Finalize`或方法中释放它。 在分配非托管内存后调用<xref:System.GC.RemoveMemoryPressure%2A> 方法,并在释放后调用方法。<xref:System.GC.AddMemoryPressure%2A>  
   
- 在更复杂的方案，其中的非托管的内存分配非常大的变化的托管对象的生存期内，可以调用<xref:System.GC.AddMemoryPressure%2A>和<xref:System.GC.RemoveMemoryPressure%2A>方法进行通信，运行时对这些增量更改。  
+ 在更复杂的情况下, 如果非托管内存分配在托管对象的生存期内发生了重大更改, 则<xref:System.GC.AddMemoryPressure%2A>可以<xref:System.GC.RemoveMemoryPressure%2A>调用和方法将这些增量更改传递给运行时。  
   
 > [!CAUTION]
->  您必须确保删除完全您添加的压力量。 如果不这样做可以会在长时间运行的应用程序中的系统性能产生负面影响。  
+>  您必须确保完全删除所添加的压力。 否则, 可能会对长时间运行的应用程序中系统的性能产生负面影响。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="bytesAllocated" /> 小于或等于 0。  
   
-- 或 - 
+或 
 在 32 位的计算机上，<paramref name="bytesAllocated" /> 大于 <see cref="F:System.Int32.MaxValue" />。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">表示操作垃圾回收优先级时调用非托管的代码的能力。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于在操作垃圾回收优先级时调用非托管代码的能力。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
       </Docs>
     </Member>
     <Member MemberName="ReRegisterForFinalize">
@@ -1319,18 +1319,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.GC.ReRegisterForFinalize%2A>方法将添加`obj`参数的垃圾回收器释放对象前会请求终止的对象的列表。 `obj`参数必须是此方法的调用方。  
+ <xref:System.GC.ReRegisterForFinalize%2A> 方法`obj`将参数添加到在垃圾回收器释放对象之前请求终止的对象的列表中。 `obj`参数必须是此方法的调用方。  
   
- 调用<xref:System.GC.ReRegisterForFinalize%2A>方法不保证垃圾回收器将调用对象的终结器。  
+ <xref:System.GC.ReRegisterForFinalize%2A>调用方法并不保证垃圾回收器将调用对象的终结器。  
   
- 默认情况下，实现终结器的所有对象都添加到需要终止; 的对象的列表但是，对象可能已被终结，或可能已禁用通过调用的定案<xref:System.GC.SuppressFinalize%2A>方法。  
+ 默认情况下, 实现终结器的所有对象都将添加到需要完成的对象列表中;但是, 对象可能已经完成了, 或者通过调用<xref:System.GC.SuppressFinalize%2A>方法禁用了终止。  
   
- 终结器可以使用此方法来继续研究下去自己或它所引用的对象。  
+ 终结器可以使用此方法恢复自身或其引用的对象。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用 ReRegisterForFinalize 方法来完成第二个对象垃圾回收后的时间。  
+ 下面的示例演示如何使用 ReRegisterForFinalize 方法在垃圾回收后第二次完成一个对象。  
   
  [!code-cpp[System.GC.ReregisterForFinalize Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.GC.ReRegisterForFinalize Example/CPP/class1.cpp#1)]
  [!code-csharp[System.GC.ReregisterForFinalize Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.GC.ReRegisterForFinalize Example/CS/class1.cs#1)]
@@ -1395,14 +1395,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法的对象标头中设置有点`obj`，在调用终结器时将运行时检查。 终结器，由表示<xref:System.Object.Finalize%2A?displayProperty=nameWithType>方法，用于对象进行垃圾回收之前释放非托管的资源。 如果`obj`不具有终结器中，调用<xref:System.GC.SuppressFinalize%2A>方法不起作用。  
+ 此方法在的对象标头`obj`中设置一个位, 在调用终结器时, 运行时将检查该位。 由<xref:System.Object.Finalize%2A?displayProperty=nameWithType>方法表示的终结器用于在对对象进行垃圾回收之前释放非托管资源。 如果`obj`没有终结器, 则对<xref:System.GC.SuppressFinalize%2A>方法的调用不起作用。  
   
- 对象实现<xref:System.IDisposable>接口可以从该对象的调用此方法<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>实现，以防止垃圾回收器调用<xref:System.Object.Finalize%2A?displayProperty=nameWithType>上不需要的对象。 通常情况下，这样做是为了防止终结器释放非托管的资源，已释放由<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>实现。  
+ 实现<xref:System.IDisposable>接口的对象可以从对象的<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>实现中调用此方法, 以防止垃圾回收器在不<xref:System.Object.Finalize%2A?displayProperty=nameWithType>需要它的对象上调用。 通常, 这样做是为了防止终结器释放已由<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>实现释放的非托管资源。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.GC.SuppressFinalize%2A>中的资源类，以防止冗余垃圾回收被调用的方法。 该示例使用[释放模式](~/docs/standard/garbage-collection/implementing-dispose.md)若要同时释放托管资源 (即对象实现<xref:System.IDisposable>) 和非托管资源。  
+ 下面的示例演示如何使用资源类<xref:System.GC.SuppressFinalize%2A>中的方法来防止调用冗余垃圾回收。 该示例使用[dispose 模式](~/docs/standard/garbage-collection/implementing-dispose.md)来释放托管资源 (即实现<xref:System.IDisposable>的对象) 和非托管资源。  
   
  [!code-csharp[System.GC.SuppressFinalize#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.gc.suppressfinalize/cs/suppressfinalize1.cs#1)]
  [!code-vb[System.GC.SuppressFinalize#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.gc.suppressfinalize/vb/suppressfinalize1.vb#1)]  
@@ -1429,7 +1429,7 @@
 ## Remarks  
   
 > [!IMPORTANT]
->  不能嵌套调用<xref:System.GC.TryStartNoGCRegion%2A>方法，并且你应只调用<xref:System.GC.EndNoGCRegion%2A>方法如果运行时当前处于无 GC 区域延迟模式。 换而言之，不应调用<xref:System.GC.TryStartNoGCRegion%2A>多个时间 （在第一个方法调用后，后续调用将不会成功），并且不应期望调用<xref:System.GC.EndNoGCRegion%2A>成功只是因为第一次调用到<xref:System.GC.TryStartNoGCRegion%2A>成功。  
+>  不能嵌套对方法的<xref:System.GC.TryStartNoGCRegion%2A>调用, 并且应仅在运行时<xref:System.GC.EndNoGCRegion%2A>当前处于无 GC 区域延迟模式时调用方法。 换句话说, 您不应调用<xref:System.GC.TryStartNoGCRegion%2A>多次 (在第一次调用方法后, 后续调用将不会成功), 并且您不应指望<xref:System.GC.EndNoGCRegion%2A>调用成功, <xref:System.GC.TryStartNoGCRegion%2A>因为首次调用 succeeded。  
   
  ]]></format>
         </remarks>
@@ -1478,14 +1478,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.GC.TryStartNoGCRegion%28System.Int64%29>方法尝试将垃圾回收器放在应用程序执行代码的关键区域时，不允许垃圾回收无 GC 区域延迟模式。  如果运行时无法最初分配所需的内存，垃圾回收器尝试释放更多的内存中执行完整的阻碍性垃圾回收。 垃圾回收器进入无 GC 区域延迟模式，如果能够分配所需的数量的内存，在这种情况下为实际 2 *`totalSize`字节 (它会尝试分配`totalSize`针对小型对象堆字节数和`totalSize`的字节数大型对象堆）。  
+ 此<xref:System.GC.TryStartNoGCRegion%28System.Int64%29>方法尝试将垃圾回收器置于无 GC 区域延迟模式, 这在应用执行关键的代码区域时不允许垃圾回收。  如果运行时无法最初分配所请求的内存量, 垃圾回收器将执行完全阻止性垃圾回收, 尝试释放更多内存。 如果垃圾回收器能够分配所需的内存量 (在本例中为 2 * `totalSize`个字节, 则它会尝试为小对象堆分配`totalSize`字节, `totalSize`为大型对象堆)。  
   
- `totalSize` 必须足够大，能够处理在关键路径中出现的所有内存分配。 这包括分配的应用程序，以及应用的代表，运行时做出的分配。  
+ `totalSize`必须足够大才能处理在关键路径中发生的所有内存分配。 这包括应用的分配以及运行时代表应用程序进行的分配。  
   
 > [!IMPORTANT]
->  不能嵌套调用<xref:System.GC.TryStartNoGCRegion%2A>方法，并且你应只调用<xref:System.GC.EndNoGCRegion%2A>方法如果运行时当前处于无 GC 区域延迟模式。 换而言之，不应调用<xref:System.GC.TryStartNoGCRegion%2A>多个时间 （在第一个方法调用后，后续调用将不会成功），并且不应期望调用<xref:System.GC.EndNoGCRegion%2A>成功只是因为第一次调用到<xref:System.GC.TryStartNoGCRegion%2A>成功。  
+>  不能嵌套对方法的<xref:System.GC.TryStartNoGCRegion%2A>调用, 并且应仅在运行时<xref:System.GC.EndNoGCRegion%2A>当前处于无 GC 区域延迟模式时调用方法。 换句话说, 您不应调用<xref:System.GC.TryStartNoGCRegion%2A>多次 (在第一次调用方法后, 后续调用将不会成功), 并且您不应指望<xref:System.GC.EndNoGCRegion%2A>调用成功, <xref:System.GC.TryStartNoGCRegion%2A>因为首次调用 succeeded。  
   
- 通过调用退出无 GC 区域延迟模式<xref:System.GC.EndNoGCRegion%2A>方法。  
+ 可以通过调用<xref:System.GC.EndNoGCRegion%2A>方法退出无 GC 区域延迟模式。  
   
  ]]></format>
         </remarks>
@@ -1540,16 +1540,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.GC.TryStartNoGCRegion%28System.Int64%2CSystem.Boolean%29>方法尝试将垃圾回收器放在应用程序执行代码的关键区域时，不允许垃圾回收无 GC 区域延迟模式。  如果运行时无法最初分配请求的内存量和`disallowFullBlockingGC`自变量是`false`，垃圾回收器执行完整的阻碍性垃圾回收中尝试释放更多内存; 否则为分配失败，并且该方法返回`false`。 垃圾回收器进入无 GC 区域延迟模式，如果能够分配所需的数量的内存，在这种情况下为实际 2 * `totalSize` (它会尝试分配`totalSize`针对小型对象堆和`totalSize`大型对象堆）。  
+ 此<xref:System.GC.TryStartNoGCRegion%28System.Int64%2CSystem.Boolean%29>方法尝试将垃圾回收器置于无 GC 区域延迟模式, 这在应用执行关键的代码区域时不允许垃圾回收。  如果运行时无法最初分配所请求的内存量, 并且`disallowFullBlockingGC`参数为`false`, 则垃圾回收器将在尝试释放更多内存时执行完全阻止性垃圾回收; 否则, 分配失败, 且方法返回`false`。 如果垃圾回收器能够分配所需的内存量 (在这种情况下`totalSize` , 它会尝试为小对象堆和`totalSize`大型对象分配`totalSize` ), 则垃圾回收器不会输入 GC 区域延迟模式。堆)。  
   
- `totalSize` 必须足够大，能够处理在关键路径中出现的所有内存分配。 这包括分配的应用程序，以及应用的代表，运行时做出的分配。  
+ `totalSize`必须足够大才能处理在关键路径中发生的所有内存分配。 这包括应用的分配以及运行时代表应用程序进行的分配。  
   
- 设置`disallowFullBlockingGC`到`true`以免完整的阻碍性垃圾回收集合最初可没有足够的内存是否是在负载平衡方案中最有用： 一个系统可以调用此方法并报告本身为准备好接受请求，如果它返回`true`，并且具有负载均衡器将请求重定向到其他系统，如果它返回`false`。 它可以进行完整的阻碍性垃圾回收时不处理请求通过调用<xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%2CSystem.Boolean%2CSystem.Boolean%29>方法。  
+ 如果`disallowFullBlockingGC`没有`true`足够的内存可供初始使用时, 将设置为以防止完全阻止垃圾回收在负载平衡方案中最有用: 一个系统可以调用此方法, 并在返回, 并让负载均衡器将请求重定向到其他系统 ( `false`如果它返回)。 `true` 然后, 在通过调用<xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%2CSystem.Boolean%2CSystem.Boolean%29>方法来处理请求时, 它可以执行完全阻止性垃圾回收。  
   
 > [!IMPORTANT]
->  不能嵌套调用<xref:System.GC.TryStartNoGCRegion%2A>方法，并且你应只调用<xref:System.GC.EndNoGCRegion%2A>方法如果运行时当前处于无 GC 区域延迟模式。 换而言之，不应调用<xref:System.GC.TryStartNoGCRegion%2A>多个时间 （在第一个方法调用后，后续调用将不会成功），并且不应期望调用<xref:System.GC.EndNoGCRegion%2A>成功只是因为第一次调用到<xref:System.GC.TryStartNoGCRegion%2A>成功。  
+>  不能嵌套对方法的<xref:System.GC.TryStartNoGCRegion%2A>调用, 并且应仅在运行时<xref:System.GC.EndNoGCRegion%2A>当前处于无 GC 区域延迟模式时调用方法。 换句话说, 您不应调用<xref:System.GC.TryStartNoGCRegion%2A>多次 (在第一次调用方法后, 后续调用将不会成功), 并且您不应指望<xref:System.GC.EndNoGCRegion%2A>调用成功, <xref:System.GC.TryStartNoGCRegion%2A>因为首次调用 succeeded。  
   
- 通过调用退出无 GC 区域延迟模式<xref:System.GC.EndNoGCRegion%2A>方法。  
+ 可以通过调用<xref:System.GC.EndNoGCRegion%2A>方法退出无 GC 区域延迟模式。  
   
  ]]></format>
         </remarks>
@@ -1604,14 +1604,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.GC.TryStartNoGCRegion%28System.Int64%2CSystem.Int64%29>方法尝试将垃圾回收器放在应用程序执行代码的关键区域时，不允许垃圾回收无 GC 区域延迟模式。  如果运行时无法最初分配所需的内存，垃圾回收器尝试释放更多的内存中执行完整的阻碍性垃圾回收。 垃圾回收器进入无 GC 区域延迟模式，如果能够分配`lohSize`回收 loh 和`totalSize`  -  `lohSize`针对小型对象堆 (SOH)。  
+ 此<xref:System.GC.TryStartNoGCRegion%28System.Int64%2CSystem.Int64%29>方法尝试将垃圾回收器置于无 GC 区域延迟模式, 这在应用执行关键的代码区域时不允许垃圾回收。  如果运行时无法最初分配所请求的内存量, 垃圾回收器将执行完全阻止性垃圾回收, 尝试释放更多内存。 如果垃圾回收器能够为 LOH 分配并为小对象堆 (SOH `lohSize` ) 分配, `totalSize`  -  `lohSize`则垃圾回收器不会输入 GC 区域延迟模式。  
   
- `lohSize` 必须足够大，以处理对于 LOH，在关键路径中发生的所有内存分配和`totalSize`  -  `lohSize`必须足够大，能够都处理的 SOH 在关键路径中发生的所有内存分配。 这包括分配的应用程序，以及应用的代表，运行时做出的分配。  
+ `lohSize`必须足够大, 以便处理 LOH 的关键路径中发生的所有内存分配, 并且`totalSize`  -  `lohSize`必须足够大才能处理 SOH 关键路径中发生的所有内存分配。 这包括应用的分配以及运行时代表应用程序进行的分配。  
   
 > [!IMPORTANT]
->  不能嵌套调用<xref:System.GC.TryStartNoGCRegion%2A>方法，并且你应只调用<xref:System.GC.EndNoGCRegion%2A>方法如果运行时当前处于无 GC 区域延迟模式。 换而言之，不应调用<xref:System.GC.TryStartNoGCRegion%2A>多个时间 （在第一个方法调用后，后续调用将不会成功），并且不应期望调用<xref:System.GC.EndNoGCRegion%2A>成功只是因为第一次调用到<xref:System.GC.TryStartNoGCRegion%2A>成功。  
+>  不能嵌套对方法的<xref:System.GC.TryStartNoGCRegion%2A>调用, 并且应仅在运行时<xref:System.GC.EndNoGCRegion%2A>当前处于无 GC 区域延迟模式时调用方法。 换句话说, 您不应调用<xref:System.GC.TryStartNoGCRegion%2A>多次 (在第一次调用方法后, 后续调用将不会成功), 并且您不应指望<xref:System.GC.EndNoGCRegion%2A>调用成功, <xref:System.GC.TryStartNoGCRegion%2A>因为首次调用 succeeded。  
   
- 通过调用退出无 GC 区域延迟模式<xref:System.GC.EndNoGCRegion%2A>方法。  
+ 可以通过调用<xref:System.GC.EndNoGCRegion%2A>方法退出无 GC 区域延迟模式。  
   
  ]]></format>
         </remarks>
@@ -1668,16 +1668,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.GC.TryStartNoGCRegion%28System.Int64%2CSystem.Int64%2CSystem.Boolean%29>方法尝试将垃圾回收器放在应用程序执行代码的关键区域时，不允许垃圾回收无 GC 区域延迟模式。  如果运行时无法最初分配请求的内存量和`disallowFullBlockingGC`自变量是`false`，垃圾回收器执行完整的阻碍性垃圾回收中尝试释放更多内存; 否则为分配失败，并且该方法返回`false`。 垃圾回收器进入无 GC 区域延迟模式，如果能够分配`lohSize`回收 loh 和`totalSize`  -  `lohSize`针对小型对象堆 (SOH)。  
+ 此<xref:System.GC.TryStartNoGCRegion%28System.Int64%2CSystem.Int64%2CSystem.Boolean%29>方法尝试将垃圾回收器置于无 GC 区域延迟模式, 这在应用执行关键的代码区域时不允许垃圾回收。  如果运行时无法最初分配所请求的内存量, 并且`disallowFullBlockingGC`参数为`false`, 则垃圾回收器将在尝试释放更多内存时执行完全阻止性垃圾回收; 否则, 分配失败, 且方法返回`false`。 如果垃圾回收器能够为 LOH 分配并为小对象堆 (SOH `lohSize` ) 分配, `totalSize`  -  `lohSize`则垃圾回收器不会输入 GC 区域延迟模式。  
   
- `lohSize` 必须足够大，以处理对于 LOH，在关键路径中发生的所有内存分配和`totalSize`  -  `lohSize`必须足够大，能够都处理的 SOH 在关键路径中发生的所有内存分配。 这包括分配的应用程序，以及应用的代表，运行时做出的分配。  
+ `lohSize`必须足够大, 以便处理 LOH 的关键路径中发生的所有内存分配, 并且`totalSize`  -  `lohSize`必须足够大才能处理 SOH 关键路径中发生的所有内存分配。 这包括应用的分配以及运行时代表应用程序进行的分配。  
   
- 设置`disallowFullBlockingGC`到`true`以免完整的阻碍性垃圾回收集合最初可没有足够的内存是否是在负载平衡方案中最有用： 一个系统可以调用此方法并报告本身为准备好接受请求，如果它返回`true`，并且具有负载均衡器将请求重定向到其他系统，如果它返回`false`。 它可以进行完整的阻碍性垃圾回收时不处理请求通过调用<xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%2CSystem.Boolean%2CSystem.Boolean%29>方法。  
+ 如果`disallowFullBlockingGC`没有`true`足够的内存可供初始使用时, 将设置为以防止完全阻止垃圾回收在负载平衡方案中最有用: 一个系统可以调用此方法, 并在返回, 并让负载均衡器将请求重定向到其他系统 ( `false`如果它返回)。 `true` 然后, 在通过调用<xref:System.GC.Collect%28System.Int32%2CSystem.GCCollectionMode%2CSystem.Boolean%2CSystem.Boolean%29>方法来处理请求时, 它可以执行完全阻止性垃圾回收。  
   
 > [!IMPORTANT]
->  不能嵌套调用<xref:System.GC.TryStartNoGCRegion%2A>方法，并且你应只调用<xref:System.GC.EndNoGCRegion%2A>方法如果运行时当前处于无 GC 区域延迟模式。 换而言之，不应调用<xref:System.GC.TryStartNoGCRegion%2A>多个时间 （在第一个方法调用后，后续调用将不会成功），并且不应期望调用<xref:System.GC.EndNoGCRegion%2A>成功只是因为第一次调用到<xref:System.GC.TryStartNoGCRegion%2A>成功。  
+>  不能嵌套对方法的<xref:System.GC.TryStartNoGCRegion%2A>调用, 并且应仅在运行时<xref:System.GC.EndNoGCRegion%2A>当前处于无 GC 区域延迟模式时调用方法。 换句话说, 您不应调用<xref:System.GC.TryStartNoGCRegion%2A>多次 (在第一次调用方法后, 后续调用将不会成功), 并且您不应指望<xref:System.GC.EndNoGCRegion%2A>调用成功, <xref:System.GC.TryStartNoGCRegion%2A>因为首次调用 succeeded。  
   
- 通过调用退出无 GC 区域延迟模式<xref:System.GC.EndNoGCRegion%2A>方法。  
+ 可以通过调用<xref:System.GC.EndNoGCRegion%2A>方法退出无 GC 区域延迟模式。  
   
  ]]></format>
         </remarks>
@@ -1738,18 +1738,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.GCNotificationStatus>返回的此方法以确定当前使用注册的垃圾回收通知的状态的枚举<xref:System.GC.RegisterForFullGCNotification%2A>方法。 此外可以使用<xref:System.GC.WaitForFullGCComplete%2A>方法，以确定完整的垃圾回收是否已完成。  
+ 使用此方法返回的<xref:System.GC.RegisterForFullGCNotification%2A> 枚举来确定使用方法注册的当前垃圾回收通知的状态。<xref:System.GCNotificationStatus> 你还可以使用<xref:System.GC.WaitForFullGCComplete%2A>方法来确定完整垃圾回收是否已完成。  
   
- 当枚举返回<xref:System.GCNotificationStatus.Succeeded>，可以执行任务，例如阻止其他对象分配和使用自行引发回收<xref:System.GC.Collect%2A>方法。 请注意通知不保证完整的垃圾回收将实现的只能保证条件已达到阈值，支持完整垃圾回收发生。  
+ 枚举返回<xref:System.GCNotificationStatus.Succeeded>时, 可以执行一些任务, 如阻止分配其他对象, 并<xref:System.GC.Collect%2A>使用方法自行引入集合。 请注意, 通知不保证会发生完整的垃圾回收, 只有该条件达到了阈值, 才能进行完整垃圾回收。  
   
- 无限期地等待垃圾回收通知，以获取此方法。 如果你想要指定要返回如果无法获得通知的方法的超时期限，使用<xref:System.GC.WaitForFullGCApproach%28System.Int32%29?displayProperty=nameWithType>方法重载。 如果不指定超时情况下调用此方法，则可以调用<xref:System.GC.CancelFullGCNotification%2A>在等待时间长于首选的方法。  
+ 此方法无限期地等待获取垃圾回收通知。 如果要为在无法获取通知时返回的方法指定超时时间, 请使用<xref:System.GC.WaitForFullGCApproach%28System.Int32%29?displayProperty=nameWithType>方法重载。 如果在不指定超时的情况下调用此方法, 则如果等待的<xref:System.GC.CancelFullGCNotification%2A>时间比首选时间长, 则可以调用方法。  
   
- 应遵循此方法通过调用<xref:System.GC.WaitForFullGCComplete%2A>方法以确保您已经完全垃圾回收。 调用此方法只会导致结果不确定。  
+ 你应在调用<xref:System.GC.WaitForFullGCComplete%2A>方法后遵循此方法, 以确保你已进行完整的垃圾回收。 单独调用此方法会导致不确定的结果。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用此方法来确定是否正在接近完整、 阻碍性垃圾回收。 通知的状态是每当<xref:System.GCNotificationStatus.Succeeded>，将用户方法`OnFullGCApproachNotify`调用以执行操作以响应临近的集合。 此代码示例是为提供一个更大示例的一部分[垃圾回收通知](~/docs/standard/garbage-collection/notifications.md)主题。  
+ 下面的示例演示如何使用此方法来确定完全、阻止的垃圾回收是否接近。 每当通知的状态为时<xref:System.GCNotificationStatus.Succeeded>, 将调用用户方法`OnFullGCApproachNotify`来执行操作以响应即将发生的集合。 此代码示例是为[垃圾回收通知](~/docs/standard/garbage-collection/notifications.md)主题提供的更大示例的一部分。  
   
  [!code-cpp[GCNotification#3](~/samples/snippets/cpp/VS_Snippets_CLR/GCNotification/cpp/program.cpp#3)]
  [!code-csharp[GCNotification#3](~/samples/snippets/csharp/VS_Snippets_CLR/GCNotification/cs/Program.cs#3)]
@@ -1757,8 +1757,8 @@
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
         <related type="Article" href="https://msdn.microsoft.com/library/e12d8e74-31e3-4035-a87d-f3e66f0a9b89">垃圾回收通知</related>
       </Docs>
     </Member>
@@ -1805,21 +1805,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.GCNotificationStatus>返回的此方法以确定当前使用注册的垃圾回收通知的状态的枚举<xref:System.GC.RegisterForFullGCNotification%2A>方法。 此外可以使用<xref:System.GC.WaitForFullGCComplete%2A>方法，以确定完整的垃圾回收是否已完成。  
+ 使用此方法返回的<xref:System.GC.RegisterForFullGCNotification%2A> 枚举来确定使用方法注册的当前垃圾回收通知的状态。<xref:System.GCNotificationStatus> 你还可以使用<xref:System.GC.WaitForFullGCComplete%2A>方法来确定完整垃圾回收是否已完成。  
   
- 请注意，此方法返回时获取垃圾回收通知状态，而不考虑指定的值立即`millisecondsTimeout`。 如果垃圾回收通知状态前未获取`millisecondsTimeout`时间，此方法返回<xref:System.GCNotificationStatus.NotApplicable>。  
+ 请注意, 无论何时获取垃圾回收通知状态, 此方法都会立即返回, 而与指定`millisecondsTimeout`的值无关。 如果在超时之前`millisecondsTimeout`未获得垃圾回收通知状态, 此方法将返回。 <xref:System.GCNotificationStatus.NotApplicable>  
   
- 当枚举返回<xref:System.GCNotificationStatus.Succeeded>，可以执行任务，例如阻止其他对象分配和使用自行引发回收<xref:System.GC.Collect%2A>方法。 请注意通知不保证完整的垃圾回收将实现的只能保证条件已达到阈值，支持完整垃圾回收发生。  
+ 枚举返回<xref:System.GCNotificationStatus.Succeeded>时, 可以执行一些任务, 如阻止分配其他对象, 并<xref:System.GC.Collect%2A>使用方法自行引入集合。 请注意, 通知不保证会发生完整的垃圾回收, 只有该条件达到了阈值, 才能进行完整垃圾回收。  
   
- 您可以调用<xref:System.GC.CancelFullGCNotification%2A>方法时不能等待超时周期结束。  
+ 当你无法等待<xref:System.GC.CancelFullGCNotification%2A>超时期限结束时, 你可以调用方法。  
   
- 应遵循此方法通过调用<xref:System.GC.WaitForFullGCComplete%2A>方法以确保您已经完全垃圾回收。 调用此方法只会导致结果不确定。  
+ 你应在调用<xref:System.GC.WaitForFullGCComplete%2A>方法后遵循此方法, 以确保你已进行完整的垃圾回收。 单独调用此方法会导致不确定的结果。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> 必须为非负数，或者小于等于 <see cref="F:System.Int32.MaxValue" /> 或 -1。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
         <related type="Article" href="https://msdn.microsoft.com/library/e12d8e74-31e3-4035-a87d-f3e66f0a9b89">垃圾回收通知</related>
       </Docs>
     </Member>
@@ -1873,18 +1873,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.GCNotificationStatus>返回的此方法以确定当前使用注册的垃圾回收通知的状态的枚举<xref:System.GC.RegisterForFullGCNotification%2A>方法。 此外可以使用<xref:System.GC.WaitForFullGCApproach%2A>方法，以确定是否即将引发完整垃圾回收。  
+ 使用此方法返回的<xref:System.GC.RegisterForFullGCNotification%2A> 枚举来确定使用方法注册的当前垃圾回收通知的状态。<xref:System.GCNotificationStatus> 你还可以使用<xref:System.GC.WaitForFullGCApproach%2A>方法来确定是否即将发生完整的垃圾回收。  
   
- 当枚举返回<xref:System.GCNotificationStatus.Succeeded>，可以执行任务，例如继续工作并获取集合计数与<xref:System.GC.CollectionCount%2A>属性。  
+ 枚举返回<xref:System.GCNotificationStatus.Succeeded>时, 可以执行任务 (例如恢复工作) 并<xref:System.GC.CollectionCount%2A>使用属性获取集合计数。  
   
- 无限期地等待垃圾回收通知，以获取此方法。 如果你想要指定要返回如果无法获得通知的方法的超时期限，使用<xref:System.GC.WaitForFullGCApproach%28System.Int32%29?displayProperty=nameWithType>方法重载。 如果不指定超时情况下调用此方法，则可以调用<xref:System.GC.CancelFullGCNotification%2A>在等待时间长于首选的方法。  
+ 此方法无限期地等待获取垃圾回收通知。 如果要为在无法获取通知时返回的方法指定超时时间, 请使用<xref:System.GC.WaitForFullGCApproach%28System.Int32%29?displayProperty=nameWithType>方法重载。 如果在不指定超时的情况下调用此方法, 则如果等待的<xref:System.GC.CancelFullGCNotification%2A>时间比首选时间长, 则可以调用方法。  
   
- 此方法调用的前面应带有通过调用<xref:System.GC.WaitForFullGCApproach%2A>方法以确保您已经完全垃圾回收。 单独调用此方法可能产生不确定结果。  
+ 此方法调用之前应调用<xref:System.GC.WaitForFullGCApproach%2A>方法, 以确保具有完全垃圾回收。 单独调用此方法可能会产生不确定的结果。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用此方法来确定是否已完成完整的垃圾回收。 通知的状态是每当<xref:System.GCNotificationStatus.Succeeded>，将用户方法`OnFullGCCompletedNotify`调用以执行操作以响应已完成的集合。 此代码示例是为提供一个更大示例的一部分[垃圾回收通知](~/docs/standard/garbage-collection/notifications.md)主题。  
+ 下面的示例演示如何使用此方法来确定完整垃圾回收是否已完成。 每当通知的状态为时<xref:System.GCNotificationStatus.Succeeded>, 都会调用用户方法`OnFullGCCompletedNotify`来执行操作, 以响应已完成的集合。 此代码示例是为[垃圾回收通知](~/docs/standard/garbage-collection/notifications.md)主题提供的更大示例的一部分。  
   
  [!code-cpp[GCNotification#4](~/samples/snippets/cpp/VS_Snippets_CLR/GCNotification/cpp/program.cpp#4)]
  [!code-csharp[GCNotification#4](~/samples/snippets/csharp/VS_Snippets_CLR/GCNotification/cs/Program.cs#4)]
@@ -1892,8 +1892,8 @@
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
         <related type="Article" href="https://msdn.microsoft.com/library/e12d8e74-31e3-4035-a87d-f3e66f0a9b89">垃圾回收通知</related>
       </Docs>
     </Member>
@@ -1940,21 +1940,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.GCNotificationStatus>返回的此方法以确定当前使用注册的垃圾回收通知的状态的枚举<xref:System.GC.RegisterForFullGCNotification%2A>方法。 此外可以使用<xref:System.GC.WaitForFullGCApproach%2A>方法，以确定是否即将引发完整垃圾回收。  
+ 使用此方法返回的<xref:System.GC.RegisterForFullGCNotification%2A> 枚举来确定使用方法注册的当前垃圾回收通知的状态。<xref:System.GCNotificationStatus> 你还可以使用<xref:System.GC.WaitForFullGCApproach%2A>方法来确定是否即将发生完整的垃圾回收。  
   
- 请注意，此方法返回时获取垃圾回收通知状态，而不考虑指定的值立即`millisecondsTimeout`。 如果垃圾回收通知状态前未获取`millisecondsTimeout`时间，此方法返回<xref:System.GCNotificationStatus.NotApplicable>。  
+ 请注意, 无论何时获取垃圾回收通知状态, 此方法都会立即返回, 而与指定`millisecondsTimeout`的值无关。 如果在超时之前`millisecondsTimeout`未获得垃圾回收通知状态, 此方法将返回。 <xref:System.GCNotificationStatus.NotApplicable>  
   
- 当枚举返回<xref:System.GCNotificationStatus.Succeeded>，可以执行任务，例如继续工作并获取集合计数与<xref:System.GC.CollectionCount%2A>属性。  
+ 枚举返回<xref:System.GCNotificationStatus.Succeeded>时, 可以执行任务 (例如恢复工作) 并<xref:System.GC.CollectionCount%2A>使用属性获取集合计数。  
   
- 您可以调用<xref:System.GC.CancelFullGCNotification%2A>方法时不能等待超时周期结束。  
+ 当你无法等待<xref:System.GC.CancelFullGCNotification%2A>超时期限结束时, 你可以调用方法。  
   
- 此方法调用的前面应带有通过调用<xref:System.GC.WaitForFullGCApproach%2A>方法以确保您已经完全垃圾回收。 单独调用此方法可能产生不确定结果。  
+ 此方法调用之前应调用<xref:System.GC.WaitForFullGCApproach%2A>方法, 以确保具有完全垃圾回收。 单独调用此方法可能会产生不确定的结果。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException"><paramref name="millisecondsTimeout" /> 必须为非负数，或者小于等于 <see cref="F:System.Int32.MaxValue" /> 或 -1。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
         <related type="Article" href="https://msdn.microsoft.com/library/e12d8e74-31e3-4035-a87d-f3e66f0a9b89">垃圾回收通知</related>
       </Docs>
     </Member>
@@ -2002,14 +2002,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当垃圾收集器发现可以回收的对象时，它会检查每个对象，以确定对象的终止要求。 如果对象实现终结器，并且未禁用通过调用终止<xref:System.GC.SuppressFinalize%2A>，该对象放在标记为准备好进行终结的对象的列表。 垃圾回收器调用<xref:System.Object.Finalize%2A>此列表中移除这些项从列表中的对象的方法。 此方法进行阻止，直到所有终结器运行到完成。  
+ 当垃圾回收器发现可回收的对象时, 它会检查每个对象以确定对象的终止要求。 如果对象实现终结器, 并且尚未通过调用<xref:System.GC.SuppressFinalize%2A>禁用完成, 则该对象将被置于标记为 "已准备好终止" 的对象列表中。 垃圾回收器调用<xref:System.Object.Finalize%2A>此列表中的对象的方法, 并从列表中移除这些项。 此方法会一直阻止, 直到所有终结器都已运行完毕。  
   
- 在其运行终结器线程是未指定的因此将终止此方法不能保证。 但是，此线程时的另一个线程会中断<xref:System.GC.WaitForPendingFinalizers%2A>正在进行中。 例如，可以启动另一个线程的等待一段时间内，则中断此线程，如果此线程仍处于挂起状态。  
+ 未指定运行终结器的线程, 因此无法保证此方法将终止。 但是, 当<xref:System.GC.WaitForPendingFinalizers%2A>方法正在进行时, 此线程可能会被另一个线程中断。 例如, 你可以启动等待一段时间的另一个线程, 并在此线程仍处于挂起状态时中断此线程。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.GC.WaitForPendingFinalizers%2A>方法挂起当前线程，直到最终完成安装所收集的所有对象已完成。  
+ 下面的示例演示如何使用<xref:System.GC.WaitForPendingFinalizers%2A>方法挂起当前线程, 直到完成所有收集的对象的终止为止。  
   
  [!code-cpp[System.GC.WaitForPendingFinalizers Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.GC.WaitForPendingFinalizers Example/CPP/class1.cpp#1)]
  [!code-csharp[System.GC.WaitForPendingFinalizers Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.GC.WaitForPendingFinalizers Example/CS/class1.cs#1)]

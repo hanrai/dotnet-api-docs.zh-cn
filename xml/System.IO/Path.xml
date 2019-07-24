@@ -1,5 +1,5 @@
 <Type Name="Path" FullName="System.IO.Path">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7ee477deba03f922a5b4875f5fa99e93f9edcc64" /><Meta Name="ms.sourcegitcommit" Value="24dc380b0d43e8919d4e0d50409e8f0aeae98713" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/27/2019" /><Meta Name="ms.locfileid" Value="67411289" /></Metadata><TypeSignature Language="C#" Value="public static class Path" />
+  <TypeSignature Language="C#" Value="public static class Path" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed Path extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.IO.Path" />
   <TypeSignature Language="VB.NET" Value="Public Class Path" />
@@ -41,39 +41,39 @@
   
 ## Remarks  
   
- 路径是提供的文件或目录的位置的字符串。 路径不一定指向磁盘; 上的位置例如，路径可能会映射到在内存中或在设备上的位置。 由当前平台确定路径的确切格式。 例如，在某些系统中，路径可以开始驱动器或卷字母开头，而此元素中不存在其他系统。 在某些系统中，文件路径可以包含扩展插件，指示存储在文件中的信息类型。 文件扩展名的格式与平台相关;例如，某些系统限制为三个字符，扩展和其他人不这样做。 当前平台还确定的字符用于分隔路径的元素集和指定路径时，不能使用的字符集。 由于这些差异的字段`Path`类的某些成员的具体行为以及`Path`类是依赖于平台的。  
+ 路径是提供文件或目录的位置的字符串。 路径不一定指向磁盘上的位置;例如, 路径可能映射到内存中或设备上的某个位置。 路径的准确格式由当前平台决定。 例如, 在某些系统中, 路径可以从驱动器或卷号开始, 而此元素在其他系统中不存在。 在某些系统上, 文件路径可以包含扩展, 这表示文件中存储的信息的类型。 文件扩展名的格式依赖于平台;例如, 某些系统将扩展限制为三个字符, 而其他系统则不限制。 当前平台还决定了用于分隔路径中的元素的字符集, 以及指定路径时不能使用的字符集。 由于这些差异, `Path`类的字段以及`Path`类的某些成员的确切行为取决于平台。  
   
- 路径可以包含绝对或相对的位置信息。 绝对路径完全指定的位置： 文件或目录可以唯一地标识而不考虑当前的位置。 相对路径指定部分的位置： 定位使用相对路径指定的文件时，当前的位置使用作为起始点。 若要确定当前目录，请调用<xref:System.IO.Directory.GetCurrentDirectory%2A?displayProperty=nameWithType>。  
+ 路径可以包含绝对或相对位置信息。 绝对路径完全指定位置: 可以唯一地标识文件或目录, 而不考虑当前位置。 相对路径指定部分位置: 在定位使用相对路径指定的文件时, 当前位置用作起始点。 若要确定当前目录, 请<xref:System.IO.Directory.GetCurrentDirectory%2A?displayProperty=nameWithType>调用。  
 
- .NET core 1.1 和更高版本和.NET Framework 4.6.2 及更高版本还支持对文件系统对象的是设备名称，如访问"\\？ \C:\"。
+ .NET Core 1.1 及更高版本和 .NET Framework 4.6.2 及更高版本还支持访问作为设备名称的文件系统对象, 例如 "\\？ \c:\"。
 
-Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows 系统上的路径格式](~/docs/standard/io/file-path-formats.md)。
+有关 Windows 上的文件路径格式的详细信息, 请参阅[windows 系统上的文件路径格式](~/docs/standard/io/file-path-formats.md)。
 
- 大多数成员`Path`类不使用文件系统进行交互，且不验证是否存在指定的路径字符串的文件。 `Path` 类成员的修改的路径字符串，如<xref:System.IO.Path.ChangeExtension%2A>，文件系统中对文件的名称无效。 `Path` 成员将执行操作，但是，验证指定的路径字符串的内容并引发<xref:System.ArgumentException>异常，如果该字符串包含无效的路径字符串中从返回的字符中定义的字符<xref:System.IO.Path.GetInvalidPathChars%2A>方法。 例如，在基于 Windows 的桌面平台上无效路径字符可能包括引号 （"）、 小于 (\<)、 大于号 (>)、 竖线 (&#124;)，退格符 (\b)、 null (\0) 和 Unicode 字符 16 到 18 和 20 到 25。  
+ `Path`该类的大多数成员不与文件系统进行交互, 并且不验证路径字符串指定的文件是否存在。 `Path`修改路径字符串的类成员 (如<xref:System.IO.Path.ChangeExtension%2A>) 不会影响文件系统中的文件名称。 `Path`但是, 如果字符串包含在路径字符串中无效的字符 (如<xref:System.ArgumentException> <xref:System.IO.Path.GetInvalidPathChars%2A>从方法返回的字符中所定义), 则成员将验证指定路径字符串的内容, 并引发异常。 例如, 在基于 Windows 的桌面平台上, 无效路径字符可能包括引号 (")、小于 (\<)、大于 (>)、管道 (&#124;)、backspace (\b)、null (\ 0) 和 Unicode 字符16到18以及20到25。  
   
- 成员`Path`类使您能够快速轻松地执行常见操作，例如确定文件扩展名是否属于某个路径，并将两个字符串组合成一个路径名称。  
+ `Path`类的成员使你能够快速轻松地执行常见操作, 例如确定文件扩展名是否为路径的一部分, 以及将两个字符串组合为一个路径名。  
   
- 所有成员`Path`类是静态的因此可以无需具有路径的实例调用。  
+ `Path`类的所有成员都是静态的, 因此可以在没有路径实例的情况下调用。  
   
 > [!NOTE]
->  在接受路径作为输入字符串的成员，该路径必须是格式正确，或引发的异常。 例如，如果路径是完全限定名称，但以空格开头，在类的方法不修整路径。 因此，该路径的格式不正确，并且会引发的异常。 同样的路径的组合不能完全限定两次。 例如，"c:\temp c:\windows"还会引发异常在大多数情况下。 请确保使用接受一个路径字符串的方法时您的路径的格式是否正确。  
+>  在接受路径作为输入字符串的成员中, 该路径必须格式正确, 否则会引发异常。 例如, 如果路径是完全限定的, 但以空格开头, 则不会在类的方法中剪裁路径。 因此, 路径格式不正确, 并引发异常。 同样, 路径或路径的组合不能完全限定两次。 例如, 在大多数情况下, "c:\temp c:\windows" 也会引发异常。 使用接受路径字符串的方法时, 请确保路径格式正确。  
   
- 在接受一个路径的成员，路径可以引用的文件或只是一个目录。 指定的路径也可以指相对路径或服务器和共享名称的通用命名约定 (UNC) 路径。 例如，以下所有条件都可接受的路径：  
+ 在接受路径的成员中, 路径可以引用文件或只引用目录。 指定的路径还可以引用服务器和共享名称的相对路径或通用命名约定 (UNC) 路径。 例如, 以下所有内容都是可接受的路径:  
   
--   "c:\\\MyDir\\\MyFile.txt"在 C# 或 Visual Basic 中的"c:\MyDir\MyFile.txt"。  
+-   Visual Basic 中的\\"\\c: \MyDir C#\MyFile.txt" 或 "c:\MyDir\MyFile.txt"。  
   
--   "c:\\\MyDir"在 C# 或 Visual Basic 中的"c:\MyDir"。  
+-   Visual Basic 中的\\"c: C#\MyDir" 或 "c:\MyDir"。  
   
--   "MyDir\\\MySubdir"在 C# 或 Visual Basic 中的"MyDir\MySubDir"。  
+-   Visual Basic 中\\的 "MyDir C#\MySubdir" 或 "MyDir\MySubDir"。  
   
--   "\\\\\\\MyServer\\\MyShare"在 C# 中，或"\\\MyServer\MyShare"在 Visual Basic 中。  
+-   Visual Basic\\中的 "\\\\ C#\MyServer\\\MyShare" 或 "\MyServer\MyShare"。\\  
   
- 因为对字符串执行所有这些操作时，就无法验证结果在所有方案中有效。 例如，<xref:System.IO.Path.GetExtension%2A>方法分析将传递给它一个字符串，并从该字符串返回的扩展名。 但是，这并不意味着在磁盘上存在具有该扩展名的文件。  
+ 由于所有这些操作都是针对字符串执行的, 因此无法验证结果在所有方案中是否有效。 例如, <xref:System.IO.Path.GetExtension%2A>方法会分析你传递给它的字符串, 并返回该字符串的扩展名。 但是, 这并不意味着磁盘上存在具有该扩展名的文件。  
   
- 通用 I/O 任务的列表，请参阅[通用 I/O 任务](~/docs/standard/io/common-i-o-tasks.md)。   
+ 有关常见 i/o 任务的列表, 请参阅[常见 I/o 任务](~/docs/standard/io/common-i-o-tasks.md)。   
   
 ## Examples  
- 下面的示例演示了一些主要成员`Path`类。  
+ 下面的示例演示了`Path`类的一些主要成员。  
   
  [!code-cpp[path class#1](~/samples/snippets/cpp/VS_Snippets_CLR/Path Class/CPP/path class.cpp#1)]
  [!code-csharp[path class#1](~/samples/snippets/csharp/VS_Snippets_CLR/Path Class/CS/path class.cs#1)]
@@ -125,13 +125,13 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
   
 ## Remarks  
  
-此字段可以具有相同的值作为<xref:System.IO.Path.DirectorySeparatorChar>。 `AltDirectorySeparatorChar` 和<xref:System.IO.Path.DirectorySeparatorChar>都是可用于分隔的路径字符串中的目录级别。  
+此字段的值可以与<xref:System.IO.Path.DirectorySeparatorChar>相同。 `AltDirectorySeparatorChar`和<xref:System.IO.Path.DirectorySeparatorChar>都适用于在路径字符串中分隔目录级别。  
   
-此字段的值为斜杠 （'/') 在 Windows 和基于 Unix 的操作系统上。  
+此字段的值在基于 Windows 和 Unix 的操作系统上都是一个斜杠 ("/")。  
   
 ## Examples  
 
-下面的示例显示<xref:System.IO.Path>字段的值上 Windows 和基于 Unix 的系统上。 请注意，Windows 支持正斜杠 (通过返回的这<xref:System.IO.Path.AltDirectorySeparatorChar>字段) 或反斜杠 (返回由<xref:System.IO.Path.DirectorySeparatorChar>字段) 作为路径分隔符字符，而基于 Unix 的系统支持仅正斜杠。
+下面的示例显示<xref:System.IO.Path> Windows 和基于 Unix 的系统上的字段值。 请注意, Windows 支持使用正斜杠 (由<xref:System.IO.Path.AltDirectorySeparatorChar>字段返回) 或反斜杠 ( <xref:System.IO.Path.DirectorySeparatorChar>由字段返回) 作为路径分隔符, 而基于 Unix 的系统只支持正斜杠。
 
 [!code-csharp[DirectorySeparatorChar](~/samples/snippets/csharp/api/system.io/path/directoryseparatorchar/program.cs)]
 [!code-vb[DirectorySeparatorChar](~/samples/snippets/visualbasic/api/system.io/path/directoryseparatorchar/program.vb)]
@@ -189,26 +189,26 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果既没有`path`也不`extension`包含句点 （.）、`ChangeExtension`添加句点。  
+ 如果和`path` `extension`都不包含句点 (.), `ChangeExtension`则添加句点。  
   
- `extension`参数可以包含多个句点和任何有效的路径字符，并且可以是任意长度。 如果`extension`是`null`，则返回的字符串包含的内容`path`与最后一个删除期间和之后的所有字符。  
+ `extension`参数可包含多个句点和任意有效的路径字符, 可以为任意长度。 如果`extension` `path`为`null`, 则返回的字符串将包含的内容, 其中包含上一个句点以及删除后的所有字符。  
   
- 如果`extension`为空字符串，返回的路径字符串包含的内容`path`后到最后一个周期的所有字符中删除。  
+ 如果`extension`是一个空字符串, 则返回的路径字符串包含的`path`内容, 其中包含上一个句点之后的任何字符。  
   
- 如果`path`不具有扩展名和`extension`不是`null`，则返回的字符串包含`path`跟`extension`。  
+ 如果`path`不具有扩展名且`extension`不为`null`, 则返回的字符串`path`后跟`extension`。  
   
- 如果`extension`不是`null`，并且不包含前导句点，则添加句点。  
+ 如果`extension` 不`null`是并且不包含前导句点, 则添加句点。  
   
- 如果`path`包含多个句点分隔的多个扩展插件返回的字符串包含的内容`path`与最后一个句点以及其后的所有字符替换为`extension`。 例如，如果`path`是"\Dir1\examples\pathtests.csx.txt"和`extension`为"cs"，修改后的路径为"\Dir1\examples\pathtests.csx.cs"。  
+ 如果`path`包含由多个句点分隔的多个扩展, 则返回的字符串将`path`包含的内容, 其最后一个句点和后的`extension`所有字符都将替换为。 例如, 如果`path`为 "\Dir1\examples\pathtests.csx.txt" 并且`extension`为 "cs", 则修改后的路径为 "\Dir1\examples\pathtests.csx.cs"。  
   
- 不能验证返回的结果在所有方案中有效。 例如，如果`path`为空，`extension`追加。  
+ 不能验证返回的结果在所有方案中都有效。 例如, 如果`path`为空, `extension`则追加。  
   
- 通用 I/O 任务的列表，请参阅[通用 I/O 任务](~/docs/standard/io/common-i-o-tasks.md)。  
+ 有关常见 i/o 任务的列表, 请参阅[常见 I/o 任务](~/docs/standard/io/common-i-o-tasks.md)。  
   
    
   
 ## Examples  
- 下面的示例演示使用的`ChangeExtension`方法。  
+ 下面的示例演示`ChangeExtension`方法的用法。  
   
  [!code-cpp[System.IO.Path Members#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.Path Members/CPP/pathmembers.cpp#1)]
  [!code-csharp[System.IO.Path Members#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Path Members/CS/pathmembers.cs#1)]
@@ -238,10 +238,10 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
  
 ## Remarks  
 
-此方法旨在将各个字符串串联为单个字符串，表示文件路径。 但是，如果非第一个参数包含根的路径，将忽略任何以前的路径组件，并返回的字符串开头的根的路径组件。 作为一种替代方法`Combine`方法，请考虑使用<xref:System.IO.Path.Join%2A>或<xref:System.IO.Path.TryJoin%2A>方法。
+此方法旨在将各个字符串连接到表示文件路径的单个字符串。 但是, 如果第一个参数不包含一个根路径, 则将忽略以前的任何路径组件, 并且返回的字符串将以该根路径组件开头。 作为`Combine`方法的替代方法, 请考虑<xref:System.IO.Path.Join%2A>使用或<xref:System.IO.Path.TryJoin%2A>方法。
 
 > [!IMPORTANT]
-> 此方法假定第一个参数是一个绝对路径，以下自变量或自变量是相对路径。 如果这不是这种情况，和尤其是当任何后续参数将用户的字符串输入，请调用<xref:System.IO.Path.Join%2A>或<xref:System.IO.Path.TryJoin%2A>方法相反。
+> 此方法假定第一个参数是一个绝对路径, 并且以下参数或参数是相对路径。 如果不是这种情况, 尤其是在任何后续参数都是用户输入的字符串时, 请<xref:System.IO.Path.Join%2A>改<xref:System.IO.Path.TryJoin%2A>为调用或方法。
 
  ]]></format>
         </remarks>
@@ -294,21 +294,21 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
   
 ## Remarks
 
-`paths` 应为要组合的路径部分的一组。 如果其中一个后续路径的绝对路径，然后合并操作重置开头放弃所有以前的组合的路径的绝对路径。  
+`paths`应为要组合的路径部分的数组。 如果其中一个后续路径是绝对路径, 则合并操作将从该绝对路径开始重置, 同时丢弃以前的所有组合路径。  
 
-如果中的任何元素`paths`但最后一个不是驱动器，并且不使用结尾<xref:System.IO.Path.DirectorySeparatorChar>或<xref:System.IO.Path.AltDirectorySeparatorChar>字符`Combine`方法将添加<xref:System.IO.Path.DirectorySeparatorChar>该元素之间的下一个字符。 请注意，如果该元素中并不适合于目标平台路径分隔符结束`Combine`方法保留的原始路径分隔符字符并追加一个受支持。 下面的示例比较了 Windows 和基于 Unix 的系统上的结果时将反斜杠用作路径分隔符字符。
+如果`paths`中的任何元素不是驱动器, 并且不是以<xref:System.IO.Path.DirectorySeparatorChar>或<xref:System.IO.Path.AltDirectorySeparatorChar>字符结尾, 则`Combine`方法将在该元素和下一个元素<xref:System.IO.Path.DirectorySeparatorChar>之间添加一个字符。 请注意, 如果元素以与目标平台不适用的路径分隔符结尾, 则该`Combine`方法将保留原始路径分隔符并附加受支持的字符分隔符。 下面的示例将反斜杠用作路径分隔符时, 比较基于 Windows 和 Unix 的系统上的结果。
 
 [!code-csharp[Combine and path separator characters](~/samples/snippets/csharp/api/system.io/path/combine/program.cs#1)]
 [!code-vb[Combine and path separator characters](~/samples/snippets/visualbasic/api/system.io/path/combine/program.vb#1)]  
 
- 组合路径中省略了长度为零的字符串。  
+ 将从组合路径中省略长度为零的字符串。  
   
- 参数不进行分析，如果它们具有空白区域。  
+ 如果参数有空白, 则不会对其进行分析。  
   
- 对于目录和文件名称不是所有无效的字符被解释为不可接受的`Combine`方法，因为您可以将这些字符用于搜索通配符字符。 例如，虽然`Path.Combine("c:\\", "*.txt")`也可能是无效如果您打算从它创建一个文件，它是作为搜索字符串有效。 因此成功解释通过`Combine`方法。  
+ 不是对目录和文件名无效的所有字符都解释为可接受`Combine`的方法, 因为您可以使用这些字符搜索通配符。 例如, `Path.Combine("c:\\", "*.txt")`如果您要通过创建文件, 则它可能会无效, 它是搜索字符串的有效方法。 因此, 该`Combine`方法成功解释了此方法。  
   
 ## Examples  
- 下面的示例将一个字符串数组合并成一个路径。  
+ 下面的示例将字符串数组合并到路径中。  
   
  [!code-csharp[System.IO.Path.Combine#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.path.combine/cs/program.cs#3)]
  [!code-vb[System.IO.Path.Combine#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.io.path.combine/vb/program.vb#3)]  
@@ -363,23 +363,23 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`path1`不是驱动器引用 （即，"c:"或"d:"） 和定义中不会结束以有效分隔符<xref:System.IO.Path.DirectorySeparatorChar>， <xref:System.IO.Path.AltDirectorySeparatorChar>，或<xref:System.IO.Path.VolumeSeparatorChar>，<xref:System.IO.Path.DirectorySeparatorChar>追加到`path1`在串联前。 请注意，如果`path1`中并不适合于目标平台路径分隔符结束`Combine`方法保留的原始路径分隔符字符并追加一个受支持。 下面的示例比较了 Windows 和基于 Unix 的系统上的结果时将反斜杠用作路径分隔符字符。  
+ 如果`path1`不是驱动器引用 (即 "C:" 或 "D:"), 并且不是以<xref:System.IO.Path.DirectorySeparatorChar>、 <xref:System.IO.Path.AltDirectorySeparatorChar>或<xref:System.IO.Path.VolumeSeparatorChar> <xref:System.IO.Path.DirectorySeparatorChar>中定义的有效分隔符结尾, 则在串联前追加到`path1` 。 请注意, `path1`如果以不适合目标平台的路径分隔符结尾, 则该方法将`Combine`保留原始路径分隔符并附加受支持的字符分隔符。 下面的示例将反斜杠用作路径分隔符时, 比较基于 Windows 和 Unix 的系统上的结果。  
   
 [!code-csharp[Combine and path separator characters](~/samples/snippets/csharp/api/system.io/path/combine/program.cs#2)]
 [!code-vb[Combine and path separator characters](~/samples/snippets/visualbasic/api/system.io/path/combine/program.vb#2)]  
 
- 如果`path2`不包括根 (例如，如果`path2`不以分隔符字符或指定驱动器)，结果将是两个路径，以允许插入分隔符的串联。 如果`path2`包含一个根`path2`返回。  
+ 如果`path2`不包含根 (例如, 如果`path2`不以分隔符或驱动器规范开头), 则会将这两个路径与中间分隔符字符串联。 如果`path2`包含一个根, `path2`则返回。  
   
- 参数不进行分析，如果它们具有空白区域。 因此，如果`path2`包括空格 (例如，"\file.txt")，<xref:System.IO.Path.Combine%2A>方法将追加`path2`到`path1`而不是仅返回`path2`。  
+ 如果参数有空白, 则不会对其进行分析。 因此, 如果`path2`包含空格 (例如 "\file.txt"), 则该<xref:System.IO.Path.Combine%2A>方法将追加`path2`到`path1` , 而不是仅`path2`返回。  
   
- 对于目录和文件名称不是所有无效的字符被解释为不可接受的`Combine`方法，因为您可以将这些字符用于搜索通配符字符。 例如，虽然`Path.Combine("c:\\", "*.txt")`也可能是无效如果您打算从它创建一个文件，它是作为搜索字符串有效。 因此成功解释通过`Combine`方法。  
+ 不是对目录和文件名无效的所有字符都解释为可接受`Combine`的方法, 因为您可以使用这些字符搜索通配符。 例如, `Path.Combine("c:\\", "*.txt")`如果您要通过创建文件, 则它可能会无效, 它是搜索字符串的有效方法。 因此, 该`Combine`方法成功解释了此方法。  
   
- 通用 I/O 任务的列表，请参阅[通用 I/O 任务](~/docs/standard/io/common-i-o-tasks.md)。  
+ 有关常见 i/o 任务的列表, 请参阅[常见 I/o 任务](~/docs/standard/io/common-i-o-tasks.md)。  
   
    
   
 ## Examples  
- 下面的示例演示了如何使用`Combine`基于 Windows 的桌面平台上的方法。  
+ 下面的示例演示如何在`Combine`基于 Windows 的桌面平台上使用方法。  
   
  [!code-cpp[pathcombine#1](~/samples/snippets/cpp/VS_Snippets_CLR/pathcombine/CPP/pathcombine.cpp#1)]
  [!code-csharp[pathcombine#1](~/samples/snippets/csharp/VS_Snippets_CLR/pathcombine/CS/pathcombine.cs#1)]
@@ -438,25 +438,25 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `path1` 应为绝对路径 (例如，"d:\archives"或"\\\archives\public")。 如果`path2`或`path3`也是绝对路径，合并操作将放弃所有先前合并路径和重置为该绝对路径。  
+ `path1`应为绝对路径 (例如, "d:\archives" 或 "\\\archives\public")。 如果`path2` 或`path3`也是绝对路径, 则合并操作将放弃所有以前合并的路径, 并重置为该绝对路径。  
   
- 组合路径中省略了长度为零的字符串。  
+ 将从组合路径中省略长度为零的字符串。  
   
- 如果`path1`或`path2`不是驱动器引用 （即，"c:"或"d:"） 和定义中不会结束以有效分隔符<xref:System.IO.Path.DirectorySeparatorChar>， <xref:System.IO.Path.AltDirectorySeparatorChar>，或<xref:System.IO.Path.VolumeSeparatorChar>，<xref:System.IO.Path.DirectorySeparatorChar>追加到`path1`或`path2`串联之前。 请注意，如果`path1`或`path2`中并不适合于目标平台路径分隔符结束`Combine`方法保留的原始路径分隔符字符并追加一个受支持。 下面的示例比较了 Windows 和基于 Unix 的系统上的结果时将反斜杠用作路径分隔符字符。 
+ 如果`path1`或<xref:System.IO.Path.AltDirectorySeparatorChar> <xref:System.IO.Path.DirectorySeparatorChar> <xref:System.IO.Path.DirectorySeparatorChar> `path1` <xref:System.IO.Path.VolumeSeparatorChar>不是驱动器引用 (即 "C:" 或 "D:"), 并且不是以、或中定义的有效分隔符结尾, 则将追加到或`path2` `path2`连接前。 请注意, `path1`如果`path2`或以不适合目标平台的路径分隔符字符结束, 则该方法将`Combine`保留原始路径分隔符并追加一个受支持的字符分隔符。 下面的示例将反斜杠用作路径分隔符时, 比较基于 Windows 和 Unix 的系统上的结果。 
 
 [!code-csharp[Combine and path separator characters](~/samples/snippets/csharp/api/system.io/path/combine/program.cs#3)]
 [!code-vb[Combine and path separator characters](~/samples/snippets/visualbasic/api/system.io/path/combine/program.vb#3)]  
 
- 如果`path2`不包括根 (例如，如果`path2`不以分隔符字符或指定驱动器)，结果将是两个路径，以允许插入分隔符的串联。 如果`path2`包含一个根`path2`返回。  
+ 如果`path2`不包含根 (例如, 如果`path2`不以分隔符或驱动器规范开头), 则会将这两个路径与中间分隔符字符串联。 如果`path2`包含一个根, `path2`则返回。  
   
- 参数不进行分析，如果它们具有空白区域。 因此，如果`path2`包括空格 (例如，"\file.txt")，<xref:System.IO.Path.Combine%2A>方法将追加`path2`到`path1`。  
+ 如果参数有空白, 则不会对其进行分析。 因此, 如果`path2`包含空格 (例如 "\file.txt"), 则该方法将<xref:System.IO.Path.Combine%2A>追加`path2`到`path1`。  
   
- 对于目录和文件名称不是所有无效的字符被解释为不可接受的`Combine`方法，因为您可以将这些字符用于搜索通配符字符。 例如，虽然`Path.Combine("c:\\", "*.txt")`也可能是无效如果您打算从它创建一个文件，它是作为搜索字符串有效。 因此成功解释通过`Combine`方法。  
+ 不是对目录和文件名无效的所有字符都解释为可接受`Combine`的方法, 因为您可以使用这些字符搜索通配符。 例如, `Path.Combine("c:\\", "*.txt")`如果您要通过创建文件, 则它可能会无效, 它是搜索字符串的有效方法。 因此, 该`Combine`方法成功解释了此方法。  
   
    
   
 ## Examples  
- 下面的示例将三个路径合并。  
+ 下面的示例将三个路径组合在一起。  
   
  [!code-csharp[System.IO.Path.Combine#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.path.combine/cs/program.cs#1)]
  [!code-vb[System.IO.Path.Combine#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.io.path.combine/vb/program.vb#1)]  
@@ -511,25 +511,25 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `path1` 应为绝对路径 (例如，"d:\archives"或"\\\archives\public")。如果其中一个后续路径也是绝对路径，合并操作将放弃所有以前合并的路径，并将重置为绝对路径的。  
+ `path1`应为绝对路径 (例如, "d:\archives" 或 "\\\archives\public")。如果其中一个后续路径也是绝对路径, 则合并操作会丢弃所有以前合并的路径, 并重置为该绝对路径。  
   
- 组合路径中省略了长度为零的字符串。  
+ 将从组合路径中省略长度为零的字符串。  
   
- 如果`path1`， `path2`，或`path3`不是驱动器引用 （即，"c:"或"d:"） 和定义中不会结束以有效分隔符<xref:System.IO.Path.DirectorySeparatorChar>， <xref:System.IO.Path.AltDirectorySeparatorChar>，或<xref:System.IO.Path.VolumeSeparatorChar>，<xref:System.IO.Path.DirectorySeparatorChar>追加到该日志之前串联。 请注意，如果`path1`， `path2`，或`path3`中并不适合于目标平台路径分隔符结束`Combine`方法保留的原始路径分隔符字符并追加一个受支持。 下面的示例比较了 Windows 和基于 Unix 的系统上的结果时将反斜杠用作路径分隔符字符。 
+ 如果`path1`、 <xref:System.IO.Path.AltDirectorySeparatorChar> <xref:System.IO.Path.DirectorySeparatorChar> <xref:System.IO.Path.VolumeSeparatorChar> <xref:System.IO.Path.DirectorySeparatorChar>或不是驱动器引用 (即 "C:" 或 "D:"), 并且不是以、或中定义的有效分隔符结尾, 则将其追加到它上面`path3` `path2`连接前。 请注意, `path1`如果`path2`、或`path3`以不适合目标平台的路径分隔符结尾, 则该方法将`Combine`保留原始路径分隔符并附加受支持的字符分隔符。 下面的示例将反斜杠用作路径分隔符时, 比较基于 Windows 和 Unix 的系统上的结果。 
 
 [!code-csharp[Combine and path separator characters](~/samples/snippets/csharp/api/system.io/path/combine/program.cs#4)]
 [!code-vb[Combine and path separator characters](~/samples/snippets/visualbasic/api/system.io/path/combine/program.vb#4)]   
   
- 如果`path2`不包括根 (例如，如果`path2`不以分隔符字符或指定驱动器)，结果将是两个路径，以允许插入分隔符的串联。 如果`path2`包含一个根`path2`返回。  
+ 如果`path2`不包含根 (例如, 如果`path2`不以分隔符或驱动器规范开头), 则会将这两个路径与中间分隔符字符串联。 如果`path2`包含一个根, `path2`则返回。  
   
- 参数不进行分析，如果它们具有空白区域。 因此，如果`path2`包括空格 (例如，"\file.txt")，<xref:System.IO.Path.Combine%2A>方法将追加`path2`到`path1`。  
+ 如果参数有空白, 则不会对其进行分析。 因此, 如果`path2`包含空格 (例如 "\file.txt"), 则该方法将<xref:System.IO.Path.Combine%2A>追加`path2`到`path1`。  
   
- 对于目录和文件名称不是所有无效的字符被解释为不可接受的`Combine`方法，因为您可以将这些字符用于搜索通配符字符。 例如，虽然`Path.Combine("c:\\", "*.txt")`也可能是无效如果您打算从它创建一个文件，它是作为搜索字符串有效。 因此成功解释通过`Combine`方法。  
+ 不是对目录和文件名无效的所有字符都解释为可接受`Combine`的方法, 因为您可以使用这些字符搜索通配符。 例如, `Path.Combine("c:\\", "*.txt")`如果您要通过创建文件, 则它可能会无效, 它是搜索字符串的有效方法。 因此, 该`Combine`方法成功解释了此方法。  
   
    
   
 ## Examples  
- 下面的示例将四个路径合并。  
+ 下面的示例将四个路径组合在一起。  
   
  [!code-csharp[System.IO.Path.Combine#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.path.combine/cs/program.cs#2)]
  [!code-vb[System.IO.Path.Combine#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.io.path.combine/vb/program.vb#2)]  
@@ -578,13 +578,13 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
   
 ## Remarks
 
-<xref:System.IO.Path.AltDirectorySeparatorChar> 和`DirectorySeparatorChar`都是可用于分隔的路径字符串中的目录级别。  
+<xref:System.IO.Path.AltDirectorySeparatorChar>和`DirectorySeparatorChar`都适用于在路径字符串中分隔目录级别。  
   
-当使用.NET Core 开发在多个平台运行的应用程序：
+使用 .NET Core 开发在多个平台上运行的应用程序时:
 
-- 如果您愿意硬编码目录分隔符字符，则应使用正斜杠 (`/`) 字符。 它是 Unix 系统上的唯一可识别的目录分隔符字符中的示例所示，输出的形式，<xref:System.IO.Path.AltDirectorySeparatorChar>在 Windows 上。
+- 如果要对目录分隔符进行硬编码, 则应使用正斜杠 (`/`) 字符。 它是 Unix 系统上唯一可识别的目录分隔符, 如示例的输出所示, 在 Windows <xref:System.IO.Path.AltDirectorySeparatorChar>上是。
 
-- 使用字符串串联来动态检索在运行时的路径分隔符字符并将它合并到文件系统路径。 例如，应用于对象的 
+- 使用字符串串联在运行时动态检索路径分隔符, 并将其合并到文件系统路径中。 例如，应用于对象的 
 
    ```csharp
    separator = Path.DirectorySeparatorChar;
@@ -594,15 +594,15 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
    separator = Path.DirectorySeparatorChar;
    path = $"{separator}users{separator}user1{separator}";
    ``` 
-   此外可以检索的值从<xref:System.IO.Path.AltDirectorySeparatorChar>属性，因为它是 Windows 和基于 Unx 的系统上相同。
+   你还可以从<xref:System.IO.Path.AltDirectorySeparatorChar>属性中检索值, 因为它在基于 Windows 和 Unx 的系统上是相同的。
 
-- 检索<xref:System.IO.Path.AltDirectorySeparatorChar>属性
+- <xref:System.IO.Path.AltDirectorySeparatorChar>检索属性
 
-如果你的应用程序不是跨平台，可以使用适用于您系统的分隔符。
+如果你的应用程序不是跨平台的, 你可以使用适用于你的系统的分隔符。
 
 ## Examples  
 
-下面的示例显示<xref:System.IO.Path>字段的值上 Windows 和基于 Unix 的系统上。 请注意，Windows 支持正斜杠 (通过返回的这<xref:System.IO.Path.AltDirectorySeparatorChar>字段) 或反斜杠 (返回由<xref:System.IO.Path.DirectorySeparatorChar>字段) 作为路径分隔符字符，而基于 Unix 的系统支持仅正斜杠。  
+下面的示例显示<xref:System.IO.Path> Windows 和基于 Unix 的系统上的字段值。 请注意, Windows 支持使用正斜杠 (由<xref:System.IO.Path.AltDirectorySeparatorChar>字段返回) 或反斜杠 ( <xref:System.IO.Path.DirectorySeparatorChar>由字段返回) 作为路径分隔符, 而基于 Unix 的系统只支持正斜杠。  
 
 [!code-csharp[DirectorySeparatorChar](~/samples/snippets/csharp/api/system.io/path/directoryseparatorchar/program.cs)]
 [!code-vb[DirectorySeparatorChar](~/samples/snippets/visualbasic/api/system.io/path/directoryseparatorchar/program.vb)]
@@ -757,14 +757,14 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在大多数情况下，此方法返回的字符串包含的路径，但不是包括最后一个中的所有字符<xref:System.IO.Path.DirectorySeparatorChar>或<xref:System.IO.Path.AltDirectorySeparatorChar>。 如果路径包括的根目录，例如"c:\\"，则返回 null。 请注意，此方法不支持使用路径"文件:"。 因为返回的路径不包括<xref:System.IO.Path.DirectorySeparatorChar>或<xref:System.IO.Path.AltDirectorySeparatorChar>，将返回的路径传递回<xref:System.IO.Path.GetDirectoryName%2A>方法将导致每次在结果字符串的后续调用的一个文件夹级别的截断。 例如，将"C:\Directory\SubDirectory\test.txt"的路径传递到<xref:System.IO.Path.GetDirectoryName%2A>方法将返回"C:\Directory\SubDirectory"。 将该字符串，"C:\Directory\SubDirectory"传递到<xref:System.IO.Path.GetDirectoryName%2A>将导致"C:\Directory"。  
+ 在大多数情况下, 此方法返回的字符串包含路径中的所有字符, 但不包括最后一个<xref:System.IO.Path.DirectorySeparatorChar>或。 <xref:System.IO.Path.AltDirectorySeparatorChar> 如果路径包含根目录 (如 "c:\\"), 则返回 null。 请注意, 此方法不支持使用 "file:" 的路径。 由于返回的路径不包含<xref:System.IO.Path.DirectorySeparatorChar>或<xref:System.IO.Path.AltDirectorySeparatorChar>, 因此将<xref:System.IO.Path.GetDirectoryName%2A>返回的路径传递回方法会导致对结果字符串的每个后续调用截断一个文件夹级别。 例如, 将路径 "C:\Directory\SubDirectory\test.txt" 传递到<xref:System.IO.Path.GetDirectoryName%2A>方法将返回 "C:\Directory\SubDirectory"。 将该字符串 "C:\Directory\SubDirectory" 传递到<xref:System.IO.Path.GetDirectoryName%2A>将导致 "C:\Directory"。  
   
- 通用 I/O 任务的列表，请参阅[通用 I/O 任务](~/docs/standard/io/common-i-o-tasks.md)。  
+ 有关常见 i/o 任务的列表, 请参阅[常见 I/o 任务](~/docs/standard/io/common-i-o-tasks.md)。  
   
    
   
 ## Examples  
- 下面的示例演示了如何使用`GetDirectoryName`基于 Windows 的桌面平台上的方法。  
+ 下面的示例演示如何在`GetDirectoryName`基于 Windows 的桌面平台上使用方法。  
   
  [!code-cpp[System.IO.Path Members#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.Path Members/CPP/pathmembers.cpp#3)]
  [!code-csharp[System.IO.Path Members#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Path Members/CS/pathmembers.cs#3)]
@@ -819,7 +819,7 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-此方法获取的扩展`path`通过搜索`path`为句点 ("。")、 从只读的范围中的最后一个字符开始，一直到第一个字符。 如果之前找到一段<xref:System.IO.Path.DirectorySeparatorChar>或<xref:System.IO.Path.AltDirectorySeparatorChar>字符，返回只读的跨度包含该句点以及字符后它; 否则为<xref:System.ReadOnlySpan%601.Empty?displayProperty=nameWithType>返回。  
+此方法`path`通过搜索`path`句点 (".") (从只读范围中的最后一个字符开始到其第一个字符) 来获取的扩展。 如果在<xref:System.IO.Path.DirectorySeparatorChar>或<xref:System.IO.Path.AltDirectorySeparatorChar>字符之前找到句点, 则返回的只读范围将包含句点和<xref:System.ReadOnlySpan%601.Empty?displayProperty=nameWithType>后面的字符; 否则返回。  
 
          ]]></format>
         </remarks>
@@ -869,12 +869,12 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
   
 ## Remarks  
 
-此方法获取的扩展`path`通过搜索`path`句点 （.） 开头中的最后一个字符为`path`并继续直到第一个字符。 如果之前找到一段<xref:System.IO.Path.DirectorySeparatorChar>或<xref:System.IO.Path.AltDirectorySeparatorChar>字符，返回的字符串包含该句点以及字符后它; 否则为<xref:System.String.Empty?displayProperty=nameWithType>返回。  
+此方法`path`通过搜索`path`句点 (.) (从中`path`的最后一个字符开始, 一直到第一个字符) 来获取的扩展。 如果在<xref:System.IO.Path.DirectorySeparatorChar>或<xref:System.IO.Path.AltDirectorySeparatorChar>字符之前找到句点, 则返回的字符串将包含句点和<xref:System.String.Empty?displayProperty=nameWithType>后面的字符; 否则返回。  
   
- 通用 I/O 任务的列表，请参阅[通用 I/O 任务](~/docs/standard/io/common-i-o-tasks.md)。
+ 有关常见 i/o 任务的列表, 请参阅[常见 I/o 任务](~/docs/standard/io/common-i-o-tasks.md)。
  
 ## Examples  
- 下面的示例演示了如何使用`GetExtension`基于 Windows 的桌面平台上的方法。  
+ 下面的示例演示如何在`GetExtension`基于 Windows 的桌面平台上使用方法。  
   
  [!code-cpp[System.IO.Path Members#4](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.Path Members/CPP/pathmembers.cpp#4)]
  [!code-csharp[System.IO.Path Members#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Path Members/CS/pathmembers.cs#4)]
@@ -921,7 +921,7 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-返回的只读的范围将包含路径，请按照中的最后一个分隔符的字符`path`。 如果中的最后一个字符`path`是卷或目录分隔符字符，该方法将返回<xref:System.ReadOnlySpan%601.Empty?displayProperty=nameWithType>。 如果`path`包含没有分隔符，该方法将返回`path`。
+返回的只读范围包含路径中位于`path`最后一个分隔符后面的字符。 如果中`path`的最后一个字符是一个卷或目录分隔符字符, 则该<xref:System.ReadOnlySpan%601.Empty?displayProperty=nameWithType>方法将返回。 如果`path`不包含分隔符, 该方法将返回`path`。
 
          ]]></format>
         </remarks>
@@ -971,18 +971,18 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
   
 ## Remarks  
 
-返回的值是`null`如果文件路径`null`。  
+如果文件路径为`null` `null`, 则返回值为。  
   
-用于确定文件名称的开头的分隔符字符<xref:System.IO.Path.DirectorySeparatorChar>和<xref:System.IO.Path.AltDirectorySeparatorChar>。  
+用于确定文件名开头的分隔符是<xref:System.IO.Path.DirectorySeparatorChar>和。 <xref:System.IO.Path.AltDirectorySeparatorChar>  
 
-因为*\\*是基于 Unix 的法律文件名`GetFileName`运行基于 Unix 的平台不能正确地从基于 Windows 的路径，如返回的文件的名称*c:\\mydir\\myfile.ext*，但`GetFileName`下基于 Windows 的平台运行正确的基于 Unix 的路径，如从返回的文件的名称 */tmp/myfile.ext*，因此行为的`GetFileName`方法不是严格的基于 Unix 和基于 Windows 的平台上。
+由于*\\*是 unix 上的合法文件名, 因此`GetFileName`在基于 unix 的平台下运行时, 无法从基于 Windows 的路径 (如*C\\: mydir\\myfile.txt*) 正确返回文件名, 但`GetFileName`在基于 Windows 的平台下运行时, 可以从基于 unix 的路径 (如 */tmp/myfile.ext*) 正确返回文件名, 因此, 在`GetFileName`基于 unix 和基于 Windows 的平台上, 方法的行为并不完全相同。
 
-通用 I/O 任务的列表，请参阅[通用 I/O 任务](~/docs/standard/io/common-i-o-tasks.md)。  
+有关常见 i/o 任务的列表, 请参阅[常见 I/o 任务](~/docs/standard/io/common-i-o-tasks.md)。  
   
    
   
 ## Examples  
- 下面的示例演示的行为`GetFileName`基于 Windows 的桌面平台上的方法。  
+ 下面的示例演示了在基于 Windows `GetFileName`的桌面平台上的方法的行为。  
   
  [!code-cpp[System.IO.Path Members#5](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.Path Members/CPP/pathmembers.cpp#5)]
  [!code-csharp[System.IO.Path Members#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Path Members/CS/pathmembers.cs#5)]
@@ -1072,14 +1072,14 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法不会验证路径或文件名称存在。  
+ 此方法不会验证路径或文件名是否存在。  
   
- 通用 I/O 任务的列表，请参阅[通用 I/O 任务](~/docs/standard/io/common-i-o-tasks.md)。  
+ 有关常见 i/o 任务的列表, 请参阅[常见 I/o 任务](~/docs/standard/io/common-i-o-tasks.md)。  
   
    
   
 ## Examples  
- 下面的示例演示使用的`GetFileNameWithoutExtension`方法。  
+ 下面的示例演示`GetFileNameWithoutExtension`方法的用法。  
   
  [!code-cpp[System.IO.Path Members#6](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.Path Members/CPP/pathmembers.cpp#6)]
  [!code-csharp[System.IO.Path Members#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Path Members/CS/pathmembers.cs#6)]
@@ -1141,27 +1141,27 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
   
 ## Remarks  
   
- 绝对路径包括所需的系统上查找文件或目录的所有信息。  
+ 绝对路径包含定位系统中的文件或目录所需的所有信息。  
   
- 指定目录的文件`path`不需要存在。 例如，如果*c:\temp\newdir*是当前目录中，调用`GetFullPath`上的文件名称，如*test.txt*返回*c:\temp\newdir\test.txt*。 不需要存在该文件。  
+ 指定的`path`文件或目录不存在。 例如, 如果*c:\temp\newdir*为当前目录, 则对文件名`GetFullPath` (如*test.txt* ) 调用会返回*c:\temp\newdir\test.txt*。 文件不需要存在。  
 
 > [!IMPORTANT]
-> 如果`path`是相对路径，此重载方法返回可以基于当前驱动器和当前目录的完全限定的路径。 执行应用程序随时可以更改当前驱动器和当前目录。 因此，不能提前确定返回的此重载的路径。 若要返回的确定性的路径，请调用<xref:System.IO.Path.GetFullPath(System.String,System.String)>重载。 您还可以调用<xref:System.IO.Path.IsPathFullyQualified%2A>方法，以确定是否完全限定路径或相对，因此是否调用`GetFullPath`是有必要。
+> 如果`path`是相对路径, 则此重载返回可基于当前驱动器和当前目录的完全限定路径。 当应用程序执行时, 当前驱动器和当前目录可以随时更改。 因此, 不能提前确定此重载返回的路径。 若要返回确定性路径, 请调用<xref:System.IO.Path.GetFullPath(System.String,System.String)>重载。 还可以调用<xref:System.IO.Path.IsPathFullyQualified%2A>方法来确定路径是完全限定路径还是相对路径, 从而确定是否需要`GetFullPath`调用。
 
- 但是，如果`path`确实存在，调用方必须有权获取路径信息`path`。 请注意，与不同的大多数成员<xref:System.IO.Path>类，此方法访问文件系统。  
+ 但是, 如果`path`存在, 则调用方必须具有获取的路径信息的`path`权限。 请注意, 与<xref:System.IO.Path>类的大多数成员不同, 此方法访问文件系统。  
   
- 此方法使用当前目录和卷的当前信息进行完全限定`path`。 如果指定的文件命名为仅在`path`，`GetFullPath`返回当前目录的完全限定的路径。  
+ 此方法使用当前目录和当前卷信息来完全限定`path`。 如果仅在中`path`指定文件名, `GetFullPath`则将返回当前目录的完全限定路径。  
   
- 如果您通过短文件名中，它将扩展为长文件名。  
+ 如果传入短文件名, 则会将其扩展到长文件名。  
   
- 路径不包含任何重要的字符，如果无效，除非它包含一个或多个"。"字符后跟任意数目的空格;则它将解析为"。".."。  
+ 如果路径不包含有效字符, 则无效, 除非它包含一个或多个 "." 字符, 后跟任意数量的空格;然后, 它将被分析为 "." 或 "..."。  
 
-.NET core 1.1 和更高版本和.NET Framework 4.6.2 及更高版本还支持包括设备名称，如下所述的路径"\\？ \C:\"。
+.NET Core 1.1 及更高版本和 .NET Framework 4.6.2 及更高版本还支持包含设备名称的路径, 例如\\"？ \c\":。
 
-Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows 系统上的路径格式](~/docs/standard/io/file-path-formats.md)。 通用 I/O 任务的列表，请参阅[通用 I/O 任务](~/docs/standard/io/common-i-o-tasks.md)。
+有关 Windows 上的文件路径格式的详细信息, 请参阅[windows 系统上的文件路径格式](~/docs/standard/io/file-path-formats.md)。 有关常见 i/o 任务的列表, 请参阅[常见 I/o 任务](~/docs/standard/io/common-i-o-tasks.md)。
   
 ## Examples  
- 下面的示例演示`GetFullPath`基于 Windows 的桌面平台上的方法。  
+ 下面的示例演示基于`GetFullPath` Windows 的桌面平台上的方法。  
   
  [!code-cpp[System.IO.Path Members#7](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.Path Members/CPP/pathmembers.cpp#7)]
  [!code-csharp[System.IO.Path Members#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Path Members/CS/pathmembers.cs#7)]
@@ -1177,7 +1177,7 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
         <exception cref="T:System.ArgumentNullException"><paramref name="path" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="path" /> 包含一个冒号（“:”），此冒号不是卷标识符（如，“c:\\”）的一部分。</exception>
         <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">用于访问该路径。</permission>
+        <permission cref="T:System.Security.Permissions.FileIOPermission">用于访问路径。</permission>
         <related type="Article" href="~/docs/standard/io/file-path-formats.md">Windows 系统中的文件路径格式</related>
         <related type="Article" href="~/docs/standard/io/index.md">文件和流 I/O</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">如何：从文件读取文本</related>
@@ -1220,13 +1220,13 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
   
 ## Remarks  
 
-如果`path`是空路径，该方法将返回`basePath`。 如果`path`是完全限定的路径，方法传递`path`到<xref:System.IO.Path.GetFullPath(System.String)>方法并返回结果。
+如果`path`是一个空路径, 则该方法`basePath`返回。 如果`path`是完全限定的路径, 则该方法`path`将传递<xref:System.IO.Path.GetFullPath(System.String)>给方法并返回结果。
 
-使用此方法返回的确定性路径基于指定的卷和根目录时要使用相对路径。 使用预定义`basePath`而不是一个基于当前驱动器目录防止不需要的文件路径在当前驱动器和目录中的意外更改所造成的。 
+使用相对路径时, 使用此方法可基于指定的卷和根目录返回确定性路径。 根据当前驱动器`basePath`目录使用预定义的 (而不是一个), 防止当前驱动器和目录中的意外更改引起的不需要的文件路径。 
 
 ## <a name="example"></a>示例
 
-下面的示例定义一个变量， `basePath`，用于表示应用程序的当前目录。 它然后将其传递给`GetFullPath`方法以获取应用程序的数据目录的完全限定的路径。
+下面的示例定义了一个变量`basePath`, 用于表示应用程序的当前目录。 然后, 将其传递给`GetFullPath`方法以获取应用程序的数据目录的完全限定路径。
 
 [!code-csharp[Path.GetFullPath(String,String)](~/samples/snippets/csharp/api/system.io/path/getfullpath/program.cs)] 
 [!code-vb[Path.GetFullPath(String,String)](~/samples/snippets/visualbasic/api/system.io/path/getfullpath/program.vb)] 
@@ -1236,7 +1236,7 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
         <exception cref="T:System.ArgumentNullException"><paramref name="path" /> 或 <paramref name="basePath" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="basePath" /> 不是完全限定的路径。
 
-或
+- 或 -
 
 <paramref name="path" /> 或 <paramref name="basePath" /> 包含无效的路径字符，例如 U+0000。</exception>
       </Docs>
@@ -1279,12 +1279,12 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不保证此方法返回的数组以包含在文件和目录名称中无效的字符的完整集合。 无效的字符的完整集可能会因文件系统。 例如，在基于 Windows 的桌面平台上无效路径字符可能包括 ASCII/Unicode 字符 1 到 31 之间，以及用引号括起来 （"）、 小于 (\<)、 大于号 (>)、 竖线 (&#124;)，退格符 (\b)、 null (\0) 和制表符 (\t)。  
+ 从此方法返回的数组不保证包含在文件和目录名称中无效的完整字符集。 完整的无效字符集可能因文件系统而异。 例如, 在基于 Windows 的桌面平台上, 无效路径字符可能包括 ASCII/Unicode 字符1到31、引号 (")、小于 (\<)、大于 (>)、管道 (&#124;)、backspace (\b)、null (\ 0) 和制表符 (\t)。  
   
    
   
 ## Examples  
- 下面的示例演示<xref:System.IO.Path.GetInvalidFileNameChars%2A>方法和<xref:System.IO.Path.GetInvalidPathChars%2A>方法来检索无效的字符。  
+ 下面的示例演示了<xref:System.IO.Path.GetInvalidFileNameChars%2A>用于检索无效<xref:System.IO.Path.GetInvalidPathChars%2A>字符的方法和方法。  
   
  [!code-cpp[IO.Path.GetInvalidFile-PathChars#1](~/samples/snippets/cpp/VS_Snippets_CLR/IO.Path.GetInvalidFile-PathChars/cpp/example.cpp#1)]
  [!code-csharp[IO.Path.GetInvalidFile-PathChars#1](~/samples/snippets/csharp/VS_Snippets_CLR/IO.Path.GetInvalidFile-PathChars/CS/example.cs#1)]
@@ -1332,12 +1332,12 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不保证此方法返回的数组以包含在文件和目录名称中无效的字符的完整集合。 无效的字符的完整集可能会因文件系统。 例如，在基于 Windows 的桌面平台上无效路径字符可能包括 ASCII/Unicode 字符 1 到 31 之间，以及用引号括起来 （"）、 小于 (\<)、 大于号 (>)、 竖线 (&#124;)，退格符 (\b)、 null (\0) 和制表符 (\t)。  
+ 从此方法返回的数组不保证包含在文件和目录名称中无效的完整字符集。 完整的无效字符集可能因文件系统而异。 例如, 在基于 Windows 的桌面平台上, 无效路径字符可能包括 ASCII/Unicode 字符1到31、引号 (")、小于 (\<)、大于 (>)、管道 (&#124;)、backspace (\b)、null (\ 0) 和制表符 (\t)。  
   
    
   
 ## Examples  
- 下面的示例演示<xref:System.IO.Path.GetInvalidFileNameChars%2A>方法和<xref:System.IO.Path.GetInvalidPathChars%2A>方法来检索无效的字符。  
+ 下面的示例演示了<xref:System.IO.Path.GetInvalidFileNameChars%2A>用于检索无效<xref:System.IO.Path.GetInvalidPathChars%2A>字符的方法和方法。  
   
  [!code-cpp[IO.Path.GetInvalidFile-PathChars#1](~/samples/snippets/cpp/VS_Snippets_CLR/IO.Path.GetInvalidFile-PathChars/cpp/example.cpp#1)]
  [!code-csharp[IO.Path.GetInvalidFile-PathChars#1](~/samples/snippets/csharp/VS_Snippets_CLR/IO.Path.GetInvalidFile-PathChars/CS/example.cs#1)]
@@ -1427,26 +1427,26 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法不会验证路径或文件名称存在。  
+ 此方法不会验证路径或文件名是否存在。  
   
- 此方法返回的字符串的可能模式如下所示：  
+ 此方法返回的字符串的可能模式如下所示:  
   
-- 空字符串 (`path`当前驱动器或卷上指定了相对路径)。  
+- 空字符串 (`path`在当前驱动器或卷上指定了相对路径)。  
   
-- "\" (`path`当前驱动器上指定的绝对路径)。  
+- "\" (`path`指定了当前驱动器上的绝对路径)。  
   
-- "X:"(`path`上的驱动器，其中 X 表示驱动器或卷的号指定的相对路径)。  
+- "X:" (`path`指定驱动器上的相对路径, 其中 X 表示驱动器或卷号)。  
   
-- "X:\" (`path`给定驱动器上指定的绝对路径)。  
+- "X:\" (`path`在给定驱动器上指定了绝对路径)。  
   
-- "\\\ComputerName\SharedFolder" (a UNC path).  
+- "\\\ComputerName\SharedFolder" (UNC 路径)。  
   
-- "\\\\\?\C:"（DOS 设备路径，在.NET Core 1.1 及更高版本和.NET Framework 4.6.2 和更高版本中支持）
+- "\\\C:"\?(DOS 设备路径, 在 .net Core 1.1 及更高版本中受支持, 在 .NET Framework 4.6.2 及更高版本中)\\
    
- 在 Windows 上的文件路径的详细信息，请参阅[文件在 Windows 系统上的路径格式](~/docs/standard/io/file-path-formats.md)。 通用 I/O 任务的列表，请参阅[通用 I/O 任务](~/docs/standard/io/common-i-o-tasks.md)。  
+ 有关 Windows 上的文件路径的详细信息, 请参阅[windows 系统上的文件路径格式](~/docs/standard/io/file-path-formats.md)。 有关常见 i/o 任务的列表, 请参阅[常见 I/o 任务](~/docs/standard/io/common-i-o-tasks.md)。  
   
 ## Examples  
- 下面的示例演示使用的`GetPathRoot`方法。  
+ 下面的示例演示`GetPathRoot`方法的用法。  
   
  [!code-cpp[System.IO.Path Members#8](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.Path Members/CPP/pathmembers.cpp#8)]
  [!code-csharp[System.IO.Path Members#8](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Path Members/CS/pathmembers.cs#8)]
@@ -1456,7 +1456,7 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="path" /> 包含 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 中已定义的一个或多个无效字符。  
   
-或 
+- 或 - 
  <see cref="F:System.String.Empty" /> 被传递到 <paramref name="path" />。</exception>
         <related type="article" href="~/docs/standard/io/file-path-formats.md">Windows 系统中的文件路径格式</related>
         <related type="Article" href="~/docs/standard/io/index.md">文件和流 I/O</related>
@@ -1502,12 +1502,12 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IO.Path.GetRandomFileName%2A>方法返回加密型强随机字符串可用作文件夹名称或文件名称。 与不同<xref:System.IO.Path.GetTempFileName%2A>，<xref:System.IO.Path.GetRandomFileName%2A>不会创建一个文件。 当您的文件系统的安全性是至关重要的时而不是应使用此方法<xref:System.IO.Path.GetTempFileName%2A>。  
+ <xref:System.IO.Path.GetRandomFileName%2A>方法返回可用作文件夹名称或文件名的加密型强随机字符串。 与<xref:System.IO.Path.GetTempFileName%2A>不同<xref:System.IO.Path.GetRandomFileName%2A> , 不创建文件。 如果文件系统的安全性非常重要, 则应使用此方法而不<xref:System.IO.Path.GetTempFileName%2A>是。  
   
    
   
 ## Examples  
- 下面的示例显示的输出<xref:System.IO.Path.GetRandomFileName%2A>方法。  
+ 下面的示例显示了方法的<xref:System.IO.Path.GetRandomFileName%2A>输出。  
   
  [!code-csharp[System.IO.Path Members#20](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Path Members/CS/pathmembers20.cs#20)]
  [!code-vb[System.IO.Path Members#20](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IO.Path Members/VB/pathmembers20.vb#20)]  
@@ -1551,7 +1551,7 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-通过调用来解析路径<xref:System.IO.Path.GetFullPath%2A>方法，然后再计算不同之处。 该方法使用当前平台的默认文件路径比较 (<xref:System.StringComparison.OrdinalIgnoreCase?displayProperty=nameWithType>适用于 Windows 和 MacOs，<xref:System.StringComparison.Ordinal?displayProperty=nameWithType>适用于 Linux。 
+在计算差之前, 可以<xref:System.IO.Path.GetFullPath%2A>通过调用方法解析路径。 方法使用适用于 Linux 的当前平台 (<xref:System.StringComparison.OrdinalIgnoreCase?displayProperty=nameWithType>适用于 Windows 和 MacOs) <xref:System.StringComparison.Ordinal?displayProperty=nameWithType>的默认文件路径比较。 
 
          ]]></format>
         </remarks>
@@ -1602,13 +1602,13 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法创建的临时文件。TMP 文件扩展名。 在用户的临时文件夹中，是的路径创建临时文件返回<xref:System.IO.Path.GetTempPath%2A>方法。  
+ 此方法使用创建一个临时文件。TMP 文件扩展名。 在用户的临时文件夹 (该文件夹是<xref:System.IO.Path.GetTempPath%2A>方法返回的路径) 中创建临时文件。  
   
- <xref:System.IO.Path.GetTempFileName%2A>方法将引发<xref:System.IO.IOException>如果它用于创建多个 65535 个文件而不会删除以前的临时文件。  
+ 如果用于创建超过65535个文件而不删除以前的临时文件, 该<xref:System.IO.Path.GetTempFileName%2A>方法将引发。 <xref:System.IO.IOException>  
   
- <xref:System.IO.Path.GetTempFileName%2A>方法将引发<xref:System.IO.IOException>没有唯一的临时文件名称是否可用。 若要解决此错误，删除所有不需要的临时文件。  
+ 如果没有可用的唯一临时文件名, 则<xref:System.IO.Path.GetTempFileName%2A>方法将引发。 <xref:System.IO.IOException> 若要解决此错误, 请删除所有不需要的临时文件。  
   
- 通用 I/O 任务的列表，请参阅[通用 I/O 任务](~/docs/standard/io/common-i-o-tasks.md)。  
+ 有关常见 i/o 任务的列表, 请参阅[常见 I/o 任务](~/docs/standard/io/common-i-o-tasks.md)。  
   
  ]]></format>
         </remarks>
@@ -1617,7 +1617,7 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
 或
   
  此方法无法创建临时文件。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">用于写入到临时目录。 关联的枚举： <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Write" /></permission>
+        <permission cref="T:System.Security.Permissions.FileIOPermission">用于写入临时目录。 关联的枚举:<see cref="F:System.Security.Permissions.FileIOPermissionAccess.Write" /></permission>
         <related type="Article" href="~/docs/standard/io/index.md">文件和流 I/O</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">如何：从文件读取文本</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">如何：向文件写入文本</related>
@@ -1666,15 +1666,15 @@ Windows 上的文件路径格式的详细信息，请参阅[文件在 Windows �
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法检查存在以下顺序中的环境变量，并使用找到的第一个路径：  
+ 此方法按以下顺序检查环境变量是否存在, 并使用找到的第一个路径:  
   
 1.  TMP 环境变量指定的路径。  
   
 2.  由 TEMP 环境变量指定的路径。  
   
-3.  由用户配置文件环境变量指定的路径。  
+3.  USERPROFILE 环境变量指定的路径。  
   
-4.  Windows 目录中。  
+4.  Windows 目录。  
   
    
   
@@ -1691,7 +1691,7 @@ string result = Path.GetTempPath();
 Console.WriteLine(result);  
 ```  
   
- 此示例生成类似于以下输出。  
+ 此示例生成与下面类似的输出。  
   
 ```  
 C:\Users\UserName\AppData\Local\Temp\  
@@ -1700,7 +1700,7 @@ C:\Users\UserName\AppData\Local\Temp\
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">调用方没有所需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.EnvironmentPermission">有关不受限制访问环境变量。 关联的枚举： <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
+        <permission cref="T:System.Security.Permissions.EnvironmentPermission">用于对环境变量进行不受限制的访问。 关联的枚举:<see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
         <related type="Article" href="~/docs/standard/io/index.md">文件和流 I/O</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">如何：从文件读取文本</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">如何：向文件写入文本</related>
@@ -1738,7 +1738,7 @@ C:\Users\UserName\AppData\Local\Temp\
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-中的句号`path`不被视为一个扩展。
+中`path`的尾随句点不被视为扩展。
 
          ]]></format>
         </remarks>
@@ -1787,9 +1787,9 @@ C:\Users\UserName\AppData\Local\Temp\
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从末尾开始`path`，此方法搜索的句点 （.） 后, 跟至少一个字符。 如果之前找到此模式<xref:System.IO.Path.DirectorySeparatorChar>， <xref:System.IO.Path.AltDirectorySeparatorChar>，或<xref:System.IO.Path.VolumeSeparatorChar>遇到字符时，此方法返回`true`。  
+ 从此开始`path`, 此方法会搜索一个句点 (.), 后跟至少一个字符。 如果在遇到<xref:System.IO.Path.DirectorySeparatorChar>、 <xref:System.IO.Path.AltDirectorySeparatorChar>或<xref:System.IO.Path.VolumeSeparatorChar>字符之前找到此模式, 则此方法返回`true`。  
   
- 通用 I/O 任务的列表，请参阅[通用 I/O 任务](~/docs/standard/io/common-i-o-tasks.md)。  
+ 有关常见 i/o 任务的列表, 请参阅[常见 I/o 任务](~/docs/standard/io/common-i-o-tasks.md)。  
   
    
   
@@ -1851,15 +1851,15 @@ C:\Users\UserName\AppData\Local\Temp\
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不保证此方法返回的数组以包含在文件和目录名称中无效的字符的完整集合。 无效的字符的完整集可能会因文件系统。 例如，在基于 Windows 的桌面平台上无效路径字符可能包括 ASCII/Unicode 字符 1 到 31 之间，以及用引号括起来 （"）、 小于 (\<)、 大于号 (>)、 竖线 (&#124;)，退格符 (\b)、 null (\0) 和制表符 (\t)。  
+ 从此方法返回的数组不保证包含在文件和目录名称中无效的完整字符集。 完整的无效字符集可能因文件系统而异。 例如, 在基于 Windows 的桌面平台上, 无效路径字符可能包括 ASCII/Unicode 字符1到31、引号 (")、小于 (\<)、大于 (>)、管道 (&#124;)、backspace (\b)、null (\ 0) 和制表符 (\t)。  
   
 > [!CAUTION]
->  不要使用<xref:System.IO.Path.InvalidPathChars>如果您认为您的代码可能不受信任的代码相同的应用程序域中执行。 <xref:System.IO.Path.InvalidPathChars> 是一个数组，以便可以覆盖它的元素。 如果不受信任的代码覆盖的元素<xref:System.IO.Path.InvalidPathChars>，它可能会导致代码无法正常工作的可能被利用的方式。  
+>  如果你认为<xref:System.IO.Path.InvalidPathChars>你的代码可能在不受信任的代码所在的应用程序域中执行, 请不要使用。 <xref:System.IO.Path.InvalidPathChars>是一个数组, 因此可以覆盖其元素。 如果不受信任的代码<xref:System.IO.Path.InvalidPathChars>覆盖的元素, 则可能会导致你的代码以可利用的方式出现故障。  
   
    
   
 ## Examples  
- 下面的示例演示如何将`InvalidPathChars`属性。  
+ 下面的示例演示`InvalidPathChars`属性的用法。  
   
  [!code-cpp[System.IO.Path Members#13](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.Path Members/CPP/pathmembers.cpp#13)]
  [!code-csharp[System.IO.Path Members#13](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Path Members/CS/pathmembers.cs#13)]
@@ -1880,9 +1880,9 @@ C:\Users\UserName\AppData\Local\Temp\
  
 ## Remarks  
 
-重载`IsPathFullyQualified`同时使用的方法句柄路径<xref:System.IO.Path.DirectorySeparatorChar>和<xref:System.IO.Path.AltDirectorySeparatorChar>字符。 它不会作为参数传递给它的路径上执行任何验证。 因此，Uri 将被解释为相对路径，并返回`false`。 
+`IsPathFullyQualified`方法的重载可处理<xref:System.IO.Path.DirectorySeparatorChar>同时使用和<xref:System.IO.Path.AltDirectorySeparatorChar>字符的路径。 它不会对作为参数传递给它的路径执行任何验证。 因此, Uri 被解释为相对路径, 并返回`false`。 
 
-没有区别的完全限定路径 (如所示`IsPathFullyQualified`方法) 和取得 root 权限的路径 (如所示<xref:System.IO.Path.IsPathRooted%2A>方法)。 一个*完全限定的路径*或*绝对路径*始终定义为目标文件或目录中，从特定驱动器或设备的确切路径并不依赖于当前驱动器或当前目录。 例如，在 Windows 系统上*C:/users/user1/documents/reports/2019/january/highlights.pdf*定义目标文件中，从 c： 驱动器的根的绝对路径*highlights.pdf*。 一个*根的路径*指定起始驱动器或根目录中，但依赖于当前目录 （如果它已取得 root 权限由指定的驱动器） 或当前驱动器 （如果它已取得 root 权限的根目录下）。 下面的示例说明了完全限定的路径和取得 root 权限的路径之间的差异。
+完全限定的路径 (如`IsPathFullyQualified`方法所指示) 和根路径 (如<xref:System.IO.Path.IsPathRooted%2A>方法所指示的路径) 之间存在差异。 *完全限定的路径*或*绝对路径*始终定义从特定驱动器或设备到目标文件或目录的准确路径, 而不依赖于当前驱动器或当前目录。 例如, 在 Windows 系统上, *C:/users/user1/documents/reports/2019/一月/reports。 pdf*定义从 C: 盘的根目录到目标文件的绝对路径, 即 "*格式*"。 *根路径*指定起始驱动器或根目录, 但取决于当前目录 (如果该目录是指定驱动器的根) 或当前驱动器 (如果它在根目录下)。 下面的示例演示完全限定的路径和根路径之间的差异。
 
 [!code-csharp[IsPathRooted](~/samples/snippets/csharp/api/system.IO/Path/IsPathRooted/program.cs)]
 [!code-vb[IsPathRooted](~/samples/snippets/visualbasic/api/system.IO/Path/IsPathRooted/program.vb)]
@@ -1971,9 +1971,9 @@ C:\Users\UserName\AppData\Local\Temp\
  
 ## Remarks  
 
-一个**根的路径**是文件路径的固定为特定驱动器或 UNIC 路径; 形成了鲜明对比的路径是相对于当前驱动器或工作目录。 例如，在 Windows 系统中，根的路径开头反斜杠 (例如，"\Documents") 或驱动器号和冒号 (例如，"C:Documents")。 
+**根路径**是固定到特定驱动器或 UNIC 路径的文件路径;它与相对于当前驱动器或工作目录的路径相比较。 例如, 在 Windows 系统上, 以反斜杠 (例如 "\Documents") 或驱动器号和冒号 (如 "C:Documents") 开头的根路径。 
 
-请注意取得 root 权限的路径可以是绝对 （即，完全限定的） 或相对。 取得 root 权限的绝对路径是从驱动器的根目录到特定目录的完全限定的路径。 取得 root 权限的相对路径指定的驱动器，但其完全限定的路径解析对当前目录。 以下示例演示了差异。
+请注意, 根路径可以是绝对路径 (即, 完全限定的路径), 也可以是相对路径。 绝对根路径是从驱动器根目录到特定目录的完全限定路径。 相对 root 路径指定驱动器, 但将根据当前目录解析其完全限定路径。 以下示例演示了差异。
 
 [!code-csharp[IsPathRooted](~/samples/snippets/csharp/api/system.IO/Path/IsPathRooted/program.cs)]
 [!code-vb[IsPathRooted](~/samples/snippets/visualbasic/api/system.IO/Path/IsPathRooted/program.vb)]
@@ -2057,14 +2057,14 @@ C:\Users\UserName\AppData\Local\Temp\
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IO.Path.IsPathRooted%2A>方法将返回`true`如果第一个字符是目录分隔符字符如"\\"，或如果路径以驱动器号和冒号 （:） 开头。 例如，它将返回`true`有关`path`如字符串"\\\MyDir\\\MyFile.txt"，"c:\\\MyDir"，或"C:MyDir"。 它将返回`false`为`path`如"MyDir"的字符串。  
+ 如果<xref:System.IO.Path.IsPathRooted%2A>第一个`true`字符是目录分隔符 (如 "\\"), 或者路径以驱动器号和冒号开头 (:), 则该方法返回。 例如, 对于`true` "\\ `path` \\\MyDir\\\MyFile.txt"、"C: \MyDir" 或 "C:MyDir" 之类的字符串, 它将返回。 它将`false`返回`path` "MyDir" 等字符串。  
   
- 此方法不会验证路径或文件名称存在。  
+ 此方法不会验证路径或文件名是否存在。  
   
- 通用 I/O 任务的列表，请参阅[通用 I/O 任务](~/docs/standard/io/common-i-o-tasks.md)。  
+ 有关常见 i/o 任务的列表, 请参阅[常见 I/o 任务](~/docs/standard/io/common-i-o-tasks.md)。  
 
 ## Examples  
- 下面的示例演示如何将`IsPathRooted`方法可用于测试的三个字符串。  
+ 下面的示例演示如何`IsPathRooted`使用方法来测试三个字符串。  
   
  [!code-cpp[System.IO.Path Members#12](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.Path Members/CPP/pathmembers.cpp#12)]
  [!code-csharp[System.IO.Path Members#12](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Path Members/CS/pathmembers.cs#12)]
@@ -2110,10 +2110,29 @@ C:\Users\UserName\AppData\Local\Temp\
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="paths">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="paths">路径的数组。</param>
+        <summary>将路径数组连接到一个路径中。</summary>
+        <returns>连接的路径。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+
+## Remarks
+
+此方法只是将中的所有`paths`字符串连接在中, 并在任何路径组件之间添加目录分隔符 (如果尚未存在)。 <xref:System.String.Length>如果中`paths`任何路径的均为零, 则该方法将连接剩余的参数。 如果生成的串联字符串的长度为零, 则该方法<xref:System.String.Empty?displayProperty=nameWithType>将返回。
+
+如果中`paths`的任何路径 (除最后一个路径外) 都以路径分隔符字符结尾, 而该路径分隔符不适合目标平台, 则`Join`该方法将保留原始路径分隔符并追加支持的路径分隔符。 使用 Windows 反斜杠 ("\") 字符的硬编码路径中会出现此问题, 该字符在基于 Unix 的系统上未被识别为路径分隔符。 若要解决此问题, 可以:
+
+- 检索<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>属性的值, 而不是对目录分隔符进行硬编码。
+
+- 使用正斜杠 ("/") 作为目录分隔符。 此字符由基于 Unix 的<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>系统上的属性和 Windows 系统上的<xref:System.IO.Path.AltDirectorySeparatorChar?displayProperty=nameWithType>属性返回。
+
+与方法不同<xref:System.IO.Path.Join%2A> , 方法不会尝试将返回的路径作为根。 <xref:System.IO.Path.Combine%2A> (也就是说, 如果中`paths`的任何路径 (最后一个路径除外) 都是绝对路径, 则该`Join`方法不会丢弃先前的路径, 因为<xref:System.IO.Path.Combine%2A>方法会。
+
+不是对目录和文件名无效的所有字符都解释为可接受`Join`的方法, 因为您可以使用这些字符搜索通配符。 例如, 在`Path.Join("c:\\", "temp", "*.txt")`创建文件时, 可能会无效, 但它可以作为搜索字符串有效。 因此`Join` , 该方法成功解释了此方法。
+
+             </format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Join">
@@ -2152,21 +2171,21 @@ C:\Users\UserName\AppData\Local\Temp\
   
 ## Remarks  
  
-此方法只需串联`path`并`path2`，并添加两个路径组件之间的目录分隔符字符，如果尚未存在的末尾`path1`或开始位置`path2`。 如果<xref:System.ReadOnlySpan%601.Length>的任一`path1`或`path2`为零，该方法返回的其他路径。 如果<xref:System.ReadOnlySpan%601.Length>两者`path1`并`path2`为零，该方法将返回<xref:System.String.Empty?displayProperty=nameWithType>。 
+此方法只是`path`连接`path2`和在两个路径组件之间添加目录分隔符`path2`( `path1`如果在或开头处不存在一个)。 <xref:System.ReadOnlySpan%601.Length>如果`path1`或的为零,则该方法返回其他路径。`path2` <xref:System.ReadOnlySpan%601.Length>如果和`path1` <xref:System.String.Empty?displayProperty=nameWithType>的均为零,则`path2`该方法返回。 
 
-如果`path1`中并不适合于目标平台路径分隔符结束`Join`方法保留的原始路径分隔符字符并追加受支持。 中使用 Windows 反斜杠的硬编码路径，会出现此问题 ("\") 未被识别为路径分隔符基于 Unix 的系统的字符。 若要解决此问题，您可以：
+如果`path1`在不适合目标平台的路径分隔符中结束, 则该`Join`方法将保留原始路径分隔符并追加受支持的字符分隔符。 使用 Windows 反斜杠 ("\") 字符的硬编码路径中会出现此问题, 该字符在基于 Unix 的系统上未被识别为路径分隔符。 若要解决此问题, 可以:
 
-- 检索的值<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>属性，而不是硬编码目录分隔符字符。
+- 检索<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>属性的值, 而不是对目录分隔符进行硬编码。
 
-- 使用正斜杠 （"/"） 作为目录分隔符字符。 返回此字符<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>属性，基于 Unix 的系统上并通过<xref:System.IO.Path.AltDirectorySeparatorChar?displayProperty=nameWithType>Windows 系统上的属性。 
+- 使用正斜杠 ("/") 作为目录分隔符。 此字符由基于 Unix 的<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>系统上的属性和 Windows 系统上的<xref:System.IO.Path.AltDirectorySeparatorChar?displayProperty=nameWithType>属性返回。 
 
-与不同<xref:System.IO.Path.Combine%2A>方法，<xref:System.IO.Path.Join%2A>方法不会尝试根返回的路径。 (即，如果`path2`是一个绝对路径`Join`方法不会放弃`path1`并返回`path2`作为<xref:System.IO.Path.Combine%2A>方法执行。)下面的示例说明了在两个方法返回的路径中的差异。 如果源的`path2`是用户输入<xref:System.IO.Path.Combine%2A>方法，使用户可以访问文件系统资源 (如*c: /用户/User1/文档/财务/* 在该示例的情况下) 的应用程序执行不想要使可访问。  
+与方法不同<xref:System.IO.Path.Join%2A> , 方法不会尝试将返回的路径作为根。 <xref:System.IO.Path.Combine%2A> `path2` (也就是说, 如果是绝对路径, 则`Join`方法不会<xref:System.IO.Path.Combine%2A>丢弃`path1`并返回`path2` , 因为方法会。)下面的示例说明了这两种方法返回的路径之间的差异。 如果的源`path2`是用户输入, 则此<xref:System.IO.Path.Combine%2A>方法使用户可以访问应用程序不打算进行的文件系统资源 (例如, *C:/Users/User1/Documents/金融/* )方便.  
 
-对于目录和文件名称不是所有无效的字符被解释为不可接受的`Join`方法，因为您可以将这些字符用于搜索通配符字符。 例如，虽然`Path.Join("c:\\", "*.txt")`，可能无效时，创建一个文件，它是有效搜索字符串。 `Join`方法因此已成功将其解释。 
+不是对目录和文件名无效的所有字符都解释为可接受`Join`的方法, 因为您可以使用这些字符搜索通配符。 例如, 在`Path.Join("c:\\", "*.txt")`创建文件时, 可能会无效, 但它可以作为搜索字符串有效。 因此`Join` , 该方法成功解释了此方法。 
 
 ## <a name="example"></a>示例
 
-下面的示例说明了返回的路径中的差异<xref:System.IO.Path.Join(System.ReadOnlySpan%7BSystem.Char%7D,System.ReadOnlySpan%7BSystem.Char%7D)?displayProperty=nameWithType>和<xref:System.IO.Path.Combine(System.String,System.String)?displayProperty=nameWithType>方法。 当第一个字符串是包含驱动器和根的目录的完全限定的路径，第二个是从第一个路径的相对路径时，两种方法将产生相同的结果。 第二个和第三个调用中`ShowPathInformation`方法中，两个方法返回的字符串将发生偏离。 在第二个方法调用的第一个字符串参数是一个驱动器，而第二个是取得 root 权限的目录。 `Join`方法串联两个字符串并保留重复路径分隔符。 `Combine`方法放弃该驱动器，并返回当前驱动器上取得 root 权限的目录。 如果应用程序的当前驱动器 C:\和此字符串用来访问文件或目录中的文件，它将访问而不是 d: c:。 最后，因为这两个参数对的第三个调用中`ShowPathInformation`，并且它们植根`Join`方法只需将它们附加若要创建无意义的文件路径，而`Combine`方法会放弃第一个字符串，并返回第二个。 使用此字符串进行文件访问权限可以授予应用程序无意中访问的敏感文件。  
+下面的示例演示了<xref:System.IO.Path.Join(System.ReadOnlySpan%7BSystem.Char%7D,System.ReadOnlySpan%7BSystem.Char%7D)?displayProperty=nameWithType>和<xref:System.IO.Path.Combine(System.String,System.String)?displayProperty=nameWithType>方法返回的路径之间的差异。 如果第一个字符串是包含驱动器和根目录的完全限定路径, 第二个字符串是第一个路径的相对路径, 则这两个方法将产生相同的结果。 在第二次和第三次`ShowPathInformation`调用方法时, 两个方法返回的字符串分叉。 在第二个方法调用中, 第一个字符串参数是驱动器, 而第二个参数是根目录。 方法`Join`将两个字符串连接在一起, 并保留重复的路径分隔符。 `Combine`方法会放弃驱动器并返回当前驱动器上的根目录。 如果应用程序的当前驱动器为 C:\该字符串用于访问目录中的一个或一些文件, 它将访问 C: 而不是 d: 最后, 由于第三次调用`ShowPathInformation`中的两个参数均为根参数, 该`Join`方法只会附加它们以创建过程`Combine`文件路径, 而方法会丢弃第一个字符串并返回第二个字符串。 使用此字符串进行文件访问可能会给应用程序带来对敏感文件的意外访问权限。  
 
 [!code-csharp[Path.Join(String,String)](~/samples/snippets/csharp/api/system.io/path/combine2/program.cs)]
 [!code-csharp[Path.Join(String,String)](~/samples/snippets/visualbasic/api/system.io/path/combine2/program.vb)]
@@ -2203,11 +2222,30 @@ C:\Users\UserName\AppData\Local\Temp\
         <Parameter Name="path2" Type="System.String" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="path1">To be added.</param>
-        <param name="path2">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="path1">要联接的第一个路径。</param>
+        <param name="path2">要联接的第二个路径。</param>
+        <summary>将两个路径连接到一个路径中。</summary>
+        <returns>连接的路径。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+
+## Remarks
+
+此方法只连接`path`并`path2`在任何路径组件之间添加目录分隔符 (如果尚未存在)。 如果`path1` 或`path2`的长度为零, 则该方法将连接剩余的参数。 如果生成的串联字符串的长度为零, 则该方法将<xref:System.String.Empty?displayProperty=nameWithType>返回。
+
+如果`path1`在不适合目标平台的路径分隔符中结束, 则该`Join`方法将保留原始路径分隔符并追加受支持的字符分隔符。 使用 Windows 反斜杠 ("\") 字符的硬编码路径中会出现此问题, 该字符在基于 Unix 的系统上未被识别为路径分隔符。 若要解决此问题, 可以:
+
+- 检索<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>属性的值, 而不是对目录分隔符进行硬编码。
+
+- 使用正斜杠 ("/") 作为目录分隔符。 此字符由基于 Unix 的<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>系统上的属性和 Windows 系统上的<xref:System.IO.Path.AltDirectorySeparatorChar?displayProperty=nameWithType>属性返回。
+
+与方法不同<xref:System.IO.Path.Join%2A> , 方法不会尝试将返回的路径作为根。 <xref:System.IO.Path.Combine%2A> (也就是说, 如果`path2`是绝对路径, 则该`Join`方法将不会丢弃先前的路径, 因为<xref:System.IO.Path.Combine%2A>方法会。
+
+不是对目录和文件名无效的所有字符都解释为可接受`Join`的方法, 因为您可以使用这些字符搜索通配符。 例如, 在`Path.Join("c:\\", "temp", "*.txt")`创建文件时, 可能会无效, 但它可以作为搜索字符串有效。 因此`Join` , 该方法成功解释了此方法。
+
+             </format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Join">
@@ -2242,30 +2280,30 @@ C:\Users\UserName\AppData\Local\Temp\
         <param name="path2">包含要加入的第二个路径的字符范围。</param>
         <param name="path3">包含要加入的第三个路径的字符范围。</param>
         <summary>将三个路径组件连接到一个路径中。</summary>
-        <returns>To be added.</returns>
+        <returns>连接的路径。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
  
-此方法只需串联`path`， `path2`，和`path3`，并将添加目录分隔符字符之间的任何路径组件，如果尚未存在。 如果<xref:System.ReadOnlySpan%601.Length>的任一`path1`， `path2`，或`path3`参数为零，则该方法将其余参数串联。 如果<xref:System.ReadOnlySpan%601.Length?displayProperty=nameWithType>的所有组件为零，该方法将返回<xref:System.String.Empty?displayProperty=nameWithType>。    
+此方法只连接`path`、 `path2`和`path3` , 然后在任何路径组件之间添加目录分隔符 (如果尚未提供)。 <xref:System.ReadOnlySpan%601.Length>如果`path1`、或`path2`参数的任何均为零, 则该方法将连接剩余的参数。 `path3` 如果所有组件的均为零, 则该方法<xref:System.String.Empty?displayProperty=nameWithType>返回。 <xref:System.ReadOnlySpan%601.Length?displayProperty=nameWithType>
 
-如果`path1`或`path2`中并不适合于目标平台路径分隔符结束`Join`方法保留的原始路径分隔符字符并追加受支持。 中使用 Windows 反斜杠的硬编码路径，会出现此问题 ("\") 未被识别为路径分隔符基于 Unix 的系统的字符。 若要解决此问题，您可以：
+如果`path1` `Join`或`path2`以不适合目标平台的路径分隔符结尾, 则该方法将保留原始路径分隔符并追加受支持的字符分隔符。 使用 Windows 反斜杠 ("\") 字符的硬编码路径中会出现此问题, 该字符在基于 Unix 的系统上未被识别为路径分隔符。 若要解决此问题, 可以:
 
-- 检索的值<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>属性，而不是硬编码目录分隔符字符。
+- 检索<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>属性的值, 而不是对目录分隔符进行硬编码。
 
-- 使用正斜杠 （"/"） 作为目录分隔符字符。 返回此字符<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>属性，基于 Unix 的系统上并通过<xref:System.IO.Path.AltDirectorySeparatorChar?displayProperty=nameWithType>Windows 系统上的属性。 
+- 使用正斜杠 ("/") 作为目录分隔符。 此字符由基于 Unix 的<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>系统上的属性和 Windows 系统上的<xref:System.IO.Path.AltDirectorySeparatorChar?displayProperty=nameWithType>属性返回。
 
-与不同<xref:System.IO.Path.Combine%2A>方法，<xref:System.IO.Path.Join%2A>方法不会尝试根返回的路径。 (即，如果`path2`或`path2`是一个绝对路径`Join`方法不会放弃上一个路径设置为<xref:System.IO.Path.Combine%2A>方法执行。  
+与方法不同<xref:System.IO.Path.Join%2A> , 方法不会尝试将返回的路径作为根。 <xref:System.IO.Path.Combine%2A> (也就是说, `path2`如果或`path2`是绝对路径, 则`Join`方法不<xref:System.IO.Path.Combine%2A>会丢弃以前的路径, 因为方法会。
   
-对于目录和文件名称不是所有无效的字符被解释为不可接受的`Join`方法，因为您可以将这些字符用于搜索通配符字符。 例如，虽然`Path.Join("c:\\", "temp", "*.txt")`，可能无效时，创建一个文件，它是有效搜索字符串。 `Join`方法因此已成功将其解释。 
+不是对目录和文件名无效的所有字符都解释为可接受`Join`的方法, 因为您可以使用这些字符搜索通配符。 例如, 在`Path.Join("c:\\", "temp", "*.txt")`创建文件时, 可能会无效, 但它可以作为搜索字符串有效。 因此`Join` , 该方法成功解释了此方法。
 
 ## <a name="example"></a>示例
 
-下面的示例说明了返回的路径中的差异<xref:System.IO.Path.Join(System.ReadOnlySpan%7BSystem.Char%7D,System.ReadOnlySpan%7BSystem.Char%7D,System.ReadOnlySpan%7BSystem.Char%7D)?displayProperty=nameWithType>和<xref:System.IO.Path.Combine(System.String,System.String,System.String)?displayProperty=nameWithType>方法。 当第一个字符串是包含驱动器和根的目录的完全限定的路径，第二个是从第一个路径的相对路径时，两种方法将产生相同的结果。 第二个和第三个调用中`ShowPathInformation`方法中，两个方法返回的字符串将发生偏离。 在第二个方法调用的第一个字符串参数是一个驱动器，而第二个是取得 root 权限的目录。 `Join`方法串联两个字符串并保留重复路径分隔符。 调用<xref:System.IO.Path.GetFullPath%2A>方法将消除重复项。 `Combine`方法放弃该驱动器，并返回当前驱动器上取得 root 权限的目录。 如果应用程序的当前驱动器 C:\和此字符串用来访问文件或目录中的文件，它将访问而不是 d: c:。 最后，因为对的第三个调用中的最后一个参数`ShowPathInformation`，并且它们植根`Join`方法只需将其追加到前两个参数，以创建无意义的文件路径，而`Combine`方法会放弃前两个字符串并返回第三个。 使用此字符串进行文件访问权限可以授予应用程序无意中访问的敏感文件。  
+下面的示例演示了<xref:System.IO.Path.Join(System.ReadOnlySpan%7BSystem.Char%7D,System.ReadOnlySpan%7BSystem.Char%7D,System.ReadOnlySpan%7BSystem.Char%7D)?displayProperty=nameWithType>和<xref:System.IO.Path.Combine(System.String,System.String,System.String)?displayProperty=nameWithType>方法返回的路径之间的差异。 如果第一个字符串是包含驱动器和根目录的完全限定路径, 第二个字符串是第一个路径的相对路径, 则这两个方法将产生相同的结果。 在第二次和第三次`ShowPathInformation`调用方法时, 两个方法返回的字符串分叉。 在第二个方法调用中, 第一个字符串参数是驱动器, 而第二个参数是根目录。 方法`Join`将两个字符串连接在一起, 并保留重复的路径分隔符。 对<xref:System.IO.Path.GetFullPath%2A>方法的调用将消除重复。 `Combine`方法会放弃驱动器并返回当前驱动器上的根目录。 如果应用程序的当前驱动器为 C:\该字符串用于访问目录中的一个或一些文件, 它将访问 C: 而不是 d: 最后, 由于第三次调用`ShowPathInformation`中的最后一个参数是根参数, 该`Join`方法只是将其追加到前两个自变量以创建过程`Combine`文件路径, 而方法会丢弃前两个字符串并返回第三个。 使用此字符串进行文件访问可能会给应用程序带来对敏感文件的意外访问权限。
 
-[!code-csharp[Path.Join(String,String,String)](~/samples/snippets/csharp/api/system.io/path/combine3/program.cs)] 
-[!code-csharp[Path.Join(String,String,String)](~/samples/snippets/visualbasic/api/system.io/path/combine3/program.vb)] 
+[!code-csharp[Path.Join(String,String,String)](~/samples/snippets/csharp/api/system.io/path/combine3/program.cs)]
+[!code-csharp[Path.Join(String,String,String)](~/samples/snippets/visualbasic/api/system.io/path/combine3/program.vb)]
 
        ]]></format>
         </remarks>
@@ -2299,12 +2337,31 @@ C:\Users\UserName\AppData\Local\Temp\
         <Parameter Name="path3" Type="System.String" Index="2" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="path1">To be added.</param>
-        <param name="path2">To be added.</param>
-        <param name="path3">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="path1">要联接的第一个路径。</param>
+        <param name="path2">要联接的第二个路径。</param>
+        <param name="path3">要联接的第三个路径。</param>
+        <summary>将三个路径连接到一个路径中。</summary>
+        <returns>连接的路径。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+
+## Remarks
+
+此方法只连接`path`、 `path2`和`path3` , 然后在任何路径组件之间添加目录分隔符 (如果尚未提供)。 如果`path1`、 `path2`或参数的长度为零,则该方法将连接剩余的参数。`path3` 如果生成的串联字符串的长度为零, 则该方法将<xref:System.String.Empty?displayProperty=nameWithType>返回。
+
+如果`path1` `Join`或`path2`以不适合目标平台的路径分隔符结尾, 则该方法将保留原始路径分隔符并追加受支持的字符分隔符。 使用 Windows 反斜杠 ("\") 字符的硬编码路径中会出现此问题, 该字符在基于 Unix 的系统上未被识别为路径分隔符。 若要解决此问题, 可以:
+
+- 检索<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>属性的值, 而不是对目录分隔符进行硬编码。
+
+- 使用正斜杠 ("/") 作为目录分隔符。 此字符由基于 Unix 的<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>系统上的属性和 Windows 系统上的<xref:System.IO.Path.AltDirectorySeparatorChar?displayProperty=nameWithType>属性返回。
+
+与方法不同<xref:System.IO.Path.Join%2A> , 方法不会尝试将返回的路径作为根。 <xref:System.IO.Path.Combine%2A> (也就是说, `path2`如果或`path2`是绝对路径, 则`Join`方法不<xref:System.IO.Path.Combine%2A>会丢弃以前的路径, 因为方法会。
+
+不是对目录和文件名无效的所有字符都解释为可接受`Join`的方法, 因为您可以使用这些字符搜索通配符。 例如, 在`Path.Join("c:\\", "temp", "*.txt")`创建文件时, 可能会无效, 但它可以作为搜索字符串有效。 因此`Join` , 该方法成功解释了此方法。
+
+             </format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Join">
@@ -2335,13 +2392,32 @@ C:\Users\UserName\AppData\Local\Temp\
         <Parameter Name="path4" Type="System.ReadOnlySpan&lt;System.Char&gt;" Index="3" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="path1">To be added.</param>
-        <param name="path2">To be added.</param>
-        <param name="path3">To be added.</param>
-        <param name="path4">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="path1">包含要加入的第一个路径的字符范围。</param>
+        <param name="path2">包含要加入的第二个路径的字符范围。</param>
+        <param name="path3">包含要加入的第三个路径的字符范围。</param>
+        <param name="path4">包含要联接的第四个路径的字符跨度。</param>
+        <summary>将四个路径组件连接到一个路径中。</summary>
+        <returns>连接的路径。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+
+## Remarks
+
+此方法只连接`path` `path2` `path3` 、和`path4` , 然后在任何路径组件之间添加目录分隔符 (如果尚未提供)。 <xref:System.ReadOnlySpan%601.Length>如果`path1`、或参数的任何均为零,则该方法将连接剩余的参数。`path2` `path3` `path4` 如果所有组件的均为零, 则该方法<xref:System.String.Empty?displayProperty=nameWithType>返回。 <xref:System.ReadOnlySpan%601.Length?displayProperty=nameWithType>
+
+如果`path1` 或`path2`以不适合目标平台的路径分隔符`Join` 结尾,则该方法将保留原始路径分隔符并追加受支持的字符分隔符。`path3` 使用 Windows 反斜杠 ("\") 字符的硬编码路径中会出现此问题, 该字符在基于 Unix 的系统上未被识别为路径分隔符。 若要解决此问题, 可以:
+
+- 检索<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>属性的值, 而不是对目录分隔符进行硬编码。
+
+- 使用正斜杠 ("/") 作为目录分隔符。 此字符由基于 Unix 的<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>系统上的属性和 Windows 系统上的<xref:System.IO.Path.AltDirectorySeparatorChar?displayProperty=nameWithType>属性返回。
+
+与方法不同<xref:System.IO.Path.Join%2A> , 方法不会尝试将返回的路径作为根。 <xref:System.IO.Path.Combine%2A> (也就是说, 如果`path2`或`path2`或`path3`是绝对路径, 则该`Join`方法将不会丢弃先前的路径, 因为<xref:System.IO.Path.Combine%2A>方法会。
+
+不是对目录和文件名无效的所有字符都解释为可接受`Join`的方法, 因为您可以使用这些字符搜索通配符。 例如, 在`Path.Join("c:\\", "temp", "*.txt")`创建文件时, 可能会无效, 但它可以作为搜索字符串有效。 因此`Join` , 该方法成功解释了此方法。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Join">
@@ -2372,13 +2448,32 @@ C:\Users\UserName\AppData\Local\Temp\
         <Parameter Name="path4" Type="System.String" Index="3" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="path1">To be added.</param>
-        <param name="path2">To be added.</param>
-        <param name="path3">To be added.</param>
-        <param name="path4">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="path1">要联接的第一个路径。</param>
+        <param name="path2">要联接的第二个路径。</param>
+        <param name="path3">要联接的第三个路径。</param>
+        <param name="path4">要联接的第四个路径。</param>
+        <summary>将四个路径连接到一个路径中。</summary>
+        <returns>连接的路径。</returns>
+        <remarks>
+          <format type="text/markdown">
+        
+
+## Remarks
+
+此方法只连接`path` `path2` `path3` 、和`path4` , 然后在任何路径组件之间添加目录分隔符 (如果尚未提供)。 如果`path1`、 `path2`、 `path3`或参数的长度为零,则该方法将连接剩余的参数。`path4` 如果生成的串联字符串的长度为零, 则该方法将<xref:System.String.Empty?displayProperty=nameWithType>返回。
+
+如果`path1` 或`path2`以不适合目标平台的路径分隔符`Join` 结尾,则该方法将保留原始路径分隔符并追加受支持的字符分隔符。`path3` 使用 Windows 反斜杠 ("\") 字符的硬编码路径中会出现此问题, 该字符在基于 Unix 的系统上未被识别为路径分隔符。 若要解决此问题, 可以:
+
+- 检索<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>属性的值, 而不是对目录分隔符进行硬编码。
+
+- 使用正斜杠 ("/") 作为目录分隔符。 此字符由基于 Unix 的<xref:System.IO.Path.DirectorySeparatorChar?displayProperty=nameWithType>系统上的属性和 Windows 系统上的<xref:System.IO.Path.AltDirectorySeparatorChar?displayProperty=nameWithType>属性返回。
+
+与方法不同<xref:System.IO.Path.Join%2A> , 方法不会尝试将返回的路径作为根。 <xref:System.IO.Path.Combine%2A> (也就是说, 如果`path2`或`path2`或`path3`是绝对路径, 则该`Join`方法将不会丢弃先前的路径, 因为<xref:System.IO.Path.Combine%2A>方法会。
+
+不是对目录和文件名无效的所有字符都解释为可接受`Join`的方法, 因为您可以使用这些字符搜索通配符。 例如, 在`Path.Join("c:\\", "temp", "*.txt")`创建文件时, 可能会无效, 但它可以作为搜索字符串有效。 因此`Join` , 该方法成功解释了此方法。
+
+             </format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="PathSeparator">
@@ -2417,12 +2512,12 @@ C:\Users\UserName\AppData\Local\Temp\
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在基于 Windows 的桌面平台上，此字段的值是以分号 （;） 默认情况下，但在其他平台上可能会有所不同。  
+ 在基于 Windows 的桌面平台上, 此字段的值为分号 (;)默认情况下, 在其他平台上可能会有所不同。  
   
    
   
 ## Examples  
- 下面的示例演示如何将`PathSeparator`字段。  
+ 下面的示例演示如何使用`PathSeparator`字段。  
   
  [!code-cpp[System.IO.Path Members#13](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.Path Members/CPP/pathmembers.cpp#13)]
  [!code-csharp[System.IO.Path Members#13](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Path Members/CS/pathmembers.cs#13)]
@@ -2505,7 +2600,7 @@ C:\Users\UserName\AppData\Local\Temp\
  
 ## Remarks  
 
-目标字符范围必须足够大以保存连接的路径。 然后可以通过调用来检索连接的路径<xref:System.Span%601.Slice%2A?displayProperty=nameWithType>方法，如下面的示例说明了。
+目标字符跨度必须足够大才能容纳连接的路径。 然后, 可以通过调用<xref:System.Span%601.Slice%2A?displayProperty=nameWithType>方法来检索串联路径, 如下面的示例所示。
 
 [!code-csharp[IsPathRooted](~/samples/snippets/csharp/api/system.IO/Path/TryJoin/program.cs)]
 
@@ -2553,7 +2648,7 @@ C:\Users\UserName\AppData\Local\Temp\
 
 ## Remarks
 
-`destination` 必须足够大以保存连接的路径。 然后可以通过调用来检索连接的路径<xref:System.Span%601.Slice%2A?displayProperty=nameWithType>方法，该示例作为演示。
+`destination`必须足够大才能容纳连接的路径。 然后, 可以通过调用<xref:System.Span%601.Slice%2A?displayProperty=nameWithType>方法来检索串联路径, 如示例所示。
 
          ]]></format>
         </remarks>
@@ -2602,7 +2697,7 @@ C:\Users\UserName\AppData\Local\Temp\
 
 ## Remarks
 
-`destination` 必须足够大以保存连接的路径。 然后可以通过调用来检索连接的路径<xref:System.Span%601.Slice%2A?displayProperty=nameWithType>方法，该示例作为演示。
+`destination`必须足够大才能容纳连接的路径。 然后, 可以通过调用<xref:System.Span%601.Slice%2A?displayProperty=nameWithType>方法来检索串联路径, 如示例所示。
 
          ]]></format>
         </remarks>
@@ -2645,12 +2740,12 @@ C:\Users\UserName\AppData\Local\Temp\
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此字段的值是冒号 （:） 在 Windows 和 Macintosh 和 UNIX 操作系统上的以斜杠 （/）。 这是最适用于分析路径，例如"c:\windows"或"MacVolume:System 文件夹"。  
+ 此字段的值是一个冒号 (:)在 Windows 和 Macintosh 上, 在 UNIX 操作系统上使用斜杠 (/)。 这对于分析路径 (如 "c:\windows" 或 "MacVolume: System Folder") 最为有用。  
   
    
   
 ## Examples  
- 下面的示例演示如何将`VolumeSeparatorChar`字段。  
+ 下面的示例演示如何使用`VolumeSeparatorChar`字段。  
   
  [!code-cpp[System.IO.Path Members#13](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.Path Members/CPP/pathmembers.cpp#13)]
  [!code-csharp[System.IO.Path Members#13](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Path Members/CS/pathmembers.cs#13)]
