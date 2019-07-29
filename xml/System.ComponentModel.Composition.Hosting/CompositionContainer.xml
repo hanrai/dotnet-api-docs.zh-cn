@@ -1,5 +1,5 @@
 <Type Name="CompositionContainer" FullName="System.ComponentModel.Composition.Hosting.CompositionContainer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="83799b9d58cd324b4f3d3e8e772d504e8c20a043" /><Meta Name="ms.sourcegitcommit" Value="690605a2d62010b93e13edf329aafe2bdc57423a" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/11/2019" /><Meta Name="ms.locfileid" Value="67801358" /></Metadata><TypeSignature Language="C#" Value="public class CompositionContainer : System.ComponentModel.Composition.Hosting.ExportProvider, IDisposable, System.ComponentModel.Composition.ICompositionService" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="896f3a8c540ad79fd95186b1c73820687707cbba" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68543516" /></Metadata><TypeSignature Language="C#" Value="public class CompositionContainer : System.ComponentModel.Composition.Hosting.ExportProvider, IDisposable, System.ComponentModel.Composition.ICompositionService" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit CompositionContainer extends System.ComponentModel.Composition.Hosting.ExportProvider implements class System.ComponentModel.Composition.ICompositionService, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Composition.Hosting.CompositionContainer" />
   <TypeSignature Language="VB.NET" Value="Public Class CompositionContainer&#xA;Inherits ExportProvider&#xA;Implements ICompositionService, IDisposable" />
@@ -22,33 +22,33 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <summary>Manages the composition of parts.</summary>
+    <summary>管理部件的组合。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>对象的应用程序中有两个主要目的。 首先，它跟踪的哪些部分可用于组合、 其依赖项，并执行撰写时可用部分设置的更改。 其次，它提供了应用程序获取的组合部件实例或填充的可组合部件依赖关系的方法。  
+ <xref:System.ComponentModel.Composition.Hosting.CompositionContainer>对象在应用程序中有两个主要用途。 首先, 它将跟踪可用于组合的部件及其依赖项, 并在每次可用部件发生更改时执行组合。 其次, 它提供了一些方法, 应用程序可通过这些方法获取组合部件的实例, 或填充可组合部件的依赖项。  
   
 > [!IMPORTANT]
->  此类型实现<xref:System.IDisposable>接口。 在使用完类型后，您应直接或间接释放类型。 若要直接释放类型，调用其<xref:System.IDisposable.Dispose%2A>中的方法`try` / `catch`块。 若要间接释放类型，请使用 `using`（在 C# 中）或 `Using`（在 Visual Basic 中）等语言构造。 有关详细信息，请参阅中的"使用对象实现 IDisposable"一节<xref:System.IDisposable>接口主题。  
+>  此类型实现<xref:System.IDisposable>接口。 在使用完类型后，您应直接或间接释放类型。 若要直接<xref:System.IDisposable.Dispose%2A>释放类型, 请`try` / `catch`在块中调用其方法。 若要间接释放类型，请使用 `using`（在 C# 中）或 `Using`（在 Visual Basic 中）等语言构造。 有关详细信息, 请参阅<xref:System.IDisposable>接口主题中的 "使用实现 IDisposable 的对象" 一节。  
   
- 部件可提供对容器或者直接或通过<xref:System.ComponentModel.Composition.Hosting.CompositionContainer.Catalog%2A>属性。 在此可发现的所有部分<xref:System.ComponentModel.Composition.Primitives.ComposablePartCatalog>可供要满足导入，以及直接添加任何部件的容器。  
+ 可以直接或通过<xref:System.ComponentModel.Composition.Hosting.CompositionContainer.Catalog%2A>属性将部分提供给容器。 可在此<xref:System.ComponentModel.Composition.Primitives.ComposablePartCatalog>过程中发现的所有部件可用于实现导入的容器, 以及直接添加的任何部分。  
   
- <xref:System.ComponentModel.Composition.Hosting.CompositionContainer.Compose%2A>方法允许实例化的部件添加到现有的容器。 假设成功组合，这些部件将具有从容器中检索的部分填充其导入和导出将可供其他部分。 将被标记为可重新组合的导入注册以进行重新组合。  
+ <xref:System.ComponentModel.Composition.Hosting.CompositionContainer.Compose%2A>方法允许将实例化部件添加到现有容器。 假设组合成功, 这些部件将使用从容器检索的部件填充其导入, 并将其导出提供给其他部件。 标记为可重新组合的导入将注册以进行重新组合。  
   
- <xref:System.ComponentModel.Composition.Hosting.CompositionContainer.SatisfyImportsOnce%2A>方法允许部分填充而无需添加到容器的导入。 如果组合操作成功，将填充部件的导入，但部件的导出将不可用的其他部分并不导入将注册以进行重新组合。  
+ <xref:System.ComponentModel.Composition.Hosting.CompositionContainer.SatisfyImportsOnce%2A>方法允许部件填充其导入, 而无需将其添加到容器中。 如果组合成功, 将填充部件的导入, 但部件的导出将不可用于其他部件, 并且将不会为重新组合注册任何导入。  
   
- <xref:System.ComponentModel.Composition.Hosting.CompositionContainer> 应始终释放对象。 当<xref:System.ComponentModel.Composition.Hosting.CompositionContainer.Dispose%2A>调用方法时，<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>对象也会释放它已创建的所有部分。  
+ <xref:System.ComponentModel.Composition.Hosting.CompositionContainer>应始终释放对象。 调用方法时<xref:System.ComponentModel.Composition.Hosting.CompositionContainer> , 对象还会释放已创建的所有部分。 <xref:System.ComponentModel.Composition.Hosting.CompositionContainer.Dispose%2A>  
   
- 一个<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>可以从多个线程访问的对象必须使用构造`isThreadSafe`参数设置为`true`，并使用<xref:System.ComponentModel.Composition.Hosting.CompositionContainer.%23ctor%28System.ComponentModel.Composition.Primitives.ComposablePartCatalog%2CSystem.Boolean%2CSystem.ComponentModel.Composition.Hosting.ExportProvider%5B%5D%29>构造函数。 性能将会稍慢时`isThreadSafe`是`true`，因此我们建议将此参数设置为`false`单线程方案中。 默认值为 `false`。  
+ 对于可以从多个线程访问的`true` <xref:System.ComponentModel.Composition.Hosting.CompositionContainer.%23ctor%28System.ComponentModel.Composition.Primitives.ComposablePartCatalog%2CSystem.Boolean%2CSystem.ComponentModel.Composition.Hosting.ExportProvider%5B%5D%29>对象, 必须使用构造函数将参数设置为来构造该对象。`isThreadSafe` <xref:System.ComponentModel.Composition.Hosting.CompositionContainer> 当为`isThreadSafe` `true`时, 性能将略微降低, 因此建议在单线程方案中将`false`此参数设置为。 默认值为 `false`。  
   
 > [!WARNING]
->  一个<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>本身，或具有对它的引用的部件应永远不会导入。 此类引用可能允许访问容器中的所有部分受信任的一部分。  
+>  不<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>应导入自身, 也不应导入具有对它的引用的部分。 此类引用可能会允许不受信任的部分访问容器中的所有部件。  
   
    
   
 ## Examples  
- 在以下示例中，<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>对象和用来填充的一部分导入的目录进行初始化。 此示例使用特性化编程模型。  
+ 在下面的示例中, <xref:System.ComponentModel.Composition.Hosting.CompositionContainer>使用目录初始化对象, 并用于填充部件的导入。 此示例使用特性化编程模型。  
   
  [!code-csharp[Composition.CompositionContainer#1](~/samples/snippets/csharp/VS_Snippets_Misc/composition.compositioncontainer/cs/program.cs#1)]
  [!code-vb[Composition.CompositionContainer#1](~/samples/snippets/visualbasic/VS_Snippets_Misc/composition.compositioncontainer/vb/module1.vb#1)]  
@@ -65,7 +65,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> class.</summary>
+        <summary>初始化 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 类的新实例。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName=".ctor">
@@ -82,7 +82,7 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> class.</summary>
+        <summary>初始化 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -114,10 +114,10 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="providers">An array of <see cref="T:System.ComponentModel.Composition.Hosting.ExportProvider" /> objects that provide the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> access to <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> objects, or <see langword="null" /> to set <see cref="P:System.ComponentModel.Composition.Hosting.CompositionContainer.Providers" /> to an empty <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />.</param>
-        <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> class with the specified export providers.</summary>
+        <param name="providers">提供对 <see cref="T:System.ComponentModel.Composition.Hosting.ExportProvider" /> 对象的 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 访问的 <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> 对象的数组，或为 <see langword="null" /> 以将 <see cref="P:System.ComponentModel.Composition.Hosting.CompositionContainer.Providers" /> 设置为空的 <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />。</param>
+        <summary>使用指定的导出提供程序初始化 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="providers" /> contains an element that is <see langword="null" />.</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="providers" /> 包含为 <see langword="null" /> 的元素。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -143,11 +143,11 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="compositionOptions">An object that specifies the behavior of this container.</param>
-        <param name="providers">An array of <see cref="T:System.ComponentModel.Composition.Hosting.ExportProvider" /> objects that provide the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> access to <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> objects, or <see langword="null" /> to set <see cref="P:System.ComponentModel.Composition.Hosting.CompositionContainer.Providers" /> to an empty <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />.</param>
-        <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> class with the specified export providers and options.</summary>
+        <param name="compositionOptions">指定此容器行为的对象。</param>
+        <param name="providers">提供对 <see cref="T:System.ComponentModel.Composition.Hosting.ExportProvider" /> 对象的 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 访问的 <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> 对象的数组，或为 <see langword="null" /> 以将 <see cref="P:System.ComponentModel.Composition.Hosting.CompositionContainer.Providers" /> 设置为空的 <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />。</param>
+        <summary>使用指定的选项和导出提供程序初始化 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="providers" /> contains an element that is <see langword="null" />.</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="providers" /> 包含为 <see langword="null" /> 的元素。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -179,11 +179,11 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="catalog">A catalog that provides <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> objects to the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" />.</param>
-        <param name="providers">An array of <see cref="T:System.ComponentModel.Composition.Hosting.ExportProvider" /> objects that provide the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> access to <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> objects, or <see langword="null" /> to set <see cref="P:System.ComponentModel.Composition.Hosting.CompositionContainer.Providers" /> to an empty <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />.</param>
-        <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> class with the specified catalog and export providers.</summary>
+        <param name="catalog">向 <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> 提供 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 对象的目录。</param>
+        <param name="providers">提供对 <see cref="T:System.ComponentModel.Composition.Hosting.ExportProvider" /> 对象的 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 访问的 <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> 对象的数组，或为 <see langword="null" /> 以将 <see cref="P:System.ComponentModel.Composition.Hosting.CompositionContainer.Providers" /> 设置为空的 <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />。</param>
+        <summary>使用指定的目录和导出提供程序初始化 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="providers" /> contains an element that is <see langword="null" />.</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="providers" /> 包含为 <see langword="null" /> 的元素。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -211,19 +211,19 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="catalog">A catalog that provides <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> objects to the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" />.</param>
-        <param name="isThreadSafe"><see langword="true" /> if this <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> object must be thread-safe; otherwise, <see langword="false" />.</param>
-        <param name="providers">An array of <see cref="T:System.ComponentModel.Composition.Hosting.ExportProvider" /> objects that provide the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> access to <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> objects, or <see langword="null" /> to set the <see cref="P:System.ComponentModel.Composition.Hosting.CompositionContainer.Providers" /> property to an empty <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />.</param>
-        <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> class with the specified catalog, thread-safe mode, and export providers.</summary>
+        <param name="catalog">向 <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> 提供 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 对象的目录。</param>
+        <param name="isThreadSafe">如果此 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 对象必须是线程安全的，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+        <param name="providers">提供对 <see cref="T:System.ComponentModel.Composition.Hosting.ExportProvider" /> 对象的 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 访问的 <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> 对象的数组，或为 <see langword="null" /> 以将 <see cref="P:System.ComponentModel.Composition.Hosting.CompositionContainer.Providers" /> 属性设置为空的 <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />。</param>
+        <summary>使用指定的目录、线程安全模式和导出提供程序初始化 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>必须设置对象，它可以从多个线程访问`isThreadSafe`参数`true`。 性能将会稍慢时`isThreadSafe`是`true`，因此我们建议将此参数设置为`false`单线程方案中。 默认值为 `false`。  
+ 可以从多个线程访问的`isThreadSafe` `true`对象必须将参数设置为。 <xref:System.ComponentModel.Composition.Hosting.CompositionContainer> 当为`isThreadSafe` `true`时, 性能将略微降低, 因此建议在单线程方案中将`false`此参数设置为。 默认值为 `false`。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException">One or more elements of <paramref name="providers" /> are <see langword="null" />.</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="providers" /> 的一个或多个元素为 <see langword="null" />。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -250,12 +250,12 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="catalog">A catalog that provides <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> objects to the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" />.</param>
-        <param name="compositionOptions">An object that specifies options that affect the behavior of the container.</param>
-        <param name="providers">An array of <see cref="T:System.ComponentModel.Composition.Hosting.ExportProvider" /> objects that provide the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> access to <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> objects, or <see langword="null" /> to set <see cref="P:System.ComponentModel.Composition.Hosting.CompositionContainer.Providers" /> to an empty <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />.</param>
-        <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> class with the specified catalog, options, and export providers.</summary>
+        <param name="catalog">向 <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> 提供 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 对象的目录。</param>
+        <param name="compositionOptions">指定影响容器行为的选项的对象。</param>
+        <param name="providers">提供对 <see cref="T:System.ComponentModel.Composition.Hosting.ExportProvider" /> 对象的 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 访问的 <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> 对象的数组，或为 <see langword="null" /> 以将 <see cref="P:System.ComponentModel.Composition.Hosting.CompositionContainer.Providers" /> 设置为空的 <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />。</param>
+        <summary>使用指定的目录，选项和导出提供程序初始化 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="providers" /> contains an element that is <see langword="null" />.</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="providers" /> 包含为 <see langword="null" /> 的元素。</exception>
       </Docs>
     </Member>
     <Member MemberName="Catalog">
@@ -275,10 +275,10 @@
         <ReturnType>System.ComponentModel.Composition.Primitives.ComposablePartCatalog</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets the <see cref="T:System.ComponentModel.Composition.Primitives.ComposablePartCatalog" /> that provides the container access to <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> objects.</summary>
-        <value>提供的目录<see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" />访问从生成的导出<see cref="T:System.ComponentModel.Composition.Primitives.ComposablePart" />对象。 默认值为 <see langword="null" />。</value>
+        <summary>获取提供对 <see cref="T:System.ComponentModel.Composition.Primitives.ComposablePartCatalog" /> 对象的容器访问的 <see cref="T:System.ComponentModel.Composition.Primitives.Export" />。</summary>
+        <value>提供对从 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 对象生成的导出的 <see cref="T:System.ComponentModel.Composition.Primitives.ComposablePart" /> 访问的目录。 默认值为 <see langword="null" />。</value>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> object has been disposed of.</exception>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 对象已被释放。</exception>
       </Docs>
     </Member>
     <Member MemberName="Compose">
@@ -301,20 +301,20 @@
         <Parameter Name="batch" Type="System.ComponentModel.Composition.Hosting.CompositionBatch" />
       </Parameters>
       <Docs>
-        <param name="batch">Changes to the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> to include during the composition.</param>
-        <summary>Adds or removes the parts in the specified <see cref="T:System.ComponentModel.Composition.Hosting.CompositionBatch" /> from the container and executes composition.</summary>
+        <param name="batch">组合期间要包括的对 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 的更改。</param>
+        <summary>在容器中添加或移除指定的 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionBatch" /> 中的部件并执行组合。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法是直接添加或从该容器中删除部件的主要方式。 <xref:System.ComponentModel.Composition.Hosting.CompositionContainer>将始终保持稳定、 组成的状态。 因此，调用<xref:System.ComponentModel.Composition.Hosting.CompositionContainer.Compose%2A>用空<xref:System.ComponentModel.Composition.Hosting.CompositionBatch>，根本没有必要启动组合。 改为调用<xref:System.ComponentModel.Composition.Hosting.CompositionContainer.Compose%2A>方法需要对部件可用于进行更改时随时<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>。  
+ 此方法是直接在容器中添加或删除部件的主要方式。 <xref:System.ComponentModel.Composition.Hosting.CompositionContainer>将始终保持稳定的组合状态。 因此, 不<xref:System.ComponentModel.Composition.Hosting.CompositionContainer.Compose%2A>需要使用空<xref:System.ComponentModel.Composition.Hosting.CompositionBatch>调用来启动组合。 请在需要对<xref:System.ComponentModel.Composition.Hosting.CompositionContainer.Compose%2A>可用于的<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>部件进行更改时调用方法。  
   
- <xref:System.ComponentModel.Composition.Hosting.CompositionBatch>可以包含要添加的部件和要移除的部分。  重新组合会进行一次每次调用<xref:System.ComponentModel.Composition.Hosting.CompositionContainer.Compose%2A>。  
+ <xref:System.ComponentModel.Composition.Hosting.CompositionBatch>可以包含要添加的部分和要删除的部件。  对于每个调用<xref:System.ComponentModel.Composition.Hosting.CompositionContainer.Compose%2A>, 重新组合将只发生一次。  
   
    
   
 ## Examples  
- 在此简单示例中，三个部分创建并添加到<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>，并检索一个部分以显示已填写所有导入。 此示例使用特性化编程模型。  
+ 在这个简单的<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>示例中, 将创建三个部件并将其添加到中, 并检索一个部分以显示所有导入都已填充。 此示例使用特性化编程模型。  
   
  [!code-csharp[Composition.CompositionContainer.Compose#1](~/samples/snippets/csharp/VS_Snippets_Misc/composition.compositioncontainer.compose/cs/program.cs#1)]
  [!code-vb[Composition.CompositionContainer.Compose#1](~/samples/snippets/visualbasic/VS_Snippets_Misc/composition.compositioncontainer.compose/vb/module1.vb#1)]  
@@ -331,7 +331,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>Releases the resources used by the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" />.</summary>
+        <summary>释放由 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 占用的资源。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="Dispose">
@@ -355,14 +355,14 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>Releases all resources used by the current instance of the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> class.</summary>
+        <summary>释放 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 类的当前实例所使用的所有资源。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在完成使用 `Dispose` 后，应调用 <xref:System.ComponentModel.Composition.Hosting.CompositionContainer>。 `Dispose` 方法使 <xref:System.ComponentModel.Composition.Hosting.CompositionContainer> 处于不可用状态。 在调用`Dispose`，必须释放对所有引用<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>这样垃圾回收器才能收回内存的<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>占用。  
+ 在完成使用 `Dispose` 后，应调用 <xref:System.ComponentModel.Composition.Hosting.CompositionContainer>。 `Dispose` 方法使 <xref:System.ComponentModel.Composition.Hosting.CompositionContainer> 处于不可用状态。 调用`Dispose`后, 必须释放对的<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>所有引用, 以便垃圾回收器能够<xref:System.ComponentModel.Composition.Hosting.CompositionContainer>回收占用的内存。  
   
- 有关详细信息，请参阅[清理了非托管资源](~/docs/standard/garbage-collection/unmanaged.md)并[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
+ 有关详细信息, 请参阅[清理非托管资源](~/docs/standard/garbage-collection/unmanaged.md)和[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
   
 > [!NOTE]
 >  每次释放对 `Dispose` 的最后一个引用前，均应调用 <xref:System.ComponentModel.Composition.Hosting.CompositionContainer>。 否则，在垃圾回收器调用 <xref:System.ComponentModel.Composition.Hosting.CompositionContainer> 对象的 `Finalize` 方法之前，该对象正在使用的资源不会被释放。  
@@ -391,8 +391,8 @@
         <Parameter Name="disposing" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="disposing"><see langword="true" /> to release both managed and unmanaged resources; <see langword="false" /> to release only unmanaged resources.</param>
-        <summary>Releases the unmanaged resources used by the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> and optionally releases the managed resources.</summary>
+        <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+        <summary>释放由 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -416,15 +416,15 @@
         <Parameter Name="atomicComposition" Type="System.ComponentModel.Composition.Hosting.AtomicComposition" />
       </Parameters>
       <Docs>
-        <param name="definition">The object that defines the conditions of the <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> objects to get.</param>
-        <param name="atomicComposition">The composition transaction to use, or <see langword="null" /> to disable transactional composition.</param>
-        <summary>Returns a collection of all exports that match the conditions in the specified <see cref="T:System.ComponentModel.Composition.Primitives.ImportDefinition" /> object.</summary>
-        <returns>A collection of all the <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> objects in this <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> object that match the conditions specified by <paramref name="definition" />.</returns>
+        <param name="definition">定义要获取的 <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> 对象的条件的对象。</param>
+        <param name="atomicComposition">要使用的组合事务，或为 <see langword="null" /> 以禁用事务性组合。</param>
+        <summary>返回与指定的 <see cref="T:System.ComponentModel.Composition.Primitives.ImportDefinition" /> 对象中的条件相匹配的所有导出的集合。</summary>
+        <returns>此 <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> 对象中与 <paramref name="definition" /> 指定的条件相匹配的所有 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 对象的集合。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 实现不应基数相关的不匹配将视为错误，并且不应引发异常的基数相关的不匹配。 例如，如果导入请求一个导出，该提供程序没有匹配的导出或多个<xref:System.ComponentModel.Composition.Hosting.CompositionContainer.GetExportsCore%2A>方法应返回一个空<xref:System.Collections.Generic.IEnumerable%601>的集合<xref:System.ComponentModel.Composition.Primitives.Export>对象。  
+ 实现不应将与基数相关的不匹配视为错误, 也不应为与基数相关的不匹配引发异常。 例如, 如果导入只请求一个导出, 且提供程序没有匹配的导出或多个导出, 则该<xref:System.ComponentModel.Composition.Hosting.CompositionContainer.GetExportsCore%2A>方法应返回空<xref:System.Collections.Generic.IEnumerable%601>的<xref:System.ComponentModel.Composition.Primitives.Export>对象集合。  
   
  ]]></format>
         </remarks>
@@ -447,10 +447,10 @@
         <ReturnType>System.Collections.ObjectModel.ReadOnlyCollection&lt;System.ComponentModel.Composition.Hosting.ExportProvider&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets the export providers that provide the container access to additional <see cref="T:System.ComponentModel.Composition.Primitives.ComposablePartCatalog" /> objects.</summary>
-        <value>一系列<see cref="T:System.ComponentModel.Composition.Hosting.ExportProvider" />对象，它提供<see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" />使用其他<see cref="T:System.ComponentModel.Composition.Primitives.Export" />对象。 默认值为空 <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />。</value>
+        <summary>获取提供对其他 <see cref="T:System.ComponentModel.Composition.Primitives.ComposablePartCatalog" /> 对象的容器访问的导出提供程序。</summary>
+        <value>提供对其他 <see cref="T:System.ComponentModel.Composition.Hosting.ExportProvider" /> 对象的 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 访问的 <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> 对象的集合。 默认值为空 <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />。</value>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> has been disposed of.</exception>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 已释放。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReleaseExport">
@@ -472,19 +472,19 @@
         <Parameter Name="export" Type="System.ComponentModel.Composition.Primitives.Export" />
       </Parameters>
       <Docs>
-        <param name="export">The <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> that needs to be released.</param>
-        <summary>Releases the specified <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> object from the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" />.</summary>
+        <param name="export">需要释放的 <see cref="T:System.ComponentModel.Composition.Primitives.Export" />。</param>
+        <summary>从 <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> 中释放指定的 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 对象。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法的行为可能会有所不同，具体取决于实现的<xref:System.ComponentModel.Composition.Hosting.ExportProvider>生成<xref:System.ComponentModel.Composition.Primitives.Export>实例。 一般来说，应从容器中分离非共享导出。  
+ 此方法的行为可能会有所不同<xref:System.ComponentModel.Composition.Hosting.ExportProvider> , 具体取决于<xref:System.ComponentModel.Composition.Primitives.Export>生成实例的的实现。 通常, 非共享导出应该与容器分离。  
   
- 例如，<xref:System.ComponentModel.Composition.Hosting.CatalogExportProvider>只会释放<xref:System.ComponentModel.Composition.Primitives.Export>如果有来自<xref:System.ComponentModel.Composition.Primitives.ComposablePart>下构造<xref:System.ComponentModel.Composition.CreationPolicy.NonShared>上下文。 发布在此上下文中的意味着每个步骤的依赖关系链<xref:System.ComponentModel.Composition.Primitives.Export>分离容器和调用的引用的对象`Dispose`上<xref:System.ComponentModel.Composition.Primitives.ComposablePart>对象根据需要。 如果<xref:System.ComponentModel.Composition.Primitives.Export>下构造<xref:System.ComponentModel.Composition.CreationPolicy.Shared>上下文<xref:System.ComponentModel.Composition.Hosting.CatalogExportProvider>将不执行任何操作，作为指定<xref:System.ComponentModel.Composition.Primitives.Export>可能正由其他请求者。 仅会分离这些当容器为自身被释放。  
+ 例如<xref:System.ComponentModel.Composition.Hosting.CatalogExportProvider> , 仅<xref:System.ComponentModel.Composition.Primitives.Export> <xref:System.ComponentModel.Composition.CreationPolicy.NonShared>当来自在上下文下构建的时, 才会释放。 <xref:System.ComponentModel.Composition.Primitives.ComposablePart> 在此上下文中发布, 这意味着遍历<xref:System.ComponentModel.Composition.Primitives.Export>对象的依赖关系链, 从容器中分离引用并根据需要调用`Dispose` <xref:System.ComponentModel.Composition.Primitives.ComposablePart>对象。 如果是在上下文中<xref:System.ComponentModel.Composition.Hosting.CatalogExportProvider>构造的, 则不会执行任何操作, <xref:System.ComponentModel.Composition.Primitives.Export>因为其他请求者可能会使用指定的。 <xref:System.ComponentModel.Composition.CreationPolicy.Shared> <xref:System.ComponentModel.Composition.Primitives.Export> 仅当容器本身被释放时才会分离这些。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="export" /> is <see langword="null" />.</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="export" /> 为 <see langword="null" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReleaseExport&lt;T&gt;">
@@ -511,10 +511,10 @@
       </Parameters>
       <Docs>
         <typeparam name="T">导出的类型。</typeparam>
-        <param name="export">An indirect reference to the export to remove.</param>
-        <summary>Removes the specified export from composition and releases its resources if possible.</summary>
+        <param name="export">对要移除的导出的间接引用。</param>
+        <summary>从组合中移除指定的导出并释放其资源（如果可能）。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="export" /> is <see langword="null" />.</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="export" /> 为 <see langword="null" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReleaseExports">
@@ -537,18 +537,18 @@
         <Parameter Name="exports" Type="System.Collections.Generic.IEnumerable&lt;System.ComponentModel.Composition.Primitives.Export&gt;" />
       </Parameters>
       <Docs>
-        <param name="exports">A collection of <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> objects to be released.</param>
-        <summary>Releases a set of <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> objects from the <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" />.</summary>
+        <param name="exports">将释放的 <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> 对象的集合。</param>
+        <summary>从 <see cref="T:System.ComponentModel.Composition.Primitives.Export" /> 中释放一组 <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 对象。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法的行为可能会有所不同，具体取决于要在其中上下文<xref:System.ComponentModel.Composition.Primitives.Export>构造。 有关更多信息，请参见 <xref:System.ComponentModel.Composition.Hosting.CompositionContainer.ReleaseExport%2A> 方法。  
+ 此方法的行为可能因构造的上下文<xref:System.ComponentModel.Composition.Primitives.Export>而异。 有关更多信息，请参见 <xref:System.ComponentModel.Composition.Hosting.CompositionContainer.ReleaseExport%2A> 方法。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="exports" /> is <see langword="null" />.</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="exports" /> contains an element that is <see langword="null" />.</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="exports" /> 为 <see langword="null" />。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="exports" /> 包含为 <see langword="null" /> 的元素。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReleaseExports&lt;T&gt;">
@@ -575,11 +575,11 @@
       </Parameters>
       <Docs>
         <typeparam name="T">导出的类型。</typeparam>
-        <param name="exports">A collection of indirect references to the exports to be removed.</param>
-        <summary>Removes a collection of exports from composition and releases their resources if possible.</summary>
+        <param name="exports">对要移除的导出的间接引用的集合。</param>
+        <summary>从组合中移除导出的集合并释放其资源（如果可能）。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="exports" /> is <see langword="null" />.</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="exports" /> contains an element that is <see langword="null" />.</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="exports" /> 为 <see langword="null" />。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="exports" /> 包含为 <see langword="null" /> 的元素。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReleaseExports&lt;T,TMetadataView&gt;">
@@ -608,11 +608,11 @@
       <Docs>
         <typeparam name="T">导出的类型。</typeparam>
         <typeparam name="TMetadataView">导出的元数据视图的类型。</typeparam>
-        <param name="exports">A collection of indirect references to the exports to be removed and their metadata.</param>
-        <summary>Removes a collection of exports from composition and releases their resources if possible.</summary>
+        <param name="exports">对要移除的导出及其元数据的间接引用的集合。</param>
+        <summary>从组合中移除导出的集合并释放其资源（如果可能）。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="exports" /> is <see langword="null" />.</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="exports" /> contains an element that is <see langword="null" />.</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="exports" /> 为 <see langword="null" />。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="exports" /> 包含为 <see langword="null" /> 的元素。</exception>
       </Docs>
     </Member>
     <Member MemberName="SatisfyImportsOnce">
@@ -638,12 +638,12 @@
         <Parameter Name="part" Type="System.ComponentModel.Composition.Primitives.ComposablePart" />
       </Parameters>
       <Docs>
-        <param name="part">The part to satisfy the imports of.</param>
-        <summary>Satisfies the imports of the specified <see cref="T:System.ComponentModel.Composition.Primitives.ComposablePart" /> object without registering it for recomposition.</summary>
+        <param name="part">要满足其导入的部件。</param>
+        <summary>满足指定的 <see cref="T:System.ComponentModel.Composition.Primitives.ComposablePart" /> 对象的导入，而无需注册该对象以进行重新组合。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> object has been disposed of.</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="part" /> is <see langword="null" />.</exception>
-        <exception cref="T:System.ComponentModel.Composition.CompositionException">An error occurred during composition. <see cref="P:System.ComponentModel.Composition.CompositionException.Errors" /> will contain a collection of the errors that occurred.</exception>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:System.ComponentModel.Composition.Hosting.CompositionContainer" /> 对象已被释放。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="part" /> 为 <see langword="null" />。</exception>
+        <exception cref="T:System.ComponentModel.Composition.CompositionException">复合期间发生错误。 <see cref="P:System.ComponentModel.Composition.CompositionException.Errors" /> 将包含所发生错误的集合。</exception>
       </Docs>
     </Member>
   </Members>

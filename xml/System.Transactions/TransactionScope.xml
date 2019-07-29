@@ -35,25 +35,25 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Transactions>基础结构提供这两个显式编程模型，基于<xref:System.Transactions.Transaction>类，以及隐式编程模型使用<xref:System.Transactions.TransactionScope>类，在其中事务自动管理的基础结构。  
+ 基础结构提供基于类的<xref:System.Transactions.Transaction>显式编程模型, 以及使用<xref:System.Transactions.TransactionScope>类的隐式编程模型, 在该模型中, 事务由基础结构自动管理。 <xref:System.Transactions>  
   
 > [!IMPORTANT]
->  我们建议您创建使用隐式事务<xref:System.Transactions.TransactionScope>类，以便为您自动管理环境事务上下文。 此外应使用<xref:System.Transactions.TransactionScope>和<xref:System.Transactions.DependentTransaction>跨多个函数调用或多个线程调用需要在同一事务的使用的应用程序的类。 此模型的详细信息，请参阅[实现隐式 Transaction Using Transaction Scope](~/docs/framework/data/transactions/implementing-an-implicit-transaction-using-transaction-scope.md)主题。 编写事务应用程序的详细信息，请参阅[Writing A Transactional Application](~/docs/framework/data/transactions/writing-a-transactional-application.md)。  
+>  建议使用<xref:System.Transactions.TransactionScope>类创建隐式事务, 以便自动管理环境事务上下文。 还应将<xref:System.Transactions.TransactionScope>和<xref:System.Transactions.DependentTransaction>类用于需要跨多个函数调用或多个线程调用使用同一事务的应用程序。 有关此模型的详细信息, 请参阅[使用事务范围实现隐式事务](~/docs/framework/data/transactions/implementing-an-implicit-transaction-using-transaction-scope.md)主题。 有关编写事务应用程序的详细信息, 请参阅[编写事务应用程序](~/docs/framework/data/transactions/writing-a-transactional-application.md)。  
   
- 在实例化<xref:System.Transactions.TransactionScope>通过`new`语句，事务管理器确定哪些事务参与进来。 一旦确定，该范围将始终参与该事务。 此决策基于两个因素：是否存在环境事务以及构造函数中 `TransactionScopeOption` 参数的值。  环境事务是在代码中执行的事务。 可通过调用 <xref:System.Transactions.Transaction.Current%2A?displayProperty=nameWithType> 类的静态 <xref:System.Transactions.Transaction> 属性，获取对环境事务的引用。 有关如何使用此参数的详细信息，请参阅的"事务流管理"部分[实现隐式 Transaction Using Transaction Scope](~/docs/framework/data/transactions/implementing-an-implicit-transaction-using-transaction-scope.md)主题。  
+ <xref:System.Transactions.TransactionScope> 在`new`按语句实例化时, 事务管理器会确定要参与的事务。 一旦确定，该范围将始终参与该事务。 此决策基于两个因素：是否存在环境事务以及构造函数中 `TransactionScopeOption` 参数的值。  环境事务是您的代码在其中执行的事务。 可通过调用 <xref:System.Transactions.Transaction.Current%2A?displayProperty=nameWithType> 类的静态 <xref:System.Transactions.Transaction> 属性，获取对环境事务的引用。 有关如何使用此参数的详细信息, 请参阅[使用事务范围实现隐式事务](~/docs/framework/data/transactions/implementing-an-implicit-transaction-using-transaction-scope.md)主题中的 "事务流管理" 一节。  
   
- 如果事务范围内未不发生任何异常 (即之间的初始化<xref:System.Transactions.TransactionScope>对象并调用其<xref:System.Transactions.TransactionScope.Dispose%2A>方法)，则的事务范围所参与的允许才能继续。 如果异常确实发生事务范围内，参与到其中的事务将回滚。  
+ 如果事务范围内 (即在<xref:System.Transactions.TransactionScope>对象的初始化与调用其<xref:System.Transactions.TransactionScope.Dispose%2A>方法之间) 未发生异常, 则允许作用域参与的事务继续。 如果事务范围内发生异常, 则将回滚其参与的事务。  
   
- 你的应用程序完成所有工作时它想要在事务中执行，应调用<xref:System.Transactions.TransactionScope.Complete%2A>方法一次，从而通知该事务管理器是可接受提交事务。 未能调用此方法中止事务。  
+ 当应用程序完成要在事务中执行的所有工作时, 只应调用<xref:System.Transactions.TransactionScope.Complete%2A>方法一次, 以通知事务管理器可以提交事务。 未能调用此方法将中止事务。  
   
- 调用<xref:System.Transactions.TransactionScope.Dispose%2A>方法标记的事务范围的末尾。 在调用此方法之后所发生的异常不会影响事务。  
+ 对<xref:System.Transactions.TransactionScope.Dispose%2A>方法的调用将标记事务范围的末尾。 在调用此方法之后所发生的异常不会影响事务。  
   
- 如果您修改的值<xref:System.Transactions.Transaction.Current%2A>的作用域，将引发异常时<xref:System.Transactions.TransactionScope.Dispose%2A>调用。 但是，在作用域结束时，以前的值将恢复。 此外，如果您调用<xref:System.Transactions.TransactionScope.Dispose%2A>上<xref:System.Transactions.Transaction.Current%2A>创建了事务的事务作用域，在事务中止的作用域的末尾。  
+ 如果修改范围<xref:System.Transactions.Transaction.Current%2A>内的值, 则在<xref:System.Transactions.TransactionScope.Dispose%2A>调用时会引发异常。 但是, 在范围结束时, 将还原以前的值。 此外, 如果您在<xref:System.Transactions.TransactionScope.Dispose%2A> <xref:System.Transactions.Transaction.Current%2A>创建了事务的事务范围内调用, 则事务将在范围结束时中止。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.Transactions.TransactionScope>类来定义要参与事务的代码块。  
+ 下面的示例演示如何使用<xref:System.Transactions.TransactionScope>类定义代码块以参与事务。  
   
  [!code-csharp[TransactionScope#1](~/samples/snippets/csharp/VS_Snippets_Remoting/TransactionScope/cs/ScopeWithSQL.cs#1)]
  [!code-vb[TransactionScope#1](~/samples/snippets/visualbasic/VS_Snippets_Remoting/TransactionScope/vb/ScopeWithSQL.vb#1)]  
@@ -61,7 +61,7 @@
  ]]></format>
     </remarks>
     <threadsafe>此类型是线程安全的。</threadsafe>
-    <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">实现使用事务作用域的隐式事务</related>
+    <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">使用事务范围实现隐式事务</related>
   </Docs>
   <Members>
     <MemberGroup MemberName=".ctor">
@@ -104,11 +104,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数创建新的事务范围的事务作用域选项与等于<xref:System.Transactions.TransactionScopeOption.Required>。 这意味着事务所需的新作用域，如果已存在，则使用环境事务。 否则，它创建新的事务进入范围之前。  
+ 此构造函数将创建一个新的事务作用域, 其中的<xref:System.Transactions.TransactionScopeOption.Required>事务作用域选项等于。 这意味着新的作用域需要事务, 并且如果已存在环境事务, 则使用该环境事务。 否则，在进入范围之前创建新的事务。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">实现使用事务作用域的隐式事务</related>
+        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">使用事务范围实现隐式事务</related>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -149,7 +149,7 @@
         <param name="transaction">要设置为环境事务（以便该范围中进行的事务性工作使用此事务）的事务。</param>
         <summary>初始化 <see cref="T:System.Transactions.TransactionScope" /> 类的新实例，并将指定的事务设置为环境事务，以便该范围中进行的事务性工作使用此事务。</summary>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">实现使用事务作用域的隐式事务</related>
+        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">使用事务范围实现隐式事务</related>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -266,7 +266,7 @@
         <param name="option"><see cref="T:System.Transactions.TransactionScopeOption" /> 枚举的实例，描述与此事务范围关联的事务要求。</param>
         <summary>以指定的要求初始化 <see cref="T:System.Transactions.TransactionScope" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">实现使用事务作用域的隐式事务</related>
+        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">使用事务范围实现隐式事务</related>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -350,11 +350,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当你使用`transactionOptions`参数来指定<xref:System.Transactions.IsolationLevel>，和作用域创建一个事务更高版本、 新的事务是与指定的隔离级别相关联。 如果与事务一起传入的隔离级别，事务必须具有相同的隔离级别，或引发异常。  
+ 如果使用`transactionOptions`参数<xref:System.Transactions.IsolationLevel>指定, 并且作用域稍后会创建事务, 则新事务将与指定的隔离级别关联。 如果隔离级别与事务一起传入, 则事务必须具有相同的隔离级别, 否则会引发异常。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">实现使用事务作用域的隐式事务</related>
+        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">使用事务范围实现隐式事务</related>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -435,7 +435,7 @@
         <param name="timeout">在 <see cref="T:System.TimeSpan" /> 之后，事务范围将超时并中止此事务。</param>
         <summary>使用指定的超时时间值初始化 <see cref="T:System.Transactions.TransactionScope" /> 类的新实例，并将指定的事务设置为环境事务，以便该范围中进行的事务性工作使用此事务。</summary>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">实现使用事务作用域的隐式事务</related>
+        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">使用事务范围实现隐式事务</related>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -481,7 +481,7 @@
         <param name="timeout">在 <see cref="T:System.TimeSpan" /> 之后，事务范围将超时并中止此事务。</param>
         <summary>以指定的超时时间值和要求初始化 <see cref="T:System.Transactions.TransactionScope" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">实现使用事务作用域的隐式事务</related>
+        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">使用事务范围实现隐式事务</related>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -569,21 +569,21 @@
         <param name="scopeOption"><see cref="T:System.Transactions.TransactionScopeOption" /> 枚举的实例，描述与此事务范围关联的事务要求。</param>
         <param name="transactionOptions"><see cref="T:System.Transactions.TransactionOptions" /> 结构描述要在创建新事务时使用的事务选项。 如果使用现有的事务，则此参数中的超时值将应用于该事务范围。 如果该时间在范围被释放之前到期，则事务将中止。</param>
         <param name="options"><see cref="T:System.Transactions.TransactionOptions" /> 结构描述要在创建新事务时使用的事务选项。 如果使用现有的事务，则此参数中的超时值将应用于该事务范围。 如果该时间在范围被释放之前到期，则事务将中止。</param>
-        <param name="interopOption">实例<see cref="T:System.Transactions.EnterpriseServicesInteropOption" />说明关联的事务与 COM + 事务交互的方式的枚举。</param>
-        <param name="opt">实例<see cref="T:System.Transactions.EnterpriseServicesInteropOption" />说明关联的事务与 COM + 事务交互的方式的枚举。</param>
+        <param name="interopOption"><see cref="T:System.Transactions.EnterpriseServicesInteropOption" /> 枚举的一个实例，用于说明关联的事务如何与 COM+ 事务进行交互。</param>
+        <param name="opt"><see cref="T:System.Transactions.EnterpriseServicesInteropOption" /> 枚举的一个实例，用于说明关联的事务如何与 COM+ 事务进行交互。</param>
         <summary>使用指定的范围和 COM+ 互操作性要求以及事务选项初始化 <see cref="T:System.Transactions.TransactionScope" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
 
-当你使用`transactionOptions`参数来指定<xref:System.Transactions.IsolationLevel>，和作用域创建一个事务更高版本、 新的事务是与指定的隔离级别相关联。 如果与事务一起传入的隔离级别，事务必须具有相同的隔离级别，或引发异常。
+如果使用`transactionOptions`参数<xref:System.Transactions.IsolationLevel>指定, 并且作用域稍后会创建事务, 则新事务将与指定的隔离级别关联。 如果隔离级别与事务一起传入, 则事务必须具有相同的隔离级别, 否则会引发异常。
   
-**请注意**此方法使用<xref:System.Security.Permissions.SecurityAction.LinkDemand>若要阻止该调用来自不受信任的代码; 但是，只有直接调用方需要拥有`FullTrust`权限集。
+**注意**此方法使用<xref:System.Security.Permissions.SecurityAction.LinkDemand>来防止不受信任的代码调用; 但是, 只有直接调用方才能`FullTrust`拥有权限集。
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">实现使用事务作用域的隐式事务</related>
+        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">使用事务范围实现隐式事务</related>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -628,19 +628,19 @@
         <param name="transaction">要设置为环境事务（以便该范围中进行的事务性工作使用此事务）的事务。</param>
         <param name="scopeTimeout">在 <see cref="T:System.TimeSpan" /> 之后，事务范围将超时并中止此事务。</param>
         <param name="timeout">在 <see cref="T:System.TimeSpan" /> 之后，事务范围将超时并中止此事务。</param>
-        <param name="interopOption">实例<see cref="T:System.Transactions.EnterpriseServicesInteropOption" />说明关联的事务与 COM + 事务交互的方式的枚举。</param>
-        <param name="opt">实例<see cref="T:System.Transactions.EnterpriseServicesInteropOption" />说明关联的事务与 COM + 事务交互的方式的枚举。</param>
+        <param name="interopOption"><see cref="T:System.Transactions.EnterpriseServicesInteropOption" /> 枚举的一个实例，用于说明关联的事务如何与 COM+ 事务进行交互。</param>
+        <param name="opt"><see cref="T:System.Transactions.EnterpriseServicesInteropOption" /> 枚举的一个实例，用于说明关联的事务如何与 COM+ 事务进行交互。</param>
         <summary>使用指定的超时时间值和 COM+ 互操作性要求初始化 <see cref="T:System.Transactions.TransactionScope" /> 类的新实例，并将指定的事务设置为环境事务，以便该范围中进行的事务性工作使用此事务。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
 
-**请注意**此方法使用<xref:System.Security.Permissions.SecurityAction.LinkDemand>若要阻止该调用来自不受信任的代码; 但是，只有直接调用方需要拥有`FullTrust`权限集。
+**注意**此方法使用<xref:System.Security.Permissions.SecurityAction.LinkDemand>来防止不受信任的代码调用; 但是, 只有直接调用方才能`FullTrust`拥有权限集。
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">实现使用事务作用域的隐式事务</related>
+        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">使用事务范围实现隐式事务</related>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -725,18 +725,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 无误后，作用域中的所有操作都已成功都完成，应调用此方法一次通知该事务管理器，跨所有资源的状态是一致的并且可以提交事务。 它是很好的做法，若要将该调用中的最后一个语句作为`using`块。  
+ 如果你认为范围内的所有操作都已成功完成, 则应只调用此方法一次, 以通知事务管理器所有资源的状态是一致的并且可以提交事务。 将调用作为`using`块中的最后一个语句, 这是一个很好的做法。  
   
- 有关如何使用此方法的详细信息，请参阅[实现隐式 Transaction Using Transaction Scope](~/docs/framework/data/transactions/implementing-an-implicit-transaction-using-transaction-scope.md)主题。  
+ 有关如何使用此方法的详细信息, 请参阅[使用事务范围实现隐式事务](~/docs/framework/data/transactions/implementing-an-implicit-transaction-using-transaction-scope.md)主题。  
   
- 未能调用此方法将中止事务，因为事务管理器将此解释为系统故障时，或在事务范围内引发的异常。 但是，您还应注意调用此方法不能保证事务的提交。 它只是一种将状态通知给事务管理器的方式。 调用此方法后，无法再访问环境事务通过<xref:System.Transactions.Transaction.Current%2A>属性，并尝试执行此操作会引发异常。  
+ 未能调用此方法会中止事务, 因为事务管理器会将此解释为系统故障或在事务范围内引发的异常。 但是, 您还应注意, 调用此方法并不保证事务的提交。 它只是一种将状态通知给事务管理器的方式。 调用此方法后, 您将无法再通过<xref:System.Transactions.Transaction.Current%2A>属性访问环境事务, 尝试执行此操作会导致引发异常。  
   
- 在进行资源管理器之间的提交的实际工作`End Using`语句如果<xref:System.Transactions.TransactionScope>对象创建了事务。 如果该对象未创建事务，则每当 <xref:System.Transactions.CommittableTransaction.Commit%2A> 对象的所有者调用 <xref:System.Transactions.CommittableTransaction> 时都会执行提交。 此时，事务管理器调用资源管理器，并告知用户提交或回滚，基于在调用了此方法<xref:System.Transactions.TransactionScope>对象。  
+ 如果对象创建了事务, 则资源管理器之间的`End Using`实际提交工作发生在语句中。 <xref:System.Transactions.TransactionScope> 如果该对象未创建事务，则每当 <xref:System.Transactions.CommittableTransaction.Commit%2A> 对象的所有者调用 <xref:System.Transactions.CommittableTransaction> 时都会执行提交。 此时, 事务管理器将调用资源管理器, 并根据是否对<xref:System.Transactions.TransactionScope>该对象调用此方法, 通知它们提交或回滚。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.Transactions.TransactionScope>类来定义要参与事务的代码块。  
+ 下面的示例演示如何使用<xref:System.Transactions.TransactionScope>类定义代码块以参与事务。  
   
  [!code-csharp[TransactionScope#1](~/samples/snippets/csharp/VS_Snippets_Remoting/TransactionScope/cs/ScopeWithSQL.cs#1)]
  [!code-vb[TransactionScope#1](~/samples/snippets/visualbasic/VS_Snippets_Remoting/TransactionScope/vb/ScopeWithSQL.vb#1)]  
@@ -744,7 +744,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">此方法已被调用过一次。</exception>
-        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">实现使用事务作用域的隐式事务</related>
+        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">使用事务范围实现隐式事务</related>
       </Docs>
     </Member>
     <Member MemberName="Dispose">
@@ -784,25 +784,25 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法将标记事务作用域结束。 如果<xref:System.Transactions.TransactionScope>对象创建了事务和<xref:System.Transactions.TransactionScope.Complete%2A>作用域，已调用<xref:System.Transactions.TransactionScope>对象尝试执行时调用此方法提交事务。 在这种情况下，此方法进行阻止，直到第一阶段的事务处理已完成。 第一阶段结束后所有资源管理器，并在事务中的登记具有事务结果投票和<xref:System.Transactions.TransactionManager>持久决定提交或中止事务。 在第二个阶段始终是处理的异步的。 因此，没有的只是已从给定的事务中提交的数据将立即可用之后使用另一个事务以查看此数据时能保证。  
+ 调用此方法将标记事务范围的结尾。 如果对象创建了事务并<xref:System.Transactions.TransactionScope.Complete%2A>在作用域上调用了, 则<xref:System.Transactions.TransactionScope>在调用此方法时, 该对象将尝试提交事务。 <xref:System.Transactions.TransactionScope> 在这种情况下, 此方法将会阻止, 直到完成事务处理的第一个阶段。 第一阶段在事务中的所有资源管理器和登记都已对事务结果进行了投票<xref:System.Transactions.TransactionManager>之后结束, 并且已持久决定提交或中止事务。 处理过程的第二个阶段始终是异步的。 因此, 无法保证刚从给定事务中提交的数据在不使用另一个事务查看此数据时立即可用。  
   
- 使用 C#`using`构造可确保即使发生异常，调用此方法。 在调用此方法之后所发生的异常不会影响事务。 此方法还将还原的环境事务到其原始状态。 一个<xref:System.Transactions.TransactionAbortedException>不真正提交事务时引发。  
+ C# 使用`using`构造可确保即使发生异常, 也会调用此方法。 在调用此方法之后所发生的异常不会影响事务。 此方法还会将环境事务还原到其原始状态。 如果未实际提交事务, 则会引发。<xref:System.Transactions.TransactionAbortedException>  
   
- 因为此方法将阻塞，直到事务处理的第一阶段完成，你必须非常谨慎使用此方法在 Windows 窗体 (WinForm) 应用程序或死锁时可能会发生。 如果内调用此方法一个 WinForm 控件事件 （例如，单击某个按钮），并使用同步<xref:System.Windows.Forms.Control.Invoke%2A>方法以指示要执行的中间处理事务，一些 UI 任务 （例如，更改颜色） 的控件会发生死锁。 这是因为<xref:System.Windows.Forms.Control.Invoke%2A>方法是同步的阻止辅助线程，直到用户界面线程完成其作业。 但是，在我们的方案，在 UI 线程正在还等待工作线程来提交事务。 结果是所有线程都无法继续，作用域将无限期等待完成的提交。 应使用<xref:System.Windows.Forms.Control.BeginInvoke%2A>而非<xref:System.Windows.Forms.Control.Invoke%2A>只要有可能，因为它是异步的因此不太容易发生死锁。  
+ 由于此方法在事务处理的第一阶段完成之前一直处于阻止状态, 因此在 Windows 窗体 (WinForm) 应用程序中使用此方法时应非常小心, 否则会发生死锁。 如果在一个 WinForm 控制事件 (例如, 单击按钮) 中调用此方法, 并使用同步<xref:System.Windows.Forms.Control.Invoke%2A>方法来指示控件在处理事务的过程中执行某些 UI 任务 (例如, 更改颜色),将发生死锁。 这是因为方法<xref:System.Windows.Forms.Control.Invoke%2A>是同步的, 并会阻止工作线程, 直到 UI 线程完成其作业为止。 但是, 在我们的方案中, UI 线程还会等待工作线程提交事务。 结果是, 无可以继续, 并且范围会无限期等待提交完成。 你应尽可能<xref:System.Windows.Forms.Control.BeginInvoke%2A>使用<xref:System.Windows.Forms.Control.Invoke%2A>而不是, 因为它是异步的, 因此不容易出现死锁。  
   
- 有关如何使用此方法的详细信息，请参阅[实现隐式 Transaction Using Transaction Scope](~/docs/framework/data/transactions/implementing-an-implicit-transaction-using-transaction-scope.md)主题。  
+ 有关如何使用此方法的详细信息, 请参阅[使用事务范围实现隐式事务](~/docs/framework/data/transactions/implementing-an-implicit-transaction-using-transaction-scope.md)主题。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.Transactions.TransactionScope>类来定义要参与事务的代码块。  
+ 下面的示例演示如何使用<xref:System.Transactions.TransactionScope>类定义代码块以参与事务。  
   
  [!code-csharp[TransactionScope#1](~/samples/snippets/csharp/VS_Snippets_Remoting/TransactionScope/cs/ScopeWithSQL.cs#1)]
  [!code-vb[TransactionScope#1](~/samples/snippets/visualbasic/VS_Snippets_Remoting/TransactionScope/vb/ScopeWithSQL.vb#1)]  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">实现使用事务作用域的隐式事务</related>
+        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms172152(v=vs.85)">使用事务范围实现隐式事务</related>
       </Docs>
     </Member>
   </Members>

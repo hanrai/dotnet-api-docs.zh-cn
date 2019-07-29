@@ -1,5 +1,5 @@
 <Type Name="ValueTask" FullName="System.Threading.Tasks.ValueTask">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="39915c4d8279433cae62ee98d244ffc2e58738b5" /><Meta Name="ms.sourcegitcommit" Value="690605a2d62010b93e13edf329aafe2bdc57423a" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/11/2019" /><Meta Name="ms.locfileid" Value="67801805" /></Metadata><TypeSignature Language="C#" Value="public struct ValueTask : IEquatable&lt;System.Threading.Tasks.ValueTask&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="229d1bf03b128c84133e142a8ae199b7608a6620" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68434840" /></Metadata><TypeSignature Language="C#" Value="public struct ValueTask : IEquatable&lt;System.Threading.Tasks.ValueTask&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit ValueTask extends System.ValueType implements class System.IEquatable`1&lt;valuetype System.Threading.Tasks.ValueTask&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Tasks.ValueTask" />
   <TypeSignature Language="VB.NET" Value="Public Structure ValueTask&#xA;Implements IEquatable(Of ValueTask)" />
@@ -33,27 +33,27 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>Provides an awaitable result of an asynchronous operation.</summary>
+    <summary>提供异步操作的可等待结果。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[ 
 
 ## Remarks  
-一个`ValueTask`实例可能是为处于等待状态或转换为<xref:System.Threading.Tasks.Task>使用<xref:System.Threading.Tasks.ValueTask.AsTask%2A>。 一个`ValueTask`可能仅一次，等待实例中，使用者可能会调用<xref:System.Threading.Tasks.ValueTask.GetAwaiter>直到已完成实例。 如果不可接受的这些限制，将转换`ValueTask`到<xref:System.Threading.Tasks.Task>通过调用<xref:System.Threading.Tasks.ValueTask.AsTask%2A>。
+实例可以等待或<xref:System.Threading.Tasks.Task>使用<xref:System.Threading.Tasks.ValueTask.AsTask%2A>转换为。 `ValueTask` 实例仅可等待一次, 并且在实例完成之前, 使用者可能不会调用<xref:System.Threading.Tasks.ValueTask.GetAwaiter>。 `ValueTask` 如果这些限制不可接受, 请`ValueTask` <xref:System.Threading.Tasks.Task>通过调用<xref:System.Threading.Tasks.ValueTask.AsTask%2A>将转换为。
 
-永远不应上执行以下操作`ValueTask`实例：
+永远不应对`ValueTask`实例执行以下操作:
 
 - 等待实例多次。
-- 调用<xref:System.Threading.Tasks.ValueTask.AsTask%2A>多次。
-- 使用多个以下方法之一来使用该实例。
+- 多次<xref:System.Threading.Tasks.ValueTask.AsTask%2A>调用。
+- 使用多种方法来使用此实例。
 
-如果执行上述任一操作，则结果不确定。
+如果执行上述任一操作, 则结果是不确定的。
 
-一个`ValueTask`是一个结构，可以是包装<xref:System.Threading.Tasks.Task>或<xref:System.Threading.Tasks.Sources.IValueTaskSource>实例。 返回`ValueTask`包装<xref:System.Threading.Tasks.Sources.IValueTaskSource>从异步方法的实例，高吞吐量应用程序可以避免通过使用可重用的池分配<xref:System.Threading.Tasks.Sources.IValueTaskSource>对象。 有关详细信息，请参阅[了解原因，新增功能，以及何时具有的 ValueTask](https://devblogs.microsoft.com/dotnet/understanding-the-whys-whats-and-whens-of-valuetask/)。
+是可包装<xref:System.Threading.Tasks.Task> 或<xref:System.Threading.Tasks.Sources.IValueTaskSource>实例的结构。 `ValueTask` 如果返回`ValueTask`一个从异步<xref:System.Threading.Tasks.Sources.IValueTaskSource>方法包装实例的, 则会启用高吞吐量应用程序, 以避免使用可重用<xref:System.Threading.Tasks.Sources.IValueTaskSource>对象池进行分配。 有关详细信息, 请参阅[了解原因和 ValueTask](https://devblogs.microsoft.com/dotnet/understanding-the-whys-whats-and-whens-of-valuetask/)的内容。
 
-使用`ValueTask`而不是<xref:System.Threading.Tasks.Task>引入了一些系统开销。 因为`ValueTask`是具有多个字段，它返回从复制更多的数据与返回单个方法结果的结构<xref:System.Threading.Tasks.Task>引用。 在这种情况下，应为不返回结果的任何异步方法的默认选择以返回<xref:System.Threading.Tasks.Task>。 仅当性能分析证明物有所值应`ValueTask`而不是使用<xref:System.Threading.Tasks.Task>。 <xref:System.Threading.Tasks.Task.CompletedTask?displayProperty=nameWithType>属性应该用于在方法返回退回这种情况中的已成功完成单一实例<xref:System.Threading.Tasks.Task>以同步方式并成功完成。
+使用而不是会<xref:System.Threading.Tasks.Task>引入一些开销。 `ValueTask` 由于`ValueTask`是具有多个字段的结构, 因此从方法返回它将导致复制更多的数据, 并<xref:System.Threading.Tasks.Task>返回一个引用。 因此, 不返回结果的任何异步方法的默认选择都应该是返回<xref:System.Threading.Tasks.Task>。 仅当性能分析证明需要使用时, `ValueTask`才应使用, 而<xref:System.Threading.Tasks.Task>不是。 此属性应该用于在方法<xref:System.Threading.Tasks.Task>返回成功完成的情况下, 手动返回已成功完成的单一实例。 <xref:System.Threading.Tasks.Task.CompletedTask?displayProperty=nameWithType>
 
 > [!NOTE]
-> 利用`ValueTask`开始，支持类型C#7.0 和 Visual Basic 的任何版本不支持。
+> 支持从C# 7.0 开始`ValueTask`使用该类型, Visual Basic 的任何版本都不支持此类型。
  ]]></format>
     </remarks>
   </Docs>
@@ -80,8 +80,8 @@
         <Parameter Name="task" Type="System.Threading.Tasks.Task" />
       </Parameters>
       <Docs>
-        <param name="task">The task that represents the operation.</param>
-        <summary>Initializes a new instance of the <see cref="T:System.Threading.Tasks.ValueTask" /> class using the supplied task that represents the operation.</summary>
+        <param name="task">表示操作的任务。</param>
+        <summary>使用提供的表示操作的任务初始化 <see cref="T:System.Threading.Tasks.ValueTask" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -109,9 +109,9 @@
         <Parameter Name="token" Type="System.Int16" />
       </Parameters>
       <Docs>
-        <param name="source">An object that represents the operation.</param>
-        <param name="token">An opaque value that is passed through to the <see cref="T:System.Threading.Tasks.Sources.IValueTaskSource" /></param>
-        <summary>Initializes a new instance of the <see cref="T:System.Threading.Tasks.ValueTask" /> class using the supplied <see cref="T:System.Threading.Tasks.Sources.IValueTaskSource" /> object that represents the operation.</summary>
+        <param name="source">表示操作的对象。</param>
+        <param name="token">一个传递给 <see cref="T:System.Threading.Tasks.Sources.IValueTaskSource" /> 的不透明值</param>
+        <summary>使用提供的表示操作的 <see cref="T:System.Threading.Tasks.Sources.IValueTaskSource" /> 对象初始化 <see cref="T:System.Threading.Tasks.ValueTask" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -139,11 +139,11 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>Retrieves a <see cref="T:System.Threading.Tasks.Task" /> object that represents this <see cref="T:System.Threading.Tasks.ValueTask" />.</summary>
-        <returns>The <see cref="T:System.Threading.Tasks.Task" /> object that is wrapped in this <see cref="T:System.Threading.Tasks.ValueTask" /> if one exists, or a new <see cref="T:System.Threading.Tasks.Task" /> object that represents the result.</returns>
+        <summary>检索表示此 <see cref="T:System.Threading.Tasks.ValueTask" /> 的 <see cref="T:System.Threading.Tasks.Task" /> 对象。</summary>
+        <returns>包装在此 <see cref="T:System.Threading.Tasks.ValueTask" /> 中的 <see cref="T:System.Threading.Tasks.Task" /> 对象（如果存在），或者表示结果的新 <see cref="T:System.Threading.Tasks.Task" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
-此方法返回的已包装的任务对象，如果存在，或生成新的 task 对象以表示结果。
+此方法返回包装的任务对象 (如果存在), 或生成一个新的任务对象来表示结果。
           ]]></format>
         </remarks>
       </Docs>
@@ -174,9 +174,9 @@
         <Parameter Name="continueOnCapturedContext" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="continueOnCapturedContext"><see langword="true" /> to attempt to marshal the continuation back to the captured context; otherwise, <see langword="false" />.</param>
-        <summary>Configures an awaiter for this value.</summary>
-        <returns>The configured awaiter.</returns>
+        <param name="continueOnCapturedContext">如果尝试将延续任务封送回捕获上下文，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+        <summary>为此值配置一个 awaiter。</summary>
+        <returns>配置的 awaiter。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -206,14 +206,14 @@
         <Parameter Name="obj" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="obj">The object to compare with the current object.</param>
-        <summary>Determines whether the specified object is equal to the current <see cref="T:System.Threading.Tasks.ValueTask" /> instance.</summary>
-        <returns><see langword="true" /> if the specified object is equal to the current object; otherwise, <see langword="false" />.</returns>
+        <param name="obj">要与当前对象进行比较的对象。</param>
+        <summary>确定指定对象是否与当前的 <see cref="T:System.Threading.Tasks.ValueTask" /> 实例相等。</summary>
+        <returns>如果指定的对象是等于当前对象，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[ 
 
 ## Remarks  
-两个<xref:System.Threading.Tasks.ValueTask>实例是否相等时它们包装相同<xref:System.Threading.Tasks.Task>或同一对<xref:System.Threading.Tasks.Sources.IValueTaskSource>对象和令牌。
+当<xref:System.Threading.Tasks.ValueTask>两个实例包装相同<xref:System.Threading.Tasks.Task>或相同对<xref:System.Threading.Tasks.Sources.IValueTaskSource>对象和标记时, 两个实例相等。
 
  ]]></format>
         </remarks>
@@ -248,14 +248,14 @@
         <Parameter Name="other" Type="System.Threading.Tasks.ValueTask" />
       </Parameters>
       <Docs>
-        <param name="other">The object to compare with the current object.</param>
-        <summary>Determines whether the specified <see cref="T:System.Threading.Tasks.ValueTask" /> object is equal to the current <see cref="T:System.Threading.Tasks.ValueTask" /> object.</summary>
-        <returns><see langword="true" /> if the specified object is equal to the current object; otherwise, <see langword="false" />.</returns>
+        <param name="other">要与当前对象进行比较的对象。</param>
+        <summary>确定指定的 <see cref="T:System.Threading.Tasks.ValueTask" /> 对象是否等同于当前的 <see cref="T:System.Threading.Tasks.ValueTask" />。</summary>
+        <returns>如果指定的对象是等于当前对象，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[ 
 
 ## Remarks  
-两个<xref:System.Threading.Tasks.ValueTask>实例是否相等时它们包装相同<xref:System.Threading.Tasks.Task>或同一对<xref:System.Threading.Tasks.Sources.IValueTaskSource>对象和令牌。
+当<xref:System.Threading.Tasks.ValueTask>两个实例包装相同<xref:System.Threading.Tasks.Task>或相同对<xref:System.Threading.Tasks.Sources.IValueTaskSource>对象和标记时, 两个实例相等。
 
  ]]></format>
         </remarks>
@@ -285,8 +285,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>Creates an awaiter for this value.</summary>
-        <returns>The awaiter.</returns>
+        <summary>为此值创建一个 awaiter。</summary>
+        <returns>Awaiter。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -314,8 +314,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>Returns the hash code for this instance.</summary>
-        <returns>The hash code for the current object.</returns>
+        <summary>返回此实例的哈希代码。</summary>
+        <returns>当前对象的哈希代码。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -342,11 +342,11 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets a value that indicates whether this object represents a canceled operation.</summary>
-        <value><see langword="true" /> 如果此对象表示已取消的操作;否则为<see langword="false" />。</value>
+        <summary>获取指示此对象是否表示取消的操作的值。</summary>
+        <value><see langword="true" />如果此对象表示取消的操作, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[
-如果<xref:System.Threading.Tasks.ValueTask>通过结果或备份<xref:System.Threading.Tasks.Sources.IValueTaskSource>，这将始终返回`false`。  如果它由<xref:System.Threading.Tasks.Task>，它将返回的任务的值<xref:System.Threading.Tasks.Task.IsCanceled>属性。
+如果通过结果或<xref:System.Threading.Tasks.Sources.IValueTaskSource>由支持, 则将始终返回`false`。 <xref:System.Threading.Tasks.ValueTask>  如果它由<xref:System.Threading.Tasks.Task>支持, 它将返回<xref:System.Threading.Tasks.Task.IsCanceled>任务的属性的值。
           ]]></format>
         </remarks>
       </Docs>
@@ -374,8 +374,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets a value that indicates whether this object represents a completed operation.</summary>
-        <value><see langword="true" /> 如果此对象表示已完成的操作;否则为<see langword="false" />。</value>
+        <summary>获取指示此对象是否表示完成的操作的值。</summary>
+        <value><see langword="true" />如果此对象表示已完成的操作, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -402,8 +402,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets a value that indicates whether this object represents a successfully completed operation.</summary>
-        <value><see langword="true" /> 如果此对象表示已成功完成的操作;否则为<see langword="false" />。</value>
+        <summary>获取指示此对象是否表示成功完成的操作的值。</summary>
+        <value><see langword="true" />如果此对象表示已成功完成的操作, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -430,8 +430,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets a value that indicates whether this object represents a failed operation.</summary>
-        <value><see langword="true" /> 如果此对象表示失败的操作;否则为<see langword="false" />。</value>
+        <summary>获取指示此对象是否表示失败的操作的值。</summary>
+        <value><see langword="true" />如果此对象表示失败的操作, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -462,15 +462,15 @@
         <Parameter Name="right" Type="System.Threading.Tasks.ValueTask" />
       </Parameters>
       <Docs>
-        <param name="left">The first value to compare.</param>
-        <param name="right">The second value to compare.</param>
-        <summary>Compares two <see cref="T:System.Threading.Tasks.ValueTask" /> values for equality.</summary>
-        <returns><see langword="true" /> if the two <see cref="T:System.Threading.Tasks.ValueTask" /> values are equal; otherwise, <see langword="false" />.</returns>
+        <param name="left">要比较的第一个值。</param>
+        <param name="right">要比较的第二个值。</param>
+        <summary>比较两个 <see cref="T:System.Threading.Tasks.ValueTask" /> 值以判断是否相等。</summary>
+        <returns>如果两个 <see cref="T:System.Threading.Tasks.ValueTask" /> 值相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[ 
 
 ## Remarks  
-两个<xref:System.Threading.Tasks.ValueTask>实例是否相等时它们包装相同<xref:System.Threading.Tasks.Task>或同一对<xref:System.Threading.Tasks.Sources.IValueTaskSource>对象和令牌。
+当<xref:System.Threading.Tasks.ValueTask>两个实例包装相同<xref:System.Threading.Tasks.Task>或相同对<xref:System.Threading.Tasks.Sources.IValueTaskSource>对象和标记时, 两个实例相等。
 
  ]]></format>
         </remarks>
@@ -503,15 +503,15 @@
         <Parameter Name="right" Type="System.Threading.Tasks.ValueTask" />
       </Parameters>
       <Docs>
-        <param name="left">The first value to compare.</param>
-        <param name="right">The second value to compare.</param>
-        <summary>Determines whether two <see cref="T:System.Threading.Tasks.ValueTask" /> values are unequal.</summary>
-        <returns><see langword="true" /> if the two <see cref="T:System.Threading.Tasks.ValueTask" /> values are not equal; otherwise, <see langword="false" />.</returns>
+        <param name="left">要比较的第一个值。</param>
+        <param name="right">要比较的第二个值。</param>
+        <summary>确定两个 <see cref="T:System.Threading.Tasks.ValueTask" /> 值是否不相等。</summary>
+        <returns>如果两个 <see cref="T:System.Threading.Tasks.ValueTask" /> 值相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[ 
 
 ## Remarks  
-两个<xref:System.Threading.Tasks.ValueTask>实例是否相等时它们包装相同<xref:System.Threading.Tasks.Task>或同一对<xref:System.Threading.Tasks.Sources.IValueTaskSource>对象和令牌。
+当<xref:System.Threading.Tasks.ValueTask>两个实例包装相同<xref:System.Threading.Tasks.Task>或相同对<xref:System.Threading.Tasks.Sources.IValueTaskSource>对象和标记时, 两个实例相等。
 
  ]]></format>
         </remarks>
@@ -541,8 +541,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>Gets a <see cref="T:System.Threading.Tasks.ValueTask" /> that may be used at any point in the future.</summary>
-        <returns>The preserved <see cref="T:System.Threading.Tasks.ValueTask" />.</returns>
+        <summary>获取将来随时可用的 <see cref="T:System.Threading.Tasks.ValueTask" />。</summary>
+        <returns>保留的 <see cref="T:System.Threading.Tasks.ValueTask" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

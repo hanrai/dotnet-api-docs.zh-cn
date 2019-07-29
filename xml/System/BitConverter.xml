@@ -35,9 +35,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.BitConverter>类可帮助作为一系列字节操作其基本窗体中的值类型。 一个字节被定义为一个 8 位无符号整数。 <xref:System.BitConverter>类包括下表说明了用于与从字节数组转换每个基元类型的静态方法。  
+ <xref:System.BitConverter>类可帮助以一系列字节的形式操作其基本格式的值类型。 字节被定义为8位无符号整数。 此<xref:System.BitConverter>类包含用于将每个基元类型转换为字节数组的静态方法, 如下表所示。  
   
-|类型|转换为字节|从字节转换|  
+|类型|到字节转换|源字节转换|  
 |----------|------------------------|--------------------------|  
 |<xref:System.Boolean>|<xref:System.BitConverter.GetBytes%28System.Boolean%29>|<xref:System.BitConverter.ToBoolean%2A>|  
 |<xref:System.Char>|<xref:System.BitConverter.GetBytes%28System.Char%29>|<xref:System.BitConverter.ToChar%2A>|  
@@ -50,28 +50,28 @@
 |<xref:System.UInt32>|<xref:System.BitConverter.GetBytes%28System.UInt32%29>|<xref:System.BitConverter.ToUInt32%2A>|  
 |<xref:System.UInt64>|<xref:System.BitConverter.GetBytes%28System.UInt64%29>|<xref:System.BitConverter.ToUInt64%2A>|  
   
- 如果您使用<xref:System.BitConverter>方法往返数据，请确保<xref:System.BitConverter.GetBytes%2A>重载并`To`*类型*方法指定相同的类型。 如下面的示例所示，还原一个数组，表示有符号的整数，通过调用<xref:System.BitConverter.ToUInt32%2A>方法可能会导致不同于原始值。 有关详细信息，请参阅文章[使用已签名的非十进制和按位值](https://go.microsoft.com/fwlink/?LinkId=186999)BCL 团队博客中。  
+ 如果使用<xref:System.BitConverter>方法来往返数据, 请确保<xref:System.BitConverter.GetBytes%2A>重载和`To`*类型*方法指定了相同的类型。 如下面的示例所示, 通过调用<xref:System.BitConverter.ToUInt32%2A>方法还原表示有符号整数的数组可能会产生与原始值不同的值。 有关详细信息, 请参阅在 BCL 团队博客中使用[带符号的非十进制和按位值](https://go.microsoft.com/fwlink/?LinkId=186999)。  
   
  [!code-csharp[System.BitConverter.Class#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.Class/CS/example1.cs#3)]
  [!code-vb[System.BitConverter.Class#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.BitConverter.Class/VB/example1.vb#3)]  
   
- 返回的数组中的字节顺序<xref:System.BitConverter.GetBytes%2A>方法重载 (以及中返回的整数位的顺序<xref:System.BitConverter.DoubleToInt64Bits%2A>方法，并返回的十六进制字符串的顺序<xref:System.BitConverter.ToString%28System.Byte%5B%5D%29>方法) 取决于是否计算机体系结构是 little-endian 还是 big endian。 同样，数组中的字节顺序和返回`To` *IntegerValue*方法和<xref:System.BitConverter.ToChar%2A>方法取决于计算机体系结构是 little-endian 还是 big endian。 体系结构的 endian 设置为由<xref:System.BitConverter.IsLittleEndian>属性，它返回`true`小字节序系统上和`false`big endian 系统上。 小字节序在系统上，较低序位字节前加上更高序位字节。 Big endian 系统上更高序位字节先于较低序位字节。 下表说明从传递的整数 1234567890 (0x499602D2) 产生的字节数组中的差异为<xref:System.BitConverter.GetBytes%28System.Int32%29>方法。 将字节从索引 0 处的字节到索引 3 处的字节顺序列出。  
+ 由<xref:System.BitConverter.GetBytes%2A>方法重载返回的数组中的字节顺序 (以及<xref:System.BitConverter.DoubleToInt64Bits%2A>由方法返回的整数中的位顺序和该<xref:System.BitConverter.ToString%28System.Byte%5B%5D%29>方法返回的十六进制字符串顺序) 取决于计算机体系结构是小字节序或大字节序。 同样, 由`To` *IntegerValue*方法和<xref:System.BitConverter.ToChar%2A>方法返回的数组中的字节顺序取决于计算机体系结构是小字节序还是大字节序。 结构的字节排序方式由<xref:System.BitConverter.IsLittleEndian>属性指示, 属性在小字节序系统和`false`大字节序系统上返回`true` 。 在小字节序系统上, 低序位字节优先于高阶字节。 在大字节序系统上, 高位字节优先于低序位字节。 下表说明了将整数 1234567890 (0x499602D2) 传递给<xref:System.BitConverter.GetBytes%28System.Int32%29>方法所产生的字节数组中的差异。 字节按顺序列出, 从索引0处的字节到索引3处的字节。  
   
 |||  
 |-|-|  
 |小字节序|D2-02-96-49|  
-|Big endian|49-96-02-D2|  
+|大字节序|49-96-02-D2|  
   
- 因为某些方法的返回值取决于系统体系结构，一定要小心，传输到计算机边界之外的字节数据时：  
+ 由于某些方法的返回值取决于系统体系结构, 因此在传输超出计算机边界的字节数据时要小心:  
   
--   如果所有系统发送和接收数据得到了都保证具有相同的字节顺序，执行任何操作已完成的数据。  
+-   如果保证发送和接收数据的所有系统都具有相同的字节序, 则不会对数据执行任何操作。  
   
--   如果发送和接收数据的系统可以具有不同字节序，始终将按特定顺序的数据传输。 这意味着数组中的字节顺序可能需要撤消之前将其发送或接收它们之后。 通用约定是以网络字节顺序 （big endian 顺序） 中的数据传输。 下面的示例提供了一个实现，以网络字节顺序发送一个整数值。  
+-   如果发送和接收数据的系统可以具有不同的字节顺序, 则始终按特定顺序传输数据。 这意味着数组中的字节顺序可能需要在发送它们之前或接收后进行反向。 常见的约定是以网络字节顺序 (大字节序顺序) 传输数据。 下面的示例提供了以网络字节顺序发送整数值的实现。  
   
      [!code-csharp[System.BitConverter.Class#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.Class/CS/networkorder1.cs#4)]
      [!code-vb[System.BitConverter.Class#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.BitConverter.Class/VB/networkorder1.vb#4)]  
   
--   如果发送和接收数据的系统可以具有不同字节排序方式，并要传输的数据包含有符号整数，调用<xref:System.Net.IPAddress.HostToNetworkOrder%2A?displayProperty=nameWithType>方法将数据转换为网络字节顺序和<xref:System.Net.IPAddress.NetworkToHostOrder%2A?displayProperty=nameWithType>方法以将其转换为所需的顺序接收方。  
+-   如果发送和接收数据的系统可以具有不同的字节序, 并且要传输的数据包含有符号整数<xref:System.Net.IPAddress.HostToNetworkOrder%2A?displayProperty=nameWithType> , 则调用方法将数据转换为网络字节顺序<xref:System.Net.IPAddress.NetworkToHostOrder%2A?displayProperty=nameWithType> , 并使用方法将数据转换为所需的顺序由接收方。  
   
    
   
@@ -129,17 +129,17 @@
       <Docs>
         <param name="value">要转换的数字。</param>
         <summary>将指定的双精度浮点数转换为 64 位有符号整数。</summary>
-        <returns>其值等效于 64 位有符号的整数<paramref name="value" />。</returns>
+        <returns>64 位有符号整数，其值等于 <paramref name="value" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 中返回的整数位的顺序<xref:System.BitConverter.DoubleToInt64Bits%2A>方法取决于计算机体系结构是 little-endian 还是 big endian。  
+ <xref:System.BitConverter.DoubleToInt64Bits%2A>方法返回的整数中的位数取决于计算机体系结构是小字节序还是大字节序。  
   
    
   
 ## Examples  
- 下面的代码示例将多个的位模式转换<xref:System.Double>值复制到<xref:System.Int64>值替换`DoubleToInt64Bits`方法。  
+ 下面的代码示例通过<xref:System.Double> `DoubleToInt64Bits`方法将几个值的位<xref:System.Int64>模式转换为值。  
   
  [!code-cpp[System.BitConverter.DoubleInt64#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.DoubleInt64/CPP/dbltobits.cpp#2)]
  [!code-csharp[System.BitConverter.DoubleInt64#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.DoubleInt64/CS/dbltobits.cs#2)]
@@ -204,12 +204,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以将一个字节数组转换回<xref:System.Boolean>值通过调用<xref:System.BitConverter.ToBoolean%2A>方法。  
+ 可以通过<xref:System.Boolean> <xref:System.BitConverter.ToBoolean%2A>调用方法将字节数组转换回某个值。  
   
    
   
 ## Examples  
- 以下示例将转换的位模式<xref:System.Boolean>值复制到<xref:System.Byte>数组与`GetBytes`方法。  
+ 下面的示例通过<xref:System.Boolean> `GetBytes`方法将值的位模式<xref:System.Byte>转换为数组。  
   
  [!code-cpp[System.BitConverter.GetBytes.Others#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.Others/CPP/bytesbool.cpp#1)]
  [!code-csharp[System.BitConverter.GetBytes.Others#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.Others/CS/bytesbool.cs#1)]
@@ -256,18 +256,18 @@
       </Parameters>
       <Docs>
         <param name="value">要转换的字符。</param>
-        <summary>字节数组形式返回指定的 Unicode 字符值。</summary>
+        <summary>以字节数组的形式返回指定的 Unicode 字符值。</summary>
         <returns>长度为 2 的字节数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的数组中的字节顺序<xref:System.BitConverter.GetBytes%2A>方法取决于计算机体系结构是 little-endian 还是 big endian。  
+ <xref:System.BitConverter.GetBytes%2A>方法返回的数组中的字节顺序取决于计算机体系结构是小字节序还是大字节序。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的位模式<xref:System.Char>值 （Unicode 字符） 到<xref:System.Byte>数组与`GetBytes`方法。  
+ 下面的代码示例通过<xref:System.Char> `GetBytes`方法将值的位模式 (Unicode 字符) <xref:System.Byte>转换为数组。  
   
  [!code-cpp[System.BitConverter.GetBytes.Others#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.Others/CPP/byteschar.cpp#2)]
  [!code-csharp[System.BitConverter.GetBytes.Others#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.Others/CS/byteschar.cs#2)]
@@ -319,18 +319,18 @@
       </Parameters>
       <Docs>
         <param name="value">要转换的数字。</param>
-        <summary>字节数组形式返回指定的双精度浮点值。</summary>
+        <summary>以字节数组的形式返回指定的双精度浮点值。</summary>
         <returns>长度为 8 的字节数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的数组中的字节顺序<xref:System.BitConverter.GetBytes%2A>方法取决于计算机体系结构是 little-endian 还是 big endian。  
+ <xref:System.BitConverter.GetBytes%2A>方法返回的数组中的字节顺序取决于计算机体系结构是小字节序还是大字节序。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的位模式<xref:System.Double>值复制到<xref:System.Byte>数组与`GetBytes`方法。  
+ 下面的代码示例通过<xref:System.Double> `GetBytes`方法将值的位模式<xref:System.Byte>转换为数组。  
   
  [!code-cpp[System.BitConverter.GetBytes.Others#4](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.Others/CPP/bytesdouble.cpp#4)]
  [!code-csharp[System.BitConverter.GetBytes.Others#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.Others/CS/bytesdouble.cs#4)]
@@ -382,18 +382,18 @@
       </Parameters>
       <Docs>
         <param name="value">要转换的数字。</param>
-        <summary>字节数组形式返回指定的 16 位有符号的整数值。</summary>
+        <summary>以字节数组的形式返回指定的 16 位有符号整数值。</summary>
         <returns>长度为 2 的字节数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的数组中的字节顺序<xref:System.BitConverter.GetBytes%2A>方法取决于计算机体系结构是 little-endian 还是 big endian。  
+ <xref:System.BitConverter.GetBytes%2A>方法返回的数组中的字节顺序取决于计算机体系结构是小字节序还是大字节序。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的位模式<xref:System.Int16>值复制到<xref:System.Byte>数组与`GetBytes`方法。  
+ 下面的代码示例通过<xref:System.Int16> `GetBytes`方法将值的位模式<xref:System.Byte>转换为数组。  
   
  [!code-cpp[System.BitConverter.GetBytes.SInts#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.SInts/CPP/bytesint16.cpp#3)]
  [!code-csharp[System.BitConverter.GetBytes.SInts#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.SInts/CS/bytesint16.cs#3)]
@@ -451,12 +451,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的数组中的字节顺序<xref:System.BitConverter.GetBytes%2A>方法取决于计算机体系结构是 little-endian 还是 big endian。  
+ <xref:System.BitConverter.GetBytes%2A>方法返回的数组中的字节顺序取决于计算机体系结构是小字节序还是大字节序。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的位模式<xref:System.Int32>值复制到<xref:System.Byte>数组与`GetBytes`方法。  
+ 下面的代码示例通过<xref:System.Int32> `GetBytes`方法将值的位模式<xref:System.Byte>转换为数组。  
   
  [!code-cpp[System.BitConverter.GetBytes.SInts#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.SInts/CPP/bytesint32.cpp#2)]
  [!code-csharp[System.BitConverter.GetBytes.SInts#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.SInts/CS/bytesint32.cs#2)]
@@ -514,12 +514,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的数组中的字节顺序<xref:System.BitConverter.GetBytes%2A>方法取决于计算机体系结构是 little-endian 还是 big endian。  
+ <xref:System.BitConverter.GetBytes%2A>方法返回的数组中的字节顺序取决于计算机体系结构是小字节序还是大字节序。  
   
    
   
 ## Examples  
- 下面的示例调用<xref:System.BitConverter.GetBytes%2A>方法将在每个元素<xref:System.Int64>数组到<xref:System.Byte>数组。  
+ 下面的示例调用<xref:System.BitConverter.GetBytes%2A>方法将<xref:System.Int64>数组中的每个元素转换为<xref:System.Byte>数组。  
   
  [!code-cpp[System.BitConverter.GetBytes.SInts#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.SInts/CPP/bytesint64.cpp#1)]
  [!code-csharp[System.BitConverter.GetBytes.SInts#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.SInts/CS/bytesint64.cs#1)]
@@ -571,18 +571,18 @@
       </Parameters>
       <Docs>
         <param name="value">要转换的数字。</param>
-        <summary>字节数组形式返回指定的单精度浮点值。</summary>
+        <summary>以字节数组的形式返回指定的单精度浮点值。</summary>
         <returns>长度为 4 的字节数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的数组中的字节顺序<xref:System.BitConverter.GetBytes%2A>方法取决于计算机体系结构是 little-endian 还是 big endian。  
+ <xref:System.BitConverter.GetBytes%2A>方法返回的数组中的字节顺序取决于计算机体系结构是小字节序还是大字节序。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的位模式<xref:System.Single>值复制到<xref:System.Byte>数组与`GetBytes`方法。  
+ 下面的代码示例通过<xref:System.Single> `GetBytes`方法将值的位模式<xref:System.Byte>转换为数组。  
   
  [!code-cpp[System.BitConverter.GetBytes.Others#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.Others/CPP/bytessingle.cpp#3)]
  [!code-csharp[System.BitConverter.GetBytes.Others#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.Others/CS/bytessingle.cs#3)]
@@ -634,18 +634,18 @@
       </Parameters>
       <Docs>
         <param name="value">要转换的数字。</param>
-        <summary>字节数组形式返回指定的 16 位无符号的整数值。</summary>
+        <summary>以字节数组的形式返回指定的 16 位无符号整数值。</summary>
         <returns>长度为 2 的字节数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的数组中的字节顺序<xref:System.BitConverter.GetBytes%2A>方法取决于计算机体系结构是 little-endian 还是 big endian。  
+ <xref:System.BitConverter.GetBytes%2A>方法返回的数组中的字节顺序取决于计算机体系结构是小字节序还是大字节序。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的位模式<xref:System.UInt16>值复制到<xref:System.Byte>数组与`GetBytes`方法。  
+ 下面的代码示例通过<xref:System.UInt16> `GetBytes`方法将值的位模式<xref:System.Byte>转换为数组。  
   
  [!code-cpp[System.BitConverter.GetBytes.UInts#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.UInts/CPP/bytesuint16.cpp#3)]
  [!code-csharp[System.BitConverter.GetBytes.UInts#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.UInts/CS/bytesuint16.cs#3)]
@@ -703,12 +703,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的数组中的字节顺序<xref:System.BitConverter.GetBytes%2A>方法取决于计算机体系结构是 little-endian 还是 big endian。  
+ <xref:System.BitConverter.GetBytes%2A>方法返回的数组中的字节顺序取决于计算机体系结构是小字节序还是大字节序。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的位模式<xref:System.UInt32>值复制到<xref:System.Byte>数组与`GetBytes`方法。  
+ 下面的代码示例通过<xref:System.UInt32> `GetBytes`方法将值的位模式<xref:System.Byte>转换为数组。  
   
  [!code-cpp[System.BitConverter.GetBytes.UInts#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.UInts/CPP/bytesuint32.cpp#2)]
  [!code-csharp[System.BitConverter.GetBytes.UInts#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.UInts/CS/bytesuint32.cs#2)]
@@ -766,12 +766,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的数组中的字节顺序<xref:System.BitConverter.GetBytes%2A>方法取决于计算机体系结构是 little-endian 还是 big endian。  
+ <xref:System.BitConverter.GetBytes%2A>方法返回的数组中的字节顺序取决于计算机体系结构是小字节序还是大字节序。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的位模式<xref:System.UInt64>值复制到<xref:System.Byte>数组与`GetBytes`方法。  
+ 下面的代码示例通过<xref:System.UInt64> `GetBytes`方法将值的位模式<xref:System.Byte>转换为数组。  
   
  [!code-cpp[System.BitConverter.GetBytes.UInts#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.UInts/CPP/bytesuint64.cpp#1)]
  [!code-csharp[System.BitConverter.GetBytes.UInts#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.GetBytes.UInts/CS/bytesuint64.cs#1)]
@@ -856,18 +856,18 @@
       </Parameters>
       <Docs>
         <param name="value">要转换的数字。</param>
-        <summary>将指定的 64 位有符号的整数转换为双精度浮点数字。</summary>
-        <returns>双精度浮点数字的值等效于<paramref name="value" />。</returns>
+        <summary>将指定的 64 位有符号整数转换成双精度浮点数。</summary>
+        <returns>双精度浮点数，其值等于 <paramref name="value" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常情况下，`value`是一个整数，返回的<xref:System.BitConverter.DoubleToInt64Bits%2A>方法。  
+ 通常, `value`是<xref:System.BitConverter.DoubleToInt64Bits%2A>方法返回的一个整数。  
   
    
   
 ## Examples  
- 下面的代码示例将多个的位模式转换<xref:System.Int64>值复制到<xref:System.Double>值替换`Int64BitsToDouble`方法。  
+ 下面的代码示例通过<xref:System.Int64> `Int64BitsToDouble`方法将几个值的位<xref:System.Double>模式转换为值。  
   
  [!code-cpp[System.BitConverter.DoubleInt64#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.DoubleInt64/CPP/bitstodbl.cpp#1)]
  [!code-csharp[System.BitConverter.DoubleInt64#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.DoubleInt64/CS/bitstodbl.cs#1)]
@@ -915,10 +915,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不同的计算机体系结构将使用不同的字节顺序的数据存储。 "Big endian"意味着最高有效字节位于某个词的左端。 "Little-endian"意味着最高有效字节位于某个词的右端。  
+ 不同的计算机体系结构使用不同的字节顺序存储数据。 "大字节序" 表示最重要的字节在单词的左侧。 "小字节序" 表示最有效的字节位于单词的右端。  
   
 > [!NOTE]
->  您可以将转换由网络字节顺序为主机字节顺序而无需检索的值<xref:System.BitConverter.IsLittleEndian?displayProperty=nameWithType>通过将传递到一个 16 位、 32 位或 64 位整数字段<xref:System.Net.IPAddress.HostToNetworkOrder%2A?displayProperty=nameWithType>方法。  
+>  可以通过将16位、32位或64位整数传递<xref:System.BitConverter.IsLittleEndian?displayProperty=nameWithType> <xref:System.Net.IPAddress.HostToNetworkOrder%2A?displayProperty=nameWithType>给方法, 从网络字节顺序转换为主机计算机的字节顺序, 而不检索字段的值。  
   
    
   
@@ -1037,17 +1037,17 @@
         <param name="value">字节数组。</param>
         <param name="startIndex"><paramref name="value" /> 中的字节索引。</param>
         <summary>返回由字节数组中指定位置的一个字节转换来的布尔值。</summary>
-        <returns><see langword="true" /> 如果在字节<paramref name="startIndex" />中<paramref name="value" />非零值; 否则为<see langword="false" />。</returns>
+        <returns>如果 <paramref name="startIndex" /> 中的 <paramref name="value" /> 处的字节非零，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 要转换<xref:System.Boolean>值为其字节表示形式，调用<xref:System.BitConverter.GetBytes(System.Boolean)>方法。  
+ 若要将<xref:System.Boolean>值转换为其字节表示形式, <xref:System.BitConverter.GetBytes(System.Boolean)>请调用方法。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的元素<xref:System.Byte>到数组<xref:System.Boolean>值替换`ToBoolean`方法。  
+ 下面的代码示例通过<xref:System.Byte> `ToBoolean`方法将数组元素<xref:System.Boolean>转换为值。  
   
  [!code-cpp[System.BitConverter.ToXXX.Others#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.Others/CPP/batobool.cpp#1)]
  [!code-csharp[System.BitConverter.ToXXX.Others#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.Others/CS/batobool.cs#1)]
@@ -1056,7 +1056,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于的长度<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于 <paramref name="value" /> 减 1 的长度。</exception>
         <altmember cref="M:System.BitConverter.GetBytes(System.Boolean)" />
       </Docs>
     </Member>
@@ -1130,18 +1130,18 @@
       <Docs>
         <param name="value">一个数组。</param>
         <param name="startIndex"><paramref name="value" /> 内的起始位置。</param>
-        <summary>返回两个字节转换的字节数组中指定位置处的 Unicode 字符。</summary>
-        <returns>一个字符由开始的两个字节构成、 <paramref name="startIndex" />。</returns>
+        <summary>返回由字节数组中指定位置的两个字节转换来的 Unicode 字符。</summary>
+        <returns>由两个字节构成、从 <paramref name="startIndex" /> 开始的字符。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.BitConverter.ToChar%2A>方法将字节转换从索引`startIndex`到`startIndex`+ 1 到<xref:System.Char>值。 数组中的字节顺序必须反映计算机系统的体系结构; 字节的顺序有关详细信息，请参阅备注部分的<xref:System.BitConverter>类主题。  
+ 方法将索引`startIndex`中的字节转换<xref:System.Char>为`startIndex` + 1。 <xref:System.BitConverter.ToChar%2A> 数组中的字节顺序必须反映计算机系统体系结构的字节排序。有关详细信息, 请参阅<xref:System.BitConverter>类主题的 "备注" 部分。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的元素<xref:System.Byte>到数组<xref:System.Char>值 （Unicode 字符） 替换`ToChar`方法。  
+ 下面的代码示例通过<xref:System.Byte> `ToChar`方法将数组元素<xref:System.Char>转换为值 (Unicode 字符)。  
   
  [!code-cpp[System.BitConverter.ToXXX.Others#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.Others/CPP/batochar.cpp#2)]
  [!code-csharp[System.BitConverter.ToXXX.Others#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.Others/CS/batochar.cs#2)]
@@ -1149,9 +1149,9 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 长度等于<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 等于 <paramref name="value" /> 减 1 的长度。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于的长度<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于 <paramref name="value" /> 减 1 的长度。</exception>
         <altmember cref="M:System.BitConverter.GetBytes(System.Char)" />
       </Docs>
     </Member>
@@ -1230,18 +1230,18 @@
       <Docs>
         <param name="value">字节数组。</param>
         <param name="startIndex"><paramref name="value" /> 内的起始位置。</param>
-        <summary>返回从字节数组中指定位置的八个字节转换来双精度浮点数。</summary>
-        <returns>由开始的位置的八个字节构成、 双精度浮点数<paramref name="startIndex" />。</returns>
+        <summary>返回由字节数组中指定位置的八个字节转换来的双精度浮点数。</summary>
+        <returns>由八个字节构成、从 <paramref name="startIndex" /> 开始的双精度浮点数。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.BitConverter.ToDouble%2A>方法将字节转换从索引`startIndex`到`startIndex`+ 7 到<xref:System.Double>值。 数组中的字节顺序必须反映计算机系统的体系结构; 字节的顺序有关详细信息，请参阅备注部分的<xref:System.BitConverter>类主题。  
+ 方法将索引从索引`startIndex`到`startIndex` + 7 转换为一个<xref:System.Double>值。 <xref:System.BitConverter.ToDouble%2A> 数组中的字节顺序必须反映计算机系统体系结构的字节排序。有关详细信息, 请参阅<xref:System.BitConverter>类主题的 "备注" 部分。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的元素<xref:System.Byte>到数组<xref:System.Double>值替换`ToDouble`方法。  
+ 下面的代码示例通过<xref:System.Byte> `ToDouble`方法将数组元素<xref:System.Double>转换为值。  
   
  [!code-cpp[System.BitConverter.ToXXX.Others#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.Others/CPP/batodouble.cpp#3)]
  [!code-csharp[System.BitConverter.ToXXX.Others#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.Others/CS/batodouble.cs#3)]
@@ -1249,9 +1249,9 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 大于或等于的长度<paramref name="value" />减去 7，且小于或等于的长度<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 大于等于 <paramref name="value" /> 减 7 的长度，且小于等于 <paramref name="value" /> 减 1 的长度。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于的长度<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于 <paramref name="value" /> 减 1 的长度。</exception>
         <altmember cref="M:System.BitConverter.GetBytes(System.Double)" />
       </Docs>
     </Member>
@@ -1330,18 +1330,18 @@
       <Docs>
         <param name="value">字节数组。</param>
         <param name="startIndex"><paramref name="value" /> 内的起始位置。</param>
-        <summary>返回从字节数组中指定位置的两个字节转换来的 16 位有符号的整数。</summary>
-        <returns>16 位有符号的整数的构成方法为两个字节从开始<paramref name="startIndex" />。</returns>
+        <summary>返回由字节数组中指定位置的两个字节转换来的 16 位有符号整数。</summary>
+        <returns>由两个字节构成、从 <paramref name="startIndex" /> 开始的 16 位有符号整数。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.BitConverter.ToInt16%2A>方法将字节转换从索引`startIndex`到`startIndex`+ 1 到<xref:System.Int16>值。 数组中的字节顺序必须反映计算机系统的体系结构; 字节的顺序有关详细信息，请参阅备注部分的<xref:System.BitConverter>类主题。  
+ 方法将索引`startIndex`中的字节转换<xref:System.Int16>为`startIndex` + 1。 <xref:System.BitConverter.ToInt16%2A> 数组中的字节顺序必须反映计算机系统体系结构的字节排序。有关详细信息, 请参阅<xref:System.BitConverter>类主题的 "备注" 部分。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的元素<xref:System.Byte>到数组<xref:System.Int16>值替换`ToInt16`方法。  
+ 下面的代码示例通过<xref:System.Byte> `ToInt16`方法将数组元素<xref:System.Int16>转换为值。  
   
  [!code-cpp[System.BitConverter.ToXXX.SInts#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.SInts/CPP/batoint16.cpp#1)]
  [!code-csharp[System.BitConverter.ToXXX.SInts#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.SInts/CS/batoint16.cs#1)]
@@ -1349,9 +1349,9 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 长度等于<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 等于 <paramref name="value" /> 减 1 的长度。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于的长度<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于 <paramref name="value" /> 减 1 的长度。</exception>
         <altmember cref="M:System.BitConverter.GetBytes(System.Int16)" />
       </Docs>
     </Member>
@@ -1430,18 +1430,18 @@
       <Docs>
         <param name="value">字节数组。</param>
         <param name="startIndex"><paramref name="value" /> 内的起始位置。</param>
-        <summary>返回从字节数组中指定位置的四个字节转换来的 32 位有符号的整数。</summary>
-        <returns>32 位有符号的整数的构成方法为四个字节从开始<paramref name="startIndex" />。</returns>
+        <summary>返回由字节数组中指定位置的四个字节转换来的 32 位有符号整数。</summary>
+        <returns>由四个字节构成、从 <paramref name="startIndex" /> 开始的 32 位有符号整数。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.BitConverter.ToInt32%2A>方法将字节转换从索引`startIndex`到`startIndex`加上 3 到<xref:System.Int32>值。 数组中的字节顺序必须反映计算机系统的体系结构; 字节的顺序有关详细信息，请参阅备注部分的<xref:System.BitConverter>。  
+ 方法将索引从索引`startIndex` `startIndex` 转换<xref:System.Int32>为 + 3, 转换为值。 <xref:System.BitConverter.ToInt32%2A> 数组中的字节顺序必须反映计算机系统体系结构的字节排序。有关详细信息, 请参阅的 "备注<xref:System.BitConverter>" 部分。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.BitConverter.ToInt32%2A>方法来创建<xref:System.Int32>从四个字节数组和一个 8 字节数组的上限的四个字节的值。 它还使用<xref:System.BitConverter.GetBytes%28System.Int32%29>并<xref:System.BitConverter.ToInt32%2A>方法保存/还原<xref:System.Int32>值。  
+ 下面的示例使用<xref:System.BitConverter.ToInt32%2A>方法从一个四字节数组和一个八字节数组的前四个字节中创建<xref:System.Int32>值。 它还使用<xref:System.BitConverter.GetBytes%28System.Int32%29>和<xref:System.BitConverter.ToInt32%2A>方法来往返某个<xref:System.Int32>值。  
   
  [!code-csharp[System.BitConverter.ToInt32#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.bitconverter.toint32/cs/toint32.cs#1)]
  [!code-vb[System.BitConverter.ToInt32#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.bitconverter.toint32/vb/toint32.vb#1)]  
@@ -1450,7 +1450,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 大于等于 <paramref name="value" /> 减 3 的长度，且小于等于 <paramref name="value" /> 减 1 的长度。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于的长度<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于 <paramref name="value" /> 减 1 的长度。</exception>
         <altmember cref="M:System.BitConverter.GetBytes(System.Int32)" />
       </Docs>
     </Member>
@@ -1529,18 +1529,18 @@
       <Docs>
         <param name="value">字节数组。</param>
         <param name="startIndex"><paramref name="value" /> 内的起始位置。</param>
-        <summary>返回从字节数组中指定位置的八个字节转换来的 64 位有符号的整数。</summary>
-        <returns>64 位有符号的整数的构成方法为 8 个字节开始<paramref name="startIndex" />。</returns>
+        <summary>返回由字节数组中指定位置的八个字节转换来的 64 位有符号整数。</summary>
+        <returns>由八个字节构成、从 <paramref name="startIndex" /> 开始的 64 位有符号整数。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.BitConverter.ToInt64%2A>方法将字节转换从索引`startIndex`到`startIndex`+ 7 到<xref:System.Int64>值。 数组中的字节顺序必须反映计算机系统的体系结构; 字节的顺序有关详细信息，请参阅备注部分的<xref:System.BitConverter>类主题。  
+ 方法将索引从索引`startIndex`到`startIndex` + 7 转换为一个<xref:System.Int64>值。 <xref:System.BitConverter.ToInt64%2A> 数组中的字节顺序必须反映计算机系统体系结构的字节排序。有关详细信息, 请参阅<xref:System.BitConverter>类主题的 "备注" 部分。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的元素<xref:System.Byte>到数组<xref:System.Int64>值替换`ToInt64`方法。  
+ 下面的代码示例通过<xref:System.Byte> `ToInt64`方法将数组元素<xref:System.Int64>转换为值。  
   
  [!code-cpp[System.BitConverter.ToXXX.SInts#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.SInts/CPP/batoint64.cpp#3)]
  [!code-csharp[System.BitConverter.ToXXX.SInts#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.SInts/CS/batoint64.cs#3)]
@@ -1548,9 +1548,9 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 大于或等于的长度<paramref name="value" />减去 7，且小于或等于的长度<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 大于等于 <paramref name="value" /> 减 7 的长度，且小于等于 <paramref name="value" /> 减 1 的长度。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于的长度<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于 <paramref name="value" /> 减 1 的长度。</exception>
         <altmember cref="M:System.BitConverter.GetBytes(System.Int64)" />
       </Docs>
     </Member>
@@ -1629,18 +1629,18 @@
       <Docs>
         <param name="value">字节数组。</param>
         <param name="startIndex"><paramref name="value" /> 内的起始位置。</param>
-        <summary>返回从字节数组中指定位置的四个字节转换来单精度浮点数。</summary>
-        <returns>单精度浮点数字由开始的四个字节构成、 <paramref name="startIndex" />。</returns>
+        <summary>返回由字节数组中指定位置的四个字节转换来的单精度浮点数。</summary>
+        <returns>由四个字节构成、从 <paramref name="startIndex" /> 开始的单精度浮点数。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.BitConverter.ToSingle%2A>方法将字节转换从索引`startIndex`到`startIndex`加上 3 到<xref:System.Single>值。 数组中的字节顺序必须反映计算机系统的体系结构; 字节的顺序有关详细信息，请参阅备注部分的<xref:System.BitConverter>。  
+ 方法将索引`startIndex`中的字节转换<xref:System.Single>为`startIndex` + 3, 将其转换为值。 <xref:System.BitConverter.ToSingle%2A> 数组中的字节顺序必须反映计算机系统体系结构的字节排序。有关详细信息, 请参阅的 "备注<xref:System.BitConverter>" 部分。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的元素<xref:System.Byte>到数组<xref:System.Single>值替换`ToSingle`方法。  
+ 下面的代码示例通过<xref:System.Byte> `ToSingle`方法将数组元素<xref:System.Single>转换为值。  
   
  [!code-cpp[System.BitConverter.ToXXX.Others#4](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.Others/CPP/batosingle.cpp#4)]
  [!code-csharp[System.BitConverter.ToXXX.Others#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.Others/CS/batosingle.cs#4)]
@@ -1650,7 +1650,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 大于等于 <paramref name="value" /> 减 3 的长度，且小于等于 <paramref name="value" /> 减 1 的长度。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于的长度<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于 <paramref name="value" /> 减 1 的长度。</exception>
         <altmember cref="M:System.BitConverter.GetBytes(System.Single)" />
       </Docs>
     </Member>
@@ -1663,7 +1663,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>将指定的字节数组的每个元素的数值转换为其等效十六进制字符串表示形式。</summary>
+        <summary>将指定的字节数组的每个元素的数值转换为它的等效十六进制字符串表示形式。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="ToString">
@@ -1702,18 +1702,18 @@
       </Parameters>
       <Docs>
         <param name="value">字节数组。</param>
-        <summary>将指定的字节数组的每个元素的数值转换为其等效十六进制字符串表示形式。</summary>
-        <returns>由连字符，其中每一对表示中的相应元素分隔的十六进制对构成的字符串<paramref name="value" />; 例如，"7F-2 的 C-4A-00"。</returns>
+        <summary>将指定的字节数组的每个元素的数值转换为它的等效十六进制字符串表示形式。</summary>
+        <returns>由以连字符分隔的十六进制对构成的字符串，其中每一对表示 <paramref name="value" /> 中对应的元素；例如“7F-2C-4A”。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 所有元素`value`转换。 十六进制字符串返回的顺序<xref:System.BitConverter.ToString%2A>方法取决于计算机体系结构是 little-endian 还是 big endian。  
+ 的所有元素`value`都将被转换。 <xref:System.BitConverter.ToString%2A>方法返回的十六进制字符串的顺序取决于计算机体系结构是小字节序还是大字节序。  
   
    
   
 ## Examples  
- 下面的代码示例转换<xref:System.Byte>到数组<xref:System.String>对象与`ToString`方法。  
+ 下面的代码示例通过<xref:System.Byte> `ToString`方法将<xref:System.String>数组转换为对象。  
   
  [!code-cpp[System.BitConverter.ToString#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.ToString/CPP/batostring.cpp#1)]
  [!code-csharp[System.BitConverter.ToString#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.ToString/CS/batostring.cs#1)]
@@ -1762,18 +1762,18 @@
       <Docs>
         <param name="value">字节数组。</param>
         <param name="startIndex"><paramref name="value" /> 内的起始位置。</param>
-        <summary>将指定的字节子数组的每个元素的数值转换为其等效十六进制字符串表示形式。</summary>
-        <returns>由连字符，其中每一对表示的子数组中的相应元素分隔的十六进制对构成的字符串<paramref name="value" />; 例如，"7F-2 的 C-4A-00"。</returns>
+        <summary>将指定的字节子数组的每个元素的数值转换为它的等效十六进制字符串表示形式。</summary>
+        <returns>由以连字符分隔的十六进制对构成的字符串，其中每一对表示 <paramref name="value" /> 的子数组中对应的元素；例如“7F-2C-4A”。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从数组位置的元素`startIndex`所转换成数组的末尾。 十六进制字符串返回的顺序<xref:System.BitConverter.ToString%2A>方法取决于计算机体系结构是 little-endian 还是 big endian。  
+ 转换从数组位置`startIndex`到数组末尾的元素。 <xref:System.BitConverter.ToString%2A>方法返回的十六进制字符串的顺序取决于计算机体系结构是小字节序还是大字节序。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的一部分<xref:System.Byte>从指定的数组`startIndex`到<xref:System.String>与`ToString`方法。  
+ 下面的<xref:System.Byte>代码示例<xref:System.String>使用`startIndex` 方法将数组的部分从指定的开始转换为。`ToString`  
   
  [!code-cpp[System.BitConverter.ToString#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.ToString/CPP/batostringii.cpp#2)]
  [!code-csharp[System.BitConverter.ToString#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.ToString/CS/batostringii.cs#2)]
@@ -1782,7 +1782,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于的长度<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于 <paramref name="value" /> 减 1 的长度。</exception>
       </Docs>
     </Member>
     <Member MemberName="ToString">
@@ -1824,21 +1824,21 @@
       <Docs>
         <param name="value">字节数组。</param>
         <param name="startIndex"><paramref name="value" /> 内的起始位置。</param>
-        <param name="length">数组中的元素数<paramref name="value" />转换。</param>
-        <summary>将指定的字节子数组的每个元素的数值转换为其等效十六进制字符串表示形式。</summary>
-        <returns>由连字符，其中每一对表示的子数组中的相应元素分隔的十六进制对构成的字符串<paramref name="value" />; 例如，"7F-2 的 C-4A-00"。</returns>
+        <param name="length">要转换的 <paramref name="value" /> 中的数组元素数。</param>
+        <summary>将指定的字节子数组的每个元素的数值转换为它的等效十六进制字符串表示形式。</summary>
+        <returns>由以连字符分隔的十六进制对构成的字符串，其中每一对表示 <paramref name="value" /> 的子数组中对应的元素；例如“7F-2C-4A”。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `length`数组位置中的元素`startIndex`转换。 如果`length`等于零，该方法将返回<xref:System.String.Empty?displayProperty=nameWithType>。  
+ 转换`length`数组位置`startIndex`的元素。 如果`length`等于零, 则该方法<xref:System.String.Empty?displayProperty=nameWithType>返回。  
   
- 十六进制字符串返回的顺序<xref:System.BitConverter.ToString%2A>方法取决于计算机体系结构是 little-endian 还是 big endian。  
+ <xref:System.BitConverter.ToString%2A>方法返回的十六进制字符串的顺序取决于计算机体系结构是小字节序还是大字节序。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.BitConverter.ToString%2A>方法将字节数组，从指定的一部分`startIndex`以及指定`length`，为字符串。  
+ 下面的示例使用<xref:System.BitConverter.ToString%2A>方法将字节数组的部分 (从指定`startIndex`的和指定`length`的) 转换为字符串。  
   
  [!code-cpp[System.BitConverter.ToString#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.ToString/CPP/batostringii.cpp#2)]
  [!code-csharp[System.BitConverter.ToString#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.ToString/CS/batostringii.cs#2)]
@@ -1850,8 +1850,8 @@
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 或 <paramref name="length" /> 小于零。  
   
 或 
- <paramref name="startIndex" /> 大于零且大于或等于的长度<paramref name="value" />。</exception>
-        <exception cref="T:System.ArgumentException">组合<paramref name="startIndex" />并<paramref name="length" />内的位置未指定<paramref name="value" />; 即<paramref name="startIndex" />参数大于的长度<paramref name="value" />减去<paramref name="length" />参数。</exception>
+ <paramref name="startIndex" /> 大于零且大于等于 <paramref name="value" /> 的长度。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 和 <paramref name="length" /> 的组合不指定 <paramref name="value" /> 中的位置；也就是说，<paramref name="startIndex" /> 参数大于 <paramref name="value" /> 的长度减去 <paramref name="length" /> 参数。</exception>
       </Docs>
     </Member>
     <Member MemberName="ToUInt16">
@@ -1934,18 +1934,18 @@
       <Docs>
         <param name="value">字节数组。</param>
         <param name="startIndex"><paramref name="value" /> 内的起始位置。</param>
-        <summary>返回从字节数组中指定位置的两个字节转换来的 16 位无符号的整数。</summary>
-        <returns>16 位无符号的整数的构成方法为两个字节从开始<paramref name="startIndex" />。</returns>
+        <summary>返回由字节数组中指定位置的两个字节转换来的 16 位无符号整数。</summary>
+        <returns>由两个字节构成、从 <paramref name="startIndex" /> 开始的 16 位无符号整数。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.BitConverter.ToUInt16%2A>方法将字节转换从索引`startIndex`到`startIndex`+ 1 到<xref:System.UInt16>值。 数组中的字节顺序必须反映计算机系统的体系结构; 字节的顺序有关详细信息，请参阅备注部分的<xref:System.BitConverter>类主题。  
+ 方法将索引`startIndex`中的字节转换<xref:System.UInt16>为`startIndex` + 1。 <xref:System.BitConverter.ToUInt16%2A> 数组中的字节顺序必须反映计算机系统体系结构的字节排序。有关详细信息, 请参阅<xref:System.BitConverter>类主题的 "备注" 部分。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的元素<xref:System.Byte>到数组<xref:System.UInt16>值替换`ToUInt16`方法。  
+ 下面的代码示例通过<xref:System.Byte> `ToUInt16`方法将数组元素<xref:System.UInt16>转换为值。  
   
  [!code-cpp[System.BitConverter.ToXXX.UInts#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.UInts/CPP/batouint16.cpp#1)]
  [!code-csharp[System.BitConverter.ToXXX.UInts#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.UInts/CS/batouint16.cs#1)]
@@ -1953,9 +1953,9 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 长度等于<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 等于 <paramref name="value" /> 减 1 的长度。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于的长度<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于 <paramref name="value" /> 减 1 的长度。</exception>
         <altmember cref="M:System.BitConverter.GetBytes(System.UInt16)" />
       </Docs>
     </Member>
@@ -2039,18 +2039,18 @@
       <Docs>
         <param name="value">字节数组。</param>
         <param name="startIndex"><paramref name="value" /> 内的起始位置。</param>
-        <summary>返回从字节数组中指定位置的四个字节转换来的 32 位无符号的整数。</summary>
-        <returns>32 位无符号的整数的构成方法为四个字节从开始<paramref name="startIndex" />。</returns>
+        <summary>返回由字节数组中指定位置的四个字节转换来的 32 位无符号整数。</summary>
+        <returns>由四个字节构成、从 <paramref name="startIndex" /> 开始的 32 位无符号整数。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.BitConverter.ToUInt32%2A>方法将字节转换从索引`startIndex`到`startIndex`加上 3 到<xref:System.UInt32>值。 数组中的字节顺序必须反映计算机系统的体系结构; 字节的顺序有关详细信息，请参阅备注部分的<xref:System.BitConverter>类主题。  
+ 方法将索引`startIndex`中的字节转换<xref:System.UInt32>为`startIndex` + 3, 将其转换为值。 <xref:System.BitConverter.ToUInt32%2A> 数组中的字节顺序必须反映计算机系统体系结构的字节排序。有关详细信息, 请参阅<xref:System.BitConverter>类主题的 "备注" 部分。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的元素<xref:System.Byte>到数组<xref:System.UInt32>值替换`ToUInt32`方法。  
+ 下面的代码示例通过<xref:System.Byte> `ToUInt32`方法将数组元素<xref:System.UInt32>转换为值。  
   
  [!code-cpp[System.BitConverter.ToXXX.UInts#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.UInts/CPP/batouint32.cpp#2)]
  [!code-csharp[System.BitConverter.ToXXX.UInts#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.UInts/CS/batouint32.cs#2)]
@@ -2060,7 +2060,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 大于等于 <paramref name="value" /> 减 3 的长度，且小于等于 <paramref name="value" /> 减 1 的长度。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于的长度<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于 <paramref name="value" /> 减 1 的长度。</exception>
         <altmember cref="M:System.BitConverter.GetBytes(System.UInt32)" />
       </Docs>
     </Member>
@@ -2144,18 +2144,18 @@
       <Docs>
         <param name="value">字节数组。</param>
         <param name="startIndex"><paramref name="value" /> 内的起始位置。</param>
-        <summary>返回从字节数组中指定位置的八个字节转换来的 64 位无符号的整数。</summary>
-        <returns>64 位无符号的整数的构成方法为八个字节从开始<paramref name="startIndex" />。</returns>
+        <summary>返回由字节数组中指定位置的八个字节转换来的 64 位无符号整数。</summary>
+        <returns>由八个字节构成、从 <paramref name="startIndex" /> 开始的 64 位无符号整数。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.BitConverter.ToUInt64%2A>方法将字节转换从索引`startIndex`到`startIndex`+ 7 到<xref:System.UInt64>值。 数组中的字节顺序必须反映计算机系统的体系结构; 字节的顺序有关详细信息，请参阅备注部分的<xref:System.BitConverter>类主题。  
+ 方法将索引从索引`startIndex`到`startIndex` + 7 转换为一个<xref:System.UInt64>值。 <xref:System.BitConverter.ToUInt64%2A> 数组中的字节顺序必须反映计算机系统体系结构的字节排序。有关详细信息, 请参阅<xref:System.BitConverter>类主题的 "备注" 部分。  
   
    
   
 ## Examples  
- 下面的代码示例将转换的元素<xref:System.Byte>到数组<xref:System.UInt64>值替换`ToUInt64`方法。  
+ 下面的代码示例通过<xref:System.Byte> `ToUInt64`方法将数组元素<xref:System.UInt64>转换为值。  
   
  [!code-cpp[System.BitConverter.ToXXX.UInts#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.UInts/CPP/batouint64.cpp#3)]
  [!code-csharp[System.BitConverter.ToXXX.UInts#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.BitConverter.ToXXX.UInts/CS/batouint64.cs#3)]
@@ -2163,9 +2163,9 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 大于或等于的长度<paramref name="value" />减去 7，且小于或等于的长度<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="startIndex" /> 大于等于 <paramref name="value" /> 减 7 的长度，且小于等于 <paramref name="value" /> 减 1 的长度。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于的长度<paramref name="value" />减 1。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex" /> 小于零或大于 <paramref name="value" /> 减 1 的长度。</exception>
         <altmember cref="M:System.BitConverter.GetBytes(System.UInt64)" />
       </Docs>
     </Member>

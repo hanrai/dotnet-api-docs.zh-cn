@@ -24,12 +24,12 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>序列化为新类型的对象。</summary>
+    <summary>将对象序列化为新类型。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer>类执行相同的任务<xref:System.ComponentModel.Design.Serialization.CodeDomSerializer>，但通过此类对象的序列化定义了新类型。  
+ 类执行与相同的任务<xref:System.ComponentModel.Design.Serialization.CodeDomSerializer>, 但通过此类序列化对象会定义一个新类型。 <xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer>  
   
  ]]></format>
     </remarks>
@@ -92,27 +92,27 @@
       </Parameters>
       <Docs>
         <param name="manager">用于序列化的序列化管理器。</param>
-        <param name="declaration">键入要用于序列化的声明。</param>
-        <summary>给定的类型声明反序列化。</summary>
+        <param name="declaration">用于序列化的类型声明。</param>
+        <summary>将给定类型声明反序列化。</summary>
         <returns>根对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.Deserialize%2A>方法将以前序列化的代码类型声明反序列化。 下表显示了任务默认实现将执行。  
+ <xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.Deserialize%2A>方法反序列化先前序列化的代码类型声明。 下表显示了默认实现执行的任务。  
   
-|任务|描述|  
+|任务|说明|  
 |----------|-----------------|  
-|区分大小写检查|该实现搜索<xref:System.CodeDom.Compiler.CodeDomProvider>服务以确定是否它应将成员视为区分大小写或不区分大小写。|  
-|语句排序|在表中存储的所有成员变量和局部变量 init 方法中。 然后在 init 方法中的每个语句会添加到分组根据其左上方，以便分配或操作系统特定的变量上的所有语句都分组在该变量下一个语句集合。 变量的任何语句将被丢弃。|  
-|反序列化|每个变量的语句集合会根据变量的反序列化。|  
+|区分大小写检查|该实现将搜索<xref:System.CodeDom.Compiler.CodeDomProvider>服务, 以决定是否应将成员视为区分大小写或不区分大小写。|  
+|语句排序|Init 方法中的所有成员变量和局部变量均存储在一个表中。 然后, init 方法中的每个语句都会添加到根据其左侧分组的语句集合, 因此, 对特定变量的赋值或操作的所有语句都将在该变量下进行分组。 不包含语句的变量将被丢弃。|  
+|反序列化|根据变量对每个变量的语句集合进行反序列化。|  
   
- 下表显示了服务<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.Deserialize%2A>方法要求。  
+ 下表显示了该方法所<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.Deserialize%2A>需的服务。  
   
-|服务|描述|  
+|服务|说明|  
 |-------------|-----------------|  
-|<xref:System.CodeDom.Compiler.CodeDomProvider>|而不是必需的该服务，如果可用，用于确定序列化应区分大小写或不区分大小写。|  
-|<xref:System.ComponentModel.IContainer>|如果对象不存在名称表中查询的反序列化期间<xref:System.ComponentModel.IContainer>进行。 如果成功执行此查询，该容器是针对的对象检查。 容器还用作组件所需的任何容器参数替代项。|  
+|<xref:System.CodeDom.Compiler.CodeDomProvider>|虽然不是绝对必要, 但使用服务 (如果可用) 来确定序列化是否应区分大小写或不区分大小写。|  
+|<xref:System.ComponentModel.IContainer>|如果反序列化过程中名称表中不存在对象, <xref:System.ComponentModel.IContainer>则执行的查询。 如果此查询成功, 则检查该对象的容器。 容器还可用作组件所需的任何容器参数的内置。|  
   
  ]]></format>
         </remarks>
@@ -159,7 +159,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.GetInitializeMethod%2A>方法返回要为给定成员发出所有初始化代码的方法。 默认实现返回一个空构造函数。 如果相同的方法将返回多个值，则应返回方法的同一个实例。 可以使用<xref:System.CodeDom.CodeObject.UserData%2A?displayProperty=nameWithType>字典记住所创建的方法。 `typeDecl`参数还可用于添加基础结构方法。 例如，如果你想要发出的每个对象单独的方法，需要所有这些方法又调用单个方法。 此方法可以添加到根据需要的代码类型声明。  
+ <xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.GetInitializeMethod%2A>方法返回用于发出给定成员的所有初始化代码的方法。 默认实现返回一个空的构造函数。 如果要为多个值返回相同的方法, 则应返回该方法的相同实例。 您可以使用<xref:System.CodeDom.CodeObject.UserData%2A?displayProperty=nameWithType>字典记住您创建的方法。 `typeDecl`参数还可用于添加基础结构方法。 例如, 如果想要为每个对象发出一个单独的方法, 则需要使用一种方法来依次调用所有这些方法。 可根据需要将此方法添加到代码类型声明。  
   
  ]]></format>
         </remarks>
@@ -199,12 +199,12 @@
         <param name="manager">用于序列化的序列化管理器。</param>
         <param name="declaration">用于序列化的类型声明。</param>
         <summary>返回要在反序列化期间解释的方法数组。</summary>
-        <returns>一个<see cref="T:System.CodeDom.CodeMemberMethod" />要反序列化期间解释的方法的数组。</returns>
+        <returns>要在反序列化期间解释的方法的 <see cref="T:System.CodeDom.CodeMemberMethod" /> 数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现返回在其构造函数的单个元素数组。  
+ 默认实现返回一个包含构造函数的单元素数组。  
   
  ]]></format>
         </remarks>
@@ -244,34 +244,34 @@
       <Docs>
         <param name="manager">用于序列化的序列化管理器。</param>
         <param name="root">要序列化的对象。</param>
-        <param name="members">可选的成员的集合。 可以是<see langword="null" />或为空。</param>
-        <summary>通过创建定义根的新类型声明序列化对象根。</summary>
-        <returns>一个<see cref="T:System.CodeDom.CodeTypeDeclaration" />定义根对象。</returns>
+        <param name="members">可选的成员集合。 可以为 <see langword="null" /> 或空。</param>
+        <summary>通过创建定义根的新类型声明将对象根序列化。</summary>
+        <returns>定义根对象的 <see cref="T:System.CodeDom.CodeTypeDeclaration" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.Serialize%2A>方法序列化的给定的根对象和要创建新的类型定义的成员的可选集合。 如果`members`集合包含的值，这些值进行序列化。 值本身可能会序列化为成员变量或本地变量。 此决定通过搜索调用的对象的扩展程序属性`GenerateMember`。 如果`true`，生成成员。 否则，生成本地变量。 为方便起见，`members`集合可以包含的根对象。 在这种情况下，根对象不也添加为成员或局部变量。  
+ <xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.Serialize%2A>方法序列化给定的根对象和可选的成员集合以创建新的类型定义。 `members`如果集合包含值, 则序列化这些值。 值本身可能会序列化为成员变量或局部变量。 这一决定是通过在名`GenerateMember`为的对象上搜索扩展器属性来完成的。 如果`true`为, 则生成一个成员。 否则, 将生成局部变量。 为方便起见, `members`集合可以包含根对象。 在这种情况下, 根对象还不添加为成员或局部变量。  
   
- 返回类型的名称取自根对象的名称，如果它是命名的对象。 如果没有，从根类的简单类型名称会生成一个名称。  
+ 返回的类型的名称是从根对象的名称获取的 (如果它是命名对象)。 如果不是, 则从根类的简单类型名称中制造一个名称。  
   
- 下表显示了执行的默认实现的任务<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.Serialize%2A>方法。  
+ 下表显示了<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.Serialize%2A>方法的默认实现所执行的任务。  
   
-|任务|描述|  
+|任务|说明|  
 |----------|-----------------|  
-|种子设定的上下文|使用数据，包括初始化序列化上下文<xref:System.ComponentModel.Design.Serialization.RootContext>和 <xref:System.CodeDom.CodeTypeDeclaration>|  
-|成员序列化|下一步，<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.Serialize%2A>指导的所有成员和调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToExpression%2A>。 因为序列化完成才有机会在<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToExpression%2A>，这可确保不两次执行序列化。|  
-|根序列化|接下来，序列化的根对象和它的语句添加到语句集合。|  
-|语句的集成|所有对象进行序列都化后，<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.Serialize%2A>方法为语句排序，并将它们添加到方法返回从<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.GetInitializeMethod%2A>。 最后，构造函数会生成调用所有方法返回从<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.GetInitializeMethod%2A>。|  
+|上下文种子设定|序列化上下文用包含和的<xref:System.ComponentModel.Design.Serialization.RootContext>数据初始化<xref:System.CodeDom.CodeTypeDeclaration>|  
+|成员序列化|接下来<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.Serialize%2A> , 将遍历所有成员和调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToExpression%2A>。 由于序列化是在找机会<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToExpression%2A>中完成的, 因此这可以确保不会执行序列化。|  
+|根序列化|接下来, 将对根对象进行序列化, 并将其语句添加到语句集合中。|  
+|语句集成|序列化所有对象后, <xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.Serialize%2A>方法将对语句排序并将它们添加到从返回的方法中。 <xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.GetInitializeMethod%2A> 最后, 构造一个构造函数, 用于调用从<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.GetInitializeMethod%2A>返回的所有方法。|  
   
 -  
   
- 下表显示了对象<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.Serialize%2A>方法是将上下文堆栈上。  
+ 下表显示了<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer.Serialize%2A>方法放置在上下文堆栈上的对象。  
   
-|实例|描述|  
+|实例|说明|  
 |--------------|-----------------|  
-|<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer>|此序列化程序。 派生的类可能会发现可以将公共属性添加到此类。|  
-|<xref:System.CodeDom.CodeTypeDeclaration>|正在创建的类型。 大多数对象不需要直接访问。|  
+|<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer>|此序列化程序。 派生类可能会发现向此类添加公共属性很有用。|  
+|<xref:System.CodeDom.CodeTypeDeclaration>|正在创建的类型。 大多数对象不需要直接访问此。|  
   
  ]]></format>
         </remarks>

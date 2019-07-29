@@ -1,5 +1,5 @@
 <Type Name="JsonDocument" FullName="System.Text.Json.JsonDocument">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7cb6573dc8ebcc99bc57891401b7523f4130c8d6" /><Meta Name="ms.sourcegitcommit" Value="75eca440f8f4d595506405f48961f38649e160d7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/01/2019" /><Meta Name="ms.locfileid" Value="66457994" /></Metadata><TypeSignature Language="C#" Value="public sealed class JsonDocument : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b6658d3ccef7d4a85f717ca0554e83becf082a0c" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68435130" /></Metadata><TypeSignature Language="C#" Value="public sealed class JsonDocument : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit JsonDocument extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Text.Json.JsonDocument" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class JsonDocument&#xA;Implements IDisposable" />
@@ -22,7 +22,7 @@
     <remarks>
       <format><![CDATA[
       
-此类利用垃圾回收 (GC) 在高使用方案中的影响降至最低的共用内存中的资源。 未能正确释放此对象将导致不返回到池，这会增加跨框架的各个部分的 GC 影响的内存。
+此类利用来自共用内存的资源, 将垃圾回收器 (GC) 的影响降至最低。 如果未能正确释放此对象, 则不会将内存返回到池, 这会增加跨框架各个部分的 GC 影响。
               
       ]]></format>
     </remarks>
@@ -53,11 +53,11 @@
       </Docs>
     </Member>
     <Member MemberName="Parse">
-      <MemberSignature Language="C#" Value="public static System.Text.Json.JsonDocument Parse (System.Buffers.ReadOnlySequence&lt;byte&gt; utf8Json, System.Text.Json.JsonReaderOptions readerOptions = null);" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Text.Json.JsonDocument Parse(valuetype System.Buffers.ReadOnlySequence`1&lt;unsigned int8&gt; utf8Json, valuetype System.Text.Json.JsonReaderOptions readerOptions) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonDocument.Parse(System.Buffers.ReadOnlySequence{System.Byte},System.Text.Json.JsonReaderOptions)" />
-      <MemberSignature Language="VB.NET" Value="Public Shared Function Parse (utf8Json As ReadOnlySequence(Of Byte), Optional readerOptions As JsonReaderOptions = null) As JsonDocument" />
-      <MemberSignature Language="F#" Value="static member Parse : System.Buffers.ReadOnlySequence&lt;byte&gt; * System.Text.Json.JsonReaderOptions -&gt; System.Text.Json.JsonDocument" Usage="System.Text.Json.JsonDocument.Parse (utf8Json, readerOptions)" />
+      <MemberSignature Language="C#" Value="public static System.Text.Json.JsonDocument Parse (System.Buffers.ReadOnlySequence&lt;byte&gt; utf8Json, System.Text.Json.JsonDocumentOptions options = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Text.Json.JsonDocument Parse(valuetype System.Buffers.ReadOnlySequence`1&lt;unsigned int8&gt; utf8Json, valuetype System.Text.Json.JsonDocumentOptions options) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonDocument.Parse(System.Buffers.ReadOnlySequence{System.Byte},System.Text.Json.JsonDocumentOptions)" />
+      <MemberSignature Language="VB.NET" Value="Public Shared Function Parse (utf8Json As ReadOnlySequence(Of Byte), Optional options As JsonDocumentOptions = null) As JsonDocument" />
+      <MemberSignature Language="F#" Value="static member Parse : System.Buffers.ReadOnlySequence&lt;byte&gt; * System.Text.Json.JsonDocumentOptions -&gt; System.Text.Json.JsonDocument" Usage="System.Text.Json.JsonDocument.Parse (utf8Json, options)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Text.Json</AssemblyName>
@@ -68,19 +68,17 @@
       </ReturnValue>
       <Parameters>
         <Parameter Name="utf8Json" Type="System.Buffers.ReadOnlySequence&lt;System.Byte&gt;" />
-        <Parameter Name="readerOptions" Type="System.Text.Json.JsonReaderOptions" />
+        <Parameter Name="options" Type="System.Text.Json.JsonDocumentOptions" />
       </Parameters>
       <Docs>
         <param name="utf8Json">要分析的 JSON 文本。</param>
-        <param name="readerOptions">分析期间用于控制读取器行为的选项。</param>
+        <param name="options">分析期间用于控制读取器行为的选项。</param>
         <summary>将表示单个 JSON 字节值的 UTF-8 编码文本形式的序列分析为 JsonDocument。</summary>
         <returns>JSON 值的 JsonDocument 表示。</returns>
         <remarks>
           <format><![CDATA[
-          
-<xref:System.Buffers.ReadOnlySequence%601>可能 JsonDocument 对象的整个生存期内使用，且调用方必须确保，数据就不会更改的对象生存期内。
-               
-输入被视为文本，因为 utf-8 字节顺序标记 (BOM) 不能存在。
+<xref:System.Buffers.ReadOnlySequence%601>可用于 JsonDocument 对象的整个生存期, 并且调用方必须确保其中的数据在对象生存期内不会更改。
+由于输入被视为文本, 因此不能出现 UTF-8 字节顺序标记 (BOM)。
 
           ]]></format>
         </remarks>
@@ -89,11 +87,11 @@
       </Docs>
     </Member>
     <Member MemberName="Parse">
-      <MemberSignature Language="C#" Value="public static System.Text.Json.JsonDocument Parse (System.IO.Stream utf8Json, System.Text.Json.JsonReaderOptions readerOptions = null);" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Text.Json.JsonDocument Parse(class System.IO.Stream utf8Json, valuetype System.Text.Json.JsonReaderOptions readerOptions) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonDocument.Parse(System.IO.Stream,System.Text.Json.JsonReaderOptions)" />
-      <MemberSignature Language="VB.NET" Value="Public Shared Function Parse (utf8Json As Stream, Optional readerOptions As JsonReaderOptions = null) As JsonDocument" />
-      <MemberSignature Language="F#" Value="static member Parse : System.IO.Stream * System.Text.Json.JsonReaderOptions -&gt; System.Text.Json.JsonDocument" Usage="System.Text.Json.JsonDocument.Parse (utf8Json, readerOptions)" />
+      <MemberSignature Language="C#" Value="public static System.Text.Json.JsonDocument Parse (System.IO.Stream utf8Json, System.Text.Json.JsonDocumentOptions options = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Text.Json.JsonDocument Parse(class System.IO.Stream utf8Json, valuetype System.Text.Json.JsonDocumentOptions options) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonDocument.Parse(System.IO.Stream,System.Text.Json.JsonDocumentOptions)" />
+      <MemberSignature Language="VB.NET" Value="Public Shared Function Parse (utf8Json As Stream, Optional options As JsonDocumentOptions = null) As JsonDocument" />
+      <MemberSignature Language="F#" Value="static member Parse : System.IO.Stream * System.Text.Json.JsonDocumentOptions -&gt; System.Text.Json.JsonDocument" Usage="System.Text.Json.JsonDocument.Parse (utf8Json, options)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Text.Json</AssemblyName>
@@ -104,11 +102,11 @@
       </ReturnValue>
       <Parameters>
         <Parameter Name="utf8Json" Type="System.IO.Stream" />
-        <Parameter Name="readerOptions" Type="System.Text.Json.JsonReaderOptions" />
+        <Parameter Name="options" Type="System.Text.Json.JsonDocumentOptions" />
       </Parameters>
       <Docs>
         <param name="utf8Json">要分析的 JSON 数据。</param>
-        <param name="readerOptions">分析期间用于控制读取器行为的选项。</param>
+        <param name="options">分析期间用于控制读取器行为的选项。</param>
         <summary>将表示单个 JSON 值的 UTF-8 编码数据形式的 <see cref="T:System.IO.Stream" /> 分析为 JsonDocument。 数据流将被完整读取。</summary>
         <returns>JSON 值的 JsonDocument 表示。</returns>
         <remarks>To be added.</remarks>
@@ -117,11 +115,11 @@
       </Docs>
     </Member>
     <Member MemberName="Parse">
-      <MemberSignature Language="C#" Value="public static System.Text.Json.JsonDocument Parse (ReadOnlyMemory&lt;byte&gt; utf8Json, System.Text.Json.JsonReaderOptions readerOptions = null);" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Text.Json.JsonDocument Parse(valuetype System.ReadOnlyMemory`1&lt;unsigned int8&gt; utf8Json, valuetype System.Text.Json.JsonReaderOptions readerOptions) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonDocument.Parse(System.ReadOnlyMemory{System.Byte},System.Text.Json.JsonReaderOptions)" />
-      <MemberSignature Language="VB.NET" Value="Public Shared Function Parse (utf8Json As ReadOnlyMemory(Of Byte), Optional readerOptions As JsonReaderOptions = null) As JsonDocument" />
-      <MemberSignature Language="F#" Value="static member Parse : ReadOnlyMemory&lt;byte&gt; * System.Text.Json.JsonReaderOptions -&gt; System.Text.Json.JsonDocument" Usage="System.Text.Json.JsonDocument.Parse (utf8Json, readerOptions)" />
+      <MemberSignature Language="C#" Value="public static System.Text.Json.JsonDocument Parse (ReadOnlyMemory&lt;byte&gt; utf8Json, System.Text.Json.JsonDocumentOptions options = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Text.Json.JsonDocument Parse(valuetype System.ReadOnlyMemory`1&lt;unsigned int8&gt; utf8Json, valuetype System.Text.Json.JsonDocumentOptions options) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonDocument.Parse(System.ReadOnlyMemory{System.Byte},System.Text.Json.JsonDocumentOptions)" />
+      <MemberSignature Language="VB.NET" Value="Public Shared Function Parse (utf8Json As ReadOnlyMemory(Of Byte), Optional options As JsonDocumentOptions = null) As JsonDocument" />
+      <MemberSignature Language="F#" Value="static member Parse : ReadOnlyMemory&lt;byte&gt; * System.Text.Json.JsonDocumentOptions -&gt; System.Text.Json.JsonDocument" Usage="System.Text.Json.JsonDocument.Parse (utf8Json, options)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Text.Json</AssemblyName>
@@ -132,20 +130,19 @@
       </ReturnValue>
       <Parameters>
         <Parameter Name="utf8Json" Type="System.ReadOnlyMemory&lt;System.Byte&gt;" />
-        <Parameter Name="readerOptions" Type="System.Text.Json.JsonReaderOptions" />
+        <Parameter Name="options" Type="System.Text.Json.JsonDocumentOptions" />
       </Parameters>
       <Docs>
         <param name="utf8Json">要分析的 JSON 文本。</param>
-        <param name="readerOptions">分析期间用于控制读取器行为的选项。</param>
+        <param name="options">分析期间用于控制读取器行为的选项。</param>
         <summary>将表示单个 JSON 字节值的 UTF-8 编码文本形式的内存分析为 JsonDocument。</summary>
         <returns>JSON 值的 JsonDocument 表示。</returns>
         <remarks>
           <format><![CDATA[
 
-<xref:System.ReadOnlyMemory%601> JsonDocument 对象的整个生存期内将使用值和调用方必须确保，数据就不会更改的对象生存期内。
+<xref:System.ReadOnlyMemory%601>该值将用于 JsonDocument 对象的整个生存期, 并且调用方必须确保其中的数据在对象生存期内不会更改。
 
-输入被视为文本，因为 utf-8 字节顺序标记 (BOM) 不能存在。
-                 
+由于输入被视为文本, 因此不能出现 UTF-8 字节顺序标记 (BOM)。
           ]]></format>
         </remarks>
         <exception cref="T:System.Text.Json.JsonException"><paramref name="utf8Json" /> 不表示有效的单个 JSON 值。</exception>
@@ -153,11 +150,11 @@
       </Docs>
     </Member>
     <Member MemberName="Parse">
-      <MemberSignature Language="C#" Value="public static System.Text.Json.JsonDocument Parse (ReadOnlyMemory&lt;char&gt; json, System.Text.Json.JsonReaderOptions readerOptions = null);" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Text.Json.JsonDocument Parse(valuetype System.ReadOnlyMemory`1&lt;char&gt; json, valuetype System.Text.Json.JsonReaderOptions readerOptions) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonDocument.Parse(System.ReadOnlyMemory{System.Char},System.Text.Json.JsonReaderOptions)" />
-      <MemberSignature Language="VB.NET" Value="Public Shared Function Parse (json As ReadOnlyMemory(Of Char), Optional readerOptions As JsonReaderOptions = null) As JsonDocument" />
-      <MemberSignature Language="F#" Value="static member Parse : ReadOnlyMemory&lt;char&gt; * System.Text.Json.JsonReaderOptions -&gt; System.Text.Json.JsonDocument" Usage="System.Text.Json.JsonDocument.Parse (json, readerOptions)" />
+      <MemberSignature Language="C#" Value="public static System.Text.Json.JsonDocument Parse (ReadOnlyMemory&lt;char&gt; json, System.Text.Json.JsonDocumentOptions options = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Text.Json.JsonDocument Parse(valuetype System.ReadOnlyMemory`1&lt;char&gt; json, valuetype System.Text.Json.JsonDocumentOptions options) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonDocument.Parse(System.ReadOnlyMemory{System.Char},System.Text.Json.JsonDocumentOptions)" />
+      <MemberSignature Language="VB.NET" Value="Public Shared Function Parse (json As ReadOnlyMemory(Of Char), Optional options As JsonDocumentOptions = null) As JsonDocument" />
+      <MemberSignature Language="F#" Value="static member Parse : ReadOnlyMemory&lt;char&gt; * System.Text.Json.JsonDocumentOptions -&gt; System.Text.Json.JsonDocument" Usage="System.Text.Json.JsonDocument.Parse (json, options)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Text.Json</AssemblyName>
@@ -168,17 +165,16 @@
       </ReturnValue>
       <Parameters>
         <Parameter Name="json" Type="System.ReadOnlyMemory&lt;System.Char&gt;" />
-        <Parameter Name="readerOptions" Type="System.Text.Json.JsonReaderOptions" />
+        <Parameter Name="options" Type="System.Text.Json.JsonDocumentOptions" />
       </Parameters>
       <Docs>
         <param name="json">要分析的 JSON 文本。</param>
-        <param name="readerOptions">分析期间用于控制读取器行为的选项。</param>
+        <param name="options">分析期间用于控制读取器行为的选项。</param>
         <summary>将表示单个 JSON 字符值的文本分析为 JsonDocument。</summary>
         <returns>JSON 值的 JsonDocument 表示。</returns>
         <remarks>
           <format><![CDATA[
-          
-<xref:System.ReadOnlyMemory%601> JsonDocument 对象的整个生存期内可能会使用值和调用方必须确保，数据就不会更改的对象生存期内。
+<xref:System.ReadOnlyMemory%601>该值可以用于 JsonDocument 对象的整个生存期, 并且调用方必须确保其中的数据在对象生存期内不会更改。
 
           ]]></format>
         </remarks>
@@ -187,11 +183,11 @@
       </Docs>
     </Member>
     <Member MemberName="Parse">
-      <MemberSignature Language="C#" Value="public static System.Text.Json.JsonDocument Parse (string json, System.Text.Json.JsonReaderOptions readerOptions = null);" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Text.Json.JsonDocument Parse(string json, valuetype System.Text.Json.JsonReaderOptions readerOptions) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonDocument.Parse(System.String,System.Text.Json.JsonReaderOptions)" />
-      <MemberSignature Language="VB.NET" Value="Public Shared Function Parse (json As String, Optional readerOptions As JsonReaderOptions = null) As JsonDocument" />
-      <MemberSignature Language="F#" Value="static member Parse : string * System.Text.Json.JsonReaderOptions -&gt; System.Text.Json.JsonDocument" Usage="System.Text.Json.JsonDocument.Parse (json, readerOptions)" />
+      <MemberSignature Language="C#" Value="public static System.Text.Json.JsonDocument Parse (string json, System.Text.Json.JsonDocumentOptions options = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Text.Json.JsonDocument Parse(string json, valuetype System.Text.Json.JsonDocumentOptions options) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonDocument.Parse(System.String,System.Text.Json.JsonDocumentOptions)" />
+      <MemberSignature Language="VB.NET" Value="Public Shared Function Parse (json As String, Optional options As JsonDocumentOptions = null) As JsonDocument" />
+      <MemberSignature Language="F#" Value="static member Parse : string * System.Text.Json.JsonDocumentOptions -&gt; System.Text.Json.JsonDocument" Usage="System.Text.Json.JsonDocument.Parse (json, options)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Text.Json</AssemblyName>
@@ -202,11 +198,11 @@
       </ReturnValue>
       <Parameters>
         <Parameter Name="json" Type="System.String" />
-        <Parameter Name="readerOptions" Type="System.Text.Json.JsonReaderOptions" />
+        <Parameter Name="options" Type="System.Text.Json.JsonDocumentOptions" />
       </Parameters>
       <Docs>
         <param name="json">要分析的 JSON 文本。</param>
-        <param name="readerOptions">分析期间用于控制读取器行为的选项。</param>
+        <param name="options">分析期间用于控制读取器行为的选项。</param>
         <summary>将表示单个 JSON 字符串值的文本分析为 JsonDocument。</summary>
         <returns>JSON 值的 JsonDocument 表示。</returns>
         <remarks>To be added.</remarks>
@@ -215,10 +211,10 @@
       </Docs>
     </Member>
     <Member MemberName="ParseAsync">
-      <MemberSignature Language="C#" Value="public static System.Threading.Tasks.Task&lt;System.Text.Json.JsonDocument&gt; ParseAsync (System.IO.Stream utf8Json, System.Text.Json.JsonReaderOptions readerOptions = null, System.Threading.CancellationToken cancellationToken = null);" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Threading.Tasks.Task`1&lt;class System.Text.Json.JsonDocument&gt; ParseAsync(class System.IO.Stream utf8Json, valuetype System.Text.Json.JsonReaderOptions readerOptions, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonDocument.ParseAsync(System.IO.Stream,System.Text.Json.JsonReaderOptions,System.Threading.CancellationToken)" />
-      <MemberSignature Language="F#" Value="static member ParseAsync : System.IO.Stream * System.Text.Json.JsonReaderOptions * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;System.Text.Json.JsonDocument&gt;" Usage="System.Text.Json.JsonDocument.ParseAsync (utf8Json, readerOptions, cancellationToken)" />
+      <MemberSignature Language="C#" Value="public static System.Threading.Tasks.Task&lt;System.Text.Json.JsonDocument&gt; ParseAsync (System.IO.Stream utf8Json, System.Text.Json.JsonDocumentOptions options = null, System.Threading.CancellationToken cancellationToken = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Threading.Tasks.Task`1&lt;class System.Text.Json.JsonDocument&gt; ParseAsync(class System.IO.Stream utf8Json, valuetype System.Text.Json.JsonDocumentOptions options, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonDocument.ParseAsync(System.IO.Stream,System.Text.Json.JsonDocumentOptions,System.Threading.CancellationToken)" />
+      <MemberSignature Language="F#" Value="static member ParseAsync : System.IO.Stream * System.Text.Json.JsonDocumentOptions * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;System.Text.Json.JsonDocument&gt;" Usage="System.Text.Json.JsonDocument.ParseAsync (utf8Json, options, cancellationToken)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Text.Json</AssemblyName>
@@ -229,12 +225,12 @@
       </ReturnValue>
       <Parameters>
         <Parameter Name="utf8Json" Type="System.IO.Stream" />
-        <Parameter Name="readerOptions" Type="System.Text.Json.JsonReaderOptions" />
+        <Parameter Name="options" Type="System.Text.Json.JsonDocumentOptions" />
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
         <param name="utf8Json">要分析的 JSON 数据。</param>
-        <param name="readerOptions">分析期间用于控制读取器行为的选项。</param>
+        <param name="options">分析期间用于控制读取器行为的选项。</param>
         <param name="cancellationToken">要监视取消请求的标记。</param>
         <summary>将表示单个 JSON 值的 UTF-8 编码数据形式的 <see cref="T:System.IO.Stream" /> 分析为 JsonDocument。 数据流将被完整读取。</summary>
         <returns>用于生成 JSON 值的 JsonDocument 表示的任务。</returns>
@@ -268,11 +264,11 @@
         <remarks>
           <format><![CDATA[
 
-如果<xref:System.Text.Json.Utf8JsonReader.TokenType>的属性`reader`是<xref:System.Text.Json.JsonTokenType.PropertyName?displayProperty=nameWithType>或<xref:System.Text.Json.JsonTokenType.None?displayProperty=nameWithType>，读取器将通过调用一次前进<xref:System.Text.Json.Utf8JsonReader.Read?displayProperty=nameWithType>来确定值的开头。
+<xref:System.Text.Json.Utf8JsonReader.Read?displayProperty=nameWithType>如果的<xref:System.Text.Json.Utf8JsonReader.TokenType> `reader`属性为<xref:System.Text.Json.JsonTokenType.PropertyName?displayProperty=nameWithType> 或<xref:System.Text.Json.JsonTokenType.None?displayProperty=nameWithType>, 则读取器将通过调用来前进来确定值的开头。
                
-此方法完成后`reader`位于 JSON 值中的最后一个令牌。 如果引发异常，读取器将重置为调用该方法时的状态。
+此方法完成后, `reader`将位于 JSON 值中的最终标记处。 如果引发了异常, 则读取器将重置为在调用方法时它所处的状态。
                
-此方法会一份数据读取器操作，这样无调用方以保持超出此方法返回的数据完整性。
+此方法会创建读取器所处理的数据的副本, 因此, 不需要在返回此方法之后维护数据完整性。
 
           ]]></format>
         </remarks>
@@ -328,11 +324,11 @@
         <remarks>
           <format><![CDATA[
           
-如果<xref:System.Text.Json.Utf8JsonReader.TokenType>的属性`reader`是<xref:System.Text.Json.JsonTokenType.PropertyName?displayProperty=nameWithType>或<xref:System.Text.Json.JsonTokenType.None?displayProperty=nameWithType>，读取器将通过调用一次前进<xref:System.Text.Json.Utf8JsonReader.Read?displayProperty=nameWithType>来确定值的开头。
+<xref:System.Text.Json.Utf8JsonReader.Read?displayProperty=nameWithType>如果的<xref:System.Text.Json.Utf8JsonReader.TokenType> `reader`属性为<xref:System.Text.Json.JsonTokenType.PropertyName?displayProperty=nameWithType> 或<xref:System.Text.Json.JsonTokenType.None?displayProperty=nameWithType>, 则读取器将通过调用来前进来确定值的开头。
                
-此方法完成后`reader`位于 JSON 值中的最后一个令牌。 如果引发异常或`false`返回，则读取器将重置为调用该方法时的状态。
+此方法完成后, `reader`将位于 JSON 值中的最终标记处。 如果引发了异常或`false`返回了异常, 则读取器将重置为在调用方法时它所处的状态。
                
-此方法会一份数据读取器操作，这样无调用方以保持超出此方法返回的数据完整性。
+此方法会创建读取器所处理的数据的副本, 因此, 不需要在返回此方法之后维护数据完整性。
                  
                ]]></format>
         </remarks>

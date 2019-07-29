@@ -53,24 +53,24 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通过扩展<xref:System.Windows.Forms.ContainerControl>，<xref:System.Windows.Forms.UserControl>继承所有标准定位和在用户控件中是必需的助记键处理代码。  
+ 通过扩展<xref:System.Windows.Forms.ContainerControl>, <xref:System.Windows.Forms.UserControl>继承用户控件中所需的所有标准定位和助记处理代码。  
   
- <xref:System.Windows.Forms.UserControl>使您能够创建可以在应用程序或组织内的多个位置使用的控件。 可以包括所有所需的常见数据要求用户输入; 的验证代码一些示例包括电子邮件地址 （请参阅示例部分），电话号码和邮政编码。 另一个有效地使用用户控件是只需预加载<xref:System.Windows.Forms.ComboBox>或<xref:System.Windows.Forms.ListBox>静态项您通常使用几乎每个应用程序中; 其中的一些示例是国家/地区、 城市、 州和办公地点。 有关创作自定义控件的详细信息，请参阅[开发自定义 Windows 窗体控件与.NET Framework](~/docs/framework/winforms/controls/developing-custom-windows-forms-controls.md)。  
+ <xref:System.Windows.Forms.UserControl>使您能够创建可在应用程序或组织中的多个位置使用的控件。 您可以包括验证请求用户输入的常见数据所需的所有代码;其中的一些示例包括电子邮件地址 (请参阅示例部分)、电话号码和邮政编码。 用户控件的另一种有效使用方式是只需<xref:System.Windows.Forms.ComboBox>预<xref:System.Windows.Forms.ListBox>加载一个, 或使用通常在几乎所有应用程序中使用的静态项; 其中的一些示例是国家/地区、城市、州和办公室位置。 有关创作自定义控件的详细信息, 请参阅[用 .NET Framework 开发自定义 Windows 窗体控件](~/docs/framework/winforms/controls/developing-custom-windows-forms-controls.md)。  
   
 > [!NOTE]
->  您可能会考虑创建包含用户控件的几个类的命名空间并将其编译为一个 DLL。 可以引用此 DLL，并将其与应用程序或组织内的所有应用程序一起分发。 这使您能够引用用户控件在许多应用程序并节省时间布局和编码的用户控件包含的元素。 用户控件还提供一致性内或跨应用程序;例如，所有的地址信息输入的块将所有具有相同的外观和行为。 一致性为你的应用程序提供了更加完善、 专业的外观。  
+>  可以考虑创建包含多个用户控件类的命名空间, 并将其编译到一个 DLL 中。 此 DLL 可与应用程序或组织中的所有应用程序一起引用和分发。 这使你能够在多个应用程序中引用用户控件, 并节省时间并为用户控件的所包含元素编写代码。 用户控件还能在应用程序内部或跨应用程序进行一致性;例如, 所有地址信息输入块都具有相同的外观和行为。 一致性可为应用程序提供更精美和更专业的外观。  
 >   
->  可以承载 Windows 窗体<xref:System.Windows.Forms.UserControl>派生的类在窗体中，在另一台内部<xref:System.Windows.Forms.UserControl>，在 Internet Explorer 对网页或内部<xref:System.Windows.Forms.WebBrowser>窗体上承载控件。  
+>  可以在窗体<xref:System.Windows.Forms.UserControl>中的其他窗体、其他<xref:System.Windows.Forms.UserControl>、网页上的 Internet Explorer 内或<xref:System.Windows.Forms.WebBrowser>窗体上承载的控件内承载 Windows 窗体派生类。  
   
 > [!NOTE]
->  托管时<xref:System.Windows.Forms.UserControl>的内部<xref:System.Windows.Forms.WebBrowser>控件，您不能关闭使用视觉样式`META`标记值`MSThemeCompatible`。 视觉样式的详细信息，请参阅[以视觉样式呈现控件](~/docs/framework/winforms/controls/rendering-controls-with-visual-styles.md)。  
+>  在<xref:System.Windows.Forms.UserControl> <xref:System.Windows.Forms.WebBrowser>控件内部承载时, 不能使用`META`标记值`MSThemeCompatible`关闭视觉样式。 有关视觉样式的详细信息, 请参阅[用视觉样式呈现控件](~/docs/framework/winforms/controls/rendering-controls-with-visual-styles.md)。  
   
- 请注意，对于智能手机应用程序，此控件要求 Windows Mobile 版本 5.0 软件智能手机。  
+ 请注意, 对于 Smartphone 应用程序, 此控件需要适用于智能手机的 Windows Mobile 版本5.0 软件。  
   
    
   
 ## Examples  
- 下面的代码示例创建<xref:System.Windows.Forms.UserControl>，可以在多个应用程序获取用户信息中重复使用。 此示例中添加了多种<xref:System.Windows.Forms.Label>控件，<xref:System.Windows.Forms.TextBox>控件和一个<xref:System.Windows.Forms.ErrorProvider>到<xref:System.Windows.Forms.UserControl>来收集用户的信息。 此外，在中验证用户的电子邮件地址<xref:System.Windows.Forms.Control.Validating>的事件<xref:System.Windows.Forms.TextBox>和<xref:System.Windows.Forms.ErrorProvider>对象用于在数据未能通过验证为用户提供反馈。 此代码应编译为对其他应用程序中引用的 DLL。  
+ 下面的代码示例创建一个<xref:System.Windows.Forms.UserControl> , 它可以在多个应用程序中重复使用以获取用户信息。 此示例将多<xref:System.Windows.Forms.Label>个控件<xref:System.Windows.Forms.TextBox> 、 <xref:System.Windows.Forms.UserControl>控件和<xref:System.Windows.Forms.ErrorProvider>添加到以收集用户的信息。 此外, 用户的电子邮件地址会在<xref:System.Windows.Forms.Control.Validating>发生<xref:System.Windows.Forms.TextBox> <xref:System.Windows.Forms.ErrorProvider>时进行验证, 如果数据验证失败, 则使用对象来向用户提供反馈。 此代码旨在编译为 DLL, 以便在其他应用程序中引用。  
   
  [!code-cpp[Classic UserControl Example#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Classic UserControl Example/CPP/source.cpp#1)]
  [!code-csharp[Classic UserControl Example#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Classic UserControl Example/CS/source.cs#1)]
@@ -102,12 +102,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您通常不应创建的实例<xref:System.Windows.Forms.UserControl>。 若要创建用户控件类，继承自<xref:System.Windows.Forms.UserControl>类。  
+ 通常不会创建的<xref:System.Windows.Forms.UserControl>实例。 若要创建自己的<xref:System.Windows.Forms.UserControl>用户控件类, 请从类继承。  
   
    
   
 ## Examples  
- 下面的代码示例创建的实例<xref:System.Windows.Forms.UserControl>派生的类， `MyCustomerInfoUserControl`，这在的示例部分中创建<xref:System.Windows.Forms.UserControl>类概述。 该用户控件添加到<xref:System.Windows.Forms.Panel>控件并具有其<xref:System.Windows.Forms.Control.Dock%2A>属性设置为<xref:System.Windows.Forms.DockStyle.Fill?displayProperty=nameWithType>。 <xref:System.Windows.Forms.Panel>随后将添加到<xref:System.Windows.Forms.Form>。  
+ 下面的代码示例创建<xref:System.Windows.Forms.UserControl>派生`MyCustomerInfoUserControl`类的实例, 该实例是在<xref:System.Windows.Forms.UserControl>类概述的 "示例" 部分中创建的。 用户控件将添加到<xref:System.Windows.Forms.Panel>控件, 并将其<xref:System.Windows.Forms.Control.Dock%2A>属性设置为<xref:System.Windows.Forms.DockStyle.Fill?displayProperty=nameWithType>。 然后, 将添加<xref:System.Windows.Forms.Form>到。 <xref:System.Windows.Forms.Panel>  
   
  [!code-cpp[Classic UserControl.UserControl Example#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Classic UserControl.UserControl Example/CPP/source.cpp#1)]
  [!code-csharp[Classic UserControl.UserControl Example#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Classic UserControl.UserControl Example/CS/source.cs#1)]
@@ -214,7 +214,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 控件不能识别<xref:System.Windows.Forms.UserControl.AutoSizeMode%2A>属性将正常工作，如同<xref:System.Windows.Forms.UserControl.AutoSizeMode%2A>已设置为<xref:System.Windows.Forms.AutoSizeMode.GrowAndShrink>。 识别的所有控件<xref:System.Windows.Forms.UserControl.AutoSizeMode%2A>属性将默认情况下，增加以适应可用空间，但下面指定的值都不会收缩<xref:System.Windows.Forms.Control.Size%2A>属性。  
+ 不识别<xref:System.Windows.Forms.UserControl.AutoSizeMode%2A>属性的控件的功能将<xref:System.Windows.Forms.UserControl.AutoSizeMode%2A>与设置为<xref:System.Windows.Forms.AutoSizeMode.GrowAndShrink>的一样。 默认情况下, 识别<xref:System.Windows.Forms.UserControl.AutoSizeMode%2A>属性的所有控件都将增大以适合可用空间, 但不会缩小到<xref:System.Windows.Forms.Control.Size%2A>属性指定的值之下。  
   
  ]]></format>
         </remarks>
@@ -280,14 +280,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果自定义控件不执行任何其自身的验证，你将需要开发人员使用您的控件发生更改<xref:System.Windows.Forms.UserControl.AutoValidate%2A>属性，以便可以相应地更改控件的验证行为。  
+ 如果自定义控件执行其自身的任何验证, 则需要知道何时使用控件的开发人员更改了<xref:System.Windows.Forms.UserControl.AutoValidate%2A>属性, 以便您可以相应地更改控件的验证行为。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何将此成员。 在示例中，事件处理程序报告的匹配项<xref:System.Windows.Forms.UserControl.AutoValidateChanged>事件。 此报告可帮助您了解事件发生的并可以帮助您进行调试。 若要报告或频繁发生的事件上多个事件，请考虑更换<xref:System.Windows.Forms.MessageBox.Show%2A?displayProperty=nameWithType>与<xref:System.Console.WriteLine%2A?displayProperty=nameWithType>或将消息附加到多行<xref:System.Windows.Forms.TextBox>。  
+ 下面的代码示例演示如何使用此成员。 在此示例中, 事件处理程序报告<xref:System.Windows.Forms.UserControl.AutoValidateChanged>事件的发生。 此报表可帮助你了解何时发生事件, 并可帮助你进行调试。 若要报告多个事件或频繁发生的事件, 请考虑<xref:System.Windows.Forms.MessageBox.Show%2A?displayProperty=nameWithType>将<xref:System.Console.WriteLine%2A?displayProperty=nameWithType>消息替换为多行或将<xref:System.Windows.Forms.TextBox>其追加到多行。  
   
- 若要运行此代码示例，请将其粘贴到包含类型的实例的项目<xref:System.Windows.Forms.UserControl>名为`UserControl1`。 然后，确保事件处理程序相关联<xref:System.Windows.Forms.UserControl.AutoValidateChanged>事件。  
+ 若要运行示例代码, 请将其粘贴到包含名为<xref:System.Windows.Forms.UserControl> `UserControl1`的类型的实例的项目中。 然后, 确保事件处理程序与<xref:System.Windows.Forms.UserControl.AutoValidateChanged>事件相关联。  
   
  [!code-csharp[System.Windows.Forms.EventExamples#641](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.EventExamples/CS/EventExamples.cs#641)]
  [!code-vb[System.Windows.Forms.EventExamples#641](~/samples/snippets/visualbasic/VS_Snippets_Winforms/System.Windows.Forms.EventExamples/VB/EventExamples.vb#641)]  
@@ -335,7 +335,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Windows.Forms.UserControl.BorderStyle%2A>属性设置为<xref:System.Windows.Forms.BorderStyle.Fixed3D>，该控件具有凹下的三维外观。 若要显示平面的细边框，请设置<xref:System.Windows.Forms.BorderStyle>属性设置为<xref:System.Windows.Forms.BorderStyle.FixedSingle>。  
+ 当属性设置为<xref:System.Windows.Forms.BorderStyle.Fixed3D>时, 控件具有凹陷三维外观。 <xref:System.Windows.Forms.UserControl.BorderStyle%2A> 若要显示平面、细边框, 请将<xref:System.Windows.Forms.BorderStyle>属性设置<xref:System.Windows.Forms.BorderStyle.FixedSingle>为。  
   
  ]]></format>
         </remarks>
@@ -413,22 +413,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此事件可用于执行任务，例如分配控件使用的资源。  
+ 可以使用此事件来执行任务, 例如分配控件所使用的资源。  
   
 > [!NOTE]
->  如果<xref:System.Windows.Forms.UserControl>属于的 MDI 子窗体，<xref:System.Windows.Forms.UserControl.Load>事件会显示子窗体的每个时间。 在这种情况下，您应该将任何一次性初始化代码置于<xref:System.Windows.Forms.UserControl.%23ctor%2A>而不是<xref:System.Windows.Forms.UserControl.Load>事件处理程序。  
+>  如果是 MDI 子窗体的一部分, 则每<xref:System.Windows.Forms.UserControl.Load>次显示子窗体时都会发生该事件。 <xref:System.Windows.Forms.UserControl> 在这种情况下, 应将任何一次性初始化代码放在中<xref:System.Windows.Forms.UserControl.%23ctor%2A> , 而不<xref:System.Windows.Forms.UserControl.Load>是事件处理程序中。  
   
 > [!CAUTION]
->  <xref:System.Windows.Forms.UserControl.Load>事件发生时的句柄<xref:System.Windows.Forms.UserControl>创建。 在某些情况下，这可能会导致<xref:System.Windows.Forms.UserControl.Load>事件发生一次。 例如，<xref:System.Windows.Forms.UserControl.Load>事件发生时<xref:System.Windows.Forms.UserControl>加载，并再次如果重新创建句柄。 (一个句柄重新创建的一种方法是通过调用<xref:System.Windows.Forms.Control.RecreateHandle%2A>方法。)考虑<xref:System.Windows.Forms.UserControl.Load>事件发生一次，应将放置于初始化代码将在任何时候<xref:System.Windows.Forms.UserControl.%23ctor%2A>构造函数而不是<xref:System.Windows.Forms.UserControl.Load>事件处理程序。 此外，不应添加到的数据绑定<xref:System.Windows.Forms.UserControl>在<xref:System.Windows.Forms.UserControl.Load>事件处理程序。  
+>  创建<xref:System.Windows.Forms.UserControl.Load> 的<xref:System.Windows.Forms.UserControl>句柄时发生此事件。 在某些情况下, 这可能会<xref:System.Windows.Forms.UserControl.Load>导致事件发生多次。 例如, <xref:System.Windows.Forms.UserControl.Load>如果在加载时发生事件<xref:System.Windows.Forms.UserControl> , 则在重新创建该句柄时发生。 (重新创建句柄的一种方法是调用<xref:System.Windows.Forms.Control.RecreateHandle%2A>方法。)若要使<xref:System.Windows.Forms.UserControl.%23ctor%2A> <xref:System.Windows.Forms.UserControl.Load>事件发生多次, 应将任何一次性初始化代码放在构造函数中, 而不是事件处理程序中。 <xref:System.Windows.Forms.UserControl.Load> 此外, 不应将数据绑定添加到<xref:System.Windows.Forms.UserControl> <xref:System.Windows.Forms.UserControl.Load>事件处理程序中的。  
   
- 有关处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何将此成员。 在示例中，事件处理程序报告的匹配项<xref:System.Windows.Forms.UserControl.Load>事件。 此报告可帮助您了解事件发生的并可以帮助您进行调试。 若要报告或频繁发生的事件上多个事件，请考虑更换<xref:System.Windows.Forms.MessageBox.Show%2A?displayProperty=nameWithType>与<xref:System.Console.WriteLine%2A?displayProperty=nameWithType>或将消息附加到多行<xref:System.Windows.Forms.TextBox>。  
+ 下面的代码示例演示如何使用此成员。 在此示例中, 事件处理程序报告<xref:System.Windows.Forms.UserControl.Load>事件的发生。 此报表可帮助你了解何时发生事件, 并可帮助你进行调试。 若要报告多个事件或频繁发生的事件, 请考虑<xref:System.Windows.Forms.MessageBox.Show%2A?displayProperty=nameWithType>将<xref:System.Console.WriteLine%2A?displayProperty=nameWithType>消息替换为多行或将<xref:System.Windows.Forms.TextBox>其追加到多行。  
   
- 若要运行此代码示例，请将其粘贴到包含类型的实例的项目<xref:System.Windows.Forms.UserControl>名为`UserControl1`。 然后，确保事件处理程序相关联<xref:System.Windows.Forms.UserControl.Load>事件。  
+ 若要运行示例代码, 请将其粘贴到包含名为<xref:System.Windows.Forms.UserControl> `UserControl1`的类型的实例的项目中。 然后, 确保事件处理程序与<xref:System.Windows.Forms.UserControl.Load>事件相关联。  
   
  [!code-csharp[System.Windows.Forms.EventExamples#642](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.EventExamples/CS/EventExamples.cs#642)]
  [!code-vb[System.Windows.Forms.EventExamples#642](~/samples/snippets/visualbasic/VS_Snippets_Winforms/System.Windows.Forms.EventExamples/VB/EventExamples.vb#642)]  
@@ -468,7 +468,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Windows.Forms.UserControl.OnCreateControl%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
@@ -509,9 +509,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.UserControl.Load>创建控件后，但该控件第一次变得可见之前发生的事件。  
+ 此<xref:System.Windows.Forms.UserControl.Load>事件在控件创建之后但在控件第一次变为可见之前发生。  
   
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Windows.Forms.UserControl.OnLoad%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
