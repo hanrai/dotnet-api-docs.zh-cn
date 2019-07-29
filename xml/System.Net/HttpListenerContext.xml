@@ -26,16 +26,16 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>提供对使用的请求和响应对象的访问<see cref="T:System.Net.HttpListener" />类。 此类不能被继承。</summary>
+    <summary>提供对 <see cref="T:System.Net.HttpListener" /> 类使用的请求和响应对象的访问。 此类不能被继承。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此类提供与客户端的超文本传输协议 (HTTP) 请求正在处理相关的信息<xref:System.Net.HttpListener>对象。 此类还具有方法，允许<xref:System.Net.HttpListener>对象要接受 WebSocket 连接。  
+ 此类提供与<xref:System.Net.HttpListener>对象处理的客户端超文本传输协议 (HTTP) 请求相关的信息。 此类还包含允许<xref:System.Net.HttpListener>对象接受 WebSocket 连接的方法。  
   
- <xref:System.Net.HttpListener.GetContext%2A>方法返回的实例<xref:System.Net.HttpListenerContext>类。 若要获取该对象表示客户端请求，请使用<xref:System.Net.HttpListenerContext.Request%2A>属性。 若要获取该对象表示将发送到客户端的响应<xref:System.Net.HttpListener>，使用<xref:System.Net.HttpListenerContext.Response%2A>属性。 若要获取有关客户端发送请求，例如它的登录名和是否经过验证，用户信息可以查询中的属性<xref:System.Security.Principal.IPrincipal>返回对象<xref:System.Net.HttpListenerContext.User%2A>属性。  
+ 方法返回<xref:System.Net.HttpListenerContext>类的实例。 <xref:System.Net.HttpListener.GetContext%2A> 若要获取表示客户端请求的对象, 请使用<xref:System.Net.HttpListenerContext.Request%2A>属性。 若要获取表示将通过<xref:System.Net.HttpListener>发送到客户端的响应的对象, 请<xref:System.Net.HttpListenerContext.Response%2A>使用属性。 若要获取有关发送请求的客户端的用户信息 (如其登录名和身份验证是否已通过身份验证), 可以查询<xref:System.Security.Principal.IPrincipal> <xref:System.Net.HttpListenerContext.User%2A>属性返回的对象中的属性。  
   
- 关闭<xref:System.Net.HttpListenerContext>对象发送到客户端的响应，并释放使用的任何资源<xref:System.Net.HttpListenerContext>。 正在中止<xref:System.Net.HttpListenerContext>对象会放弃对客户端的响应，如果它不已发送，并释放使用的任何资源<xref:System.Net.HttpListenerContext>。 关闭或中止后<xref:System.Net.HttpListenerContext>对象，其方法或属性不能引用。 如果这样做，您将收到<xref:System.ObjectDisposedException>异常。  
+ 关闭对象会将响应发送到客户端, 并释放使用<xref:System.Net.HttpListenerContext>的所有资源。 <xref:System.Net.HttpListenerContext> 中止对象会丢弃对客户端的响应 (如果尚未发送), 并释放使用<xref:System.Net.HttpListenerContext>的所有资源。 <xref:System.Net.HttpListenerContext> 关闭或中止某个<xref:System.Net.HttpListenerContext>对象后, 将无法引用其方法或属性。 如果这样做, 则会收到一个<xref:System.ObjectDisposedException>异常。  
   
    
   
@@ -59,7 +59,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>接受作为异步操作的 WebSocket 连接。</summary>
+        <summary>接受 WebSocket 连接以作为异步操作。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="AcceptWebSocketAsync">
@@ -97,21 +97,21 @@
         <Parameter Name="subProtocol" Type="System.String" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="subProtocol">支持的 WebSocket 子协议。</param>
-        <summary>接受作为异步操作的 WebSocket 连接。</summary>
-        <returns>表示异步操作的任务对象。 <see cref="P:System.Threading.Tasks.Task`1.Result" />任务对象上的属性将返回<see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" />对象。</returns>
+        <param name="subProtocol">受支持的 WebSocket 子协议。</param>
+        <summary>接受 WebSocket 连接以作为异步操作。</summary>
+        <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性返回了 <see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成后已被接受 WebSocket 连接。  
+ 此操作不会阻止。 在接受<xref:System.Threading.Tasks.Task%601> WebSocket 连接后, 返回的对象将完成。  
   
- 接收缓冲区的大小为 16,385 字节。 WebSocket 保持活动状态的间隔设置为 30000 （30 秒） 的默认值。  
+ 接收缓冲区的大小为16385个字节。 WebSocket keep-alive 间隔设置为默认值 30000 (30 秒)。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="subProtocol" /> 为空字符串 
-或 
+        <exception cref="T:System.ArgumentException"><paramref name="subProtocol" /> 是空字符串 
+- 或 - 
  <paramref name="subProtocol" /> 包含非法字符。</exception>
         <exception cref="T:System.Net.WebSockets.WebSocketException">发送响应以完成 WebSocket 握手时出错。</exception>
         <altmember cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" />
@@ -153,24 +153,24 @@
         <Parameter Name="keepAliveInterval" Type="System.TimeSpan" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="subProtocol">支持的 WebSocket 子协议。</param>
-        <param name="keepAliveInterval">WebSocket 协议保持活动状态的间隔（以毫秒为单位）。</param>
-        <summary>接受 WebSocket 连接支持的 WebSocket 子协议和 WebSocket 保持活动状态的间隔指定为异步操作。</summary>
-        <returns>表示异步操作的任务对象。 <see cref="P:System.Threading.Tasks.Task`1.Result" />任务对象上的属性将返回<see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" />对象。</returns>
+        <param name="subProtocol">受支持的 WebSocket 子协议。</param>
+        <param name="keepAliveInterval">WebSocket 协议启用时间间隔（以毫秒为单位）。</param>
+        <summary>接受指定支持的 WebSocket 子协议和 WebSocket 保持活动状态的间隔的 WebSocket 连接以作为异步操作。</summary>
+        <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性返回了 <see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成后已被接受 WebSocket 连接。  
+ 此操作不会阻止。 在接受<xref:System.Threading.Tasks.Task%601> WebSocket 连接后, 返回的对象将完成。  
   
- 接收缓冲区的大小为 16,385 字节。  
+ 接收缓冲区的大小为16385个字节。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="subProtocol" /> 为空字符串 
+        <exception cref="T:System.ArgumentException"><paramref name="subProtocol" /> 是空字符串 
 或 
  <paramref name="subProtocol" /> 包含非法字符。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="keepAliveInterval" /> 是太小。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="keepAliveInterval" /> 太小。</exception>
         <exception cref="T:System.Net.WebSockets.WebSocketException">发送响应以完成 WebSocket 握手时出错。</exception>
         <altmember cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" />
       </Docs>
@@ -212,28 +212,28 @@
         <Parameter Name="keepAliveInterval" Type="System.TimeSpan" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="subProtocol">支持的 WebSocket 子协议。</param>
-        <param name="receiveBufferSize">接收缓冲区的大小以字节为单位。</param>
-        <param name="keepAliveInterval">WebSocket 协议保持活动状态的间隔（以毫秒为单位）。</param>
-        <summary>接受指定支持的 WebSocket 子协议的 WebSocket 连接、 接受缓冲区大小和 WebSocket 保持活动状态的间隔以异步操作的方式。</summary>
-        <returns>表示异步操作的任务对象。 <see cref="P:System.Threading.Tasks.Task`1.Result" />任务对象上的属性将返回<see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" />对象。</returns>
+        <param name="subProtocol">受支持的 WebSocket 子协议。</param>
+        <param name="receiveBufferSize">接收缓冲区大小（以字节为单位）。</param>
+        <param name="keepAliveInterval">WebSocket 协议启用时间间隔（以毫秒为单位）。</param>
+        <summary>接受指定支持的 WebSocket 子协议的 WebSocket 连接、接受缓冲区大小和 WebSocket 保持活动状态的间隔以作为异步操作。</summary>
+        <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性返回了 <see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>> 已接受 WebSocket 连接后，将完成对象。  
+ 此操作不会阻止。 在接受<xref:System.Threading.Tasks.Task%601> WebSocket 连接后, 返回的 > 对象将完成。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="subProtocol" /> 为空字符串 
+        <exception cref="T:System.ArgumentException"><paramref name="subProtocol" /> 是空字符串 
 或 
  <paramref name="subProtocol" /> 包含非法字符。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="keepAliveInterval" /> 是太小。  
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="keepAliveInterval" /> 太小。  
   
 或 
- <paramref name="receiveBufferSize" /> 为不超过 16 个字节 
+ <paramref name="receiveBufferSize" /> 小于 16 字节 
 或 
- <paramref name="receiveBufferSize" /> 大于 64k 字节。</exception>
+ <paramref name="receiveBufferSize" /> 大于 64K 字节。</exception>
         <exception cref="T:System.Net.WebSockets.WebSocketException">发送响应以完成 WebSocket 握手时出错。</exception>
         <altmember cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" />
       </Docs>
@@ -279,29 +279,29 @@
         <Parameter Name="internalBuffer" Type="System.ArraySegment&lt;System.Byte&gt;" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="subProtocol">支持的 WebSocket 子协议。</param>
-        <param name="receiveBufferSize">接收缓冲区的大小以字节为单位。</param>
-        <param name="keepAliveInterval">WebSocket 协议保持活动状态的间隔（以毫秒为单位）。</param>
-        <param name="internalBuffer">若要使用此操作的内部缓冲区。</param>
-        <summary>接受指定支持的 WebSocket 子协议的 WebSocket 连接，接收缓冲区大小和 WebSocket 保持活动状态的间隔，以及内部缓冲区以作为异步操作。</summary>
-        <returns>表示异步操作的任务对象。 <see cref="P:System.Threading.Tasks.Task`1.Result" />任务对象上的属性将返回<see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" />对象。</returns>
+        <param name="subProtocol">受支持的 WebSocket 子协议。</param>
+        <param name="receiveBufferSize">接收缓冲区大小（以字节为单位）。</param>
+        <param name="keepAliveInterval">WebSocket 协议启用时间间隔（以毫秒为单位）。</param>
+        <param name="internalBuffer">用于此操作的一个内部缓冲区。</param>
+        <summary>接受指定支持的 WebSocket 子协议的 WebSocket 连接、接受缓冲区大小和 WebSocket 保持活动状态的间隔和内部缓冲区以作为异步操作。</summary>
+        <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性返回了 <see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成后已被接受 WebSocket 连接。  
+ 此操作不会阻止。 在接受<xref:System.Threading.Tasks.Task%601> WebSocket 连接后, 返回的对象将完成。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="subProtocol" /> 为空字符串 
+        <exception cref="T:System.ArgumentException"><paramref name="subProtocol" /> 是空字符串 
 或 
  <paramref name="subProtocol" /> 包含非法字符。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="keepAliveInterval" /> 是太小。  
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="keepAliveInterval" /> 太小。  
   
 或 
- <paramref name="receiveBufferSize" /> 为不超过 16 个字节 
-或 
- <paramref name="receiveBufferSize" /> 大于 64k 字节。</exception>
+ <paramref name="receiveBufferSize" /> 小于 16 字节 
+- 或 - 
+ <paramref name="receiveBufferSize" /> 大于 64K 字节。</exception>
         <exception cref="T:System.Net.WebSockets.WebSocketException">发送响应以完成 WebSocket 握手时出错。</exception>
         <altmember cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" />
       </Docs>
@@ -339,18 +339,18 @@
         <ReturnType>System.Net.HttpListenerRequest</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.Net.HttpListenerRequest" />，表示对资源的客户端的请求。</summary>
+        <summary>获取表示客户端对资源的请求的 <see cref="T:System.Net.HttpListenerRequest" />。</summary>
         <value>表示客户端请求的 <see cref="T:System.Net.HttpListenerRequest" /> 对象。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果关闭此<xref:System.Net.HttpListenerContext>，它将响应发送到客户端，关闭<xref:System.Net.HttpListenerResponse>，其中包含响应，然后关闭<xref:System.Net.HttpListenerRequest>此属性返回的对象。  
+ 如果关闭此<xref:System.Net.HttpListenerContext>方法, 它将向客户端发送响应, <xref:System.Net.HttpListenerResponse>关闭包含<xref:System.Net.HttpListenerRequest>响应的, 然后关闭此属性返回的对象。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何调用此方法。 `listener`变量保存<xref:System.Net.HttpListener>对象。  
+ 下面的代码示例演示如何调用此方法。 `listener` 变量<xref:System.Net.HttpListener>保存对象。  
   
  [!code-csharp[Net_Listener_Basic#3](~/samples/snippets/csharp/VS_Snippets_Remoting/Net_Listener_Basic/CS/test.cs#3)]  
  [!code-vb[Net_Listener_Basic#3](~/samples/snippets/visualbasic/VS_Snippets_Remoting/Net_Listener_Basic/VB/test.vb#3)]  
@@ -387,25 +387,25 @@
         <ReturnType>System.Net.HttpListenerResponse</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.Net.HttpListenerResponse" />将发送到客户端以响应客户端的请求的对象。</summary>
-        <value><see cref="T:System.Net.HttpListenerResponse" />对象，用于将响应发送回客户端。</value>
+        <summary>获取 <see cref="T:System.Net.HttpListenerResponse" /> 对象，该对象将被发送到客户端以响应客户端的请求。</summary>
+        <value>用于将响应发送回客户端的 <see cref="T:System.Net.HttpListenerResponse" /> 对象。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 你的应用程序配置中设置属性的响应<xref:System.Net.HttpListenerResponse>此属性返回的对象。 配置响应之后, 您将其发送到客户端通过关闭响应，或关闭此<xref:System.Net.HttpListenerContext>对象。  
+ 应用程序通过设置此属性返回的<xref:System.Net.HttpListenerResponse>对象中的属性来配置响应。 配置响应后, 通过关闭响应或关闭此<xref:System.Net.HttpListenerContext>对象将其发送到客户端。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何获取对客户端的请求的响应和添加响应正文。  
+ 下面的代码示例演示如何获取对客户端请求的响应并添加响应正文。  
   
  [!code-csharp[Net_Listener_Basic#3](~/samples/snippets/csharp/VS_Snippets_Remoting/Net_Listener_Basic/CS/test.cs#3)]  
  [!code-vb[Net_Listener_Basic#3](~/samples/snippets/visualbasic/VS_Snippets_Remoting/Net_Listener_Basic/VB/test.vb#3)]  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="usage"><para>注意:当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息，请参阅[在.NET Framework 中进行网络跟踪](~/docs/framework/network-programming/network-tracing.md)。</para></block>
+        <block subset="none" type="usage"><para>注意:当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息, 请参阅[.NET Framework 中的网络跟踪](~/docs/framework/network-programming/network-tracing.md)。</para></block>
       </Docs>
     </Member>
     <Member MemberName="User">
@@ -436,27 +436,27 @@
         <ReturnType>System.Security.Principal.IPrincipal</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个对象，该对象用于为其请求表示此客户端获取标识、 身份验证信息和安全角色<see cref="T:System.Net.HttpListenerContext" />对象。</summary>
-        <value><see cref="T:System.Security.Principal.IPrincipal" />对象，描述客户端，或<see langword="null" />如果<see cref="T:System.Net.HttpListener" />提供此<see cref="T:System.Net.HttpListenerContext" />不需要身份验证。</value>
+        <summary>获取用于为客户端获取标识、身份验证信息和安全角色的对象，该客户端的请求由此 <see cref="T:System.Net.HttpListenerContext" /> 对象表示。</summary>
+        <value>描述客户端的 <see cref="T:System.Security.Principal.IPrincipal" /> 对象，或者，如果提供此 <see cref="T:System.Net.HttpListener" /> 的 <see cref="T:System.Net.HttpListenerContext" /> 不需要身份验证，则为 <see langword="null" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.HttpListener>指示它需要使用身份验证<xref:System.Net.HttpListener.AuthenticationSchemes%2A>属性或通过指定<xref:System.Net.AuthenticationSchemeSelector>委托使用<xref:System.Net.HttpListener.AuthenticationSchemeSelectorDelegate%2A>属性。  
+ 指示它需要<xref:System.Net.HttpListener.AuthenticationSchemes%2A> <xref:System.Net.HttpListener.AuthenticationSchemeSelectorDelegate%2A> 使用<xref:System.Net.AuthenticationSchemeSelector>属性进行身份验证, 或通过使用属性指定委托。 <xref:System.Net.HttpListener>  
   
- 若要确定客户端的登录名和身份验证信息，请检查<xref:System.Security.Principal.IPrincipal.Identity%2A?displayProperty=nameWithType>中此属性返回的对象的属性。  
+ 若要确定客户端的登录名和身份验证信息, <xref:System.Security.Principal.IPrincipal.Identity%2A?displayProperty=nameWithType>请检查此属性返回的对象中的属性。  
   
    
   
 ## Examples  
- 下面的代码示例演示了有关客户端，并将其返回到响应中的客户端访问的标识和身份验证信息。  
+ 下面的代码示例演示如何访问有关客户端的标识和身份验证信息, 并将其返回到响应中的客户端。  
   
  [!code-csharp[Net_Listener_Basic#8](~/samples/snippets/csharp/VS_Snippets_Remoting/Net_Listener_Basic/CS/test.cs#8)]  
  [!code-vb[Net_Listener_Basic#8](~/samples/snippets/visualbasic/VS_Snippets_Remoting/Net_Listener_Basic/VB/test.vb#8)]  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" /><see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" /><see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
   </Members>

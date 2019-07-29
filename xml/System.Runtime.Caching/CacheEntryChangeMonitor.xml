@@ -1,5 +1,5 @@
 <Type Name="CacheEntryChangeMonitor" FullName="System.Runtime.Caching.CacheEntryChangeMonitor">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="efd8478764f0cf3133b57e1045627ae0c9575d30" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64120857" /></Metadata><TypeSignature Language="C#" Value="public abstract class CacheEntryChangeMonitor : System.Runtime.Caching.ChangeMonitor" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="eabcdf30342adb4646ad654801b0ee4bb897d6fa" /><Meta Name="ms.sourcegitcommit" Value="e7974886b08aa83a8fb461e8550f31a7d4331ee3" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/23/2019" /><Meta Name="ms.locfileid" Value="68399659" /></Metadata><TypeSignature Language="C#" Value="public abstract class CacheEntryChangeMonitor : System.Runtime.Caching.ChangeMonitor" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit CacheEntryChangeMonitor extends System.Runtime.Caching.ChangeMonitor" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Caching.CacheEntryChangeMonitor" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class CacheEntryChangeMonitor&#xA;Inherits ChangeMonitor" />
@@ -19,11 +19,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Caching.CacheEntryChangeMonitor>类提供了可用于监视缓存项实现的抽象的只读属性。 缓存实现在必须监视其自己的缓存中的条目的更改时使用此类。 有关缓存<xref:System.Runtime.Caching.ObjectCache>缓存实现的实例<xref:System.Runtime.Caching.CacheEntryChangeMonitor>返回类型<xref:System.Runtime.Caching.ObjectCache.CreateCacheEntryChangeMonitor%28System.Collections.Generic.IEnumerable%7BSystem.String%7D%2CSystem.String%29>方法。  
+ <xref:System.Runtime.Caching.CacheEntryChangeMonitor>类提供可实现的抽象属性, 这些属性可用于监视缓存条目。 当缓存实现必须监视其自己的缓存中的项更改时, 将使用此类。 对于作为<xref:System.Runtime.Caching.ObjectCache>缓存实现的缓存, <xref:System.Runtime.Caching.ObjectCache.CreateCacheEntryChangeMonitor%28System.Collections.Generic.IEnumerable%7BSystem.String%7D%2CSystem.String%29>方法返回<xref:System.Runtime.Caching.CacheEntryChangeMonitor>类型的实例。  
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>继承协定而必须遵循有关的信息，请参阅中的继承者的信息<see cref="T:System.Runtime.Caching.ChangeMonitor" />类概述。</para></block>
+    <block subset="none" type="overrides"><para>有关必须遵循的继承约定的信息, 请参阅<see cref="T:System.Runtime.Caching.ChangeMonitor" />类概述中的继承者的信息。</para></block>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -49,11 +49,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Caching.CacheEntryChangeMonitor>类具有默认构造函数。  
+ <xref:System.Runtime.Caching.CacheEntryChangeMonitor>类具有无参数的构造函数。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>派生类的构造函数必须设置<see cref="P:System.Runtime.Caching.ChangeMonitor.UniqueId" />属性，开始监视，并调用<see cref="M:System.Runtime.Caching.ChangeMonitor.InitializationComplete" />构造函数将返回之前。 如果在依赖项发生更改之前初始化已完成 （例如，如果在缓存中找不到依赖缓存项），必须调用构造函数<see cref="M:System.Runtime.Caching.ChangeMonitor.OnChanged(System.Object)" />方法。 构造函数可以调用<see cref="M:System.Runtime.Caching.ChangeMonitor.Dispose" />方法之后才<see cref="M:System.Runtime.Caching.ChangeMonitor.InitializationComplete" />调用，因为<see cref="M:System.Runtime.Caching.ChangeMonitor.Dispose" />未完成初始化时引发异常。</para></block>
+        <block subset="none" type="overrides"><para>派生类的构造函数必须在构造函数<see cref="P:System.Runtime.Caching.ChangeMonitor.UniqueId" />返回之前设置属性、开始监视<see cref="M:System.Runtime.Caching.ChangeMonitor.InitializationComplete" />和调用。 如果在初始化完成之前依赖项发生更改 (例如, 如果未在缓存中找到依赖缓存键), 则构造函数必须调用<see cref="M:System.Runtime.Caching.ChangeMonitor.OnChanged(System.Object)" />方法。 构造函数只能在调用<see cref="M:System.Runtime.Caching.ChangeMonitor.Dispose" />后<see cref="M:System.Runtime.Caching.ChangeMonitor.InitializationComplete" />调用方法, 因为<see cref="M:System.Runtime.Caching.ChangeMonitor.Dispose" />如果初始化未完成, 则会引发异常。</para></block>
       </Docs>
     </Member>
     <Member MemberName="CacheKeys">
@@ -78,7 +78,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 集合通常派生的构造函数中设置<xref:System.Runtime.Caching.CacheEntryChangeMonitor>类型。  
+ 集合通常在派生<xref:System.Runtime.Caching.CacheEntryChangeMonitor>类型的构造函数中进行设置。  
   
  ]]></format>
         </remarks>
@@ -106,9 +106,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果正在监视的更改，多个缓存条目<xref:System.Runtime.Caching.CacheEntryChangeMonitor.LastModified%2A>属性返回的修改的最晚时间出现在任何缓存条目。  
+ 如果监视多个缓存条目的更改, 则属性<xref:System.Runtime.Caching.CacheEntryChangeMonitor.LastModified%2A>将返回在任何缓存条目中发生修改的最晚时间。  
   
- 值<xref:System.Runtime.Caching.CacheEntryChangeMonitor.LastModified%2A>属性通常计算在派生类的初始化过程。  
+ 通常, 在派生<xref:System.Runtime.Caching.CacheEntryChangeMonitor.LastModified%2A>类的初始化过程中计算属性的值。  
   
  ]]></format>
         </remarks>
@@ -136,7 +136,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性的值通常指示在缓存中监视更改的特定区域。 <xref:System.Runtime.Caching.CacheEntryChangeMonitor.RegionName%2A>属性提供了选项后，若要配置更改进行监视，以便它们监视仅在特定的缓存区域中的缓存项。  
+ 此属性的值通常指示在缓存中监视更改的特定区域。 <xref:System.Runtime.Caching.CacheEntryChangeMonitor.RegionName%2A>属性提供了配置更改监视器的选项, 使其仅监视特定缓存区域中的缓存条目。  
   
  ]]></format>
         </remarks>

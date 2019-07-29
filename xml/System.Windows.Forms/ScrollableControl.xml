@@ -40,20 +40,20 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>定义支持自动滚动行为的控件的基类。</summary>
+    <summary>为支持自动滚动行为的控件定义一个基类。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常使用<xref:System.Windows.Forms.ScrollableControl>直接类。 <xref:System.Windows.Forms.ContainerControl>和<xref:System.Windows.Forms.Panel>从此类继承的类。  
+ 通常不会直接使用<xref:System.Windows.Forms.ScrollableControl>类。 <xref:System.Windows.Forms.ContainerControl> 和<xref:System.Windows.Forms.Panel>类继承自此类。  
   
- <xref:System.Windows.Forms.ScrollableControl>类充当基类需要能够滚动的控件的类。 若要用来根据需要显示滚动条控件，设置<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性设置为`true`并设置<xref:System.Windows.Forms.ScrollableControl.AutoScrollMinSize%2A>属性设置为所需的大小。 当该控件的尺寸小于指定的最小大小，或子控件位于控件的边界之外时，显示相应的滚动条。  
+ <xref:System.Windows.Forms.ScrollableControl>类充当需要滚动功能的控件的基类。 若要启用控件以根据需要显示滚动条, 请将<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性设置`true`为, 并<xref:System.Windows.Forms.ScrollableControl.AutoScrollMinSize%2A>将属性设置为所需的大小。 当控件的大小小于指定的最小大小, 或者子控件位于控件的边界之外时, 将显示相应的滚动条。  
   
- 若要手动重写哪些滚动条是可见的设置<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>和<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>属性。 如果这两个属性设置为`false`，对应的滚动条不可见，即使<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性设置为`true`。  
+ 若要手动重写哪些滚动条可见, 请<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>设置<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>和属性。 如果任一属性设置为`false`, 则相应的滚动条不可见, 即使<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性设置为`true`也是如此。  
   
- 您可以处理<xref:System.Windows.Forms.ScrollableControl.Scroll>事件，以了解当用户或代码滚动工作区。  
+ 您可以处理<xref:System.Windows.Forms.ScrollableControl.Scroll>事件, 以了解用户或代码滚动工作区的时间。  
   
- 在将控件以编程方式添加到窗体，使用<xref:System.Windows.Forms.ScrollableControl.AutoScrollPosition%2A>属性来定位控件内部或外部当前可视滚动区域。  
+ 以编程方式将控件添加到窗体时<xref:System.Windows.Forms.ScrollableControl.AutoScrollPosition%2A> , 可以使用属性将控件放置在当前可查看滚动区域的内部或外部。  
   
  ]]></format>
     </remarks>
@@ -81,13 +81,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认值<xref:System.Windows.Forms.ScrollableControl.%23ctor%2A>构造函数将执行以下操作：  
+ 默认<xref:System.Windows.Forms.ScrollableControl.%23ctor%2A>构造函数执行以下操作:  
   
--   将当前实例标记为容器控件，通过调用<xref:System.Windows.Forms.Control.SetStyle%2A>方法以设置<xref:System.Windows.Forms.ControlStyles.ContainerControl>样式到`true`。  
+-   通过调用<xref:System.Windows.Forms.Control.SetStyle%2A>方法将<xref:System.Windows.Forms.ControlStyles.ContainerControl>样式设置为, `true`将当前实例标记为容器控件。  
   
--   通过设置<xref:System.Windows.Forms.ControlStyles.AllPaintingInWmPaint>到`false`。  
+-   通过将设置<xref:System.Windows.Forms.ControlStyles.AllPaintingInWmPaint>为来`false`启用后台擦除。  
   
--   禁用自动滚动，通过调用<xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A>方法以设置<xref:System.Windows.Forms.ScrollableControl.ScrollStateAutoScrolling>位为`false`。  
+-   通过调用<xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A>方法来禁用自动滚动, 以<xref:System.Windows.Forms.ScrollableControl.ScrollStateAutoScrolling>将位设置为`false`。  
   
  ]]></format>
         </remarks>
@@ -127,7 +127,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在需要时，<xref:System.Windows.Forms.ScrollableControl.AdjustFormScrollbars%2A>方法布局包括根据需要以适应滚动条大小调整的显示区域的客户端区域。  
+ 如果需要, 该<xref:System.Windows.Forms.ScrollableControl.AdjustFormScrollbars%2A>方法将布局工作区, 包括根据需要调整显示区域大小以容纳滚动条。  
   
  ]]></format>
         </remarks>
@@ -170,46 +170,46 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指示容器是否允许用户滚动到任何放置在其可见边界之外的控件。</summary>
-        <value><see langword="true" /> 如果容器允许自动滚动，则为否则为<see langword="false" />。 默认值为 <see langword="false" />。</value>
+        <value>如果容器允许自动滚动，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当`true`，此属性使容器能够将虚拟大小大于其可见边界。  
+ 如果`true`为, 则此属性使容器的虚拟大小大于其可见边界。  
   
- 目前 Windows 窗受到如下限制：当 <xref:System.Windows.Forms.Control.RightToLeft%2A> 启用且 <xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>设置为 <xref:System.Windows.Forms.RightToLeft.Yes> 时，系统将阻止所有派生自 <xref:System.Windows.Forms.ScrollableControl> 的类正常运行。 例如，假设如放置了一个控件<xref:System.Windows.Forms.Panel>-或容器类派生自<xref:System.Windows.Forms.Panel>(如<xref:System.Windows.Forms.FlowLayoutPanel>或<xref:System.Windows.Forms.TableLayoutPanel>)-在你的窗体上。 如果将容器上的 <xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A> 设置为 <xref:System.Windows.Forms.RightToLeft.Yes>，然后将容器内一个或多个控件的 <xref:System.Windows.Forms.Control.Anchor%2A> 属性设置为 <xref:System.Windows.Forms.AnchorStyles.Right>，则不会出现任何滚动条。 派生自 <xref:System.Windows.Forms.ScrollableControl> 的类的运行方式与将 <xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A> 设置为 <xref:System.Windows.Forms.RightToLeft.No> 时相同。  
+ 目前 Windows 窗受到如下限制：当 <xref:System.Windows.Forms.Control.RightToLeft%2A> 启用且 <xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>设置为 <xref:System.Windows.Forms.RightToLeft.Yes> 时，系统将阻止所有派生自 <xref:System.Windows.Forms.ScrollableControl> 的类正常运行。 例如, 假设您在窗体上放置了一个控件, <xref:System.Windows.Forms.Panel>如或派生自<xref:System.Windows.Forms.Panel> (例如<xref:System.Windows.Forms.FlowLayoutPanel>或<xref:System.Windows.Forms.TableLayoutPanel>) 的一个容器。 如果将容器上的 <xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A> 设置为 <xref:System.Windows.Forms.RightToLeft.Yes>，然后将容器内一个或多个控件的 <xref:System.Windows.Forms.Control.Anchor%2A> 属性设置为 <xref:System.Windows.Forms.AnchorStyles.Right>，则不会出现任何滚动条。 派生自 <xref:System.Windows.Forms.ScrollableControl> 的类的运行方式与将 <xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A> 设置为 <xref:System.Windows.Forms.RightToLeft.No> 时相同。  
   
  目前，唯一的解决方法是将 <xref:System.Windows.Forms.ScrollableControl> 嵌套到其他 <xref:System.Windows.Forms.ScrollableControl> 内。 例如，如果需要在此情况下运行 <xref:System.Windows.Forms.TableLayoutPanel>，可以将它置于 <xref:System.Windows.Forms.Panel> 控件中并将 <xref:System.Windows.Forms.Panel> 上的 <xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A> 设置为 <xref:System.Windows.Forms.RightToLeft.Yes>。  
   
 > [!NOTE]
->  <xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A> 自动维护滚动条可见的性。 因此，设置<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>或<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>属性设置为`true`没有时生效<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>已启用。  
+>  <xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>自动维护滚动条的可见性。 因此, 当启用<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>时<xref:System.Windows.Forms.ScrollableControl.VScroll%2A> `true` ,将<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>或属性设置为不起作用。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何水平和/或垂直滚动条会自动提供，根据需要何时<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性设置为`true`。 若要运行该示例，请按照下列步骤：  
+ 下面的代码示例演示当<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性设置为`true`时, 如何根据需要自动提供水平和/或垂直滚动条。 若要运行该示例, 请执行以下步骤:  
   
 1.  创建新的 Windows 窗体应用程序。  
   
 2.  在窗体上添加一个 <xref:System.Windows.Forms.Panel> 控件。  
   
-3.  添加<xref:System.Windows.Forms.TextBox>到面板并将其命名`text1`。  
+3.  向面板中添加, 并将其`text1`命名为。<xref:System.Windows.Forms.TextBox>  
   
-4.  移动文本框中，以便右端超出面板的右边缘。  
+4.  移动文本框, 使右侧部分超出面板的右边缘。  
   
-     您应看到仅超出面板的边界的文本框的一部分的轮廓。 如果整个文本中是否可见的在文本框中是窗体上并不在面板中。  
+     您应该只看到处于面板边界之外的文本框部分的轮廓。 如果整个文本框可见, 则文本框位于窗体上, 而不是显示在面板中。  
   
 5.  在窗体上添加一个 <xref:System.Windows.Forms.Button> 控件。  
   
-6.  添加的处理程序`Click`按钮的事件。  
+6.  为按钮的`Click`事件添加处理程序。  
   
-7.  添加下面的示例代码和调用从按钮的`Click`处理程序。  
+7.  添加下面的示例代码, 并从按钮的`Click`处理程序调用它。  
   
- 运行示例时，只能看到为面板的边界内的文本框的一部分。 当单击按钮时，您将看到出现，使您可以查看在文本框中的其余部分的水平滚动条。  
+ 在运行该示例时, 只能看到位于面板边界内的文本框部分。 单击该按钮时, 将显示一个水平滚动条, 使您可以看到文本框的其余部分。  
   
- 将下方面板底部的文本框的一部分时，您单击按钮时将看到的垂直滚动条。  
+ 如果将文本框的一部分放置在该面板的底部下方, 则单击该按钮时, 将显示一个垂直滚动条。  
   
- 代码示例会检查以查看该文本框是否是边界以外的前面板集<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性设置为`true`，和之前它将设置<xref:System.Windows.Forms.ScrollableControl.AutoScrollMargin%2A>属性。 这超出边界检查不需要。 如果<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>设置为`true`，文本框中是否完全位于面板时，将显示任何滚动条。 此外，可以保留默认设置为 0，0 边距。  
+ 示例代码在将<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性设置为`true`之前, <xref:System.Windows.Forms.ScrollableControl.AutoScrollMargin%2A>以及在设置属性之前, 检查文本框是否在面板的边界之外。 不需要此超出界限检查。 如果<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>设置为`true`, 则当文本框完全在面板中时, 将不会显示任何滚动条。 此外, 还可以将边距设置为默认设置 0, 0。  
   
  [!code-cpp[Classic ScrollableControl.AutoScroll Example#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Classic ScrollableControl.AutoScroll Example/CPP/source.cpp#1)]
  [!code-csharp[Classic ScrollableControl.AutoScroll Example#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Classic ScrollableControl.AutoScroll Example/CS/source.cs#1)]
@@ -254,25 +254,25 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置自动滚动边距的大小。</summary>
-        <value>一个<see cref="T:System.Drawing.Size" />，表示高度和宽度以像素为单位的自动滚动边距。</value>
+        <value><see cref="T:System.Drawing.Size" />，表示自动滚动边距的高度和宽度（以像素为单位）。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 自动滚动边距是任何子控件和可滚动父控件的边缘之间的距离。 <xref:System.Windows.Forms.ScrollableControl.AutoScrollMargin%2A>大小添加到可滚动的控件，以确定是否需要使用滚动条中包含任何子控件的大小。 <xref:System.Windows.Forms.ScrollableControl.AutoScrollMargin%2A>属性时调整父可滚动控件的大小，或各个子控件放入视图中，计算，用于确定是否必须显示滚动条。 停靠的控件不在的计算，确定是否必须显示滚动条。  
+ 自动滚动边距是任何子控件和可滚动父控件边缘之间的距离。 将<xref:System.Windows.Forms.ScrollableControl.AutoScrollMargin%2A>大小添加到可滚动控件中包含的任何子控件的大小, 以确定是否需要滚动条。 当调整父可滚动控件的大小时, 或将各个子控件置于视图中时, 将计算属性,并使用来确定是否必须显示滚动条。<xref:System.Windows.Forms.ScrollableControl.AutoScrollMargin%2A> 停靠控件从确定是否必须显示滚动条的计算中排除。  
   
 > [!NOTE]
->  如果停靠控件的<xref:System.Windows.Forms.Control.Dock%2A>属性设置为<xref:System.Windows.Forms.DockStyle.Fill?displayProperty=nameWithType>、 控件填充父可滚动控件和停靠的控件会使用时将忽略<xref:System.Windows.Forms.ScrollableControl.AutoScrollMargin%2A>以确定是否需要使用滚动条。  
+>  如果停靠控件的<xref:System.Windows.Forms.Control.Dock%2A>属性设置为, 则在使用<xref:System.Windows.Forms.ScrollableControl.AutoScrollMargin%2A>确定是否需要滚动条时, 控件将填充父可<xref:System.Windows.Forms.DockStyle.Fill?displayProperty=nameWithType>滚动控件并忽略停靠的控件。  
   
- 如果到父可滚动控件的子控件的边缘的距离是分配给的值小于<xref:System.Windows.Forms.ScrollableControl.AutoScrollMargin%2A>属性和<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性设置为`true`，显示相应的滚动条。  
+ 如果从子控件的边缘到父可滚动控件的距离小于分配给该<xref:System.Windows.Forms.ScrollableControl.AutoScrollMargin%2A>属性的值, <xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>并且属性设置为`true`, 则会显示相应的滚动条。  
   
 > [!NOTE]
->  我们建议，停靠控件内的可滚动控件时添加子级可滚动控件，例如<xref:System.Windows.Forms.Panel>，用于包含其他任何可能需要滚动的控件。 应添加子级<xref:System.Windows.Forms.Panel>可滚动控件的控件并将其<xref:System.Windows.Forms.Control.Dock%2A>属性设置为<xref:System.Windows.Forms.DockStyle.Fill?displayProperty=nameWithType>并将其<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性设置为`true`。 应设置<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>到可滚动父控件的属性`false`。  
+>  建议在可滚动控件内停靠控件时, 添加一个子可滚动控件 (如<xref:System.Windows.Forms.Panel>), 以包含可能需要滚动的任何其他控件。 应<xref:System.Windows.Forms.Panel>将子控件添加到可滚动的控件, 并<xref:System.Windows.Forms.Control.Dock%2A>将其属性<xref:System.Windows.Forms.DockStyle.Fill?displayProperty=nameWithType>设置为<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A> , 并将`true`其属性设置为。 应将父可<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>滚动控件的属性设置为。 `false`  
   
    
   
 ## Examples  
- 下面的代码示例使用派生的类中， <xref:System.Windows.Forms.Panel>。 该示例计算结果的文本框中的位置，并更改的外观和行为与其父容器，面板控件。 该示例需要您创建的实例<xref:System.Windows.Forms.Panel>控件， <xref:System.Windows.Forms.TextBox>，和<xref:System.Windows.Forms.Button>。 将文本框中放置在面板上，以便它与至少一个面板的边缘重叠。 调用此函数在单击按钮可以查看的面板的行为和外观的差异。  
+ 下面的代码示例使用派生类<xref:System.Windows.Forms.Panel>。 该示例将计算文本框的位置, 并更改其父容器 (panel 控件) 的外观和行为。 该示例要求您已经创建了一个<xref:System.Windows.Forms.Panel>控件、 <xref:System.Windows.Forms.TextBox>和<xref:System.Windows.Forms.Button>的实例。 将文本框置于面板上, 使其至少与面板的一个边缘重叠。 在单击按钮时调用此函数可查看面板的行为和外观上的差异。  
   
  [!code-cpp[Classic ScrollableControl.AutoScroll Example#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Classic ScrollableControl.AutoScroll Example/CPP/source.cpp#1)]
  [!code-csharp[Classic ScrollableControl.AutoScroll Example#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Classic ScrollableControl.AutoScroll Example/CS/source.cs#1)]
@@ -280,7 +280,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentOutOfRangeException"><see cref="P:System.Drawing.Size.Height" />或<see cref="P:System.Drawing.Size.Width" />分配值小于 0。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException">分配的 <see cref="P:System.Drawing.Size.Height" /> 或 <see cref="P:System.Drawing.Size.Width" /> 值小于 0。</exception>
         <altmember cref="P:System.Windows.Forms.ScrollableControl.AutoScroll" />
         <altmember cref="M:System.Windows.Forms.ScrollableControl.SetAutoScrollMargin(System.Int32,System.Int32)" />
         <altmember cref="P:System.Windows.Forms.ScrollableControl.AutoScrollPosition" />
@@ -314,13 +314,13 @@
         <ReturnType>System.Drawing.Size</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置自动滚动的最小大小。</summary>
-        <value>一个<see cref="T:System.Drawing.Size" />，它确定用户可滚动的虚拟区域的最小大小。</value>
+        <summary>获取或设置自动滚动的最小尺寸。</summary>
+        <value><see cref="T:System.Drawing.Size" /> 确定用户可滚动的虚拟区域的最小大小。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.ScrollableControl.AutoScrollMinSize%2A>属性用来管理分配给自动滚动条的屏幕大小。  
+ <xref:System.Windows.Forms.ScrollableControl.AutoScrollMinSize%2A>属性用于管理分配给自动滚动条的屏幕大小。  
   
  ]]></format>
         </remarks>
@@ -358,25 +358,25 @@
         <ReturnType>System.Drawing.Point</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置自动滚动位置的位置。</summary>
-        <value>一个<see cref="T:System.Drawing.Point" />，表示以像素为单位的自动滚动位置。</value>
+        <summary>获取或设置自动滚动定位的位置。</summary>
+        <value>表示自动滚动位置的 <see cref="T:System.Drawing.Point" />，单位为像素。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.ScrollableControl.AutoScrollPosition%2A>属性表示可滚动控件的可见部分的位置。 使用此属性来更改显示的控件的部分。  
+ <xref:System.Windows.Forms.ScrollableControl.AutoScrollPosition%2A>属性表示可滚动控件的可见部分的位置。 使用此属性可更改显示的控件部分。  
   
- 在将控件以编程方式添加到窗体，使用<xref:System.Windows.Forms.ScrollableControl.AutoScrollPosition%2A>属性来定位控件内部或外部当前可视滚动区域。  
+ 以编程方式将控件添加到窗体时<xref:System.Windows.Forms.ScrollableControl.AutoScrollPosition%2A> , 可以使用属性将控件放置在当前可查看滚动区域的内部或外部。  
   
 > [!NOTE]
->  <xref:System.Drawing.Point.X%2A>和<xref:System.Drawing.Point.Y%2A>中检索的坐标值为负，如果控件具有滚动离开其起始位置 (0，0)。 当设置此属性时，您必须始终分配正<xref:System.Drawing.Point.X%2A>和<xref:System.Drawing.Point.Y%2A>相对于起始位置设置的滚动位置值。 例如，如果您具有水平滚动条和你设置 x 和 y 为 200，则滚动 200 像素向右移动;如果您，然后设置 x 和 y 为 100，滚动似乎跳左侧 100 像素，因为您将其设置 100 个像素的起始位置离开。 在第一种情况下，<xref:System.Windows.Forms.ScrollableControl.AutoScrollPosition%2A>返回 {-200，0}; 在第二种情况下，它将返回{-100,0}。  
+>  如果<xref:System.Drawing.Point.X%2A>控件<xref:System.Drawing.Point.Y%2A>已从其开始位置 (0, 0) 滚动, 则检索到的坐标值为负。 设置此属性时, 必须始终指定正值<xref:System.Drawing.Point.X%2A> , 并<xref:System.Drawing.Point.Y%2A>将滚动位置设置为相对于起始位置。 例如, 如果有水平滚动条并将 x 和 y 设置为 200, 则会将滚动200像素向右移动;如果随后将 x 和 y 设置为 100, 则滚动将向左滚动100像素, 因为你将其设置为100像素, 远离起始位置。 在第一种情况<xref:System.Windows.Forms.ScrollableControl.AutoScrollPosition%2A>下, 将返回 {-200, 0}; 在第二种{-100,0}情况下, 它将返回。  
   
- 用于检测何时<xref:System.Windows.Forms.ScrollableControl.AutoScrollPosition%2A>更改，创建的事件处理程序<xref:System.Windows.Forms.Control.Paint>事件，将旧的位置值保存在私有变量，并在以后的旧值的新值进行比较<xref:System.Windows.Forms.Control.Paint>事件。  
+ 若要在<xref:System.Windows.Forms.ScrollableControl.AutoScrollPosition%2A>发生更改时进行检测, 请为<xref:System.Windows.Forms.Control.Paint>事件创建一个事件处理程序, 将旧的位置值保存在私有变量中, 并将新值与<xref:System.Windows.Forms.Control.Paint>后续事件中的旧值进行比较。  
   
    
   
 ## Examples  
- 下面的代码示例使用<xref:System.Windows.Forms.ScrollableControl>派生类<xref:System.Windows.Forms.Panel>并将按钮添加到可滚动区域的左上角。 该示例允许偏移量由<xref:System.Windows.Forms.ScrollableControl.AutoScrollPosition%2A>。 编写示例时，必须假设<xref:System.Windows.Forms.Form>，其中包含<xref:System.Windows.Forms.Panel>与<xref:System.Windows.Forms.Button>上它。 若要启用自动滚动，将该按钮的工作区置于<xref:System.Windows.Forms.Panel>。  
+ 下面的代码示例使用<xref:System.Windows.Forms.ScrollableControl>派生类<xref:System.Windows.Forms.Panel> , 并向可滚动区域的左上角添加一个按钮。 该示例允许由确定<xref:System.Windows.Forms.ScrollableControl.AutoScrollPosition%2A>的偏移量。 该示例是在假设您具有<xref:System.Windows.Forms.Form>一个<xref:System.Windows.Forms.Panel>包含的, 其中包含<xref:System.Windows.Forms.Button>一个的。 若要启用自动滚动, 请将按钮置于的工作区<xref:System.Windows.Forms.Panel>之外。  
   
  [!code-cpp[Windows.Forms.ScrollableControl#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Windows.Forms.ScrollableControl/CPP/scrollablecontrol.cpp#1)]
  [!code-csharp[Windows.Forms.ScrollableControl#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Windows.Forms.ScrollableControl/CS/scrollablecontrol.cs#1)]
@@ -436,13 +436,13 @@
         <ReturnType>System.Drawing.Rectangle</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取表示控件的虚拟显示区的矩形。</summary>
+        <summary>获取表示控件的虚拟显示区域的矩形。</summary>
         <value>一个 <see cref="T:System.Drawing.Rectangle" />，它表示控件的显示区域。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性设置为`true`，则<xref:System.Windows.Forms.ScrollableControl.DisplayRectangle%2A>属性是虚拟的大小和位置<xref:System.Windows.Forms.ScrollableControl>控件。 例如，如果宽度和高度<xref:System.Windows.Forms.ScrollableControl>是这两个 100 像素和控件包含超出其边界的控件<xref:System.Windows.Forms.ScrollableControl.DisplayRectangle%2A>表示的大小<xref:System.Windows.Forms.ScrollableControl>必须是以包括所包含的控件。 同样，<xref:System.Drawing.Rectangle.X%2A>并<xref:System.Drawing.Rectangle.Y%2A>的属性<xref:System.Windows.Forms.ScrollableControl.DisplayRectangle%2A>相关的滚动位置<xref:System.Windows.Forms.ScrollableControl>。  
+ 如果将`true` <xref:System.Windows.Forms.ScrollableControl.DisplayRectangle%2A>属性设置为, 则属性<xref:System.Windows.Forms.ScrollableControl>为控件的虚拟大小和位置。 <xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A> 例如, 如果的<xref:System.Windows.Forms.ScrollableControl>宽度和高度均为100像素, 且控件包含超出其边界的控件, <xref:System.Windows.Forms.ScrollableControl.DisplayRectangle%2A>则表示包含控件所<xref:System.Windows.Forms.ScrollableControl>需的大小。 同样, <xref:System.Drawing.Rectangle.X%2A>的和<xref:System.Drawing.Rectangle.Y%2A>属性<xref:System.Windows.Forms.ScrollableControl.DisplayRectangle%2A>与的滚动位置<xref:System.Windows.Forms.ScrollableControl>相关。  
   
  ]]></format>
         </remarks>
@@ -489,17 +489,17 @@
       </ReturnValue>
       <Docs>
         <summary>获取控件的所有边缘的停靠边距设置。</summary>
-        <value>一个<see cref="T:System.Windows.Forms.ScrollableControl.DockPaddingEdges" />表示停靠控件所有边缘的边距。</value>
+        <value><see cref="T:System.Windows.Forms.ScrollableControl.DockPaddingEdges" />，表示停靠控件所有边缘的边距。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性控制内部组件停靠此控件的边框。  
+ 此属性控制停靠组件的此控件内的边框。  
   
    
   
 ## Examples  
- 下面的代码示例使用派生的类中， <xref:System.Windows.Forms.Panel>。 该示例将停靠在面板控件中的按钮，并循环浏览<xref:System.Windows.Forms.ScrollableControl.DockPaddingEdges>属性，设置每个单独上按钮的单击操作。 该示例需要您创建的实例<xref:System.Windows.Forms.Panel>控件和一个<xref:System.Windows.Forms.Button>窗体上声明名为的类级别成员变量和`myCounter`作为 32 位有符号整数。 应在调用此代码<xref:System.Windows.Forms.Control.Click>按钮的事件。  
+ 下面的代码示例使用派生类<xref:System.Windows.Forms.Panel>。 该示例在面板控件中停靠一个按钮, 并遍历<xref:System.Windows.Forms.ScrollableControl.DockPaddingEdges>各个属性, 然后在单击按钮时分别设置每个属性。 该示例要求你已在窗体上创建了<xref:System.Windows.Forms.Panel>一个控件和<xref:System.Windows.Forms.Button>一个的实例, 并且已将名`myCounter`为的类级别成员变量声明为32位有符号整数。 应在按钮的<xref:System.Windows.Forms.Control.Click>事件上调用此代码。  
   
  [!code-cpp[Classic ScrollableControl.DockPadding Example#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Classic ScrollableControl.DockPadding Example/CPP/source.cpp#1)]
  [!code-csharp[Classic ScrollableControl.DockPadding Example#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Classic ScrollableControl.DockPadding Example/CS/source.cs#1)]
@@ -540,21 +540,21 @@
       </Parameters>
       <Docs>
         <param name="bit">要检查的标志。</param>
-        <summary>确定是否已设置指定的标志。</summary>
-        <returns><see langword="true" /> 如果已设置指定的标志;否则为<see langword="false" />。</returns>
+        <summary>确定是否设置了指定的标志。</summary>
+        <returns>如果已设置指定的标志，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 下表描述的标志<xref:System.Windows.Forms.ScrollableControl>控件使用。  
+ 下表描述了<xref:System.Windows.Forms.ScrollableControl>控件使用的标志。  
   
-|值|描述|  
+|值|说明|  
 |-----------|-----------------|  
-|<xref:System.Windows.Forms.ScrollableControl.ScrollStateAutoScrolling>|用于检索掩码是否<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性设置为`true`。|  
-|<xref:System.Windows.Forms.ScrollableControl.ScrollStateHScrollVisible>|用于检索掩码是否<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>属性设置为`true`。|  
-|<xref:System.Windows.Forms.ScrollableControl.ScrollStateVScrollVisible>|用于检索掩码是否<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>属性设置为`true`。|  
-|<xref:System.Windows.Forms.ScrollableControl.ScrollStateUserHasScrolled>|用来检索用户所做的掩码<xref:System.Windows.Forms.ScrollableControl>滚动。|  
-|<xref:System.Windows.Forms.ScrollableControl.ScrollStateFullDrag>|一个掩码，用来检索用户已启用全窗口拖放操作。|  
+|<xref:System.Windows.Forms.ScrollableControl.ScrollStateAutoScrolling>|用于检索属性是否设置为<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A> `true`的掩码。|  
+|<xref:System.Windows.Forms.ScrollableControl.ScrollStateHScrollVisible>|用于检索属性是否设置为<xref:System.Windows.Forms.ScrollableControl.HScroll%2A> `true`的掩码。|  
+|<xref:System.Windows.Forms.ScrollableControl.ScrollStateVScrollVisible>|用于检索属性是否设置为<xref:System.Windows.Forms.ScrollableControl.VScroll%2A> `true`的掩码。|  
+|<xref:System.Windows.Forms.ScrollableControl.ScrollStateUserHasScrolled>|用于检索用户是否已进行<xref:System.Windows.Forms.ScrollableControl>滚动的掩码。|  
+|<xref:System.Windows.Forms.ScrollableControl.ScrollStateFullDrag>|用于检索用户是否已启用全窗口拖放操作的掩码。|  
   
  ]]></format>
         </remarks>
@@ -590,12 +590,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取与水平滚动条关联的特征。</summary>
-        <value>一个<see cref="T:System.Windows.Forms.HScrollProperties" />包含水平滚动条的信息。</value>
+        <value><see cref="T:System.Windows.Forms.HScrollProperties" />，包含水平滚动条的信息。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.HScrollProperties>类包含有关滚动条和其操作的信息，如是否已启用和可见、 滚动页面大小、 方向，显示的位置，依次类推。  
+ <xref:System.Windows.Forms.HScrollProperties>类包含滚动条及其操作的相关信息, 例如它是否已启用和可见、滚动页面大小、方向、显示位置等。  
   
  ]]></format>
         </remarks>
@@ -633,14 +633,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指示水平滚动条是否可见。</summary>
-        <value><see langword="true" /> 如果水平滚动条是否可见的;否则为<see langword="false" />。</value>
+        <value>如果水平滚动条是可见的，则为 <see langword="true" />；反之，则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 功能<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>属性也可通过调用<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A>并<xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A>方法使用<xref:System.Windows.Forms.ScrollableControl.ScrollStateHScrollVisible>作为参数。  
+ 还可以通过对<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>使用<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A> <xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A> 作为<xref:System.Windows.Forms.ScrollableControl.ScrollStateHScrollVisible>参数的和方法的调用来实现属性的功能。  
   
- **请注意**<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>自动维护的滚动条可见性。 因此，设置<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>或<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>属性设置为`true`没有时生效<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>已启用。  
+ **注意**<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>自动维护滚动条的可见性。 因此, 当启用<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>时<xref:System.Windows.Forms.ScrollableControl.VScroll%2A> `true` ,将<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>或属性设置为不起作用。  
   
  ]]></format>
         </remarks>
@@ -713,15 +713,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果垂直滚动条是否可见的这意味着<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>属性设置为`true`，滚动鼠标滚轮滚动浏览<xref:System.Windows.Forms.ScrollableControl>垂直控制。 但是，如果仅水平滚动条是否可见的这意味着<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>设置为`false`并<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>属性设置为`true,`水平滚动鼠标滚轮。  
+ 如果垂直滚动条是可见的, 这意味着该<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>属性设置为`true`, <xref:System.Windows.Forms.ScrollableControl>鼠标滚轮会垂直滚动控件。 但是, 如果只有水平滚动条是可见的, 这<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>意味着, 将设置为`false` , 并<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>将属性设置`true,`为在水平方向上滚动。  
   
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Windows.Forms.ScrollableControl.OnMouseWheel%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Windows.Forms.ScrollableControl.OnMouseWheel(System.Windows.Forms.MouseEventArgs)" />在派生类中，请务必调用基类的<see cref="M:System.Windows.Forms.ScrollableControl.OnMouseWheel(System.Windows.Forms.MouseEventArgs)" />方法，以便已注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在<see cref="M:System.Windows.Forms.ScrollableControl.OnMouseWheel(System.Windows.Forms.MouseEventArgs)" />派生类中重写时, 请确保调用基类的<see cref="M:System.Windows.Forms.ScrollableControl.OnMouseWheel(System.Windows.Forms.MouseEventArgs)" />方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="P:System.Windows.Forms.ScrollableControl.HScroll" />
         <altmember cref="P:System.Windows.Forms.ScrollableControl.VScroll" />
         <altmember cref="E:System.Windows.Forms.ScrollableControl.Scroll" />
@@ -753,13 +753,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Windows.Forms.ScrollableControl.OnPaddingChanged%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Windows.Forms.ScrollableControl.OnPaddingChanged(System.EventArgs)" />在派生类中，请务必调用基类的<see cref="M:System.Windows.Forms.ScrollableControl.OnPaddingChanged(System.EventArgs)" />方法，以便已注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在<see cref="M:System.Windows.Forms.ScrollableControl.OnPaddingChanged(System.EventArgs)" />派生类中重写时, 请确保调用基类的<see cref="M:System.Windows.Forms.ScrollableControl.OnPaddingChanged(System.EventArgs)" />方法, 以便注册的委托接收事件。</para></block>
       </Docs>
     </Member>
     <Member MemberName="OnPaintBackground">
@@ -788,13 +788,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Windows.Forms.ScrollableControl.OnPaintBackground%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Windows.Forms.ScrollableControl.OnPaintBackground(System.Windows.Forms.PaintEventArgs)" />在派生类中，请务必调用基类的<see cref="M:System.Windows.Forms.ScrollableControl.OnPaintBackground(System.Windows.Forms.PaintEventArgs)" />方法，以便已注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在<see cref="M:System.Windows.Forms.ScrollableControl.OnPaintBackground(System.Windows.Forms.PaintEventArgs)" />派生类中重写时, 请确保调用基类的<see cref="M:System.Windows.Forms.ScrollableControl.OnPaintBackground(System.Windows.Forms.PaintEventArgs)" />方法, 以便注册的委托接收事件。</para></block>
       </Docs>
     </Member>
     <Member MemberName="OnRightToLeftChanged">
@@ -854,7 +854,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Windows.Forms.ScrollableControl.OnScroll%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
@@ -981,18 +981,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.ScrollableControl.Scroll>事件发生时用户滚动浏览的工作区通过与滚动条，交互或控件之间导航并滚动到视图中的活动控件。 <xref:System.Windows.Forms.ScrollableControl.Scroll>编写代码，例如设置时，也会发生事件<xref:System.Windows.Forms.ScrollableControl.AutoScrollPosition%2A>属性，将滚动到工作区。  
+ 当<xref:System.Windows.Forms.ScrollableControl.Scroll>用户通过与滚动条交互、用户在控件之间导航和活动控件滚动到视图时, 会发生该事件。 当<xref:System.Windows.Forms.ScrollableControl.Scroll>你编写滚动工作区的代码 (例如<xref:System.Windows.Forms.ScrollableControl.AutoScrollPosition%2A>设置属性) 时, 也会发生该事件。  
   
- 可以使用<xref:System.Windows.Forms.ScrollEventArgs.ScrollOrientation%2A>事件处理程序，以确定的滚动条方向中的属性<xref:System.Windows.Forms.ScrollableControl.Scroll>事件。  
+ 您可以在事件<xref:System.Windows.Forms.ScrollEventArgs.ScrollOrientation%2A>处理程序中使用属性来确定<xref:System.Windows.Forms.ScrollableControl.Scroll>事件的滚动条方向。  
   
- 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何将此成员。 在示例中，事件处理程序报告的匹配项<xref:System.Windows.Forms.ScrollableControl.Scroll>事件。 此报告可帮助您了解事件发生的并可以帮助您进行调试。 若要报告或频繁发生的事件上多个事件，请考虑更换<xref:System.Windows.Forms.MessageBox.Show%2A?displayProperty=nameWithType>与<xref:System.Console.WriteLine%2A?displayProperty=nameWithType>或将消息附加到多行<xref:System.Windows.Forms.TextBox>。  
+ 下面的代码示例演示如何使用此成员。 在此示例中, 事件处理程序报告<xref:System.Windows.Forms.ScrollableControl.Scroll>事件的发生。 此报表可帮助你了解何时发生事件, 并可帮助你进行调试。 若要报告多个事件或频繁发生的事件, 请考虑<xref:System.Windows.Forms.MessageBox.Show%2A?displayProperty=nameWithType>将<xref:System.Console.WriteLine%2A?displayProperty=nameWithType>消息替换为多行或将<xref:System.Windows.Forms.TextBox>其追加到多行。  
   
- 若要运行此代码示例，请将其粘贴到包含继承的类型的实例的项目<xref:System.Windows.Forms.ScrollableControl>，如<xref:System.Windows.Forms.Panel>或<xref:System.Windows.Forms.ContainerControl>。 然后该实例命名`ScrollableControl1`，并确保事件处理程序相关联<xref:System.Windows.Forms.ScrollableControl.Scroll>事件。  
+ 若要运行示例代码, 请将其粘贴到一个项目中, 该项目包含从<xref:System.Windows.Forms.ScrollableControl>继承的类型的实例, 如<xref:System.Windows.Forms.ContainerControl> <xref:System.Windows.Forms.Panel>或。 然后命名该实例`ScrollableControl1` , 并确保事件处理程序<xref:System.Windows.Forms.ScrollableControl.Scroll>与事件相关联。  
   
  [!code-csharp[System.Windows.Forms.EventExamples#74](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.EventExamples/CS/EventExamples.cs#74)]
  [!code-vb[System.Windows.Forms.EventExamples#74](~/samples/snippets/visualbasic/VS_Snippets_Winforms/System.Windows.Forms.EventExamples/VB/EventExamples.vb#74)]  
@@ -1031,16 +1031,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性必须设置为`true`，并在至少一个滚动条，水平或垂直，还必须是可见的<xref:System.Windows.Forms.ScrollableControl.ScrollControlIntoView%2A>方法产生任何影响。 使水平和垂直滚动条可见，<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>并<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>属性，分别，必须设置为`true`。  
+ 必须将`true`属性设置为, 并且至少有一个滚动条 (水平或垂直) 也必须可见, <xref:System.Windows.Forms.ScrollableControl.ScrollControlIntoView%2A>方法才会有效果。 <xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A> 若要使水平滚动条和垂直滚动条可见<xref:System.Windows.Forms.ScrollableControl.HScroll%2A> , <xref:System.Windows.Forms.ScrollableControl.VScroll%2A>则和属性分别必须设置为`true`。  
   
- 如果`activeControl`参数不是子控件，不执行任何操作。  
+ `activeControl`如果参数不是子控件, 则不执行任何操作。  
   
  此方法可能会引发<xref:System.Windows.Forms.ScrollableControl.Scroll>事件。  
   
    
   
 ## Examples  
- 下面的代码示例窗体的自动滚动、 调整窗体，并确保一个按钮在窗体调整后仍然保持可见。 该示例要求具有<xref:System.Windows.Forms.Form>与<xref:System.Windows.Forms.Button>名为`button2`上它。  
+ 下面的代码示例为窗体启用自动滚动、调整窗体的大小, 并确保在调整窗体的大小时, 按钮保持可见。 该示例要求你拥有一个<xref:System.Windows.Forms.Form> <xref:System.Windows.Forms.Button>带有命名`button2`的。  
   
  [!code-cpp[Windows.Forms.Control Member5#2](~/samples/snippets/cpp/VS_Snippets_Winforms/Windows.Forms.Control Member5/CPP/controlmembers5.cpp#2)]
  [!code-csharp[Windows.Forms.Control Member5#2](~/samples/snippets/csharp/VS_Snippets_Winforms/Windows.Forms.Control Member5/CS/controlmembers5.cs#2)]
@@ -1074,12 +1074,12 @@
       </ReturnValue>
       <MemberValue>1</MemberValue>
       <Docs>
-        <summary>确定的值<see cref="P:System.Windows.Forms.ScrollableControl.AutoScroll" />属性。</summary>
+        <summary>确定 <see cref="P:System.Windows.Forms.ScrollableControl.AutoScroll" /> 属性的值。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.ScrollableControl.ScrollStateAutoScrolling>字段是一个掩码。 可以使用其与<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A>并<xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A>方法来获取和设置<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性。  
+ 该<xref:System.Windows.Forms.ScrollableControl.ScrollStateAutoScrolling>字段为掩码。 可以将它与<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A>和<xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A>方法一起使用<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>来获取和设置属性。  
   
  ]]></format>
         </remarks>
@@ -1107,14 +1107,14 @@
       </ReturnValue>
       <MemberValue>16</MemberValue>
       <Docs>
-        <summary>确定用户是否已启用全窗口拖动。</summary>
+        <summary>确定用户是否启用了全窗口拖动。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.ScrollableControl.ScrollStateFullDrag>字段是一个掩码。 将其用于<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A>和<xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A>方法来获取和设置是否用户已启用全窗口拖动。  
+ 该<xref:System.Windows.Forms.ScrollableControl.ScrollStateFullDrag>字段为掩码。 将其与<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A>和<xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A>方法一起使用, 以获取和设置用户是否已启用全窗口拖动。  
   
- 启用全窗口拖动后，当用户移动并调整其大小 windows 显示窗口的内容。  
+ 启用全窗口拖动后, 当用户移动和调整窗口大小时, 将显示 windows 的内容。  
   
  ]]></format>
         </remarks>
@@ -1141,12 +1141,12 @@
       </ReturnValue>
       <MemberValue>2</MemberValue>
       <Docs>
-        <summary>确定是否的值<see cref="P:System.Windows.Forms.ScrollableControl.HScroll" />属性设置为<see langword="true" />。</summary>
+        <summary>确定 <see cref="P:System.Windows.Forms.ScrollableControl.HScroll" /> 属性的值是否设置为 <see langword="true" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.ScrollableControl.ScrollStateHScrollVisible>字段是一个掩码。 将其用于<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A>并<xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A>方法来获取和设置<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>属性。  
+ 该<xref:System.Windows.Forms.ScrollableControl.ScrollStateHScrollVisible>字段为掩码。 将其与<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A>和<xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A>方法一起使用<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>可获取和设置属性。  
   
  ]]></format>
         </remarks>
@@ -1174,12 +1174,12 @@
       </ReturnValue>
       <MemberValue>8</MemberValue>
       <Docs>
-        <summary>确定是否用户滚动<see cref="T:System.Windows.Forms.ScrollableControl" />控件。</summary>
+        <summary>确定用户是否滚动了 <see cref="T:System.Windows.Forms.ScrollableControl" /> 控件。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.ScrollableControl.ScrollStateUserHasScrolled>字段是一个掩码。 将其用于<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A>方法以获取用户滚动是否<xref:System.Windows.Forms.ScrollableControl>。  
+ 该<xref:System.Windows.Forms.ScrollableControl.ScrollStateUserHasScrolled>字段为掩码。 将其与<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A>方法一起使用可获取用户是否已滚动<xref:System.Windows.Forms.ScrollableControl>。  
   
  ]]></format>
         </remarks>
@@ -1208,12 +1208,12 @@
       </ReturnValue>
       <MemberValue>4</MemberValue>
       <Docs>
-        <summary>确定是否的值<see cref="P:System.Windows.Forms.ScrollableControl.VScroll" />属性设置为<see langword="true" />。</summary>
+        <summary>确定 <see cref="P:System.Windows.Forms.ScrollableControl.VScroll" /> 属性的值是否设置为 <see langword="true" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.ScrollableControl.ScrollStateVScrollVisible>字段是一个掩码。 将其用于<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A>并<xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A>方法来获取和设置<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>属性。  
+ 该<xref:System.Windows.Forms.ScrollableControl.ScrollStateVScrollVisible>字段为掩码。 将其与<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A>和<xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A>方法一起使用<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>可获取和设置属性。  
   
  ]]></format>
         </remarks>
@@ -1243,15 +1243,15 @@
       </Parameters>
       <Docs>
         <param name="activeControl">要滚动到视图中的子控件。</param>
-        <summary>计算到指定的子控件的滚动偏移量。</summary>
-        <returns>左上方手<see cref="T:System.Drawing.Point" />相对于控件滚动到视图所需的客户端区域的显示区域。</returns>
+        <summary>计算到指定子控件的滚动偏移量。</summary>
+        <returns>显示区域的左上 <see cref="T:System.Drawing.Point" />（相对于将控件滚动到视图所需的工作区）。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.ScrollableControl.ScrollControlIntoView%2A>方法使用<xref:System.Windows.Forms.ScrollableControl.ScrollToControl%2A>方法以计算延伸的范围必须滚动以显示指定的控件。 <xref:System.Windows.Forms.Control.AutoScrollOffset%2A>的子控件的属性用于调整滚动的位置。  
+ <xref:System.Windows.Forms.ScrollableControl.ScrollControlIntoView%2A> 方法<xref:System.Windows.Forms.ScrollableControl.ScrollToControl%2A>使用方法来计算在显示指定控件时, 它必须滚动多远。 子<xref:System.Windows.Forms.Control.AutoScrollOffset%2A>控件的属性用于调整滚动位置。  
   
- <xref:System.Windows.Forms.ScrollableControl.ScrollToControl%2A> 不会导致滚动，则为<xref:System.Windows.Forms.ScrollableControl.SetDisplayRectLocation%2A>方法通常用于随后向下滚动到计算出的位置。  
+ <xref:System.Windows.Forms.ScrollableControl.ScrollToControl%2A>不会导致滚动;<xref:System.Windows.Forms.ScrollableControl.SetDisplayRectLocation%2A>方法通常用于滚动到计算的位置。  
   
  ]]></format>
         </remarks>
@@ -1290,15 +1290,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 边距设置的宽度和高度的每个控件周围的边框。 此边距用于确定容器上何时需要滚动条并选择控件时，滚动到的位置。  
+ 边距设置每个控件周围边框的宽度和高度。 此边距用于确定容器上需要滚动条的时间, 以及在控件被选定时从何处滚动到的位置。  
   
 > [!NOTE]
->  如果为负数作为传入`x`或`y`值，则该值将重置为 0。  
+>  如果以`x`或`y`值的形式传入负数, 则该值将重置为0。  
   
    
   
 ## Examples  
- 下面的代码示例使用派生的类中， <xref:System.Windows.Forms.Panel>。 该示例计算结果的文本框中的位置，并更改的外观和行为与其父容器，面板控件。 该示例需要您创建的实例<xref:System.Windows.Forms.Panel>控件， <xref:System.Windows.Forms.TextBox>，和<xref:System.Windows.Forms.Button>。 将箱子放在面板上，以便它与至少一个面板的边缘重叠。 若要查看的面板的行为和外观的差异的按钮单击调用此子过程。  
+ 下面的代码示例使用派生类<xref:System.Windows.Forms.Panel>。 该示例将计算文本框的位置, 并更改其父容器 (panel 控件) 的外观和行为。 该示例要求您已经创建了一个<xref:System.Windows.Forms.Panel>控件、 <xref:System.Windows.Forms.TextBox>和<xref:System.Windows.Forms.Button>的实例。 将该框置于面板上, 使其至少与面板的一个边缘重叠。 在单击按钮时调用此子过程, 以查看面板的行为和外观上的差异。  
   
  [!code-cpp[Classic ScrollableControl.SetAutoScrollMargin Example#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Classic ScrollableControl.SetAutoScrollMargin Example/CPP/source.cpp#1)]
  [!code-csharp[Classic ScrollableControl.SetAutoScrollMargin Example#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Classic ScrollableControl.SetAutoScrollMargin Example/CS/source.cs#1)]
@@ -1333,19 +1333,19 @@
         <Parameter Name="y" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="x">要定位的水平偏移量<see cref="T:System.Windows.Forms.ScrollableControl" />。</param>
-        <param name="y">要定位的垂直偏移量<see cref="T:System.Windows.Forms.ScrollableControl" />。</param>
-        <summary>定位到指定的值在显示窗口。</summary>
+        <param name="x">定位 <see cref="T:System.Windows.Forms.ScrollableControl" /> 的水平偏移量。</param>
+        <param name="y">定位 <see cref="T:System.Windows.Forms.ScrollableControl" /> 的垂直偏移量。</param>
+        <summary>将显示窗口定位到指定的值。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>属性设置为`true`，则<xref:System.Windows.Forms.ScrollableControl.DisplayRectangle%2A>属性是虚拟的大小和位置显示的工作区<xref:System.Windows.Forms.ScrollableControl>。 调用<xref:System.Windows.Forms.ScrollableControl.SetDisplayRectLocation%2A>方法来滚动浏览<xref:System.Windows.Forms.ScrollableControl>到指定的位置。  
+ 如果将`true` <xref:System.Windows.Forms.ScrollableControl.DisplayRectangle%2A>属性设置为, 则属性为的虚拟大小和位置显示的<xref:System.Windows.Forms.ScrollableControl>工作区。 <xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A> 调用方法以滚动<xref:System.Windows.Forms.ScrollableControl>到指定位置。 <xref:System.Windows.Forms.ScrollableControl.SetDisplayRectLocation%2A>  
   
  ]]></format>
         </remarks>
         <block subset="none" type="usage"><para>
-            <see cref="M:System.Windows.Forms.ScrollableControl.SetDisplayRectLocation(System.Int32,System.Int32)" /> 不会更新滚动条的位置。 若要更新滚动条，请调用<see cref="M:System.Windows.Forms.ScrollableControl.AdjustFormScrollbars(System.Boolean)" />方法。</para></block>
+            <see cref="M:System.Windows.Forms.ScrollableControl.SetDisplayRectLocation(System.Int32,System.Int32)" />不更新滚动条的位置。 若要更新滚动条, 请调用<see cref="M:System.Windows.Forms.ScrollableControl.AdjustFormScrollbars(System.Boolean)" />方法。</para></block>
         <altmember cref="P:System.Windows.Forms.ScrollableControl.DisplayRectangle" />
         <altmember cref="M:System.Windows.Forms.ScrollableControl.ScrollControlIntoView(System.Windows.Forms.Control)" />
         <altmember cref="E:System.Windows.Forms.ScrollableControl.Scroll" />
@@ -1374,13 +1374,13 @@
       </Parameters>
       <Docs>
         <param name="bit">要设置的滚动状态标志。</param>
-        <param name="value">要设置标志的值。</param>
-        <summary>指定的滚动状态标志设置。</summary>
+        <param name="value">设置标志的值。</param>
+        <summary>设置指定的滚动状态标志。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当该位参数设置为的域中的一个<xref:System.Windows.Forms.ScrollableControl>类，<xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A>方法会更新该控件的状态`value`参数。 有关有效的参数及其值的详细信息，请参阅<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A>方法。  
+ 当位参数设置为<xref:System.Windows.Forms.ScrollableControl>类的一个字段时<xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A> , 方法会将控件的状态更新为`value`参数。 有关有效参数及其值的详细信息, 请参阅<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A>方法。  
   
  ]]></format>
         </remarks>
@@ -1412,13 +1412,13 @@
         <ReturnType>System.Windows.Forms.VScrollProperties</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取与垂直滚动条相关联的特征。</summary>
-        <value>一个<see cref="T:System.Windows.Forms.VScrollProperties" />包含垂直滚动条的信息。</value>
+        <summary>获取与垂直滚动条相关联的特性。</summary>
+        <value><see cref="T:System.Windows.Forms.VScrollProperties" />，包含垂直滚动条的信息。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.VScrollProperties>类包含有关滚动条和其操作的信息，如是否已启用和可见、 滚动页面大小、 方向，显示的位置，依次类推。  
+ <xref:System.Windows.Forms.VScrollProperties>类包含滚动条及其操作的相关信息, 例如它是否已启用和可见、滚动页面大小、方向、显示位置等。  
   
  ]]></format>
         </remarks>
@@ -1456,14 +1456,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指示垂直滚动条是否可见。</summary>
-        <value><see langword="true" /> 如果垂直滚动条是否可见的;否则为<see langword="false" />。</value>
+        <value>如果垂直滚动条是可见的，则为 <see langword="true" />；反之，则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 功能<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>属性也可通过调用<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A>并<xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A>方法使用<xref:System.Windows.Forms.ScrollableControl.ScrollStateVScrollVisible>作为参数。  
+ 还可以通过对<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>使用<xref:System.Windows.Forms.ScrollableControl.GetScrollState%2A> <xref:System.Windows.Forms.ScrollableControl.SetScrollState%2A> 作为<xref:System.Windows.Forms.ScrollableControl.ScrollStateVScrollVisible>参数的和方法的调用来实现属性的功能。  
   
- **请注意**<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>自动维护的滚动条可见性。 因此，设置<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>或<xref:System.Windows.Forms.ScrollableControl.VScroll%2A>属性设置为`true`没有时生效<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>已启用。  
+ **注意**<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>自动维护滚动条的可见性。 因此, 当启用<xref:System.Windows.Forms.ScrollableControl.HScroll%2A>时<xref:System.Windows.Forms.ScrollableControl.VScroll%2A> `true` ,将<xref:System.Windows.Forms.ScrollableControl.AutoScroll%2A>或属性设置为不起作用。  
   
  ]]></format>
         </remarks>

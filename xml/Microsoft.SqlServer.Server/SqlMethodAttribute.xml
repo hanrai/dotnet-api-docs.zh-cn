@@ -1,5 +1,5 @@
 <Type Name="SqlMethodAttribute" FullName="Microsoft.SqlServer.Server.SqlMethodAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5f721a7c30b65574095f209956586669b9b8f610" /><Meta Name="ms.sourcegitcommit" Value="2767b5903996fbd7e2b81eda1114dfc9d0d9db63" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/02/2019" /><Meta Name="ms.locfileid" Value="64997026" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlMethodAttribute : Microsoft.SqlServer.Server.SqlFunctionAttribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b8bc1dda6b9aab93feacaadc6207b89fd58dbbd0" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68540188" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlMethodAttribute : Microsoft.SqlServer.Server.SqlFunctionAttribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit SqlMethodAttribute extends Microsoft.SqlServer.Server.SqlFunctionAttribute" />
   <TypeSignature Language="DocId" Value="T:Microsoft.SqlServer.Server.SqlMethodAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SqlMethodAttribute&#xA;Inherits SqlFunctionAttribute" />
@@ -30,19 +30,19 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>指示一种方法的确定性和数据访问属性或用户定义类型 (UDT) 的属性。 特性的属性反映与 SQL Server 注册该类型时，将使用的物理特征。</summary>
+    <summary>指示用户定义类型 (UDT) 的方法或属性的确定性和数据访问性质。 该特性的属性反映了向 SQL Server 注册该类型时所使用的实体特性。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对于属性，<xref:Microsoft.SqlServer.Server.SqlMethodAttribute>应 setter 或 getter 上直接使用。  
+ 对于属性, <xref:Microsoft.SqlServer.Server.SqlMethodAttribute>应直接在 setter 或 getter 上使用。  
   
- <xref:Microsoft.SqlServer.Server.SqlMethodAttribute> 继承自<xref:Microsoft.SqlServer.Server.SqlFunctionAttribute>，因此<xref:Microsoft.SqlServer.Server.SqlMethodAttribute>继承`FillRowMethodName`并`TableDefinition`字段从<xref:Microsoft.SqlServer.Server.SqlFunctionAttribute>。 请注意，不能将表值的方法，虽然这些字段的名称可能会建议就可以。  
+ <xref:Microsoft.SqlServer.Server.SqlMethodAttribute>继承<xref:Microsoft.SqlServer.Server.SqlFunctionAttribute>自, 因此<xref:Microsoft.SqlServer.Server.SqlMethodAttribute>继承了和`FillRowMethodName` `TableDefinition` 中<xref:Microsoft.SqlServer.Server.SqlFunctionAttribute>的字段。 请注意, 虽然这些字段的名称可能会表明可能, 但不能编写表值方法。  
   
    
   
 ## Examples  
- 下面的示例显示了属性，以指示，该方法不会更改的类型的状态和，将不调用方法时将在针对 null 实例的类型，不调用该方法的 UDT 方法`null`参数提供给方法调用。  
+ 下面的示例演示了一个 UDT 方法, 该方法具有以下特性: 指示将不会在类型的 null 实例上调用方法, 方法不会更改类型的状态, 并且在参数为时`null`将不会调用该方法提供给方法调用。  
   
  [!code-csharp[DataWorks SqlMethodAttribute Sample#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlMethodAttribute Sample/CS/source.cs#1)]
  [!code-vb[DataWorks SqlMethodAttribute Sample#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlMethodAttribute Sample/VB/source.vb#1)]  
@@ -72,7 +72,7 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>用户定义类型 (UDT)，用于指示一种方法的确定性和数据访问属性或 udt 属性属性。</summary>
+        <summary>用户定义类型 (UDT) 的特性，用于指示 UDT 的方法或属性的确定性和数据访问性质。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -101,14 +101,13 @@
       </ReturnValue>
       <Docs>
         <summary>指示 SQL Server 是否应在 null 实例上调用此方法。</summary>
-        <value>如果 SQL Server 应在 null 实例上调用此方法，则为 <see langword="true" />；否则为 <see langword="false" />。 如果方法不能调用 （由于方法上属性），SQL Server<see langword="DbNull" />返回。</value>
+        <value>如果 SQL Server 应在 null 实例上调用此方法，则为 <see langword="true" />；否则为 <see langword="false" />。 如果无法调用方法 (由于方法上的属性), 则返回 SQL Server <see langword="DbNull" /> 。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认值为<xref:Microsoft.SqlServer.Server.SqlMethodAttribute.InvokeIfReceiverIsNull%2A>属性是`false`。  
-  
- 它是不对的 null 实例上调用该方法。 如果<xref:Microsoft.SqlServer.Server.SqlMethodAttribute.InvokeIfReceiverIsNull%2A>为 true，该方法的返回值取决于它的类型。 如果该方法的返回类型可以为 null，则返回类型的可分辨 null 值。 如果返回类型是不可以为 null，则返回类型的默认 CLR 值。 对于引用类型的默认值为 null。 值类型的默认值是默认构造函数调用的类型时返回的值。  
+ 
+`InvokeIfReceiverIsNull`属性的默认值为`false`。 也就是说, 不会在 null 实例上调用方法。 如果`InvokeIfReceiverIsNull` 为`true`, 则方法的返回值取决于其类型。 如果该方法的返回类型可以为 null, 则返回该类型的可分辨 null 值。 如果返回类型不可以为 null, 则返回该类型的默认 CLR 值。 引用类型的默认值为`null`。 值类型的默认值是调用类型的无参数构造函数时返回的值。
   
  ]]></format>
         </remarks>
@@ -138,17 +137,17 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>指示用户定义类型 (UDT) 上的方法是否为赋值函数。</summary>
-        <value><see langword="true" /> 如果该方法是转变器;否则为<see langword="false" />。</value>
+        <summary>指示用户定义类型 (UDT) 的方法是否为转变器。</summary>
+        <value>如果该方法是转变器，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:Microsoft.SqlServer.Server.SqlMethodAttribute.IsMutator%2A>属性设置为`true`方法的返回类型是`void`，SQL Server 将标记为赋值函数方法。 赋值函数方法就是 UDT 实例中引起状态变化。 赋值函数方法可以在赋值语句或数据修改语句中调用，但不能在查询中使用。 如果一个方法标记为赋值函数，但不返回 void，然后创建类型不会因出现错误。 即使以外的返回值`void`作用不引发错误，则返回的值无法访问，并且不能使用。  
+ 如果将`true`属性设置为, 并且该方法的返回类型为, `void`则 SQL Server 会将方法标记为赋值函数。 <xref:Microsoft.SqlServer.Server.SqlMethodAttribute.IsMutator%2A> 赋值函数方法是导致 UDT 实例中的状态发生更改。 可在赋值语句或数据修改语句中调用赋值函数方法, 但不能在查询中使用。 如果方法被标记为赋值函数但不返回 void, 则 CREATE TYPE 不会失败并出现错误。 即使除之外`void`的返回值不会引发错误, 返回的值也不可访问, 因此无法使用。  
   
- 默认值<xref:Microsoft.SqlServer.Server.SqlMethodAttribute.IsMutator%2A>属性是`false`。  
+ <xref:Microsoft.SqlServer.Server.SqlMethodAttribute.IsMutator%2A>属性的默认值为`false`。  
   
- 属性可以是赋值函数，如果<xref:Microsoft.SqlServer.Server.SqlMethodAttribute>setter 上使用并<xref:Microsoft.SqlServer.Server.SqlMethodAttribute.IsMutator%2A>设置为`true`。 但是，属性 setter 隐式视为赋值函数，因此不需要设置<xref:Microsoft.SqlServer.Server.SqlMethodAttribute.IsMutator%2A>的属性<xref:Microsoft.SqlServer.Server.SqlMethodAttribute>到`true`。  
+ 如果<xref:Microsoft.SqlServer.Server.SqlMethodAttribute>在资源库中使用并且<xref:Microsoft.SqlServer.Server.SqlMethodAttribute.IsMutator%2A>设置为`true`, 则属性可以是赋值函数。 但是, 属性 setter 将隐式视为赋值函数, 因此不需要将的<xref:Microsoft.SqlServer.Server.SqlMethodAttribute.IsMutator%2A> <xref:Microsoft.SqlServer.Server.SqlMethodAttribute>属性设置为`true`。  
   
  ]]></format>
         </remarks>
@@ -179,12 +178,12 @@
       </ReturnValue>
       <Docs>
         <summary>在方法调用中使用 <see langword="null" /> 输入参数时指示是否调用用户定义类型 (UDT) 上的方法。</summary>
-        <value>如果 <see langword="null" /> 输入参数在方法调用中指定时，调用了该方法，则为 <see langword="true" />；如果任意输入参数为 <see langword="null" /> 时，该方法返回了 <see langword="null" /> 值，则为 <see langword="false" />。 如果方法不能调用 （由于方法上属性），SQL Server<see langword="DbNull" />返回。</value>
+        <value>如果 <see langword="null" /> 输入参数在方法调用中指定时，调用了该方法，则为 <see langword="true" />；如果任意输入参数为 <see langword="null" /> 时，该方法返回了 <see langword="null" /> 值，则为 <see langword="false" />。 如果无法调用方法 (由于方法上的属性), 则返回 SQL Server <see langword="DbNull" /> 。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认值<xref:Microsoft.SqlServer.Server.SqlMethodAttribute.OnNullCall%2A>属性是`true`。  
+ <xref:Microsoft.SqlServer.Server.SqlMethodAttribute.OnNullCall%2A>属性的默认值为`true`。  
   
  ]]></format>
         </remarks>

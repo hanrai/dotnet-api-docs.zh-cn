@@ -20,7 +20,7 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>提供辅助应用程序用来为残障用户调整 <see cref="T:System.Windows.Forms.ToolStripDropDown" /> 的用户界面的信息。</summary>
+    <summary>提供的信息可由辅助功能应用程序用来为残障用户调整 <see cref="T:System.Windows.Forms.ToolStripDropDown" /> 的用户界面。</summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -46,7 +46,7 @@
         <Parameter Name="item" Type="System.Windows.Forms.ToolStripDropDownItem" />
       </Parameters>
       <Docs>
-        <param name="item"><see cref="T:System.Windows.Forms.ToolStripDropDownItem" />拥有这<see cref="T:System.Windows.Forms.ToolStripDropDownItemAccessibleObject" />。</param>
+        <param name="item">拥有此 <see cref="T:System.Windows.Forms.ToolStripDropDownItem" /> 的 <see cref="T:System.Windows.Forms.ToolStripDropDownItemAccessibleObject" />。</param>
         <summary>使用指定的 <see cref="T:System.Windows.Forms.ToolStripDropDownItemAccessibleObject" /> 初始化 <see cref="T:System.Windows.Forms.ToolStripDropDownItem" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -69,16 +69,16 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>执行与该辅助性对象相关联的默认操作。</summary>
+        <summary>执行与该辅助性对象相关的默认操作。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 客户端可以通过检查对象的检索对象的默认操作<xref:System.Windows.Forms.AccessibleObject.DefaultAction%2A>属性。 客户端可以使用自动化 （如果支持） 而不是<xref:System.Windows.Forms.AccessibleObject.DoDefaultAction%2A>以执行对象的默认操作。 但是，<xref:System.Windows.Forms.AccessibleObject.DoDefaultAction%2A>提供了一种简单的方法来执行对象的最常用于操作。  
+ 客户端可以通过检查对象的<xref:System.Windows.Forms.AccessibleObject.DefaultAction%2A>属性来检索对象的默认操作。 客户端可以使用自动化 (如果支持) <xref:System.Windows.Forms.AccessibleObject.DoDefaultAction%2A> , 而不是执行对象的默认操作。 但是, <xref:System.Windows.Forms.AccessibleObject.DoDefaultAction%2A>提供了一种简单的方法来执行对象的最常用操作。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>由系统提供用户界面元素的默认操作取决于键盘状态。 也就是说，如 SHIFT 修改键，alt 键或 CTRL 是否按下 （不管是由用户操作或以编程方式） 时<see cref="M:System.Windows.Forms.AccessibleObject.DoDefaultAction" />调用时，默认值操作可能与这些密钥不向下相同。 并非所有对象都有默认操作。</para></block>
+        <block subset="none" type="overrides"><para>系统提供的用户界面元素所执行的默认操作取决于键盘状态。 也就是说, 当调用时<see cref="M:System.Windows.Forms.AccessibleObject.DoDefaultAction" /> , 如果修改键 (如 SHIFT、ALT 或 CTRL 为关闭状态 (通过用户操作或以编程方式) 关闭, 则默认操作可能不同于这些键未关闭的情况。 并非所有对象都有默认操作。</para></block>
         <altmember cref="M:System.Windows.Forms.AccessibleObject.DoDefaultAction" />
       </Docs>
     </Member>
@@ -103,15 +103,15 @@
       </Parameters>
       <Docs>
         <param name="index">辅助性子控件的从零开始的索引。</param>
-        <summary>检索与指定索引对应的辅助性子控件。</summary>
-        <returns><see cref="T:System.Windows.Forms.AccessibleObject" /> ，表示与指定索引对应的辅助性子控件。</returns>
+        <summary>检索对应于指定索引的辅助性子控件。</summary>
+        <returns><see cref="T:System.Windows.Forms.AccessibleObject" />，表示对应于指定索引的辅助性子控件。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示如何创建一个具有辅助功能的图表控件，并使用<xref:System.Windows.Forms.AccessibleObject>和<xref:System.Windows.Forms.Control.ControlAccessibleObject>类，以公开访问的信息。 控件绘制图例以及两条曲线。 `ChartControlAccessibleObject`类，该类派生自<xref:System.Windows.Forms.Control.ControlAccessibleObject>，在使用<xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>方法以提供自定义访问图表控件的信息。 因为不是实际图表图例<xref:System.Windows.Forms.Control>-基于控制，但改为绘制由图表控件，它不提供任何内置的可访问信息。 因此，`ChartControlAccessibleObject`类将重写<xref:System.Windows.Forms.AccessibleObject.GetChild%2A>方法以返回`CurveLegendAccessibleObject`，它表示每个部分的图例可访问信息。 当辅助功能的应用程序使用该控件时，该控件可以提供所需的可访问信息。  
+ 下面的代码示例演示如何创建可访问感知的图表控件, <xref:System.Windows.Forms.AccessibleObject>并使用和<xref:System.Windows.Forms.Control.ControlAccessibleObject>类公开可访问的信息。 控件将两条曲线与图例一起绘制。 <xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>从`ChartControlAccessibleObject` 派生的类在方法中用于为图表控件提供自定义的可访问信息。<xref:System.Windows.Forms.Control.ControlAccessibleObject> 因为图表图例不是实际<xref:System.Windows.Forms.Control>的控件, 而是由图表控件绘制的, 所以它不是任何内置的可访问信息。 因此, `ChartControlAccessibleObject`类将<xref:System.Windows.Forms.AccessibleObject.GetChild%2A>重写方法以返回`CurveLegendAccessibleObject` , 该方法表示图例的每个部分的可访问信息。 当可访问感知的应用程序使用此控件时, 控件可以提供必需的可访问信息。  
   
- 此代码演示如何重写<xref:System.Windows.Forms.AccessibleObject.GetChild%2A>方法。 请参阅<xref:System.Windows.Forms.AccessibleObject>完整的代码示例的类概述。  
+ 此代码演示如何重<xref:System.Windows.Forms.AccessibleObject.GetChild%2A>写方法。 有关完整的代码示例, 请参阅类概述。<xref:System.Windows.Forms.AccessibleObject>  
   
  [!code-cpp[System.Windows.Forms.AccessibleObject#4](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Windows.Forms.AccessibleObject/CPP/chartcontrol.cpp#4)]
  [!code-csharp[System.Windows.Forms.AccessibleObject#4](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.AccessibleObject/CS/chartcontrol.cs#4)]
@@ -146,9 +146,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示如何创建一个具有辅助功能的图表控件，并使用<xref:System.Windows.Forms.AccessibleObject>和<xref:System.Windows.Forms.Control.ControlAccessibleObject>类，以公开访问的信息。 控件绘制图例以及两条曲线。 `ChartControlAccessibleObject`类，该类派生自<xref:System.Windows.Forms.Control.ControlAccessibleObject>，在使用<xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>方法以提供自定义访问图表控件的信息。 因为不是实际图表图例<xref:System.Windows.Forms.Control>-基于控制，但改为绘制由图表控件，它不提供任何内置的可访问信息。 因此，`ChartControlAccessibleObject`类将重写<xref:System.Windows.Forms.AccessibleObject.GetChild%2A>方法以返回`CurveLegendAccessibleObject`，它表示每个部分的图例可访问信息。 当辅助功能的应用程序使用该控件时，该控件可以提供所需的可访问信息。  
+ 下面的代码示例演示如何创建可访问感知的图表控件, <xref:System.Windows.Forms.AccessibleObject>并使用和<xref:System.Windows.Forms.Control.ControlAccessibleObject>类公开可访问的信息。 控件将两条曲线与图例一起绘制。 <xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>从`ChartControlAccessibleObject` 派生的类在方法中用于为图表控件提供自定义的可访问信息。<xref:System.Windows.Forms.Control.ControlAccessibleObject> 因为图表图例不是实际<xref:System.Windows.Forms.Control>的控件, 而是由图表控件绘制的, 所以它不是任何内置的可访问信息。 因此, `ChartControlAccessibleObject`类将<xref:System.Windows.Forms.AccessibleObject.GetChild%2A>重写方法以返回`CurveLegendAccessibleObject` , 该方法表示图例的每个部分的可访问信息。 当可访问感知的应用程序使用此控件时, 控件可以提供必需的可访问信息。  
   
- 重写此代码演示<xref:System.Windows.Forms.AccessibleObject.GetChildCount%2A>方法。 请参阅<xref:System.Windows.Forms.AccessibleObject>完整的代码示例的类概述。  
+ 此代码演示如何重写<xref:System.Windows.Forms.AccessibleObject.GetChildCount%2A>方法。 有关完整的代码示例, 请参阅类概述。<xref:System.Windows.Forms.AccessibleObject>  
   
  [!code-cpp[System.Windows.Forms.AccessibleObject#4](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Windows.Forms.AccessibleObject/CPP/chartcontrol.cpp#4)]
  [!code-csharp[System.Windows.Forms.AccessibleObject#4](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.AccessibleObject/CS/chartcontrol.cs#4)]
@@ -181,7 +181,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对象的角色可帮助描述对象的函数。  
+ 对象的角色有助于描述对象的功能。  
   
  ]]></format>
         </remarks>

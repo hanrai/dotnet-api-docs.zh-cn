@@ -1,5 +1,5 @@
 <Type Name="DiagnosticSource" FullName="System.Diagnostics.DiagnosticSource">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d79c7605daf68e0c4169c32fac48c2c1ac277dad" /><Meta Name="ms.sourcegitcommit" Value="cfc0e4215fd0d259582ada2141878befd7c3c8c6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/12/2019" /><Meta Name="ms.locfileid" Value="67854884" /></Metadata><TypeSignature Language="C#" Value="public abstract class DiagnosticSource" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e4e02866434c5d718f1e5b5791fa4eb7fa1c5428" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68540883" /></Metadata><TypeSignature Language="C#" Value="public abstract class DiagnosticSource" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DiagnosticSource extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.DiagnosticSource" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DiagnosticSource" />
@@ -20,7 +20,7 @@
   <Interfaces />
   <Docs>
     <summary>一个抽象类，它允许针对丰富数据有效负载的生产时日志记录检测代码，以在被检测的进程中使用。</summary>
-    <remarks>有关详细信息，请参阅[DiagnosticSource 用户指南](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md)。</remarks>
+    <remarks>有关详细信息, 请参阅[DiagnosticSource 用户指南](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md)。</remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -75,7 +75,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[
 
-如果没有为通知昂贵的安装程序，可以在执行此安装程序之前调用 IsEnabled。 使用者不应假定，它们才会收到的通知 IsEnabled 为 true。 但是，它是可选的生成者以调用此 API。 名称应与传递给相同<see cref="M:System.Diagnostics.DiagnosticSource.Write(System.String,System.Object)" />。
+如果有大量的通知设置, 可以在执行此设置之前调用 IsEnabled。 使用者不应假定他们仅获取 IsEnabled 为 true 的通知。 不过, 对于创建者调用此 API, 它是可选的。 该名称应与传递<see cref="M:System.Diagnostics.DiagnosticSource.Write(System.String,System.Object)" />给的名称相同。
 
            ]]></format>
         </remarks>
@@ -112,7 +112,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[
           
-如果成本高昂的安装程序的通知，你可以调用此方法并执行安装程序前提供上下文。
+如果有大量的通知设置, 可以在执行安装程序之前调用此方法并提供上下文。
           
            ]]></format>
         </remarks>
@@ -140,22 +140,22 @@
         <param name="activity">To be added.</param>
         <param name="payload">To be added.</param>
         <summary>将状态从活动转移到将在进程外发生的某些事件或操作，例如传出 HTTP 请求。</summary>
-        <remarks>  
+        <remarks>
           <format type="text/markdown"><![CDATA[  
 
-如果 instumentation 站点位于其中的活动将进程 （如传出 HTTP 请求） 的位置，该站点将想要的活动的状态转移到传出请求。
+如果 instumentation 站点位于活动离开进程的位置 (例如传出 HTTP 请求), 则该站点将需要将状态从活动传输到传出请求。
 
-可能的范围内，这应通过检测站点，因为没有之间的协定<xref:System.Diagnostics.Activity>和 ougoing 请求逻辑检测站点上的。   但是，检测站点不能处理策略 （例如，是否活动信息应禁用或编写的兼容性原因的较旧格式）。
-为此，检测站点需要调用返回到日志记录系统并要求它要解决策略。 这种情况`OnActivityExport`方法。
+在可能的情况下, 此操作应由检测站点完成, 因为在检测站点的<xref:System.Diagnostics.Activity>和 ougoing 请求逻辑之间存在协定。   但是, 检测站点无法处理策略 (例如, 出于兼容性原因, 是否应禁用或以较旧的格式编写活动信息)。
+为此, 检测站点需要回调到日志记录系统, 并要求它解析策略。 这是`OnActivityExport`方法的用途。
 
-`OnActivityExport`给定方法<xref:System.Diagnostics.Activity>以及表示传出请求的有效负载对象。 一个<xref:System.Diagnostics.DiagnosticSource>订阅服务器然后包含之前将其发送传出的请求进行更新的功能。
+为方法提供了<xref:System.Diagnostics.Activity>和表示传出请求的负载对象。 `OnActivityExport` 然后<xref:System.Diagnostics.DiagnosticSource> , 订阅服务器能够在发送传出请求之前对其进行更新。
  
-请注意在检测站点 （仅处理一个传出边界上的这些站点） 上很少使用此方法。   此外，通常检测站点执行 （例如，若要传输特定的传出约定中的所有活动状态） 的默认策略是可能都很正常。 此方法是仅的情况下，其中，它是一个问题。 因此，此方法应很少使用，主要是此处适合使用 symetry`OnActivityImport`以及前瞻性地保护。
+请注意, 此方法很少用在检测站点 (只有位于进程传出边界的站点)。   而且, 通常情况下, 检测站点执行的默认策略 (例如, 传输特定传出约定中的所有活动状态) 可能会很好。 此方法仅适用于这是问题的情况。 因此, 应该很少使用此方法, 并且在这里, 我们的 symetry `OnActivityImport`和未来的校对。
 
-请注意，`payload`被类型化为<xref:System.Object>内容，但任何特定检测站点和订阅服务器应知道负载的类型，因此强制转换和如有必要对其进行解码。
+请注意, <xref:System.Object>在此处键入为, 但任何特定检测站点和订阅服务器应该知道有效负载的类型, 因此在必要时对其进行强制转换和解码。 `payload`
 
          ]]></format>
-         </remarks>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="OnActivityImport">
@@ -180,19 +180,19 @@
         <param name="activity">受外部事件影响的活动。</param>
         <param name="payload">表示传入请求的有效负载。</param>
         <summary>将状态从将在进程外发生的某些事件或操作（例如传入请求）转移到活动。</summary>
-        <remarks>  
+        <remarks>
           <format type="text/markdown"><![CDATA[  
 
-如果 instumentation 站点以响应某些事件在进程之外创建新的活动，例如传入 HTTP 请求），`OnActivityImport`方法，该站点将想要对传入请求创建一个新的活动和传输状态活动。 
+如果 instumentation 站点创建新活动以响应进程外的某个事件 (例如传入 HTTP 请求), 则`OnActivityImport`方法允许该站点创建新的活动, 并将传入请求的状态传输到活动. 
 
-可能的范围内，这应通过检测站点，因为没有之间的协定<xref:System.Diagnostics.Activity>和检测站点上的传入请求逻辑。   但是，检测站点不能处理策略。 （例如，如果执行采样，则完全哪些请求采样？）在这些情况下，检测站点需要调用返回到日志记录系统并要求它要解决策略 （例如，若要决定是否应设置为活动的"采样"位）。 这种情况`OnActivityImport`方法。 给定活动，以及表示传入请求的有效负载对象。 订户的<xref:System.Diagnostics.DiagnosticSource>将有机会来更新此活动根据需要。 
+在可能的情况下, 应通过检测站点来完成此操作, 因为在检测站点的<xref:System.Diagnostics.Activity>和传入请求逻辑之间存在一个约定。   不过, 检测站点无法处理策略。 (例如, 如果执行了采样, 应确切地采样哪些请求？)在这些情况下, 检测站点需要回调到日志记录系统, 并要求其解决策略 (例如, 决定是否应设置活动的 "采样" 位)。 这是`OnActivityImport`方法的用途。 向其提供活动以及表示传入请求的负载对象。 <xref:System.Diagnostics.DiagnosticSource>然后, 订阅者可以根据需要更新此活动。 
 
-在检测站点 （仅过程的边界上的这些站点），很少使用此方法并 instrumetation 站点实现某些默认策略 (活动设置*某些*方式)，并因此不需要为重写此方法，该默认策略是否正常。 换而言之，应在极少数 （但通常很重要） 的情况下重写此方法。
+此方法很少用于检测站点 (仅限位于进程边界的站点), instrumetation 站点实现某些默认策略 (它以*某种*方式设置活动), 因此, 不需要重写此方法 (如果此默认策略是正确的。 换句话说, 此方法应在非常罕见 (但通常很重要) 的情况下重写。
 
-请注意，`payload`被类型化为<xref:System.Object>内容，但任何特定检测站点和订阅服务器将知道负载的类型，因此强制转换和如有必要对其进行解码。
+请注意, <xref:System.Object>在此处键入, 但任何特定检测站点和订阅服务器都将知道有效负载的类型, 因此在必要时对其进行强制转换和解码。 `payload`
 
          ]]></format>
-         </remarks>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="StartActivity">
@@ -224,11 +224,11 @@
         <remarks>
           <format type="text/markdown"><![CDATA[
            
-<xref:System.Diagnostics.Activity>描述的逻辑操作、 其上下文和父关系; 当前<xref:System.Diagnostics.Activity>流经操作处理。
+描述逻辑操作、其上下文和父关系, 当前<xref:System.Diagnostics.Activity>在处理操作过程中流动。 <xref:System.Diagnostics.Activity>
 
-此方法启动给定<xref:System.Diagnostics.Activity>，维护全局<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>和<xref:System.Diagnostics.Activity.Parent?displayProperty=nameWithType>活动的给定<xref:System.Diagnostics.Activity>，并通知使用者的一个新<xref:System.Diagnostics.Activity>已启动。 使用者可以访问<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>添加上下文和/或扩充遥测数据。
+此方法启动<xref:System.Diagnostics.Activity>给定的, 维护给定<xref:System.Diagnostics.Activity>的<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>全局<xref:System.Diagnostics.Activity.Parent?displayProperty=nameWithType>和活动, 并通知使用者已开始新<xref:System.Diagnostics.Activity>的。 使用者可以<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>访问添加上下文和/或增加遥测数据。
 
-生成者可能通过向使用者在有效负载中的其他详细信息。
+创建者可以向有效负载中的使用者传递其他详细信息。
 
            ]]></format>
         </remarks>
@@ -262,9 +262,9 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-生成者可能通过向使用者在有效负载中的其他详细信息。
+创建者可以向有效负载中的使用者传递其他详细信息。
 
-使用者可以访问<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>添加上下文和/或扩充遥测数据。
+使用者可以<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>访问添加上下文和/或增加遥测数据。
 
 
          ]]></format>
@@ -302,13 +302,13 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-每个通知提供用于标识以及提供任意信息将传递给通知的对象 （通常是一个匿名类型） 的名称。  
+为每个通知提供一个标识它的名称, 以及一个对象 (通常为匿名类型), 该对象提供要传递给通知的任意信息。  
 
-`name` 应较短。 不要使用完全限定的名称，除非您必须为避免混淆，因为`name`必须是全局唯一。 通常情况下， *componentName.eventName*，其中*componentName*并*eventName*是少于 10 个字符的字符串，是很好地折衷。
+`name`应为 short。 不要使用完全限定的名称, `name`除非必须是全局唯一的。 通常, *componentName*(其中*ComponentName*和*事件名称*是小于10个字符的字符串) 是一个很好的折衷。
 
-通知名称不应具有`.`中这些组件名称包含点，因为，就需要这两个具有点会导致二义性。 我们建议你使用`_`相反。
+通知名称不应包含`.`在其中, 因为组件名称具有点, 并且它们都具有点来导致歧义。 `_`建议改用。
 
-假定侦听器将使用字符串作为前缀来筛选的组。 因此，具有组件名称的层次结构是一个好的做法。
+假定侦听器将使用字符串前缀来筛选组。 因此, 具有组件名称的层次结构是一种很好的做法。
 
          ]]></format>
         </remarks>

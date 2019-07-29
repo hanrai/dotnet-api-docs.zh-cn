@@ -54,34 +54,34 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认情况下<xref:System.Object>作为类型自变量封送`VARIANT`类型，其中的对象类型决定`VARTYPE`的值`VARIANT`。  
+ 默认情况下<xref:System.Object> , 类型参数`VARIANT`作为类型进行封送处理, 其中对象类型`VARIANT`确定`VARTYPE`的值。  
   
- <xref:System.Runtime.InteropServices.ErrorWrapper>键入必须作为传递<xref:System.Object>要作为封送类型`VARIANT`类型的`VT_ERROR`; 否则为<xref:System.Runtime.InteropServices.ErrorWrapper>类型被封送为整数。  
+ <xref:System.Runtime.InteropServices.ErrorWrapper>类型必须`VARIANT`作为类型进行<xref:System.Runtime.InteropServices.ErrorWrapper>封送处理, 否则类型将作为整数封送。 `VT_ERROR` <xref:System.Object>  
   
- 下表说明了托管的本机函数调用中封送处理使用平台调用。  
+ 下表说明了使用平台调用对本机函数进行的封送处理。  
   
-|托管的签名参数|pArr 值|作为封送|  
+|托管签名参数|pArr 值|作为|  
 |---------------------------------|----------------|------------------|  
-|ErrorWrapper[] pArr|ErrorWrapper(77) ErrorWrapper [10]|`Int[10]`|  
-|Object[] pArr|ErrorWrapper(77) ErrorWrapper [10]|`VARIANT[10]` 的 `VT_ERROR`|  
-|Object[] pArr|对象 [10] 的 ErrorWrapper(77)|`VARIANT[10]` 的 `VT_ERROR`|  
+|ErrorWrapper[] pArr|ErrorWrapper [10] of ErrorWrapper (77)|`Int[10]`|  
+|Object[] pArr|ErrorWrapper [10] of ErrorWrapper (77)|`VARIANT[10]` 的 `VT_ERROR`|  
+|Object[] pArr|ErrorWrapper (77) 的对象 [10]|`VARIANT[10]` 的 `VT_ERROR`|  
   
- 下表说明了对使用 COM 运行时可调用包装 (RCW) 的本机函数的托管调用中封送处理数据。  
+ 下表说明了使用 COM 运行时可调用包装 (RCW) 对本机函数的托管调用中的数据封送处理。  
   
-|托管的签名参数|pArr 值|作为封送|  
+|托管签名参数|pArr 值|作为|  
 |---------------------------------|----------------|------------------|  
-|ErrorWrapper[] pArr|ErrorWrapper(77) ErrorWrapper [10]|`Int[10]`|  
-|Object[] pArr|ErrorWrapper(77) ErrorWrapper [10]|`SafeArrayTypeMismatch` 异常|  
-|Object[] pArr|对象 [10] 的 ErrorWrapper(77)|`SAFEARRAY(VARIANT)`|  
+|ErrorWrapper[] pArr|ErrorWrapper [10] of ErrorWrapper (77)|`Int[10]`|  
+|Object[] pArr|ErrorWrapper [10] of ErrorWrapper (77)|`SafeArrayTypeMismatch`异常|  
+|Object[] pArr|ErrorWrapper (77) 的对象 [10]|`SAFEARRAY(VARIANT)`|  
   
- 请注意，<xref:System.Runtime.InteropServices.ErrorWrapper>作为类型不封送对象`VT_ERROR`从 COM 传递后  单个值从 COM 作为类型进行封送`VT_I4`，而从 COM 作为类型封送数组`VT_UI4`。  
+ 请注意<xref:System.Runtime.InteropServices.ErrorWrapper> , 在将对象从 COM `VT_ERROR`传递回后, 不会将其作为类型进行封送处理。  单个值作为类型`VT_I4`从 com 封送回, 而数组作为类型`VT_UI4`从 com 封送回。  
   
- 有关详细信息`VT_ERROR`，现有的文档，请参阅`VARENUM::VT_ERROR`MSDN 库中。  
+ 有关的详细信息`VT_ERROR`, 请参阅 MSDN library `VARENUM::VT_ERROR`中的现有文档。  
   
    
   
 ## Examples  
- 首先，下面的代码示例演示一个孤立<xref:System.Int32>封送回从作为 COM 对象<xref:System.Int32>对象。 然后演示<xref:System.Int32>数组封送处理从 COM 作为<xref:System.UInt32>数组。  
+ 下面的代码示例首先演示如何将<xref:System.Int32>独立的对象<xref:System.Int32>作为对象从 COM 封送回。 然后, 它演示<xref:System.Int32>从 COM 以数组的<xref:System.UInt32>形式封送回的数组。  
   
 ```  
 // Scenario 1:  
@@ -160,11 +160,11 @@ UInt32[ ] arr2 = (UInt32[])o;
         <param name="e">要转换为错误代码的异常。</param>
         <summary>使用与所提供的异常相对应的 HRESULT 初始化 <see cref="T:System.Runtime.InteropServices.ErrorWrapper" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">若要调用非托管的代码的权限。  
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于调用非托管代码的权限。  
   
-安全操作：需求。  
+安全操作:手动.  
   
-关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">

@@ -1,5 +1,5 @@
 <Type Name="Cache" FullName="System.Web.Caching.Cache">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="fc6de83e77ae587ed550c1ef703a386a6b8f6b45" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57936844" /></Metadata><TypeSignature Language="C#" Value="public sealed class Cache : System.Collections.IEnumerable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b20db8e7e7f26c22b439e39913f75678bff9dc1c" /><Meta Name="ms.sourcegitcommit" Value="f991677a7374c45590a432ff7ab830beb05f2ccd" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/27/2019" /><Meta Name="ms.locfileid" Value="68591354" /></Metadata><TypeSignature Language="C#" Value="public sealed class Cache : System.Collections.IEnumerable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit Cache extends System.Object implements class System.Collections.IEnumerable" />
   <TypeSignature Language="DocId" Value="T:System.Web.Caching.Cache" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Cache&#xA;Implements IEnumerable" />
@@ -25,18 +25,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 每个应用程序域创建一个此类的实例，只要应用程序域将保持活动状态，保持有效。 有关此类的实例的信息，请通过`Cache`的属性<xref:System.Web.HttpContext>对象或`Cache`属性的<xref:System.Web.UI.Page>对象。  
+ 此类的一个实例是根据应用程序域创建的, 并且只要应用程序域保持活动状态, 它就会保持有效。 有关此类的实例`Cache`的信息可通过对象的属性<xref:System.Web.HttpContext> <xref:System.Web.UI.Page>或`Cache`对象的属性获得。  
   
 > [!NOTE]
->  <xref:System.Web.Caching.Cache>类不适合在 ASP.NET 应用程序外部使用。 它是设计和测试在提供的 Web 应用程序中缓存的 ASP.NET 中使用。 对于其他类型的应用程序，如控制台应用程序或 Windows 窗体应用程序，请使用<xref:System.Runtime.Caching.ObjectCache>类。  
+>  类<xref:System.Web.Caching.Cache>不应在 ASP.NET 应用程序外使用。 它已设计并经过测试, 可在 ASP.NET 中使用, 以提供 Web 应用程序的缓存。 对于其他类型的应用程序, 如控制台应用程序或 Windows 窗体应用程序, <xref:System.Runtime.Caching.ObjectCache>请使用类。  
   
    
   
 ## Examples  
- 以下示例是一个页面，向用户显示分配给在缓存中的项的值，并从缓存移除项时通知他们。 它会创建`RemovedCallback`方法，它具有签名的`CacheItemRemovedCallback`委托，以通知用户，当删除缓存项，并且它使用<xref:System.Web.Caching.CacheItemRemovedReason>枚举告诉用户移除的原因。 此外，它使用<xref:System.Web.Caching.Cache.Item%2A?displayProperty=nameWithType>属性向缓存添加对象和检索这些对象的值。 在中`AddItemToCache`方法，它将使用<xref:System.Web.Caching.Cache.Add%2A?displayProperty=nameWithType>方法将项添加到缓存。 若要使用`CacheItemRemovedCallback`委派，您必须使用此方法将项添加到缓存或<xref:System.Web.Caching.Cache.Insert%2A?displayProperty=nameWithType>时删除项，则调用方法，因此该 ASP.NET 可以自动进行适当的方法。 自定义`RemoveItemFromCache`方法使用<xref:System.Web.Caching.Cache.Remove%2A?displayProperty=nameWithType>方法以显式从缓存中删除项导致`RemovedCallback`要调用的方法。  
+ 下面的示例是一个页面, 该页面向用户显示分配给缓存中某个项的值, 然后在从缓存中移除该项时通知他们。 它创建了`RemovedCallback`一个方法, 该方法具有`CacheItemRemovedCallback`委托的签名, 以便在删除缓存项时通知用户<xref:System.Web.Caching.CacheItemRemovedReason> , 并使用枚举告诉用户删除该缓存项的原因。 此外, 它还使用<xref:System.Web.Caching.Cache.Item%2A?displayProperty=nameWithType>属性将对象添加到缓存并检索这些对象的值。 在方法中, 它<xref:System.Web.Caching.Cache.Add%2A?displayProperty=nameWithType>使用方法将一项添加到缓存中。 `AddItemToCache` 若要使用`CacheItemRemovedCallback`委托, 必须使用此方法<xref:System.Web.Caching.Cache.Insert%2A?displayProperty=nameWithType>或方法将一个项添加到缓存, 以便在移除该项时 ASP.NET 可以自动进行正确的方法调用。 自定义`RemoveItemFromCache`方法<xref:System.Web.Caching.Cache.Remove%2A?displayProperty=nameWithType>使用方法从缓存显式删除项, 从而导致`RemovedCallback`调用方法。  
   
 > [!NOTE]
->  可通过下面的代码片段的缓存的实例是成员<xref:System.Web.UI.Page>此示例将继承的对象。  
+>  下面的代码片段访问的缓存实例是此示例继承的<xref:System.Web.UI.Page>对象的成员。  
   
  [!code-aspx-csharp[System.Web.Caching Examples#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Caching Examples/CS/cachecs.aspx#1)]
  [!code-aspx-vb[System.Web.Caching Examples#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Caching Examples/VB/cachevb.aspx#1)]
@@ -114,19 +114,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果具有相同的项，对此方法的调用将失败`key`参数已存储在`Cache`。 若要覆盖现有`Cache`项使用的相同`key`参数，请使用<xref:System.Web.Caching.Cache.Insert%2A>方法。  
+ 如果具有相同`key`参数的项已存储`Cache`在中, 则对此方法的调用将自动失败。 若要使用相同`Cache` `key`参数覆盖现有项, 请使用<xref:System.Web.Caching.Cache.Insert%2A>方法。  
   
- 不能同时设置`absoluteExpiration`和`slidingExpiration`参数。 如果你想要在特定时间过期的缓存项，则设置`absoluteExpiration`参数为特定的时间，并`slidingExpiration`参数<xref:System.Web.Caching.Cache.NoSlidingExpiration>。  
+ 不能同时`absoluteExpiration`设置和`slidingExpiration`参数。 如果希望缓存项在特定时间过期, 请将`absoluteExpiration`参数设置为特定时间, `slidingExpiration`并将参数设置为<xref:System.Web.Caching.Cache.NoSlidingExpiration>。  
   
- 如果想要的缓存项在一段时间后过期后已经过去上次访问该项，则设置`slidingExpiration`过期时间间隔，参数和`absoluteExpiration`参数<xref:System.Web.Caching.Cache.NoAbsoluteExpiration>。  
+ 如果希望缓存项在上次访问项后经过一定时间之后过期, 请将`slidingExpiration`参数设置为过期时间间隔, `absoluteExpiration`并将参数设置为<xref:System.Web.Caching.Cache.NoAbsoluteExpiration>。  
   
    
   
 ## Examples  
- 下面的示例创建`AddItemToCache`方法。 当调用此方法时，它会设置`itemRemoved`属性设置为`false`，并将注册`onRemove`方法替换的新实例<xref:System.Web.Caching.CacheItemRemovedCallback>委托。 在使用委托的签名`RemovedCallback`方法。 `AddItemToCache`方法会检查与关联的值`Key1`密钥缓存中。 如果值为`null`，则`Add`方法使用的密钥在缓存中放置一项`Key1`，值为`Value 1`，绝对的过期时间为 60 秒和较高的缓存的优先级。 它还使用`onRemove`作为参数的方法。 这允许`RemovedCallback`从缓存中删除此项时要调用的方法。  
+ 下面的示例创建一个`AddItemToCache`方法。 调用此方法时, `itemRemoved`它将属性设置为, 并将`onRemove`方法注册到`false` <xref:System.Web.Caching.CacheItemRemovedCallback>委托的新实例。 委托的签名用于`RemovedCallback`方法。 然后`AddItemToCache` , 方法检查与缓存中的`Key1`键相关联的值。 如果值为`null`, 则该`Add`方法将在`Key1`缓存中放置一个项, 其值为`Value 1`, 值为, 绝对过期时间为60秒, 缓存优先级较高。 它还使用`onRemove`方法作为参数。 这允许`RemovedCallback`在从缓存中删除此项时调用方法。  
   
 > [!NOTE]
->  有关如何使用的示例<xref:System.Web.Caching.CacheDependency>类和<xref:System.Web.Caching.CacheItemRemovedCallback>委托中，请参阅[缓存应用程序数据](https://msdn.microsoft.com/library/206f977d-7860-4d20-bdd5-c3b3d8479f3d(v=vs.100))。  
+>  有关如何使用<xref:System.Web.Caching.CacheDependency>类<xref:System.Web.Caching.CacheItemRemovedCallback>和委托的示例, 请参阅[缓存应用程序数据](https://msdn.microsoft.com/library/206f977d-7860-4d20-bdd5-c3b3d8479f3d(v=vs.100))。  
   
  [!code-csharp[System.Web.Caching Examples#3](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Caching Examples/CS/cachecs.aspx#3)]
  [!code-vb[System.Web.Caching Examples#3](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Caching Examples/VB/cachevb.aspx#3)]  
@@ -166,12 +166,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 监视应用程序的性能时，或使用 ASP.NET 跟踪功能时，此属性会非常有用。  
+ 当监视应用程序的性能或使用 ASP.NET 跟踪功能时, 此属性非常有用。  
   
    
   
 ## Examples  
- 以下示例获取的值`Count`属性，将其转换为字符串，并将字符串赋给<xref:System.Web.UI.WebControls.Label.Text%2A>的属性<xref:System.Web.UI.WebControls.Label>Web 服务器控件`Label1`。  
+ `Count`下面的示例获取属性的值, 将其转换为字符串, 并将该字符串分配<xref:System.Web.UI.WebControls.Label.Text%2A>给<xref:System.Web.UI.WebControls.Label> Web 服务器控件`Label1`的属性。  
   
  [!code-csharp[System.Web.Caching.Cache.Count#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Caching.Cache.Count/CS/cachecountcs.aspx#1)]
  [!code-vb[System.Web.Caching.Cache.Count#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Caching.Cache.Count/VB/cachecountvb.aspx#1)]  
@@ -203,11 +203,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Caching.Cache.EffectivePercentagePhysicalMemoryLimit%2A>属性将返回到应用程序可用的物理内存的百分比。 当可用百分比低，缓存算法将开始从缓存中删除项。  
+ <xref:System.Web.Caching.Cache.EffectivePercentagePhysicalMemoryLimit%2A>属性返回应用程序可用的物理内存百分比。 当可用百分比降低时, 缓存算法会开始从缓存中删除项。  
   
- <xref:System.Web.Caching.Cache.EffectivePercentagePhysicalMemoryLimit%2A>属性可以设置与`percentagePhysicalMemoryUsedLimit`的属性[caching （ASP.NET 设置架构） 的 cache 元素](https://msdn.microsoft.com/library/68fa0040-5abf-4c73-93fc-17e3c6af3299)应用程序的配置文件中的元素。 如果`percentagePhysicalMemoryUsedLimit`未设置属性时，缓存算法将确定缓存的最大大小和<xref:System.Web.Caching.Cache.EffectivePercentagePhysicalMemoryLimit%2A>计算属性。  
+ 可以在应用程序的配置文件`percentagePhysicalMemoryUsedLimit`中, 将属性设置为缓存元素的缓存元素(ASP.NET设置架构)元素的特性。<xref:System.Web.Caching.Cache.EffectivePercentagePhysicalMemoryLimit%2A> [](https://msdn.microsoft.com/library/68fa0040-5abf-4c73-93fc-17e3c6af3299) 如果未`percentagePhysicalMemoryUsedLimit`设置该属性, 则缓存算法将确定缓存的最大大小, <xref:System.Web.Caching.Cache.EffectivePercentagePhysicalMemoryLimit%2A>并计算属性。  
   
- <xref:System.Web.Caching.Cache.EffectivePercentagePhysicalMemoryLimit%2A> 是.NET Framework 3.5 版中引入的。  有关详细信息，请参见[版本和依赖关系](~/docs/framework/migration-guide/versions-and-dependencies.md)。  
+ <xref:System.Web.Caching.Cache.EffectivePercentagePhysicalMemoryLimit%2A>.NET Framework 版本3.5 中引入。  有关详细信息，请参见[版本和依赖关系](~/docs/framework/migration-guide/versions-and-dependencies.md)。  
   
  ]]></format>
         </remarks>
@@ -237,9 +237,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Caching.Cache.EffectivePrivateBytesLimit%2A>属性将返回可由应用程序进程的字节数。 一旦达到此限制，缓存算法开始积极清理缓存。  
+ <xref:System.Web.Caching.Cache.EffectivePrivateBytesLimit%2A>属性返回应用程序进程可以使用的字节数。 达到此限制后, 缓存算法开始主动清理缓存。  
   
- <xref:System.Web.Caching.Cache.EffectivePrivateBytesLimit%2A>属性可以设置与`privateBytesLimit`的属性[caching （ASP.NET 设置架构） 的 cache 元素](https://msdn.microsoft.com/library/68fa0040-5abf-4c73-93fc-17e3c6af3299)应用程序的配置文件中的元素。 当`privateBytesLimit`未设置属性时，缓存算法将确定缓存的最大大小和<xref:System.Web.Caching.Cache.EffectivePrivateBytesLimit%2A>属性包含所选算法的大小。  
+ 可以在应用程序的配置文件`privateBytesLimit`中, 将属性设置为缓存元素的缓存元素(ASP.NET设置架构)元素的特性。<xref:System.Web.Caching.Cache.EffectivePrivateBytesLimit%2A> [](https://msdn.microsoft.com/library/68fa0040-5abf-4c73-93fc-17e3c6af3299) 如果未`privateBytesLimit`设置该属性, 则缓存算法将确定缓存的最大大小, <xref:System.Web.Caching.Cache.EffectivePrivateBytesLimit%2A>并且属性包含算法选择的大小。  
   
    
   
@@ -278,7 +278,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示如何检索缓存的 ASP.NET 文本框服务器控件的值。  
+ 下面的示例演示如何检索为 ASP.NET 文本框服务器控件缓存的值。  
   
  [!code-csharp[Classic Cache.Get Example#1](~/samples/snippets/csharp/VS_Snippets_WebNet/Classic Cache.Get Example/CS/source.cs#1)]
  [!code-vb[Classic Cache.Get Example#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/Classic Cache.Get Example/VB/source.vb#1)]  
@@ -313,12 +313,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以添加到或从缓存中时此方法枚举项删除项。  
+ 此方法枚举项时, 可以在缓存中添加或移除项。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Collections.IDictionaryEnumerator>对象， `CacheEnum`，并使用`GetEnumerator`方法。 枚举器经过缓存中，将每个缓存项的值转换为字符串，，然后将值写入 Web 窗体页。  
+ 下面的示例使用<xref:System.Collections.IDictionaryEnumerator> `GetEnumerator`方法创建`CacheEnum`对象。 枚举器将遍历缓存, 将每个缓存项的值转换为字符串, 然后将这些值写入 Web 窗体页。  
   
  [!code-csharp[Cache.GetEnumerator#1](~/samples/snippets/csharp/VS_Snippets_WebNet/Cache.GetEnumerator/CS/getenumcs.aspx#1)]
  [!code-vb[Cache.GetEnumerator#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/Cache.GetEnumerator/VB/getenumvb.aspx#1)]  
@@ -365,12 +365,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将覆盖其键与匹配现有的缓存项`key`参数。 对象添加到缓存中使用的此重载`Insert`方法插入没有文件或缓存依赖项，优先级为<xref:System.Web.Caching.CacheItemPriority.Default>、 可调过期值<xref:System.Web.Caching.Cache.NoSlidingExpiration>，且绝对过期值为<xref:System.Web.Caching.Cache.NoAbsoluteExpiration>。  
+ 此方法将覆盖其密钥与`key`参数匹配的现有缓存项。 使用此`Insert`方法的此重载添加到缓存中的对象不具有任何文件或缓存依赖项、 <xref:System.Web.Caching.CacheItemPriority.Default>优先级、的可调过期值<xref:System.Web.Caching.Cache.NoSlidingExpiration>和绝对过期值<xref:System.Web.Caching.Cache.NoAbsoluteExpiration>。  
   
    
   
 ## Examples  
- 下面的示例演示如何向应用程序的缓存中插入项。  
+ 下面的示例演示如何将一个项插入到应用程序的缓存中。  
   
  [!code-csharp[Classic Cache.Insert Example#1](~/samples/snippets/csharp/VS_Snippets_WebNet/Classic Cache.Insert Example/CS/source.cs#1)]
  [!code-vb[Classic Cache.Insert Example#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/Classic Cache.Insert Example/VB/source.vb#1)]  
@@ -412,12 +412,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将覆盖其键与匹配现有的缓存项`key`参数。 对象添加到缓存中使用的此重载`Insert`方法插入没有文件或缓存依赖项，优先级为<xref:System.Web.Caching.CacheItemPriority.Default>、 可调过期值<xref:System.Web.Caching.Cache.NoSlidingExpiration>，且绝对过期值为<xref:System.Web.Caching.Cache.NoAbsoluteExpiration>。  
+ 此方法将覆盖其密钥与`key`参数匹配的现有缓存项。 使用此`Insert`方法的此重载添加到缓存中的对象不具有任何文件或缓存依赖项、 <xref:System.Web.Caching.CacheItemPriority.Default>优先级、的可调过期值<xref:System.Web.Caching.Cache.NoSlidingExpiration>和绝对过期值<xref:System.Web.Caching.Cache.NoAbsoluteExpiration>。  
   
    
   
 ## Examples  
- 下面的示例演示如何将某个项插入到 XML 配置文件的缓存依赖的应用程序的缓存。  
+ 下面的示例演示如何将一个项插入到应用程序的缓存中, 其中的缓存依赖于 XML 配置文件。  
   
  [!code-csharp[Classic Cache.Insert1 Example#1](~/samples/snippets/csharp/VS_Snippets_WebNet/Classic Cache.Insert1 Example/CS/source.cs#1)]
  [!code-vb[Classic Cache.Insert1 Example#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/Classic Cache.Insert1 Example/VB/source.vb#1)]  
@@ -463,22 +463,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将覆盖现有`Cache`具有相同的项`key`参数。  
+ 此方法将覆盖具有相同`Cache` `key`参数的现有项。  
   
- 如果`slidingExpiration`参数设置为<xref:System.Web.Caching.Cache.NoSlidingExpiration>，可调过期已禁用。 如果您设置`slidingExpiration`参数为大于<xref:System.TimeSpan.Zero>，则`absoluteExpiration`参数设置为<xref:System.DateTime.Now%2A>中包含的值以及`slidingExpiration`参数。 如果之前指定的时间量从缓存请求的内容项`absoluteExpiration`参数，该项将放在缓存中同样，并`absoluteExpiration`再次将设置为`DateTime.Now`中包含的值以及`slidingExpiration`参数。 如果该项未请求从缓存中的日期之前`absoluteExpiration`从缓存中删除参数，该项目。 . 优先级为插入项添加到缓存中使用 insert 方法的此重载<xref:System.Web.Caching.CacheItemPriority.Default>。  
+ 如果参数设置为<xref:System.Web.Caching.Cache.NoSlidingExpiration>, 则将禁用可调过期。 `slidingExpiration` `slidingExpiration`如果将`slidingExpiration`参数设置为<xref:System.TimeSpan.Zero>"大于", 则`absoluteExpiration`参数将设置为<xref:System.DateTime.Now%2A>加参数中包含的值。 如果在`absoluteExpiration`参数所指定的时间段之前从缓存中请求项, 则该项将再次放置在缓存中, 并`absoluteExpiration`将再次设置为`DateTime.Now`加上该`slidingExpiration`参数中包含的值。 如果在`absoluteExpiration`参数中的日期之前不会从缓存中请求该项, 则从缓存中删除该项。 . 使用 insert 方法的此重载添加到缓存的项将插入优先级为的<xref:System.Web.Caching.CacheItemPriority.Default>。  
   
    
   
 ## Examples  
- 下面的示例演示如何将某个项插入到具有绝对过期的应用程序的缓存。  
+ 下面的示例演示如何将一个项插入到应用程序的缓存中且具有绝对过期。  
   
 > [!NOTE]
->  由于这种形式的`Insert`方法支持缓存依赖项，如果该项没有依赖关系，您必须声明`dependency`参数，因为`null`(`Nothing`在 Visual Basic 中) 以逗号分隔的参数列表中。  
+>  由于这种形式的`Insert`方法支持缓存依赖项, 因此, 如果项没有依赖项, 则必须在以`null`逗号`Nothing`分隔的参数列表中将`dependency`参数声明为 (在 Visual Basic 中)。  
   
  [!code-csharp[Classic Cache.Insert2 Example#1](~/samples/snippets/csharp/VS_Snippets_WebNet/Classic Cache.Insert2 Example/CS/source.cs#1)]
  [!code-vb[Classic Cache.Insert2 Example#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/Classic Cache.Insert2 Example/VB/source.vb#1)]  
   
- 下面的示例演示如何将某个项插入到缓存具有可调过期。  
+ 下面的示例演示如何使用可调过期将项插入缓存中。  
   
  [!code-csharp[Classic Cache.Insert2 Example#2](~/samples/snippets/csharp/VS_Snippets_WebNet/Classic Cache.Insert2 Example/CS/source.cs#2)]
  [!code-vb[Classic Cache.Insert2 Example#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/Classic Cache.Insert2 Example/VB/source.vb#2)]  
@@ -529,13 +529,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Caching.Cache.Insert%2A>方法，可在缓存中插入新项并提供从缓存中移除项之前调用的委托。 在委托中，可以更新缓存的项，从而阻止其从缓存中删除。  
+ <xref:System.Web.Caching.Cache.Insert%2A>方法使你能够在缓存中插入新项, 并提供一个在从缓存中移除该项之前调用的委托。 在委托中, 可以更新缓存的项, 从而防止将其从缓存中删除。  
   
- 此方法将覆盖现有`Cache`具有相同的项`key`参数。  
+ 此方法将覆盖具有相同`Cache` `key`参数的现有项。  
   
- 不能同时设置`absoluteExpiration`和`slidingExpiration`参数。 如果你想要在特定时间过期的缓存项，则设置`absoluteExpiration`参数为特定的时间，并`slidingExpiration`参数<xref:System.Web.Caching.Cache.NoSlidingExpiration>。  
+ 不能同时`absoluteExpiration`设置和`slidingExpiration`参数。 如果希望缓存项在特定时间过期, 请将`absoluteExpiration`参数设置为特定时间, `slidingExpiration`并将参数设置为<xref:System.Web.Caching.Cache.NoSlidingExpiration>。  
   
- 如果想要的缓存项一项以来的时间段后过期上次访问，则设置`slidingExpiration`到过期时间间隔，并且您的参数设置`absoluteExpiration`参数<xref:System.Web.Caching.Cache.NoAbsoluteExpiration>。  
+ 如果你希望缓存项在上次访问项后的一段时间后过期, 请将`slidingExpiration`参数设置为过期时间间隔, 并`absoluteExpiration`将参数设置为<xref:System.Web.Caching.Cache.NoAbsoluteExpiration>。  
   
  ]]></format>
         </remarks>
@@ -543,7 +543,7 @@
         <exception cref="T:System.ArgumentOutOfRangeException">将 <paramref name="slidingExpiration" /> 参数设置为小于 <see langword="TimeSpan.Zero" /> 或大于一年的等效值。</exception>
         <exception cref="T:System.ArgumentException">为要添加到 <see langword="Cache" /> 中的项设置 <paramref name="absoluteExpiration" /> 和 <paramref name="slidingExpiration" /> 参数。  
   
-- 或 - 
+或 
 <paramref name="dependencies" /> 参数为 <see langword="null" />，<paramref name="absoluteExpiration" /> 参数设置为 <see cref="F:System.Web.Caching.Cache.NoAbsoluteExpiration" /> 并且 <paramref name="slidingExpiration" /> 参数设置为 <see cref="F:System.Web.Caching.Cache.NoSlidingExpiration" />。</exception>
         <altmember cref="T:System.Web.Caching.CacheItemUpdateCallback" />
       </Docs>
@@ -587,19 +587,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将覆盖现有`Cache`具有相同的项`key`参数。  
+ 此方法将覆盖具有相同`Cache` `key`参数的现有项。  
   
- 不能同时设置`absoluteExpiration`和`slidingExpiration`参数。 如果你想要在特定时间过期的缓存项，则设置`absoluteExpiration`参数为特定的时间，并`slidingExpiration`参数<xref:System.Web.Caching.Cache.NoSlidingExpiration>。  
+ 不能同时`absoluteExpiration`设置和`slidingExpiration`参数。 如果希望缓存项在特定时间过期, 请将`absoluteExpiration`参数设置为特定时间, `slidingExpiration`并将参数设置为<xref:System.Web.Caching.Cache.NoSlidingExpiration>。  
   
- 如果想要的缓存项在一段时间后过期传递自上次访问该项，则设置`slidingExpiration`过期时间间隔，参数和`absoluteExpiration`参数<xref:System.Web.Caching.Cache.NoAbsoluteExpiration>。  
+ 如果希望缓存项在自上次访问该项后经过一定时间之后过期, 请将`slidingExpiration`参数设置为过期时间间隔, `absoluteExpiration`并将参数设置为<xref:System.Web.Caching.Cache.NoAbsoluteExpiration>。  
   
    
   
 ## Examples  
- 下面的示例演示如何将其插入到您的应用程序时，分配项高优先级`Cache`对象。  
+ 下面的示例演示如何在将某个项插入到应用程序的`Cache`对象中时将该项分配高优先级。  
   
 > [!NOTE]
->  详细了解如何使用此方法替换<xref:System.Web.Caching.CacheItemRemovedCallback>委派，请参阅[如何：从缓存移除项时通知应用程序](https://msdn.microsoft.com/library/38c33aa0-afe9-40ba-a1a4-1ebab95286ef)。  
+>  有关如何将此方法与<xref:System.Web.Caching.CacheItemRemovedCallback>委托一起使用的详细信息, 请参阅[如何:从缓存](https://msdn.microsoft.com/library/38c33aa0-afe9-40ba-a1a4-1ebab95286ef)中删除项时通知应用程序。  
   
  [!code-csharp[Classic Cache.Insert3 Example#1](~/samples/snippets/csharp/VS_Snippets_WebNet/Classic Cache.Insert3 Example/CS/source.cs#1)]
  [!code-vb[Classic Cache.Insert3 Example#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/Classic Cache.Insert3 Example/VB/source.vb#1)]  
@@ -652,17 +652,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用此属性，检索指定的缓存项的值，或将注册表项和密钥为其添加到缓存。 添加的缓存项使用<xref:System.Web.Caching.Cache.Item%2A>属性相当于调用<xref:System.Web.Caching.Cache.Insert%2A?displayProperty=nameWithType>方法。  
+ 您可以使用此属性检索指定缓存项的值, 或者将项和项添加到缓存中。 使用<xref:System.Web.Caching.Cache.Item%2A>属性添加缓存项等效于<xref:System.Web.Caching.Cache.Insert%2A?displayProperty=nameWithType>调用方法。  
   
    
   
 ## Examples  
- 下面的示例使用`Item`属性来检索缓存的对象与关联的值`Key1`密钥。 然后，它使用<xref:System.Web.HttpResponse.Write%2A?displayProperty=nameWithType>方法以将值和介绍性文本和 B HTML 元素写入到 Web 窗体页。  
+ 下面的示例使用`Item`属性检索`Key1`与键关联的缓存对象的值。 然后, 它使用<xref:System.Web.HttpResponse.Write%2A?displayProperty=nameWithType>方法将值、介绍性文本和 B HTML 元素写入 Web 窗体页。  
   
  [!code-csharp[System.Web.Caching Examples#5](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Caching Examples/CS/cachecs.aspx#5)]
  [!code-vb[System.Web.Caching Examples#5](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Caching Examples/VB/cachevb.aspx#5)]  
   
- 下面的示例演示如何使用此属性向缓存中插入文本框的值。  
+ 下面的示例演示如何使用此属性将文本框的值插入缓存中。  
   
  [!code-csharp[Classic Cache.this Example#2](~/samples/snippets/csharp/VS_Snippets_WebNet/Classic Cache.this Example/CS/source.cs#2)]
  [!code-vb[Classic Cache.this Example#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/Classic Cache.this Example/VB/source.vb#2)]  
@@ -695,12 +695,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用时，此字段设置`absoluteExpiration`参数等于<xref:System.DateTime.MaxValue>，这是一个常量，表示最大可能`DateTime`值，12/31/9999 11:59:59 PM。  
+ 使用时, 此字段将`absoluteExpiration`参数设置为<xref:System.DateTime.MaxValue>等于, 这是表示最大可能`DateTime`值 12/31/9999 11:59:59 PM 的常数。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用`NoAbsoluteExpiration`字段中插入项时禁用绝对过期`Cache`。  
+ 下面的示例演示如何使用`NoAbsoluteExpiration`字段`Cache`在中插入项时禁用绝对过期。  
   
  [!code-csharp[Classic Cache.NoAbsoluteExpiration Example#1](~/samples/snippets/csharp/VS_Snippets_WebNet/Classic Cache.NoAbsoluteExpiration Example/CS/source.cs#1)]
  [!code-vb[Classic Cache.NoAbsoluteExpiration Example#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/Classic Cache.NoAbsoluteExpiration Example/VB/source.vb#1)]  
@@ -734,12 +734,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用时，此字段设置`slidingExpiration`参数<xref:System.TimeSpan.Zero?displayProperty=nameWithType>字段，常量值为零。 根据所使用的缓存的项过期`absoluteExpiration`参数与关联`Insert`或`Add`方法调用。  
+ 使用时, 此字段将`slidingExpiration`参数设置<xref:System.TimeSpan.Zero?displayProperty=nameWithType>为字段, 该字段的常量值为零。 缓存项会根据`absoluteExpiration` `Insert`与或`Add`方法调用关联的参数过期。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用 Insert 方法将项添加到<xref:System.Web.Caching.Cache>对象使用`NoSlidingExpiration`字段。  
+ 下面的示例演示如何使用 Insert 方法将项添加到<xref:System.Web.Caching.Cache> `NoSlidingExpiration`使用字段的对象。  
   
  [!code-csharp[Classic Cache.NoSlidingExpiration Example#1](~/samples/snippets/csharp/VS_Snippets_WebNet/Classic Cache.NoSlidingExpiration Example/CS/source.cs#1)]
  [!code-vb[Classic Cache.NoSlidingExpiration Example#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/Classic Cache.NoSlidingExpiration Example/VB/source.vb#1)]  
@@ -778,7 +778,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例创建`RemoveItemFromCache`方法。 调用此方法时，它使用<xref:System.Web.Caching.Cache.Item%2A>要检查缓存中是否包含与之关联的对象属性`Key1`密钥值。 如果是这样，`Remove`调用方法来删除该对象。  
+ 下面的示例创建一个`RemoveItemFromCache`方法。 调用此方法时, 它会使用<xref:System.Web.Caching.Cache.Item%2A>属性来检查缓存是否包含`Key1`与键值关联的对象。 如果是这样, `Remove`则调用方法以删除对象。  
   
  [!code-csharp[System.Web.Caching Examples#4](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Caching Examples/CS/cachecs.aspx#4)]
  [!code-vb[System.Web.Caching Examples#4](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Caching Examples/VB/cachevb.aspx#4)]  

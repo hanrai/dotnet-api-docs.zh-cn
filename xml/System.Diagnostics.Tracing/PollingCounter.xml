@@ -1,5 +1,5 @@
 <Type Name="PollingCounter" FullName="System.Diagnostics.Tracing.PollingCounter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="149d255e3083c662e921782c3d13596143acd145" /><Meta Name="ms.sourcegitcommit" Value="cfc0e4215fd0d259582ada2141878befd7c3c8c6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/12/2019" /><Meta Name="ms.locfileid" Value="67854976" /></Metadata><TypeSignature Language="C#" Value="public class PollingCounter : System.Diagnostics.Tracing.DiagnosticCounter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="de7fa120fc4ba761c0de31760a68875f6500e72c" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68539967" /></Metadata><TypeSignature Language="C#" Value="public class PollingCounter : System.Diagnostics.Tracing.DiagnosticCounter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit PollingCounter extends System.Diagnostics.Tracing.DiagnosticCounter" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.Tracing.PollingCounter" />
   <TypeSignature Language="VB.NET" Value="Public Class PollingCounter&#xA;Inherits DiagnosticCounter" />
@@ -15,14 +15,14 @@
   <Interfaces />
   <Docs>
     <summary>提供 <see cref="T:System.Diagnostics.Tracing.EventCounter" /> 的一个变体，用于收集类似的统计信息并将其计算为<see cref="T:System.Diagnostics.Tracing.EventCounter" />。</summary>
-      <remarks>  
-        <format type="text/markdown"><![CDATA[  
+    <remarks>
+      <format type="text/markdown"><![CDATA[  
 
-`PollingCounter` 不同于<see cref="T:System.Diagnostics.Tracing.EventCounter" />，它会将回调函数，以收集指标本身而不是要求用户调用<see cref="M:System.Diagnostics.Tracing.EventCounter.WriteMetric(System.Double)" />每次。
+`PollingCounter`与的不同之处在于, 它需要一个回调函数来自行收集指标, 而不是要求用户每次都调用<see cref="M:System.Diagnostics.Tracing.EventCounter.WriteMetric(System.Double)" />。 <see cref="T:System.Diagnostics.Tracing.EventCounter" />
 
       ]]></format>
-      </remarks>
-    </Docs>
+    </remarks>
+  </Docs>
   <Members>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public PollingCounter (string name, System.Diagnostics.Tracing.EventSource eventSource, Func&lt;double&gt; metricProvider);" />
@@ -45,13 +45,35 @@
         <param name="eventSource">事件源。</param>
         <param name="metricProvider">To be added.</param>
         <summary>初始化 <see cref="T:System.Diagnostics.Tracing.PollingCounter" /> 类的新实例。</summary>
-        <remarks>  
+        <remarks>
           <format type="text/markdown"><![CDATA[  
 
-轮询计数器 live，只要<see cref="T:System.Diagnostics.Tracing.EventSource" />，其附加到除非它们是显式释放。
+只要轮询计数器附加到的计数器<see cref="T:System.Diagnostics.Tracing.EventSource" /> , 这些计数器就会实时轮询。
 
         ]]></format>
         </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToString">
+      <MemberSignature Language="C#" Value="public override string ToString ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance string ToString() cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Diagnostics.Tracing.PollingCounter.ToString" />
+      <MemberSignature Language="VB.NET" Value="Public Overrides Function ToString () As String" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; override System::String ^ ToString();" />
+      <MemberSignature Language="F#" Value="override this.ToString : unit -&gt; string" Usage="pollingCounter.ToString " />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Diagnostics.Tracing</AssemblyName>
+        <AssemblyVersion>4.2.1.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
   </Members>

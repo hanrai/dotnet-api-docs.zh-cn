@@ -54,22 +54,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常不使用<xref:System.Windows.Forms.AxHost>直接类。 可以使用[Aximp.exe （Windows 窗体 ActiveX 控件导入程序）](~/docs/framework/tools/aximp-exe-windows-forms-activex-control-importer.md)生成扩展包装<xref:System.Windows.Forms.AxHost>。  
+ 通常不会直接使用<xref:System.Windows.Forms.AxHost>类。 可以使用[aximp.exe (Windows 窗体 ActiveX 控件导入程序)](~/docs/framework/tools/aximp-exe-windows-forms-activex-control-importer.md)来生成扩展<xref:System.Windows.Forms.AxHost>的包装。  
   
- ActiveX 控件导入程序将生成一个类派生自<xref:System.Windows.Forms.AxHost>类，并将它编译为可以作为对你的应用程序的引用添加的库文件 (DLL)。 或者，可以使用`/source`开关和 ActiveX 控件导入程序，为生成一个 C# 文件，你<xref:System.Windows.Forms.AxHost>派生的类。 然后可以对代码进行更改并重新编译为一个库文件。  
-  
-> [!NOTE]
->  如果 ActiveX 控件的成员的名称与.NET Framework 中定义的名称，则 ActiveX 控件导入程序将成员名称加上前缀"Ctl"时它会创建<xref:System.Windows.Forms.AxHost>派生的类。 例如，如果 ActiveX 控件有一个名为"布局"成员，就会重命名"CtlLayout"中的<xref:System.Windows.Forms.AxHost>派生类，因为`Layout`事件在.NET Framework 中定义。  
-  
- 大多数的常见属性的<xref:System.Windows.Forms.AxHost>类才有效，如果基础 ActiveX 控件公开这些属性使用。 下面是一些常用属性的示例<xref:System.Windows.Forms.Control.BackColor%2A>， <xref:System.Windows.Forms.Control.Cursor%2A>， <xref:System.Windows.Forms.Control.Font%2A>，和<xref:System.Windows.Forms.Control.Text%2A>。  
+ ActiveX 控件导入程序会生成一个派生自<xref:System.Windows.Forms.AxHost>类的类, 并将其编译为可作为引用添加到应用程序的库文件 (DLL)。 或者, 可以将`/source`开关与 ActiveX 控件导入程序一起使用, 并为C# <xref:System.Windows.Forms.AxHost>派生类生成文件。 然后, 您可以对代码进行更改, 然后将其重新编译为库文件。  
   
 > [!NOTE]
->  如果使用的 Visual Studio 作为您的 Windows 窗体设计环境，你可以提供 ActiveX 控件到你的应用程序通过将 ActiveX 控件添加到您的工具箱。 若要完成此操作，右键单击**工具箱**，选择**自定义工具箱**，然后浏览到 ActiveX 控件的.ocx 文件。 有关详细信息，请参阅 Visual Studio 文档中的"添加 ActiveX 控件向 Windows 窗体"。  
+>  如果 activex 控件的成员名称与 .NET Framework 中定义的名称相匹配, 则在创建<xref:System.Windows.Forms.AxHost>派生类时, activex 控件导入程序会在成员名称前加上 "Ctl" 作为前缀。 例如, 如果 ActiveX 控件有一个名为 "Layout" 的成员, 它将在<xref:System.Windows.Forms.AxHost>派生类中重命名为 "CtlLayout", 因为该事件是在 .NET Framework 中定义的。 `Layout`  
+  
+ 如果基础 ActiveX 控件公开这些属性<xref:System.Windows.Forms.AxHost> , 则该类的大多数公共属性都是有效的, 并且使用。 常见属性的几个<xref:System.Windows.Forms.Control.BackColor%2A>示例包括<xref:System.Windows.Forms.Control.Font%2A>、 <xref:System.Windows.Forms.Control.Cursor%2A>、和<xref:System.Windows.Forms.Control.Text%2A>。  
+  
+> [!NOTE]
+>  如果使用 Visual Studio 作为 Windows 窗体设计环境, 则可以通过将 ActiveX 控件添加到工具箱, 使 ActiveX 控件可用于应用程序。 若要实现此目的, 请右键单击 "**工具箱**", 选择 "**自定义工具箱**", 然后浏览到 ActiveX 控件的 .ocx 文件。 有关详细信息, 请参阅 Visual Studio 文档中的 "将 ActiveX 控件添加到 Windows 窗体"。  
   
    
   
 ## Examples  
- 下面的代码示例重写构造函数中，并<xref:System.Windows.Forms.AxHost.SetAboutBoxDelegate%2A>并<xref:System.Windows.Forms.AxHost.AttachInterfaces%2A>方法的<xref:System.Windows.Forms.AxHost>派生的类包装 Microsoft 屏蔽编辑 ActiveX 控件。 此代码需要通过运行 AxImp.exe MSMask32.ocx 文件上创建了生成的源代码`/source`开关来生成包装器类，以便对其进行编辑。 此代码仅显示 C# 语法因为这是唯一的语言输出由 AxImp.exe。  
+ 下面的代码示例将重写构造函数, <xref:System.Windows.Forms.AxHost.SetAboutBoxDelegate%2A>以及<xref:System.Windows.Forms.AxHost.AttachInterfaces%2A>包装 Microsoft 掩码<xref:System.Windows.Forms.AxHost>编辑 ActiveX 控件的派生类的和方法。 此代码要求你已创建生成的源代码, 方法是在 MSMask32 文件上运行 aximp.exe, 并使用`/source`开关生成要编辑的包装类。 此代码仅在语法中C#显示, 因为这是 aximp.exe 所输出的唯一语言。  
   
  [!code-csharp[AxHost_Wrap_MaskEdit#1](~/samples/snippets/csharp/VS_Snippets_Winforms/AxHost_Wrap_MaskEdit/CS/axmsmask.cs#1)]  
   
@@ -142,9 +142,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果的二进制表示形式`flags`参数值包含表示值 0x1 的位，将不包含该控件的快捷菜单**编辑**选项，除非该 ActiveX 控件显式提供了它。  
+ 如果`flags`参数值的二进制表示形式包含值0x1 表示的位, 则该控件的快捷菜单将不包含**编辑**选项, 除非 ActiveX 控件显式提供该选项。  
   
- 如果的二进制表示形式`flags`参数值包含表示值 0x2 的位，该控件的快捷菜单将包含属性选项，如果 ActiveX 控件提供了一组属性页; 否则为快捷菜单将包含属性选项，仅当 ActiveX 控件显式提供。  
+ 如果`flags`参数值的二进制表示形式包含值0x2 所表示的位, 则当 ActiveX 控件提供一组属性页时, 该控件的快捷菜单将包含一个属性选项; 否则, 快捷菜单仅当 ActiveX 控件显式提供属性选项时, 才会包含该选项。  
   
  ]]></format>
         </remarks>
@@ -174,13 +174,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例重写构造函数中，并<xref:System.Windows.Forms.AxHost.SetAboutBoxDelegate%2A>并<xref:System.Windows.Forms.AxHost.AttachInterfaces%2A>方法的<xref:System.Windows.Forms.AxHost>派生的类包装 Microsoft 屏蔽编辑 ActiveX 控件。 此代码需要通过运行 AxImp.exe MSMask32.ocx 文件上创建了生成的源代码`/source`开关来生成包装器类，以便对其进行编辑。 此代码仅显示 C# 语法因为这是唯一的语言输出由 AxImp.exe。  
+ 下面的代码示例将重写构造函数, <xref:System.Windows.Forms.AxHost.SetAboutBoxDelegate%2A>以及<xref:System.Windows.Forms.AxHost.AttachInterfaces%2A>包装 Microsoft 掩码<xref:System.Windows.Forms.AxHost>编辑 ActiveX 控件的派生类的和方法。 此代码要求你已创建生成的源代码, 方法是在 MSMask32 文件上运行 aximp.exe, 并使用`/source`开关生成要编辑的包装类。 此代码仅在语法中C#显示, 因为这是 aximp.exe 所输出的唯一语言。  
   
  [!code-csharp[AxHost_Wrap_MaskEdit#1](~/samples/snippets/csharp/VS_Snippets_Winforms/AxHost_Wrap_MaskEdit/CS/axmsmask.cs#1)]  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>扩展的类<see cref="T:System.Windows.Forms.AxHost" />应重写此方法。 扩展的类应调用此方法的重写版本，在<see cref="M:System.Windows.Forms.AxHost.GetOcx" />要检索其自己的界面。 在大多数情况下，<see cref="M:System.Windows.Forms.AxHost.GetOcx" />调用此方法之前，不应调用方法。</para></block>
+        <block subset="none" type="overrides"><para>扩展<see cref="T:System.Windows.Forms.AxHost" />的类应重写此方法。 在此方法的重写版本中, 扩展类应调用<see cref="M:System.Windows.Forms.AxHost.GetOcx" />来检索其自己的接口。 在大多数情况下, <see cref="M:System.Windows.Forms.AxHost.GetOcx" />不应在调用此方法之前调用方法。</para></block>
         <altmember cref="M:System.Windows.Forms.AxHost.GetOcx" />
       </Docs>
     </Member>
@@ -246,7 +246,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.BackColorChanged>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.BackColorChanged>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -317,7 +317,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.BackgroundImageChanged>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.BackgroundImageChanged>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -417,7 +417,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设计环境通常使用此方法开始初始化在窗体上使用或由另一个组件使用的组件。 <xref:System.Windows.Forms.AxHost.EndInit%2A>方法结束初始化。 使用<xref:System.Windows.Forms.AxHost.BeginInit%2A>和<xref:System.Windows.Forms.AxHost.EndInit%2A>方法可以防止该控件完全初始化之前使用。 初始化发生在运行时。  
+ 通常, 设计环境使用此方法来开始初始化在窗体上使用或由另一个组件使用的组件。 <xref:System.Windows.Forms.AxHost.EndInit%2A>方法结束初始化。 <xref:System.Windows.Forms.AxHost.BeginInit%2A>使用和<xref:System.Windows.Forms.AxHost.EndInit%2A>方法可防止控件在完全初始化之前被使用。 初始化发生在运行时。  
   
  ]]></format>
         </remarks>
@@ -455,7 +455,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.BindingContextChanged>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.BindingContextChanged>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -492,7 +492,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.ChangeUICues>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.ChangeUICues>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -529,7 +529,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.Click>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.Click>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -573,11 +573,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.AxHost.ContainingControl%2A>属性值可以不同于<xref:System.Windows.Forms.Control.Parent%2A>属性。 <xref:System.Windows.Forms.ContainerControl>表示此属性是 ActiveX 控件的逻辑容器。 例如，如果 ActiveX 控件承载于<xref:System.Windows.Forms.GroupBox>控件，并<xref:System.Windows.Forms.GroupBox>上包含<xref:System.Windows.Forms.Form>，则<xref:System.Windows.Forms.AxHost.ContainingControl%2A>ActiveX 控件的属性值是<xref:System.Windows.Forms.Form>，和<xref:System.Windows.Forms.Control.Parent%2A>属性值是<xref:System.Windows.Forms.GroupBox>控件。  
+ 属性值可以<xref:System.Windows.Forms.Control.Parent%2A>与属性不同。 <xref:System.Windows.Forms.AxHost.ContainingControl%2A> 此<xref:System.Windows.Forms.ContainerControl>属性表示的是 ActiveX 控件的逻辑容器。 例如, 如果 activex 控件<xref:System.Windows.Forms.GroupBox>承载于控件中, <xref:System.Windows.Forms.GroupBox>并且包含在上<xref:System.Windows.Forms.Form>, 则该 activex 控件的<xref:System.Windows.Forms.AxHost.ContainingControl%2A> <xref:System.Windows.Forms.Control.Parent%2A>属性值为<xref:System.Windows.Forms.Form>, 且属性值为<xref:System.Windows.Forms.GroupBox>控件。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要获取此属性的值的所有窗口。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">对于所有窗口, 获取此属性值。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
         <altmember cref="T:System.Windows.Forms.Form" />
       </Docs>
     </Member>
@@ -643,7 +643,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.ContextMenuChanged>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.ContextMenuChanged>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -820,7 +820,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.CursorChanged>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.CursorChanged>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -845,7 +845,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取控件的默认大小。</summary>
-        <value>控件的默认 <see cref="T:System.Drawing.Size" />。</value>
+        <value>控件的默认 <see cref="T:System.Drawing.Size" /> 。</value>
         <remarks>To be added.</remarks>
         <altmember cref="P:System.Windows.Forms.Control.DefaultSize" />
       </Docs>
@@ -930,7 +930,7 @@
         <Parameter Name="disposing" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+        <param name="disposing"><see langword="true" /> 表示释放托管资源和非托管资源；<see langword="false" /> 表示仅释放非托管资源。</param>
         <summary>释放由 <see cref="T:System.Windows.Forms.Control" /> 和它的子控件占用的非托管资源，另外还可以释放托管资源。</summary>
         <remarks>To be added.</remarks>
         <altmember cref="M:System.Windows.Forms.Control.Dispose(System.Boolean)" />
@@ -967,7 +967,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.DoubleClick>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.DoubleClick>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -1000,7 +1000,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将传递到指定的谓词[IOleObject::DoVerb](https://go.microsoft.com/fwlink/?LinkId=166076)托管控件的方法。  
+ 此方法将指定的谓词传递给寄宿控件的[IOleObject::D overb](https://go.microsoft.com/fwlink/?LinkId=166076)方法。  
   
  ]]></format>
         </remarks>
@@ -1039,7 +1039,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.DragDrop>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.DragDrop>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -1076,7 +1076,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.DragEnter>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.DragEnter>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -1113,7 +1113,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.DragLeave>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.DragLeave>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -1150,7 +1150,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.DragOver>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.DragOver>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -1284,7 +1284,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.EnabledChanged>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.EnabledChanged>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -1322,7 +1322,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设计环境通常使用此方法完成初始化在窗体上使用或由另一个组件使用的组件。 <xref:System.Windows.Forms.AxHost.EndInit%2A>方法结束初始化。 使用<xref:System.Windows.Forms.AxHost.BeginInit%2A>和<xref:System.Windows.Forms.AxHost.EndInit%2A>方法可以防止该控件完全初始化之前使用。 初始化发生在运行时。  
+ 通常, 设计环境使用此方法来完成在窗体上使用或由另一个组件使用的组件的初始化。 <xref:System.Windows.Forms.AxHost.EndInit%2A>方法结束初始化。 <xref:System.Windows.Forms.AxHost.BeginInit%2A>使用和<xref:System.Windows.Forms.AxHost.EndInit%2A>方法可防止控件在完全初始化之前被使用。 初始化发生在运行时。  
   
  ]]></format>
         </remarks>
@@ -1391,7 +1391,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.FontChanged>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.FontChanged>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -1459,7 +1459,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.ForeColorChanged>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.ForeColorChanged>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -1597,7 +1597,7 @@
         <summary>返回从指定的 <see cref="T:System.Drawing.Font" /> 对象创建的 OLE [IFontDisp](https://go.microsoft.com/fwlink/?LinkId=166073) 对象。</summary>
         <returns>从指定字体创建的 <see href="https://msdn.microsoft.com/library/ms692695(VS.85).aspx">IFontDisp</see> 对象；如果 <paramref name="font" /> 为 <see langword="null" />，则为 <see langword="null" />。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentException"><see cref="P:System.Drawing.Font.Unit" />属性值不是<see cref="F:System.Drawing.GraphicsUnit.Point" />。</exception>
+        <exception cref="T:System.ArgumentException"><see cref="P:System.Drawing.Font.Unit" /> 属性值不为 <see cref="F:System.Drawing.GraphicsUnit.Point" />。</exception>
         <altmember cref="T:System.Drawing.Font" />
         <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkId=166073">IFontDisp</related>
       </Docs>
@@ -1631,7 +1631,7 @@
         <summary>返回从指定的 <see cref="T:System.Drawing.Font" /> 对象创建的 OLE [IFont](https://go.microsoft.com/fwlink/?LinkId=166075) 对象。</summary>
         <returns>从指定字体创建的 <see href="https://docs.microsoft.com/windows/desktop/api/ocidl/nn-ocidl-ifont">IFont</see> 对象；如果 <paramref name="font" /> 为 <see langword="null" />，则为 <see langword="null" />；或无法创建 [IFont](https://go.microsoft.com/fwlink/?LinkId=166075) 对象。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentException"><see cref="P:System.Drawing.Font.Unit" />属性值不是<see cref="F:System.Drawing.GraphicsUnit.Point" />。</exception>
+        <exception cref="T:System.ArgumentException"><see cref="P:System.Drawing.Font.Unit" /> 属性值不为 <see cref="F:System.Drawing.GraphicsUnit.Point" />。</exception>
         <altmember cref="T:System.Drawing.Font" />
         <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkId=166075">IFont</related>
       </Docs>
@@ -1762,11 +1762,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 其值是从午夜，1899 年 12 月 30 天的数的浮点数形式实现的 OLE 自动化日期。 例如，午夜 1899 年 12 月 31 日由表示 1.0;上午 6 时，由 2.25; 表示 1900 年 1 月 1午夜 1899 年 12 月 29 为由-1.0;和上午 6 到 1899 年 12 月 29-1.25 由表示。  
+ OLE 自动化日期是作为浮点数实现的, 其值为从1899年12月30日午夜算起的天数。 例如, 1899 年12月31日午夜1.0 表示,6 A.M., 1 月 1 1900 日表示, 2.25;1899年12月29日午夜表示-1.0;和6月6日上午 6 1899, 表示为-1.25。  
   
- 基础 OLE 自动化日期是 1899 年 12 月 30 日午夜。 最大的 OLE 自动化日期等同于<xref:System.DateTime.MaxValue>、 31 年 12 月的那一刻 9999。  
+ 基础 OLE 自动化日期为1899年12月30日。 最大 OLE 自动化日期与9999年 12 <xref:System.DateTime.MaxValue>月31日最后一刻的日期相同。  
   
- 有关 OLE 自动化的详细信息，请参阅[MSDN 库](https://go.microsoft.com/fwlink/?linkid=37118)。  
+ 有关 OLE 自动化的详细信息, 请参阅[MSDN library](https://go.microsoft.com/fwlink/?linkid=37118)。  
   
  ]]></format>
         </remarks>
@@ -1803,7 +1803,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例重写构造函数中，并<xref:System.Windows.Forms.AxHost.SetAboutBoxDelegate%2A>并<xref:System.Windows.Forms.AxHost.AttachInterfaces%2A>方法的<xref:System.Windows.Forms.AxHost>派生的类包装 Microsoft 屏蔽编辑 ActiveX 控件。 此代码需要通过运行 AxImp.exe MSMask32.ocx 文件上创建了生成的源代码`/source`开关来生成包装器类，以便对其进行编辑。 此代码仅显示 C# 语法因为这是唯一的语言输出由 AxImp.exe。  
+ 下面的代码示例将重写构造函数, <xref:System.Windows.Forms.AxHost.SetAboutBoxDelegate%2A>以及<xref:System.Windows.Forms.AxHost.AttachInterfaces%2A>包装 Microsoft 掩码<xref:System.Windows.Forms.AxHost>编辑 ActiveX 控件的派生类的和方法。 此代码要求你已创建生成的源代码, 方法是在 MSMask32 文件上运行 aximp.exe, 并使用`/source`开关生成要编辑的包装类。 此代码仅在语法中C#显示, 因为这是 aximp.exe 所输出的唯一语言。  
   
  [!code-csharp[AxHost_Wrap_MaskEdit#1](~/samples/snippets/csharp/VS_Snippets_Winforms/AxHost_Wrap_MaskEdit/CS/axmsmask.cs#1)]  
   
@@ -1880,7 +1880,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用此方法来转换`IPictureDisp`对象除了`IPicture`对象。 这样做的原因`IPictureDisp`OLE 接口是的子集`IPicture`接口。 转换`IPictureDisp`使用此方法的对象是必需因为<xref:System.Windows.Forms.AxHost.GetPictureFromIPictureDisp%2A>此时无法正常工作。  
+ 除了对象之外, 还可以使用`IPictureDisp`此方法转换对象。 `IPicture` 这是因为`IPictureDisp` OLE 接口是`IPicture`接口的子集。 使用`IPictureDisp`此方法转换对象是必需的<xref:System.Windows.Forms.AxHost.GetPictureFromIPictureDisp%2A> , 因为此时不能正常工作。  
   
  ]]></format>
         </remarks>
@@ -1919,7 +1919,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法无法正常工作。 可以使用<xref:System.Windows.Forms.AxHost.GetPictureFromIPicture%2A>方法将转换`IPictureDisp`对象插入<xref:System.Drawing.Image>，但是，因为`IPictureDisp`OLE 接口是的子集`IPicture`接口。  
+ 此方法不能正常工作。 但是, 可以使用<xref:System.Windows.Forms.AxHost.GetPictureFromIPicture%2A>方法`IPictureDisp`将对象<xref:System.Drawing.Image>转换为, 因为`IPictureDisp` OLE 接口是`IPicture`接口的子集。  
   
  ]]></format>
         </remarks>
@@ -1962,7 +1962,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ActiveX 控件扩展本身，因此此方法不执行任何特殊的计算，将忽略`factor`并`specified`值，并返回`bounds`值保持不变。  
+ ActiveX 控件自行缩放, 因此此方法不执行任何特殊计算, 忽略`factor`和`specified`值, 并返回未更改的`bounds`值。  
   
  ]]></format>
         </remarks>
@@ -2001,11 +2001,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `date`参数是的双精度浮点数，它将日期表示的基日期，1899 年 12 月 30 日午夜之前或之后的天数。 符号和整数部分`date`编码日期为正或负天的偏移量从 30 1899 年 12 月和值的小数部分的绝对值`date`将编码为天从午夜的偏移量的一小部分的时间。 `date` 必须是介于负 657435.0 到正 2958466.0 之间的值。  
+ `date`参数是一个双精度浮点数, 表示日期作为基准日期早于或晚于1899年12月30日的天数。 的`date`符号和整数部分将日期编码为从30年 12 1899 月30日起的正数或负数次偏移, 并`date`将一天中的时间编码为从午夜开始进行日置换的一小部分。 `date`必须是介于负657435.0 到正2958466.0 之间的值。  
   
- 请注意，由于日期进行编码的方式，有两种方法来表示任何时间的 30 1899 年 12 月。 例如，-0.5，0.5 意味着中午 1899 年 12 月 30 天的偏移量加或减基零天仍然是基本的日期，因此从午夜的半天位移是中午。  
+ 请注意, 由于编码日期的方式, 有两种方法可以表示一天中的任何时间 (1899 年12月30日)。 例如,-0.5 和0.5 都表示30年 12 1899 月30日, 因为从基准日期算起的加减或减零天数仍是基准日期, 而从午夜开始的半天置换为中午。  
   
- 有关 OLE 自动化的详细信息，请参阅[MSDN 库](https://go.microsoft.com/fwlink/?linkid=37118)。  
+ 有关 OLE 自动化的详细信息, 请参阅[MSDN library](https://go.microsoft.com/fwlink/?linkid=37118)。  
   
  ]]></format>
         </remarks>
@@ -2043,7 +2043,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.GiveFeedback>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.GiveFeedback>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -2079,17 +2079,17 @@
       </ReturnValue>
       <Docs>
         <summary>获取一个值，该值指示 ActiveX 控件是否拥有“关于”对话框。</summary>
-        <value><see langword="true" /> 如果 ActiveX 控件拥有**有关**对话框中; 否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果 ActiveX 控件具有 "**关于**" 对话框, 则为;否则为<see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- **有关**对话框通常会显示 ActiveX 控件版本和版权信息。  
+ "**关于**" 对话框通常显示有关 ActiveX 控件的版本和版权信息。  
   
    
   
 ## Examples  
- 下面的代码示例重写构造函数中，并<xref:System.Windows.Forms.AxHost.SetAboutBoxDelegate%2A>并<xref:System.Windows.Forms.AxHost.AttachInterfaces%2A>方法的<xref:System.Windows.Forms.AxHost>派生的类包装 Microsoft 屏蔽编辑 ActiveX 控件。 此代码需要通过运行 AxImp.exe MSMask32.ocx 文件上创建了生成的源代码`/source`开关来生成包装器类，以便对其进行编辑。 此代码仅显示 C# 语法因为这是唯一的语言输出由 AxImp.exe。  
+ 下面的代码示例将重写构造函数, <xref:System.Windows.Forms.AxHost.SetAboutBoxDelegate%2A>以及<xref:System.Windows.Forms.AxHost.AttachInterfaces%2A>包装 Microsoft 掩码<xref:System.Windows.Forms.AxHost>编辑 ActiveX 控件的派生类的和方法。 此代码要求你已创建生成的源代码, 方法是在 MSMask32 文件上运行 aximp.exe, 并使用`/source`开关生成要编辑的包装类。 此代码仅在语法中C#显示, 因为这是 aximp.exe 所输出的唯一语言。  
   
  [!code-csharp[AxHost_Wrap_MaskEdit#1](~/samples/snippets/csharp/VS_Snippets_Winforms/AxHost_Wrap_MaskEdit/CS/axmsmask.cs#1)]  
   
@@ -2125,7 +2125,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 属性页允许 ActiveX 控件用户可以查看和更改 ActiveX 控件属性。 通过调用控件的属性对话框中，其中包含一个或多个属性页提供用于查看和编辑控件属性的自定义的图形界面访问这些属性。  
+ 属性页允许 ActiveX 控件用户查看和更改 ActiveX 控件属性。 可以通过调用 "控件属性" 对话框来访问这些属性, 其中包含一个或多个属性页, 它们提供自定义的图形界面, 可用于查看和编辑控件属性。  
   
  ]]></format>
         </remarks>
@@ -2163,7 +2163,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.HelpRequested>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.HelpRequested>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -2233,7 +2233,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.ImeModeChanged>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.ImeModeChanged>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -2295,13 +2295,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.AxHost.IsInputChar%2A>窗口消息预处理，以确定给定的输入的字符是否应经过预处理，或直接发送到 ActiveX 控件过程中调用方法。 字符的预处理包括检查的字符是否另一个控件的助记键。  
+ 在窗口消息预处理过程中调用方法,以确定给定的输入字符是否应经过预处理或直接发送到ActiveX控件。<xref:System.Windows.Forms.AxHost.IsInputChar%2A> 字符的预处理包括检查字符是否为另一个控件的助记键。  
   
- 在中实现<xref:System.Windows.Forms.AxHost>类，<xref:System.Windows.Forms.AxHost.IsInputChar%2A>方法始终返回`true`，因此指定的字符将直接发送到 ActiveX 控件。  
+ 在<xref:System.Windows.Forms.AxHost>类中实现时<xref:System.Windows.Forms.AxHost.IsInputChar%2A> , 方法始终返回`true`, 因此指定字符将直接发送到 ActiveX 控件。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">有关继承的类来调用此方法的所有窗口。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">用于继承类的所有窗口以调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
         <altmember cref="M:System.Windows.Forms.Control.IsInputKey(System.Windows.Forms.Keys)" />
       </Docs>
     </Member>
@@ -2336,7 +2336,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.KeyDown>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.KeyDown>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -2373,7 +2373,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.KeyPress>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.KeyPress>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -2410,7 +2410,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.KeyUp>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.KeyUp>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -2447,7 +2447,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.Layout>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.Layout>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -2570,7 +2570,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.MouseDown>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.MouseDown>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -2607,7 +2607,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.MouseEnter>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.MouseEnter>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -2644,7 +2644,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.MouseHover>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.MouseHover>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -2681,7 +2681,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.MouseLeave>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.MouseLeave>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -2718,7 +2718,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.MouseMove>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.MouseMove>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -2755,7 +2755,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.MouseUp>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.MouseUp>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -2792,7 +2792,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.MouseWheel>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.MouseWheel>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -2836,11 +2836,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Windows.Forms.AxHost.OcxState%2A>属性来创建该控件之后但在显示之前。 中返回基础 ActiveX 控件的持久的状态<xref:System.Windows.Forms.AxHost.State>。  
+ 在创建控件之后<xref:System.Windows.Forms.AxHost.OcxState%2A>但在显示控件之前, 将使用属性的值。 基础 ActiveX 控件的持久状态在中<xref:System.Windows.Forms.AxHost.State>返回。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Exception">已加载的 ActiveX 控件。</exception>
+        <exception cref="T:System.Exception">已经加载了 ActiveX 控件。</exception>
         <altmember cref="T:System.Windows.Forms.AxHost.State" />
         <altmember cref="M:System.Windows.Forms.AxHost.GetOcx" />
       </Docs>
@@ -3046,7 +3046,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.Paint>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.Paint>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -3195,7 +3195,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.QueryAccessibilityHelp>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.QueryAccessibilityHelp>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -3232,7 +3232,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.QueryContinueDrag>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.QueryContinueDrag>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -3663,7 +3663,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.RightToLeftChanged>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.RightToLeftChanged>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -3696,18 +3696,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.AxHost.SetAboutBoxDelegate%2A>方法还允许派生的类来处理<xref:System.Windows.Forms.AxHost.ShowAboutBox%2A>不附加委托的方法。 这是处理的首选的技术<xref:System.Windows.Forms.AxHost.ShowAboutBox%2A>派生类中的方法。  
+ 方法还允许派生类<xref:System.Windows.Forms.AxHost.ShowAboutBox%2A>处理方法而无需附加委托。 <xref:System.Windows.Forms.AxHost.SetAboutBoxDelegate%2A> 这是在派生类中处理<xref:System.Windows.Forms.AxHost.ShowAboutBox%2A>方法的首选方法。  
   
    
   
 ## Examples  
- 下面的代码示例重写构造函数中，并<xref:System.Windows.Forms.AxHost.SetAboutBoxDelegate%2A>并<xref:System.Windows.Forms.AxHost.AttachInterfaces%2A>方法的<xref:System.Windows.Forms.AxHost>派生的类包装 Microsoft 屏蔽编辑 ActiveX 控件。 此代码需要通过运行 AxImp.exe MSMask32.ocx 文件上创建了生成的源代码`/source`开关来生成包装器类，以便对其进行编辑。 此代码仅显示 C# 语法因为这是唯一的语言输出由 AxImp.exe。  
+ 下面的代码示例将重写构造函数, <xref:System.Windows.Forms.AxHost.SetAboutBoxDelegate%2A>以及<xref:System.Windows.Forms.AxHost.AttachInterfaces%2A>包装 Microsoft 掩码<xref:System.Windows.Forms.AxHost>编辑 ActiveX 控件的派生类的和方法。 此代码要求你已创建生成的源代码, 方法是在 MSMask32 文件上运行 aximp.exe, 并使用`/source`开关生成要编辑的包装类。 此代码仅在语法中C#显示, 因为这是 aximp.exe 所输出的唯一语言。  
   
  [!code-csharp[AxHost_Wrap_MaskEdit#1](~/samples/snippets/csharp/VS_Snippets_Winforms/AxHost_Wrap_MaskEdit/CS/axmsmask.cs#1)]  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Windows.Forms.AxHost.SetAboutBoxDelegate(System.Windows.Forms.AxHost.AboutBoxDelegate)" />在派生类中，请务必调用基类的<see cref="M:System.Windows.Forms.AxHost.SetAboutBoxDelegate(System.Windows.Forms.AxHost.AboutBoxDelegate)" />方法，以便已注册的委托接收<see cref="M:System.Windows.Forms.AxHost.ShowAboutBox" />方法。</para></block>
+        <block subset="none" type="overrides"><para>当在<see cref="M:System.Windows.Forms.AxHost.SetAboutBoxDelegate(System.Windows.Forms.AxHost.AboutBoxDelegate)" />派生类中重写时, 请确保调用基类的<see cref="M:System.Windows.Forms.AxHost.SetAboutBoxDelegate(System.Windows.Forms.AxHost.AboutBoxDelegate)" />方法, 以便注册<see cref="M:System.Windows.Forms.AxHost.ShowAboutBox" />的委托接收方法。</para></block>
         <altmember cref="P:System.Windows.Forms.AxHost.HasAboutBox" />
         <altmember cref="M:System.Windows.Forms.AxHost.ShowAboutBox" />
         <altmember cref="T:System.Windows.Forms.AxHost.AboutBoxDelegate" />
@@ -3769,7 +3769,7 @@
         <Parameter Name="value" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="value"><see langword="true" /> 表示使控件可见；<see langword="false" /> 表示使控件不可见。</param>
+        <param name="value"><see langword="true" /> 表示使控件可见； <see langword="false" />表示使控件不可见。</param>
         <summary>将控件设置为指定的可见状态。</summary>
         <remarks>To be added.</remarks>
         <altmember cref="M:System.Windows.Forms.Control.SetVisibleCore(System.Boolean)" />
@@ -3799,7 +3799,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Windows.Forms.AxHost.HasAboutBox%2A>是`false`，无**有关**显示对话框。  
+ 如果<xref:System.Windows.Forms.AxHost.HasAboutBox%2A> 为`false`, 则不显示 "**关于**" 对话框。  
   
  ]]></format>
         </remarks>
@@ -3841,9 +3841,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Windows.Forms.AxHost.HasPropertyPages%2A>是`false`，未显示任何属性页。  
+ 如果<xref:System.Windows.Forms.AxHost.HasPropertyPages%2A> 为`false`, 则不显示任何属性页。  
   
- 属性页允许 ActiveX 控件用户可以查看和更改 ActiveX 控件属性。 通过调用控件的属性对话框中，其中包含一个或多个属性页提供用于查看和编辑控件属性的自定义的图形界面访问这些属性。  
+ 属性页允许 ActiveX 控件用户查看和更改 ActiveX 控件属性。 可以通过调用 "控件属性" 对话框来访问这些属性, 其中包含一个或多个属性页, 它们提供自定义的图形界面, 可用于查看和编辑控件属性。  
   
  ]]></format>
         </remarks>
@@ -3876,9 +3876,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Windows.Forms.AxHost.HasPropertyPages%2A>是`false`，未显示任何属性页。  
+ 如果<xref:System.Windows.Forms.AxHost.HasPropertyPages%2A> 为`false`, 则不显示任何属性页。  
   
- 属性页允许 ActiveX 控件用户可以查看和更改 ActiveX 控件属性。 通过调用控件的属性对话框中，其中包含一个或多个属性页提供用于查看和编辑控件属性的自定义的图形界面访问这些属性。  
+ 属性页允许 ActiveX 控件用户查看和更改 ActiveX 控件属性。 可以通过调用 "控件属性" 对话框来访问这些属性, 其中包含一个或多个属性页, 它们提供自定义的图形界面, 可用于查看和编辑控件属性。  
   
  ]]></format>
         </remarks>
@@ -3941,7 +3941,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.StyleChanged>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.StyleChanged>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>
@@ -4010,7 +4010,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用类型名称而不是值的<xref:System.Windows.Forms.AxHost.System%23ComponentModel%23ICustomTypeDescriptor%23GetClassName%2A>方法返回。  
+ 使用类型名称, <xref:System.Windows.Forms.AxHost.System%23ComponentModel%23ICustomTypeDescriptor%23GetClassName%2A>而不是该方法返回的值。  
   
  ]]></format>
         </remarks>
@@ -4048,7 +4048,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用默认名称，而不是值的<xref:System.Windows.Forms.AxHost.System%23ComponentModel%23ICustomTypeDescriptor%23GetComponentName%2A>方法返回。  
+ 使用默认名称, <xref:System.Windows.Forms.AxHost.System%23ComponentModel%23ICustomTypeDescriptor%23GetComponentName%2A>而不是该方法返回的值。  
   
  ]]></format>
         </remarks>
@@ -4086,7 +4086,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 而不是值使用默认类型转换器的<xref:System.Windows.Forms.AxHost.System%23ComponentModel%23ICustomTypeDescriptor%23GetConverter%2A>方法返回。  
+ 使用默认类型转换器, 而不是该<xref:System.Windows.Forms.AxHost.System%23ComponentModel%23ICustomTypeDescriptor%23GetConverter%2A>方法返回的值。  
   
  ]]></format>
         </remarks>
@@ -4500,7 +4500,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你尝试添加或删除的处理程序<xref:System.Windows.Forms.AxHost.TextChanged>事件，<xref:System.NotSupportedException>引发。 事件派生自<xref:System.Windows.Forms.Control>类不支持的<xref:System.Windows.Forms.AxHost>类。 公开 ActiveX 事件控制何时<xref:System.Windows.Forms.AxHost>创建包装器是应使用的事件。  
+ 如果尝试添加或移除<xref:System.Windows.Forms.AxHost.TextChanged>事件的处理程序<xref:System.NotSupportedException> , 则会引发。 <xref:System.Windows.Forms.AxHost>类不支持派生自<xref:System.Windows.Forms.Control>类的事件。 创建<xref:System.Windows.Forms.AxHost>包装时, ActiveX 控件公开的事件是应使用的事件。  
   
  ]]></format>
         </remarks>

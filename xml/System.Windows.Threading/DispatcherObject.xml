@@ -15,26 +15,26 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>表示与关联的对象<see cref="T:System.Windows.Threading.Dispatcher" />。</summary>
+    <summary>表示与 <see cref="T:System.Windows.Threading.Dispatcher" /> 关联的对象。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 仅在线程的<xref:System.Windows.Threading.DispatcherObject.Dispatcher%2A>创建在可访问<xref:System.Windows.Threading.DispatcherObject>直接。  访问<xref:System.Windows.Threading.DispatcherObject>从线程以外的线程<xref:System.Windows.Threading.DispatcherObject>已创建，调用<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>上<xref:System.Windows.Threading.Dispatcher><xref:System.Windows.Threading.DispatcherObject>与相关联。  
+ 只有创建的线程<xref:System.Windows.Threading.DispatcherObject.Dispatcher%2A>才能<xref:System.Windows.Threading.DispatcherObject>直接访问。  若要<xref:System.Windows.Threading.DispatcherObject>从创建的线程以外<xref:System.Windows.Threading.DispatcherObject>的线程访问<xref:System.Windows.Threading.Dispatcher> , 请调用<xref:System.Windows.Threading.Dispatcher.Invoke%2A>上的或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>与关联的<xref:System.Windows.Threading.DispatcherObject> 。  
   
- 子类<xref:System.Windows.Threading.DispatcherObject>，需要强制执行线程安全可以这么做通过调用<xref:System.Windows.Threading.DispatcherObject.VerifyAccess%2A>上所有公共方法。  这可确保调用线程是线程的<xref:System.Windows.Threading.DispatcherObject>上创建。  
+ 需要强制执行线程安全的子类可以通过调用<xref:System.Windows.Threading.DispatcherObject.VerifyAccess%2A>所有公共方法来实现此目的。 <xref:System.Windows.Threading.DispatcherObject>  这可保证调用线程是在其上创建<xref:System.Windows.Threading.DispatcherObject>的线程。  
   
- 一个<xref:System.Windows.Threading.DispatcherObject>无法独立地实例化; 也就是说，保护所有构造函数。  
+ <xref:System.Windows.Threading.DispatcherObject>不能单独实例化; 即, 所有构造函数都受到保护。  
   
- 从派生的对象<xref:System.Windows.Threading.DispatcherObject>具有线程关联。  
+ 派生自<xref:System.Windows.Threading.DispatcherObject>的对象具有线程关联。  
   
- 从派生的对象<xref:System.Windows.Freezable>是自由线程时被冻结。  有关详细信息，请参阅 [Freezable 对象概述](~/docs/framework/wpf/advanced/freezable-objects-overview.md)。  
+ 从<xref:System.Windows.Freezable>派生的对象在被冻结时是自由线程的。  有关详细信息，请参阅 [Freezable 对象概述](~/docs/framework/wpf/advanced/freezable-objects-overview.md)。  
   
  ]]></format>
     </remarks>
-    <threadsafe>任何公共<see langword="static" />此类型的成员是线程安全。 但不保证所有实例成员都是线程安全的。  
+    <threadsafe>此类型<see langword="static" />的任何公共成员都是线程安全的。 但不保证所有实例成员都是线程安全的。  
   
-此对象可以仅从其创建的线程访问。 尝试从其他线程访问它将引发<see cref="T:System.InvalidOperationException" />。 <see cref="M:System.Windows.Threading.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority,System.Delegate)" /> 或<see cref="M:System.Windows.Threading.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority,System.Delegate)" />封送到正确的线程的工作提供支持。</threadsafe>
+只能从创建此对象的线程访问此对象。 尝试从其他线程访问它将引发<see cref="T:System.InvalidOperationException" />。 <see cref="M:System.Windows.Threading.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority,System.Delegate)" />或者<see cref="M:System.Windows.Threading.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority,System.Delegate)" />向正确的线程提供对封送处理工作的支持。</threadsafe>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -78,24 +78,24 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>确定调用线程是否具有访问此<see cref="T:System.Windows.Threading.DispatcherObject" />。</summary>
-        <returns><see langword="true" /> 如果调用线程有权访问此对象;否则为<see langword="false" />。</returns>
+        <summary>确定调用线程是否可以访问此 <see cref="T:System.Windows.Threading.DispatcherObject" />。</summary>
+        <returns>如果调用线程可以访问此对象，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 只有线程<xref:System.Windows.Threading.DispatcherObject.Dispatcher%2A>创建在可访问<xref:System.Windows.Threading.DispatcherObject>。  
+ 只有在上创建<xref:System.Windows.Threading.DispatcherObject.Dispatcher%2A>的线程可以<xref:System.Windows.Threading.DispatcherObject>访问。  
   
- 任何线程可以检查以查看其是否具有访问此<xref:System.Windows.Threading.DispatcherObject>。  
+ 任何线程都可以检查它是否有权访问此<xref:System.Windows.Threading.DispatcherObject>。  
   
- 之间的差异<xref:System.Windows.Threading.DispatcherObject.CheckAccess%2A>并<xref:System.Windows.Threading.DispatcherObject.VerifyAccess%2A>在于<xref:System.Windows.Threading.DispatcherObject.CheckAccess%2A>返回一个布尔值，指定调用线程是否具有访问此<xref:System.Windows.Threading.DispatcherObject>和<xref:System.Windows.Threading.DispatcherObject.VerifyAccess%2A>将引发异常，如果调用线程不具有访问这<xref:System.Windows.Threading.DispatcherObject>。  
+ 与<xref:System.Windows.Threading.DispatcherObject.CheckAccess%2A> <xref:System.Windows.Threading.DispatcherObject.CheckAccess%2A> <xref:System.Windows.Threading.DispatcherObject>之间的区别在于, 返回一个布尔值, 该值指定调用线程是否有权访问此<xref:System.Windows.Threading.DispatcherObject.VerifyAccess%2A>值, 如果调用线程不具有访问权限, 则会引发异常。 <xref:System.Windows.Threading.DispatcherObject.VerifyAccess%2A>此<xref:System.Windows.Threading.DispatcherObject>。  
   
- 调用此方法等同于调用<xref:System.Windows.Threading.Dispatcher.CheckAccess%2A>关联<xref:System.Windows.Threading.Dispatcher>对象。  
+ 调用此方法与调用<xref:System.Windows.Threading.Dispatcher.CheckAccess%2A>关联<xref:System.Windows.Threading.Dispatcher>对象的方法相同。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Windows.Threading.DispatcherObject.CheckAccess%2A>来确定线程是否具有访问该线程的<xref:System.Windows.Controls.Button>上创建。  <xref:System.Windows.Threading.DispatcherObject.CheckAccess%2A>方法<xref:System.Windows.Controls.Button>调用以验证是否可以访问该线程。  如果调用线程具有访问权限，<xref:System.Windows.Controls.Button>只需访问的成员更新<xref:System.Windows.Controls.Button>; 否则为一个委托，它接受<xref:System.Windows.Controls.Button>作为参数，发布到<xref:System.Windows.Threading.Dispatcher>的<xref:System.Windows.Controls.Button>。  
+ 下面的示例使用<xref:System.Windows.Threading.DispatcherObject.CheckAccess%2A>来确定线程是否有权访问在上创建的线程<xref:System.Windows.Controls.Button> 。  <xref:System.Windows.Threading.DispatcherObject.CheckAccess%2A> 调用<xref:System.Windows.Controls.Button>上的方法来验证对线程的访问。  如果调用线程<xref:System.Windows.Controls.Button>具有访问权限, 则只需访问的<xref:System.Windows.Controls.Button>成员即可更新; 否则, 将在的上<xref:System.Windows.Threading.Dispatcher>发布一个接受<xref:System.Windows.Controls.Button>作为<xref:System.Windows.Controls.Button>参数的委托。  
   
  [!code-csharp[DispatcherObjectAccessSample#DispatcherObjectAccessCheckAccess](~/samples/snippets/csharp/VS_Snippets_Wpf/DispatcherObjectAccessSample/CSharp/Window1.xaml.cs#dispatcherobjectaccesscheckaccess)]
  [!code-vb[DispatcherObjectAccessSample#DispatcherObjectAccessCheckAccess](~/samples/snippets/visualbasic/VS_Snippets_Wpf/DispatcherObjectAccessSample/visualbasic/window1.xaml.vb#dispatcherobjectaccesscheckaccess)]  
@@ -129,13 +129,13 @@
         <ReturnType>System.Windows.Threading.Dispatcher</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.Windows.Threading.Dispatcher" />这<see cref="T:System.Windows.Threading.DispatcherObject" />与相关联。</summary>
+        <summary>获取与此 <see cref="T:System.Windows.Threading.Dispatcher" /> 关联的 <see cref="T:System.Windows.Threading.DispatcherObject" />。</summary>
         <value>调度程序。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 仅在线程的<xref:System.Windows.Threading.DispatcherObject.Dispatcher%2A>创建在可访问<xref:System.Windows.Threading.DispatcherObject>直接。  访问<xref:System.Windows.Threading.DispatcherObject>从线程以外的线程<xref:System.Windows.Threading.DispatcherObject>已创建，调用<xref:System.Windows.Threading.Dispatcher.Invoke%2A>并<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>上<xref:System.Windows.Threading.Dispatcher><xref:System.Windows.Threading.DispatcherObject>与相关联。  
+ 只有创建的线程<xref:System.Windows.Threading.DispatcherObject.Dispatcher%2A>才能<xref:System.Windows.Threading.DispatcherObject>直接访问。  若要<xref:System.Windows.Threading.DispatcherObject>从创建的线程以外<xref:System.Windows.Threading.DispatcherObject>的线程访问<xref:System.Windows.Threading.Dispatcher> , 请在与关联的<xref:System.Windows.Threading.Dispatcher.Invoke%2A> <xref:System.Windows.Threading.DispatcherObject>上<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>调用和。  
   
  ]]></format>
         </remarks>
@@ -164,28 +164,28 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>强制执行调用线程可以访问此<see cref="T:System.Windows.Threading.DispatcherObject" />。</summary>
+        <summary>强制调用线程具有此 <see cref="T:System.Windows.Threading.DispatcherObject" /> 的访问权限。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 只有线程<xref:System.Windows.Threading.DispatcherObject.Dispatcher%2A>创建在可访问<xref:System.Windows.Threading.DispatcherObject>。  
+ 只有在上创建<xref:System.Windows.Threading.DispatcherObject.Dispatcher%2A>的线程可以<xref:System.Windows.Threading.DispatcherObject>访问。  
   
- 任何线程可以检查以查看其是否具有访问此<xref:System.Windows.Threading.DispatcherObject>。  
+ 任何线程都可以检查它是否有权访问此<xref:System.Windows.Threading.DispatcherObject>。  
   
- 之间的差异<xref:System.Windows.Threading.DispatcherObject.CheckAccess%2A>并<xref:System.Windows.Threading.DispatcherObject.VerifyAccess%2A>在于<xref:System.Windows.Threading.DispatcherObject.CheckAccess%2A>返回一个布尔值，指定调用线程是否具有访问此<xref:System.Windows.Threading.DispatcherObject>和<xref:System.Windows.Threading.DispatcherObject.VerifyAccess%2A>将引发异常，如果调用线程不具有访问这<xref:System.Windows.Threading.DispatcherObject>。  
+ 与<xref:System.Windows.Threading.DispatcherObject.CheckAccess%2A> <xref:System.Windows.Threading.DispatcherObject.CheckAccess%2A> <xref:System.Windows.Threading.DispatcherObject>之间的区别在于, 返回一个布尔值, 该值指定调用线程是否有权访问此<xref:System.Windows.Threading.DispatcherObject.VerifyAccess%2A>值, 如果调用线程不具有访问权限, 则会引发异常。 <xref:System.Windows.Threading.DispatcherObject.VerifyAccess%2A>此<xref:System.Windows.Threading.DispatcherObject>。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Windows.Threading.DispatcherObject.VerifyAccess%2A>来确定线程是否具有访问该线程的<xref:System.Windows.Controls.Button>上创建。  如果调用线程不具有访问权限，<xref:System.InvalidOperationException>引发。  
+ 下面的示例使用<xref:System.Windows.Threading.DispatcherObject.VerifyAccess%2A>来确定线程是否有权访问在上创建的线程<xref:System.Windows.Controls.Button> 。  如果调用线程没有访问权限, <xref:System.InvalidOperationException>则会引发。  
   
  [!code-csharp[DispatcherObjectAccessSample#DispatcherObjectAccessVerifyAccess](~/samples/snippets/csharp/VS_Snippets_Wpf/DispatcherObjectAccessSample/CSharp/Window1.xaml.cs#dispatcherobjectaccessverifyaccess)]
  [!code-vb[DispatcherObjectAccessSample#DispatcherObjectAccessVerifyAccess](~/samples/snippets/visualbasic/VS_Snippets_Wpf/DispatcherObjectAccessSample/visualbasic/window1.xaml.vb#dispatcherobjectaccessverifyaccess)]  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">调用线程不具有访问此<see cref="T:System.Windows.Threading.DispatcherObject" />。</exception>
+        <exception cref="T:System.InvalidOperationException">调用线程不可以访问此 <see cref="T:System.Windows.Threading.DispatcherObject" />。</exception>
       </Docs>
     </Member>
   </Members>

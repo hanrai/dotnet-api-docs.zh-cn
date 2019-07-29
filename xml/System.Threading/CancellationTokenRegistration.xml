@@ -1,5 +1,5 @@
 <Type Name="CancellationTokenRegistration" FullName="System.Threading.CancellationTokenRegistration">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="692038f172871bd843d1e84c97c7de5203cd7b32" /><Meta Name="ms.sourcegitcommit" Value="690605a2d62010b93e13edf329aafe2bdc57423a" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/11/2019" /><Meta Name="ms.locfileid" Value="67801707" /></Metadata><TypeSignature Language="C#" Value="public struct CancellationTokenRegistration : IDisposable, IEquatable&lt;System.Threading.CancellationTokenRegistration&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="03ec267229dc845d09481a4371582f1e61a607af" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68541297" /></Metadata><TypeSignature Language="C#" Value="public struct CancellationTokenRegistration : IDisposable, IEquatable&lt;System.Threading.CancellationTokenRegistration&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit CancellationTokenRegistration extends System.ValueType implements class System.IDisposable, class System.IEquatable`1&lt;valuetype System.Threading.CancellationTokenRegistration&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Threading.CancellationTokenRegistration" />
   <TypeSignature Language="VB.NET" Value="Public Structure CancellationTokenRegistration&#xA;Implements IDisposable, IEquatable(Of CancellationTokenRegistration)" />
@@ -47,11 +47,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 标记被取消时调用回调。 若要取消注册一个回调，释放相应的注册实例。 有关详细信息和代码示例请参阅[托管线程中的取消](~/docs/standard/threading/cancellation-in-managed-threads.md)。  
+ 取消标记时调用回调。 若要注销回调, 请释放相应的注册实例。 有关详细信息和代码示例, 请参阅[托管线程中的取消](~/docs/standard/threading/cancellation-in-managed-threads.md)。  
   
  ]]></format>
     </remarks>
-    <threadsafe>所有公共和受保护成员<see cref="T:System.Threading.CancellationTokenRegistration" />都是线程安全的同时从多个线程，Dispose 除外，它必须仅能时使用所有其他操作<see cref="T:System.Threading.CancellationTokenRegistration" />已完成。</threadsafe>
+    <threadsafe>的所有公共和受保护<see cref="T:System.Threading.CancellationTokenRegistration" />的成员都是线程安全的, 并且可以从多个线程并发使用, 而 Dispose 除外, 只需在上的<see cref="T:System.Threading.CancellationTokenRegistration" />所有其他操作完成后使用。</threadsafe>
     <related type="Article" href="~/docs/standard/threading/cancellation-in-managed-threads.md">取消</related>
     <related type="Article" href="~/docs/standard/parallel-programming/task-cancellation.md">任务取消</related>
     <related type="Article" href="https://msdn.microsoft.com/library/8838dd75-18ed-4b8b-b322-cd4531faac64">如何：注册取消请求的回调</related>
@@ -98,9 +98,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在完成使用 `Dispose` 后，应调用 <xref:System.Threading.CancellationTokenRegistration>。 `Dispose` 方法使 <xref:System.Threading.CancellationTokenRegistration> 处于不可用状态。 在调用`Dispose`，必须释放对所有引用<xref:System.Threading.CancellationTokenRegistration>这样垃圾回收器才能收回内存的<xref:System.Threading.CancellationTokenRegistration>占用。  
+ 在完成使用 `Dispose` 后，应调用 <xref:System.Threading.CancellationTokenRegistration>。 `Dispose` 方法使 <xref:System.Threading.CancellationTokenRegistration> 处于不可用状态。 调用`Dispose`后, 必须释放对的<xref:System.Threading.CancellationTokenRegistration>所有引用, 以便垃圾回收器能够<xref:System.Threading.CancellationTokenRegistration>回收占用的内存。  
   
- 有关详细信息，请参阅[清理了非托管资源](~/docs/standard/garbage-collection/unmanaged.md)并[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
+ 有关详细信息, 请参阅[清理非托管资源](~/docs/standard/garbage-collection/unmanaged.md)和[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
   
 > [!NOTE]
 >  每次释放对 `Dispose` 的最后一个引用前，均应调用 <xref:System.Threading.CancellationTokenRegistration>。 否则，在垃圾回收器调用 <xref:System.Threading.CancellationTokenRegistration> 对象的 `Finalize` 方法之前，该对象正在使用的资源不会被释放。  
@@ -142,13 +142,13 @@
       <Docs>
         <summary>释放注册并从关联的 <see cref="T:System.Threading.CancellationToken" /> 注销目标回调。</summary>
         <returns>一个表示异步释放操作的任务。</returns>
-        <remarks>  
+        <remarks>
           <format type="text/markdown"><![CDATA[  
 
-返回<xref:System.Threading.Tasks.ValueTask>完成后相关联的回调是取消注册，而无需执行或完成后执行时，除了在退化情况下，回调取消注册自身。
+一旦关联<xref:System.Threading.Tasks.ValueTask>的回调在未执行或完成执行的情况下注销, 则返回的完成, 但在此情况下, 回调会自行取消注册。
 
          ]]></format>
-         </remarks>
+        </remarks>
       </Docs>
     </Member>
     <MemberGroup MemberName="Equals">
@@ -416,7 +416,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取与此注册关联的 <see cref="T:System.Threading.CancellationToken" />。  如果注册未与令牌关联（例如在释放注册后），这将返回默认令牌。</summary>
-        <value>取消标记此注册与之关联或如果注册未与令牌相关联的默认令牌 (如注册已被释放后)。</value>
+        <value>与此注册关联的取消标记, 如果注册不与令牌关联 (例如, 在释放注册后), 则为默认令牌。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

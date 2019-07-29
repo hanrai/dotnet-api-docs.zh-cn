@@ -38,14 +38,14 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>表示的事务。</summary>
+    <summary>表示事务。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Transactions> 命名空间提供基于 <xref:System.Transactions.Transaction> 类的显式编程模型和使用 <xref:System.Transactions.TransactionScope> 类的隐式编程模型，在后一种模型中，事务由该基础结构自动管理。 我们强烈建议使用隐式模型变得更容易进行开发。 若要开始，请参阅[实现隐式 Transaction Using Transaction Scope](~/docs/framework/data/transactions/implementing-an-implicit-transaction-using-transaction-scope.md)主题。 编写事务应用程序的详细信息，请参阅[Writing A Transactional Application](~/docs/framework/data/transactions/writing-a-transactional-application.md)。  
+ <xref:System.Transactions> 命名空间提供基于 <xref:System.Transactions.Transaction> 类的显式编程模型和使用 <xref:System.Transactions.TransactionScope> 类的隐式编程模型，在后一种模型中，事务由该基础结构自动管理。 我们强烈建议你使用易于开发的隐式模型。 若要开始使用, 请参阅[使用事务范围实现隐式事务](~/docs/framework/data/transactions/implementing-an-implicit-transaction-using-transaction-scope.md)主题。 有关编写事务应用程序的详细信息, 请参阅[编写事务应用程序](~/docs/framework/data/transactions/writing-a-transactional-application.md)。  
   
- <xref:System.Transactions.Transaction>类包含由开发人员实现用于登记的资源管理器使用的方法。 它还提供用于克隆事务和控制的当前事务上下文的功能。 你可以获取当前事务，如果已设置，使用静态<xref:System.Transactions.Transaction.Current%2A>属性。  
+ <xref:System.Transactions.Transaction>类包含开发人员用来实现资源管理器的方法。 它还提供了用于克隆事务和控制当前事务上下文的功能。 如果已设置, 则可以使用静态<xref:System.Transactions.Transaction.Current%2A>属性获取当前事务。  
   
  ]]></format>
     </remarks>
@@ -115,12 +115,12 @@
       <Parameters />
       <Docs>
         <summary>创建事务的克隆。</summary>
-        <returns>一个<see cref="T:System.Transactions.Transaction" />，它是当前的事务对象的副本。</returns>
+        <returns>一个 <see cref="T:System.Transactions.Transaction" /> 作为当前事务对象的副本。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 创建克隆传递的事务。  例如，您可能不想要传递<xref:System.Transactions.CommittableTransaction>对其他应用程序，因为你不希望其他人提交您的事务。  如果您尝试封送或序列化事务，克隆为你自动创建。  
+ 创建用于传递事务的克隆。  例如, 你可能不想将传递<xref:System.Transactions.CommittableTransaction>给其他应用程序, 因为你不希望其他人提交事务。  如果尝试封送或序列化事务, 则会自动为您创建一个克隆。  
   
  ]]></format>
         </remarks>
@@ -160,11 +160,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关环境事务的详细信息，请参阅"管理事务流使用 TransactionScopeOption"部分[实现隐式事务使用事务范围](~/docs/framework/data/transactions/implementing-an-implicit-transaction-using-transaction-scope.md)主题。  
+ 有关环境事务的详细信息, 请参阅[使用事务范围实现隐式事务](~/docs/framework/data/transactions/implementing-an-implicit-transaction-using-transaction-scope.md)主题中的 "使用 TransactionScopeOption 管理事务流" 部分。  
   
- 尽管您可以设置使用此属性的环境事务，则应使用<xref:System.Transactions.TransactionScope>对象操作的环境事务，只要有可能。  
+ 尽管可以使用此属性设置环境事务, 但应尽可能使用<xref:System.Transactions.TransactionScope>对象来操作环境事务。  
   
- 此属性是静态的线程。 如果更改使用此属性内的环境事务<xref:System.Transactions.TransactionScope><xref:System.InvalidOperationException>时，将引发<xref:System.Transactions.TransactionScope.Dispose%2A>调用时，并还原以前的环境事务值。  
+ 此属性是线程静态的。 如果使用中<xref:System.Transactions.TransactionScope> <xref:System.InvalidOperationException>的此属性更改环境事务, 则在<xref:System.Transactions.TransactionScope.Dispose%2A>调用时会引发, 而以前的环境事务值将被还原。  
   
  ]]></format>
         </remarks>
@@ -208,29 +208,29 @@
         <Parameter Name="option" Type="System.Transactions.DependentCloneOption" Index="0" FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="cloneOption">一个<see cref="T:System.Transactions.DependentCloneOption" />的控制要创建的依赖事务种类。</param>
-        <param name="option">一个<see cref="T:System.Transactions.DependentCloneOption" />的控制要创建的依赖事务种类。</param>
-        <summary>创建的事务依赖的克隆。</summary>
-        <returns>一个<see cref="T:System.Transactions.DependentTransaction" />，它表示依赖的克隆。</returns>
+        <param name="cloneOption">一个 <see cref="T:System.Transactions.DependentCloneOption" /> 控制要创建的依赖事务种类。</param>
+        <param name="option">一个 <see cref="T:System.Transactions.DependentCloneOption" /> 控制要创建的依赖事务种类。</param>
+        <summary>创建事务的依赖复本。</summary>
+        <returns>一个 <see cref="T:System.Transactions.DependentTransaction" /> 表示依赖克隆。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 依赖事务是其结果取决于其克隆该事务的结果的事务。  
+ 从属事务是一个事务, 其结果取决于克隆的事务的结果。  
   
- `cloneoption`参数控制要创建的依赖事务种类。 如果使用创建依赖的事务<xref:System.Transactions.DependentCloneOption.BlockCommitUntilComplete>，它阻止事务的提交过程，直到事务超时或<xref:System.Transactions.DependentTransaction.Complete%2A>上调用<xref:System.Transactions.DependentTransaction>。 如果使用创建<xref:System.Transactions.DependentCloneOption.RollbackIfNotComplete>，它会自动中止事务如果<xref:System.Transactions.CommittableTransaction.Commit%2A>之前，调用<xref:System.Transactions.DependentTransaction.Complete%2A>上调用<xref:System.Transactions.DependentTransaction>。  
+ `cloneoption`参数控制要创建的依赖事务的类型。 如果使用<xref:System.Transactions.DependentCloneOption.BlockCommitUntilComplete>创建依赖事务, 则它会阻止事务的提交过程, 直到事务超时或<xref:System.Transactions.DependentTransaction.Complete%2A>在上<xref:System.Transactions.DependentTransaction>调用。 如果是用<xref:System.Transactions.DependentCloneOption.RollbackIfNotComplete>创建的, 则在调用<xref:System.Transactions.DependentTransaction>之前<xref:System.Transactions.DependentTransaction.Complete%2A>调用时<xref:System.Transactions.CommittableTransaction.Commit%2A> , 它会自动中止事务。  
   
    
   
 ## Examples  
- 下面的示例演示如何创建依赖的事务。  
+ 下面的示例演示如何创建从属事务。  
   
  [!code-csharp[Tx_DependentTx#1](~/samples/snippets/csharp/VS_Snippets_CFX/tx_dependenttx/cs/dependenttx.cs#1)]
  [!code-vb[Tx_DependentTx#1](~/samples/snippets/visualbasic/VS_Snippets_CFX/tx_dependenttx/vb/dependenttx.vb#1)]  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/bdad8468-2a90-4b81-8375-278067120cab">管理 Concurrency with DependentTransaction</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/bdad8468-2a90-4b81-8375-278067120cab">通过 DependentTransaction 管理并发</related>
       </Docs>
     </Member>
     <Member MemberName="Dispose">
@@ -270,7 +270,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果您通过设置更改环境事务<xref:System.Transactions.Transaction.Current%2A>内<xref:System.Transactions.TransactionScope><xref:System.InvalidOperationException>时引发<xref:System.Transactions.TransactionScope.Dispose%2A>调用时，并还原以前的环境事务值。  
+ <xref:System.Transactions.Transaction.Current%2A>如果您通过在<xref:System.Transactions.TransactionScope>中<xref:System.InvalidOperationException>设置来更改环境事务, 则在<xref:System.Transactions.TransactionScope.Dispose%2A>调用时会引发, 而以前的环境事务值将被还原。  
   
  ]]></format>
         </remarks>
@@ -319,7 +319,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- **请注意**此方法使用<xref:System.Security.Permissions.SecurityAction.LinkDemand>若要阻止该调用来自不受信任的代码; 但是，只有直接调用方需要拥有`FullTrust`权限集。  
+ **注意**此方法使用<xref:System.Security.Permissions.SecurityAction.LinkDemand>来防止不受信任的代码调用; 但是, 只有直接调用方才能`FullTrust`拥有权限集。  
   
  ]]></format>
         </remarks>
@@ -367,21 +367,21 @@
         <Parameter Name="options" Type="System.Transactions.EnlistmentOptions" Index="2" FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="resourceManagerIdentifier">资源管理器，它应保留在资源管理器发生故障或重新启动一个唯一标识符。</param>
-        <param name="manager">资源管理器，它应保留在资源管理器发生故障或重新启动一个唯一标识符。</param>
-        <param name="enlistmentNotification">一个对象，实现<see cref="T:System.Transactions.IEnlistmentNotification" />接口来接收两阶段提交通知。</param>
-        <param name="notification">一个对象，实现<see cref="T:System.Transactions.IEnlistmentNotification" />接口来接收两阶段提交通知。</param>
+        <param name="resourceManagerIdentifier">资源管理器的唯一标识符，它应该在资源管理器失败或重新启动的过程中持久保留。</param>
+        <param name="manager">资源管理器的唯一标识符，它应该在资源管理器失败或重新启动的过程中持久保留。</param>
+        <param name="enlistmentNotification">实现 <see cref="T:System.Transactions.IEnlistmentNotification" /> 接口以接收两阶段提交通知的对象。</param>
+        <param name="notification">实现 <see cref="T:System.Transactions.IEnlistmentNotification" /> 接口以接收两阶段提交通知的对象。</param>
         <param name="enlistmentOptions">如果资源管理器在准备阶段想要执行额外工作，则为 <see cref="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired" />。</param>
         <param name="options">如果资源管理器在准备阶段想要执行额外工作，则为 <see cref="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired" />。</param>
-        <summary>登记在事务中支持两阶段提交参与的持久资源管理器。</summary>
+        <summary>登记支持两阶段提交的持久资源管理器以参与事务。</summary>
         <returns>描述登记的 <see cref="T:System.Transactions.Enlistment" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 与持久登记的资源管理器必须能够在他们遇到故障执行恢复。 有关恢复的详细信息，请参阅[Performing Recovery](https://msdn.microsoft.com/library/d342c5c7-da64-4a4c-8e63-b52f4fbf2691)。 易失性的持久资源，以及如何登记的资源的详细信息，请参阅[Implementing A Resource Manager](https://msdn.microsoft.com/library/81509719-d579-4530-831e-42e1acdef63e)。  资源管理器如何响应提交通知并准备在两阶段提交的提交的详细信息，请参阅[Committing A Transaction 转换中 Single-Phase and Multi-phase](https://msdn.microsoft.com/library/74b3cfe1-d33a-45b8-91f4-dfd6f6598c4d)。  
+ 如果具有持久登记的资源管理器遇到失败, 则必须能够执行恢复。 有关恢复的详细信息, 请参阅[执行恢复](https://msdn.microsoft.com/library/d342c5c7-da64-4a4c-8e63-b52f4fbf2691)。 有关可变资源和持久资源以及如何登记资源的详细信息, 请参阅[实现资源管理器](https://msdn.microsoft.com/library/81509719-d579-4530-831e-42e1acdef63e)。  有关资源管理器如何响应提交通知并在两阶段提交中准备提交的详细信息, 请参阅[在单阶段和多阶段提交事务](https://msdn.microsoft.com/library/74b3cfe1-d33a-45b8-91f4-dfd6f6598c4d)。  
   
- 通过此方法参与事务中登记的资源管理器接收对应于上定义的方法的两阶段提交通知<xref:System.Transactions.IEnlistmentNotification>接口。  
+ 通过此方法登记以参与事务的资源管理器接收两阶段提交通知, 它们对应于<xref:System.Transactions.IEnlistmentNotification>接口上定义的方法。  
   
  ]]></format>
         </remarks>
@@ -429,21 +429,21 @@
         <Parameter Name="options" Type="System.Transactions.EnlistmentOptions" Index="2" FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="resourceManagerIdentifier">资源管理器，它应保留在资源管理器发生故障或重新启动一个唯一标识符。</param>
-        <param name="manager">资源管理器，它应保留在资源管理器发生故障或重新启动一个唯一标识符。</param>
-        <param name="singlePhaseNotification">一个对象，实现<see cref="T:System.Transactions.ISinglePhaseNotification" />必须能够接收单阶段提交和两阶段提交通知的接口。</param>
-        <param name="notification">一个对象，实现<see cref="T:System.Transactions.ISinglePhaseNotification" />必须能够接收单阶段提交和两阶段提交通知的接口。</param>
+        <param name="resourceManagerIdentifier">资源管理器的唯一标识符，它应该在资源管理器失败或重新启动的过程中持久保留。</param>
+        <param name="manager">资源管理器的唯一标识符，它应该在资源管理器失败或重新启动的过程中持久保留。</param>
+        <param name="singlePhaseNotification">实现 <see cref="T:System.Transactions.ISinglePhaseNotification" /> 接口的对象，该对象必须能够接收单阶段提交和两阶段提交通知。</param>
+        <param name="notification">实现 <see cref="T:System.Transactions.ISinglePhaseNotification" /> 接口的对象，该对象必须能够接收单阶段提交和两阶段提交通知。</param>
         <param name="enlistmentOptions">如果资源管理器在准备阶段想要执行额外工作，则为 <see cref="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired" />。</param>
         <param name="options">如果资源管理器在准备阶段想要执行额外工作，则为 <see cref="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired" />。</param>
-        <summary>登记支持单阶段提交优化以参与事务中的持久资源管理器。</summary>
+        <summary>登记支持单阶段提交优化的持久资源管理器以参与事务。</summary>
         <returns>描述登记的 <see cref="T:System.Transactions.Enlistment" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 与持久登记的资源管理器必须能够在他们遇到故障执行恢复。 有关恢复的详细信息，请参阅[Performing Recovery](https://msdn.microsoft.com/library/d342c5c7-da64-4a4c-8e63-b52f4fbf2691)。 易失性的持久资源，以及如何登记的资源的详细信息，请参阅[Implementing A Resource Manager](https://msdn.microsoft.com/library/81509719-d579-4530-831e-42e1acdef63e)。  
+ 如果具有持久登记的资源管理器遇到失败, 则必须能够执行恢复。 有关恢复的详细信息, 请参阅[执行恢复](https://msdn.microsoft.com/library/d342c5c7-da64-4a4c-8e63-b52f4fbf2691)。 有关可变资源和持久资源以及如何登记资源的详细信息, 请参阅[实现资源管理器](https://msdn.microsoft.com/library/81509719-d579-4530-831e-42e1acdef63e)。  
   
- 您应该注意，即使使用此方法登记资源管理器实现，也不能保证它将接收单阶段提交。 事务管理器仍可改为发送两阶段提交通知。 单阶段提交优化的详细信息，请参阅[优化使用单阶段提交和 Promotable Single Phase Notification](https://msdn.microsoft.com/library/https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms229980(v=vs.85))。  
+ 请注意, 即使资源管理器实现使用此方法登记, 也不能保证它收到单阶段提交。 事务管理器仍可以改为发送两阶段提交通知。 有关单阶段提交优化的详细信息, 请参阅[使用单阶段提交和可提升的单阶段通知进行优化](https://msdn.microsoft.com/library/https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms229980(v=vs.85))。  
   
  ]]></format>
         </remarks>
@@ -498,9 +498,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果指定的值`promoterType`参数是`TransactionInterop.PromoterTypeDtc`，该事务**必须**msdtc 提升并`byte[]`从返回`IPromotableSinglePhaseNotification.Promote`方法**必须**为 MSDTC 事务传播标记。  
+ 如果`promoterType`为`TransactionInterop.PromoterTypeDtc`参数指定的值为, 则**必须** `IPromotableSinglePhaseNotification.Promote`由 msdtc 提升事务, 并且从方法`byte[]`返回的**必须**是 msdtc 事务传播标记。  
   
- 如果指定的值`promoterType`参数是**不**`TransactionInterop.PromoterTypeDTC`，将不升级该事务，msdtc，而是由调用方的实现`IPromotableSinglePhaseNotification`。 如果此调用是成功，则将返回对事务的后续操作的一组`TransactionPromotionException`。 这些操作包括：  
+ 如果为`promoterType`参数指定的值**不**`TransactionInterop.PromoterTypeDTC`是, 则不会由 MSDTC 提升事务, `IPromotableSinglePhaseNotification`而是由调用方的实现来提升。 如果此调用成功, 将在事务上包含一组后续操作, 该操作将返回`TransactionPromotionException`。 这些操作包括:  
   
 -   `Transaction.EnlistDurable`  
   
@@ -562,13 +562,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在事务中的登记是易失性;也就是说，它们不会保留失败的参与者。 此外，此方法仅建议事务管理器，若要提交有关控件，但升级本身不能保证。 如果升级失败，不会通知用户，并回滚事务。  
+ 事务中的登记是可变的;也就是说, 它们不会经受参与者的故障。 此外, 此方法仅建议事务管理器提升控制, 但不保证升级本身。 如果升级失败, 则不会通知用户并回滚事务。  
   
- 参数`promotableSinglePhaseNotification`用于与事务管理器通信尝试提交资源管理器的内部事务的结果。  如果不一致的数据进行报告后，事务管理器将引发异常。 如果<xref:System.Transactions.TransactionStatus.InDoubt>报告结果，事务管理器查找其自身内部登记中的结果通知，并忽略报告的响应。  
+ 参数`promotableSinglePhaseNotification`用于与事务管理器进行通信, 尝试提交资源管理器的内部事务的结果。  如果报告的数据不一致, 事务管理器将引发异常。 如果报告<xref:System.Transactions.TransactionStatus.InDoubt>了结果, 则事务管理器会在其自己的内部登记中查找结果通知, 并忽略报告的响应。  
   
- 有关登记和升级的事务的详细信息，请参阅[Transaction Management Escalation](https://msdn.microsoft.com/library/5b87ae58-8ccf-4b9b-9715-41e4aade89b7)。 有关 PSPE 的更多信息，请参阅[优化使用单个 Phase Commit and Promotable Single Phase Notification](https://msdn.microsoft.com/library/https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms229980(v=vs.85))。  
+ 有关登记和事务升级的详细信息, 请参阅[事务管理升级](https://msdn.microsoft.com/library/5b87ae58-8ccf-4b9b-9715-41e4aade89b7)。 有关 PSPE 的详细信息, 请参阅[使用单阶段提交和可提升的单阶段通知进行优化](https://msdn.microsoft.com/library/https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms229980(v=vs.85))。  
   
- **请注意**此方法使用<xref:System.Security.Permissions.SecurityAction.LinkDemand>若要阻止该调用来自不受信任的代码; 但是，只有直接调用方需要拥有`FullTrust`权限集。  
+ **注意**此方法使用<xref:System.Security.Permissions.SecurityAction.LinkDemand>来防止不受信任的代码调用; 但是, 只有直接调用方才能`FullTrust`拥有权限集。  
   
  ]]></format>
         </remarks>
@@ -586,7 +586,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 易失性资源管理器不能从以完成所参与的事务的故障中恢复。 易失性的持久资源，以及如何登记的资源的详细信息，请参阅[Implementing A Resource Manager](https://msdn.microsoft.com/library/81509719-d579-4530-831e-42e1acdef63e)。 资源管理器如何响应提交通知并准备提交的详细信息，请参阅[Committing A Transaction 转换中 Single-Phase and Multi-phase](https://msdn.microsoft.com/library/74b3cfe1-d33a-45b8-91f4-dfd6f6598c4d)。  
+ 可变资源管理器无法从故障中恢复, 因而无法完成参与的事务。 有关可变资源和持久资源以及如何登记资源的详细信息, 请参阅[实现资源管理器](https://msdn.microsoft.com/library/81509719-d579-4530-831e-42e1acdef63e)。 有关资源管理器如何响应提交通知并准备提交的详细信息, 请参阅[在单阶段和多阶段中提交事务](https://msdn.microsoft.com/library/74b3cfe1-d33a-45b8-91f4-dfd6f6598c4d)。  
   
  ]]></format>
         </remarks>
@@ -642,14 +642,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 易失性资源管理器不能从以完成所参与的事务的故障中恢复。 若要获得持久登记在事务中的，使用<xref:System.Transactions.Transaction.EnlistDurable%2A>方法。  
+ 可变资源管理器无法从故障中恢复, 因而无法完成参与的事务。 若要获取事务中的持久登记, 请使用<xref:System.Transactions.Transaction.EnlistDurable%2A>方法。  
   
- 通过此方法参与事务中登记的资源管理器接收对应于上定义的方法的两阶段提交通知<xref:System.Transactions.IEnlistmentNotification>接口。  
+ 通过此方法登记以参与事务的资源管理器接收两阶段提交通知, 它们对应于<xref:System.Transactions.IEnlistmentNotification>接口上定义的方法。  
   
    
   
 ## Examples  
- 下面的示例演示的实现<xref:System.Transactions.IEnlistmentNotification>接口，以及该对象登记为参与者在事务中使用<xref:System.Transactions.Transaction.EnlistVolatile%2A>方法。  
+ 下面的示例演示接口的<xref:System.Transactions.IEnlistmentNotification>实现, 并<xref:System.Transactions.Transaction.EnlistVolatile%2A>使用方法将对象作为事务中的参与者登记。  
   
  [!code-csharp[Tx_Enlist#1](~/samples/snippets/csharp/VS_Snippets_CFX/tx_enlist/cs/enlist.cs#1)]
  [!code-vb[Tx_Enlist#1](~/samples/snippets/visualbasic/VS_Snippets_CFX/tx_enlist/vb/enlist.vb#1)]  
@@ -698,19 +698,19 @@
         <Parameter Name="options" Type="System.Transactions.EnlistmentOptions" Index="1" FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="singlePhaseNotification">一个对象，实现<see cref="T:System.Transactions.ISinglePhaseNotification" />必须能够接收单阶段提交和两阶段提交通知的接口。</param>
-        <param name="notification">一个对象，实现<see cref="T:System.Transactions.ISinglePhaseNotification" />必须能够接收单阶段提交和两阶段提交通知的接口。</param>
+        <param name="singlePhaseNotification">实现 <see cref="T:System.Transactions.ISinglePhaseNotification" /> 接口的对象，该对象必须能够接收单阶段提交和两阶段提交通知。</param>
+        <param name="notification">实现 <see cref="T:System.Transactions.ISinglePhaseNotification" /> 接口的对象，该对象必须能够接收单阶段提交和两阶段提交通知。</param>
         <param name="enlistmentOptions">如果资源管理器在准备阶段想要执行额外工作，则为 <see cref="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired" />。</param>
         <param name="options">如果资源管理器在准备阶段想要执行额外工作，则为 <see cref="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired" />。</param>
-        <summary>登记在事务中支持单阶段提交优化以参与的易失性资源管理器。</summary>
+        <summary>登记支持单阶段提交优化的可变资源管理器以参与事务。</summary>
         <returns>描述登记的 <see cref="T:System.Transactions.Enlistment" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 易失性资源管理器不能从以完成所参与的事务的故障中恢复。 若要获得持久登记在事务中的，使用<xref:System.Transactions.Transaction.EnlistDurable%2A>方法。 易失性的持久资源，以及如何登记的资源的详细信息，请参阅[Implementing A Resource Manager](https://msdn.microsoft.com/library/81509719-d579-4530-831e-42e1acdef63e)。 资源管理器如何响应提交通知并准备提交的详细信息，请参阅[Committing A Transaction 转换中 Single-Phase and Multi-phase](https://msdn.microsoft.com/library/74b3cfe1-d33a-45b8-91f4-dfd6f6598c4d)。  
+ 可变资源管理器无法从故障中恢复, 因而无法完成参与的事务。 若要获取事务中的持久登记, 请使用<xref:System.Transactions.Transaction.EnlistDurable%2A>方法。 有关可变资源和持久资源以及如何登记资源的详细信息, 请参阅[实现资源管理器](https://msdn.microsoft.com/library/81509719-d579-4530-831e-42e1acdef63e)。 有关资源管理器如何响应提交通知并准备提交的详细信息, 请参阅[在单阶段和多阶段中提交事务](https://msdn.microsoft.com/library/74b3cfe1-d33a-45b8-91f4-dfd6f6598c4d)。  
   
- 您应该注意，即使使用此方法登记资源管理器实现，也不能保证它将接收单阶段提交。 事务管理器仍可改为发送两阶段提交通知。 单阶段提交优化的详细信息，请参阅[优化使用单阶段提交和 Promotable Single Phase Notification](https://msdn.microsoft.com/library/https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms229980(v=vs.85))。  
+ 请注意, 即使资源管理器实现使用此方法登记, 也不能保证它收到单阶段提交。 事务管理器仍可以改为发送两阶段提交通知。 有关单阶段提交优化的详细信息, 请参阅[使用单阶段提交和可提升的单阶段通知进行优化](https://msdn.microsoft.com/library/https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/ms229980(v=vs.85))。  
   
  ]]></format>
         </remarks>
@@ -750,7 +750,7 @@
       <Docs>
         <param name="obj">与该实例进行比较的对象。</param>
         <summary>确定此事务和指定的对象是否相等。</summary>
-        <returns><see langword="true" /> 如果<paramref name="obj" />与此事务完全相同; 否则为<see langword="false" />。</returns>
+        <returns>如果 <paramref name="obj" /> 与此事务完全相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -822,9 +822,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法具有副作用，即如果不升级导致的事务提升。  
+ 此方法的副作用是导致事务提升 (如果尚未升级)。  
   
- 所返回的格式`byte[]`的值进行定义`Transaction.PromoterType`属性。 如果的值`Transaction.PromoterType`属性是`TransactionInterop.PromoterTypeDtc`或`Guid.Empty`，然后`byte[]`此方法返回的是 MSDTC 传输器传播标记。 任何其他值`Transaction.PromoterType`属性指定的调用方定义的格式`Transaction.EnlistPromotableSinglePhase`指定属性类型值。 为了解释与提升后令牌在此后一种情况下，你将需要查阅文档以获取所做的代码`EnlistPromotableSinglePhase`调用。  
+ 返回`byte[]`的格式由`Transaction.PromoterType`属性的值定义。 如果`Transaction.PromoterType`属性的值为`TransactionInterop.PromoterTypeDtc`或`Guid.Empty`, 则此方法返回`byte[]`的为 MSDTC 发送器传播标记。 `Transaction.PromoterType`属性的任何其他值指定由`Transaction.EnlistPromotableSinglePhase`调用方定义的属性类型值的格式。 为了解释此后一种情况下已升级的标记, 您将需要查阅执行`EnlistPromotableSinglePhase`调用的代码的文档。  
   
  ]]></format>
         </remarks>
@@ -859,12 +859,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取事务的隔离级别。</summary>
-        <value>其中一个<see cref="T:System.Transactions.IsolationLevel" />值，该值指示事务的隔离级别。</value>
+        <value><see cref="T:System.Transactions.IsolationLevel" /> 值之一，该值指示事务的隔离级别。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 事务的隔离级别确定的其他事务会具有事务前的易失性数据的访问级别完成。 有关隔离级别的详细信息，请参阅的文档<xref:System.Transactions.IsolationLevel>枚举。  
+ 事务的隔离级别决定了在事务完成之前, 其他事务对可变数据的访问级别。 有关隔离级别的详细信息, 请参阅<xref:System.Transactions.IsolationLevel>枚举的文档。  
   
  ]]></format>
         </remarks>
@@ -907,7 +907,7 @@
         <summary>测试两个指定的 <see cref="T:System.Transactions.Transaction" /> 实例是否相等。</summary>
         <returns>如果 <paramref name="x" /> 和 <paramref name="y" /> 相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[此运算符的等效方法是<xref:System.Transactions.Transaction.Equals%2A?displayProperty=nameWithType>。]]></format>
+          <format type="text/markdown"><![CDATA[此运算符的等效方法为<xref:System.Transactions.Transaction.Equals%2A?displayProperty=nameWithType>。]]></format>
         </remarks>
       </Docs>
     </Member>
@@ -943,12 +943,12 @@
         <Parameter Name="y" Type="System.Transactions.Transaction" />
       </Parameters>
       <Docs>
-        <param name="x"><see cref="T:System.Transactions.Transaction" />不等运算符左侧的实例。</param>
-        <param name="y"><see cref="T:System.Transactions.Transaction" />不等运算符右侧的实例。</param>
+        <param name="x">不等运算符左侧的 <see cref="T:System.Transactions.Transaction" /> 实例。</param>
+        <param name="y">不等运算符右侧的 <see cref="T:System.Transactions.Transaction" /> 实例。</param>
         <summary>返回一个值，该值指示两个 <see cref="T:System.Transactions.Transaction" /> 实例是否不相等。</summary>
         <returns>如果 <paramref name="x" /> 和 <paramref name="y" /> 不相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[此运算符的等效方法是<xref:System.Transactions.Transaction.Equals%2A?displayProperty=nameWithType>。]]></format>
+          <format type="text/markdown"><![CDATA[此运算符的等效方法为<xref:System.Transactions.Transaction.Equals%2A?displayProperty=nameWithType>。]]></format>
         </remarks>
       </Docs>
     </Member>
@@ -994,14 +994,14 @@
         <Parameter Name="options" Type="System.Transactions.EnlistmentOptions" Index="3" FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="resourceManagerIdentifier">资源管理器，它应保留在资源管理器发生故障或重新启动一个唯一标识符。</param>
-        <param name="manager">资源管理器，它应保留在资源管理器发生故障或重新启动一个唯一标识符。</param>
-        <param name="promotableNotification">一个充当资源管理器内部非分布式事务的提交委托的对象。</param>
-        <param name="enlistmentNotification">一个对象，实现<see cref="T:System.Transactions.IEnlistmentNotification" />接口来接收两阶段提交通知。</param>
-        <param name="notification">一个对象，实现<see cref="T:System.Transactions.IEnlistmentNotification" />接口来接收两阶段提交通知。</param>
+        <param name="resourceManagerIdentifier">资源管理器的唯一标识符，它应该在资源管理器失败或重新启动的过程中持久保留。</param>
+        <param name="manager">资源管理器的唯一标识符，它应该在资源管理器失败或重新启动的过程中持久保留。</param>
+        <param name="promotableNotification">一个用作资源管理器内部非分布式事务的提交委托的对象。</param>
+        <param name="enlistmentNotification">实现 <see cref="T:System.Transactions.IEnlistmentNotification" /> 接口以接收两阶段提交通知的对象。</param>
+        <param name="notification">实现 <see cref="T:System.Transactions.IEnlistmentNotification" /> 接口以接收两阶段提交通知的对象。</param>
         <param name="enlistmentOptions">如果资源管理器在准备阶段想要执行额外工作，则为 <see cref="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired" />。</param>
         <param name="options">如果资源管理器在准备阶段想要执行额外工作，则为 <see cref="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired" />。</param>
-        <summary>提升和登记在事务中支持两阶段提交参与的持久资源管理器。</summary>
+        <summary>提升和登记支持两阶段提交的持久资源管理器以参与事务。</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1034,12 +1034,12 @@
       </ReturnValue>
       <Docs>
         <summary>对提升事务时由 Promote 方法返回的 <c>byte []</c> 的格式进行唯一标识。</summary>
-        <value>Guid 的格式进行唯一标识<c>byte []</c>提升事务时由 Promote 方法返回。</value>
+        <value>一个 guid, 用于唯一标识升级方法在事务升级时返回的<c>byte []</c>的格式。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果该事务尚未升级，并且尚不具有可提升的单阶段登记，此属性的值将为`Guid.Empty`。 如果事务已被或将被提升到 MSDTC，则此属性的值将为`TransactionInterop.PromoterTypeDtc`。 如果事务已被或非 MSDTC 提升程序将升级，此属性的值将为早期调用指定的值`Transaction.EnlistPromotableSinglePhase`。  
+ 如果事务尚未升级并且尚未具有可提升的单阶段登记, 则此属性的值将为`Guid.Empty`。 如果事务已或将升级到 MSDTC, 则此属性的值将为`TransactionInterop.PromoterTypeDtc`。 如果事务已或将由非 MSDTC 提升程序升级, 则此属性的值将是指定给之前对的调用`Transaction.EnlistPromotableSinglePhase`的值。  
   
  ]]></format>
         </remarks>
@@ -1052,7 +1052,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>回滚 （中止） 事务。</summary>
+        <summary>回滚（中止）事务。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="Rollback">
@@ -1084,12 +1084,12 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>回滚 （中止） 事务。</summary>
+        <summary>回滚（中止）事务。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 事务对象的任何副本可以通过调用此方法启动事务的回滚。 仅原始事务对象，它是<xref:System.Transactions.CommittableTransaction>对象，可用于启动尝试提交事务。 已确定该事务的结果后调用此方法时，将引发异常。  
+ 事务对象的任何副本都可以通过调用此方法来启动事务的回滚。 只有原始事务对象<xref:System.Transactions.CommittableTransaction> (对象) 可以用于启动提交事务的尝试。 如果已确定事务的结果后调用此方法, 则会引发异常。  
   
  ]]></format>
         </remarks>
@@ -1133,9 +1133,9 @@
         <Parameter Name="ex" Type="System.Exception" Index="0" FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="e">回滚发生的原因的说明。</param>
-        <param name="ex">回滚发生的原因的说明。</param>
-        <summary>回滚 （中止） 事务。</summary>
+        <param name="e">有关发生回滚的原因的说明。</param>
+        <param name="ex">有关发生回滚的原因的说明。</param>
+        <summary>回滚（中止）事务。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1177,9 +1177,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 仅成功调用此方法虽然`IPromotableSinglePhaseNotification.Promote`正在处理方法。 如果在其他任何时间，调用此方法`TransactionException`引发。  
+ 只有处理`IPromotableSinglePhaseNotification.Promote`方法时才能成功调用此方法。 如果在任何其他时间调用此方法, `TransactionException`则将引发。  
   
- 指定的值`promotableNotification`参数必须是同一个对象是最初指定为`Transaction.EnlistPromotableSinglePhase`调用。 如果这不是这种情况，则`InvalidOperationException`引发。  
+ `promotableNotification`参数的指定值必须是最初指定`Transaction.EnlistPromotableSinglePhase`给调用的相同对象。 如果不是这种情况, `InvalidOperationException`则会引发。  
   
  ]]></format>
         </remarks>
@@ -1228,7 +1228,7 @@
         <param name="serializationInfo">要填充数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
         <param name="info">要填充数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
         <param name="context">此序列化的目标（请参阅 <see cref="T:System.Runtime.Serialization.StreamingContext" />）。</param>
-        <summary>获取<see cref="T:System.Runtime.Serialization.SerializationInfo" />序列化此事务所需要的数据。</summary>
+        <summary>获取含有序列化此事务所需要的数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1265,21 +1265,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 你可以注册此事件而不是使用可变登记要获取其事务的结果信息。 将参数传递给<xref:System.Transactions.TransactionCompletedEventHandler>委托是<xref:System.Transactions.Transaction>实例。 然后，可以查询<xref:System.Transactions.Transaction.TransactionInformation%2A>要获取的实例的特定实例的属性<xref:System.Transactions.TransactionInformation>，其<xref:System.Transactions.TransactionInformation.Status%2A>属性包含与事务的状态<xref:System.Transactions.TransactionStatus.Committed>或<xref:System.Transactions.TransactionStatus.Aborted>值。  
+ 您可以注册此事件, 而不是使用可变登记来获取事务的结果信息。 传递给<xref:System.Transactions.TransactionCompletedEventHandler>委托的参数是一个<xref:System.Transactions.Transaction>实例。 然后, 您可以查询<xref:System.Transactions.Transaction.TransactionInformation%2A>特定实例的属性以获取的实例, <xref:System.Transactions.TransactionInformation.Status%2A>该<xref:System.Transactions.TransactionInformation> <xref:System.Transactions.TransactionStatus.Committed>实例的属性包含具有或<xref:System.Transactions.TransactionStatus.Aborted>值的事务的状态。  
   
- **警告：** 对注册此事件造成负面影响的事务附加到的性能。  
+ **警告**注册此事件将对其附加到的事务的性能产生负面影响。  
   
    
   
 ## Examples  
- 下面的示例演示如何应用程序可以通过订阅获得事务的结果<xref:System.Transactions.Transaction.TransactionCompleted>事件。  
+ 下面的示例演示应用程序如何通过订阅<xref:System.Transactions.Transaction.TransactionCompleted>事件来获取事务的结果。  
   
  [!code-csharp[Tx_Outcome#1](~/samples/snippets/csharp/VS_Snippets_CFX/tx_outcome/cs/txoutcome.cs#1)]
  [!code-vb[Tx_Outcome#1](~/samples/snippets/visualbasic/VS_Snippets_CFX/tx_outcome/vb/txoutcome.vb#1)]  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ObjectDisposedException">尝试订阅此事件已被释放的事务上。</exception>
+        <exception cref="T:System.ObjectDisposedException">尝试在已处置的事务上订阅此事件。</exception>
       </Docs>
     </Member>
     <Member MemberName="TransactionInformation">
@@ -1310,8 +1310,8 @@
         <ReturnType>System.Transactions.TransactionInformation</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>检索有关一个事务的其他信息。</summary>
-        <value>一个<see cref="T:System.Transactions.TransactionInformation" />包含有关该事务的附加信息。</value>
+        <summary>检索有关某个事务的附加信息。</summary>
+        <value>包含有关某个事务的附加信息的 <see cref="T:System.Transactions.TransactionInformation" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

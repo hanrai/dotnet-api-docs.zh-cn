@@ -33,20 +33,20 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>定义一个实现 <see cref="T:System.Windows.Input.ICommand" /> 并在元素树之内进行路由的命令。</summary>
+    <summary>定义一个实现 <see cref="T:System.Windows.Input.ICommand" /> 并通过元素树路由的命令。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Input.RoutedCommand.Execute%2A>并<xref:System.Windows.Input.RoutedCommand.CanExecute%2A>上的方法<xref:System.Windows.Input.RoutedCommand>不包含该命令的应用程序逻辑与典型情况一样<xref:System.Windows.Input.ICommand>，但这些方法而不是，引发遍历元素树，以查找的对象的事件<xref:System.Windows.Input.CommandBinding>.  事件处理程序附加到<xref:System.Windows.Input.CommandBinding>包含命令逻辑。  
+ 在上,的<xref:System.Windows.Input.RoutedCommand.CanExecute%2A>和方法不包含该命令的应用程序逻辑 (与典型<xref:System.Windows.Input.ICommand>相同), 但这些方法会引发事件, 这些事件遍历元素树以查找对象<xref:System.Windows.Input.RoutedCommand.Execute%2A> <xref:System.Windows.Input.RoutedCommand><xref:System.Windows.Input.CommandBinding>.  附加到的<xref:System.Windows.Input.CommandBinding>事件处理程序包含命令逻辑。  
   
- <xref:System.Windows.Input.RoutedCommand.Execute%2A>方法将引发<xref:System.Windows.Input.CommandManager.PreviewExecuted>和<xref:System.Windows.Input.CommandManager.Executed>事件。  <xref:System.Windows.Input.RoutedCommand.CanExecute%2A>方法将引发<xref:System.Windows.Input.CommandManager.PreviewCanExecute>和<xref:System.Windows.Input.CommandManager.CanExecute>事件。  
+ <xref:System.Windows.Input.RoutedCommand.Execute%2A>方法引发<xref:System.Windows.Input.CommandManager.Executed>和事件。 <xref:System.Windows.Input.CommandManager.PreviewExecuted>  <xref:System.Windows.Input.RoutedCommand.CanExecute%2A>方法引发<xref:System.Windows.Input.CommandManager.CanExecute>和事件。 <xref:System.Windows.Input.CommandManager.PreviewCanExecute>  
   
 <a name="xamlAttributeUsage_RoutedCommand"></a>   
 ## <a name="xaml-attribute-usage"></a>XAML 属性用法  
  \<*object* *property*="*predefinedCommandName*"/>  
   
-或
+- 或 -
   
  \<*object* *property*="*predefinedClassName*.*predefinedCommandName*"/>  
   
@@ -63,7 +63,7 @@
  预定义的命令之一。  
   
  *customClassName*  
- 自定义类，该类包含自定义命令。 通常需要自定义类`xlmns`前缀映射; 请参阅[XAML 命名空间和 WPF XAML 的 Namespace 映射](~/docs/framework/wpf/advanced/xaml-namespaces-and-namespace-mapping-for-wpf-xaml.md)。  
+ 一个包含自定义命令的自定义类。 自定义类通常需要`xlmns`前缀映射; 请参阅[WPF xaml 的 XAML 命名空间和命名空间映射](~/docs/framework/wpf/advanced/xaml-namespaces-and-namespace-mapping-for-wpf-xaml.md)。  
   
  *customCommandName*  
  自定义命令。  
@@ -131,8 +131,8 @@
         <Parameter Name="ownerType" Type="System.Type" />
       </Parameters>
       <Docs>
-        <param name="name">用于序列化的已声明名称。</param>
-        <param name="ownerType">正在注册命令的类型。</param>
+        <param name="name">序列化的声明名称。</param>
+        <param name="ownerType">注册命令的类型。</param>
         <summary>使用指定的名称和所有者类型初始化 <see cref="T:System.Windows.Input.RoutedCommand" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 为 <see langword="null" />。</exception>
@@ -162,13 +162,13 @@
         <Parameter Name="inputGestures" Type="System.Windows.Input.InputGestureCollection" />
       </Parameters>
       <Docs>
-        <param name="name">用于序列化的已声明名称。</param>
-        <param name="ownerType">正在注册命令类型。</param>
-        <param name="inputGestures">默认值与此命令关联的输入的笔势。</param>
-        <summary>初始化的新实例<see cref="T:System.Windows.Input.RoutedCommand" />具有指定的名称、 所有者类型和笔势的集合类。</summary>
+        <param name="name">序列化的声明名称。</param>
+        <param name="ownerType">正在注册命令的类型。</param>
+        <param name="inputGestures">与此命令关联的默认输入笔势。</param>
+        <summary>使用指定的名称、所有者类型和笔势集合初始化 <see cref="T:System.Windows.Input.RoutedCommand" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentException">长度<paramref name="name" />为零 
+        <exception cref="T:System.ArgumentException"><paramref name="name" /> 的长度为零。 
 或 
  <paramref name="ownerType" /> 为 <see langword="null" />。</exception>
         <altmember cref="T:System.Windows.Input.CommandBinding" />
@@ -203,33 +203,33 @@
         <Parameter Name="target" Type="System.Windows.IInputElement" />
       </Parameters>
       <Docs>
-        <param name="parameter">用户定义数据类型。</param>
+        <param name="parameter">用户定义的数据类型。</param>
         <param name="target">命令目标。</param>
-        <summary>确定是否这<see cref="T:System.Windows.Input.RoutedCommand" />可以在其当前状态下执行。</summary>
-        <returns><see langword="true" /> 如果该命令可以执行对当前命令目标;否则为<see langword="false" />。</returns>
+        <summary>确定此 <see cref="T:System.Windows.Input.RoutedCommand" /> 在其当前状态是否可以执行。</summary>
+        <returns>如果可以对当前命令目标执行此命令，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 确定如果的实际逻辑<xref:System.Windows.Input.RoutedCommand>才能执行当前命令目标没有包含在<xref:System.Windows.Input.RoutedCommand.CanExecute%2A>方法，而不是<xref:System.Windows.Input.RoutedCommand.CanExecute%2A>引发<xref:System.Windows.Input.CommandManager.PreviewCanExecute>和<xref:System.Windows.Input.CommandManager.CanExecute>事件的隧道和冒泡通过元素正在查找的对象的树<xref:System.Windows.Input.CommandBinding>。  如果<xref:System.Windows.Input.CommandBinding>为此<xref:System.Windows.Input.RoutedCommand>找到，则<xref:System.Windows.Input.CanExecuteRoutedEventHandler>附加到<xref:System.Windows.Input.CommandBinding>调用。  这些处理程序提供编程逻辑用于确定是否<xref:System.Windows.Input.RoutedCommand>可以或不执行。  
+ 确定能否在当前命令目标上<xref:System.Windows.Input.RoutedCommand>执行的实际逻辑不包含<xref:System.Windows.Input.RoutedCommand.CanExecute%2A>在<xref:System.Windows.Input.CommandManager.PreviewCanExecute>方法中, <xref:System.Windows.Input.CommandManager.CanExecute>而是<xref:System.Windows.Input.RoutedCommand.CanExecute%2A>引发和事件, 这些事件是通过元素进行隧道和冒泡的使用查找对象的树<xref:System.Windows.Input.CommandBinding>。  如果找到<xref:System.Windows.Input.CommandBinding>了, 则调用附加到的。 <xref:System.Windows.Input.CanExecuteRoutedEventHandler> <xref:System.Windows.Input.CommandBinding> <xref:System.Windows.Input.RoutedCommand>  这些处理程序提供编程逻辑来确定<xref:System.Windows.Input.RoutedCommand>能否执行。  
   
- <xref:System.Windows.Input.CommandManager.PreviewCanExecute>并<xref:System.Windows.Input.CommandManager.PreviewExecuted>事件，则将引发<xref:System.Windows.Input.ICommandSource.CommandTarget%2A>。  如果<xref:System.Windows.Input.ICommandSource.CommandTarget%2A>未设置上<xref:System.Windows.Input.ICommandSource>，则<xref:System.Windows.Input.CommandManager.PreviewCanExecute>和<xref:System.Windows.Input.CommandManager.CanExecute>具有键盘焦点的元素上引发事件。  
+ 在上<xref:System.Windows.Input.CommandManager.PreviewExecuted>引发<xref:System.Windows.Input.CommandManager.PreviewCanExecute> 和<xref:System.Windows.Input.ICommandSource.CommandTarget%2A>事件。  如果未在<xref:System.Windows.Input.ICommandSource>上设置, <xref:System.Windows.Input.CommandManager.PreviewCanExecute>则将在具有<xref:System.Windows.Input.CommandManager.CanExecute>键盘焦点的元素上引发和事件。 <xref:System.Windows.Input.ICommandSource.CommandTarget%2A>  
   
    
   
 ## Examples  
- 下面的示例是<xref:System.Windows.Input.ICommand.CanExecuteChanged>事件处理程序的自定义实现从<xref:System.Windows.Input.ICommandSource>。  
+ 下面的示例是<xref:System.Windows.Input.ICommand.CanExecuteChanged>自的自定义实现的<xref:System.Windows.Input.ICommandSource>事件处理程序。  
   
- `this.Command` 在此示例中是<xref:System.Windows.Input.ICommandSource.Command%2A>属性上的<xref:System.Windows.Input.ICommandSource>。  如果该命令不是`null`，该命令将强制转换为<xref:System.Windows.Input.RoutedCommand>。  如果该命令是<xref:System.Windows.Input.RoutedCommand>，则<xref:System.Windows.Input.RoutedCommand.CanExecute%2A>方法调用传递<xref:System.Windows.Input.ICommandSource.CommandTarget%2A>和<xref:System.Windows.Input.ICommandSource.CommandParameter%2A>。  如果命令不是<xref:System.Windows.Input.RoutedCommand>，强制转换为<xref:System.Windows.Input.ICommand>并<xref:System.Windows.Input.ICommand.CanExecute%2A>方法调用传递<xref:System.Windows.Input.ICommandSource.CommandParameter%2A>。  
+ `this.Command`在此示例中, <xref:System.Windows.Input.ICommandSource.Command%2A>是中的<xref:System.Windows.Input.ICommandSource>属性。  如果命令不`null`为, 则将命令强制转换<xref:System.Windows.Input.RoutedCommand>为。  <xref:System.Windows.Input.RoutedCommand>如果命令为, <xref:System.Windows.Input.RoutedCommand.CanExecute%2A>则<xref:System.Windows.Input.ICommandSource.CommandTarget%2A>调用方法以传递和。 <xref:System.Windows.Input.ICommandSource.CommandParameter%2A>  如果命令不<xref:System.Windows.Input.RoutedCommand>是, 则会将其强制转换<xref:System.Windows.Input.ICommand>为, <xref:System.Windows.Input.ICommand.CanExecute%2A>并将方法称为传递<xref:System.Windows.Input.ICommandSource.CommandParameter%2A>。  
   
- 如果<xref:System.Windows.Input.RoutedCommand.CanExecute%2A>方法将返回`true`，然后启用该控件; 否则，该控件为禁用。  
+ 如果该<xref:System.Windows.Input.RoutedCommand.CanExecute%2A>方法返回`true`, 则启用该控件; 否则, 该控件将处于禁用状态。  
   
  [!code-csharp[ImplementICommandSource#ImplementICommandCanExecuteChanged](~/samples/snippets/csharp/VS_Snippets_Wpf/ImplementICommandSource/CSharp/CommandSlider.cs#implementicommandcanexecutechanged)]
  [!code-vb[ImplementICommandSource#ImplementICommandCanExecuteChanged](~/samples/snippets/visualbasic/VS_Snippets_Wpf/ImplementICommandSource/visualbasic/commandslider.vb#implementicommandcanexecutechanged)]  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException"><paramref name="target" /> 不是<see cref="T:System.Windows.UIElement" />或<see cref="T:System.Windows.ContentElement" />。</exception>
+        <exception cref="T:System.InvalidOperationException"><paramref name="target" /> 不是 <see cref="T:System.Windows.UIElement" /> 或 <see cref="T:System.Windows.ContentElement" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="CanExecuteChanged">
@@ -252,23 +252,23 @@
         <ReturnType>System.EventHandler</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>命令管理器检测到对命令源的更改时发生。 这些更改通常影响是否应在当前命令目标上执行该命令。</summary>
+        <summary>当命令管理器检测到对命令源所进行的更改时发生。 这些更改通常影响是否应对当前命令目标执行命令。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Input.RoutedCommand>侦听<xref:System.Windows.Input.CommandManager.RequerySuggested>事件，引发的<xref:System.Windows.Input.CommandManager>。 <xref:System.Windows.Input.CommandManager.RequerySuggested>时满足条件时将引发事件，可能会更改是否应执行该命令，如更改在键盘焦点。  当该命令收到<xref:System.Windows.Input.CommandManager.RequerySuggested>事件，它会发出<xref:System.Windows.Input.RoutedCommand.CanExecuteChanged>事件。  通常情况下，命令源将侦听此事件和查询<xref:System.Windows.Input.RoutedCommand>通过<xref:System.Windows.Input.RoutedCommand.CanExecute%2A>方法。  如果无法执行此命令作为其命令绑定的一部分，大多数命令源将禁用自身。  此示例是当<xref:System.Windows.Controls.MenuItem>用本身灰色出时无法执行此命令。  
+ 侦听事件, 该事件是由<xref:System.Windows.Input.CommandManager>引发的。 <xref:System.Windows.Input.CommandManager.RequerySuggested> <xref:System.Windows.Input.RoutedCommand> 满足条件时将引发事件,该事件可更改是否应执行该命令,例如键盘焦点的变化。<xref:System.Windows.Input.CommandManager.RequerySuggested>  当命令收到<xref:System.Windows.Input.CommandManager.RequerySuggested>事件时, 它会<xref:System.Windows.Input.RoutedCommand.CanExecuteChanged>引发事件。  通常, 命令源将侦听此事件并<xref:System.Windows.Input.RoutedCommand>通过<xref:System.Windows.Input.RoutedCommand.CanExecute%2A>方法进行查询。  如果命令无法执行, 则大多数命令源会自行禁用, 作为其命令绑定的一部分。  例如, 当无法执行命令时<xref:System.Windows.Controls.MenuItem> , 这就是一个灰色。  
   
- 在某些情况下，<xref:System.Windows.Input.CommandManager>不知道的条件可更改要执行的命令的功能的更改。  在这些情况下，您可以强制<xref:System.Windows.Input.CommandManager>到引发<xref:System.Windows.Input.CommandManager.RequerySuggested>通过调用事件<xref:System.Windows.Input.CommandManager.InvalidateRequerySuggested%2A>方法，这又导致<xref:System.Windows.Input.RoutedCommand>引发<xref:System.Windows.Input.RoutedCommand.CanExecuteChanged>事件。  
+ 在某些情况下, <xref:System.Windows.Input.CommandManager>不知道更改要执行的命令的能力的条件更改。  在这些情况下, 你可以通过<xref:System.Windows.Input.CommandManager>调用<xref:System.Windows.Input.RoutedCommand> <xref:System.Windows.Input.CommandManager.RequerySuggested> <xref:System.Windows.Input.CommandManager.InvalidateRequerySuggested%2A>方法来强制引发事件, 这<xref:System.Windows.Input.RoutedCommand.CanExecuteChanged>将导致引发事件。  
   
    
   
 ## Examples  
- 下面的示例是<xref:System.Windows.Input.ICommand.CanExecuteChanged>事件处理程序的自定义实现从<xref:System.Windows.Input.ICommandSource>。  
+ 下面的示例是<xref:System.Windows.Input.ICommand.CanExecuteChanged>自的自定义实现的<xref:System.Windows.Input.ICommandSource>事件处理程序。  
   
- `this.Command` 在此示例中是<xref:System.Windows.Input.ICommandSource.Command%2A>属性上的<xref:System.Windows.Input.ICommandSource>。  如果该命令不是`null`，该命令将强制转换为<xref:System.Windows.Input.RoutedCommand>。  如果该命令是<xref:System.Windows.Input.RoutedCommand>，则<xref:System.Windows.Input.RoutedCommand.CanExecute%2A>方法调用传递<xref:System.Windows.Input.ICommandSource.CommandTarget%2A>和<xref:System.Windows.Input.ICommandSource.CommandParameter%2A>。  如果命令不是<xref:System.Windows.Input.RoutedCommand>，强制转换为<xref:System.Windows.Input.ICommand>并<xref:System.Windows.Input.ICommand.CanExecute%2A>方法调用传递<xref:System.Windows.Input.ICommandSource.CommandParameter%2A>。  
+ `this.Command`在此示例中, <xref:System.Windows.Input.ICommandSource.Command%2A>是中的<xref:System.Windows.Input.ICommandSource>属性。  如果命令不`null`为, 则将命令强制转换<xref:System.Windows.Input.RoutedCommand>为。  <xref:System.Windows.Input.RoutedCommand>如果命令为, <xref:System.Windows.Input.RoutedCommand.CanExecute%2A>则<xref:System.Windows.Input.ICommandSource.CommandTarget%2A>调用方法以传递和。 <xref:System.Windows.Input.ICommandSource.CommandParameter%2A>  如果命令不<xref:System.Windows.Input.RoutedCommand>是, 则会将其强制转换<xref:System.Windows.Input.ICommand>为, <xref:System.Windows.Input.ICommand.CanExecute%2A>并将方法称为传递<xref:System.Windows.Input.ICommandSource.CommandParameter%2A>。  
   
- 如果<xref:System.Windows.Input.RoutedCommand.CanExecute%2A>方法将返回`true`，然后启用该控件; 否则，该控件处于禁用状态。  
+ 如果该<xref:System.Windows.Input.RoutedCommand.CanExecute%2A>方法返回`true`, 则启用该控件; 否则, 将禁用该控件。  
   
  [!code-csharp[ImplementICommandSource#ImplementICommandCanExecuteChanged](~/samples/snippets/csharp/VS_Snippets_Wpf/ImplementICommandSource/CSharp/CommandSlider.cs#implementicommandcanexecutechanged)]
  [!code-vb[ImplementICommandSource#ImplementICommandCanExecuteChanged](~/samples/snippets/visualbasic/VS_Snippets_Wpf/ImplementICommandSource/visualbasic/commandslider.vb#implementicommandcanexecutechanged)]  
@@ -303,30 +303,30 @@
         <Parameter Name="target" Type="System.Windows.IInputElement" />
       </Parameters>
       <Docs>
-        <param name="parameter">用户定义的参数传递给处理程序。</param>
-        <param name="target">从此处开始查找命令处理程序元素。</param>
-        <summary>执行<see cref="T:System.Windows.Input.RoutedCommand" />当前命令目标上。</summary>
+        <param name="parameter">要传递到处理程序的用户定义的参数。</param>
+        <param name="target">要在其中查找命令处理程序的元素。</param>
+        <summary>对当前命令目标执行 <see cref="T:System.Windows.Input.RoutedCommand" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 执行的实际逻辑<xref:System.Windows.Input.RoutedCommand>未包含在<xref:System.Windows.Input.RoutedCommand.Execute%2A>方法。  <xref:System.Windows.Input.RoutedCommand.Execute%2A> 将引发<xref:System.Windows.Input.CommandManager.PreviewExecuted>并<xref:System.Windows.Input.CommandManager.Executed>隧道和浮升通过元素树，查找的对象的事件<xref:System.Windows.Input.CommandBinding>。  如果<xref:System.Windows.Input.CommandBinding>为此<xref:System.Windows.Input.RoutedCommand>找到，则<xref:System.Windows.Input.ExecutedRoutedEventHandler>附加到<xref:System.Windows.Input.CommandBinding>调用。  这些处理程序提供执行的编程逻辑<xref:System.Windows.Input.RoutedCommand>。  
+ 执行的<xref:System.Windows.Input.RoutedCommand>实际逻辑不包含<xref:System.Windows.Input.RoutedCommand.Execute%2A>在方法中。  <xref:System.Windows.Input.RoutedCommand.Execute%2A><xref:System.Windows.Input.CommandManager.PreviewExecuted>引发和<xref:System.Windows.Input.CommandManager.Executed>事件, 这些事件通过使用<xref:System.Windows.Input.CommandBinding>查找对象的元素树进行隧道和冒泡。  如果找到<xref:System.Windows.Input.CommandBinding>了, 则调用附加到的。 <xref:System.Windows.Input.ExecutedRoutedEventHandler> <xref:System.Windows.Input.CommandBinding> <xref:System.Windows.Input.RoutedCommand>  这些处理程序提供执行的<xref:System.Windows.Input.RoutedCommand>编程逻辑。  
   
- <xref:System.Windows.Input.CommandManager.PreviewExecuted>并<xref:System.Windows.Input.CommandManager.Executed>事件，则将引发<xref:System.Windows.Input.ICommandSource.CommandTarget%2A>。  如果<xref:System.Windows.Input.ICommandSource.CommandTarget%2A>未设置上<xref:System.Windows.Input.ICommandSource>，则<xref:System.Windows.Input.CommandManager.PreviewExecuted>和<xref:System.Windows.Input.CommandManager.Executed>具有键盘焦点的元素上引发事件。  
+ 在上<xref:System.Windows.Input.CommandManager.Executed>引发<xref:System.Windows.Input.CommandManager.PreviewExecuted> 和<xref:System.Windows.Input.ICommandSource.CommandTarget%2A>事件。  如果未在<xref:System.Windows.Input.ICommandSource>上设置, <xref:System.Windows.Input.CommandManager.PreviewExecuted>则将在具有<xref:System.Windows.Input.CommandManager.Executed>键盘焦点的元素上引发和事件。 <xref:System.Windows.Input.ICommandSource.CommandTarget%2A>  
   
    
   
 ## Examples  
- 下面的示例是从自定义实现的<xref:System.Windows.Input.ICommandSource>示例。  
+ 下面的示例来自于<xref:System.Windows.Input.ICommandSource>示例的自定义实现。  
   
- `this.Command` 在此示例中是 Command 属性上<xref:System.Windows.Input.ICommandSource>。  如果该命令不为 null，该命令转换为<xref:System.Windows.Input.RoutedCommand>。  如果它是<xref:System.Windows.Input.RoutedCommand>，则<xref:System.Windows.Input.RoutedCommand.Execute%2A>方法调用传递<xref:System.Windows.Input.ICommandSource.CommandTarget%2A>和<xref:System.Windows.Input.ICommandSource.CommandParameter%2A>。  如果该命令不是<xref:System.Windows.Input.RoutedCommand>，强制转换为<xref:System.Windows.Input.ICommand>并<xref:System.Windows.Input.ICommand.Execute%2A>方法调用传递<xref:System.Windows.Input.ICommandSource.CommandParameter%2A>。  
+ `this.Command`在此示例中, 是的<xref:System.Windows.Input.ICommandSource>命令属性。  如果此命令不为 null, 则该命令将强制转换<xref:System.Windows.Input.RoutedCommand>为。  如果它是<xref:System.Windows.Input.RoutedCommand>, <xref:System.Windows.Input.RoutedCommand.Execute%2A> <xref:System.Windows.Input.ICommandSource.CommandTarget%2A> 则<xref:System.Windows.Input.ICommandSource.CommandParameter%2A>调用方法, 将和传递给。  如果<xref:System.Windows.Input.RoutedCommand>该命令不是, 则会将其强制转换<xref:System.Windows.Input.ICommand>为, 并<xref:System.Windows.Input.ICommand.Execute%2A>通过传递<xref:System.Windows.Input.ICommandSource.CommandParameter%2A>来调用方法。  
   
  [!code-csharp[ImplementICommandSource#ImplementICommandExecute](~/samples/snippets/csharp/VS_Snippets_Wpf/ImplementICommandSource/CSharp/CommandSlider.cs#implementicommandexecute)]
  [!code-vb[ImplementICommandSource#ImplementICommandExecute](~/samples/snippets/visualbasic/VS_Snippets_Wpf/ImplementICommandSource/visualbasic/commandslider.vb#implementicommandexecute)]  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException"><paramref name="target" /> 不是<see cref="T:System.Windows.UIElement" />或<see cref="T:System.Windows.ContentElement" />。</exception>
+        <exception cref="T:System.InvalidOperationException"><paramref name="target" /> 不是 <see cref="T:System.Windows.UIElement" /> 或 <see cref="T:System.Windows.ContentElement" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="InputGestures">
@@ -346,13 +346,13 @@
         <ReturnType>System.Windows.Input.InputGestureCollection</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取集合的<see cref="T:System.Windows.Input.InputGesture" />与此命令关联的对象。</summary>
-        <value>输入的笔势。</value>
+        <summary>获取与此命令关联的 <see cref="T:System.Windows.Input.InputGesture" /> 对象的集合。</summary>
+        <value>输入笔势。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示如何将添加一个新<xref:System.Windows.Input.MouseGesture>到<xref:System.Windows.Input.RoutedCommand>。  
+ 下面的示例演示如何将新<xref:System.Windows.Input.MouseGesture>添加<xref:System.Windows.Input.RoutedCommand>到。  
   
  [!code-csharp[commandlibrarysnippets#MouseBindingAddedCommand](~/samples/snippets/csharp/VS_Snippets_Wpf/CommandLibrarySnippets/CSharp/Window1.xaml.cs#mousebindingaddedcommand)]
  [!code-vb[commandlibrarysnippets#MouseBindingAddedCommand](~/samples/snippets/visualbasic/VS_Snippets_Wpf/CommandLibrarySnippets/visualbasic/window1.xaml.vb#mousebindingaddedcommand)]  
@@ -395,7 +395,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用此属性，引用时<xref:System.Windows.Input.RoutedCommand>在[!INCLUDE[TLA#tla_titlexaml](~/includes/tlasharptla-titlexaml-md.md)]。  
+ 当<xref:System.Windows.Input.RoutedCommand>在中[!INCLUDE[TLA#tla_titlexaml](~/includes/tlasharptla-titlexaml-md.md)]引用时, 可以使用此属性。  
   
  ]]></format>
         </remarks>
@@ -423,7 +423,7 @@
         <ReturnType>System.Type</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取已注册到该命令的类型。</summary>
+        <summary>获取使用命令注册的类型。</summary>
         <value>命令所有者的类型。</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -456,8 +456,8 @@
       </Parameters>
       <Docs>
         <param name="parameter">此命令使用的数据。  如果此命令不需要传递数据，则该对象可以设置为 <see langword="null" />。</param>
-        <summary>有关此成员的说明，请参阅<see cref="M:System.Windows.Input.ICommand.CanExecute(System.Object)" />。</summary>
-        <returns>如果可执行此命令，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <summary>有关此成员的说明，请参见 <see cref="M:System.Windows.Input.ICommand.CanExecute(System.Object)" />。</summary>
+        <returns>如果可以执行此命令，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -492,7 +492,7 @@
       </Parameters>
       <Docs>
         <param name="parameter">此命令使用的数据。  如果此命令不需要传递数据，则该对象可以设置为 <see langword="null" />。</param>
-        <summary>有关此成员的说明，请参阅<see cref="M:System.Windows.Input.ICommand.Execute(System.Object)" />。</summary>
+        <summary>有关此成员的说明，请参见 <see cref="M:System.Windows.Input.ICommand.Execute(System.Object)" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   

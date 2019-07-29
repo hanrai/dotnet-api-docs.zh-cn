@@ -28,9 +28,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须支持的 UI 自动化提供程序上实现<xref:System.Windows.Automation.TextPattern>控件模式。  
+ 在必须支持<xref:System.Windows.Automation.TextPattern>控件模式的 UI 自动化提供程序上实现。  
   
- 一个<xref:System.Windows.Automation.Text.TextPatternRange>可以表示插入点、 一个子集，或中的文本的所有<xref:System.Windows.Automation.TextPattern>容器。  
+ 可以表示<xref:System.Windows.Automation.TextPattern>容器中的插入点、子集或所有文本。 <xref:System.Windows.Automation.Text.TextPatternRange>  
   
  ]]></format>
     </remarks>
@@ -67,11 +67,11 @@
 ## Remarks  
  文本插入点移动到新选择的区域。  
   
- 提供的退化文本范围移动插入点。  
+ 提供一个退化文本范围会移动插入点。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">如果文本提供程序不支持多个不连续的选择 (即<see cref="P:System.Windows.Automation.Provider.ITextProvider.SupportedTextSelection" />的值必须<see langword="Multiple" />)。</exception>
+        <exception cref="T:System.InvalidOperationException">如果文本提供程序不支持选择多个不连续的文本范围（即，<see cref="P:System.Windows.Automation.Provider.ITextProvider.SupportedTextSelection" /> 的值必须为 <see langword="Multiple" />）。</exception>
       </Docs>
     </Member>
     <Member MemberName="Clone">
@@ -98,7 +98,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新的范围可以从原始独立操作。  
+ 可以独立于原始范围操作新范围。  
   
  ]]></format>
         </remarks>
@@ -128,7 +128,7 @@
         <summary>返回一个值，该值指出文本范围的跨度（<see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start" /> 端点到 <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.End" /> 端点）是否与另一个文本范围相同。</summary>
         <returns>如果两个文本范围的跨度相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentException">如果进行比较的范围不是来自同一文本提供程序。</exception>
+        <exception cref="T:System.ArgumentException">如果进行比较的范围不是来自同一个文本提供程序。</exception>
       </Docs>
     </Member>
     <Member MemberName="CompareEndpoints">
@@ -163,7 +163,7 @@
   
 如果调用方的端点在文本中比目标端点后出现，则返回一个正值。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentException">如果<paramref name="targetRange" />来自不同的文本提供程序。</exception>
+        <exception cref="T:System.ArgumentException">如果 <paramref name="targetRange" /> 来自不同的文本提供程序。</exception>
       </Docs>
     </Member>
     <Member MemberName="ExpandToEnclosingUnit">
@@ -192,11 +192,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果范围已指定的单位的确切数量将保持不变。  
+ 如果范围已是指定单位的精确数量, 则它将保持不变。  
   
- 没有一系列步骤涉及顺序的幕后<xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A>方法才能成功执行。  
+ 要使<xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A>方法成功执行, 幕后还会涉及到一系列步骤。  
   
-1.  对文本范围进行了规范化。也就是说，已在 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> 终结点将文本范围折叠为退化范围，这使得 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> 终结点成为多余。 此步骤是必需的文本范围跨越的情况下消除歧义`unit`边界; 例如，"{The U} RL [ https://www.microsoft.com/ ](https://www.microsoft.com/)文本中嵌入"其中"{"和"}"是文本范围的终结点。  
+1.  对文本范围进行了规范化。也就是说，已在 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> 终结点将文本范围折叠为退化范围，这使得 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> 终结点成为多余。 在文本范围跨越`unit`边界的情况下, 此步骤是必需的; 例如, "{the U} RL [https://www.microsoft.com/](https://www.microsoft.com/)嵌入文本", 其中 "{" 和 "}" 是文本范围的终结点。  
   
 2.  生成的范围在 <xref:System.Windows.Automation.Provider.ITextProvider.DocumentRange%2A> 中向后移动到所请求的 `unit` 边界的开头。  
   
@@ -204,17 +204,17 @@
   
 4.  然后通过将 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> 终结点移动一个所请求的 `unit` 边界，范围从退化范围状态扩展开来。  
   
- ![范围通过 Move 和 expandtoenclosingunit 进行的调整](~/add/media/uia-textpattern-moveandexpand-examples.png "范围通过 Move 和 expandtoenclosingunit 进行的调整")  
+ ![范围调整 (通过移动 & ExpandToEnclosingUnit] )(~/add/media/uia-textpattern-moveandexpand-examples.png "范围调整 (通过移动 & ExpandToEnclosingUnit") )  
 如何针对 Move() 和 ExpandToEnclosingUnit() 调整文本范围的示例  
   
 > [!NOTE]
->  这些步骤是必要的因为它是常见的屏幕读取器读取出全字、 句子或在插入点或任何虚拟的光标位置处的整个段落。  
+>  这些步骤是必需的, 因为屏幕阅读器通常会在插入点或任何虚拟光标位置读取完整的单词、句子或整个段落。  
   
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.ExpandToEnclosingUnit%2A> 尊重隐藏和显示文本。  
+ <xref:System.Windows.Automation.Provider.ITextRangeProvider.ExpandToEnclosingUnit%2A>同时考虑隐藏文本和可见文本。  
   
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.ExpandToEnclosingUnit%2A> 将推迟到下一个最大<xref:System.Windows.Automation.Text.TextUnit>支持的如果给定<xref:System.Windows.Automation.Text.TextUnit>控件不支持。  
+ <xref:System.Windows.Automation.Provider.ITextRangeProvider.ExpandToEnclosingUnit%2A>如果控件不支持给定<xref:System.Windows.Automation.Text.TextUnit> <xref:System.Windows.Automation.Text.TextUnit>的, 则应遵从下一个受支持的最大值。  
   
- 顺序，从最小单位到最大值，如下所示。  
+ 下面列出了从最小单位到最大单位的顺序。  
   
 -   <xref:System.Windows.Automation.Text.TextUnit.Character>  
   
@@ -257,7 +257,7 @@
       </Parameters>
       <Docs>
         <param name="attribute">要搜索的特性。</param>
-        <param name="value">要搜索的特性值。 此值必须与为特性指定的类型匹配。</param>
+        <param name="value">要搜索的属性值。 此值必须与为特性指定的类型匹配。</param>
         <param name="backward">如果应该返回最后一个匹配的文本范围而不是第一个，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
         <summary>返回具有指定特性值的文本范围子集。</summary>
         <returns>具有匹配特性和特性值的文本范围；否则为 null（在 Visual Basic 中为 <see langword="Nothing" />）。</returns>
@@ -265,7 +265,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 隐藏和显示的文本之间没有差异。  
+ 隐藏文本和可见文本之间没有区别。  
   
  ]]></format>
         </remarks>
@@ -302,7 +302,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 隐藏和显示的文本之间没有差异。  
+ 隐藏文本和可见文本之间没有区别。  
   
  ]]></format>
         </remarks>
@@ -339,7 +339,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 隐藏和显示的文本之间没有差异。  
+ 隐藏文本和可见文本之间没有区别。  
   
  ]]></format>
         </remarks>
@@ -448,11 +448,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.GetText%2A> 尊重隐藏和显示文本。  
+ <xref:System.Windows.Automation.Provider.ITextRangeProvider.GetText%2A>同时考虑隐藏文本和可见文本。  
   
- 如果`maxLength`大于长度的调用方的文本范围，返回的字符串将文本范围的纯文本。  
+ 如果`maxLength`大于调用方的文本跨度长度, 则返回的字符串将是文本范围的纯文本。  
   
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.GetText%2A> 不会影响文本流中; 中的终结点的顺序之间的逻辑文本流顺序中的文本范围的开始和结束终结点，它将始终返回文本。  
+ <xref:System.Windows.Automation.Provider.ITextRangeProvider.GetText%2A>不会受到文本流中的终结点顺序的影响;它将始终按逻辑文本流顺序返回文本范围起点和终点之间的文本。  
   
  ]]></format>
         </remarks>
@@ -492,7 +492,7 @@
 ## Remarks  
  如果需要遍历文本范围的内容，为使 <xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A> 方法成功执行，将在后台进行一系列步骤。  
   
-1.  对文本范围进行了规范化。也就是说，已在 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> 终结点将文本范围折叠为退化范围，这使得 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> 终结点成为多余。 此步骤是必需的文本范围跨越的情况下消除歧义`unit`边界; 例如，"{The U} RL [ https://www.microsoft.com/ ](https://www.microsoft.com/)文本中嵌入"其中"{"和"}"是文本范围的终结点。  
+1.  对文本范围进行了规范化。也就是说，已在 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> 终结点将文本范围折叠为退化范围，这使得 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> 终结点成为多余。 在文本范围跨越`unit`边界的情况下, 此步骤是必需的; 例如, "{the U} RL [https://www.microsoft.com/](https://www.microsoft.com/)嵌入文本", 其中 "{" 和 "}" 是文本范围的终结点。  
   
 2.  生成的范围在 <xref:System.Windows.Automation.Provider.ITextProvider.DocumentRange%2A> 中向后移动到所请求的 `unit` 边界的开头。  
   
@@ -500,19 +500,19 @@
   
 4.  然后通过将 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> 终结点移动一个所请求的 `unit` 边界，范围从退化范围状态扩展开来。  
   
- ![范围通过 Move 和 expandtoenclosingunit 进行的调整](~/add/media/uia-textpattern-moveandexpand-examples.png "范围通过 Move 和 expandtoenclosingunit 进行的调整")  
+ ![范围调整 (通过移动 & ExpandToEnclosingUnit] )(~/add/media/uia-textpattern-moveandexpand-examples.png "范围调整 (通过移动 & ExpandToEnclosingUnit") )  
 如何针对 Move() 和 ExpandToEnclosingUnit() 调整文本范围的示例  
   
  文本容器和嵌入对象（如超链接或表格单元格）的文本内容（或内部文本）在 [!INCLUDE[TLA2#tla_uiautomation](~/includes/tla2sharptla-uiautomation-md.md)] 树的控件视图和内容视图中作为单个连续文本流公开，对象边界被忽略。  
   
- ![文本范围跨越的嵌入对象。](~/add/media/uia-textpattern-embeddedobjecttextranges.png "文本范围跨越的嵌入对象。")  
+ ![嵌入对象跨越的文本范围。](~/add/media/uia-textpattern-embeddedobjecttextranges.png "嵌入对象跨越的文本范围。")  
 含有嵌入对象及其范围跨度的文本流示例  
   
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A> 尊重隐藏和显示文本。  
+ <xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A>同时考虑隐藏文本和可见文本。  
   
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A> 将推迟到下一个最大<xref:System.Windows.Automation.Text.TextUnit>支持的如果给定<xref:System.Windows.Automation.Text.TextUnit>控件不支持。  
+ <xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A>如果控件不支持给定<xref:System.Windows.Automation.Text.TextUnit> <xref:System.Windows.Automation.Text.TextUnit>的, 则应遵从下一个受支持的最大值。  
   
- 顺序，从最小单位到最大值，如下所示。  
+ 下面列出了从最小单位到最大单位的顺序。  
   
 -   <xref:System.Windows.Automation.Text.TextUnit.Character>  
   
@@ -528,7 +528,7 @@
   
 -   <xref:System.Windows.Automation.Text.TextUnit.Document>  
   
- 文本不以任何方式发生改变，文本范围只是跨越不同部分文本。  
+ 不会以任何方式更改文本, 该文本范围只会跨越不同的文本部分。  
   
  ]]></format>
         </remarks>
@@ -564,7 +564,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果要移动的终结点相交的相同的文本范围的其他终结点，则该其他终结点也会随，从而导致退化范围，并确保正确的终结点的顺序 (即，<xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start>始终是小于或等于<xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End>).  
+ 如果要移动的终结点越过同一文本范围的其他终结点, 则还会移动其他终结点, 从而导致退化范围并确保终结点的正确顺序 (即, <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start>始终小于或等于<xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End>).  
   
  ]]></format>
         </remarks>
@@ -603,18 +603,18 @@
 ## Remarks  
  如果需要遍历文本范围的内容，为使 <xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A> 方法成功执行，将在后台进行一系列步骤。  
   
-1.  对文本范围进行了规范化。也就是说，已在 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> 终结点将文本范围折叠为退化范围，这使得 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> 终结点成为多余。 此步骤是必需的文本范围跨越的情况下消除歧义`unit`边界; 例如，"{The U} RL [ https://www.microsoft.com/ ](https://www.microsoft.com/)文本中嵌入"其中"{"和"}"是文本范围的终结点。  
+1.  对文本范围进行了规范化。也就是说，已在 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> 终结点将文本范围折叠为退化范围，这使得 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> 终结点成为多余。 在文本范围跨越`unit`边界的情况下, 此步骤是必需的; 例如, "{the U} RL [https://www.microsoft.com/](https://www.microsoft.com/)嵌入文本", 其中 "{" 和 "}" 是文本范围的终结点。  
   
 2.  生成的范围在 <xref:System.Windows.Automation.Provider.ITextProvider.DocumentRange%2A> 中向后移动到所请求的 `unit` 边界的开头。  
   
 3.  然后通过将 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> 终结点移动一个所请求的 `unit` 边界，范围从退化范围状态扩展开来。  
   
- ![范围通过 Move 和 expandtoenclosingunit 进行的调整](~/add/media/uia-textpattern-moveandexpand-examples.png "范围通过 Move 和 expandtoenclosingunit 进行的调整")  
+ ![范围调整 (通过移动 & ExpandToEnclosingUnit] )(~/add/media/uia-textpattern-moveandexpand-examples.png "范围调整 (通过移动 & ExpandToEnclosingUnit") )  
 如何针对 Move() 和 ExpandToEnclosingUnit() 调整文本范围的示例  
   
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.MoveEndpointByUnit%2A> 将推迟到下一个最大<xref:System.Windows.Automation.Text.TextUnit>支持的如果给定<xref:System.Windows.Automation.Text.TextUnit>控件不支持。  
+ <xref:System.Windows.Automation.Provider.ITextRangeProvider.MoveEndpointByUnit%2A>如果控件不支持给定<xref:System.Windows.Automation.Text.TextUnit> <xref:System.Windows.Automation.Text.TextUnit>的, 则应遵从下一个受支持的最大值。  
   
- 顺序，从最小单位到最大值，如下所示。  
+ 下面列出了从最小单位到最大单位的顺序。  
   
 -   <xref:System.Windows.Automation.Text.TextUnit.Character>  
   
@@ -657,13 +657,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 文本插入点会将移动到已删除突出显示的区域。  
+ 文本插入点将移到已删除突出显示的区域。  
   
- 提供的退化文本范围将插入点。  
+ 提供一个退化文本范围将移动插入点。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">如果文本提供程序不支持多个不连续的选择 (例如，<see cref="P:System.Windows.Automation.TextPattern.SupportedTextSelection" />的值必须<see langword="Multiple" />)。</exception>
+        <exception cref="T:System.InvalidOperationException">如果文本提供程序不支持选择多个不连续的文本范围（例如，<see cref="P:System.Windows.Automation.TextPattern.SupportedTextSelection" /> 的值必须为 <see langword="Multiple" />）。</exception>
       </Docs>
     </Member>
     <Member MemberName="ScrollIntoView">
@@ -692,9 +692,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.ScrollIntoView%2A> 尊重隐藏和显示文本。  
+ <xref:System.Windows.Automation.Provider.ITextRangeProvider.ScrollIntoView%2A>同时考虑隐藏文本和可见文本。  
   
- 如果文本区域处于隐藏状态，仅当隐藏的文本包含视区中的定位点，将滚动文本控件。  
+ 如果文本范围处于隐藏状态, 则仅当隐藏文本在视区中具有定位点时, 文本控件才会滚动。  
   
  ]]></format>
         </remarks>
@@ -723,7 +723,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果提供的退化文本范围，则会将文本插入点移动到<xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start>的文本范围的终结点。  
+ 如果提供了退化文本范围, 文本插入点将移到<xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start>文本范围的终结点。  
   
  ]]></format>
         </remarks>

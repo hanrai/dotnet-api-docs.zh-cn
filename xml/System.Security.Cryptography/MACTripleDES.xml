@@ -1,5 +1,5 @@
 <Type Name="MACTripleDES" FullName="System.Security.Cryptography.MACTripleDES">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="13b45a6bdefc363a62d1489a1e5a4180d67e4ce2" /><Meta Name="ms.sourcegitcommit" Value="0e1f030650a307c745ee84ed547ef858acaea587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="11/29/2018" /><Meta Name="ms.locfileid" Value="52598351" /></Metadata><TypeSignature Language="C#" Value="public class MACTripleDES : System.Security.Cryptography.KeyedHashAlgorithm" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="831f284869e8c16c7d1b70476fbdb1a992d6a08a" /><Meta Name="ms.sourcegitcommit" Value="e7974886b08aa83a8fb461e8550f31a7d4331ee3" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/23/2019" /><Meta Name="ms.locfileid" Value="68398904" /></Metadata><TypeSignature Language="C#" Value="public class MACTripleDES : System.Security.Cryptography.KeyedHashAlgorithm" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit MACTripleDES extends System.Security.Cryptography.KeyedHashAlgorithm" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.MACTripleDES" />
   <TypeSignature Language="VB.NET" Value="Public Class MACTripleDES&#xA;Inherits KeyedHashAlgorithm" />
@@ -27,16 +27,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- MAC 可以用于确定是否通过不安全通道发送的消息已被篡改，前提是在发送方和接收方共享机密密钥。 发件人计算原始数据，MAC，并将二者均为一条消息发送。 接收方重新计算对收到的消息，MAC，并检查计算的 MAC 与匹配传输 mac。  
+ 如果发送方和接收方共享了密钥, 则可以使用 MAC 来确定通过不安全通道发送的消息是否已被篡改。 发件人计算原始数据的 MAC, 并将两者都作为单个消息发送。 接收方在收到的消息上重新计算 MAC, 并检查计算的 MAC 是否与传输的 MAC 匹配。  
   
- 任何更改，对数据或 MAC 结果不匹配，因为更改消息和重新生成正确的 MAC 需要机密的密钥 因此，如果代码匹配，该消息进行身份验证。  
+ 对数据或 MAC 的任何更改都将导致不匹配, 因为更改消息和重现正确的 MAC 需要密钥知识。 因此, 如果代码匹配, 则对消息进行身份验证。  
   
- <xref:System.Security.Cryptography.MACTripleDES> 使用为 16 或 24 个字节长时间，并生成一个哈希序列，其中 8 个字节长的密钥。  
+ <xref:System.Security.Cryptography.MACTripleDES>使用长度为16或24个字节的密钥, 并产生长度为8个字节的哈希序列。  
   
    
   
 ## Examples  
- 下面的示例创建名为的文件的 MAC `input.txt`，位于包含该示例可执行文件的文件夹中。 在 MAC 和原始文本将写入到名为的文件`encrypted.hsh`同一文件夹中。 然后阅读已签名的文件，并为该文件的文本部分计算和比较到 MAC 附带文本 MAC。  
+ 下面的示例为一个名`input.txt`为的文件创建 MAC, 该文件位于包含可执行文件示例的文件夹中。 MAC 和原始文本会写入同一文件夹中名为`encrypted.hsh`的文件。 然后, 将读取签名文件, 并为文件的文本部分计算 MAC, 并将其与随文本附带的 MAC 进行比较。  
   
  [!code-csharp[MAC3DES#1](~/samples/snippets/csharp/VS_Snippets_CLR/MAC3DES/CS/program.cs#1)]
  [!code-vb[MAC3DES#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/MAC3DES/VB/program.vb#1)]  
@@ -117,12 +117,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数使用的默认实现<xref:System.Security.Cryptography.TripleDES>。 `rgbKey`参数必须是 16 或 24 个字节的长度。  
+ 此构造函数使用的默认实现<xref:System.Security.Cryptography.TripleDES>。 参数`rgbKey`的长度必须为16或24个字节。  
   
    
   
 ## Examples  
- 有关如何使用此构造函数的示例，请参阅<xref:System.Security.Cryptography.MACTripleDES>类。  
+ 有关如何使用此构造函数的示例, 请参阅<xref:System.Security.Cryptography.MACTripleDES>类。  
   
  ]]></format>
         </remarks>
@@ -161,9 +161,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `strTripleDES`参数是友好名称<xref:System.Security.Cryptography.TripleDES>实现类型。 默认实现是 System.Security.Cryptography.TripleDES。  
+ 参数是<xref:System.Security.Cryptography.TripleDES>实现类型的友好名称。 `strTripleDES` 默认实现为 "TripleDES"。  
   
- `rgbKey`参数必须是 16 或 24 个字节的长度。  
+ 参数`rgbKey`的长度必须为16或24个字节。  
   
  ]]></format>
         </remarks>
@@ -199,16 +199,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法由公共`Dispose()`方法和`Finalize`方法。 `Dispose()` 调用受保护`Dispose(Boolean)`方法释放参数设置为`true`。 `Finalize` 将释放设置为 `Dispose`，调用 `false`。  
+ 此方法由公共`Dispose()`方法`Finalize`和方法调用。 `Dispose()`调用受保护`Dispose(Boolean)`的方法, 释放参数设置为`true`。 `Finalize` 将释放设置为 `Dispose`，调用 `false`。  
   
  当 `disposing` 参数为 `true` 时，此方法释放该 <xref:System.Security.Cryptography.MACTripleDES> 引用的、由任何托管对象持有的全部资源。 此方法调用每个引用对象的 `Dispose()` 方法。  
   
  ]]></format>
         </remarks>
         <block subset="none" type="overrides"><para>
-            <see langword="Dispose" /> 可以由其他对象多次调用。 重写时<see langword="Dispose(Boolean)" />，请小心不要引用在早期调用之前释放对象<see langword="Dispose" />。 有关如何实现详细信息<see langword="Dispose(Boolean)" />，请参阅[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
+            <see langword="Dispose" /> 可以由其他对象多次调用。 重写<see langword="Dispose(Boolean)" />时, 请注意不要引用先前在<see langword="Dispose" />调用时已释放的对象。 有关如何实现<see langword="Dispose(Boolean)" />的详细信息, 请参阅[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
   
-有关详细信息<see langword="Dispose" />并<see langword="Finalize" />，请参阅[清理了非托管资源](~/docs/standard/garbage-collection/unmanaged.md)。</para></block>
+有关<see langword="Dispose" /> 和<see langword="Finalize" />的详细信息, 请参阅[清理非托管资源](~/docs/standard/garbage-collection/unmanaged.md)。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Finalize">
@@ -290,7 +290,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 仅写入所有数据，并且不能之后写入更多的数据后，你可以读取此值。 创建的新实例<xref:System.Security.Cryptography.MACTripleDES>为每个单独的段的数据来计算该数据的 MAC。  
+ 只有在写入所有数据后才能读取此值, 并且以后不能再写入数据。 为每个单独的<xref:System.Security.Cryptography.MACTripleDES>数据段创建新的实例, 以计算该数据的 MAC。  
   
  ]]></format>
         </remarks>
@@ -321,7 +321,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法调用默认构造函数的类。  
+ 此方法为类调用无参数的构造函数。  
   
  ]]></format>
         </remarks>
@@ -356,9 +356,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 大多数纯文本消息执行操作包含的完全填充块的字节数。 通常情况下，没有足够的字节数来填充的最后一个块。 在此情况下，填充字符串添加到文本。 例如，如果块长度为 64 位和最后一个块只包含 40 位，将添加的填充的 24 位。 请参阅<xref:System.Security.Cryptography.PaddingMode>有关特定模式的说明。  
+ 大多数纯文本消息不包含完全填充块的多个字节。 通常, 没有足够的字节来填充最后一个块。 发生这种情况时, 会将填充字符串添加到文本中。 例如, 如果块长度为64位, 而最后一个块只包含40位, 则会添加24位填充。 有关<xref:System.Security.Cryptography.PaddingMode>特定模式的说明, 请参阅。  
   
- 通过访问此字段<xref:System.Security.Cryptography.SymmetricAlgorithm.Padding%2A>属性。  
+ 此字段通过<xref:System.Security.Cryptography.SymmetricAlgorithm.Padding%2A>属性进行访问。  
   
  ]]></format>
         </remarks>

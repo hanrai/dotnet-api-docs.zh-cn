@@ -1,5 +1,5 @@
 <Type Name="Progress&lt;T&gt;" FullName="System.Progress&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e5c438868948eb28d656ed733935e34fee804c13" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58684497" /></Metadata><TypeSignature Language="C#" Value="public class Progress&lt;T&gt; : IProgress&lt;T&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="efb510d7a13ca823c9418eb6566c6e883e731d7c" /><Meta Name="ms.sourcegitcommit" Value="24f564114ee2fa9c63dbac1b25b82826cc4e320f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/25/2019" /><Meta Name="ms.locfileid" Value="68488589" /></Metadata><TypeSignature Language="C#" Value="public class Progress&lt;T&gt; : IProgress&lt;T&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Progress`1&lt;T&gt; extends System.Object implements class System.IProgress`1&lt;!T&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Progress`1" />
   <TypeSignature Language="VB.NET" Value="Public Class Progress(Of T)&#xA;Implements IProgress(Of T)" />
@@ -41,9 +41,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 提供给构造函数或事件处理程序的任何处理程序注册<xref:System.Progress%601.ProgressChanged>通过调用事件<xref:System.Threading.SynchronizationContext>构造实例时，捕获实例。 如果没有当前<xref:System.Threading.SynchronizationContext>在构造时，回调会调用上<xref:System.Threading.ThreadPool>。  
+ 向使用<xref:System.Progress%601.ProgressChanged>事件注册的构造函数或事件处理程序提供的任何处理程序都<xref:System.Threading.SynchronizationContext>是通过实例构造时捕获的实例进行调用的。 如果构造时没有当前<xref:System.Threading.SynchronizationContext>的, 则将<xref:System.Threading.ThreadPool>在上调用回调。  
   
- 有关详细信息和代码示例，请参阅文章[4.5 中的异步：启用进度和异步 Api 中的取消](https://go.microsoft.com/fwlink/p/?LinkId=267243).NET Framework 博客中。  
+ 有关详细信息和代码示例, 请参阅4.5 中[的异步操作一文:在 .NET Framework 博客中的异步 api](https://go.microsoft.com/fwlink/p/?LinkId=267243)中启用进度和取消。  
   
  ]]></format>
     </remarks>
@@ -125,6 +125,7 @@
         <param name="handler">为每个报告的进度值调用处理程序。 该处理程序会调用除了任何委托 <see cref="E:System.Progress`1.ProgressChanged" /> 事件注册。 根据 <see cref="T:System.Threading.SynchronizationContext" /> 实例， <see cref="T:System.Progress`1" /> 在构造时所捕获的实例, 该处理程序实例很有可能同时调用自身。</param>
         <summary>用指定的回调初始化 <see cref="T:System.Progress`1" /> 对象。</summary>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="handler" /> 为 <see langword="null" />（在 Visual Basic 中为 <see langword="Nothing" />）。</exception>
       </Docs>
     </Member>
     <Member MemberName="OnReport">
@@ -200,7 +201,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 与此事件注册处理程序将调用上<xref:System.Threading.SynchronizationContext>捕获构造实例时。  
+ 当构造实例时, 将对捕获的处理<xref:System.Threading.SynchronizationContext>程序调用注册了此事件的处理程序。  
   
  ]]></format>
         </remarks>

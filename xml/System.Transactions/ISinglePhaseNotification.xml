@@ -32,13 +32,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您应该注意，资源管理器实现此接口以支持单阶段提交优化，即使它不能保证它将接收单阶段提交。 事务管理器仍可改为发送两阶段提交通知。  
+ 请注意, 即使资源管理器实现此接口以支持单阶段提交优化, 也不能保证它收到单阶段提交。 事务管理器仍可以改为发送两阶段提交通知。  
   
- 若要登记在事务中的参与者作为资源管理器，请调用<xref:System.Transactions.Transaction.EnlistVolatile%2A>方法或<xref:System.Transactions.Transaction.EnlistDurable%2A>方法的<xref:System.Transactions.Transaction>类。 具体而言，`EnlistmentOptions`参数应等于<xref:System.Transactions.EnlistmentOptions.None>以确保执行单阶段提交。 如果错误地设置为<xref:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired>，任何单个阶段执行提交操作。  
+ 若要在事务中登记资源管理器作为参与者, 请调用<xref:System.Transactions.Transaction.EnlistVolatile%2A>方法<xref:System.Transactions.Transaction.EnlistDurable%2A>或<xref:System.Transactions.Transaction>类的方法。 具体而言, `EnlistmentOptions`参数应该<xref:System.Transactions.EnlistmentOptions.None>等于, 以确保执行单阶段提交。 如果错误地将其设置<xref:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired>为, 则不会发生单阶段提交。  
   
- 由于<xref:System.Transactions.ISinglePhaseNotification>接口派生<xref:System.Transactions.IEnlistmentNotification>接口，用于两阶段提交通知，资源管理器还必须实现的后一种所有方法。  它是两阶段提交的事务管理器的选择，或与此资源管理器一起使用单阶段提交优化。  但是，实现此接口可以提供资源管理器时便可充分利用优化的机会。  
+ 由于接口派生<xref:System.Transactions.IEnlistmentNotification>自接口, 因此, 资源管理器还必须实现后两阶段提交通知的所有方法。 <xref:System.Transactions.ISinglePhaseNotification>  事务管理器的选择是将两阶段提交还是单阶段提交优化用于此资源管理器。  但是, 实现此接口会使资源管理器有机会在可用时使用优化。  
   
- 如果使用优化，事务管理器调用<xref:System.Transactions.ISinglePhaseNotification.SinglePhaseCommit%2A>方法的已登记的资源，资源管理器应响应此调用使用的各种方法<xref:System.Transactions.SinglePhaseEnlistment>类通知事务管理器，如果事务是提交或回滚。  
+ 如果使用了优化并且事务管理器调用<xref:System.Transactions.ISinglePhaseNotification.SinglePhaseCommit%2A>了登记资源的方法, 则资源管理器应通过使用<xref:System.Transactions.SinglePhaseEnlistment>类的各种方法来响应此调用, 以通知事务管理器将提交或回滚事务。  
   
  ]]></format>
     </remarks>
@@ -85,18 +85,18 @@
       <Docs>
         <param name="singlePhaseEnlistment">一个 <see cref="T:System.Transactions.SinglePhaseEnlistment" />，它用于将响应发送到事务管理器。</param>
         <param name="enlistment">一个 <see cref="T:System.Transactions.SinglePhaseEnlistment" />，它用于将响应发送到事务管理器。</param>
-        <summary>表示资源管理器的实现的单阶段提交优化的回调。</summary>
+        <summary>表示资源管理器的用于单阶段提交优化的回调实现。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 它是两阶段提交的事务管理器的选择，或与此资源管理器一起使用单阶段提交优化。  单阶段和两阶段提交的详细信息，请参阅[Committing A Transaction 转换中 Single-Phase and Multi-phase](https://msdn.microsoft.com/library/74b3cfe1-d33a-45b8-91f4-dfd6f6598c4d)。  
+ 事务管理器的选择是将两阶段提交还是单阶段提交优化用于此资源管理器。  有关单阶段和两阶段提交的详细信息, 请参阅[在单阶段和多阶段提交事务](https://msdn.microsoft.com/library/74b3cfe1-d33a-45b8-91f4-dfd6f6598c4d)。  
   
- 因此，在资源管理器，此登记上任一<xref:System.Transactions.ISinglePhaseNotification.SinglePhaseCommit%2A>调用方法时，或两个阶段中定义的提交方法<xref:System.Transactions.IEnlistmentNotification>称为接口。  
+ 因此, 在资源管理器的这一登记上, <xref:System.Transactions.ISinglePhaseNotification.SinglePhaseCommit%2A>调用了方法, 或<xref:System.Transactions.IEnlistmentNotification>在接口中定义的两阶段提交方法被调用。  
   
- 此方法的实现应调用<xref:System.Transactions.SinglePhaseEnlistment.Committed%2A>方法或<xref:System.Transactions.SinglePhaseEnlistment.Aborted%2A>方法的`singlePhaseEnlistment`参数以指示是否应提交或回滚事务。  
+ 此方法的实现应调用<xref:System.Transactions.SinglePhaseEnlistment.Committed%2A>方法<xref:System.Transactions.SinglePhaseEnlistment.Aborted%2A>或`singlePhaseEnlistment`参数的方法, 以指示应提交还是回滚事务。  
   
- 只有一个可变登记支持单阶段提交时或者当有零或多个可变登记和一个持久登记，事务管理器将调用此方法。 在后一种情况下，可变登记会接收<xref:System.Transactions.IEnlistmentNotification.Prepare%2A>双-阶段提交和唯一的持久登记的通知接收单阶段提交通知。  
+ 当只有一个可变登记支持单阶段提交时, 或者当有零个或多个可变登记和一个持久登记时, 事务管理器将调用此方法。 在后一种情况下, 易失<xref:System.Transactions.IEnlistmentNotification.Prepare%2A>性登记接收两阶段提交的通知, 并且唯一持久登记收到单阶段提交通知。  
   
  ]]></format>
         </remarks>

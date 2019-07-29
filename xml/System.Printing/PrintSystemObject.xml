@@ -19,21 +19,21 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <summary>定义基本属性和方法所共有的打印系统对象。 从此类派生的类表示打印队列、 打印服务器和打印作业作为此类对象。</summary>
+    <summary>定义打印系统对象所共有的基本属性和方法。 从此类派生的类表示诸如打印队列、打印服务器和打印作业之类的对象。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 除了打印系统对象的基类，该类可用于你的应用程序不知道或不关心哪些特定类型的正在使用的打印系统对象时调用的方法。 例如，您可以通过枚举<xref:System.Printing.PrintSystemObjects>的不同对象类型，调用集合<xref:System.Printing.PrintSystemObject.Commit%2A>上每个轮次中的方法。  
+ 除了作为打印系统对象的基类之外, 当您的应用程序不知道或不关心它所使用的特定类型的打印系统对象时, 此类对于调用方法非常有用。 例如, 可以枚举<xref:System.Printing.PrintSystemObjects>不同对象类型的集合, 依次对每个对象类型<xref:System.Printing.PrintSystemObject.Commit%2A>调用方法。  
   
 > [!CAUTION]
->  类中<xref:System.Printing>命名空间不支持的 Windows 服务或 ASP.NET 应用程序或服务中的使用。 尝试使用在这些应用程序类型之一中的这些类可能会产生意外的问题，如降低服务性能和运行时异常。  
+>  <xref:System.Printing>命名空间中的类不支持在 Windows 服务或 ASP.NET 应用程序或服务中使用。 尝试从这些应用程序类型之一中使用这些类可能会产生意外的问题, 例如降低服务性能和运行时异常。  
   
- 如果你想要从 Windows 窗体应用程序打印，请参阅<xref:System.Drawing.Printing>命名空间。  
+ 如果要从 Windows 窗体应用程序进行打印, 请参阅<xref:System.Drawing.Printing>命名空间。  
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>如果派生的类从<see cref="T:System.Printing.PrintSystemObject" />，你可能想要派生从该类的对象的集合<see cref="T:System.Printing.PrintSystemObjects" />。</para></block>
+    <block subset="none" type="overrides"><para>如果从<see cref="T:System.Printing.PrintSystemObject" />派生类, 可能需要从<see cref="T:System.Printing.PrintSystemObjects" />派生该类的对象的集合。</para></block>
   </Docs>
   <Members>
     <MemberGroup MemberName=".ctor">
@@ -80,7 +80,7 @@
         <Parameter Name="mode" Type="System.Printing.PrintSystemObjectLoadMode" />
       </Parameters>
       <Docs>
-        <param name="mode">一个值，指定加载对象时是否应该初始化该对象的属性。</param>
+        <param name="mode">一个用于指定在装载对象时是否应该初始化该对象属性的值。</param>
         <summary>使用指定的 <see cref="T:System.Printing.PrintSystemObject" /> 初始化 <see cref="T:System.Printing.PrintSystemObjectLoadMode" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -103,8 +103,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>获取派生类的属性的名称。</summary>
-        <returns>一个数组<see cref="T:System.String" />值。</returns>
+        <summary>获取派生类特性的名称。</summary>
+        <returns><see cref="T:System.String" /> 值的数组。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -126,17 +126,17 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>当在派生类中重写时写入的任何更改，您的程序具有对对象的属性的实际软件或硬件组件，该对象表示。</summary>
+        <summary>在派生类中重写时，会将程序对对象属性所做的所有更改写入该对象表示的实际软件或硬件组件。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 例如，当通过重写<xref:System.Printing.PrintServer>类，<xref:System.Printing.PrintServer.Commit%2A>将写入到所做的更改<xref:System.Printing.PrintServer>到该对象表示的实际计算机对象的属性。  
+ 例如, 当由<xref:System.Printing.PrintServer>类重写时, <xref:System.Printing.PrintServer.Commit%2A>会将对<xref:System.Printing.PrintServer>对象的属性所做的更改写入该对象所表示的实际计算机。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用此方法 (在调用<xref:System.Printing.PrintQueue>对象，这会重写方法中的，从<xref:System.Printing.PrintSystemObject>) 合并打印票证的过程的一部分。  
+ 下面的示例演示如何使用此方法 (在<xref:System.Printing.PrintQueue>对象上调用, 该对象会重写中<xref:System.Printing.PrintSystemObject>的方法) 作为合并打印票证的过程的一部分。  
   
  [!code-csharp[PrintTicketManagment#UsingMergeAndValidate](~/samples/snippets/csharp/VS_Snippets_Wpf/PrintTicketManagment/CSharp/printticket.cs#usingmergeandvalidate)]
  [!code-vb[PrintTicketManagment#UsingMergeAndValidate](~/samples/snippets/visualbasic/VS_Snippets_Wpf/PrintTicketManagment/visualbasic/printticket.vb#usingmergeandvalidate)]  
@@ -181,7 +181,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在完成使用 <xref:System.Printing.PrintSystemObject.Dispose> 后，应调用 <xref:System.Printing.PrintSystemObject>。 <xref:System.Printing.PrintSystemObject.Dispose> 方法使 <xref:System.Printing.PrintSystemObject> 处于不可用状态。 在调用<xref:System.Printing.PrintSystemObject.Dispose>，必须释放对所有引用<xref:System.Printing.PrintSystemObject>这样垃圾回收器才能收回内存的<xref:System.Printing.PrintSystemObject>占用。 有关详细信息，请参阅[清理了非托管资源](~/docs/standard/garbage-collection/unmanaged.md)并[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
+ 在完成使用 <xref:System.Printing.PrintSystemObject.Dispose> 后，应调用 <xref:System.Printing.PrintSystemObject>。 <xref:System.Printing.PrintSystemObject.Dispose> 方法使 <xref:System.Printing.PrintSystemObject> 处于不可用状态。 调用<xref:System.Printing.PrintSystemObject.Dispose>后, 必须释放对的<xref:System.Printing.PrintSystemObject>所有引用, 以便垃圾回收器能够<xref:System.Printing.PrintSystemObject>回收占用的内存。 有关详细信息, 请参阅[清理非托管资源](~/docs/standard/garbage-collection/unmanaged.md)和[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
   
 > [!NOTE]
 >  每次释放对 <xref:System.Printing.PrintSystemObject.Dispose> 的最后一个引用前，均应调用 <xref:System.Printing.PrintSystemObject>。 否则，在垃圾回收器调用 <xref:System.Printing.PrintSystemObject> 对象的 <xref:System.Object.Finalize%2A> 方法之前，该对象正在使用的资源不会被释放。  
@@ -222,23 +222,23 @@
         <Parameter Name="" Type="System.Boolean" Index="0" FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0" />
       </Parameters>
       <Docs>
-        <param name="">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
-        <param name="A_0">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+        <param name=""><see langword="true" /> 表示释放托管资源和非托管资源；<see langword="false" /> 表示仅释放非托管资源。</param>
+        <param name="A_0"><see langword="true" /> 表示释放托管资源和非托管资源；<see langword="false" /> 表示仅释放非托管资源。</param>
         <summary>释放由 <see cref="T:System.Printing.PrintSystemObject" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法由公共`Dispose()`方法和<xref:System.Object.Finalize%2A>方法。 `Dispose()` 调用受保护`Dispose(Boolean)`方法未命名的布尔参数设置为`true`。 <xref:System.Object.Finalize%2A> 调用`Dispose`参数设置为`false`。  
+ 此方法由公共`Dispose()`方法<xref:System.Object.Finalize%2A>和方法调用。 `Dispose()`调用受保护`Dispose(Boolean)`的方法, 并将未命名的`true`布尔参数设置为。 <xref:System.Object.Finalize%2A>调用`Dispose`并将参数设置为`false`。  
   
- 布尔型参数时`true`，此方法释放任何托管对象所持有的所有资源，此<xref:System.Printing.PrintSystemObject>的引用。 此方法调用每个引用对象的 `Dispose()` 方法。  
+ 如果布尔参数为, `true`此方法将释放该<xref:System.Printing.PrintSystemObject>引用的任何托管对象所持有的所有资源。 此方法调用每个引用对象的 `Dispose()` 方法。  
   
  ]]></format>
         </remarks>
         <block subset="none" type="overrides"><para>
-            <see langword="Dispose" /> 可以由其他对象多次调用。 重写 <see langword="Dispose(Boolean)" /> 时，请注意不要引用在以前调用 <see langword="Dispose" /> 时已释放的对象。 有关如何实现详细信息<see langword="Dispose(Boolean)" />，请参阅[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
+            <see langword="Dispose" /> 可以由其他对象多次调用。 重写 <see langword="Dispose(Boolean)" /> 时，请注意不要引用在以前调用 <see langword="Dispose" /> 时已释放的对象。 有关如何实现<see langword="Dispose(Boolean)" />的详细信息, 请参阅[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
   
-有关详细信息<see langword="Dispose" />并<see cref="M:System.Object.Finalize" />，请参阅[清理了非托管资源](~/docs/standard/garbage-collection/unmanaged.md)并[重写 Finalize 方法](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))。</para></block>
+有关<see langword="Dispose" /> 和<see cref="M:System.Object.Finalize" />的详细信息, 请参阅[清理非托管资源](~/docs/standard/garbage-collection/unmanaged.md)和[重写 Finalize 方法](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Finalize">
@@ -264,12 +264,12 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>释放正在使用的资源<see cref="T:System.Printing.PrintSystemObject" />。</summary>
+        <summary>释放正在由 <see cref="T:System.Printing.PrintSystemObject" /> 使用的资源。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Printing.PrintSystemObject.Finalize%2A>方法可作为一种安全措施来清理资源的事件中<xref:System.Printing.PrintSystemObject.Dispose%2A>不会调用方法。 应实现<xref:System.Printing.PrintSystemObject.Finalize%2A>只方法以清理非托管资源。 您不应实现的托管对象，此方法，因为垃圾回收器会自动清理托管资源。  
+ 如果<xref:System.Printing.PrintSystemObject.Finalize%2A>未调用<xref:System.Printing.PrintSystemObject.Dispose%2A>方法, 则该方法将充当一项安全措施来清理资源。 应实现<xref:System.Printing.PrintSystemObject.Finalize%2A>方法以仅清理非托管资源。 不应为托管对象实现此方法, 因为垃圾回收器会自动清理托管资源。  
   
  ]]></format>
         </remarks>
@@ -293,7 +293,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>初始化的属性<see cref="T:System.Printing.PrintSystemObject" />。</summary>
+        <summary>初始化 <see cref="T:System.Printing.PrintSystemObject" /> 的属性。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -322,8 +322,8 @@
         <Parameter Name="disposing" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
-        <summary>当在派生类中重写，释放正在使用的非托管的资源<see cref="T:System.Printing.PrintSystemObject" />，还可以选择释放托管的资源正在使用。</summary>
+        <param name="disposing"><see langword="true" /> 表示释放托管资源和非托管资源；<see langword="false" /> 表示仅释放非托管资源。</param>
+        <summary>在派生类中重写时，请释放正在由 <see cref="T:System.Printing.PrintSystemObject" /> 使用的非托管资源，也可以选择性地释放正在使用的托管资源。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -352,8 +352,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置一个值，指示对象是否已释放。</summary>
-        <value><see langword="true" /> 如果该对象已释放;否则为<see langword="false" />。</value>
+        <summary>获取或设置一个值，该值指示该对象是否已被释放。</summary>
+        <value>如果该对象已被释放，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -383,7 +383,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取对象的名称。</summary>
-        <value>一个<see cref="T:System.String" />表示的对象的名称。</value>
+        <value>表示对象名称的 <see cref="T:System.String" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -409,13 +409,13 @@
         <ReturnType>System.Printing.PrintSystemObject</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取对象的父对象。</summary>
-        <value>另一个<see cref="T:System.Printing.PrintSystemObject" />。</value>
+        <summary>获取对象的父级。</summary>
+        <value>另一个 <see cref="T:System.Printing.PrintSystemObject" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 例如，打印队列的父级是队列中打印的打印服务器。  
+ 例如, 打印队列的父项是承载队列的打印服务器。  
   
  ]]></format>
         </remarks>
@@ -446,13 +446,13 @@
         <ReturnType>System.Printing.IndexedProperties.PrintPropertyDictionary</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取属性和值对的集合。</summary>
-        <value>一个<see cref="T:System.Printing.IndexedProperties.PrintPropertyDictionary" />，其中包含属性和值对。</value>
+        <summary>获取特性和值对的集合。</summary>
+        <value>包含特性和值对的 <see cref="T:System.Printing.IndexedProperties.PrintPropertyDictionary" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示如何使用此属性在运行时发现的打印系统对象，这些属性的类型而无需使用反射。  
+ 下面的示例演示如何使用此属性在运行时发现打印系统对象的属性和这些属性的类型, 而无需使用反射。  
   
  [!code-csharp[GetPrintObjectPropertyTypesWithoutReflection#ShowPropertyTypesWithoutReflection](~/samples/snippets/csharp/VS_Snippets_Wpf/GetPrintObjectPropertyTypesWithoutReflection/CSharp/Program.cs#showpropertytypeswithoutreflection)]
  [!code-vb[GetPrintObjectPropertyTypesWithoutReflection#ShowPropertyTypesWithoutReflection](~/samples/snippets/visualbasic/VS_Snippets_Wpf/GetPrintObjectPropertyTypesWithoutReflection/visualbasic/program.vb#showpropertytypeswithoutreflection)]  
@@ -479,12 +479,12 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>当在派生类中重写时，使其值与该对象表示的实际软件或硬件组件的值更新派生类的对象的属性。</summary>
+        <summary>在派生类中重写时，会将更新派生类对象的属性，以使其值与该对象表示的实际软件或硬件组件的值相匹配。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对派生类的对象的属性所做的任何更改时，可能会丢失<xref:System.Printing.PrintSystemObject.Refresh%2A>的派生类执行。 如果所做的更改尚未尚未写入到实际的软件或硬件组件，通过使用派生的类的实现可能会丢失<xref:System.Printing.PrintSystemObject.Commit%2A>。  
+ 当派生类的执行时<xref:System.Printing.PrintSystemObject.Refresh%2A> , 对派生类的对象的属性所做的任何更改可能会丢失。 如果尚未使用派生类的实现<xref:System.Printing.PrintSystemObject.Commit%2A>将更改写入实际软件或硬件组件, 则会发生丢失。  
   
  ]]></format>
         </remarks>

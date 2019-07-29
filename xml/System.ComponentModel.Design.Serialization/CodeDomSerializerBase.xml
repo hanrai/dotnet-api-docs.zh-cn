@@ -24,12 +24,12 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>提供了基类的类<see cref="T:System.ComponentModel.Design.Serialization.CodeDomSerializer" />类。</summary>
+    <summary>为 <see cref="T:System.ComponentModel.Design.Serialization.CodeDomSerializer" /> 类提供基类。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase>类用作之间的共享基<xref:System.ComponentModel.Design.Serialization.CodeDomSerializer>和<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer>类。 公共<xref:System.ComponentModel.Design.Serialization.CodeDomSerializer>类派生自<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase>类。 每个公共类定义其自己的公共 API。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase>类定义公共 API，但确实提供了多种可用于帮助序列化过程的实用工具方法。  
+ 类用作<xref:System.ComponentModel.Design.Serialization.CodeDomSerializer> 和<xref:System.ComponentModel.Design.Serialization.TypeCodeDomSerializer>类之间的共享基。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase> 公共<xref:System.ComponentModel.Design.Serialization.CodeDomSerializer>类派生<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase>自类。 每个公共类定义自己的公共 API。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase>类不定义公共 API, 但提供了许多可用于帮助序列化过程的实用工具方法。  
   
  ]]></format>
     </remarks>
@@ -67,23 +67,23 @@
       </Parameters>
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
-        <param name="name">从表达式生成的对象的名称。 可以是<see langword="null" />如果不需要命名该对象。</param>
-        <param name="expression"><see cref="T:System.CodeDom.CodeExpression" />来解释。</param>
-        <summary>反序列化到内存中对象的给定的表达式。</summary>
-        <returns>从的解释生成的对象<paramref name="expression" />。</returns>
+        <param name="name">从表达式生成的对象的名称。 如果不需要命名该对象，可以为 <see langword="null" />。</param>
+        <param name="expression">要解释的 <see cref="T:System.CodeDom.CodeExpression" />。</param>
+        <summary>将给定表达式反序列化为内存中的对象。</summary>
+        <returns>从 <paramref name="expression" /> 的解释生成的对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这是一个帮助程序方法的派生类可以调用要反序列化表达式。 它进行反序列化该语句通过解释并执行指定的 CodeDOM 表达式`expression`参数，然后将结果返回。 如果需要作为此表达式的结果创建一个对象，将为其提供指定的名称`name`参数。 名称可以是`null`如果不需要命名该对象。 下表描述了如何特定表达式进行处理。  
+ 这是一个帮助器方法, 派生类可以调用该方法对表达式进行反序列化。 它通过解释并执行`expression`参数指定的 CodeDOM 表达式, 对语句进行反序列化, 然后返回结果。 如果需要创建一个对象作为此表达式的结果, 则会为其指定`name`参数指定的名称。 如果不需要为`null`对象命名, 则名称可以为。 下表描述了如何处理特定表达式。  
   
 |表达式|行为|  
 |----------------|--------------|  
-|<xref:System.CodeDom.CodeThisReferenceExpression>|此表达式表示`this`或`Me`。 若要查找与此表达式中，关联的对象<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializeExpression%2A>方法将查找上下文堆栈中<xref:System.ComponentModel.Design.Serialization.RootContext>。 此对象包含在关系图和表示它的表达式的根对象。 如果对象存在，并且该表达式匹配，则返回的根对象。 如果实例找不到，则会报告错误。|  
-|<xref:System.CodeDom.CodeFieldReferenceExpression>|如果字段引用的目标计算结果为根对象，<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetInstance%2A>将使用的管理器参数的方法来检索基于名称的对象实例。 否则，标准反射用于对目标对象找到请求的字段。 如果该字段不能定位，报告错误。|  
-|<xref:System.CodeDom.CodeVariableReferenceExpression>|<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetInstance%2A>方法的`manager`使用参数来查找实例表示的给定变量的名称。 如果实例找不到，则会报告错误。|  
+|<xref:System.CodeDom.CodeThisReferenceExpression>|此表达式表示`this`或`Me`。 若要查找与此表达式关联的对象, 该<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializeExpression%2A>方法将在的上下文堆栈<xref:System.ComponentModel.Design.Serialization.RootContext>中查找。 此对象包含关系图的根对象和表示它的表达式。 如果对象存在并且表达式匹配, 则将返回根对象。 如果找不到实例, 则会报告错误。|  
+|<xref:System.CodeDom.CodeFieldReferenceExpression>|如果字段引用的目标计算为根对象, <xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetInstance%2A>则 manager 参数的方法将用于根据名称检索对象实例。 否则, 将针对目标对象使用标准反射来定位请求的字段。 如果找不到该字段, 则会报告错误。|  
+|<xref:System.CodeDom.CodeVariableReferenceExpression>|`manager`参数的方法用于查找表示给定变量名称的实例。 <xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetInstance%2A> 如果找不到实例, 则会报告错误。|  
   
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializeExpression%2A> 继续解释表达式，直到它们全部解析到对象，或它不再可简化的表达式。 在这种情况下，<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializeExpression%2A>将返回<xref:System.CodeDom.CodeExpression>，其中包含最简单的表达式。 不支持以下表达式：  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializeExpression%2A>继续解释表达式, 直到它们完全解析为某个对象, 或者直到它不能再化简表达式。 在这种情况<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializeExpression%2A>下, 将<xref:System.CodeDom.CodeExpression>返回一个, 其中包含最简化的表达式。 不支持以下表达式:  
   
 -   <xref:System.CodeDom.CodeEventReferenceExpression>  
   
@@ -126,17 +126,17 @@
       </Parameters>
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
-        <param name="type"><see cref="T:System.Type" />要返回的实例。</param>
-        <param name="parameters">要传递给构造函数的参数<paramref name="type" />。</param>
-        <param name="name">反序列化对象的名称。</param>
-        <param name="addToContainer"><see langword="true" /> 若要将此对象添加到设计容器;否则为<see langword="false" />。 该对象必须实现 <see cref="T:System.ComponentModel.IComponent" /> 才能使此功能生效。</param>
+        <param name="type">要返回的实例的 <see cref="T:System.Type" />。</param>
+        <param name="parameters">要传递给 <paramref name="type" /> 的构造函数的参数。</param>
+        <param name="name">反序列化的对象的名称。</param>
+        <param name="addToContainer">要将该对象添加到设计容器，则为 <see langword="true" />；否则为 <see langword="false" />。 该对象必须实现 <see cref="T:System.ComponentModel.IComponent" /> 才能使此功能生效。</param>
         <summary>返回给定类型的实例。</summary>
         <returns><paramref name="type" /> 的一个实例。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializeInstance%2A>在反序列化以获取对象的实例调用方法。 此调用时，应返回所请求类型的实例。 默认实现调用<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.CreateInstance%2A>方法的`manager`参数。  
+ 在反序列化过程中调用方法以获取对象的实例。<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializeInstance%2A> 调用此时, 应返回所请求类型的实例。 默认实现将调用<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.CreateInstance%2A> `manager`参数的方法。  
   
  ]]></format>
         </remarks>
@@ -172,18 +172,18 @@
       </Parameters>
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
-        <param name="value">是要进行反序列化属性的对象。</param>
-        <param name="filter"><see cref="T:System.Attribute" />筛选将反序列化哪些属性的数组。</param>
+        <param name="value">要从其中对属性进行反序列化的对象。</param>
+        <param name="filter">筛选将反序列化哪些属性的 <see cref="T:System.Attribute" /> 数组。</param>
         <summary>在给定对象上将属性从固定区域性资源包反序列化。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializePropertiesFromResources%2A>方法是可以调用派生类的帮助器方法。 它查找给定对象上的属性，并尝试加载其固定区域性的资源包的值。 这通常用于处理不发送到源代码的设计时属性。 它不应本地化属性因为它仅对固定区域性进行操作。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializePropertiesFromResources%2A>方法是派生类可调用的帮助器方法。 它查找给定对象上的属性, 并尝试从固定区域性的资源包中加载其值。 这通常用于处理未发出到源代码中的设计时属性。 它不应用于已本地化的属性, 因为它仅在固定区域性上操作。  
   
- 此方法会检查所有的属性`value`参数指定的属性相匹配`filter`参数，然后检查资源二进制对象中的这些属性。 这可用于反序列化属性不能在代码中，如设计时属性表示。  
+ 此方法检查与`value` `filter`参数指定的特性匹配的参数的所有属性, 然后在资源二进制对象中检查这些属性。 这对于反序列化无法在代码中表示的属性 (如设计时属性) 很有用。  
   
- 此方法要求设计器加载程序，提供了<xref:System.ComponentModel.Design.IResourceService>读取资源。 如果<xref:System.ComponentModel.Design.IResourceService>提供了<xref:System.Resources.ResXResourceReader>用于固定区域性，然后<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializePropertiesFromResources%2A>将从 XML 资源 (.resx) 文件的元数据部分中，这不包括在最终的编译代码中读取资源。 如果此服务不可用，将不读取任何资源。  
+ 此方法要求设计器加载程序提供读取<xref:System.ComponentModel.Design.IResourceService>资源的。 如果为固定<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializePropertiesFromResources%2A>区域性<xref:System.ComponentModel.Design.IResourceService> <xref:System.Resources.ResXResourceReader>提供, 则将从 XML 资源 (.resx) 文件的元数据部分读取资源, 最终编译的代码中未包含此内容。 如果该服务不可用, 将不会读取任何资源。  
   
  ]]></format>
         </remarks>
@@ -217,15 +217,15 @@
       </Parameters>
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
-        <param name="statement"><see cref="T:System.CodeDom.CodeStatement" />要反序列化。</param>
-        <summary>通过解释并执行 CodeDOM 语句反序列语句。</summary>
+        <param name="statement">要反序列化的 <see cref="T:System.CodeDom.CodeStatement" />。</param>
+        <summary>通过解释并执行 CodeDOM 语句反序列化语句。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializeStatement%2A>方法是可以调用派生类的帮助器方法。 它可解释`statement`参数。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializeStatement%2A>方法是派生类可调用的帮助器方法。 它解释`statement`参数。  
   
- <xref:System.CodeDom.CodeStatement>要反序列化将推送到上下文堆栈上。  
+ 正在<xref:System.CodeDom.CodeStatement>反序列化的将推送到上下文堆栈上。  
   
  ]]></format>
         </remarks>
@@ -259,8 +259,8 @@
       <Docs>
         <param name="manager">序列化管理器。</param>
         <param name="type">目标类型。</param>
-        <summary>获取项目的目标版本的.NET framework 中定义的特性的集合。</summary>
-        <returns>项目的目标版本的.NET framework 中定义的特性集合。</returns>
+        <summary>获取项目目标 .NET Framework 版本中定义的特性的集合。</summary>
+        <returns>项目目标 .NET Framework 版本中定义的特性的集合。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -290,8 +290,8 @@
       <Docs>
         <param name="manager">序列化管理器。</param>
         <param name="instance">目标类型的对象。</param>
-        <summary>获取项目的目标版本的.NET framework 中定义的特性的集合。</summary>
-        <returns>项目的目标版本的.NET framework 中定义的特性集合。</returns>
+        <summary>获取项目目标 .NET Framework 版本中定义的特性的集合。</summary>
+        <returns>项目目标 .NET Framework 版本中定义的特性的集合。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -322,9 +322,9 @@
       <Docs>
         <param name="manager">序列化管理器。</param>
         <param name="instance">目标类型的对象。</param>
-        <param name="attributes">要传递给.NET Framework 的目标版本的属性的数组。</param>
-        <summary>获取项目的目标版本的.NET framework 中定义的事件的集合。</summary>
-        <returns>定义项目的目标版本的.NET framework 中的事件的集合。</returns>
+        <param name="attributes">要传递给目标 .NET Framework 版本的特性的数组。</param>
+        <summary>获取项目的 .NET Framework 的目标版本中定义的事件的集合。</summary>
+        <returns>项目的 .NET Framework 的目标版本中定义的事件的集合。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -354,24 +354,24 @@
       </Parameters>
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
-        <param name="value">为其获取表达式的对象。</param>
+        <param name="value">要为其获取表达式的对象。</param>
         <summary>返回给定对象的表达式。</summary>
         <returns>表示 <paramref name="value" /> 的 <see cref="T:System.CodeDom.CodeExpression" />，或者，如果没有 <paramref name="value" /> 的现有表达式，则为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法返回一个表示给定的对象的表达式。 它可以返回`null`，以指示，任何表达式已设置的描述的对象。 表达式中的三种方式之一获取：  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法返回表示给定对象的表达式。 它可以返回`null`, 指示未设置描述对象的表达式。 表达式是通过以下三种方式之一获得的:  
   
--   表达式可能是以前调用的结果<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A>方法。  
+-   此表达式可能是先前调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A>方法所得的结果。  
   
--   表达式未能中找到<xref:System.ComponentModel.Design.Serialization.RootContext>。  
+-   可以在中<xref:System.ComponentModel.Design.Serialization.RootContext>找到表达式。  
   
--   无法通过派生表达式<xref:System.ComponentModel.Design.IReferenceService>。  
+-   表达式可以通过<xref:System.ComponentModel.Design.IReferenceService>派生。  
   
- 若要派生通过表达式<xref:System.ComponentModel.Design.IReferenceService>，则<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法查询给定对象的名称引用服务。 如果表达式服务将返回有效的名称， <xref:System.ComponentModel.Design.IReferenceService>，则<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法进行检查以查看是否存在"。"在名称中。 这表示，表达式服务对另一个对象作为只读属性的返回值找到此对象。 如果没有"。"，<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>将拆分为部分的引用。 最左侧是一个名称，将使用计算<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetInstance%2A>方法。 为每个后续部分中，将生成的属性引用表达式。 然后，将返回最终的表达式。  
+ 若要通过<xref:System.ComponentModel.Design.IReferenceService>派生表达式<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A> , 方法将在引用服务中查询给定对象的名称。 如果表达式服务返回有效的名称, <xref:System.ComponentModel.Design.IReferenceService>则该<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法将检查名称中是否存在 "."。 这表示表达式服务找到此对象作为另一个对象的只读属性的返回值。 如果有 ".", <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>则会将引用拆分为各个部分。 最左边的部分是将使用<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetInstance%2A>方法进行计算的名称。 对于每个后续部分, 将生成一个属性引用表达式。 然后, 将返回最后一个表达式。  
   
- 如果该对象不具有表达式设置，或在引用服务中，找不到对象<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>将返回`null`，指示对象没有现有表达式。  
+ 如果对象未设置表达式, 或者如果在引用服务<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>中找不到该对象, 则将返回`null`, 指示该对象没有现有表达式。  
   
  ]]></format>
         </remarks>
@@ -408,9 +408,9 @@
       <Docs>
         <param name="manager">序列化管理器。</param>
         <param name="instance">目标类型的对象。</param>
-        <param name="attributes">要传递给.NET Framework 的目标版本的属性的数组。</param>
-        <summary>获取项目的目标版本的.NET framework 中定义的属性的集合。</summary>
-        <returns>属性的.NET framework 的项目的目标版本中定义的集合。</returns>
+        <param name="attributes">要传递给目标 .NET Framework 版本的特性的数组。</param>
+        <summary>获取项目的 .NET Framework 的目标版本中定义的属性的集合。</summary>
+        <returns>项目的 .NET Framework 的目标版本中定义的属性的集合。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -438,14 +438,14 @@
       </Parameters>
       <Docs>
         <param name="manager">序列化管理器。</param>
-        <param name="type">要使用元数据的类型。</param>
+        <param name="type">要从中使用元数据的类型。</param>
         <summary>获取从类型元数据生成的反射类型。</summary>
-        <returns>生成的元数据的反射类型<paramref name="type" />。</returns>
+        <returns>从 <paramref name="type" /> 的元数据生成的反射类型。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回值不会等于`type`，不应使用用于与非反射类型进行比较。  
+ 返回值不等于`type`并且不应用于与非反射类型进行比较。  
   
  ]]></format>
         </remarks>
@@ -476,14 +476,14 @@
       </Parameters>
       <Docs>
         <param name="manager">序列化管理器。</param>
-        <param name="instance">要使用元数据的对象。</param>
+        <param name="instance">要从中使用元数据的对象。</param>
         <summary>获取从对象元数据生成的反射类型。</summary>
-        <returns>生成的元数据的反射类型<paramref name="object" />。</returns>
+        <returns>从 <paramref name="object" /> 的元数据生成的反射类型。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的值不会等于对象的类型，不应使用用于与非反射类型进行比较。  
+ 返回值不会等于对象的类型, 并且不应用于与非反射类型进行比较。  
   
  ]]></format>
         </remarks>
@@ -495,7 +495,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>定位给定的对象值或类型的序列化程序。</summary>
+        <summary>定位给定对象值或类型的序列化程序。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="GetSerializer">
@@ -524,14 +524,14 @@
       </Parameters>
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
-        <param name="value">对象，该对象指定要检索的序列化程序。</param>
-        <summary>定位给定的对象值的序列化程序。</summary>
-        <returns>一个<see cref="T:System.ComponentModel.Design.Serialization.CodeDomSerializer" />适用于<paramref name="value" />。</returns>
+        <param name="value">指定要检索的序列化程序的对象。</param>
+        <summary>定位给定对象值的序列化程序。</summary>
+        <returns>适合于 <paramref name="value" /> 的 <see cref="T:System.ComponentModel.Design.Serialization.CodeDomSerializer" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetSerializer%2A>方法是扩展<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer%2A?displayProperty=nameWithType>方法。 <xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer%2A?displayProperty=nameWithType>方法采用一个对象类型，而不是一个对象值。 如果外部当事方已重写通过特定对象的元数据<xref:System.ComponentModel.TypeDescriptor>，该元数据重写将不会看到<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer%2A?displayProperty=nameWithType>方法，它仅使用一种类型。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetSerializer%2A>方法检查值和值的类型的元数据。 如果两个不同，<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetSerializer%2A>看起来是否存在自定义设计器序列化程序属性的值。 如果是这样，<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetSerializer%2A>将尝试使用它。 否则，它将会推迟到<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer%2A?displayProperty=nameWithType>。  
+ 方法是<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer%2A?displayProperty=nameWithType>方法的扩展。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetSerializer%2A> <xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer%2A?displayProperty=nameWithType>方法采用对象类型, 而不是对象值。 如果外部方通过<xref:System.ComponentModel.TypeDescriptor>了重写特定对象的元数据, 则<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer%2A?displayProperty=nameWithType>方法将不会显示元数据重写, 该方法只采用类型。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetSerializer%2A>方法检查值的元数据和值的类型。 如果这两个不同<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetSerializer%2A> , 将查看是否存在值的自定义设计器序列化程序特性。 如果是, <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetSerializer%2A>将尝试使用它。 否则, 它将延迟为<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer%2A?displayProperty=nameWithType>。  
   
  ]]></format>
         </remarks>
@@ -566,14 +566,14 @@
       </Parameters>
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
-        <param name="valueType"><see cref="T:System.Type" />指定要检索的序列化程序。</param>
-        <summary>查找给定类型的序列化程序。</summary>
-        <returns>一个<see cref="T:System.ComponentModel.Design.Serialization.CodeDomSerializer" />适用于<paramref name="valueType" />。</returns>
+        <param name="valueType">指定要检索的序列化程序的 <see cref="T:System.Type" />。</param>
+        <summary>定位给定类型的序列化程序。</summary>
+        <returns>适合于 <paramref name="valueType" /> 的 <see cref="T:System.ComponentModel.Design.Serialization.CodeDomSerializer" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetSerializer%2A>方法是扩展<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer%2A?displayProperty=nameWithType>方法。 <xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer%2A?displayProperty=nameWithType>方法采用一个对象类型，而不是一个对象值。  
+ 方法是<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer%2A?displayProperty=nameWithType>方法的扩展。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetSerializer%2A> <xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer%2A?displayProperty=nameWithType>方法采用对象类型, 而不是对象值。  
   
  ]]></format>
         </remarks>
@@ -607,9 +607,9 @@
       </Parameters>
       <Docs>
         <param name="provider">类型说明提供程序服务。</param>
-        <param name="instance">从其类型说明提供程序服务可以从中派生的对象，如果<paramref name="provider" />是<see langword="null" />。</param>
-        <summary>获取<see cref="T:System.ComponentModel.TypeDescriptionProvider" />这就是知道.NET Framework 中，在类型筛选操作中使用的目标版本。</summary>
-        <returns>可识别.NET Framework 的类型说明提供程序。</returns>
+        <param name="instance">如果 <paramref name="provider" /> 为 <see langword="null" />，则为一个可从中派生类型说明提供程序服务的对象。</param>
+        <summary>获取 <see cref="T:System.ComponentModel.TypeDescriptionProvider" />，它可在类型筛选中用来识别 .NET Framework 的目标版本。</summary>
+        <returns>一个可识别 .NET Framework 的类型说明提供程序。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -639,14 +639,14 @@
       </Parameters>
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
-        <param name="value">将为其检索名称的对象。</param>
+        <param name="value">将检索其名称的对象。</param>
         <summary>返回给定对象的唯一名称。</summary>
-        <returns>唯一名称<paramref name="value" />。</returns>
+        <returns><paramref name="value" /> 的唯一名称。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetUniqueName%2A> 方法调用 <xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetName%2A> 方法。 如果此方法不返回一个名称，然后<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetUniqueName%2A>使用<xref:System.ComponentModel.Design.Serialization.INameCreationService>创建对象的有效名称。 如果该服务不可用，<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetUniqueName%2A>将创建基于结合使其成为唯一索引号的短类型名称的名称。 通过调用中，生成的名称与相关联的序列化管理器<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SetName%2A>方法之前返回的新名称。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetUniqueName%2A> 方法调用 <xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetName%2A> 方法。 如果此方法没有返回名称, 则<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetUniqueName%2A>使用<xref:System.ComponentModel.Design.Serialization.INameCreationService>来为对象创建一个有效的名称。 如果该服务不可用, <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetUniqueName%2A>将基于与索引号组合的短类型名称创建一个名称, 以使其唯一。 通过在返回新名称之前调用<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SetName%2A>方法, 生成的名称与序列化管理器相关联。  
   
  ]]></format>
         </remarks>
@@ -662,7 +662,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>返回一个值，该值指示是否已序列化给定的对象。</summary>
+        <summary>返回一个值，指示给定对象是否已序列化。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="IsSerialized">
@@ -696,14 +696,14 @@
       </Parameters>
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
-        <param name="value">要测试其上面的序列化的对象。</param>
-        <summary>返回一个值，该值指示是否已序列化给定的对象。</summary>
-        <returns><see langword="true" /> 如果<paramref name="value" />已序列化; 否则为<see langword="false" />。</returns>
+        <param name="value">要为上面的序列化测试的对象。</param>
+        <summary>返回一个值，指示给定对象是否已序列化。</summary>
+        <returns>如果已序列化 <paramref name="value" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关`value`参数被视为序列化，则`manager`参数或其他序列化程序必须调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A>方法来创建之间的关系`value`和引用表达式。  
+ 对于要被视为序列化的`manager` <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A> `value`参数,参数或另一个序列化程序必须调用方法以创建和引用表达式之间的关系。 `value`  
   
  ]]></format>
         </remarks>
@@ -739,15 +739,15 @@
       </Parameters>
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
-        <param name="value">要测试其上面的序列化的对象。</param>
-        <param name="honorPreset"><see langword="true" /> 要包含预设的表达式;否则为<see langword="false" />。</param>
-        <summary>返回一个值，该值指示是否已序列化给定的对象，也可以考虑预设的表达式。</summary>
-        <returns><see langword="true" /> 如果<paramref name="value" />已序列化; 否则为<see langword="false" />。</returns>
+        <param name="value">要为上面的序列化测试的对象。</param>
+        <param name="honorPreset">要包含预设表达式，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+        <summary>返回一个值，指示给定对象是否已序列化，也可以考虑预设表达式。</summary>
+        <returns>如果已序列化 <paramref name="value" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关`value`参数被视为序列化，则`manager`参数或其他序列化程序必须调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A>方法来创建之间的关系`value`和引用表达式。  
+ 对于要被视为序列化的`manager` <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A> `value`参数,参数或另一个序列化程序必须调用方法以创建和引用表达式之间的关系。 `value`  
   
  ]]></format>
         </remarks>
@@ -784,16 +784,16 @@
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
         <param name="value">要序列化的对象。</param>
-        <param name="isComplete"><see langword="true" /> 如果<paramref name="value" />完全序列化; 否则为<see langword="false" />。</param>
+        <param name="isComplete">如果已完全序列化 <paramref name="value" />，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
         <summary>返回一个表示给定对象的创建的表达式。</summary>
-        <returns>一个表达式，表示创建<paramref name="value" />。</returns>
+        <returns>表示 <paramref name="value" /> 的创建的表达式。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeCreationExpression%2A>方法可用于序列化表达式，用于表示创建`value`参数。 它是识别实例说明符。  
+ 方法可用于序列化表示`value`参数创建的表达式。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeCreationExpression%2A> 它可识别实例描述符。  
   
- `isComplete`参数设置为`true`如果表达式表示的完整配置的对象，或`false`如果必须进一步执行序列化对象的属性。  
+ 如果`isComplete`表达式表示完全配置`true`的对象, 或者`false`必须对对象的属性执行进一步的序列化, 则将参数设置为。  
   
  ]]></format>
         </remarks>
@@ -838,11 +838,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeEvent%2A>方法是一个帮助器方法的派生类可以调用要序列化到单个事件给定<xref:System.CodeDom.CodeStatementCollection>。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeEvent%2A> 查询的序列化管理器<xref:System.ComponentModel.Design.Serialization.MemberCodeDomSerializer>给定的事件，并询问<xref:System.ComponentModel.Design.Serialization.MemberCodeDomSerializer>其序列化。  
+ 方法是一个帮助器方法, 派生类可以调用该方法将单个事件序列化为给定<xref:System.CodeDom.CodeStatementCollection>的。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeEvent%2A> <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeEvent%2A>查询的序列化管理器<xref:System.ComponentModel.Design.Serialization.MemberCodeDomSerializer>以获取给定事件的, 然后<xref:System.ComponentModel.Design.Serialization.MemberCodeDomSerializer>请求对其进行序列化。  
   
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeEvent%2A> 将放置`statements`并`descriptor`上的参数<xref:System.ComponentModel.Design.Serialization.ContextStack>。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeEvent%2A>`statements`将和`descriptor`参数置于上<xref:System.ComponentModel.Design.Serialization.ContextStack>。  
   
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeEvent%2A> 需要<xref:System.ComponentModel.Design.IEventBindingService>发现事件绑定到未编译的方法。 如果此服务不存在，则不会写入事件绑定到非编译的方法。 如果事件绑定到的对象可以转换为表达式，则仍将序列事件绑定到已编译的方法。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeEvent%2A>需要一个<xref:System.ComponentModel.Design.IEventBindingService>来发现未编译的方法的事件绑定。 如果此服务不存在, 则不会写入到非编译方法的事件绑定。 如果事件绑定到的对象可以转换为表达式, 则仍将序列化事件绑定到已编译方法。  
   
  ]]></format>
         </remarks>
@@ -898,9 +898,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeEvents%2A>方法是可以调用派生类的帮助器方法。 查看事件在其`value`匹配的参数`filter`参数，然后调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeEvent%2A>为每个事件的方法。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeEvents%2A>方法是派生类可调用的帮助器方法。 它在`value`参数上查看`filter`与参数匹配的事件, 然后为每个事件调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeEvent%2A>方法。  
   
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeEvents%2A>方法的位置<xref:System.ComponentModel.InheritanceAttribute>有关`value`上<xref:System.ComponentModel.Design.Serialization.ContextStack>。  
+ 方法将的<xref:System.ComponentModel.InheritanceAttribute>置于`value`上。<xref:System.ComponentModel.Design.Serialization.ContextStack> <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeEvents%2A>  
   
  ]]></format>
         </remarks>
@@ -947,9 +947,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeProperties%2A>方法是可以调用派生类的帮助器方法。 查看属性在其`value`匹配的参数`filter`参数，然后调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeProperty%2A>的每个属性的方法。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeProperties%2A>方法是派生类可调用的帮助器方法。 它查看`value` `filter`与参数匹配的参数的属性, 然后为每个属性调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeProperty%2A>方法。  
   
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeProperties%2A>方法的位置<xref:System.ComponentModel.InheritanceAttribute>有关`value`上<xref:System.ComponentModel.Design.Serialization.ContextStack>。  
+ 方法将的<xref:System.ComponentModel.InheritanceAttribute>置于`value`上。<xref:System.ComponentModel.Design.Serialization.ContextStack> <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeProperties%2A>  
   
  ]]></format>
         </remarks>
@@ -996,11 +996,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializePropertiesToResources%2A>方法是可以调用派生类的帮助器方法。 查看属性在其`value`匹配的参数`filter`参数，然后化为固定区域性资源包的属性。 如果资源服务返回<xref:System.Resources.ResXResourceWriter>，属性值将存储在 XML 资源 (.resx) 文件的元数据部分。 `statements`未使用参数。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializePropertiesToResources%2A>方法是派生类可调用的帮助器方法。 它查看`value` `filter`与参数匹配的参数的属性, 然后将属性序列化为固定区域性资源包。 如果资源服务返回<xref:System.Resources.ResXResourceWriter>, 则属性值将存储在 XML 资源 (.resx) 文件的元数据部分。 未`statements`使用参数。  
   
- 要作为资源序列化，该属性必须非常简单 （不是内容属性） 和其值必须是可序列化。 将跳过不符合此模式的属性。  
+ 要序列化为资源, 属性必须是简单的 (不是内容属性), 并且其值必须可序列化。 不符合此模式的属性将被跳过。  
   
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializePropertiesToResources%2A> 需要<xref:System.ComponentModel.Design.IResourceService>若要获取<xref:System.Resources.ResourceWriter>编写用于固定区域性的资源。 如果此服务不可用，将不写入任何资源。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializePropertiesToResources%2A><xref:System.ComponentModel.Design.IResourceService> 需要<xref:System.Resources.ResourceWriter>获取以写入固定区域性的资源。 如果该服务不可用, 将不会写入任何资源。  
   
  ]]></format>
         </remarks>
@@ -1049,9 +1049,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeProperty%2A>方法检索<xref:System.ComponentModel.Design.Serialization.MemberCodeDomSerializer>为`propertyToSerialize`参数并委托给它。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeProperty%2A>方法检索`propertyToSerialize`参数的, 并为其委托。 <xref:System.ComponentModel.Design.Serialization.MemberCodeDomSerializer>  
   
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeProperty%2A> 将放置`statements`并`propertyToSerialize`上的参数<xref:System.ComponentModel.Design.Serialization.ContextStack>。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeProperty%2A>`statements`将和`propertyToSerialize`参数置于上<xref:System.ComponentModel.Design.Serialization.ContextStack>。  
   
  ]]></format>
         </remarks>
@@ -1089,21 +1089,21 @@
       </Parameters>
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
-        <param name="resourceName">在其中的资源包的名称<paramref name="value" />将序列化。</param>
+        <param name="resourceName"><paramref name="value" /> 将被序列化到的资源包的名称。</param>
         <param name="value">要序列化的对象。</param>
-        <summary>给定的对象序列化为使用给定的资源名称的资源包。</summary>
+        <summary>将给定对象序列化为使用给定资源名称的资源包。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeResource%2A>方法是使用给定名称的资源包值序列化为一个帮助器方法。 通过搜索序列化管理器确定资源写入到的区域性<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.Properties%2A>属性的集合称为`ResourceCulture`。 如果存在此属性，资源将写入该区域性。 否则，资源将写入到固定区域性。 `value`参数必须是可序列化。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeResource%2A>方法是一个帮助器方法, 它将值序列化为具有给定名称的资源包。 写入资源的区域性是通过在序列化管理器的<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.Properties%2A>集合中搜索名`ResourceCulture`为的属性来确定的。 如果该属性存在, 则会将资源写入该区域性。 否则, 资源将写入固定区域性。 `value`参数必须可序列化。  
   
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeResource%2A> 需要<xref:System.ComponentModel.Design.IResourceService>若要获取<xref:System.Resources.ResourceWriter>编写正确的区域性的资源。 如果此服务不可用，<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeResource%2A>改为将生成表示的资源的代码中的二进制对象。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeResource%2A><xref:System.ComponentModel.Design.IResourceService> 需要<xref:System.Resources.ResourceWriter>获取以写入正确区域性的资源。 如果该服务不可用, <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeResource%2A>将改为在表示资源的代码中生成二进制对象。  
   
  ]]></format>
         </remarks>
         <block subset="none" type="usage"><para>
-            <see langword="ResourceCulture" /> 是一个读写属性，通过序列化管理器的访问<see cref="P:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.Properties" />集合。 <see cref="M:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeResource(System.ComponentModel.Design.Serialization.IDesignerSerializationManager,System.String,System.Object)" />方法永远不会更改此属性的值; 它只是读取来识别将写入的区域性。 分析和加载资源时，反序列化期间设置属性。</para></block>
+            <see langword="ResourceCulture" />是读写属性, 可通过序列化管理器的<see cref="P:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.Properties" />集合进行访问。 <see cref="M:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeResource(System.ComponentModel.Design.Serialization.IDesignerSerializationManager,System.String,System.Object)" />方法从不更改此属性的值; 它只是读取它来标识它将写入的区域性。 在反序列化过程中, 将在分析和加载资源时设置属性。</para></block>
         <altmember cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />
         <altmember cref="T:System.ComponentModel.Design.IResourceService" />
         <altmember cref="T:System.Resources.ResourceWriter" />
@@ -1137,16 +1137,16 @@
       </Parameters>
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
-        <param name="resourceName">在其中的资源包的名称<paramref name="value" />将序列化。</param>
+        <param name="resourceName"><paramref name="value" /> 将被序列化到的资源包的名称。</param>
         <param name="value">要序列化的对象。</param>
-        <summary>给定的对象序列化为使用给定的资源名称的资源包。</summary>
+        <summary>将给定对象序列化为使用给定资源名称的资源包。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 资源始终写入固定区域性。 `value`参数必须是可序列化。  
+ 资源始终写入固定区域性。 `value`参数必须可序列化。  
   
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeResourceInvariant%2A>方法要求<xref:System.ComponentModel.Design.IResourceService>若要获取<xref:System.Resources.ResourceWriter>编写正确的区域性的资源。 如果此服务不可用，<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeResource%2A>改为将生成表示的资源的代码中的二进制对象。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeResourceInvariant%2A>方法需要获取<xref:System.Resources.ResourceWriter>以写入正确区域性的资源。 <xref:System.ComponentModel.Design.IResourceService> 如果该服务不可用, <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeResource%2A>将改为在表示资源的代码中生成二进制对象。  
   
  ]]></format>
         </remarks>
@@ -1183,32 +1183,32 @@
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
         <param name="value">要序列化的对象。 可以为 <see langword="null" />。</param>
-        <summary>给定的对象序列化为表达式。</summary>
-        <returns>一个<see cref="T:System.CodeDom.CodeExpression" />对象，如果<paramref name="value" />可以是序列化; 否则为<see langword="null" />。</returns>
+        <summary>将给定对象序列化为表达式。</summary>
+        <returns>如果 <paramref name="value" /> 可以序列化，则为 <see cref="T:System.CodeDom.CodeExpression" /> 对象；否则为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `value`参数可以是`null`，在这种情况下将返回的基元表达式。  
+ 参数可以为`null`, 在这种情况下, 将返回基元表达式。 `value`  
   
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToExpression%2A>方法用来序列化类型的以下规则：  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToExpression%2A>方法使用以下规则来序列化类型:  
   
-1.  它首先调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法，查看是否为该对象已创建了一个表达式。 如果有，则返回现有表达式。  
+1.  它首先调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法, 以查看是否已为该对象创建了一个表达式。 如果是, 则返回现有表达式。  
   
-2.  然后，定位的对象序列化程序，并要求它序列化。  
+2.  然后, 它会定位对象的序列化程序, 并要求其序列化。  
   
-3.  如果该对象的序列化程序的返回值是<xref:System.CodeDom.CodeExpression>，返回的表达式。  
+3.  如果对象的序列化程序的返回值为<xref:System.CodeDom.CodeExpression>, 则返回该表达式。  
   
-4.  它将指定一个到最后一次调用成为<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>序列化程序是否添加表达式。  
+4.  它将最后一次调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>来查看序列化程序是否添加了表达式。  
   
-5.  最后，它会返回`null`。  
+5.  最后, 它将`null`返回。  
   
- 如果无法创建任何表达式，并且找不到任何合适的序列化程序，将通过序列化管理器报告错误。 如果找到一个序列化程序，但它无法生成一个表达式，将不报告任何错误。 在这种情况下，假定序列化程序或者已报告错误或未尝试序列化对象。  
+ 如果无法创建任何表达式, 并且找不到合适的序列化程序, 则将通过序列化管理器报告错误。 如果找到序列化程序, 但未能生成表达式, 则不会报告任何错误。 在这种情况下, 假定序列化程序已报告错误或未尝试序列化对象。  
   
- 如果序列化程序返回一个语句的集合，这些语句将不会被放弃。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToExpression%2A>方法将首先查找<xref:System.ComponentModel.Design.Serialization.StatementContext>在上下文堆栈，并将语句添加到语句上下文对象的<xref:System.ComponentModel.Design.Serialization.StatementContext.StatementCollection%2A>属性。 如果没有语句上下文，<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToExpression%2A>方法将查找的上下文中为<xref:System.CodeDom.CodeStatementCollection>并添加语句存在。 如果不能被找到任何要添加语句，将生成错误。  
+ 如果序列化程序返回了语句或语句的集合, 则不会丢弃这些语句。 此<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToExpression%2A>方法将首先<xref:System.ComponentModel.Design.Serialization.StatementContext>在上下文堆栈上查找, 并将语句添加到语句上下文对象的<xref:System.ComponentModel.Design.Serialization.StatementContext.StatementCollection%2A>属性中。 如果没有任何语句上下文, 该<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToExpression%2A>方法将在的上下文<xref:System.CodeDom.CodeStatementCollection>中查找, 并将语句添加到其中。 如果找不到可添加语句的位置, 则会生成错误。  
   
 > [!NOTE]
->  不应调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToExpression%2A>方法内的<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationService.Serialize%2A>时序列化自己的对象。 相反，应调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>。 如果它返回`null`，创建你自己的表达式和调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A>。 然后继续执行剩余的序列化。  
+>  序列化你自己的<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToExpression%2A>对象时<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationService.Serialize%2A> , 不应在中调用方法。 应改为调用<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>。 如果它返回`null`, 请创建自己的表达式并<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A>调用。 然后继续执行序列化的其余部分。  
   
  ]]></format>
         </remarks>
@@ -1226,7 +1226,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>一个对象序列化为表达式。</summary>
+        <summary>将对象序列化为表达式。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="SerializeToResourceExpression">
@@ -1261,21 +1261,21 @@
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
         <param name="value">要序列化的对象。</param>
-        <summary>给定的对象序列化为表达式。</summary>
-        <returns>一个<see cref="T:System.CodeDom.CodeExpression" />包含<paramref name="value" />作为序列化的表达式。</returns>
+        <summary>将给定对象序列化为表达式。</summary>
+        <returns>将 <paramref name="value" /> 作为序列化的表达式包含在内的 <see cref="T:System.CodeDom.CodeExpression" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToResourceExpression%2A>方法是序列化到的资源表达式的值的帮助器方法。 这是与<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeResource%2A>方法，将值写入到的资源的二进制对象。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToResourceExpression%2A> 更进一步，并返回一个表达式，可用于恢复资源。 例如，返回值可能是"rm。GetValue("SomeBitmap");"。 从计算资源的名称<xref:System.ComponentModel.Design.Serialization.ExpressionContext>，如果其中一个可以在上下文堆栈上找到。  
+ <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToResourceExpression%2A>方法是一个帮助器方法, 它将值序列化为资源表达式。 这与<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeResource%2A>方法相对应, 后者将值写入资源二进制对象。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToResourceExpression%2A>进一步执行, 并返回一个可用于恢复资源的表达式。 例如, 返回值可能是 "rm"。GetValue ("SomeBitmap"); "。 如果可在上下文堆栈上找到资源<xref:System.ComponentModel.Design.Serialization.ExpressionContext>, 则从中计算资源的名称。  
   
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToResourceExpression%2A>方法将查找<xref:System.ComponentModel.Design.Serialization.ContextStack>以下对象：  
+ 方法将查找<xref:System.ComponentModel.Design.Serialization.ContextStack>以下对象的: <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToResourceExpression%2A>  
   
--   <xref:System.CodeDom.CodeStatementCollection> -要添加的资源管理器，如果需要声明一个语句的集合。  
+-   <xref:System.CodeDom.CodeStatementCollection>-要将资源管理器添加到其中的语句的集合 (如果需要声明一个)。  
   
--   <xref:System.ComponentModel.Design.Serialization.RootContext> -根表达式，需要创建一个资源管理器。  
+-   <xref:System.ComponentModel.Design.Serialization.RootContext>-创建资源管理器所需的根表达式。  
   
--   <xref:System.ComponentModel.Design.Serialization.ExpressionContext> -使用生成的资源名称，并决定哪种类型的资源管理器调用以发起。  
+-   <xref:System.ComponentModel.Design.Serialization.ExpressionContext>-用于创建资源的名称并决定要进行的资源管理器调用的类型。  
   
  ]]></format>
         </remarks>
@@ -1313,14 +1313,14 @@
       <Docs>
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
         <param name="value">要序列化的对象。</param>
-        <param name="ensureInvariant"><see langword="true" /> 将序列化为固定区域性;否则为<see langword="false" />。</param>
-        <summary>给定的对象序列化为适合于固定区域性的表达式。</summary>
-        <returns>一个<see cref="T:System.CodeDom.CodeExpression" />包含<paramref name="value" />作为序列化的表达式。</returns>
+        <param name="ensureInvariant">要序列化为固定区域性，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+        <summary>将给定对象序列化为适合于固定区域性的表达式。</summary>
+        <returns>将 <paramref name="value" /> 作为序列化的表达式包含在内的 <see cref="T:System.CodeDom.CodeExpression" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`ensureInvariant`参数是`true`，则<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToResourceExpression%2A>方法将还写入资源值固定区域性的资源文件如果当前`ResourceCulture`不是固定的区域性。  
+ 如果参数为`true`, 并且当前<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SerializeToResourceExpression%2A> `ResourceCulture`不是固定区域性, 则该方法还会将资源值写入固定区域性的资源文件中。 `ensureInvariant`  
   
  ]]></format>
         </remarks>
@@ -1378,7 +1378,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A>方法是将相关联的帮助器方法<xref:System.CodeDom.CodeExpression>的对象。 在这种方式中使用表达式相关联的对象是可通过访问<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A> 将其表达式的表存储为上下文堆栈上的附加对象，使其可由任何序列化程序的<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法。  
+ 方法是将<xref:System.CodeDom.CodeExpression>与对象关联的帮助器方法。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A> 通过这种方式与表达式关联的对象可通过<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法进行访问。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A>将其表达式表存储为上下文堆栈上的追加对象, 以便任何序列化程序的<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法都可以访问它。  
   
  ]]></format>
         </remarks>
@@ -1418,13 +1418,13 @@
         <param name="manager">用于序列化的 <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
         <param name="value">要序列化的对象。</param>
         <param name="expression">要与 <paramref name="value" /> 相关联的 <see cref="T:System.CodeDom.CodeExpression" />。</param>
-        <param name="isPreset"><see langword="true" /> 若要指定预设的表达式;否则为<see langword="false" />。</param>
-        <summary>将一个对象相关联的表达式，可以选择指定预设的表达式。</summary>
+        <param name="isPreset">要指定预设表达式，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+        <summary>将对象与表达式关联，并选择指定预设表达式。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A>方法是将相关联的帮助器方法<xref:System.CodeDom.CodeExpression>的对象。 在这种方式中使用表达式相关联的对象是可通过访问<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A>将其表达式的表存储为上下文堆栈上的附加对象，使其可由任何序列化程序的<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法。  
+ 方法是将<xref:System.CodeDom.CodeExpression>与对象关联的帮助器方法。 <xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A> 通过这种方式与表达式关联的对象可通过<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法进行访问。 将<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.SetExpression%2A>其 expression 表存储为上下文堆栈上的追加对象, 以便任何序列化程序的<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetExpression%2A>方法都可以访问它。  
   
  ]]></format>
         </remarks>

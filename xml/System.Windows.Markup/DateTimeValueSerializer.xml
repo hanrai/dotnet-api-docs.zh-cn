@@ -23,14 +23,14 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>将 <see cref="T:System.String" /> 的实例与 <see cref="T:System.DateTime" /> 的实例进行来回转换。</summary>
+    <summary>在 <see cref="T:System.String" /> 的实例与 <see cref="T:System.DateTime" /> 的实例之间进行转换。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Markup.ValueSerializer> 使用而非<xref:System.ComponentModel.TypeConverter>类型转换需要其他状态的情况下。 <xref:System.Windows.Markup.DateTimeValueSerializer> 不归因于类型与<xref:System.Windows.Markup.ValueSerializerAttribute>。 这是因为<xref:System.DateTime>位于 mscorlib，和 mscorlib 不能依赖自身未定义的特性类。 相反，使用情况的<xref:System.Windows.Markup.DateTimeValueSerializer>是 XAML 处理器行为在.NET Framework XAML 服务行为中的特殊情况。  
+ <xref:System.Windows.Markup.ValueSerializer>在类型转换需要<xref:System.ComponentModel.TypeConverter>附加状态的情况下, 使用而不是。 <xref:System.Windows.Markup.DateTimeValueSerializer>不具有的<xref:System.Windows.Markup.ValueSerializerAttribute>类型的属性。 这是因为<xref:System.DateTime>在 mscorlib 中是, 而 mscorlib 不能对其自身未定义的特性类进行依赖关系。 相反, 的<xref:System.Windows.Markup.DateTimeValueSerializer>用法在 xaml 处理器行为中是特殊大小写的 .NET Framework xaml 服务行为。  
   
- 在以前版本的.NET Framework 中，此类存在于 WindowsBase 的特定于 WPF 程序集。 在中[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]，<xref:System.Windows.Markup.DateTimeValueSerializer>位于 System.Xaml 程序集中。 请参阅[类型从 WPF 迁移到 System.Xaml](~/docs/framework/xaml-services/types-migrated-from-wpf-to-system-xaml.md)。  
+ 在 .NET Framework 的以前版本中, 此类存在于 WPF 特定的程序集 WindowsBase 中。 在[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]中<xref:System.Windows.Markup.DateTimeValueSerializer> , 为 system.exception 程序集。 请参阅[从 WPF 迁移到](~/docs/framework/xaml-services/types-migrated-from-wpf-to-system-xaml.md)System.exception 的类型。  
   
  ]]></format>
     </remarks>
@@ -88,10 +88,10 @@
         <Parameter Name="context" Type="System.Windows.Markup.IValueSerializerContext" Index="1" FrameworkAlternate="netframework-4.8" />
       </Parameters>
       <Docs>
-        <param name="value">要计算以进行转换的字符串。</param>
+        <param name="value">为转换而要计算的字符串。</param>
         <param name="context">用于转换的上下文信息。</param>
-        <summary>确定指定的 <see cref="T:System.String" /> 是否可以转换为 <see cref="T:System.DateTime" /> 的实例。</summary>
-        <returns>如果该值可以转换，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <summary>确定是否可将指定的 <see cref="T:System.String" /> 转换为 <see cref="T:System.DateTime" /> 的一个实例。</summary>
+        <returns>如果该值可以转换，则为<see langword="true" /> ；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -134,7 +134,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此实现返回`true`仅当传入`value`属于类型<xref:System.DateTime>。  
+ 仅当传递`true` `value`的类型<xref:System.DateTime>为时, 此实现才返回。  
   
  ]]></format>
         </remarks>
@@ -172,9 +172,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回一个空字符串<xref:System.DateTime.MinValue?displayProperty=nameWithType>。  
+ 返回<xref:System.DateTime.MinValue?displayProperty=nameWithType>空字符串。  
   
- 当前实现将<xref:System.DateTime.Parse%2A>在内部，然后还使用以下<xref:System.Globalization.DateTimeStyles>: `DateTimeStyles.RoundtripKind | DateTimeStyles.NoCurrentDateDefault | DateTimeStyles.AllowLeadingWhite | DateTimeStyles.AllowTrailingWhite`。  
+ 当前实现在内部<xref:System.DateTime.Parse%2A>使用, 并且还使用以下<xref:System.Globalization.DateTimeStyles>内容: `DateTimeStyles.RoundtripKind | DateTimeStyles.NoCurrentDateDefault | DateTimeStyles.AllowLeadingWhite | DateTimeStyles.AllowTrailingWhite`。  
   
  ]]></format>
         </remarks>
@@ -213,11 +213,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `context` 不使用此实现。  
+ `context`此实现不使用。  
   
- XAML 值处理表中的日期的字符串表示形式基于`en-US`区域性。 这是因为 XAML 处理区分区域性的信息从概念上讲编译时和运行时阶段之间拆分，并且必须使用在整个的已知的字符串表示形式。 有关详细信息，请参阅[WPF 全球化和本地化概述](~/docs/framework/wpf/advanced/wpf-globalization-and-localization-overview.md)。  
+ XAML 值处理中找到的日期的字符串表示形式基于`en-US`区域性。 这是因为在概念上, 用于区分区域性的信息在编译时和运行时阶段之间是拆分的, 必须在整个过程中使用已知的字符串表示形式。 有关详细信息, 请参阅[WPF 全球化和本地化概述](~/docs/framework/wpf/advanced/wpf-globalization-and-localization-overview.md)。  
   
- 当前实现使用的格式字符串，具体取决于是否调整所提供的方面<xref:System.DateTime>具有值。 例如，如果在没有值<xref:System.TimeSpan.TotalSeconds%2A>，格式字符串采用形式`yyyy-MM-dd`而不是写出完整的详细级别的时间部分为零值。  
+ 当前实现使用根据所提供<xref:System.DateTime>的的方面是否有值而调整的格式字符串。 例如, 如果中<xref:System.TimeSpan.TotalSeconds%2A>没有任何值, 格式字符串将采用`yyyy-MM-dd`格式, 而不是写出时间部分的完整详细级别零值。  
   
  ]]></format>
         </remarks>

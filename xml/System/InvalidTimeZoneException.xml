@@ -1,5 +1,5 @@
 <Type Name="InvalidTimeZoneException" FullName="System.InvalidTimeZoneException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c865323a10d8d1b5e5cf2c3c744373ada10a7cc8" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58746610" /></Metadata><TypeSignature Language="C#" Value="public class InvalidTimeZoneException : Exception" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8a7bc48169163214863cd3843c37185ce7e9aac8" /><Meta Name="ms.sourcegitcommit" Value="e7974886b08aa83a8fb461e8550f31a7d4331ee3" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/23/2019" /><Meta Name="ms.locfileid" Value="68398536" /></Metadata><TypeSignature Language="C#" Value="public class InvalidTimeZoneException : Exception" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit InvalidTimeZoneException extends System.Exception" />
   <TypeSignature Language="DocId" Value="T:System.InvalidTimeZoneException" />
   <TypeSignature Language="VB.NET" Value="Public Class InvalidTimeZoneException&#xA;Inherits Exception" />
@@ -49,17 +49,17 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 将引发此异常<xref:System.TimeZoneInfo>对象包含无效、 不完整，或丢失数据。 引发由<xref:System.TimeZoneInfo.FindSystemTimeZoneById%2A>方法时在注册表中找到时区，但包含损坏数据。 也可由引发<xref:System.TimeZoneInfo.CreateCustomTimeZone%2A>方法在任一以下条件：  
+ 当<xref:System.TimeZoneInfo>对象包含无效、不完整或缺失的数据时, 将引发此异常。 在注册表中找到时区<xref:System.TimeZoneInfo.FindSystemTimeZoneById%2A>但包含损坏的数据时, 由方法引发。 在以下任一情况下, <xref:System.TimeZoneInfo.CreateCustomTimeZone%2A>该方法也可由方法引发:  
   
 -   调整规则重叠。  
   
 -   调整规则包含一个或多个 null 元素。  
   
--   协调世界时 (UTC) 偏移量和夏时制增量之和不在范围。 (它是大于 14 小时或小于-14 小时。)  
+-   协调世界时 (UTC) 偏移量与夏令时的总和超出范围。 (它大于14小时或小于-14 小时。)  
   
--   单个日期具有多个调整规则应用于它。  
+-   单个日期有多个应用于它的调整规则。  
   
- 不引发此异常以指示特定的系统; 上未定义时区<xref:System.TimeZoneNotFoundException>用于此目的。  
+ 不会引发此异常, 指示特定系统上未定义时区;<xref:System.TimeZoneNotFoundException>用于实现此目的。  
   
  ]]></format>
     </remarks>
@@ -115,7 +115,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这是默认构造函数的<xref:System.InvalidTimeZoneException>类。 它可以初始化<xref:System.Exception.Message%2A>为系统提供的描述错误，例如"引发异常的类型 System.InvalidTimeZoneException'。"的消息的新实例的属性 此消息将针对当前系统区域性进行本地化。  
+ 这是<xref:System.InvalidTimeZoneException>类的无参数构造函数。 它将新<xref:System.Exception.Message%2A>实例的属性初始化为系统提供的描述错误的消息, 例如, 引发了 "InvalidTimeZoneException" 类型的异常。 此消息针对当前系统区域性进行了本地化。  
   
  ]]></format>
         </remarks>
@@ -162,7 +162,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 为提供的字符串`message`参数分配给<xref:System.Exception.Message%2A>属性。 应为当前区域性本地化。  
+ 作为`message`参数提供的字符串被分配<xref:System.Exception.Message%2A>给属性。 应为当前区域性对其进行本地化。  
   
  ]]></format>
         </remarks>
@@ -212,13 +212,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数不调用直接通过您的代码以实例化<xref:System.InvalidTimeZoneException>对象。 相反，由调用<xref:System.Runtime.Serialization.IFormatter>对象的<xref:System.Runtime.Serialization.IFormatter.Deserialize%2A>方法反序列化时<xref:System.InvalidTimeZoneException>从流对象。  
+ 此构造函数不由您的代码直接调用来实例<xref:System.InvalidTimeZoneException>化对象。 相反, 它在从流中<xref:System.Runtime.Serialization.IFormatter>反序列<xref:System.Runtime.Serialization.IFormatter.Deserialize%2A>化<xref:System.InvalidTimeZoneException>对象时由对象的方法调用。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="info" /> 参数为 <see langword="null" />。  
   
-- 或 - 
+或 
 <paramref name="context" /> 参数为 <see langword="null" />。</exception>
       </Docs>
     </Member>
@@ -265,14 +265,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常情况下，使用此重载<xref:System.InvalidTimeZoneException>类来处理中出现的异常`try`...`catch` 块。 `innerException`参数应为对在中处理的异常对象的引用`catch`块中，也可以是`null`。 然后将此值分配给<xref:System.InvalidTimeZoneException>对象的<xref:System.Exception.InnerException%2A>属性。  
+ 通常, 使用<xref:System.InvalidTimeZoneException>类的此重载来处理中的`try`异常。`catch` 模块. 参数应是对`catch`在块中处理的异常对象的引用, 也可以是`null`。 `innerException` 然后, 将此值分配<xref:System.InvalidTimeZoneException>给对象的<xref:System.Exception.InnerException%2A>属性。  
   
- `message`字符串分配给<xref:System.Exception.Message%2A>属性。 应为当前区域性本地化的字符串。  
+ 将字符串分配<xref:System.Exception.Message%2A>给属性。 `message` 应为当前区域性对字符串进行本地化。  
   
    
   
 ## Examples  
- 下面的代码尝试检索<xref:System.TimeZoneInfo>表示中部标准时区的对象。 如果<xref:System.InvalidTimeZoneException>中发生`RetrieveTimeZone`方法调用中，异常处理程序会在新异常包装<xref:System.InvalidTimeZoneException>对象，将其返回给调用方。 然后，调用方的异常处理程序显示有关外部和内部异常的信息。  
+ 下面的代码尝试检索<xref:System.TimeZoneInfo>表示中部标准时区的对象。 如果`RetrieveTimeZone`方法<xref:System.InvalidTimeZoneException>调用中发生了, 则异常处理程序将异常包装在新<xref:System.InvalidTimeZoneException>的对象中, 并将其返回给调用方。 然后, 调用方的异常处理程序显示有关外部和内部异常的信息。  
   
  [!code-csharp[System.TimeZoneNotFoundException.Class#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.TimeZoneNotFoundException.Class/cs/TimeZoneNotFoundException.cs#1)]
  [!code-vb[System.TimeZoneNotFoundException.Class#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.TimeZoneNotFoundException.Class/vb/TimeZoneNotFoundException.vb#1)]  

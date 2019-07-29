@@ -28,9 +28,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 控件的值可能会或可能不可编辑，具体取决于控件及其设置。  
+ 控件的值可以是可编辑, 也可以是不可编辑的, 具体取决于控件及其设置。  
   
- 必须支持的 UI 自动化提供程序上实现<xref:System.Windows.Automation.ValuePattern>控件模式。  
+ 在必须支持<xref:System.Windows.Automation.ValuePattern>控件模式的 UI 自动化提供程序上实现。  
   
  ]]></format>
     </remarks>
@@ -59,7 +59,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个值，指定控件的值是只读的。</summary>
+        <summary>获取一个值，该值指定控件的值是否是只读的。</summary>
         <value>如果值为只读，则为 <see langword="true" />；如果它可以修改，则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -70,7 +70,7 @@
    
   
 ## Examples  
- 下面的示例显示了此方法允许将值更改的控件的实现。  
+ 下面的示例演示此方法对于允许更改其值的控件的实现。  
   
  [!code-csharp[UIAIValueProvider_snip#IsReadOnly](~/samples/snippets/csharp/VS_Snippets_Wpf/UIAIValueProvider_snip/CSharp/ValueFragment.cs#isreadonly)]
  [!code-vb[UIAIValueProvider_snip#IsReadOnly](~/samples/snippets/visualbasic/VS_Snippets_Wpf/UIAIValueProvider_snip/visualbasic/valuefragment.vb#isreadonly)]  
@@ -107,15 +107,15 @@
 ## Remarks  
  单行编辑控件支持通过实现 <xref:System.Windows.Automation.Provider.IValueProvider>编程访问其内容。 但是，多行编辑控件不实现 <xref:System.Windows.Automation.Provider.IValueProvider>；相反，它们通过实现 <xref:System.Windows.Automation.Provider.ITextProvider>来提供对其内容的访问。  
   
- 控件，如<xref:System.Windows.Automation.ControlType.ListItem>并<xref:System.Windows.Automation.ControlType.TreeItem>必须实现<xref:System.Windows.Automation.Provider.IValueProvider>如果任一项的值是可编辑，而不考虑当前编辑模式的控件。 父控件还必须实现<xref:System.Windows.Automation.Provider.IValueProvider>如果子项是可编辑。  
+ 如果任何项<xref:System.Windows.Automation.ControlType.ListItem>的值都<xref:System.Windows.Automation.Provider.IValueProvider>是可编辑的, 无论控件的当前编辑模式如何, 都必须实现控件 (如和<xref:System.Windows.Automation.ControlType.TreeItem> )。 如果子项是可编辑的<xref:System.Windows.Automation.Provider.IValueProvider> , 则父控件还必须实现。  
   
- ![可编辑列表项。](~/add/media/uia-valuepattern-editable-listitem.PNG "可编辑列表项。")  
+ ![可编辑的列表项。](~/add/media/uia-valuepattern-editable-listitem.PNG "可编辑的列表项。")  
 可编辑列表项的示例  
   
    
   
 ## Examples  
- 下面的代码示例演示了允许将值设置为有限长度的字符串的自定义控件。  
+ 下面的代码示例演示一个自定义控件, 该控件允许将其值设置为长度限制的字符串。  
   
  [!code-csharp[UIAIValueProvider_snip#SetValue](~/samples/snippets/csharp/VS_Snippets_Wpf/UIAIValueProvider_snip/CSharp/ValueFragment.cs#setvalue)]
  [!code-vb[UIAIValueProvider_snip#SetValue](~/samples/snippets/visualbasic/VS_Snippets_Wpf/UIAIValueProvider_snip/visualbasic/valuefragment.vb#setvalue)]  
@@ -145,21 +145,21 @@
       </ReturnValue>
       <Docs>
         <summary>获取控件的值。</summary>
-        <value>字符串形式表示的控件的值。</value>
+        <value>以字符串形式表示的控件值。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 单行编辑控件通过实现来支持以编程方式访问其内容<xref:System.Windows.Automation.Provider.IValueProvider>(除了<xref:System.Windows.Automation.Provider.ITextProvider>)。 但是，多行编辑控件不实现<xref:System.Windows.Automation.Provider.IValueProvider>。  
+ 单行编辑控件支持通过实现<xref:System.Windows.Automation.Provider.IValueProvider>编程访问其内容 ( <xref:System.Windows.Automation.Provider.ITextProvider>除了)。 不过, 多行编辑控件不实现<xref:System.Windows.Automation.Provider.IValueProvider>。  
   
- 若要检索多行编辑控件的文本内容，控件必须实现<xref:System.Windows.Automation.Provider.ITextProvider>。 但是， <xref:System.Windows.Automation.Provider.ITextProvider> 不支持设置控件的值。  
+ 若要检索多行编辑控件的文本内容, 控件必须实现<xref:System.Windows.Automation.Provider.ITextProvider>。 但是， <xref:System.Windows.Automation.Provider.ITextProvider> 不支持设置控件的值。  
   
  <xref:System.Windows.Automation.Provider.IValueProvider> 不支持检索格式设置信息或子字符串值。 在这些情况下，请实现 <xref:System.Windows.Automation.Provider.ITextProvider> 。  
   
    
   
 ## Examples  
- 下面的示例显示了此方法允许要检索其值的控件的实现。  
+ 下面的示例演示此方法对于允许检索其值的控件的实现。  
   
  [!code-csharp[UIAIValueProvider_snip#Value](~/samples/snippets/csharp/VS_Snippets_Wpf/UIAIValueProvider_snip/CSharp/ValueFragment.cs#value)]
  [!code-vb[UIAIValueProvider_snip#Value](~/samples/snippets/visualbasic/VS_Snippets_Wpf/UIAIValueProvider_snip/visualbasic/valuefragment.vb#value)]  

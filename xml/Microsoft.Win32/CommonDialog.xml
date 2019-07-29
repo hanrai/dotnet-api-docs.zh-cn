@@ -33,7 +33,7 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>提供对基类值由派生类的构造函数调用时初始化。</summary>
+        <summary>在由派生类的构造函数调用时，提供基类值的初始化。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -63,10 +63,10 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>确定是否存在足够的权限来显示一个对话框。</summary>
+        <summary>确定是否有足够的权限来显示对话框。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.Security.SecurityException">如果不存在足够的权限以显示对话框。</exception>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要执行此方法，并且不会引发的异常。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <exception cref="T:System.Security.SecurityException">如果没有足够的权限来显示对话框。</exception>
+        <permission cref="T:System.Security.Permissions.UIPermission">在不引发异常的情况下执行此方法。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
     <Member MemberName="HookProc">
@@ -98,7 +98,7 @@
       </Parameters>
       <Docs>
         <param name="hwnd">[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)] 对话框的窗口句柄。</param>
-        <param name="msg">通过处理 Windows 消息[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]对话框。</param>
+        <param name="msg">要由 [!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)] 对话框处理的 Windows 消息。</param>
         <param name="wParam">用于对话框操作的参数。</param>
         <param name="lParam">用于对话框操作的参数。</param>
         <summary>定义要重写的通用对话框挂钩过程，以便向通用对话框添加特定功能。</summary>
@@ -107,7 +107,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:Microsoft.Win32.CommonDialog.HookProc%2A> 处理对话框初始化，使对话框窗口中的，相对于屏幕，并将焦点设置为默认控件内居中。  
+ <xref:Microsoft.Win32.CommonDialog.HookProc%2A>通过使对话框窗口相对于屏幕居中, 并将焦点设置到默认控件来处理对话框初始化。  
   
  ]]></format>
         </remarks>
@@ -136,7 +136,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>当在派生类中重写，将通用对话框的属性重置为其默认值。</summary>
+        <summary>在派生类中进行重写时，将通用对话框的属性重置为其默认值。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -160,14 +160,14 @@
         <Parameter Name="hwndOwner" Type="System.IntPtr" />
       </Parameters>
       <Docs>
-        <param name="hwndOwner">拥有对话框的窗口的句柄。</param>
-        <summary>当在派生类中重写时调用以显示特定类型的[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]通用对话框。</summary>
+        <param name="hwndOwner">对话框所在的窗口的句柄。</param>
+        <summary>在派生类中进行重写时，将被调用以显示 [!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)] 通用对话框的特定类型。</summary>
         <returns>如果用户单击显示的对话框（例如 <see cref="T:Microsoft.Win32.OpenFileDialog" /> 和 <see cref="T:Microsoft.Win32.SaveFileDialog" />）的“确定”按钮，则返回 <see langword="true" />；否则返回 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 最终所示的对话框分配给所有者窗口中，由指定`hwndOwner`参数。  
+ 最终显示的对话框将被分配一个所有者窗口, 该窗口由`hwndOwner`参数指定。  
   
  ]]></format>
         </remarks>
@@ -179,19 +179,19 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要执行此方法，并且不会引发的异常。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">在不引发异常的情况下执行此方法。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
         <summary>显示通用对话框。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:Microsoft.Win32.CommonDialog.ShowDialog%2A> 为所有通用对话框之前调用执行初始化任务<xref:Microsoft.Win32.CommonDialog.RunDialog%2A>。 由于<xref:Microsoft.Win32.CommonDialog.RunDialog%2A>需要所有者窗口中，<xref:Microsoft.Win32.CommonDialog.ShowDialog%2A>尝试分配一个按以下顺序的优先顺序：  
+ <xref:Microsoft.Win32.CommonDialog.ShowDialog%2A>在调用<xref:Microsoft.Win32.CommonDialog.RunDialog%2A>之前对所有常见对话框执行初始化任务。 由于<xref:Microsoft.Win32.CommonDialog.RunDialog%2A>需要所有者窗口, <xref:Microsoft.Win32.CommonDialog.ShowDialog%2A>因此尝试按以下优先级顺序分配一个窗口:  
   
 -   当前应用程序的*活动窗口*。  
   
 -   当前应用程序的*停车窗口*。  
   
--   在内部生成的隐藏的窗口。  
+-   内部生成的隐藏窗口。  
   
  ]]></format>
         </remarks>
@@ -226,13 +226,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:Microsoft.Win32.CommonDialog.ShowDialog%2A> 为所有通用对话框之前调用执行初始化任务<xref:Microsoft.Win32.CommonDialog.RunDialog%2A>。  
+ <xref:Microsoft.Win32.CommonDialog.ShowDialog%2A>在调用<xref:Microsoft.Win32.CommonDialog.RunDialog%2A>之前对所有常见对话框执行初始化任务。  
   
- 在当前实现中，派生类 (<xref:Microsoft.Win32.OpenFileDialog>并<xref:Microsoft.Win32.SaveFileDialog>) 将只返回`true`或`false`。  
+ 在当前实现中, 派生类<xref:Microsoft.Win32.OpenFileDialog> (和<xref:Microsoft.Win32.SaveFileDialog>) 将仅返回`true`或`false`。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要执行此方法，并且不会引发的异常。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">在不引发异常的情况下执行此方法。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
     <Member MemberName="ShowDialog">
@@ -267,13 +267,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:Microsoft.Win32.CommonDialog.ShowDialog%2A> 为所有通用对话框之前调用执行初始化任务<xref:Microsoft.Win32.CommonDialog.RunDialog%2A>。 此外，最终所示的对话框分配给所有者窗口中，由指定`owner`参数。  
+ <xref:Microsoft.Win32.CommonDialog.ShowDialog%2A>在调用<xref:Microsoft.Win32.CommonDialog.RunDialog%2A>之前对所有常见对话框执行初始化任务。 此外, 将为最终显示的对话框分配一个所有者窗口, 该窗口是由`owner`参数指定的。  
   
- 在当前实现中，派生类 (<xref:Microsoft.Win32.OpenFileDialog>并<xref:Microsoft.Win32.SaveFileDialog>) 将只返回`true`或`false`。  
+ 在当前实现中, 派生类<xref:Microsoft.Win32.OpenFileDialog> (和<xref:Microsoft.Win32.SaveFileDialog>) 将仅返回`true`或`false`。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要执行此方法，并且不会引发的异常。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">在不引发异常的情况下执行此方法。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
         <altmember cref="P:System.Windows.Window.Owner" />
       </Docs>
     </Member>
@@ -302,8 +302,8 @@
         <ReturnType>System.Object</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置与对话框关联的对象。 因此，可将附加到对话框中的任意对象。</summary>
-        <value>一个<see cref="T:System.Object" />附加或与对话框相关联。</value>
+        <summary>获取或设置与对话框关联的对象。 这将提供向对话框附加任意对象的能力。</summary>
+        <value>附加到对话框或与对话框关联的 <see cref="T:System.Object" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   

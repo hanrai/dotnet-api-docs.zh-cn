@@ -34,20 +34,20 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>表示调用时已注册的句柄<see cref="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)" />。 此类不能被继承。</summary>
+    <summary>表示在调用 <see cref="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)" /> 时已注册的句柄。 此类不能被继承。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.Threading.RegisteredWaitHandle>以确定原因调用的回调方法，以及如何取消注册任务，如回调发生由于等待句柄已收到信号。  
+ 下面的示例演示如何使用<xref:System.Threading.RegisteredWaitHandle>来确定调用回调方法的原因, 以及如何在回调由于等待句柄发出信号而发生回调时取消注册任务。  
   
- 该示例还演示如何使用<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>要指定的等待句柄发出信号时执行指定的回调方法的方法。 在此示例中，回调方法是`WaitProc`，并等待句柄是<xref:System.Threading.AutoResetEvent>。  
+ 该示例还演示了如何使用<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>方法在指定的等待句柄收到信号时执行指定的回调方法。 在此示例中, 回调方法为`WaitProc`, 等待句柄<xref:System.Threading.AutoResetEvent>是。  
   
- 该示例定义了`TaskInfo`类来保存时它将执行传递给回调的信息。 此示例将创建`TaskInfo`对象，并将其分配一些字符串数据。 <xref:System.Threading.RegisteredWaitHandle>返回的<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>方法指定给`Handle`字段`TaskInfo`对象，以便回调方法有权访问<xref:System.Threading.RegisteredWaitHandle>。  
+ 该示例定义了`TaskInfo`一个类, 用于保存在执行时传递给回调的信息。 该示例创建一个`TaskInfo`对象, 并为其分配一些字符串数据。 <xref:System.Threading.RegisteredWaitHandle> <xref:System.Threading.RegisteredWaitHandle>方法返回的将分配`TaskInfo`给对象的字段,以便回调方法有权访问。`Handle` <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>  
   
- 除了指定`TaskInfo`作为要传递给回调方法调用的对象<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>方法指定<xref:System.Threading.AutoResetEvent>任务将等待<xref:System.Threading.WaitOrTimerCallback>委托，表示`WaitProc`回调方法一个第二个超时时间间隔和多个回调。  
+ 除了`TaskInfo`指定作为要传递给回调方法的对象, <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>对方法的调用还指定<xref:System.Threading.AutoResetEvent>了任务将`WaitProc`等待的, <xref:System.Threading.WaitOrTimerCallback>委托表示回调方法,1秒的超时间隔和多个回调。  
   
- 当主线程发出信号<xref:System.Threading.AutoResetEvent>通过调用其<xref:System.Threading.EventWaitHandle.Set%2A>方法，<xref:System.Threading.WaitOrTimerCallback>调用委托。 `WaitProc`方法测试<xref:System.Threading.RegisteredWaitHandle>以确定是否发生了超时值。 如果由于等待句柄已收到信号，而调用的回调`WaitProc`方法将注销<xref:System.Threading.RegisteredWaitHandle>，从而停止其他回调。 在超时的情况下该任务将继续等待。 `WaitProc`方法结束通过将消息输出到控制台。  
+ 当主线程<xref:System.Threading.AutoResetEvent>通过调用其<xref:System.Threading.EventWaitHandle.Set%2A>方法发出信号时, <xref:System.Threading.WaitOrTimerCallback>将调用委托。 `WaitProc`方法测试<xref:System.Threading.RegisteredWaitHandle>以确定是否发生了超时。 如果回调是由于等待句柄已发出信号而调用的`WaitProc` , 则该<xref:System.Threading.RegisteredWaitHandle>方法将注销, 并停止其他回调。 在超时情况下, 任务将继续等待。 `WaitProc`方法通过将消息打印到控制台来结束。  
   
  [!code-cpp[System.Threading.ThreadPool RegisterWaitForSingleObject0#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ThreadPool RegisterWaitForSingleObject0/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.ThreadPool RegisterWaitForSingleObject0#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ThreadPool RegisterWaitForSingleObject0/CS/source.cs#1)]
@@ -127,27 +127,27 @@
         <Parameter Name="waitObject" Type="System.Threading.WaitHandle" />
       </Parameters>
       <Docs>
-        <param name="waitObject"><see cref="T:System.Threading.WaitHandle" />要发出信号。</param>
-        <summary>取消由颁发的已注册的等待操作<see cref="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)" />方法。</summary>
-        <returns><see langword="true" /> 如果函数成功;否则为<see langword="false" />。</returns>
+        <param name="waitObject">要发出信号的 <see cref="T:System.Threading.WaitHandle" />。</param>
+        <summary>取消由 <see cref="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)" /> 方法发出的已注册等待操作。</summary>
+        <returns>如果函数成功，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`waitObject`未指定，它才会终止<xref:System.Threading.RegisteredWaitHandle>是已成功注销。 如果正在进行中的回调方法时<xref:System.Threading.RegisteredWaitHandle.Unregister%2A>执行，`waitObject`回调方法完成之前未收到信号。 具体而言，如果在执行回调方法<xref:System.Threading.RegisteredWaitHandle.Unregister%2A>，`waitObject`该回调方法完成之前未收到信号。  
+ 如果`waitObject`已指定, 则只有<xref:System.Threading.RegisteredWaitHandle>在成功注销后才会发出信号。 如果在执行时<xref:System.Threading.RegisteredWaitHandle.Unregister%2A>回调方法正在进行, `waitObject`则在回调方法完成之前不会发出信号。 具体而言, 如果回调方法执行<xref:System.Threading.RegisteredWaitHandle.Unregister%2A>, `waitObject`则在回调方法完成之前不会发出信号。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.Threading.RegisteredWaitHandle.Unregister%2A>方法来取消注册任务，如等待句柄已收到信号发生回调。  
+ 下面的示例演示如何使用<xref:System.Threading.RegisteredWaitHandle.Unregister%2A>方法取消注册, 因为在等待句柄终止的情况下发生回调。  
   
- 该示例还演示如何使用<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>要指定的等待句柄发出信号时执行指定的回调方法的方法。 在此示例中，回调方法是`WaitProc`，并等待句柄是<xref:System.Threading.AutoResetEvent>。  
+ 该示例还演示了如何使用<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>方法在指定的等待句柄收到信号时执行指定的回调方法。 在此示例中, 回调方法为`WaitProc`, 等待句柄<xref:System.Threading.AutoResetEvent>是。  
   
- 该示例定义了`TaskInfo`类来保存时它将执行传递给回调的信息。 此示例将创建`TaskInfo`对象，并将其分配一些字符串数据。 <xref:System.Threading.RegisteredWaitHandle>返回的<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>方法指定给`Handle`字段`TaskInfo`对象，以便回调方法有权访问<xref:System.Threading.RegisteredWaitHandle>。  
+ 该示例定义了`TaskInfo`一个类, 用于保存在执行时传递给回调的信息。 该示例创建一个`TaskInfo`对象, 并为其分配一些字符串数据。 <xref:System.Threading.RegisteredWaitHandle> <xref:System.Threading.RegisteredWaitHandle>方法返回的将分配`TaskInfo`给对象的字段,以便回调方法有权访问。`Handle` <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>  
   
- 除了指定`TaskInfo`作为要传递给回调方法调用的对象<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>方法指定<xref:System.Threading.AutoResetEvent>任务将等待<xref:System.Threading.WaitOrTimerCallback>委托，表示`WaitProc`回调方法一个第二个超时时间间隔和多个回调。  
+ 除了`TaskInfo`指定作为要传递给回调方法的对象, <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>对方法的调用还指定<xref:System.Threading.AutoResetEvent>了任务将`WaitProc`等待的, <xref:System.Threading.WaitOrTimerCallback>委托表示回调方法,1秒的超时间隔和多个回调。  
   
- 当主线程发出信号<xref:System.Threading.AutoResetEvent>通过调用其<xref:System.Threading.EventWaitHandle.Set%2A>方法，<xref:System.Threading.WaitOrTimerCallback>调用委托。 `WaitProc`方法测试<xref:System.Threading.RegisteredWaitHandle>以确定是否发生了超时值。 如果由于等待句柄已收到信号，而调用的回调`WaitProc`方法将注销<xref:System.Threading.RegisteredWaitHandle>，从而停止其他回调。 在超时的情况下该任务将继续等待。 `WaitProc`方法结束通过将消息输出到控制台。  
+ 当主线程<xref:System.Threading.AutoResetEvent>通过调用其<xref:System.Threading.EventWaitHandle.Set%2A>方法发出信号时, <xref:System.Threading.WaitOrTimerCallback>将调用委托。 `WaitProc`方法测试<xref:System.Threading.RegisteredWaitHandle>以确定是否发生了超时。 如果回调是由于等待句柄已发出信号而调用的`WaitProc` , 则该<xref:System.Threading.RegisteredWaitHandle>方法将注销, 并停止其他回调。 在超时情况下, 任务将继续等待。 `WaitProc`方法通过将消息打印到控制台来结束。  
   
  [!code-cpp[System.Threading.ThreadPool RegisterWaitForSingleObject0#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ThreadPool RegisterWaitForSingleObject0/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.ThreadPool RegisterWaitForSingleObject0#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ThreadPool RegisterWaitForSingleObject0/CS/source.cs#1)]

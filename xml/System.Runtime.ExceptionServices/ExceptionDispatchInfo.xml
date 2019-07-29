@@ -1,5 +1,5 @@
 <Type Name="ExceptionDispatchInfo" FullName="System.Runtime.ExceptionServices.ExceptionDispatchInfo">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7fb1d328fb63a3f7f164e074f1a4454947464c52" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58710943" /></Metadata><TypeSignature Language="C#" Value="public sealed class ExceptionDispatchInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c8fd1895ef61ee02b9d9153baeea7782ddcbd546" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68436481" /></Metadata><TypeSignature Language="C#" Value="public sealed class ExceptionDispatchInfo" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ExceptionDispatchInfo extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ExceptionDispatchInfo" />
@@ -34,9 +34,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.ExceptionServices.ExceptionDispatchInfo>对象将存储的堆栈跟踪信息和该异常包含捕获时的点处的 Watson 信息。 可以会引发该异常在其他时间，则可能对另一个线程通过调用<xref:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw%2A?displayProperty=nameWithType>方法。 将异常情况就像它已从其中捕获到的点的点流入其中<xref:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw%2A>调用方法。  
+ <xref:System.Runtime.ExceptionServices.ExceptionDispatchInfo>对象存储异常在捕获时所包含的堆栈跟踪信息和 Watson 信息。 异常可以在另一次引发, 还可以通过调用<xref:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw%2A?displayProperty=nameWithType>方法引发。 异常的引发方式是它从捕获到<xref:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw%2A>该方法的捕获点流向。  
   
- <xref:System.Runtime.ExceptionServices.ExceptionDispatchInfo> 无法序列化，不应跨应用程序域边界。  
+ <xref:System.Runtime.ExceptionServices.ExceptionDispatchInfo>无法进行序列化, 并且不用于跨应用程序域边界。  
   
  ]]></format>
     </remarks>
@@ -83,9 +83,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Runtime.ExceptionServices.ExceptionDispatchInfo>是此方法返回在其他时间，则可能对另一个线程重新引发指定的异常，就像从其中捕获到它将被重新引发的点此点有流入异常的对象。  
+ 您可以在另<xref:System.Runtime.ExceptionServices.ExceptionDispatchInfo>一次使用此方法返回的对象, 并可能在另一个线程上重新引发指定的异常, 就好像该异常在被捕获到重新引发它的点处为止。  
   
- 如果异常时捕获时为活动状态、 当前的堆栈跟踪信息和 Watson 信息中包含的，存储异常。  如果它处于非活动状态，也就是说，如果它不具有已引发，它将不具有任何堆栈跟踪信息或 Watson 信息。  
+ 如果异常在捕获时处于活动状态, 则会存储异常中包含的当前堆栈跟踪信息和 Watson 信息。  如果它处于非活动状态, 即, 如果尚未引发它, 则它将不会有任何堆栈跟踪信息或 Watson 信息。  
   
  ]]></format>
         </remarks>
@@ -129,7 +129,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性使用任务并行库，例如，组合中的多个异常<xref:System.AggregateException>对象。 它不是由应用程序代码使用。 使用<xref:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw%2A>方法还原捕获的异常的状态并引发它。  
+ 此属性由任务并行库用来合并<xref:System.AggregateException>对象中的多个异常。 不应由应用程序代码使用。 <xref:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw%2A>使用方法还原捕获的异常的状态并引发它。  
   
  ]]></format>
         </remarks>
@@ -162,6 +162,11 @@
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="netcore-3.0">
+          <AttributeName>System.Diagnostics.CodeAnalysis.DoesNotReturn</AttributeName>
+        </Attribute>
+      </Attributes>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
@@ -172,7 +177,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当恢复异常时，堆栈跟踪以指示还原点中插入以下字符串："从之前的位置引发异常的堆栈跟踪结束"。 这是内部的异常或已封送的异常指示堆栈跟踪中的方式类似。  
+ 如果还原了异常, 则会在堆栈跟踪中插入以下字符串, 以指示还原点:"引发异常的上一个位置的堆栈跟踪结束"。 这类似于在堆栈跟踪中指出的内部异常或封送异常。  
   
  ]]></format>
         </remarks>
@@ -198,6 +203,11 @@
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="netcore-3.0">
+          <AttributeName>System.Diagnostics.CodeAnalysis.DoesNotReturn</AttributeName>
+        </Attribute>
+      </Attributes>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>

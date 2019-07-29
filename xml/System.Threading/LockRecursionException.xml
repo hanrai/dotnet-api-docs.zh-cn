@@ -1,5 +1,5 @@
 <Type Name="LockRecursionException" FullName="System.Threading.LockRecursionException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="779cee47263d3b30948982dbbbace95f61826ecc" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58715698" /></Metadata><TypeSignature Language="C#" Value="public class LockRecursionException : Exception" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="eb83d41b26be9b811a0a7dd090a6828590e9a9f2" /><Meta Name="ms.sourcegitcommit" Value="e7974886b08aa83a8fb461e8550f31a7d4331ee3" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/23/2019" /><Meta Name="ms.locfileid" Value="68392221" /></Metadata><TypeSignature Language="C#" Value="public class LockRecursionException : Exception" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit LockRecursionException extends System.Exception" />
   <TypeSignature Language="DocId" Value="T:System.Threading.LockRecursionException" />
   <TypeSignature Language="VB.NET" Value="Public Class LockRecursionException&#xA;Inherits Exception" />
@@ -44,18 +44,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.LockRecursionException> 引发原因有多种，其中包括：  
+ <xref:System.Threading.LockRecursionException>出于以下几个原因引发:  
   
--   如果一个线程尝试输入的实例<xref:System.Threading.ReaderWriterLockSlim>以递归方式，但该实例不支持递归。  
+-   如果线程尝试进入递归的<xref:System.Threading.ReaderWriterLockSlim>实例, 但该实例不支持递归。  
   
--   如果线程尝试进入<xref:System.Threading.ReaderWriterLockSlim>写模式或可升级模式时该线程的锁最初进入读取模式中的实例。 此类表示潜在的死锁，因此不允许。  
+-   当线程最初进入读取模式锁定<xref:System.Threading.ReaderWriterLockSlim>状态时, 如果线程尝试进入写入模式或可升级模式下的实例, 则为。 这表示潜在的死锁, 因此不允许这样做。  
   
--   如果允许将一个详细级别的递归将超过用于跟踪递归的内部存储计数器的最大值。 此限制数值很大，因此任何情况下应用程序都不应遇到此情况。  
+-   如果允许一个更高的递归级别超过用于跟踪递归的内部存储计数器的最大值。 此限制数值很大，因此任何情况下应用程序都不应遇到此情况。  
   
    
   
 ## Examples  
- 下面的示例演示两个原因<xref:System.Threading.LockRecursionException>时使用<xref:System.Threading.ReaderWriterLockSlim>类。 程序创建<xref:System.Threading.ReaderWriterLockSlim>通过使用默认构造函数，它不允许使用递归。 然后，程序将启动进入读取模式锁定的线程。 该线程尝试锁定以递归方式进入读取模式，并捕获产生的异常。 最后，该线程尝试进入写入模式，可能会造成死锁。 该线程捕获产生的异常。  
+ 下面的示例演示<xref:System.Threading.LockRecursionException> <xref:System.Threading.ReaderWriterLockSlim>使用类的两个原因。 程序使用无参数<xref:System.Threading.ReaderWriterLockSlim>构造函数创建, 该构造函数不允许使用递归。 然后, 程序将启动进入读取模式锁定状态的线程。 该线程尝试在读取模式中以递归方式进入锁定状态, 并捕获产生的异常。 最后, 线程尝试进入写入模式, 这可能会导致死锁。 线程捕获产生的异常。  
   
  [!code-csharp[System.Threading.LockRecursionException#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.LockRecursionException/cs/source.cs#1)]
  [!code-vb[System.Threading.LockRecursionException#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Threading.LockRecursionException/vb/source.vb#1)]  
@@ -111,7 +111,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数初始化<xref:System.Exception.Message%2A>为系统提供的描述错误，例如"递归读取锁获得不允许在此模式下。"的消息的新实例的属性 此消息将当前系统区域性考虑在内。  
+ 此构造函数将<xref:System.Exception.Message%2A>新实例的属性初始化为系统提供的描述错误的消息, 如 "在此模式下不允许递归读取锁定"。 此消息将考虑当前系统区域性。  
   
  下表显示 <xref:System.InsufficientMemoryException> 的实例的初始属性值。  
   
@@ -164,7 +164,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数初始化<xref:System.Exception.Message%2A?displayProperty=nameWithType>属性的新异常`message`参数。 `message` 的内容被设计为人可理解的形式。 此构造函数的调用方必须确保此字符串已针对当前系统区域性进行了本地化。  
+ 此构造函数`message`用<xref:System.Exception.Message%2A?displayProperty=nameWithType>参数初始化新异常的属性。 `message` 的内容被设计为人可理解的形式。 此构造函数的调用方必须确保此字符串已针对当前系统区域性进行了本地化。  
   
  下表显示 <xref:System.Threading.LockRecursionException> 的实例的初始属性值。  
   
@@ -217,7 +217,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 反序列化来重建通过流传输的异常对象期间调用此构造函数。 有关详细信息，请参阅[XML 和 SOAP 序列化](~/docs/standard/serialization/xml-and-soap-serialization.md)。  
+ 在反序列化过程中调用此构造函数来重建通过流传输的异常对象。 有关详细信息，请参阅[XML 和 SOAP 序列化](~/docs/standard/serialization/xml-and-soap-serialization.md)。  
   
  ]]></format>
         </remarks>
@@ -271,7 +271,7 @@
   
 |Property|值|  
 |--------------|-----------|  
-|<xref:System.Exception.InnerException%2A>|在指定的异常`innerException`。|  
+|<xref:System.Exception.InnerException%2A>|中`innerException`指定的异常。|  
 |<xref:System.Exception.Message%2A>|`message` 中指定的错误消息字符串。|  
   
  ]]></format>

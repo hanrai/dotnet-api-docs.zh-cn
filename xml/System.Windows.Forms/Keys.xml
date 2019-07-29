@@ -37,23 +37,23 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.Keys>类包含用于处理键盘输入的常数。 键代码和修饰符合并到单个整数值的一组包含密钥枚举的成员。 在 Win32 应用程序编程接口 (API) 的密钥值都有两个部分，使用包含的键代码 （这是 Windows 的虚拟键代码相同），高序位和表示如 SHIFT、 控制和 ALT 键修饰符的低顺序位键。  
+ <xref:System.Windows.Forms.Keys>类包含用于处理键盘输入的常量。 键枚举的成员由键代码和组合为单个整数值的一组修饰符组成。 在 Win32 应用程序编程接口 (API) 中, 键值具有两个部分, 其中的高序位包含密钥代码 (与 Windows 虚拟键代码相同), 并且低序位表示键修饰符 (如 SHIFT、CONTROL 和 ALT)键.  
   
 > [!WARNING]
->  请组合的位运算中使用此枚举中值。 枚举中的值不是互斥的。  
+>  不要将此枚举中的值用于组合的按位运算。 枚举中的值不相互排斥。  
   
 > [!NOTE]
->  此枚举提供方法来测试是否当前激活的 CAPS LOCK 或 NUM LOCK 键。 可以使用以下方法之一来确定这些键是否已激活：  
+>  此枚举无法测试 Caps Lock 或 NUM LOCK 键当前是否已激活。 你可以使用以下方法之一来确定是否已激活这些密钥:  
   
 -   调用 <xref:System.Windows.Forms.Control.IsKeyLocked%2A> 类的 <xref:System.Windows.Forms.Control> 方法。  
   
--   对于更精细的控制，使用 Windows API 函数`GetKeyState`， `GetAsyncKeyState`，或`GetKeyboardState`user32.dll，若要执行此操作中定义。 调用本机函数的详细信息，请参阅[使用非托管 DLL 函数](~/docs/framework/interop/consuming-unmanaged-dll-functions.md)。  
+-   为了获得更好的控制, 请使用`GetKeyState`在`GetAsyncKeyState`user32 中`GetKeyboardState`定义的 Windows API 函数或。 有关调用本机函数的详细信息, 请参阅[使用非托管 DLL 函数](~/docs/framework/interop/consuming-unmanaged-dll-functions.md)。  
   
- 下表显示了表示两个枚举值，该值表示常规原始设备制造商 (OEM) 密钥和更具体的美式键盘关联的键代码值。  
+ 下表显示了由两个枚举值表示的关键代码值, 这些值表示常规原始设备制造商 (OEM) 密钥和更具体的 U.S. 键盘关联。  
   
-|十六进制值|美式键盘|常规 OEM|  
+|十六进制值|美式键盘|一般 OEM|  
 |-----------------------|-------------------|-----------------|  
-|BA|OemSemicolon|Oem1|  
+|BA|OemSemicolon|Oem1.inf|  
 |BF|OemQuestion|Oem2|  
 |C0|Oemtilde|Oem3|  
 |DB|OemOpenBrackets|Oem4|  
@@ -63,12 +63,12 @@
 |E2|OemBackslash|Oem102|  
   
 > [!CAUTION]
->  为.NET Framework 2.0 中，成员 IMEAccept 已添加，取代了以前的条目，IMEAceept，存在拼写错误。 已保留的较旧版本向后兼容，但它可能在.NET Framework 的未来版本中删除  
+>  对于 .NET Framework 2.0, 添加了一个取代了前面条目 IMEAceept 的成员 IMEAccept, 该条目拼写错误。 为实现向后兼容性而保留了较旧的版本, 但它可能会在将来的 .NET Framework 版本中删除。  
   
    
   
 ## Examples  
- 下面的代码示例使用<xref:System.Windows.Forms.Control.KeyDown>事件来确定的字符输入到控件的类型。  
+ 下面的代码示例使用<xref:System.Windows.Forms.Control.KeyDown>事件确定输入到控件中的字符的类型。  
   
  [!code-cpp[Control.KeyDown#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Control.KeyDown/CPP/form1.cpp#1)]
  [!code-csharp[Control.KeyDown#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Control.KeyDown/CS/form1.cs#1)]
@@ -148,7 +148,7 @@
       </ReturnValue>
       <MemberValue>262144</MemberValue>
       <Docs>
-        <summary>ALT 修改键。</summary>
+        <summary>Alt 修改键。</summary>
       </Docs>
     </Member>
     <Member MemberName="Apps">
@@ -170,7 +170,7 @@
       </ReturnValue>
       <MemberValue>93</MemberValue>
       <Docs>
-        <summary>应用程序键 (Microsoft Natural Keyboard)。</summary>
+        <summary>应用程序键（Microsoft Natural Keyboard，人体工程学键盘）。</summary>
       </Docs>
     </Member>
     <Member MemberName="Attn">
@@ -258,7 +258,7 @@
       </ReturnValue>
       <MemberValue>166</MemberValue>
       <Docs>
-        <summary>在浏览器后退键 (Windows 2000 或更高版本)。</summary>
+        <summary>浏览器后退键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="BrowserFavorites">
@@ -280,7 +280,7 @@
       </ReturnValue>
       <MemberValue>171</MemberValue>
       <Docs>
-        <summary>浏览器收藏夹键 (Windows 2000 或更高版本)。</summary>
+        <summary>浏览器收藏夹键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="BrowserForward">
@@ -302,7 +302,7 @@
       </ReturnValue>
       <MemberValue>167</MemberValue>
       <Docs>
-        <summary>在浏览器前进键 (Windows 2000 或更高版本)。</summary>
+        <summary>浏览器前进键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="BrowserHome">
@@ -324,7 +324,7 @@
       </ReturnValue>
       <MemberValue>172</MemberValue>
       <Docs>
-        <summary>浏览器主页键 (Windows 2000 或更高版本)。</summary>
+        <summary>浏览器主页键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="BrowserRefresh">
@@ -346,7 +346,7 @@
       </ReturnValue>
       <MemberValue>168</MemberValue>
       <Docs>
-        <summary>浏览器刷新键 (Windows 2000 或更高版本)。</summary>
+        <summary>浏览器刷新键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="BrowserSearch">
@@ -368,7 +368,7 @@
       </ReturnValue>
       <MemberValue>170</MemberValue>
       <Docs>
-        <summary>浏览器搜索键 (Windows 2000 或更高版本)。</summary>
+        <summary>浏览器搜索键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="BrowserStop">
@@ -390,7 +390,7 @@
       </ReturnValue>
       <MemberValue>169</MemberValue>
       <Docs>
-        <summary>浏览器停止键 (Windows 2000 或更高版本)。</summary>
+        <summary>浏览器停止键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="C">
@@ -434,7 +434,7 @@
       </ReturnValue>
       <MemberValue>3</MemberValue>
       <Docs>
-        <summary>CANCEL 键。</summary>
+        <summary>Cancel 键。</summary>
       </Docs>
     </Member>
     <Member MemberName="Capital">
@@ -522,7 +522,7 @@
       </ReturnValue>
       <MemberValue>131072</MemberValue>
       <Docs>
-        <summary>CTRL 修改键。</summary>
+        <summary>Ctrl 修改键。</summary>
       </Docs>
     </Member>
     <Member MemberName="ControlKey">
@@ -1688,7 +1688,7 @@
       </ReturnValue>
       <MemberValue>21</MemberValue>
       <Docs>
-        <summary>IME Hanguel 模式键。 (为了保持兼容; 使用<see langword="HangulMode" />)</summary>
+        <summary>IME Hanguel 模式键。 （为了保持兼容性而设置；使用 <see langword="HangulMode" />）</summary>
       </Docs>
     </Member>
     <Member MemberName="HangulMode">
@@ -1819,7 +1819,7 @@
       </ReturnValue>
       <MemberValue>30</MemberValue>
       <Docs>
-        <summary>IME 接受键，替换<see cref="F:System.Windows.Forms.Keys.IMEAceept" />。</summary>
+        <summary>IME 接受键，替换 <see cref="F:System.Windows.Forms.Keys.IMEAceept" />。</summary>
       </Docs>
     </Member>
     <Member MemberName="IMEAceept">
@@ -1841,7 +1841,7 @@
       </ReturnValue>
       <MemberValue>30</MemberValue>
       <Docs>
-        <summary>IME 接受键。 已过时，请使用<see cref="F:System.Windows.Forms.Keys.IMEAccept" />相反。</summary>
+        <summary>IME 接受键。 已过时，请改用 <see cref="F:System.Windows.Forms.Keys.IMEAccept" />。</summary>
       </Docs>
     </Member>
     <Member MemberName="IMEConvert">
@@ -2105,7 +2105,7 @@
       </ReturnValue>
       <MemberValue>182</MemberValue>
       <Docs>
-        <summary>启动应用程序一个键 (Windows 2000 或更高版本)。</summary>
+        <summary>启动应用程序一键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="LaunchApplication2">
@@ -2127,7 +2127,7 @@
       </ReturnValue>
       <MemberValue>183</MemberValue>
       <Docs>
-        <summary>启动应用程序二键 (Windows 2000 或更高版本)。</summary>
+        <summary>启动应用程序二键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="LaunchMail">
@@ -2149,7 +2149,7 @@
       </ReturnValue>
       <MemberValue>180</MemberValue>
       <Docs>
-        <summary>启动邮件键 (Windows 2000 或更高版本)。</summary>
+        <summary>启动邮件键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="LButton">
@@ -2171,7 +2171,7 @@
       </ReturnValue>
       <MemberValue>1</MemberValue>
       <Docs>
-        <summary>鼠标左键。</summary>
+        <summary>鼠标左按钮。</summary>
       </Docs>
     </Member>
     <Member MemberName="LControlKey">
@@ -2281,7 +2281,7 @@
       </ReturnValue>
       <MemberValue>160</MemberValue>
       <Docs>
-        <summary>左的 SHIFT 键。</summary>
+        <summary>左 Shift 键。</summary>
       </Docs>
     </Member>
     <Member MemberName="LWin">
@@ -2347,7 +2347,7 @@
       </ReturnValue>
       <MemberValue>4</MemberValue>
       <Docs>
-        <summary>鼠标中按钮 （三个按钮的鼠标）。</summary>
+        <summary>鼠标中按钮（三个按钮的鼠标）。</summary>
       </Docs>
     </Member>
     <Member MemberName="MediaNextTrack">
@@ -2369,7 +2369,7 @@
       </ReturnValue>
       <MemberValue>176</MemberValue>
       <Docs>
-        <summary>媒体下一曲目键 (Windows 2000 或更高版本)。</summary>
+        <summary>媒体下一曲目键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="MediaPlayPause">
@@ -2391,7 +2391,7 @@
       </ReturnValue>
       <MemberValue>179</MemberValue>
       <Docs>
-        <summary>媒体播放暂停键 (Windows 2000 或更高版本)。</summary>
+        <summary>媒体播放暂停键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="MediaPreviousTrack">
@@ -2413,7 +2413,7 @@
       </ReturnValue>
       <MemberValue>177</MemberValue>
       <Docs>
-        <summary>媒体上一曲目键 (Windows 2000 或更高版本)。</summary>
+        <summary>媒体上一曲目键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="MediaStop">
@@ -2435,7 +2435,7 @@
       </ReturnValue>
       <MemberValue>178</MemberValue>
       <Docs>
-        <summary>媒体停止键 (Windows 2000 或更高版本)。</summary>
+        <summary>媒体停止键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="Menu">
@@ -2457,7 +2457,7 @@
       </ReturnValue>
       <MemberValue>18</MemberValue>
       <Docs>
-        <summary>ALT 键。</summary>
+        <summary>Alt 键。</summary>
       </Docs>
     </Member>
     <Member MemberName="Modifiers">
@@ -3065,7 +3065,7 @@
       </ReturnValue>
       <MemberValue>226</MemberValue>
       <Docs>
-        <summary>OEM 尖括号或 RT 102 键键盘 (Windows 2000 或更高版本) 上的反斜杠键。</summary>
+        <summary>RT 102 键的键盘上的 OEM 尖括号或反斜杠键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="OemClear">
@@ -3109,7 +3109,7 @@
       </ReturnValue>
       <MemberValue>221</MemberValue>
       <Docs>
-        <summary>美式标准键盘 (Windows 2000 或更高版本) 上 OEM 右大括号键。</summary>
+        <summary>美式标准键盘上的 OEM 右括号键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="Oemcomma">
@@ -3131,7 +3131,7 @@
       </ReturnValue>
       <MemberValue>188</MemberValue>
       <Docs>
-        <summary>任何国家/地区键盘 (Windows 2000 或更高版本) 上的 OEM 逗号键。</summary>
+        <summary>任何国家/地区键盘上的 OEM 逗号键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="OemMinus">
@@ -3153,7 +3153,7 @@
       </ReturnValue>
       <MemberValue>189</MemberValue>
       <Docs>
-        <summary>OEM 减号键 (Windows 2000 或更高版本) 任何国家/地区键盘上。</summary>
+        <summary>任何国家/地区键盘上的 OEM 减号键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="OemOpenBrackets">
@@ -3175,7 +3175,7 @@
       </ReturnValue>
       <MemberValue>219</MemberValue>
       <Docs>
-        <summary>美式标准键盘 (Windows 2000 或更高版本) 上 OEM 左大括号键。</summary>
+        <summary>美式标准键盘上的 OEM 左括号键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="OemPeriod">
@@ -3197,7 +3197,7 @@
       </ReturnValue>
       <MemberValue>190</MemberValue>
       <Docs>
-        <summary>任何国家/地区键盘 (Windows 2000 或更高版本) 上的 OEM 句点键。</summary>
+        <summary>任何国家/地区键盘上的 OEM 句点键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="OemPipe">
@@ -3219,7 +3219,7 @@
       </ReturnValue>
       <MemberValue>220</MemberValue>
       <Docs>
-        <summary>美式标准键盘 (Windows 2000 或更高版本) 上 OEM 管道键。</summary>
+        <summary>美式标准键盘上的 OEM 管道键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="Oemplus">
@@ -3241,7 +3241,7 @@
       </ReturnValue>
       <MemberValue>187</MemberValue>
       <Docs>
-        <summary>OEM 加号键 (Windows 2000 或更高版本) 任何国家/地区键盘上。</summary>
+        <summary>任何国家/地区键盘上的 OEM 加号键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="OemQuestion">
@@ -3263,7 +3263,7 @@
       </ReturnValue>
       <MemberValue>191</MemberValue>
       <Docs>
-        <summary>美式标准键盘 (Windows 2000 或更高版本) 上 OEM 问号键。</summary>
+        <summary>美式标准键盘上的 OEM 问号键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="OemQuotes">
@@ -3285,7 +3285,7 @@
       </ReturnValue>
       <MemberValue>222</MemberValue>
       <Docs>
-        <summary>OEM 单/双引号键美式标准键盘 (Windows 2000 或更高版本) 上。</summary>
+        <summary>美式标准键盘上的 OEM 单/双引号键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="OemSemicolon">
@@ -3307,7 +3307,7 @@
       </ReturnValue>
       <MemberValue>186</MemberValue>
       <Docs>
-        <summary>美式标准键盘 (Windows 2000 或更高版本) 上的 OEM 分号键。</summary>
+        <summary>美式标准键盘上的 OEM 分号键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="Oemtilde">
@@ -3329,7 +3329,7 @@
       </ReturnValue>
       <MemberValue>192</MemberValue>
       <Docs>
-        <summary>美式标准键盘 (Windows 2000 或更高版本) 上 OEM 颚化符键。</summary>
+        <summary>美式标准键盘上的 OEM 波形符键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="P">
@@ -3394,7 +3394,7 @@
       </ReturnValue>
       <MemberValue>231</MemberValue>
       <Docs>
-        <summary>用于传递 Unicode 字符，如同它们是击键一样。 Packet 键值是用于非键盘输入法的 32 位虚拟键值的低位字。</summary>
+        <summary>用于将 Unicode 字符当作键击传递。 Packet 键值是用于非键盘输入法的 32 位虚拟键值的低位字。</summary>
       </Docs>
     </Member>
     <Member MemberName="PageDown">
@@ -3570,7 +3570,7 @@
       </ReturnValue>
       <MemberValue>229</MemberValue>
       <Docs>
-        <summary>PROCESS KEY 键。</summary>
+        <summary>Process Key 键。</summary>
       </Docs>
     </Member>
     <Member MemberName="Q">
@@ -3680,7 +3680,7 @@
       </ReturnValue>
       <MemberValue>13</MemberValue>
       <Docs>
-        <summary>RETURN 键。</summary>
+        <summary>Return 键。</summary>
       </Docs>
     </Member>
     <Member MemberName="Right">
@@ -3746,7 +3746,7 @@
       </ReturnValue>
       <MemberValue>161</MemberValue>
       <Docs>
-        <summary>右 SHIFT 键。</summary>
+        <summary>右 Shift 键。</summary>
       </Docs>
     </Member>
     <Member MemberName="RWin">
@@ -3812,7 +3812,7 @@
       </ReturnValue>
       <MemberValue>145</MemberValue>
       <Docs>
-        <summary>SCROLL LOCK 键。</summary>
+        <summary>Scroll Lock 键。</summary>
       </Docs>
     </Member>
     <Member MemberName="Select">
@@ -3856,7 +3856,7 @@
       </ReturnValue>
       <MemberValue>181</MemberValue>
       <Docs>
-        <summary>选择媒体键 (Windows 2000 或更高版本) 中。</summary>
+        <summary>选择媒体键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="Separator">
@@ -3900,7 +3900,7 @@
       </ReturnValue>
       <MemberValue>65536</MemberValue>
       <Docs>
-        <summary>SHIFT 修改键。</summary>
+        <summary>Shift 修改键。</summary>
       </Docs>
     </Member>
     <Member MemberName="ShiftKey">
@@ -3922,7 +3922,7 @@
       </ReturnValue>
       <MemberValue>16</MemberValue>
       <Docs>
-        <summary>SHIFT 键。</summary>
+        <summary>Shift 键。</summary>
       </Docs>
     </Member>
     <Member MemberName="Sleep">
@@ -3943,7 +3943,7 @@
       </ReturnValue>
       <MemberValue>95</MemberValue>
       <Docs>
-        <summary>计算机休眠键。</summary>
+        <summary>计算机睡眠键。</summary>
       </Docs>
     </Member>
     <Member MemberName="Snapshot">
@@ -4141,7 +4141,7 @@
       </ReturnValue>
       <MemberValue>174</MemberValue>
       <Docs>
-        <summary>减小音量键 (Windows 2000 或更高版本)。</summary>
+        <summary>减小音量键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="VolumeMute">
@@ -4163,7 +4163,7 @@
       </ReturnValue>
       <MemberValue>173</MemberValue>
       <Docs>
-        <summary>静音键 (Windows 2000 或更高版本)。</summary>
+        <summary>静音键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="VolumeUp">
@@ -4185,7 +4185,7 @@
       </ReturnValue>
       <MemberValue>175</MemberValue>
       <Docs>
-        <summary>增大音量键 (Windows 2000 或更高版本)。</summary>
+        <summary>增大音量键（Windows 2000 或更高版本）。</summary>
       </Docs>
     </Member>
     <Member MemberName="W">
@@ -4251,7 +4251,7 @@
       </ReturnValue>
       <MemberValue>5</MemberValue>
       <Docs>
-        <summary>第一个 x 鼠标按钮 （五个按钮的鼠标）。</summary>
+        <summary>第一个 X 鼠标按钮（五个按钮的鼠标）。</summary>
       </Docs>
     </Member>
     <Member MemberName="XButton2">
@@ -4273,7 +4273,7 @@
       </ReturnValue>
       <MemberValue>6</MemberValue>
       <Docs>
-        <summary>第二个 x 鼠标按钮 （五个按钮的鼠标）。</summary>
+        <summary>第二个 X 鼠标按钮（五个按钮的鼠标）。</summary>
       </Docs>
     </Member>
     <Member MemberName="Y">

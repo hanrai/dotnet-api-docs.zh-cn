@@ -31,37 +31,37 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此类提供用于事务传播方法。 此过程的工作原理的详细信息，请参阅[事务传播](https://msdn.microsoft.com/library/default.asp?url=/library/cossdk/html/b09541e6-4baf-4e37-b879-62884fbb0969.asp)。  
+ 此类提供事务传播方法。 有关此过程的工作原理的详细信息, 请参阅[事务传播](https://msdn.microsoft.com/library/default.asp?url=/library/cossdk/html/b09541e6-4baf-4e37-b879-62884fbb0969.asp)。  
   
- 使用此类提供的方法，你可以进行两种类型的事务传播，导出/导入 （推送模型） 和传输器/接收器 （拉模型）。  
+ 使用此类提供的方法, 可以参与两种类型的事务传播: 导出/导入 (推送模型) 和发送器/接收方 (请求模型)。  
   
- 导出/导入 （推送模型） 传播涉及以下步骤，  
+ 导出/导入 (推送模型) 传播涉及到这些步骤,  
   
-1.  在远程计算机上的"行踪"该计算机的事务管理器通过调用获取<xref:System.Transactions.TransactionInterop.GetWhereabouts%2A>方法。 然后可以缓存这条供将来使用客户端计算机上的信息。  
+1.  在远程计算机上, 通过调用<xref:System.Transactions.TransactionInterop.GetWhereabouts%2A>方法获取该计算机的事务管理器的 "行踪"。 然后, 你可以在客户端计算机上缓存此信息以供将来使用。  
   
-2.  发送包含行踪使用任何喜欢的方法在客户端计算机的数据  
+2.  使用任何首选方法将包含行踪的数据发送到客户端计算机  
   
-3.  在客户端计算机上使用行踪事务"导出"到远程计算机和生成的事务"cookie"。  这是通过调用<xref:System.Transactions.TransactionInterop.GetExportCookie%2A>并传递在远程计算机的行踪。  
+3.  在客户端计算机上, 使用行踪将事务 "导出" 到远程计算机, 并生成事务 "cookie"。  这是通过调用<xref:System.Transactions.TransactionInterop.GetExportCookie%2A>并传入远程计算机的行踪来完成的。  
   
-4.  将"cookie"包含事务的数据发送到远程计算机使用任何喜欢的方法  
+4.  使用任何首选方法将包含事务 "cookie" 的数据发送到远程计算机  
   
-5.  在远程计算机上使用事务"cookie"通过调用获取客户端事务的克隆<xref:System.Transactions.TransactionInterop.GetTransactionFromExportCookie%2A>方法。  
+5.  在远程计算机上, 使用事务 "cookie" 通过调用<xref:System.Transactions.TransactionInterop.GetTransactionFromExportCookie%2A>方法来获取客户端事务的克隆。  
   
-6.  在远程计算机上使用克隆事务登记使用资源管理器<xref:System.Transactions.Transaction.EnlistVolatile%2A>或<xref:System.Transactions.Transaction.EnlistDurable%2A>方法的<xref:System.Transactions.Transaction>类。  
+6.  在远程计算机上, 使用 "克隆" 事务通过<xref:System.Transactions.Transaction.EnlistVolatile%2A> <xref:System.Transactions.Transaction>类的或<xref:System.Transactions.Transaction.EnlistDurable%2A>方法登记资源管理器。  
   
- 传输器/接收器 （拉模型） 传播涉及以下步骤，  
+ 发送器/接收方 (请求模型) 传播涉及到这些步骤,  
   
--   在客户端计算机中，使用事务生成相应的"传播标记"通过调用 <xref:System.Transactions.TransactionInterop.GetTransmitterPropagationToken%2A>  
+-   在客户端计算机上, 使用事务通过调用<xref:System.Transactions.TransactionInterop.GetTransmitterPropagationToken%2A>  
   
--   包含在事务中的"传播标记"，到远程计算机使用任何喜欢的方法将数据发送  
+-   使用任何首选方法将包含事务 "传播令牌" 的数据发送到远程计算机  
   
--   在远程计算机上使用"传播标记"以通过调用获取客户端事务的克隆 <xref:System.Transactions.TransactionInterop.GetTransactionFromTransmitterPropagationToken%2A>  
+-   在远程计算机上, 使用 "传播令牌" 通过调用获取客户端事务的克隆<xref:System.Transactions.TransactionInterop.GetTransactionFromTransmitterPropagationToken%2A>  
   
- 传输器/接收器模型提供了在事务令牌发送到远程计算机，但在远程计算机可能会使用它来获取事务方案中更好的性能。  这是因为该事务不会传播直到<xref:System.Transactions.TransactionInterop.GetTransactionFromTransmitterPropagationToken%2A>调用。 另一个优点是传播标记可以发送到任何远程计算机中，尽管可以仅提供行踪在计算机上使用的导出 cookie。  
+ 当事务令牌发送到远程计算机时, 发送器/接收方模型提供更好的性能, 但远程计算机不能使用它来获取事务。  这是因为在调用之前<xref:System.Transactions.TransactionInterop.GetTransactionFromTransmitterPropagationToken%2A>不会传播事务。 另一个优点是, 传播令牌可以发送到任何远程计算机, 而导出 cookie 只能在提供行踪的计算机上使用。  
   
- 但是，还应注意行踪远程事务管理器封装在所有传播令牌，使其大于导出/导入模型中的相应事务 cookie。  
+ 但你还应注意, 远程事务管理器的行踪封装在所有传播令牌中, 使其大于导出/导入模型中相应的事务 cookie。  
   
- **请注意**这种类型使用<xref:System.Security.Permissions.SecurityAction.LinkDemand>若要阻止该调用来自不受信任的代码; 但是，只有直接调用方需要拥有`FullTrust`权限集。  
+ **注意**此类型使用<xref:System.Security.Permissions.SecurityAction.LinkDemand>来防止不受信任的代码调用; 但是, 只需要直接调用方`FullTrust`拥有权限集。  
   
  ]]></format>
     </remarks>
@@ -149,7 +149,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你想要将某个事务导出，调用此方法。 `transaction`传递以及封送到事务 cookie。 然后可以将事务 cookie 发送到目标进程。 这称为传播进程或系统之间的事务。 传播被视为本地事务到目标的推送位置的推送模型。  因此，信息包含在`whereabouts`必须描述目标事务管理器。  
+ 如果要导出事务, 请调用此方法。 沿`transaction`传递的被封送到事务 cookie 中。 然后, 您可以将事务 cookie 发送到目标进程。 这称为在进程或系统之间传播事务。 传播被视为推送模式, 其中本地事务被推送到目标。  因此, 中包含的`whereabouts`信息必须描述目标事务管理器。  
   
  有关不同传播模型的更多信息，请参阅 <xref:System.Transactions.TransactionInterop> 类的“备注”部分。  
   
@@ -203,7 +203,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `transactionNative`与非托管形式兼容[ITransaction](https://msdn.microsoft.com/library/default.asp?url=/library/cossdk/html/d40264be-f9b2-4044-aac6-84b43e5be666.asp) MSDTC 使用的托管形式的<xref:System.EnterpriseServices.ITransaction>由<xref:System.EnterpriseServices>。  
+ 与由 MSDTC 使用的[ITransaction](https://msdn.microsoft.com/library/default.asp?url=/library/cossdk/html/d40264be-f9b2-4044-aac6-84b43e5be666.asp)的非托管形式和使用的托管<xref:System.EnterpriseServices.ITransaction> <xref:System.EnterpriseServices>窗体兼容。 `transactionNative`  
   
  ]]></format>
         </remarks>
@@ -307,13 +307,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法一起使用<xref:System.Transactions.TransactionInterop.GetTransmitterPropagationToken%2A>方法，提供了用于"请求"传播，在其中事务"拉取"从远程计算机时调用此方法来拆收事务功能。  
+ 此方法与<xref:System.Transactions.TransactionInterop.GetTransmitterPropagationToken%2A>方法一起提供 "请求" 传播功能, 在此方法调用此方法来取消封送事务时, 事务将从远程计算机 "拉取"。  
   
  有关不同传播模型的更多信息，请参阅 <xref:System.Transactions.TransactionInterop> 类的“备注”部分。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Transactions.TransactionManagerCommunicationException">事务的反序列化失败，因为无法联系事务管理器。 原因可能是网络防火墙或安全设置。</exception>
+        <exception cref="T:System.Transactions.TransactionManagerCommunicationException">事务的反序列化因无法联系事务管理器而失败。 这可能是由网络防火墙或安全设置导致的。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetTransmitterPropagationToken">
@@ -389,7 +389,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 行踪包含描述事务管理器的位置的地址。 这允许两个事务管理器相互通信，从而将事务从一个系统传播到另一个系统。 此方法返回的信息可以用于提供位置信息，使用推送模型事务传播<xref:System.Transactions.TransactionInterop.GetExportCookie%2A>方法。  
+ 行踪包含一个说明事务管理器位置的地址。 这允许两个事务管理器相互通信，从而将事务从一个系统传播到另一个系统。 此方法返回的信息可用于提供与<xref:System.Transactions.TransactionInterop.GetExportCookie%2A>方法的推送模型事务传播的位置信息。  
   
  有关不同传播模型的更多信息，请参阅 <xref:System.Transactions.TransactionInterop> 类的“备注”部分。  
   
@@ -429,7 +429,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此值用于`Transaction.PromoterType`属性，如果事务或将被提升到 MSDTC 和`Transaction.GetPromotedToken`方法将返回的 MSDTC 事务传播令牌`byte[]`结果。  
+ 如果事务已或将升级`Transaction.PromoterType`到 MSDTC `Transaction.GetPromotedToken` , 则此值用于属性, 并且方法将返回`byte[]`结果的 MSDTC 事务传播标记。  
   
  ]]></format>
         </remarks>

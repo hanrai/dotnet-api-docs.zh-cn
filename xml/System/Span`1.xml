@@ -1,5 +1,5 @@
 <Type Name="Span&lt;T&gt;" FullName="System.Span&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="803bd441bc38213f4fa96e5e062b6bb6e5453f5c" /><Meta Name="ms.sourcegitcommit" Value="61757d0366a172cdbc11436deb1c1ffa49d97238" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/28/2019" /><Meta Name="ms.locfileid" Value="67458072" /></Metadata><TypeSignature Language="C#" Value="public struct Span&lt;T&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bbe79321078d9fe5fd4845ab3d65cddae17fb6dd" /><Meta Name="ms.sourcegitcommit" Value="24f564114ee2fa9c63dbac1b25b82826cc4e320f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/25/2019" /><Meta Name="ms.locfileid" Value="68488586" /></Metadata><TypeSignature Language="C#" Value="public struct Span&lt;T&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit Span`1&lt;T&gt; extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Span`1" />
   <TypeSignature Language="VB.NET" Value="Public Structure Span(Of T)" />
@@ -33,53 +33,53 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <typeparam name="T">中的项的类型<see cref="System.Span`1" />。</typeparam>
+    <typeparam name="T">中项的类型<see cref="System.Span`1" />。</typeparam>
     <summary>提供任意内存的连续区域的类型和内存安全表示。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
 
-`Span<T>` 是[ref 结构](~/docs/csharp/language-reference/keywords/ref.md#ref-struct-types)堆栈，而不是托管堆上分配。 Ref 结构类型有多种限制，以确保它们不能至托管堆，包括不能装箱，它们不能分配给类型的变量提升<xref:System.Object>，`dynamic`为任何接口类型，也不能是中的字段引用类型，并且它们不能使用跨`await`和`yield`边界。 此外，对两个方法调用<xref:System.Span%601.Equals(System.Object)>并<xref:System.Span%601.GetHashCode%2A>，引发<xref:System.NotSupportedException>。 
+`Span<T>`是在堆栈上分配的[引用结构](~/docs/csharp/language-reference/keywords/ref.md#ref-struct-types), 而不是在托管堆上分配的。 Ref 结构类型具有多个限制, 可确保无法将它们升级到托管堆, 其中包括不能装箱、不能将其分配给类型<xref:System.Object> `dynamic`的变量或任何接口类型, 它们不能是中的字段引用类型, 不能跨`await`和`yield`边界使用。 此外, 对两个方法<xref:System.Span%601.Equals(System.Object)>和<xref:System.Span%601.GetHashCode%2A>的调用将引发<xref:System.NotSupportedException>。 
 
 > [!IMPORTANT]
-> 它是仅限堆栈的类型，因为`Span<T>`不合适，则需要将对缓冲区的引用存储在堆上的很多情况下。 这是如此，例如，进行异步方法调用的例程。 对于这种情况下，可以使用补充<xref:System.Memory%601?displayProperty=nameWithType>和<xref:System.ReadOnlyMemory%601?displayProperty=nameWithType>类型。
+> 由于它是仅堆栈类型, `Span<T>`因此对于需要在堆上存储缓冲区引用的多个方案是不合适的。 例如, 这是执行异步方法调用的例程。 对于这种情况, 可以使用互补<xref:System.Memory%601?displayProperty=nameWithType>和<xref:System.ReadOnlyMemory%601?displayProperty=nameWithType>类型。
 
-表示不可变的或只读结构的范围，对于使用<xref:System.ReadOnlySpan%601?displayProperty=nameWithType>。
+对于表示不可变或只读结构的范围, 请使用<xref:System.ReadOnlySpan%601?displayProperty=nameWithType>。
 
 ## <a name="spant-and-memory"></a>跨度\<T > 和内存
 
-一个`Span<T>`表示任意内存的相邻区域。 一个`Span<T>`实例通常用来保存数组的元素或数组的一部分。 一个数组，但是，与`Span<T>`实例可以指向托管内存，本机内存，或上管理的内存堆栈。 下面的示例创建`Span<Byte>`从数组：
+`Span<T>`表示任意内存的连续区域。 `Span<T>`实例通常用于保存数组或某个数组的一部分的元素。 但与数组不同, `Span<T>`实例可以指向托管内存、本机内存或在堆栈上管理的内存。 下面的示例`Span<Byte>`从数组创建:
 
 [!code-csharp[Creating a Span\<Byte> from an array](~/samples/snippets/csharp/api/system/span/program.cs#1)]
      
-下面的示例创建`Span<Byte>`从 100 个字节的本机内存：
+下面的示例创建一个`Span<Byte>` 100 字节的本机内存:
 
 [!code-csharp[Creating a Span\<Byte> from native memory](~/samples/snippets/csharp/api/system/span/program.cs#2)]
 
-下面的示例使用C# [stackalloc](~/docs/csharp/language-reference/keywords/stackalloc.md)关键字来分配 100 个字节的堆栈上的内存：
+下面的示例使用C# [stackalloc](~/docs/csharp/language-reference/keywords/stackalloc.md)关键字在堆栈上分配100字节的内存:
 
 [!code-csharp[Creating a Span\<Byte> from stack-allocated memory](~/samples/snippets/csharp/api/system/span/program.cs#3)]
 
-因为`Span<T>`通过任意内存块，方法是一种抽象`Span<T>`类和方法与`Span<T>`参数对任何`Span<T>`而不考虑其要封装的内存的类型的对象。 例如，每个单独的代码部分进行初始化的跨度和计算其元素的总和可以更改到的单一初始化和计算方法，如下面的示例演示了：
+由于`Span<T>`是任意内存块的抽象, 因此具有`Span<T>`参数的`Span<T>`类和方法的方法将在任何`Span<T>`对象上操作, 而不考虑它所封装的内存类型。 例如, 初始化范围并计算其元素的总和的代码的每个单独部分均可更改为单一初始化和计算方法, 如以下示例所示:
 
 [!code-csharp[Creating a Span\<Byte> from stack-allocated memory](~/samples/snippets/csharp/api/system/span/program.cs#4)]
 
 ## <a name="spant-and-arrays"></a>跨度\<T > 和数组
 
-时它将数组中，包装`Span<T>`像在中的示例中，可以包装整个数组[跨度\<T > 和内存](#spant-and-memory)部分。 因为它支持切片`Span<T>`也可以指向任何连续范围的数组中。  
+包装数组时, `Span<T>`可以包装整个数组, 这与在[> 和 memory\<](#spant-and-memory)部分的示例中所做的一样。 由于它支持切片, `Span<T>`因此还可以指向数组内的任何连续范围。  
 
-以下示例创建的 10 元素整数数组中间的五个元素的切片。 请注意代码加倍的切片中的每个整数的值。 如输出所示，跨度所做的更改会反映在数组的值。
+下面的示例创建一个10元素整数数组中间5个元素的切片。 请注意, 该代码会将切片中每个整数的值加倍。 正如输出所示, 范围内的更改会反映在数组的值中。
 
 [!code-csharp[Creating a slice from a portion of a span](~/samples/snippets/csharp/api/system/span/slice/program.cs)]
 
 ## <a name="spant-and-slices"></a>跨度\<T > 和切片
 
-`Span<T>` 包括的两个重载<xref:System.Span%601.Slice%2A>超出当前指定的索引位置开始的范围形成一个切片的方法。 这样就可以将处理中的数据`Span<T>`为一系列可以根据需要通过数据处理管道，其中包含最小性能影响的部分处理的逻辑块。 例如，由于基于文本的通常是新式服务器协议，字符串和子字符串的操作是尤为重要。 在中<xref:System.String>类，主要方法提取子字符串是<xref:System.String.Substring%2A>。 对于依赖于广泛的字符串操作的数据管道，其使用提供一些性能损失，因为它：
+`Span<T>`包含<xref:System.Span%601.Slice%2A>方法的两个重载, 该方法构成从指定索引处开始的当前范围的切片。 这样一来, 就可以将中`Span<T>`的数据作为一组逻辑块进行处理, 数据处理管道的部分可以按需处理这些数据块, 并对性能的影响最小。 例如, 由于新式服务器协议通常基于文本, 因此字符串和子字符串的操作非常重要。 在类中, 提取子字符串的主要方法是<xref:System.String.Substring%2A>。 <xref:System.String> 对于依赖于广泛的字符串操作的数据管道, 其使用会带来一些性能损失, 因为它:
 
-1. 创建一个新的字符串来保存子字符串。
+1. 创建用于保存子字符串的新字符串。
 
-2. 将字符的子集从原始字符串复制到新的字符串。
+2. 将原始字符串中的字符子集复制到新字符串中。
 
-此分配和复制操作可通过使用消除`Span<T>`或<xref:System.ReadOnlySpan%601>，如下面的示例所示：
+可以使用`Span<T>`或<xref:System.ReadOnlySpan%601>删除此分配和复制操作, 如下面的示例所示:
 
 [!code-csharp[Creating a slice from a substring](~/samples/snippets/csharp/api/system/span/slice2/program.cs)]
 
@@ -117,7 +117,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-如果`array`是`null`，此构造函数将返回`null` `Span<T>`。
+如果`array`为`null` ,则此`null`构造函数返回。 `Span<T>`
 
       ]]></format>
         </remarks>
@@ -197,7 +197,16 @@
         <param name="start">要包括在新的 <see cref="T:System.Span`1" /> 内的第一个元素的索引。</param>
         <param name="length">要包括在新的 <see cref="T:System.Span`1" /> 中的元素数。</param>
         <summary>从指定索引开始，创建包含数组的指定元素数的新 <see cref="T:System.Span`1" /> 对象。</summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown">
+        
+
+### Remarks
+
+当为时`default` `array` ,`null`此方法返回。
+
+               </format>
+        </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="array" /> 是 <see langword="null" />，但 <paramref name="start" /> 或 <paramref name="length" /> 不为零。
 
 或
@@ -239,7 +248,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-`Clear`方法设置的项<xref:System.Span%601>对象为其默认值。 它不会删除项从<xref:System.Span%601>。  
+方法将<xref:System.Span%601>对象中的项设置为其默认值。 `Clear` 它不会从中<xref:System.Span%601>删除项。  
 
          ]]></format>
         </remarks>
@@ -277,7 +286,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-此方法将所有的复制`source`到`destination`即使`source`和`destination`重叠。
+即使`source` `source`和重叠`destination` ,`destination`此方法也会将全部复制到。
 
          ]]></format>
         </remarks>
@@ -353,13 +362,13 @@
         <returns>不支持对此方法的调用。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
-调用<xref:System.Span%601.Equals%2A>方法不受支持。 调用<xref:System.Span%601.Equals%2A>方法会生成两个结果之一：
+不支持对<xref:System.Span%601.Equals%2A>方法的调用。 <xref:System.Span%601.Equals%2A>对方法的调用会产生两个结果:
 
-- 如果`obj`是<xref:System.Span%601>，方法调用会生成编译器错误 CS1503:"无法转换从 System.Span 为 object。"这是因为<xref:System.Span%601>是[ref 结构](~/docs/csharp/reference-semantics-with-value-types.md#ref-struct-type)不能装箱，因此不能转换为<xref:System.Object>。
+- `obj` 如果<xref:System.Span%601>是, 则方法调用会生成编译器错误 CS1503: "无法从 ' system.object ' 转换为 ' object '。"这是因为<xref:System.Span%601>是一个不能装箱的[ref 结构](~/docs/csharp/reference-semantics-with-value-types.md#ref-struct-type), 因此无法<xref:System.Object>将其转换为。
 
-- 如果类型`obj`不是<xref:System.Span%601>，在方法调用将引发<xref:System.NotSupportedException>。 
+- 如果的类型`obj` <xref:System.Span%601>不是, 则方法调用将引发<xref:System.NotSupportedException>。 
 
-比较两个<xref:System.Span%601>对象是否相等，使用<xref:System.Span%601.op_Equality%2A>比较运算符。
+若要比较<xref:System.Span%601>两个对象是否相等, <xref:System.Span%601.op_Equality%2A>请使用比较运算符。
 
         ]]></format>
         </remarks>
@@ -426,7 +435,7 @@
         <returns>用于此范围的枚举器。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
-而不是调用<xref:System.Span%601.GetEnumerator%2A>方法直接，您可以使用 C#`foreach`语句和 Visual Basic `For Each`...`Next`构造来枚举<xref:System.Span%601>。
+您<xref:System.Span%601.GetEnumerator%2A> C# 可以`foreach`使用语句和 Visual Basic `For Each`..., 而不是直接调用方法。用于枚举的<xref:System.Span%601>构造。 `Next`
 
        ]]></format>
         </remarks>
@@ -498,7 +507,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-`GetPinnableReference`方法将返回[ref 结构](~/docs/csharp/reference-semantics-with-value-types.md#ref-struct-type)。 它可以用于固定<xref:System.Span%601>在内存中。 支持使用它需要<xref:System.Span%601>内[修复](~/docs/csharp/language-reference/keywords/fixed-statement.md)语句。
+方法返回[ref 结构。](~/docs/csharp/reference-semantics-with-value-types.md#ref-struct-type) `GetPinnableReference` 它可用于<xref:System.Span%601>在内存中固定。 需要在<xref:System.Span%601> [fixed](~/docs/csharp/language-reference/keywords/fixed-statement.md)语句中支持的使用。
 
        ]]></format>
         </remarks>
@@ -529,7 +538,7 @@
       </ReturnValue>
       <Docs>
         <summary>返回一个值，该值指示当前的 <see cref="T:System.Span`1" /> 是否为空。</summary>
-        <value><see langword="true" /> 如果当前范围为空;否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果当前范围为空, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -695,7 +704,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-两个<xref:System.Span%601>对象是否相等，如果它们具有相同的长度和相应的元素`left`和`right`指向相同的内存。 注意，为确定相等性测试并*不*尝试确定内容是否相等。
+如果<xref:System.Span%601>两个对象具有相同的长度和对应的`left`元素, 并且指向相同`right`的内存, 则这两个对象相等。 请注意, 相等性测试*不*会尝试确定内容是否相等。
 
          ]]></format>
         </remarks>
@@ -839,7 +848,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-两个<xref:System.Span%601>对象相等，如果它们具有不同长度，或如果的对应元素`left`和`right`不指向相同的内存。 
+如果<xref:System.Span%601>两个对象具有不同的`left`长度, 或者和的相应元素不指向`right`相同的内存, 则这两个对象相等。 
 
          ]]></format>
         </remarks>
@@ -1008,7 +1017,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-此方法执行堆分配，因此应避免在可能的情况。 它有时有必要时 Api，支持它<xref:System.Span%601>对象不可用，但使用数组的 api。
+此方法执行堆分配, 因此应尽可能避免使用。 有时, 当支持<xref:System.Span%601>对象的 api 不可用时, 但使用数组的 api 是必需的。
 
          ]]></format>
         </remarks>
@@ -1042,7 +1051,7 @@
         <returns>此 <see cref="T:System.Span`1" /> 对象的字符串表示形式。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
-有关`Span<Char>`，则`ToString`方法将返回<xref:System.String>，其中包含指向字符<xref:System.Span%601>。 否则，它将返回<xref:System.String>的类型和数量的元素名称的<xref:System.Span%601>包含。
+对于`Span<Char>` <xref:System.String> , 方法返回一个<xref:System.Span%601>, 该字符串包含由指向的字符。 `ToString` 否则, 它将返回<xref:System.String> , 其中包含类型的名称和<xref:System.Span%601>包含的元素的数目。
 
        ]]></format>
         </remarks>
@@ -1081,9 +1090,9 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-此方法将所有的复制`source`到`destination`即使`source`和`destination`重叠。
+即使`source` `source`和重叠`destination` ,`destination`此方法也会将全部复制到。
 
-如果`destination`比源短<xref:System.Span%601>，此方法返回`false`，并且没有数据会写入到`destination`。
+如果`destination`比源<xref:System.Span%601>短, 则此方法将返回`false`, 并且不写入`destination`任何数据。
 
          ]]></format>
         </remarks>

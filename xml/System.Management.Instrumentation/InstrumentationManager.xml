@@ -22,16 +22,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 分离式提供程序托管的应用程序。 两种方法可以由应用程序用于提供 WMI 类的实例： 发布/撤消或回调方法。 回调方法使用<xref:System.Management.Instrumentation.InstrumentationManager.RegisterType%2A>和<xref:System.Management.Instrumentation.InstrumentationManager.UnregisterType%2A>方法。  
+ 分离的提供程序由应用程序承载。 应用程序可以使用两种方法来使 WMI 类的实例可用: 发布/撤消或回调方法。 回调方法使用<xref:System.Management.Instrumentation.InstrumentationManager.RegisterType%2A>和<xref:System.Management.Instrumentation.InstrumentationManager.UnregisterType%2A>方法。  
   
- 在发布/revoke 模型中，WMI 基础结构提供默认行为的许多必须在回调方法中自行编写的方法。 其中包括枚举和绑定方法。 在此模型中，应用程序创建实例，并将其发布。 应用程序负责确保类的键属性会遵循。 此外，应用程序负责正在删除实例。  
+ 在发布/撤消模型中, WMI 基础结构为你需要在回调方法中自行编写的许多方法提供默认行为。 其中包括枚举和绑定方法。 在此模型中, 应用程序创建实例并发布它们。 应用程序负责确保遵守类的键属性。 该应用程序还负责删除实例。  
   
- 在回调模型中，WMI 基础结构要求应用程序可以处理枚举、 绑定和实现提供程序的功能所需的任何其他方法的方法。 它将对此功能的应用程序，如果它不存在或未正确实现失败。 应用程序注册其 WMI 类的类型与基础结构通过调用<xref:System.Management.Instrumentation.InstrumentationManager.RegisterType%2A>，并指示它不再需要通过调用公开的 WMI 类<xref:System.Management.Instrumentation.InstrumentationManager.UnregisterType%2A>。  
+ 在回调模型中, WMI 基础结构要求应用程序具有处理枚举、绑定和实现提供程序功能所需的任何其他方法的方法。 它调用此功能的应用程序, 如果它不存在或未正确实现, 则会失败。 应用程序通过调用<xref:System.Management.Instrumentation.InstrumentationManager.RegisterType%2A>将其 WMI 类的类型注册到基础结构, 并指示它不再需要通过调用<xref:System.Management.Instrumentation.InstrumentationManager.UnregisterType%2A>公开的 wmi 类。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用发布/revoke 模型。 路由器类的两个实例创建和发布。 更高版本被吊销。  
+ 下面的示例演示如何使用发布/撤消模型。 创建并发布路由器类的两个实例。 它们将被吊销。  
   
 ```  
 public class Sample_InstanceProvider  
@@ -52,7 +52,7 @@ return 0;
 }  
 ```  
   
- 在下一步的示例中，注册的回调方法用于将 RouterNew 类公开。  
+ 在下一个示例中, 使用注册的回调方法公开 RouterNew 类。  
   
 ```  
 public int MainNew(string[] args)   
@@ -146,8 +146,8 @@ public int MainNew(string[] args)
         <Parameter Name="managementType" Type="System.Type" />
       </Parameters>
       <Docs>
-        <param name="managementType">类的类型。</param>
-        <summary>在 WMI 基础结构中注册的类。</summary>
+        <param name="managementType">该类的类型。</param>
+        <summary>在 WMI 基础结构中注册类。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -218,8 +218,8 @@ static int Main(string[] args)
         <Parameter Name="managementAssembly" Type="System.Reflection.Assembly" />
       </Parameters>
       <Docs>
-        <param name="managementAssembly">若要取消注册已注册程序集。</param>
-        <summary>注销当前在 WMI 基础结构已注册的程序集。</summary>
+        <param name="managementAssembly">要取消注册的已注册程序集。</param>
+        <summary>对当前在 WMI 基础结构中注册的程序集取消注册。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -243,8 +243,8 @@ static int Main(string[] args)
         <Parameter Name="managementType" Type="System.Type" />
       </Parameters>
       <Docs>
-        <param name="managementType">若要取消注册已注册的类型。</param>
-        <summary>取消注册注册到 WMI 基础结构的类。</summary>
+        <param name="managementType">要取消注册的已注册类型。</param>
+        <summary>对在 WMI 基础结构中注册的类取消注册。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

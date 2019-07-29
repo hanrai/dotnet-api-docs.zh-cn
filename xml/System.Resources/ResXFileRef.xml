@@ -29,9 +29,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Resources.ResXFileRef>类用于在 XML 资源 (.resx) 文件中包括对文件的引用。 一个<xref:System.Resources.ResXFileRef>对象表示指向为 XML 资源 (.resx) 文件中的外部资源的链接。 您将添加<xref:System.Resources.ResXFileRef>对象转换为.resx 文件通过调用<xref:System.Resources.ResXResourceWriter.AddResource%28System.Resources.ResXDataNode%29?displayProperty=nameWithType>方法。  
+ <xref:System.Resources.ResXFileRef>类用于包括对 XML 资源 (.resx) 文件中的文件的引用。 <xref:System.Resources.ResXFileRef>对象表示 XML 资源 (.resx) 文件中的外部资源的链接。 <xref:System.Resources.ResXFileRef> 通过<xref:System.Resources.ResXResourceWriter.AddResource%28System.Resources.ResXDataNode%29?displayProperty=nameWithType>调用方法将对象添加到 .resx 文件。  
   
- 在.resx 文件中的数据条目，类型是<xref:System.Resources.ResXFileRef>，且值为磁盘上的路径位置。 当资源管理器进行反序列化对象，<xref:System.Resources.ResXFileRef>执行 I/O，以获取文件。 下面是.resx 文件的示例。  
+ 在 .resx 文件中的数据输入中, 类型为<xref:System.Resources.ResXFileRef>, 值为磁盘上的路径位置。 当资源管理器对对象进行反序列<xref:System.Resources.ResXFileRef>化时, 将执行 i/o 以获取文件。 下面是 .resx 文件的示例。  
   
 ```  
 <data name="iconclip" type="System.Resources.ResXFileRef, System.Windows.Forms">  
@@ -45,14 +45,14 @@
 </data>  
 ```  
   
- 若要添加<xref:System.Resources.ResXFileRef>对象，向.resx 文件以编程方式，可以调用<xref:System.Resources.ResXDataNode.%23ctor%28System.String%2CSystem.Resources.ResXFileRef%29?displayProperty=nameWithType>构造函数实例化<xref:System.Resources.ResXDataNode>对象。 您然后将其传递<xref:System.Resources.ResXDataNode>对象传递给<xref:System.Resources.ResXResourceWriter.AddResource%2A?displayProperty=nameWithType>方法。  
+ 若要以<xref:System.Resources.ResXFileRef>编程方式将对象添加到 .resx 文件, 请<xref:System.Resources.ResXDataNode.%23ctor%28System.String%2CSystem.Resources.ResXFileRef%29?displayProperty=nameWithType>调用构造函数来实例<xref:System.Resources.ResXDataNode>化对象。 然后, 将该<xref:System.Resources.ResXDataNode>对象传递<xref:System.Resources.ResXResourceWriter.AddResource%2A?displayProperty=nameWithType>给方法。  
   
- 当编译使用.resx 文件[Resgen.exe （资源文件生成器）](~/docs/framework/tools/resgen-exe-resource-file-generator.md)，.resx 文件中指定的资源嵌入到生成的文档资源文件中。  
+ 使用[resgen.exe (资源文件生成器)](~/docs/framework/tools/resgen-exe-resource-file-generator.md)编译 .resx 文件时, .resx 文件中指定的资源将嵌入到生成的文档资源文件中。  
   
  ]]></format>
     </remarks>
-    <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">继承者完全信任。 不能由部分受信任代码继承此类。</permission>
-    <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">对于直接调用方的完全信任。 部分受信任的代码不能使用此类。</permission>
+    <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">完全信任继承者。 此类不能由部分受信任的代码继承。</permission>
+    <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">表示完全信任直接调用方。 此类不能由部分受信任的代码使用。</permission>
     <related type="Article" href="https://msdn.microsoft.com/library/168f941a-2b84-43f8-933f-cf4a8548d824">以编程方式使用 .resx 文件</related>
   </Docs>
   <Members>
@@ -85,18 +85,18 @@
       </Parameters>
       <Docs>
         <param name="fileName">要引用的文件。</param>
-        <param name="typeName">引用的资源类型。</param>
-        <summary>创建的新实例<see cref="T:System.Resources.ResXFileRef" />类的、 引用指定的文件。</summary>
+        <param name="typeName">所引用的资源的类型。</param>
+        <summary>创建 <see cref="T:System.Resources.ResXFileRef" /> 类的、引用指定文件的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 引用类型`typeName`参数必须支持的公共构造函数接受<xref:System.IO.Stream>对象作为参数。  
+ `typeName`参数所引用的类型必须支持<xref:System.IO.Stream>接受对象作为参数的公共构造函数。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="fileName" /> 或 <paramref name="typeName" /> 为 <see langword="null" />。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -124,18 +124,18 @@
       </Parameters>
       <Docs>
         <param name="fileName">要引用的文件。</param>
-        <param name="typeName">引用的资源类型名称。</param>
-        <param name="textFileEncoding">引用的文件中使用的编码。</param>
-        <summary>初始化的新实例<see cref="T:System.Resources.ResXFileRef" />类的、 引用指定的文件。</summary>
+        <param name="typeName">所引用的资源的类型名称。</param>
+        <param name="textFileEncoding">所引用的文件中使用的编码。</param>
+        <summary>创建 <see cref="T:System.Resources.ResXFileRef" /> 类的、引用指定文件的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 引用类型`typeName`参数必须支持的公共构造函数接受<xref:System.IO.Stream>对象作为参数。  
+ `typeName`参数所引用的类型必须支持<xref:System.IO.Stream>接受对象作为参数的公共构造函数。  
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
       </Docs>
     </Member>
     <Member MemberName="FileName">
@@ -160,8 +160,8 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取在当前指定的文件名<see cref="Overload:System.Resources.ResXFileRef.#ctor" />构造函数。</summary>
-        <value>引用的文件的名称。</value>
+        <summary>获取在当前 <see cref="Overload:System.Resources.ResXFileRef.#ctor" /> 构造函数中指定的文件名。</summary>
+        <value>所引用的文件的名称。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -187,8 +187,8 @@
         <ReturnType>System.Text.Encoding</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取在当前指定的编码<see cref="Overload:System.Resources.ResXFileRef.#ctor" />构造函数。</summary>
-        <value>引用的文件中使用的编码。</value>
+        <summary>获取在当前 <see cref="Overload:System.Resources.ResXFileRef.#ctor" /> 构造函数中指定的编码。</summary>
+        <value>所引用的文件中使用的编码。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -211,8 +211,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>获取当前的文本表示形式<see cref="T:System.Resources.ResXFileRef" />对象。</summary>
-        <returns>一个字符串，包含在当前指定的参数的串联的文本表示形式的<see cref="Overload:System.Resources.ResXFileRef.#ctor" />构造函数。</returns>
+        <summary>获取当前 <see cref="T:System.Resources.ResXFileRef" /> 对象的文本表示形式。</summary>
+        <returns>一个字符串，由在当前 <see cref="Overload:System.Resources.ResXFileRef.#ctor" /> 构造函数中指定的参数的连接文本表示形式组成。</returns>
         <remarks>To be added.</remarks>
         <altmember cref="Overload:System.Resources.ResXFileRef.#ctor" />
       </Docs>
@@ -239,8 +239,8 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取在当前指定的类型名称<see cref="Overload:System.Resources.ResXFileRef.#ctor" />构造函数。</summary>
-        <value>引用的资源类型名称。</value>
+        <summary>获取在当前 <see cref="Overload:System.Resources.ResXFileRef.#ctor" /> 构造函数中指定的类型名称。</summary>
+        <value>所引用的资源的类型名称。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

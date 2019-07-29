@@ -15,14 +15,14 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>为 SourceChanged 事件提供数据以用于互操作。 此类不能被继承。</summary>
+    <summary>为 SourceChanged 事件提供用于互操作的数据。 此类不能被继承。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- SourceChanged 事件是路由的事件的事件标识符未公开。 这是因为此事件在互操作中扮演潜在的严重的一部分，不应允许以任意一个已知的内部实现之外的任何其他源引发<xref:System.Windows.PresentationSource>子类 (目前，只有这样的类是<xref:System.Windows.Interop.HwndSource>). 在实现互操作解决方案时，可以将附加或删除的事件处理程序 (通过调用<xref:System.Windows.PresentationSource.AddSourceChangedHandler%2A>和<xref:System.Windows.PresentationSource.RemoveSourceChangedHandler%2A>分别) 但不能执行其他操作通常可用于路由事件，例如类处理添加所有者，或从引发事件的任意元素源。  
+ SourceChanged 事件是一个路由事件, 其中事件标识符不公开公开。 这是因为此事件在互操作中扮演着潜在的关键部分, 不应允许任何其他源 (而不是已知<xref:System.Windows.PresentationSource>子类的内部实现) 随意引发此事件 (目前只有这样的类是<xref:System.Windows.Interop.HwndSource>). 实现互操作解决方案时, 可以附加或移除事件的处理程序 (分别调用<xref:System.Windows.PresentationSource.AddSourceChangedHandler%2A>和<xref:System.Windows.PresentationSource.RemoveSourceChangedHandler%2A>), 但不能执行通常可用于路由事件 (例如类处理) 的其他操作。添加所有者, 或从任意元素源引发事件。  
   
- 此类重写<xref:System.Windows.RoutedEventArgs>虚方法<xref:System.Windows.RoutedEventArgs.InvokeEventHandler%2A?displayProperty=nameWithType>，以便在返回的事件系统请求的特定于类型的处理程序。 这<xref:System.Windows.SourceChangedEventArgs>在此类成员表中未显示重写[!INCLUDE[TLA2#tla_sdk](~/includes/tla2sharptla-sdk-md.md)]文档因为它是由一个密封类实现的受保护的成员。  
+ 此类将重<xref:System.Windows.RoutedEventArgs>写虚拟<xref:System.Windows.RoutedEventArgs.InvokeEventHandler%2A?displayProperty=nameWithType>方法, 以便在事件系统请求时返回特定于类型的处理程序。 此替代不会显示在本[!INCLUDE[TLA2#tla_sdk](~/includes/tla2sharptla-sdk-md.md)]文档的类成员表中, 因为它是由密封类实现的受保护成员。 <xref:System.Windows.SourceChangedEventArgs>  
   
  ]]></format>
     </remarks>
@@ -65,9 +65,9 @@
         <Parameter Name="newSource" Type="System.Windows.PresentationSource" />
       </Parameters>
       <Docs>
-        <param name="oldSource">旧<see cref="T:System.Windows.PresentationSource" />程序通知有关此处理程序。</param>
-        <param name="newSource">新<see cref="T:System.Windows.PresentationSource" />程序通知有关此处理程序。</param>
-        <summary>初始化的新实例<see cref="T:System.Windows.SourceChangedEventArgs" />类，使用旧的和新的源提供的信息。</summary>
+        <param name="oldSource">向此处理程序通知其信息的旧 <see cref="T:System.Windows.PresentationSource" />。</param>
+        <param name="newSource">向此处理程序通知其信息的新 <see cref="T:System.Windows.PresentationSource" />。</param>
+        <summary>使用为旧源和新源提供的信息初始化 <see cref="T:System.Windows.SourceChangedEventArgs" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -96,11 +96,11 @@
         <Parameter Name="oldParent" Type="System.Windows.IInputElement" />
       </Parameters>
       <Docs>
-        <param name="oldSource">旧<see cref="T:System.Windows.PresentationSource" />程序通知有关此处理程序。</param>
-        <param name="newSource">新<see cref="T:System.Windows.PresentationSource" />程序通知有关此处理程序。</param>
-        <param name="element">此元素的父级更改导致更改源。</param>
-        <param name="oldParent">旧的父级更改，导致要更改的源元素的父级。</param>
-        <summary>初始化的新实例<see cref="T:System.Windows.SourceChangedEventArgs" />类，使用提供的信息的旧的和新的源，该元素，此更改影响，以及以前报告该元素的父级。</summary>
+        <param name="oldSource">向此处理程序通知其信息的旧 <see cref="T:System.Windows.PresentationSource" />。</param>
+        <param name="newSource">向此处理程序通知其信息的新 <see cref="T:System.Windows.PresentationSource" />。</param>
+        <param name="element">一个元素，其更改的父项导致源发生更改。</param>
+        <param name="oldParent">元素的旧父项，其更改的父项导致源发生更改。</param>
+        <summary>通过使用为旧源和新源提供的信息、此更改影响的元素以及以前报告的该元素的父项，初始化 <see cref="T:System.Windows.SourceChangedEventArgs" /> 类的一个新实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -126,7 +126,7 @@
         <ReturnType>System.Windows.IInputElement</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取的元素的父项更改导致表示源信息发生更改。</summary>
+        <summary>获取一个元素，其父项更改导致表示源信息发生更改。</summary>
         <value>报告更改的元素。</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -180,10 +180,10 @@
         <ReturnType>System.Windows.PresentationSource</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取此源更改中涉及的新的源。</summary>
+        <summary>获取此源更改中涉及的新源。</summary>
         <value>新的 <see cref="T:System.Windows.PresentationSource" />。</value>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要获取此值。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">获取此值。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
     <Member MemberName="OldParent">
@@ -208,8 +208,8 @@
         <ReturnType>System.Windows.IInputElement</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取元素的上一个父其父项更改导致表示源信息发生更改。</summary>
-        <value>上一个父元素源。</value>
+        <summary>获取元素以前的父项，该元素的父项更改导致表示源信息发生更改。</summary>
+        <value>以前的父元素源。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -236,9 +236,9 @@
       </ReturnValue>
       <Docs>
         <summary>获取此源更改中涉及的旧源。</summary>
-        <value>旧<see cref="T:System.Windows.PresentationSource" />。</value>
+        <value>旧的 <see cref="T:System.Windows.PresentationSource" />。</value>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要获取此值。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">获取此值。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
   </Members>

@@ -1,5 +1,5 @@
 <Type Name="IsolationLevel" FullName="System.Transactions.IsolationLevel">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d1176e5be29a4b8e279db5cfaa5d4e608a7dbf0e" /><Meta Name="ms.sourcegitcommit" Value="9170ef1c277dbe29b425d453dc133624b156d393" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/01/2019" /><Meta Name="ms.locfileid" Value="67488078" /></Metadata><TypeSignature Language="C#" Value="public enum IsolationLevel" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="3719d48611b14255a610d885cd372389907dc5bc" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68437564" /></Metadata><TypeSignature Language="C#" Value="public enum IsolationLevel" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed IsolationLevel extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Transactions.IsolationLevel" />
   <TypeSignature Language="VB.NET" Value="Public Enum IsolationLevel" />
@@ -30,11 +30,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 受影响的事务的数据称为易失性。 在创建事务时，可以指定应用于该事务的隔离级别。 事务的隔离级别确定的其他事务会具有事务前的易失性数据的访问级别完成。  
+ 受事务影响的数据称为 "可变"。 在创建事务时，可以指定应用于该事务的隔离级别。 事务的隔离级别决定了在事务完成之前, 其他事务对可变数据的访问级别。  
   
- 最低隔离级别， `ReadUncommitted`，允许多个事务同时对数据存储执行操作并提供了针对由于中断事务数据损坏提供任何保护。 最高的隔离级别， `Serializable`，提供高级别的保护以防止中断的事务，但要求每个事务完成之前允许其他事务对数据进行操作。  
+ 最小隔离级别`ReadUncommitted`允许多个事务同时对数据存储进行操作, 并且不会因会造成中断事务而导致数据损坏。 最高隔离级别`Serializable`提供对会造成中断事务的高度保护, 但要求在允许任何其他事务对数据执行操作之前完成每个事务。  
   
- 创建事务时确定的事务的隔离级别。 默认情况下<xref:System.Transactions>基础结构创建`Serializable`事务。 您可以使用来确定现有事务的隔离级别<xref:System.Transactions.Transaction.IsolationLevel%2A?displayProperty=nameWithType>事务的属性。  
+ 事务的隔离级别是在创建事务时确定的。 默认情况下, <xref:System.Transactions>基础结构`Serializable`将创建事务。 您可以通过使用<xref:System.Transactions.Transaction.IsolationLevel%2A?displayProperty=nameWithType>事务的属性来确定现有事务的隔离级别。  
   
  ]]></format>
     </remarks>
@@ -229,7 +229,8 @@
       </ReturnValue>
       <MemberValue>4</MemberValue>
       <Docs>
-        <summary><para>可以读取可变数据。 在事务修改数据之前，它会验证在它最初读取数据之后另一个事务是否更改过这些数据。 如果数据已更新，则会引发错误。 这样，事务可获取先前提交的数据值。</para><para>当尝试提升已创建的 <see langword="Snapshot" /> 隔离级别的事务时，将引发 <see cref="T:System.InvalidOperationException" />，并显示错误消息“无法提升快照隔离级别的事务”。</para></summary>
+        <summary><para>可以读取可变数据。 在事务修改数据之前，它会验证在它最初读取数据之后另一个事务是否更改过这些数据。 如果数据已更新，则会引发错误。 这样，事务可获取先前提交的数据值。</para>
+          <para>当尝试提升已创建的 <see langword="Snapshot" /> 隔离级别的事务时，将引发 <see cref="T:System.InvalidOperationException" />，并显示错误消息“无法提升快照隔离级别的事务”。</para></summary>
       </Docs>
     </Member>
     <Member MemberName="Unspecified">

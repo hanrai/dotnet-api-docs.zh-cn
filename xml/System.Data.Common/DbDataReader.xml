@@ -1,5 +1,5 @@
 <Type Name="DbDataReader" FullName="System.Data.Common.DbDataReader">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a2f2789a639dcc199d716b426eae37be3802e569" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67240855" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbDataReader : MarshalByRefObject, IDisposable, System.Collections.IEnumerable, System.Data.IDataReader" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d479e17a4c080cf6d5c9adf20fdffaee9d3d4ae0" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68438375" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbDataReader : MarshalByRefObject, IDisposable, System.Collections.IEnumerable, System.Data.IDataReader" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DbDataReader extends System.MarshalByRefObject implements class System.Collections.IEnumerable, class System.Data.IDataReader, class System.Data.IDataRecord, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Data.Common.DbDataReader" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DbDataReader&#xA;Inherits MarshalByRefObject&#xA;Implements IDataReader, IDisposable, IEnumerable" />
@@ -119,10 +119,12 @@
       </Docs>
     </Member>
     <Member MemberName="CloseAsync">
-      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task CloseAsync (System.Threading.CancellationToken cancellationToken = null);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task CloseAsync(valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Data.Common.DbDataReader.CloseAsync(System.Threading.CancellationToken)" />
-      <MemberSignature Language="F#" Value="abstract member CloseAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&#xA;override this.CloseAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="dbDataReader.CloseAsync cancellationToken" />
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task CloseAsync ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task CloseAsync() cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Data.Common.DbDataReader.CloseAsync" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function CloseAsync () As Task" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual System::Threading::Tasks::Task ^ CloseAsync();" />
+      <MemberSignature Language="F#" Value="abstract member CloseAsync : unit -&gt; System.Threading.Tasks.Task&#xA;override this.CloseAsync : unit -&gt; System.Threading.Tasks.Task" Usage="dbDataReader.CloseAsync " />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Data.Common</AssemblyName>
@@ -137,11 +139,8 @@
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
       </ReturnValue>
-      <Parameters>
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="netcore-3.0" />
-      </Parameters>
+      <Parameters />
       <Docs>
-        <param name="cancellationToken">To be added.</param>
         <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
@@ -248,9 +247,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在完成使用 `Dispose` 后，应调用 <xref:System.Data.Common.DbDataReader>。 `Dispose` 方法使 <xref:System.Data.Common.DbDataReader> 处于不可用状态。 在调用`Dispose`，必须释放对所有引用<xref:System.Data.Common.DbDataReader>这样垃圾回收器才能收回内存的<xref:System.Data.Common.DbDataReader>占用。  
+ 在完成使用 `Dispose` 后，应调用 <xref:System.Data.Common.DbDataReader>。 `Dispose` 方法使 <xref:System.Data.Common.DbDataReader> 处于不可用状态。 调用`Dispose`后, 必须释放对的<xref:System.Data.Common.DbDataReader>所有引用, 以便垃圾回收器能够<xref:System.Data.Common.DbDataReader>回收占用的内存。  
   
- 有关详细信息，请参阅[清理了非托管资源](~/docs/standard/garbage-collection/unmanaged.md)并[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
+ 有关详细信息, 请参阅[清理非托管资源](~/docs/standard/garbage-collection/unmanaged.md)和[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
   
 > [!NOTE]
 >  每次释放对 `Dispose` 的最后一个引用前，均应调用 <xref:System.Data.Common.DbDataReader>。 否则，在垃圾回收器调用 <xref:System.Data.Common.DbDataReader> 对象的 `Finalize` 方法之前，该对象正在使用的资源不会被释放。  
@@ -944,9 +943,9 @@ private static void GetDataTypes(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 尽管此方法可用于检索的显式构造函数，但在语言中支持的显式**foreach**构造，它是直接以循环访问数据读取器中的行中使用循环构造简单得多。  
+ 尽管可以使用此方法来检索显式构造函数, 但在支持显式**foreach**构造的语言中, 直接使用循环构造来循环访问数据读取器中的行更为简单。  
   
- 如果你实现此方法，则应返回的新实例<xref:System.Data.Common.DbEnumerator>，或确保在枚举器返回<xref:System.Data.IDataRecord>对象。  
+ 如果实现此方法, 则它应返回的<xref:System.Data.Common.DbEnumerator>新实例, 或确保枚举器返回<xref:System.Data.IDataRecord>对象。  
   
  ]]></format>
         </remarks>
@@ -1040,7 +1039,7 @@ private static void GetDataTypes(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关详细信息，请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
+ 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
   
  ]]></format>
         </remarks>
@@ -1075,7 +1074,7 @@ private static void GetDataTypes(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关详细信息，请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
+ 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
   
  ]]></format>
         </remarks>
@@ -1124,7 +1123,7 @@ private static void GetDataTypes(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `T` 可以是以下类型之一：  
+ `T`可以是以下类型之一:  
   
 |||||  
 |-|-|-|-|  
@@ -1133,7 +1132,7 @@ private static void GetDataTypes(String connectionString) {
 |GUID|Int16|Int32|Int64|  
 |String||||  
   
- 有关详细信息，请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
+ 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
   
  ]]></format>
         </remarks>
@@ -1202,7 +1201,7 @@ private static void GetDataTypes(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `T` 可以是以下类型之一：  
+ `T`可以是以下类型之一:  
   
 |||||  
 |-|-|-|-|  
@@ -1211,7 +1210,7 @@ private static void GetDataTypes(String connectionString) {
 |GUID|Int16|Int32|Int64|  
 |String||||  
   
- 有关详细信息，请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
+ 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
   
  ]]></format>
         </remarks>
@@ -1657,7 +1656,7 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要确定特定类型的返回的对象，请使用<xref:System.Data.Common.DbDataReader.GetProviderSpecificFieldType%2A>。  
+ 若要确定返回的对象的特定类型, 请<xref:System.Data.Common.DbDataReader.GetProviderSpecificFieldType%2A>使用。  
   
  ]]></format>
         </remarks>
@@ -1787,9 +1786,9 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Common.DbDataReader.GetStream%2A> 仅支持检索的值可以转换为字节数组。  
+ <xref:System.Data.Common.DbDataReader.GetStream%2A>仅支持检索可转换为字节数组的值。  
   
- 有关详细信息，请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
+ 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
   
  ]]></format>
         </remarks>
@@ -1897,9 +1896,9 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Common.DbDataReader.GetTextReader%2A> 仅支持检索的值可以转换为字符数组 （字符串）。  
+ <xref:System.Data.Common.DbDataReader.GetTextReader%2A>仅支持检索可转换为字符数组 (字符串) 的值。  
   
- 有关详细信息，请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
+ 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
   
  ]]></format>
         </remarks>
@@ -2083,7 +2082,7 @@ private static void GetCredits(String connectionString) {
         <value>如果 <see cref="T:System.Data.Common.DbDataReader" /> 已关闭，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.InvalidOperationException"><see cref="T:System.Data.SqlClient.SqlDataReader" /> 是关闭的。</exception>
-        <block subset="none" type="overrides"><para>此属性和<see cref="P:System.Data.Common.DbDataReader.RecordsAffected" />应实现读取器关闭时返回一个值。</para></block>
+        <block subset="none" type="overrides"><para>应实现此<see cref="P:System.Data.Common.DbDataReader.RecordsAffected" />属性, 以便在读取器关闭时返回值。</para></block>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -2130,7 +2129,7 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法来检查前调用的类型化的 null 列值 get 方法 (例如， <xref:System.Data.Common.DbDataReader.GetByte%2A>， <xref:System.Data.Common.DbDataReader.GetChar%2A>，依次类推) 以避免引发错误。  
+ 调用此方法可在调用类型化 get 方法 (例如<xref:System.Data.Common.DbDataReader.GetByte%2A> <xref:System.Data.Common.DbDataReader.GetChar%2A>、等) 前检查是否有空列值, 以避免引发错误。  
   
  ]]></format>
         </remarks>
@@ -2186,7 +2185,7 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关详细信息，请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
+ 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
   
  ]]></format>
         </remarks>
@@ -2250,7 +2249,7 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关详细信息，请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
+ 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
   
  ]]></format>
         </remarks>
@@ -2430,7 +2429,7 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -2475,7 +2474,7 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -2525,7 +2524,7 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -2573,7 +2572,7 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 数据读取器的默认位置处于第一条记录之前。 因此，您必须调用<xref:System.Data.Common.DbDataReader.Read%2A>才能开始访问数据。  
+ 数据读取器的默认位置处于第一条记录之前。 因此, 您必须调用<xref:System.Data.Common.DbDataReader.Read%2A>以开始访问数据。  
   
  ]]></format>
         </remarks>
@@ -2591,7 +2590,7 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -2634,7 +2633,7 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -2684,7 +2683,7 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -2731,11 +2730,11 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `RecordsAffected`读取所有行并在关闭之前未设置属性`DataReader`。  
+ 在`RecordsAffected`读取所有行并`DataReader`关闭之前, 不会设置属性。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>此属性和<see cref="P:System.Data.Common.DbDataReader.IsClosed" />应实现读取器关闭时返回一个值。</para></block>
+        <block subset="none" type="overrides"><para>应实现此<see cref="P:System.Data.Common.DbDataReader.IsClosed" />属性, 以便在读取器关闭时返回值。</para></block>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -2839,7 +2838,7 @@ private static void GetCredits(String connectionString) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.Data.Common.DbDataReader> 实例强制转换为 <xref:System.Data.IDataRecord> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.Data.Common.DbDataReader> 实例被强制转换为 <xref:System.Data.IDataRecord> 接口时使用。  
   
  ]]></format>
         </remarks>

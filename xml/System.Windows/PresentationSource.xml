@@ -15,9 +15,9 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>提供的另一种技术内容呈现为互操作方案的一部分的类的抽象基类。 此外，此类提供用于处理这些源，以及基本可视层表示体系结构的静态方法。</summary>
+    <summary>提供将其他技术的内容呈现为互操作方案的一部分的抽象基类。 此外，此类还提供用于处理这些源的静态方法，以及基本可视层表示体系结构。</summary>
     <remarks>To be added.</remarks>
-    <permission cref="T:System.Security.Permissions.UIPermission">若要从此类派生。 关联枚举： <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" />。</permission>
+    <permission cref="T:System.Security.Permissions.UIPermission">从此类派生。 关联枚举：<see cref="F:System.Security.Permissions.PermissionState.Unrestricted" />。</permission>
     <altmember cref="T:System.Windows.Interop.HwndSource" />
   </Docs>
   <Members>
@@ -40,7 +40,7 @@
       </Attributes>
       <Parameters />
       <Docs>
-        <summary>提供对基类值由派生类的构造函数调用时初始化。</summary>
+        <summary>在由派生类的构造函数调用时，提供基类值的初始化。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -62,12 +62,12 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>添加<see cref="T:System.Windows.PresentationSource" />派生类实例到列表的已知的表示源。</summary>
+        <summary>将 <see cref="T:System.Windows.PresentationSource" /> 派生类实例添加到已知表示源的列表中。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 由派生类，以指示它们需要进行跟踪，应调用此方法。  
+ 此方法应由派生类调用以指示需要跟踪这些方法。  
   
  ]]></format>
         </remarks>
@@ -99,28 +99,28 @@
         <Parameter Name="handler" Type="System.Windows.SourceChangedEventHandler" />
       </Parameters>
       <Docs>
-        <param name="element">要添加的处理程序的元素。</param>
+        <param name="element">向其添加处理程序的元素。</param>
         <param name="handler">要添加的处理程序实现。</param>
-        <summary>添加处理程序<see langword="SourceChanged" />到提供的元素的事件。</summary>
+        <summary>将 <see langword="SourceChanged" /> 事件的处理程序添加到提供的元素中。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 尽管此事件的语法块的状态，都不存在合法[!INCLUDE[TLA#tla_xaml](~/includes/tlasharptla-xaml-md.md)]附加属性用法。 不应尝试将处理程序中的添加[!INCLUDE[TLA#tla_xaml](~/includes/tlasharptla-xaml-md.md)]，并在代码中的处理程序应仅将其置于充当演示文稿的主机的对象 (<xref:System.Windows.PresentationSource> ) 内容。 此类处理程序只应在对象初始化过程中附加，应在 Dispose 方法或等效对象清理中显式删除。  
+ 尽管此事件的语法块是什么, 但没有合法[!INCLUDE[TLA#tla_xaml](~/includes/tlasharptla-xaml-md.md)]的附加属性用法。 不应尝试在中[!INCLUDE[TLA#tla_xaml](~/includes/tlasharptla-xaml-md.md)]添加处理程序, 并且代码中的处理程序只应放置在充当表示 (<xref:System.Windows.PresentationSource> ) 内容宿主的对象上。 此类处理程序只应在对象初始化过程中附加, 并且应在 Dispose 方法或等效的对象清理中显式删除。  
   
- 尽管这是路由的事件，有特殊限制在此事件上放置，不同于正常的路由的事件行为，由于自己考虑这种处理一个典型应用场景中的元素的相对较小的数事件。  
+ 尽管这是路由事件, 但由于典型应用程序方案中的元素数量相对较小, 因此在此事件上存在一些特殊的限制, 这与处理引发.  
   
--   不能使用<xref:System.Windows.UIElement>或<xref:System.Windows.ContentElement><xref:System.Windows.UIElement.AddHandler%2A>添加处理程序的方法。 必须使用<xref:System.Windows.PresentationSource.AddSourceChangedHandler%2A>。  
+-   不能使用<xref:System.Windows.UIElement>或<xref:System.Windows.ContentElement> <xref:System.Windows.UIElement.AddHandler%2A>方法添加处理程序。 必须使用<xref:System.Windows.PresentationSource.AddSourceChangedHandler%2A>。  
   
--   C#`+=`和`-=`事件处理程序语法以及相关的特定于语言的处理程序语法不支持，因为事件本身未公开为公共。 仅<xref:System.Windows.PresentationSource>实用工具方法，用于添加和移除处理程序，直接支持。  
+-   C#和事件处理程序语法以及相关的特定于语言的处理程序语法不受支持, 因为该事件本身不公开为公共的。 `-=` `+=` 仅支持直接添加和删除处理程序的实用工具方法。<xref:System.Windows.PresentationSource>  
   
--   不允许类处理程序。 具体而言，不能调用<xref:System.Windows.EventManager.RegisterClassHandler%2A>类构造函数中此事件针对因为尽管 SourceChanged 中存在的标识符字段，但该标识符不是公共。  
+-   不允许使用类处理程序。 具体而言, 你不<xref:System.Windows.EventManager.RegisterClassHandler%2A>能在类构造函数中调用此事件, 因为虽然存在用于 SourceChanged 的标识符字段, 但标识符不是公共的。  
   
--   所有已注册处理程序将收到 SourceChanged 事件，即使其中一个处理程序会尝试将参数标记为已处理。  
+-   即使其中一个处理程序尝试将参数标记为已处理, 所有注册的处理程序也会接收 SourceChanged 事件。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要调用或实现此方法。 关联枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" />。</permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">调用或实现此方法。 关联枚举：<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" />。</permission>
       </Docs>
     </Member>
     <Member MemberName="ClearContentRenderedListeners">
@@ -141,7 +141,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>设置侦听器的列表<see cref="E:System.Windows.PresentationSource.ContentRendered" />事件<see langword="null" />。</summary>
+        <summary>将 <see cref="E:System.Windows.PresentationSource.ContentRendered" /> 事件的侦听器列表设置为 <see langword="null" />。</summary>
         <remarks>To be added.</remarks>
         <altmember cref="E:System.Windows.PresentationSource.ContentRendered" />
       </Docs>
@@ -171,17 +171,17 @@
         <ReturnType>System.Windows.Media.CompositionTarget</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取要在源中显示的视觉对象的可视化目标。</summary>
-        <value>可视目标 (实例<see cref="T:System.Windows.Media.CompositionTarget" />派生类)。</value>
+        <summary>获取要在源中显示的视觉效果的可视目标。</summary>
+        <value>可视目标（<see cref="T:System.Windows.Media.CompositionTarget" /> 派生类的实例）。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性返回依赖于的实现<xref:System.Windows.PresentationSource.GetCompositionTargetCore%2A>。  
+ 此属性的返回依赖于的<xref:System.Windows.PresentationSource.GetCompositionTargetCore%2A>实现。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>派生的类可以选择隐藏此属性以提供特定于类型的值。</para></block>
+        <block subset="none" type="overrides"><para>派生类可以选择隐藏此属性以提供特定于类型的值。</para></block>
       </Docs>
     </Member>
     <Member MemberName="ContentRendered">
@@ -233,13 +233,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的列表支持枚举器的源列表的只读的线程安全副本与添加<xref:System.Windows.PresentationSource.AddSource%2A>。  
+ 返回的列表支持对随添加<xref:System.Windows.PresentationSource.AddSource%2A>的源列表的只读、线程安全副本进行枚举器。  
   
- 枚举器将跳过列表中的任何死弱引用。  
+ 枚举器将跳过列表中任何死弱引用。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要获取源。 关联枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" />。</permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">获取源。 关联枚举：<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" />。</permission>
       </Docs>
     </Member>
     <Member MemberName="FromDependencyObject">
@@ -266,11 +266,11 @@
         <Parameter Name="dependencyObject" Type="System.Windows.DependencyObject" />
       </Parameters>
       <Docs>
-        <param name="dependencyObject"><see cref="T:System.Windows.DependencyObject" />若要查找的源。</param>
-        <summary>在其中返回的源提供<see cref="T:System.Windows.DependencyObject" />显示。</summary>
-        <returns><see cref="T:System.Windows.PresentationSource" />中所提供的依赖项对象。</returns>
+        <param name="dependencyObject">要查找其源的 <see cref="T:System.Windows.DependencyObject" />。</param>
+        <summary>返回要在其中呈现所提供的 <see cref="T:System.Windows.DependencyObject" /> 的源。</summary>
+        <returns>要在其中显示依赖项对象的 <see cref="T:System.Windows.PresentationSource" />。</returns>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要调用或实现此方法。 关联枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" />。</permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">调用或实现此方法。 关联枚举：<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" />。</permission>
       </Docs>
     </Member>
     <Member MemberName="FromVisual">
@@ -297,12 +297,12 @@
         <Parameter Name="visual" Type="System.Windows.Media.Visual" />
       </Parameters>
       <Docs>
-        <param name="visual"><see cref="T:System.Windows.Media.Visual" />若要查找的源。</param>
-        <summary>在其中返回的源提供<see cref="T:System.Windows.Media.Visual" />显示。</summary>
-        <returns><see cref="T:System.Windows.PresentationSource" />中的视觉对象呈现，或<see langword="null" />如果<paramref name="visual" />被释放。</returns>
+        <param name="visual">要查找其源的 <see cref="T:System.Windows.Media.Visual" />。</param>
+        <summary>返回要在其中呈现所提供的 <see cref="T:System.Windows.Media.Visual" /> 的源。</summary>
+        <returns>正在其中呈现视觉效果的 <see cref="T:System.Windows.PresentationSource" />；如果释放 <paramref name="visual" />，则为 <see langword="null" />。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="visual" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要调用或实现此方法。 关联枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" />。</permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">调用或实现此方法。 关联枚举：<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" />。</permission>
       </Docs>
     </Member>
     <Member MemberName="GetCompositionTargetCore">
@@ -323,12 +323,12 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>当在派生类中重写，则返回给定源的可视目标。</summary>
-        <returns>返回<see cref="T:System.Windows.Media.CompositionTarget" />，它是用于呈现此视觉对象的目标。</returns>
+        <summary>在派生类中重写后，返回给定源的可视目标。</summary>
+        <returns>返回呈现该视觉效果的目标 <see cref="T:System.Windows.Media.CompositionTarget" />。</returns>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>重写此方法来声明值的<see cref="P:System.Windows.PresentationSource.CompositionTarget" />只读属性将返回。  
+        <block subset="none" type="overrides"><para>重写此方法以声明<see cref="P:System.Windows.PresentationSource.CompositionTarget" />只读属性将返回的值。  
   
-重写应返回的特定于类型的实例<see cref="T:System.Windows.Media.CompositionTarget" />派生用于互操作方案的类类型。</para></block>
+重写应返回用于互操作方案的<see cref="T:System.Windows.Media.CompositionTarget" />派生类类型的特定于类型的实例。</para></block>
       </Docs>
     </Member>
     <Member MemberName="IsDisposed">
@@ -348,10 +348,10 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>当在派生类中重写，获取一个值，声明是否释放对象。</summary>
-        <value><see langword="true" /> 如果释放对象;否则为<see langword="false" />。</value>
+        <summary>在派生类中重写后，获取一个声明对象是否已被释放的值。</summary>
+        <value>如果释放对象，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>派生的类需要实现<see cref="T:System.IDisposable" />或提供等效的行为。</para></block>
+        <block subset="none" type="overrides"><para>派生类应实现<see cref="T:System.IDisposable" />或提供等效的行为。</para></block>
       </Docs>
     </Member>
     <Member MemberName="RemoveSource">
@@ -372,7 +372,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>删除<see cref="T:System.Windows.PresentationSource" />派生类实例从已知的表示源的列表。</summary>
+        <summary>从已知表示源的列表中移除 <see cref="T:System.Windows.PresentationSource" /> 派生类实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -397,18 +397,18 @@
         <Parameter Name="handler" Type="System.Windows.SourceChangedEventHandler" />
       </Parameters>
       <Docs>
-        <param name="e">要移除的处理程序中的元素。</param>
+        <param name="e">要从中移除处理程序的元素。</param>
         <param name="handler">要移除的处理程序实现。</param>
-        <summary>移除的处理程序<see langword="SourceChanged" />事件从提供的元素。</summary>
+        <summary>从所提供的元素中移除 <see langword="SourceChanged" /> 事件的处理程序。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 尽管这是路由的事件，有特殊限制在此事件上放置，不同于正常的路由的事件行为，由于自己考虑这种处理一个典型应用场景中的元素的相对较小的数事件。  
+ 尽管这是路由事件, 但由于典型应用程序方案中的元素数量相对较小, 因此在此事件上存在一些特殊的限制, 这与处理引发.  
   
--   不能使用<xref:System.Windows.UIElement>或<xref:System.Windows.ContentElement><xref:System.Windows.UIElement.RemoveHandler%2A>方法来移除处理程序。 必须使用<xref:System.Windows.PresentationSource.RemoveSourceChangedHandler%2A>。  
+-   不能使用<xref:System.Windows.UIElement>或<xref:System.Windows.ContentElement> <xref:System.Windows.UIElement.RemoveHandler%2A>方法删除处理程序。 必须使用<xref:System.Windows.PresentationSource.RemoveSourceChangedHandler%2A>。  
   
--   C#`+=`和`-=`事件处理程序语法以及其他特定于语言的处理程序语法，不支持，因为事件本身未公开为公共。 仅<xref:System.Windows.PresentationSource>实用工具方法，用于添加和移除处理程序，直接支持。  
+-   C#和事件处理程序语法以及其他特定于语言的处理程序语法不受支持, 因为该事件本身不公开为公共的。 `-=` `+=` 仅支持直接添加和删除处理程序的实用工具方法。<xref:System.Windows.PresentationSource>  
   
  ]]></format>
         </remarks>
@@ -444,20 +444,20 @@
         <Parameter Name="newRoot" Type="System.Windows.Media.Visual" />
       </Parameters>
       <Docs>
-        <param name="oldRoot">旧根<see cref="T:System.Windows.Media.Visual" />。</param>
-        <param name="newRoot">新的根<see cref="T:System.Windows.Media.Visual" />。</param>
-        <summary>提供通知的根<see cref="T:System.Windows.Media.Visual" />已更改。</summary>
+        <param name="oldRoot">旧的根 <see cref="T:System.Windows.Media.Visual" />。</param>
+        <param name="newRoot">新的根 <see cref="T:System.Windows.Media.Visual" />。</param>
+        <summary>提供根 <see cref="T:System.Windows.Media.Visual" /> 已发生更改的通知。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 派生的类应调用此方法，以指明其根<xref:System.Windows.Media.Visual>已更改。  
+ 派生类应调用此方法以指示其根<xref:System.Windows.Media.Visual>已更改。  
   
- 当且仅当这些根视觉对象都可以调用此方法会导致两个要在对指定的根视觉对象，引发的对象生存期事件<xref:System.Windows.FrameworkElement>派生的类。  
+ 当且仅当这些根视觉对象是<xref:System.Windows.FrameworkElement>派生类时, 调用此方法会导致在指定的根视觉对象上引发两个对象生存期事件。  
   
--   旧的根可视化对象将引发<xref:System.Windows.FrameworkElement.Unloaded>事件，并将处理其元素树的向下，广播到每个子元素的此事件。  
+-   旧的根视觉对象将引发<xref:System.Windows.FrameworkElement.Unloaded>事件, 并将处理其元素树, 并将此事件广播给每个子元素。  
   
--   新的根可视化对象将引发<xref:System.Windows.FrameworkElement.Loaded>事件，并将处理其元素树的向下，广播到每个子元素的此事件。  
+-   新的根视觉对象将引发<xref:System.Windows.FrameworkElement.Loaded>事件, 并将处理其元素树, 并将此事件广播给每个子元素。  
   
  ]]></format>
         </remarks>
@@ -485,10 +485,10 @@
         <ReturnType>System.Windows.Media.Visual</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>当在派生类中重写时获取或设置的根 visual 在源中显示。</summary>
+        <summary>在派生类中重写后，获取或设置要在源中显示的根视觉效果。</summary>
         <value>根视觉效果。</value>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要重写属性 (<see langword="InheritanceDemand" />)。 关联枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" />。</permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">若要重写属性<see langword="InheritanceDemand" />(), 则为。 关联的枚举<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" />:。</permission>
       </Docs>
     </Member>
   </Members>

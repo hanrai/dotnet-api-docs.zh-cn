@@ -20,16 +20,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此类的成员允许调用方具有内部访问权限[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]HWND 和父 HWND 的[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)] <xref:System.Windows.Window>。  通过这些成员进行适当的安全检查。  
+ 此类的成员允许调用方对的[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)] HWND 和父 hwnd [!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)] <xref:System.Windows.Window>进行内部访问。  适当的安全检查由这些成员执行。  
   
- 需要一个更具体的对象，该对象基于其 HWND 时，请使用此类。  
+ 每当需要基于其 HWND 的更具体对象时, 请使用此类。  
   
- 示例方案是如果您需要承载[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]对话框中的[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]应用程序。 初始化<xref:System.Windows.Interop.WindowInteropHelper>与[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]对话框中的窗口对象。 然后就可以获取[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]窗口的句柄 (HWND) 从<xref:System.Windows.Interop.WindowInteropHelper.Handle%2A>属性，并指定为所有者[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]具有窗口<xref:System.Windows.Interop.WindowInteropHelper.Owner%2A>属性。 下面的代码示例演示如何使用<xref:System.Windows.Interop.WindowInteropHelper>承载时[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中的对话框[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]应用程序。  
+ 例如, 如果需要[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)] [!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]在应用程序中承载一个对话框, 则会出现示例方案。 使用对话框的窗口对象初始化。 [!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)] <xref:System.Windows.Interop.WindowInteropHelper> 然后, 可以<xref:System.Windows.Interop.WindowInteropHelper.Handle%2A>从属性[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]获取窗口句柄 (HWND), 并通过<xref:System.Windows.Interop.WindowInteropHelper.Owner%2A>属性[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]指定窗口的所有者。 下面的代码示例演示如何在<xref:System.Windows.Interop.WindowInteropHelper> [!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]应用程序中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]承载对话框时使用。  
   
  [!code-csharp[CorePseudocode#WindowInteropHelper](~/samples/snippets/csharp/VS_Snippets_Wpf/CorePseudocode/CSharp/corepseudocode.cs#windowinterophelper)]
  [!code-vb[CorePseudocode#WindowInteropHelper](~/samples/snippets/visualbasic/VS_Snippets_Wpf/CorePseudocode/visualbasic/corepseudocode.vb#windowinterophelper)]  
   
- 此类支持的另一种情况是获得<xref:System.Windows.Interop.HwndSource>对象从[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]<xref:System.Windows.Window>对象。 <xref:System.Windows.Interop.HwndSource>使你能够直接处理[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]消息<xref:System.Windows.Interop.HwndSource.AddHook%2A>方法。 通过使用<xref:System.Windows.Interop.HwndSource>并<xref:System.Windows.Interop.HwndSource.AddHook%2A>来代替<xref:System.Windows.Window>仍可以处理没有等效项或处理中的消息[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]。 创建<xref:System.Windows.Interop.WindowInteropHelper>与<xref:System.Windows.Window>来源，然后调用<xref:System.Windows.Interop.WindowInteropHelper.Handle%2A>上<xref:System.Windows.Interop.WindowInteropHelper>若要从 HWND 到获取<xref:System.Windows.Interop.HwndSource>。  
+ 此类支持的另一种方案是<xref:System.Windows.Interop.HwndSource> [!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)] <xref:System.Windows.Window>从对象获取对象。 <xref:System.Windows.Interop.HwndSource>允许[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]通过方法<xref:System.Windows.Interop.HwndSource.AddHook%2A>直接处理消息。 通过使用<xref:System.Windows.Interop.HwndSource>和<xref:System.Windows.Interop.HwndSource.AddHook%2A>取代<xref:System.Windows.Window> , 你仍可在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]处理无等效或处理的消息。 <xref:System.Windows.Interop.WindowInteropHelper> <xref:System.Windows.Interop.HwndSource>使用源创建,然后<xref:System.Windows.Interop.WindowInteropHelper.Handle%2A>在上调用以从HWND转到。<xref:System.Windows.Interop.WindowInteropHelper> <xref:System.Windows.Window>  
   
  ]]></format>
     </remarks>
@@ -54,13 +54,13 @@
         <Parameter Name="window" Type="System.Windows.Window" />
       </Parameters>
       <Docs>
-        <param name="window">一个[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]窗口对象。</param>
-        <summary>初始化的新实例<see cref="T:System.Windows.Interop.WindowInteropHelper" />类的指定[!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)]窗口。</summary>
+        <param name="window">一个 [!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)] 窗口对象。</param>
+        <summary>为指定的 [!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)] 窗口初始化 <see cref="T:System.Windows.Interop.WindowInteropHelper" /> 类的一个新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 该窗口可以是一个对话框或处于不适合的边界内承载的窗口[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]应用程序。  
+ 窗口可以是对话框, 也可以是不适合在[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]应用程序边界内承载的窗口。  
   
  ]]></format>
         </remarks>
@@ -88,27 +88,27 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>如果尚未创建 HWND，创建窗口的 HWND。</summary>
-        <returns><see cref="T:System.IntPtr" />表示 HWND。</returns>
+        <summary>如果尚未创建窗口的 HWND，则创建 HWND。</summary>
+        <returns>表示 HWND 的 <see cref="T:System.IntPtr" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Windows.Interop.WindowInteropHelper.EnsureHandle%2A>方法时您想要单独的窗口句柄 (HWND) 创建与实际显示的托管<xref:System.Windows.Window>。 当有可以完成其任务而无需显示一个窗口的自动化客户端时，这很有用。  
+ 如果要从托管<xref:System.Windows.Window>的实际显示中分离窗口句柄 (HWND), 请使用方法。<xref:System.Windows.Interop.WindowInteropHelper.EnsureHandle%2A> 如果你的自动化客户端无需显示窗口即可完成其任务, 则这非常有用。  
   
- 如果尚未创建本机窗口，此方法将创建本机窗口集<xref:System.Windows.Interop.WindowInteropHelper.Handle%2A>属性，并返回 HWND。 如果已创建本机窗口，则返回现有的本机窗口的句柄。  
+ 如果尚未创建本机窗口, 此方法将创建本机窗口, 设置<xref:System.Windows.Interop.WindowInteropHelper.Handle%2A>属性, 然后返回 HWND。 如果已创建本机窗口, 则返回现有本机窗口的句柄。  
   
- 如果通过调用此方法创建的本机窗口<xref:System.Windows.Window.SourceInitialized>引发事件。  
+ 如果由于调用此方法而创建了本机窗口, <xref:System.Windows.Window.SourceInitialized>则会引发事件。  
   
- 查询<xref:System.Windows.Interop.WindowInteropHelper.Handle%2A>属性后的<xref:System.Windows.Interop.WindowInteropHelper.EnsureHandle%2A>调用方法将返回现有的窗口句柄。 可视化树未连接到后的窗口之前<xref:System.Windows.Window.Show%2A>调用方法。  
+ 在调用<xref:System.Windows.Interop.WindowInteropHelper.EnsureHandle%2A>方法后查询属性返回现有的窗口句柄。<xref:System.Windows.Interop.WindowInteropHelper.Handle%2A> 在调用<xref:System.Windows.Window.Show%2A>方法之前, 不会将可视化树附加到窗口中。  
   
- 调用<xref:System.Windows.Interop.WindowInteropHelper.EnsureHandle%2A>方法不止一次不会创建新的窗口句柄。 调用<xref:System.Windows.Interop.WindowInteropHelper.EnsureHandle%2A>方法创建句柄后通过调用<xref:System.Windows.Window.Show%2A>方法不会创建新的窗口句柄。 不存在句柄时才创建本机窗口时<xref:System.Windows.Interop.WindowInteropHelper.EnsureHandle%2A>调用方法。  
+ 多次调用<xref:System.Windows.Interop.WindowInteropHelper.EnsureHandle%2A>方法不会创建新的窗口句柄。 如果已通过调用<xref:System.Windows.Window.Show%2A>方法创建了句柄, 则调用方法不会创建新的窗口句柄。<xref:System.Windows.Interop.WindowInteropHelper.EnsureHandle%2A> 仅当调用<xref:System.Windows.Interop.WindowInteropHelper.EnsureHandle%2A>方法时没有句柄存在时, 才会创建本机窗口。  
   
- 窗口通过 p/invoke 的本机窗口 Api 设置的属性可能不会显示在托管窗口的 Api。 例如，如果您设置窗口使用本机 MS_EX_TOPMOST 标志后的为最顶层<xref:System.Windows.Interop.WindowInteropHelper.EnsureHandle%2A>调用方法时，<xref:System.Windows.Window.Topmost%2A>属性不一定反映本机的设置。  
+ 通过使用本机窗口 Api 通过 p/invoke 设置的窗口属性可能不会出现在托管窗口 Api 中。 例如, 如果在调用<xref:System.Windows.Interop.WindowInteropHelper.EnsureHandle%2A>方法后使用本机 MS_EX_TOPMOST 标志将窗口设置为最顶端<xref:System.Windows.Window.Topmost%2A> , 则不能保证属性反映本机设置。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要创建和访问窗口句柄。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">创建和访问窗口句柄。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
     <Member MemberName="Handle">
@@ -134,9 +134,9 @@
       </ReturnValue>
       <Docs>
         <summary>获取用于创建此 <see cref="T:System.Windows.Interop.WindowInteropHelper" /> 的 [!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)] 窗口的窗口句柄。</summary>
-        <value>[!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)]窗口句柄 (HWND)。</value>
+        <value>[!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)] 窗口句柄 (HWND)。</value>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要获取窗口句柄。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">获取窗口句柄。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
         <altmember cref="T:System.Windows.Window" />
       </Docs>
     </Member>
@@ -171,11 +171,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以通过设置此属性，重新设置父级 windows。 按原样，则返回 true 的常规[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]编程详细信息，请执行不重新设置父级已在使用的 windows。  
+ 您可以通过设置此属性来重设窗口的父级。 对于常规[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]编程, 请不要对已在使用中的窗口进行重设父级。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">获取或设置此属性的值。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">获取或设置此属性值。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
         <altmember cref="T:System.Windows.Window" />
       </Docs>
     </Member>

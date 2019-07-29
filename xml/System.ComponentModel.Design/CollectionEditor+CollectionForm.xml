@@ -19,9 +19,9 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>提供用于编辑集合使用的内容的模式对话框<see cref="T:System.Drawing.Design.UITypeEditor" />。</summary>
+    <summary>提供一个有模式的对话框，用以通过 <see cref="T:System.Drawing.Design.UITypeEditor" /> 编辑集合的内容。</summary>
     <remarks>To be added.</remarks>
-    <block subset="none" type="overrides"><para>以及您自己的用户界面，可以在此窗体上提供的抽象方法的实现。</para></block>
+    <block subset="none" type="overrides"><para>您可以在此窗体上提供抽象方法的实现, 以及您自己的用户界面。</para></block>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -51,7 +51,7 @@
         <Parameter Name="editor" Type="System.ComponentModel.Design.CollectionEditor" />
       </Parameters>
       <Docs>
-        <param name="editor"><see cref="T:System.ComponentModel.Design.CollectionEditor" />用于编辑集合。</param>
+        <param name="editor">用于编辑集合的 <see cref="T:System.ComponentModel.Design.CollectionEditor" />。</param>
         <summary>初始化 <see cref="T:System.ComponentModel.Design.CollectionEditor.CollectionForm" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -82,15 +82,15 @@
       </Parameters>
       <Docs>
         <param name="value">要移除的值。</param>
-        <summary>指示是否可以移除原始集合的成员。</summary>
-        <returns><see langword="true" /> 如果允许从集合; 中删除此值否则为<see langword="false" />。 默认情况下，此方法返回的值从<see cref="M:System.ComponentModel.Design.CollectionEditor.CanRemoveInstance(System.Object)" />的<see cref="T:System.ComponentModel.Design.CollectionEditor" />此窗体。</returns>
+        <summary>指示是否可以移除集合的初始成员。</summary>
+        <returns>如果允许从集合中移除此值，则为 <see langword="true" />；否则，为 <see langword="false" />。 默认情况下，此方法返回来自当前窗体 <see cref="M:System.ComponentModel.Design.CollectionEditor.CanRemoveInstance(System.Object)" /> 的 <see cref="T:System.ComponentModel.Design.CollectionEditor" /> 的值。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在派生类中实现时，此方法指示是否可以从集合中移除指定的值。 默认情况下，这将返回的值从<xref:System.ComponentModel.Design.CollectionEditor.CanRemoveInstance%2A>的<xref:System.ComponentModel.Design.CollectionEditor>此窗体。  
+ 在派生类中实现时, 此方法指示是否可以从集合中移除指定的值。 默认情况下, 这将返回此<xref:System.ComponentModel.Design.CollectionEditor.CanRemoveInstance%2A>窗体<xref:System.ComponentModel.Design.CollectionEditor>的的值。  
   
- 当用户尝试从集合中移除的原始成员的集合的项时，调用此方法。 删除添加的项已在此编辑会话中，因为它们尚不是集合的一部分时，不调用此方法。  
+ 当用户尝试从集合中移除作为集合原始成员的项时, 将调用此方法。 删除已添加到此编辑会话中的项时, 不会调用此方法, 因为这些项尚未包含在集合中。  
   
  ]]></format>
         </remarks>
@@ -119,13 +119,13 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>指示是否可以同时选择多个集合项。</summary>
-        <returns><see langword="true" /> 如果多个集合成员可以选择在同一时间;否则为<see langword="false" />。 默认情况下，此方法返回的值从<see cref="M:System.ComponentModel.Design.CollectionEditor.CanSelectMultipleInstances" />的<see cref="T:System.ComponentModel.Design.CollectionEditor" />此窗体。</returns>
+        <summary>指示是否可一次选择多个集合项。</summary>
+        <returns>如果可以同时选择多个集合成员，则为 <see langword="true" />；否则，为 <see langword="false" />。 默认情况下，此方法返回来自当前窗体 <see cref="M:System.ComponentModel.Design.CollectionEditor.CanSelectMultipleInstances" /> 的 <see cref="T:System.ComponentModel.Design.CollectionEditor" /> 的值。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法指示是否可以在集合编辑器对话框中选择多个集合成员。  
+ 此方法指示是否可以在 "集合编辑器" 对话框中选择多个集合成员。  
   
  ]]></format>
         </remarks>
@@ -153,13 +153,13 @@
         <ReturnType>System.Type</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取集合中的每个项的数据类型。</summary>
+        <summary>获取集合中每项的数据类型。</summary>
         <value>集合项的数据类型。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性表示集合的项的数据的类型。  
+ 此属性表示集合项的数据类型。  
   
  ]]></format>
         </remarks>
@@ -193,7 +193,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性表示的集合对象的数据类型。  
+ 此属性表示集合对象的数据类型。  
   
  ]]></format>
         </remarks>
@@ -222,7 +222,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取指示当前上下文的类型说明符。</summary>
-        <value><see cref="T:System.ComponentModel.ITypeDescriptorContext" /> ，该值指示当前正在使用，上下文或<see langword="null" />没有上下文是否可用。</value>
+        <value><see cref="T:System.ComponentModel.ITypeDescriptorContext" />，指示当前正在使用的上下文；或者如果没有可用的上下文，则为 <see langword="null" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -253,12 +253,12 @@
       <Docs>
         <param name="itemType">要创建的项的类型。</param>
         <summary>创建指定的集合项类型的新实例。</summary>
-        <returns>指定对象的新实例或<see langword="null" />如果用户选择取消此实例的创建。</returns>
+        <returns>指定对象的新实例，或者在用户选择取消创建此实例的情况下为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果不能创建一个新实例，此方法将引发异常。 如果用户选择取消此实例的创建，此方法返回`null`。  
+ 如果无法创建新的实例, 则此方法将引发异常。 如果用户选择取消创建此实例, 则此方法返回`null`。  
   
  ]]></format>
         </remarks>
@@ -290,7 +290,7 @@
       </Parameters>
       <Docs>
         <param name="instance">要销毁的对象。</param>
-        <summary>销毁该对象的指定的实例。</summary>
+        <summary>销毁对象的指定实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -320,7 +320,7 @@
       </Parameters>
       <Docs>
         <param name="e">要显示的异常。</param>
-        <summary>为用户显示指定的异常。</summary>
+        <summary>向用户显示指定的异常。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -382,8 +382,8 @@
       </Parameters>
       <Docs>
         <param name="serviceType">要检索的服务类型。</param>
-        <summary>获取请求的服务是否可用。</summary>
-        <returns>服务的实例或<see langword="null" />如果找不到该服务。</returns>
+        <summary>获取请求的服务（如果该服务可用的话）。</summary>
+        <returns>该服务的实例；或者如果找不到该服务，则为 <see langword="null" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -409,13 +409,13 @@
         <ReturnType>System.Object[]</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置此窗体要显示的项的数组。</summary>
-        <value>窗体要显示的对象的数组。</value>
+        <summary>获取或设置此窗体要显示的项数组。</summary>
+        <value>此窗体要显示的对象数组。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现将检索的项从当前集`Item`集合的属性。  
+ 默认实现从集合的`Item`属性中检索当前项集。  
   
  ]]></format>
         </remarks>
@@ -443,13 +443,13 @@
         <ReturnType>System.Type[]</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取此集合可以创建的可用项类型。</summary>
-        <value>可以创建项目的类型。</value>
+        <summary>获取可为此集合创建的可用项类型。</summary>
+        <value>可创建的项的类型。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性指示可以添加到集合的数据类型。 默认情况下，这将返回单一类型的<xref:System.ComponentModel.Design.CollectionEditor.CollectionItemType%2A>。 如果返回多个类型，则集合编辑器用户界面提供了一种方法来选择要创建的项目类型。  
+ 此属性指示可添加到集合中的数据类型。 默认情况下, 此方法将返回一<xref:System.ComponentModel.Design.CollectionEditor.CollectionItemType%2A>种类型的。 如果返回多个类型, 集合编辑器 UI 会提供一种方法来选择要创建的项类型。  
   
  ]]></format>
         </remarks>
@@ -478,16 +478,16 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>提供集合值已更改时执行处理的机会。</summary>
+        <summary>提供在集合值已更改的情况下执行处理的机会。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 收集项的值已更改时，将引发此方法。  
+ 当收集项的值已更改时, 将引发此方法。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>在此方法中，更新用户界面以反映当前值。</para></block>
+        <block subset="none" type="overrides"><para>在此方法中, 更新您的用户界面, 以反映当前的值。</para></block>
       </Docs>
     </Member>
     <Member MemberName="ShowEditorDialog">
@@ -515,9 +515,9 @@
         <Parameter Name="edSvc" Type="System.Windows.Forms.Design.IWindowsFormsEditorService" />
       </Parameters>
       <Docs>
-        <param name="edSvc"><see cref="T:System.Windows.Forms.Design.IWindowsFormsEditorService" />可用来显示该对话框。</param>
-        <summary>显示找不到对话框编辑器使用指定<see cref="T:System.Windows.Forms.Design.IWindowsFormsEditorService" />对象。</summary>
-        <returns>一个<see cref="T:System.Windows.Forms.DialogResult" />，该值指示从对话框返回的结果代码。</returns>
+        <param name="edSvc">此 <see cref="T:System.Windows.Forms.Design.IWindowsFormsEditorService" /> 可用于显示对话框。</param>
+        <summary>为使用指定 <see cref="T:System.Windows.Forms.Design.IWindowsFormsEditorService" /> 对象的集合编辑器显示对话框。</summary>
+        <returns>此 <see cref="T:System.Windows.Forms.DialogResult" /> 指示从对话框中返回的结果代码。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

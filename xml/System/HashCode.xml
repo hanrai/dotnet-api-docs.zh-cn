@@ -1,5 +1,5 @@
 <Type Name="HashCode" FullName="System.HashCode">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a9c8aeaa459e84d5207c9d3068bd8e103c6609e9" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58723326" /></Metadata><TypeSignature Language="C#" Value="public struct HashCode" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5d7792e00e0659eb565d01c655ac15776a8c8f46" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68434611" /></Metadata><TypeSignature Language="C#" Value="public struct HashCode" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit HashCode extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.HashCode" />
   <TypeSignature Language="VB.NET" Value="Public Structure HashCode" />
@@ -13,6 +13,9 @@
     <AssemblyName>netstandard</AssemblyName>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <AssemblyInfo>
+    <AssemblyName>Microsoft.Bcl.HashCode</AssemblyName>
+  </AssemblyInfo>
   <Base>
     <BaseTypeName>System.ValueType</BaseTypeName>
   </Base>
@@ -24,17 +27,17 @@
 
 ## Remarks
 
-可以使用<xref:System.HashCode>要合并成单个哈希代码的多个值 （例如，在结构或类上的字段）。 此结构在两种方式之一运行：
+可以使用<xref:System.HashCode>将多个值 (例如, 结构或类中的字段) 合并为单个哈希代码。 此结构的操作方法有以下两种:
 
- * 接受的一组最多八个值组合的静态方法。
- * 两个实例以流的形式，一次接受一个值进行操作的方法。
+ * 静态方法, 这些方法接受一组最多8个要组合的值。
+ * 以流式处理方式操作的两个实例方法, 一次接受一个值。
 
 > [!WARNING]
-> 它是最佳做法要考虑的哈希代码作为实现详细信息，如实现跨程序集版本可能会更改。 不存储生成的哈希代码<xref:System.HashCode>中序列化结构，例如，磁盘上。 <xref:System.HashCode> 使用静态初始化的随机种子来强制实施此最佳做法，这意味着，哈希代码才确定性的操作系统进程范围内。
+> 最佳做法是将哈希代码视为实现细节, 因为实现可能会在程序集版本间发生变化。 不要以序列化的结构 ( <xref:System.HashCode>例如, 磁盘) 存储生成的哈希代码。 <xref:System.HashCode>使用静态初始化的随机种子来强制实施此最佳实践, 这意味着哈希代码仅在操作系统进程范围内确定。
 
 ### <a name="static-methods"></a>静态方法
 
-静态方法组合最多八个值的默认哈希代码。
+静态方法将多达8个值的默认哈希代码组合在一起。
  
  [!code-csharp[System.HashCode.Structure#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.hashcode.structure/cs/example1.cs#1)]
  [!code-vb[System.HashCode.Structure#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.hashcode.structure/vb/example1.vb#1)] 
@@ -42,19 +45,19 @@
 ### <a name="instance-methods"></a>实例方法
 
 > [!IMPORTANT]
-> <xref:System.HashCode.ToHashCode> 必须调用的每个实例中最多一次<xref:System.HashCode>。
+> <xref:System.HashCode.ToHashCode>对于每个实例<xref:System.HashCode>, 最多只能调用一次。
 
-实例方法组合多个 8 个值的哈希代码。
+实例方法将超过8个值的哈希代码组合在一起。
  
  [!code-csharp[System.HashCode.Structure#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.hashcode.structure/cs/example2.cs#1)]
  [!code-vb[System.HashCode.Structure#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.hashcode.structure/vb/example2.vb#1)]
 
-实例方法还将生成由特定的哈希代码结合起来<xref:System.Collections.Generic.IEqualityComparer%601>实现。
+实例方法还合并了特定<xref:System.Collections.Generic.IEqualityComparer%601>实现所生成的哈希代码。
 
  [!code-csharp[System.HashCode.Structure#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.hashcode.structure/cs/example3.cs#1)]
  [!code-vb[System.HashCode.Structure#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.hashcode.structure/vb/example3.vb#1)]
 
-<xref:System.HashCode>结构必须传递按引用到其他方法，因为它是值类型。
+<xref:System.HashCode>结构必须按引用传递给其他方法, 因为它是值类型。
  
  [!code-csharp[System.HashCode.Structure#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.hashcode.structure/cs/example4.cs#1)]
  [!code-vb[System.HashCode.Structure#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.hashcode.structure/vb/example4.vb#1)]
@@ -79,6 +82,9 @@
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Bcl.HashCode</AssemblyName>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
@@ -89,7 +95,7 @@
         <Parameter Name="value" Type="T" />
       </Parameters>
       <Docs>
-        <typeparam name="T">要将添加到哈希代码的值的类型。</typeparam>
+        <typeparam name="T">要添加到哈希代码的值的类型。</typeparam>
         <param name="value">要添加到哈希代码的值。</param>
         <summary>将单个值添加到哈希代码。</summary>
         <remarks>To be added.</remarks>
@@ -111,6 +117,9 @@
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Bcl.HashCode</AssemblyName>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
@@ -122,7 +131,7 @@
         <Parameter Name="comparer" Type="System.Collections.Generic.IEqualityComparer&lt;T&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T">要将添加到哈希代码的值的类型。</typeparam>
+        <typeparam name="T">要添加到哈希代码的值的类型。</typeparam>
         <param name="value">要添加到哈希代码的值。</param>
         <param name="comparer">使用 <see cref="T:System.Collections.Generic.IEqualityComparer`1" /> 计算哈希代码。
 此值可以是空引用（Visual Basic 中无内容），它将使用 <typeparamref name="T" /> 的默认相等比较器。</param>
@@ -146,6 +155,9 @@
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Bcl.HashCode</AssemblyName>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
@@ -156,11 +168,11 @@
         <Parameter Name="value1" Type="T1" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">要添加的哈希代码的值的类型。</typeparam>
+        <typeparam name="T1">要添加哈希代码的值的类型。</typeparam>
         <param name="value1">要添加到哈希代码的值。</param>
         <summary>传播由指定值返回的哈希代码。</summary>
         <returns>表示单个值的哈希代码。</returns>
-        <remarks>一些数据结构假设哈希代码分散在很大变化。 此方法返回的值的哈希代码的质量有所改善，基础数据类型是简单，例如，一个整数值时很有用。</remarks>
+        <remarks>某些数据结构假定哈希代码扩散到大范围。 此方法可提高值返回的哈希代码的质量, 在基础数据类型很简单 (例如整数值) 时, 此方法非常有用。</remarks>
       </Docs>
     </Member>
     <Member MemberName="Combine&lt;T1,T2&gt;">
@@ -179,6 +191,9 @@
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Bcl.HashCode</AssemblyName>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
@@ -191,8 +206,8 @@
         <Parameter Name="value2" Type="T2" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">要将合并到哈希代码的第一个值的类型。</typeparam>
-        <typeparam name="T2">要将合并到哈希代码的第二个值的类型。</typeparam>
+        <typeparam name="T1">要合并到哈希代码中的第一个值的类型。</typeparam>
+        <typeparam name="T2">要合并到哈希代码中的第二个值的类型。</typeparam>
         <param name="value1">第一个要合并到哈希代码中的值。</param>
         <param name="value2">第二个要合并到哈希代码中的值。</param>
         <summary>将两个值合并到哈希代码中。</summary>
@@ -216,6 +231,9 @@
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Bcl.HashCode</AssemblyName>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
@@ -230,9 +248,9 @@
         <Parameter Name="value3" Type="T3" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">要将合并到哈希代码的第一个值的类型。</typeparam>
-        <typeparam name="T2">要将合并到哈希代码的第二个值的类型。</typeparam>
-        <typeparam name="T3">要将合并到哈希代码的第三个值的类型。</typeparam>
+        <typeparam name="T1">要合并到哈希代码中的第一个值的类型。</typeparam>
+        <typeparam name="T2">要合并到哈希代码中的第二个值的类型。</typeparam>
+        <typeparam name="T3">要合并到哈希代码中的第三个值的类型。</typeparam>
         <param name="value1">第一个要合并到哈希代码中的值。</param>
         <param name="value2">第二个要合并到哈希代码中的值。</param>
         <param name="value3">第三个要合并到哈希代码中的值。</param>
@@ -257,6 +275,9 @@
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Bcl.HashCode</AssemblyName>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
@@ -273,10 +294,10 @@
         <Parameter Name="value4" Type="T4" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">要将合并到哈希代码的第一个值的类型。</typeparam>
-        <typeparam name="T2">要将合并到哈希代码的第二个值的类型。</typeparam>
-        <typeparam name="T3">要将合并到哈希代码的第三个值的类型。</typeparam>
-        <typeparam name="T4">要将合并到哈希代码的第四个值的类型。</typeparam>
+        <typeparam name="T1">要合并到哈希代码中的第一个值的类型。</typeparam>
+        <typeparam name="T2">要合并到哈希代码中的第二个值的类型。</typeparam>
+        <typeparam name="T3">要合并到哈希代码中的第三个值的类型。</typeparam>
+        <typeparam name="T4">要合并到哈希代码中的第四个值的类型。</typeparam>
         <param name="value1">第一个要合并到哈希代码中的值。</param>
         <param name="value2">第二个要合并到哈希代码中的值。</param>
         <param name="value3">第三个要合并到哈希代码中的值。</param>
@@ -302,6 +323,9 @@
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Bcl.HashCode</AssemblyName>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
@@ -320,11 +344,11 @@
         <Parameter Name="value5" Type="T5" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">要将合并到哈希代码的第一个值的类型。</typeparam>
-        <typeparam name="T2">要将合并到哈希代码的第二个值的类型。</typeparam>
-        <typeparam name="T3">要将合并到哈希代码的第三个值的类型。</typeparam>
-        <typeparam name="T4">要将合并到哈希代码的第四个值的类型。</typeparam>
-        <typeparam name="T5">要将合并到哈希代码的第五个值的类型。</typeparam>
+        <typeparam name="T1">要合并到哈希代码中的第一个值的类型。</typeparam>
+        <typeparam name="T2">要合并到哈希代码中的第二个值的类型。</typeparam>
+        <typeparam name="T3">要合并到哈希代码中的第三个值的类型。</typeparam>
+        <typeparam name="T4">要合并到哈希代码中的第四个值的类型。</typeparam>
+        <typeparam name="T5">要合并到哈希代码中的第5个值的类型。</typeparam>
         <param name="value1">第一个要合并到哈希代码中的值。</param>
         <param name="value2">第二个要合并到哈希代码中的值。</param>
         <param name="value3">第三个要合并到哈希代码中的值。</param>
@@ -351,6 +375,9 @@
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Bcl.HashCode</AssemblyName>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
@@ -371,12 +398,12 @@
         <Parameter Name="value6" Type="T6" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">要将合并到哈希代码的第一个值的类型。</typeparam>
-        <typeparam name="T2">要将合并到哈希代码的第二个值的类型。</typeparam>
-        <typeparam name="T3">要将合并到哈希代码的第三个值的类型。</typeparam>
-        <typeparam name="T4">要将合并到哈希代码的第四个值的类型。</typeparam>
-        <typeparam name="T5">要将合并到哈希代码的第五个值的类型。</typeparam>
-        <typeparam name="T6">要将合并到哈希代码的第六个值的类型。</typeparam>
+        <typeparam name="T1">要合并到哈希代码中的第一个值的类型。</typeparam>
+        <typeparam name="T2">要合并到哈希代码中的第二个值的类型。</typeparam>
+        <typeparam name="T3">要合并到哈希代码中的第三个值的类型。</typeparam>
+        <typeparam name="T4">要合并到哈希代码中的第四个值的类型。</typeparam>
+        <typeparam name="T5">要合并到哈希代码中的第5个值的类型。</typeparam>
+        <typeparam name="T6">要合并到哈希代码中的第6个值的类型。</typeparam>
         <param name="value1">第一个要合并到哈希代码中的值。</param>
         <param name="value2">第二个要合并到哈希代码中的值。</param>
         <param name="value3">第三个要合并到哈希代码中的值。</param>
@@ -404,6 +431,9 @@
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Bcl.HashCode</AssemblyName>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
@@ -426,13 +456,13 @@
         <Parameter Name="value7" Type="T7" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">要将合并到哈希代码的第一个值的类型。</typeparam>
-        <typeparam name="T2">要将合并到哈希代码的第二个值的类型。</typeparam>
-        <typeparam name="T3">要将合并到哈希代码的第三个值的类型。</typeparam>
-        <typeparam name="T4">要将合并到哈希代码的第四个值的类型。</typeparam>
-        <typeparam name="T5">要将合并到哈希代码的第五个值的类型。</typeparam>
-        <typeparam name="T6">要将合并到哈希代码的第六个值的类型。</typeparam>
-        <typeparam name="T7">要将合并到哈希代码的第七个值的类型。</typeparam>
+        <typeparam name="T1">要合并到哈希代码中的第一个值的类型。</typeparam>
+        <typeparam name="T2">要合并到哈希代码中的第二个值的类型。</typeparam>
+        <typeparam name="T3">要合并到哈希代码中的第三个值的类型。</typeparam>
+        <typeparam name="T4">要合并到哈希代码中的第四个值的类型。</typeparam>
+        <typeparam name="T5">要合并到哈希代码中的第5个值的类型。</typeparam>
+        <typeparam name="T6">要合并到哈希代码中的第6个值的类型。</typeparam>
+        <typeparam name="T7">要合并到哈希代码中的第7个值的类型。</typeparam>
         <param name="value1">第一个要合并到哈希代码中的值。</param>
         <param name="value2">第二个要合并到哈希代码中的值。</param>
         <param name="value3">第三个要合并到哈希代码中的值。</param>
@@ -461,6 +491,9 @@
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Bcl.HashCode</AssemblyName>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
@@ -485,14 +518,14 @@
         <Parameter Name="value8" Type="T8" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">要将合并到哈希代码的第一个值的类型。</typeparam>
-        <typeparam name="T2">要将合并到哈希代码的第二个值的类型。</typeparam>
-        <typeparam name="T3">要将合并到哈希代码的第三个值的类型。</typeparam>
-        <typeparam name="T4">要将合并到哈希代码的第四个值的类型。</typeparam>
-        <typeparam name="T5">要将合并到哈希代码的第五个值的类型。</typeparam>
-        <typeparam name="T6">要将合并到哈希代码的第六个值的类型。</typeparam>
-        <typeparam name="T7">要将合并到哈希代码的第七个值的类型。</typeparam>
-        <typeparam name="T8">要将合并到哈希代码的第八个值的类型。</typeparam>
+        <typeparam name="T1">要合并到哈希代码中的第一个值的类型。</typeparam>
+        <typeparam name="T2">要合并到哈希代码中的第二个值的类型。</typeparam>
+        <typeparam name="T3">要合并到哈希代码中的第三个值的类型。</typeparam>
+        <typeparam name="T4">要合并到哈希代码中的第四个值的类型。</typeparam>
+        <typeparam name="T5">要合并到哈希代码中的第5个值的类型。</typeparam>
+        <typeparam name="T6">要合并到哈希代码中的第6个值的类型。</typeparam>
+        <typeparam name="T7">要合并到哈希代码中的第7个值的类型。</typeparam>
+        <typeparam name="T8">要合并到哈希代码中的第8个值的类型。</typeparam>
         <param name="value1">第一个要合并到哈希代码中的值。</param>
         <param name="value2">第二个要合并到哈希代码中的值。</param>
         <param name="value3">第三个要合并到哈希代码中的值。</param>
@@ -522,11 +555,14 @@
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Bcl.HashCode</AssemblyName>
+      </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0;netcore-2.1;netcore-2.2;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netcore-2.1;netcore-2.2;netstandard-2.1;dotnet-plat-ext-3.0">
           <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netcore-3.0;netcore-2.1;netcore-2.2;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netcore-2.1;netcore-2.2;netstandard-2.1;dotnet-plat-ext-3.0">
           <AttributeName>System.Obsolete("HashCode is a mutable struct and should not be compared with other HashCodes.", true)</AttributeName>
         </Attribute>
       </Attributes>
@@ -560,11 +596,14 @@
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Bcl.HashCode</AssemblyName>
+      </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0;netcore-2.1;netcore-2.2;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netcore-2.1;netcore-2.2;netstandard-2.1;dotnet-plat-ext-3.0">
           <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netcore-3.0;netcore-2.1;netcore-2.2;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netcore-2.1;netcore-2.2;netstandard-2.1;dotnet-plat-ext-3.0">
           <AttributeName>System.Obsolete("HashCode is a mutable struct and should not be compared with other HashCodes. Use ToHashCode to retrieve the computed hash code.", true)</AttributeName>
         </Attribute>
       </Attributes>
@@ -595,6 +634,9 @@
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Bcl.HashCode</AssemblyName>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
@@ -602,7 +644,7 @@
       <Docs>
         <summary>连续调用 <see cref="Overload:System.HashCode.Add" /> 后计算最终哈希代码。</summary>
         <returns>计算的哈希代码。</returns>
-        <remarks>每个实例必须最多一次调用此方法<see cref="T:System.HashCode" />。</remarks>
+        <remarks>每个实例<see cref="T:System.HashCode" />最多只能调用一次此方法。</remarks>
       </Docs>
     </Member>
   </Members>

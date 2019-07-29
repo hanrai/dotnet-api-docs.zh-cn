@@ -1,5 +1,5 @@
 <Type Name="LinqDataSource" FullName="System.Web.UI.WebControls.LinqDataSource">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7806dfca4e32e99c40ed18a7e3648eca3e1119d6" /><Meta Name="ms.sourcegitcommit" Value="2dd0eede6edd6dd3d2aa8f79010848658b967609" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/18/2019" /><Meta Name="ms.locfileid" Value="58875172" /></Metadata><TypeSignature Language="C#" Value="public class LinqDataSource : System.Web.UI.WebControls.ContextDataSource, System.Web.DynamicData.IDynamicDataSource" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="2428f9fb506effcb3a27648da9609ff286984250" /><Meta Name="ms.sourcegitcommit" Value="e7974886b08aa83a8fb461e8550f31a7d4331ee3" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/23/2019" /><Meta Name="ms.locfileid" Value="68393183" /></Metadata><TypeSignature Language="C#" Value="public class LinqDataSource : System.Web.UI.WebControls.ContextDataSource, System.Web.DynamicData.IDynamicDataSource" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit LinqDataSource extends System.Web.UI.WebControls.ContextDataSource implements class System.Web.DynamicData.IDynamicDataSource, class System.Web.UI.IDataSource" />
   <TypeSignature Language="DocId" Value="T:System.Web.UI.WebControls.LinqDataSource" />
   <TypeSignature Language="VB.NET" Value="Public Class LinqDataSource&#xA;Inherits ContextDataSource&#xA;Implements IDynamicDataSource" />
@@ -63,7 +63,7 @@
   
 -   [操作顺序](#order_of_operations)  
   
--   [对数据进行排序](#ordering_data)  
+-   [数据排序](#ordering_data)  
   
 -   [数据分组](#grouping_data)  
   
@@ -77,76 +77,76 @@
   
 <a name="introduction"></a>   
 ## <a name="introduction"></a>介绍  
- 语言集成查询 (LINQ) 是用于定义一组启用以在任何声明性方式表示遍历、 筛选和投影操作的查询运算符的查询语法。基于 NET 的编程语言。 数据对象可以是内存中数据集合或表示数据库中的数据的对象。 可以检索或修改数据而无需编写每个操作的 SQL 命令。  
+ 语言集成查询 (LINQ) 是一种查询语法, 它可定义一组查询运算符, 使遍历、筛选和投影操作能够以声明性方式在任何中表示。基于网络的编程语言。 数据对象可以是内存中的数据集合或表示来自数据库的数据的对象。 您可以检索或修改数据, 而不必为每个操作都编写 SQL 命令。  
   
- <xref:System.Web.UI.WebControls.LinqDataSource>控件可在 ASP.NET 网页中使用 LINQ，通过标记文本中设置属性。 <xref:System.Web.UI.WebControls.LinqDataSource>控件使用 LINQ to SQL 来自动生成的数据命令。 有关 LINQ to SQL 的详细信息，请参阅[LINQ to SQL](https://msdn.microsoft.com/library/73d13345-eece-471a-af40-4cc7a2f11655)。  
+ 使用<xref:System.Web.UI.WebControls.LinqDataSource>控件, 可以通过在标记文本中设置属性来在 ASP.NET 网页中使用 LINQ。 <xref:System.Web.UI.WebControls.LinqDataSource>控件使用 LINQ to SQL 来自动生成数据命令。 有关 LINQ to SQL 的详细信息, 请参阅[LINQ to SQL](https://msdn.microsoft.com/library/73d13345-eece-471a-af40-4cc7a2f11655)。  
   
- 当从内存中的数据集合检索数据时，您将设置<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性设置为包含数据集合的类。 您设置<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性设置为属性或字段的返回数据集合。 例如，可能有一个名为类`Person`，其中包含一个名为属性`FavoriteCities`返回一个字符串值数组。 在这种情况下，设置<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性设置为`Person`并设置<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性设置为`FavoriteCities`。  
+ 从内存中数据集合中检索数据时, 请将<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性设置为包含数据集合的类。 将<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性设置为返回数据集合的属性或字段。 例如, 你可能有一个名为`Person`的类, 该类包含一个名为`FavoriteCities`的属性, 该属性将返回字符串值的数组。 在这种情况下, 将<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性设置`Person`为, 并<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>将属性`FavoriteCities`设置为。  
   
- 在所查询的数据库，必须首先创建表示数据库及其中的表的实体类。 可以使用[!INCLUDE[vs_ordesigner_long](~/includes/vs-ordesigner-long-md.md)]或 SqlMetal.exe 实用工具来生成这些类。 然后设置<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性设置为表示数据库的类并设置<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性设置为表示数据库表的属性。  
+ 查询数据库时, 必须首先创建表示该数据库及其表的实体类。 您可以使用[!INCLUDE[vs_ordesigner_long](~/includes/vs-ordesigner-long-md.md)]或 SqlMetal 实用程序来生成这些类。 然后, 将<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性设置为表示数据库的类, 并<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>将属性设置为表示数据库表的属性。  
   
 <a name="order_of_operations"></a>   
 ## <a name="order-of-operations"></a>操作顺序  
- <xref:System.Web.UI.WebControls.LinqDataSource>控件应用数据按以下顺序操作：  
+ <xref:System.Web.UI.WebControls.LinqDataSource>控件按以下顺序应用数据操作:  
   
-1.  其中 （指定要返回的数据的记录）。  
+1.  Where (指定要返回的数据记录)。  
   
-2.  Order By （排序）。  
+2.  排序依据 (排序)。  
   
-3.  Group By （共享的值的聚合数据记录）。  
+3.  分组依据 (对共享值的数据记录进行聚合)。  
   
-4.  Order By （排序分组数据） 的组。  
+4.  排序依据 (排序分组数据)。  
   
-5.  选择 （指定哪些字段或属性返回）。  
+5.  选择 (指定要返回的字段或属性)。  
   
-6.  自动排序 （按用户所选的属性排序数据记录）。  
+6.  自动排序 (按用户选择的属性对数据记录进行排序)。  
   
-7.  自动页 （检索用户已选择的数据记录的子集）。  
+7.  自动页面 (检索用户选择的一小部分数据记录)。  
   
- 您可以将条件添加到<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性筛选从查询返回的数据记录。 如果<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>未设置属性，<xref:System.Web.UI.WebControls.LinqDataSource>控件检索此数据对象中的每个记录。  
+ 您可以向<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性添加条件以筛选从查询返回的数据记录。 如果未<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>设置该属性<xref:System.Web.UI.WebControls.LinqDataSource> , 控件将从数据对象中检索每个记录。  
   
 <a name="ordering_data"></a>   
-## <a name="ordering-data"></a>对数据进行排序  
- 您使用<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性来指定从返回的数据要作为排序依据的属性的名称。  
+## <a name="ordering-data"></a>数据排序  
+ 使用<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性可以指定返回数据的属性名称, 以便进行排序。  
   
 > [!NOTE]
->  当你使用<xref:System.Web.UI.WebControls.LinqDataSource>控件，其[!INCLUDE[ss2k](~/includes/ss2k-md.md)]或[!INCLUDE[ssEW](~/includes/ssew-md.md)]并且<xref:System.Web.UI.WebControls.LinqDataSource.AutoPage%2A>属性设置为`true`，必须提供中的值<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性。 默认情况下<xref:System.Web.UI.WebControls.LinqDataSource.AutoPage%2A>属性是`true`。 如果你将值赋给<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性，您还必须包括所有标识列在查询中返回的属性列表中。  
+>  <xref:System.Web.UI.WebControls.LinqDataSource>当你使用具有[!INCLUDE[ss2k](~/includes/ss2k-md.md)]或[!INCLUDE[ssEW](~/includes/ssew-md.md)]的控件并且<xref:System.Web.UI.WebControls.LinqDataSource.AutoPage%2A>属性设置为`true`时, 你必须在<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性中提供一个值。 默认情况下, <xref:System.Web.UI.WebControls.LinqDataSource.AutoPage%2A>属性为`true`。 如果为<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性分配一个值, 则还必须在查询中返回的属性列表中包含所有标识列。  
   
 <a name="grouping_data"></a>   
 ## <a name="grouping-data"></a>数据分组  
- 您使用<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性来指定哪些属性用于合并具有相同的值的数据记录。 当分组数据时，可以包括`Key`并`It`，它们动态创建中的属性，<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性。 `Key`属性是指用来对数据进行分组的一个或多个属性中的值。 例如，如果按属性名为分组`Category`，则`Key`属性将包含中的所有唯一值`Category`属性。 `It`属性是指一系列中的数据分组的单个记录。 您可以循环访问`It`属性来检索已合并，在分组操作中的单个记录。 例如，如果按属性名为分组`Category`，则`It`属性包含所有共享一个公共值中的单个记录`Category`属性。  
+ 使用<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性可以指定哪些属性用于合并具有相同值的数据记录。 当对`Key` `It`数据进行分组时,可以在属性中包括和,它们是动态<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>创建的属性。 `Key`属性指的是用于对数据进行分组的属性中的值。 例如, 如果按名为`Category`的属性分组, 则`Key`属性将包含`Category`属性中的所有唯一值。 `It`属性引用数据分组中的单个记录的集合。 您可以循环访问`It`属性来检索在分组操作中合并的各个记录。 例如, 如果按名为`Category`的属性分组, 则属性将`It`包含在`Category`属性中共享公共值的所有单个记录。  
   
- 您使用<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>属性来指定要使用的分组的数据进行排序的属性。 当分组数据，<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性指定分组的数据中各记录的排序方式。  
+ 使用<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>属性可指定用于对分组数据进行排序的属性。 当对数据进行分组时<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A> , 属性将指定如何对分组数据中的单个记录进行排序。  
   
- 默认情况下，<xref:System.Web.UI.WebControls.LinqDataSource>控件从一个数据对象中检索的所有属性的值。 您使用<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性来指定要返回如果想要使用的子集可用属性的属性。 选择操作应用之后 Where、 Order By 和 Group By 操作。 因此，如果 Select 子句中创建了别名，别名不可用在其他子句中。  
+ 默认情况下, <xref:System.Web.UI.WebControls.LinqDataSource>控件从数据对象中检索所有属性的值。 如果要使用<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>可用属性的子集, 则可以使用属性来指定要返回的属性。 选择操作应用于 Where、Order By 和 Group By 操作之后。 因此, 如果在 Select 子句中创建了别名, 则该别名在其他子句中不可用。  
   
 <a name="data_modifications"></a>   
 ## <a name="data-modifications"></a>数据修改  
- 您可以指定是否使用启用数据修改<xref:System.Web.UI.WebControls.LinqDataSource.EnableDelete%2A>， <xref:System.Web.UI.WebControls.LinqDataSource.EnableInsert%2A>，和<xref:System.Web.UI.WebControls.LinqDataSource.EnableUpdate%2A>属性。 修改数据的用户界面<xref:System.Web.UI.WebControls.LinqDataSource>控件通常提供通过数据绑定控件，如<xref:System.Web.UI.WebControls.DetailsView>控件。 除了设置之外<xref:System.Web.UI.WebControls.LinqDataSource.EnableDelete%2A>， <xref:System.Web.UI.WebControls.LinqDataSource.EnableInsert%2A>，或<xref:System.Web.UI.WebControls.LinqDataSource.EnableUpdate%2A>到`true`，启用自动数据修改所需满足以下条件：  
+ 您可以使用<xref:System.Web.UI.WebControls.LinqDataSource.EnableDelete%2A>、 <xref:System.Web.UI.WebControls.LinqDataSource.EnableInsert%2A>和<xref:System.Web.UI.WebControls.LinqDataSource.EnableUpdate%2A>属性指定是否启用了数据修改。 用于修改<xref:System.Web.UI.WebControls.LinqDataSource>控件中数据的用户界面通常是通过数据绑定控件 (例如<xref:System.Web.UI.WebControls.DetailsView>控件) 提供的。 除了将、 <xref:System.Web.UI.WebControls.LinqDataSource.EnableInsert%2A>或<xref:System.Web.UI.WebControls.LinqDataSource.EnableDelete%2A> <xref:System.Web.UI.WebControls.LinqDataSource.EnableUpdate%2A>设置为`true`以外, 还需要满足以下条件才能启用自动数据修改:  
   
--   <xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>不能将属性分配一个值。  
+-   不能为属性赋值。 <xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>  
   
--   <xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>不能将属性分配一个值。  
+-   不能为属性赋值。 <xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>  
   
--   分配给的类<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性必须派生自<xref:System.Data.Linq.DataContext>。  
+-   分配给<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性的类必须派生自<xref:System.Data.Linq.DataContext>。  
   
--   分配给属性<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性必须派生自<xref:System.Data.Linq.Table%601>。  
+-   分配给<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性的属性必须派生自<xref:System.Data.Linq.Table%601>。  
   
- 你可以限制在两种方法中的数据绑定控件中显示的属性。 你可以设置<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性的子集属性，或者你可以通过添加定义的字段的数据绑定控件<xref:System.Web.UI.WebControls.DataControlField>控件。 但是，如果您设置<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性，这意味着，不能启用自动更新、 插入和删除操作。 如果你想要使用的可用属性的子集时启用自动数据修改，未设置<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性。 相反，此数据对象中检索的所有属性和管理通过使用数据绑定控件所显示。 当你使用<xref:System.Web.UI.WebControls.DetailsView>控件或<xref:System.Web.UI.WebControls.GridView>控件，则还必须设置<xref:System.Web.UI.WebControls.DetailsView.AutoGenerateRows%2A>或<xref:System.Web.UI.WebControls.GridView.AutoGenerateColumns%2A>属性设置为`false`。 这会阻止数据绑定控件自动包括用于编辑和删除数据的按钮。 不会显示在数据绑定控件的任何值存储在视图状态。 它们不变时传递给数据源执行数据更新。  
+ 可以通过两种方式限制在数据绑定控件中显示哪些属性。 可以将<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性设置为属性的子集, 也可以通过添加<xref:System.Web.UI.WebControls.DataControlField>控件来定义数据绑定控件的字段。 但是, 如果设置了<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性, 则表示不能启用自动更新、插入和删除操作。 如果要在使用可用属性的子集时启用自动数据修改, 请不要设置<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性。 相反, 从数据对象检索所有属性, 并使用数据绑定控件来管理要显示的属性。 <xref:System.Web.UI.WebControls.DetailsView>使用控件<xref:System.Web.UI.WebControls.DetailsView.AutoGenerateRows%2A> `false`或控件时, 还必须将或<xref:System.Web.UI.WebControls.GridView.AutoGenerateColumns%2A>属性设置为。 <xref:System.Web.UI.WebControls.GridView> 这会阻止数据绑定控件自动包含用于编辑和删除数据的按钮。 数据绑定控件中未显示的任何值都存储在视图状态中。 当执行数据更新时, 它们将以不更改的形式传递到数据源。  
   
 <a name="evaluating_value_at_run_time"></a>   
 ## <a name="evaluating-values-at-run-time"></a>在运行时计算值  
- 如果需要在运行时进行排序，评估值筛选，或者对值进行分组，您可以将参数添加到<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>， <xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>， <xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsByParameters%2A>，或<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合。  
+ 如果需要在运行时评估值以便对值进行排序、筛选或分组, 则可以将参数<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>添加到<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsByParameters%2A>、 <xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>、或<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合。  
   
- 如果你想要指定默认值，您可以将参数添加到<xref:System.Web.UI.WebControls.LinqDataSource.InsertParameters%2A>集合。  
+ 如果要指定默认值, 则可以将参数添加到<xref:System.Web.UI.WebControls.LinqDataSource.InsertParameters%2A>集合中。  
   
- 如果你想要检查或修改值，然后执行数据操作，则可以处理<xref:System.Web.UI.WebControls.LinqDataSource.Deleting>， <xref:System.Web.UI.WebControls.LinqDataSource.Inserting>， <xref:System.Web.UI.WebControls.LinqDataSource.Selecting>，或<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件。 此外可以处理这些事件，以便取消数据操作或发生时根据用户输入的数据类中设置属性的验证错误。  
+ 如果要在执行数据操作之前检查或修改值, 可以<xref:System.Web.UI.WebControls.LinqDataSource.Deleting>处理、 <xref:System.Web.UI.WebControls.LinqDataSource.Inserting>、 <xref:System.Web.UI.WebControls.LinqDataSource.Selecting>或<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件。 您还可以处理这些事件, 以便取消数据操作, 或检查在基于用户输入设置数据类中的属性时发生的验证错误。  
   
- 若要完成数据操作后，请检查值，处理<xref:System.Web.UI.WebControls.LinqDataSource.Deleted>， <xref:System.Web.UI.WebControls.LinqDataSource.Inserted>， <xref:System.Web.UI.WebControls.LinqDataSource.Selected>，或<xref:System.Web.UI.WebControls.LinqDataSource.Updated>事件。  
+ 若要在数据操作完成后检查值, 请处理<xref:System.Web.UI.WebControls.LinqDataSource.Deleted>、 <xref:System.Web.UI.WebControls.LinqDataSource.Inserted>、 <xref:System.Web.UI.WebControls.LinqDataSource.Selected>或<xref:System.Web.UI.WebControls.LinqDataSource.Updated>事件。  
   
 <a name="working_with_stored_procedures"></a>   
 ## <a name="working-with-stored-procedures"></a>使用存储过程  
- 您使用<xref:System.Web.UI.WebControls.LinqDataSource>要从存储过程检索数据，通过创建的事件处理程序控件<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件。 在事件处理程序，您在数据上下文类表示存储的过程中调用该方法并将结果设置为<xref:System.Web.UI.WebControls.LinqDataSourceSelectEventArgs.Result%2A>属性的<xref:System.Web.UI.WebControls.LinqDataSourceSelectEventArgs>对象。 如果想要启用自动更新、 插入和删除操作的数据，从方法返回的类型必须匹配在指定的类型<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性。 有关创建数据上下文方法的详细信息，请参阅[如何：创建映射到存储过程和函数的 DataContext 方法（O/R 设计器）](https://msdn.microsoft.com/library/e7ca32f1-50b3-48af-ad92-ceafd749296a)。  
+ 通过为<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件<xref:System.Web.UI.WebControls.LinqDataSource>创建事件处理程序, 可以使用该控件从存储过程中检索数据。 在事件处理程序中, 调用数据上下文类中的方法, 该方法表示存储过程, 并将结果设置为<xref:System.Web.UI.WebControls.LinqDataSourceSelectEventArgs.Result%2A> <xref:System.Web.UI.WebControls.LinqDataSourceSelectEventArgs>对象的属性。 如果要对数据启用自动更新、插入和删除操作, 则从方法返回的类型必须与<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性中指定的类型匹配。 有关创建数据上下文方法的详细信息, 请[参阅如何:创建映射到存储过程和函数的 DataContext 方法（O/R 设计器）](https://msdn.microsoft.com/library/e7ca32f1-50b3-48af-ad92-ceafd749296a)。  
   
 <a name="declarative_syntax"></a>   
 ## <a name="declarative-syntax"></a>声明性语法  
@@ -202,27 +202,27 @@
    
   
 ## Examples  
- 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource>从一个名为的实体类中检索数据的控件`Products`。 实体类可通过使用生成[!INCLUDE[vs_ordesigner_short](~/includes/vs-ordesigner-short-md.md)]或 SqlMetal.exe 实用程序。 <xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性设置为返回中具有值的记录`Price`属性大于 50。 一个<xref:System.Web.UI.WebControls.GridView>控件绑定到<xref:System.Web.UI.WebControls.LinqDataSource>控件来显示数据。  
+ 下面的示例演示了<xref:System.Web.UI.WebControls.LinqDataSource>一个控件, 该控件从名为`Products`的实体类中检索数据。 实体类可能是使用[!INCLUDE[vs_ordesigner_short](~/includes/vs-ordesigner-short-md.md)]或 SqlMetal 实用程序生成的。 此<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性设置为仅返回`Price`属性中值大于50的记录。 <xref:System.Web.UI.WebControls.GridView>控件绑定<xref:System.Web.UI.WebControls.LinqDataSource>到控件以显示数据。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#5](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default5.aspx#5)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#5](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default5.aspx#5)]  
   
- 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource>控件，使用户能够更新、 删除和数据源中插入记录。 一个<xref:System.Web.UI.WebControls.DetailsView>控件绑定到<xref:System.Web.UI.WebControls.LinqDataSource>控件，从而使用户能够查看和修改数据。 请注意，任何 SQL 命令才能选择、 更新、 删除或插入记录。  
+ 下面的示例显示一个<xref:System.Web.UI.WebControls.LinqDataSource>控件, 该控件允许用户在数据源中更新、删除和插入记录。 控件将绑定<xref:System.Web.UI.WebControls.LinqDataSource>到控件, 并使用户能够查看和修改数据。 <xref:System.Web.UI.WebControls.DetailsView> 请注意, 不需要 SQL 命令即可选择、更新、删除或插入记录。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default2.aspx#2)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default2.aspx#2)]  
   
- 下面的示例演示的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>设置的数据对象的事件基于在网页中的值。  
+ 下面的示例演示了一个<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件的事件处理程序, 该事件根据网页中的值设置数据对象。  
   
  [!code-csharp[System.Web.UI.WebControls.LinqDataSourceSelectEventArgs#3](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSourceSelectEventArgs/cs/Default3.aspx.cs#3)]
  [!code-vb[System.Web.UI.WebControls.LinqDataSourceSelectEventArgs#3](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSourceSelectEventArgs/vb/Default3.aspx.vb#3)]  
   
- 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource>控制，它是由两个列配置为组。 `Key`属性引用具有两个属性的对象`ProductCategory`和`Color`。 所表示的对象`It`是已重命名 （别名） `Products`。 重命名`Products`对象包含分组中各记录的集合。 每个实例将包含中的所有列`Products`表。  
+ 下面的示例演示一个<xref:System.Web.UI.WebControls.LinqDataSource>配置为按两列分组的控件。 属性引用具有两个属性 (和`Color`) `ProductCategory`的对象。 `Key` 所表示`It`的对象已重命名为 (化名`Products`为)。 重命名`Products`的对象包含分组中各个记录的集合。 每个实例都将包含`Products`表中的所有列。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource.GroupBy#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.GroupBy/cs/Default.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource.GroupBy#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.GroupBy/vb/Default.aspx#1)]  
   
- 下面的示例演示两个<xref:System.Web.UI.WebControls.ListView>显示从数据的控件<xref:System.Web.UI.WebControls.LinqDataSource>上一示例中的控件。 一个<xref:System.Web.UI.WebControls.ListView>控件显示分组的数据，以及其他<xref:System.Web.UI.WebControls.ListView>控件显示各个属于该组的产品名称。 嵌套的数据绑定控件<xref:System.Web.UI.WebControls.BaseDataList.DataSource%2A>属性设置为`Products`，这是别名`It`对象。  
+ 下面的示例演示两<xref:System.Web.UI.WebControls.ListView>个控件, 这些控件在上<xref:System.Web.UI.WebControls.LinqDataSource>一示例的控件中显示数据。 一个<xref:System.Web.UI.WebControls.ListView>控件显示分组数据, 另<xref:System.Web.UI.WebControls.ListView>一个控件显示属于该组的产品的各个名称。 嵌套的数据绑定控件的<xref:System.Web.UI.WebControls.BaseDataList.DataSource%2A>属性设置为`Products`, 这`It`是对象的别名。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource.GroupBy#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.GroupBy/cs/Default.aspx#2)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource.GroupBy#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.GroupBy/vb/Default.aspx#2)]  
@@ -281,19 +281,19 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指示 <see cref="T:System.Web.UI.WebControls.LinqDataSource" /> 控件是否根据 <see cref="P:System.Web.UI.WebControls.LinqDataSource.OrderByParameters" /> 集合中的值动态创建 Order By 子句。</summary>
-        <value><see langword="true" /> 如果<see cref="T:System.Web.UI.WebControls.LinqDataSource" />控件创建 Order By 子句; 否则为<see langword="false" />。 默认值为 <see langword="false" />。</value>
+        <value><see langword="true" />如果控件创建 Order By 子句, <see langword="false" />则为; 否则为。 <see cref="T:System.Web.UI.WebControls.LinqDataSource" /> 默认值为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当您将设置<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A>属性设置为`true`，则<xref:System.Web.UI.WebControls.LinqDataSource>控件动态创建 Order By 子句中的值为基础的<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合。 <xref:System.Web.UI.WebControls.LinqDataSource>控制对数据进行排序的第一个参数和每个其他参数的数据，此外进行排序。 包含参数`null`或 Order By 子句中不包含空值。  
+ 将<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A>属性设置为`true`时, <xref:System.Web.UI.WebControls.LinqDataSource>控件将动态创建基于<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合中的值的 Order By 子句。 <xref:System.Web.UI.WebControls.LinqDataSource>控件按第一个参数对数据进行排序, 并另外对每个附加参数的数据进行排序。 包含`null`或空值的参数不包含在 Order By 子句中。  
   
- 未设置<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性时<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A>设置为`true`，因为分析器可动态创建 Order By 子句。 <xref:System.Web.UI.WebControls.LinqDataSource>控件将引发异常，如果<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A>设置为`true`和<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性分配值。  
+ 如果设置为<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A> ,`true`则不设置属性, 因为分析器会动态创建<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A> Order By 子句。 如果将设置为<xref:System.Web.UI.WebControls.LinqDataSource> `true` ,并且<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>为属性赋值, 则该控件引发异常。 <xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A>  
   
    
   
 ## Examples  
- 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource>控件，其<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A>设置为`true`。 参数包含在<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>基于属性的数据命名的用户进行排序的集合选择从<xref:System.Web.UI.WebControls.DropDownList>控件。  
+ 下面的示例演示了<xref:System.Web.UI.WebControls.LinqDataSource>一个控件, <xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A>该控件`true`的设置为。 参数包含在基于用户<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A> <xref:System.Web.UI.WebControls.DropDownList>从控件中选择的属性名称对数据进行排序的集合中。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#8](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default8.aspx#8)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#8](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default8.aspx#8)]  
@@ -336,16 +336,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当您将设置<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A>属性设置为`true`，则<xref:System.Web.UI.WebControls.LinqDataSource>控件动态创建 Where 子句中的参数从<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合。 将添加到每个参数<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合必须具有其<xref:System.Web.UI.WebControls.Parameter.Name%2A>属性设置为匹配正被查询的数据对象中的属性的值。 自动生成 Where 子句将检查是否在指定的值<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合与数据对象中的匹配属性的值相等。 如果提供多个参数，则这些参数将与逻辑`AND`操作。 包含参数`null`或空值不包含在 Where 子句。  
+ 将<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A>属性设置为`true`时, <xref:System.Web.UI.WebControls.LinqDataSource>控件将从<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合中的参数动态创建 Where 子句。 添加到<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合中的每个参数都必须将<xref:System.Web.UI.WebControls.Parameter.Name%2A>其属性设置为与正在查询的数据对象中的属性匹配的值。 自动生成的 Where 子句将检查在<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合中指定的值是否等于数据对象中的匹配属性的值。 如果提供多个参数, 则这些参数将与逻辑`AND`操作链接。 包含`null`或空值的参数不包含在 Where 子句中。  
   
- 自动生成<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>子句可以仅测试相等性和链接参数只能与`AND`操作。 未设置<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A>属性设置为`true`如果您需要添加一个条件，不会测试是否相等或如果有相关联的参数`OR`操作。 可以通过设置完成这些任务<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A>属性设置为`false`并添加中的占位符<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性中每个参数<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合。 在<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性，与每个占位符名称的前面加上 @ 符号。  
+ 自动生成<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>的子句只能测试相等性, 只能链接到`AND`操作的参数。 如果必须添加不<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A>测试相等`true`性的条件, 或者必须将参数与`OR`操作相关联, 请不要将属性设置为。 可以通过将<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A>属性设置为`false` , 并在该<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A> <xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合中的每个参数的属性中添加占位符, 来完成这些任务。 <xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>在属性中, 在每个占位符名称前面加上 @ 符号。  
   
- 未设置<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性时<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A>属性是`true`，因为分析器可动态创建 Where 子句。 <xref:System.Web.UI.WebControls.LinqDataSource>控件将引发异常，如果<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A>属性是`true`和<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性分配值。  
+ 当属性为时, <xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>不会设置属性, `true`因为分析器会动态创建 Where 子句。 <xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A> 如果该<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A>属性为`true` , 则该<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A> 控件引发异常,并且为属性赋值。<xref:System.Web.UI.WebControls.LinqDataSource>  
   
    
   
 ## Examples  
- 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource>控件，其<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A>设置为`true`。 一个<xref:System.Web.UI.WebControls.GridView>控件绑定到<xref:System.Web.UI.WebControls.LinqDataSource>控件来显示从查询返回的数据。 一个<xref:System.Web.UI.WebControls.DropDownList>控件是，它是包含三个值填充。 参数包含在<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合中的具有名称设置为`Category,`与数据对象的属性之一匹配。 其<xref:System.Web.UI.WebControls.ControlParameter.ControlID%2A>属性设置为的 ID<xref:System.Web.UI.WebControls.DropDownList>控件。 <xref:System.Web.UI.WebControls.LinqDataSource>控件将自动创建<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性设置为筛选器记录基于用户从选择的值<xref:System.Web.UI.WebControls.DropDownList>控件。 查询返回的记录其`Category`属性与用户从所选的值匹配<xref:System.Web.UI.WebControls.DropDownList>控件。  
+ 下面的示例演示了<xref:System.Web.UI.WebControls.LinqDataSource>一个控件, <xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A>该控件`true`的设置为。 <xref:System.Web.UI.WebControls.GridView>控件绑定<xref:System.Web.UI.WebControls.LinqDataSource>到控件以显示从查询返回的数据。 包含用三个值填充的控件。<xref:System.Web.UI.WebControls.DropDownList> 参数包含在<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合中, 其名称设置为`Category,` , 与数据对象的一个属性匹配。 将<xref:System.Web.UI.WebControls.ControlParameter.ControlID%2A>其属性设置为<xref:System.Web.UI.WebControls.DropDownList>控件的 ID。 控件自动创建属性, 以根据用户从<xref:System.Web.UI.WebControls.DropDownList>控件中选择的值来筛选记录。 <xref:System.Web.UI.WebControls.LinqDataSource.Where%2A> <xref:System.Web.UI.WebControls.LinqDataSource> 查询返回的记录`Category`的属性与用户<xref:System.Web.UI.WebControls.DropDownList>从控件中选择的值匹配。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#7](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default7.aspx#7)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#7](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default7.aspx#7)]  
@@ -385,12 +385,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置<xref:System.Web.UI.WebControls.LinqDataSource.AutoPage%2A>属性设置为`true`若要在中启用分页<xref:System.Web.UI.WebControls.LinqDataSource>控件。 若要使用户能够对数据进行分页，连接提供用于对分页的接口的数据绑定控件<xref:System.Web.UI.WebControls.LinqDataSource>控件。 当<xref:System.Web.UI.WebControls.LinqDataSource.AutoPage%2A>属性设置为`true`，则<xref:System.Web.UI.WebControls.LinqDataSource>控件所检索仅足够的数据绑定控件中的一页的记录。 它使用<xref:System.Linq.Enumerable.Skip%2A>和<xref:System.Linq.Enumerable.Take%2A>方法来检索当前页的记录。  
+ 将属性设置为`true` , <xref:System.Web.UI.WebControls.LinqDataSource>以在控件中启用分页。 <xref:System.Web.UI.WebControls.LinqDataSource.AutoPage%2A> 若要使用户能够对数据进行分页, 请连接一个数据绑定控件, 该控件提供用于分页到<xref:System.Web.UI.WebControls.LinqDataSource>控件的接口。 当属性设置为`true`时, <xref:System.Web.UI.WebControls.LinqDataSource>控件在数据绑定控件中只检索一页中的记录。 <xref:System.Web.UI.WebControls.LinqDataSource.AutoPage%2A> 它使用<xref:System.Linq.Enumerable.Skip%2A>和<xref:System.Linq.Enumerable.Take%2A>方法检索当前页的记录。  
   
    
   
 ## Examples  
- 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource>控件，其<xref:System.Web.UI.WebControls.LinqDataSource.AutoPage%2A>属性设置为`true`和一个<xref:System.Web.UI.WebControls.GridView>绑定到控件<xref:System.Web.UI.WebControls.LinqDataSource>控件。 <xref:System.Web.UI.WebControls.GridView.AllowPaging%2A>的属性<xref:System.Web.UI.WebControls.GridView>控件设置为`true`提供界面，允许用户数据进行分页。  
+ 下面的示例演示了<xref:System.Web.UI.WebControls.LinqDataSource>一个控件<xref:System.Web.UI.WebControls.LinqDataSource.AutoPage%2A> , 其属性设置`true`为, <xref:System.Web.UI.WebControls.GridView>并且有一个绑定到该<xref:System.Web.UI.WebControls.LinqDataSource>控件的控件。 将<xref:System.Web.UI.WebControls.GridView.AllowPaging%2A> <xref:System.Web.UI.WebControls.GridView>控件的属性设置为`true` , 以提供允许用户逐页浏览数据的接口。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default.aspx#1)]  
@@ -430,16 +430,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.LinqDataSource>控件支持两种方法用于对数据进行排序。 可以使用<xref:System.Web.UI.WebControls.LinqDataSource.AutoSort%2A>属性来启用运行时排序，或者设置<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性来定义在设计时的排序。  
+ <xref:System.Web.UI.WebControls.LinqDataSource>控件支持两种对数据进行排序的方法。 您可以使用<xref:System.Web.UI.WebControls.LinqDataSource.AutoSort%2A>属性启用运行时排序, 也可以<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>将属性设置为在设计时定义排序。  
   
- 设置<xref:System.Web.UI.WebControls.LinqDataSource.AutoSort%2A>属性设置为`true`中启用排序<xref:System.Web.UI.WebControls.LinqDataSource>基于从数据绑定控件的排序表达式的控件。 数据绑定控件提供的接口，使用户能够在运行时选择要用于排序的属性。  
+ 将属性设置为`true` , <xref:System.Web.UI.WebControls.LinqDataSource>以便在基于数据绑定控件中的排序表达式的控件中启用排序。 <xref:System.Web.UI.WebControls.LinqDataSource.AutoSort%2A> 数据绑定控件提供了接口, 使用户能够在运行时选择要用于排序的属性。  
   
- 你可以以编程方式设置通过设置返回数据的顺序<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性设置为属性或用于排序的属性。 当<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性设置为一个属性和<xref:System.Web.UI.WebControls.LinqDataSource.AutoSort%2A>属性是`true`，从数据绑定控件的排序表达式中的表达式之后应用<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性。 因此，这将确定数据的最终排序。  
+ 您可以通过将<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性设置为用于排序的属性或属性, 以编程方式设置返回数据的顺序。 当属性设置为属性<xref:System.Web.UI.WebControls.LinqDataSource.AutoSort%2A>且属性为`true`时, 将在<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性中的表达式后应用数据绑定控件中的排序表达式。 <xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A> 因此, 这将确定数据的最终排序。  
   
    
   
 ## Examples  
- 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource>控件，其<xref:System.Web.UI.WebControls.LinqDataSource.AutoSort%2A>属性设置为`true`和一个<xref:System.Web.UI.WebControls.GridView>绑定到控件<xref:System.Web.UI.WebControls.LinqDataSource>控件。 <xref:System.Web.UI.WebControls.GridView.AllowSorting%2A>的属性<xref:System.Web.UI.WebControls.GridView>控件设置为`true`提供界面，允许用户对数据进行排序。  
+ 下面的示例演示了<xref:System.Web.UI.WebControls.LinqDataSource>一个控件<xref:System.Web.UI.WebControls.LinqDataSource.AutoSort%2A> , 其属性设置`true`为, <xref:System.Web.UI.WebControls.GridView>并且有一个绑定到该<xref:System.Web.UI.WebControls.LinqDataSource>控件的控件。 将<xref:System.Web.UI.WebControls.GridView.AllowSorting%2A> <xref:System.Web.UI.WebControls.GridView>控件的属性设置为`true` , 以提供允许用户对数据进行排序的接口。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default.aspx#1)]  
@@ -475,11 +475,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 处理<xref:System.Web.UI.WebControls.LinqDataSource.ContextCreated>事件，以便检查的上下文类型对象或检查时，创建对象时引发的异常。 检索上下文类型对象从<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Result%2A>属性的<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>与此事件相关联的对象。 检索的数据操作过程中引发的异常<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>属性。  
+ <xref:System.Web.UI.WebControls.LinqDataSource.ContextCreated>处理事件以检查上下文类型对象, 或检查在创建对象时引发的异常。 从与此事件关联的<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Result%2A> <xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>对象的属性中检索上下文类型对象。 从<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>属性中检索在数据操作过程中引发的异常。  
   
- 上下文类型对象选择、 更新、 插入和删除操作过程中创建，并且在整个请求重复使用。  
+ 上下文类型对象是在 select、update、insert 和 delete 操作过程中创建的, 并在整个请求中重复使用。  
   
- 还有一次时不引发该事件。 这是以编程方式设置<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Result%2A>属性设置为对象期间<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件。 附加条件是，原始值不需要存储在视图状态或中的对象<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Result%2A>属性实现<xref:System.Data.Linq.ITable>接口。  
+ 不引发事件时有一次。 这是在<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件中以编程<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Result%2A>方式将属性设置为对象时的情况。 另一种情况是, 原始值不必存储在视图状态中, 或者<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Result%2A>属性中的对象<xref:System.Data.Linq.ITable>实现接口。  
   
  ]]></format>
         </remarks>
@@ -512,16 +512,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认情况下<xref:System.Web.UI.WebControls.LinqDataSource>控件创建中指定类型的实例<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性。 <xref:System.Web.UI.WebControls.LinqDataSource>控件调用要创建的对象的实例的数据上下文对象的默认构造函数。 原因可能是您必须使用非默认构造函数，或者您必须创建不同的对象中指定从<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性。 在这种情况下，必须处理<xref:System.Web.UI.WebControls.LinqDataSource.ContextCreating>事件和手动创建数据上下文对象。  
+ 默认情况下, <xref:System.Web.UI.WebControls.LinqDataSource>该控件创建<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>在属性中指定的类型的实例。 <xref:System.Web.UI.WebControls.LinqDataSource>控件调用数据上下文对象的无参数构造函数来创建对象的实例。 您可能必须使用非参数构造函数, 或者必须创建一个与<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性中指定的对象不同的对象。 在这种情况下, 必须处理<xref:System.Web.UI.WebControls.LinqDataSource.ContextCreating>事件并手动创建数据上下文对象。  
   
- 选择、 更新、 插入和删除操作期间会创建上下文类型对象。  
+ 上下文类型对象是在 select、update、insert 和 delete 操作过程中创建的。  
   
- 还有一次时不引发该事件。 这是以编程方式设置<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Result%2A>中的事件处理程序的对象的属性<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件。 附加条件是，原始值不需要存储在视图状态或中的对象<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Result%2A>属性实现<xref:System.Data.Linq.ITable>接口。  
+ 不引发事件时有一次。 这是以编程方式将<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Result%2A>属性设置为<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件的事件处理程序中的对象时。 另一种情况是, 原始值不必存储在视图状态中, 或者<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Result%2A>属性中的对象<xref:System.Data.Linq.ITable>实现接口。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用期间的非默认构造函数创建的数据上下文对象<xref:System.Web.UI.WebControls.LinqDataSource.ContextCreating>事件。 该代码将分配到的对象<xref:System.Web.UI.WebControls.LinqDataSourceContextEventArgs.ObjectInstance%2A>属性。  
+ 下面的示例演示如何通过在<xref:System.Web.UI.WebControls.LinqDataSource.ContextCreating>事件期间使用非参数构造函数来创建数据上下文对象。 该代码将对象分配给<xref:System.Web.UI.WebControls.LinqDataSourceContextEventArgs.ObjectInstance%2A>属性。  
   
  [!code-csharp[System.Web.UI.WebControls.LinqDataSource.ContextCreating#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.ContextCreating/cs/Default.aspx.cs#1)]
  [!code-vb[System.Web.UI.WebControls.LinqDataSource.ContextCreating#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.ContextCreating/vb/Default.aspx.vb#1)]  
@@ -557,7 +557,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您处理<xref:System.Web.UI.WebControls.LinqDataSource.ContextDisposing>事件以手动释放对象或执行清理该对象被销毁前的特定于该对象。  
+ 您可以处理<xref:System.Web.UI.WebControls.LinqDataSource.ContextDisposing>事件以手动释放对象, 或在销毁对象之前执行特定于对象的清理。  
   
  ]]></format>
         </remarks>
@@ -594,27 +594,27 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当你使用<xref:System.Web.UI.WebControls.LinqDataSource>控件从内存中数据集合或数据库检索数据，则必须指定两个属性。 第一个是表示数据源的数据上下文类。 第二个是中包含的数据的数据上下文类的属性。 您设置<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性设置为数据上下文类的名称设<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性设置为包含数据的数据集合。  
+ 使用<xref:System.Web.UI.WebControls.LinqDataSource>控件从内存中数据集合或数据库检索数据时, 必须指定两个属性。 第一个是表示数据源的数据上下文类。 第二个是数据上下文类中包含数据的属性。 将<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性设置为数据上下文类的名称, 并<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>将属性设置为包含数据的数据集合。  
   
- 例如，当从数据库检索数据，设置<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性设置为表示数据库的类的名称。 此外设置<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性设置为表示数据库中的表的属性。 若要从数据库中生成类，使用[!INCLUDE[vs_ordesigner_short](~/includes/vs-ordesigner-short-md.md)]或 SqlMetal.exe 实用工具来自动生成这些类。  
+ 例如, 从数据库中检索数据时, 请将<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性设置为表示数据库的类的名称。 还将<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性设置为表示数据库中的表的属性。 若要从数据库生成类, 请使用[!INCLUDE[vs_ordesigner_short](~/includes/vs-ordesigner-short-md.md)]或 SqlMetal 实用程序来自动生成这些类。  
   
- 当从内存中的数据集合 （如数组） 中检索数据时，设置<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性设置为包含数组属性的类的名称。 然后设置<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性设置为用于获取数组的属性。  
+ 从内存中的数据集合 (如数组) 中检索数据时, 请将<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性设置为包含数组属性的类的名称。 然后将<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性设置为可获取数组的属性。  
   
- 若要启用自动更新、 插入或删除操作通过<xref:System.Web.UI.WebControls.LinqDataSource>控制分配给的类<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性必须派生自<xref:System.Data.Linq.DataContext>。 此外，此属性分配给<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性必须派生自<xref:System.Data.Linq.Table%601>。 如果您不需要以启用自动更新、 插入，或者删除操作，则可以分配的任何类型的类名称<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性。  
+ 若要通过<xref:System.Web.UI.WebControls.LinqDataSource>控件启用自动更新、插入或删除操作, 则分配<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>给属性的类必须派生自<xref:System.Data.Linq.DataContext>。 此外, 分配<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>给属性的属性必须派生自<xref:System.Data.Linq.Table%601>。 如果不需要启用自动更新、插入或删除操作, 则可以将任何类型的类的名称分配给<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性。  
   
- 有关如何从一个类的实例中选择数据的信息，请参阅<xref:System.Web.UI.WebControls.LinqDataSourceSelectEventArgs.Result%2A>属性。  
+ 有关如何从类的实例中选择数据的信息, 请参见<xref:System.Web.UI.WebControls.LinqDataSourceSelectEventArgs.Result%2A>属性。  
   
    
   
 ## Examples  
- 下面的示例演示如何设置<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性设置为包含一个字符串数组的类。 它还演示如何将属性设置为一个类 (由生成[!INCLUDE[vs_ordesigner_short](~/includes/vs-ordesigner-short-md.md)]) 表示的数据库。  
+ 下面的示例演示如何将<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性设置为包含字符串数组的类。 它还演示如何将属性设置为表示数据库的类 (由[!INCLUDE[vs_ordesigner_short](~/includes/vs-ordesigner-short-md.md)]生成)。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Overview#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Overview/cs/Default.aspx#2)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Overview#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Overview/vb/Default.aspx#2)]  
   
- 名为的类`ExampleDataContext`，表示数据库表不显示在此示例中。 对于此示例正常工作，必须创建此类，通过添加一个命名的 Example.dbml 和将表名为到电影的 LINQ To SQL 类[!INCLUDE[vs_ordesigner_short](~/includes/vs-ordesigner-short-md.md)]。 名为的类`ExampleDataContext`一个属性名为`Movies`生成。  
+ 在此示例`ExampleDataContext`中不显示名为的类, 它表示数据库表。 要使此示例正常运行, 必须通过添加一个名为 Example 的 LINQ To SQL 类并将名为 "Movie" 的[!INCLUDE[vs_ordesigner_short](~/includes/vs-ordesigner-short-md.md)]表拖到上来创建此类。 生成一个名`ExampleDataContext`为的类, `Movies`其中包含名为的属性。  
   
- 下面的示例演示名为的类`MovieLibrary`中引用<xref:System.Web.UI.WebControls.LinqDataSource>控件。  
+ 下面的示例显示了`MovieLibrary` <xref:System.Web.UI.WebControls.LinqDataSource>在控件中引用的名为的类。  
   
  [!code-csharp[System.Web.UI.WebControls.LinqDataSource_Overview#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Overview/cs/App_Code/MovieLibrary.cs#1)]
  [!code-vb[System.Web.UI.WebControls.LinqDataSource_Overview#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Overview/vb/App_Code/MovieLibrary.vb#1)]  
@@ -675,7 +675,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要提供自定义视图，可以重写此方法在派生类中。  
+ 若要提供自定义视图, 可以在派生类中重写此方法。  
   
  ]]></format>
         </remarks>
@@ -710,7 +710,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常情况下，不需要调用<xref:System.Web.UI.WebControls.LinqDataSource.Delete%2A>从您的代码的方法。 当你使用<xref:System.Web.UI.WebControls.LinqDataSource>与数据绑定控件，数据绑定控件的控件将自动调用<xref:System.Web.UI.WebControls.LinqDataSource.Delete%2A>方法时用户采取操作以删除一条记录。 显式调用<xref:System.Web.UI.WebControls.LinqDataSource.Delete%2A>方法时您想要创建您自己的进程用于删除数据。 例如，可以调用<xref:System.Web.UI.WebControls.LinqDataSource.Delete%2A>方法，当你想要删除的记录时根据之外的数据绑定控件的事件。  
+ 通常, 您不必从代码中调用<xref:System.Web.UI.WebControls.LinqDataSource.Delete%2A>方法。 当使用<xref:System.Web.UI.WebControls.LinqDataSource>带有数据绑定控件的控件时, 数据绑定控件将在用户采取操作删除记录时<xref:System.Web.UI.WebControls.LinqDataSource.Delete%2A>自动调用方法。 若要创建自己<xref:System.Web.UI.WebControls.LinqDataSource.Delete%2A>的删除数据的进程, 请显式调用方法。 例如, 如果要基于数据绑定<xref:System.Web.UI.WebControls.LinqDataSource.Delete%2A>控件之外的事件删除记录, 则可以调用方法。  
   
  ]]></format>
         </remarks>
@@ -743,7 +743,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 处理<xref:System.Web.UI.WebControls.LinqDataSource.Deleted>事件来捕获删除操作，从任何异常，也可后在操作完成后检查输出参数。 可以检索输出参数从<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>传递给事件处理程序对象。  
+ <xref:System.Web.UI.WebControls.LinqDataSource.Deleted>处理事件, 以捕获删除操作中的任何异常, 或在操作完成后检查输出参数。 可以从传递给事件处理程序的<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>对象中检索输出参数。  
   
  ]]></format>
         </remarks>
@@ -815,14 +815,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 处理<xref:System.Web.UI.WebControls.LinqDataSource.Deleting>事件，以便验证要删除，以检查数据类，以更改前删除操作，值还是取消删除操作中的数据验证错误的对象。 <xref:System.Web.UI.WebControls.LinqDataSource>控制将传递<xref:System.Web.UI.WebControls.LinqDataSourceDeleteEventArgs>向事件处理程序对象<xref:System.Web.UI.WebControls.LinqDataSource.Deleting>事件。 <xref:System.Web.UI.WebControls.LinqDataSourceDeleteEventArgs>对象包含的数据将被删除并使您可以取消删除操作。 如果数据类将引发<xref:System.Web.UI.WebControls.LinqDataSourceValidationException>异常，<xref:System.Web.UI.WebControls.LinqDataSourceDeleteEventArgs>对象包含在该异常<xref:System.Web.UI.WebControls.LinqDataSourceDeleteEventArgs.Exception%2A>属性。  
+ <xref:System.Web.UI.WebControls.LinqDataSource.Deleting>处理事件以验证要删除的对象, 检查数据类中的数据验证错误, 更改删除操作之前的值, 或取消删除操作。 控件将<xref:System.Web.UI.WebControls.LinqDataSourceDeleteEventArgs>对象传递<xref:System.Web.UI.WebControls.LinqDataSource.Deleting>给事件的事件处理程序。 <xref:System.Web.UI.WebControls.LinqDataSource> <xref:System.Web.UI.WebControls.LinqDataSourceDeleteEventArgs>对象包含要删除的数据, 并允许您取消删除操作。 如果数据类引发<xref:System.Web.UI.WebControls.LinqDataSourceValidationException>异常, 则<xref:System.Web.UI.WebControls.LinqDataSourceDeleteEventArgs>对象在<xref:System.Web.UI.WebControls.LinqDataSourceDeleteEventArgs.Exception%2A>属性中包含该异常。  
   
- 如果事件处理程序中引发异常<xref:System.Web.UI.WebControls.LinqDataSource.Deleting>事件，必须处理该事件处理程序中的异常。 此异常不会传递到的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Deleted>事件 (通过<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>属性的<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>对象)。 <xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>属性包含后引发的异常<xref:System.Web.UI.WebControls.LinqDataSource.Deleting>事件。  
+ 如果<xref:System.Web.UI.WebControls.LinqDataSource.Deleting>事件的事件处理程序中引发了异常, 则必须在该事件处理程序中处理异常。 异常将不会传递到<xref:System.Web.UI.WebControls.LinqDataSource.Deleted>事件的事件处理程序 ( <xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>通过<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>对象的属性)。 属性仅包含<xref:System.Web.UI.WebControls.LinqDataSource.Deleting>事件之后引发的异常。 <xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>  
   
    
   
 ## Examples  
- 下面的示例演示的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Deleting>事件。 该代码取消删除操作中的属性上基于<xref:System.Web.UI.WebControls.LinqDataSourceDeleteEventArgs.OriginalObject%2A>属性和值从 Web 页。 在示例中，当`OnSale`属性设置为`true`，则用户必须选择<xref:System.Web.UI.WebControls.CheckBox>控件，以确认应删除的记录。  
+ 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource.Deleting>事件的事件处理程序。 此代码基于<xref:System.Web.UI.WebControls.LinqDataSourceDeleteEventArgs.OriginalObject%2A>属性中的属性和网页中的值取消删除操作。 在此示例中, 当`OnSale`属性设置为`true`时, 用户必须选择一个<xref:System.Web.UI.WebControls.CheckBox>控件以确认是否应删除记录。  
   
  [!code-csharp[System.Web.UI.WebControls.LinqDataSource.Deleting#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.Deleting/cs/Default.aspx.cs#1)]
  [!code-vb[System.Web.UI.WebControls.LinqDataSource.Deleting#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.Deleting/vb/Default.aspx.vb#1)]  
@@ -865,14 +865,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置<xref:System.Web.UI.WebControls.LinqDataSource.EnableDelete%2A>属性设置为`true`当你想要使用户能够删除数据记录通过<xref:System.Web.UI.WebControls.LinqDataSource>控件。 当<xref:System.Web.UI.WebControls.LinqDataSource.EnableDelete%2A>是`true`，则<xref:System.Web.UI.WebControls.LinqDataSource>控件使用 LINQ to SQL 来自动创建用于删除数据的命令。 必须包含一个界面，可让用户选择的记录，若要删除，如<xref:System.Web.UI.WebControls.DetailsView>控件。  
+ 如果希望允许用户`true`通过<xref:System.Web.UI.WebControls.LinqDataSource>控件删除数据记录, 请将属性设置为。<xref:System.Web.UI.WebControls.LinqDataSource.EnableDelete%2A> 当<xref:System.Web.UI.WebControls.LinqDataSource.EnableDelete%2A>为`true`时,<xref:System.Web.UI.WebControls.LinqDataSource>控件使用 LINQ to SQL 自动创建用于删除数据的命令。 您必须包含一个接口, 该接口允许用户选择要删除的记录, 例如<xref:System.Web.UI.WebControls.DetailsView>控件。  
   
- <xref:System.Web.UI.WebControls.LinqDataSource>控件不支持自动删除操作时<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性或<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性设置。 在这种情况下，<xref:System.Web.UI.WebControls.LinqDataSource>控件将引发异常，如果尝试删除操作。  
+ 当设置<xref:System.Web.UI.WebControls.LinqDataSource> 属性或<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性时, 控件不支持自动删除操作。 <xref:System.Web.UI.WebControls.LinqDataSource.Select%2A> 在这种情况下<xref:System.Web.UI.WebControls.LinqDataSource> , 如果尝试删除操作, 控件将引发异常。  
   
    
   
 ## Examples  
- 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource>具有控件<xref:System.Web.UI.WebControls.LinqDataSource.EnableDelete%2A>设置为`true`。 一个<xref:System.Web.UI.WebControls.DetailsView>控件显示的数据并创建允许用户删除数据记录的按钮。  
+ 下面的示例演示了<xref:System.Web.UI.WebControls.LinqDataSource>一个<xref:System.Web.UI.WebControls.LinqDataSource.EnableDelete%2A>设置为`true`的控件。 <xref:System.Web.UI.WebControls.DetailsView>控件显示数据, 并创建一个按钮, 该按钮允许用户删除数据记录。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default2.aspx#2)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default2.aspx#2)]  
@@ -916,14 +916,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置<xref:System.Web.UI.WebControls.LinqDataSource.EnableInsert%2A>属性设置为`true`当你想要使用户能够插入新数据记录通过<xref:System.Web.UI.WebControls.LinqDataSource>控件。 当<xref:System.Web.UI.WebControls.LinqDataSource.EnableInsert%2A>是`true`，则<xref:System.Web.UI.WebControls.LinqDataSource>控件使用 LINQ to SQL 来自动创建用于插入数据的命令。 必须包含一个界面，可让用户插入新记录，例如<xref:System.Web.UI.WebControls.DetailsView>控件。  
+ 如果希望允许用户`true`通过<xref:System.Web.UI.WebControls.LinqDataSource>控件插入新数据记录, 请将属性设置为。<xref:System.Web.UI.WebControls.LinqDataSource.EnableInsert%2A> 当<xref:System.Web.UI.WebControls.LinqDataSource.EnableInsert%2A>为`true`时,<xref:System.Web.UI.WebControls.LinqDataSource>控件使用 LINQ to SQL 自动创建用于插入数据的命令。 您必须包含一个接口, 该接口允许用户插入新记录, 例如<xref:System.Web.UI.WebControls.DetailsView>控件。  
   
- <xref:System.Web.UI.WebControls.LinqDataSource>控件不支持自动插入操作时<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性或<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性设置。 在这种情况下，<xref:System.Web.UI.WebControls.LinqDataSource>控件将引发异常，如果尝试插入操作。  
+ 当设置<xref:System.Web.UI.WebControls.LinqDataSource> 属性或<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性时, 控件不支持自动插入操作。 <xref:System.Web.UI.WebControls.LinqDataSource.Select%2A> 在这种情况下<xref:System.Web.UI.WebControls.LinqDataSource> , 如果尝试插入操作, 控件将引发异常。  
   
    
   
 ## Examples  
- 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource>具有控件<xref:System.Web.UI.WebControls.LinqDataSource.EnableInsert%2A>设置为`true`。 一个<xref:System.Web.UI.WebControls.DetailsView>控件显示的数据并显示一个按钮，切换要插入模式下，用户可以通过创建并保存新记录的控件。  
+ 下面的示例演示了<xref:System.Web.UI.WebControls.LinqDataSource>一个<xref:System.Web.UI.WebControls.LinqDataSource.EnableInsert%2A>设置为`true`的控件。 <xref:System.Web.UI.WebControls.DetailsView>控件显示数据并显示一个按钮, 该按钮将控件切换到插入模式, 用户可在其中创建和保存新记录。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default2.aspx#2)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default2.aspx#2)]  
@@ -964,9 +964,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.LinqDataSource.EnableObjectTracking%2A>从 LINQ 到 SQL 数据上下文对象中选择数据时，才使用属性。  
+ 此<xref:System.Web.UI.WebControls.LinqDataSource.EnableObjectTracking%2A>属性仅在从 LINQ to SQL 数据上下文对象选择数据时使用。  
   
- 当你与只读数据交互时，设置<xref:System.Web.UI.WebControls.LinqDataSource.EnableObjectTracking%2A>属性设置为`false`提高性能，因为数据不缓存以确定是否已更改。 但是，它还将禁用延迟的执行查询。 此属性必须设置为`true`如果想要使用延迟的执行查询。  
+ 与只读数据交互时, 将<xref:System.Web.UI.WebControls.LinqDataSource.EnableObjectTracking%2A>属性设置为可`false`提高性能, 因为数据不会进行缓存以确定其是否已更改。 但是, 它还禁用延迟的查询执行。 如果要使用延迟的查询`true`执行, 则必须将此属性设置为。  
   
  ]]></format>
         </remarks>
@@ -1007,14 +1007,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置<xref:System.Web.UI.WebControls.LinqDataSource.EnableUpdate%2A>属性设置为`true`当你想要使用户能够通过使用更新的数据记录<xref:System.Web.UI.WebControls.LinqDataSource>控件。 当<xref:System.Web.UI.WebControls.LinqDataSource.EnableUpdate%2A>是`true`，则<xref:System.Web.UI.WebControls.LinqDataSource>控件使用 LINQ to SQL 会自动创建的命令更新的数据。 必须包含一个界面，可让用户更新一个记录，例如<xref:System.Web.UI.WebControls.DetailsView>控件。  
+ 如果希望允许用户`true`使用<xref:System.Web.UI.WebControls.LinqDataSource>控件更新数据记录, 请将属性设置为。<xref:System.Web.UI.WebControls.LinqDataSource.EnableUpdate%2A> 当<xref:System.Web.UI.WebControls.LinqDataSource.EnableUpdate%2A>为`true`时,<xref:System.Web.UI.WebControls.LinqDataSource>控件使用 LINQ to SQL 自动创建用于更新数据的命令。 必须包含允许用户更新记录 (如<xref:System.Web.UI.WebControls.DetailsView>控件) 的接口。  
   
- <xref:System.Web.UI.WebControls.LinqDataSource>控件不支持自动更新操作时<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性或<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性设置。 在这种情况下，<xref:System.Web.UI.WebControls.LinqDataSource>控件将引发异常，如果尝试更新操作。  
+ 当设置<xref:System.Web.UI.WebControls.LinqDataSource> 属性或<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性时, 控件不支持自动更新操作。 <xref:System.Web.UI.WebControls.LinqDataSource.Select%2A> 在这种情况下<xref:System.Web.UI.WebControls.LinqDataSource> , 如果尝试更新操作, 控件将引发异常。  
   
    
   
 ## Examples  
- 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource>具有控件<xref:System.Web.UI.WebControls.LinqDataSource.EnableUpdate%2A>设置为`true`。 一个<xref:System.Web.UI.WebControls.DetailsView>控件显示的数据并创建一个按钮，则允许用户更新数据记录。  
+ 下面的示例演示了<xref:System.Web.UI.WebControls.LinqDataSource>一个<xref:System.Web.UI.WebControls.LinqDataSource.EnableUpdate%2A>设置为`true`的控件。 <xref:System.Web.UI.WebControls.DetailsView>控件显示数据, 并创建一个按钮, 该按钮允许用户更新数据记录。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default2.aspx#2)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default2.aspx#2)]  
@@ -1052,7 +1052,7 @@
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
-<xref:System.Web.UI.WebControls.LinqDataSource>控件支持只有一个数据源视图。 <xref:System.Web.UI.WebControls.LinqDataSourceView>对象具有"DefaultView"的默认名称。 <xref:System.Web.UI.WebControls.LinqDataSourceView>对象定义数据源控件的功能，从基础数据库中检索数据并执行操作，如排序、 insert、 delete 和 update。
+<xref:System.Web.UI.WebControls.LinqDataSource>控件仅支持一个数据源视图。 <xref:System.Web.UI.WebControls.LinqDataSourceView>对象的默认名称为 "DefaultView"。 <xref:System.Web.UI.WebControls.LinqDataSourceView>对象定义数据源控件的功能、从基础数据库检索数据, 以及执行排序、插入、删除和更新等操作。
 
 ]]></format>
         </remarks>
@@ -1087,7 +1087,7 @@
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
-<xref:System.Web.UI.WebControls.LinqDataSource>控件只支持一个视图名为其基础数据`DefaultView`。 `GetViewNames`方法因此返回仅包含一个元素，其中包含此视图名称的集合。
+控件在其基础数据上仅支持一个名为`DefaultView`的视图。 <xref:System.Web.UI.WebControls.LinqDataSource> 因此`GetViewNames` , 该方法返回一个集合, 该集合仅包含一个包含此视图名称的元素。
 
 ]]></format>
         </remarks>
@@ -1121,53 +1121,53 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指定用于对检索到的数据进行分组的属性。</summary>
-        <value>一个字符串，用于创建 Group By 子句。</value>
+        <value>用于创建 Group By 子句的字符串。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您使用<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性来指定哪些属性用于合并具有相同的值的数据记录。 例如，如果您设置<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性设置为`Name`，在查询中所有具有相同的记录`Name`作为单个合并记录返回属性值。  
+ 使用<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性可以指定用于合并具有相同值的数据记录的属性。 例如, 如果将<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性设置为`Name`, 则具有相同`Name`属性值的查询中的所有记录都将作为单个合并记录返回。  
   
- 可以将分配到多个属性<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性中的所有属性通过`new`函数，并使用逗号分隔每个属性。 例如，若要按属性分组`Name`，然后`Category`，请设置<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性设置为`new(Name, Category)`。  
+ 可以通过<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A> `new`在函数中包含所有属性, 并使用逗号分隔每个属性, 从而将多个属性分配给该属性。 例如, `Name`若要按属性分组, 然后`Category`将<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性设置为`new(Name, Category)`。  
   
- 用于分组的值的属性中返回生成的属性名为通过`Key`。 您包括`Key`中的属性<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性来检索已分组的值。 可以设置`Key`属性设置为使用别名`As`关键字，但您不需要使用别名。 例如，你可能会设置<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性设置为一个名为属性`Category`。 可以检索中的合并的值`Category`通过设置属性<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性设置为`new(Key As ProductCategory)`。  
+ 用于分组的属性中的值是通过名为`Key`的生成的属性返回的。 将`Key`属性包含<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>在属性中以检索分组值。 `Key` 可以`As`使用关键字将属性设置为别名, 但不需要使用别名。 例如, 可以将<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性设置为名为`Category`的属性。 您可以通过<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>将属性设置为来`Category` `new(Key As ProductCategory)`检索属性中的合并值。  
   
- 可以通过包括访问分组中的单个记录`It`中的属性<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性。 `It`属性包含的记录共享中的分组属性的值的集合。 您可以循环访问`It`属性来检索单个记录。  
+ 可以通过在`It` <xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性中包含属性来访问分组中的单个记录。 `It`属性包含共享分组属性中的值的记录的集合。 您可以循环访问`It`属性来检索各个记录。  
   
- <xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性通常用于聚合方法。 可以使用以下聚合方法：  
+ <xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性通常与聚合方法一起使用。 您可以使用以下聚合方法:  
   
 -   `Count()`  
   
--   `Average(` *列* `)`  
+-   `Average(`*列*`)`  
   
--   `Sum(` *列* `)`  
+-   `Sum(`*列*`)`  
   
--   `Max(` *列* `)`  
+-   `Max(`*列*`)`  
   
--   `Min(` *列* `)`  
+-   `Min(`*列*`)`  
   
--   `Where(` *条件* `)`  
+-   `Where(`*条件*`)`  
   
 -   `Any()`  
   
--   `All(` *条件* `)`  
+-   `All(`*条件*`)`  
   
- 有关详细信息，请参阅 [NIB：LinqDataSource Web 服务器控件概述](https://msdn.microsoft.com/library/104cfc3f-7385-47d3-8a51-830dfa791136)和[如何：分组和聚合数据使用 LinqDataSource 控件](https://msdn.microsoft.com/library/b922cf69-251f-4158-b405-ea960993a1af)。  
+ 有关详细信息，请参阅 [NIB：LinqDataSource Web 服务器控件概述](https://msdn.microsoft.com/library/104cfc3f-7385-47d3-8a51-830dfa791136)和[如何:使用 LinqDataSource 控件](https://msdn.microsoft.com/library/b922cf69-251f-4158-b405-ea960993a1af)对数据进行分组和聚合。  
   
    
   
 ## Examples  
- 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource>由一个名为属性组返回的数据的控件`Category`。 它返回共享的值，并计算分组记录的平均价格。  
+ 下面的示例显示一个<xref:System.Web.UI.WebControls.LinqDataSource>控件, 该控件按名为`Category`的属性对返回的数据进行分组。 它将返回共享值并计算分组记录的平均价格。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#3](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default3.aspx#3)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#3](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default3.aspx#3)]  
   
- 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource>控制，它是由两个列配置为组。 `Key`属性引用具有两个属性的对象`ProductCategory`和`Color`。 所表示的对象`It`重命名`Products`。 重命名`Products`对象包含分组中各记录的集合，每个实例包含从 Products 表的所有列。  
+ 下面的示例演示一个<xref:System.Web.UI.WebControls.LinqDataSource>配置为按两列分组的控件。 属性引用具有两个属性 (和`Color`) `ProductCategory`的对象。 `Key` 所表示`It`的对象已重`Products`命名。 重命名`Products`的对象包含分组中各个记录的集合, 每个实例都包含 Products 表中的所有列。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource.GroupBy#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.GroupBy/cs/Default.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource.GroupBy#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.GroupBy/vb/Default.aspx#1)]  
   
- 下面的示例演示两个<xref:System.Web.UI.WebControls.ListView>控件用于显示来自数据<xref:System.Web.UI.WebControls.LinqDataSource>上一示例中的控件。 一个<xref:System.Web.UI.WebControls.ListView>控件显示分组的数据和其他<xref:System.Web.UI.WebControls.ListView>控件显示各个属于该组的产品名称。 嵌套的数据绑定控件<xref:System.Web.UI.WebControls.BaseDataList.DataSource%2A>属性设置为`Products`，这是别名`It`对象。  
+ 下面的示例演示两<xref:System.Web.UI.WebControls.ListView>个控件, 用于在上一个<xref:System.Web.UI.WebControls.LinqDataSource>示例中显示控件中的数据。 一个<xref:System.Web.UI.WebControls.ListView>控件显示分组数据, 另<xref:System.Web.UI.WebControls.ListView>一个控件显示属于该组的产品的各个名称。 嵌套的数据绑定控件的<xref:System.Web.UI.WebControls.BaseDataList.DataSource%2A>属性设置为`Products`, 这`It`是对象的别名。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource.GroupBy#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.GroupBy/cs/Default.aspx#2)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource.GroupBy#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.GroupBy/vb/Default.aspx#2)]  
@@ -1216,13 +1216,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.LinqDataSource>控件使用中的参数<xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>集合在运行时创建 Group By 子句。 通常不会使用<xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>对数据进行分组的集合。 相反，可以使用<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性。 您使用<xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>必须在运行时设置集合仅当 Group By 子句中的值，该值不是属性名称。 例如，使用<xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>是否基于对数据进行分组的集合`LastName`数据记录中的属性值等于由用户提供的值。  
+ 控件使用<xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>集合中的参数在运行时创建 Group by 子句。 <xref:System.Web.UI.WebControls.LinqDataSource> 通常不会使用<xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>集合对数据进行分组。 您可以改为<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>使用属性。 仅当在<xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>运行时必须设置 Group by 子句中的值并且该值不是属性名时, 才使用该集合。 例如, 根据数据记录<xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>中的`LastName`属性是否等于用户提供的值, 使用集合对数据进行分组。  
   
- 如果你想对数据进行分组的属性并且不需要在运行时设置该属性，则可以定义中的分组属性<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性。 例如，若要从数据库表中返回按分组`LastName`，请将<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>为"LastName"不带任何参数。 如果你想对动态数据进行分组的属性，创建的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件和自定义<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性根据需要。  
+ 如果要按属性对数据进行分组, 并且无需在运行时设置该属性, 则可以在<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性中定义分组属性。 例如, 若要返回按分组的数据库表中的`LastName`值, <xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>则将设置为 "LastName" 而不使用任何参数。 如果要按属性动态分组数据, 请为<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件创建一个事件处理程序, 并根据需要<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>自定义属性。  
   
- 不能将属性的名称分配中的参数的值作为<xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>集合。 您将参数添加到<xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>集合时想要添加到条件<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>必须在运行时设置的属性。  
+ 不能将属性的名称指定为<xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>集合中的参数的值。 如果要将条件添加<xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A> <xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>到必须在运行时设置的属性, 请将参数添加到集合。  
   
- 若要设置中的值<xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>集合中，为每个参数指定一个名称，然后添加中的占位符<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性中的为该命名参数。 在 Group By 子句中，前面加上每个参数名称后的加符号 @。  
+ 若要设置集合中<xref:System.Web.UI.WebControls.LinqDataSource.GroupByParameters%2A>的值, 请为每个参数分配一个名称, 然后<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>在该命名参数的属性中添加占位符。 在 Group By 子句中, 每个参数名称前面加上 @ 符号。  
   
  ]]></format>
         </remarks>
@@ -1255,17 +1255,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常情况下，不需要调用<xref:System.Web.UI.WebControls.LinqDataSource.Insert%2A>从您的代码的方法。 数据绑定控件将自动调用<xref:System.Web.UI.WebControls.LinqDataSource.Insert%2A>方法时用户采取操作以插入新记录。 显式调用<xref:System.Web.UI.WebControls.LinqDataSource.Insert%2A>方法时您想要创建您自己的进程插入数据。  
+ 通常, 您不必从代码中调用<xref:System.Web.UI.WebControls.LinqDataSource.Insert%2A>方法。 当用户采取操作插入新记录时, <xref:System.Web.UI.WebControls.LinqDataSource.Insert%2A>数据绑定控件将自动调用方法。 若要创建自己<xref:System.Web.UI.WebControls.LinqDataSource.Insert%2A>的插入数据的进程, 请显式调用方法。  
   
    
   
 ## Examples  
- 下面的示例演示如何以编程方式在数据源中插入新记录，用户单击鼠标按钮后。 代码将传递<xref:System.Collections.Specialized.ListDictionary>对象，其中包含默认值为<xref:System.Web.UI.WebControls.LinqDataSource.Insert%2A>方法。  
+ 下面的示例演示如何在用户单击按钮后, 以编程方式在数据源中插入新记录。 此代码将包含<xref:System.Collections.Specialized.ListDictionary>默认值的对象传递<xref:System.Web.UI.WebControls.LinqDataSource.Insert%2A>给方法。  
   
  [!code-csharp[System.Web.UI.WebControls.LinqDataSource.Insert#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.Insert/cs/Default2.aspx.cs#1)]
  [!code-vb[System.Web.UI.WebControls.LinqDataSource.Insert#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.Insert/vb/Default2.aspx.vb#1)]  
   
- 下面的示例显示了针对上一示例的标记。  
+ 下面的示例演示上一示例的标记。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource.Insert#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.Insert/cs/Default2.aspx#2)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource.Insert#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.Insert/vb/Default2.aspx#2)]  
@@ -1301,12 +1301,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 处理<xref:System.Web.UI.WebControls.LinqDataSource.Inserted>事件来捕获任何异常从插入操作，也可在插入操作完成后检查的值。 您可以检索通过新的值<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>传递给事件处理程序对象。 例如，可以使用<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>要检索 identity 属性生成新的数据记录的数据库的对象。  
+ <xref:System.Web.UI.WebControls.LinqDataSource.Inserted>处理事件以从插入操作捕获任何异常, 或在插入操作完成后检查值。 您可以通过传递到事件处理程序<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>的对象检索新值。 例如, 可以使用<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>对象检索数据库为新数据记录生成的标识属性。  
   
    
   
 ## Examples  
- 下面的示例演示如何创建事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Inserted>检查的异常，并检索新记录的标识属性的事件。  
+ 下面的示例演示如何为<xref:System.Web.UI.WebControls.LinqDataSource.Inserted>事件创建一个事件处理程序, 该事件用于检查异常并检索新记录的标识属性。  
   
  [!code-csharp[System.Web.UI.WebControls.LinqDataSourceStatusEventArgs#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSourceStatusEventArgs/cs/Default.aspx#1)]
  [!code-vb[System.Web.UI.WebControls.LinqDataSourceStatusEventArgs#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSourceStatusEventArgs/vb/Default.aspx#1)]  
@@ -1342,21 +1342,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 处理<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>事件，以便验证要插入、 检查数据类，以更改在插入操作中前, 一个值或取消插入操作中的数据验证错误的对象。 <xref:System.Web.UI.WebControls.LinqDataSourceInsertEventArgs>对象传递给事件处理程序中，此事件包含要插入到数据源中的新对象。  
+ <xref:System.Web.UI.WebControls.LinqDataSource.Inserting>处理事件以验证要插入的对象, 检查数据类中的数据验证错误, 更改插入操作之前的值, 或取消插入操作。 传递给此事件的事件处理程序的对象包含要插入到数据源中的新对象。<xref:System.Web.UI.WebControls.LinqDataSourceInsertEventArgs>  
   
- 如果在插入操作时，发生验证错误<xref:System.Web.UI.WebControls.LinqDataSourceInsertEventArgs>对象包含的数据类引发验证异常。 如果要插入的值与数据类中属性的类型不匹配或未通过自定义验证检查，将发生验证错误。 中的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>事件，可以检索验证异常并采取相应的措施。  
+ 如果在插入操作过程中发生验证错误, 则<xref:System.Web.UI.WebControls.LinqDataSourceInsertEventArgs>对象将包含由数据类引发的验证异常。 如果要插入的值与数据类中的属性的类型不匹配, 则会发生验证错误, 或者, 如果未通过自定义验证检查, 则会发生验证错误。 在<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>事件的事件处理程序中, 可以检索验证异常并采取适当的操作。  
   
- 如果事件处理程序中引发异常<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>事件，必须处理该事件处理程序中的异常。 此异常不会传递到的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Inserted>事件 (通过<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>属性的<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>对象)。 <xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>属性包含后引发的异常<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>事件。  
+ 如果<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>事件的事件处理程序中引发了异常, 则必须在该事件处理程序中处理异常。 异常将不会传递到<xref:System.Web.UI.WebControls.LinqDataSource.Inserted>事件的事件处理程序 ( <xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>通过<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>对象的属性)。 属性仅包含<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>事件之后引发的异常。 <xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>  
   
    
   
 ## Examples  
- 下面的示例演示的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>修改数据之前插入操作的事件。 中的对象<xref:System.Web.UI.WebControls.LinqDataSourceInsertEventArgs.NewObject%2A>属性强制转换为一个名为类型`Product`。 `DateModified`属性的`Product`对象设置为当前日期和时间。  
+ 下面的示例演示在插入操作之前修改<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>数据的事件的事件处理程序。 该<xref:System.Web.UI.WebControls.LinqDataSourceInsertEventArgs.NewObject%2A>属性中的对象将强制转换为一个名`Product`为的类型。 `Product`对象`DateModified`的属性设置为当前日期和时间。  
   
  [!code-csharp[System.Web.UI.WebControls.LinqDataSource.Inserting#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.Inserting/cs/Default.aspx.cs#1)]
  [!code-vb[System.Web.UI.WebControls.LinqDataSource.Inserting#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.Inserting/vb/Default.aspx.vb#1)]  
   
- 下面的示例演示的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>检索验证异常的事件。  
+ 下面的示例演示了检索验证异常的<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>事件的事件处理程序。  
   
 ```vb  
 Protected Sub LinqDataSource_Inserting(ByVal sender As Object, _  
@@ -1389,7 +1389,7 @@ protected void LinqDataSource_Inserting(object sender,
 }  
 ```  
   
- 前面的示例检索验证异常。 如果值与属性类型不匹配，则可能会引发异常。 它还可能如以下示例中的自定义检查从引发。 `OnAgeChanging`方法检查的数量`Age`属性不是负数。  
+ 前面的示例将检索验证异常。 如果值与属性的类型不匹配, 则可能会引发异常。 它也可能是自定义的检查 (如以下示例中的检查) 引发的。 方法检查`Age`属性的数目是否为负数。 `OnAgeChanging`  
   
 ```csharp  
 partial void  OnAgeChanging(int? value)  
@@ -1453,14 +1453,14 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常将所需的插入操作的值传递给<xref:System.Web.UI.WebControls.LinqDataSource>由数据绑定控件的控件。 插入参数时想要提供默认值或定义是否为空将值转换为指定`null`。 无需为每个值将插入，仅对用户不会提供一个值时必须处理的值提供参数。  
+ 通常, 插入操作所需的值由数据绑定控件传递到<xref:System.Web.UI.WebControls.LinqDataSource>控件。 当要提供默认值或定义是否将空值转换为`null`时, 可以指定 insert 参数。 您不必为要插入的每个值都提供参数, 只是在用户不提供值时必须处理的值。  
   
- 中提供的值<xref:System.Web.UI.WebControls.LinqDataSource.InsertParameters%2A>集合仅用于数据源中定义的但未绑定数据控件中的字段。 例如，假设数据库表具有列名称、 地址和邮政编码，分别名为但<xref:System.Web.UI.WebControls.ListView>绑定到表的控件只绑定到的名称和地址字段。 中的值<xref:System.Web.UI.WebControls.LinqDataSource.InsertParameters%2A>集合将仅用于邮政编码字段。 它们将不会使用名称和地址字段。 即使这些字段中输入任何值，这是如此。 如果数据中的所有字段的数据绑定控件自动生成字段源，从没有值<xref:System.Web.UI.WebControls.LinqDataSource.InsertParameters%2A>将使用集合。  
+ <xref:System.Web.UI.WebControls.LinqDataSource.InsertParameters%2A>集合中提供的值仅用于在数据源中定义但未绑定到数据控件中的字段。 例如, 假设某个数据库表具有名称为 "名称"、"地址" 和 "邮政编码" 的<xref:System.Web.UI.WebControls.ListView>列, 但绑定到该表的控件仅绑定到 "名称" 和 "地址" 字段。 <xref:System.Web.UI.WebControls.LinqDataSource.InsertParameters%2A>集合中的值将仅用于 "邮政编码" 字段。 它们不会用于 "名称" 和 "地址" 字段。 即使没有为这些字段输入值, 也是如此。 如果数据绑定控件自动生成数据源中的所有字段的字段, 则不会使用该集合<xref:System.Web.UI.WebControls.LinqDataSource.InsertParameters%2A>中的任何值。  
   
    
   
 ## Examples  
- 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource>具有一个参数，用于提供默认值在控件<xref:System.Web.UI.WebControls.LinqDataSource.InsertParameters%2A>集合。 如果用户未提供的值`Category`属性，由参数提供的默认值保存在数据库中。  
+ 下面的示例显示<xref:System.Web.UI.WebControls.LinqDataSource>一个控件, 该控件具有<xref:System.Web.UI.WebControls.LinqDataSource.InsertParameters%2A>在集合中提供默认值的参数。 如果用户未提供`Category`属性的值, 则由参数提供的默认值将保存在数据库中。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#9](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default9.aspx#9)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#9](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default9.aspx#9)]  
@@ -1494,7 +1494,7 @@ End Sub
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
-`LoadViewState`方法用于加载以前保存的视图状态的<xref:System.Web.UI.WebControls.LinqDataSource>控件。
+方法用于加载以前保存的<xref:System.Web.UI.WebControls.LinqDataSource>控件视图状态。 `LoadViewState`
 
 ]]></format>
         </remarks>
@@ -1579,24 +1579,24 @@ End Sub
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指定用于对检索到的数据进行排序的字段。</summary>
-        <value>一个字符串，用于创建 Order By 子句。</value>
+        <value>用于创建 Order By 子句的字符串。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您使用<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性来指定要用于排序的返回数据中的哪些属性。 数据进行排序的属性必须存在于原始数据源，但它不需要将其纳入<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性。 可以添加一个空格和`Ascending`， `ASC`， `Descending`，或`DESC`中的属性<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>以便指定如何返回有序的数据的字符串。  
+ 使用<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性可以指定返回数据中用于排序的属性。 用于对数据进行排序的属性必须存在于原始数据源中, 但不一定要包含在<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性中。 您`Ascending`可以向`Descending` `ASC`字符串<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>中的属性添加空格、 `DESC` 、或, 以指定如何返回排序的数据。  
   
- 你可以提供多个属性中的<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>通过使用逗号分隔每个属性的属性。 例如，若要按属性名为`LastName`并`FirstName`，将<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性设置为"LastName，FirstName"。  
+ 通过使用逗号分隔每个属性, 可以<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>在属性中提供多个属性。 例如, 若要按名为`LastName`和`FirstName`的属性进行排序<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A> , 请将属性设置为 "LastName, FirstName"。  
   
 > [!NOTE]
->  当你使用<xref:System.Web.UI.WebControls.LinqDataSource>控件，其[!INCLUDE[ss2k](~/includes/ss2k-md.md)]或[!INCLUDE[ssEW](~/includes/ssew-md.md)]并且<xref:System.Web.UI.WebControls.LinqDataSource.AutoPage%2A>属性设置为`true`，必须提供中的值<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性。 默认情况下<xref:System.Web.UI.WebControls.LinqDataSource.AutoPage%2A>属性是`true`。 如果你将值赋给<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性，您还必须包括所有标识列在查询中返回的属性列表中。  
+>  <xref:System.Web.UI.WebControls.LinqDataSource>当你使用具有[!INCLUDE[ss2k](~/includes/ss2k-md.md)]或[!INCLUDE[ssEW](~/includes/ssew-md.md)]的控件并且<xref:System.Web.UI.WebControls.LinqDataSource.AutoPage%2A>属性设置为`true`时, 你必须在<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性中提供一个值。 默认情况下, <xref:System.Web.UI.WebControls.LinqDataSource.AutoPage%2A>属性为`true`。 如果为<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性分配一个值, 则还必须在查询中返回的属性列表中包含所有标识列。  
   
- 如果<xref:System.Web.UI.WebControls.LinqDataSource.AutoSort%2A>属性设置为`true`，为数据绑定控件可以将传递到排序表达式<xref:System.Web.UI.WebControls.LinqDataSource>控件在运行时。 <xref:System.Web.UI.WebControls.LinqDataSource>控制将应用从数据绑定控件的排序表达式应用之后<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性。 因此，根据排序表达式被返回的数据，从数据绑定控件。  
+ 如果将`true`属性设置为, 则在运行时, 数据绑定控件可以向<xref:System.Web.UI.WebControls.LinqDataSource>控件传递一个排序表达式。 <xref:System.Web.UI.WebControls.LinqDataSource.AutoSort%2A> 应用<xref:System.Web.UI.WebControls.LinqDataSource> <xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性后, 控件将应用数据绑定控件中的排序表达式。 因此, 根据数据绑定控件中的排序表达式返回数据。  
   
    
   
 ## Examples  
- 下面的示例返回按反向字母顺序中的值为基础的数据`Category`属性。  
+ 下面的示例基于属性中的`Category`值以逆序字母顺序返回数据。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#4](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default4.aspx#4)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#4](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default4.aspx#4)]  
@@ -1640,21 +1640,21 @@ End Sub
       </ReturnValue>
       <Docs>
         <summary>获取用于创建 Order By 子句的参数集合。</summary>
-        <value>使用用于创建 Order By 子句的参数。</value>
+        <value>用于创建 Order By 子句的参数。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.LinqDataSource>控件使用中的参数<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合在运行时创建 Order By 子句。 通常设置<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A>属性设置为`true`添加到参数时<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合。 当<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A>属性设置为`true`，在每个参数<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合添加到 Order By 子句中指定的顺序<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合。 当<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A>属性是`true`，参数无需命名为，因为它们会按顺序应用并与占位符不匹配。  
+ 控件使用<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合中的参数在运行时创建 Order By 子句。 <xref:System.Web.UI.WebControls.LinqDataSource> 通常, 将参数<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A> `true`添加到集合时, 将属性设置为。 <xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A> 当属性设置为`true`时<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A> , 集合中的每个参数都按其在<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合中指定的顺序添加到 Order by 子句中。 <xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A> 当属性为`true`时, 无需命名参数, 因为它们按顺序应用并且与占位符不匹配。 <xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A>  
   
- 如果不需要在 Order By 子句中的运行时设置一个值，无需使用<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合。 可以定义要用于排序中的数据的字段<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性。 例如，若要从数据库表中返回按排序`LastName`，请将<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>为"LastName"不带任何参数。  
+ 如果无需在运行时在 Order by 子句中设置值, 则无需使用该<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合。 您可以定义用于对<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性中的数据进行排序的字段。 例如, 若要从按排序的数据库表返回值`LastName`, 则<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>将设置为 "LastName", 不使用任何参数。  
   
- 可以在中设置参数<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合中的占位符的参数搭配<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性，但这种方法具有有限的应用程序。 当使用此方法时中的参数<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合不能表示的列名称。 可以将参数设置为一个值，然后将该值与属性中的值进行比较。 例如，可以按基于属性中的值是小于参数表示的运行时间值对数据进行排序。  
+ 您可以设置<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合中的参数, 并将参数与<xref:System.Web.UI.WebControls.LinqDataSource.OrderBy%2A>属性中的占位符匹配, 但这种方法的应用程序是有限的。 使用此方法时, <xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>集合中的参数无法表示列名称。 您可以将参数设置为值, 然后将该值与属性中的值进行比较。 例如, 你可以基于属性中的值是否小于参数表示的运行时值来对数据进行排序。  
   
    
   
 ## Examples  
- 下面的示例显示一个 <xref:System.Web.UI.WebControls.LinqDataSource> 控件，其 <xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A> 属性设置为 `true`。 参数包含在<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A>基于属性的数据命名的用户进行排序的集合选择从<xref:System.Web.UI.WebControls.DropDownList>控件。  
+ 下面的示例显示一个 <xref:System.Web.UI.WebControls.LinqDataSource> 控件，其 <xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateOrderByClause%2A> 属性设置为 `true`。 参数包含在基于用户<xref:System.Web.UI.WebControls.LinqDataSource.OrderByParameters%2A> <xref:System.Web.UI.WebControls.DropDownList>从控件中选择的属性名称对数据进行排序的集合中。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#8](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default8.aspx#8)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#8](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default8.aspx#8)]  
@@ -1689,28 +1689,28 @@ End Sub
       </ReturnValue>
       <Docs>
         <summary>获取或设置用于对分组数据进行排序的字段。</summary>
-        <value>一个字符串，用于创建 Order Groups By 子句。</value>
+        <value>用于创建订单组 By 子句的字符串。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您使用<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>属性指定的数据组的排序方式。 例如，可以按分组`CategoryID`属性和每个类别 ID 分组依据的平均值然后排序`Price`属性。  
+ 使用<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>属性指定数据组的排序方式。 例如, 您可以按`CategoryID`属性分组, 然后按`Price`属性的平均值对每个类别 ID 组进行排序。  
   
- 可以设置<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>属性仅当对数据进行分组。 如果您设置<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>属性但没有设置<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>属性，<xref:System.Web.UI.WebControls.LinqDataSource>控件将引发异常。  
+ 只有在已对<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>数据进行分组后, 才能设置属性。 如果在未<xref:System.Web.UI.WebControls.LinqDataSource.GroupBy%2A>设置<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>属性的情况下设置属性, <xref:System.Web.UI.WebControls.LinqDataSource>控件将引发异常。  
   
- 用于对数据进行排序的属性，必须使用对数据进行分组的属性，或者对分组数据的聚合函数的结果。 若要指定对数据进行排序，但是您可以添加一个空格和"升序"、"ASC"、"降序"或"DESC"的字符串中的属性名称到<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>字符串。  
+ 用于对数据进行排序的属性必须是用于对数据进行分组的属性, 或者是分组数据上聚合函数的结果。 若要指定数据的排序方式, 可以向<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>字符串中的属性名称添加空格和字符串 "升序"、"ASC"、"降序" 或 "DESC"。  
   
- 可以指定多个属性中的<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>属性。 通过使用逗号分隔每个属性。  
+ 可以在<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>属性中指定多个属性。 使用逗号分隔每个属性。  
   
    
   
 ## Examples  
- 下面的示例演示如何通过使用两个属性，对数据进行分组以及如何对分组的数据进行排序通过使用这些属性之一。 名为的表中的数据`Products`通过使用名为的属性分组`CategoryID`和`Discontinued`。 分组的数据进行排序`CategoryID`属性。  
+ 下面的示例演示如何使用两个属性对数据进行分组, 以及如何使用这些属性之一对分组数据进行排序。 使用名`Products` `CategoryID`为和`Discontinued`的属性对名为的表中的数据进行分组。 分组数据按`CategoryID`属性进行排序。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy/cs/Default.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy/vb/Default.aspx#1)]  
   
- 下面的示例演示如何通过使用属性，对数据进行分组以及如何基于一个聚合函数的结果进行排序。 将数据从`Products`通过使用分组表`CategoryID`属性。 进行排序所基于的平均值`UnitPrice`每个组中的属性。  
+ 下面的示例演示如何使用属性对数据进行分组, 以及如何根据聚合函数的结果对数据进行排序。 `Products`表中的数据通过`CategoryID`使用属性进行分组。 它基于每个组中的`UnitPrice`属性的平均值进行排序。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy/cs/Default2.aspx#2)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy/vb/Default2.aspx#2)]  
@@ -1754,16 +1754,16 @@ End Sub
       </ReturnValue>
       <Docs>
         <summary>获取用于创建 Order Groups By 子句的参数集合。</summary>
-        <value>用于创建 Order Groups By 子句的参数。</value>
+        <value>用于创建订单组 By 子句的参数。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.LinqDataSource>控件使用中的参数<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsByParameters%2A>集合在运行时创建 Order Groups By 子句。  
+ 控件在运行时使用<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsByParameters%2A>集合中的参数来创建订单组 by 子句。 <xref:System.Web.UI.WebControls.LinqDataSource>  
   
- 添加值<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsByParameters%2A>仅当必须在运行时在 Order Groups By 子句中设置值的集合。 可以定义用于按使用顺序对数据的字段<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>属性。  
+ 仅当必须在顺序<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsByParameters%2A>组 by 子句中设置运行时值时, 才向集合添加值。 您可以使用<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>属性定义用于对数据进行排序的字段。  
   
- 可以在中设置参数<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsByParameters%2A>集合中的占位符的参数搭配<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>属性。 但是，如果使用此方法时中的参数<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsByParameters%2A>集合不能表示的列名称; 它们必须代表的值。 可以将参数设置为一个值，然后到属性的值进行比较。 例如，可以按基于属性中的值是小于参数表示的运行时间值对数据进行排序。  
+ 可以在<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsByParameters%2A>集合中设置参数, 并将参数与<xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsBy%2A>属性中的占位符匹配。 但是, 在使用此方法时, <xref:System.Web.UI.WebControls.LinqDataSource.OrderGroupsByParameters%2A>集合中的参数不能表示列名; 它们必须表示值。 您可以将参数设置为值, 然后将该值与属性进行比较。 例如, 你可以基于属性中的值是否小于参数表示的运行时值来对数据进行排序。  
   
  ]]></format>
         </remarks>
@@ -1824,57 +1824,57 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果未设置<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性，<xref:System.Web.UI.WebControls.LinqDataSource>控制此数据对象中检索所有属性 （数据列）。 您使用<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性，以便从对象检索属性的子集，或计算新值时要检索的数据。  
+ 如果未设置<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性<xref:System.Web.UI.WebControls.LinqDataSource> , 控件将从数据对象中检索所有属性 (数据列)。 使用<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性可以检索对象的属性子集, 或在检索数据时计算新值。  
   
- 指定要检索的设置的属性<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性设置为你想要在返回的数据中包含的属性的名称。  
+ 您可以通过将<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性设置为要包含在返回的数据中的属性的名称来指定要检索的属性。  
   
- 如果此数据对象，检索的属性子集<xref:System.Web.UI.WebControls.LinqDataSource>控件动态创建一个包含属性中指定的类<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性。 如果计算不是在数据对象中的属性的属性，也是动态创建的类。 在这些情况下，从查询返回的对象不是实例中指定的类<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性。 相反，必须使用`new`中的方法<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性以指示，从查询返回一个新类。 例如，若要仅返回`FirstName`并`LastName`属性从一个对象，包含多个这些属性，请设置<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性设置为`new(FirstName, LastName)`。 <xref:System.Web.UI.WebControls.LinqDataSource>控件将动态创建中指定的新类`new`方法。  
+ 如果从数据对象检索属性的子集, 则该<xref:System.Web.UI.WebControls.LinqDataSource>控件会动态创建一个类, 其中仅包含你<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>在属性中指定的属性。 如果计算数据对象中不是属性的属性, 也会动态创建类。 在这些情况下, 从查询返回的对象不是在<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性中指定的类的实例。 相反, 你必须使用`new` <xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性中的方法, 以指示从查询返回一个新类。 例如`FirstName` , 若要仅从包含以上属性的对象中返回和`LastName`属性, 请将<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性设置为`new(FirstName, LastName)`。 控件将动态创建你`new`在方法中指定的新类。 <xref:System.Web.UI.WebControls.LinqDataSource>  
   
- 可以使用`As`关键字来将别名分配给所选值。 如果将分配一个别名，则必须包括中的别名属性`new`方法。 将绑定到的任何数据绑定控件<xref:System.Web.UI.WebControls.LinqDataSource>控件必须由该别名引用的属性。 例如，如果您设置<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性设置为`new(Region As SalesRegion, Revenue / 1000 As RevenueThousands)`，数据绑定控件可以访问两个属性`SalesRegion`和`RevenueThousands`。  
+ 可以使用`As`关键字为选定的值分配别名。 如果分配了别名, 则必须在`new`方法中包含别名属性。 任何绑定到<xref:System.Web.UI.WebControls.LinqDataSource>控件结果的数据绑定控件都必须通过别名引用属性。 <xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>例如, 如果将属性设置为`new(Region As SalesRegion, Revenue / 1000 As RevenueThousands)`, 则数据绑定控件可以访问两个属性: `SalesRegion`和`RevenueThousands`。  
   
- 您使用`new`函数，在<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性根据条件下表中列出。  
+ 根据下表`new`中列出的<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>条件, 使用属性中的函数。  
   
-|选择|使用新的|示例|  
+|选择|使用 new|示例|  
 |------------|----------------|-------------|  
-|单个属性。|`new` 不需要。|`Select="Category"`|  
-|多个属性。|`new` 所需。|`Select="new(Category, Name)"`|  
-|一个或多个具有别名的属性。|`new` 所需。|`Select="new(Category As CategoryGroup)"`|  
+|单个属性。|`new`不需要。|`Select="Category"`|  
+|多个属性。|`new`需.|`Select="new(Category, Name)"`|  
+|具有别名的单个或多个属性。|`new`需.|`Select="new(Category As CategoryGroup)"`|  
   
- 如果你想要启用自动数据修改，但不是希望显示此数据对象中的所有属性，则不要设置<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性。 相反，管理通过数据绑定控件显示。 当你使用<xref:System.Web.UI.WebControls.DetailsView>控件或<xref:System.Web.UI.WebControls.GridView>控件，则还必须设置<xref:System.Web.UI.WebControls.DetailsView.AutoGenerateRows%2A>或<xref:System.Web.UI.WebControls.GridView.AutoGenerateColumns%2A>属性设置为`false`。 不会显示在数据绑定控件的任何值存储在视图状态。 它们不变时传递给数据源执行数据更新。  
+ 如果要启用自动数据修改, 但不希望显示数据对象中的所有属性, 请不要设置<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性。 而是通过数据绑定控件管理显示。 <xref:System.Web.UI.WebControls.DetailsView>使用控件`false` <xref:System.Web.UI.WebControls.DetailsView.AutoGenerateRows%2A>或控件时,<xref:System.Web.UI.WebControls.GridView.AutoGenerateColumns%2A>还必须将或属性设置为。 <xref:System.Web.UI.WebControls.GridView> 数据绑定控件中未显示的任何值都存储在视图状态中。 当执行数据更新时, 它们将以不更改的形式传递到数据源。  
   
- 当您在查询中的数据进行分组时，可以包含在聚合方法<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性。 可以使用以下聚合方法：  
+ 在查询中对数据进行分组时, 可以在<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性中包含聚合方法。 您可以使用以下聚合方法:  
   
 -   `Count()`  
   
--   `Average(` *列* `)`  
+-   `Average(`*列*`)`  
   
--   `Sum(` *列* `)`  
+-   `Sum(`*列*`)`  
   
--   `Max(` *列* `)`  
+-   `Max(`*列*`)`  
   
--   `Min(` *列* `)`  
+-   `Min(`*列*`)`  
   
--   `Where(` *条件* `)`  
+-   `Where(`*条件*`)`  
   
 -   `Any()`  
   
--   `All(` *条件* `)`  
+-   `All(`*条件*`)`  
   
- 有关详细信息，请参阅 [NIB：LinqDataSource Web 服务器控件概述](https://msdn.microsoft.com/library/104cfc3f-7385-47d3-8a51-830dfa791136)和[如何：分组和聚合数据使用 LinqDataSource 控件](https://msdn.microsoft.com/library/b922cf69-251f-4158-b405-ea960993a1af)。  
+ 有关详细信息，请参阅 [NIB：LinqDataSource Web 服务器控件概述](https://msdn.microsoft.com/library/104cfc3f-7385-47d3-8a51-830dfa791136)和[如何:使用 LinqDataSource 控件](https://msdn.microsoft.com/library/b922cf69-251f-4158-b405-ea960993a1af)对数据进行分组和聚合。  
   
- 当分组数据时，可以包括`Key`并`It`，它们动态创建中的属性，<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性。 `Key`属性是指用来对数据进行分组的一个或多个属性中的值。 例如，如果按属性名为分组`Category`，则`Key`属性将包含在每个唯一值`Category`属性。 `It`属性是指一系列中的数据分组的单个记录。 您可以循环访问`It`属性来检索已合并，在分组操作中的单个记录。 例如，如果按属性名为分组`Category`，则`It`属性包含所有共享一个公共值中的单个记录`Category`属性。  
+ 当对`Key` `It`数据进行分组时,可以在属性中包括和,它们是动态<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>创建的属性。 `Key`属性指的是用于对数据进行分组的属性中的值。 例如, 如果按名为`Category`的属性分组, 则`Key`属性将包含`Category`属性中的每个唯一值。 `It`属性引用数据分组中的单个记录的集合。 您可以循环访问`It`属性来检索在分组操作中合并的各个记录。 例如, 如果按名为`Category`的属性分组, 则属性将`It`包含在`Category`属性中共享公共值的所有单个记录。  
   
- 如果包括`It`中的关键字<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性数据进行分组时，你必须将分配的别名`It`关键字。 <xref:System.Web.UI.WebControls.LinqDataSource>控件将引发异常，如果`It`没有别名。 可以分配的别名`Key`关键字，但这不是必需。  
+ 如果在对<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>数据`It`进行分组时在属性中包含关键字, 则必须为`It`关键字指定别名。 <xref:System.Web.UI.WebControls.LinqDataSource> 如果`It`没有别名, 控件将引发异常。 可以为`Key`关键字指定别名, 但这不是必需的。  
   
    
   
 ## Examples  
- 下面的示例演示如何设置<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性设置为在数据对象中的属性的子集。  
+ 下面的示例演示如何将<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性设置为数据对象中的属性子集。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#10](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default10.aspx#10)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#10](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default10.aspx#10)]  
   
- 下面的示例演示如何检索值的属性中已使用对数据进行分组，以及如何检索分组记录的平均值。 `Key`关键字包含已用于对数据进行分组的属性。 在此示例中，`Key`将包含共享的值从`ProductCategory`属性。  
+ 下面的示例演示如何检索已用于对数据进行分组的属性中的值, 以及如何检索分组记录的平均值。 `Key`关键字包含用于对数据进行分组的属性。 在此示例中`Key` , 将包含`ProductCategory`属性中的共享值。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#3](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default3.aspx#3)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#3](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default3.aspx#3)]  
@@ -1910,7 +1910,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 处理<xref:System.Web.UI.WebControls.LinqDataSource.Selected>事件以从数据检索操作捕获任何异常也可检索操作完成后检查数据对象。 该对象可用于从<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>传递给事件处理程序对象。  
+ <xref:System.Web.UI.WebControls.LinqDataSource.Selected>处理事件以从数据检索操作捕获任何异常, 或在检索操作完成后检查数据对象。 对象可从传递给事件<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>处理程序的对象中获取。  
   
  ]]></format>
         </remarks>
@@ -1943,9 +1943,9 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 处理<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件，以执行以下任务：  
+ <xref:System.Web.UI.WebControls.LinqDataSource.Selecting>处理事件, 以便执行以下任务:  
   
--   修改的数据检索的参数。  
+-   修改数据检索的参数。  
   
 -   以编程方式生成查询。  
   
@@ -1955,21 +1955,21 @@ End Sub
   
 -   取消数据检索操作。  
   
- <xref:System.Web.UI.WebControls.LinqDataSourceSelectEventArgs>为此事件包含数据检索操作的参数传递到事件处理程序的对象。 您可以修改在参数<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件处理程序之前执行查询，也可以创建新的结果集并将其分配给<xref:System.Web.UI.WebControls.LinqDataSourceSelectEventArgs.Result%2A>属性。  
+ 传递给此事件的事件处理程序的对象包含数据检索操作的参数。<xref:System.Web.UI.WebControls.LinqDataSourceSelectEventArgs> 您可以在执行查询之前修改<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件处理程序中的参数, 也可以创建新的结果集并将其分配<xref:System.Web.UI.WebControls.LinqDataSourceSelectEventArgs.Result%2A>给属性。  
   
- 您是否能够实现自定义排序或用于绑定到的控件可能会受限于此事件处理程序中的分页<xref:System.Web.UI.WebControls.LinqDataSource>。 例如，如果列标题的<xref:System.Web.UI.WebControls.GridView>单击控件时，该控件将执行自动排序，这可能会重写任何订单，所以建立在事件处理程序。  
+ 在此事件的处理程序中实现自定义排序或分页的能力可能受到绑定到的<xref:System.Web.UI.WebControls.LinqDataSource>控件的限制。 例如, 单击<xref:System.Web.UI.WebControls.GridView>控件的列标题时, 控件将执行自动排序, 这可能会重写在事件处理程序中建立的任何顺序。  
   
- 如果事件处理程序中引发异常<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件，必须处理该事件处理程序中的异常。 此异常不会传递到的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Selected>事件 (通过<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>属性的<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>对象)。 <xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>属性包含后引发的异常<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件。  
+ 如果<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件的事件处理程序中引发了异常, 则必须在该事件处理程序中处理异常。 异常将不会传递到<xref:System.Web.UI.WebControls.LinqDataSource.Selected>事件的事件处理程序 ( <xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>通过<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>对象的属性)。 属性仅包含<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件之后引发的异常。 <xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>  
   
    
   
 ## Examples  
- 下面的示例演示的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件。 该处理程序创建从 Web 页中的字符串值的数组中检索值的查询。  
+ 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件的事件处理程序。 处理程序将创建一个查询, 该查询从网页中的字符串值数组中检索值。  
   
  [!code-csharp[System.Web.UI.WebControls.LinqDataSourceSelectEventArgs#3](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSourceSelectEventArgs/cs/Default3.aspx.cs#3)]
  [!code-vb[System.Web.UI.WebControls.LinqDataSourceSelectEventArgs#3](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSourceSelectEventArgs/vb/Default3.aspx.vb#3)]  
   
- 下面的示例演示如何分配<xref:System.Web.UI.WebControls.LinqDataSourceSelectEventArgs.Result%2A>表示存储的过程的方法中返回的对象的属性。  
+ 下面的示例演示如何将<xref:System.Web.UI.WebControls.LinqDataSourceSelectEventArgs.Result%2A>属性分配给从表示存储过程的方法返回的对象。  
   
 ```vb  
 Protected Sub LinqDataSource_Selecting(ByVal sender As Object, _  
@@ -2032,18 +2032,18 @@ protected void LinqDataSource_Selecting(object sender,
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.LinqDataSource>控件使用中的参数<xref:System.Web.UI.WebControls.LinqDataSource.SelectParameters%2A>集合在运行时创建 Select 子句。 您将参数添加到<xref:System.Web.UI.WebControls.LinqDataSource.SelectParameters%2A>时想要在 Select 子句中使用运行时的值的集合。 例如，您可以将参数添加到<xref:System.Web.UI.WebControls.LinqDataSource.SelectParameters%2A>集合来表示用户的配置文件中的属性。 你可以然后使用该属性和值从数据源来计算新值。  
+ 控件使用<xref:System.Web.UI.WebControls.LinqDataSource.SelectParameters%2A>集合中的参数在运行时创建 Select 子句。 <xref:System.Web.UI.WebControls.LinqDataSource> 当要在 Select 子句<xref:System.Web.UI.WebControls.LinqDataSource.SelectParameters%2A>中使用运行时值时, 将参数添加到集合中。 例如, 可以将参数添加到<xref:System.Web.UI.WebControls.LinqDataSource.SelectParameters%2A>集合以表示用户配置文件中的属性。 然后, 可以使用该属性和数据源中的值计算新值。  
   
- 如果不需要在 Select 子句中的运行时设置一个值，无需使用<xref:System.Web.UI.WebControls.LinqDataSource.SelectParameters%2A>集合。 可以定义要在中检索的属性<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性。 例如，若要返回`FirstName`并`LastName`从数据库表中的值设置<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>为"FirstName，LastName"不带任何参数。  
+ 如果不需要在运行时在 Select 子句中设置值, 则无需使用该<xref:System.Web.UI.WebControls.LinqDataSource.SelectParameters%2A>集合。 您可以定义要在<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性中检索的属性。 例如, 若要从数据库`FirstName`表`LastName`中返回和值, 请将<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>设置为 "FirstName, LastName" 而不使用任何参数。  
   
- 若要设置中的值<xref:System.Web.UI.WebControls.LinqDataSource.SelectParameters%2A>集合，您可以添加中的占位符<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性的命名参数。 在 Select 子句中的前面加上每个参数名称后的加符号 @。  
+ 若要设置<xref:System.Web.UI.WebControls.LinqDataSource.SelectParameters%2A>集合中的值, 请<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>在命名参数的属性中添加占位符。 在 Select 子句中, 每个参数名称前面加上 @ 符号。  
   
- 不能使用中的参数<xref:System.Web.UI.WebControls.LinqDataSource.SelectParameters%2A>集合来表示属性名称。 若要动态设置<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性设置为属性的名称创建的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件和自定义<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性根据需要。  
+ 不能使用<xref:System.Web.UI.WebControls.LinqDataSource.SelectParameters%2A>集合中的参数来表示属性名称。 若要将<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>属性动态设置为属性的名称, 请为<xref:System.Web.UI.WebControls.LinqDataSource.Selecting>事件创建一个事件处理程序, 并根据<xref:System.Web.UI.WebControls.LinqDataSource.Select%2A>需要自定义属性。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用一个用户提供的值来计算的值中返回的数据。 表示生产天数在文本框中，用户可以输入一个值。 此值除以表示天数，以制造一种产品的数据库中的值。 返回的值指示可在指定天数期间生产的多少产品。 用户输入的内容包含在通过 Select 命令<xref:System.Web.UI.WebControls.LinqDataSource.SelectParameters%2A>集合。  
+ 下面的示例演示如何使用用户提供的值在返回的数据中计算值。 用户可以在文本框中输入表示生产天数的值。 该值除以数据库中的一个值, 该值表示生产产品的天数。 返回的值指示在指定天数内可制造的产品数。 用户的输入通过<xref:System.Web.UI.WebControls.LinqDataSource.SelectParameters%2A>集合包含在 Select 命令中。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource.SelectParameters#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.SelectParameters/cs/Default.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource.SelectParameters#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.SelectParameters/vb/Default.aspx#1)]  
@@ -2083,13 +2083,13 @@ protected void LinqDataSource_Selecting(object sender,
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认情况下，当更新和删除操作已启用<xref:System.Web.UI.WebControls.LinqDataSource>控制存储在视图状态中的所有记录的原始值。 <xref:System.Web.UI.WebControls.LinqDataSource>控件将存储的所有主键的值，并且所有属性未都标有`UpdateCheck.Never`中`Column`属性。 您设置`UpdateCheck`的属性`Column`属性中[!INCLUDE[vs_ordesigner_short](~/includes/vs-ordesigner-short-md.md)]。  
+ 默认情况下, 当更新和删除操作已启用时, <xref:System.Web.UI.WebControls.LinqDataSource>该控件会将所有记录的原始值存储在视图状态中。 控件存储属性中未标记为的`UpdateCheck.Never`所有主键和所有属性的值。 `Column` <xref:System.Web.UI.WebControls.LinqDataSource> 您可以在`UpdateCheck`中设置属性`Column`的属性[!INCLUDE[vs_ordesigner_short](~/includes/vs-ordesigner-short-md.md)]。  
   
- LINQ to SQL 更新或删除数据之前，它会检查针对数据源中的当前值在视图状态的值。 如果值不匹配，数据源记录已更改。 在这种情况下，LINQ to SQL 将引发异常并且不会不继续更新或删除操作。 有关 LINQ to SQL 的详细信息，请参阅[LINQ to SQL](https://msdn.microsoft.com/library/73d13345-eece-471a-af40-4cc7a2f11655)。  
+ 在 LINQ to SQL 更新或删除数据之前, 它会根据数据源中的当前值检查视图状态中的值。 如果值不匹配, 则数据源记录已更改。 在这种情况下, LINQ to SQL 会引发异常, 并且不会继续更新或删除操作。 有关 LINQ to SQL 的详细信息, 请参阅[LINQ to SQL](https://msdn.microsoft.com/library/73d13345-eece-471a-af40-4cc7a2f11655)。  
   
- 状态视图中存储的原始值可能会导致的页大小变得不必要的大型和可以公开恶意用户的敏感数据。 您可以禁用通过设置存储视图状态中的值<xref:System.Web.UI.WebControls.LinqDataSource.StoreOriginalValuesInViewState%2A>属性设置为`false`。 如果执行此操作，则必须提供您自己的方式来确保数据未更改。 如果您设置<xref:System.Web.UI.WebControls.LinqDataSource.StoreOriginalValuesInViewState%2A>属性设置为`false`，原始值不会保留在数据绑定控件的视图状态。 在这种情况下，LINQ to SQL 无法验证数据的完整性。 LINQ to SQL 将引发异常，指示数据冲突，即使不实际更改数据源中的数据。  
+ 将原始值存储在视图状态中可能会导致页面大小不必要地变大, 并且可能会向恶意用户公开敏感数据。 您可以通过将<xref:System.Web.UI.WebControls.LinqDataSource.StoreOriginalValuesInViewState%2A>属性设置为来`false`禁用在视图状态中存储值。 如果执行此操作, 则必须提供自己的方法来确保数据未更改。 如果将<xref:System.Web.UI.WebControls.LinqDataSource.StoreOriginalValuesInViewState%2A>属性设置为`false`, 则不会在数据绑定控件的视图状态中保留原始值。 在这种情况下, LINQ to SQL 无法验证数据的完整性。 即使数据源中的数据没有实际更改, LINQ to SQL 也会引发指示数据冲突的异常。  
   
- 如果基础数据源包含自动更新在更新过程的时间戳字段，您可以仅将该值存储在视图状态中。 在这种情况下，实体类中的时间戳属性设置为`IsVersion=true`和所有属性都设置为`UpdateCheck.Never`。 因为在每次该记录中的数据更改时，数据库会自动更新时间戳字段，LINQ to SQL 确定从该值中，如果数据已更改。 这有助于减少的视图状态大小，未公开任何敏感数据。 LINQ to SQL 数据库中时间戳值的状态将通过比较时间戳值在视图中检查的数据一致性。 有关详细信息，请参见[演练：使用时间戳与 LinqDataSource 控件，以检查数据完整性](https://msdn.microsoft.com/library/e7700162-4f05-4130-81f7-3be1361027fa)。  
+ 如果基础数据源包含更新期间自动更新的时间戳字段, 则只能将该值存储在视图状态中。 在这种情况下, 将实体类中的 timestamp 属性设置`IsVersion=true`为, 并将所有属性都`UpdateCheck.Never`设置为。 由于每次数据库中的数据发生更改时, 数据库都会自动更新时间戳字段, 因此, 如果数据已更改, LINQ to SQL 将从该值确定。 这有助于减少视图状态的大小, 并且不公开敏感数据。 LINQ to SQL 将通过将视图状态中的时间戳值与数据库中的时间戳值进行比较来检查数据一致性。 有关详细信息，请参见[演练：使用带有 LinqDataSource 控件的时间戳来检查数据完整性](https://msdn.microsoft.com/library/e7700162-4f05-4130-81f7-3be1361027fa)。  
   
  ]]></format>
         </remarks>
@@ -2122,7 +2122,7 @@ protected void LinqDataSource_Selecting(object sender,
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.Web.UI.WebControls.LinqDataSource> 实例强制转换为 <xref:System.Web.DynamicData.IDynamicDataSource> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.Web.UI.WebControls.LinqDataSource> 实例被强制转换为 <xref:System.Web.DynamicData.IDynamicDataSource> 接口时使用。  
   
  ]]></format>
         </remarks>
@@ -2162,7 +2162,7 @@ protected void LinqDataSource_Selecting(object sender,
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.Web.UI.WebControls.LinqDataSource> 实例强制转换为 <xref:System.Web.DynamicData.IDynamicDataSource> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.Web.UI.WebControls.LinqDataSource> 实例被强制转换为 <xref:System.Web.DynamicData.IDynamicDataSource> 接口时使用。  
   
  ]]></format>
         </remarks>
@@ -2191,7 +2191,7 @@ protected void LinqDataSource_Selecting(object sender,
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.Web.UI.WebControls.LinqDataSource> 实例强制转换为 <xref:System.Web.DynamicData.IDynamicDataSource> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.Web.UI.WebControls.LinqDataSource> 实例被强制转换为 <xref:System.Web.DynamicData.IDynamicDataSource> 接口时使用。  
   
  ]]></format>
         </remarks>
@@ -2228,25 +2228,25 @@ protected void LinqDataSource_Selecting(object sender,
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性设置为表示要检索的数据的字段的属性的名称。 当连接到数据库表时，属性的名称通常是表的相同的名称。 当连接到内存中的数据集合时，设置<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性设置为属性或字段返回的数据集合的名称。  
+ <xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>将属性设置为表示要检索的数据的属性或字段的名称。 在连接到数据库表时, 属性的名称通常与表的名称相同。 连接到内存中数据集合时, 请将<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性设置为返回数据集合的属性或字段的名称。  
   
- 您可以将返回到任何类型的属性分配<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>检索操作的属性。 如果由属性表示的对象不实现<xref:System.Collections.IEnumerable>，则<xref:System.Web.UI.WebControls.LinqDataSource>控件将自动将对象包装的实例中<xref:System.Collections.IEnumerable>对象。  
+ 可以分配一个属性, 该属性可将任何类型<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>返回到属性以进行检索操作。 如果由属性表示的对象未实现<xref:System.Collections.IEnumerable>, 则该<xref:System.Web.UI.WebControls.LinqDataSource>控件将自动包装对象的实例<xref:System.Collections.IEnumerable>中的对象。  
   
- 若要启用自动更新、 插入或删除操作，分配给类<xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>属性必须派生自<xref:System.Data.Linq.DataContext>和分配给属性<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>必须派生自属性<xref:System.Data.Linq.Table%601>。  
+ 若要启用自动更新、插入或删除操作, <xref:System.Web.UI.WebControls.LinqDataSource.ContextTypeName%2A>分配给属性的类必须派生自<xref:System.Data.Linq.DataContext> , 并且分配<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>给属性的属性必须派生<xref:System.Data.Linq.Table%601>自。  
   
- 有关如何从一个类的实例中选择数据的信息，请参阅<xref:System.Web.UI.WebControls.LinqDataSourceSelectEventArgs.Result%2A>属性。  
+ 有关如何从类的实例中选择数据的信息, 请参见<xref:System.Web.UI.WebControls.LinqDataSourceSelectEventArgs.Result%2A>属性。  
   
    
   
 ## Examples  
- 下面的示例演示两个<xref:System.Web.UI.WebControls.LinqDataSource>控件。 在一个<xref:System.Web.UI.WebControls.LinqDataSource>控件，<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性设置为类中的属性。 该属性返回一个字符串数组。 在另<xref:System.Web.UI.WebControls.LinqDataSource>控件，<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A>属性设置为该属性表示数据库表。  
+ 下面的示例演示两<xref:System.Web.UI.WebControls.LinqDataSource>个控件。 在一个<xref:System.Web.UI.WebControls.LinqDataSource>控件中<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A> , 属性设置为类中的属性。 该属性返回字符串数组。 在另<xref:System.Web.UI.WebControls.LinqDataSource>一个控件中<xref:System.Web.UI.WebControls.LinqDataSource.TableName%2A> , 将属性设置为表示数据库表的属性。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Overview#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Overview/cs/Default.aspx#2)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Overview#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Overview/vb/Default.aspx#2)]  
   
- 名为的类`ExampleDataContext`，表示数据库表不显示在此示例中。 对于此示例正常工作，必须创建此类，通过添加 LINQ to SQL 类命名的 Example.dbml 和将表名为到电影[!INCLUDE[vs_ordesigner_short](~/includes/vs-ordesigner-short-md.md)]。 名为的类`ExampleDataContext`一个属性名为`Movies`生成。  
+ 在此示例`ExampleDataContext`中不显示名为的类, 它表示数据库表。 要使此示例正常运行, 必须通过添加一个名为 Example 的 LINQ to SQL 类并将名为 "Movie" 的[!INCLUDE[vs_ordesigner_short](~/includes/vs-ordesigner-short-md.md)]表拖到上来创建此类。 生成一个名`ExampleDataContext`为的类, `Movies`其中包含名为的属性。  
   
- 下面的示例演示名为的类`MovieLibrary`中引用<xref:System.Web.UI.WebControls.LinqDataSource>控件。  
+ 下面的示例显示了`MovieLibrary` <xref:System.Web.UI.WebControls.LinqDataSource>在控件中引用的名为的类。  
   
  [!code-csharp[System.Web.UI.WebControls.LinqDataSource_Overview#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Overview/cs/App_Code/MovieLibrary.cs#1)]
  [!code-vb[System.Web.UI.WebControls.LinqDataSource_Overview#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Overview/vb/App_Code/MovieLibrary.vb#1)]  
@@ -2309,17 +2309,17 @@ protected void LinqDataSource_Selecting(object sender,
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常情况下，不需要调用<xref:System.Web.UI.WebControls.LinqDataSource.Update%2A>从您的代码的方法。 数据绑定控件将自动调用<xref:System.Web.UI.WebControls.LinqDataSource.Update%2A>方法时用户执行操作来更新的记录。 显式调用<xref:System.Web.UI.WebControls.LinqDataSource.Update%2A>方法时您想要创建您自己的进程用于更新数据。  
+ 通常, 您不必从代码中调用<xref:System.Web.UI.WebControls.LinqDataSource.Update%2A>方法。 当用户采取操作更新记录时, 数据<xref:System.Web.UI.WebControls.LinqDataSource.Update%2A>绑定控件将自动调用方法。 若要创建自己<xref:System.Web.UI.WebControls.LinqDataSource.Update%2A>的用于更新数据的进程, 请显式调用方法。  
   
    
   
 ## Examples  
- 下面的示例演示如何以编程方式更新数据源中的记录，用户单击鼠标按钮后。 代码将传递<xref:System.Collections.Specialized.ListDictionary>对象，其中包含密钥值，<xref:System.Collections.Specialized.ListDictionary>对象，其中包含的原始值和一个<xref:System.Collections.Specialized.ListDictionary>对象，其中包含新值<xref:System.Web.UI.WebControls.LinqDataSource.Update%2A>方法。  
+ 下面的示例演示如何在用户单击按钮后以编程方式更新数据源中的记录。 该代码传递<xref:System.Collections.Specialized.ListDictionary>包含键值的对象<xref:System.Collections.Specialized.ListDictionary> 、包含<xref:System.Collections.Specialized.ListDictionary>原始值的对象, 以及包含<xref:System.Web.UI.WebControls.LinqDataSource.Update%2A>方法的新值的对象。  
   
  [!code-csharp[System.Web.UI.WebControls.LinqDataSource.Update#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.Update/cs/Default2.aspx.cs#1)]
  [!code-vb[System.Web.UI.WebControls.LinqDataSource.Update#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.Update/vb/Default3.aspx.vb#1)]  
   
- 下面的示例显示了针对上一示例的标记。  
+ 下面的示例演示上一示例的标记。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource.Update#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.Update/cs/Default2.aspx#2)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource.Update#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.Update/vb/Default3.aspx#2)]  
@@ -2355,7 +2355,7 @@ protected void LinqDataSource_Selecting(object sender,
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 处理<xref:System.Web.UI.WebControls.LinqDataSource.Updated>后更新操作已完成的事件来捕获任何异常从更新操作，或若要检查的值输出参数。 输出参数中有<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>传递给事件处理程序对象。  
+ <xref:System.Web.UI.WebControls.LinqDataSource.Updated>处理事件以从更新操作捕获任何异常, 或在更新操作完成后检查输出参数的值。 输出参数可从<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>传递给事件处理程序的对象获取。  
   
  ]]></format>
         </remarks>
@@ -2427,21 +2427,21 @@ protected void LinqDataSource_Selecting(object sender,
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 处理<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件，以便验证要更新，以检查数据类，若要更改执行更新操作前, 一个值，或取消更新操作中的数据验证错误的对象。 <xref:System.Web.UI.WebControls.LinqDataSourceUpdateEventArgs>对象传递给事件处理程序包含原始对象和已更新的对象。  
+ <xref:System.Web.UI.WebControls.LinqDataSource.Updating>处理事件以验证要更新的对象, 检查数据类中的数据验证错误, 更改更新操作之前的值, 或取消更新操作。 传递给事件处理程序的对象包含原始对象和更新的对象。<xref:System.Web.UI.WebControls.LinqDataSourceUpdateEventArgs>  
   
- 如果在更新操作时，发生验证错误<xref:System.Web.UI.WebControls.LinqDataSourceInsertEventArgs>对象包含的数据类引发验证异常。 如果要更新的值与数据类中属性的类型不匹配或未通过自定义验证检查，将发生验证错误。 中的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件，可以检索验证异常并采取相应的措施。  
+ 如果在更新操作过程中发生验证错误, 则<xref:System.Web.UI.WebControls.LinqDataSourceInsertEventArgs>对象将包含由数据类引发的验证异常。 如果要更新的值与数据类中的属性的类型不匹配, 则会发生验证错误, 或者, 如果未通过自定义验证检查, 则会发生验证错误。 在<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件的事件处理程序中, 可以检索验证异常并采取适当的操作。  
   
- 如果事件处理程序中引发异常<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件，必须处理该事件处理程序中的异常。 此异常不会传递到的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Updated>事件 (通过<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>属性的<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>对象)。 <xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>属性包含后引发的异常<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件。  
+ 如果<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件的事件处理程序中引发了异常, 则必须在该事件处理程序中处理异常。 异常将不会传递到<xref:System.Web.UI.WebControls.LinqDataSource.Updated>事件的事件处理程序 ( <xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>通过<xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs>对象的属性)。 属性仅包含<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件之后引发的异常。 <xref:System.Web.UI.WebControls.LinqDataSourceStatusEventArgs.Exception%2A>  
   
    
   
 ## Examples  
- 下面的示例演示的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件。 该代码将从属性进行比较<xref:System.Web.UI.WebControls.LinqDataSourceUpdateEventArgs.OriginalObject%2A>属性和<xref:System.Web.UI.WebControls.LinqDataSourceUpdateEventArgs.NewObject%2A>属性以查看是否已更改一个值。 如果值已更改，值为<xref:System.Web.UI.WebControls.LinqDataSourceUpdateEventArgs.NewObject%2A>属性设置为`true`。  
+ 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件的事件处理程序。 此代码对属性<xref:System.Web.UI.WebControls.LinqDataSourceUpdateEventArgs.OriginalObject%2A> <xref:System.Web.UI.WebControls.LinqDataSourceUpdateEventArgs.NewObject%2A>和属性的属性进行比较, 以查看值是否已更改。 如果值已更改, 则将<xref:System.Web.UI.WebControls.LinqDataSourceUpdateEventArgs.NewObject%2A>属性的值设置为。 `true`  
   
  [!code-csharp[System.Web.UI.WebControls.LinqDataSource.Updating#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.Updating/cs/Default.aspx.cs#1)]
  [!code-vb[System.Web.UI.WebControls.LinqDataSource.Updating#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource.Updating/vb/Default.aspx.vb#1)]  
   
- 下面的示例演示的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Updating>检索验证异常的事件。  
+ 下面的示例演示了检索验证异常的<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件的事件处理程序。  
   
 ```vb  
 Protected Sub LinqDataSource_Updating(ByVal sender As Object, _  
@@ -2474,7 +2474,7 @@ protected void LinqDataSource_Updating(object sender,
 }  
 ```  
   
- 前面的示例检索验证异常。 如果值与属性类型不匹配，则可能会引发异常。 它还可能如以下示例中的自定义检查从引发。 `OnAgeChanging`方法检查的数量`Age`属性不是负数。  
+ 前面的示例将检索验证异常。 如果值与属性的类型不匹配, 则可能会引发异常。 它也可能是自定义的检查 (如以下示例中的检查) 引发的。 方法检查`Age`属性的数目是否为负数。 `OnAgeChanging`  
   
 ```csharp  
 partial void  OnAgeChanging(int? value)  
@@ -2532,28 +2532,28 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您使用<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性来指定要从查询返回的记录的条件。 语法<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性是 C# 中的 LINQ Where 子句的语法相同。  
+ 您可以使用<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性指定要从查询返回的记录的条件。 <xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性的语法与中C#LINQ Where 子句的语法相同。  
   
- 指定的表达式的结果为布尔值，如果该表达式的计算结果为`true`对于给定的行，在结果集中包括的行。 表达式的列名称、 比较运算符和值进行比较，由组成，如下面的示例中所示：  
+ 指定导致布尔值的表达式, 如果表达式的计算`true`结果为, 则该行将包含在结果集中。 表达式由列名、比较运算符和要比较的值组成, 如下面的示例中所示:  
   
 ```  
 <asp:LinqDataSource ... Where="Price > 50"...>  
 ```  
   
- 若要指定多个表达式的逻辑链接`AND`或`OR`运算符，您将使用`&&`作为逻辑 AND 运算符和`||`作为逻辑 OR 运算符，如下面的示例中所示：  
+ 若要指定由`AND`逻辑 or `OR`运算符链接的多个表达式`&&` , 请使用作为逻辑 and `||`运算符并用作逻辑 or 运算符, 如下面的示例中所示:  
   
 ```  
 <asp:LinqDataSource ... Where="Price > 50 && Price < 100"...>  
 <asp:LinqDataSource ... Where="Price <= 50 || Price >= 100"...>  
 ```  
   
- 如果你想要测试针对一个文本字符串值的属性，则文本字符串值必须括在双引号。 若要在标记中执行此操作，请将<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>子句值在单引号内，如下面的示例中所示：  
+ 如果要根据文本字符串值测试属性, 则文本字符串值必须用双引号引起来。 若要在标记中执行此操作<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A> , 请将子句值括在单引号中, 如下面的示例中所示:  
   
 ```  
 <asp:LinqDataSource ... Where='Category = "Sports"' ... >  
 ```  
   
- 若要测试对代码中的文本字符串值，请使用适合于您使用为了插入双引号引起来，如下面的示例中所示的语言的转义符：  
+ 若要在代码中使用文本字符串值进行测试, 请使用适用于所使用的语言的转义符, 以便插入双引号, 如下面的示例所示:  
   
 ```vb  
 LinqDataSource1.Where = "Category = ""Sports"""  
@@ -2563,7 +2563,7 @@ LinqDataSource1.Where = "Category = ""Sports"""
 LinqDataSource1.Where = "Category = \"Sports\"";  
 ```  
   
- 如果你想要测试字符串是否大于或小于另一个字符串，则必须使用的方法<xref:System.String>类而不是使用`<`或`>`之间的列名称和字符串值的运算符。 下面的示例显示如何选择具有小于，小于或等于的类别值的行大于，或大于或等于"体育":  
+ 如果要测试字符串是否大于或小于另一个字符串, 必须使用<xref:System.String>类的方法, 而不是在列名称和字符串值之间使用`<`或`>`运算符。 下面的示例演示如何选择其类别值小于、小于或等于、大于或大于或等于 "体育" 的行:  
   
 ```  
 <asp:LinqDataSource ... Where='Category.CompareTo("Sports") < 0' ... >  
@@ -2572,23 +2572,23 @@ LinqDataSource1.Where = "Category = \"Sports\"";
 <asp:LinqDataSource ... Where='Category.CompareTo("Sports") >= 0' ... >  
 ```  
   
- 此外可以使用的其他方法<xref:System.String>类，如<xref:System.String.StartsWith%2A>， <xref:System.String.EndsWith%2A>，和<xref:System.String.Contains%2A>。 有关如何比较字符串的详细信息，请参阅[比较字符串](~/docs/standard/base-types/comparing.md)。 详细了解 Where 子句语法，请参阅[C# 运算符](https://msdn.microsoft.com/library/0301e31f-22ad-49af-ac3c-d5eae7f0ac43)和[其中子句](~/docs/csharp/language-reference/keywords/where-clause.md)。  
+ 你<xref:System.String>还可以使用类的其他方法, <xref:System.String.StartsWith%2A>例如、 <xref:System.String.EndsWith%2A>和<xref:System.String.Contains%2A>。 有关如何比较字符串的详细信息, 请参阅[比较字符串](~/docs/standard/base-types/comparing.md)。 有关 Where 子句语法的详细信息, 请参阅[ C# Operators](https://msdn.microsoft.com/library/0301e31f-22ad-49af-ac3c-d5eae7f0ac43)和[Where 子句](~/docs/csharp/language-reference/keywords/where-clause.md)。  
   
- 还可以筛选基于静态值，定义创建 Web 页时，可以根据在运行时计算的动态值进行筛选。 在这种情况下，包含在一个命名的参数<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>充当占位符的值的属性。 然后添加具有匹配名称的参数，<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合。  
+ 除了基于你在创建网页时定义的静态值进行筛选以外, 还可以根据在运行时计算的动态值进行筛选。 在这种情况下, 可以在<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性中包含一个命名参数, 作为值的占位符。 然后, 将具有匹配名称的参数添加到<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合。  
   
- 或者，可以设置<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A>属性设置为`true`定义中的参数和<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合。 当<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A>属性是`true`，无需包括中的命名的参数<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性。 相反，<xref:System.Web.UI.WebControls.LinqDataSource>控件自动生成 Where 子句中的参数从<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>属性。  
+ 或者, 可以将<xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A>属性设置为`true` , 并<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>定义集合中的参数。 当属性为`true`时, 无需在<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性中包含命名参数。 <xref:System.Web.UI.WebControls.LinqDataSource.AutoGenerateWhereClause%2A> 相反, <xref:System.Web.UI.WebControls.LinqDataSource>控件会自动从<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>属性中的参数生成 Where 子句。  
   
- 有关如何筛选数据的详细信息，请参阅[演练：选择和筛选 LinqDataSource 和 GridView 控件的数据子集](https://msdn.microsoft.com/library/c1cca3e8-86e4-4e69-a29f-1c05b91f2205)。  
+ 有关如何筛选数据的详细信息, 请参阅[演练:使用 LinqDataSource 和 GridView 控件](https://msdn.microsoft.com/library/c1cca3e8-86e4-4e69-a29f-1c05b91f2205)选择和筛选部分数据。  
   
    
   
 ## Examples  
- 下面的示例演示如何从基于静态条件的查询返回的数据进行筛选。  
+ 下面的示例演示如何根据静态条件筛选从查询返回的数据。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#5](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default5.aspx#5)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#5](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default5.aspx#5)]  
   
- 下面的示例演示如何基于用户在运行时提供的值对数据进行筛选。 在此示例中<xref:System.Web.UI.WebControls.DropDownList>控件和一个<xref:System.Web.UI.WebControls.GridView>页上显示控件。 当用户选择中的值之一<xref:System.Web.UI.WebControls.DropDownList>控件，<xref:System.Web.UI.WebControls.LinqDataSource>从控件中选择`Products`表具有的行`UserPrice`值等于所选的值。 <xref:System.Web.UI.WebControls.GridView>控件然后显示经过筛选的数据。  
+ 下面的示例演示如何根据用户在运行时提供的值来筛选数据。 在此示例<xref:System.Web.UI.WebControls.DropDownList>中, 控件<xref:System.Web.UI.WebControls.GridView>和控件显示在该页上。 当用户在<xref:System.Web.UI.WebControls.DropDownList>控件中选择一个值时<xref:System.Web.UI.WebControls.LinqDataSource> , 控件将仅从`Products`表中选择`UserPrice`值等于所选值的行。 然后<xref:System.Web.UI.WebControls.GridView> , 该控件将显示筛选后的数据。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#6](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default6.aspx#6)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#6](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default6.aspx#6)]  
@@ -2640,16 +2640,16 @@ LinqDataSource1.Where = "Category = \"Sports\"";
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.LinqDataSource>控件使用中的参数<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合创建 Where 子句在运行时。 您将参数添加到<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合时想要以编程方式将设置一个或多个条件在 Where 子句。 例如，可能会搜索数据库表中的记录的值相等的最后一个名称与<xref:System.Web.UI.WebControls.TextBox>控件。 在这种情况下，您将参数添加到<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>文本框值的集合。  
+ 控件使用<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合中的参数在运行时创建 Where 子句。 <xref:System.Web.UI.WebControls.LinqDataSource> 当要以编程方式<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>在 Where 子句中设置一个或多个条件时, 可以将参数添加到集合中。 例如, 您可以在数据库表中搜索姓氏等于<xref:System.Web.UI.WebControls.TextBox>控件值的记录。 在这种情况下, 可将参数添加<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>到文本框值的集合。  
   
- 如果不需要在运行时设置一个值，在 Where 子句中，您无需使用<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合。 可以定义要在中检索的字段<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性。 例如，若要从数据库表中返回其中`LastName`等于"Adams"在标记中，设置<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性设置为`'LastName = "Adams"'`不带任何参数。  
+ 如果在 Where 子句中无需在运行时设置值, 则无需使用该<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合。 可以在<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性中定义要检索的字段。 例如, 若要从数据库表返回值, 而`LastName`该数据库表的标记中等于 "Adams <xref:System.Web.UI.WebControls.LinqDataSource.Where%2A> ", `'LastName = "Adams"'`则将属性设置为不带任何参数。  
   
- 若要设置中的值<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合中，为每个参数指定一个名称，然后添加中的占位符<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>属性中的为该参数。 在 Where 子句中，与每个参数名称的前面加上 @ 符号。  
+ 若要设置集合中<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>的值, 请为每个参数分配一个名称, 然后<xref:System.Web.UI.WebControls.LinqDataSource.Where%2A>在该参数的属性中添加占位符。 在 Where 子句中, 每个参数名称前面加上 @ 符号。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合动态创建 Where 子句。 <xref:System.Web.UI.WebControls.LinqDataSource>控制返回中的值的所有记录`Price`列中的用户选择的值大于<xref:System.Web.UI.WebControls.DropDownList>控件。  
+ 下面的示例演示如何使用<xref:System.Web.UI.WebControls.LinqDataSource.WhereParameters%2A>集合动态创建 Where 子句。 控件返回的所有记录的`Price`列中的值大于用户在<xref:System.Web.UI.WebControls.DropDownList>控件中选择的值。 <xref:System.Web.UI.WebControls.LinqDataSource>  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.LinqDataSource_Simple#6](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/cs/Default6.aspx#6)]
  [!code-aspx-vb[System.Web.UI.WebControls.LinqDataSource_Simple#6](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.LinqDataSource_Simple/vb/Default6.aspx#6)]  

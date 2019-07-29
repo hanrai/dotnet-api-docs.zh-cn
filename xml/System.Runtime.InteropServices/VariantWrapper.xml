@@ -51,18 +51,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 目的<xref:System.Runtime.InteropServices.VariantWrapper>是封送到相应的托管的类型时，将添加一级间接`VARIANT`类型。  
+ 的用途<xref:System.Runtime.InteropServices.VariantWrapper>是在将托管类型封送到相应`VARIANT`类型时添加一个级别的间接寻址。  
   
- 您可以使用此类包装<xref:System.Object>的互操作封送处理程序将作为传递`VT_VARIANT | VT_BYREF`。 在版本 1.0 和 1.1 版.NET Framework 中，它无法封送 variant 数据类型的`VT_VARIANT | VT_BYREF`到非托管代码。 互操作封送处理程序传递托管类型的变体 (例如，`VT_BSTR | VT_BYREF`有关<xref:System.String>，或`VT_I4 | VT_BYREF`有关<xref:System.Int32>)，但不是`VT_VARIANT | VT_BYREF`。  
+ 您可以使用此类来包装<xref:System.Object>互操作封送拆收器作为`VT_VARIANT | VT_BYREF`传递的。 在 .NET Framework 版本1.0 和1.1 中, 无法将类型`VT_VARIANT | VT_BYREF`的变体数据封送到非托管代码。 互操作封送拆收器传递托管类型的变体 ( `VT_BSTR | VT_BYREF`例如<xref:System.String>, 适用`VT_I4 | VT_BYREF`于<xref:System.Int32>或), 而`VT_VARIANT | VT_BYREF`不是。  
   
- 使用的一个优点`VT_VARIANT | VT_BYREF`变体类型是方法调用期间，可以更改的数据类型。 例如，可以传递`VT_VARIANT | VT_BYREF`包含的变体类型`VT_BSTR`和包含的获取变体返回`VT_I4`调用方法后。 因为 COM 互操作封送处理程序有没有办法知道何时传递`VT_BSTR | VT_BYREF`以及何时传递`VT_VARIANT | VT_BYREF`，它指向一个变量，包含该`BSTR`的参数声明为`VARIANT *`，可以通过使用指示封送处理程序<xref:System.Runtime.InteropServices.VariantWrapper>.  
+ 使用`VT_VARIANT | VT_BYREF`变体类型的一个优点是可以在方法调用期间更改数据的类型。 例如, 可以传递`VT_VARIANT | VT_BYREF`包含的`VT_BSTR`变量类型, 并获取在方法调用后返回的包含的`VT_I4`变量。 由于 COM 互操作封送拆收器无法知道何时传递`VT_BSTR | VT_BYREF`和何时传递`VT_VARIANT | VT_BYREF`(指向为声明为`VARIANT *`的参数包含`BSTR`的变体), 因此可以使用<xref:System.Runtime.InteropServices.VariantWrapper>.  
   
- 请注意，不支持早期绑定;可以使用<xref:System.Runtime.InteropServices.VariantWrapper>仅当调用<xref:System.Type.InvokeMember%2A>或具有早期绑定方式调用仅支持调度的接口。 在 C# 中，您必须使用`ref`关键字来指定`ByRef`类型的任何参数的语义<xref:System.Runtime.InteropServices.VariantWrapper>。 在 Visual Basic 中`ByRef`语义会自动添加为每个隐式后期绑定调用。 此外请注意，嵌套<xref:System.Runtime.InteropServices.VariantWrapper>对象和数组的<xref:System.Runtime.InteropServices.VariantWrapper>不支持对象。  
+ 请注意, 不支持早期绑定;仅当调用<xref:System.Runtime.InteropServices.VariantWrapper> <xref:System.Type.InvokeMember%2A>或时, 才可以使用以早期绑定方式调用的仅调度接口。 在C#中, 还必须使用`ref`关键字为类型<xref:System.Runtime.InteropServices.VariantWrapper>为`ByRef`的任何参数指定语义。 在 Visual Basic 中`ByRef` , 将为每个隐式后期绑定调用自动添加语义。 另请注意, <xref:System.Runtime.InteropServices.VariantWrapper>不支持嵌套对象<xref:System.Runtime.InteropServices.VariantWrapper>和对象数组。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Runtime.InteropServices.VariantWrapper>类用于包装<xref:System.Object>的互操作封送处理程序将作为传递`VT_VARIANT | VT_BYREF`。  
+ 下面的代码示例演示如何使用<xref:System.Runtime.InteropServices.VariantWrapper>类<xref:System.Object>包装互操作封送拆收器传递`VT_VARIANT | VT_BYREF`的。  
   
  [!code-csharp[System.Runtime.InteropServices.VariantWrapper#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Runtime.InteropServices.VariantWrapper/cs/sample.cs#1)]
  [!code-vb[System.Runtime.InteropServices.VariantWrapper#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Runtime.InteropServices.VariantWrapper/vb/sample.vb#1)]  
@@ -111,7 +111,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Runtime.InteropServices.VariantWrapper>类用于包装<xref:System.Object>的互操作封送处理程序将作为传递`VT_VARIANT | VT_BYREF`。  
+ 下面的代码示例演示如何使用<xref:System.Runtime.InteropServices.VariantWrapper>类<xref:System.Object>包装互操作封送拆收器传递`VT_VARIANT | VT_BYREF`的。  
   
  [!code-csharp[System.Runtime.InteropServices.VariantWrapper#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Runtime.InteropServices.VariantWrapper/cs/sample.cs#1)]
  [!code-vb[System.Runtime.InteropServices.VariantWrapper#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Runtime.InteropServices.VariantWrapper/vb/sample.vb#1)]  
@@ -155,7 +155,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取由 <see cref="T:System.Runtime.InteropServices.VariantWrapper" /> 对象包装的对象。</summary>
-        <value>包装的对象<see cref="T:System.Runtime.InteropServices.VariantWrapper" />对象。</value>
+        <value>由 <see cref="T:System.Runtime.InteropServices.VariantWrapper" /> 对象包装的对象。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

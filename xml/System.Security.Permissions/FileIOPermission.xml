@@ -40,40 +40,40 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此权限可区分以下四种类型的文件 IO 访问提供的<xref:System.Security.Permissions.FileIOPermissionAccess>:  
+ 此权限可区分提供<xref:System.Security.Permissions.FileIOPermissionAccess>的以下四种文件 IO 访问类型:  
   
--   `Read`：对文件或访问文件，例如它的长度或上次修改时间有关的信息的内容读取访问。  
+-   `Read`：读取对文件内容的访问权限或访问有关文件的信息, 如其长度或上次修改时间。  
   
--   `Write`：写入到文件或更改的文件，如其名称信息的访问权限的内容的访问权限。 此外可以删除和覆盖。  
+-   `Write`：写入对文件内容的访问权限, 或访问以更改有关文件的信息, 如文件的名称。 还允许删除和覆盖。  
   
--   `Append`：要写入到文件仅末尾的功能。 无法读取。  
+-   `Append`：只能写入文件尾。 不能读取。  
   
--   `PathDiscovery`：对路径本身中的信息的访问。 这有助于保护敏感信息在路径中，如用户名称，以及有关路径中显示的目录结构的信息。 此值不会授予对文件或文件夹路径所表示的访问。  
-  
-> [!NOTE]
->  为提供<xref:System.Security.Permissions.FileIOPermissionAccess.Write>对程序集的访问是类似于它授予完全信任。 如果应用程序不应写入到文件系统，它不应具有<xref:System.Security.Permissions.FileIOPermissionAccess.Write>访问。  
-  
- 所有这些权限是独立的这意味着一个权限并不意味着对另一个权限。 例如，`Write`权限不表示对权限`Read`或`Append`。 如果需要多个权限，则它们可以组合使用位或运算，如下面的代码示例中所示。 根据规范的绝对路径; 定义的文件权限始终应使用规范的文件路径进行调用。  
-  
- <xref:System.Security.Permissions.FileIOPermission> 介绍受保护的文件和文件夹上的操作。 <xref:System.IO.File>类可帮助提供对文件和文件夹的安全访问。 创建文件的句柄时执行的安全访问权限检查。 通过执行操作可以在创建时检查，安全检查的性能影响降到最低。 打开一个文件发生一次，而读取和写入可能发生多次。 一旦打开文件，无需再执行检查。 如果该对象传递给不受信任调用方，它可能被误用。 例如，文件句柄应不存储在具有较少权限的代码可以访问它们的公用全局静态对象。  
-  
- <xref:System.Security.Permissions.FileIOPermissionAccess> 指定可执行文件或文件夹的操作。 此外，可以使用位或运算来构成复杂实例组合这些操作。  
-  
- 文件夹的访问权限就意味着访问包含，以及对所有文件和文件夹及其子文件夹中的所有文件。 例如， `Read` C:\folder1\ 访问意味着`Read`权 C:\folder1\file1.txt，C:\folder1\folder2\\，C:\folder1\folder2\file2.txt，依次类推。  
+-   `PathDiscovery`：访问路径本身中的信息。 这有助于保护路径中的敏感信息, 例如用户名, 以及有关路径中显示的目录结构的信息。 此值不授予对路径所指代的文件或文件夹的访问权限。  
   
 > [!NOTE]
->  在之前的.NET framework 版本[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]，可以使用<xref:System.Security.CodeAccessPermission.Deny%2A?displayProperty=nameWithType>方法，以防止对系统资源的意外访问受信任的代码。 <xref:System.Security.CodeAccessPermission.Deny%2A> 现已过时，并对资源的访问现在只能由授予的权限集的程序集来决定。 若要限制访问文件，必须运行沙盒中部分受信任的代码，并将它分配给代码可以访问的资源的权限。 有关在沙盒中运行的应用程序的信息，请参阅[如何：运行沙盒中部分受信任的代码](~/docs/framework/misc/how-to-run-partially-trusted-code-in-a-sandbox.md)中所述。  
+>  授予对程序集的访问权限类似于向其授予完全信任。<xref:System.Security.Permissions.FileIOPermissionAccess.Write> 如果应用程序不应写入文件系统, 则它不应具有<xref:System.Security.Permissions.FileIOPermissionAccess.Write>访问权限。  
+  
+ 所有这些权限都是独立的, 这意味着对某个权限的权限不表示对另一个权限的权限。 例如, `Write`权限不表示对`Read`或`Append`的权限。 如果需要多个权限, 可以使用按位 "或" 将其组合起来, 如下面的代码示例中所示。 文件权限根据规范绝对路径进行定义;应始终通过规范文件路径发出调用。  
+  
+ <xref:System.Security.Permissions.FileIOPermission>描述对文件和文件夹的受保护操作。 <xref:System.IO.File>类可帮助提供对文件和文件夹的安全访问。 当创建文件的句柄时, 将执行安全访问检查。 通过在创建时进行检查, 最小化安全检查对性能的影响。 打开文件只发生一次, 而读取和写入可以发生多次。 打开该文件后, 不进行进一步检查。 如果对象被传递给不受信任的调用方, 则可能会被误用。 例如, 文件句柄不应存储在公共全局静态静态位置, 而具有较少权限的代码可以访问这些静态静态。  
+  
+ <xref:System.Security.Permissions.FileIOPermissionAccess>指定可对文件或文件夹执行的操作。 此外, 可以使用按位 "或" 构成复杂的实例来合并这些操作。  
+  
+ 对文件夹的访问权限意味着可以访问其包含的所有文件, 以及访问其子文件夹中的所有文件和文件夹。 例如, `Read`访问 C:\folder1\ 意味着`Read`访问 C:\folder1\file1.txt、C:\folder1\folder2\\、C:\folder1\folder2\file2.txt 等。  
+  
+> [!NOTE]
+>  在之前[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)].NET Framework 版本中, 你可以<xref:System.Security.CodeAccessPermission.Deny%2A?displayProperty=nameWithType>使用方法来防止无意中通过受信任代码访问系统资源。 <xref:System.Security.CodeAccessPermission.Deny%2A>现已过时, 并且现在仅由为程序集授予的权限集确定对资源的访问权限。 若要限制对文件的访问, 必须在沙盒中运行部分受信任的代码, 并仅向该代码允许访问的资源分配权限。 有关在沙盒中运行应用程序的信息, 请[参阅如何:运行沙盒中部分受信任的代码](~/docs/framework/misc/how-to-run-partially-trusted-code-in-a-sandbox.md)中所述。  
   
    
   
 ## Examples  
- 以下示例说明了使用的代码<xref:System.Security.Permissions.FileIOPermission>。 以下两行代码，该对象后`f`表示读取计算机的本地磁盘的客户端上的所有文件的权限。 然后，代码示例要求权限来确定应用程序是否有权读取的文件。  
+ 下面的示例演示使用<xref:System.Security.Permissions.FileIOPermission>的代码。 在以下两行代码之后, 对象`f`表示读取客户端计算机本地磁盘上的所有文件的权限。 然后, 该代码示例要求权限来确定应用程序是否有权读取文件。  
   
  [!code-cpp[Classic FileIOPermission Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic FileIOPermission Example/CPP/source.cpp#1)]
  [!code-csharp[Classic FileIOPermission Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic FileIOPermission Example/CS/source.cs#1)]
  [!code-vb[Classic FileIOPermission Example#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_Classic/classic FileIOPermission Example/VB/source.vb#1)]  
   
- 以下两行代码，该对象后`f2`表示读取 C:\test_r 和读取并写入到 C:\example\out.txt 的权限。 `Read` 和`Write`表示按前面所述的文件/文件夹权限。 在创建后的权限，该代码要求权限来确定应用程序是否具有读取和写入文件的权限。  
+ 在以下两行代码之后, 对象`f2`表示读取 C:\test_r 和读取和写入 C:\example\out.txt. 的权限。 `Read`和`Write`表示前面所述的文件/文件夹权限。 创建权限后, 代码需要权限来确定应用程序是否具有读取和写入文件的权限。  
   
  [!code-cpp[Classic FileIOPermission Example#2](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic FileIOPermission Example/CPP/source.cpp#2)]
  [!code-csharp[Classic FileIOPermission Example#2](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic FileIOPermission Example/CS/source.cs#2)]
@@ -126,12 +126,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 创建完全受限制 (`None`) 或`Unrestricted`文件和目录访问权限。  
+ 创建完全受限制 (`None`) 或`Unrestricted`对文件和目录的访问权限。  
   
    
   
 ## Examples  
- 下面的代码示例创建的新实例<xref:System.Security.Permissions.FileIOPermission>类具有完全受限制的读取访问权限。  
+ 下面的代码示例使用完全受限的读取访问<xref:System.Security.Permissions.FileIOPermission>权限创建类的新实例。  
   
  [!code-cpp[Classic FileIOPermission Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic FileIOPermission Example/CPP/source.cpp#1)]
  [!code-csharp[Classic FileIOPermission Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic FileIOPermission Example/CS/source.cs#1)]
@@ -180,12 +180,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数仅允许的一个<xref:System.Security.Permissions.FileIOPermissionAccess>指定的文件或目录的指定值。 使用<xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>方法来定义复杂的权限。  
+ 此构造函数只允许为指定<xref:System.Security.Permissions.FileIOPermissionAccess>的文件或目录指定其中一个值。 <xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>使用方法定义复杂的权限。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.FileIOPermission.%23ctor%28System.Security.Permissions.FileIOPermissionAccess%2CSystem.String%29?displayProperty=nameWithType>构造函数创建的新实例<xref:System.Security.Permissions.FileIOPermission>类，该类提供对 C:\test_r 文件的完整访问权限。  
+ 下面的代码示例演示如何使用<xref:System.Security.Permissions.FileIOPermission.%23ctor%28System.Security.Permissions.FileIOPermissionAccess%2CSystem.String%29?displayProperty=nameWithType>构造函数创建<xref:System.Security.Permissions.FileIOPermission>类的新实例, 该类提供对 C:\test_r 文件的完全访问权限。  
   
  [!code-cpp[Classic FileIOPermission Example#2](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic FileIOPermission Example/CPP/source.cpp#2)]
  [!code-csharp[Classic FileIOPermission Example#2](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic FileIOPermission Example/CS/source.cs#2)]
@@ -198,7 +198,7 @@
 或 
 <paramref name="path" /> 参数不是有效的字符串。  
   
-或 
+- 或 - 
 <paramref name="path" /> 参数未指定文件或目录的绝对路径。</exception>
       </Docs>
     </Member>
@@ -240,13 +240,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数仅允许一个<xref:System.Security.Permissions.FileIOPermissionAccess>为指定的文件和目录指定的值。 使用<xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>方法来定义复杂的权限。  
+ 此构造函数只允许<xref:System.Security.Permissions.FileIOPermissionAccess>为指定的文件和目录指定一个值。 <xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>使用方法定义复杂的权限。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="access" /> 参数不是 <see cref="T:System.Security.Permissions.FileIOPermissionAccess" /> 的有效值。  
   
-或 
+- 或 - 
 <paramref name="pathList" /> 数组中的条目不是有效的字符串。</exception>
       </Docs>
     </Member>
@@ -297,12 +297,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数仅允许一个<xref:System.Security.Permissions.FileIOPermissionAccess>值指定为指定的文件或目录。 使用<xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>方法来定义复杂的权限。  
+ 此构造函数只允许<xref:System.Security.Permissions.FileIOPermissionAccess>为指定的一个或多个指定的文件指定一个值。 <xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>使用方法定义复杂的权限。  
   
- `control`参数指定的访问控制列表 (ACL) 文件或由指定的目录是否从而`path`可以更改、 查看或无法访问。  
+ 参数指定由`path`指定的文件或目录的访问控制列表 (ACL) 是可更改、查看还是无法访问。 `control`  
   
 > [!IMPORTANT]
->  个人或组，或没有执行给定的文件和其属性的特定操作的权限的人员，介绍了访问控制列表 (ACL)。  能够更改或查看 ACL 是一种重要权限，并应授予谨慎使用。  
+>  访问控制列表 (ACL) 描述对给定文件及其属性具有或没有特定操作权限的个人或组。  更改或查看 ACL 的功能是一个重要的权限, 应小心授予。  
   
  ]]></format>
         </remarks>
@@ -362,18 +362,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数仅允许一个<xref:System.Security.Permissions.FileIOPermissionAccess>为指定的文件和目录指定的值。 使用<xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>方法来定义复杂的权限。  
+ 此构造函数只允许<xref:System.Security.Permissions.FileIOPermissionAccess>为指定的文件和目录指定一个值。 <xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>使用方法定义复杂的权限。  
   
- `control`参数指定的访问控制列表 (ACL) 文件或由指定的目录是否从而`path`可以更改、 查看或无法访问。  
+ 参数指定由`path`指定的文件或目录的访问控制列表 (ACL) 是可更改、查看还是无法访问。 `control`  
   
 > [!IMPORTANT]
->  个人或组，或没有执行给定的文件和其属性的特定操作的权限的人员，介绍了访问控制列表 (ACL)。  能够更改或查看 ACL 是一种重要权限，并应授予谨慎使用。  
+>  访问控制列表 (ACL) 描述对给定文件及其属性具有或没有特定操作权限的个人或组。  更改或查看 ACL 的功能是一个重要的权限, 应小心授予。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="access" /> 参数不是 <see cref="T:System.Security.Permissions.FileIOPermissionAccess" /> 的有效值。  
   
-或 
+- 或 - 
 <paramref name="pathList" /> 数组中的条目不是有效的字符串。</exception>
       </Docs>
     </Member>
@@ -428,12 +428,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此方法以添加到当前权限状态来修改文件和目录的访问。  
+ 通过将添加到当前权限的状态, 使用此方法修改文件和目录访问。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.FileIOPermission.AddPathList%28System.Security.Permissions.FileIOPermissionAccess%2CSystem.String%29?displayProperty=nameWithType>方法。  
+ 下面的代码示例演示<xref:System.Security.Permissions.FileIOPermission.AddPathList%28System.Security.Permissions.FileIOPermissionAccess%2CSystem.String%29?displayProperty=nameWithType>方法的用法。  
   
  [!code-cpp[Classic FileIOPermission Example#2](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic FileIOPermission Example/CPP/source.cpp#2)]
  [!code-csharp[Classic FileIOPermission Example#2](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic FileIOPermission Example/CS/source.cs#2)]
@@ -443,10 +443,10 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="access" /> 参数不是 <see cref="T:System.Security.Permissions.FileIOPermissionAccess" /> 的有效值。  
   
-或 
+- 或 - 
 <paramref name="path" /> 参数不是有效的字符串。  
   
-或 
+- 或 - 
 <paramref name="path" /> 参数未指定文件或目录的绝对路径。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="path" /> 参数为 <see langword="null" />。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="path" /> 参数的格式无效。</exception>
@@ -493,7 +493,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此方法以添加到当前权限状态来修改文件和目录的访问。  
+ 通过将添加到当前权限的状态, 使用此方法修改文件和目录访问。  
   
  ]]></format>
         </remarks>
@@ -536,14 +536,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性获取或设置允许的访问权限的本地计算机和网络驱动器上的所有文件。  
+ 此属性获取或设置对本地计算机和网络驱动器上的所有文件的允许访问权限。  
   
- 个人<xref:System.Security.Permissions.FileIOPermissionAccess>在检查值是否为使用按位 AND 运算。  
+ 可以使用<xref:System.Security.Permissions.FileIOPermissionAccess>按位 "与" 运算检查单个值。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.FileIOPermission.AllFiles%2A>属性。  
+ 下面的代码示例演示<xref:System.Security.Permissions.FileIOPermission.AllFiles%2A>属性的用法。  
   
  [!code-cpp[Classic FileIOPermission Example#3](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic FileIOPermission Example/CPP/source.cpp#3)]
  [!code-csharp[Classic FileIOPermission Example#3](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic FileIOPermission Example/CS/source.cs#3)]
@@ -584,14 +584,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 本地文件是包含在本地计算机上的文件。 不通过网络驱动器访问任何文件是本地文件。  
+ 本地文件是包含在本地计算机上的文件。 不通过网络驱动器访问的任何文件均为本地文件。  
   
- 个人<xref:System.Security.Permissions.FileIOPermissionAccess>在检查值是否为使用按位 AND 运算。  
+ 可以使用<xref:System.Security.Permissions.FileIOPermissionAccess>按位 "与" 运算检查单个值。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.FileIOPermission.AllLocalFiles%2A>属性。  
+ 下面的代码示例演示<xref:System.Security.Permissions.FileIOPermission.AllLocalFiles%2A>属性的用法。  
   
  [!code-cpp[Classic FileIOPermission Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic FileIOPermission Example/CPP/source.cpp#1)]
  [!code-csharp[Classic FileIOPermission Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic FileIOPermission Example/CS/source.cs#1)]
@@ -633,7 +633,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 权限的副本与原始权限资源表示相同的访问权限。  
+ 权限的副本表示对资源的相同访问权限。  
   
  ]]></format>
         </remarks>
@@ -686,7 +686,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关详细信息，请参阅 <xref:System.Object.Equals%2A>。  
+ 有关更多信息，请参见<xref:System.Object.Equals%2A>。  
   
  ]]></format>
         </remarks>
@@ -731,7 +731,7 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="esd" /> 参数为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="esd" /> 参数不是有效的权限元素。  
   
-或 
+- 或 - 
 <paramref name="esd" /> 参数的版本号不兼容。</exception>
       </Docs>
     </Member>
@@ -771,7 +771,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 相同的权限的两个实例的哈希代码可能会有所不同，因此不应使用的哈希代码来比较两个<xref:System.Security.Permissions.FileIOPermission>对象。  
+ 同一权限的两个实例的哈希代码可能不同, 因此, 不应使用哈希代码来比较两个<xref:System.Security.Permissions.FileIOPermission>对象。  
   
  ]]></format>
         </remarks>
@@ -817,15 +817,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此方法以获取当前权限状态。 若要获取这两者的状态`Read`和`Write`两次调用此方法所需的访问权限。  
+ 使用此方法可以获取当前权限的状态。 若要获取`Read`和`Write`访问的状态, 需要对此方法进行两次调用。  
   
 > [!NOTE]
->  `access`参数仅限于的值<xref:System.Security.Permissions.FileIOPermissionAccess>，它表示的文件访问的单一类型。 这些值是<xref:System.Security.Permissions.FileIOPermissionAccess.Read>， <xref:System.Security.Permissions.FileIOPermissionAccess.Write>， <xref:System.Security.Permissions.FileIOPermissionAccess.Append>，和<xref:System.Security.Permissions.FileIOPermissionAccess.PathDiscovery>。 可接受值`access`不包括<xref:System.Security.Permissions.FileIOPermissionAccess.NoAccess>和<xref:System.Security.Permissions.FileIOPermissionAccess.AllAccess>，这不表示单一类型的文件访问。  
+>  参数限制为的<xref:System.Security.Permissions.FileIOPermissionAccess>值, 这些值表示一种类型的文件访问。 `access` 这些值为<xref:System.Security.Permissions.FileIOPermissionAccess.Read> <xref:System.Security.Permissions.FileIOPermissionAccess.Write> 、<xref:System.Security.Permissions.FileIOPermissionAccess.Append>、和<xref:System.Security.Permissions.FileIOPermissionAccess.PathDiscovery>。 可接受`access`的值不包括<xref:System.Security.Permissions.FileIOPermissionAccess.NoAccess>和<xref:System.Security.Permissions.FileIOPermissionAccess.AllAccess>, 它们不表示单一类型的文件访问。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.FileIOPermission.GetPathList%2A>方法。 此示例摘自一个更大的示例为提供<xref:System.Security.Permissions.FileIOPermission>类。  
+ 下面的代码示例演示<xref:System.Security.Permissions.FileIOPermission.GetPathList%2A>方法的用法。 此示例是为<xref:System.Security.Permissions.FileIOPermission>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermission#7](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermission/CPP/fileiopermission.cpp#7)]
  [!code-csharp[System.Security.Permissions.FileIOPermission#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermission/CS/fileiopermission.cs#7)]
@@ -874,7 +874,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 两个权限的交集是描述两者共同描述的操作组的权限。 只有传递两个原始权限的请求将通过该交集。  
+ 两个权限的交集是描述它们共同描述的一组操作的权限。 只有同时传递两个原始权限的请求才会传递交集。  
   
  ]]></format>
         </remarks>
@@ -916,7 +916,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果当前权限指定包含的指定权限的一组操作，则当前权限是指定权限的子集。 例如，表示对 C:\example.txt 读取访问权限的权限是到 c： 表示读取访问权限的子集\\。 如果此方法返回`true`，当前权限表示对受保护资源的访问权限不超过指定的权限。  
+ 如果当前权限指定了指定权限所包含的一组操作, 则当前权限是指定权限的子集。 例如, 表示对 C:\example.txt 的读取访问权限的权限是表示对 C:\\的读取访问权限的权限的子集。 如果此方法返回`true`, 则当前权限表示对受保护资源的访问权限比指定权限更多。  
   
  ]]></format>
         </remarks>
@@ -1010,13 +1010,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 覆盖当前权限指定的访问类型的前一状态。 下面的代码设置的访问权限为到 C:\temp <xref:System.Security.Permissions.FileIOPermissionAccess.Read>。  
+ 指定访问类型的当前权限的以前状态被覆盖。 下面的代码将 C:\temp 的访问设置为<xref:System.Security.Permissions.FileIOPermissionAccess.Read>。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermission#12](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermission/CPP/remarks.cpp#12)]
  [!code-csharp[System.Security.Permissions.FileIOPermission#12](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermission/CS/remarks.cs#12)]
  [!code-vb[System.Security.Permissions.FileIOPermission#12](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermission/VB/remarks.vb#12)]  
   
- 此访问权限不会覆盖，下面的代码，因为访问类型不相同。  
+ 此访问将不会被以下代码覆盖, 因为访问类型不相同。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermission#13](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermission/CPP/remarks.cpp#13)]
  [!code-csharp[System.Security.Permissions.FileIOPermission#13](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermission/CS/remarks.cs#13)]
@@ -1025,7 +1025,7 @@
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.FileIOPermission.SetPathList%28System.Security.Permissions.FileIOPermissionAccess%2CSystem.String%29?displayProperty=nameWithType>方法。  
+ 下面的代码示例演示<xref:System.Security.Permissions.FileIOPermission.SetPathList%28System.Security.Permissions.FileIOPermissionAccess%2CSystem.String%29?displayProperty=nameWithType>方法的用法。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermission#7](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermission/CPP/fileiopermission.cpp#7)]
  [!code-csharp[System.Security.Permissions.FileIOPermission#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermission/CS/fileiopermission.cs#7)]
@@ -1035,7 +1035,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="access" /> 参数不是 <see cref="T:System.Security.Permissions.FileIOPermissionAccess" /> 的有效值。  
   
-或 
+- 或 - 
 <paramref name="path" /> 参数不是有效的字符串。  
   
 或 
@@ -1078,9 +1078,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 覆盖当前权限指定的访问类型的前一状态。 下面的代码设置的访问权限为到 C:\temp <xref:System.Security.Permissions.FileIOPermissionAccess.Read>。  
+ 指定访问类型的当前权限的以前状态被覆盖。 下面的代码将 C:\temp 的访问设置为<xref:System.Security.Permissions.FileIOPermissionAccess.Read>。  
   
- 此访问权限不会覆盖，下面的代码，因为访问类型不相同。  
+ 此访问将不会被以下代码覆盖, 因为访问类型不相同。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermission#15](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermission/CPP/remarks.cpp#15)]
  [!code-csharp[System.Security.Permissions.FileIOPermission#15](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermission/CS/remarks.cs#15)]
@@ -1160,7 +1160,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对的调用结果<xref:System.Security.Permissions.FileIOPermission.Union%2A>是当前权限和指定的权限表示所表示的所有操作的权限。 任何请求都会通过任一权限传递其联合。  
+ 调用的结果<xref:System.Security.Permissions.FileIOPermission.Union%2A>是一个权限, 它表示当前权限和指定权限所表示的所有操作。 任何传递任意权限的需求都将传递其联合。  
   
  ]]></format>
         </remarks>
