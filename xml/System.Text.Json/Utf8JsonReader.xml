@@ -1,5 +1,5 @@
 <Type Name="Utf8JsonReader" FullName="System.Text.Json.Utf8JsonReader">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b28e3f5d8816fc720b94105dae9b26daef43639a" /><Meta Name="ms.sourcegitcommit" Value="61757d0366a172cdbc11436deb1c1ffa49d97238" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/28/2019" /><Meta Name="ms.locfileid" Value="67458314" /></Metadata><TypeSignature Language="C#" Value="public struct Utf8JsonReader" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d819d79b85a5451effbb779c90de4a7d1fa77343" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68434924" /></Metadata><TypeSignature Language="C#" Value="public struct Utf8JsonReader" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit Utf8JsonReader extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Text.Json.Utf8JsonReader" />
   <TypeSignature Language="VB.NET" Value="Public Structure Utf8JsonReader" />
@@ -19,62 +19,91 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary><span data-ttu-id="576c9-101">提供高性能的 API，以便提供对 UTF-8 编码 JSON 文本的只进和只读访问权限。</span><span class="sxs-lookup"><span data-stu-id="576c9-101">Provides a high-performance API for forward-only, read-only access to the UTF-8 encoded JSON text.</span></span></summary>
+    <summary><span data-ttu-id="120c0-101">提供高性能的 API，以便提供对 UTF-8 编码 JSON 文本的只进和只读访问权限。</span><span class="sxs-lookup"><span data-stu-id="120c0-101">Provides a high-performance API for forward-only, read-only access to the UTF-8 encoded JSON text.</span></span></summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-<span data-ttu-id="576c9-102">`Utf8JsonReader` 进程的文本按顺序不使用缓存并默认情况下为严格遵循[JSON RFC](https://tools.ietf.org/html/rfc8259)。</span><span class="sxs-lookup"><span data-stu-id="576c9-102">`Utf8JsonReader` processes the text sequentially with no caching and by default adheres strictly to the [JSON RFC](https://tools.ietf.org/html/rfc8259).</span></span>
+<span data-ttu-id="120c0-102">`Utf8JsonReader`在不使用缓存的情况下按顺序处理文本, 默认情况下严格遵循[JSON RFC](https://tools.ietf.org/html/rfc8259)。</span><span class="sxs-lookup"><span data-stu-id="120c0-102">`Utf8JsonReader` processes the text sequentially with no caching and by default adheres strictly to the [JSON RFC](https://tools.ietf.org/html/rfc8259).</span></span>
 
-<span data-ttu-id="576c9-103">当`Utf8JsonReader`遇到无效的 JSON，则会引发<xref:System.Text.Json.JsonReaderException>与行数和字节位置如下基本错误信息： 在行上。</span><span class="sxs-lookup"><span data-stu-id="576c9-103">When `Utf8JsonReader` encounters invalid JSON, it throws a <xref:System.Text.Json.JsonReaderException>  with basic error information like line number and byte position on the line.</span></span>
+<span data-ttu-id="120c0-103">当`Utf8JsonReader`遇到无效的 JSON 时, 它<xref:System.Text.Json.JsonReaderException>会引发, 其中包含基本错误信息, 如行号和行中的字节位置。</span><span class="sxs-lookup"><span data-stu-id="120c0-103">When `Utf8JsonReader` encounters invalid JSON, it throws a <xref:System.Text.Json.JsonReaderException>  with basic error information like line number and byte position on the line.</span></span>
 
-<span data-ttu-id="576c9-104">由于此类型是 ref 结构，它不直接支持异步。</span><span class="sxs-lookup"><span data-stu-id="576c9-104">Since this type is a ref struct, it doesn't directly support async.</span></span> <span data-ttu-id="576c9-105">但是，它提供对以读取不完整的数据并提供更多的数据后，请继续阅读可重入性的支持。</span><span class="sxs-lookup"><span data-stu-id="576c9-105">However, it does provide support for reentrancy to read incomplete data and to continue reading once more data is presented.</span></span>
+<span data-ttu-id="120c0-104">由于此类型是 ref 结构, 因此不直接支持 async。</span><span class="sxs-lookup"><span data-stu-id="120c0-104">Since this type is a ref struct, it doesn't directly support async.</span></span> <span data-ttu-id="120c0-105">但是, 它确实支持重入操作读取不完整的数据, 并在显示更多数据后继续读取。</span><span class="sxs-lookup"><span data-stu-id="120c0-105">However, it does provide support for reentrancy to read incomplete data and to continue reading once more data is presented.</span></span>
 
-<span data-ttu-id="576c9-106">若要能够设置读取时的最大深度或允许跳过注释，创建的实例<xref:System.Text.Json.JsonReaderState>并将它传递给读取器。</span><span class="sxs-lookup"><span data-stu-id="576c9-106">To be able to set max depth while reading OR allow skipping comments, create an instance of <xref:System.Text.Json.JsonReaderState> and pass it to the reader.</span></span>
+<span data-ttu-id="120c0-106">为了能够在读取或允许跳过注释时设置最大深度, 请创建一个<xref:System.Text.Json.JsonReaderState>实例并将其传递给读取器。</span><span class="sxs-lookup"><span data-stu-id="120c0-106">To be able to set max depth while reading OR allow skipping comments, create an instance of <xref:System.Text.Json.JsonReaderState> and pass it to the reader.</span></span>
 
  ]]></format>
     </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public Utf8JsonReader (ref System.Buffers.ReadOnlySequence&lt;byte&gt; jsonData, bool isFinalBlock, System.Text.Json.JsonReaderState state);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor([in]valuetype System.Buffers.ReadOnlySequence`1&lt;unsigned int8&gt;&amp; jsonData, bool isFinalBlock, valuetype System.Text.Json.JsonReaderState state) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.#ctor(System.Buffers.ReadOnlySequence{System.Byte}@,System.Boolean,System.Text.Json.JsonReaderState)" />
-      <MemberSignature Language="VB.NET" Value="Public Sub New (ByRef jsonData As ReadOnlySequence(Of Byte), isFinalBlock As Boolean, state As JsonReaderState)" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; Utf8JsonReader(System::Buffers::ReadOnlySequence&lt;System::Byte&gt; % jsonData, bool isFinalBlock, System::Text::Json::JsonReaderState state);" />
-      <MemberSignature Language="F#" Value="new System.Text.Json.Utf8JsonReader :  * bool * System.Text.Json.JsonReaderState -&gt; System.Text.Json.Utf8JsonReader" Usage="new System.Text.Json.Utf8JsonReader (jsonData, isFinalBlock, state)" />
+      <MemberSignature Language="C#" Value="public Utf8JsonReader (System.Buffers.ReadOnlySequence&lt;byte&gt; jsonData, System.Text.Json.JsonReaderOptions options = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(valuetype System.Buffers.ReadOnlySequence`1&lt;unsigned int8&gt; jsonData, valuetype System.Text.Json.JsonReaderOptions options) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.#ctor(System.Buffers.ReadOnlySequence{System.Byte},System.Text.Json.JsonReaderOptions)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (jsonData As ReadOnlySequence(Of Byte), Optional options As JsonReaderOptions = null)" />
+      <MemberSignature Language="F#" Value="new System.Text.Json.Utf8JsonReader : System.Buffers.ReadOnlySequence&lt;byte&gt; * System.Text.Json.JsonReaderOptions -&gt; System.Text.Json.Utf8JsonReader" Usage="new System.Text.Json.Utf8JsonReader (jsonData, options)" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Text.Json</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="jsonData" Type="System.Buffers.ReadOnlySequence&lt;System.Byte&gt;" RefType="ref">
-          <Attributes>
-            <Attribute>
-              <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
-            </Attribute>
-          </Attributes>
-        </Parameter>
+        <Parameter Name="jsonData" Type="System.Buffers.ReadOnlySequence&lt;System.Byte&gt;" />
+        <Parameter Name="options" Type="System.Text.Json.JsonReaderOptions" />
+      </Parameters>
+      <Docs>
+        <param name="jsonData">To be added.</param>
+        <param name="options">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Utf8JsonReader (ReadOnlySpan&lt;byte&gt; jsonData, System.Text.Json.JsonReaderOptions options = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(valuetype System.ReadOnlySpan`1&lt;unsigned int8&gt; jsonData, valuetype System.Text.Json.JsonReaderOptions options) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.#ctor(System.ReadOnlySpan{System.Byte},System.Text.Json.JsonReaderOptions)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (jsonData As ReadOnlySpan(Of Byte), Optional options As JsonReaderOptions = null)" />
+      <MemberSignature Language="F#" Value="new System.Text.Json.Utf8JsonReader : ReadOnlySpan&lt;byte&gt; * System.Text.Json.JsonReaderOptions -&gt; System.Text.Json.Utf8JsonReader" Usage="new System.Text.Json.Utf8JsonReader (jsonData, options)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Text.Json</AssemblyName>
+        <AssemblyVersion>4.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="jsonData" Type="System.ReadOnlySpan&lt;System.Byte&gt;" />
+        <Parameter Name="options" Type="System.Text.Json.JsonReaderOptions" />
+      </Parameters>
+      <Docs>
+        <param name="jsonData">To be added.</param>
+        <param name="options">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Utf8JsonReader (System.Buffers.ReadOnlySequence&lt;byte&gt; jsonData, bool isFinalBlock, System.Text.Json.JsonReaderState state);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(valuetype System.Buffers.ReadOnlySequence`1&lt;unsigned int8&gt; jsonData, bool isFinalBlock, valuetype System.Text.Json.JsonReaderState state) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.#ctor(System.Buffers.ReadOnlySequence{System.Byte},System.Boolean,System.Text.Json.JsonReaderState)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (jsonData As ReadOnlySequence(Of Byte), isFinalBlock As Boolean, state As JsonReaderState)" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; Utf8JsonReader(System::Buffers::ReadOnlySequence&lt;System::Byte&gt; jsonData, bool isFinalBlock, System::Text::Json::JsonReaderState state);" />
+      <MemberSignature Language="F#" Value="new System.Text.Json.Utf8JsonReader : System.Buffers.ReadOnlySequence&lt;byte&gt; * bool * System.Text.Json.JsonReaderState -&gt; System.Text.Json.Utf8JsonReader" Usage="new System.Text.Json.Utf8JsonReader (jsonData, isFinalBlock, state)" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Text.Json</AssemblyName>
+        <AssemblyVersion>4.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="jsonData" Type="System.Buffers.ReadOnlySequence&lt;System.Byte&gt;" />
         <Parameter Name="isFinalBlock" Type="System.Boolean" />
         <Parameter Name="state" Type="System.Text.Json.JsonReaderState" />
       </Parameters>
       <Docs>
-        <param name="jsonData"><span data-ttu-id="576c9-107">要处理的 UTF-8 编码 JSON 文本。</span><span class="sxs-lookup"><span data-stu-id="576c9-107">The UTF-8 encoded JSON text to process.</span></span></param>
-        <param name="isFinalBlock"><span data-ttu-id="576c9-108">当输入序列包含要处理的整个数据时，为 <see langword="true" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-108"><see langword="true" /> when the input sequence contains the entire data to process.</span></span> <span data-ttu-id="576c9-109">仅当输入范围包含部分数据且将输入更多数据时，为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-109"><see langword="false" /> only if it's known that the input span contains partial data with more data to follow.</span></span></param>
-        <param name="state"><span data-ttu-id="576c9-110">如果这是第一次调用构造函数，则以默认状态传递。</span><span class="sxs-lookup"><span data-stu-id="576c9-110">If this is the first call to the constructor, pass in a default state.</span></span> <span data-ttu-id="576c9-111">否则，从 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的上一个实例捕获状态并传递回去。</span><span class="sxs-lookup"><span data-stu-id="576c9-111">Otherwise, capture the state from the previous instance of the <see cref="T:System.Text.Json.Utf8JsonReader" /> and pass that back.</span></span></param>
-        <summary><span data-ttu-id="576c9-112">初始化 <see cref="T:System.Text.Json.Utf8JsonReader" /> 类的新实例。</span><span class="sxs-lookup"><span data-stu-id="576c9-112">Initializes a new instance of the <see cref="T:System.Text.Json.Utf8JsonReader" /> class.</span></span></summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-
-## Remarks
-
-<span data-ttu-id="576c9-113">由于此类型是 ref 结构，它是仅限堆栈的类型，并向其应用的 ref 结构的所有限制。</span><span class="sxs-lookup"><span data-stu-id="576c9-113">Since this type is a ref struct, it is a stack-only type, and all the limitations of ref structs apply to it.</span></span>
-<span data-ttu-id="576c9-114">这是为什么构造函数接受的原因<xref:System.Text.Json.JsonReaderState>。</span><span class="sxs-lookup"><span data-stu-id="576c9-114">This is the reason why the constructor accepts a <xref:System.Text.Json.JsonReaderState>.</span></span>
-
- ]]></format>
-        </remarks>
+        <param name="jsonData">To be added.</param>
+        <param name="isFinalBlock">To be added.</param>
+        <param name="state">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -95,17 +124,17 @@
         <Parameter Name="state" Type="System.Text.Json.JsonReaderState" />
       </Parameters>
       <Docs>
-        <param name="jsonData"><span data-ttu-id="576c9-115">要处理的 UTF-8 编码 JSON 文本。</span><span class="sxs-lookup"><span data-stu-id="576c9-115">The UTF-8 encoded JSON text to process.</span></span></param>
-        <param name="isFinalBlock"><span data-ttu-id="576c9-116">当输入范围包含要处理的整个数据时，为 <see langword="true" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-116"><see langword="true" /> when the input span contains the entire data to process.</span></span> <span data-ttu-id="576c9-117">仅当输入范围包含部分数据且将输入更多数据时，为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-117"><see langword="false" /> only if it's known that the input span contains partial data with more data to follow.</span></span></param>
-        <param name="state"><span data-ttu-id="576c9-118">包含读取器状态的结构。</span><span class="sxs-lookup"><span data-stu-id="576c9-118">A struct that contains the reader state.</span></span> <span data-ttu-id="576c9-119">第一次调用构造函数时，它应反映默认状态；否则，它应从 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的上一个实例捕获状态并传递回去。</span><span class="sxs-lookup"><span data-stu-id="576c9-119">On the first call to the constructor, it should reflect a default state; otherwise, it should capture the state from the previous instance instance of the <see cref="T:System.Text.Json.Utf8JsonReader" /> and pass that back.</span></span></param>
-        <summary><span data-ttu-id="576c9-120">初始化 <see cref="T:System.Text.Json.Utf8JsonReader" /> 类的新实例。</span><span class="sxs-lookup"><span data-stu-id="576c9-120">Initializes a new instance of the <see cref="T:System.Text.Json.Utf8JsonReader" /> class.</span></span></summary>
+        <param name="jsonData"><span data-ttu-id="120c0-107">要处理的 UTF-8 编码 JSON 文本。</span><span class="sxs-lookup"><span data-stu-id="120c0-107">The UTF-8 encoded JSON text to process.</span></span></param>
+        <param name="isFinalBlock"><span data-ttu-id="120c0-108">当输入范围包含要处理的整个数据时，为 <see langword="true" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-108"><see langword="true" /> when the input span contains the entire data to process.</span></span> <span data-ttu-id="120c0-109">仅当输入范围包含部分数据且将输入更多数据时，为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-109"><see langword="false" /> only if it's known that the input span contains partial data with more data to follow.</span></span></param>
+        <param name="state"><span data-ttu-id="120c0-110">包含读取器状态的结构。</span><span class="sxs-lookup"><span data-stu-id="120c0-110">A struct that contains the reader state.</span></span> <span data-ttu-id="120c0-111">第一次调用构造函数时，它应反映默认状态；否则，它应从 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的上一个实例捕获状态并传递回去。</span><span class="sxs-lookup"><span data-stu-id="120c0-111">On the first call to the constructor, it should reflect a default state; otherwise, it should capture the state from the previous instance instance of the <see cref="T:System.Text.Json.Utf8JsonReader" /> and pass that back.</span></span></param>
+        <summary><span data-ttu-id="120c0-112">初始化 <see cref="T:System.Text.Json.Utf8JsonReader" /> 类的新实例。</span><span class="sxs-lookup"><span data-stu-id="120c0-112">Initializes a new instance of the <see cref="T:System.Text.Json.Utf8JsonReader" /> class.</span></span></summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-<span data-ttu-id="576c9-121">由于此类型是 ref 结构，它是仅限堆栈的类型，并向其应用的 ref 结构的所有限制。</span><span class="sxs-lookup"><span data-stu-id="576c9-121">Since this type is a ref struct, it is a stack-only type, and all the limitations of ref structs apply to it.</span></span>
-<span data-ttu-id="576c9-122">这是为什么构造函数接受的原因<xref:System.Text.Json.JsonReaderState>。</span><span class="sxs-lookup"><span data-stu-id="576c9-122">This is the reason why the constructor accepts a <xref:System.Text.Json.JsonReaderState>.</span></span>
+<span data-ttu-id="120c0-113">由于此类型是一个 ref 结构, 因此它是一个仅堆栈类型, 并且 ref 结构的所有限制都适用于它。</span><span class="sxs-lookup"><span data-stu-id="120c0-113">Since this type is a ref struct, it is a stack-only type, and all the limitations of ref structs apply to it.</span></span>
+<span data-ttu-id="120c0-114">这是构造函数接受的<xref:System.Text.Json.JsonReaderState>原因。</span><span class="sxs-lookup"><span data-stu-id="120c0-114">This is the reason why the constructor accepts a <xref:System.Text.Json.JsonReaderState>.</span></span>
 
  ]]></format>
         </remarks>
@@ -127,7 +156,7 @@
         <ReturnType>System.Int64</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary><span data-ttu-id="576c9-123">获取 <see cref="T:System.Text.Json.Utf8JsonReader" /> 目前为止已为 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的当前实例（带有给定 UTF-8 编码输入文本）使用的字节总数。</span><span class="sxs-lookup"><span data-stu-id="576c9-123">Gets the total number of bytes consumed by the <see cref="T:System.Text.Json.Utf8JsonReader" /> so far for the current instance of the <see cref="T:System.Text.Json.Utf8JsonReader" /> with the given UTF-8 encoded input text.</span></span></summary>
+        <summary><span data-ttu-id="120c0-115">获取 <see cref="T:System.Text.Json.Utf8JsonReader" /> 目前为止已为 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的当前实例（带有给定 UTF-8 编码输入文本）使用的字节总数。</span><span class="sxs-lookup"><span data-stu-id="120c0-115">Gets the total number of bytes consumed by the <see cref="T:System.Text.Json.Utf8JsonReader" /> so far for the current instance of the <see cref="T:System.Text.Json.Utf8JsonReader" /> with the given UTF-8 encoded input text.</span></span></summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -148,14 +177,14 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary><span data-ttu-id="576c9-124">获取当前标记的深度。</span><span class="sxs-lookup"><span data-stu-id="576c9-124">Gets the depth of the current token.</span></span></summary>
-        <value><span data-ttu-id="576c9-125">当前标记的深度。</span><span class="sxs-lookup"><span data-stu-id="576c9-125">The depth of the current token.</span></span></value>
+        <summary><span data-ttu-id="120c0-116">获取当前标记的深度。</span><span class="sxs-lookup"><span data-stu-id="120c0-116">Gets the depth of the current token.</span></span></summary>
+        <value><span data-ttu-id="120c0-117">当前标记的深度。</span><span class="sxs-lookup"><span data-stu-id="120c0-117">The depth of the current token.</span></span></value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-<span data-ttu-id="576c9-126">`CurrentDepth`属性跟踪嵌套对象的递归深度 / 为止处理的 JSON 文本中的数组。</span><span class="sxs-lookup"><span data-stu-id="576c9-126">The `CurrentDepth` property tracks the recursive depth of the nested objects / arrays within the JSON text processed so far.</span></span>
+<span data-ttu-id="120c0-118">`CurrentDepth`属性跟踪到目前为止处理的 JSON 文本中的嵌套对象/数组的递归深度。</span><span class="sxs-lookup"><span data-stu-id="120c0-118">The `CurrentDepth` property tracks the recursive depth of the nested objects / arrays within the JSON text processed so far.</span></span>
 
  ]]></format>
         </remarks>
@@ -177,14 +206,14 @@
         <ReturnType>System.Text.Json.JsonReaderState</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary><span data-ttu-id="576c9-127">获取 <see cref="T:System.Text.Json.Utf8JsonReader" /> 状态的当前快照，该状态必须由调用方捕获并传递回包含更多数据的 <see cref="T:System.Text.Json.Utf8JsonReader" /> 构造函数。</span><span class="sxs-lookup"><span data-stu-id="576c9-127">Gets the current snapshot of the <see cref="T:System.Text.Json.Utf8JsonReader" /> state that must  be captured by the caller and passed back in to the <see cref="T:System.Text.Json.Utf8JsonReader" /> constructor with more data.</span></span></summary>
+        <summary><span data-ttu-id="120c0-119">获取 <see cref="T:System.Text.Json.Utf8JsonReader" /> 状态的当前快照，该状态必须由调用方捕获并传递回包含更多数据的 <see cref="T:System.Text.Json.Utf8JsonReader" /> 构造函数。</span><span class="sxs-lookup"><span data-stu-id="120c0-119">Gets the current snapshot of the <see cref="T:System.Text.Json.Utf8JsonReader" /> state that must  be captured by the caller and passed back in to the <see cref="T:System.Text.Json.Utf8JsonReader" /> constructor with more data.</span></span></summary>
         <value>To be added.</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-<span data-ttu-id="576c9-128">与不同<xref:System.Text.Json.Utf8JsonReader>、 这是 ref 结构、 状态可以经受得住跨异步/等待边界和因此需要此类型提供支持的更多数据然后再继续进行的新实例以异步方式读取<xref:System.Text.Json.Utf8JsonReader>。</span><span class="sxs-lookup"><span data-stu-id="576c9-128">Unlike the <xref:System.Text.Json.Utf8JsonReader>, which is a ref struct, the state can survive across async/await boundaries, and hence this type is required to provide support for reading in more data asynchronously before continuing with a new instance of the <xref:System.Text.Json.Utf8JsonReader>.</span></span>
+<span data-ttu-id="120c0-120">与 (ref 结构) 不同的是, 状态在异步/等待边界内可能会保留, 因此, 此类型需要在继续使用的新实例<xref:System.Text.Json.Utf8JsonReader>之前, 提供对更多数据的异步支持。 <xref:System.Text.Json.Utf8JsonReader></span><span class="sxs-lookup"><span data-stu-id="120c0-120">Unlike the <xref:System.Text.Json.Utf8JsonReader>, which is a ref struct, the state can survive across async/await boundaries, and hence this type is required to provide support for reading in more data asynchronously before continuing with a new instance of the <xref:System.Text.Json.Utf8JsonReader>.</span></span>
 
  ]]></format>
         </remarks>
@@ -207,11 +236,33 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><span data-ttu-id="576c9-129">从源中将下一个 JSON 令牌值读取为 <see cref="T:System.Boolean" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-129">Reads the next JSON token value from the source as a <see cref="T:System.Boolean" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-130">如果 <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> 为 <see cref="F:System.Text.Json.JsonTokenType.True" />，则为 <see langword="true" />；如果 <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> 为 <see cref="F:System.Text.Json.JsonTokenType.False" />，则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-130"><see langword="true" /> if the <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> is <see cref="F:System.Text.Json.JsonTokenType.True" />; <see langword="false" /> if the <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> is <see cref="F:System.Text.Json.JsonTokenType.False" />.</span></span></returns>
+        <summary><span data-ttu-id="120c0-121">从源中将下一个 JSON 令牌值读取为 <see cref="T:System.Boolean" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-121">Reads the next JSON token value from the source as a <see cref="T:System.Boolean" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-122">如果 <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> 为 <see cref="F:System.Text.Json.JsonTokenType.True" />，则为 <see langword="true" />；如果 <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> 为 <see cref="F:System.Text.Json.JsonTokenType.False" />，则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-122"><see langword="true" /> if the <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> is <see cref="F:System.Text.Json.JsonTokenType.True" />; <see langword="false" /> if the <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> is <see cref="F:System.Text.Json.JsonTokenType.False" />.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-131">JSON 令牌的值不是布尔值（即 <see cref="F:System.Text.Json.JsonTokenType.True" /> 或 <see cref="F:System.Text.Json.JsonTokenType.False" />）。</span><span class="sxs-lookup"><span data-stu-id="576c9-131">The value of the JSON token isn't a boolean value (that is, <see cref="F:System.Text.Json.JsonTokenType.True" /> or <see cref="F:System.Text.Json.JsonTokenType.False" />).</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-123">JSON 令牌的值不是布尔值（即 <see cref="F:System.Text.Json.JsonTokenType.True" /> 或 <see cref="F:System.Text.Json.JsonTokenType.False" />）。</span><span class="sxs-lookup"><span data-stu-id="120c0-123">The value of the JSON token isn't a boolean value (that is, <see cref="F:System.Text.Json.JsonTokenType.True" /> or <see cref="F:System.Text.Json.JsonTokenType.False" />).</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
+      </Docs>
+    </Member>
+    <Member MemberName="GetByte">
+      <MemberSignature Language="C#" Value="public byte GetByte ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance unsigned int8 GetByte() cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.GetByte" />
+      <MemberSignature Language="VB.NET" Value="Public Function GetByte () As Byte" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; System::Byte GetByte();" />
+      <MemberSignature Language="F#" Value="member this.GetByte : unit -&gt; byte" Usage="utf8JsonReader.GetByte " />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Text.Json</AssemblyName>
+        <AssemblyVersion>4.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Byte</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="GetBytesFromBase64">
@@ -275,11 +326,11 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><span data-ttu-id="576c9-132">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTime" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-132">Reads the next JSON token value from the source and parses it to a <see cref="T:System.DateTime" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-133">如果可成功解析整个 UTF-8 编码的令牌值，则为日期和时间。</span><span class="sxs-lookup"><span data-stu-id="576c9-133">The date and time, if the entire UTF-8 encoded token value can be successfully parsed.</span></span></returns>
+        <summary><span data-ttu-id="120c0-124">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTime" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-124">Reads the next JSON token value from the source and parses it to a <see cref="T:System.DateTime" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-125">如果可成功解析整个 UTF-8 编码的令牌值，则为日期和时间。</span><span class="sxs-lookup"><span data-stu-id="120c0-125">The date and time, if the entire UTF-8 encoded token value can be successfully parsed.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-134">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-134">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</span></span></exception>
-        <exception cref="T:System.FormatException"><span data-ttu-id="576c9-135">JSON 令牌值的格式不受支持。</span><span class="sxs-lookup"><span data-stu-id="576c9-135">The JSON token value is in an unsupported format.</span></span> <span data-ttu-id="576c9-136">仅支持部分 ISO 8601 格式。</span><span class="sxs-lookup"><span data-stu-id="576c9-136">Only a subset of ISO 8601 formats are supported.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-126">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-126">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</span></span></exception>
+        <exception cref="T:System.FormatException"><span data-ttu-id="120c0-127">JSON 令牌值的格式不受支持。</span><span class="sxs-lookup"><span data-stu-id="120c0-127">The JSON token value is in an unsupported format.</span></span> <span data-ttu-id="120c0-128">仅支持部分 ISO 8601 格式。</span><span class="sxs-lookup"><span data-stu-id="120c0-128">Only a subset of ISO 8601 formats are supported.</span></span></exception>
       </Docs>
     </Member>
     <Member MemberName="GetDateTimeOffset">
@@ -299,11 +350,11 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><span data-ttu-id="576c9-137">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTimeOffset" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-137">Reads the next JSON token value from the source and parses it to a <see cref="T:System.DateTimeOffset" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-138">如果可成功解析整个 UTF-8 编码的令牌值，则为日期和时间值。</span><span class="sxs-lookup"><span data-stu-id="576c9-138">The date and time value, if the entire UTF-8 encoded token value can be successfully parsed.</span></span></returns>
+        <summary><span data-ttu-id="120c0-129">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTimeOffset" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-129">Reads the next JSON token value from the source and parses it to a <see cref="T:System.DateTimeOffset" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-130">如果可成功解析整个 UTF-8 编码的令牌值，则为日期和时间值。</span><span class="sxs-lookup"><span data-stu-id="120c0-130">The date and time value, if the entire UTF-8 encoded token value can be successfully parsed.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-139">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-139">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</span></span></exception>
-        <exception cref="T:System.FormatException"><span data-ttu-id="576c9-140">JSON 令牌值的格式不受支持。</span><span class="sxs-lookup"><span data-stu-id="576c9-140">The JSON token value is in an unsupported format.</span></span> <span data-ttu-id="576c9-141">仅支持部分 ISO 8601 格式。</span><span class="sxs-lookup"><span data-stu-id="576c9-141">Only a subset of ISO 8601 formats are supported.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-131">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-131">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</span></span></exception>
+        <exception cref="T:System.FormatException"><span data-ttu-id="120c0-132">JSON 令牌值的格式不受支持。</span><span class="sxs-lookup"><span data-stu-id="120c0-132">The JSON token value is in an unsupported format.</span></span> <span data-ttu-id="120c0-133">仅支持部分 ISO 8601 格式。</span><span class="sxs-lookup"><span data-stu-id="120c0-133">Only a subset of ISO 8601 formats are supported.</span></span></exception>
       </Docs>
     </Member>
     <Member MemberName="GetDecimal">
@@ -323,19 +374,19 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><span data-ttu-id="576c9-142">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Decimal" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-142">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Decimal" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-143">解析为 <see cref="T:System.Decimal" /> 的 UTF-8 编码令牌值。</span><span class="sxs-lookup"><span data-stu-id="576c9-143">The UTF-8 encoded token value parsed to a <see cref="T:System.Decimal" />.</span></span></returns>
+        <summary><span data-ttu-id="120c0-134">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Decimal" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-134">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Decimal" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-135">解析为 <see cref="T:System.Decimal" /> 的 UTF-8 编码令牌值。</span><span class="sxs-lookup"><span data-stu-id="120c0-135">The UTF-8 encoded token value parsed to a <see cref="T:System.Decimal" />.</span></span></returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-<span data-ttu-id="576c9-144">`GetDecimal`方法将引发异常，如果整个 utf-8 编码标记值无法解析到<xref:System.Decimal>值。</span><span class="sxs-lookup"><span data-stu-id="576c9-144">The `GetDecimal` method throws an exception if the entire UTF-8 encoded token value cannnot be parsed to a <xref:System.Decimal> value.</span></span>
+<span data-ttu-id="120c0-136">如果`GetDecimal`无法将整个 utf-8 编码的令牌值解析<xref:System.Decimal>为值, 该方法将引发异常。</span><span class="sxs-lookup"><span data-stu-id="120c0-136">The `GetDecimal` method throws an exception if the entire UTF-8 encoded token value cannnot be parsed to a <xref:System.Decimal> value.</span></span>
 
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-145">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-145">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
-        <exception cref="T:System.FormatException"><span data-ttu-id="576c9-146">JSON 令牌值表示小于 <see cref="F:System.Decimal.MinValue" /> 或大于 <see cref="F:System.Decimal.MaxValue" /> 的数字。</span><span class="sxs-lookup"><span data-stu-id="576c9-146">The JSON token value represents a number less than <see cref="F:System.Decimal.MinValue" /> or greater than <see cref="F:System.Decimal.MaxValue" />.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-137">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-137">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
+        <exception cref="T:System.FormatException"><span data-ttu-id="120c0-138">JSON 令牌值表示小于 <see cref="F:System.Decimal.MinValue" /> 或大于 <see cref="F:System.Decimal.MaxValue" /> 的数字。</span><span class="sxs-lookup"><span data-stu-id="120c0-138">The JSON token value represents a number less than <see cref="F:System.Decimal.MinValue" /> or greater than <see cref="F:System.Decimal.MaxValue" />.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -356,19 +407,19 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><span data-ttu-id="576c9-147">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Double" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-147">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Double" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-148">解析为 <see cref="T:System.Double" /> 的 UTF-8 编码令牌值。</span><span class="sxs-lookup"><span data-stu-id="576c9-148">The UTF-8 encoded token value parsed to a <see cref="T:System.Double" />.</span></span></returns>
+        <summary><span data-ttu-id="120c0-139">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Double" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-139">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Double" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-140">解析为 <see cref="T:System.Double" /> 的 UTF-8 编码令牌值。</span><span class="sxs-lookup"><span data-stu-id="120c0-140">The UTF-8 encoded token value parsed to a <see cref="T:System.Double" />.</span></span></returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-<span data-ttu-id="576c9-149">`GetDouble`方法将引发异常，如果整个 utf-8 编码标记值无法解析到<xref:System.Double>值。</span><span class="sxs-lookup"><span data-stu-id="576c9-149">The `GetDouble` method throws an exception if the entire UTF-8 encoded token value cannnot be parsed to a <xref:System.Double> value.</span></span>
+<span data-ttu-id="120c0-141">如果`GetDouble`无法将整个 utf-8 编码的令牌值解析<xref:System.Double>为值, 该方法将引发异常。</span><span class="sxs-lookup"><span data-stu-id="120c0-141">The `GetDouble` method throws an exception if the entire UTF-8 encoded token value cannnot be parsed to a <xref:System.Double> value.</span></span>
 
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-150">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-150">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
-        <exception cref="T:System.FormatException"><span data-ttu-id="576c9-151">JSON 令牌值表示小于 <see cref="F:System.Double.MinValue" /> 或大于 <see cref="F:System.Double.MaxValue" /> 的数字。</span><span class="sxs-lookup"><span data-stu-id="576c9-151">The JSON token value represents a number less than <see cref="F:System.Double.MinValue" /> or greater than <see cref="F:System.Double.MaxValue" />.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-142">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-142">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
+        <exception cref="T:System.FormatException"><span data-ttu-id="120c0-143">JSON 令牌值表示小于 <see cref="F:System.Double.MinValue" /> 或大于 <see cref="F:System.Double.MaxValue" /> 的数字。</span><span class="sxs-lookup"><span data-stu-id="120c0-143">The JSON token value represents a number less than <see cref="F:System.Double.MinValue" /> or greater than <see cref="F:System.Double.MaxValue" />.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -389,11 +440,33 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><span data-ttu-id="576c9-152">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Guid" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-152">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Guid" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-153">如果可成功解析整个 UTF-8 编码的令牌值，则为 GUID 值。</span><span class="sxs-lookup"><span data-stu-id="576c9-153">The GUID value, if the entire UTF-8 encoded token value can be successfully parsed.</span></span></returns>
+        <summary><span data-ttu-id="120c0-144">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Guid" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-144">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Guid" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-145">如果可成功解析整个 UTF-8 编码的令牌值，则为 GUID 值。</span><span class="sxs-lookup"><span data-stu-id="120c0-145">The GUID value, if the entire UTF-8 encoded token value can be successfully parsed.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-154">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-154">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</span></span></exception>
-        <exception cref="T:System.FormatException"><span data-ttu-id="576c9-155">Guid 不支持 JSON 令牌值的格式。</span><span class="sxs-lookup"><span data-stu-id="576c9-155">The JSON token value is in an unsupported format for a Guid.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-146">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-146">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</span></span></exception>
+        <exception cref="T:System.FormatException"><span data-ttu-id="120c0-147">Guid 不支持 JSON 令牌值的格式。</span><span class="sxs-lookup"><span data-stu-id="120c0-147">The JSON token value is in an unsupported format for a Guid.</span></span></exception>
+      </Docs>
+    </Member>
+    <Member MemberName="GetInt16">
+      <MemberSignature Language="C#" Value="public short GetInt16 ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int16 GetInt16() cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.GetInt16" />
+      <MemberSignature Language="VB.NET" Value="Public Function GetInt16 () As Short" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; short GetInt16();" />
+      <MemberSignature Language="F#" Value="member this.GetInt16 : unit -&gt; int16" Usage="utf8JsonReader.GetInt16 " />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Text.Json</AssemblyName>
+        <AssemblyVersion>4.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int16</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="GetInt32">
@@ -413,23 +486,23 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><span data-ttu-id="576c9-156">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Int32" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-156">Reads the next JSON token value from the source and parses it to an <see cref="T:System.Int32" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-157">解析为 <see cref="T:System.Int32" /> 的 UTF-8 编码令牌值。</span><span class="sxs-lookup"><span data-stu-id="576c9-157">The UTF-8 encoded token value parsed to an <see cref="T:System.Int32" />.</span></span></returns>
+        <summary><span data-ttu-id="120c0-148">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Int32" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-148">Reads the next JSON token value from the source and parses it to an <see cref="T:System.Int32" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-149">解析为 <see cref="T:System.Int32" /> 的 UTF-8 编码令牌值。</span><span class="sxs-lookup"><span data-stu-id="120c0-149">The UTF-8 encoded token value parsed to an <see cref="T:System.Int32" />.</span></span></returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-<span data-ttu-id="576c9-158">`GetInt32`方法将引发异常，如果整个 utf-8 编码标记值无法解析到<xref:System.Int32>值。</span><span class="sxs-lookup"><span data-stu-id="576c9-158">The `GetInt32` method throws an exception if the entire UTF-8 encoded token value cannnot be parsed to a <xref:System.Int32> value.</span></span>
+<span data-ttu-id="120c0-150">如果`GetInt32`无法将整个 utf-8 编码的令牌值解析<xref:System.Int32>为值, 该方法将引发异常。</span><span class="sxs-lookup"><span data-stu-id="120c0-150">The `GetInt32` method throws an exception if the entire UTF-8 encoded token value cannnot be parsed to a <xref:System.Int32> value.</span></span>
 
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-159">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-159">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
-        <exception cref="T:System.FormatException"><span data-ttu-id="576c9-160">JSON 令牌值的数值格式不正确。</span><span class="sxs-lookup"><span data-stu-id="576c9-160">The JSON token value is of the incorrect numeric format.</span></span> <span data-ttu-id="576c9-161">例如，它包含小数或采用科学记数法编写。</span><span class="sxs-lookup"><span data-stu-id="576c9-161">For example, it contains a decimal or is written in scientific notation.</span></span>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-151">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-151">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
+        <exception cref="T:System.FormatException"><span data-ttu-id="120c0-152">JSON 令牌值的数值格式不正确。</span><span class="sxs-lookup"><span data-stu-id="120c0-152">The JSON token value is of the incorrect numeric format.</span></span> <span data-ttu-id="120c0-153">例如，它包含小数或采用科学记数法编写。</span><span class="sxs-lookup"><span data-stu-id="120c0-153">For example, it contains a decimal or is written in scientific notation.</span></span>
             
-<span data-ttu-id="576c9-162">- 或 -</span><span class="sxs-lookup"><span data-stu-id="576c9-162">- or-</span></span>
+<span data-ttu-id="120c0-154">- 或 -</span><span class="sxs-lookup"><span data-stu-id="120c0-154">- or-</span></span>
 
-<span data-ttu-id="576c9-163">JSON 令牌值表示小于 <see cref="F:System.Int32.MinValue" /> 或大于 <see cref="F:System.Int32.MaxValue" /> 的数字。</span><span class="sxs-lookup"><span data-stu-id="576c9-163">The JSON token value represents a number less than <see cref="F:System.Int32.MinValue" /> or greater than <see cref="F:System.Int32.MaxValue" />.</span></span></exception>
+<span data-ttu-id="120c0-155">JSON 令牌值表示小于 <see cref="F:System.Int32.MinValue" /> 或大于 <see cref="F:System.Int32.MaxValue" /> 的数字。</span><span class="sxs-lookup"><span data-stu-id="120c0-155">The JSON token value represents a number less than <see cref="F:System.Int32.MinValue" /> or greater than <see cref="F:System.Int32.MaxValue" />.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -450,24 +523,51 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><span data-ttu-id="576c9-164">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Int64" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-164">Reads the next JSON token value from the source and parses it to an <see cref="T:System.Int64" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-165">解析为 <see cref="T:System.Int64" /> 的 UTF-8 编码令牌值。</span><span class="sxs-lookup"><span data-stu-id="576c9-165">The UTF-8 encoded token value parsed to an <see cref="T:System.Int64" />.</span></span></returns>
+        <summary><span data-ttu-id="120c0-156">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Int64" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-156">Reads the next JSON token value from the source and parses it to an <see cref="T:System.Int64" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-157">解析为 <see cref="T:System.Int64" /> 的 UTF-8 编码令牌值。</span><span class="sxs-lookup"><span data-stu-id="120c0-157">The UTF-8 encoded token value parsed to an <see cref="T:System.Int64" />.</span></span></returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-<span data-ttu-id="576c9-166">`GetInt64`方法将引发异常，如果整个 utf-8 编码标记值无法解析到<xref:System.Int64>值。</span><span class="sxs-lookup"><span data-stu-id="576c9-166">The `GetInt64` method throws an exception if the entire UTF-8 encoded token value cannnot be parsed to a <xref:System.Int64> value.</span></span>
+<span data-ttu-id="120c0-158">如果`GetInt64`无法将整个 utf-8 编码的令牌值解析<xref:System.Int64>为值, 该方法将引发异常。</span><span class="sxs-lookup"><span data-stu-id="120c0-158">The `GetInt64` method throws an exception if the entire UTF-8 encoded token value cannnot be parsed to a <xref:System.Int64> value.</span></span>
 
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-167">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-167">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
-        <exception cref="T:System.FormatException"><span data-ttu-id="576c9-168">JSON 令牌值的数值格式不正确。</span><span class="sxs-lookup"><span data-stu-id="576c9-168">The JSON token value is of the incorrect numeric format.</span></span> <span data-ttu-id="576c9-169">例如，它包含小数或采用科学记数法编写。</span><span class="sxs-lookup"><span data-stu-id="576c9-169">For example, it contains a decimal or is written in scientific notation.</span></span>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-159">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-159">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
+        <exception cref="T:System.FormatException"><span data-ttu-id="120c0-160">JSON 令牌值的数值格式不正确。</span><span class="sxs-lookup"><span data-stu-id="120c0-160">The JSON token value is of the incorrect numeric format.</span></span> <span data-ttu-id="120c0-161">例如，它包含小数或采用科学记数法编写。</span><span class="sxs-lookup"><span data-stu-id="120c0-161">For example, it contains a decimal or is written in scientific notation.</span></span>
             
-<span data-ttu-id="576c9-170">- 或 -</span><span class="sxs-lookup"><span data-stu-id="576c9-170">- or-</span></span>
+<span data-ttu-id="120c0-162">- 或 -</span><span class="sxs-lookup"><span data-stu-id="120c0-162">- or-</span></span>
 
-<span data-ttu-id="576c9-171">JSON 令牌值表示小于 <see cref="F:System.Int64.MinValue" /> 或大于 <see cref="F:System.Int64.MaxValue" /> 的数字。</span><span class="sxs-lookup"><span data-stu-id="576c9-171">The JSON token value represents a number less than <see cref="F:System.Int64.MinValue" /> or greater than <see cref="F:System.Int64.MaxValue" />.</span></span></exception>
+<span data-ttu-id="120c0-163">JSON 令牌值表示小于 <see cref="F:System.Int64.MinValue" /> 或大于 <see cref="F:System.Int64.MaxValue" /> 的数字。</span><span class="sxs-lookup"><span data-stu-id="120c0-163">The JSON token value represents a number less than <see cref="F:System.Int64.MinValue" /> or greater than <see cref="F:System.Int64.MaxValue" />.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
+      </Docs>
+    </Member>
+    <Member MemberName="GetSByte">
+      <MemberSignature Language="C#" Value="public sbyte GetSByte ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int8 GetSByte() cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.GetSByte" />
+      <MemberSignature Language="VB.NET" Value="Public Function GetSByte () As SByte" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; System::SByte GetSByte();" />
+      <MemberSignature Language="F#" Value="member this.GetSByte : unit -&gt; sbyte" Usage="utf8JsonReader.GetSByte " />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Text.Json</AssemblyName>
+        <AssemblyVersion>4.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.SByte</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="GetSingle">
@@ -487,19 +587,19 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><span data-ttu-id="576c9-172">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Single" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-172">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Single" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-173">解析为 <see cref="T:System.Single" /> 的 UTF-8 编码令牌值。</span><span class="sxs-lookup"><span data-stu-id="576c9-173">The UTF-8 encoded token value parsed to a <see cref="T:System.Single" />.</span></span></returns>
+        <summary><span data-ttu-id="120c0-164">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Single" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-164">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Single" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-165">解析为 <see cref="T:System.Single" /> 的 UTF-8 编码令牌值。</span><span class="sxs-lookup"><span data-stu-id="120c0-165">The UTF-8 encoded token value parsed to a <see cref="T:System.Single" />.</span></span></returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-<span data-ttu-id="576c9-174">`GetSingle`方法将引发异常，如果整个 utf-8 编码标记值无法解析到<xref:System.Single>值。</span><span class="sxs-lookup"><span data-stu-id="576c9-174">The `GetSingle` method throws an exception if the entire UTF-8 encoded token value cannnot be parsed to a <xref:System.Single> value.</span></span>
+<span data-ttu-id="120c0-166">如果`GetSingle`无法将整个 utf-8 编码的令牌值解析<xref:System.Single>为值, 该方法将引发异常。</span><span class="sxs-lookup"><span data-stu-id="120c0-166">The `GetSingle` method throws an exception if the entire UTF-8 encoded token value cannnot be parsed to a <xref:System.Single> value.</span></span>
 
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-175">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-175">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
-        <exception cref="T:System.FormatException"><span data-ttu-id="576c9-176">JSON 令牌值表示小于 <see cref="F:System.Single.MinValue" /> 或大于 <see cref="F:System.Single.MaxValue" /> 的数字。</span><span class="sxs-lookup"><span data-stu-id="576c9-176">The JSON token value represents a number less than <see cref="F:System.Single.MinValue" /> or greater than <see cref="F:System.Single.MaxValue" />.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-167">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-167">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
+        <exception cref="T:System.FormatException"><span data-ttu-id="120c0-168">JSON 令牌值表示小于 <see cref="F:System.Single.MinValue" /> 或大于 <see cref="F:System.Single.MaxValue" /> 的数字。</span><span class="sxs-lookup"><span data-stu-id="120c0-168">The JSON token value represents a number less than <see cref="F:System.Single.MinValue" /> or greater than <see cref="F:System.Single.MaxValue" />.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -520,15 +620,42 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><span data-ttu-id="576c9-177">从源中读取下一个 JSON 令牌值，并作为 <see cref="T:System.String" /> 进行反转义和转码。</span><span class="sxs-lookup"><span data-stu-id="576c9-177">Reads the next JSON token value from the source, unescaped, and transcoded as a <see cref="T:System.String" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-178">解析为 <see cref="T:System.String" /> 的令牌。</span><span class="sxs-lookup"><span data-stu-id="576c9-178">The token value parsed to a <see cref="T:System.String" />.</span></span></returns>
+        <summary><span data-ttu-id="120c0-169">从源中读取下一个 JSON 令牌值，并作为 <see cref="T:System.String" /> 进行反转义和转码。</span><span class="sxs-lookup"><span data-stu-id="120c0-169">Reads the next JSON token value from the source, unescaped, and transcoded as a <see cref="T:System.String" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-170">解析为 <see cref="T:System.String" /> 的令牌。</span><span class="sxs-lookup"><span data-stu-id="120c0-170">The token value parsed to a <see cref="T:System.String" />.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-179">JSON 令牌值不是字符串（即，不是 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。</span><span class="sxs-lookup"><span data-stu-id="576c9-179">The JSON token value isn't a string (that is, not a <see cref="F:System.Text.Json.JsonTokenType.String" /> or <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />).</span></span>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-171">JSON 令牌值不是字符串（即，不是 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。</span><span class="sxs-lookup"><span data-stu-id="120c0-171">The JSON token value isn't a string (that is, not a <see cref="F:System.Text.Json.JsonTokenType.String" /> or <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />).</span></span>
 
-<span data-ttu-id="576c9-180">或</span><span class="sxs-lookup"><span data-stu-id="576c9-180">-or-</span></span>
+<span data-ttu-id="120c0-172">- 或 -</span><span class="sxs-lookup"><span data-stu-id="120c0-172">-or-</span></span>
 
-<span data-ttu-id="576c9-181">JSON 字符串包含无效的 UTF-8 字节或无效的 UTF-16 替代项。</span><span class="sxs-lookup"><span data-stu-id="576c9-181">The JSON string contains invalid UTF-8 bytes or invalid UTF-16 surrogates.</span></span></exception>
+<span data-ttu-id="120c0-173">JSON 字符串包含无效的 UTF-8 字节或无效的 UTF-16 替代项。</span><span class="sxs-lookup"><span data-stu-id="120c0-173">The JSON string contains invalid UTF-8 bytes or invalid UTF-16 surrogates.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
+      </Docs>
+    </Member>
+    <Member MemberName="GetUInt16">
+      <MemberSignature Language="C#" Value="public ushort GetUInt16 ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance unsigned int16 GetUInt16() cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.GetUInt16" />
+      <MemberSignature Language="VB.NET" Value="Public Function GetUInt16 () As UShort" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; System::UInt16 GetUInt16();" />
+      <MemberSignature Language="F#" Value="member this.GetUInt16 : unit -&gt; uint16" Usage="utf8JsonReader.GetUInt16 " />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Text.Json</AssemblyName>
+        <AssemblyVersion>4.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.UInt16</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="GetUInt32">
@@ -553,15 +680,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><span data-ttu-id="576c9-182">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.UInt32" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-182">Reads the next JSON token value from the source and parses it to a <see cref="T:System.UInt32" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-183">解析为 <see cref="T:System.UInt32" /> 的 UTF-8 编码令牌值。</span><span class="sxs-lookup"><span data-stu-id="576c9-183">The UTF-8 encoded token value parsed to a <see cref="T:System.UInt32" />.</span></span></returns>
+        <summary><span data-ttu-id="120c0-174">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.UInt32" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-174">Reads the next JSON token value from the source and parses it to a <see cref="T:System.UInt32" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-175">解析为 <see cref="T:System.UInt32" /> 的 UTF-8 编码令牌值。</span><span class="sxs-lookup"><span data-stu-id="120c0-175">The UTF-8 encoded token value parsed to a <see cref="T:System.UInt32" />.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-184">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-184">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
-        <exception cref="T:System.FormatException"><span data-ttu-id="576c9-185">JSON 令牌值的数值格式不正确。</span><span class="sxs-lookup"><span data-stu-id="576c9-185">The JSON token value is of the incorrect numeric format.</span></span> <span data-ttu-id="576c9-186">例如，它包含小数或采用科学记数法编写。</span><span class="sxs-lookup"><span data-stu-id="576c9-186">For example, it contains a decimal or is written in scientific notation.</span></span>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-176">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-176">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
+        <exception cref="T:System.FormatException"><span data-ttu-id="120c0-177">JSON 令牌值的数值格式不正确。</span><span class="sxs-lookup"><span data-stu-id="120c0-177">The JSON token value is of the incorrect numeric format.</span></span> <span data-ttu-id="120c0-178">例如，它包含小数或采用科学记数法编写。</span><span class="sxs-lookup"><span data-stu-id="120c0-178">For example, it contains a decimal or is written in scientific notation.</span></span>
             
-<span data-ttu-id="576c9-187">- 或 -</span><span class="sxs-lookup"><span data-stu-id="576c9-187">- or-</span></span>
+<span data-ttu-id="120c0-179">- 或 -</span><span class="sxs-lookup"><span data-stu-id="120c0-179">- or-</span></span>
 
-<span data-ttu-id="576c9-188">JSON 令牌值表示小于 <see cref="F:System.UInt32.MinValue" /> 或大于 <see cref="F:System.UInt32.MaxValue" /> 的数字。</span><span class="sxs-lookup"><span data-stu-id="576c9-188">The JSON token value represents a number less than <see cref="F:System.UInt32.MinValue" /> or greater than <see cref="F:System.UInt32.MaxValue" />.</span></span></exception>
+<span data-ttu-id="120c0-180">JSON 令牌值表示小于 <see cref="F:System.UInt32.MinValue" /> 或大于 <see cref="F:System.UInt32.MaxValue" /> 的数字。</span><span class="sxs-lookup"><span data-stu-id="120c0-180">The JSON token value represents a number less than <see cref="F:System.UInt32.MinValue" /> or greater than <see cref="F:System.UInt32.MaxValue" />.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -587,15 +714,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><span data-ttu-id="576c9-189">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.UInt64" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-189">Reads the next JSON token value from the source and parses it to a <see cref="T:System.UInt64" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-190">解析为 <see cref="T:System.UInt64" /> 的 UTF-8 编码令牌值。</span><span class="sxs-lookup"><span data-stu-id="576c9-190">The UTF-8 encoded token value parsed to a <see cref="T:System.UInt64" />.</span></span></returns>
+        <summary><span data-ttu-id="120c0-181">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.UInt64" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-181">Reads the next JSON token value from the source and parses it to a <see cref="T:System.UInt64" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-182">解析为 <see cref="T:System.UInt64" /> 的 UTF-8 编码令牌值。</span><span class="sxs-lookup"><span data-stu-id="120c0-182">The UTF-8 encoded token value parsed to a <see cref="T:System.UInt64" />.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-191">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-191">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
-        <exception cref="T:System.FormatException"><span data-ttu-id="576c9-192">JSON 令牌值的数值格式不正确。</span><span class="sxs-lookup"><span data-stu-id="576c9-192">The JSON token value is of the incorrect numeric format.</span></span> <span data-ttu-id="576c9-193">例如，它包含小数或采用科学记数法编写。</span><span class="sxs-lookup"><span data-stu-id="576c9-193">For example, it contains a decimal or is written in scientific notation.</span></span>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-183">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-183">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
+        <exception cref="T:System.FormatException"><span data-ttu-id="120c0-184">JSON 令牌值的数值格式不正确。</span><span class="sxs-lookup"><span data-stu-id="120c0-184">The JSON token value is of the incorrect numeric format.</span></span> <span data-ttu-id="120c0-185">例如，它包含小数或采用科学记数法编写。</span><span class="sxs-lookup"><span data-stu-id="120c0-185">For example, it contains a decimal or is written in scientific notation.</span></span>
             
-<span data-ttu-id="576c9-194">- 或 -</span><span class="sxs-lookup"><span data-stu-id="576c9-194">- or-</span></span>
+<span data-ttu-id="120c0-186">- 或 -</span><span class="sxs-lookup"><span data-stu-id="120c0-186">- or-</span></span>
 
-<span data-ttu-id="576c9-195">JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <see cref="F:System.UInt64.MaxValue" /> 的数字。</span><span class="sxs-lookup"><span data-stu-id="576c9-195">The JSON token value represents a number less than <see cref="F:System.UInt64.MinValue" /> or greater than <see cref="F:System.UInt64.MaxValue" />.</span></span></exception>
+<span data-ttu-id="120c0-187">JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <see cref="F:System.UInt64.MaxValue" /> 的数字。</span><span class="sxs-lookup"><span data-stu-id="120c0-187">The JSON token value represents a number less than <see cref="F:System.UInt64.MinValue" /> or greater than <see cref="F:System.UInt64.MaxValue" />.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -611,20 +738,25 @@
         <AssemblyName>System.Text.Json</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>get: System.Runtime.CompilerServices.IsReadOnly</AttributeName>
+        </Attribute>
+      </Attributes>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary><span data-ttu-id="576c9-196">获取值，该值指示要使用哪个 <c>Value</c> 属性来获取令牌值。</span><span class="sxs-lookup"><span data-stu-id="576c9-196">Gets a value that indicates which <c>Value</c> property to use to get the token value.</span></span></summary>
-        <value><span data-ttu-id="576c9-197"><see langword="true" /> 如果<see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" />应该用于获取令牌的值。</span><span class="sxs-lookup"><span data-stu-id="576c9-197"><see langword="true" /> if <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> should be used to get the token value.</span></span> <span data-ttu-id="576c9-198"><see langword="false" /> 如果<see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" />应改为使用。</span><span class="sxs-lookup"><span data-stu-id="576c9-198"><see langword="false" /> if <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> should be used instead.</span></span></value>
+        <summary><span data-ttu-id="120c0-188">获取值，该值指示要使用哪个 <c>Value</c> 属性来获取令牌值。</span><span class="sxs-lookup"><span data-stu-id="120c0-188">Gets a value that indicates which <c>Value</c> property to use to get the token value.</span></span></summary>
+        <value><span data-ttu-id="120c0-189"><see langword="true" />如果<see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" />应使用来获取标记值, 则为。</span><span class="sxs-lookup"><span data-stu-id="120c0-189"><see langword="true" /> if <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> should be used to get the token value.</span></span> <span data-ttu-id="120c0-190"><see langword="false" />如果<see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" />应使用, 则为。</span><span class="sxs-lookup"><span data-stu-id="120c0-190"><see langword="false" /> if <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> should be used instead.</span></span></value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-<span data-ttu-id="576c9-199">如果`HasValueSequence`是`false`，<xref:System.Text.Json.Utf8JsonReader.ValueSequence>为空。</span><span class="sxs-lookup"><span data-stu-id="576c9-199">If `HasValueSequence` is `false`, <xref:System.Text.Json.Utf8JsonReader.ValueSequence> is empty.</span></span> <span data-ttu-id="576c9-200">因此，令牌值使用读取<xref:System.Text.Json.Utf8JsonReader.ValueSpan>属性。</span><span class="sxs-lookup"><span data-stu-id="576c9-200">Therefore, read the token value using the <xref:System.Text.Json.Utf8JsonReader.ValueSpan> property.</span></span>
+<span data-ttu-id="120c0-191">如果`HasValueSequence`为`false` ,<xref:System.Text.Json.Utf8JsonReader.ValueSequence>则为空。</span><span class="sxs-lookup"><span data-stu-id="120c0-191">If `HasValueSequence` is `false`, <xref:System.Text.Json.Utf8JsonReader.ValueSequence> is empty.</span></span> <span data-ttu-id="120c0-192">因此, 请使用<xref:System.Text.Json.Utf8JsonReader.ValueSpan>属性读取令牌值。</span><span class="sxs-lookup"><span data-stu-id="120c0-192">Therefore, read the token value using the <xref:System.Text.Json.Utf8JsonReader.ValueSpan> property.</span></span>
 
-<span data-ttu-id="576c9-201">中的输入数据`ReadOnlySpan<byte>`，则此始终返回`false`。</span><span class="sxs-lookup"><span data-stu-id="576c9-201">For input data within a `ReadOnlySpan<byte>`, this always returns `false`.</span></span> <span data-ttu-id="576c9-202">中的输入数据`ReadOnlySequence<byte>`，这会仅返回`true`令牌值跨多个以上的单个细分，并因此不能表示为一个范围。</span><span class="sxs-lookup"><span data-stu-id="576c9-202">For input data within a `ReadOnlySequence<byte>`, this only returns `true` if the token value straddles more than a single segment and hence can't be represented as a span.</span></span>
+<span data-ttu-id="120c0-193">对于中`ReadOnlySpan<byte>`的输入数据, 此始终返回`false`。</span><span class="sxs-lookup"><span data-stu-id="120c0-193">For input data within a `ReadOnlySpan<byte>`, this always returns `false`.</span></span> <span data-ttu-id="120c0-194">对于中的输入数据`ReadOnlySequence<byte>`, 仅当令牌`true`值跨越多个段, 因此不能表示为范围时, 这种情况才会返回。</span><span class="sxs-lookup"><span data-stu-id="120c0-194">For input data within a `ReadOnlySequence<byte>`, this only returns `true` if the token value straddles more than a single segment and hence can't be represented as a span.</span></span>
 
  ]]></format>
         </remarks>
@@ -667,8 +799,8 @@
         <ReturnType>System.SequencePosition</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary><span data-ttu-id="576c9-203">如果 <see cref="T:System.Text.Json.Utf8JsonReader" /> 结构使用 ReadOnlySpan&lt;byte&gt; 构造，则获取所提供的 UTF-8 编码输入 ReadOnlySequence&lt;byte&gt; 内的当前 <see cref="T:System.SequencePosition" /> 或默认的 <see cref="T:System.SequencePosition" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-203">Gets the current <see cref="T:System.SequencePosition" /> within the provided UTF-8 encoded input ReadOnlySequence&lt;byte&gt; or a default <see cref="T:System.SequencePosition" /> if the <see cref="T:System.Text.Json.Utf8JsonReader" /> struct was constructed with a ReadOnlySpan&lt;byte&gt;.</span></span></summary>
-        <value><span data-ttu-id="576c9-204">当前<see cref="T:System.SequencePosition" />内提供 utf-8 编码输入 ReadOnlySequence&lt;字节&gt;或默认值<see cref="T:System.SequencePosition" />如果<see cref="T:System.Text.Json.Utf8JsonReader" />结构构造 ReadOnlySpan&lt;字节&gt;。</span><span class="sxs-lookup"><span data-stu-id="576c9-204">The current <see cref="T:System.SequencePosition" /> within the provided UTF-8 encoded input ReadOnlySequence&lt;byte&gt; or a default <see cref="T:System.SequencePosition" /> if the <see cref="T:System.Text.Json.Utf8JsonReader" /> struct was constructed with a ReadOnlySpan&lt;byte&gt;.</span></span></value>
+        <summary><span data-ttu-id="120c0-195">如果 <see cref="T:System.Text.Json.Utf8JsonReader" /> 结构使用 ReadOnlySpan&lt;byte&gt; 构造，则获取所提供的 UTF-8 编码输入 ReadOnlySequence&lt;byte&gt; 内的当前 <see cref="T:System.SequencePosition" /> 或默认的 <see cref="T:System.SequencePosition" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-195">Gets the current <see cref="T:System.SequencePosition" /> within the provided UTF-8 encoded input ReadOnlySequence&lt;byte&gt; or a default <see cref="T:System.SequencePosition" /> if the <see cref="T:System.Text.Json.Utf8JsonReader" /> struct was constructed with a ReadOnlySpan&lt;byte&gt;.</span></span></summary>
+        <value><span data-ttu-id="120c0-196">在提供<see cref="T:System.SequencePosition" />的 utf-8 编码输入 ReadOnlySequence&lt;字节&gt;内的当前值, 或者, <see cref="T:System.SequencePosition" />如果<see cref="T:System.Text.Json.Utf8JsonReader" />结构是使用 ReadOnlySpan&lt;字节&gt;构造的, 则为默认值。</span><span class="sxs-lookup"><span data-stu-id="120c0-196">The current <see cref="T:System.SequencePosition" /> within the provided UTF-8 encoded input ReadOnlySequence&lt;byte&gt; or a default <see cref="T:System.SequencePosition" /> if the <see cref="T:System.Text.Json.Utf8JsonReader" /> struct was constructed with a ReadOnlySpan&lt;byte&gt;.</span></span></value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -689,14 +821,14 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><span data-ttu-id="576c9-205">从输入源中读取下一个 JSON 令牌。</span><span class="sxs-lookup"><span data-stu-id="576c9-205">Read the next JSON token from the input source.</span></span></summary>
-        <returns><span data-ttu-id="576c9-206">如果已成功读取下一令牌，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-206"><see langword="true" /> if the token was read successfully; otherwise, <see langword="false" />.</span></span></returns>
+        <summary><span data-ttu-id="120c0-197">从输入源中读取下一个 JSON 令牌。</span><span class="sxs-lookup"><span data-stu-id="120c0-197">Read the next JSON token from the input source.</span></span></summary>
+        <returns><span data-ttu-id="120c0-198">如果已成功读取下一令牌，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-198"><see langword="true" /> if the token was read successfully; otherwise, <see langword="false" />.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.Text.Json.JsonException"><span data-ttu-id="576c9-207">根据 JSON RFC，遇到无效的 JSON 令牌。</span><span class="sxs-lookup"><span data-stu-id="576c9-207">An invalid JSON token according to the JSON RFC is encountered.</span></span>
+        <exception cref="T:System.Text.Json.JsonException"><span data-ttu-id="120c0-199">根据 JSON RFC，遇到无效的 JSON 令牌。</span><span class="sxs-lookup"><span data-stu-id="120c0-199">An invalid JSON token according to the JSON RFC is encountered.</span></span>
         
-<span data-ttu-id="576c9-208">- 或 -</span><span class="sxs-lookup"><span data-stu-id="576c9-208">-or-</span></span>
+<span data-ttu-id="120c0-200">或</span><span class="sxs-lookup"><span data-stu-id="120c0-200">-or-</span></span>
 
-<span data-ttu-id="576c9-209">当前深度超过由最大深度决定的递归限值。</span><span class="sxs-lookup"><span data-stu-id="576c9-209">The current depth exceeds the recursive limit set by the maximum depth.</span></span></exception>
+<span data-ttu-id="120c0-201">当前深度超过由最大深度决定的递归限值。</span><span class="sxs-lookup"><span data-stu-id="120c0-201">The current depth exceeds the recursive limit set by the maximum depth.</span></span></exception>
       </Docs>
     </Member>
     <Member MemberName="Skip">
@@ -720,70 +852,6 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="TextEquals">
-      <MemberSignature Language="C#" Value="public bool TextEquals (ReadOnlySpan&lt;byte&gt; otherUtf8Text);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool TextEquals(valuetype System.ReadOnlySpan`1&lt;unsigned int8&gt; otherUtf8Text) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.TextEquals(System.ReadOnlySpan{System.Byte})" />
-      <MemberSignature Language="VB.NET" Value="Public Function TextEquals (otherUtf8Text As ReadOnlySpan(Of Byte)) As Boolean" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; bool TextEquals(ReadOnlySpan&lt;System::Byte&gt; otherUtf8Text);" />
-      <MemberSignature Language="F#" Value="member this.TextEquals : ReadOnlySpan&lt;byte&gt; -&gt; bool" Usage="utf8JsonReader.TextEquals otherUtf8Text" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyName>System.Text.Json</AssemblyName>
-        <AssemblyVersion>4.0.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Boolean</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="otherUtf8Text" Type="System.ReadOnlySpan&lt;System.Byte&gt;" />
-      </Parameters>
-      <Docs>
-        <param name="otherUtf8Text"><span data-ttu-id="576c9-210">要进行比较的 UTF-8 编码文本。</span><span class="sxs-lookup"><span data-stu-id="576c9-210">The UTF-8 encoded text to compare against.</span></span></param>
-        <summary><span data-ttu-id="576c9-211">将 UTF-8 编码文本与源中未转义的 JSON 令牌值进行比较；如果匹配，则返回 <see langword="true" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-211">Compares the UTF-8 encoded text to the unescaped JSON token value in the source and returns <see langword="true" /> if they match.</span></span></summary>
-        <returns><span data-ttu-id="576c9-212">如果源中的 JSON 令牌值与 UTF-8 编码查找文本匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-212"><see langword="true" /> if the JSON token value in the source matches the UTF-8 encoded look up text; otherwise, <see langword="false" />.</span></span></returns>
-        <remarks>
-          <format><![CDATA[
-          
-<span data-ttu-id="576c9-213">如果查找文本是无效的 utf-8 文本，该方法将返回`false`因为不能有无效-8 中的 JSON 有效负载。</span><span class="sxs-lookup"><span data-stu-id="576c9-213">If the look up text is invalid UTF-8 text, the method will return `false` since you cannot have invalid UTF-8 within the JSON payload.</span></span>
-
-          ]]></format>
-        </remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-214">JSON 令牌不是字符串（即，其类型不同于 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。</span><span class="sxs-lookup"><span data-stu-id="576c9-214">The JSON token isn't a string (that is, its type is other than <see cref="F:System.Text.Json.JsonTokenType.String" /> or <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />).</span></span></exception>
-      </Docs>
-    </Member>
-    <Member MemberName="TextEquals">
-      <MemberSignature Language="C#" Value="public bool TextEquals (ReadOnlySpan&lt;char&gt; otherText);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool TextEquals(valuetype System.ReadOnlySpan`1&lt;char&gt; otherText) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.TextEquals(System.ReadOnlySpan{System.Char})" />
-      <MemberSignature Language="VB.NET" Value="Public Function TextEquals (otherText As ReadOnlySpan(Of Char)) As Boolean" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; bool TextEquals(ReadOnlySpan&lt;char&gt; otherText);" />
-      <MemberSignature Language="F#" Value="member this.TextEquals : ReadOnlySpan&lt;char&gt; -&gt; bool" Usage="utf8JsonReader.TextEquals otherText" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyName>System.Text.Json</AssemblyName>
-        <AssemblyVersion>4.0.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Boolean</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="otherText" Type="System.ReadOnlySpan&lt;System.Char&gt;" />
-      </Parameters>
-      <Docs>
-        <param name="otherText"><span data-ttu-id="576c9-215">要进行比较的 UTF-16 编码文本。</span><span class="sxs-lookup"><span data-stu-id="576c9-215">The UTF-16 encoded text to compare against.</span></span></param>
-        <summary><span data-ttu-id="576c9-216">将 UTF-16 编码文本与源中未转义的 JSON 令牌值相比较；如果匹配，则返回 true。</span><span class="sxs-lookup"><span data-stu-id="576c9-216">Compares the UTF-16 encoded text to the unescaped JSON token value in the source and returns true if they match.</span></span></summary>
-        <returns><span data-ttu-id="576c9-217">如果源中的 JSON 令牌值与 UTF-16 编码查找文本匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-217"><see langword="true" /> if the JSON token value in the source matches the UTF-16 encoded look up text; otherwise, <see langword="false" />.</span></span></returns>
-        <remarks>
-          <format><![CDATA[
-          
-<span data-ttu-id="576c9-218">如果查找文本是无效或不完整的 utf-16 文本 （例如不成对的代理），该方法返回`false`由于无法在 JSON 有效负载无效 utf-16。</span><span class="sxs-lookup"><span data-stu-id="576c9-218">If the look up text is invalid or incomplete UTF-16 text (such as unpaired surrogates), the method returns `false` since there cannot be invalid UTF-16 within the JSON payload.</span></span>
-            
-            ]]></format>
-        </remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-219">JSON 文本不是字符串（其类型不是 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。</span><span class="sxs-lookup"><span data-stu-id="576c9-219">The JSON text isn't a string (its type is not <see cref="F:System.Text.Json.JsonTokenType.String" /> or <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />).</span></span></exception>
-      </Docs>
-    </Member>
     <Member MemberName="TokenStartIndex">
       <MemberSignature Language="C#" Value="public long TokenStartIndex { get; }" />
       <MemberSignature Language="ILAsm" Value=".property instance int64 TokenStartIndex" />
@@ -796,6 +864,11 @@
         <AssemblyName>System.Text.Json</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>get: System.Runtime.CompilerServices.IsReadOnly</AttributeName>
+        </Attribute>
+      </Attributes>
       <ReturnValue>
         <ReturnType>System.Int64</ReturnType>
       </ReturnValue>
@@ -821,8 +894,33 @@
         <ReturnType>System.Text.Json.JsonTokenType</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary><span data-ttu-id="576c9-220">获取 UTF-8 编码 JSON 文本中最后一个处理的 JSON 令牌的类型。</span><span class="sxs-lookup"><span data-stu-id="576c9-220">Gets the type of the last processed JSON token in the UTF-8 encoded JSON text.</span></span></summary>
-        <value><span data-ttu-id="576c9-221">最后一个处理 JSON 标记的类型。</span><span class="sxs-lookup"><span data-stu-id="576c9-221">The type of the last processed JSON token.</span></span></value>
+        <summary><span data-ttu-id="120c0-202">获取 UTF-8 编码 JSON 文本中最后一个处理的 JSON 令牌的类型。</span><span class="sxs-lookup"><span data-stu-id="120c0-202">Gets the type of the last processed JSON token in the UTF-8 encoded JSON text.</span></span></summary>
+        <value><span data-ttu-id="120c0-203">上次处理的 JSON 令牌的类型。</span><span class="sxs-lookup"><span data-stu-id="120c0-203">The type of the last processed JSON token.</span></span></value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TryGetByte">
+      <MemberSignature Language="C#" Value="public bool TryGetByte (out byte value);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool TryGetByte([out] unsigned int8&amp; value) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.TryGetByte(System.Byte@)" />
+      <MemberSignature Language="VB.NET" Value="Public Function TryGetByte (ByRef value As Byte) As Boolean" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; bool TryGetByte([Runtime::InteropServices::Out] System::Byte % value);" />
+      <MemberSignature Language="F#" Value="member this.TryGetByte :  -&gt; bool" Usage="utf8JsonReader.TryGetByte value" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Text.Json</AssemblyName>
+        <AssemblyVersion>4.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.Byte" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -870,11 +968,11 @@
         <Parameter Name="value" Type="System.DateTime" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value"><span data-ttu-id="576c9-222">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="576c9-222">When this method returns, contains the parsed value.</span></span></param>
-        <summary><span data-ttu-id="576c9-223">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTime" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-223">Reads the next JSON token value from the source and parses it to a <see cref="T:System.DateTime" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-224">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.DateTime" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-224"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.DateTime" /> value; otherwise, <see langword="false" />.</span></span></returns>
+        <param name="value"><span data-ttu-id="120c0-204">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="120c0-204">When this method returns, contains the parsed value.</span></span></param>
+        <summary><span data-ttu-id="120c0-205">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTime" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-205">Reads the next JSON token value from the source and parses it to a <see cref="T:System.DateTime" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-206">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.DateTime" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-206"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.DateTime" /> value; otherwise, <see langword="false" />.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-225">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-225">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-207">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-207">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</span></span></exception>
       </Docs>
     </Member>
     <Member MemberName="TryGetDateTimeOffset">
@@ -896,11 +994,11 @@
         <Parameter Name="value" Type="System.DateTimeOffset" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value"><span data-ttu-id="576c9-226">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="576c9-226">When this method returns, contains the parsed value.</span></span></param>
-        <summary><span data-ttu-id="576c9-227">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTimeOffset" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-227">Reads the next JSON token value from the source and parses it to a <see cref="T:System.DateTimeOffset" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-228">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.DateTimeOffset" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-228"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.DateTimeOffset" /> value; otherwise, <see langword="false" />.</span></span></returns>
+        <param name="value"><span data-ttu-id="120c0-208">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="120c0-208">When this method returns, contains the parsed value.</span></span></param>
+        <summary><span data-ttu-id="120c0-209">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTimeOffset" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-209">Reads the next JSON token value from the source and parses it to a <see cref="T:System.DateTimeOffset" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-210">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.DateTimeOffset" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-210"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.DateTimeOffset" /> value; otherwise, <see langword="false" />.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-229">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-229">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-211">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-211">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</span></span></exception>
       </Docs>
     </Member>
     <Member MemberName="TryGetDecimal">
@@ -922,11 +1020,11 @@
         <Parameter Name="value" Type="System.Decimal" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value"><span data-ttu-id="576c9-230">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="576c9-230">When this method returns, contains the parsed value.</span></span></param>
-        <summary><span data-ttu-id="576c9-231">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Decimal" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-231">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Decimal" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-232">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Decimal" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-232"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.Decimal" /> value; otherwise, <see langword="false" />.</span></span></returns>
+        <param name="value"><span data-ttu-id="120c0-212">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="120c0-212">When this method returns, contains the parsed value.</span></span></param>
+        <summary><span data-ttu-id="120c0-213">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Decimal" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-213">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Decimal" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-214">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Decimal" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-214"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.Decimal" /> value; otherwise, <see langword="false" />.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-233">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-233">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-215">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-215">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -949,11 +1047,11 @@
         <Parameter Name="value" Type="System.Double" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value"><span data-ttu-id="576c9-234">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="576c9-234">When this method returns, contains the parsed value.</span></span></param>
-        <summary><span data-ttu-id="576c9-235">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Double" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-235">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Double" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-236">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Double" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-236"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.Double" /> value; otherwise, <see langword="false" />.</span></span></returns>
+        <param name="value"><span data-ttu-id="120c0-216">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="120c0-216">When this method returns, contains the parsed value.</span></span></param>
+        <summary><span data-ttu-id="120c0-217">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Double" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-217">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Double" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-218">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Double" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-218"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.Double" /> value; otherwise, <see langword="false" />.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-237">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-237">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-219">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-219">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -976,17 +1074,42 @@
         <Parameter Name="value" Type="System.Guid" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value"><span data-ttu-id="576c9-238">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="576c9-238">When this method returns, contains the parsed value.</span></span></param>
-        <summary><span data-ttu-id="576c9-239">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Guid" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-239">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Guid" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-240">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Guid" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-240"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.Guid" /> value; otherwise, <see langword="false" />.</span></span></returns>
+        <param name="value"><span data-ttu-id="120c0-220">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="120c0-220">When this method returns, contains the parsed value.</span></span></param>
+        <summary><span data-ttu-id="120c0-221">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Guid" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-221">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Guid" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-222">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Guid" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-222"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.Guid" /> value; otherwise, <see langword="false" />.</span></span></returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-<span data-ttu-id="576c9-241">此方法只能分析<xref:System.Guid>使用连字符和不使用任何周围修饰的值。</span><span class="sxs-lookup"><span data-stu-id="576c9-241">This method only parses <xref:System.Guid> values with hyphens and without any surrounding decorations.</span></span> 
+<span data-ttu-id="120c0-223">此方法仅分析<xref:System.Guid>带有连字符的值, 而不分析任何周围的修饰。</span><span class="sxs-lookup"><span data-stu-id="120c0-223">This method only parses <xref:System.Guid> values with hyphens and without any surrounding decorations.</span></span> 
 
          ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-242">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-242">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-224">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-224">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</span></span></exception>
+      </Docs>
+    </Member>
+    <Member MemberName="TryGetInt16">
+      <MemberSignature Language="C#" Value="public bool TryGetInt16 (out short value);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool TryGetInt16([out] int16&amp; value) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.TryGetInt16(System.Int16@)" />
+      <MemberSignature Language="VB.NET" Value="Public Function TryGetInt16 (ByRef value As Short) As Boolean" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; bool TryGetInt16([Runtime::InteropServices::Out] short % value);" />
+      <MemberSignature Language="F#" Value="member this.TryGetInt16 :  -&gt; bool" Usage="utf8JsonReader.TryGetInt16 value" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Text.Json</AssemblyName>
+        <AssemblyVersion>4.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.Int16" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="TryGetInt32">
@@ -1008,11 +1131,11 @@
         <Parameter Name="value" Type="System.Int32" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value"><span data-ttu-id="576c9-243">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="576c9-243">When this method returns, contains the parsed value.</span></span></param>
-        <summary><span data-ttu-id="576c9-244">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Int32" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-244">Reads the next JSON token value from the source and parses it to an <see cref="T:System.Int32" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-245">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Int32" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-245"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to an <see cref="T:System.Int32" /> value; otherwise, <see langword="false" />.</span></span></returns>
+        <param name="value"><span data-ttu-id="120c0-225">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="120c0-225">When this method returns, contains the parsed value.</span></span></param>
+        <summary><span data-ttu-id="120c0-226">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Int32" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-226">Reads the next JSON token value from the source and parses it to an <see cref="T:System.Int32" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-227">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Int32" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-227"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to an <see cref="T:System.Int32" /> value; otherwise, <see langword="false" />.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-246">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-246">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-228">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-228">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -1035,12 +1158,42 @@
         <Parameter Name="value" Type="System.Int64" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value"><span data-ttu-id="576c9-247">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="576c9-247">When this method returns, contains the parsed value.</span></span></param>
-        <summary><span data-ttu-id="576c9-248">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Int64" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-248">Reads the next JSON token value from the source and parses it to an <see cref="T:System.Int64" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-249">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Int64" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-249"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to an <see cref="T:System.Int64" /> value; otherwise, <see langword="false" />.</span></span></returns>
+        <param name="value"><span data-ttu-id="120c0-229">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="120c0-229">When this method returns, contains the parsed value.</span></span></param>
+        <summary><span data-ttu-id="120c0-230">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Int64" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-230">Reads the next JSON token value from the source and parses it to an <see cref="T:System.Int64" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-231">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Int64" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-231"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to an <see cref="T:System.Int64" /> value; otherwise, <see langword="false" />.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-250">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-250">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-232">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-232">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
+      </Docs>
+    </Member>
+    <Member MemberName="TryGetSByte">
+      <MemberSignature Language="C#" Value="public bool TryGetSByte (out sbyte value);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool TryGetSByte([out] int8&amp; value) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.TryGetSByte(System.SByte@)" />
+      <MemberSignature Language="VB.NET" Value="Public Function TryGetSByte (ByRef value As SByte) As Boolean" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; bool TryGetSByte([Runtime::InteropServices::Out] System::SByte % value);" />
+      <MemberSignature Language="F#" Value="member this.TryGetSByte :  -&gt; bool" Usage="utf8JsonReader.TryGetSByte value" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Text.Json</AssemblyName>
+        <AssemblyVersion>4.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.SByte" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="TryGetSingle">
@@ -1062,12 +1215,42 @@
         <Parameter Name="value" Type="System.Single" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value"><span data-ttu-id="576c9-251">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="576c9-251">When this method returns, contains the parsed value.</span></span></param>
-        <summary><span data-ttu-id="576c9-252">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Single" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-252">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Single" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-253">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Single" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-253"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to an <see cref="T:System.Single" /> value; otherwise, <see langword="false" />.</span></span></returns>
+        <param name="value"><span data-ttu-id="120c0-233">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="120c0-233">When this method returns, contains the parsed value.</span></span></param>
+        <summary><span data-ttu-id="120c0-234">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Single" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-234">Reads the next JSON token value from the source and parses it to a <see cref="T:System.Single" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-235">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Single" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-235"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to an <see cref="T:System.Single" /> value; otherwise, <see langword="false" />.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-254">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-254">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-236">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-236">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
+      </Docs>
+    </Member>
+    <Member MemberName="TryGetUInt16">
+      <MemberSignature Language="C#" Value="public bool TryGetUInt16 (out ushort value);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool TryGetUInt16([out] unsigned int16&amp; value) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.TryGetUInt16(System.UInt16@)" />
+      <MemberSignature Language="VB.NET" Value="Public Function TryGetUInt16 (ByRef value As UShort) As Boolean" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; bool TryGetUInt16([Runtime::InteropServices::Out] System::UInt16 % value);" />
+      <MemberSignature Language="F#" Value="member this.TryGetUInt16 :  -&gt; bool" Usage="utf8JsonReader.TryGetUInt16 value" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Text.Json</AssemblyName>
+        <AssemblyVersion>4.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.UInt16" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="TryGetUInt32">
@@ -1094,11 +1277,11 @@
         <Parameter Name="value" Type="System.UInt32" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value"><span data-ttu-id="576c9-255">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="576c9-255">When this method returns, contains the parsed value.</span></span></param>
-        <summary><span data-ttu-id="576c9-256">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.UInt32" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-256">Reads the next JSON token value from the source and parses it to a <see cref="T:System.UInt32" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-257">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.UInt32" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-257"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.UInt32" /> value; otherwise, <see langword="false" />.</span></span></returns>
+        <param name="value"><span data-ttu-id="120c0-237">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="120c0-237">When this method returns, contains the parsed value.</span></span></param>
+        <summary><span data-ttu-id="120c0-238">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.UInt32" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-238">Reads the next JSON token value from the source and parses it to a <see cref="T:System.UInt32" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-239">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.UInt32" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-239"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.UInt32" /> value; otherwise, <see langword="false" />.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-258">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-258">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-240">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-240">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -1126,11 +1309,11 @@
         <Parameter Name="value" Type="System.UInt64" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value"><span data-ttu-id="576c9-259">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="576c9-259">When this method returns, contains the parsed value.</span></span></param>
-        <summary><span data-ttu-id="576c9-260">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.UInt64" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-260">Reads the next JSON token value from the source and parses it to a <see cref="T:System.UInt64" />.</span></span></summary>
-        <returns><span data-ttu-id="576c9-261">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.UInt64" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-261"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.UInt64" /> value; otherwise, <see langword="false" />.</span></span></returns>
+        <param name="value"><span data-ttu-id="120c0-241">在此方法返回时，包含已解析的值。</span><span class="sxs-lookup"><span data-stu-id="120c0-241">When this method returns, contains the parsed value.</span></span></param>
+        <summary><span data-ttu-id="120c0-242">从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.UInt64" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-242">Reads the next JSON token value from the source and parses it to a <see cref="T:System.UInt64" />.</span></span></summary>
+        <returns><span data-ttu-id="120c0-243">如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.UInt64" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-243"><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.UInt64" /> value; otherwise, <see langword="false" />.</span></span></returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="576c9-262">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="576c9-262">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
+        <exception cref="T:System.InvalidOperationException"><span data-ttu-id="120c0-244">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</span><span class="sxs-lookup"><span data-stu-id="120c0-244">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</span></span></exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -1168,12 +1351,17 @@
         <AssemblyName>System.Text.Json</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>get: System.Runtime.CompilerServices.IsReadOnly</AttributeName>
+        </Attribute>
+      </Attributes>
       <ReturnValue>
         <ReturnType>System.Buffers.ReadOnlySequence&lt;System.Byte&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary><span data-ttu-id="576c9-263">获取最后一个处理的令牌的值作为输入有效负载的 ReadOnlySpan&lt;byte&gt; 切片。</span><span class="sxs-lookup"><span data-stu-id="576c9-263">Gets the value of the last processed token as a ReadOnlySpan&lt;byte&gt; slice of the input payload.</span></span> <span data-ttu-id="576c9-264">如果在 ReadOnlySequence&lt;byte&gt; 内提供 JSON，并且表示令牌值的切片适合单个段，则 <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> 包含切分的值，因为它可以表示为一个范围。</span><span class="sxs-lookup"><span data-stu-id="576c9-264">If the JSON is provided within a ReadOnlySequence&lt;byte&gt; and the slice that represents the token value fits in a single segment, then <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> contains the sliced value since it can be represented as a span.</span></span>
-<span data-ttu-id="576c9-265">否则 <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> 包含令牌值。</span><span class="sxs-lookup"><span data-stu-id="576c9-265">Otherwise, <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> contains the token value.</span></span></summary>
+        <summary><span data-ttu-id="120c0-245">获取最后一个处理的令牌的值作为输入有效负载的 ReadOnlySpan&lt;byte&gt; 切片。</span><span class="sxs-lookup"><span data-stu-id="120c0-245">Gets the value of the last processed token as a ReadOnlySpan&lt;byte&gt; slice of the input payload.</span></span> <span data-ttu-id="120c0-246">如果在 ReadOnlySequence&lt;byte&gt; 内提供 JSON，并且表示令牌值的切片适合单个段，则 <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> 包含切分的值，因为它可以表示为一个范围。</span><span class="sxs-lookup"><span data-stu-id="120c0-246">If the JSON is provided within a ReadOnlySequence&lt;byte&gt; and the slice that represents the token value fits in a single segment, then <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> contains the sliced value since it can be represented as a span.</span></span>
+<span data-ttu-id="120c0-247">否则 <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> 包含令牌值。</span><span class="sxs-lookup"><span data-stu-id="120c0-247">Otherwise, <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> contains the token value.</span></span></summary>
         <value>To be added.</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1181,8 +1369,8 @@
 ## Remarks
 
 
-<span data-ttu-id="576c9-266">如果<xref:System.Text.Json.Utf8JsonReader.HasValueSequence>是`false`，`ValueSequence`为空。</span><span class="sxs-lookup"><span data-stu-id="576c9-266">If <xref:System.Text.Json.Utf8JsonReader.HasValueSequence> is `false`, `ValueSequence` is empty.</span></span> <span data-ttu-id="576c9-267">因此，只能访问`ValueSequence`如果<xref:System.Text.Json.Utf8JsonReader.HasValueSequence>是`true`。</span><span class="sxs-lookup"><span data-stu-id="576c9-267">Therefore, only access `ValueSequence` if <xref:System.Text.Json.Utf8JsonReader.HasValueSequence> is `true`.</span></span>
-<span data-ttu-id="576c9-268">否则，必须从访问令牌值<xref:System.Text.Json.Utf8JsonReader.ValueSpan>。</span><span class="sxs-lookup"><span data-stu-id="576c9-268">Otherwise, the token value must be accessed from <xref:System.Text.Json.Utf8JsonReader.ValueSpan>.</span></span>
+<span data-ttu-id="120c0-248">如果<xref:System.Text.Json.Utf8JsonReader.HasValueSequence>为`false` ,`ValueSequence`则为空。</span><span class="sxs-lookup"><span data-stu-id="120c0-248">If <xref:System.Text.Json.Utf8JsonReader.HasValueSequence> is `false`, `ValueSequence` is empty.</span></span> <span data-ttu-id="120c0-249">因此, 仅当`ValueSequence` <xref:System.Text.Json.Utf8JsonReader.HasValueSequence>为时`true`才访问。</span><span class="sxs-lookup"><span data-stu-id="120c0-249">Therefore, only access `ValueSequence` if <xref:System.Text.Json.Utf8JsonReader.HasValueSequence> is `true`.</span></span>
+<span data-ttu-id="120c0-250">否则, 必须从<xref:System.Text.Json.Utf8JsonReader.ValueSpan>访问令牌值。</span><span class="sxs-lookup"><span data-stu-id="120c0-250">Otherwise, the token value must be accessed from <xref:System.Text.Json.Utf8JsonReader.ValueSpan>.</span></span>
 
  ]]></format>
         </remarks>
@@ -1200,23 +1388,103 @@
         <AssemblyName>System.Text.Json</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>get: System.Runtime.CompilerServices.IsReadOnly</AttributeName>
+        </Attribute>
+      </Attributes>
       <ReturnValue>
         <ReturnType>System.ReadOnlySpan&lt;System.Byte&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary><span data-ttu-id="576c9-269">获取最后一个处理的令牌的值作为输入有效负载的 ReadOnlySpan&lt;byte&gt; 切片。</span><span class="sxs-lookup"><span data-stu-id="576c9-269">Gets the value of the last processed token as a ReadOnlySpan&lt;byte&gt; slice of the input payload.</span></span> <span data-ttu-id="576c9-270">如果在 ReadOnlySequence&lt;byte&gt; 内提供 JSON，并且表示令牌值的切片适合单个段，则 <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> 包含切分的值，因为它可以表示为一个范围。</span><span class="sxs-lookup"><span data-stu-id="576c9-270">If the JSON is provided within a ReadOnlySequence&lt;byte&gt; and the slice that represents the token value fits in a single segment, then <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> contains the sliced value since it can be represented as a span.</span></span>
-<span data-ttu-id="576c9-271">否则 <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> 包含令牌值。</span><span class="sxs-lookup"><span data-stu-id="576c9-271">Otherwise, the <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> contains the token value.</span></span></summary>
+        <summary><span data-ttu-id="120c0-251">获取最后一个处理的令牌的值作为输入有效负载的 ReadOnlySpan&lt;byte&gt; 切片。</span><span class="sxs-lookup"><span data-stu-id="120c0-251">Gets the value of the last processed token as a ReadOnlySpan&lt;byte&gt; slice of the input payload.</span></span> <span data-ttu-id="120c0-252">如果在 ReadOnlySequence&lt;byte&gt; 内提供 JSON，并且表示令牌值的切片适合单个段，则 <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> 包含切分的值，因为它可以表示为一个范围。</span><span class="sxs-lookup"><span data-stu-id="120c0-252">If the JSON is provided within a ReadOnlySequence&lt;byte&gt; and the slice that represents the token value fits in a single segment, then <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> contains the sliced value since it can be represented as a span.</span></span>
+<span data-ttu-id="120c0-253">否则 <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> 包含令牌值。</span><span class="sxs-lookup"><span data-stu-id="120c0-253">Otherwise, the <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> contains the token value.</span></span></summary>
         <value>To be added.</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-<span data-ttu-id="576c9-272">如果<xref:System.Text.Json.Utf8JsonReader.HasValueSequence>是`true`，<xref:System.Text.Json.Utf8JsonReader.ValueSpan>为空。</span><span class="sxs-lookup"><span data-stu-id="576c9-272">If <xref:System.Text.Json.Utf8JsonReader.HasValueSequence> is `true`, <xref:System.Text.Json.Utf8JsonReader.ValueSpan> is empty.</span></span> <span data-ttu-id="576c9-273">因此，只能访问`ValueSpan`如果<xref:System.Text.Json.Utf8JsonReader.HasValueSequence>是`false`。</span><span class="sxs-lookup"><span data-stu-id="576c9-273">Therefore, only access `ValueSpan` if <xref:System.Text.Json.Utf8JsonReader.HasValueSequence> is `false`.</span></span>
-<span data-ttu-id="576c9-274">否则，必须从访问令牌值<xref:System.Text.Json.Utf8JsonReader.ValueSequence>。</span><span class="sxs-lookup"><span data-stu-id="576c9-274">Otherwise, the token value must be accessed from <xref:System.Text.Json.Utf8JsonReader.ValueSequence>.</span></span>
+<span data-ttu-id="120c0-254">如果<xref:System.Text.Json.Utf8JsonReader.HasValueSequence>为`true` ,<xref:System.Text.Json.Utf8JsonReader.ValueSpan>则为空。</span><span class="sxs-lookup"><span data-stu-id="120c0-254">If <xref:System.Text.Json.Utf8JsonReader.HasValueSequence> is `true`, <xref:System.Text.Json.Utf8JsonReader.ValueSpan> is empty.</span></span> <span data-ttu-id="120c0-255">因此, 仅当`ValueSpan` <xref:System.Text.Json.Utf8JsonReader.HasValueSequence>为时`false`才访问。</span><span class="sxs-lookup"><span data-stu-id="120c0-255">Therefore, only access `ValueSpan` if <xref:System.Text.Json.Utf8JsonReader.HasValueSequence> is `false`.</span></span>
+<span data-ttu-id="120c0-256">否则, 必须从<xref:System.Text.Json.Utf8JsonReader.ValueSequence>访问令牌值。</span><span class="sxs-lookup"><span data-stu-id="120c0-256">Otherwise, the token value must be accessed from <xref:System.Text.Json.Utf8JsonReader.ValueSequence>.</span></span>
 
  ]]></format>
         </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValueTextEquals">
+      <MemberSignature Language="C#" Value="public bool ValueTextEquals (ReadOnlySpan&lt;byte&gt; utf8Text);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool ValueTextEquals(valuetype System.ReadOnlySpan`1&lt;unsigned int8&gt; utf8Text) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.ValueTextEquals(System.ReadOnlySpan{System.Byte})" />
+      <MemberSignature Language="VB.NET" Value="Public Function ValueTextEquals (utf8Text As ReadOnlySpan(Of Byte)) As Boolean" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; bool ValueTextEquals(ReadOnlySpan&lt;System::Byte&gt; utf8Text);" />
+      <MemberSignature Language="F#" Value="member this.ValueTextEquals : ReadOnlySpan&lt;byte&gt; -&gt; bool" Usage="utf8JsonReader.ValueTextEquals utf8Text" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Text.Json</AssemblyName>
+        <AssemblyVersion>4.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="utf8Text" Type="System.ReadOnlySpan&lt;System.Byte&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="utf8Text">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValueTextEquals">
+      <MemberSignature Language="C#" Value="public bool ValueTextEquals (ReadOnlySpan&lt;char&gt; text);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool ValueTextEquals(valuetype System.ReadOnlySpan`1&lt;char&gt; text) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.ValueTextEquals(System.ReadOnlySpan{System.Char})" />
+      <MemberSignature Language="VB.NET" Value="Public Function ValueTextEquals (text As ReadOnlySpan(Of Char)) As Boolean" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; bool ValueTextEquals(ReadOnlySpan&lt;char&gt; text);" />
+      <MemberSignature Language="F#" Value="member this.ValueTextEquals : ReadOnlySpan&lt;char&gt; -&gt; bool" Usage="utf8JsonReader.ValueTextEquals text" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Text.Json</AssemblyName>
+        <AssemblyVersion>4.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="text" Type="System.ReadOnlySpan&lt;System.Char&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="text">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValueTextEquals">
+      <MemberSignature Language="C#" Value="public bool ValueTextEquals (string text);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool ValueTextEquals(string text) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.Utf8JsonReader.ValueTextEquals(System.String)" />
+      <MemberSignature Language="VB.NET" Value="Public Function ValueTextEquals (text As String) As Boolean" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; bool ValueTextEquals(System::String ^ text);" />
+      <MemberSignature Language="F#" Value="member this.ValueTextEquals : string -&gt; bool" Usage="utf8JsonReader.ValueTextEquals text" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Text.Json</AssemblyName>
+        <AssemblyVersion>4.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="text" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="text">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
   </Members>
