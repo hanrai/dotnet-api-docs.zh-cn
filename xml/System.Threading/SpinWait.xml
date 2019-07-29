@@ -1,5 +1,5 @@
 <Type Name="SpinWait" FullName="System.Threading.SpinWait">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e8994780181712a1e87c32bcbd35cfe1bd7cfa94" /><Meta Name="ms.sourcegitcommit" Value="690605a2d62010b93e13edf329aafe2bdc57423a" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/11/2019" /><Meta Name="ms.locfileid" Value="67801609" /></Metadata><TypeSignature Language="C#" Value="public struct SpinWait" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9d75911f8a25cbffce1ea7b3ad951cc390fcac2b" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68541138" /></Metadata><TypeSignature Language="C#" Value="public struct SpinWait" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit SpinWait extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Threading.SpinWait" />
   <TypeSignature Language="VB.NET" Value="Public Structure SpinWait" />
@@ -32,9 +32,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.SpinWait> 封装常见旋转逻辑。 在单处理器计算机上而不是忙碌等待，始终使用生成和上使用超线程技术的 Intel 处理器的计算机，它有助于防止硬件线程资源不足。 SpinWait 封装好混合使用旋转和 true 无法完成。  
+ <xref:System.Threading.SpinWait>封装常见旋转逻辑。 在单处理器计算机上, 始终使用 "生成" 而不是 "繁忙等待", 在装有超线程技术的 Intel 处理器的计算机上, 这有助于防止硬件线程不足。 SpinWait 封装了一种很好的旋转和真正的生成。  
   
- <xref:System.Threading.SpinWait> 是值类型，这意味着低级别的代码可以无需担心会不必要的分配开销利用 SpinWait。 SpinWait 不是通常适用于普通的应用程序。 在大多数情况下，应使用同步类提供由.NET Framework 中，如<xref:System.Threading.Monitor>。 大多数情况下，数值调节钮等待在需要时，但是，<xref:System.Threading.SpinWait>类型应优先通过<xref:System.Threading.Thread.SpinWait%2A?displayProperty=nameWithType>方法。  
+ <xref:System.Threading.SpinWait>是一个值类型, 这意味着低级别代码可以使用 SpinWait, 而不必担心不必要的分配开销。 SpinWait 对于普通应用程序通常不起作用。 在大多数情况下, 应使用由 .NET Framework 提供的同步类, 如<xref:System.Threading.Monitor>。 但<xref:System.Threading.SpinWait>在需要自旋等待的大多数情况下, 类型应优先<xref:System.Threading.Thread.SpinWait%2A?displayProperty=nameWithType>于方法。  
   
    
   
@@ -46,7 +46,7 @@
   
  ]]></format>
     </remarks>
-    <threadsafe>虽然<see cref="T:System.Threading.SpinWait" />是设计用于并发应用程序，它不是从多个线程同时使用。 <see cref="T:System.Threading.SpinWait" /> 成员不是线程安全。 如果多个线程必须旋转，每个应使用自己的实例<see cref="T:System.Threading.SpinWait" />。</threadsafe>
+    <threadsafe>虽然<see cref="T:System.Threading.SpinWait" />设计为在并发应用程序中使用, 但其设计目的不是从多个线程同时使用。 <see cref="T:System.Threading.SpinWait" />成员不是线程安全的。 如果多个线程必须旋转, 则每个线程都应<see cref="T:System.Threading.SpinWait" />使用自己的实例。</threadsafe>
     <related type="Article" href="~/docs/standard/threading/spinwait.md">SpinWait</related>
     <related type="Article" href="~/docs/standard/threading/how-to-use-spinwait-to-implement-a-two-phase-wait-operation.md">如何：使用 SpinWait 实现两阶段等待操作</related>
   </Docs>
@@ -122,7 +122,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在单 CPU 计算机上，<xref:System.Threading.SpinWait.SpinOnce%2A>始终会产生处理器。 在具有多个 Cpu 的计算机上<xref:System.Threading.SpinWait.SpinOnce%2A>可能会产生后未指定数量的调用。  
+ 在单 CPU 计算机上, <xref:System.Threading.SpinWait.SpinOnce%2A>始终产生处理器。 在具有多个 cpu 的<xref:System.Threading.SpinWait.SpinOnce%2A>计算机上, 可能会在调用次数未指定的情况下生成。  
   
  ]]></format>
         </remarks>
@@ -165,12 +165,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这使得<xref:System.Threading.SpinWait.SpinOnce%2A>并<xref:System.Threading.SpinWait.NextSpinWillYield%2A>行为如同未调用<xref:System.Threading.SpinWait.SpinOnce%2A>已发出对此实例。 如果<xref:System.Threading.SpinWait>实例重复使用多次，则可能是用于重置，以免太快生成。  
+ 这使得<xref:System.Threading.SpinWait.SpinOnce%2A>和<xref:System.Threading.SpinWait.NextSpinWillYield%2A>的行为如同此实例上<xref:System.Threading.SpinWait.SpinOnce%2A>未发出对的调用。 如果多次<xref:System.Threading.SpinWait>重复使用某个实例, 则可能会将其重置为 "尽快"。  
   
    
   
 ## Examples  
- 以下是中的简单无锁定堆栈实现，使用 SpinWait 的示例。 （这是只是一个示例。 如果需要高效的线程安全堆栈，请考虑使用 ConcurrentStack。）  
+ 下面是在简单的无锁定堆栈实现中使用 SpinWait 的示例。 (这只是一个示例。 如果需要有效的线程安全堆栈, 请考虑使用 System.collections.concurrent.concurrentstack。)  
   
  [!code-csharp[System.Threading.SpinWait.Reset#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.spinwait/cs/reset.cs#01)]
  [!code-vb[System.Threading.SpinWait.Reset#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.spinwait/vb/reset.vb#01)]
@@ -216,7 +216,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法通常在循环中调用，并可能会改变，基于的次数行为<xref:System.Threading.SpinWait.SpinOnce%2A>已对此实例到目前为止调用。 每个数值调节钮导致<xref:System.Threading.Thread.SpinWait%2A>被调用方法。 计数保持的次数<xref:System.Threading.SpinWait.SpinOnce%2A>调用时，则在达到阈值计数后和<xref:System.Threading.Thread.Yield%2A>调用方法。  
+ 此方法通常在循环中调用, 并且可能会根据在此实例上迄今为止已调用<xref:System.Threading.SpinWait.SpinOnce%2A>的次数而发生变化。 每个自旋都将<xref:System.Threading.Thread.SpinWait%2A>导致调用方法中的。 计数保留调用次数<xref:System.Threading.SpinWait.SpinOnce%2A> , 并且在达到阈值计数后, 将<xref:System.Threading.Thread.Yield%2A>调用方法。  
   
  ]]></format>
         </remarks>
@@ -254,7 +254,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[
 
-此方法通常在循环中调用，并可能会改变，基于的次数行为<xref:System.Threading.SpinWait.SpinOnce>已对此实例到目前为止调用。
+此方法通常在循环中调用, 并且可能会根据在此实例上迄今为止已调用<xref:System.Threading.SpinWait.SpinOnce>的次数而发生变化。
 
         ]]></format>
         </remarks>

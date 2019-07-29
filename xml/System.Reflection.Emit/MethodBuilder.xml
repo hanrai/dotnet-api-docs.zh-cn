@@ -1,5 +1,5 @@
 <Type Name="MethodBuilder" FullName="System.Reflection.Emit.MethodBuilder">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c9d2324dc9b0dc679bce997c6eb4d38175d5c9bc" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58737032" /></Metadata><TypeSignature Language="C#" Value="public sealed class MethodBuilder : System.Reflection.MethodInfo, System.Runtime.InteropServices._MethodBuilder" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d8ed3584776f16a72e94db36b2fc964bec1eb5ee" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68437077" /></Metadata><TypeSignature Language="C#" Value="public sealed class MethodBuilder : System.Reflection.MethodInfo, System.Runtime.InteropServices._MethodBuilder" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit MethodBuilder extends System.Reflection.MethodInfo implements class System.Runtime.InteropServices._MethodBuilder" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.Emit.MethodBuilder" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class MethodBuilder&#xA;Inherits MethodInfo&#xA;Implements _MethodBuilder" />
@@ -47,50 +47,50 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Reflection.Emit.MethodBuilder>类用于充分描述了在 Microsoft 中间语言 (MSIL)，包括名称、 属性、 签名和方法正文的方法。 结合使用<xref:System.Reflection.Emit.TypeBuilder>类在运行时创建的类。  
+ <xref:System.Reflection.Emit.MethodBuilder>类用于充分描述 Microsoft 中间语言 (MSIL) 中的一个方法, 包括名称、特性、签名和方法正文。 它与<xref:System.Reflection.Emit.TypeBuilder>类结合使用, 以便在运行时创建类。  
   
-## <a name="global-methods-and-methods-as-type-members"></a>全局方法和类型成员作为方法  
- 您可以使用反射发出定义全局方法并将方法定义为类型成员。 定义方法的 Api 返回<xref:System.Reflection.Emit.MethodBuilder>对象。  
+## <a name="global-methods-and-methods-as-type-members"></a>作为类型成员的全局方法和方法  
+ 可以使用反射发出来定义全局方法, 并将方法定义为类型成员。 定义方法的 api 返回<xref:System.Reflection.Emit.MethodBuilder>对象。  
   
 ### <a name="global-methods"></a>全局方法  
- 使用定义的全局方法<xref:System.Reflection.Emit.ModuleBuilder.DefineGlobalMethod%2A?displayProperty=nameWithType>方法，它将返回**MethodBuilder**对象。  
+ 全局方法是使用<xref:System.Reflection.Emit.ModuleBuilder.DefineGlobalMethod%2A?displayProperty=nameWithType>方法定义的, 该方法返回**MethodBuilder**对象。  
   
- 全局方法必须是静态的。 如果动态模块包含全局方法<xref:System.Reflection.Emit.ModuleBuilder.CreateGlobalFunctions%2A?displayProperty=nameWithType>保留的动态模块或包含动态程序集，因为公共语言运行时推迟，直到所有全局函数的动态模块正在修复之前，必须在调用方法已定义。  
+ 全局方法必须是静态的。 如果动态模块包含全局方法, 则<xref:System.Reflection.Emit.ModuleBuilder.CreateGlobalFunctions%2A?displayProperty=nameWithType>在持久化动态模块或包含动态程序集之前, 必须先调用方法, 因为公共语言运行时推迟了在所有全局函数之前修复动态模块已定义。  
   
- 使用定义一个全局的本机方法<xref:System.Reflection.Emit.ModuleBuilder.DefinePInvokeMethod%2A?displayProperty=nameWithType>方法。 平台调用 (PInvoke) 抽象或虚拟，不得声明方法。 运行时集<xref:System.Reflection.MethodAttributes.PinvokeImpl?displayProperty=nameWithType>属性对于平台调用方法。  
+ 全局本机方法是使用<xref:System.Reflection.Emit.ModuleBuilder.DefinePInvokeMethod%2A?displayProperty=nameWithType>方法定义的。 平台调用 (PInvoke) 方法不能声明为 abstract 或 virtual。 运行时设置平台<xref:System.Reflection.MethodAttributes.PinvokeImpl?displayProperty=nameWithType>调用方法的属性。  
   
-### <a name="methods-as-members-of-types"></a>类型的成员作为方法  
- 一种方法通过使用定义为类型成员<xref:System.Reflection.Emit.TypeBuilder.DefineMethod%2A?displayProperty=nameWithType>方法，它返回<xref:System.Reflection.Emit.MethodBuilder>对象。  
+### <a name="methods-as-members-of-types"></a>作为类型成员的方法  
+ 方法通过使用<xref:System.Reflection.Emit.TypeBuilder.DefineMethod%2A?displayProperty=nameWithType>方法 (该方法<xref:System.Reflection.Emit.MethodBuilder>返回对象) 定义为类型成员。  
   
- <xref:System.Reflection.Emit.MethodBuilder.DefineParameter%2A>方法用于设置或返回值的参数的名称和参数属性。 <xref:System.Reflection.Emit.ParameterBuilder>此方法返回的对象表示的参数或返回值。 <xref:System.Reflection.Emit.ParameterBuilder>对象可以用于设置封送处理，若要设置的常量值，并应用自定义属性。  
+ <xref:System.Reflection.Emit.MethodBuilder.DefineParameter%2A>方法用于设置参数的名称和参数属性, 或返回值的属性。 此方法返回的对象表示参数或返回值。<xref:System.Reflection.Emit.ParameterBuilder> <xref:System.Reflection.Emit.ParameterBuilder>对象可用于设置封送处理、设置常数值和应用自定义属性。  
   
 ## <a name="attributes"></a>特性  
- 成员<xref:System.Reflection.MethodAttributes>枚举定义的动态方法的精确字符：  
+ <xref:System.Reflection.MethodAttributes>枚举的成员定义动态方法的精确字符:  
   
--   使用指定的静态方法<xref:System.Reflection.MethodAttributes.Static?displayProperty=nameWithType>属性。  
+-   静态方法是使用属性指定<xref:System.Reflection.MethodAttributes.Static?displayProperty=nameWithType>的。  
   
--   最后一个方法 （不能重写的方法） 使用指定的<xref:System.Reflection.MethodAttributes.Final?displayProperty=nameWithType>属性。  
+-   最终方法 (不能重写的方法) 是使用<xref:System.Reflection.MethodAttributes.Final?displayProperty=nameWithType>属性指定的。  
   
--   使用指定的虚拟方法<xref:System.Reflection.MethodAttributes.Virtual?displayProperty=nameWithType>属性。  
+-   使用<xref:System.Reflection.MethodAttributes.Virtual?displayProperty=nameWithType>特性指定虚方法。  
   
--   抽象方法使用指定的<xref:System.Reflection.MethodAttributes.Abstract?displayProperty=nameWithType>属性。  
+-   使用<xref:System.Reflection.MethodAttributes.Abstract?displayProperty=nameWithType>特性指定抽象方法。  
   
--   多个属性确定方法的可见性。 请参阅的说明<xref:System.Reflection.MethodAttributes>枚举。  
+-   若干特性确定方法可见性。 请参阅<xref:System.Reflection.MethodAttributes>枚举的说明。  
   
--   实现重载的运算符的方法必须设置<xref:System.Reflection.MethodAttributes.SpecialName?displayProperty=nameWithType>属性。  
+-   实现重载运算符的方法必须设置<xref:System.Reflection.MethodAttributes.SpecialName?displayProperty=nameWithType>特性。  
   
--   终结器必须设置<xref:System.Reflection.MethodAttributes.SpecialName?displayProperty=nameWithType>属性。  
+-   终结器必须设置<xref:System.Reflection.MethodAttributes.SpecialName?displayProperty=nameWithType>特性。  
   
 ## <a name="known-issues"></a>已知问题  
   
--   尽管<xref:System.Reflection.Emit.MethodBuilder>派生自<xref:System.Reflection.MethodInfo>，在中定义的抽象方法的一些<xref:System.Reflection.MethodInfo>类中未完全实现<xref:System.Reflection.Emit.MethodBuilder>。 这些<xref:System.Reflection.Emit.MethodBuilder>方法将引发<xref:System.NotSupportedException>。 例如<xref:System.Reflection.Emit.MethodBuilder.Invoke%2A?displayProperty=nameWithType>方法未完全实现。 您可以通过检索封闭类型使用反射这些方法<xref:System.Type.GetType%2A?displayProperty=nameWithType>或<xref:System.Reflection.Assembly.GetType%2A?displayProperty=nameWithType>方法。  
+-   尽管<xref:System.Reflection.Emit.MethodBuilder>派生自<xref:System.Reflection.MethodInfo>, 但在中<xref:System.Reflection.Emit.MethodBuilder>未完全实现<xref:System.Reflection.MethodInfo>类中定义的某些抽象方法。 这些<xref:System.Reflection.Emit.MethodBuilder>方法会<xref:System.NotSupportedException>引发。 例如<xref:System.Reflection.Emit.MethodBuilder.Invoke%2A?displayProperty=nameWithType> , 方法未完全实现。 您可以通过使用<xref:System.Type.GetType%2A?displayProperty=nameWithType>或<xref:System.Reflection.Assembly.GetType%2A?displayProperty=nameWithType>方法检索封闭类型来反映这些方法。  
   
--   开始在.NET Framework 2.0 版支持的自定义修饰符。 在早期版本中不支持它们。  
+-   从 .NET Framework 版本2.0 开始支持自定义修饰符。 它们在早期版本中不受支持。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Reflection.Emit.MethodBuilder>类，以创建动态类型中的一个方法。  
+ 下面的示例使用<xref:System.Reflection.Emit.MethodBuilder>类在动态类型中创建方法。  
   
  [!code-cpp[System.Reflection.Emit.MethodBuilder Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Reflection.Emit.MethodBuilder Example/CPP/source.cpp#1)]
  [!code-csharp[System.Reflection.Emit.MethodBuilder Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Reflection.Emit.MethodBuilder Example/CS/source.cs#1)]
@@ -164,15 +164,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Reflection.Emit.MethodBuilder.AddDeclarativeSecurity%2A> 可以调用多次，每次调用指定安全操作 (如`Demand`， `Assert`，和`Deny`) 和一组应用操作的权限。  
+ <xref:System.Reflection.Emit.MethodBuilder.AddDeclarativeSecurity%2A>可以多次调用, 每次调用指定安全操作 (如`Demand`、 `Assert`和`Deny`) 和操作应用于的权限集。  
   
 > [!NOTE]
->  在.NET Framework 版本 1.0、 1.1 和 2.0 中，通过使用应用于一种方法的声明性安全特性<xref:System.Reflection.Emit.MethodBuilder.AddDeclarativeSecurity%2A>方法存储在旧的 XML 元数据格式。 请参阅发出声明性安全特性。  
+>  在 .NET Framework 版本1.0、1.1 和2.0 中, 通过使用<xref:System.Reflection.Emit.MethodBuilder.AddDeclarativeSecurity%2A>方法应用到方法的声明性安全特性以旧 XML 元数据格式存储。 请参阅发出声明性安全特性。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何上下文使用`AddDeclarativeSecurity`需要一种方法的调用方具有不受限制的权限。  
+ 下面的代码示例演示了的`AddDeclarativeSecurity`上下文用法, 它要求方法的调用方具有不受限制的权限。  
   
  [!code-cpp[System.Reflection.Emit.MethodBuilder.AddDeclarativeSecurity Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Reflection.Emit.MethodBuilder.AddDeclarativeSecurity Example/CPP/source.cpp#1)]
  [!code-csharp[System.Reflection.Emit.MethodBuilder.AddDeclarativeSecurity Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Reflection.Emit.MethodBuilder.AddDeclarativeSecurity Example/CS/source.cs#1)]
@@ -183,7 +183,7 @@
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="action" /> 无效（<see langword="RequestMinimum" />、<see langword="RequestOptional" /> 和 <see langword="RequestRefuse" /> 无效）。</exception>
         <exception cref="T:System.InvalidOperationException">已使用 <see cref="M:System.Reflection.Emit.TypeBuilder.CreateType" /> 创建包含类型。  
   
-- 或 - 
+或 
 权限集 <paramref name="pset" /> 包含之前由 <see cref="M:System.Reflection.Emit.MethodBuilder.AddDeclarativeSecurity(System.Security.Permissions.SecurityAction,System.Security.PermissionSet)" /> 添加的操作。  
   
 - 或 - 
@@ -293,9 +293,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Reflection.Emit.MethodBuilder>始终表示泛型方法定义，并因此无法被调用。  
+ <xref:System.Reflection.Emit.MethodBuilder>始终表示泛型方法定义, 因此无法调用。  
   
- 有关详细信息，请参阅 <xref:System.Reflection.MethodBase.IsGenericMethod%2A?displayProperty=nameWithType> 和 <xref:System.Reflection.MethodBase.ContainsGenericParameters%2A?displayProperty=nameWithType>。 有关泛型类型的信息，请参阅<xref:System.Type.IsGenericType%2A?displayProperty=nameWithType>。  
+ 有关详细信息，请参阅 <xref:System.Reflection.MethodBase.IsGenericMethod%2A?displayProperty=nameWithType> 和 <xref:System.Reflection.MethodBase.ContainsGenericParameters%2A?displayProperty=nameWithType>。 有关泛型类型的信息, 请<xref:System.Type.IsGenericType%2A?displayProperty=nameWithType>参阅。  
   
  ]]></format>
         </remarks>
@@ -341,15 +341,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法创建方法的正文从`il`、 包含作为操作码的 MSIL 指令的数组。 计数由给定的有效的 MSIL 字节数。  
+ 此方法从`il`创建方法的主体, 其中包含作为操作码的 MSIL 指令的数组。 有效 MSIL 的字节数由 count 提供。  
   
 > [!NOTE]
->  这是当前不完全支持。 用户不能提供的标记修补和异常处理程序的位置。  
+>  目前不完全支持这种情况。 用户无法提供令牌修补程序和异常处理程序的位置。  
   
    
   
 ## Examples  
- 在下面提供的示例中，将添加两个整数的简单方法生成通过操作码使用`CreateMethodBody`。  
+ 在下面提供的示例中, 添加两个整数的简单方法是通过 opcode 使用`CreateMethodBody`生成的。  
   
  [!code-cpp[System.Refelction.Emit.MethodBuilder.CreateMethodBody Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Refelction.Emit.MethodBuilder.CreateMethodBody Example/CPP/source.cpp#1)]
  [!code-csharp[System.Refelction.Emit.MethodBuilder.CreateMethodBody Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Refelction.Emit.MethodBuilder.CreateMethodBody Example/CS/source.cs#1)]
@@ -360,10 +360,10 @@
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="count" /> 不在提供的 MSIL 指令数组的索引范围内，且 <paramref name="il" /> 不是 <see langword="null" />。</exception>
         <exception cref="T:System.InvalidOperationException">该包含类型是以前使用 <see cref="M:System.Reflection.Emit.TypeBuilder.CreateType" /> 创建的。  
   
-- 或 - 
+或 
 以前在包含不是 <see langword="null" /> 的 <paramref name="il" /> 参数的此 <see langword="MethodBuilder" /> 上调用了此方法。  
   
-- 或 - 
+或 
 对于当前的方法，属性 <see cref="P:System.Reflection.Emit.MethodBuilder.IsGenericMethod" /> 为 <see langword="true" />，但属性 <see cref="P:System.Reflection.Emit.MethodBuilder.IsGenericMethodDefinition" /> 为 <see langword="false" />。</exception>
       </Docs>
     </Member>
@@ -402,7 +402,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码演示如何使用`Type`属性。  
+ 下面的代码演示`Type`属性的用法。  
   
  [!code-cpp[MethodBuilderClass_TypeSample#1](~/samples/snippets/cpp/VS_Snippets_CLR/MethodBuilderClass_TypeSample/CPP/methodbuilderclass.cpp#1)]
  [!code-csharp[MethodBuilderClass_TypeSample#1](~/samples/snippets/csharp/VS_Snippets_CLR/MethodBuilderClass_TypeSample/CS/methodbuilderclass.cs#1)]
@@ -456,23 +456,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法使当前方法成为泛型。 没有方法撤消此更改。 第二次调用此方法会导致<xref:System.InvalidOperationException>。  
+ <xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>调用方法会使当前方法成为泛型方法。 无法撤消此更改。 第二次调用此方法会导致<xref:System.InvalidOperationException>。  
   
- 可以通过使用更高版本检索泛型方法的类型参数<xref:System.Reflection.Emit.MethodBuilder.GetGenericArguments%2A>方法。  
+ 以后可以使用<xref:System.Reflection.Emit.MethodBuilder.GetGenericArguments%2A>方法检索泛型方法的类型参数。  
   
- 按照约定，类型参数名称是一个大写字母。  
+ 按照约定, 类型参数名称是单个大写字母。  
   
- 有关详细信息，请参阅 <xref:System.Reflection.MethodBase.IsGenericMethod%2A?displayProperty=nameWithType> 和 <xref:System.Reflection.MethodInfo.GetGenericMethodDefinition%2A?displayProperty=nameWithType>。 有关泛型类型的信息，请参阅<xref:System.Type.IsGenericType%2A?displayProperty=nameWithType>。  
+ 有关详细信息，请参阅 <xref:System.Reflection.MethodBase.IsGenericMethod%2A?displayProperty=nameWithType> 和 <xref:System.Reflection.MethodInfo.GetGenericMethodDefinition%2A?displayProperty=nameWithType>。 有关泛型类型的信息, 请<xref:System.Type.IsGenericType%2A?displayProperty=nameWithType>参阅。  
   
    
   
 ## Examples  
- 下面的代码示例创建一个动态类型， `DemoType`，其中包含动态泛型方法`DemoMethod`。 此方法具有两个泛型类型参数，其中一个可作为一个参数和另一个用作返回类型。  
+ 下面的代码示例创建动态类型`DemoType`, 它包含动态泛型方法。 `DemoMethod` 此方法具有两个泛型类型参数, 其中一个参数用作参数, 另一个用作返回类型。  
   
  执行代码时，该动态程序集会另存为 DemoGenericMethod1.dll，使用 [Ildasm.exe（IL 反汇编程序）](~/docs/framework/tools/ildasm-exe-il-disassembler.md) 可以对其进行检查。  
   
 > [!NOTE]
->  此代码示例生成简单的方法体，只是将返回空引用。 具有多个完全开发的方法体创建和使用泛型类型的代码示例，请参阅[如何：使用反射发出定义泛型方法](~/docs/framework/reflection-and-codedom/how-to-define-a-generic-method-with-reflection-emit.md)。  
+>  此代码示例将生成一个简单的方法体, 只返回空引用。 有关使用更全面开发的方法体创建和使用泛型类型的代码示例, 请参阅[如何:使用反射发出定义泛型方法](~/docs/framework/reflection-and-codedom/how-to-define-a-generic-method-with-reflection-emit.md)。  
   
  [!code-cpp[GenericMethodBuilder#1](~/samples/snippets/cpp/VS_Snippets_CLR/GenericMethodBuilder/cpp/source.cpp#1)]
  [!code-csharp[GenericMethodBuilder#1](~/samples/snippets/csharp/VS_Snippets_CLR/GenericMethodBuilder/CS/source.cs#1)]
@@ -485,11 +485,11 @@
 - 或 - 
 该方法已经完成。  
   
-- 或 - 
+或 
 已为当前方法调用了 <see cref="M:System.Reflection.Emit.MethodBuilder.SetImplementationFlags(System.Reflection.MethodImplAttributes)" /> 方法。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="names" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
 <paramref name="names" /> 的元素为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="names" /> 是一个空数组。</exception>
         <altmember cref="T:System.Reflection.MethodInfo" />
@@ -546,25 +546,25 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Reflection.Emit.ParameterBuilder>可以使用此方法返回的对象，设置参数的默认值或以应用自定义属性。  
+ 此方法返回的对象可用于设置参数的默认值或应用自定义属性。<xref:System.Reflection.Emit.ParameterBuilder>  
   
- 参数编号从 1 开始计数，因此`position`为 1 的第一个参数。 如果`position`为零，此方法会影响返回值。  
+ 参数编号从1开始, 因此`position`第一个参数的编号为1。 如果`position`为零, 则此方法会影响返回值。  
   
 > [!NOTE]
->  在.NET framework 1.0 和 1.1 中，如果引发异常`position`为零，因此此方法不能用于修改这些版本中的返回值的属性。  
+>  在 .NET Framework 版本1.0 和1.1 中, 如果`position`为零, 则会引发异常, 因此此方法不能用于修改这些版本中的返回值的属性。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException">此方法没有参数。  
   
-- 或 - 
+或 
  <paramref name="position" /> 小于零。  
   
-- 或 - 
+或 
  <paramref name="position" /> 大于此方法的参数数目。</exception>
         <exception cref="T:System.InvalidOperationException">该包含类型是以前使用 <see cref="M:System.Reflection.Emit.TypeBuilder.CreateType" /> 创建的。  
   
-- 或 - 
+或 
 对于当前的方法，属性 <see cref="P:System.Reflection.Emit.MethodBuilder.IsGenericMethod" /> 为 <see langword="true" />，但属性 <see cref="P:System.Reflection.Emit.MethodBuilder.IsGenericMethodDefinition" /> 为 <see langword="false" />。</exception>
       </Docs>
     </Member>
@@ -612,7 +612,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 具有相同的名称、 属性和签名取决于相等。  
+ 相等性通过具有相同的名称、属性和签名来确定。  
   
  ]]></format>
         </remarks>
@@ -653,7 +653,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 它将始终返回当前`MethodBuilder`对象。  
+ 此始终返回当前`MethodBuilder`对象。  
   
  ]]></format>
         </remarks>
@@ -782,9 +782,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 泛型方法的类型参数也由<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法，用来定义它们。  
+ 泛型方法的类型参数还由<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>用于定义泛型方法的方法返回。  
   
- 有关详细信息，请参阅 <xref:System.Reflection.MethodBase.IsGenericMethod%2A?displayProperty=nameWithType> 和 <xref:System.Reflection.MethodInfo.GetGenericArguments%2A?displayProperty=nameWithType>。 有关泛型类型的信息，请参阅<xref:System.Type.IsGenericType%2A?displayProperty=nameWithType>。  
+ 有关详细信息，请参阅 <xref:System.Reflection.MethodBase.IsGenericMethod%2A?displayProperty=nameWithType> 和 <xref:System.Reflection.MethodInfo.GetGenericArguments%2A?displayProperty=nameWithType>。 有关泛型类型的信息, 请<xref:System.Type.IsGenericType%2A?displayProperty=nameWithType>参阅。  
   
  ]]></format>
         </remarks>
@@ -828,9 +828,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Reflection.Emit.MethodBuilder>不能用来直接发出一个构造泛型方法。 发出的方法是泛型方法定义。  
+ <xref:System.Reflection.Emit.MethodBuilder>不能用于直接发出构造的泛型方法。 发出的方法是泛型方法定义。  
   
- 有关详细信息，请参阅 <xref:System.Reflection.MethodBase.IsGenericMethod%2A?displayProperty=nameWithType> 和 <xref:System.Reflection.MethodInfo.GetGenericMethodDefinition%2A?displayProperty=nameWithType>。 有关泛型类型的信息，请参阅<xref:System.Type.IsGenericType%2A?displayProperty=nameWithType>。  
+ 有关详细信息，请参阅 <xref:System.Reflection.MethodBase.IsGenericMethod%2A?displayProperty=nameWithType> 和 <xref:System.Reflection.MethodInfo.GetGenericMethodDefinition%2A?displayProperty=nameWithType>。 有关泛型类型的信息, 请<xref:System.Type.IsGenericType%2A?displayProperty=nameWithType>参阅。  
   
  ]]></format>
         </remarks>
@@ -921,7 +921,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示的上下文用法`GetILGenerator`方法，创建并发出动态程序集，将计算在 3D 空间中的两个点的点积。  
+ 下面的代码示例演示`GetILGenerator`方法的上下文用法, 创建和发出一个动态程序集, 该程序集将计算三维空间中两个点的点积。  
   
  [!code-cpp[System.Reflection.Emit ILGenerator Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Reflection.Emit ILGenerator Example/CPP/source.cpp#1)]
  [!code-csharp[System.Reflection.Emit ILGenerator Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Reflection.Emit ILGenerator Example/CS/source.cs#1)]
@@ -931,7 +931,7 @@
         </remarks>
         <exception cref="T:System.InvalidOperationException">此方法不应有主体，这是由其 <see cref="T:System.Reflection.MethodAttributes" /> 或 <see cref="T:System.Reflection.MethodImplAttributes" /> 标志决定的，例如，它具有 <see cref="F:System.Reflection.MethodAttributes.PinvokeImpl" /> 标志。  
   
-- 或 - 
+或 
 此方法是泛型方法，但不是泛型方法定义。 即，<see cref="P:System.Reflection.Emit.MethodBuilder.IsGenericMethod" /> 属性为 <see langword="true" />，但 <see cref="P:System.Reflection.Emit.MethodBuilder.IsGenericMethodDefinition" /> 属性为 <see langword="false" />。</exception>
       </Docs>
     </Member>
@@ -974,7 +974,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示的上下文用法`GetILGenerator`方法，创建并发出动态程序集，将计算在 3D 空间中的两个点的点积。  
+ 下面的代码示例演示`GetILGenerator`方法的上下文用法, 创建和发出一个动态程序集, 该程序集将计算三维空间中两个点的点积。  
   
  [!code-cpp[System.Reflection.Emit ILGenerator Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Reflection.Emit ILGenerator Example/CPP/source.cpp#1)]
  [!code-csharp[System.Reflection.Emit ILGenerator Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Reflection.Emit ILGenerator Example/CS/source.cs#1)]
@@ -984,7 +984,7 @@
         </remarks>
         <exception cref="T:System.InvalidOperationException">此方法不应有主体，这是由其 <see cref="T:System.Reflection.MethodAttributes" /> 或 <see cref="T:System.Reflection.MethodImplAttributes" /> 标志决定的，例如，它具有 <see cref="F:System.Reflection.MethodAttributes.PinvokeImpl" /> 标志。  
   
-- 或 - 
+或 
 此方法是泛型方法，但不是泛型方法定义。 即，<see cref="P:System.Reflection.Emit.MethodBuilder.IsGenericMethod" /> 属性为 <see langword="true" />，但 <see cref="P:System.Reflection.Emit.MethodBuilder.IsGenericMethodDefinition" /> 属性为 <see langword="false" />。</exception>
       </Docs>
     </Member>
@@ -1055,7 +1055,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示了使用`GetModule`方法来检索有关动态生成的模块的信息。  
+ 下面的示例代码演示了如何使用`GetModule`方法来检索有关动态生成的模块的信息。  
   
  [!code-cpp[System.Reflection.Emit.MethodBuilder.GetModule#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Reflection.Emit.MethodBuilder.GetModule/CPP/source3.cpp#1)]
  [!code-csharp[System.Reflection.Emit.MethodBuilder.GetModule#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Reflection.Emit.MethodBuilder.GetModule/CS/source3.cs#1)]
@@ -1101,7 +1101,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示如何使用`GetParameters`发现传递给动态生成方法的参数信息。  
+ 下面的代码示例演示`GetParameters`如何使用来发现有关传递到动态生成的方法的参数的信息。  
   
  [!code-cpp[System.Reflection.Emit.MethodBuilder.GetParameters Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Reflection.Emit.MethodBuilder.GetParameters Example/CPP/source4.cpp#1)]
  [!code-csharp[System.Reflection.Emit.MethodBuilder.GetParameters Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Reflection.Emit.MethodBuilder.GetParameters Example/CS/source4.cs#1)]
@@ -1184,7 +1184,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果此属性设置为`true`，发出的 MSIL 包括本地变量的初始化。 如果设置为`false`、 未初始化的局部变量和生成的代码是不可验证的。  
+ 如果将此属性设置为`true`, 则发出的 MSIL 包括初始化局部变量。 如果将其设置为`false`, 则不初始化局部变量, 并且无法验证所生成的代码。  
   
  ]]></format>
         </remarks>
@@ -1236,10 +1236,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果该方法是静态的`obj`参数将被忽略。 对于非静态方法，`obj`应是继承或声明的方法，并且必须与此类相同的类型的类的实例。 如果该方法具有无参数的值`parameters`应为`null`。 否则数量、 类型和参数数组中元素的顺序应为数量、 类型和此实例反映的方法参数的顺序相同。  
+ 如果该方法是静态的, `obj`则忽略该参数。 对于非静态方法, `obj`应为继承或声明方法的类的实例, 并且必须与此类具有相同的类型。 如果该方法没有参数, 则的`parameters`值应为。 `null` 否则, 参数数组中元素的数量、类型和顺序应与此实例所反射的方法的参数的数量、类型和顺序相同。  
   
 > [!NOTE]
->  对于完全受信任的代码将忽略访问限制。 也就是说，私有构造函数、 方法、 字段和属性可以访问并完全受信任代码时使用反射来调用。  
+>  对于完全受信任的代码, 将忽略访问限制。 也就是说, 只要代码完全受信任, 就可以使用反射来访问和调用私有构造函数、方法、字段和属性。  
   
  ]]></format>
         </remarks>
@@ -1348,12 +1348,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 泛型类型参数是否是一种方法。 您可以使方法成为泛型通过调用<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法中添加类型参数。 无法撤消此更改。  
+ 如果方法具有类型参数, 则该方法为泛型。 可以通过调用<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法来添加类型参数, 使方法成为泛型方法。 此更改不可逆。  
   
    
   
 ## Examples  
- 下面的代码示例显示方法的状态。 此代码是为提供一个更大示例的一部分<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法。  
+ 下面的代码示例显示方法的状态。 此代码是为<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法提供的更大示例的一部分。  
   
  [!code-cpp[GenericMethodBuilder#7](~/samples/snippets/cpp/VS_Snippets_CLR/GenericMethodBuilder/cpp/source.cpp#7)]
  [!code-csharp[GenericMethodBuilder#7](~/samples/snippets/csharp/VS_Snippets_CLR/GenericMethodBuilder/CS/source.cs#7)]
@@ -1398,12 +1398,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Reflection.Emit.MethodBuilder>仅可用于创建泛型方法定义; 它不能用于直接创建一个构造泛型方法。 但是的子类<xref:System.Reflection.Emit.MethodBuilder>可能表示一个构造泛型方法。  
+ <xref:System.Reflection.Emit.MethodBuilder>只能用于创建泛型方法定义; 不能用于直接创建构造的泛型方法。 但是, 的<xref:System.Reflection.Emit.MethodBuilder>子类可能表示构造的泛型方法。  
   
    
   
 ## Examples  
- 下面的代码示例显示方法的状态。 此代码是为提供一个更大示例的一部分<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法。  
+ 下面的代码示例显示方法的状态。 此代码是为<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法提供的更大示例的一部分。  
   
  [!code-cpp[GenericMethodBuilder#7](~/samples/snippets/cpp/VS_Snippets_CLR/GenericMethodBuilder/cpp/source.cpp#7)]
  [!code-csharp[GenericMethodBuilder#7](~/samples/snippets/csharp/VS_Snippets_CLR/GenericMethodBuilder/CS/source.cs#7)]
@@ -1428,6 +1428,7 @@
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit</AssemblyName>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1442,7 +1443,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要确定在动态程序集的方法是否是安全关键，完成的类型，通过调用<xref:System.Reflection.Emit.TypeBuilder.CreateType%2A?displayProperty=nameWithType>，调用<xref:System.Type.GetMethod%2A>上的已完成的类型和 get 方法<xref:System.Reflection.MethodBase.IsSecurityCritical%2A>属性所产生<xref:System.Reflection.MethodInfo>。  
+ 若要确定动态程序集中的某个方法是否是安全关键的, 请<xref:System.Reflection.Emit.TypeBuilder.CreateType%2A?displayProperty=nameWithType>通过调用来完成该类型, 在已完成的<xref:System.Reflection.MethodBase.IsSecurityCritical%2A>类型上<xref:System.Type.GetMethod%2A>调用方法, 并获取所<xref:System.Reflection.MethodInfo>生成的的属性。  
   
  ]]></format>
         </remarks>
@@ -1463,6 +1464,7 @@
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit</AssemblyName>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1477,7 +1479,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要确定在动态程序集的方法是安全可靠关键，完成的类型，通过调用<xref:System.Reflection.Emit.TypeBuilder.CreateType%2A?displayProperty=nameWithType>，调用<xref:System.Type.GetMethod%2A>上的已完成的类型和 get 方法<xref:System.Reflection.MethodBase.IsSecuritySafeCritical%2A>属性所产生<xref:System.Reflection.MethodInfo>。  
+ 若要确定动态程序集中的方法是否是安全可靠关键的, 请<xref:System.Reflection.Emit.TypeBuilder.CreateType%2A?displayProperty=nameWithType>通过调用来完成该类型, 在已完成的<xref:System.Reflection.MethodBase.IsSecuritySafeCritical%2A>类型上<xref:System.Type.GetMethod%2A>调用方法, 并获取所生成<xref:System.Reflection.MethodInfo>的的属性。  
   
  ]]></format>
         </remarks>
@@ -1498,6 +1500,7 @@
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit</AssemblyName>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1512,7 +1515,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要确定在动态程序集的方法是否是安全透明的完成的类型，通过调用<xref:System.Reflection.Emit.TypeBuilder.CreateType%2A?displayProperty=nameWithType>，调用<xref:System.Type.GetMethod%2A>上的已完成的类型和 get 方法<xref:System.Reflection.MethodBase.IsSecurityTransparent%2A>属性所产生<xref:System.Reflection.MethodInfo>。  
+ 若要确定动态程序集中的某个方法是否为安全透明的, 请<xref:System.Reflection.Emit.TypeBuilder.CreateType%2A?displayProperty=nameWithType>通过调用完成该类型, 在已完成的<xref:System.Reflection.MethodBase.IsSecurityTransparent%2A>类型上<xref:System.Type.GetMethod%2A>调用方法, 并获取所生成<xref:System.Reflection.MethodInfo>的的属性。  
   
  ]]></format>
         </remarks>
@@ -1563,17 +1566,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在发出动态代码，您可能需要发出对从表示泛型方法定义构造方法的调用<xref:System.Reflection.Emit.MethodBuilder>之前已完成的封闭类型。 可以使用<xref:System.Reflection.Emit.MethodBuilder.MakeGenericMethod%2A>方法来创建<xref:System.Reflection.MethodInfo>此类的构造的方法，并使用<xref:System.Reflection.MethodInfo>中发出的调用。  
+ 发出动态代码时, 您可能需要在完成封闭类型之前发出对由表示<xref:System.Reflection.Emit.MethodBuilder>的泛型方法定义构造的方法的调用。 您可以使用<xref:System.Reflection.Emit.MethodBuilder.MakeGenericMethod%2A>方法为此类构造<xref:System.Reflection.MethodInfo> <xref:System.Reflection.MethodInfo>方法创建一个, 并在发出的调用中使用。  
   
    
   
 ## Examples  
- 下面的代码示例创建从完整的类型中的不完整的泛型方法定义的构造的方法。  
+ 下面的代码示例通过不完整的类型中的不完整泛型方法定义来创建构造方法。  
   
- 该示例创建具有单个类型的瞬态程序集和模块，添加一个方法`M`，并使该方法通过添加类型参数 T 使用泛型<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法。 作为该方法的参数的类型以及作为其返回类型，使用类型参数。 泛型方法定义中未给正文，但是未完成的封闭类型。 <xref:System.Reflection.Emit.MethodBuilder.MakeGenericMethod%2A>然后使用方法，使该构造的方法`M<String>`(`M(Of String)`在 Visual Basic 中)。 此示例代码具有无输出，因为的子类<xref:System.Reflection.MethodInfo>返回的<xref:System.Reflection.Emit.MethodBuilder.MakeGenericMethod%2A>方法不允许通过其参数的反射。  
+ 该示例创建一个具有单个类型的临时程序集和模块, 添加一个`M`方法, 并通过<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>使用方法添加一个类型参数来使该方法成为泛型方法。 类型参数用作方法的参数类型, 也用作其返回类型。 不会为泛型方法定义提供主体, 并且不会完成封闭类型。 然后<xref:System.Reflection.Emit.MethodBuilder.MakeGenericMethod%2A> , 使用方法构造方法`M<String>` (`M(Of String)` Visual Basic)。 示例代码没有输出, 因为<xref:System.Reflection.MethodInfo> <xref:System.Reflection.Emit.MethodBuilder.MakeGenericMethod%2A>方法返回的子类不允许对其参数进行反射。  
   
 > [!NOTE]
->  有关使用的另一个代码示例<xref:System.Reflection.Emit.MethodBuilder.MakeGenericMethod%2A>，请参阅<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>。 <xref:System.Reflection.Emit.MethodBuilder.MakeGenericMethod%2A> 也广泛应用发出使用泛型类型的代码时。 请参阅[如何：使用反射发出定义泛型方法](~/docs/framework/reflection-and-codedom/how-to-define-a-generic-method-with-reflection-emit.md)。  
+>  有关使用<xref:System.Reflection.Emit.MethodBuilder.MakeGenericMethod%2A>的其他代码示例, 请<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>参见。 <xref:System.Reflection.Emit.MethodBuilder.MakeGenericMethod%2A>发出使用泛型类型的代码时, 也会广泛使用。 请参阅[如何：使用反射发出定义泛型方法](~/docs/framework/reflection-and-codedom/how-to-define-a-generic-method-with-reflection-emit.md)。  
   
  [!code-cpp[MethodBuilder.MakeGenericMethod#1](~/samples/snippets/cpp/VS_Snippets_CLR/MethodBuilder.MakeGenericMethod/cpp/source.cpp#1)]
  [!code-csharp[MethodBuilder.MakeGenericMethod#1](~/samples/snippets/csharp/VS_Snippets_CLR/MethodBuilder.MakeGenericMethod/cs/source.cs#1)]
@@ -1678,9 +1681,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 为方便起见提供此属性。 它相当于使用<xref:System.Reflection.Emit.MethodBuilder.DeclaringType%2A>属性来获取的类型中，方法被声明，并调用<xref:System.Type.Module%2A>生成的属性<xref:System.Type>对象。  
+ 提供此属性是为了方便。 它等效于使用<xref:System.Reflection.Emit.MethodBuilder.DeclaringType%2A>属性获取在其中声明该方法的类型, 然后<xref:System.Type.Module%2A>调用所产生<xref:System.Type>的对象的属性。  
   
- 此属性也是等效于调用<xref:System.Reflection.Emit.MethodBuilder.GetModule%2A>。  
+ 此属性也等效于调用<xref:System.Reflection.Emit.MethodBuilder.GetModule%2A>。  
   
  ]]></format>
         </remarks>
@@ -1787,7 +1790,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 编译器设计人员可以使用<xref:System.Reflection.ParameterInfo>对象返回的此属性以发现是否自定义修饰符，如<xref:Microsoft.VisualC.IsConstModifier>，已应用于返回类型。  
+ 编译器设计器可以使用<xref:System.Reflection.ParameterInfo>此属性返回的对象来发现自定义修饰符 ( <xref:Microsoft.VisualC.IsConstModifier>如) 是否已应用于返回类型。  
   
  ]]></format>
         </remarks>
@@ -1832,7 +1835,7 @@
 ## Remarks  
   
 > [!NOTE]
->  从.NET Framework 2.0 和.NET Compact Framework 2.0 开始，此成员继承自的基类， <xref:System.Reflection.MethodInfo>。 请参阅 <xref:System.Reflection.MethodInfo.ReturnType%2A?displayProperty=nameWithType>。  
+>  从 .NET Framework 2.0 和 .NET Compact Framework 2.0 开始, 此成员继承自基类<xref:System.Reflection.MethodInfo>。 请参阅 <xref:System.Reflection.MethodInfo.ReturnType%2A?displayProperty=nameWithType>。  
   
  ]]></format>
         </remarks>
@@ -1872,7 +1875,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法始终返回 `null`。 获取<xref:System.Reflection.MethodInfo>包含<xref:System.Type>已创建并调用<xref:System.Reflection.MethodInfo.ReturnTypeCustomAttributes%2A>上<xref:System.Reflection.MethodInfo>。  
+ 此方法始终返回 `null`。 在上<xref:System.Type> <xref:System.Reflection.MethodInfo.ReturnTypeCustomAttributes%2A>创建并调用包含的<xref:System.Reflection.MethodInfo>后获取<xref:System.Reflection.MethodInfo>。  
   
  ]]></format>
         </remarks>
@@ -1931,7 +1934,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Reflection.Emit.MethodBuilder.SetCustomAttribute%2A>方法可以与交互<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>方法的两种方法结合使用时。 请参阅备注部分的<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>方法有关的详细信息。  
+ 当<xref:System.Reflection.Emit.MethodBuilder.SetCustomAttribute%2A>两个方法结合使用<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>时, 方法可以与方法交互。 有关详细信息, 请参阅<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>方法的 "备注" 部分。  
   
  ]]></format>
         </remarks>
@@ -1987,9 +1990,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关如何设置格式的详细信息`binaryAttribute`，尤其是，请参阅公共语言基础结构 (CLI) 文档中，"第二部分：元数据定义和语义"。 可联机获取该文档；请参阅 MSDN 上的 [ECMA C# 和公共语言基础结构标准](https://go.microsoft.com/fwlink/?LinkID=99212)和 Ecma International 网站上的[标准 ECMA-335 - 公共语言基础结构 (CLI)](https://go.microsoft.com/fwlink/?LinkID=65552)。  
+ 有关如何设置格式`binaryAttribute`的详细信息, 请参阅公共语言基础结构 (CLI) 文档, 尤其是 "第二部分:元数据定义和语义 "。 可联机获取该文档；请参阅 MSDN 上的 [ECMA C# 和公共语言基础结构标准](https://go.microsoft.com/fwlink/?LinkID=99212)和 Ecma International 网站上的[标准 ECMA-335 - 公共语言基础结构 (CLI)](https://go.microsoft.com/fwlink/?LinkID=65552)。  
   
- <xref:System.Reflection.Emit.MethodBuilder.SetCustomAttribute%2A>方法可以与交互<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>方法的两种方法结合使用时。 请参阅备注部分的<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>方法有关的详细信息。  
+ 当<xref:System.Reflection.Emit.MethodBuilder.SetCustomAttribute%2A>两个方法结合使用<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>时, 方法可以与方法交互。 有关详细信息, 请参阅<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>方法的 "备注" 部分。  
   
  ]]></format>
         </remarks>
@@ -2040,16 +2043,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当你使用<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>方法结合<xref:System.Reflection.Emit.MethodBuilder.SetCustomAttribute%2A>方法中，注意可能的交互。 例如，使用<xref:System.Reflection.Emit.MethodBuilder.SetCustomAttribute%2A>方法中添加<xref:System.Runtime.InteropServices.DllImportAttribute>还属性集<xref:System.Reflection.MethodImplAttributes.PreserveSig?displayProperty=nameWithType>标志。 如果您随后调用<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>方法，<xref:System.Reflection.MethodImplAttributes.PreserveSig>标志将被覆盖。 有两种方法来避免这种情况：  
+ 将<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A> 方法<xref:System.Reflection.Emit.MethodBuilder.SetCustomAttribute%2A>与方法结合使用时, 请注意潜在的交互。 例如, 使用<xref:System.Reflection.Emit.MethodBuilder.SetCustomAttribute%2A>方法<xref:System.Runtime.InteropServices.DllImportAttribute>添加特性还会设置<xref:System.Reflection.MethodImplAttributes.PreserveSig?displayProperty=nameWithType>标志。 如果随后调用<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>方法<xref:System.Reflection.MethodImplAttributes.PreserveSig> , 则会覆盖标志。 可以通过两种方法来避免这种情况:  
   
--   调用<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>方法之前调用<xref:System.Reflection.Emit.MethodBuilder.SetCustomAttribute%2A>方法。 <xref:System.Reflection.Emit.MethodBuilder.SetCustomAttribute%2A>方法将始终遵循现有的方法实现标志。  
+-   在调用方法之前调用<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>方法 <xref:System.Reflection.Emit.MethodBuilder.SetCustomAttribute%2A> 。 <xref:System.Reflection.Emit.MethodBuilder.SetCustomAttribute%2A>方法始终遵循现有方法实现标志。  
   
--   当设置实现标志时，请调用<xref:System.Reflection.Emit.MethodBuilder.GetMethodImplementationFlags%2A>方法来检索现有标记，请使用按位或添加您的标志，然后调用<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>方法。  
+-   设置实现标志后, 调用<xref:System.Reflection.Emit.MethodBuilder.GetMethodImplementationFlags%2A>方法以检索现有标志, 使用按位或添加标志, 然后<xref:System.Reflection.Emit.MethodBuilder.SetImplementationFlags%2A>调用方法。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何上下文使用`SetImplementationFlags`方法，用于描述在方法体中的 MSIL 实现。  
+ 下面的代码示例演示了如何在方法体`SetImplementationFlags`中描述 MSIL 实现的方法的上下文用法。  
   
  [!code-cpp[System.Reflection.Emit.MethodBuilder.SetImplementationFlags Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Reflection.Emit.MethodBuilder.SetImplementationFlags Example/CPP/source.cpp#1)]
  [!code-csharp[System.Reflection.Emit.MethodBuilder.SetImplementationFlags Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Reflection.Emit.MethodBuilder.SetImplementationFlags Example/CS/source.cs#1)]
@@ -2059,7 +2062,7 @@
         </remarks>
         <exception cref="T:System.InvalidOperationException">该包含类型是以前使用 <see cref="M:System.Reflection.Emit.TypeBuilder.CreateType" /> 创建的。  
   
-- 或 - 
+或 
 对于当前的方法，属性 <see cref="P:System.Reflection.Emit.MethodBuilder.IsGenericMethod" /> 为 <see langword="true" />，但属性 <see cref="P:System.Reflection.Emit.MethodBuilder.IsGenericMethodDefinition" /> 为 <see langword="false" />。</exception>
       </Docs>
     </Member>
@@ -2107,7 +2110,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示的上下文用法`SetMarshal`方法进行封送为不同类型的方法调用的结果。  
+ 下面的代码示例演示了`SetMarshal`方法的上下文用法, 以将方法调用的结果封送为不同的类型。  
   
  [!code-cpp[System.Reflection.Emit.MethodBuilder.SetMarshal Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Reflection.Emit.MethodBuilder.SetMarshal Example/CPP/source.cpp#1)]
  [!code-csharp[System.Reflection.Emit.MethodBuilder.SetMarshal Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Reflection.Emit.MethodBuilder.SetMarshal Example/CS/source.cs#1)]
@@ -2117,7 +2120,7 @@
         </remarks>
         <exception cref="T:System.InvalidOperationException">该包含类型是以前使用 <see cref="M:System.Reflection.Emit.TypeBuilder.CreateType" /> 创建的。  
   
-- 或 - 
+或 
 对于当前的方法，属性 <see cref="P:System.Reflection.Emit.MethodBuilder.IsGenericMethod" /> 为 <see langword="true" />，但属性 <see cref="P:System.Reflection.Emit.MethodBuilder.IsGenericMethodDefinition" /> 为 <see langword="false" />。</exception>
       </Docs>
     </Member>
@@ -2221,18 +2224,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果该方法定义时已知的数量和类型的参数，可以使用任何重载设置<xref:System.Reflection.Emit.TypeBuilder.DefineMethod%2A?displayProperty=nameWithType>接受的参数类型数组的方法。 但是，泛型方法可具有其类型由一个或多个其自己的泛型类型参数，其中定义该方法后不能定义直到指定的参数。 使用此方法在这种情况下设置的参数类型。  
+ 如果在定义方法时参数的数量和类型已知, 则可以使用接受参数类型数组的<xref:System.Reflection.Emit.TypeBuilder.DefineMethod%2A?displayProperty=nameWithType>方法的任何重载来设置这些参数。 但是, 泛型方法可以具有其类型由一个或多个其自己的泛型类型参数指定的参数, 在定义该方法之后, 才能定义这些参数。 在这种情况下, 使用此方法设置参数类型。  
   
- 如果返回类型具有可选或必需的自定义修饰符，如<xref:System.Runtime.CompilerServices.IsConst>，使用<xref:System.Reflection.Emit.MethodBuilder.SetSignature%28System.Type%2CSystem.Type%5B%5D%2CSystem.Type%5B%5D%2CSystem.Type%5B%5D%2CSystem.Type%5B%5D%5B%5D%2CSystem.Type%5B%5D%5B%5D%29>方法重载。  
+ 如果返回类型具有可选或必需的自定义修饰符 (例如<xref:System.Runtime.CompilerServices.IsConst>), 请<xref:System.Reflection.Emit.MethodBuilder.SetSignature%28System.Type%2CSystem.Type%5B%5D%2CSystem.Type%5B%5D%2CSystem.Type%5B%5D%2CSystem.Type%5B%5D%5B%5D%2CSystem.Type%5B%5D%5B%5D%29>使用方法重载。  
   
- 调用此方法将替换任何已设置使用的参数类型<xref:System.Reflection.Emit.TypeBuilder.DefineMethod%2A?displayProperty=nameWithType>方法。  
+ 调用此方法将替换使用<xref:System.Reflection.Emit.TypeBuilder.DefineMethod%2A?displayProperty=nameWithType>方法设置的任何参数类型。  
   
    
   
 ## Examples  
- 下面的代码示例使用<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法，以使方法成为泛型。 <xref:System.Reflection.Emit.MethodBuilder.SetParameters%2A>方法用于为将由第一个泛型类型参数指定其类型的方法一个参数。 <xref:System.Reflection.Emit.MethodBuilder.SetReturnType%2A>方法用于为方法提供第二个泛型类型参数所指定的返回类型。  
+ 下面的代码示例使用<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法使方法成为泛型方法。 <xref:System.Reflection.Emit.MethodBuilder.SetParameters%2A>方法用于为方法指定一个参数, 该参数的类型将由第一个泛型类型参数指定。 <xref:System.Reflection.Emit.MethodBuilder.SetReturnType%2A>方法用于为方法指定由第二个泛型类型参数指定的返回类型。  
   
- 此代码是为提供一个更大示例的一部分<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法。  
+ 此代码是为<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法提供的更大示例的一部分。  
   
  [!code-cpp[GenericMethodBuilder#3](~/samples/snippets/cpp/VS_Snippets_CLR/GenericMethodBuilder/cpp/source.cpp#3)]
  [!code-csharp[GenericMethodBuilder#3](~/samples/snippets/csharp/VS_Snippets_CLR/GenericMethodBuilder/CS/source.cs#3)]
@@ -2290,16 +2293,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此方法时由该方法的泛型类型参数之一指定的返回类型设置的泛型方法的返回类型。 如果返回类型具有可选或必需的自定义修饰符，如<xref:System.Runtime.CompilerServices.IsConst>，使用<xref:System.Reflection.Emit.MethodBuilder.SetSignature%28System.Type%2CSystem.Type%5B%5D%2CSystem.Type%5B%5D%2CSystem.Type%5B%5D%2CSystem.Type%5B%5D%5B%5D%2CSystem.Type%5B%5D%5B%5D%29>方法重载。  
+ 如果返回类型由方法的一个泛型类型参数指定, 则使用此方法设置泛型方法的返回类型。 如果返回类型具有可选或必需的自定义修饰符 (例如<xref:System.Runtime.CompilerServices.IsConst>), 请<xref:System.Reflection.Emit.MethodBuilder.SetSignature%28System.Type%2CSystem.Type%5B%5D%2CSystem.Type%5B%5D%2CSystem.Type%5B%5D%2CSystem.Type%5B%5D%5B%5D%2CSystem.Type%5B%5D%5B%5D%29>使用方法重载。  
   
- 调用此方法将替换使用建立的返回类型<xref:System.Reflection.Emit.TypeBuilder.DefineMethod%2A?displayProperty=nameWithType>方法。  
+ 调用此方法将替换使用<xref:System.Reflection.Emit.TypeBuilder.DefineMethod%2A?displayProperty=nameWithType>方法建立的返回类型。  
   
    
   
 ## Examples  
- 下面的代码示例使用<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法，以使方法成为泛型。 <xref:System.Reflection.Emit.MethodBuilder.SetParameters%2A>方法用于为将由第一个泛型类型参数指定其类型的方法一个参数。 <xref:System.Reflection.Emit.MethodBuilder.SetReturnType%2A>方法用于为方法提供第二个泛型类型参数所指定的返回类型。  
+ 下面的代码示例使用<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法使方法成为泛型方法。 <xref:System.Reflection.Emit.MethodBuilder.SetParameters%2A>方法用于为方法指定一个参数, 该参数的类型将由第一个泛型类型参数指定。 <xref:System.Reflection.Emit.MethodBuilder.SetReturnType%2A>方法用于为方法指定由第二个泛型类型参数指定的返回类型。  
   
- 此代码是为提供一个更大示例的一部分<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法。  
+ 此代码是为<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法提供的更大示例的一部分。  
   
  [!code-cpp[GenericMethodBuilder#3](~/samples/snippets/cpp/VS_Snippets_CLR/GenericMethodBuilder/cpp/source.cpp#3)]
  [!code-csharp[GenericMethodBuilder#3](~/samples/snippets/csharp/VS_Snippets_CLR/GenericMethodBuilder/CS/source.cs#3)]
@@ -2367,20 +2370,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果该方法定义时已知的返回类型的数量和类型的参数，可以使用任何重载建立<xref:System.Reflection.Emit.TypeBuilder.DefineMethod%2A?displayProperty=nameWithType>接受的参数类型数组的方法。 但是，泛型方法可具有其类型由一个或多个其自己的泛型类型参数，其中定义该方法后不能定义直到指定的参数。 使用此方法在这种情况下设置的参数类型。  
+ 如果在定义方法时知道返回类型和参数的数目, 则可以使用接受参数类型数组的<xref:System.Reflection.Emit.TypeBuilder.DefineMethod%2A?displayProperty=nameWithType>方法的任何重载来建立它们。 但是, 泛型方法可以具有其类型由一个或多个其自己的泛型类型参数指定的参数, 在定义该方法之后, 才能定义这些参数。 在这种情况下, 使用此方法设置参数类型。  
   
- 如果返回类型和参数类型都没有可选或必需的自定义修饰符，如<xref:Microsoft.VisualC.IsConstModifier>，可以使用<xref:System.Reflection.Emit.MethodBuilder.SetReturnType%2A>和<xref:System.Reflection.Emit.MethodBuilder.SetParameters%2A>方法。  
+ 如果返回类型和参数类型都没有可选的<xref:Microsoft.VisualC.IsConstModifier> <xref:System.Reflection.Emit.MethodBuilder.SetReturnType%2A>或必需的自定义修饰符 (例如), 则可以使用和<xref:System.Reflection.Emit.MethodBuilder.SetParameters%2A>方法。  
   
- 调用此方法将替换的参数和返回类型使用建立<xref:System.Reflection.Emit.TypeBuilder.DefineMethod%2A?displayProperty=nameWithType>方法。  
+ 调用此方法将替换使用<xref:System.Reflection.Emit.TypeBuilder.DefineMethod%2A?displayProperty=nameWithType>方法建立的参数和返回类型。  
   
    
   
 ## Examples  
- 下面的代码示例包含一个名为示例，有一个类型参数的泛型类的源代码`T`。 类具有一个名为字段`Field`，类型的`T`，和泛型方法`GM`有其自己的类型参数， `U`。 方法`GM`创建的示例中，将替换其自身类型参数实例`U`的示例中，类型参数，并将存储在其输入的参数`Field`。 编译但未使用; 此源代码您可以查看与它[Ildasm.exe （IL 反汇编程序）](~/docs/framework/tools/ildasm-exe-il-disassembler.md)，并将其与由类生成的代码比较`Example`。  
+ 下面的代码示例包含一个名为 Sample 的泛型类的源代码, 该类具有一个`T`类型参数。 类具有`Field`一个名为、类型`T`为的字段和一个具有自己`GM`的类型参数`U`的泛型方法。 方法`GM`创建一个示例实例, 并将其自己的类型`U`参数替换为 sample 的类型参数, 并在中`Field`存储其输入参数。 已编译但未使用此源代码;可以使用[Ildasm (IL 拆装器)](~/docs/framework/tools/ildasm-exe-il-disassembler.md)查看它, 并将其与类`Example`发出的代码进行比较。  
   
- 类中的代码`Example`演示如何使用<xref:System.Reflection.Emit.MethodBuilder.SetSignature%2A>发出泛型代码中的方法。 `Main`类方法`Example`创建动态程序集包含一个名为类`Sample`，并使用<xref:System.Reflection.Emit.TypeBuilder.DefineGenericParameters%2A?displayProperty=nameWithType>方法，使其通过添加一个名为的类型参数泛型`T`。 默认构造函数和一个名为字段`Field`，类型的`T`，添加到类`Sample`。 一种方法`GM`添加，并转换为泛型方法使用<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>方法。 类型参数`GM`名为`U`。 定义类型参数后, 的签名`GM`使用的添加<xref:System.Reflection.Emit.MethodBuilder.SetSignature%2A>方法。 没有返回类型，而且没有所需或自定义修饰符，因此此方法的所有参数都是`null`除`parameterTypes`，这会设置该方法的唯一参数的类型; 此值设置为该方法的类型参数， `U`。 方法主体创建构造类型的实例`Sample<U>`(`Sample(Of U)`在 Visual Basic 中)，将分配到该方法的参数`Field`，然后将输出的值`Field`。 一个虚拟类型定义，以容纳入口点方法`Main`。 中的正文`Main`，静态`GM`的构造泛型类型上调用方法`Sample<int>`(`Sample(Of Integer)`在 Visual Basic 中)，具有类型<xref:System.String>替换为`U`。 <xref:System.Reflection.Emit.TypeBuilder.GetMethod%2A?displayProperty=nameWithType>方法用于创建<xref:System.Reflection.MethodInfo>静态`GM`方法的构造泛型类型`Sample<U>`，并<xref:System.Reflection.MethodInfo.MakeGenericMethod%2A?displayProperty=nameWithType>方法然后用于创建<xref:System.Reflection.MethodInfo>，可以发出方法调用中。  
+ 类`Example`中的代码演示如何在发出泛型<xref:System.Reflection.Emit.MethodBuilder.SetSignature%2A>代码时使用方法。 类`Main` `Sample` <xref:System.Reflection.Emit.TypeBuilder.DefineGenericParameters%2A?displayProperty=nameWithType> `T`的方法创建一个动态程序集, 其中包含一个名为的类, 并使用方法通过添加一个名为的类型参数使其成为泛型。 `Example` 向类`Field` `T`添加了一个无参数的构造函数和一个名为的类型`Sample`为的字段。 添加方法`GM` , 并<xref:System.Reflection.Emit.MethodBuilder.DefineGenericParameters%2A>使用方法将其转换为泛型方法。 的`GM`类型参数命名`U`为。 定义类型参数后, `GM`将<xref:System.Reflection.Emit.MethodBuilder.SetSignature%2A>使用方法添加的签名。 没有返回类型, 并且没有必需的修饰符或自定义修饰符, 因此, 此方法的所有参数`null`都`parameterTypes`是除外, 这将设置方法的唯一参数的类型; 此参数设置为`U`方法的类型参数。 方法的`Sample<U>`主体创建构造类型的实例 (`Sample(Of U)`在 Visual Basic 中), 将该方法的参数分配给`Field`, 然后输出的值`Field`。 定义了一个虚类型以容纳入口点方法`Main`。 在的`Main`正文中, 将对`GM`构造的泛型类型`Sample<int>` (`Sample(Of Integer)`在 Visual Basic 中) 调用静态方法, 并将<xref:System.String>类型替换`U`为。 `Sample<U>` <xref:System.Reflection.MethodInfo> <xref:System.Reflection.MethodInfo> <xref:System.Reflection.MethodInfo.MakeGenericMethod%2A?displayProperty=nameWithType>方法用于为构造的泛型类型的静态`GM`方法创建, 然后使用方法来创建可以在方法调用中发出的。 <xref:System.Reflection.Emit.TypeBuilder.GetMethod%2A?displayProperty=nameWithType>  
   
- 当运行的代码示例时，它将发出的程序集保存为 TypeBuilderGetFieldExample.exe。 你可以运行 TypeBuilderGetFieldExample.exe，并且可以使用[Ildasm.exe （IL 反汇编程序）](~/docs/framework/tools/ildasm-exe-il-disassembler.md)进行比较的代码发出的代码`Sample`编译到自身的代码示例的类。  
+ 运行代码示例时, 它会将发出的程序集保存为 TypeBuilderGetFieldExample。 您可以运行 TypeBuilderGetFieldExample, 并且可以使用[Ildasm (IL 拆装器)](~/docs/framework/tools/ildasm-exe-il-disassembler.md)将发出的代码与编译到代码示例本身中的`Sample`类的代码进行比较。  
   
  [!code-csharp[TypeBuilder.GetField_Generic#1](~/samples/snippets/csharp/VS_Snippets_CLR/TypeBuilder.GetField_Generic/cs/source.cs#1)]
  [!code-vb[TypeBuilder.GetField_Generic#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/TypeBuilder.GetField_Generic/VB/source.vb#1)]  
@@ -2428,12 +2431,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 与不同的元数据自定义特性，此自定义属性是与符号编写器相关联。  
+ 与元数据自定义特性不同, 此自定义特性与符号编写器相关联。  
   
    
   
 ## Examples  
- 下面的代码示例演示的上下文用法`SetSymCustomAttribute`方法设置的名称和密钥的自定义属性的字节值附加到一种方法。  
+ 下面的代码示例演示了`SetSymCustomAttribute`方法的上下文用法, 以设置附加到方法的自定义特性的名称和键的字节值。  
   
  [!code-cpp[System.Reflection.Emit.MethodBuilder.SetSymCustomAttribute Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Reflection.Emit.MethodBuilder.SetSymCustomAttribute Example/CPP/source2.cpp#1)]
  [!code-csharp[System.Reflection.Emit.MethodBuilder.SetSymCustomAttribute Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Reflection.Emit.MethodBuilder.SetSymCustomAttribute Example/CS/source2.cs#1)]
@@ -2443,10 +2446,10 @@
         </remarks>
         <exception cref="T:System.InvalidOperationException">该包含类型是以前使用 <see cref="M:System.Reflection.Emit.TypeBuilder.CreateType" /> 创建的。  
   
-- 或 - 
+或 
 包含此方法的模块不是调试模块。  
   
-- 或 - 
+或 
 对于当前的方法，属性 <see cref="P:System.Reflection.Emit.MethodBuilder.IsGenericMethod" /> 为 <see langword="true" />，但属性 <see cref="P:System.Reflection.Emit.MethodBuilder.IsGenericMethodDefinition" /> 为 <see langword="false" />。</exception>
       </Docs>
     </Member>
@@ -2530,7 +2533,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::GetIDsOfNames`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::GetIDsOfNames`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>
@@ -2577,7 +2580,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::GetTypeInfo`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::GetTypeInfo`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>
@@ -2620,7 +2623,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::GetTypeInfoCount`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::GetTypeInfoCount`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>
@@ -2677,7 +2680,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::Invoke`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::Invoke`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>

@@ -20,28 +20,28 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>表示特定于应用程序的集合<see cref="T:System.IO.Packaging.Package" />实例与结合使用<see cref="T:System.IO.Packaging.PackWebRequest" />。</summary>
+    <summary>表示结合 <see cref="T:System.IO.Packaging.Package" /> 使用的应用程序特定的 <see cref="T:System.IO.Packaging.PackWebRequest" /> 实例的集合。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IO.Packaging.PackageStore>定义已打开，而该应用程序中处于活动状态的引用集合的包。  包添加到<xref:System.IO.Packaging.PackageStore>访问是按其键值的 URI。  <xref:System.IO.Packaging.PackageStore>支持三种常见用途：  
+ <xref:System.IO.Packaging.PackageStore>定义在应用程序中打开和活动的包的引用集合。  可以访问添加到<xref:System.IO.Packaging.PackageStore>中的包, 其密钥 URI 值为。  <xref:System.IO.Packaging.PackageStore>支持三种常见用途:  
   
-1.  访问<xref:System.IO.Packaging.PackagePart>通过数据<xref:System.IO.Packaging.PackWebRequest>。  
+1.  <xref:System.IO.Packaging.PackagePart> 通过<xref:System.IO.Packaging.PackWebRequest>访问数据。  
   
-2.  应用程序获取的实例<xref:System.IO.Packaging.Package>给定包的 URI。  
+2.  应用程序获取<xref:System.IO.Packaging.Package>给定包 URI 的实例。  
   
-3.  访问包，将创建并存储在<xref:System.IO.MemoryStream>。  
+3.  访问创建并存储在中<xref:System.IO.MemoryStream>的包。  
   
- 若要提高性能并最大程度减少重复的文件打开/关闭操作的开销<xref:System.IO.Packaging.PackageStore>用于管理的包访问的实例<xref:System.IO.Packaging.PackWebRequest>和直接由应用程序。  访问在包中，数据时<xref:System.IO.Packaging.Package>地址的请求<xref:System.IO.Packaging.PackagePart><xref:System.IO.Packaging.PackagePart.Uri%2A>首先进行检查以查看该程序包是否已定义且在中打开<xref:System.IO.Packaging.PackageStore>。  如果包定义在中，打开<xref:System.IO.Packaging.PackageStore>，请求可以反复打开和关闭每个请求的包不直接访问部分。  
+ 为了提高性能并最大程度地降低重复打开和关闭文件的开销<xref:System.IO.Packaging.PackageStore> , 可用于管理由<xref:System.IO.Packaging.PackWebRequest>应用程序直接访问的包的实例。  在访问包中的数据时, <xref:System.IO.Packaging.Package>首先会检查请求<xref:System.IO.Packaging.PackagePart> <xref:System.IO.Packaging.PackagePart.Uri%2A>的地址, 以查看<xref:System.IO.Packaging.PackageStore>包是否已定义, 并在中打开。  如果在中<xref:System.IO.Packaging.PackageStore>将包定义为打开, 则可以直接访问请求的部分, 而不会为每个请求重复打开和关闭包。  
   
- 如果你的应用程序打开的包<xref:System.IO.Packaging.Package.Open%2A?displayProperty=nameWithType>，<xref:System.IO.Packaging.PackageStore.AddPackage%2A>可以调用以添加到包<xref:System.IO.Packaging.PackageStore>。  <xref:System.IO.Packaging.PackageStore.RemovePackage%2A> 应更高版本调用以从包中删除<xref:System.IO.Packaging.PackageStore>之前调用<xref:System.IO.Packaging.Package.Close%2A?displayProperty=nameWithType>。  
+ 如果你的应用程序使用<xref:System.IO.Packaging.Package.Open%2A?displayProperty=nameWithType>打开包, <xref:System.IO.Packaging.PackageStore.AddPackage%2A>则可以调用来<xref:System.IO.Packaging.PackageStore>将包添加到中。  <xref:System.IO.Packaging.PackageStore.RemovePackage%2A>以后应调用以从调用<xref:System.IO.Packaging.PackageStore> <xref:System.IO.Packaging.Package.Close%2A?displayProperty=nameWithType>中删除包。  
   
- 使用打开 XPS 包<xref:System.Windows.Xps.Packaging.XpsDocument.%23ctor%2A>构造函数将自动添加和删除从<xref:System.IO.Packaging.PackageStore>创建和释放文档时。  (不需要调用<xref:System.IO.Packaging.PackageStore.AddPackage%2A>或<xref:System.IO.Packaging.PackageStore.RemovePackage%2A>单独打开的 XPS 包与<xref:System.Windows.Xps.Packaging.XpsDocument.%23ctor%2A>构造函数。)  
+ 创建并释放文档<xref:System.Windows.Xps.Packaging.XpsDocument.%23ctor%2A> <xref:System.IO.Packaging.PackageStore>时, 使用构造函数打开的 XPS 包会自动添加和删除。  (无需为用<xref:System.IO.Packaging.PackageStore.AddPackage%2A> <xref:System.Windows.Xps.Packaging.XpsDocument.%23ctor%2A>构造函数打开<xref:System.IO.Packaging.PackageStore.RemovePackage%2A>的 XPS 包分别调用或。)  
   
- 通过访问包的文件 I/O 权限<xref:System.IO.Packaging.PackageStore>仍保持打开时为包设置的 I/O 权限。  <xref:System.IO.Packaging.PackageStore>仅提供对已添加存储的包的引用。  它是应用程序负责正确打开、 更新和关闭每个包。  
+ 通过访问的<xref:System.IO.Packaging.PackageStore>包的文件 i/o 权限与打开时在包中设置的 i/o 权限保持相同。  <xref:System.IO.Packaging.PackageStore>仅提供对已添加存储区的包的引用。  应用程序会正常打开、更新和关闭每个包。  
   
- 包添加到<xref:System.IO.Packaging.PackageStore>结合使用时，可以在多线程环境中访问[!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)]如分析器<xref:System.Windows.Markup.XamlReader.Load%2A?displayProperty=nameWithType>。  在多线程环境操作时，应用程序必须锁定之前访问包。  
+ 当添加到<xref:System.IO.Packaging.PackageStore>中的包[!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)]与分析器 (如) <xref:System.Windows.Markup.XamlReader.Load%2A?displayProperty=nameWithType>结合使用时, 可以在多线程环境中访问这些包。  在多线程环境中操作时, 应用程序必须在访问前锁定包。  
   
  ]]></format>
     </remarks>
@@ -69,20 +69,20 @@
         <Parameter Name="package" Type="System.IO.Packaging.Package" />
       </Parameters>
       <Docs>
-        <param name="uri">键[!INCLUDE[TLA2#tla_uri](~/includes/tla2sharptla-uri-md.md)]的<paramref name="package" />中的比较<see cref="T:System.IO.Packaging.PackWebRequest" />。</param>
-        <param name="package">要添加到应用商店的包。</param>
-        <summary>添加<see cref="T:System.IO.Packaging.Package" />到存储区。</summary>
+        <param name="uri">要在 <see cref="T:System.IO.Packaging.PackWebRequest" /> 中比较的 <paramref name="package" /> 的键 [!INCLUDE[TLA2#tla_uri](~/includes/tla2sharptla-uri-md.md)]。</param>
+        <param name="package">要添加到存储区的包。</param>
+        <summary>将 <see cref="T:System.IO.Packaging.Package" /> 添加到存储区。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `packageUri` 定义包的键进行比较，当您调用的 URI <xref:System.IO.Packaging.PackWebRequest>。  
+ `packageUri`定义在调用<xref:System.IO.Packaging.PackWebRequest>时比较的包的密钥 URI。  
   
- 如果`packageUri`匹配<xref:System.IO.Packaging.PackagePart.Uri%2A>有关<xref:System.IO.Packaging.PackagePart>中<xref:System.IO.Packaging.PackWebRequest>调用中定义的包<xref:System.IO.Packaging.PackageStore>用于访问所请求的部分。  
+ <xref:System.IO.Packaging.PackagePart> <xref:System.IO.Packaging.PackagePart.Uri%2A>如果调用中<xref:System.IO.Packaging.PackageStore>的与匹配, 则中定义的包用于访问请求的部分。 `packageUri` <xref:System.IO.Packaging.PackWebRequest>  
   
- 如果`packageUri`不符<xref:System.IO.Packaging.PackagePart.Uri%2A>有关<xref:System.IO.Packaging.PackagePart>中<xref:System.IO.Packaging.PackWebRequest>调用，用指定的 URI 的包会打开用于访问所请求的部分。  
+ 如果在调用中不匹配<xref:System.IO.Packaging.PackagePart.Uri%2A>的, 则打开具有指定 URI 的包以访问请求的部分。 <xref:System.IO.Packaging.PackWebRequest> <xref:System.IO.Packaging.PackagePart> `packageUri`  
   
- **安全说明**此方法要求<xref:System.Security.Permissions.EnvironmentPermission>的所有自定义<xref:System.IO.Packaging.Package>(非<xref:System.IO.Packaging.ZipPackage>) 类型。  
+ **安全说明**此方法要求<xref:System.Security.Permissions.EnvironmentPermission>所有自定义<xref:System.IO.Packaging.Package> (非<xref:System.IO.Packaging.ZipPackage>) 类型。  
   
    
   
@@ -95,8 +95,8 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="package" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="packageUri" /> 是无效的包[!INCLUDE[TLA2#tla_uri](~/includes/tla2sharptla-uri-md.md)]。</exception>
-        <exception cref="T:System.InvalidOperationException">具有指定的包<paramref name="packageUri" />已在存储中。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="packageUri" /> 是无效的包 [!INCLUDE[TLA2#tla_uri](~/includes/tla2sharptla-uri-md.md)]。</exception>
+        <exception cref="T:System.InvalidOperationException">带有指定 <paramref name="packageUri" /> 的包已位于存储区中。</exception>
         <altmember cref="M:System.IO.Packaging.PackageStore.GetPackage(System.Uri)" />
         <altmember cref="M:System.IO.Packaging.PackageStore.RemovePackage(System.Uri)" />
       </Docs>
@@ -120,16 +120,16 @@
         <Parameter Name="uri" Type="System.Uri" />
       </Parameters>
       <Docs>
-        <param name="uri">[!INCLUDE[TLA#tla_uri](~/includes/tlasharptla-uri-md.md)]要返回的包。</param>
-        <summary>返回<see cref="T:System.IO.Packaging.Package" />与指定[!INCLUDE[TLA2#tla_uri](~/includes/tla2sharptla-uri-md.md)]从应用商店。</summary>
-        <returns>使用指定的包<paramref name="packageUri" />; 或<see langword="null" />，如果具有指定的包<paramref name="packageUri" />不在存储区。</returns>
+        <param name="uri">要返回的包的 [!INCLUDE[TLA#tla_uri](~/includes/tlasharptla-uri-md.md)]。</param>
+        <summary>从存储区中返回带有指定 [!INCLUDE[TLA2#tla_uri](~/includes/tla2sharptla-uri-md.md)] 的 <see cref="T:System.IO.Packaging.Package" />。</summary>
+        <returns>带有指定 <paramref name="packageUri" /> 的包；或者 <see langword="null" />（如果带有指定 <paramref name="packageUri" /> 的包不在存储区中）。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `packageUri` 匹配的 Uri 中指定<xref:System.IO.Packaging.PackageStore.AddPackage%2A>方法调用。  
+ `packageUri`与<xref:System.IO.Packaging.PackageStore.AddPackage%2A>方法调用中指定的 uri 匹配。  
   
- **安全说明**此方法要求<xref:System.Security.Permissions.EnvironmentPermission>的所有自定义<xref:System.IO.Packaging.Package>(非<xref:System.IO.Packaging.ZipPackage>) 类型。  
+ **安全说明**此方法要求<xref:System.Security.Permissions.EnvironmentPermission>所有自定义<xref:System.IO.Packaging.Package> (非<xref:System.IO.Packaging.ZipPackage>) 类型。  
   
    
   
@@ -142,7 +142,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="packageUri" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="packageUri" /> 是无效的包[!INCLUDE[TLA2#tla_uri](~/includes/tla2sharptla-uri-md.md)]。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="packageUri" /> 是无效的包 [!INCLUDE[TLA2#tla_uri](~/includes/tla2sharptla-uri-md.md)]。</exception>
         <altmember cref="M:System.IO.Packaging.PackageStore.AddPackage(System.Uri,System.IO.Packaging.Package)" />
         <altmember cref="M:System.IO.Packaging.PackageStore.RemovePackage(System.Uri)" />
       </Docs>
@@ -166,15 +166,15 @@
         <Parameter Name="uri" Type="System.Uri" />
       </Parameters>
       <Docs>
-        <param name="uri">[!INCLUDE[TLA#tla_uri](~/includes/tlasharptla-uri-md.md)]要删除的包。</param>
-        <summary>移除<see cref="T:System.IO.Packaging.Package" />与指定[!INCLUDE[TLA2#tla_uri](~/includes/tla2sharptla-uri-md.md)]从应用商店。</summary>
+        <param name="uri">要移除的包的 [!INCLUDE[TLA#tla_uri](~/includes/tlasharptla-uri-md.md)]。</param>
+        <summary>从存储区中移除带有指定 [!INCLUDE[TLA2#tla_uri](~/includes/tla2sharptla-uri-md.md)] 的 <see cref="T:System.IO.Packaging.Package" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `packageUri` 匹配的 Uri 中指定<xref:System.IO.Packaging.PackageStore.AddPackage%2A>方法调用。  
+ `packageUri`与<xref:System.IO.Packaging.PackageStore.AddPackage%2A>方法调用中指定的 uri 匹配。  
   
- **安全说明**此方法要求<xref:System.Security.Permissions.EnvironmentPermission>的所有自定义<xref:System.IO.Packaging.Package>(非<xref:System.IO.Packaging.ZipPackage>) 类型。  
+ **安全说明**此方法要求<xref:System.Security.Permissions.EnvironmentPermission>所有自定义<xref:System.IO.Packaging.Package> (非<xref:System.IO.Packaging.ZipPackage>) 类型。  
   
    
   
@@ -187,7 +187,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="packageUri" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="packageUri" /> 是无效的包[!INCLUDE[TLA2#tla_uri](~/includes/tla2sharptla-uri-md.md)]。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="packageUri" /> 是无效的包 [!INCLUDE[TLA2#tla_uri](~/includes/tla2sharptla-uri-md.md)]。</exception>
         <altmember cref="M:System.IO.Packaging.PackageStore.AddPackage(System.Uri,System.IO.Packaging.Package)" />
         <altmember cref="M:System.IO.Packaging.PackageStore.GetPackage(System.Uri)" />
       </Docs>

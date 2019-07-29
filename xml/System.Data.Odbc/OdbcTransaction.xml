@@ -27,12 +27,12 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序创建<xref:System.Data.Odbc.OdbcTransaction>对象通过调用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>上<xref:System.Data.Odbc.OdbcConnection>对象。 与事务 （例如，提交或中止事务） 相关联的所有后续操作都执行上<xref:System.Data.Odbc.OdbcTransaction>对象。  
+ 应用程序通过对<xref:System.Data.Odbc.OdbcTransaction> <xref:System.Data.Odbc.OdbcConnection>对象调用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>来创建对象。 与事务关联的所有后续操作 (例如, 提交或中止事务) 都在<xref:System.Data.Odbc.OdbcTransaction>对象上执行。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.Odbc.OdbcConnection>和一个<xref:System.Data.Odbc.OdbcTransaction>。 它还演示了如何使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>， <xref:System.Data.Odbc.OdbcTransaction.Commit%2A>，和<xref:System.Data.Odbc.OdbcTransaction.Rollback%2A>方法。  
+ 下面的示例创建一个<xref:System.Data.Odbc.OdbcConnection>和一个<xref:System.Data.Odbc.OdbcTransaction>。 它还演示了如何使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>、 <xref:System.Data.Odbc.OdbcTransaction.Commit%2A>和<xref:System.Data.Odbc.OdbcTransaction.Rollback%2A>方法。  
   
  [!code-csharp[Classic WebData OdbcConnection.BeginTransaction#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.BeginTransaction/CS/source.cs#1)]
  [!code-vb[Classic WebData OdbcConnection.BeginTransaction#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.BeginTransaction/VB/source.vb#1)]  
@@ -73,7 +73,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例创建<xref:System.Data.Odbc.OdbcConnection>和一个<xref:System.Data.Odbc.OdbcTransaction>。 它还演示了如何使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>， <xref:System.Data.Odbc.OdbcTransaction.Commit%2A>，和<xref:System.Data.Odbc.OdbcTransaction.Rollback%2A>方法。  
+ 下面的示例创建一个<xref:System.Data.Odbc.OdbcConnection>和一个<xref:System.Data.Odbc.OdbcTransaction>。 它还演示了如何使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>、 <xref:System.Data.Odbc.OdbcTransaction.Commit%2A>和<xref:System.Data.Odbc.OdbcTransaction.Rollback%2A>方法。  
   
  [!code-csharp[Classic WebData OdbcConnection.BeginTransaction1#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.BeginTransaction1/CS/source.cs#1)]
  [!code-vb[Classic WebData OdbcConnection.BeginTransaction1#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.BeginTransaction1/VB/source.vb#1)]  
@@ -111,13 +111,13 @@
         <ReturnType>System.Data.Odbc.OdbcConnection</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.Data.Odbc.OdbcConnection" />与事务相关联的对象或<see langword="null" />如果该事务不再有效。</summary>
+        <summary>获取与该事务关联的 <see cref="T:System.Data.Odbc.OdbcConnection" /> 对象，或者如果该事务不再有效，则为 <see langword="null" />。</summary>
         <value>与事务关联的 <see cref="T:System.Data.Odbc.OdbcConnection" /> 对象。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 单个应用程序可能有多个数据库连接，每个都具有零个或多个事务。 此属性可以确定与创建的特定事务关联的连接对象<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>。  
+ 单个应用程序可以有多个数据库连接, 每个连接都有零个或多个事务。 此属性可让你确定与创建<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>的特定事务关联的连接对象。  
   
  ]]></format>
         </remarks>
@@ -210,7 +210,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不支持并行事务。 因此，<xref:System.Data.IsolationLevel>适用于整个事务。  
+ 不支持并行事务。 因此, <xref:System.Data.IsolationLevel>适用于整个事务。  
   
  ]]></format>
         </remarks>
@@ -246,12 +246,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以回滚事务仅从挂起状态 (后<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>已调用之前<xref:System.Data.Odbc.OdbcTransaction.Commit%2A>称为)。 将回滚该事务，在调用前释放`Commit`或`Rollback`调用。  
+ 只能从挂起状态回滚事务 (在调用之后<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>但在调用之前<xref:System.Data.Odbc.OdbcTransaction.Commit%2A> )。 事务将在调用之前`Commit` `Rollback`被释放的事件中回滚。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.Odbc.OdbcConnection>和一个<xref:System.Data.Odbc.OdbcTransaction>。 它还演示了如何使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>， <xref:System.Data.Odbc.OdbcTransaction.Commit%2A>，和<xref:System.Data.Odbc.OdbcTransaction.Rollback%2A>方法。  
+ 下面的示例创建一个<xref:System.Data.Odbc.OdbcConnection>和一个<xref:System.Data.Odbc.OdbcTransaction>。 它还演示了如何使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>、 <xref:System.Data.Odbc.OdbcTransaction.Commit%2A>和<xref:System.Data.Odbc.OdbcTransaction.Rollback%2A>方法。  
   
  [!code-csharp[Classic WebData OdbcConnection.BeginTransaction1#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.BeginTransaction1/CS/source.cs#1)]
  [!code-vb[Classic WebData OdbcConnection.BeginTransaction1#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.BeginTransaction1/VB/source.vb#1)]  

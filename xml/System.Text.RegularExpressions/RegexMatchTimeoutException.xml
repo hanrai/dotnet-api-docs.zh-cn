@@ -1,5 +1,5 @@
 <Type Name="RegexMatchTimeoutException" FullName="System.Text.RegularExpressions.RegexMatchTimeoutException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8d17e24ceb87e5d6d02bfd87c99424dc1cdfc325" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58722451" /></Metadata><TypeSignature Language="C#" Value="public class RegexMatchTimeoutException : TimeoutException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f95f0f02283855200579c730c6c506505b52ee2e" /><Meta Name="ms.sourcegitcommit" Value="e7974886b08aa83a8fb461e8550f31a7d4331ee3" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/23/2019" /><Meta Name="ms.locfileid" Value="68393641" /></Metadata><TypeSignature Language="C#" Value="public class RegexMatchTimeoutException : TimeoutException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit RegexMatchTimeoutException extends System.TimeoutException implements class System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.Text.RegularExpressions.RegexMatchTimeoutException" />
   <TypeSignature Language="VB.NET" Value="Public Class RegexMatchTimeoutException&#xA;Inherits TimeoutException" />
@@ -43,24 +43,24 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 是否存在<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>异常通常表示下列条件之一：  
+ 出现<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>异常通常表明存在下列情况之一:  
   
--   因为它尝试匹配输入的文本与正则表达式模式，过度回溯正则表达式引擎。  
+-   正则表达式引擎尝试将输入文本与正则表达式模式匹配时, 会过度进行回溯。  
   
--   超时间隔已设置得过低，尤其是考虑高计算机负载。  
+-   超时间隔设置得太低, 特别是对于高计算机负载。  
   
- 在其中一个异常处理程序处理异常的方式取决于异常的原因：  
+ 异常处理程序处理异常的方式取决于异常的原因:  
   
--   如果在超时的结果从过度回溯，异常处理程序应放弃尝试匹配输入，并通知用户在正则表达式模式匹配方法中发生超时。 如果可能，正则表达式模式，可从有关的信息<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Pattern%2A>属性，并导致过度回溯，即从可用的输入<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Input%2A>属性，应记录，以便可以问题调查并修改正则表达式模式。 由于过度回溯的超时值始终是可重现的。  
+-   如果超时导致过多回溯, 则异常处理程序应放弃与输入的尝试匹配, 并通知用户在正则表达式模式匹配方法中发生了超时。 如果可能, 应记录有关正则表达式模式的信息, 该模式<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Pattern%2A>可从属性获取, 而导致过多回溯的输入 (在<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Input%2A>属性中可用) 应进行记录, 以便可以已调查并修改了正则表达式模式。 由于回溯过多, 超时始终是可重复的。  
   
--   如果超时值的结果从设置超时阈值过低，可以增大超时间隔和重试匹配操作。 当前的超时间隔是可从<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.MatchTimeout%2A>属性。 当<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>引发异常，正则表达式引擎维护其状态，以便任何将来的调用返回相同的结果，因为如果未出现异常。 建议的模式是等待一个简短的随机时间间隔后再次调用匹配的方法之前引发异常。 这可以重复多次。 但是，如果在超时导致的过多使用回溯，重复次数应很小。  
+-   如果将超时阈值设置得太低, 则可以增加超时间隔, 然后重试匹配操作。 当前超时间隔可从<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.MatchTimeout%2A>属性获取。 当引发<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>异常时, 正则表达式引擎将保留其状态, 以便以后的任何调用返回相同的结果, 就好像未发生异常一样。 建议的模式是在引发异常之后等待短暂的随机时间间隔, 然后再次调用匹配方法。 这可以重复多次。 但是, 重复次数应为小, 以防过度回溯导致超时。  
   
- 下一节中的示例说明了处理这两种技术<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>。  
+ 下一节中的示例说明了用于处理的<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>这两种方法。  
   
    
   
 ## Examples  
- 下面的示例演示两种方法以处理<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>异常。 其值为两秒常数定义的最大超时间隔。 <xref:System.Text.RegularExpressions.Regex.IsMatch%28System.String%2CSystem.String%2CSystem.Text.RegularExpressions.RegexOptions%2CSystem.TimeSpan%29?displayProperty=nameWithType>用一秒的超时间隔最初调用方法。 每个<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>异常将导致增加的一秒的超时间隔和到另一个调用会导致<xref:System.Text.RegularExpressions.Regex.IsMatch%2A?displayProperty=nameWithType>方法，如果当前的超时间隔小于最大超时间隔。 但是，如果当前的超时间隔超过最大超时间隔，异常处理程序将信息写入到事件日志，并放弃的正则表达式处理。  
+ 下面的示例演示了两种处理异常的<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>可能方法。 一个常数, 其值为2秒, 用于定义最大超时间隔。 最初使用一秒的超时间隔调用方法。<xref:System.Text.RegularExpressions.Regex.IsMatch%28System.String%2CSystem.String%2CSystem.Text.RegularExpressions.RegexOptions%2CSystem.TimeSpan%29?displayProperty=nameWithType> 每<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>个异常导致超时间隔增加一秒, 如果当前超时间隔小于最大超时间隔, 则<xref:System.Text.RegularExpressions.Regex.IsMatch%2A?displayProperty=nameWithType>会导致另一次调用方法。 但是, 如果当前超时间隔超出最大超时间隔, 异常处理程序会将信息写入事件日志, 并放弃正则表达式的处理。  
   
  [!code-csharp[System.Text.RegularExpressions.RegexMatchTimeoutException#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.text.regularexpressions.regexmatchtimeoutexception/cs/class1.cs#1)]
  [!code-vb[System.Text.RegularExpressions.RegexMatchTimeoutException#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.text.regularexpressions.regexmatchtimeoutexception/vb/class1.vb#1)]  
@@ -117,7 +117,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这是默认构造函数的<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>类。 此构造函数将新实例的 <xref:System.Exception.Message%2A> 属性初始化为系统提供的错误描述消息。 此消息将针对当前系统区域性进行本地化。  
+ 这是<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>类的无参数构造函数。 此构造函数将新实例的 <xref:System.Exception.Message%2A> 属性初始化为系统提供的错误描述消息。 此消息针对当前系统区域性进行了本地化。  
   
  ]]></format>
         </remarks>
@@ -160,7 +160,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `message`字符串分配给<xref:System.Exception.Message%2A?displayProperty=nameWithType>属性。 应为当前区域性本地化的字符串。  
+ 将字符串分配<xref:System.Exception.Message%2A?displayProperty=nameWithType>给属性。 `message` 应为当前区域性对字符串进行本地化。  
   
  ]]></format>
         </remarks>
@@ -201,7 +201,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数不调用直接通过您的代码以实例化<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>对象。 相反，由调用<xref:System.Runtime.Serialization.IFormatter.Deserialize%2A?displayProperty=nameWithType>方法反序列化时<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>从流对象。  
+ 此构造函数不由您的代码直接调用来实例<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>化对象。 相反, 它在从流中<xref:System.Runtime.Serialization.IFormatter.Deserialize%2A?displayProperty=nameWithType> <xref:System.Text.RegularExpressions.RegexMatchTimeoutException>反序列化对象时由方法调用。  
   
  ]]></format>
         </remarks>
@@ -246,9 +246,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常情况下，使用此重载以处理中出现的异常`try/catch`块。 `innerException`参数应为对在中处理的异常对象的引用`catch`块中，也可以是`null`。 然后将此值分配给<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>对象的<xref:System.Exception.InnerException%2A?displayProperty=nameWithType>属性。  
+ 通常, 使用此重载来处理`try/catch`块中的异常。 参数应是对`catch`在块中处理的异常对象的引用, 也可以是`null`。 `innerException` 然后, 将此值分配<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>给对象的<xref:System.Exception.InnerException%2A?displayProperty=nameWithType>属性。  
   
- `message`字符串分配给<xref:System.Exception.Message%2A?displayProperty=nameWithType>属性。 应为当前区域性本地化的字符串。  
+ 将字符串分配<xref:System.Exception.Message%2A?displayProperty=nameWithType>给属性。 `message` 应为当前区域性对字符串进行本地化。  
   
  ]]></format>
         </remarks>
@@ -295,7 +295,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `regexInput`， `regexPattern`，并`matchTimeout`值分配给<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Input%2A>， <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Pattern%2A>，并且<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.MatchTimeout%2A>的新属性<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>对象。  
+ <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Pattern%2A> <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.MatchTimeout%2A> 、和值被分配<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Input%2A>给新对象的、和属性。<xref:System.Text.RegularExpressions.RegexMatchTimeoutException> `matchTimeout` `regexPattern` `regexInput`  
   
  ]]></format>
         </remarks>
@@ -338,9 +338,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性会反映出的值`regexInput`参数的<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.%23ctor%28System.String%2CSystem.String%2CSystem.TimeSpan%29>构造函数。 如果此参数未显式初始化的构造函数调用中，其值是<xref:System.String.Empty?displayProperty=nameWithType>。  
+ 此属性反映`regexInput` <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.%23ctor%28System.String%2CSystem.String%2CSystem.TimeSpan%29>构造函数的参数的值。 如果未在构造函数调用中显式初始化此参数, 则其值<xref:System.String.Empty?displayProperty=nameWithType>为。  
   
- 当引发异常时由正则表达式引擎，值<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Input%2A>属性会反映出整个输入的字符串传递给正则表达式引擎。 它不反映一个部分的字符串，例如在引擎中对方法的调用如搜索的子字符串<xref:System.Text.RegularExpressions.Regex.Match%28System.String%2CSystem.Int32%29?displayProperty=nameWithType>。  
+ 当正则表达式引擎引发异常时, <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Input%2A>属性的值反映传递到正则表达式引擎的整个输入字符串。 它不反映部分字符串 (例如, 引擎在调用等<xref:System.Text.RegularExpressions.Regex.Match%28System.String%2CSystem.Int32%29?displayProperty=nameWithType>方法的调用中搜索的子字符串)。  
   
  ]]></format>
         </remarks>
@@ -383,9 +383,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性会反映出的值`matchTimeout`参数的<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.%23ctor%28System.String%2CSystem.String%2CSystem.TimeSpan%29>构造函数。 如果一个构造函数调用中未正确初始化该参数，其值是`Timespan.FromTicks(-1)`。  
+ 此属性反映`matchTimeout` <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.%23ctor%28System.String%2CSystem.String%2CSystem.TimeSpan%29>构造函数的参数的值。 如果未在构造函数调用中正确初始化参数, 则其值为`Timespan.FromTicks(-1)`。  
   
- 此属性的值反映在调用中设置的超时间隔<xref:System.Text.RegularExpressions.Regex>构造函数或静态方法。 它不反映从一开始会引发异常的方法调用的时间已过的精确间隔。  
+ 此属性的值反映在对<xref:System.Text.RegularExpressions.Regex>构造函数或静态方法的调用中设置的超时间隔。 它不反映从方法调用开始到引发异常时所经过的确切时间间隔。  
   
  ]]></format>
         </remarks>
@@ -428,7 +428,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性会反映出的值`regexPattern`参数的<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.%23ctor%28System.String%2CSystem.String%2CSystem.TimeSpan%29>构造函数。 如果一个构造函数调用中未正确初始化该参数，其值是<xref:System.String.Empty?displayProperty=nameWithType>。  
+ 此属性反映`regexPattern` <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.%23ctor%28System.String%2CSystem.String%2CSystem.TimeSpan%29>构造函数的参数的值。 如果未在构造函数调用中正确初始化参数, 则其值为<xref:System.String.Empty?displayProperty=nameWithType>。  
   
  ]]></format>
         </remarks>
@@ -474,9 +474,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 可以使用它时，才<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>实例转换为<xref:System.Runtime.Serialization.ISerializable>接口对象。  
+ 此成员是显式接口成员的实现。 它只能在<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>实例被强制转换<xref:System.Runtime.Serialization.ISerializable>为接口对象时使用。  
   
- 中包含的任何对象<xref:System.Runtime.Serialization.SerializationInfo>对象会自动跟踪和格式化程序序列化。  
+ 格式化程序自动跟踪并序列化<xref:System.Runtime.Serialization.SerializationInfo>对象中包含的任何对象。  
   
  ]]></format>
         </remarks>

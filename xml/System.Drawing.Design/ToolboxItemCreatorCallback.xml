@@ -26,22 +26,22 @@
     <ReturnType>System.Drawing.Design.ToolboxItem</ReturnType>
   </ReturnValue>
   <Docs>
-    <param name="serializedObject">包含要创建的数据的对象<see cref="T:System.Drawing.Design.ToolboxItem" />的。</param>
-    <param name="format">若要创建的剪贴板数据格式的名称<see cref="T:System.Drawing.Design.ToolboxItem" />的。</param>
-    <summary>提供回调机制，可以创建<see cref="T:System.Drawing.Design.ToolboxItem" />。</summary>
-    <returns>反序列化<see cref="T:System.Drawing.Design.ToolboxItem" />由指定的对象<paramref name="serializedObject" />。</returns>
+    <param name="serializedObject">包含将为其创建 <see cref="T:System.Drawing.Design.ToolboxItem" /> 的数据的对象。</param>
+    <param name="format">将为其创建 <see cref="T:System.Drawing.Design.ToolboxItem" /> 的剪贴板数据格式名称。</param>
+    <summary>提供可以创建 <see cref="T:System.Drawing.Design.ToolboxItem" /> 的一种回调机制。</summary>
+    <returns>由 <paramref name="serializedObject" /> 指定的反序列化 <see cref="T:System.Drawing.Design.ToolboxItem" /> 对象。</returns>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用匹配此工具箱项创建从特定的剪贴板数据格式放置在工具箱上的任何对象的委托类型的方法签名的方法签名实现的工具箱项创建者方法。 例如，您可以设计创建工具箱项创建者<xref:System.Windows.Forms.TextBox>来存储从剪贴板粘贴到工具箱的文本。 可以使用<xref:System.Drawing.Design.IToolboxService.AddCreator%2A>方法<xref:System.Drawing.Design.IToolboxService>以添加<xref:System.Drawing.Design.ToolboxItemCreatorCallback>特定的数据类型到工具箱的事件处理程序。 `serializedObject`参数包含的数据对象。  
+ 可以实现一个工具箱项创建者方法, 该方法签名与此委托类型的方法签名相匹配, 该委托类型可从放置在工具箱上的特定剪贴板数据格式的任何对象创建工具箱项。 例如, 您可以设计一个工具箱项创建程序, 它创建<xref:System.Windows.Forms.TextBox>用于存储从剪贴板粘贴到工具箱中的文本。 您可以使用<xref:System.Drawing.Design.IToolboxService.AddCreator%2A>的方法<xref:System.Drawing.Design.IToolboxService>将特定数据类型的<xref:System.Drawing.Design.ToolboxItemCreatorCallback>事件处理程序添加到 "工具箱"。 `serializedObject`参数包含数据对象。  
   
- 创建 <xref:System.Drawing.Design.ToolboxItemCreatorCallback> 委托时，需要标识将处理该事件的方法。 若要将事件与事件处理程序关联，请将该委托的一个实例添加到事件中。 除非移除了该委托，否则每当发生该事件时就会调用事件处理程序。 有关事件处理程序委托的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 创建 <xref:System.Drawing.Design.ToolboxItemCreatorCallback> 委托时，需要标识将处理该事件的方法。 若要将事件与事件处理程序关联，请将该委托的一个实例添加到事件中。 除非移除了该委托，否则每当发生该事件时就会调用事件处理程序。 有关事件处理程序委托的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的示例提供了使用的组件<xref:System.Drawing.Design.IToolboxService>添加"文本"数据格式处理程序，或<xref:System.Drawing.Design.ToolboxItemCreatorCallback>，到工具箱。 粘贴到工具箱的数据和到自定义拖动到窗体上任何文本数据的数据创建者回调委托传递<xref:System.Drawing.Design.ToolboxItem>，创建<xref:System.Windows.Forms.TextBox>包含的文本。  
+ 下面的示例提供了一个组件, 该<xref:System.Drawing.Design.IToolboxService>组件使用向 "工具箱" 添加 "文本" 数据<xref:System.Drawing.Design.ToolboxItemCreatorCallback>格式处理程序或。 数据创建器回调委托将粘贴到工具箱中的任何文本数据传递到窗体上, 并<xref:System.Drawing.Design.ToolboxItem>将其拖<xref:System.Windows.Forms.TextBox>到一个自定义中, 该自定义用于创建包含文本的。  
   
  [!code-cpp[ToolboxCreatorCallbackSample#1](~/samples/snippets/cpp/VS_Snippets_Winforms/ToolboxCreatorCallbackSample/CPP/textdatatextboxcomponent.cpp#1)]
  [!code-csharp[ToolboxCreatorCallbackSample#1](~/samples/snippets/csharp/VS_Snippets_Winforms/ToolboxCreatorCallbackSample/CS/textdatatextboxcomponent.cs#1)]

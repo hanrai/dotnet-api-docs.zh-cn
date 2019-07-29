@@ -30,12 +30,12 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>管理的溢出行为<see cref="T:System.Windows.Forms.ToolStrip" />。</summary>
+    <summary>托管 <see cref="T:System.Windows.Forms.ToolStrip" /> 的溢出行为。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果可以在窗体上显示更多的溢出项，请使用[ToolStrip 项集合编辑器](https://msdn.microsoft.com/library/e681f3ab-94ba-4b2b-ac64-1dfad46caa25)来管理这种情况。  
+ 如果溢出项超出了窗体上可显示的数目, 请使用[ToolStrip 项集合编辑器](https://msdn.microsoft.com/library/e681f3ab-94ba-4b2b-ac64-1dfad46caa25)来管理这种情况。  
   
  ]]></format>
     </remarks>
@@ -58,8 +58,8 @@
         <Parameter Name="parentItem" Type="System.Windows.Forms.ToolStripItem" />
       </Parameters>
       <Docs>
-        <param name="parentItem"><see cref="T:System.Windows.Forms.ToolStripItem" />从中派生此<see cref="T:System.Windows.Forms.ToolStripOverflow" />实例。</param>
-        <summary>初始化的新实例<see cref="T:System.Windows.Forms.ToolStripOverflow" />类派生自基<see cref="T:System.Windows.Forms.ToolStripItem" />。</summary>
+        <param name="parentItem">从中派生此 <see cref="T:System.Windows.Forms.ToolStripItem" /> 实例的 <see cref="T:System.Windows.Forms.ToolStripOverflow" />。</param>
+        <summary>初始化从 <see cref="T:System.Windows.Forms.ToolStripOverflow" /> 基类派生的 <see cref="T:System.Windows.Forms.ToolStripItem" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -90,14 +90,14 @@
  如果不显式调用 <xref:System.Windows.Forms.ToolStripOverflow.CreateAccessibilityInstance%2A> 方法，则在引用 <xref:System.Windows.Forms.Control.AccessibilityObject%2A> 属性时将会调用此方法。  
   
 > [!NOTE]
->  获取或设置<xref:System.Windows.Forms.Control.AccessibilityObject%2A>属性，必须添加对的引用`Accessibility`随一起安装的程序集[!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)]。  
+>  若要获取或设置<xref:System.Windows.Forms.Control.AccessibilityObject%2A>属性, 必须添加`Accessibility`对随[!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)]安装的程序集的引用。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何创建一个具有辅助功能的图表控件，并使用<xref:System.Windows.Forms.AccessibleObject>和<xref:System.Windows.Forms.Control.ControlAccessibleObject>类，以公开访问的信息。 控件绘制图例以及两条曲线。 `ChartControlAccessibleObject`类，该类派生自`ControlAccessibleObject`，在使用<xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>方法以提供自定义访问图表控件的信息。 因为不是实际图表图例<xref:System.Windows.Forms.Control>-基于控制，但改为绘制由图表控件，它不提供任何内置的可访问信息。 因此，`ChartControlAccessibleObject`类将重写<xref:System.Windows.Forms.AccessibleObject.GetChild%2A>方法以返回`CurveLegendAccessibleObject`，它表示每个部分的图例可访问信息。 当辅助功能的应用程序使用该控件时，该控件可以提供所需的可访问信息。  
+ 下面的代码示例演示如何创建可访问感知的图表控件, <xref:System.Windows.Forms.AccessibleObject>并使用和<xref:System.Windows.Forms.Control.ControlAccessibleObject>类公开可访问的信息。 控件将两条曲线与图例一起绘制。 <xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>从`ChartControlAccessibleObject` 派生的类在方法中用于为图表控件提供自定义的可访问信息。`ControlAccessibleObject` 因为图表图例不是实际<xref:System.Windows.Forms.Control>的控件, 而是由图表控件绘制的, 所以它不是任何内置的可访问信息。 因此, `ChartControlAccessibleObject`类`CurveLegendAccessibleObject`会<xref:System.Windows.Forms.AccessibleObject.GetChild%2A>重写方法以返回, 该方法表示图例的每个部分的可访问信息。 当可访问感知的应用程序使用此控件时, 控件可以提供必需的可访问信息。  
   
- 此代码片段演示如何重写<xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>方法。 请参阅<xref:System.Windows.Forms.AccessibleObject>完整的代码示例的类概述。  
+ 此代码摘录演示了如何<xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>重写方法。 有关完整的代码示例, 请参阅类概述。<xref:System.Windows.Forms.AccessibleObject>  
   
  [!code-cpp[System.Windows.Forms.AccessibleObject#2](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Windows.Forms.AccessibleObject/CPP/chartcontrol.cpp#2)]
  [!code-csharp[System.Windows.Forms.AccessibleObject#2](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.AccessibleObject/CS/chartcontrol.cs#2)]
@@ -126,13 +126,13 @@
         <ReturnType>System.Windows.Forms.ToolStripItemCollection</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取当前显示的项的所有<see cref="T:System.Windows.Forms.ToolStrip" />。</summary>
-        <value>一个<see cref="T:System.Windows.Forms.ToolStripItemCollection" />包括对此的所有项<see cref="T:System.Windows.Forms.ToolStrip" />。</value>
+        <summary>获取当前显示在 <see cref="T:System.Windows.Forms.ToolStrip" /> 上的所有项。</summary>
+        <value><see cref="T:System.Windows.Forms.ToolStripItemCollection" />，包括此 <see cref="T:System.Windows.Forms.ToolStrip" /> 上的所有项。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Windows.Forms.ToolStripOverflow.DisplayedItems%2A>属性来获取所有内容<xref:System.Windows.Forms.ToolStrip>当前显示，其中包括用户未不添加，如项<xref:System.Windows.Forms.ToolStripOverflowButton>。 使用<xref:System.Windows.Forms.ToolStripOverflow.Items%2A>属性来获取所有项上<xref:System.Windows.Forms.ToolStrip>，包括那些未显示。  
+ 使用属性可获取当前显示的<xref:System.Windows.Forms.ToolStrip>所有内容, 包括用户未<xref:System.Windows.Forms.ToolStripOverflowButton>添加的项, 例如。 <xref:System.Windows.Forms.ToolStripOverflow.DisplayedItems%2A> 使用属性可获取上的所有项, <xref:System.Windows.Forms.ToolStrip>包括那些未显示的项。 <xref:System.Windows.Forms.ToolStripOverflow.Items%2A>  
   
  ]]></format>
         </remarks>
@@ -184,13 +184,13 @@
         <ReturnType>System.Windows.Forms.ToolStripItemCollection</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取的所有项上<see cref="T:System.Windows.Forms.ToolStrip" />，无论它们当前显示与否。</summary>
-        <value>一个<see cref="T:System.Windows.Forms.ToolStripItemCollection" />包含的所有项。</value>
+        <summary>获取 <see cref="T:System.Windows.Forms.ToolStrip" /> 上的所有项，无论它们当前显示与否。</summary>
+        <value>包含所有项的 <see cref="T:System.Windows.Forms.ToolStripItemCollection" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Windows.Forms.ToolStripOverflow.Items%2A>属性来获取所有项上<xref:System.Windows.Forms.ToolStrip>，包括那些未显示。 使用<xref:System.Windows.Forms.ToolStripOverflow.DisplayedItems%2A>属性来获取当前显示在这些项<xref:System.Windows.Forms.ToolStrip>。  
+ 使用属性可获取上的所有项, <xref:System.Windows.Forms.ToolStrip>包括那些未显示的项。 <xref:System.Windows.Forms.ToolStripOverflow.Items%2A> 使用属性可仅获取当前显示在上的<xref:System.Windows.Forms.ToolStrip>那些项。 <xref:System.Windows.Forms.ToolStripOverflow.DisplayedItems%2A>  
   
  ]]></format>
         </remarks>
@@ -250,7 +250,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Windows.Forms.ToolStripOverflow.OnLayout%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
