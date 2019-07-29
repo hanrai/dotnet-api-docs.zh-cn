@@ -32,51 +32,51 @@
 ## Remarks  
   
 > [!IMPORTANT]
->  Internet 安全区域中，很多此类的成员将不可用。  
+>  此类的多个成员在 Internet 安全区域中不可用。  
   
- <xref:System.Windows.Interop.HwndSource>实现[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]窗口中可以包含[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]内容。 [!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]排列窗口中的内容，为度量单位，并呈现; 并且是交互式的输入。 因为<xref:System.Windows.Interop.HwndSource>专门用于与进行互操作[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]，此类公开了多个低级别[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]功能。 此类可用于执行以下操作：  
+ 实现可包含[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]内容的窗口。[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)] <xref:System.Windows.Interop.HwndSource> 窗口[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中的内容已排列、测量和呈现, 并且与输入交互。 由于专用于与进行互操作, [!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]因此此类公开了多个低[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]级别功能。 <xref:System.Windows.Interop.HwndSource> 此类可用于执行以下操作:  
   
--   指定的窗口样式，窗口类样式，并扩展窗口样式。  
+-   指定窗口样式、窗口类样式和扩展窗口样式。  
   
--   将挂钩的窗口过程。  
+-   挂钩窗口过程。  
   
--   提供访问权限的窗口句柄 (HWND)。  
+-   提供对窗口句柄 (HWND) 的访问权限。  
   
 -   销毁窗口。  
   
- <xref:System.Windows.Interop.HwndSource>类用于常规互操作性，因此并非设计作为托管的 HWND 包装。 一般情况下，它不提供用于操作的窗口或检查其状态的属性的托管方法。 相反，<xref:System.Windows.Interop.HwndSource>类提供对访问[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]窗口句柄 (HWND) 通过<xref:System.Windows.Interop.HwndSource.Handle%2A>属性，可以通过 PInvoke 技术传递[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)][!INCLUDE[TLA2#tla_api#plural](~/includes/tla2sharptla-apisharpplural-md.md)]以操作该窗口。  
+ <xref:System.Windows.Interop.HwndSource>类旨在实现常规互操作性, 并且不是作为托管的 HWND 包装设计的。 通常, 它不提供用于操作窗口或属性以检查其状态的托管方法。 相反, 此<xref:System.Windows.Interop.HwndSource>类通过<xref:System.Windows.Interop.HwndSource.Handle%2A>属性提供[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]对窗口句柄 (HWND) 的访问, 可通过 PInvoke 方法将其传递到[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)] [!INCLUDE[TLA2#tla_api#plural](~/includes/tla2sharptla-apisharpplural-md.md)] , 以便操作窗口。  
   
- **构造**  
+ **完成**  
   
- 许多方面<xref:System.Windows.Interop.HwndSource>只能在构造时指定。 若要创建<xref:System.Windows.Interop.HwndSource>，首先创建<xref:System.Windows.Interop.HwndSourceParameters>结构，并在填充所需的参数。 这些参数包括：  
+ 的<xref:System.Windows.Interop.HwndSource>许多方面只能在构造时指定。 若要创建<xref:System.Windows.Interop.HwndSource>, 首先要<xref:System.Windows.Interop.HwndSourceParameters>创建结构并使用所需的参数填充它。 这些参数包括:  
   
--   类、 窗口和扩展的窗口样式。 必须使用 PInvoke 创建窗口之后更改样式。 创建窗口后，可以更改不是所有样式。 请查阅[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]文档，然后再更改窗口样式。  
+-   类、窗口和扩展窗口样式。 创建窗口后, 必须使用 PInvoke 来更改样式。 创建窗口后, 不能更改所有样式。 更改窗口[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]样式之前, 请参考文档。  
   
 -   窗口的初始位置。  
   
--   窗口中，其中包括是否指定的大小，或应根据确定的大小的初始大小[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]内容。  
+-   窗口的初始大小, 其中包括是否指定大小, 或者是否应从确定的[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]内容大小确定大小。  
   
--   父窗口中。  
+-   父窗口。  
   
--   <xref:System.Windows.Interop.HwndSourceHook>要包含在窗口过程链中。 如果在构造时指定了挂钩，它接收窗口的所有消息。 可以使用<xref:System.Windows.Interop.HwndSource.AddHook%2A>来添加挂钩后创建窗口。  
+-   要<xref:System.Windows.Interop.HwndSourceHook>包含在窗口过程链中的。 如果在构造时指定了挂钩, 则它将接收窗口的所有消息。 可以使用<xref:System.Windows.Interop.HwndSource.AddHook%2A>在创建窗口后添加挂钩。  
   
--   透明度设置。 顶级窗口可以配置为与其他 windows 桌面上的每像素透明度根据 blend[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]内容。 若要启用此功能，设置<xref:System.Windows.Interop.HwndSourceParameters.UsesPerPixelOpacity%2A>中的属性<xref:System.Windows.Interop.HwndSourceParameters>到`true`。 此属性只能在构造时，只能通过指定<xref:System.Windows.Interop.HwndSource.%23ctor%28System.Windows.Interop.HwndSourceParameters%29>构造函数签名，并实施几个限制。  
+-   透明度设置。 可以根据[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]内容的每像素透明度, 将顶级窗口配置为与桌面上的其他窗口混合。 若要启用此设置, <xref:System.Windows.Interop.HwndSourceParameters.UsesPerPixelOpacity%2A>请将<xref:System.Windows.Interop.HwndSourceParameters>中的`true`属性设置为。 此属性只能在构造时指定, 并且只能通过<xref:System.Windows.Interop.HwndSource.%23ctor%28System.Windows.Interop.HwndSourceParameters%29>构造函数签名来指定, 并且它会施加一些限制。  
   
- 在填充后<xref:System.Windows.Interop.HwndSourceParameters>结构，请将其传递给<xref:System.Windows.Interop.HwndSource.%23ctor%28System.Windows.Interop.HwndSourceParameters%29>构造函数<xref:System.Windows.Interop.HwndSource>。  
+ 填充<xref:System.Windows.Interop.HwndSourceParameters>结构后, 将其传递<xref:System.Windows.Interop.HwndSource.%23ctor%28System.Windows.Interop.HwndSourceParameters%29>到的<xref:System.Windows.Interop.HwndSource>构造函数。  
   
  **对象生存期**  
   
- <xref:System.Windows.Interop.HwndSource>是一个常规[!INCLUDE[TLA#tla_clr](~/includes/tlasharptla-clr-md.md)]对象，并且其生存期由垃圾回收器。 因为<xref:System.Windows.Interop.HwndSource>表示非托管的资源<xref:System.Windows.Interop.HwndSource>实现<xref:System.IDisposable>。 以同步方式调用<xref:System.Windows.Interop.HwndSource.Dispose%2A>立即销毁[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]窗口，如果从所有者线程中调用。 如果从另一个线程调用[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]以异步方式销毁窗口。 调用<xref:System.Windows.Interop.HwndSource.Dispose%2A>显式互操作代码中可能所需的特定互操作方案。  
+ 是一个常规[!INCLUDE[TLA#tla_clr](~/includes/tlasharptla-clr-md.md)]对象, 其生存期由垃圾回收器管理。 <xref:System.Windows.Interop.HwndSource> 由于表示非托管资源, <xref:System.Windows.Interop.HwndSource>因此实现<xref:System.IDisposable>。 <xref:System.Windows.Interop.HwndSource> 如果从<xref:System.Windows.Interop.HwndSource.Dispose%2A>所有者线程调用[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)] , 则同步调用会立即销毁窗口。 如果从其他线程调用, 则[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]该窗口将异步销毁。 对于<xref:System.Windows.Interop.HwndSource.Dispose%2A>某些互操作方案, 可能需要从互操作代码中显式调用。  
   
  **窗口过程**  
   
- <xref:System.Windows.Interop.HwndSource>类实现其自己的窗口过程。 此窗口过程是用于处理重要的窗口消息，例如那些与布局、 呈现和输入。 但是，你可以将窗口过程挂钩供自己使用。 可以通过设置在构造期间指定您自己的挂钩<xref:System.Windows.Interop.HwndSourceParameters.HwndSourceHook%2A?displayProperty=nameWithType>属性，则您还可以使用<xref:System.Windows.Interop.HwndSource.AddHook%2A>和<xref:System.Windows.Interop.HwndSource.RemoveHook%2A>添加和删除挂钩后创建窗口。 后进先出顺序，这使挂钩内置处理之前执行调用挂钩。 实际挂钩所持有的弱引用。 因此，请确保您管理您的挂钩委托的生存期。  
+ <xref:System.Windows.Interop.HwndSource>类实现其自己的窗口过程。 此窗口过程用于处理重要的窗口消息, 如与布局、呈现和输入相关的消息。 不过, 您也可以挂钩窗口过程以供自己使用。 可以通过设置<xref:System.Windows.Interop.HwndSourceParameters.HwndSourceHook%2A?displayProperty=nameWithType>属性在构造过程中指定自己的挂钩, 也可以在创建窗口后<xref:System.Windows.Interop.HwndSource.RemoveHook%2A>使用<xref:System.Windows.Interop.HwndSource.AddHook%2A>和来添加和删除挂钩。 挂钩按后进先出的顺序调用, 这使得挂钩可以在内置处理之前执行。 实际挂钩由弱引用持有。 因此, 请确保你管理挂钩委托的生存期。  
   
- 有关详细信息<xref:System.Windows.Interop.HwndSource>和其他互操作的类，请参阅[WPF 和 Win32 互操作](~/docs/framework/wpf/advanced/wpf-and-win32-interoperation.md)。  
+ 有关<xref:System.Windows.Interop.HwndSource>和其他互操作类的详细信息, 请参阅[WPF 和 Win32 互操作](~/docs/framework/wpf/advanced/wpf-and-win32-interoperation.md)。  
   
- 请注意如何的构造函数<xref:System.Windows.Interop.HwndSource>采用类似于的参数的参数[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]之类的函数[CreateWindowEx](https://go.microsoft.com/fwlink/?LinkID=98462)。  
+ 请注意, 的构造<xref:System.Windows.Interop.HwndSource>函数如何获取类似于[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]函数的参数的参数, 如[CreateWindowEx](https://go.microsoft.com/fwlink/?LinkID=98462)。  
   
- 缩放转换应不会应用于<xref:System.Windows.Interop.HwndSource.RootVisual%2A>的<xref:System.Windows.Interop.HwndSource>。 请参阅备注<xref:System.Windows.Interop.HwndSource.RootVisual%2A>。  
+ 缩放转换不应应用<xref:System.Windows.Interop.HwndSource.RootVisual%2A>于<xref:System.Windows.Interop.HwndSource>的。 请参阅的<xref:System.Windows.Interop.HwndSource.RootVisual%2A>"备注"。  
   
  ]]></format>
     </remarks>
@@ -96,7 +96,7 @@
 ## Remarks  
   
 > [!IMPORTANT]
->  此方法的 Internet 安全区域中不可用。  
+>  此方法在 Internet 安全区域中不可用。  
   
  ]]></format>
         </remarks>
@@ -125,23 +125,23 @@
       </Parameters>
       <Docs>
         <param name="parameters">包含创建窗口所需的参数的结构。</param>
-        <summary>初始化的新实例<see cref="T:System.Windows.Interop.HwndSource" />类通过使用包含初始设置的结构。</summary>
+        <summary>通过使用包含初始设置的结构初始化 <see cref="T:System.Windows.Interop.HwndSource" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!IMPORTANT]
->  此方法的 Internet 安全区域中不可用。  
+>  此方法在 Internet 安全区域中不可用。  
   
- 此构造函数签名可能会在某些情况下，更方便，因为默认结构包含一些适当的初始默认值。  
+ 在某些情况下, 此构造函数签名可能更为方便, 因为默认结构包含一些适当的初始默认值。  
   
 > [!IMPORTANT]
->  如果使用此签名，不要使用默认值<xref:System.Windows.Interop.HwndSourceParameters>构造函数来构造<xref:System.Windows.Interop.HwndSourceParameters>结构`parameters`值。 必须使用<xref:System.Windows.Interop.HwndSourceParameters>可用于指定初始窗口名称的构造函数。 如果使用默认值<xref:System.Windows.Interop.HwndSourceParameters>构造函数，并创建<xref:System.Windows.Interop.HwndSource>，<xref:System.Windows.Interop.HwndSource>不显示因为初始窗口名称是构造所必需的表示的 HWND。  
+>  如果使用此签名, 请不要使用默认<xref:System.Windows.Interop.HwndSourceParameters>构造函数来<xref:System.Windows.Interop.HwndSourceParameters>构造`parameters`值的结构。 你必须使用<xref:System.Windows.Interop.HwndSourceParameters>构造函数, 该构造函数使你能够指定初始窗口名称。 如果使用默认<xref:System.Windows.Interop.HwndSourceParameters>构造函数, 并使用它<xref:System.Windows.Interop.HwndSource>创建, <xref:System.Windows.Interop.HwndSource>则不会显示, 因为初始窗口名称是所表示的 HWND 的构造要求。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要创建此类的实例。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">创建此类的实例。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -172,25 +172,25 @@
         <Parameter Name="parent" Type="System.IntPtr" />
       </Parameters>
       <Docs>
-        <param name="classStyle">[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]类窗口的样式。</param>
-        <param name="style">[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]窗口样式。</param>
-        <param name="exStyle">扩展[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]窗口样式。</param>
-        <param name="x">窗口的位置的左边缘。</param>
-        <param name="y">窗口的上边缘的位置。</param>
+        <param name="classStyle">窗口的 [!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)] 类样式。</param>
+        <param name="style">窗口的 [!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)] 样式。</param>
+        <param name="exStyle">窗口的扩展 [!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)] 样式。</param>
+        <param name="x">窗口左边缘的位置。</param>
+        <param name="y">窗口上边缘的位置。</param>
         <param name="name">窗口的名称。</param>
         <param name="parent">窗口的父窗口的句柄。</param>
-        <summary>初始化的新实例<see cref="T:System.Windows.Interop.HwndSource" />指定的类样式、 样式、 扩展样式、 x-y 位置、 名称和父窗口类。</summary>
+        <summary>初始化具有指定类样式、样式、扩展样式、x-y 位置、名称和父窗口的 <see cref="T:System.Windows.Interop.HwndSource" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!IMPORTANT]
->  此方法的 Internet 安全区域中不可用。  
+>  此方法在 Internet 安全区域中不可用。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要创建此类的实例。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">创建此类的实例。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -223,27 +223,27 @@
         <Parameter Name="parent" Type="System.IntPtr" />
       </Parameters>
       <Docs>
-        <param name="classStyle">[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]类窗口的样式。</param>
-        <param name="style">[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]窗口样式。</param>
-        <param name="exStyle">扩展[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]窗口样式。</param>
-        <param name="x">窗口的位置的左边缘。</param>
-        <param name="y">窗口的上边缘的位置。</param>
+        <param name="classStyle">窗口的 [!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)] 类样式。</param>
+        <param name="style">窗口的 [!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)] 样式。</param>
+        <param name="exStyle">窗口的扩展 [!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)] 样式。</param>
+        <param name="x">窗口左边缘的位置。</param>
+        <param name="y">窗口上边缘的位置。</param>
         <param name="width">窗口的宽度。</param>
         <param name="height">窗口的高度。</param>
         <param name="name">窗口的名称。</param>
         <param name="parent">窗口的父窗口的句柄。</param>
-        <summary>初始化的新实例<see cref="T:System.Windows.Interop.HwndSource" />指定的类样式、 样式、 扩展样式、 x-y 位置、 宽度、 高度、 名称和父窗口类。</summary>
+        <summary>初始化具有指定类样式、样式、扩展样式、x-y 位置、宽度、高度、名称和父窗口的 <see cref="T:System.Windows.Interop.HwndSource" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!IMPORTANT]
->  此方法的 Internet 安全区域中不可用。  
+>  此方法在 Internet 安全区域中不可用。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要创建此类的实例。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">创建此类的实例。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -277,28 +277,28 @@
         <Parameter Name="adjustSizingForNonClientArea" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="classStyle">[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]类窗口的样式。</param>
-        <param name="style">[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]窗口样式。</param>
-        <param name="exStyle">扩展[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]窗口样式。</param>
-        <param name="x">窗口的位置的左边缘。</param>
-        <param name="y">窗口的上边缘的位置。</param>
+        <param name="classStyle">窗口的 [!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)] 类样式。</param>
+        <param name="style">窗口的 [!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)] 样式。</param>
+        <param name="exStyle">窗口的扩展 [!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)] 样式。</param>
+        <param name="x">窗口左边缘的位置。</param>
+        <param name="y">窗口上边缘的位置。</param>
         <param name="width">窗口的宽度。</param>
         <param name="height">窗口的高度。</param>
         <param name="name">窗口的名称。</param>
         <param name="parent">窗口的父窗口的句柄。</param>
-        <param name="adjustSizingForNonClientArea"><see langword="true" /> 若要使用布局管理器包括调整大小; 非工作区否则为<see langword="false" />。</param>
-        <summary>初始化的新实例<see cref="T:System.Windows.Interop.HwndSource" />类与指定的类样式、 样式、 扩展样式、 x-y 位置、 宽度、 高度、 名称和父窗口，并通过指定窗口是否自动调整大小。</summary>
+        <param name="adjustSizingForNonClientArea">如果布局管理器包含要调整大小的非工作区，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+        <summary>初始化 <see cref="T:System.Windows.Interop.HwndSource" /> 类的新实例，此实例具有指定的类样式、样式、扩展样式、x-y 位置、宽度、高度、名称和父窗口，并且指示了窗口是否自动调整大小。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!IMPORTANT]
->  此方法的 Internet 安全区域中不可用。  
+>  此方法在 Internet 安全区域中不可用。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要创建此类的实例。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">创建此类的实例。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
     <Member MemberName="AcquireHwndFocusInMenuMode">
@@ -322,15 +322,15 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取值，该值确定是否要获取包含此窗口的 wpf 的 Win32 焦点<see cref="T:System.Windows.Interop.HwndSource" />。</summary>
+        <summary>获取一个值，该值确定是否为此 <see cref="T:System.Windows.Interop.HwndSource" /> 获取包含窗口的 WPF 的 Win32 焦点。</summary>
         <value>若要在用户与菜单交互时获取包含窗口的 WPF 的 Win32 焦点，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在创建时设置此值<xref:System.Windows.Interop.HwndSource>通过设置<xref:System.Windows.Interop.HwndSourceParameters.AcquireHwndFocusInMenuMode%2A>参数。  
+ 此值在<xref:System.Windows.Interop.HwndSource>通过<xref:System.Windows.Interop.HwndSourceParameters.AcquireHwndFocusInMenuMode%2A>设置参数创建时设置。  
   
- 默认值由<xref:System.Windows.Interop.HwndSource.DefaultAcquireHwndFocusInMenuMode%2A>属性。  
+ 默认值由<xref:System.Windows.Interop.HwndSource.DefaultAcquireHwndFocusInMenuMode%2A>属性确定。  
   
  ]]></format>
         </remarks>
@@ -361,25 +361,25 @@
         <Parameter Name="hook" Type="System.Windows.Interop.HwndSourceHook" />
       </Parameters>
       <Docs>
-        <param name="hook">处理程序实现 (基于<see cref="T:System.Windows.Interop.HwndSourceHook" />委托)，它接收窗口消息。</param>
-        <summary>添加事件处理程序接收所有窗口消息。</summary>
+        <param name="hook">接收窗口消息的处理程序实现（基于 <see cref="T:System.Windows.Interop.HwndSourceHook" /> 委托）。</param>
+        <summary>添加接收所有窗口消息的事件处理程序。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!IMPORTANT]
->  此方法的 Internet 安全区域中不可用。  
+>  此方法在 Internet 安全区域中不可用。  
   
- 大多数[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]消息在该到达<xref:System.Windows.Interop.HwndSource>有近似[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]等效。 您使用<xref:System.Windows.Interop.HwndSource.AddHook%2A>来处理该消息没有的情况[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]等效。  
+ 到达[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]的<xref:System.Windows.Interop.HwndSource>大多数消息具有近似[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]等效项。 用于<xref:System.Windows.Interop.HwndSource.AddHook%2A>处理消息没有[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]等效项的情况。  
   
- <xref:System.Windows.Interop.HwndSourceHook>委托类似于的参数配置文件[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]主窗口过程。 所有窗口都消息的主窗口过程<xref:System.Windows.Interop.HwndSource>父窗口收到同样会转发到<xref:System.Windows.Interop.HwndSourceHook>委托。  
+ 委托类似于[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]主窗口过程的参数配置文件。 <xref:System.Windows.Interop.HwndSourceHook> <xref:System.Windows.Interop.HwndSource>父窗口的主窗口过程接收的所有窗口消息也将转发<xref:System.Windows.Interop.HwndSourceHook>到委托。  
   
- 它们的添加顺序调用挂钩。 如果任何挂钩返回`handled` = `true`对于消息之后它, 按调用顺序的挂钩不调用该消息。  
+ 挂钩按其添加顺序进行调用。 如果消息的任何`handled`挂钩返回= `true` , 则不会为该消息调用位于调用顺序中的挂钩。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要添加处理。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">添加处理。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
         <altmember cref="T:System.Windows.Interop.HwndSourceHook" />
         <altmember cref="M:System.Windows.Interop.HwndSource.RemoveHook(System.Windows.Interop.HwndSourceHook)" />
       </Docs>
@@ -401,12 +401,12 @@
         <ReturnType>System.Windows.AutoResizedEventHandler</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>当布局导致<see cref="T:System.Windows.Interop.HwndSource" />自动调整大小。</summary>
+        <summary>当布局导致 <see cref="T:System.Windows.Interop.HwndSource" /> 自动调整大小时发生。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 本机行为<xref:System.Windows.Interop.HwndSource>是自动重设大小的内容和更改通过报告所基于的窗口区域[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]布局系统。 如果当前最小化，或如果窗口不会调整大小<xref:System.Windows.Interop.HwndSource.SizeToContent%2A>设置为<xref:System.Windows.SizeToContent.Manual>。  
+ 的本机行为<xref:System.Windows.Interop.HwndSource>是根据通过布局系统报告的[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]更改自动调整内容和窗口区域的大小。 如果窗口当前已最小化或者<xref:System.Windows.Interop.HwndSource.SizeToContent%2A>设置为<xref:System.Windows.SizeToContent.Manual>, 则窗口不会调整大小。  
   
  ]]></format>
         </remarks>
@@ -442,8 +442,8 @@
         <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Windows.Interop.IKeyboardInputSink&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一系列已注册的输入接收器。</summary>
-        <value>枚举的键盘输入接收器。</value>
+        <summary>获取一系列注册的输入接收器。</summary>
+        <value>键盘输入接收器的枚举。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -475,7 +475,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 重写<xref:System.Windows.Interop.HwndSource.GetCompositionTargetCore%2A>若要重写值的<xref:System.Windows.Interop.HwndSource.CompositionTarget%2A>返回。  
+ 重<xref:System.Windows.Interop.HwndSource.GetCompositionTargetCore%2A>写以便重写<xref:System.Windows.Interop.HwndSource.CompositionTarget%2A>返回的值。  
   
  ]]></format>
         </remarks>
@@ -499,15 +499,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>获取窗口句柄<see cref="T:System.Windows.Interop.HwndSource" />。 窗口句柄作为的一部分<see cref="T:System.Runtime.InteropServices.HandleRef" />结构。</summary>
-        <returns>包含此窗口句柄的结构<see cref="T:System.Windows.Interop.HwndSource" />。</returns>
+        <summary>获取 <see cref="T:System.Windows.Interop.HwndSource" /> 的窗口句柄。 此窗口句柄作为 <see cref="T:System.Runtime.InteropServices.HandleRef" /> 结构一部分打包。</summary>
+        <returns>包含此 <see cref="T:System.Windows.Interop.HwndSource" /> 的窗口句柄的结构。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用从获取的句柄<xref:System.Windows.Interop.HwndSource.CreateHandleRef%2A>引用<xref:System.Windows.Interop.HwndSource>从[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]代码。 消息处理和窗口行为等操作中使用的句柄。  
+ 您可以使用从<xref:System.Windows.Interop.HwndSource.CreateHandleRef%2A>获取的句柄<xref:System.Windows.Interop.HwndSource>从[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]代码引用。 使用消息处理和窗口行为等操作的句柄。  
   
- 若要获取只是句柄，请使用<xref:System.Windows.Interop.HwndSource.Handle%2A>。  
+ 若要仅获取句柄, <xref:System.Windows.Interop.HwndSource.Handle%2A>请使用。  
   
  ]]></format>
         </remarks>
@@ -530,17 +530,17 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置的默认<see cref="P:System.Windows.Interop.HwndSource.AcquireHwndFocusInMenuMode" />的新实例的值<see cref="T:System.Windows.Interop.HwndSource" />。</summary>
+        <summary>获取或设置 <see cref="P:System.Windows.Interop.HwndSource.AcquireHwndFocusInMenuMode" /> 的新实例的默认 <see cref="T:System.Windows.Interop.HwndSource" /> 值。</summary>
         <value>若要在用户与菜单交互时获取包含窗口的 WPF 的 Win32 焦点，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新实例<xref:System.Windows.Interop.HwndSource>具有<xref:System.Windows.Interop.HwndSource.AcquireHwndFocusInMenuMode%2A>设置为此默认值，除非一个不同的值作为参数传递给<xref:System.Windows.Interop.HwndSource>特定的实例，通过使用构造函数<xref:System.Windows.Interop.HwndSourceParameters.AcquireHwndFocusInMenuMode%2A>属性。  
+ 的<xref:System.Windows.Interop.HwndSource>新实例已<xref:System.Windows.Interop.HwndSource.AcquireHwndFocusInMenuMode%2A>设置为此默认值, 除非使用<xref:System.Windows.Interop.HwndSourceParameters.AcquireHwndFocusInMenuMode%2A>属性将其他值作为参数传递给特定<xref:System.Windows.Interop.HwndSource>实例的构造函数。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.EnvironmentPermission">若要获取此属性。 关联的枚举： <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
+        <permission cref="T:System.Security.Permissions.EnvironmentPermission">获取此属性。 关联的枚举:<see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
         <altmember cref="P:System.Windows.Interop.HwndSourceParameters.AcquireHwndFocusInMenuMode" />
       </Docs>
     </Member>
@@ -565,18 +565,18 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>释放所有托管的资源，由<see cref="T:System.Windows.Interop.HwndSource" />，并引发<see cref="E:System.Windows.Interop.HwndSource.Disposed" />事件。</summary>
+        <summary>释放 <see cref="T:System.Windows.Interop.HwndSource" /> 使用的所有托管资源，并引发 <see cref="E:System.Windows.Interop.HwndSource.Disposed" /> 事件。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!IMPORTANT]
->  此方法的 Internet 安全区域中不可用。  
+>  此方法在 Internet 安全区域中不可用。  
   
- <xref:System.Windows.Interop.HwndSource.Dispose%2A> 启动相关的 HWND 的清理工作。 如果<xref:System.Windows.Interop.HwndSource.Dispose%2A>调用通过不同于主 UI 线程的线程，直到它可以发送到主 UI 线程可能会延迟清理工作。  
+ <xref:System.Windows.Interop.HwndSource.Dispose%2A>为 HWND 启动相关的清理工作。 如果<xref:System.Windows.Interop.HwndSource.Dispose%2A>是通过与主 ui 线程不同的线程调用的, 则清除工作可能会推迟, 直到可以将其发布到主 ui 线程。  
   
- 调用<xref:System.Windows.Interop.HwndSource.Dispose%2A>显式互操作代码中可能所需的特定互操作方案，因为<xref:System.Windows.Interop.HwndSource>在某些互操作方案中可以生成对它跨互操作边界的多个引用这可能会阻止及时进行垃圾回收。  
+ 对于<xref:System.Windows.Interop.HwndSource.Dispose%2A>某些互操作方案, 可能需要从互操作代码中显式调用, <xref:System.Windows.Interop.HwndSource>因为在某些互操作方案中, 可以跨互操作边界生成多个对它的引用这可能会阻止及时的垃圾回收。  
   
  ]]></format>
         </remarks>
@@ -600,14 +600,14 @@
         <ReturnType>System.EventHandler</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>发生时<see cref="M:System.Windows.Interop.HwndSource.Dispose" />对此对象调用方法。</summary>
+        <summary>对此对象调用 <see cref="M:System.Windows.Interop.HwndSource.Dispose" /> 方法时发生。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Interop.HwndSource.Disposed>通过释放任何资源之前引发事件<xref:System.Windows.Interop.HwndSource>。 <xref:System.Windows.Interop.HwndSource.Disposed>事件指示引发事件的对象即将所有引用了它删除。  
+ 此事件在由释放任何资源之前引发<xref:System.Windows.Interop.HwndSource>。 <xref:System.Windows.Interop.HwndSource.Disposed> 此<xref:System.Windows.Interop.HwndSource.Disposed>事件指示引发事件的对象将要删除对它的所有引用。  
   
- 使用<xref:System.Windows.Interop.HwndSource.Disposed>并<xref:System.Windows.Interop.HwndSource.IsDisposed%2A>属性以避免调用<xref:System.Windows.Interop.HwndSource.Dispose%2A>两次 （这将引发异常）。  
+ 使用<xref:System.Windows.Interop.HwndSource.Disposed> <xref:System.Windows.Interop.HwndSource.Dispose%2A>和属性以避免调用两次 (引发异常)。 <xref:System.Windows.Interop.HwndSource.IsDisposed%2A>  
   
  ]]></format>
         </remarks>
@@ -660,29 +660,29 @@
       </Parameters>
       <Docs>
         <param name="hwnd">提供的窗口句柄。</param>
-        <summary>返回<see cref="T:System.Windows.Interop.HwndSource" />指定窗口的对象。</summary>
-        <returns><see cref="T:System.Windows.Interop.HwndSource" />指定的窗口对象<paramref name="hwnd" />窗口句柄。</returns>
+        <summary>返回指定窗口的 <see cref="T:System.Windows.Interop.HwndSource" /> 对象。</summary>
+        <returns><paramref name="hwnd" /> 窗口句柄指定的窗口的 <see cref="T:System.Windows.Interop.HwndSource" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!IMPORTANT]
->  此方法不可用或部分信任 Internet 安全区域，在一般情况下。  
+>  此方法在 Internet 安全区域中不可用, 或者通常用于部分信任。  
   
- 您可以使用此方法返回<xref:System.Windows.Interop.HwndSource>并不显式互操作的窗口的窗口。 此过程是：  
+ 您可以使用此方法为非显式<xref:System.Windows.Interop.HwndSource>互操作窗口的窗口返回。 此过程的过程如下:  
   
-1.  创建<xref:System.Windows.Interop.WindowInteropHelper>实例 (提供主<xref:System.Windows.Window>作为构造函数参数)。  
+1.  创建实例 (提供 main <xref:System.Windows.Window>作为构造函数参数)。 <xref:System.Windows.Interop.WindowInteropHelper>  
   
-2.  获取的值<xref:System.Windows.Interop.WindowInteropHelper.Handle%2A>属性从的<xref:System.Windows.Interop.WindowInteropHelper>实例。  
+2.  获取该<xref:System.Windows.Interop.WindowInteropHelper.Handle%2A> <xref:System.Windows.Interop.WindowInteropHelper>实例的属性值。  
   
-3.  将该 HWND 值作为参数传递<xref:System.Windows.Interop.HwndSource.FromHwnd%2A>。  
+3.  将该 HWND 值作为参数传递给<xref:System.Windows.Interop.HwndSource.FromHwnd%2A>。  
   
- 此技术很有用，如果随后想要添加常规<xref:System.Windows.Interop.HwndSource.AddHook%2A>消息处理的窗口。 但是，每当创建<xref:System.Windows.Interop.HwndSource>，您也要负责销毁它。 这是 true 即使<xref:System.Windows.Application>应用程序的对象<xref:System.Windows.Interop.HwndSource>被释放。 详细信息，请参阅备注上<xref:System.Windows.Interop.HwndSource>。  
+ 如果您想要将常规<xref:System.Windows.Interop.HwndSource.AddHook%2A>消息处理添加到窗口, 此方法会很有用。 但是, 无论何时创建<xref:System.Windows.Interop.HwndSource>, 都要负责销毁它。 即使释放应用程序<xref:System.Windows.Application> <xref:System.Windows.Interop.HwndSource>的对象, 也是如此。 有关详细信息, 请参阅上<xref:System.Windows.Interop.HwndSource>的备注。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要调用此方法。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
         <altmember cref="T:System.Windows.Interop.WindowInteropHelper" />
       </Docs>
     </Member>
@@ -718,11 +718,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现将返回相同的结果<xref:System.Windows.Interop.HwndSource.CompositionTarget%2A>。  
+ 默认实现返回的结果<xref:System.Windows.Interop.HwndSource.CompositionTarget%2A>与相同。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>实现此方法以返回特定于类型的可视目标。 <see cref="T:System.Windows.Interop.HwndSource" /> 实现此方法以返回<see cref="T:System.Windows.Interop.HwndTarget" />。</para></block>
+        <block subset="none" type="overrides"><para>实现此方法以返回特定于类型的视觉对象。 <see cref="T:System.Windows.Interop.HwndSource" />实现此方法以返回<see cref="T:System.Windows.Interop.HwndTarget" />。</para></block>
         <altmember cref="T:System.Windows.Media.CompositionTarget" />
         <altmember cref="P:System.Windows.Interop.HwndSource.CompositionTarget" />
       </Docs>
@@ -752,7 +752,7 @@
         <ReturnType>System.IntPtr</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取此窗口句柄<see cref="T:System.Windows.Interop.HwndSource" />。</summary>
+        <summary>获取此 <see cref="T:System.Windows.Interop.HwndSource" /> 的窗口句柄。</summary>
         <value>窗口句柄。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -764,7 +764,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要访问此指针。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">访问此指针。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
     <Member MemberName="HasFocusWithinCore">
@@ -785,7 +785,7 @@
       <Parameters />
       <Docs>
         <summary>获取一个值，该值指示接收器或其所包含的组件之一是否具有焦点。</summary>
-        <returns><see langword="true" /> 如果接收器或其所包含的组件之一具有焦点，则否则为<see langword="false" />。</returns>
+        <returns>如果接收器或其所包含的组件之一具有焦点，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <altmember cref="M:System.Windows.Interop.IKeyboardInputSink.HasFocusWithin" />
       </Docs>
@@ -812,13 +812,13 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个值，该值指示是否<see cref="M:System.Windows.Interop.HwndSource.Dispose" />已对此调用<see cref="T:System.Windows.Interop.HwndSource" />。</summary>
-        <value><see langword="true" /> 如果对象已有<see cref="M:System.Windows.Interop.HwndSource.Dispose" />对其调用; 否则为<see langword="false" />。</value>
+        <summary>获取一个值，指示是否已对此 <see cref="M:System.Windows.Interop.HwndSource.Dispose" /> 调用 <see cref="T:System.Windows.Interop.HwndSource" />。</summary>
+        <value>如果已对该对象调用了 <see cref="M:System.Windows.Interop.HwndSource.Dispose" />，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Interop.HwndSource.Dispose%2A> 启动相关的 HWND 的清理工作。 如果<xref:System.Windows.Interop.HwndSource.Dispose%2A>调用通过不同于主 UI 线程的线程，直到它可以发送到主 UI 线程可能会延迟清理工作。 <xref:System.Windows.Interop.HwndSource.Disposed>引发事件和的值<xref:System.Windows.Interop.HwndSource.IsDisposed%2A>变得`false`只要<xref:System.Windows.Interop.HwndSource.Dispose%2A>调用。 在此期间，如果您调用<xref:System.Windows.Interop.HwndSource.Dispose%2A>同样，<xref:System.Windows.Interop.HwndSource.Dispose%2A>引发异常。  
+ <xref:System.Windows.Interop.HwndSource.Dispose%2A>为 HWND 启动相关的清理工作。 如果<xref:System.Windows.Interop.HwndSource.Dispose%2A>是通过与主 ui 线程不同的线程调用的, 则清除工作可能会推迟, 直到可以将其发布到主 ui 线程。 引发事件, 并在调用后立即<xref:System.Windows.Interop.HwndSource.IsDisposed%2A> <xref:System.Windows.Interop.HwndSource.Dispose%2A>变为`false`的值。 <xref:System.Windows.Interop.HwndSource.Disposed> 在这段时间内, 如果<xref:System.Windows.Interop.HwndSource.Dispose%2A>再次调用<xref:System.Windows.Interop.HwndSource.Dispose%2A> , 将引发异常。  
   
  ]]></format>
         </remarks>
@@ -849,10 +849,10 @@
         <ReturnType>System.Windows.Interop.IKeyboardInputSite</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置对组件的容器的引用<see cref="T:System.Windows.Interop.IKeyboardInputSite" />接口。</summary>
-        <value>对容器的引用<see cref="T:System.Windows.Interop.IKeyboardInputSite" />接口; 或<see langword="null" />如果没有站点分配。 默认值为 <see langword="null" />。</value>
+        <summary>获取或设置对组件容器的 <see cref="T:System.Windows.Interop.IKeyboardInputSite" /> 接口的引用。</summary>
+        <value>对容器的 <see cref="T:System.Windows.Interop.IKeyboardInputSite" /> 接口的引用；或者，如果未分配站点，则为 <see langword="null" />。 默认值为 <see langword="null" />。</value>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要设置此属性。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">若要设置此属性, 则为。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
         <altmember cref="P:System.Windows.Interop.IKeyboardInputSink.KeyboardInputSite" />
       </Docs>
     </Member>
@@ -889,7 +889,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果用户处理此事件，WPF 可伸缩性的所有视觉对象。  
+ 如果用户处理此事件, 则 WPF 不会缩放任何视觉对象。  
   
 > [!IMPORTANT]
 >  此方法访问关键数据<xref:System.Windows.Interop.HwndTarget>。  
@@ -925,11 +925,11 @@
       <Docs>
         <param name="msg">助记键和关联数据的消息。</param>
         <param name="modifiers">修改键。</param>
-        <summary>调用此接收器的助记键 （访问键） 之一时调用。</summary>
+        <summary>调用此接收器的助记键（访问键）之一时调用。</summary>
         <returns>如果消息已处理，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="msg" /> 不是 WM_KEYDOWN、 WM_SYSKEYDOWN、 WM_CHAR 或 WM_DEADCHAR。</exception>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要调用此方法。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <exception cref="T:System.ArgumentException"><paramref name="msg" /> 不是 WM_KEYDOWN、WM_SYSKEYDOWN、WM_CHAR 或 WM_DEADCHAR。</exception>
+        <permission cref="T:System.Security.Permissions.UIPermission">调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
         <altmember cref="M:System.Windows.Interop.IKeyboardInputSink.OnMnemonic(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />
       </Docs>
     </Member>
@@ -957,11 +957,11 @@
         <Parameter Name="sink" Type="System.Windows.Interop.IKeyboardInputSink" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
-        <param name="sink"><see cref="T:System.Windows.Interop.IKeyboardInputSink" />所包含组件的接收器。</param>
-        <summary>注册<see cref="T:System.Windows.Interop.IKeyboardInputSink" />包含组件的接口。</summary>
-        <returns><see cref="T:System.Windows.Interop.IKeyboardInputSite" />所包含组件的站点。</returns>
+        <param name="sink">所包含组件的 <see cref="T:System.Windows.Interop.IKeyboardInputSink" /> 接收器。</param>
+        <summary>注册所包含组件的 <see cref="T:System.Windows.Interop.IKeyboardInputSink" /> 接口。</summary>
+        <returns>所包含组件的 <see cref="T:System.Windows.Interop.IKeyboardInputSite" /> 站点。</returns>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要调用此方法。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
         <altmember cref="M:System.Windows.Interop.IKeyboardInputSink.RegisterKeyboardInputSink(System.Windows.Interop.IKeyboardInputSink)" />
       </Docs>
     </Member>
@@ -991,18 +991,18 @@
       </Parameters>
       <Docs>
         <param name="hook">要移除的事件处理程序。</param>
-        <summary>删除已添加的事件处理程序<see cref="M:System.Windows.Interop.HwndSource.AddHook(System.Windows.Interop.HwndSourceHook)" />。</summary>
+        <summary>移除 <see cref="M:System.Windows.Interop.HwndSource.AddHook(System.Windows.Interop.HwndSourceHook)" /> 已添加的事件处理程序。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!IMPORTANT]
->  此方法的 Internet 安全区域中不可用。  
+>  此方法在 Internet 安全区域中不可用。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要删除处理程序。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">删除处理程序。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
         <altmember cref="M:System.Windows.Interop.HwndSource.AddHook(System.Windows.Interop.HwndSourceHook)" />
         <altmember cref="T:System.Windows.Interop.HwndSourceHook" />
       </Docs>
@@ -1028,13 +1028,13 @@
         <ReturnType>System.Windows.Input.RestoreFocusMode</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.Windows.Input.RestoreFocusMode" />窗口。</summary>
-        <value><see cref="T:System.Windows.Input.RestoreFocusMode" />窗口。</value>
+        <summary>获取窗口的 <see cref="T:System.Windows.Input.RestoreFocusMode" />。</summary>
+        <value>窗口的 <see cref="T:System.Windows.Input.RestoreFocusMode" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以设置此属性仅在<xref:System.Windows.Interop.HwndSource.%23ctor%28System.Windows.Interop.HwndSourceParameters%29?displayProperty=nameWithType>构造函数中的使用<xref:System.Windows.Interop.HwndSourceParameters.RestoreFocusMode%2A?displayProperty=nameWithType>属性。  
+ 仅可通过<xref:System.Windows.Interop.HwndSource.%23ctor%28System.Windows.Interop.HwndSourceParameters%29?displayProperty=nameWithType> <xref:System.Windows.Interop.HwndSourceParameters.RestoreFocusMode%2A?displayProperty=nameWithType>使用属性在构造函数中设置此属性。  
   
  ]]></format>
         </remarks>
@@ -1065,21 +1065,21 @@
         <ReturnType>System.Windows.Media.Visual</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置<see cref="P:System.Windows.Media.CompositionTarget.RootVisual" />的窗口。</summary>
+        <summary>获取或设置窗口的 <see cref="P:System.Windows.Media.CompositionTarget.RootVisual" />。</summary>
         <value>窗口的根可视化对象。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性用于连接<xref:System.Windows.Controls.Page>或另一个根视觉效果<xref:System.Windows.Interop.HwndSource>。  
+ 使用此属性可将<xref:System.Windows.Controls.Page>或另一个根视觉对象连接<xref:System.Windows.Interop.HwndSource>到。  
   
- 缩放转换应不会应用于<xref:System.Windows.Interop.HwndSource.RootVisual%2A>的<xref:System.Windows.Interop.HwndSource>因为这可以禁用<xref:System.Windows.Interop.HwndSource.SizeToContent%2A>行为。 缩放内容，但封闭窗口不会。 而不是应用于对象，则转换<xref:System.Windows.Interop.HwndSource.RootVisual%2A>，将转换应用到一个对象，它的子元素<xref:System.Windows.Interop.HwndSource.RootVisual%2A>。 可能需要添加额外的封闭元素到[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]内容，如面板，以提供可缩放的对象。  
+ 缩放转换不应应用于<xref:System.Windows.Interop.HwndSource.RootVisual%2A> <xref:System.Windows.Interop.HwndSource>的, 因为这样可以禁用<xref:System.Windows.Interop.HwndSource.SizeToContent%2A>行为。 内容将会缩放, 但封闭窗口将不会。 将转换应用到作为的子元素<xref:System.Windows.Interop.HwndSource.RootVisual%2A> <xref:System.Windows.Interop.HwndSource.RootVisual%2A>的对象, 而不是将转换应用于对象。 为了提供可缩放的对象, 你可能需要将[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]额外的封闭元素添加到内容 (如面板)。  
   
- 您可以添加<xref:System.Windows.Window>作为根视觉对象，但仅作为顶级窗口 （包含 WS_OVERLAPPED)，而不是子窗口。  
+ 可以添加<xref:System.Windows.Window>作为根视觉对象, 但仅作为顶级窗口 (使用 WS_OVERLAPPED), 而不是作为子窗口。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要设置此属性。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">若要设置此属性, 则为。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
         <altmember cref="P:System.Windows.Interop.HwndTarget.RootVisual" />
       </Docs>
     </Member>
@@ -1100,15 +1100,15 @@
         <ReturnType>System.Windows.SizeToContent</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置窗口是否以及如何将其内容调整大小。</summary>
-        <value>枚举值之一。 默认值是<see cref="F:System.Windows.SizeToContent.Manual" />，它指定窗口未设置其内容大小。</value>
+        <summary>获取或设置窗口是否根据其内容调整大小以及如何调整大小。</summary>
+        <value>枚举值之一。 默认值为 <see cref="F:System.Windows.SizeToContent.Manual" />，它指定窗口不会根据内容调整大小。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 最终用户可能间接设置此属性通过应用程序 UI 中，如果该应用程序公开功能。  
+ 如果应用程序公开此功能, 则最终用户可以通过应用程序 UI 间接设置此属性。  
   
- 缩放转换应不会应用于<xref:System.Windows.Interop.HwndSource.RootVisual%2A>的<xref:System.Windows.Interop.HwndSource>，因为这可以禁用<xref:System.Windows.Interop.HwndSource.SizeToContent%2A>行为。 请参阅备注<xref:System.Windows.Interop.HwndSource.RootVisual%2A>。  
+ 缩放转换不应应用<xref:System.Windows.Interop.HwndSource.RootVisual%2A>于<xref:System.Windows.Interop.HwndSource>的, 因为这样可以禁用<xref:System.Windows.Interop.HwndSource.SizeToContent%2A>行为。 请参阅的<xref:System.Windows.Interop.HwndSource.RootVisual%2A>"备注"。  
   
  ]]></format>
         </remarks>
@@ -1137,7 +1137,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Interop.HwndSource.SizeToContentChanged>用户交互导致更改时才引发事件。 如果您设置<xref:System.Windows.Window.SizeToContent%2A>在代码中，<xref:System.Windows.Interop.HwndSource.SizeToContentChanged>不会引发事件。  
+ 仅当用户交互导致更改时才引发事件。<xref:System.Windows.Interop.HwndSource.SizeToContentChanged> 如果您在<xref:System.Windows.Window.SizeToContent%2A>代码中设置<xref:System.Windows.Interop.HwndSource.SizeToContentChanged> , 则不会引发事件。  
   
  ]]></format>
         </remarks>
@@ -1171,7 +1171,7 @@
       <Parameters />
       <Docs>
         <summary>有关此成员的说明，请参见 <see cref="M:System.Windows.Media.FamilyTypefaceCollection.System#Collections#IList#Remove(System.Object)" />。</summary>
-        <returns><see langword="true" /> 如果接收器或其所包含的组件之一具有焦点，则否则为<see langword="false" />。</returns>
+        <returns>如果接收器或其所包含的组件之一具有焦点，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1217,7 +1217,7 @@
       </ReturnValue>
       <Docs>
         <summary>有关此成员的说明，请参见 <see cref="P:System.Windows.Interop.IKeyboardInputSink.KeyboardInputSite" />。</summary>
-        <value>对容器的引用<see cref="T:System.Windows.Interop.IKeyboardInputSite" />接口。</value>
+        <value>对容器的 <see cref="T:System.Windows.Interop.IKeyboardInputSite" /> 接口的引用。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1226,7 +1226,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">若要设置此属性。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">若要设置此属性, 则为。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <related type="Article" href="https://msdn.microsoft.com/library/0ffbde0d-701d-45a3-a6fa-dd71f4d9772e">WPF 和 Win32 互操作概述</related>
         <related type="Article" href="https://msdn.microsoft.com/library/ee5258b7-6567-415a-9b1c-c0cbe46e79ef">输入概述</related>
       </Docs>
@@ -1265,7 +1265,7 @@
         <Parameter Name="modifiers" Type="System.Windows.Input.ModifierKeys" />
       </Parameters>
       <Docs>
-        <param name="msg">助记键和关联数据的消息。 不要修改此消息结构。 它是通过出于性能原因仅引用进行传递。</param>
+        <param name="msg">助记键和关联数据的消息。 请勿修改此消息结构。 仅由于性能原因，通过引用来传递此消息。</param>
         <param name="modifiers">修改键。</param>
         <summary>有关此成员的说明，请参见 <see cref="M:System.Windows.Interop.IKeyboardInputSink.OnMnemonic(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />。</summary>
         <returns>如果消息已处理，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
@@ -1309,9 +1309,9 @@
         <Parameter Name="sink" Type="System.Windows.Interop.IKeyboardInputSink" />
       </Parameters>
       <Docs>
-        <param name="sink"><see cref="T:System.Windows.Interop.IKeyboardInputSink" />所包含组件的接收器。</param>
+        <param name="sink">所包含组件的 <see cref="T:System.Windows.Interop.IKeyboardInputSink" /> 接收器。</param>
         <summary>有关此成员的说明，请参见 <see cref="M:System.Windows.Interop.IKeyboardInputSink.RegisterKeyboardInputSink(System.Windows.Interop.IKeyboardInputSink)" />。</summary>
-        <returns><see cref="T:System.Windows.Interop.IKeyboardInputSite" />所包含组件的站点。</returns>
+        <returns>所包含组件的 <see cref="T:System.Windows.Interop.IKeyboardInputSite" /> 站点。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1320,7 +1320,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要调用此方法。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
     <Member MemberName="System.Windows.Interop.IKeyboardInputSink.TabInto">
@@ -1345,9 +1345,9 @@
         <Parameter Name="request" Type="System.Windows.Input.TraversalRequest" />
       </Parameters>
       <Docs>
-        <param name="request">指定是否应将焦点设置到第一项或最后一个制表位。</param>
+        <param name="request">指定是将焦点设置到第一个制表位，还是设置到最后一个制表位。</param>
         <summary>有关此成员的说明，请参见 <see cref="M:System.Windows.Interop.IKeyboardInputSink.TabInto(System.Windows.Input.TraversalRequest)" />。</summary>
-        <returns><see langword="true" /> 如果焦点已设为，请求;<see langword="false" />，如果没有制表位。</returns>
+        <returns>如果已按要求对焦点进行了设置，则为 <see langword="true" />；如果没有制表位，则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1356,7 +1356,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要调用此方法。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
     <Member MemberName="System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator">
@@ -1393,10 +1393,10 @@
         <Parameter Name="modifiers" Type="System.Windows.Input.ModifierKeys" />
       </Parameters>
       <Docs>
-        <param name="msg">消息和相关联的数据。 不要修改此结构。 它是通过出于性能原因仅引用进行传递。</param>
+        <param name="msg">消息及关联数据。 请勿修改此结构。 仅由于性能原因，通过引用来传递此消息。</param>
         <param name="modifiers">修改键。</param>
         <summary>有关此成员的说明，请参见 <see cref="M:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />。</summary>
-        <returns><see langword="true" /> 如果消息已由该方法的实现;否则为<see langword="false" />。</returns>
+        <returns>如果方法实现对该消息进行了处理，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1405,7 +1405,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">若要调用此方法。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
     <Member MemberName="System.Windows.Interop.IKeyboardInputSink.TranslateChar">
@@ -1442,10 +1442,10 @@
         <Parameter Name="modifiers" Type="System.Windows.Input.ModifierKeys" />
       </Parameters>
       <Docs>
-        <param name="msg">消息和相关联的数据。 不要修改此结构。 它是通过出于性能原因仅引用进行传递。</param>
+        <param name="msg">消息及关联数据。 请勿修改此结构。 仅由于性能原因，通过引用来传递此消息。</param>
         <param name="modifiers">修改键。</param>
         <summary>有关此成员的说明，请参见 <see cref="M:System.Windows.Interop.IKeyboardInputSink.TranslateChar(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />。</summary>
-        <returns><see langword="true" /> 如果消息已处理，并<see cref="M:System.Windows.Interop.IKeyboardInputSink.OnMnemonic(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />被调用; 否则为不应为<see langword="false" />。</returns>
+        <returns>如果消息已处理并且不应调用 <see cref="M:System.Windows.Interop.IKeyboardInputSink.OnMnemonic(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1475,9 +1475,9 @@
         <Parameter Name="request" Type="System.Windows.Input.TraversalRequest" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
-        <param name="request">指定是否应将焦点设置到第一项或最后一个制表位。</param>
-        <summary>将焦点设置在第一个制表位或接收器的最后一个制表位。</summary>
-        <returns><see langword="true" /> 如果焦点已设为，请求;<see langword="false" />，如果没有制表位。</returns>
+        <param name="request">指定是将焦点设置到第一个制表位，还是设置到最后一个制表位。</param>
+        <summary>在接收器的第一个制表位或最后一个制表位上设置焦点。</summary>
+        <returns>如果已按要求对焦点进行了设置，则为 <see langword="true" />；如果没有制表位，则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="request" /> 为 <see langword="null" />。</exception>
         <altmember cref="M:System.Windows.Interop.IKeyboardInputSink.TabInto(System.Windows.Input.TraversalRequest)" />
@@ -1508,12 +1508,12 @@
         <Parameter Name="modifiers" Type="System.Windows.Input.ModifierKeys" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
-        <param name="msg">消息和相关联的数据。 不要修改此结构。 它是通过出于性能原因仅引用进行传递。</param>
+        <param name="msg">消息及关联数据。 请勿修改此结构。 仅由于性能原因，通过引用来传递此消息。</param>
         <param name="modifiers">修改键。</param>
-        <summary>处理键按下消息级别的键盘输入。</summary>
-        <returns><see langword="true" /> 如果消息已由该方法的实现;否则为<see langword="false" />。</returns>
+        <summary>在键按下消息级处理键盘输入。</summary>
+        <returns>如果方法实现对该消息进行了处理，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要调用此方法。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
         <altmember cref="M:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />
       </Docs>
     </Member>
@@ -1542,12 +1542,12 @@
         <Parameter Name="modifiers" Type="System.Windows.Input.ModifierKeys" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
-        <param name="msg">消息和相关联的数据。 不要修改此结构。 它是通过出于性能原因仅引用进行传递。</param>
+        <param name="msg">消息及关联数据。 请勿修改此结构。 仅由于性能原因，通过引用来传递此消息。</param>
         <param name="modifiers">修改键。</param>
-        <summary>处理 WM_CHAR、 WM_SYSCHAR、 WM_DEADCHAR 和 WM_SYSDEADCHAR 输入的消息之前<see cref="M:System.Windows.Interop.IKeyboardInputSink.OnMnemonic(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />调用方法。</summary>
-        <returns><see langword="true" /> 如果消息已处理，并<see cref="M:System.Windows.Interop.IKeyboardInputSink.OnMnemonic(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />被调用; 否则为不应为<see langword="false" />。</returns>
+        <summary>在调用 <see cref="M:System.Windows.Interop.IKeyboardInputSink.OnMnemonic(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" /> 方法之前处理 WM_CHAR、WM_SYSCHAR、WM_DEADCHAR 和 WM_SYSDEADCHAR 输入消息。</summary>
+        <returns>如果消息已处理并且不应调用 <see cref="M:System.Windows.Interop.IKeyboardInputSink.OnMnemonic(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要调用此方法。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
     <Member MemberName="UsesPerPixelOpacity">
@@ -1573,12 +1573,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取一个值，该值声明是否遵守源窗口内容的每像素不透明度。</summary>
-        <value><see langword="true" /> 如果系统使用每像素不透明度;否则为<see langword="false" />。</value>
+        <value>如果系统使用每像素不透明度，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果启用每像素不透明度，系统将不再绘制非工作区。 这是因为的预期的用途<xref:System.Windows.Interop.HwndSource.UsesPerPixelOpacity%2A>是要在互操作方案中显示非矩形顶级 UI。 因此，此目的，显示矩形的非工作区失败。  
+ 启用每像素不透明度时, 系统不再绘制非工作区。 这是因为的目标<xref:System.Windows.Interop.HwndSource.UsesPerPixelOpacity%2A>是显示可在互操作方案中使用的非矩形顶级 UI。 因此, 显示矩形非工作区的情况将违背此目的。  
   
  ]]></format>
         </remarks>

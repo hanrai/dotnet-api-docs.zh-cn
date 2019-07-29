@@ -1,5 +1,5 @@
 <Type Name="SqlAuthenticationProvider" FullName="System.Data.SqlClient.SqlAuthenticationProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="72af0aef52329d66634787e3a2842c984936183c" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63890533" /></Metadata><TypeSignature Language="C#" Value="public abstract class SqlAuthenticationProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="3f9a804821a08aca2e70b13eabdd425dacbc8ff3" /><Meta Name="ms.sourcegitcommit" Value="e7974886b08aa83a8fb461e8550f31a7d4331ee3" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/23/2019" /><Meta Name="ms.locfileid" Value="68395709" /></Metadata><TypeSignature Language="C#" Value="public abstract class SqlAuthenticationProvider" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit SqlAuthenticationProvider extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Data.SqlClient.SqlAuthenticationProvider" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class SqlAuthenticationProvider" />
@@ -15,7 +15,7 @@
   <Interfaces />
   <Docs>
     <summary>定义验证提供程序的核心行为，并为派生类提供基类。</summary>
-    <remarks>如果可以从 app.config 文件进行实例化派生的类必须提供默认构造函数。</remarks>
+    <remarks>派生类必须提供一个无参数的构造函数, 前提是这些类可从 app.config 文件实例化。</remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -81,7 +81,7 @@
       <Docs>
         <param name="authenticationMethod">身份验证方法。</param>
         <summary>调用此方法后立即在 SQL 驱动程序注册表中添加提供程序。</summary>
-        <remarks>请勿使用此方法中，执行长时间等待任务，因为这会阻止其他线程访问提供程序注册表。</remarks>
+        <remarks>请避免在此方法中执行长时间等待的任务, 因为这会阻止其他线程访问提供程序注册表。</remarks>
       </Docs>
     </Member>
     <Member MemberName="BeforeUnload">
@@ -105,7 +105,7 @@
       <Docs>
         <param name="authenticationMethod">身份验证方法。</param>
         <summary>调用此方法后立即从 SQL 驱动程序注册表中删除提供程序。</summary>
-        <remarks>例如，在不同的提供程序使用相同的身份验证方法重写此提供程序在 SQL 驱动程序注册表中的时，被调用此方法。 请勿使用此方法中，执行长时间等待任务，因为这会阻止其他线程访问提供程序注册表。</remarks>
+        <remarks>例如, 当具有相同身份验证方法的不同提供程序在 SQL 驱动程序注册表中覆盖此访问接口时, 将调用此方法。 避免在此方法中执行长时间等待的任务, 因为这会阻止其他线程访问提供程序注册表。</remarks>
       </Docs>
     </Member>
     <Member MemberName="GetProvider">

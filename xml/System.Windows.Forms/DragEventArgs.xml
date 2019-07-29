@@ -21,37 +21,37 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>提供数据<see cref="E:System.Windows.Forms.Control.DragDrop" />， <see cref="E:System.Windows.Forms.Control.DragEnter" />，或<see cref="E:System.Windows.Forms.Control.DragOver" />事件。</summary>
+    <summary>为 <see cref="E:System.Windows.Forms.Control.DragDrop" />、<see cref="E:System.Windows.Forms.Control.DragEnter" /> 或 <see cref="E:System.Windows.Forms.Control.DragOver" /> 事件提供数据。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.Control.DragDrop>用户通过将对象拖到控件上方，然后，通过释放鼠标按钮，将它放到控件上完成拖放操作时发生事件。 <xref:System.Windows.Forms.Control.DragEnter>当用户在拖动鼠标的对象的同时移动鼠标指针拖动到控件上的发生的事件。 <xref:System.Windows.Forms.Control.DragOver>用户拖动鼠标的对象时将鼠标指针移到控件上方时发生事件。  
+ 当<xref:System.Windows.Forms.Control.DragDrop>用户通过将对象拖到控件上并通过释放鼠标按钮将其放到控件上来完成拖放操作时发生该事件。 当<xref:System.Windows.Forms.Control.DragEnter>用户将鼠标指针移到控件上并使用鼠标拖动对象时, 会发生该事件。 当<xref:System.Windows.Forms.Control.DragOver>用户将鼠标指针移到控件上并使用鼠标拖动对象时, 会发生该事件。  
   
- 一个<xref:System.Windows.Forms.DragEventArgs>对象指定与此事件关联的任何数据; SHIFT、 CTRL 和 ALT 键的当前状态; 鼠标指针; 的位置，以及源和目标的拖动事件允许拖放效果。  
+ <xref:System.Windows.Forms.DragEventArgs>对象指定与此事件相关联的任何数据、SHIFT、CTRL 和 ALT 键的当前状态、鼠标指针的位置以及拖动事件的源和目标所允许的拖放效果。  
   
- 有关事件模型的信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关事件模型的信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的示例演示两个之间拖放操作<xref:System.Windows.Forms.ListBox>控件。 此示例调用<xref:System.Windows.Forms.Control.DoDragDrop%2A>当拖动操作开始时的方法。 如果已移动鼠标拖动操作启动多个<xref:System.Windows.Forms.SystemInformation.DragSize%2A?displayProperty=nameWithType>鼠标位置在从<xref:System.Windows.Forms.Control.MouseDown>事件。 <xref:System.Windows.Forms.ListBox.IndexFromPoint%2A>方法用于确定要在拖动的项的索引`MouseDown`事件。  
+ 下面的示例演示两个<xref:System.Windows.Forms.ListBox>控件之间的拖放操作。 该示例在拖动<xref:System.Windows.Forms.Control.DoDragDrop%2A>操作开始时调用方法。 如果在<xref:System.Windows.Forms.SystemInformation.DragSize%2A?displayProperty=nameWithType> <xref:System.Windows.Forms.Control.MouseDown>事件过程中鼠标移动了多个鼠标位置, 则拖动操作将启动。 方法用于确定`MouseDown`事件期间要拖动的项的索引。 <xref:System.Windows.Forms.ListBox.IndexFromPoint%2A>  
   
- 示例还演示如何使用自定义光标拖放操作。 该示例假定两个光标文件`3dwarro.cur`和`3dwno.cur`、 存在于应用程序目录，用于自定义拖动和不可拖动光标，分别。 如果将使用自定义光标`UseCustomCursorsCheck`<xref:System.Windows.Forms.CheckBox>检查。 在中设置自定义光标<xref:System.Windows.Forms.Control.GiveFeedback>事件处理程序。  
+ 该示例还演示了如何对拖放操作使用自定义光标。 该示例假定应用程序目录中有`3dwarro.cur`两`3dwno.cur`个光标文件, 分别用于自定义的拖放游标和非删除光标。 `UseCustomCursorsCheck` 如果<xref:System.Windows.Forms.CheckBox>选中, 则将使用自定义光标。 自定义游标是在<xref:System.Windows.Forms.Control.GiveFeedback>事件处理程序中设置的。  
   
- 键盘状态进行评估<xref:System.Windows.Forms.Control.DragOver>事件处理程序的权利`ListBox`，以确定拖动操作将是根据 SHIFT、 CTRL、 ALT 或 CTRL + ALT 键的状态。 中的位置`ListBox`期间还确定发生下拉`DragOver`事件。 如果要删除的数据不是`String`，则<xref:System.Windows.Forms.DragEventArgs.Effect%2A?displayProperty=nameWithType>设置为<xref:System.Windows.Forms.DragDropEffects.None?displayProperty=nameWithType>。 最后，在显示状态的下拉`DropLocationLabel` <xref:System.Windows.Forms.Label>。  
+ 键盘状态在右侧<xref:System.Windows.Forms.Control.DragOver> `ListBox`的事件处理程序中进行计算, 以根据 SHIFT、ctrl、ALT 或 ctrl + ALT 键确定拖动操作的状态。 此`ListBox` 事件`DragOver`期间也会确定放置过程中的位置。 如果要删除的数据不`String`是, <xref:System.Windows.Forms.DragEventArgs.Effect%2A?displayProperty=nameWithType>则将设置为<xref:System.Windows.Forms.DragDropEffects.None?displayProperty=nameWithType>。 最后, 放置的状态显示在中`DropLocationLabel`。 <xref:System.Windows.Forms.Label>  
   
- 若要删除的权利的数据`ListBox`在中确定<xref:System.Windows.Forms.Control.DragDrop>事件处理程序和`String`值中的适当位置添加`ListBox`。 如果拖动操作移动边界以外的窗体，则在取消拖放操作<xref:System.Windows.Forms.Control.QueryContinueDrag>事件处理程序。  
+ 要`ListBox`放置给权限的数据<xref:System.Windows.Forms.Control.DragDrop>在事件处理程序中确定, 并`String`将值添加到中`ListBox`的适当位置。 如果拖动操作移到窗体的边界之外, 则会在<xref:System.Windows.Forms.Control.QueryContinueDrag>事件处理程序中取消拖放操作。  
   
- 这段代码摘录演示了如何使用<xref:System.Windows.Forms.DragEventArgs>类。 请参阅<xref:System.Windows.Forms.Control.DoDragDrop%2A>完整的代码示例的方法。  
+ 此代码摘录演示了如何<xref:System.Windows.Forms.DragEventArgs>使用类。 有关完整的代码示例, 请参阅方法。<xref:System.Windows.Forms.Control.DoDragDrop%2A>  
   
  [!code-cpp[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/CPP/form1.cpp#4)]
  [!code-csharp[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/CS/form1.cs#4)]
  [!code-vb[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/visualbasic/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/VB/form1.vb#4)]  
   
- 下面的示例演示如何<xref:System.Windows.Forms.DragEventArgs>源和拖放操作的目标之间传递。 在此示例中，<xref:System.Windows.Forms.ListBox>控件是数据源和<xref:System.Windows.Forms.RichTextBox>控件是目标。 该示例假定<xref:System.Windows.Forms.ListBox>控件填充有效的文件名的列表。 当用户拖动一个从显示的文件名<xref:System.Windows.Forms.ListBox>控件拖动到<xref:System.Windows.Forms.RichTextBox>控件，在文件名中所引用的文件打开。  
+ 下面的示例演示如何<xref:System.Windows.Forms.DragEventArgs>在拖放操作的源和目标之间传递。 在此示例中, <xref:System.Windows.Forms.ListBox>控件是数据源, <xref:System.Windows.Forms.RichTextBox>控件是目标。 该示例假设<xref:System.Windows.Forms.ListBox>已使用有效文件名的列表填充了控件。 当用户将其中一个显示的文件名从<xref:System.Windows.Forms.ListBox>控件拖动<xref:System.Windows.Forms.RichTextBox>到控件上时, 将打开文件名中引用的文件。  
   
- 在启动操作<xref:System.Windows.Forms.ListBox>控件的鼠标按下事件。 在中<xref:System.Windows.Forms.RichTextBox.DragEnter>事件处理程序，该示例使用<xref:System.Windows.Forms.IDataObject.GetDataPresent%2A>方法以验证数据的格式，<xref:System.Windows.Forms.RichTextBox>控件可以显示，然后设置<xref:System.Windows.Forms.DragDropEffects>属性来指定该数据应从源代码管理复制到目标控件。 最后，<xref:System.Windows.Forms.RichTextBox>控件的拖放事件处理程序使用<xref:System.Windows.Forms.IDataObject.GetData%2A>方法来检索要打开的文件名。  
+ 在<xref:System.Windows.Forms.ListBox>控件的 MouseDown 事件中启动该操作。 在事件处理程序中, 该示例<xref:System.Windows.Forms.IDataObject.GetDataPresent%2A>使用方法来验证数据是否为<xref:System.Windows.Forms.RichTextBox>控件可以显示的格式, 然后设置<xref:System.Windows.Forms.DragDropEffects>属性以指定应从源控件复制数据<xref:System.Windows.Forms.RichTextBox.DragEnter>目标控件。 最后, <xref:System.Windows.Forms.RichTextBox>控件的 system.windows.dragdrop.drop> 事件处理程序<xref:System.Windows.Forms.IDataObject.GetData%2A>使用方法来检索要打开的文件名。  
   
  [!code-cpp[RichTextDragDrop#1](~/samples/snippets/cpp/VS_Snippets_Winforms/RichTextDragDrop/CPP/form1.cpp#1)]
  [!code-csharp[RichTextDragDrop#1](~/samples/snippets/csharp/VS_Snippets_Winforms/RichTextDragDrop/CS/form1.cs#1)]
@@ -98,8 +98,8 @@
       <Docs>
         <param name="data">与此事件关联的数据。</param>
         <param name="keyState">Shift、Ctrl 和 Alt 键的当前状态。</param>
-        <param name="x">以像素为单位鼠标光标 x 坐标。</param>
-        <param name="y">以像素为单位鼠标光标 y 坐标。</param>
+        <param name="x">鼠标光标的 X 坐标（以像素为单位）。</param>
+        <param name="y">鼠标光标的 Y 坐标（以像素为单位）。</param>
         <param name="allowedEffect"><see cref="T:System.Windows.Forms.DragDropEffects" /> 值之一。</param>
         <param name="effect"><see cref="T:System.Windows.Forms.DragDropEffects" /> 值之一。</param>
         <summary>初始化 <see cref="T:System.Windows.Forms.DragEventArgs" /> 类的新实例。</summary>
@@ -137,22 +137,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当控件通过调用来启动拖放操作<xref:System.Windows.Forms.Control.DoDragDrop%2A?displayProperty=nameWithType>方法，它指定可允许该操作的效果。 例如，当您将文件从一个源，如果文件是只读的 （或者从只读存储媒体，如 CD），源将指示可以复制但不是传输到目标文件。  
+ 当控件通过调用<xref:System.Windows.Forms.Control.DoDragDrop%2A?displayProperty=nameWithType>方法启动拖放操作时, 它指定操作的允许效果。 例如, 当您从源拖动某个文件时, 如果该文件是只读的 (或从只读存储介质 (如 CD), 则源会指示该文件可以复制但不会传输到目标。  
   
- 然后再尝试对拖动的数据执行操作，则应检查此属性以确保允许此操作。  
+ 尝试对拖动的数据执行操作之前, 应检查此属性以确保允许该操作。  
   
    
   
 ## Examples  
- 下面的示例演示两个之间拖放操作<xref:System.Windows.Forms.ListBox>控件。 此示例调用<xref:System.Windows.Forms.Control.DoDragDrop%2A>当拖动操作开始时的方法。 如果已移动鼠标拖动操作启动多个<xref:System.Windows.Forms.SystemInformation.DragSize%2A?displayProperty=nameWithType>鼠标位置在从<xref:System.Windows.Forms.Control.MouseDown>事件。 <xref:System.Windows.Forms.ListBox.IndexFromPoint%2A>方法用于确定要在拖动的项的索引`MouseDown`事件。  
+ 下面的示例演示两个<xref:System.Windows.Forms.ListBox>控件之间的拖放操作。 该示例在拖动<xref:System.Windows.Forms.Control.DoDragDrop%2A>操作开始时调用方法。 如果在<xref:System.Windows.Forms.SystemInformation.DragSize%2A?displayProperty=nameWithType> <xref:System.Windows.Forms.Control.MouseDown>事件过程中鼠标移动了多个鼠标位置, 则拖动操作将启动。 方法用于确定`MouseDown`事件期间要拖动的项的索引。 <xref:System.Windows.Forms.ListBox.IndexFromPoint%2A>  
   
- 示例还演示如何使用自定义光标拖放操作。 该示例假定两个光标文件`3dwarro.cur`和`3dwno.cur`、 存在于应用程序目录，用于自定义拖动和不可拖动光标，分别。 如果将使用自定义光标`UseCustomCursorsCheck`<xref:System.Windows.Forms.CheckBox>检查。 在中设置自定义光标<xref:System.Windows.Forms.Control.GiveFeedback>事件处理程序。  
+ 该示例还演示了如何对拖放操作使用自定义光标。 该示例假定应用程序目录中有`3dwarro.cur`两`3dwno.cur`个光标文件, 分别用于自定义的拖放游标和非删除光标。 `UseCustomCursorsCheck` 如果<xref:System.Windows.Forms.CheckBox>选中, 则将使用自定义光标。 自定义游标是在<xref:System.Windows.Forms.Control.GiveFeedback>事件处理程序中设置的。  
   
- 键盘状态进行评估<xref:System.Windows.Forms.Control.DragOver>事件处理程序的权利`ListBox`，以确定拖动操作将是根据 SHIFT、 CTRL、 ALT 或 CTRL + ALT 键的状态。 中的位置`ListBox`期间还确定发生下拉`DragOver`事件。 如果要删除的数据不是`String`，则<xref:System.Windows.Forms.DragEventArgs.Effect%2A?displayProperty=nameWithType>设置为<xref:System.Windows.Forms.DragDropEffects.None?displayProperty=nameWithType>。 最后，在显示状态的下拉`DropLocationLabel` <xref:System.Windows.Forms.Label>。  
+ 键盘状态在右侧<xref:System.Windows.Forms.Control.DragOver> `ListBox`的事件处理程序中进行计算, 以根据 SHIFT、ctrl、ALT 或 ctrl + ALT 键确定拖动操作的状态。 此`ListBox` 事件`DragOver`期间也会确定放置过程中的位置。 如果要删除的数据不`String`是, <xref:System.Windows.Forms.DragEventArgs.Effect%2A?displayProperty=nameWithType>则将设置为<xref:System.Windows.Forms.DragDropEffects.None?displayProperty=nameWithType>。 最后, 放置的状态显示在中`DropLocationLabel`。 <xref:System.Windows.Forms.Label>  
   
- 若要删除的权利的数据`ListBox`在中确定<xref:System.Windows.Forms.Control.DragDrop>事件处理程序和`String`值中的适当位置添加`ListBox`。 如果拖动操作移动边界以外的窗体，则在取消拖放操作<xref:System.Windows.Forms.Control.QueryContinueDrag>事件处理程序。  
+ 要`ListBox`放置给权限的数据<xref:System.Windows.Forms.Control.DragDrop>在事件处理程序中确定, 并`String`将值添加到中`ListBox`的适当位置。 如果拖动操作移到窗体的边界之外, 则会在<xref:System.Windows.Forms.Control.QueryContinueDrag>事件处理程序中取消拖放操作。  
   
- 这段代码摘录演示了如何使用<xref:System.Windows.Forms.DragEventArgs>类。 请参阅<xref:System.Windows.Forms.Control.DoDragDrop%2A>完整的代码示例的方法。  
+ 此代码摘录演示了如何<xref:System.Windows.Forms.DragEventArgs>使用类。 有关完整的代码示例, 请参阅方法。<xref:System.Windows.Forms.Control.DoDragDrop%2A>  
   
  [!code-cpp[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/CPP/form1.cpp#4)]
  [!code-csharp[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/CS/form1.cs#4)]
@@ -186,26 +186,26 @@
         <ReturnType>System.Windows.Forms.IDataObject</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.Windows.Forms.IDataObject" />，其中包含与此事件关联的数据。</summary>
+        <summary>获取 <see cref="T:System.Windows.Forms.IDataObject" />，它包含与此事件关联的数据。</summary>
         <value>与此事件关联的数据。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在事件处理程序的正文中，可以使用<xref:System.Windows.Forms.IDataObject.GetDataPresent%2A>方法，以确定数据是否与将数据拖动到该控件的格式要求相匹配。 此外可以指定您是否要尝试转换数据以满足格式要求。 如果拖动的数据满足格式要求，使用<xref:System.Windows.Forms.IDataObject.GetData%2A>方法来检索数据。  
+ 在事件处理程序的正文中, 可以使用<xref:System.Windows.Forms.IDataObject.GetDataPresent%2A>方法来确定数据是否与要将数据拖动到的控件的格式要求相匹配。 还可以指定是否想要尝试转换数据以满足格式要求。 如果拖动的数据满足格式要求, 请使用<xref:System.Windows.Forms.IDataObject.GetData%2A>方法检索数据。  
   
    
   
 ## Examples  
- 下面的示例演示两个之间拖放操作<xref:System.Windows.Forms.ListBox>控件。 此示例调用<xref:System.Windows.Forms.Control.DoDragDrop%2A>当拖动操作开始时的方法。 如果已移动鼠标拖动操作启动多个<xref:System.Windows.Forms.SystemInformation.DragSize%2A?displayProperty=nameWithType>鼠标位置在从<xref:System.Windows.Forms.Control.MouseDown>事件。 <xref:System.Windows.Forms.ListBox.IndexFromPoint%2A>方法用于确定要在拖动的项的索引`MouseDown`事件。  
+ 下面的示例演示两个<xref:System.Windows.Forms.ListBox>控件之间的拖放操作。 该示例在拖动<xref:System.Windows.Forms.Control.DoDragDrop%2A>操作开始时调用方法。 如果在<xref:System.Windows.Forms.SystemInformation.DragSize%2A?displayProperty=nameWithType> <xref:System.Windows.Forms.Control.MouseDown>事件过程中鼠标移动了多个鼠标位置, 则拖动操作将启动。 方法用于确定`MouseDown`事件期间要拖动的项的索引。 <xref:System.Windows.Forms.ListBox.IndexFromPoint%2A>  
   
- 示例还演示如何使用自定义光标拖放操作。 该示例假定两个光标文件`3dwarro.cur`和`3dwno.cur`、 存在于应用程序目录，用于自定义拖动和不可拖动光标，分别。 如果将使用自定义光标`UseCustomCursorsCheck`<xref:System.Windows.Forms.CheckBox>检查。 在中设置自定义光标<xref:System.Windows.Forms.Control.GiveFeedback>事件处理程序。  
+ 该示例还演示了如何对拖放操作使用自定义光标。 该示例假定应用程序目录中有`3dwarro.cur`两`3dwno.cur`个光标文件, 分别用于自定义的拖放游标和非删除光标。 `UseCustomCursorsCheck` 如果<xref:System.Windows.Forms.CheckBox>选中, 则将使用自定义光标。 自定义游标是在<xref:System.Windows.Forms.Control.GiveFeedback>事件处理程序中设置的。  
   
- 键盘状态进行评估<xref:System.Windows.Forms.Control.DragOver>事件处理程序的权利`ListBox`，以确定拖动操作将是根据 SHIFT、 CTRL、 ALT 或 CTRL + ALT 键的状态。 中的位置`ListBox`期间还确定发生下拉`DragOver`事件。 如果要删除的数据不是`String`，则<xref:System.Windows.Forms.DragEventArgs.Effect%2A?displayProperty=nameWithType>设置为<xref:System.Windows.Forms.DragDropEffects.None?displayProperty=nameWithType>。 最后，在显示状态的下拉`DropLocationLabel` <xref:System.Windows.Forms.Label>。  
+ 键盘状态在右侧<xref:System.Windows.Forms.Control.DragOver> `ListBox`的事件处理程序中进行计算, 以根据 SHIFT、ctrl、ALT 或 ctrl + ALT 键确定拖动操作的状态。 此`ListBox` 事件`DragOver`期间也会确定放置过程中的位置。 如果要删除的数据不`String`是, <xref:System.Windows.Forms.DragEventArgs.Effect%2A?displayProperty=nameWithType>则将设置为<xref:System.Windows.Forms.DragDropEffects.None?displayProperty=nameWithType>。 最后, 放置的状态显示在中`DropLocationLabel`。 <xref:System.Windows.Forms.Label>  
   
- 若要删除的权利的数据`ListBox`在中确定<xref:System.Windows.Forms.Control.DragDrop>事件处理程序和`String`值中的适当位置添加`ListBox`。 如果拖动操作移动边界以外的窗体，则在取消拖放操作<xref:System.Windows.Forms.Control.QueryContinueDrag>事件处理程序。  
+ 要`ListBox`放置给权限的数据<xref:System.Windows.Forms.Control.DragDrop>在事件处理程序中确定, 并`String`将值添加到中`ListBox`的适当位置。 如果拖动操作移到窗体的边界之外, 则会在<xref:System.Windows.Forms.Control.QueryContinueDrag>事件处理程序中取消拖放操作。  
   
- 这段代码摘录演示了如何使用<xref:System.Windows.Forms.DragEventArgs>类。 请参阅<xref:System.Windows.Forms.Control.DoDragDrop%2A>完整的代码示例的方法。  
+ 此代码摘录演示了如何<xref:System.Windows.Forms.DragEventArgs>使用类。 有关完整的代码示例, 请参阅方法。<xref:System.Windows.Forms.Control.DoDragDrop%2A>  
   
  [!code-cpp[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/CPP/form1.cpp#4)]
  [!code-csharp[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/CS/form1.cs#4)]
@@ -248,22 +248,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认情况下，应用的效果确定鼠标光标拖放操作的目标。 这很有用，则会发生该操作上向用户提供反馈。 例如，如果将文件拖动源中，按下 CTRL 键，则指定<xref:System.Windows.Forms.DragDropEffects.Copy?displayProperty=nameWithType>以指示目标会尝试执行复制操作。  
+ 默认情况下, 应用的效果将决定拖放操作目标的鼠标光标。 这对于向用户提供有关将发生的操作的反馈非常有用。 例如, 如果在从源拖动文件时按下 CTRL 键, 则指定<xref:System.Windows.Forms.DragDropEffects.Copy?displayProperty=nameWithType>以指示目标将尝试执行复制操作。  
   
- 若要使用自定义光标拖放操作，请参阅<xref:System.Windows.Forms.GiveFeedbackEventArgs.UseDefaultCursors%2A?displayProperty=nameWithType>。  
+ 若要将自定义游标用于拖动操作, <xref:System.Windows.Forms.GiveFeedbackEventArgs.UseDefaultCursors%2A?displayProperty=nameWithType>请参阅。  
   
    
   
 ## Examples  
- 下面的示例演示两个之间拖放操作<xref:System.Windows.Forms.ListBox>控件。 此示例调用<xref:System.Windows.Forms.Control.DoDragDrop%2A>当拖动操作开始时的方法。 如果已移动鼠标拖动操作启动多个<xref:System.Windows.Forms.SystemInformation.DragSize%2A?displayProperty=nameWithType>鼠标位置在从<xref:System.Windows.Forms.Control.MouseDown>事件。 <xref:System.Windows.Forms.ListBox.IndexFromPoint%2A>方法用于确定要在拖动的项的索引`MouseDown`事件。  
+ 下面的示例演示两个<xref:System.Windows.Forms.ListBox>控件之间的拖放操作。 该示例在拖动<xref:System.Windows.Forms.Control.DoDragDrop%2A>操作开始时调用方法。 如果在<xref:System.Windows.Forms.SystemInformation.DragSize%2A?displayProperty=nameWithType> <xref:System.Windows.Forms.Control.MouseDown>事件过程中鼠标移动了多个鼠标位置, 则拖动操作将启动。 方法用于确定`MouseDown`事件期间要拖动的项的索引。 <xref:System.Windows.Forms.ListBox.IndexFromPoint%2A>  
   
- 示例还演示如何使用自定义光标拖放操作。 该示例假定两个光标文件`3dwarro.cur`和`3dwno.cur`、 存在于应用程序目录，用于自定义拖动和不可拖动光标，分别。 如果将使用自定义光标`UseCustomCursorsCheck`<xref:System.Windows.Forms.CheckBox>检查。 在中设置自定义光标<xref:System.Windows.Forms.Control.GiveFeedback>事件处理程序。  
+ 该示例还演示了如何对拖放操作使用自定义光标。 该示例假定应用程序目录中有`3dwarro.cur`两`3dwno.cur`个光标文件, 分别用于自定义的拖放游标和非删除光标。 `UseCustomCursorsCheck` 如果<xref:System.Windows.Forms.CheckBox>选中, 则将使用自定义光标。 自定义游标是在<xref:System.Windows.Forms.Control.GiveFeedback>事件处理程序中设置的。  
   
- 键盘状态进行评估<xref:System.Windows.Forms.Control.DragOver>事件处理程序的权利`ListBox`，以确定拖动操作将是根据 SHIFT、 CTRL、 ALT 或 CTRL + ALT 键的状态。 中的位置`ListBox`期间还确定发生下拉`DragOver`事件。 如果要删除的数据不是`String`，则<xref:System.Windows.Forms.DragEventArgs.Effect%2A?displayProperty=nameWithType>设置为<xref:System.Windows.Forms.DragDropEffects.None?displayProperty=nameWithType>。 最后，在显示状态的下拉`DropLocationLabel` <xref:System.Windows.Forms.Label>。  
+ 键盘状态在右侧<xref:System.Windows.Forms.Control.DragOver> `ListBox`的事件处理程序中进行计算, 以根据 SHIFT、ctrl、ALT 或 ctrl + ALT 键确定拖动操作的状态。 此`ListBox` 事件`DragOver`期间也会确定放置过程中的位置。 如果要删除的数据不`String`是, <xref:System.Windows.Forms.DragEventArgs.Effect%2A?displayProperty=nameWithType>则将设置为<xref:System.Windows.Forms.DragDropEffects.None?displayProperty=nameWithType>。 最后, 放置的状态显示在中`DropLocationLabel`。 <xref:System.Windows.Forms.Label>  
   
- 若要删除的权利的数据`ListBox`在中确定<xref:System.Windows.Forms.Control.DragDrop>事件处理程序和`String`值中的适当位置添加`ListBox`。 如果拖动操作移动边界以外的窗体，则在取消拖放操作<xref:System.Windows.Forms.Control.QueryContinueDrag>事件处理程序。  
+ 要`ListBox`放置给权限的数据<xref:System.Windows.Forms.Control.DragDrop>在事件处理程序中确定, 并`String`将值添加到中`ListBox`的适当位置。 如果拖动操作移到窗体的边界之外, 则会在<xref:System.Windows.Forms.Control.QueryContinueDrag>事件处理程序中取消拖放操作。  
   
- 这段代码摘录演示了如何使用<xref:System.Windows.Forms.DragEventArgs>类。 请参阅<xref:System.Windows.Forms.Control.DoDragDrop%2A>完整的代码示例的方法。  
+ 此代码摘录演示了如何<xref:System.Windows.Forms.DragEventArgs>使用类。 有关完整的代码示例, 请参阅方法。<xref:System.Windows.Forms.Control.DoDragDrop%2A>  
   
  [!code-cpp[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/CPP/form1.cpp#4)]
  [!code-csharp[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/CS/form1.cs#4)]
@@ -303,33 +303,33 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以依赖于特定键的状态的拖放操作的效果。 例如，您可能决定具体取决于是否在拖放操作过程中按 CTRL 或 SHIFT 键的数据复制或移动。  
+ 您可以使拖放操作的效果依赖于特定键的状态。 例如, 你可以根据在拖放操作期间是否按下 CTRL 或 SHIFT 键来决定复制或移动数据。  
   
- 在中设置的位<xref:System.Windows.Forms.DragEventArgs.KeyState%2A>属性标识的密钥或在操作期间按下鼠标按钮。 例如，如果按下鼠标左键时，第一位<xref:System.Windows.Forms.DragEventArgs.KeyState%2A>属性设置。 按位 AND 运算符可用于测试给定键的状态。  
+ <xref:System.Windows.Forms.DragEventArgs.KeyState%2A>属性中设置的位标识在操作过程中按下的键或鼠标按钮。 例如, 如果按下鼠标左键, 则会设置<xref:System.Windows.Forms.DragEventArgs.KeyState%2A>属性中的第一位。 可以使用按位 "与" 运算符来测试给定的键状态。  
   
  下表列出了用于指定事件的值。  
   
 |值|键|  
 |-----------|---------|  
-|1 （位 0）|鼠标左键。|  
-|2 （位 1）|鼠标右按钮。|  
-|4 （位 2）|SHIFT 键。|  
-|8 （3 位）|CTRL 键。|  
-|16 （4 位）|鼠标中键。|  
-|32 （5 位）|ALT 键。|  
+|1 (位 0)|鼠标左按钮。|  
+|2 (位 1)|鼠标右按钮。|  
+|4 (bit 2)|Shift 键。|  
+|8 (bit 3)|CTRL 键。|  
+|16 (bit 4)|鼠标中键。|  
+|32 (bit 5)|Alt 键。|  
   
    
   
 ## Examples  
- 下面的示例演示两个之间拖放操作<xref:System.Windows.Forms.ListBox>控件。 此示例调用<xref:System.Windows.Forms.Control.DoDragDrop%2A>当拖动操作开始时的方法。 如果已移动鼠标拖动操作启动多个<xref:System.Windows.Forms.SystemInformation.DragSize%2A?displayProperty=nameWithType>鼠标位置在从<xref:System.Windows.Forms.Control.MouseDown>事件。 <xref:System.Windows.Forms.ListBox.IndexFromPoint%2A>方法用于确定要在拖动的项的索引`MouseDown`事件。  
+ 下面的示例演示两个<xref:System.Windows.Forms.ListBox>控件之间的拖放操作。 该示例在拖动<xref:System.Windows.Forms.Control.DoDragDrop%2A>操作开始时调用方法。 如果在<xref:System.Windows.Forms.SystemInformation.DragSize%2A?displayProperty=nameWithType> <xref:System.Windows.Forms.Control.MouseDown>事件过程中鼠标移动了多个鼠标位置, 则拖动操作将启动。 方法用于确定`MouseDown`事件期间要拖动的项的索引。 <xref:System.Windows.Forms.ListBox.IndexFromPoint%2A>  
   
- 示例还演示如何使用自定义光标拖放操作。 该示例假定两个光标文件`3dwarro.cur`和`3dwno.cur`、 存在于应用程序目录，用于自定义拖动和不可拖动光标，分别。 如果将使用自定义光标`UseCustomCursorsCheck`<xref:System.Windows.Forms.CheckBox>检查。 在中设置自定义光标<xref:System.Windows.Forms.Control.GiveFeedback>事件处理程序。  
+ 该示例还演示了如何对拖放操作使用自定义光标。 该示例假定应用程序目录中有`3dwarro.cur`两`3dwno.cur`个光标文件, 分别用于自定义的拖放游标和非删除光标。 `UseCustomCursorsCheck` 如果<xref:System.Windows.Forms.CheckBox>选中, 则将使用自定义光标。 自定义游标是在<xref:System.Windows.Forms.Control.GiveFeedback>事件处理程序中设置的。  
   
- 键盘状态进行评估<xref:System.Windows.Forms.Control.DragOver>事件处理程序的权利`ListBox`，以确定拖动操作将是根据 SHIFT、 CTRL、 ALT 或 CTRL + ALT 键的状态。 中的位置`ListBox`期间还确定发生下拉`DragOver`事件。 如果要删除的数据不是`String`，则<xref:System.Windows.Forms.DragEventArgs.Effect%2A?displayProperty=nameWithType>设置为<xref:System.Windows.Forms.DragDropEffects.None?displayProperty=nameWithType>。 最后，在显示状态的下拉`DropLocationLabel` <xref:System.Windows.Forms.Label>。  
+ 键盘状态在右侧<xref:System.Windows.Forms.Control.DragOver> `ListBox`的事件处理程序中进行计算, 以根据 SHIFT、ctrl、ALT 或 ctrl + ALT 键确定拖动操作的状态。 此`ListBox` 事件`DragOver`期间也会确定放置过程中的位置。 如果要删除的数据不`String`是, <xref:System.Windows.Forms.DragEventArgs.Effect%2A?displayProperty=nameWithType>则将设置为<xref:System.Windows.Forms.DragDropEffects.None?displayProperty=nameWithType>。 最后, 放置的状态显示在中`DropLocationLabel`。 <xref:System.Windows.Forms.Label>  
   
- 若要删除的权利的数据`ListBox`在中确定<xref:System.Windows.Forms.Control.DragDrop>事件处理程序和`String`值中的适当位置添加`ListBox`。 如果拖动操作移动边界以外的窗体，则在取消拖放操作<xref:System.Windows.Forms.Control.QueryContinueDrag>事件处理程序。  
+ 要`ListBox`放置给权限的数据<xref:System.Windows.Forms.Control.DragDrop>在事件处理程序中确定, 并`String`将值添加到中`ListBox`的适当位置。 如果拖动操作移到窗体的边界之外, 则会在<xref:System.Windows.Forms.Control.QueryContinueDrag>事件处理程序中取消拖放操作。  
   
- 这段代码摘录演示了如何使用<xref:System.Windows.Forms.DragEventArgs>类。 请参阅<xref:System.Windows.Forms.Control.DoDragDrop%2A>完整的代码示例的方法。  
+ 此代码摘录演示了如何<xref:System.Windows.Forms.DragEventArgs>使用类。 有关完整的代码示例, 请参阅方法。<xref:System.Windows.Forms.Control.DoDragDrop%2A>  
   
  [!code-cpp[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/CPP/form1.cpp#4)]
  [!code-csharp[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/CS/form1.cs#4)]
@@ -368,15 +368,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示两个之间拖放操作<xref:System.Windows.Forms.ListBox>控件。 此示例调用<xref:System.Windows.Forms.Control.DoDragDrop%2A>当拖动操作开始时的方法。 如果已移动鼠标拖动操作启动多个<xref:System.Windows.Forms.SystemInformation.DragSize%2A?displayProperty=nameWithType>鼠标位置在从<xref:System.Windows.Forms.Control.MouseDown>事件。 <xref:System.Windows.Forms.ListBox.IndexFromPoint%2A>方法用于确定要在拖动的项的索引`MouseDown`事件。  
+ 下面的示例演示两个<xref:System.Windows.Forms.ListBox>控件之间的拖放操作。 该示例在拖动<xref:System.Windows.Forms.Control.DoDragDrop%2A>操作开始时调用方法。 如果在<xref:System.Windows.Forms.SystemInformation.DragSize%2A?displayProperty=nameWithType> <xref:System.Windows.Forms.Control.MouseDown>事件过程中鼠标移动了多个鼠标位置, 则拖动操作将启动。 方法用于确定`MouseDown`事件期间要拖动的项的索引。 <xref:System.Windows.Forms.ListBox.IndexFromPoint%2A>  
   
- 示例还演示如何使用自定义光标拖放操作。 该示例假定两个光标文件`3dwarro.cur`和`3dwno.cur`、 存在于应用程序目录，用于自定义拖动和不可拖动光标，分别。 如果将使用自定义光标`UseCustomCursorsCheck`<xref:System.Windows.Forms.CheckBox>检查。 在中设置自定义光标<xref:System.Windows.Forms.Control.GiveFeedback>事件处理程序。  
+ 该示例还演示了如何对拖放操作使用自定义光标。 该示例假定应用程序目录中有`3dwarro.cur`两`3dwno.cur`个光标文件, 分别用于自定义的拖放游标和非删除光标。 `UseCustomCursorsCheck` 如果<xref:System.Windows.Forms.CheckBox>选中, 则将使用自定义光标。 自定义游标是在<xref:System.Windows.Forms.Control.GiveFeedback>事件处理程序中设置的。  
   
- 键盘状态进行评估<xref:System.Windows.Forms.Control.DragOver>事件处理程序的权利`ListBox`，以确定拖动操作将是根据 SHIFT、 CTRL、 ALT 或 CTRL + ALT 键的状态。 中的位置`ListBox`期间还确定发生下拉`DragOver`事件。 如果要删除的数据不是`String`，则<xref:System.Windows.Forms.DragEventArgs.Effect%2A?displayProperty=nameWithType>设置为<xref:System.Windows.Forms.DragDropEffects.None?displayProperty=nameWithType>。 最后，在显示状态的下拉`DropLocationLabel` <xref:System.Windows.Forms.Label>。  
+ 键盘状态在右侧<xref:System.Windows.Forms.Control.DragOver> `ListBox`的事件处理程序中进行计算, 以根据 SHIFT、ctrl、ALT 或 ctrl + ALT 键确定拖动操作的状态。 此`ListBox` 事件`DragOver`期间也会确定放置过程中的位置。 如果要删除的数据不`String`是, <xref:System.Windows.Forms.DragEventArgs.Effect%2A?displayProperty=nameWithType>则将设置为<xref:System.Windows.Forms.DragDropEffects.None?displayProperty=nameWithType>。 最后, 放置的状态显示在中`DropLocationLabel`。 <xref:System.Windows.Forms.Label>  
   
- 若要删除的权利的数据`ListBox`在中确定<xref:System.Windows.Forms.Control.DragDrop>事件处理程序和`String`值中的适当位置添加`ListBox`。 如果拖动操作移动边界以外的窗体，则在取消拖放操作<xref:System.Windows.Forms.Control.QueryContinueDrag>事件处理程序。  
+ 要`ListBox`放置给权限的数据<xref:System.Windows.Forms.Control.DragDrop>在事件处理程序中确定, 并`String`将值添加到中`ListBox`的适当位置。 如果拖动操作移到窗体的边界之外, 则会在<xref:System.Windows.Forms.Control.QueryContinueDrag>事件处理程序中取消拖放操作。  
   
- 这段代码摘录演示了如何使用<xref:System.Windows.Forms.DragEventArgs>类。 请参阅<xref:System.Windows.Forms.Control.DoDragDrop%2A>完整的代码示例的方法。  
+ 此代码摘录演示了如何<xref:System.Windows.Forms.DragEventArgs>使用类。 有关完整的代码示例, 请参阅方法。<xref:System.Windows.Forms.Control.DoDragDrop%2A>  
   
  [!code-cpp[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/CPP/form1.cpp#4)]
  [!code-csharp[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/CS/form1.cs#4)]
@@ -416,15 +416,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示两个之间拖放操作<xref:System.Windows.Forms.ListBox>控件。 此示例调用<xref:System.Windows.Forms.Control.DoDragDrop%2A>当拖动操作开始时的方法。 如果已移动鼠标拖动操作启动多个<xref:System.Windows.Forms.SystemInformation.DragSize%2A?displayProperty=nameWithType>鼠标位置在从<xref:System.Windows.Forms.Control.MouseDown>事件。 <xref:System.Windows.Forms.ListBox.IndexFromPoint%2A>方法用于确定要在拖动的项的索引`MouseDown`事件。  
+ 下面的示例演示两个<xref:System.Windows.Forms.ListBox>控件之间的拖放操作。 该示例在拖动<xref:System.Windows.Forms.Control.DoDragDrop%2A>操作开始时调用方法。 如果在<xref:System.Windows.Forms.SystemInformation.DragSize%2A?displayProperty=nameWithType> <xref:System.Windows.Forms.Control.MouseDown>事件过程中鼠标移动了多个鼠标位置, 则拖动操作将启动。 方法用于确定`MouseDown`事件期间要拖动的项的索引。 <xref:System.Windows.Forms.ListBox.IndexFromPoint%2A>  
   
- 示例还演示如何使用自定义光标拖放操作。 该示例假定两个光标文件`3dwarro.cur`和`3dwno.cur`、 存在于应用程序目录，用于自定义拖动和不可拖动光标，分别。 如果将使用自定义光标`UseCustomCursorsCheck`<xref:System.Windows.Forms.CheckBox>检查。 在中设置自定义光标<xref:System.Windows.Forms.Control.GiveFeedback>事件处理程序。  
+ 该示例还演示了如何对拖放操作使用自定义光标。 该示例假定应用程序目录中有`3dwarro.cur`两`3dwno.cur`个光标文件, 分别用于自定义的拖放游标和非删除光标。 `UseCustomCursorsCheck` 如果<xref:System.Windows.Forms.CheckBox>选中, 则将使用自定义光标。 自定义游标是在<xref:System.Windows.Forms.Control.GiveFeedback>事件处理程序中设置的。  
   
- 键盘状态进行评估<xref:System.Windows.Forms.Control.DragOver>事件处理程序的权利`ListBox`，以确定拖动操作将是根据 SHIFT、 CTRL、 ALT 或 CTRL + ALT 键的状态。 中的位置`ListBox`期间还确定发生下拉`DragOver`事件。 如果要删除的数据不是`String`，则<xref:System.Windows.Forms.DragEventArgs.Effect%2A?displayProperty=nameWithType>设置为<xref:System.Windows.Forms.DragDropEffects.None?displayProperty=nameWithType>。 最后，在显示状态的下拉`DropLocationLabel` <xref:System.Windows.Forms.Label>。  
+ 键盘状态在右侧<xref:System.Windows.Forms.Control.DragOver> `ListBox`的事件处理程序中进行计算, 以根据 SHIFT、ctrl、ALT 或 ctrl + ALT 键确定拖动操作的状态。 此`ListBox` 事件`DragOver`期间也会确定放置过程中的位置。 如果要删除的数据不`String`是, <xref:System.Windows.Forms.DragEventArgs.Effect%2A?displayProperty=nameWithType>则将设置为<xref:System.Windows.Forms.DragDropEffects.None?displayProperty=nameWithType>。 最后, 放置的状态显示在中`DropLocationLabel`。 <xref:System.Windows.Forms.Label>  
   
- 若要删除的权利的数据`ListBox`在中确定<xref:System.Windows.Forms.Control.DragDrop>事件处理程序和`String`值中的适当位置添加`ListBox`。 如果拖动操作移动边界以外的窗体，则在取消拖放操作<xref:System.Windows.Forms.Control.QueryContinueDrag>事件处理程序。  
+ 要`ListBox`放置给权限的数据<xref:System.Windows.Forms.Control.DragDrop>在事件处理程序中确定, 并`String`将值添加到中`ListBox`的适当位置。 如果拖动操作移到窗体的边界之外, 则会在<xref:System.Windows.Forms.Control.QueryContinueDrag>事件处理程序中取消拖放操作。  
   
- 这段代码摘录演示了如何使用<xref:System.Windows.Forms.DragEventArgs>类。 请参阅<xref:System.Windows.Forms.Control.DoDragDrop%2A>完整的代码示例的方法。  
+ 此代码摘录演示了如何<xref:System.Windows.Forms.DragEventArgs>使用类。 有关完整的代码示例, 请参阅方法。<xref:System.Windows.Forms.Control.DoDragDrop%2A>  
   
  [!code-cpp[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/CPP/form1.cpp#4)]
  [!code-csharp[System.Windows.Forms.Control.DoDragDrop#4](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.Control.DoDragDrop/CS/form1.cs#4)]

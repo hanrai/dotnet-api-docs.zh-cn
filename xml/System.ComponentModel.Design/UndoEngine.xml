@@ -23,38 +23,38 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <summary>在设计时指定泛型撤消/重做功能。</summary>
+    <summary>指定一般的设计时撤消/重复功能。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.UndoEngine>抽象类提供在设计时撤消功能的默认实现。 在将撤消单元表示单个可撤消工作单元。 此单元添加到堆栈，该用户然后遍历堆栈以撤消每项操作。 撤消单元通常旨在切换，这意味着调用撤消操作两次返回为起始状态，应用程序。  
+ <xref:System.ComponentModel.Design.UndoEngine>抽象类在设计时提供 undo 功能的默认实现。 撤消单元表示单个可撤消工作单元。 此单元已添加到堆栈, 用户随后可以通过遍历堆栈来撤消每个操作。 撤消单元通常用于切换, 这意味着调用 undo 两次会使应用程序恢复到其启动状态。  
   
- <xref:System.ComponentModel.Design.UndoEngine>类利用在设计器中运行的对象的以下特征：  
+ <xref:System.ComponentModel.Design.UndoEngine>类利用在设计器中运行的对象的以下特征:  
   
--   有趣的所有对象可以通过设计器加载程序都保持为某种格式。  
+-   设计器加载程序可以将所有有趣的对象保存为某种格式。  
   
--   所有对象的属性更改时都引发属性更改通知。  
+-   当属性发生更改时, 所有对象都将引发属性更改通知。  
   
--   <xref:System.ComponentModel.Design.IDesignerHost> 提供了事务，可用于创建跨越多个较小的操作的撤消操作的概念。  
+-   <xref:System.ComponentModel.Design.IDesignerHost>提供事务的概念, 可用于创建跨多个较小操作的撤消操作。  
   
- 借助这些功能，<xref:System.ComponentModel.Design.UndoEngine>可以创建自动所需的任何撤消单元。  
+ 借助这些功能, <xref:System.ComponentModel.Design.UndoEngine>可创建任何需要自动恢复的撤消单元。  
   
 > [!NOTE]
->  不要直接更改属性值。 <xref:System.ComponentModel.Design.UndoEngine>类需要使用相应<xref:System.ComponentModel.TypeDescriptor>来更改属性值。  
+>  不要直接更改属性值。 类要求使用适当<xref:System.ComponentModel.TypeDescriptor>的来更改属性值。 <xref:System.ComponentModel.Design.UndoEngine>  
   
- <xref:System.ComponentModel.Design.UndoEngine> 监视器更改通知创建撤消单元，并且本身的单位由序列化的对象状态的组成。 下表显示了必须可用的服务<xref:System.ComponentModel.Design.UndoEngine>创建。  
+ <xref:System.ComponentModel.Design.UndoEngine>监视更改通知以创建撤消单元, 单元本身由序列化的对象状态组成。 下表显示创建时<xref:System.ComponentModel.Design.UndoEngine>必须提供的服务。  
   
-|服务|描述|  
+|服务|说明|  
 |-------------|-----------------|  
-|<xref:System.ComponentModel.Design.Serialization.ComponentSerializationService>|之前和之后进行更改时，将保存一个组件的属性和对象值。|  
-|<xref:System.ComponentModel.Design.IComponentChangeService>|通知对组件所做的更改的撤消引擎。|  
+|<xref:System.ComponentModel.Design.Serialization.ComponentSerializationService>|在进行更改之前和之后为组件保存属性和对象值。|  
+|<xref:System.ComponentModel.Design.IComponentChangeService>|向撤消引擎通知对组件所做的更改。|  
 |<xref:System.ComponentModel.Design.IDesignerHost>|用于跟踪事务。|  
   
 > [!NOTE]
->  因为<xref:System.ComponentModel.Design.UndoEngine>类需要<xref:System.ComponentModel.Design.Serialization.ComponentSerializationService>和<xref:System.ComponentModel.Design.IComponentChangeService>，只能在设计时是可用。  
+>  因为类需要<xref:System.ComponentModel.Design.Serialization.ComponentSerializationService> 和<xref:System.ComponentModel.Design.IComponentChangeService>, 所以它仅在设计时可用。 <xref:System.ComponentModel.Design.UndoEngine>  
   
- 撤消引擎跟踪事务，并创建包含一个事务一个单一的撤消单元。 因此，撤消引擎可以控制可撤消的操作的持续时间。 此外，由于可以命名事务，因此可撤消的操作从当前事务继承它们的名称。 如果没有事务可用且报告更改，撤消引擎创建撤消名称为基础的更改 （例如，"更改属性 'Text'"） 的类型。  
+ 撤消引擎跟踪事务, 并创建一个包含事务的撤消单元。 因此, 撤消引擎可控制可撤消操作的持续时间。 此外, 由于事务可以命名, 因此可撤消的操作从当前事务继承其名称。 如果没有可用的事务并且报告了更改, 则撤消引擎将根据更改类型 (例如, "更改属性" 文本 "") 创建一个撤消名称。  
   
  ]]></format>
     </remarks>
@@ -92,12 +92,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.UndoEngine>需要从多个服务`provider`参数非常有用。  
+ <xref:System.ComponentModel.Design.UndoEngine>要求参数`provider`中有多个服务是有用的。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="provider" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.NotSupportedException">找不到所需的服务。 请参阅<see cref="T:System.ComponentModel.Design.UndoEngine" />为所需的服务。 如果你已删除此服务，请确保提供了替代。</exception>
+        <exception cref="T:System.NotSupportedException">找不到所需的服务。 有关所需的服务，请参见 <see cref="T:System.ComponentModel.Design.UndoEngine" />。 如果已移除此服务，请确保提供了替代服务。</exception>
         <altmember cref="T:System.ComponentModel.Design.UndoEngine.UndoUnit" />
         <altmember cref="T:System.ComponentModel.Design.IDesignerHost" />
         <altmember cref="T:System.IServiceProvider" />
@@ -128,12 +128,12 @@
       </Parameters>
       <Docs>
         <param name="unit">要添加的撤消单元</param>
-        <summary>添加<see cref="T:System.ComponentModel.Design.UndoEngine.UndoUnit" />到撤消堆栈。</summary>
+        <summary>将 <see cref="T:System.ComponentModel.Design.UndoEngine.UndoUnit" /> 添加到撤消堆栈中。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 创建`unit`参数通过调用<xref:System.ComponentModel.Design.UndoEngine.CreateUndoUnit%2A>方法。  
+ 通过调用方法来创建`unit`参数 <xref:System.ComponentModel.Design.UndoEngine.CreateUndoUnit%2A> 。  
   
  ]]></format>
         </remarks>
@@ -166,16 +166,16 @@
       </Parameters>
       <Docs>
         <param name="name">要创建的单元的名称。</param>
-        <param name="primary"><see langword="true" /> 若要创建的一系列嵌套单元; 第一个<see langword="false" />若要创建后续嵌套的单元。</param>
+        <param name="primary"><see langword="true" /> 表示创建一系列嵌套单元的第一个单元；<see langword="false" /> 表示创建后续嵌套单元。</param>
         <summary>创建一个新的 <see cref="T:System.ComponentModel.Design.UndoEngine.UndoUnit" />。</summary>
-        <returns>一个新<see cref="T:System.ComponentModel.Design.UndoEngine.UndoUnit" />具有指定名称。</returns>
+        <returns>一个新的具有指定名称的 <see cref="T:System.ComponentModel.Design.UndoEngine.UndoUnit" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现<xref:System.ComponentModel.Design.UndoEngine.CreateUndoUnit%2A>方法仅返回一个新<xref:System.ComponentModel.Design.UndoEngine.UndoUnit>。  
+ <xref:System.ComponentModel.Design.UndoEngine.CreateUndoUnit%2A>方法的默认实现只返回一个新<xref:System.ComponentModel.Design.UndoEngine.UndoUnit>的。  
   
- 默认情况下<xref:System.ComponentModel.Design.UndoEngine>不执行任何操作与`primary`参数，但某些实现撤消，如那些涉及 COM`Microsoft.VisualStudio.OLE.Interop.IOleParentUndoUnit`设计模式，可能需要确定主要单位与其子项之间的区别。  
+ 默认情况下<xref:System.ComponentModel.Design.UndoEngine> , `primary`对于参数不执行任何操作, 但某些撤消实现 (如涉及 COM `Microsoft.VisualStudio.OLE.Interop.IOleParentUndoUnit`设计模式的实现) 可能需要确定主单元及其子级之间的差异。  
   
  ]]></format>
         </remarks>
@@ -206,12 +206,12 @@
       </Parameters>
       <Docs>
         <param name="unit">要放弃的单元。</param>
-        <summary>放弃<see cref="T:System.ComponentModel.Design.UndoEngine.UndoUnit" />。</summary>
+        <summary>放弃 <see cref="T:System.ComponentModel.Design.UndoEngine.UndoUnit" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 之前<xref:System.ComponentModel.Design.UndoEngine.DiscardUndoUnit%2A>方法调用时，已关闭，然后被撤消的撤消单元。  
+ 在调用<xref:System.ComponentModel.Design.UndoEngine.DiscardUndoUnit%2A>方法之前, 撤消单元被关闭, 然后撤消。  
   
  ]]></format>
         </remarks>
@@ -285,7 +285,7 @@
         <Parameter Name="disposing" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+        <param name="disposing"><see langword="true" /> 表示释放托管资源和非托管资源；<see langword="false" /> 表示仅释放非托管资源。</param>
         <summary>释放由 <see cref="T:System.ComponentModel.Design.UndoEngine" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -319,7 +319,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>启用或禁用<see cref="T:System.ComponentModel.Design.UndoEngine" />。</summary>
+        <summary>启用或禁用 <see cref="T:System.ComponentModel.Design.UndoEngine" />。</summary>
         <value>如果启用 <see cref="T:System.ComponentModel.Design.UndoEngine" />，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -350,10 +350,10 @@
       <Docs>
         <param name="serviceType">要检索的服务类型。</param>
         <summary>获取请求的服务。</summary>
-        <returns>请求的服务，如果找到。</returns>
+        <returns>请求的服务（如果找到）。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="serviceType" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.NotSupportedException"><paramref name="serviceType" /> 是必需的但找不到。 如果你已删除此服务，请确保提供了替代。</exception>
+        <exception cref="T:System.NotSupportedException">需要 <paramref name="serviceType" />，但未找到。 如果已移除此服务，请确保提供了替代服务。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetService">
@@ -381,8 +381,8 @@
       </Parameters>
       <Docs>
         <param name="serviceType">要检索的服务类型。</param>
-        <summary>获取请求的服务。</summary>
-        <returns>请求的服务或<see langword="null" />如果找不到请求的服务。</returns>
+        <summary>获取所请求的服务。</summary>
+        <returns>所请求的服务，如果找不到所请求的服务，则为 <see langword="null" />。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="serviceType" /> 为 <see langword="null" />。</exception>
       </Docs>
@@ -411,7 +411,7 @@
         <Parameter Name="e" Type="System.EventArgs" />
       </Parameters>
       <Docs>
-        <param name="e">包含事件数据的 <see cref="T:System.EventArgs" />。</param>
+        <param name="e">一个 <see cref="T:System.EventArgs" />，其中包含事件数据。</param>
         <summary>引发 <see cref="E:System.ComponentModel.Design.UndoEngine.Undoing" /> 事件。</summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -466,7 +466,7 @@
         <ReturnType>System.EventHandler</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>执行撤消操作之前立即发生。</summary>
+        <summary>紧挨在执行撤消操作之前发生。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -491,8 +491,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>指示撤消操作是否正在进行中。</summary>
-        <value><see langword="true" /> 如果撤消操作正在进行中;否则为<see langword="false" />。</value>
+        <summary>指示撤消操作是否正在进行。</summary>
+        <value>如果撤消操作正在进行，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -517,12 +517,12 @@
         <ReturnType>System.EventHandler</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>执行撤消操作后立即发生。</summary>
+        <summary>在执行撤消操作之后立即发生。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.UndoEngine.Undone>始终引发事件，即使引发异常。  
+ 即使引发了异常, 也始终引发事件。<xref:System.ComponentModel.Design.UndoEngine.Undone>  
   
  ]]></format>
         </remarks>

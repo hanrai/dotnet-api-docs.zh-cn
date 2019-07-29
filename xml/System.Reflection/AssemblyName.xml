@@ -1,5 +1,5 @@
 <Type Name="AssemblyName" FullName="System.Reflection.AssemblyName">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d13293e1f6c4c53f393c0466ef4c9babeff793cc" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58711158" /></Metadata><TypeSignature Language="C#" Value="public sealed class AssemblyName : ICloneable, System.Runtime.InteropServices._AssemblyName, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="447dcd6686ef2fa44fcdf77ed4f842d83d4ee97f" /><Meta Name="ms.sourcegitcommit" Value="e7974886b08aa83a8fb461e8550f31a7d4331ee3" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/23/2019" /><Meta Name="ms.locfileid" Value="68399086" /></Metadata><TypeSignature Language="C#" Value="public sealed class AssemblyName : ICloneable, System.Runtime.InteropServices._AssemblyName, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi serializable sealed beforefieldinit AssemblyName extends System.Object implements class System.ICloneable, class System.Runtime.InteropServices._AssemblyName, class System.Runtime.Serialization.IDeserializationCallback, class System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.AssemblyName" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class AssemblyName&#xA;Implements _AssemblyName, ICloneable, IDeserializationCallback, ISerializable" />
@@ -65,7 +65,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Reflection.AssemblyName>对象包含有关程序集，可用于对该程序集绑定信息。 程序集的标识由以下内容组成：  
+ <xref:System.Reflection.AssemblyName>对象包含有关程序集的信息, 您可以使用该程序集绑定到该程序集。 程序集的标识由以下内容组成:  
   
 -   简单名称。  
   
@@ -75,31 +75,31 @@
   
 -   支持的区域性。  
   
- 简单名称通常是不带扩展名的清单文件的文件名。 密钥对包含公钥和私钥的密钥，用于创建强名称签名的程序集。  
+ 简单名称通常是清单文件的文件名, 但不包含扩展名。 密钥对包括公钥和私钥, 用于为程序集创建强名称签名。  
   
- 支持公共语言运行时的所有编译器将都发出嵌套类的简单名称和反射构造查询时，根据以下约定的重整的名称。  
+ 所有支持公共语言运行时的编译器都将发出嵌套类的简单名称, 并且在查询时, 反射将按照以下约定构造错位的名称。  
   
-|分隔符|含义|  
+|后面|含义|  
 |---------------|-------------|  
 |反斜杠 (\\)|转义符。|  
-|逗号 （，）|程序集名称前面。|  
-|加号 （+）|位于嵌套的类。|  
+|逗号 (,)|在程序集名称之前。|  
+|加号 (+)|在嵌套类之前。|  
   
- 例如，一个类的完全限定的名称可能如下所示：  
+ 例如, 类的完全限定名称可能如下所示:  
   
- ContainingClass + NestedClass MyAssembly  
+ ContainingClass + NestedClass、MyAssembly  
   
- 一个"+ +"变为"\\+\\+"，和一个"\\"变为"\\\\"。  
+ "+ +"\\变成 "\\++\\\\",而""\\变成 ""。  
   
- 可以保持此限定的名，并在以后使用它来加载<xref:System.Type>。 若要搜索并加载<xref:System.Type>，使用<xref:System.Type.GetType%2A>使用类型名称只或用程序集限定的类型名称。 <xref:System.Type.GetType%2A> 使用类型名称只会查找<xref:System.Type>中调用方的程序集，然后在系统程序集。 <xref:System.Type.GetType%2A> 使用程序集限定的类型名称将寻找<xref:System.Type>在任何程序集中。  
+ 此限定名称可以保留, 以后用于加载<xref:System.Type>。 若要搜索并加载<xref:System.Type>, 请将与类型名称一起使用, 或者使用<xref:System.Type.GetType%2A>带有程序集限定类型名称的。 <xref:System.Type.GetType%2A>只有类型名称才会<xref:System.Type>在调用方的程序集中查找, 然后在系统程序集中查找。 <xref:System.Type.GetType%2A>具有程序集限定类型名称的将<xref:System.Type>在任何程序集中查找。  
   
- 完全指定<xref:System.Reflection.AssemblyName>必须具有主版本、 次版本、 内部版本号和修订号参数的名称、 区域性、 公钥标记。 最后一个四个参数封装在<xref:System.Version>类型。  
+ 完全指定<xref:System.Reflection.AssemblyName>的必须具有名称、区域性、公钥或公钥令牌、主版本、次版本、内部版本号和修订号参数。 最后四个封装在<xref:System.Version>类型中。  
   
- 若要创建一个简单的名称，创建<xref:System.Reflection.AssemblyName>对象使用默认构造函数，并将<xref:System.Reflection.AssemblyName.Name%2A>。 其他属性是可选的。  
+ 若要创建一个简单名称, 请<xref:System.Reflection.AssemblyName>使用无参数构造函数创建一个对象<xref:System.Reflection.AssemblyName.Name%2A>, 并设置。 其他属性是可选的。  
   
- 若要创建完整的强名称，创建<xref:System.Reflection.AssemblyName>对象使用默认构造函数，并将<xref:System.Reflection.AssemblyName.Name%2A>和<xref:System.Reflection.AssemblyName.KeyPair%2A>。 其他属性是可选的。 使用<xref:System.Reflection.AssemblyName.SetPublicKey%2A>和<xref:System.Reflection.AssemblyName.SetPublicKeyToken%2A>设置公用密钥和强名称。 强名称签名始终使用<xref:System.Security.Cryptography.SHA1>哈希算法。  
+ 若要创建完整的强名称, 请<xref:System.Reflection.AssemblyName>使用无参数构造函数创建一个对象<xref:System.Reflection.AssemblyName.Name%2A> , <xref:System.Reflection.AssemblyName.KeyPair%2A>并设置和。 其他属性是可选的。 使用<xref:System.Reflection.AssemblyName.SetPublicKey%2A> 和<xref:System.Reflection.AssemblyName.SetPublicKeyToken%2A>设置公钥和强名称。 强名称签名总是使用<xref:System.Security.Cryptography.SHA1>哈希算法。  
   
- 若要确保正确构造名称，请使用以下属性：  
+ 若要确保正确构造名称, 请使用以下属性:  
   
 -   <xref:System.Reflection.Assembly.FullName%2A?displayProperty=nameWithType>  
   
@@ -107,27 +107,27 @@
   
 -   <xref:System.Type.AssemblyQualifiedName%2A?displayProperty=nameWithType>  
   
- 此外可以通过使用获取名称`/l`选项与[Gacutil.exe （全局程序集缓存工具）](~/docs/framework/tools/gacutil-exe-gac-tool.md)  
+ 还可以通过将`/l`选项与[gacutil.exe (全局程序集缓存工具)](~/docs/framework/tools/gacutil-exe-gac-tool.md)一起使用来获取该名称。  
   
- 对于部分指定的强名称，创建<xref:System.Reflection.AssemblyName>对象使用默认构造函数，并且设置的名称和公钥。 使用此类创建的程序集<xref:System.Reflection.AssemblyName>更高版本使用程序集链接器 (Al.exe) 进行签名。  
+ 对于部分指定的强名称, 请使用<xref:System.Reflection.AssemblyName>无参数构造函数创建一个对象, 并设置名称和公钥。 使用此类<xref:System.Reflection.AssemblyName>创建的程序集以后可以使用程序集链接器 (al.exe) 进行签名。  
   
- 可以指定一个公钥和一个<xref:System.Reflection.AssemblyName.KeyPair%2A>具有不一致的值。 这可以是开发人员方案中非常有用。 中的公共密钥在这种情况下，通过检索<xref:System.Reflection.AssemblyName.GetPublicKey%2A>指定正确的公共密钥，while<xref:System.Reflection.AssemblyName.KeyPair%2A>指定在开发过程中使用的公钥和私钥键。 当运行时检测到不匹配<xref:System.Reflection.AssemblyName.KeyPair%2A>和公钥，它会查找在注册表中正确的密钥相匹配的公钥。  
+ 可以指定<xref:System.Reflection.AssemblyName.KeyPair%2A>具有不一致值的公钥和。 这对于开发人员方案非常有用。 在这种情况下, 使用<xref:System.Reflection.AssemblyName.GetPublicKey%2A>检索到的公钥指定了正确的公钥, <xref:System.Reflection.AssemblyName.KeyPair%2A>而指定了在开发过程中使用的公钥和私钥。 当运行时检测到<xref:System.Reflection.AssemblyName.KeyPair%2A>与公钥不匹配时, 会在注册表中查找与公钥匹配的正确密钥。  
   
- 显示名称的格式<xref:System.Reflection.AssemblyName>是以逗号分隔的名称，按如下所示开头的 Unicode 字符串：  
+ 显示名称<xref:System.Reflection.AssemblyName>的格式是以逗号分隔的以名称开头的 Unicode 字符串, 如下所示:  
   
  `Name <,Culture = CultureInfo> <,Version = Major.Minor.Build.Revision> <, StrongName> <,PublicKeyToken> '\0'`  
   
- `Name` 是文本的程序集的名称。 `CultureInfo` 是 RFC1766 格式定义区域性。 `Major``Minor`， `Build`，和`Revision`是主版本、 次版本、 内部版本号和修订号的程序集。 `StrongName` 为十六进制编码低序位 64 位的使用 sha-1 哈希算法生成的公钥和指定的公钥的哈希值<xref:System.Reflection.AssemblyName.SetPublicKey%2A>。 `PublicKeyToken` 是由指定的十六进制编码的公共密钥<xref:System.Reflection.AssemblyName.SetPublicKey%2A>。  
+ `Name`程序集的文本名称。 `CultureInfo`是 RFC1766 格式定义的区域性。 `Major`、 `Minor`、和`Revision`是程序集的主版本、次版本、内部版本号和修订号。 `Build` `StrongName`使用 SHA-1 哈希算法生成的公钥哈希值的十六进制编码低序位64位, 以及由<xref:System.Reflection.AssemblyName.SetPublicKey%2A>指定的公钥。 `PublicKeyToken`由<xref:System.Reflection.AssemblyName.SetPublicKey%2A>指定的十六进制编码的公钥。  
   
- 十六进制编码被定义为每个字节的二进制对象转换为两个十六进制字符，按照从最低到最高有效字节。 必要时，将添加附加的显示值。  
+ 十六进制编码定义为二进制对象的每个字节转换为两个十六进制字符 (从最小到最高有效字节) 的转换。 将根据需要添加其他显示值。  
   
- 如果已知的完整公钥，公钥可能替换为 StrongName。  
+ 如果已知道完整的公钥, 则可能会将 PublicKey 替换为 Stackexchange.redis.strongname。  
   
- 另请注意，除`Name`，必须先出现，参数的词汇顺序并不重要。 但是，任何参数 (`Version`， `Culture`，`StrongName`或`PublicKey`) 不是专门，则可以认为，都可以省略和<xref:System.Reflection.AssemblyName>然后将被视为部分。 指定部分的信息时，必须按前面所述的顺序指定 Name 参数。  
+ 另请注意, 除`Name`(必须首先出现) 外, 参数的词法顺序并不重要。 但是, 未专门设置`Version`的`Culture` `PublicKey` `StrongName` 任何<xref:System.Reflection.AssemblyName>参数 (、或) 都被视为省略, 然后将被视为 partial。 指定部分信息时, 必须按照上述顺序指定名称参数。  
   
- 提供显示名称，约定时`StrongName =null`或`PublicKey= null`表示需要绑定并与简单命名程序集相匹配。 此外，约定`Culture= ""`（双引号表示空字符串） 指示针对默认区域性的匹配。  
+ 提供显示名称时, 约定`StrongName =null`或`PublicKey= null`指示是否需要针对简单命名的程序集的绑定和匹配。 此外, 约定`Culture= ""` (表示空字符串的双引号) 指示与默认区域性匹配。  
   
- 下面的示例演示<xref:System.Reflection.AssemblyName>为具有默认区域性的简单命名程序集。  
+ 下面的示例演示<xref:System.Reflection.AssemblyName>了一个具有默认区域性的简单命名的程序集。  
   
 ```  
 ExampleAssembly, Culture=""  
@@ -209,7 +209,7 @@ ExampleAssembly, Version=1.0.0.0, Culture=en, PublicKeyToken=a5d015c7d5a0b012
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例创建名为动态程序集`MyAssembly.exe`并将其保存到硬盘。 在运行该示例之后, 可以使用[Ildasm.exe （IL 反汇编程序）](~/docs/framework/tools/ildasm-exe-il-disassembler.md)检查程序集元数据。  
+ 下面的示例创建一个名为`MyAssembly.exe`的动态程序集, 并将其保存到硬盘上。 运行该示例后, 可以使用[Ildasm (IL 拆装器)](~/docs/framework/tools/ildasm-exe-il-disassembler.md)来检查程序集元数据。  
   
  [!code-cpp[AssemblyName_Constructor#1](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_Constructor/CPP/assemblyname_constructor.cpp#1)]
  [!code-csharp[AssemblyName_Constructor#1](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_Constructor/CS/assemblyname_constructor.cs#1)]
@@ -264,12 +264,12 @@ ExampleAssembly, Version=1.0.0.0, Culture=en, PublicKeyToken=a5d015c7d5a0b012
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 所提供`assemblyName`进行分析和新的相应字段<xref:System.Reflection.AssemblyName>初始化中的显示名称的值。 这是推荐的方法来分析的显示名称。 不建议编写你自己的代码来分析显示名称。  
+ 将分析`assemblyName`提供的, 并通过显示名称中的值<xref:System.Reflection.AssemblyName>初始化新的相应字段。 这是分析显示名称的建议方法。 建议不要编写自己的代码来分析显示名称。  
   
    
   
 ## Examples  
- 下面的示例创建的实例<xref:System.Reflection.AssemblyName>从显示名称。 显示名称的各个元素属性的形式将输出到控制台<xref:System.Reflection.AssemblyName>对象。  
+ 下面的示例从显示名称创建<xref:System.Reflection.AssemblyName>的一个实例。 显示名称的各个元素作为<xref:System.Reflection.AssemblyName>对象的属性输出到控制台。  
   
  [!code-cpp[AssemblyName_Constructor_2#1](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_Constructor_2/CPP/source.cpp#1)]
  [!code-csharp[AssemblyName_Constructor_2#1](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_Constructor_2/CS/source.cs#1)]
@@ -331,7 +331,7 @@ ExampleAssembly, Version=1.0.0.0, Culture=en, PublicKeyToken=a5d015c7d5a0b012
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 创建新对象，与其原始版本完全相同。  
+ 创建一个新的对象, 该对象与原始对象相同。  
   
  ]]></format>
         </remarks>
@@ -375,17 +375,17 @@ ExampleAssembly, Version=1.0.0.0, Culture=en, PublicKeyToken=a5d015c7d5a0b012
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 加载程序集时，还可以使用获取此值<xref:System.Reflection.Assembly.CodeBase%2A?displayProperty=nameWithType>属性。  
+ 加载程序集时, 还可以使用<xref:System.Reflection.Assembly.CodeBase%2A?displayProperty=nameWithType>属性获取此值。  
   
- 如果程序集被加载为字节数组，该属性返回的位置的调用方<xref:System.Reflection.Assembly.Load%28System.Byte%5B%5D%29>方法重载，不加载的程序集的位置。  
+ 如果程序集作为字节数组加载, 则此属性返回<xref:System.Reflection.Assembly.Load%28System.Byte%5B%5D%29>方法重载的调用方的位置, 而不是已加载的程序集的位置。  
   
 > [!NOTE]
->  不要使用<xref:System.Reflection.AssemblyName>仅含<xref:System.Reflection.AssemblyName.CodeBase%2A>属性集。 <xref:System.Reflection.AssemblyName.CodeBase%2A>属性不提供任何元素 （如名称或版本） 的程序集标识，因此加载不会发生根据负载通过标识规则，正如您期望从<xref:System.Reflection.Assembly.Load%2A>方法。 相反，使用负载从规则加载程序集。 使用 load-from 上下文的缺点的信息，请参阅<xref:System.Reflection.Assembly.LoadFrom%2A?displayProperty=nameWithType>方法重载或[程序集加载的最佳实践](~/docs/framework/deployment/best-practices-for-assembly-loading.md)。  
+>  不要使用<xref:System.Reflection.AssemblyName> <xref:System.Reflection.AssemblyName.CodeBase%2A>只带有属性集的。 属性不提供程序集标识的任何元素 (如名称或版本), 因此, 不会按照按标识规则加载规则进行加载, 这与<xref:System.Reflection.Assembly.Load%2A>方法一样。 <xref:System.Reflection.AssemblyName.CodeBase%2A> 而是使用加载 "规则" 加载程序集。 有关使用加载源上下文的缺点的信息, 请参阅<xref:System.Reflection.Assembly.LoadFrom%2A?displayProperty=nameWithType> [程序集加载](~/docs/framework/deployment/best-practices-for-assembly-loading.md)的方法重载或最佳做法。  
   
    
   
 ## Examples  
- 以下示例发出动态程序集，并将其保存到当前目录。 创建程序集，<xref:System.Reflection.AssemblyName.CodeBase%2A>属性用于指定的目录的程序集的保存位置。  
+ 下面的示例将发出一个动态程序集, 并将其保存到当前目录中。 创建程序集后, <xref:System.Reflection.AssemblyName.CodeBase%2A>属性用于指定保存程序集的目录。  
   
  [!code-cpp[AssemblyName_CodeBase#1](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_CodeBase/CPP/assemblyname_codebase.cpp#1)]
  [!code-csharp[AssemblyName_CodeBase#1](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_CodeBase/CS/assemblyname_codebase.cs#1)]
@@ -476,7 +476,7 @@ ExampleAssembly, Version=1.0.0.0, Culture=en, PublicKeyToken=a5d015c7d5a0b012
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 以下示例发出动态程序集，并将其保存到当前目录。 创建程序集，<xref:System.Reflection.AssemblyName.CultureInfo%2A>属性用于指定区域性，它是程序集的显示名称的一部分。  
+ 下面的示例将发出一个动态程序集, 并将其保存到当前目录中。 创建程序集后, <xref:System.Reflection.AssemblyName.CultureInfo%2A>属性用于指定区域性, 它是程序集显示名称的一部分。  
   
  [!code-cpp[AssemblyName_CodeBase#2](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_CodeBase/CPP/assemblyname_codebase.cpp#2)]
  [!code-csharp[AssemblyName_CodeBase#2](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_CodeBase/CS/assemblyname_codebase.cs#2)]
@@ -607,7 +607,7 @@ ExampleAssembly, Version=1.0.0.0, Culture=en, PublicKeyToken=a5d015c7d5a0b012
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 以下示例发出动态程序集，并将其保存到当前目录。 创建程序集，<xref:System.Reflection.AssemblyName.Flags%2A>属性用于指定该程序集具有的公共密钥。  
+ 下面的示例将发出一个动态程序集, 并将其保存到当前目录中。 创建程序集后, <xref:System.Reflection.AssemblyName.Flags%2A>属性用于指定程序集具有公钥。  
   
  [!code-cpp[AssemblyName_KeyPair#4](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_KeyPair/CPP/assemblyname_keypair.cpp#4)]
  [!code-csharp[AssemblyName_KeyPair#4](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_KeyPair/CS/assemblyname_keypair.cs#4)]
@@ -663,20 +663,20 @@ ExampleAssembly, Version=1.0.0.0, Culture=en, PublicKeyToken=a5d015c7d5a0b012
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常，显示名称组成的简单名称、 版本号、 支持的区域性和公钥。 例如:  
+ 显示名称通常由简单名称、版本号、支持的区域性和公钥组成。 例如:  
   
 ```  
 mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840  
 ```  
   
- 不建议编写你自己的代码来分析显示名称。 相反，将传递到的显示名称<xref:System.Reflection.AssemblyName.%23ctor%2A>构造函数，它对其进行分析，并填充新的相应字段<xref:System.Reflection.AssemblyName>。  
+ 建议不要编写自己的代码来分析显示名称。 而是将显示名称传递到<xref:System.Reflection.AssemblyName.%23ctor%2A>构造函数, 该构造函数对其进行分析, 并填充新<xref:System.Reflection.AssemblyName>的相应字段。  
   
- 加载程序集时，还可以使用获取此值<xref:System.Reflection.Assembly.FullName%2A?displayProperty=nameWithType>属性。  
+ 加载程序集时, 还可以使用<xref:System.Reflection.Assembly.FullName%2A?displayProperty=nameWithType>属性获取此值。  
   
    
   
 ## Examples  
- 以下示例发出动态程序集，并将其保存到当前目录。 创建程序集时，该代码示例设置<xref:System.Reflection.AssemblyName.Name%2A>， <xref:System.Reflection.AssemblyName.Version%2A>， <xref:System.Reflection.AssemblyName.CultureInfo%2A>，和<xref:System.Reflection.AssemblyName.KeyPair%2A>属性，它们一起构成程序集的完整名称，或显示名称。 <xref:System.Reflection.AssemblyName.FullName%2A>属性随后用于检索显示名称。  
+ 下面的示例将发出一个动态程序集, 并将其保存到当前目录中。 创建程序集后, 代码示例将<xref:System.Reflection.AssemblyName.Name%2A>设置、 <xref:System.Reflection.AssemblyName.Version%2A>、 <xref:System.Reflection.AssemblyName.CultureInfo%2A>和<xref:System.Reflection.AssemblyName.KeyPair%2A>属性, 这些属性共同构成程序集的完整名称或显示名称。 然后<xref:System.Reflection.AssemblyName.FullName%2A> , 使用属性来检索显示名称。  
   
  [!code-cpp[AssemblyName_CodeBase#4](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_CodeBase/CPP/assemblyname_codebase.cpp#4)]
  [!code-csharp[AssemblyName_CodeBase#4](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_CodeBase/CS/assemblyname_codebase.cs#4)]
@@ -734,12 +734,12 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这只适用如果文件包含程序集清单。 此方法会导致文件打开和关闭，但该程序集添加到此域。  
+ 仅当文件包含程序集清单时, 此操作才有效。 此方法会导致文件打开和关闭, 但不会将程序集添加到此域中。  
   
    
   
 ## Examples  
- 下面的示例获取<xref:System.Reflection.AssemblyName>为磁盘上的程序集。 它将不运行，除非替换字符串"MyAssembly.exe"用文件名称的程序集 （包括路径，如有必要） 在硬盘上。 或者，您可以编译此示例中为"MyAssembly.exe"。  
+ 下面的示例获取磁盘<xref:System.Reflection.AssemblyName>上的程序集的。 除非您将字符串 "MyAssembly" 替换为您的硬盘上的程序集的文件名 (如有必要), 否则它将不会运行。 或者, 您可以将此示例编译为 "MyAssembly"。  
   
  [!code-cpp[AssemblyName_GetAssemblyName#1](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_GetAssemblyName/CPP/assemblyname_getassemblyname.cpp#1)]
  [!code-csharp[AssemblyName_GetAssemblyName#1](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_GetAssemblyName/CS/assemblyname_getassemblyname.cs#1)]
@@ -805,7 +805,7 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
         <summary>获取序列化信息，其中包含重新创建此 <see langword="AssemblyName" /> 实例所需的所有数据。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="info" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
       </Docs>
     </Member>
     <Member MemberName="GetPublicKey">
@@ -850,7 +850,7 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 以下示例发出动态程序集，并将其保存到当前目录。 创建程序集，<xref:System.Reflection.AssemblyName.SetPublicKey%2A>方法用于为程序集的公共密钥。 <xref:System.Reflection.AssemblyName.GetPublicKey%2A>然后使用方法来检索向控制台显示的公共密钥。  
+ 下面的示例将发出一个动态程序集, 并将其保存到当前目录中。 创建程序集时, <xref:System.Reflection.AssemblyName.SetPublicKey%2A>方法用于为程序集指定一个公钥。 然后, 使用方法来检索向控制台显示的公钥。 <xref:System.Reflection.AssemblyName.GetPublicKey%2A>  
   
  [!code-cpp[AssemblyName_KeyPair#2](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_KeyPair/CPP/assemblyname_keypair.cpp#2)]
  [!code-csharp[AssemblyName_KeyPair#2](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_KeyPair/CS/assemblyname_keypair.cs#2)]
@@ -908,7 +908,7 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 以下示例发出动态程序集，并将其保存到当前目录。 创建程序集，<xref:System.Reflection.AssemblyName.SetPublicKeyToken%2A>方法用于设置程序集的公钥标记。 <xref:System.Reflection.AssemblyName.GetPublicKeyToken%2A>然后使用方法来检索的公钥标记，显示到控制台。  
+ 下面的示例将发出一个动态程序集, 并将其保存到当前目录中。 创建程序集时, <xref:System.Reflection.AssemblyName.SetPublicKeyToken%2A>方法用于设置程序集的公钥标记。 然后<xref:System.Reflection.AssemblyName.GetPublicKeyToken%2A> , 使用方法来检索向控制台显示的公钥标记。  
   
  [!code-cpp[AssemblyName_KeyPair#3](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_KeyPair/CPP/assemblyname_keypair.cpp#3)]
  [!code-csharp[AssemblyName_KeyPair#3](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_KeyPair/CS/assemblyname_keypair.cs#3)]
@@ -958,12 +958,12 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
 ## Remarks  
   
 > [!IMPORTANT]
->  从开始[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]，则<xref:System.Reflection.AssemblyName.HashAlgorithm%2A>的属性<xref:System.Reflection.AssemblyName>返回的对象<xref:System.Reflection.Assembly.GetReferencedAssemblies%2A?displayProperty=nameWithType>方法是<xref:System.Configuration.Assemblies.AssemblyHashAlgorithm.None?displayProperty=nameWithType>如果引用的程序集，任何哈希算法或所引用的哈希算法程序集不由<xref:System.Configuration.Assemblies.AssemblyHashAlgorithm?displayProperty=nameWithType>枚举。 在以前版本的.NET Framework<xref:System.Reflection.AssemblyName.HashAlgorithm%2A>属性返回<xref:System.Configuration.Assemblies.AssemblyHashAlgorithm.SHA1?displayProperty=nameWithType>在此情况下。  
+>  <xref:System.Configuration.Assemblies.AssemblyHashAlgorithm.None?displayProperty=nameWithType>从开始<xref:System.Reflection.AssemblyName.HashAlgorithm%2A> ,方法<xref:System.Reflection.Assembly.GetReferencedAssemblies%2A?displayProperty=nameWithType>返回的<xref:System.Reflection.AssemblyName>对象的属性为 (如果引用的程序集没有哈希算法), 或者如果引用的哈希算法的哈希算法[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]<xref:System.Configuration.Assemblies.AssemblyHashAlgorithm?displayProperty=nameWithType>枚举未标识程序集。 在以前版本的 .NET Framework 中, 此<xref:System.Reflection.AssemblyName.HashAlgorithm%2A>情况下<xref:System.Configuration.Assemblies.AssemblyHashAlgorithm.SHA1?displayProperty=nameWithType>返回了属性。  
   
    
   
 ## Examples  
- 以下示例发出动态程序集，并将其保存到当前目录。 创建程序集，<xref:System.Reflection.AssemblyName.HashAlgorithm%2A>属性用于设置程序集清单的哈希算法。  
+ 下面的示例将发出一个动态程序集, 并将其保存到当前目录中。 创建程序集后, <xref:System.Reflection.AssemblyName.HashAlgorithm%2A>属性用于设置程序集清单的哈希算法。  
   
  [!code-cpp[AssemblyName_CodeBase#3](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_CodeBase/CPP/assemblyname_codebase.cpp#3)]
  [!code-csharp[AssemblyName_CodeBase#3](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_CodeBase/CS/assemblyname_codebase.cs#3)]
@@ -1011,12 +1011,12 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当在运行时加载程序集时，它不会设置<xref:System.Reflection.AssemblyName.KeyPair%2A>属性。 属性的 getter 才有用，如果用户在使用之前设置属性<xref:System.Reflection.AssemblyName>对象，以便创建动态程序集，并随后想要检索的密钥对。  
+ 当运行时加载程序集时, 它不设置<xref:System.Reflection.AssemblyName.KeyPair%2A>属性。 仅当用户在使用<xref:System.Reflection.AssemblyName>对象创建动态程序集之前设置属性, 并随后想要检索密钥对时, 属性的 getter 才有用。  
   
    
   
 ## Examples  
- 以下示例发出动态程序集，并将其保存到当前目录。 创建程序集，<xref:System.Reflection.AssemblyName.KeyPair%2A>属性用于设置程序集的公钥和私钥的加密密钥。 .  
+ 下面的示例将发出一个动态程序集, 并将其保存到当前目录中。 创建程序集后, <xref:System.Reflection.AssemblyName.KeyPair%2A>属性用于设置程序集的公钥和私钥。 .  
   
  [!code-cpp[AssemblyName_KeyPair#1](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_KeyPair/CPP/assemblyname_keypair.cpp#1)]
  [!code-csharp[AssemblyName_KeyPair#1](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_KeyPair/CS/assemblyname_keypair.cs#1)]
@@ -1069,12 +1069,12 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
 ## Remarks  
  清单文件是包含程序集清单的文件。  
   
- 例如，名为"MyAssembly.dll"的单文件程序集的简单名称是"MyAssembly"。  
+ 例如, 名为 "MyAssembly" 的单文件程序集的简单名称为 "MyAssembly"。  
   
    
   
 ## Examples  
- 以下示例发出动态程序集，并将其保存到当前目录。 创建程序集，<xref:System.Reflection.AssemblyName.Name%2A>属性用于设置动态程序集的简单名称。  
+ 下面的示例将发出一个动态程序集, 并将其保存到当前目录中。 创建程序集后, <xref:System.Reflection.AssemblyName.Name%2A>属性用于设置动态程序集的简单名称。  
   
  [!code-cpp[AssemblyName_Constructor#2](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_Constructor/CPP/assemblyname_constructor.cpp#2)]
  [!code-csharp[AssemblyName_Constructor#2](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_Constructor/CS/assemblyname_constructor.cs#2)]
@@ -1169,7 +1169,7 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 开头[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]，此属性始终返回<xref:System.Reflection.ProcessorArchitecture.None?displayProperty=nameWithType>引用程序集。  
+ 从开始<xref:System.Reflection.ProcessorArchitecture.None?displayProperty=nameWithType> , 此属性始终返回引用程序集。 [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]  
   
  ]]></format>
         </remarks>
@@ -1224,7 +1224,7 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 比较仅取决于简单的程序集名称。 它会忽略版本、 区域性和公钥标记。  
+ 比较仅依赖于简单的程序集名称。 它忽略版本、区域性和公钥标记。  
   
  ]]></format>
         </remarks>
@@ -1274,12 +1274,12 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此外必须使用<xref:System.Reflection.AssemblyName.SetPublicKeyToken%2A>方法以提供公钥标记。 否则为<xref:System.Security.SecurityException>时，将引发<xref:System.Reflection.AssemblyName.GetPublicKey%2A>调用方法。  
+ 还必须使用<xref:System.Reflection.AssemblyName.SetPublicKeyToken%2A>方法来提供公钥标记。 否则, <xref:System.Security.SecurityException>在调用<xref:System.Reflection.AssemblyName.GetPublicKey%2A>方法时引发。  
   
    
   
 ## Examples  
- 以下示例发出动态程序集，并将其保存到当前目录。 创建程序集，<xref:System.Reflection.AssemblyName.SetPublicKey%2A>方法用于为程序集的公共密钥。 <xref:System.Reflection.AssemblyName.GetPublicKey%2A>然后使用方法来检索向控制台显示的公共密钥。  
+ 下面的示例将发出一个动态程序集, 并将其保存到当前目录中。 创建程序集时, <xref:System.Reflection.AssemblyName.SetPublicKey%2A>方法用于为程序集指定一个公钥。 然后, 使用方法来检索向控制台显示的公钥。 <xref:System.Reflection.AssemblyName.GetPublicKey%2A>  
   
  [!code-cpp[AssemblyName_SetPublicKey#1](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_SetPublicKey/CPP/assemblyname_setpublickey.cpp#1)]
  [!code-csharp[AssemblyName_SetPublicKey#1](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_SetPublicKey/CS/assemblyname_setpublickey.cs#1)]
@@ -1333,12 +1333,12 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当通过调用设置的公钥<xref:System.Reflection.AssemblyName.SetPublicKey%2A>方法，则还必须使用<xref:System.Reflection.AssemblyName.SetPublicKeyToken%2A>方法以提供公钥标记。 否则为<xref:System.Security.SecurityException>时，将引发<xref:System.Reflection.AssemblyName.GetPublicKey%2A>调用方法。  
+ 通过调用<xref:System.Reflection.AssemblyName.SetPublicKey%2A>方法设置公钥时, 还必须<xref:System.Reflection.AssemblyName.SetPublicKeyToken%2A>使用方法来提供公钥标记。 否则, <xref:System.Security.SecurityException>在调用<xref:System.Reflection.AssemblyName.GetPublicKey%2A>方法时引发。  
   
    
   
 ## Examples  
- 以下示例发出动态程序集，并将其保存到当前目录。 创建程序集，<xref:System.Reflection.AssemblyName.SetPublicKeyToken%2A>方法用于设置程序集的公钥标记。 <xref:System.Reflection.AssemblyName.GetPublicKeyToken%2A>然后使用方法来检索的公钥标记，显示到控制台。  
+ 下面的示例将发出一个动态程序集, 并将其保存到当前目录中。 创建程序集时, <xref:System.Reflection.AssemblyName.SetPublicKeyToken%2A>方法用于设置程序集的公钥标记。 然后<xref:System.Reflection.AssemblyName.GetPublicKeyToken%2A> , 使用方法来检索向控制台显示的公钥标记。  
   
  [!code-cpp[AssemblyName_SetPublicKey#2](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_SetPublicKey/CPP/assemblyname_setpublickey.cpp#2)]
  [!code-csharp[AssemblyName_SetPublicKey#2](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_SetPublicKey/CS/assemblyname_setpublickey.cs#2)]
@@ -1394,7 +1394,7 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::GetIDsOfNames`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::GetIDsOfNames`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>
@@ -1443,7 +1443,7 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::GetTypeInfo`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::GetTypeInfo`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>
@@ -1488,7 +1488,7 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::GetTypeInfoCount`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::GetTypeInfoCount`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>
@@ -1547,7 +1547,7 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::Invoke`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::Invoke`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>
@@ -1596,12 +1596,12 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 请参阅的说明<xref:System.Reflection.AssemblyName>返回字符串的格式。  
+ 请参阅的说明<xref:System.Reflection.AssemblyName> , 了解返回的字符串的格式。  
   
    
   
 ## Examples  
- 下面的示例获取<xref:System.Reflection.AssemblyName>对象用于一个假想`MyAssembly.exe`程序集，然后使用<xref:System.Reflection.AssemblyName.ToString%2A>方法来检索完整的程序集名称，或显示名称。  
+ 下面的示例获取<xref:System.Reflection.AssemblyName>假想`MyAssembly.exe`程序集的对象<xref:System.Reflection.AssemblyName.ToString%2A> , 然后使用方法检索完整的程序集名称或显示名称。  
   
  [!code-cpp[AssemblyName_GetAssemblyName#2](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_GetAssemblyName/CPP/assemblyname_getassemblyname.cpp#2)]
  [!code-csharp[AssemblyName_GetAssemblyName#2](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_GetAssemblyName/CS/assemblyname_getassemblyname.cs#2)]
@@ -1652,24 +1652,24 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 版本的所有组件必须都是大于或等于零的整数。 元数据限制的主要版本号、 次要、 生成和最大值的程序集的修订号部分<xref:System.UInt16.MaxValue?displayProperty=nameWithType>-1。 如果一个组件，超过此值，则会不引发任何错误;但是，在动态程序集中，该组件为零。  
+ 版本的所有组件都必须是大于或等于零的整数。 元数据将程序集的主要版本号、次要版本号、内部版本号和修订版本限制为最<xref:System.UInt16.MaxValue?displayProperty=nameWithType>大值-1。 如果某个组件超出此值, 则不会引发错误;但在动态程序集中, 该组件为零。  
   
    
   
 ## Examples  
- 本部分包含两个示例。 第一个示例演示如何检索当前正在执行的程序集的版本。 第二个示例演示如何使用<xref:System.Reflection.AssemblyName.Version%2A>属性发出动态程序集时指定的程序集版本。  
+ 本部分包含两个示例。 第一个示例演示如何检索当前正在执行的程序集的版本。 第二个示例演示如何使用<xref:System.Reflection.AssemblyName.Version%2A>属性在发出动态程序集时指定程序集版本。  
   
- **示例 1**  
+ **示例1**  
   
- 下面的示例检索并显示当前正在执行的程序集和包含的程序集的版本号<xref:System.String>类。  
+ 下面的示例检索并显示当前正在执行的程序集和包含<xref:System.String>该类的程序集的版本号。  
   
  [!code-cpp[AssemblyName.Version#1](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName.Version/cpp/Example.cpp#1)]
  [!code-csharp[AssemblyName.Version#1](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName.Version/cs/Example.cs#1)]
  [!code-vb[AssemblyName.Version#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/AssemblyName.Version/vb/Example.vb#1)]  
   
- **示例 2**  
+ **示例2**  
   
- 以下示例发出动态程序集，并将其保存到当前目录。 创建程序集，<xref:System.Reflection.AssemblyName.Version%2A>属性用于指定程序集的版本信息。  
+ 下面的示例将发出一个动态程序集, 并将其保存到当前目录中。 创建程序集后, <xref:System.Reflection.AssemblyName.Version%2A>属性用于指定程序集的版本信息。  
   
  [!code-cpp[AssemblyName_Constructor#3](~/samples/snippets/cpp/VS_Snippets_CLR/AssemblyName_Constructor/CPP/assemblyname_constructor.cpp#3)]
  [!code-csharp[AssemblyName_Constructor#3](~/samples/snippets/csharp/VS_Snippets_CLR/AssemblyName_Constructor/CS/assemblyname_constructor.cs#3)]
@@ -1717,9 +1717,9 @@ mylib, Version=1.2.1900.0, Culture=neutral, PublicKeyToken=a14f3033def15840
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Reflection.AssemblyName.VersionCompatibility%2A> 信息指示，例如，该程序集不能与由于冲突而进行的其他版本并行执行通过设备驱动程序。  
+ <xref:System.Reflection.AssemblyName.VersionCompatibility%2A>例如, 指示程序集无法与其他版本并行执行, 因为设备驱动程序发生冲突。  
   
- 目前，<xref:System.Reflection.AssemblyName.VersionCompatibility%2A>始终返回<xref:System.Configuration.Assemblies.AssemblyVersionCompatibility.SameMachine?displayProperty=nameWithType>，并加载程序不使用。 此属性保留供将来的功能。  
+ 当前, <xref:System.Reflection.AssemblyName.VersionCompatibility%2A>始终返回<xref:System.Configuration.Assemblies.AssemblyVersionCompatibility.SameMachine?displayProperty=nameWithType>, 且不由加载程序使用。 此属性保留供将来使用。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="MemoryMarshal" FullName="System.Runtime.InteropServices.MemoryMarshal">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8544b5c5b9524ba2fdb2b7e901c5dfe2c4e92c74" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67248153" /></Metadata><TypeSignature Language="C#" Value="public static class MemoryMarshal" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="10291d94526466a6a071d4ad6764465616a0532c" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68542988" /></Metadata><TypeSignature Language="C#" Value="public static class MemoryMarshal" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit MemoryMarshal extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.MemoryMarshal" />
   <TypeSignature Language="VB.NET" Value="Public Class MemoryMarshal" />
@@ -58,7 +58,7 @@
         <Parameter Name="span" Type="System.ReadOnlySpan&lt;T&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T">只读的范围中的项的类型。</typeparam>
+        <typeparam name="T">只读范围内的项的类型。</typeparam>
         <param name="span">要转换的源切片。</param>
         <summary>将一种基元类型 <paramref name="T" /> 的 <see cref="T:System.ReadOnlySpan`1" /> 强制转换为 <see langword="ReadOnlySpan&lt;Byte&gt;" />。</summary>
         <returns>类型 <see cref="T:System.Byte" /> 的只读范围。</returns>
@@ -67,7 +67,7 @@
   
 ## Remarks  
 
-`T` 不能包含指针或引用。 `T` 在运行时以保持类型安全性检查。  
+`T`不能包含指针或引用。 `T`在运行时检查以保留类型安全。  
 
       ]]></format>
         </remarks>
@@ -118,7 +118,7 @@
   
 ## Remarks  
 
-`T` 不能包含指针或引用。 `T` 在运行时以保持类型安全性检查。  
+`T`不能包含指针或引用。 `T`在运行时检查以保留类型安全。  
 
        ]]></format>
         </remarks>
@@ -163,7 +163,7 @@
   
 ## Remarks  
 
-必须格外谨慎使用此方法。 <xref:System.ReadOnlyMemory%601> 用于表示不可变的数据和其他不是为了写入到的内存。 <xref:System.Memory%601> 不应写入此方法创建的实例。 此方法的用途是允许变量类型化为<xref:System.Memory%601>但仅用于读取存储<xref:System.ReadOnlyMemory%601>。 
+必须谨慎使用此方法。 <xref:System.ReadOnlyMemory%601>用于表示不可变的数据和其他不应写入的内存。 <xref:System.Memory%601>此方法创建的实例不应写入。 此方法的目的是允许类型为<xref:System.Memory%601>的变量, 但仅用于读取<xref:System.ReadOnlyMemory%601>存储。 
 
        ]]></format>
         </remarks>
@@ -211,9 +211,9 @@
   
 ## Remarks  
 
-`T` 不能包含指针或引用。 它在运行时检查以保持类型安全性。  
+`T`不能包含指针或引用。 它在运行时进行检查, 以便保持类型安全性。  
 
-仅在支持未对齐的内存访问的平台上支持此方法或内存的阻止时通过其他方式对齐。
+此方法仅在支持未对齐的内存访问的平台上或通过其他方法对齐内存块时受支持。
 
        ]]></format>
         </remarks>
@@ -259,9 +259,9 @@
   
 ## Remarks  
 
-`T` 不能包含指针或引用。 它在运行时检查以保持类型安全性。  
+`T`不能包含指针或引用。 它在运行时进行检查, 以便保持类型安全性。  
 
-仅在支持未对齐的内存访问的平台上支持此方法或内存的阻止时通过其他方式对齐。
+此方法仅在支持未对齐的内存访问的平台上或通过其他方法对齐内存块时受支持。
 
        ]]></format>
         </remarks>
@@ -308,8 +308,8 @@
         <Parameter Name="span" Type="System.ReadOnlySpan&lt;TFrom&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="TFrom">源跨度类型。</typeparam>
-        <typeparam name="TTo">目标跨度的类型。</typeparam>
+        <typeparam name="TFrom">源范围的类型。</typeparam>
+        <typeparam name="TTo">目标范围的类型。</typeparam>
         <param name="span">要转换的源切片。</param>
         <summary>将一种基元类型的只读范围强制转换为另一种基元类型的只读范围。</summary>
         <returns>转换后的只读范围。</returns>
@@ -318,9 +318,9 @@
   
 ## Remarks  
 
-既不`TFrom`也不`TTo`可以包含指针或引用。 `TFrom` 和`TTo`要在运行时检查以保持类型安全性。  
+`TFrom` 和`TTo`都不能包含指针或引用。 `TFrom`在`TTo`运行时将检查和以保留类型安全。  
 
-仅在支持未对齐的内存访问的平台上支持此方法或内存的阻止时通过其他方式对齐。
+此方法仅在支持未对齐的内存访问的平台上或通过其他方法对齐内存块时受支持。
 
        ]]></format>
         </remarks>
@@ -368,8 +368,8 @@
         <Parameter Name="span" Type="System.Span&lt;TFrom&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="TFrom">源跨度类型。</typeparam>
-        <typeparam name="TTo">目标跨度的类型。</typeparam>
+        <typeparam name="TFrom">源范围的类型。</typeparam>
+        <typeparam name="TTo">目标范围的类型。</typeparam>
         <param name="span">要转换的源切片。</param>
         <summary>将一种基元类型的范围强制转换为另一种基元类型的范围。</summary>
         <returns>转换后的范围。</returns>
@@ -378,11 +378,11 @@
   
 ## Remarks  
 
-既不`TFrom`也不`TTo`可以包含指针或引用。 `TFrom` 和`TTo`要在运行时检查以保持类型安全性。  
+`TFrom` 和`TTo`都不能包含指针或引用。 `TFrom`在`TTo`运行时将检查和以保留类型安全。  
 
-强制转换发生在未检查的上下文中。 如果范围`TTo`小于的范围`TFrom`，会发生数据丢失。 例如，如果`TFrom`是<xref:System.Int64>、 利用某个的`ReadOnlySpan<Int32>`值是 0x100001111110F0F，和`TTo`是<xref:System.Int32>，生成的值是 11110F0F。
+转换发生在未检查的上下文中。 如果的范围`TTo`小于的`TFrom`范围, 可能会发生数据丢失。 例如`TFrom` , 如果<xref:System.Int32>为<xref:System.Int64>, 则`ReadOnlySpan<Int32>`其中一个值为 0x100001111110F0F, `TTo`为, 结果值为11110F0F。
 
-仅在支持未对齐的内存访问的平台上支持此方法或内存的阻止时通过其他方式对齐。
+此方法仅在支持未对齐的内存访问的平台上或通过其他方法对齐内存块时受支持。
 
        ]]></format>
         </remarks>
@@ -429,7 +429,7 @@
   
 ## Remarks  
 
-之前调用此方法，且该数组不能已取消固定时，必须已固定数组<xref:System.Memory%601>它将返回的缓冲区是仍在使用。 已取消固定数组上调用此方法可能导致内存损坏。
+在调用此方法之前, 数组必须已固定, 并且在返回的<xref:System.Memory%601>缓冲区仍在使用时, 不能对其进行取消固定。 对未固定的数组调用此方法可能会导致内存损坏。
 
        ]]></format>
         </remarks>
@@ -466,7 +466,7 @@
         <Parameter Name="length" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <typeparam name="T">数据项目的类型。</typeparam>
+        <typeparam name="T">数据项的类型。</typeparam>
         <param name="reference">对数据的引用。</param>
         <param name="length"><paramref name="reference" /> 包含的 <paramref name="T" /> 元素数。</param>
         <summary>在常规托管对象的一个部分上创建新的只读范围。</summary>
@@ -476,10 +476,10 @@
   
 ## Remarks  
 
-此方法会很有用，如果托管对象的一部分表示固定的数组。 
+如果部分托管对象表示固定数组, 则此方法很有用。 
 
 > [!WARNING]
-> 应谨慎使用此方法。 这非常危险，因为`length`不检查自变量。 此外，返回跨度的生存期不验证为安全起见识别跨度的语言。
+> 应谨慎使用此方法。 这是很危险的`length` , 因为未选中参数。 此外, 对于跨范围感知语言, 不安全验证返回的范围的生存期。
 
        ]]></format>
         </remarks>
@@ -514,7 +514,7 @@
         <Parameter Name="length" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <typeparam name="T">数据项目的类型。</typeparam>
+        <typeparam name="T">数据项的类型。</typeparam>
         <param name="reference">对数据的引用。</param>
         <param name="length"><paramref name="reference" /> 包含的 <paramref name="T" /> 元素数。</param>
         <summary>在常规托管对象的一个部分上创建新的范围。</summary>
@@ -524,10 +524,10 @@
   
 ## Remarks  
 
-此方法会很有用，如果托管对象的一部分表示固定的数组。 
+如果部分托管对象表示固定数组, 则此方法很有用。 
 
 > [!WARNING]
-> 应谨慎使用此方法。 这非常危险，因为`length`不检查自变量。 此外，返回跨度的生存期不验证为安全起见识别跨度的语言。
+> 应谨慎使用此方法。 这是很危险的`length` , 因为未选中参数。 此外, 对于跨范围感知语言, 不安全验证返回的范围的生存期。
 
        ]]></format>
         </remarks>
@@ -569,7 +569,7 @@
   
 ## Remarks  
 
-如果只读的范围为空，则此方法返回对其中索引 0 处的元素将存储的位置的引用。 此类引用可能会或可能不是`null`。 返回的引用可以用于固定，但它必须永远不会被取消引用。
+如果只读范围为空, 则此方法将返回对索引0处的元素进行存储的位置的引用。 此类引用可以是也可以不`null`是。 返回的引用可用于固定, 但永远不能取消引用。
 
        ]]></format>
         </remarks>
@@ -611,7 +611,7 @@
   
 ## Remarks  
 
-如果跨度为空，则此方法返回对其中索引 0 处的元素将存储的位置的引用。 此类引用可能会或可能不是`null`。 返回的引用可以用于固定，但它必须永远不会被取消引用。
+如果范围为空, 则此方法返回对索引0处的元素进行存储的位置的引用。 此类引用可以是也可以不`null`是。 返回的引用可用于固定, 但永远不能取消引用。
 
        ]]></format>
         </remarks>
@@ -651,7 +651,7 @@
         <Parameter Name="source" Type="System.ReadOnlySpan&lt;System.Byte&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T">要从只读范围检索的项的类型。</typeparam>
+        <typeparam name="T">要从只读范围中检索的项的类型。</typeparam>
         <param name="source">只读范围。</param>
         <summary>读取类型的结构 <param name="T" /> 字节的只读范围之外。</summary>
         <returns>从只读范围中检索的结构。</returns>
@@ -660,7 +660,7 @@
   
 ## Remarks  
 
-`T` 不能包含指针或引用。 它在运行时检查以保持类型安全性。  
+`T`不能包含指针或引用。 它在运行时进行检查, 以便保持类型安全性。  
 
        ]]></format>
         </remarks>
@@ -705,7 +705,7 @@
   
 ## Remarks  
 
-此方法，用于在需要的类型参数的现有 Api 中使用的只读内存缓冲区<xref:System.Collections.Generic.IEnumerable%601>。 
+此方法允许在需要类型<xref:System.Collections.Generic.IEnumerable%601>为的参数的现有 api 中使用只读内存缓冲区。 
 
        ]]></format>
         </remarks>
@@ -782,7 +782,7 @@
       </Parameters>
       <Docs>
         <typeparam name="T">只读内存缓冲区中的项的类型。</typeparam>
-        <typeparam name="TManager">类型<see cref="T:System.Buffers.MemoryManager`1" />来检索。</typeparam>
+        <typeparam name="TManager">要检索的的<see cref="T:System.Buffers.MemoryManager`1" />类型。</typeparam>
         <param name="memory">为其获取内存管理器的只读内存缓冲区。</param>
         <param name="manager">此方法返回时，为 <paramref name="memory" /> 管理器。</param>
         <summary>尝试从基础只读内存缓冲区中检索 <see cref="T:System.Buffers.MemoryManager`1" />。</summary>
@@ -826,7 +826,7 @@
       </Parameters>
       <Docs>
         <typeparam name="T">只读内存缓冲区中的项的类型。</typeparam>
-        <typeparam name="TManager">类型<see cref="T:System.Buffers.MemoryManager`1" />来检索。</typeparam>
+        <typeparam name="TManager">要检索的的<see cref="T:System.Buffers.MemoryManager`1" />类型。</typeparam>
         <param name="memory">为其获取内存管理器的只读内存缓冲区。</param>
         <param name="manager">此方法返回时，为 <paramref name="memory" /> 管理器。</param>
         <param name="start">此方法返回时，距离 <paramref name="memory" /> 表示的 <paramref name="manager" /> 的开头的偏移量。</param>
@@ -918,7 +918,7 @@
   
 ## Remarks  
 
-`T` 不能包含指针或引用。 它在运行时检查以保持类型安全性。  
+`T`不能包含指针或引用。 它在运行时进行检查, 以便保持类型安全性。  
 
        ]]></format>
         </remarks>
@@ -970,11 +970,11 @@
   
 ## Remarks  
 
-`T` 不能包含指针或引用。 它在运行时检查以保持类型安全性。  
+`T`不能包含指针或引用。 它在运行时进行检查, 以便保持类型安全性。  
 
        ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="TFrom" /> 或 <paramref name="TTo" /> 包含引用或指针。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="T" /> 包含引用或指针。</exception>
       </Docs>
     </Member>
     <Member MemberName="Write&lt;T&gt;">
@@ -1021,7 +1021,7 @@
   
 ## Remarks  
 
-`T` 不能包含指针或引用。 它在运行时检查以保持类型安全性。  
+`T`不能包含指针或引用。 它在运行时进行检查, 以便保持类型安全性。  
 
        ]]></format>
         </remarks>

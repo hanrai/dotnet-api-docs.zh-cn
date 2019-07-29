@@ -22,14 +22,14 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>定义<see cref="T:System.IO.Packaging.PackageRelationship" />条件来选择部分级或包级别关系。</summary>
+    <summary>定义 <see cref="T:System.IO.Packaging.PackageRelationship" /> 条件来选择部分级或包级关系。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IO.Packaging.PackageRelationshipSelector> 可供<xref:System.IO.Packaging.PackageDigitalSignatureManager.Sign%2A>方法<xref:System.IO.Packaging.PackageDigitalSignatureManager>类，以指定一系列<xref:System.IO.Packaging.PackageRelationship>部件进行签名。  
+ <xref:System.IO.Packaging.PackageRelationshipSelector>由<xref:System.IO.Packaging.PackageDigitalSignatureManager.Sign%2A> <xref:System.IO.Packaging.PackageDigitalSignatureManager>类的方法用来指定要签名的部件的<xref:System.IO.Packaging.PackageRelationship>列表。  
   
- <xref:System.IO.Packaging.PackageRelationshipSelector> 可供<xref:System.IO.Packaging.PackageDigitalSignature.SignedRelationshipSelectors%2A>的属性<xref:System.IO.Packaging.PackageDigitalSignature>类来获取一系列<xref:System.IO.Packaging.PackageRelationship>已使用给定的数字签名进行签名的部件。  
+ <xref:System.IO.Packaging.PackageRelationshipSelector>由<xref:System.IO.Packaging.PackageDigitalSignature.SignedRelationshipSelectors%2A> <xref:System.IO.Packaging.PackageDigitalSignature>类的属性用来获取已使用给定数字签名进行<xref:System.IO.Packaging.PackageRelationship>签名的部件的列表。  
   
  ]]></format>
     </remarks>
@@ -37,7 +37,7 @@
     <altmember cref="T:System.IO.Packaging.PackageRelationship" />
     <altmember cref="T:System.IO.Packaging.PackagePart" />
     <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkId=74494">开放打包约定的数字签名框架</related>
-    <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkID=159966">使用数字签名示例创建一个包</related>
+    <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkID=159966">使用数字签名示例创建包</related>
     <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkID=71255">开放式打包约定 (OPC) 规范</related>
   </Docs>
   <Members>
@@ -68,14 +68,14 @@
       </Parameters>
       <Docs>
         <param name="sourceUri">拥有关系的 <see cref="T:System.IO.Packaging.PackagePart" /> 或 <see cref="T:System.IO.Packaging.Package" /> （<c>SourceUri</c> =“/”） 的 [!INCLUDE[TLA#tla_uri](~/includes/tlasharptla-uri-md.md)]。</param>
-        <param name="selectorType">类型<paramref name="selectionCriteria" />，要么按关系<see cref="F:System.IO.Packaging.PackageRelationshipSelectorType.Id" />或关系<see cref="F:System.IO.Packaging.PackageRelationshipSelectorType.Type" />。</param>
-        <param name="selectionCriteria">用于选择关系的限定字符串基于<paramref name="selectorType" />。</param>
+        <param name="selectorType"><paramref name="selectionCriteria" /> 的类型，要么按关系 <see cref="F:System.IO.Packaging.PackageRelationshipSelectorType.Id" />，要么按关系 <see cref="F:System.IO.Packaging.PackageRelationshipSelectorType.Type" />。</param>
+        <param name="selectionCriteria">用来基于 <paramref name="selectorType" /> 选择关系的限定字符串。</param>
         <summary>初始化 <see cref="T:System.IO.Packaging.PackageRelationshipSelector" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="sourceUri" /> 或 <paramref name="selectionCriteria" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="selectorType" /> 参数无效。</exception>
         <exception cref="T:System.Xml.XmlException"><paramref name="selectorType" /> 参数是 <see cref="F:System.IO.Packaging.PackageRelationshipSelectorType.Id" />，但 <paramref name="selectionCriteria" /> 不是有效的 [!INCLUDE[TLA#tla_xsd](~/includes/tlasharptla-xsd-md.md)] [!INCLUDE[TLA#tla_id](~/includes/tlasharptla-id-md.md)]。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="selectionCriteria" />不能用于指定<paramref name="selectorType" />。
+        <exception cref="T:System.ArgumentException"><paramref name="selectionCriteria" /> 对于指定的 <paramref name="selectorType" /> 无效。
 
 或
 
@@ -112,9 +112,9 @@
         <Parameter Name="package" Type="System.IO.Packaging.Package" />
       </Parameters>
       <Docs>
-        <param name="package">可供选择的关系选择条件的包。</param>
-        <summary>返回一系列<see cref="T:System.IO.Packaging.PackageRelationship" />匹配定义的对象<see cref="P:System.IO.Packaging.PackageRelationshipSelector.SourceUri" />， <see cref="P:System.IO.Packaging.PackageRelationshipSelector.SelectorType" />，和<see cref="P:System.IO.Packaging.PackageRelationshipSelector.SelectionCriteria" />。</summary>
-        <returns>为指定的选择参数匹配的关系的列表<see cref="M:System.IO.Packaging.PackageRelationshipSelector.#ctor(System.Uri,System.IO.Packaging.PackageRelationshipSelectorType,System.String)" />构造函数。</returns>
+        <param name="package">要基于选择条件从中选择关系的包。</param>
+        <summary>返回与定义的 <see cref="T:System.IO.Packaging.PackageRelationship" />、<see cref="P:System.IO.Packaging.PackageRelationshipSelector.SourceUri" /> 和 <see cref="P:System.IO.Packaging.PackageRelationshipSelector.SelectorType" /> 相匹配的 <see cref="P:System.IO.Packaging.PackageRelationshipSelector.SelectionCriteria" /> 对象的列表。</summary>
+        <returns>与指定给 <see cref="M:System.IO.Packaging.PackageRelationshipSelector.#ctor(System.Uri,System.IO.Packaging.PackageRelationshipSelectorType,System.String)" /> 构造函数的选择参数相匹配的关系的列表。</returns>
         <remarks>To be added.</remarks>
         <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkId=74494">开放打包约定的数字签名框架</related>
         <exception cref="T:System.ArgumentNullException"><paramref name="package" /> 为 <see langword="null" />。</exception>
@@ -149,8 +149,8 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取到指定的选择条件<see cref="M:System.IO.Packaging.PackageRelationshipSelector.#ctor(System.Uri,System.IO.Packaging.PackageRelationshipSelectorType,System.String)" />构造函数。</summary>
-        <value>选择条件基于<see cref="P:System.IO.Packaging.PackageRelationshipSelector.SelectorType" />的<see cref="F:System.IO.Packaging.PackageRelationshipSelectorType.Id" />或<see cref="F:System.IO.Packaging.PackageRelationshipSelectorType.Type" />指定给<see cref="M:System.IO.Packaging.PackageRelationshipSelector.#ctor(System.Uri,System.IO.Packaging.PackageRelationshipSelectorType,System.String)" />构造函数。</value>
+        <summary>获取指定给 <see cref="M:System.IO.Packaging.PackageRelationshipSelector.#ctor(System.Uri,System.IO.Packaging.PackageRelationshipSelectorType,System.String)" /> 构造函数的选择条件。</summary>
+        <value>基于指定给 <see cref="P:System.IO.Packaging.PackageRelationshipSelector.SelectorType" /> 构造函数的 <see cref="F:System.IO.Packaging.PackageRelationshipSelectorType.Id" /> 或 <see cref="F:System.IO.Packaging.PackageRelationshipSelectorType.Type" /> 的 <see cref="M:System.IO.Packaging.PackageRelationshipSelector.#ctor(System.Uri,System.IO.Packaging.PackageRelationshipSelectorType,System.String)" /> 的选择条件。</value>
         <remarks>To be added.</remarks>
         <altmember cref="P:System.IO.Packaging.PackageRelationshipSelector.SelectorType" />
         <altmember cref="P:System.IO.Packaging.PackageRelationshipSelector.SourceUri" />
@@ -186,8 +186,8 @@
         <ReturnType>System.IO.Packaging.PackageRelationshipSelectorType</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.IO.Packaging.PackageRelationshipSelectorType" />指定给<see cref="M:System.IO.Packaging.PackageRelationshipSelector.#ctor(System.Uri,System.IO.Packaging.PackageRelationshipSelectorType,System.String)" />构造函数。</summary>
-        <value>选择器类型<see cref="F:System.IO.Packaging.PackageRelationshipSelectorType.Id" />或<see cref="F:System.IO.Packaging.PackageRelationshipSelectorType.Type" />指定给<see cref="M:System.IO.Packaging.PackageRelationshipSelector.#ctor(System.Uri,System.IO.Packaging.PackageRelationshipSelectorType,System.String)" />构造函数。</value>
+        <summary>获取为 <see cref="T:System.IO.Packaging.PackageRelationshipSelectorType" /> 构造函数指定的 <see cref="M:System.IO.Packaging.PackageRelationshipSelector.#ctor(System.Uri,System.IO.Packaging.PackageRelationshipSelectorType,System.String)" />。</summary>
+        <value>指定给 <see cref="F:System.IO.Packaging.PackageRelationshipSelectorType.Id" /> 构造函数的 <see cref="F:System.IO.Packaging.PackageRelationshipSelectorType.Type" /> 或 <see cref="M:System.IO.Packaging.PackageRelationshipSelector.#ctor(System.Uri,System.IO.Packaging.PackageRelationshipSelectorType,System.String)" /> 的选择器类型。</value>
         <remarks>To be added.</remarks>
         <altmember cref="P:System.IO.Packaging.PackageRelationshipSelector.SelectionCriteria" />
         <altmember cref="P:System.IO.Packaging.PackageRelationshipSelector.SourceUri" />
@@ -223,8 +223,8 @@
         <ReturnType>System.Uri</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取根包 URI （"/"） 或部分<see cref="P:System.IO.Packaging.PackagePart.Uri" />指定给<see cref="M:System.IO.Packaging.PackageRelationshipSelector.#ctor(System.Uri,System.IO.Packaging.PackageRelationshipSelectorType,System.String)" />构造函数、 作为关系的所有者。</summary>
-        <value>根包 URI （"/"） 或部分<see cref="P:System.IO.Packaging.PackagePart.Uri" />指定给<see cref="M:System.IO.Packaging.PackageRelationshipSelector.#ctor(System.Uri,System.IO.Packaging.PackageRelationshipSelectorType,System.String)" />构造函数、 作为关系的所有者。</value>
+        <summary>获取指定给 <see cref="P:System.IO.Packaging.PackagePart.Uri" /> 构造函数、作为关系所有者的根包 URI ("/") 或部分 <see cref="M:System.IO.Packaging.PackageRelationshipSelector.#ctor(System.Uri,System.IO.Packaging.PackageRelationshipSelectorType,System.String)" />。</summary>
+        <value>指定给 <see cref="P:System.IO.Packaging.PackagePart.Uri" /> 构造函数、作为关系所有者的根包 URI ("/") 或部分 <see cref="M:System.IO.Packaging.PackageRelationshipSelector.#ctor(System.Uri,System.IO.Packaging.PackageRelationshipSelectorType,System.String)" />。</value>
         <remarks>To be added.</remarks>
         <altmember cref="M:System.IO.Packaging.PackUriHelper.CreatePartUri(System.Uri)" />
         <altmember cref="P:System.IO.Packaging.PackageRelationshipSelector.SelectionCriteria" />

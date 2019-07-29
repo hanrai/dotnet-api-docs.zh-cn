@@ -24,9 +24,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Linq.DataContext>是通过数据库连接映射的所有实体的源。 它会跟踪对检索到的所有实体所做的更改并维护的"标识缓存"的实体检索不止一次保证由使用相同的对象实例。  
+ <xref:System.Data.Linq.DataContext>是通过数据库连接映射的所有实体的源。 它跟踪您对所有检索到的实体所做的更改, 并维护一个 "标识缓存", 保证使用同一个对象实例来表示检索到多个实体。  
   
- 一般情况下，<xref:System.Data.Linq.DataContext>实例旨在最后一个"工作单元"但是你的应用程序定义的术语。 一个<xref:System.Data.Linq.DataContext>是轻量而不是创建开销很大。 典型[!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)]应用程序创建<xref:System.Data.Linq.DataContext>实例的生存期较短的类的表示逻辑组的成员或在方法范围内相关的数据库操作。  
+ 通常情况下, <xref:System.Data.Linq.DataContext>实例设计为最后一个 "工作单元", 但您的应用程序定义了该术语。 是<xref:System.Data.Linq.DataContext>轻量的, 创建的成本并不高。 典型[!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)]的应用程序<xref:System.Data.Linq.DataContext>在方法范围创建实例, 或在表示一组相关数据库操作逻辑集的生存期类的成员中创建实例。  
   
  ]]></format>
     </remarks>
@@ -64,7 +64,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Data.Linq.DataContext>打开和关闭的连接或连接字符串提供，如果需要关闭数据库连接。 一般情况下，您应永远不会需要致电`Dispose`上<xref:System.Data.Linq.DataContext>。 如果提供的打开连接，<xref:System.Data.Linq.DataContext>将不会关闭它。 因此，不实例化<xref:System.Data.Linq.DataContext>具有打开的连接除非您有一个充分的理由要这样做。 在中<xref:System.Transactions>事务，<xref:System.Data.Linq.DataContext>将不打开或关闭的连接，为了避免出现提升。  
+ 如果提供关闭的连接或连接字符串, 则会根据需要打开并关闭数据库连接。<xref:System.Data.Linq.DataContext> 通常, 你不必`Dispose` <xref:System.Data.Linq.DataContext>在上调用。 如果提供打开的连接, <xref:System.Data.Linq.DataContext>则不会将其关闭。 因此, 不要<xref:System.Data.Linq.DataContext>使用打开的连接来实例化, 除非您有充分的理由来这样做。 在事务中<xref:System.Data.Linq.DataContext> , 将不会打开或关闭连接以避免升级。 <xref:System.Transactions>  
   
  ]]></format>
         </remarks>
@@ -184,7 +184,7 @@ SQL Server Express 数据库所在的文件的名称。
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 下面的示例演示如何循环集合来检索冲突信息。  
+ 下面的示例演示如何循环访问集合以检索冲突信息。  
   
    
   
@@ -214,14 +214,14 @@ SQL Server Express 数据库所在的文件的名称。
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值增大查询的超时期限（以秒为单位），如果不增大则会在默认超时期限间出现超时。</summary>
-        <value>增加超时期限 （以秒为单位） 的查询，则会在默认超时期限内一个整数值。</value>
+        <value>一个整数值, 该值增加了在默认超时期限内会超时的查询的超时期限 (以秒为单位)。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性获取或设置用于执行生成的命令的命令超时 （以秒为单位） (`IDbCommands`)。 有关详细信息，请参阅 <xref:System.Data.IDbCommand.CommandTimeout%2A>。  
+ 此属性获取或设置用于执行生成的命令 (`IDbCommands`) 的命令超时 (以秒为单位)。 有关更多信息，请参见<xref:System.Data.IDbCommand.CommandTimeout%2A>。  
   
- 当此属性未设置，默认值的<xref:System.Data.IDbCommand.CommandTimeout%2A>用于查询命令执行。 此默认值将由存储提供程序。 请注意，某些提供程序可能会引发异常，是否此值设置为非零值。  
+ 如果未设置此属性, <xref:System.Data.IDbCommand.CommandTimeout%2A>则的默认值将用于执行查询命令。 此默认值是由存储提供程序设置的。 请注意, 如果此值设置为非零值, 则某些提供程序可能会引发异常。  
   
  ]]></format>
         </remarks>
@@ -250,9 +250,9 @@ SQL Server Express 数据库所在的文件的名称。
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用此属性与关系 ADO.NET 代码交互操作。  
+ 您可以使用此属性与关系 ADO.NET 代码进行互操作。  
   
- 返回的连接将关闭，除非已由用户显式打开。  
+ 返回的连接将关闭, 除非用户已显式打开它。  
   
  ]]></format>
         </remarks>
@@ -281,17 +281,17 @@ SQL Server Express 数据库所在的文件的名称。
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通过使用以下算法派生的数据库的名称：  
+ 该数据库的名称是使用以下算法派生的:  
   
-1. 如果在连接字符串中标识数据库，则使用其名称。  
-1. 如果<xref:System.Data.Linq.Mapping.DatabaseAttribute>属性是存在，其<xref:System.Data.Linq.Mapping.DatabaseAttribute.Name%2A>属性用作数据库的名称。  
-1. 如果没有数据库标记中的连接字符串和强类型化<xref:System.Data.Linq.DataContext>使用时，具有相同的名称的数据库<xref:System.Data.Linq.DataContext>创建继承类。  
-1. 如果使用弱类型<xref:System.Data.Linq.DataContext>是使用，将引发异常。  
-1. 如果<xref:System.Data.Linq.DataContext>造成了通过使用文件名称，创建到该文件的名称相对应的数据库。  
+1. 如果在连接字符串中标识数据库, 则使用其名称。  
+1. 如果存在<xref:System.Data.Linq.Mapping.DatabaseAttribute.Name%2A>属性, 则该属性将用作数据库的名称。 <xref:System.Data.Linq.Mapping.DatabaseAttribute>  
+1. 如果连接字符串中没有数据库标记, 并且使用强类型<xref:System.Data.Linq.DataContext> , 则将创建一个<xref:System.Data.Linq.DataContext>与继承类同名的数据库。  
+1. 如果使用弱类型<xref:System.Data.Linq.DataContext> , 则会引发异常。  
+1. <xref:System.Data.Linq.DataContext>如果已使用文件名创建了, 则将创建与该文件名称对应的数据库。  
      
   
 ## Examples  
- 下面的代码演示如何设置一个临时数据库，然后删除它。  
+ 下面的代码演示如何设置临时数据库, 然后将其删除。  
   
  [!code-csharp[System.Data.Linq.DataContext#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Data.Linq.DataContext/cs/Program.cs#1)]
  [!code-vb[System.Data.Linq.DataContext#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Data.Linq.DataContext/vb/Module1.vb#1)]  
@@ -332,7 +332,7 @@ SQL Server Express 数据库所在的文件的名称。
         </Parameter>
       </Parameters>
       <Docs>
-        <typeparam name="TResult">返回的集合中元素的类型。</typeparam>
+        <typeparam name="TResult">返回的集合中的元素的类型。</typeparam>
         <param name="instance">方法调用的实例（当前对象）。</param>
         <param name="methodInfo">标识与数据库方法对应的 .NET 方法的 <see cref="T:System.Reflection.MethodInfo" />。</param>
         <param name="parameters">要传递给命令的参数数组。</param>
@@ -342,7 +342,7 @@ SQL Server Express 数据库所在的文件的名称。
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Linq.DataContext.CreateMethodCallQuery%2A>方法自动生成的代码中使用，并且可作为数据库函数的代理。  
+ <xref:System.Data.Linq.DataContext.CreateMethodCallQuery%2A>方法在自动生成的代码中使用, 并充当数据库函数的代理。  
   
  ]]></format>
         </remarks>
@@ -372,12 +372,12 @@ SQL Server Express 数据库所在的文件的名称。
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法使用中的连接<xref:System.Data.Linq.DataContext.Connection%2A>属性以尝试打开关联的数据库。  
+ 此方法使用<xref:System.Data.Linq.DataContext.Connection%2A>属性中的连接来尝试打开关联的数据库。  
   
    
   
 ## Examples  
- 以下示例使用此方法以确定是否已存在的数据库。  
+ 下面的示例使用此方法来确定数据库是否已存在。  
   
  [!code-csharp[System.Data.Linq.DataContext#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Data.Linq.DataContext/cs/Program.cs#1)]
  [!code-vb[System.Data.Linq.DataContext#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Data.Linq.DataContext/vb/Module1.vb#1)]  
@@ -404,28 +404,28 @@ SQL Server Express 数据库所在的文件的名称。
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指示延迟加载是一对多还是一对一的关系。</summary>
-        <value><see langword="true" /> 如果已启用延迟的加载;否则为<see langword="false" />。</value>
+        <value>如果启用延迟加载，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回代码访问这些关系，null 之一时，如果关系是一对一的并且如果它是一个多，则返回空集合。 仍可通过设置填充关系<xref:System.Data.Linq.DataContext.LoadOptions%2A>属性。  
+ 当代码访问其中一个关系时, 如果关系为一对一, 则返回 null, 如果为一对多, 则返回空集合。 还可以通过设置<xref:System.Data.Linq.DataContext.LoadOptions%2A>属性来填充关系。  
   
- 此属性的主要方案是，可以提取一种对象模型并向它发出 （例如，Web 服务）。  
+ 此属性的主要方案是使你能够提取对象模型的一部分并将其发送出去 (例如, 应用到 Web 服务)。  
   
 > [!NOTE]
->  如果此属性设置为`false`执行查询后，将引发异常。 请参阅**有效的模式**部分获取详细信息。  
+>  如果在执行查询后将`false`此属性设置为, 则会引发异常。 有关详细信息, 请参阅下面的**有效模式**部分。  
   
-## <a name="valid-modes"></a>有效的模式  
- 延迟的加载需要对象跟踪。 仅以下三种模式是有效的：  
+## <a name="valid-modes"></a>有效模式  
+ 延迟加载需要对象跟踪。 只有以下三种模式有效:  
   
--   <xref:System.Data.Linq.DataContext.ObjectTrackingEnabled%2A> = `false`。 <xref:System.Data.Linq.DataContext.DeferredLoadingEnabled%2A> 被忽略，在推断为`false`。 此行为对应于一个只读的<xref:System.Data.Linq.DataContext>。  
+-   <xref:System.Data.Linq.DataContext.ObjectTrackingEnabled%2A> = `false`。 <xref:System.Data.Linq.DataContext.DeferredLoadingEnabled%2A>被忽略并推断为`false`。 此行为对应于一个只读<xref:System.Data.Linq.DataContext>。  
   
--   <xref:System.Data.Linq.DataContext.ObjectTrackingEnabled%2A> = `true`。 <xref:System.Data.Linq.DataContext.DeferredLoadingEnabled%2A> = `false`。 这种情况下对应于<xref:System.Data.Linq.DataContext>允许用户使用加载的对象图<xref:System.Data.Linq.DataLoadOptions.LoadWith%2A>指令，但它不会启用延迟的加载。  
+-   <xref:System.Data.Linq.DataContext.ObjectTrackingEnabled%2A> = `true`。 <xref:System.Data.Linq.DataContext.DeferredLoadingEnabled%2A> = `false`。 此情况对应<xref:System.Data.Linq.DataContext>于使用户能够通过使用<xref:System.Data.Linq.DataLoadOptions.LoadWith%2A>指令加载对象图的, 但它不启用延迟加载。  
   
--   两者都设置为`true`。 这是默认设置。  
+-   两者均设置为`true`。 这是默认设置。  
   
- 在执行查询后，不能更改标志。 使用此信息在第一个查询执行后的任何更改<xref:System.Data.Linq.DataContext>将引发异常。  
+ 执行查询后, 不能更改标志。 在执行使用的<xref:System.Data.Linq.DataContext>第一个查询后发生的任何更改都会引发异常。  
   
  ]]></format>
         </remarks>
@@ -454,12 +454,12 @@ SQL Server Express 数据库所在的文件的名称。
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法使用中的连接<xref:System.Data.Linq.DataContext.Connection%2A>属性来标识要删除的数据库。  
+ 此方法使用<xref:System.Data.Linq.DataContext.Connection%2A>属性中的连接来标识要删除的数据库。  
   
    
   
 ## Examples  
- 下面的示例演示如何删除临时创建的数据库。  
+ 下面的示例演示如何删除已暂时创建的数据库。  
   
  [!code-csharp[System.Data.Linq.DataContext#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Data.Linq.DataContext/cs/Program.cs#1)]
  [!code-vb[System.Data.Linq.DataContext#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Data.Linq.DataContext/vb/Module1.vb#1)]  
@@ -523,7 +523,7 @@ SQL Server Express 数据库所在的文件的名称。
         <Parameter Name="disposing" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+        <param name="disposing"><see langword="true" /> 表示释放托管资源和非托管资源；<see langword="false" /> 表示仅释放非托管资源。</param>
         <summary>释放 <see cref="T:System.Data.Linq.DataContext" /> 类使用的非托管资源，还可以选择释放托管资源。</summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -568,23 +568,23 @@ SQL Server Express 数据库所在的文件的名称。
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法是一种传递机制的情况下，[!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)]不充分提供用于特定方案。  
+ 此方法是一种传递机制, 适用于对于[!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)]特定方案没有充分提供的情况。  
   
- 该命令的语法是用于创建 ADO.NET 的语法几乎相同`DataCommand`。 唯一区别是在指定参数的方式。 具体而言，将它们括在大括号 （{...}） 来指定参数和枚举它们从 0 开始。 该参数是与参数数组中的同等带编号对象相关联。  
+ 命令的语法与用于创建 ADO.NET `DataCommand`的语法几乎相同。 唯一的区别在于如何指定参数。 具体而言, 可以通过将参数括在大括号 ({...}) 中来指定参数, 并从0开始枚举。 参数与参数数组中的编号相同的对象相关联。  
   
- `ExecuteQuery` 和`ExecuteCommand`，可以指定的参数替换的参数数目可变。 例如，可以指定参数调用 ExecuteQuery 时\<TResult >:  
+ `ExecuteQuery`和`ExecuteCommand`允许您为参数替换指定可变数量的参数。 例如, 可以在调用 ExecuteQuery\<TResult > 时指定参数:  
   
 ```  
 db.ExecuteQuery<Customer>("select * from dbo.Customers where City = {0}", "London");  
 ```  
   
- 而且，另一个示例：  
+ 另一个示例:  
   
 ```  
 db.ExecuteCommand("UPDATE Products SET QuantityPerUnit = {0} WHERE ProductID = {1}", "24 boxes", 5);  
 ```  
   
- 下面的示例打开一个连接，并将传递 SQL `UPDATE` SQL 引擎命令。  
+ 下面的示例打开一个连接, 并将 sql `UPDATE`命令传递给 sql 引擎。  
   
    
   
@@ -656,13 +656,13 @@ db.ExecuteCommand("UPDATE Products SET QuantityPerUnit = {0} WHERE ProductID = {
 ## Remarks  
  请注意以下事项：  
   
--   由于该方法具有受保护的修饰符，使用它必须子类化<xref:System.Data.Linq.DataContext>。  
+-   由于该方法具有受保护的修饰符, 因此它的<xref:System.Data.Linq.DataContext>使用需要子类化。  
   
--   如果在未调用此操作，则引发异常<xref:System.Data.Linq.DataContext.SubmitChanges%2A>操作。 不应作为独立操作的作用域之外调用<xref:System.Data.Linq.DataContext.SubmitChanges%2A>操作。 <xref:System.Data.Linq.DataContext.SubmitChanges%2A> 自身调用重写方法如果它们实现，它的上一个方法用于在重写方法调用。  
+-   如果未在<xref:System.Data.Linq.DataContext.SubmitChanges%2A>操作内调用此操作, 则会引发异常。 不应将其作为独立操作在<xref:System.Data.Linq.DataContext.SubmitChanges%2A>操作范围之外调用。 <xref:System.Data.Linq.DataContext.SubmitChanges%2A>本身调用重写方法, 前提是它们已实现并且之前的方法旨在在重写方法中调用。  
   
--   它负责的开发人员传递正确的实体。 实现验证传入的实体进行跟踪。 但是，它负责的开发人员来保持顺序，或传递同一实体中两次。  
+-   开发人员负责传入正确的实体。 实现将验证是否跟踪了传入的实体。 但是, 开发人员负责维护订单或在同一实体中传递两次。  
   
--   它负责调用正确的动态 API，开发人员。 例如，在`Update`重写方法中，只能<xref:System.Data.Linq.DataContext.ExecuteDynamicUpdate%2A>可以调用方法。 [!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)] 不检测或验证调用的动态方法是否与适用的操作相匹配。 如果调用不适用的方法，则结果不确定 (例如，调用<xref:System.Data.Linq.DataContext.ExecuteDynamicDelete%2A>要更新的对象)。  
+-   开发人员负责调用正确的动态 API。 例如, 在`Update`重写方法中, <xref:System.Data.Linq.DataContext.ExecuteDynamicUpdate%2A>只能调用方法。 [!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)] 不检测或验证调用的动态方法是否与适用的操作相匹配。 如果调用不适用方法 (例如, 调用<xref:System.Data.Linq.DataContext.ExecuteDynamicDelete%2A>要更新的对象), 则结果是不确定的。  
   
  ]]></format>
         </remarks>
@@ -736,7 +736,7 @@ db.ExecuteCommand("UPDATE Products SET QuantityPerUnit = {0} WHERE ProductID = {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Linq.DataContext.ExecuteMethodCall%2A>方法自动生成的代码中使用，并且可作为数据库函数的代理。  
+ <xref:System.Data.Linq.DataContext.ExecuteMethodCall%2A>方法在自动生成的代码中使用, 并充当数据库函数的代理。  
   
  ]]></format>
         </remarks>
@@ -829,7 +829,7 @@ db.ExecuteCommand("UPDATE Products SET QuantityPerUnit = {0} WHERE ProductID = {
         </Parameter>
       </Parameters>
       <Docs>
-        <typeparam name="TResult">返回的集合中元素的类型。</typeparam>
+        <typeparam name="TResult">返回的集合中的元素的类型。</typeparam>
         <param name="query">要执行的 SQL 查询。</param>
         <param name="parameters">要传递给命令的参数数组。 注意以下行为： 
 如果数组中的对象的数目小于命令字符串中已标识的最大数，则会引发异常。  
@@ -843,29 +843,29 @@ db.ExecuteCommand("UPDATE Products SET QuantityPerUnit = {0} WHERE ProductID = {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法是一种传递机制的情况下，[!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)]不提供用于特定方案。  
+ 此方法是一种传递机制, 适用于不[!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)]提供特定方案的情况。  
   
- 对字段的查询结果中的匹配列和属性的对象中的算法工作方式如下：  
+ 将查询结果中的列与对象中的字段和属性相匹配的算法如下所示:  
   
 -   如果字段或属性映射到特定列名称，则结果集中应包含该列名称。  
   
 -   如果未映射字段或属性，则结果集中应包含其名称与该字段或属性相同的列。  
   
--   通过第一个查找区分大小写匹配来执行比较。 如果未找到这样的匹配，不区分大小写的匹配项会继续搜索。  
+-   通过首先查找区分大小写的匹配来执行比较。 如果找不到这样的匹配项, 则会出现不区分大小写的匹配项的后续搜索。  
   
--   查询必须返回所有跟踪的字段和属性的对象 （除延迟加载） 满足所有以下都条件：  
+-   如果满足以下所有条件, 则查询必须返回对象的所有跟踪的字段和属性 (除了使用者进行延迟加载):  
   
-    -   如果`<T>`显式跟踪的实体由<xref:System.Data.Linq.DataContext>。  
+    -   如果`<T>` 是<xref:System.Data.Linq.DataContext>由显式跟踪的实体。  
   
-    -   ObjectTrackingEnabled 是如此。  
+    -   ObjectTrackingEnabled 为 true。  
   
     -   实体具有主键。  
   
      否则会引发异常。  
   
--   在所有其他情况下，查询可以检索只跟踪的字段和对象的属性的子集。  
+-   在所有其他情况下, 查询可以只检索对象的跟踪字段和属性的子集。  
   
- 以下 C# 代码片段显示了此方法的一个用途：  
+ 以下C#代码片段演示了此方法的一种用法:  
   
 ```  
 var customers = db.ExecuteQuery<Customer>(@"SELECT CustomerID, CompanyName, ContactName, ContactTitle,   
@@ -877,7 +877,7 @@ foreach (Customer c in customers)
    Console.WriteLine(c.ContactName);  
 ```  
   
- 在 Visual Basic 中  
+ 在 Visual Basic  
   
 ```  
 Dim customers = db.ExecuteQuery(Of Customer)("SELECT CustomerID, _    CompanyName, ContactName, ContactTitle, _  
@@ -920,19 +920,19 @@ Next
 ## Remarks  
  请注意以下事项：  
   
--   <xref:System.Data.Linq.DataContext.GetChangeSet%2A> 可能会产生副作用，如插入的推理并删除时通常执行的操作<xref:System.Data.Linq.DataContext.SubmitChanges%2A>。 例如，以下操作中使用的对象可以创建以下列表中相应的推断的操作：  
+-   <xref:System.Data.Linq.DataContext.GetChangeSet%2A>可能有副作用, 如在时<xref:System.Data.Linq.DataContext.SubmitChanges%2A>通常执行的插入和删除操作的推理。 例如, 在以下操作中使用的对象可以在下面的列表中创建相应的推断操作:  
   
-    -   <xref:System.Data.Linq.EntitySet%601.Add%2A> 到<xref:System.Data.Linq.Table%601.InsertOnSubmit%2A>。  
+    -   <xref:System.Data.Linq.EntitySet%601.Add%2A>到<xref:System.Data.Linq.Table%601.InsertOnSubmit%2A>。  
   
-    -   <xref:System.Data.Linq.EntityRef%601> null 赋值 (由于的可能<xref:System.Data.Linq.EntitySet%601.Remove%2A>到<xref:System.Data.Linq.Table%601.DeleteOnSubmit%2A>。  
+    -   <xref:System.Data.Linq.EntityRef%601>分配到 null (可能由导致<xref:System.Data.Linq.EntitySet%601.Remove%2A> <xref:System.Data.Linq.Table%601.DeleteOnSubmit%2A>)。  
   
--   不可能根据外键约束排序集。  
+-   不能根据 foreign key 约束对集进行排序。  
   
--   数据库生成的值 （例如，主键和外键的值、 时间戳，等等） 将不可用。 此类信息需要执行数据库命令，可能是检索到的信息 （例如，从主键的外键） 的传播。  
+-   数据库生成的值 (例如, 主键和外键值、时间戳等) 不可用。 此类信息需要执行数据库命令, 可能还需要传播检索到的信息 (例如, 主键的外键)。  
   
--   在调用时计算已更改的对象的集。 对后续调用<xref:System.Data.Linq.DataContext.SubmitChanges%2A>可以生成一组不同，如果进行其他更改。  
+-   在调用时计算已更改对象的集合。 如果进行了<xref:System.Data.Linq.DataContext.SubmitChanges%2A>其他更改, 对的后续调用可能会产生不同的集。  
   
- 在不进行任何更改后的输出显示，如下所示：  
+ 未进行任何更改时的输出如下所示:  
   
  `{Added: 0, Removed: 0, Modified: 0}`  
   
@@ -973,17 +973,17 @@ Next
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法是一个 getter，不会影响<xref:System.Data.Linq.DataContext>状态。  
+ 此方法只是 getter, 不会影响<xref:System.Data.Linq.DataContext>状态。  
   
  请注意以下事项：  
   
--   参数必须为非 null。 否则，将空参数引发异常。  
+-   参数必须为非 null。 否则, 将引发 null 自变量异常。  
   
--   正常查询期间引发的转换异常[!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)]不能转换为查询应用查询执行。  
+-   查询执行过程中[!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)]引发的正常查询转换异常适用于无法转换的查询。  
   
--   返回仅第一个查询命令。 具体而言，用于预先加载的其他命令 (<xref:System.Data.Linq.DataLoadOptions.LoadWith%2A>) 不包括在内。  
+-   仅返回第一个查询命令。 具体而言, 不包括用于预先加载 (<xref:System.Data.Linq.DataLoadOptions.LoadWith%2A>) 的其他命令。  
   
--   <xref:System.Data.Linq.DataContext> 不跟踪用户与该命令。 例如，返回命令执行的结果不跟踪，并且不会影响<xref:System.Data.Linq.DataContext>状态。  
+-   <xref:System.Data.Linq.DataContext>不跟踪用户对命令执行的操作。 例如, 不会跟踪执行返回命令的结果, 也不会影响<xref:System.Data.Linq.DataContext>状态。  
   
    
   
@@ -1046,9 +1046,9 @@ Next
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这是弱类型化的版本<xref:System.Data.Linq.DataContext.GetTable%2A>。 请务必已弱类型化的版本，因为它是动态构建的查询相对较常见的做法。 它会强制应用程序使用反射来调用正确的泛型方法很不方便。  
+ 这是的<xref:System.Data.Linq.DataContext.GetTable%2A>弱类型版本。 具有弱类型的版本非常重要, 因为它是动态构造查询的一种相对常见的做法。 强制应用程序使用反射来调用正确的泛型方法是不方便的。  
   
- 如果没有为特定类型集合，将引发异常。  
+ 如果没有特定类型的集合, 则会引发异常。  
   
  ]]></format>
         </remarks>
@@ -1086,9 +1086,9 @@ Next
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法是查询的主入口点。 当强类型化<xref:System.Data.Linq.DataContext>是创建新的生成的属性封装对此方法的调用。 例如，`Customers`生成属性返回`GetTable<Customer>`。  
+ 此方法是查询的主要入口点。 创建强类型<xref:System.Data.Linq.DataContext>时, 新生成的属性将封装对此方法的调用。 例如, 生成一个`Customers`返回`GetTable<Customer>`的属性。  
   
- 如果没有为特定类型集合，将引发异常。  
+ 如果没有特定类型的集合, 则会引发异常。  
   
  ]]></format>
         </remarks>
@@ -1112,12 +1112,12 @@ Next
       </ReturnValue>
       <Docs>
         <summary>获取或设置与此 <see cref="T:System.Data.Linq.DataContext" /> 关联的 <see cref="T:System.Data.Linq.DataLoadOptions" />。</summary>
-        <value>预提取加载相关数据的选项。</value>
+        <value>相关数据的预提取加载选项。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性获取或设置用于为延迟加载成员和相关集合的成员身份定义预提取行为的选项。  
+ 此属性获取或设置一些选项, 这些选项用于为延迟加载的成员定义预提取行为和相关集合的成员身份。  
   
  ]]></format>
         </remarks>
@@ -1141,17 +1141,17 @@ Next
       </ReturnValue>
       <Docs>
         <summary>获取或设置要写入 SQL 查询或命令的目标。</summary>
-        <value><see cref="T:System.IO.TextReader" />要用于写入命令。</value>
+        <value>要用于编写命令的 <see cref="T:System.IO.TextReader" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 将此属性设置为`null`禁用命令日志记录。  
+ 将此属性设置`null`为以禁用命令日志记录。  
   
    
   
 ## Examples  
- 下面的示例显示在控制台窗口中生成的 SQL，然后再显示查询的结果。  
+ 下面的示例显示在控制台窗口中生成的 SQL, 并显示查询的结果。  
   
  [!code-csharp[System.Data.Linq.DataContext#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Data.Linq.DataContext/cs/Program.cs#2)]
  [!code-vb[System.Data.Linq.DataContext#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Data.Linq.DataContext/vb/Module1.vb#2)]  
@@ -1178,7 +1178,7 @@ Next
       </ReturnValue>
       <Docs>
         <summary>获取映射所基于的 <see cref="T:System.Data.Linq.Mapping.MetaModel" />。</summary>
-        <value>数据库和域对象之间的映射。</value>
+        <value>在数据库和域对象之间的映射。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1200,24 +1200,24 @@ Next
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指示是否启用对象跟踪。</summary>
-        <value><see langword="true" /> 如果启用跟踪的对象;否则为<see langword="false" />。 默认值为 <see langword="true" />。</value>
+        <value>如果启用跟踪对象，则为 <see langword="true" />；否则为<see langword="false" /> 。 默认值为 <see langword="true" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性设置为`false`提高在检索时的性能，因为有较少的项来跟踪。  
+ 将此属性设置`false`为会在检索时提高性能, 因为要跟踪的项目较少。  
   
- 引发异常：  
+ 引发了异常:  
   
--   如果该属性设置为`false`执行查询后。  
+-   如果在执行查询后将`false`属性设置为, 则为。  
   
-     有关详细信息，请参阅中的有效模式部分<xref:System.Data.Linq.DataContext>。  
+     有关详细信息, 请参阅中<xref:System.Data.Linq.DataContext>的有效模式部分。  
   
--   如果该属性设置为`false`和<xref:System.Data.Linq.DataContext.SubmitChanges%2A>调用。  
+-   如果属性设置为`false` , <xref:System.Data.Linq.DataContext.SubmitChanges%2A>则调用。  
   
- 如果<xref:System.Data.Linq.DataContext.ObjectTrackingEnabled%2A>是`false`，<xref:System.Data.Linq.DataContext.DeferredLoadingEnabled%2A>被忽略，视为`false`。 在这种情况下，<xref:System.Data.Linq.DataContext>是只读的。  
+ 如果<xref:System.Data.Linq.DataContext.ObjectTrackingEnabled%2A>为`false` `false`,则将忽略,并<xref:System.Data.Linq.DataContext.DeferredLoadingEnabled%2A>将其视为。 在这种情况下<xref:System.Data.Linq.DataContext> , 是只读的。  
   
- 如果<xref:System.Data.Linq.DataContext.ObjectTrackingEnabled%2A>是`true`，<xref:System.Data.Linq.DataContext.DeferredLoadingEnabled%2A>是`false`。 在这种情况下， <xref:System.Data.Linq.DataContext> ，你可以通过使用负载对象图<xref:System.Data.Linq.DataLoadOptions.LoadWith%2A>指令，但不会启用延迟的加载。  
+ 如果<xref:System.Data.Linq.DataContext.ObjectTrackingEnabled%2A>为`true`,则<xref:System.Data.Linq.DataContext.DeferredLoadingEnabled%2A>为。`false` 在这种情况<xref:System.Data.Linq.DataContext>下, 允许使用<xref:System.Data.Linq.DataLoadOptions.LoadWith%2A>指令加载对象图, 但不启用延迟加载。  
   
  ]]></format>
         </remarks>
@@ -1255,10 +1255,10 @@ Next
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 开放式并发错误将引入另一次尝试的状态项后，此方法很有用。 它将更新的基元字段和属性的对象的状态。  
+ 此方法在开放式并发错误之后用于使项进入状态以进行另一次尝试。 它更新对象的基元字段和属性的状态。  
   
 > [!NOTE]
->  如果对象位于*许多*将设置一个对多关系，该对象上的外键端和关系的另一端的对象指针将设置为新值。  
+>  如果对象位于一对多关系的*多*一方, 则将设置对象的外键, 关系的另一侧的对象指针将设置为新值。  
   
  ]]></format>
         </remarks>
@@ -1362,9 +1362,9 @@ Next
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果存在用于 insert、 update 或 delete，重写方法<xref:System.Data.Linq.DataContext.SubmitChanges%2A>执行这些方法，而不是默认[!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)]命令。  
+ 如果存在用于插入、更新或删除的替代方法, 则<xref:System.Data.Linq.DataContext.SubmitChanges%2A>将执行这些方法, 而不[!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)]是默认命令。  
   
- <xref:System.Data.Linq.DataContext.SubmitChanges%2A> 启动一个事务，将回滚任何会发生异常时<xref:System.Data.Linq.DataContext.SubmitChanges%2A>正在执行。 但是，这不会回滚所做的更改在内存中或由跟踪<xref:System.Data.Linq.DataContext>; 这些更改将需要手动回滚。 可以使用的新实例启动<xref:System.Data.Linq.DataContext>如果在内存中的更改被放弃。  
+ <xref:System.Data.Linq.DataContext.SubmitChanges%2A>启动事务, 并在执行时发生异常时<xref:System.Data.Linq.DataContext.SubmitChanges%2A>回滚。 但是, 这不会回滚内存中的更改, 也不会对<xref:System.Data.Linq.DataContext>其进行跟踪; 这些更改将需要手动回滚。 如果要放弃内存中的更改, 则<xref:System.Data.Linq.DataContext>可以从的新实例开始。  
   
  ]]></format>
         </remarks>
@@ -1393,7 +1393,7 @@ Next
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果存在用于 insert、 update 或 delete，重写方法<xref:System.Data.Linq.DataContext.SubmitChanges%2A>执行这些方法，而不是默认[!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)]命令。  
+ 如果存在用于插入、更新或删除的替代方法, 则<xref:System.Data.Linq.DataContext.SubmitChanges%2A>将执行这些方法, 而不[!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)]是默认命令。  
   
  ]]></format>
         </remarks>
@@ -1426,7 +1426,7 @@ Next
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认故障模式是<xref:System.Data.Linq.ConflictMode.FailOnFirstConflict>。  
+ 默认失败模式为<xref:System.Data.Linq.ConflictMode.FailOnFirstConflict>。  
   
    
   
@@ -1456,20 +1456,20 @@ Next
       </ReturnValue>
       <Docs>
         <summary>获取或设置要用于访问数据库的 [!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)] 的本地事务。</summary>
-        <value>使用的事务对象<see cref="T:System.Data.Linq.DataContext" />时执行查询和命令。</value>
+        <value>执行查询和命令时由 <see cref="T:System.Data.Linq.DataContext" /> 使用的事务对象。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性的主要方案是使用关系的互操作性[!INCLUDE[vstecado](~/includes/vstecado-md.md)]代码。 例如，使用此属性，当您编写自己`Create` / `Update` / `Delete`方法，以便设置`Transaction`ADO 属性`Command`对象。  
+ 此属性的主要方案是与关系[!INCLUDE[vstecado](~/includes/vstecado-md.md)]代码的互操作性。 例如, `Create`当您编写自己`Update` / / 的方法`Transaction`以在ADO`Command`对象上设置属性时, 请使用此属性。 `Delete`  
   
  请注意以下事项：  
   
--   如果此属性未显式设置，getter 将返回 null。  
+-   如果未显式设置此属性, 则 getter 将返回 null。  
   
--   如果在中执行代码<xref:System.Transactions.Transaction>上下文中，设置此属性将引发异常。  
+-   如果代码在<xref:System.Transactions.Transaction>上下文中执行, 则设置此属性将引发异常。  
   
--   如果此属性设置了一个新<xref:System.Transactions.Transaction>是打开，将引发异常时执行的查询或更新。  
+-   如果设置了此属性并打开了<xref:System.Transactions.Transaction>新的, 则执行查询或更新时将引发异常。  
   
  ]]></format>
         </remarks>
@@ -1486,27 +1486,27 @@ Next
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 中的每一行<xref:System.Data.IDataReader>转换中的对象为<xref:System.Collections.Generic.IEnumerable%601>。  
+ 中的<xref:System.Data.IDataReader>每一行都将转换为<xref:System.Collections.Generic.IEnumerable%601>中的对象。  
   
 ```  
 public IEnumerable<T> Translate<T>(IDataReader reader) {}  
 ```  
   
- 描述：此方法用于转换的现有<xref:System.Data.Common.DbDataReader>对象。 中的每一行<xref:System.Data.Common.DbDataReader>转换中的对象为<xref:System.Collections.Generic.IEnumerable%601>。  
+ 描述：此方法用于将现有<xref:System.Data.Common.DbDataReader>转换为对象。 中的<xref:System.Data.Common.DbDataReader>每一行都将转换为<xref:System.Collections.Generic.IEnumerable%601>中的对象。  
   
- **泛型参数：**  
+ **泛型参数:**  
   
  `T`：请参阅<xref:System.Data.Linq.DataContext.ExecuteQuery%2A>。  
   
- **参数：**  
+ **Parameters**  
   
- `Query`：请参阅下面的命令的说明<xref:System.Data.Linq.DataContext.ExecuteCommand%2A>。  
+ `Query`：请参阅下<xref:System.Data.Linq.DataContext.ExecuteCommand%2A>有关命令的说明。  
   
- `Parameters`：请参阅下的参数的说明<xref:System.Data.Linq.DataContext.ExecuteCommand%2A>。  
+ `Parameters`：请参阅下<xref:System.Data.Linq.DataContext.ExecuteCommand%2A>的参数说明。  
   
- **返回类型：**  
+ **返回类型:**  
   
- <xref:System.Collections.Generic.IEnumerable%601>： 由转换返回的对象的集合。  
+ <xref:System.Collections.Generic.IEnumerable%601>: 由转换返回的对象的集合。  
   
  ]]></format>
         </remarks>

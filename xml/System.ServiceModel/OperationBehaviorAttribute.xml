@@ -1,5 +1,5 @@
 <Type Name="OperationBehaviorAttribute" FullName="System.ServiceModel.OperationBehaviorAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="529dc78c1be46e5e3e1509201e4bc9c9af8e1413" /><Meta Name="ms.sourcegitcommit" Value="662f143e6be46d519ff8ab4451d543d91e651478" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="12/18/2018" /><Meta Name="ms.locfileid" Value="53565712" /></Metadata><TypeSignature Language="C#" Value="public sealed class OperationBehaviorAttribute : Attribute, System.ServiceModel.Description.IOperationBehavior" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="362ab32f223eb767fc048a2710ba78c05b09a279" /><Meta Name="ms.sourcegitcommit" Value="e7974886b08aa83a8fb461e8550f31a7d4331ee3" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/23/2019" /><Meta Name="ms.locfileid" Value="68392476" /></Metadata><TypeSignature Language="C#" Value="public sealed class OperationBehaviorAttribute : Attribute, System.ServiceModel.Description.IOperationBehavior" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit OperationBehaviorAttribute extends System.Attribute implements class System.ServiceModel.Description.IOperationBehavior" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.OperationBehaviorAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class OperationBehaviorAttribute&#xA;Inherits Attribute&#xA;Implements IOperationBehavior" />
@@ -34,7 +34,7 @@
 > [!NOTE]
 >  也可以使用 <xref:System.ServiceModel.OperationBehaviorAttribute> 在双工客户端应用程序中配置回调协定操作。 对回调操作使用它时，<xref:System.ServiceModel.OperationBehaviorAttribute.ReleaseInstanceMode%2A> 属性必须为 <xref:System.ServiceModel.ReleaseInstanceMode.None>，否则会在运行时引发 <xref:System.InvalidOperationException> 异常。  
   
- <xref:System.ServiceModel.OperationBehaviorAttribute>属性是 Windows Communication Foundation (WCF) 编程模型功能，使开发人员必须实现自己的常见功能。  
+ <xref:System.ServiceModel.OperationBehaviorAttribute>特性是一个 Windows Communication Foundation (WCF) 编程模型功能, 它能够实现开发人员必须自行实现的通用功能。  
   
 -   <xref:System.ServiceModel.OperationBehaviorAttribute.AutoDisposeParameters%2A> 属性控制当服务操作完成时是否释放传递给操作的参数对象。  
   
@@ -77,7 +77,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认构造函数会使用下列默认值创建该类的实例：  
+ 无参数构造函数使用以下默认值创建类的实例:  
   
 -   <xref:System.ServiceModel.OperationBehaviorAttribute.TransactionAutoComplete%2A> 属性为 `true`。  
   
@@ -117,7 +117,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，它指示是否自动释放参数。</summary>
-        <value><see langword="true" /> 如果该参数不自动释放;否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果将自动释放参数, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -158,12 +158,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用 <xref:System.ServiceModel.OperationBehaviorAttribute.Impersonation%2A> 属性（外加支持模拟的绑定配置）可以使指定的方法（通过将 <xref:System.ServiceModel.OperationBehaviorAttribute.Impersonation%2A> 属性设置为 <xref:System.ServiceModel.ImpersonationOption.Allowed> 或 <xref:System.ServiceModel.ImpersonationOption.Required> 进行标记的方法）在调用方的标识下执行。 有关详细信息，包括使用时如何执行模拟<xref:System.ServiceModel.ImpersonationOption.Allowed>连同<xref:System.ServiceModel.Description.ServiceAuthorizationBehavior.ImpersonateCallerForAllOperations%2A?displayProperty=nameWithType>属性，请参阅[委托和模拟](~/docs/framework/wcf/feature-details/delegation-and-impersonation-with-wcf.md)和[如何：模拟客户端在服务上的](~/docs/framework/wcf/how-to-impersonate-a-client-on-a-service.md)。  
+ 使用 <xref:System.ServiceModel.OperationBehaviorAttribute.Impersonation%2A> 属性（外加支持模拟的绑定配置）可以使指定的方法（通过将 <xref:System.ServiceModel.OperationBehaviorAttribute.Impersonation%2A> 属性设置为 <xref:System.ServiceModel.ImpersonationOption.Allowed> 或 <xref:System.ServiceModel.ImpersonationOption.Required> 进行标记的方法）在调用方的标识下执行。 有关详细信息, 包括<xref:System.ServiceModel.ImpersonationOption.Allowed>在结合<xref:System.ServiceModel.Description.ServiceAuthorizationBehavior.ImpersonateCallerForAllOperations%2A?displayProperty=nameWithType>属性使用时如何执行模拟, 请参阅[委派和模拟](~/docs/framework/wcf/feature-details/delegation-and-impersonation-with-wcf.md)和[如何:模拟服务](~/docs/framework/wcf/how-to-impersonate-a-client-on-a-service.md)上的客户端。  
   
 > [!NOTE]
 >  当以编程方式添加执行模拟的服务终结点时，必须使用 <xref:System.ServiceModel.ServiceHost.AddServiceEndpoint%2A> 方法之一或 <xref:System.ServiceModel.Description.ContractDescription.GetContract%2A?displayProperty=nameWithType> 方法，才能将协定正确地加载到新的 <xref:System.ServiceModel.Description.ServiceDescription?displayProperty=nameWithType> 对象。 使用配置文件无需额外步骤。  
   
- 对于不支持模拟的情况，可能有特定的方案。 有关详细信息，请参阅[不支持的方案](~/docs/framework/wcf/feature-details/unsupported-scenarios.md)。  
+ 对于不支持模拟的情况，可能有特定的方案。 有关详细信息, 请参阅[不支持的方案](~/docs/framework/wcf/feature-details/unsupported-scenarios.md)。  
   
    
   
@@ -210,7 +210,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.ServiceModel.OperationBehaviorAttribute.ReleaseInstanceMode%2A>属性来指定 Windows Communication Foundation (WCF) 时回收服务对象在执行方法的过程中。 默认行为是根据 <xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A> 值来回收服务对象。 通过设置 <xref:System.ServiceModel.OperationBehaviorAttribute.ReleaseInstanceMode%2A> 属性，可以更改该默认行为。  
+ 在执行方法的过程中, 使用属性指定WindowsCommunicationFoundation(WCF)回收服务对象的时间。<xref:System.ServiceModel.OperationBehaviorAttribute.ReleaseInstanceMode%2A> 默认行为是根据 <xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A> 值来回收服务对象。 通过设置 <xref:System.ServiceModel.OperationBehaviorAttribute.ReleaseInstanceMode%2A> 属性，可以更改该默认行为。  
   
  <xref:System.ServiceModel.OperationBehaviorAttribute.ReleaseInstanceMode%2A> 不提供线程保证。 如果在服务运行时必须有一个新的未修改对象，请将 <xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A> 属性设置为 <xref:System.ServiceModel.InstanceContextMode.PerCall>。  
   

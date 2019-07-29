@@ -32,26 +32,26 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>转换 XML 数据使用可扩展样式表语言转换 (XSLT) 样式表。</summary>
+    <summary>使用可扩展样式表转换语言 (XSLT) 转换 XML 数据。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是 Microsoft.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 Microsoft .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须使用命名空间`http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须使用命名空间`http://www.w3.org/1999/XSL/Transform`。  
   
- 其他参数还可以添加到样式表使用<xref:System.Xml.Xsl.XsltArgumentList>类。 此类包含的样式表和扩展对象可以从样式表调用的输入的参数。  
+ 还可以使用<xref:System.Xml.Xsl.XsltArgumentList>类将其他参数添加到样式表中。 此类包含可从样式表中调用的样式表和扩展对象的输入参数。  
   
- 若要将 XML 数据转换：  
+ 转换 XML 数据:  
   
-1.  创建<xref:System.Xml.Xsl.XslTransform>对象。  
+1.  <xref:System.Xml.Xsl.XslTransform>创建对象。  
   
-2.  使用<xref:System.Xml.Xsl.XslTransform.Load%2A>方法以加载该转换的样式表。 此方法有若干重载，可以加载样式表使用<xref:System.Xml.XmlReader>， <xref:System.Xml.XPath.XPathNavigator>， <xref:System.Xml.XPath.IXPathNavigable>，或具有文件的位置的 URL。  
+2.  <xref:System.Xml.Xsl.XslTransform.Load%2A>使用方法加载转换的样式表。 此方法具有多个重载, 并且可以使用<xref:System.Xml.XmlReader>、 <xref:System.Xml.XPath.XPathNavigator>、 <xref:System.Xml.XPath.IXPathNavigable>或 URL 与文件位置一起加载样式表。  
   
-3.  使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法来转换 XML 数据。 此方法有若干重载，可以处理不同类型的输入和输出。 此外可以指定<xref:System.Xml.Xsl.XsltArgumentList>包含要在转换期间使用作为输入的其他参数。  
+3.  <xref:System.Xml.Xsl.XslTransform.Transform%2A>使用方法来转换 XML 数据。 此方法具有多个重载, 并且可以处理不同类型的输入和输出。 你还可以指定<xref:System.Xml.Xsl.XsltArgumentList> , 其中包含要在转换过程中用作输入的其他参数。  
   
  **安全注意事项**  
   
@@ -59,40 +59,40 @@
   
 -   默认情况下启用扩展对象。 如果包含扩展对象的 <xref:System.Xml.Xsl.XsltArgumentList> 对象传递给 <xref:System.Xml.Xsl.XslTransform.Transform%2A> 方法，将利用这些扩展对象。  
   
--   XSLT 样式表可以包括对其他文件的引用以及嵌入式脚本块。 恶意用户可以利用这一点您提供数据或样式表，在执行时将导致您的系统进行处理，直到计算机资源不足。  
+-   XSLT 样式表可以包括对其他文件的引用以及嵌入式脚本块。 恶意用户可以通过向您提供数据或样式表来利用此方法, 在执行该操作时, 将导致系统在计算机资源不足的情况下进行处理。  
   
 -   在混合信任环境下运行的 XSLT 应用程序可能会引发样式表欺骗。 例如，恶意用户可能会为对象加载有害的样式表，并将其交给另一个用户，而后者会继续调用 <xref:System.Xml.Xsl.XslTransform.Transform%2A> 方法并执行转换。  
   
- 可以通过不接受来缓解这些安全问题<xref:System.Xml.Xsl.XslTransform>对象、 XSLT 样式表或来自不可信源的 XML 源数据。  
+ 不接受<xref:System.Xml.Xsl.XslTransform>来自不受信任源的对象、XSLT 样式表或 XML 源数据可以减轻这些安全问题。  
   
  **脚本支持**  
   
- 此类支持嵌入的脚本使用`msxsl:script`元素。  
+ 此类使用`msxsl:script`元素支持嵌入的脚本。  
   
- 在.NET Framework 1.1 版中，样式表的证据确定哪些权限授予用于嵌入的脚本。  
+ 在 .NET Framework 版本1.1 中, 样式表的证据确定授予嵌入脚本的权限。  
   
--   如果样式表加载从统一资源标识符 (URI)，使用 URI 创建证据。 此证据包括以及站点和区域的 URI。  
+-   如果样式表是从统一资源标识符 (URI) 加载的, 则使用 URI 创建证据。 此证据包含 URI 及其站点和区域。  
   
--   如果使用另一个源加载样式表，则可以通过传递提供证据<xref:System.Security.Policy.Evidence?displayProperty=nameWithType>对象传递给<xref:System.Xml.Xsl.XslTransform.Load%2A>方法。 否则，脚本程序集具有完全信任。  
+-   如果使用其他源加载了样式表, 则可以通过将<xref:System.Security.Policy.Evidence?displayProperty=nameWithType>对象传递<xref:System.Xml.Xsl.XslTransform.Load%2A>给方法来提供证据。 否则, 脚本程序集会完全信任。  
   
- 不完全受信任调用方：`UnmanagedCode`编译嵌入式的脚本所需的权限。 `ControlEvidence` 提供所需的权限<xref:System.Security.Policy.Evidence>到<xref:System.Xml.Xsl.XslTransform.Load%2A>方法。 一个<xref:System.Security.SecurityException>如果调用方没有所需的权限，将引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission?displayProperty=nameWithType>和<xref:System.Security.Permissions.SecurityPermissionFlag?displayProperty=nameWithType>。  
+ 不完全受信任的`UnmanagedCode`调用方: 编译嵌入式脚本需要权限。 `ControlEvidence`需要提供<xref:System.Security.Policy.Evidence>对方法的<xref:System.Xml.Xsl.XslTransform.Load%2A>权限。 如果调用方不具有所需的权限, 则会引发。<xref:System.Security.SecurityException> 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission?displayProperty=nameWithType>和<xref:System.Security.Permissions.SecurityPermissionFlag?displayProperty=nameWithType>。  
   
- `msxsl:script`元素具有以下要求：  
+ `msxsl:script`元素具有以下要求:  
   
--   `msxsl:script`元素属于`urn:schemas-microsoft-com:xslt`命名空间。 样式表必须包含命名空间声明`xmlns:msxsl=urn:schemas-microsoft-com:xslt`。  
+-   `msxsl:script`元素属于`urn:schemas-microsoft-com:xslt`命名空间。 样式表必须包括命名空间声明`xmlns:msxsl=urn:schemas-microsoft-com:xslt`。  
   
--   `msxsl:script`元素可以包含`language`的特性，指定要使用的脚本语言。 值`language`属性必须是以下值之一：C#C#、 VB、 VisualBasic、 JScript 或 JavaScript。 语言名称不区分大小写，因为 JavaScript 和 javascript 都是有效。 如果`language`属性未指定，则默认为 JScript。  
+-   元素可以包含指定要使用的脚本语言的特性。`language` `msxsl:script` `language`特性的值必须是下列值之一:C#、CSharp、VB、/或 JavaScript。 由于语言名称不区分大小写, 因此 JavaScript 和 javascript 都是有效的。 如果未指定属性, 则默认为 JScript。 `language`  
   
--   `msxsl:script`元素必须包括`implements-prefix`属性，其中包含表示与脚本块关联的命名空间的前缀。 此命名空间必须定义的样式表中。 样式表可以包含多个脚本块的命名空间进行分组。 不能具有相同的命名空间内的多个语言的脚本块。 脚本块可以调用在另一个脚本块中定义的函数提供的脚本块驻留在相同的命名空间。 根据规则和脚本语言的语法的脚本块的内容进行解析 (通过提供`language`属性)。 例如，如果你有 C# 脚本块，注释就会通过`//`字符。 注释必须是有效的 XML 内容。  
+-   元素必须包括一个`implements-prefix`属性, 该属性包含表示与脚本块关联的命名空间的前缀。 `msxsl:script` 此命名空间必须在样式表中定义。 样式表可以包含多个按命名空间分组的脚本块。 同一命名空间中不能有多个语言的脚本块。 脚本块可以调用另一个脚本块中定义的函数, 前提是脚本块驻留在同一命名空间中。 脚本块的内容根据脚本语言 (由`language`特性提供) 的规则和语法进行分析。 例如, 如果您有一个C#脚本块, 注释将以`//`字符为前缀。 注释必须为有效的 XML 内容。  
   
 > [!NOTE]
-> 建议将脚本块包装在 CDATA 部分。
+> 建议你将脚本块包装在 CDATA 节中。
   
  [!INCLUDE [xsltransform-script](~/includes/xsltransform-script.md)] 
    
  函数可以在 `msxsl:script` 元素内声明。 下表显示了默认情况下支持的命名空间。  
   
-|支持的命名空间|描述|  
+|支持的命名空间|说明|  
 |--------------------------|-----------------|  
 |`System`|系统类。|  
 |`System.Collection`|集合类。|  
@@ -101,38 +101,38 @@
 |`System.Xml.Xsl`|XSLT 类。|  
 |`System.Xml.XPath`|XML 路径语言 (XPath) 类。|  
   
- 提供的自变量和定义的脚本函数的返回值必须是下面列出的 World Wide Web 联合会 (W3C) 类型之一。 下表详细说明了 W3C 类型、 XPath 或 XSLT 之间的映射和相应的.NET Framework 类。  
+ 脚本函数定义的所提供的参数和返回值必须是下列万维网联合会 (W3C) 类型之一。 下表详细说明了 W3C 类型 (XPath 或 XSLT) 与相应 .NET Framework 类之间的映射。  
   
-|W3C 类型|等效的.NET 类|  
+|W3C 类型|等效的 .NET 类|  
 |--------------|---------------------------|  
-|字符串 (XPath)|`System.String`|  
-|一个布尔值 (XPath)|`System.Boolean`|  
-|数字 (XPath)|`System.Double`|  
+|String (XPath)|`System.String`|  
+|布尔 (XPath)|`System.Boolean`|  
+|Number (XPath)|`System.Double`|  
 |结果树片段 (XSLT)|`System.Xml.XPath.XPathNavigator`|  
 |节点集 (XPath)|`System.Xml.XPath.XPathNodeIterator`|  
   
- 如果脚本函数使用下列数值类型之一：Int16、 UInt16、 Int32、 UInt32、 Int64、 UInt64、 Single 或 Decimal，将这些类型强制转换为 Double，映射为 W3C XPath 类型的数字。  
+ 如果脚本函数使用下列数值类型之一：Int16、UInt16、Int32、UInt32、Int64、UInt64、Single 或 Decimal, 这些类型被强制转换为双精度值, 这两种类型映射到 W3C XPath 类型的数字。  
   
- 将引发异常时，调用的函数不能将参数结果转换为所需的类型之一。  
+ 如果调用的函数无法将参数结果转换为所需的类型之一, 则会引发异常。  
   
 > [!NOTE]
->  `msxsl:script` 并`msxsl:node-list`是中的唯一函数`urn:schemas-microsoft-com:xslt`命名空间支持的<xref:System.Xml.Xsl.XslTransform>类。  
+>  `msxsl:script`和`msxsl:node-list` `urn:schemas-microsoft-com:xslt`是类<xref:System.Xml.Xsl.XslTransform>支持的唯一命名空间中的函数。  
   
- <xref:System.Xml.Xsl.XslTransform> 能够利用公共语言运行时 (CLR) 代码，作为一种扩展机制。 这通过传递到类的实例实现<xref:System.Xml.Xsl.XslTransform>类并调用它 XSLT 样式表中的公共方法。 使用定义的方法`params`关键字，它允许未指定要传递的参数数量，在此方案中无法正常工作。 请参阅[params](~/docs/csharp/language-reference/keywords/params.md)的更多详细信息。  
+ <xref:System.Xml.Xsl.XslTransform>能够利用公共语言运行时 (CLR) 代码作为扩展机制。 这是通过将类的实例传递给<xref:System.Xml.Xsl.XslTransform>类并在 XSLT 样式表中调用其公共方法来完成的。 使用`params`关键字定义的方法允许传递指定数目的参数, 在这种情况下不能正常工作。 有关更多详细信息, 请参阅[params](~/docs/csharp/language-reference/keywords/params.md) 。  
   
- 有关详细信息请参阅[XslTransform 类的 XSLT 转换](~/docs/standard/data/xml/xslt-transformations-with-the-xsltransform-class.md)。  
+ 有关详细信息, 请参阅[具有 XslTransform 类的 XSLT 转换](~/docs/standard/data/xml/xslt-transformations-with-the-xsltransform-class.md)。  
   
    
   
 ## Examples  
- 以下示例转换指定的 XML 文档，并将结果输出到控制台。  
+ 下面的示例将转换指定的 XML 文档, 并将结果输出到控制台。  
   
  [!code-csharp[Classic WebData XslTransform Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XslTransform Example/CS/source.cs#1)]
  [!code-vb[Classic WebData XslTransform Example#1](~/samples/snippets/visualbasic/VS_Snippets_Data/Classic WebData XslTransform Example/VB/source.vb#1)]  
   
  ]]></format>
     </remarks>
-    <threadsafe><see cref="T:System.Xml.Xsl.XslTransform" /> 对象是用于转换操作的唯一线程安全。 其他操作不保证是线程安全。 您必须确保没有其他方法的调用对象上在加载操作期间。</threadsafe>
+    <threadsafe><see cref="T:System.Xml.Xsl.XslTransform" />对象只对转换操作而言是线程安全的。 其他操作不一定是线程安全的。 您必须确保在加载操作期间没有为对象调用任何其他方法。</threadsafe>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -172,14 +172,14 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>加载 XSLT 样式表，其中包括样式表中引用<see langword="xsl:include" />和<see langword="xsl:import" />元素。</summary>
+        <summary>加载 XSLT 样式表，包括在 <see langword="xsl:include" /> 和 <see langword="xsl:import" /> 元素中引用的样式表。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
  ]]></format>
         </remarks>
@@ -218,28 +218,28 @@
       </Parameters>
       <Docs>
         <param name="url">指定要加载的 XSLT 样式表的 URL。</param>
-        <summary>加载由 URL 指定的 XSLT 样式表。</summary>
+        <summary>加载由一个 URL 指定的 XSLT 样式表。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl="http://www.w3.org/1999/XSL/Transform"`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl="http://www.w3.org/1999/XSL/Transform"`。  
   
- 此方法加载 XSLT 样式表，其中包括引用中的所有样式表`xsl:include`和`xsl:import`元素。 使用解析外部资源<xref:System.Xml.XmlUrlResolver>使用没有用户凭据。 如果样式表都位于要求身份验证的网络资源，使用的重载<xref:System.Xml.XmlResolver>作为其参数之一，并指定<xref:System.Xml.XmlResolver>与所需的凭据。  
+ 此方法加载 XSLT 样式表, 其中包括和`xsl:include` `xsl:import`元素中引用的所有样式表。 使用<xref:System.Xml.XmlUrlResolver>没有用户凭据的来解析外部资源。 如果样式表位于要求身份验证的网络资源上, 则使用重载, 该重载采用<xref:System.Xml.XmlResolver>作为其参数之一的重载, 并使用所需的凭据<xref:System.Xml.XmlResolver>指定。  
   
- 如果样式表包含嵌入的脚本，该脚本将编译为程序集。 样式表的 URI 用于创建应用于程序集的证据。
+ 如果样式表包含嵌入式脚本, 则该脚本将编译为程序集。 样式表的 URI 用于创建将应用于程序集的证据。
   
 > [!NOTE]
->  如果调用方不具有`UnmanagedCode`权限，嵌入的脚本将不进行编译和<xref:System.Security.SecurityException>引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
+>  如果调用方`UnmanagedCode`没有权限, 则不编译嵌入的脚本<xref:System.Security.SecurityException>并引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
   
    
   
 ## Examples  
- 下面的示例将 XML 文档转换为 HTML 文档。 它显示在表中的 ISBN、 标题和每本书的价格。  
+ 下面的示例将 XML 文档转换为 HTML 文档。 它显示表中每本书的 ISBN、标题和价格。  
   
  [!code-cpp[Classic WebData XslTransform.Transform7 Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XslTransform.Transform7 Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XslTransform.Transform7 Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XslTransform.Transform7 Example/CS/source.cs#1)]
@@ -258,7 +258,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Xml.Xsl.XsltCompileException">加载的资源不是有效的样式表。</exception>
-        <exception cref="T:System.Security.SecurityException">样式表包含嵌入的脚本，并且调用方不具有<see langword="UnmanagedCode" />权限。</exception>
+        <exception cref="T:System.Security.SecurityException">样式表包含嵌入式脚本，并且调用方没有 <see langword="UnmanagedCode" /> 权限。</exception>
       </Docs>
     </Member>
     <Member MemberName="Load">
@@ -298,33 +298,33 @@
         <Parameter Name="stylesheet" Type="System.Xml.XmlReader" />
       </Parameters>
       <Docs>
-        <param name="stylesheet"><see cref="T:System.Xml.XmlReader" />对象，其中包含的 XSLT 样式表。</param>
-        <summary>加载 XSLT 样式表中包含<see cref="T:System.Xml.XmlReader" />。</summary>
+        <param name="stylesheet">包含 XSLT 样式表的 <see cref="T:System.Xml.XmlReader" /> 对象。</param>
+        <summary>加载 <see cref="T:System.Xml.XmlReader" /> 中包含的 XSLT 样式表。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- 此方法加载 XSLT 样式表，其中包括引用中的所有样式表`xsl:include`和`xsl:import`元素。 使用解析外部资源<xref:System.Xml.XmlUrlResolver>使用没有用户凭据。 如果样式表都位于要求身份验证的网络资源，使用的重载<xref:System.Xml.XmlResolver>作为其参数之一，并指定<xref:System.Xml.XmlResolver>与所需的凭据。  
+ 此方法加载 XSLT 样式表, 其中包括和`xsl:include` `xsl:import`元素中引用的所有样式表。 使用<xref:System.Xml.XmlUrlResolver>没有用户凭据的来解析外部资源。 如果样式表位于要求身份验证的网络资源上, 则使用重载, 该重载采用<xref:System.Xml.XmlResolver>作为其参数之一的重载, 并使用所需的凭据<xref:System.Xml.XmlResolver>指定。  
   
- 从当前节点的样式表加载<xref:System.Xml.XmlReader>通过其所有子项。 这可以用作样式表文档的一部分。 后<xref:System.Xml.Xsl.XslTransform.Load%2A>方法返回时，<xref:System.Xml.XmlReader>样式表的结尾后定位到下一个节点。 如果已到达文档结尾，<xref:System.Xml.XmlReader> 将位于文件结尾 (EOF)。  
+ 样式表从的<xref:System.Xml.XmlReader>当前节点加载到其所有子级。 这使您可以使用文档的一部分作为样式表。 此<xref:System.Xml.Xsl.XslTransform.Load%2A>方法返回后<xref:System.Xml.XmlReader> , 将定位到样式表末尾后的下一个节点。 如果已到达文档结尾，<xref:System.Xml.XmlReader> 将位于文件结尾 (EOF)。  
   
- 如果样式表将包含实体，则应指定<xref:System.Xml.XmlReader>可以解析实体 (<xref:System.Xml.XmlReader.CanResolveEntity%2A?displayProperty=nameWithType>返回`true`)。 在这种情况下，<xref:System.Xml.XmlValidatingReader>可用。  
+ 如果样式表包含实体, 则应指定<xref:System.Xml.XmlReader>可解析实体 (<xref:System.Xml.XmlReader.CanResolveEntity%2A?displayProperty=nameWithType>返回`true`) 的。 在这种情况下<xref:System.Xml.XmlValidatingReader> , 可以使用。  
   
- 如果样式表包含嵌入的脚本，该脚本将编译为程序集。 程序集具有完全信任。 建议的做法是提供证据使用<xref:System.Xml.Xsl.XslTransform.Load%28System.Xml.XmlReader%2CSystem.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29>方法。
+ 如果样式表包含嵌入式脚本, 则该脚本将编译为程序集。 程序集具有完全信任。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Load%28System.Xml.XmlReader%2CSystem.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29>方法提供证据。
   
 > [!NOTE]
->  如果调用方不具有`UnmanagedCode`权限，嵌入的脚本将不进行编译和<xref:System.Security.SecurityException>引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
+>  如果调用方`UnmanagedCode`没有权限, 则不编译嵌入的脚本<xref:System.Security.SecurityException>并引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
   
    
   
 ## Examples  
- 下面的示例转换按标题排序所有书籍的 XML 文件。  
+ 下面的示例将转换按标题对所有书籍进行排序的 XML 文件。  
   
  [!code-cpp[XslTransform.Load3#1](~/samples/snippets/cpp/VS_Snippets_Data/XslTransform.Load3/CPP/trans3.cpp#1)]
  [!code-csharp[XslTransform.Load3#1](~/samples/snippets/csharp/VS_Snippets_Data/XslTransform.Load3/CS/trans3.cs#1)]
@@ -342,8 +342,8 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Xml.Xsl.XsltCompileException">当前节点不符合有效样式表。</exception>
-        <exception cref="T:System.Security.SecurityException">样式表包含嵌入式的脚本，并且调用方不具有<see langword="UnmanagedCode" />权限。</exception>
+        <exception cref="T:System.Xml.Xsl.XsltCompileException">当前节点不符合有效样式表的要求。</exception>
+        <exception cref="T:System.Security.SecurityException">样式表包含嵌入式脚本，并且调用方没有 <see langword="UnmanagedCode" /> 权限。</exception>
       </Docs>
     </Member>
     <Member MemberName="Load">
@@ -383,29 +383,29 @@
         <Parameter Name="stylesheet" Type="System.Xml.XPath.IXPathNavigable" />
       </Parameters>
       <Docs>
-        <param name="stylesheet">一个对象，实现<see cref="T:System.Xml.XPath.IXPathNavigable" />接口。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含 XSLT 样式表的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
-        <summary>加载 XSLT 样式表中包含<see cref="T:System.Xml.XPath.IXPathNavigable" />。</summary>
+        <param name="stylesheet">实现 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 接口的对象。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含 XSLT 样式表的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
+        <summary>加载 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 中包含的 XSLT 样式表。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- 此方法加载 XSLT 样式表，其中包括引用中的所有样式表`xsl:include`和`xsl:import`元素。 使用解析外部资源<xref:System.Xml.XmlUrlResolver>使用没有用户凭据。 如果样式表都位于要求身份验证的网络资源，使用的重载<xref:System.Xml.XmlResolver>作为其参数之一，并指定<xref:System.Xml.XmlResolver>与所需的凭据。  
+ 此方法加载 XSLT 样式表, 其中包括和`xsl:include` `xsl:import`元素中引用的所有样式表。 使用<xref:System.Xml.XmlUrlResolver>没有用户凭据的来解析外部资源。 如果样式表位于要求身份验证的网络资源上, 则使用重载, 该重载采用<xref:System.Xml.XmlResolver>作为其参数之一的重载, 并使用所需的凭据<xref:System.Xml.XmlResolver>指定。  
   
- 如果样式表包含嵌入的脚本，该脚本将编译为程序集。 程序集具有完全信任。 建议的做法是提供证据使用<xref:System.Xml.Xsl.XslTransform.Load%28System.Xml.XPath.IXPathNavigable%2CSystem.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29>方法。
+ 如果样式表包含嵌入式脚本, 则该脚本将编译为程序集。 程序集具有完全信任。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Load%28System.Xml.XPath.IXPathNavigable%2CSystem.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29>方法提供证据。
   
 > [!NOTE]
->  如果调用方不具有`UnmanagedCode`权限，嵌入的脚本将不进行编译和<xref:System.Security.SecurityException>引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
+>  如果调用方`UnmanagedCode`没有权限, 则不编译嵌入的脚本<xref:System.Security.SecurityException>并引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Xml.Xsl.XsltCompileException">加载的资源不是有效的样式表。</exception>
-        <exception cref="T:System.Security.SecurityException">样式表包含嵌入式的脚本，并且调用方不具有<see langword="UnmanagedCode" />权限。</exception>
+        <exception cref="T:System.Security.SecurityException">样式表包含嵌入式脚本，并且调用方没有 <see langword="UnmanagedCode" /> 权限。</exception>
       </Docs>
     </Member>
     <Member MemberName="Load">
@@ -445,31 +445,31 @@
         <Parameter Name="stylesheet" Type="System.Xml.XPath.XPathNavigator" />
       </Parameters>
       <Docs>
-        <param name="stylesheet"><see cref="T:System.Xml.XPath.XPathNavigator" />对象，其中包含的 XSLT 样式表。</param>
-        <summary>加载 XSLT 样式表中包含<see cref="T:System.Xml.XPath.XPathNavigator" />。</summary>
+        <param name="stylesheet">包含 XSLT 样式表的 <see cref="T:System.Xml.XPath.XPathNavigator" /> 对象。</param>
+        <summary>加载 <see cref="T:System.Xml.XPath.XPathNavigator" /> 中包含的 XSLT 样式表。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- 此方法加载 XSLT 样式表，其中包括引用中的所有样式表`xsl:include`和`xsl:import`元素。 使用解析外部资源<xref:System.Xml.XmlUrlResolver>使用没有用户凭据。 如果样式表都位于要求身份验证的网络资源，使用的重载<xref:System.Xml.XmlResolver>作为其参数之一，并指定<xref:System.Xml.XmlResolver>与所需的凭据。  
+ 此方法加载 XSLT 样式表, 其中包括和`xsl:include` `xsl:import`元素中引用的所有样式表。 使用<xref:System.Xml.XmlUrlResolver>没有用户凭据的来解析外部资源。 如果样式表位于要求身份验证的网络资源上, 则使用重载, 该重载采用<xref:System.Xml.XmlResolver>作为其参数之一的重载, 并使用所需的凭据<xref:System.Xml.XmlResolver>指定。  
   
- 从当前的位置加载样式表<xref:System.Xml.XPath.XPathNavigator>。 若要使用的样式表作为所加载文档的一部分，导航到样式表的开头相对应的节点。 之后<xref:System.Xml.Xsl.XslTransform.Load%2A>方法返回时，<xref:System.Xml.XPath.XPathNavigator>位于样式表的开头 (在`xsl:style sheet`节点)。  
+ 样式表是从的当前位置<xref:System.Xml.XPath.XPathNavigator>加载的。 若要仅使用已加载文档的一部分作为样式表, 请导航到与样式表的开头相对应的节点。 方法返回后<xref:System.Xml.XPath.XPathNavigator> , 位于`xsl:style sheet`样式表的开头 (在节点上)。 <xref:System.Xml.Xsl.XslTransform.Load%2A>  
   
- 如果样式表包含嵌入的脚本，该脚本将编译为程序集。 程序集具有完全信任。 建议的做法是提供证据使用<xref:System.Xml.Xsl.XslTransform.Load%28System.Xml.XPath.XPathNavigator%2CSystem.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29>方法。
+ 如果样式表包含嵌入式脚本, 则该脚本将编译为程序集。 程序集具有完全信任。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Load%28System.Xml.XPath.XPathNavigator%2CSystem.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29>方法提供证据。
   
 > [!NOTE]
->  如果调用方不具有`UnmanagedCode`权限，嵌入的脚本将不进行编译和<xref:System.Security.SecurityException>引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
+>  如果调用方`UnmanagedCode`没有权限, 则不编译嵌入的脚本<xref:System.Security.SecurityException>并引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Xml.Xsl.XsltCompileException">当前节点不符合有效样式表。</exception>
-        <exception cref="T:System.Security.SecurityException">样式表包含嵌入式的脚本，并且调用方不具有<see langword="UnmanagedCode" />权限。</exception>
+        <exception cref="T:System.Xml.Xsl.XsltCompileException">当前节点不符合有效样式表的要求。</exception>
+        <exception cref="T:System.Security.SecurityException">样式表包含嵌入式脚本，并且调用方没有 <see langword="UnmanagedCode" /> 权限。</exception>
       </Docs>
     </Member>
     <Member MemberName="Load">
@@ -508,29 +508,29 @@
         <param name="url">指定要加载的 XSLT 样式表的 URL。</param>
         <param name="resolver"><see cref="T:System.Xml.XmlResolver" /> 用于加载该样式表以及 <c>xsl:import</c> 和 <c>xsl:include</c> 元素中引用的任何样式表。  
   
-如果这是<see langword="null" />，默认值<see cref="T:System.Xml.XmlUrlResolver" />无用户凭据用于打开样式表。 不使用默认的 <see cref="T:System.Xml.XmlUrlResolver" /> 来解析样式表中的任何外部资源，因此将不解析 <c>xsl:import</c> 和 <c>xsl:include</c> 元素。  
+如果这是 <see langword="null" />，将使用不具有用户凭据的默认 <see cref="T:System.Xml.XmlUrlResolver" /> 来打开样式表。 不使用默认的 <see cref="T:System.Xml.XmlUrlResolver" /> 来解析样式表中的任何外部资源，因此将不解析 <c>xsl:import</c> 和 <c>xsl:include</c> 元素。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="M:System.Xml.Xsl.XslTransform.Load(System.String,System.Xml.XmlResolver)" />方法完成。</param>
-        <summary>加载由 URL 指定的 XSLT 样式表。</summary>
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="M:System.Xml.Xsl.XslTransform.Load(System.String,System.Xml.XmlResolver)" />。</param>
+        <summary>加载由一个 URL 指定的 XSLT 样式表。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- 如果样式表包含嵌入的脚本，该脚本将编译为程序集。 样式表的 URI 用于创建应用于程序集的证据。
+ 如果样式表包含嵌入式脚本, 则该脚本将编译为程序集。 样式表的 URI 用于创建将应用于程序集的证据。
   
 > [!NOTE]
->  如果调用方不具有`UnmanagedCode`权限，嵌入的脚本将不进行编译和<xref:System.Security.SecurityException>引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
+>  如果调用方`UnmanagedCode`没有权限, 则不编译嵌入的脚本<xref:System.Security.SecurityException>并引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
   
    
   
 ## Examples  
- 下面的示例将 XML 文档转换为 HTML 文档。 该示例加载 XSLT 样式表，其中包含`xsl:include`元素引用另一个样式表。 <xref:System.Xml.XmlUrlResolver>传递给<xref:System.Xml.Xsl.XslTransform.Load%2A>设置的凭据访问包含的样式表的网络资源所需的方法。  
+ 下面的示例将 XML 文档转换为 HTML 文档。 该示例将加载一个包含`xsl:include`引用另一个样式表的元素的 XSLT 样式表。 <xref:System.Xml.XmlUrlResolver> 传递<xref:System.Xml.Xsl.XslTransform.Load%2A>给方法, 该方法用于设置为所包含的样式表访问网络资源所需的凭据。  
   
  [!code-csharp[XslTransform.Load2#1](~/samples/snippets/csharp/VS_Snippets_Data/XslTransform.Load2/CS/trans2.cs#1)]
  [!code-vb[XslTransform.Load2#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XslTransform.Load2/VB/trans2.vb#1)]  
@@ -552,7 +552,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Xml.Xsl.XsltCompileException">加载的资源不是有效的样式表。</exception>
-        <exception cref="T:System.Security.SecurityException">样式表包含嵌入的脚本，并且调用方不具有<see langword="UnmanagedCode" />权限。</exception>
+        <exception cref="T:System.Security.SecurityException">样式表包含嵌入式脚本，并且调用方没有 <see langword="UnmanagedCode" /> 权限。</exception>
         <altmember cref="P:System.Xml.XmlResolver.Credentials" />
         <altmember cref="T:System.Net.CredentialCache" />
         <altmember cref="T:System.Net.NetworkCredential" />
@@ -597,36 +597,36 @@
         <Parameter Name="resolver" Type="System.Xml.XmlResolver" />
       </Parameters>
       <Docs>
-        <param name="stylesheet"><see cref="T:System.Xml.XmlReader" />对象，其中包含的 XSLT 样式表。</param>
-        <param name="resolver"><see cref="T:System.Xml.XmlResolver" />，用于加载 <c>xsl:import</c> 和 <c>xsl:include</c> 元素中引用的任何样式表。 如果这是<see langword="null" />，则不解析外部资源。  
+        <param name="stylesheet">包含 XSLT 样式表的 <see cref="T:System.Xml.XmlReader" /> 对象。</param>
+        <param name="resolver"><see cref="T:System.Xml.XmlResolver" />，用于加载 <c>xsl:import</c> 和 <c>xsl:include</c> 元素中引用的任何样式表。 如果这为 <see langword="null" />，则不解析外部资源。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XmlReader,System.Xml.XmlResolver)" />方法完成。</param>
-        <summary>加载 XSLT 样式表中包含<see cref="T:System.Xml.XmlReader" />。</summary>
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="M:System.Xml.Xsl.XslTransform.Load(System.Xml.XmlReader,System.Xml.XmlResolver)" />。</param>
+        <summary>加载 <see cref="T:System.Xml.XmlReader" /> 中包含的 XSLT 样式表。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- 此方法加载 XSLT 样式表，其中包括引用中的所有样式表`xsl:include`和`xsl:import`元素。 从当前节点的样式表加载<xref:System.Xml.XmlReader>通过其所有子项。 这可以用作样式表文档的一部分。  
+ 此方法加载 XSLT 样式表, 其中包括和`xsl:include` `xsl:import`元素中引用的所有样式表。 样式表从的<xref:System.Xml.XmlReader>当前节点加载到其所有子级。 这使您可以使用文档的一部分作为样式表。  
   
- 后<xref:System.Xml.Xsl.XslTransform.Load%2A>方法返回时，<xref:System.Xml.XmlReader>样式表的结尾后定位到下一个节点。 如果已到达文档结尾，<xref:System.Xml.XmlReader> 将位于文件结尾 (EOF)。  
+ 此<xref:System.Xml.Xsl.XslTransform.Load%2A>方法返回后<xref:System.Xml.XmlReader> , 将定位到样式表末尾后的下一个节点。 如果已到达文档结尾，<xref:System.Xml.XmlReader> 将位于文件结尾 (EOF)。  
   
- 如果样式表将包含实体，则应指定<xref:System.Xml.XmlReader>可以解析实体 (<xref:System.Xml.XmlReader.CanResolveEntity%2A?displayProperty=nameWithType>返回`true`)。 在这种情况下，<xref:System.Xml.XmlValidatingReader>可用。  
+ 如果样式表包含实体, 则应指定<xref:System.Xml.XmlReader>可解析实体 (<xref:System.Xml.XmlReader.CanResolveEntity%2A?displayProperty=nameWithType>返回`true`) 的。 在这种情况下<xref:System.Xml.XmlValidatingReader> , 可以使用。  
   
- 如果样式表包含嵌入的脚本，该脚本将编译为程序集。 程序集具有完全信任。 建议的做法是提供证据使用<xref:System.Xml.Xsl.XslTransform.Load%28System.Xml.XmlReader%2CSystem.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29>方法。
+ 如果样式表包含嵌入式脚本, 则该脚本将编译为程序集。 程序集具有完全信任。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Load%28System.Xml.XmlReader%2CSystem.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29>方法提供证据。
   
 > [!NOTE]
->  如果调用方不具有`UnmanagedCode`权限，嵌入的脚本将不进行编译和<xref:System.Security.SecurityException>引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
+>  如果调用方`UnmanagedCode`没有权限, 则不编译嵌入的脚本<xref:System.Security.SecurityException>并引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Xml.Xsl.XsltCompileException">当前节点不符合有效样式表。</exception>
-        <exception cref="T:System.Security.SecurityException">样式表包含嵌入式的脚本，并且调用方不具有<see langword="UnmanagedCode" />权限。</exception>
+        <exception cref="T:System.Xml.Xsl.XsltCompileException">当前节点不符合有效样式表的要求。</exception>
+        <exception cref="T:System.Security.SecurityException">样式表包含嵌入式脚本，并且调用方没有 <see langword="UnmanagedCode" /> 权限。</exception>
         <altmember cref="P:System.Xml.XmlResolver.Credentials" />
         <altmember cref="T:System.Net.CredentialCache" />
         <altmember cref="T:System.Net.NetworkCredential" />
@@ -670,30 +670,30 @@
         <Parameter Name="resolver" Type="System.Xml.XmlResolver" />
       </Parameters>
       <Docs>
-        <param name="stylesheet">一个对象，实现<see cref="T:System.Xml.XPath.IXPathNavigable" />接口。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含 XSLT 样式表的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
-        <param name="resolver"><see cref="T:System.Xml.XmlResolver" />，用于加载 <c>xsl:import</c> 和 <c>xsl:include</c> 元素中引用的任何样式表。 如果这是<see langword="null" />，则不解析外部资源。  
+        <param name="stylesheet">实现 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 接口的对象。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含 XSLT 样式表的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
+        <param name="resolver"><see cref="T:System.Xml.XmlResolver" />，用于加载 <c>xsl:import</c> 和 <c>xsl:include</c> 元素中引用的任何样式表。 如果这为 <see langword="null" />，则不解析外部资源。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="Overload:System.Xml.Xsl.XslTransform.Load" />方法完成。</param>
-        <summary>加载 XSLT 样式表中包含<see cref="T:System.Xml.XPath.IXPathNavigable" />。</summary>
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="Overload:System.Xml.Xsl.XslTransform.Load" />。</param>
+        <summary>加载 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 中包含的 XSLT 样式表。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- 如果样式表包含嵌入的脚本，该脚本将编译为程序集。 程序集具有完全信任。 建议的做法是提供证据使用<xref:System.Xml.Xsl.XslTransform.Load%28System.Xml.XPath.IXPathNavigable%2CSystem.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29>方法。
+ 如果样式表包含嵌入式脚本, 则该脚本将编译为程序集。 程序集具有完全信任。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Load%28System.Xml.XPath.IXPathNavigable%2CSystem.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29>方法提供证据。
   
 > [!NOTE]
->  如果调用方不具有`UnmanagedCode`权限，嵌入的脚本将不进行编译和<xref:System.Security.SecurityException>引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
+>  如果调用方`UnmanagedCode`没有权限, 则不编译嵌入的脚本<xref:System.Security.SecurityException>并引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Xml.Xsl.XsltCompileException">加载的资源不是有效的样式表。</exception>
-        <exception cref="T:System.Security.SecurityException">样式表包含嵌入式的脚本，并且调用方不具有<see langword="UnmanagedCode" />权限。</exception>
+        <exception cref="T:System.Security.SecurityException">样式表包含嵌入式脚本，并且调用方没有 <see langword="UnmanagedCode" /> 权限。</exception>
         <altmember cref="P:System.Xml.XmlResolver.Credentials" />
         <altmember cref="T:System.Net.CredentialCache" />
         <altmember cref="T:System.Net.NetworkCredential" />
@@ -737,32 +737,32 @@
         <Parameter Name="resolver" Type="System.Xml.XmlResolver" />
       </Parameters>
       <Docs>
-        <param name="stylesheet"><see cref="T:System.Xml.XPath.XPathNavigator" />对象，其中包含的 XSLT 样式表。</param>
-        <param name="resolver"><see cref="T:System.Xml.XmlResolver" />，用于加载 <c>xsl:import</c> 和 <c>xsl:include</c> 元素中引用的任何样式表。 如果这是<see langword="null" />，则不解析外部资源。  
+        <param name="stylesheet">包含 XSLT 样式表的 <see cref="T:System.Xml.XPath.XPathNavigator" /> 对象。</param>
+        <param name="resolver"><see cref="T:System.Xml.XmlResolver" />，用于加载 <c>xsl:import</c> 和 <c>xsl:include</c> 元素中引用的任何样式表。 如果这为 <see langword="null" />，则不解析外部资源。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="Overload:System.Xml.Xsl.XslTransform.Load" />方法完成。</param>
-        <summary>加载 XSLT 样式表中包含<see cref="T:System.Xml.XPath.XPathNavigator" />。</summary>
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="Overload:System.Xml.Xsl.XslTransform.Load" />。</param>
+        <summary>加载 <see cref="T:System.Xml.XPath.XPathNavigator" /> 中包含的 XSLT 样式表。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- 从当前的位置加载样式表<xref:System.Xml.XPath.XPathNavigator>。 若要使用与样式表加载文档的一部分，导航到样式表的开头相对应的节点。 之后<xref:System.Xml.Xsl.XslTransform.Load%2A>方法返回时，<xref:System.Xml.XPath.XPathNavigator>位于样式表的开头 (在`xsl:style sheet`节点)。  
+ 样式表是从的当前位置<xref:System.Xml.XPath.XPathNavigator>加载的。 若要使用部分已加载的文档作为样式表, 请导航到与样式表的开头相对应的节点。 方法返回后<xref:System.Xml.XPath.XPathNavigator> , 位于`xsl:style sheet`样式表的开头 (在节点上)。 <xref:System.Xml.Xsl.XslTransform.Load%2A>  
   
- 如果样式表包含嵌入的脚本，该脚本将编译为程序集。 程序集具有完全信任。 建议的做法是提供证据使用<xref:System.Xml.Xsl.XslTransform.Load%28System.Xml.XPath.XPathNavigator%2CSystem.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29>。
+ 如果样式表包含嵌入式脚本, 则该脚本将编译为程序集。 程序集具有完全信任。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Load%28System.Xml.XPath.XPathNavigator%2CSystem.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29>提供证据。
   
 > [!NOTE]
->  如果调用方不具有`UnmanagedCode`权限，嵌入的脚本将不进行编译和<xref:System.Security.SecurityException>引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
+>  如果调用方`UnmanagedCode`没有权限, 则不编译嵌入的脚本<xref:System.Security.SecurityException>并引发。 有关更多信息，请参见<xref:System.Security.Permissions.SecurityPermission>和<xref:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode?displayProperty=nameWithType>。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Xml.Xsl.XsltCompileException">当前节点不符合有效样式表。</exception>
-        <exception cref="T:System.Security.SecurityException">样式表包含嵌入式的脚本，并且调用方不具有<see langword="UnmanagedCode" />权限。</exception>
+        <exception cref="T:System.Xml.Xsl.XsltCompileException">当前节点不符合有效样式表的要求。</exception>
+        <exception cref="T:System.Security.SecurityException">样式表包含嵌入式脚本，并且调用方没有 <see langword="UnmanagedCode" /> 权限。</exception>
         <altmember cref="P:System.Xml.XmlResolver.Credentials" />
         <altmember cref="T:System.Net.CredentialCache" />
         <altmember cref="T:System.Net.NetworkCredential" />
@@ -797,46 +797,46 @@
         <Parameter Name="evidence" Type="System.Security.Policy.Evidence" Index="2" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="stylesheet"><see cref="T:System.Xml.XmlReader" />对象，其中包含要加载的样式表。</param>
-        <param name="resolver"><see cref="T:System.Xml.XmlResolver" />，用于加载 <c>xsl:import</c> 和 <c>xsl:include</c> 元素中引用的任何样式表。 如果这是<see langword="null" />，则不解析外部资源。  
+        <param name="stylesheet">包含要加载的样式表的 <see cref="T:System.Xml.XmlReader" /> 对象。</param>
+        <param name="resolver"><see cref="T:System.Xml.XmlResolver" />，用于加载 <c>xsl:import</c> 和 <c>xsl:include</c> 元素中引用的任何样式表。 如果这为 <see langword="null" />，则不解析外部资源。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="Overload:System.Xml.Xsl.XslTransform.Load" />方法完成。</param>
-        <param name="evidence"><see cref="T:System.Security.Policy.Evidence" /> XSLT 样式表中的脚本块生成的程序集上设置。  
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="Overload:System.Xml.Xsl.XslTransform.Load" />。</param>
+        <param name="evidence">在为 XSLT 样式表中的脚本块生成的程序集上设置的 <see cref="T:System.Security.Policy.Evidence" />。  
   
 如果为 <see langword="null" />，则不处理脚本块、不支持 XSLT <c>document()</c> 函数，并且不允许使用特权扩展对象。  
   
-调用方必须具有<see langword="ControlEvidence" />权限，以提供脚本程序集证据。 不完全受信任调用方可以将此参数设置为<see langword="null" />。</param>
-        <summary>加载 XSLT 样式表中包含<see cref="T:System.Xml.XmlReader" />。 此方法，可通过指定证据来限制样式表的权限。</summary>
+调用方必须有 <see langword="ControlEvidence" /> 权限，才能为脚本程序集提供证据。 不完全受信任的调用方可以将此参数设置为 <see langword="null" />。</param>
+        <summary>加载 <see cref="T:System.Xml.XmlReader" /> 中包含的 XSLT 样式表。 此方法允许您通过指定证据来限制样式表的权限。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- 此方法加载 XSLT 样式表，其中包括引用中的所有样式表`xsl:include`和`xsl:import`元素。 从当前节点的样式表加载<xref:System.Xml.XmlReader>通过其所有子项。 这可以用作样式表文档的一部分。  
+ 此方法加载 XSLT 样式表, 其中包括和`xsl:include` `xsl:import`元素中引用的所有样式表。 样式表从的<xref:System.Xml.XmlReader>当前节点加载到其所有子级。 这使您可以使用文档的一部分作为样式表。  
   
- 后<xref:System.Xml.Xsl.XslTransform.Load%2A>方法返回时，<xref:System.Xml.XmlReader>样式表的结尾后定位到下一个节点。 如果已到达文档结尾，<xref:System.Xml.XmlReader> 将位于文件结尾 (EOF)。  
+ 此<xref:System.Xml.Xsl.XslTransform.Load%2A>方法返回后<xref:System.Xml.XmlReader> , 将定位到样式表末尾后的下一个节点。 如果已到达文档结尾，<xref:System.Xml.XmlReader> 将位于文件结尾 (EOF)。  
   
- 如果样式表将包含实体，则应指定<xref:System.Xml.XmlReader>可以解析实体 (<xref:System.Xml.XmlReader.CanResolveEntity%2A?displayProperty=nameWithType>返回`true`)。 在这种情况下，<xref:System.Xml.XmlValidatingReader>可用。  
+ 如果样式表包含实体, 则应指定<xref:System.Xml.XmlReader>可解析实体 (<xref:System.Xml.XmlReader.CanResolveEntity%2A?displayProperty=nameWithType>返回`true`) 的。 在这种情况下<xref:System.Xml.XmlValidatingReader> , 可以使用。  
   
 
   
- 有不同的方式提供证据。 下表介绍常见用户方案提供证据的类型。  
+ 提供证据的方法有多种。 下表描述了为常见用户方案提供的证据类型。  
   
-|方案|若要提供的证据的类型|  
+|方案|要提供的证据类型|  
 |--------------|---------------------------------|  
-|XSLT 样式表是自包含，或来自您信任的代码库。|使用从您的程序集证据。<br /><br /> <pre><code class="lang-csharp">XsltTransform xslt = new XslTransform(); &#13;&#10;xslt.Load(xslReader, resolver, this.GetType().Assembly.Evidence);</code></pre>|  
-|XSLT 样式表来自外部源。 已知源的来源，并且没有可验证的 URL。|创建使用的 URL 证据。<br /><br /> <pre><code class="lang-csharp">XsltTransform xslt = new XslTransform();&#13;&#10; Evidence evidence = XmlSecureResolver.CreateEvidenceForUrl(stylesheetURL); &#13;&#10;xslt.Load(xslReader,resolver,evidence);</code></pre>|  
-|XSLT 样式表来自外部源。 源的来源未知。|将 evidence 设置为 `null`。 脚本块将不进行处理，不支持 XSLT `document()` 函数，而且不允许特权扩展对象。<br /><br /> 此外，还可以设置`resolver`参数`null`。 这可确保`xsl:import`和`xsl:include`元素不会处理。|  
-|XSLT 样式表来自外部源。 源的来源未知，但您需要脚本支持。|从调用方请求证据。 API 调用方必须提供一种方法通常提供证据，<xref:System.Security.Policy.Evidence>类。|  
+|XSLT 样式表是自包含的, 或来自你信任的代码库。|使用程序集中的证据。<br /><br /> <pre><code class="lang-csharp">XsltTransform xslt = new XslTransform(); &#13;&#10;xslt.Load(xslReader, resolver, this.GetType().Assembly.Evidence);</code></pre>|  
+|XSLT 样式表来自外部源。 源的来源已知, 并且存在可验证的 URL。|使用 URL 创建证据。<br /><br /> <pre><code class="lang-csharp">XsltTransform xslt = new XslTransform();&#13;&#10; Evidence evidence = XmlSecureResolver.CreateEvidenceForUrl(stylesheetURL); &#13;&#10;xslt.Load(xslReader,resolver,evidence);</code></pre>|  
+|XSLT 样式表来自外部源。 源的来源未知。|将 evidence 设置为 `null`。 脚本块将不进行处理，不支持 XSLT `document()` 函数，而且不允许特权扩展对象。<br /><br /> 此外, 还可以将`resolver`参数设置为。 `null` 这可确保`xsl:import`和`xsl:include`元素不被处理。|  
+|XSLT 样式表来自外部源。 源的来源未知，但您需要脚本支持。|从调用方请求证据。 调用方的 API 必须提供一种方法来提供证据, 通常<xref:System.Security.Policy.Evidence>为类。|  
   
      
 ## Examples  
- 下面的示例执行的 XSLT 转换，其中`xsltReader`是<xref:System.Xml.XmlReader>包含样式表和`secureURL`是可用于创建一个受信任的 URL <xref:System.Security.Policy.Evidence>。 <xref:System.Xml.XmlSecureResolver.CreateEvidenceForUrl%2A?displayProperty=nameWithType>方法用于创建<xref:System.Security.Policy.Evidence>其应用于样式表。  
+ 下面的示例执行 XSLT 转换, 其中`xsltReader` <xref:System.Xml.XmlReader>是包含样式表, `secureURL`是可用于创建<xref:System.Security.Policy.Evidence>的受信任 URL。 方法用于创建<xref:System.Security.Policy.Evidence>应用于样式表的。 <xref:System.Xml.XmlSecureResolver.CreateEvidenceForUrl%2A?displayProperty=nameWithType>  
   
  [!code-cpp[XslTransform.Load4#1](~/samples/snippets/cpp/VS_Snippets_Data/XslTransform.Load4/CPP/trans_ev.cpp#1)]
  [!code-csharp[XslTransform.Load4#1](~/samples/snippets/csharp/VS_Snippets_Data/XslTransform.Load4/CS/trans_ev.cs#1)]
@@ -844,11 +844,11 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Xml.Xsl.XsltCompileException">当前节点不符合有效样式表。</exception>
-        <exception cref="T:System.Security.SecurityException">引用的样式表需要的情况下提供的证据不允许的功能。  
+        <exception cref="T:System.Xml.Xsl.XsltCompileException">当前节点不符合有效样式表的要求。</exception>
+        <exception cref="T:System.Security.SecurityException">引用的样式表需要的功能是所提供的证据不允许的。  
   
-调用方尝试提供证据，而未<see langword="ControlEvidence" />权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">为提供证据。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence" /></permission>
+调用方尝试提供证据但没有 <see langword="ControlEvidence" /> 权限。</exception>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于提供证据。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence" /></permission>
         <altmember cref="P:System.Xml.XmlResolver.Credentials" />
         <altmember cref="T:System.Net.NetworkCredential" />
         <altmember cref="T:System.Net.CredentialCache" />
@@ -886,44 +886,44 @@
         <Parameter Name="evidence" Type="System.Security.Policy.Evidence" Index="2" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="stylesheet">一个对象，实现<see cref="T:System.Xml.XPath.IXPathNavigable" />接口。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含 XSLT 样式表的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
-        <param name="resolver"><see cref="T:System.Xml.XmlResolver" />，用于加载 <c>xsl:import</c> 和 <c>xsl:include</c> 元素中引用的任何样式表。 如果这是<see langword="null" />，则不解析外部资源。  
+        <param name="stylesheet">实现 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 接口的对象。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含 XSLT 样式表的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
+        <param name="resolver"><see cref="T:System.Xml.XmlResolver" />，用于加载 <c>xsl:import</c> 和 <c>xsl:include</c> 元素中引用的任何样式表。 如果这为 <see langword="null" />，则不解析外部资源。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="Overload:System.Xml.Xsl.XslTransform.Load" />方法完成。</param>
-        <param name="evidence"><see cref="T:System.Security.Policy.Evidence" /> XSLT 样式表中的脚本块生成的程序集上设置。  
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="Overload:System.Xml.Xsl.XslTransform.Load" />。</param>
+        <param name="evidence">在为 XSLT 样式表中的脚本块生成的程序集上设置的 <see cref="T:System.Security.Policy.Evidence" />。  
   
 如果为 <see langword="null" />，则不处理脚本块、不支持 XSLT <c>document()</c> 函数，并且不允许使用特权扩展对象。  
   
-调用方必须具有<see langword="ControlEvidence" />权限，以提供脚本程序集证据。 不完全受信任调用方可以将此参数设置为<see langword="null" />。</param>
-        <summary>加载 XSLT 样式表中包含<see cref="T:System.Xml.XPath.IXPathNavigable" />。 此方法，可通过指定证据来限制样式表的权限。</summary>
+调用方必须有 <see langword="ControlEvidence" /> 权限，才能为脚本程序集提供证据。 不完全受信任的调用方可以将此参数设置为 <see langword="null" />。</param>
+        <summary>加载 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 中包含的 XSLT 样式表。 此方法允许您通过指定证据来限制样式表的权限。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
 
   
- 有不同的方式提供证据。 下表介绍常见用户方案提供证据的类型。  
+ 提供证据的方法有多种。 下表描述了为常见用户方案提供的证据类型。  
   
-|方案|若要提供的证据的类型|  
+|方案|要提供的证据类型|  
 |--------------|---------------------------------|  
-|XSLT 样式表是自包含，或来自您信任的代码库。|使用从您的程序集证据。<br /><br /> <pre><code class="lang-csharp">XsltTransform xslt = new XslTransform(); &#13;&#10;xslt.Load(style sheet, resolver, this.GetType().Assembly.Evidence);</code></pre>|  
-|XSLT 样式表来自外部源。 已知源的来源，并且没有可验证的 URL。|创建使用的 URL 证据。<br /><br /> <pre><code class="lang-csharp">XsltTransform xslt = new XslTransform(); &#13;&#10;Evidence evidence = XmlSecureResolver.CreateEvidenceForUrl(style sheetURL); &#13;&#10;xslt.Load(style sheet,resolver,evidence);</code></pre>|  
-|XSLT 样式表来自外部源。 源的来源未知。|将 evidence 设置为 `null`。 脚本块将不进行处理，不支持 XSLT `document()` 函数，而且不允许特权扩展对象。<br /><br /> 此外，还可以设置`resolver`参数`null`。 这可确保`xsl:import`和`xsl:include`元素不会处理。|  
-|XSLT 样式表来自外部源。 源的来源未知，但您需要脚本支持。|从调用方请求证据。 API 调用方必须提供一种方法通常提供证据，<xref:System.Security.Policy.Evidence>类。|  
+|XSLT 样式表是自包含的, 或来自你信任的代码库。|使用程序集中的证据。<br /><br /> <pre><code class="lang-csharp">XsltTransform xslt = new XslTransform(); &#13;&#10;xslt.Load(style sheet, resolver, this.GetType().Assembly.Evidence);</code></pre>|  
+|XSLT 样式表来自外部源。 源的来源已知, 并且存在可验证的 URL。|使用 URL 创建证据。<br /><br /> <pre><code class="lang-csharp">XsltTransform xslt = new XslTransform(); &#13;&#10;Evidence evidence = XmlSecureResolver.CreateEvidenceForUrl(style sheetURL); &#13;&#10;xslt.Load(style sheet,resolver,evidence);</code></pre>|  
+|XSLT 样式表来自外部源。 源的来源未知。|将 evidence 设置为 `null`。 脚本块将不进行处理，不支持 XSLT `document()` 函数，而且不允许特权扩展对象。<br /><br /> 此外, 还可以将`resolver`参数设置为。 `null` 这可确保`xsl:import`和`xsl:include`元素不被处理。|  
+|XSLT 样式表来自外部源。 源的来源未知，但您需要脚本支持。|从调用方请求证据。 调用方的 API 必须提供一种方法来提供证据, 通常<xref:System.Security.Policy.Evidence>为类。|  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Xml.Xsl.XsltCompileException">加载的资源不是有效的样式表。</exception>
-        <exception cref="T:System.Security.SecurityException">引用的样式表需要的情况下提供的证据不允许的功能。  
+        <exception cref="T:System.Security.SecurityException">引用的样式表需要的功能是所提供的证据不允许的。  
   
-调用方尝试提供证据，而未<see langword="ControlEvidence" />权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">为提供证据。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence" /></permission>
+调用方尝试提供证据但没有 <see langword="ControlEvidence" /> 权限。</exception>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于提供证据。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence" /></permission>
         <altmember cref="P:System.Xml.XmlResolver.Credentials" />
         <altmember cref="T:System.Net.NetworkCredential" />
         <altmember cref="T:System.Net.CredentialCache" />
@@ -961,54 +961,54 @@
         <Parameter Name="evidence" Type="System.Security.Policy.Evidence" Index="2" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="stylesheet"><see cref="T:System.Xml.XPath.XPathNavigator" />对象，其中包含要加载的样式表。</param>
-        <param name="resolver"><see cref="T:System.Xml.XmlResolver" />，用于加载 <c>xsl:import</c> 和 <c>xsl:include</c> 元素中引用的任何样式表。 如果这是<see langword="null" />，则不解析外部资源。  
+        <param name="stylesheet">包含要加载的样式表的 <see cref="T:System.Xml.XPath.XPathNavigator" /> 对象。</param>
+        <param name="resolver"><see cref="T:System.Xml.XmlResolver" />，用于加载 <c>xsl:import</c> 和 <c>xsl:include</c> 元素中引用的任何样式表。 如果这为 <see langword="null" />，则不解析外部资源。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="Overload:System.Xml.Xsl.XslTransform.Load" />方法完成。</param>
-        <param name="evidence"><see cref="T:System.Security.Policy.Evidence" /> XSLT 样式表中的脚本块生成的程序集上设置。  
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="Overload:System.Xml.Xsl.XslTransform.Load" />。</param>
+        <param name="evidence">在为 XSLT 样式表中的脚本块生成的程序集上设置的 <see cref="T:System.Security.Policy.Evidence" />。  
   
 如果为 <see langword="null" />，则不处理脚本块、不支持 XSLT <c>document()</c> 函数，并且不允许使用特权扩展对象。  
   
-调用方必须具有<see langword="ControlEvidence" />权限，以提供脚本程序集证据。 不完全受信任调用方可以将此参数设置为<see langword="null" />。</param>
-        <summary>加载 XSLT 样式表中包含<see cref="T:System.Xml.XPath.XPathNavigator" />。 此方法，可通过指定证据来限制样式表的权限。</summary>
+调用方必须有 <see langword="ControlEvidence" /> 权限，才能为脚本程序集提供证据。 不完全受信任的调用方可以将此参数设置为 <see langword="null" />。</param>
+        <summary>加载 <see cref="T:System.Xml.XPath.XPathNavigator" /> 中包含的 XSLT 样式表。 此方法允许您通过指定证据来限制样式表的权限。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- 从当前的位置加载样式表<xref:System.Xml.XPath.XPathNavigator>。 若要使用与样式表加载文档的一部分，导航到样式表的开头相对应的节点。 之后<xref:System.Xml.Xsl.XslTransform.Load%2A>方法返回时，<xref:System.Xml.XPath.XPathNavigator>位于样式表的开头 (在`xsl:style sheet`节点)。  
+ 样式表是从的当前位置<xref:System.Xml.XPath.XPathNavigator>加载的。 若要使用部分已加载的文档作为样式表, 请导航到与样式表的开头相对应的节点。 方法返回后<xref:System.Xml.XPath.XPathNavigator> , 位于`xsl:style sheet`样式表的开头 (在节点上)。 <xref:System.Xml.Xsl.XslTransform.Load%2A>  
   
 
   
- 有不同的方式提供证据。 下表介绍常见用户方案提供证据的类型。  
+ 提供证据的方法有多种。 下表描述了为常见用户方案提供的证据类型。  
   
-|方案|若要提供的证据的类型|  
+|方案|要提供的证据类型|  
 |--------------|---------------------------------|  
-|XSLT 样式表是自包含，或来自您信任的代码库。|使用从您的程序集证据。<br /><br /> <pre><code class="lang-csharp">XsltTransform xslt = new XslTransform(); &#13;&#10;xslt.Load(xslNav, resolver, this.GetType().Assembly.Evidence);</code></pre>|  
-|XSLT 样式表来自外部源。 已知源的来源，并且没有可验证的 URL。|创建使用的 URL 证据。<br /><br /> <pre><code class="lang-csharp">XsltTransform xslt = new XslTransform(); &#13;&#10;Evidence evidence = XmlSecureResolver.CreateEvidenceForUrl(style sheetURL); &#13;&#10;xslt.Load(xslNav,resolver,evidence);</code></pre>|  
-|XSLT 样式表来自外部源。 源的来源未知。|将 evidence 设置为 `null`。 脚本块将不进行处理，不支持 XSLT `document()` 函数，而且不允许特权扩展对象。<br /><br /> 此外，还可以设置`resolver`参数`null`。 这可确保`xsl:import`和`xsl:include`元素不会处理。|  
-|XSLT 样式表来自外部源。 源的来源未知，但您需要脚本支持。|从调用方请求证据。 API 调用方必须提供一种方法通常提供证据，`Evidence`类。|  
+|XSLT 样式表是自包含的, 或来自你信任的代码库。|使用程序集中的证据。<br /><br /> <pre><code class="lang-csharp">XsltTransform xslt = new XslTransform(); &#13;&#10;xslt.Load(xslNav, resolver, this.GetType().Assembly.Evidence);</code></pre>|  
+|XSLT 样式表来自外部源。 源的来源已知, 并且存在可验证的 URL。|使用 URL 创建证据。<br /><br /> <pre><code class="lang-csharp">XsltTransform xslt = new XslTransform(); &#13;&#10;Evidence evidence = XmlSecureResolver.CreateEvidenceForUrl(style sheetURL); &#13;&#10;xslt.Load(xslNav,resolver,evidence);</code></pre>|  
+|XSLT 样式表来自外部源。 源的来源未知。|将 evidence 设置为 `null`。 脚本块将不进行处理，不支持 XSLT `document()` 函数，而且不允许特权扩展对象。<br /><br /> 此外, 还可以将`resolver`参数设置为。 `null` 这可确保`xsl:import`和`xsl:include`元素不被处理。|  
+|XSLT 样式表来自外部源。 源的来源未知，但您需要脚本支持。|从调用方请求证据。 调用方的 API 必须提供一种方法来提供证据, 通常`Evidence`为类。|  
   
    
   
 ## Examples  
- 下面的示例执行 XSLT 转换使用来自外部源的样式表。 样式表来自受信任的源，因为`resolver`并`evidence`参数设置为`null`。  
+ 下面的示例使用外部源中的样式表执行 XSLT 转换。 由于样式表来自不受信任的源, `resolver`因此和`evidence`参数设置为。 `null`  
  
  [!code-csharp[XslTransform.Load5#1](~/samples/snippets/csharp/VS_Snippets_Data/XslTransform.Load5/CS/trans_noev.cs#1)]
  [!code-vb[XslTransform.Load5#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XslTransform.Load5/VB/trans_noev.vb#1)]  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Xml.Xsl.XsltCompileException">当前节点不符合有效样式表。</exception>
-        <exception cref="T:System.Security.SecurityException">引用的样式表需要的情况下提供的证据不允许的功能。  
+        <exception cref="T:System.Xml.Xsl.XsltCompileException">当前节点不符合有效样式表的要求。</exception>
+        <exception cref="T:System.Security.SecurityException">引用的样式表需要的功能是所提供的证据不允许的。  
   
-调用方尝试提供证据，而未<see langword="ControlEvidence" />权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">为提供证据。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence" /></permission>
+调用方尝试提供证据但没有 <see langword="ControlEvidence" /> 权限。</exception>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于提供证据。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence" /></permission>
         <altmember cref="P:System.Xml.XmlResolver.Credentials" />
         <altmember cref="T:System.Net.NetworkCredential" />
         <altmember cref="T:System.Net.CredentialCache" />
@@ -1024,14 +1024,14 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>转换 XML 数据使用加载的 XSLT 样式表。</summary>
+        <summary>使用加载的 XSLT 样式表转换 XML 数据。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
  ]]></format>
         </remarks>
@@ -1084,23 +1084,23 @@
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
 > [!NOTE]
->  此方法是在.NET Framework 1.1 版中已过时。 设置<xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性确定如何 XSLT`document()`函数得到解决。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法采用<xref:System.Xml.XmlResolver>对象作为其参数之一。  
+>  此方法在 .NET Framework 版本1.1 中已过时。 <xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性的设置确定如何解析 XSLT `document()`函数。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法, 该方法<xref:System.Xml.XmlResolver>采用对象作为其参数之一。  
   
    
   
 ## Examples  
- 下面的示例转换`books.xml`文件中使用`output.xsl`样式表并将结果输出到`books.html`文件。  
+ 下面的示例`output.xsl`使用样式`books.xml`表转换文件并将结果输出到该`books.html`文件。  
   
  [!code-cpp[XslTransform.Transform3#1](~/samples/snippets/cpp/VS_Snippets_Data/xsltransform.transform3/CPP/trans_snip2.cpp#1)]
  [!code-csharp[XslTransform.Transform3#1](~/samples/snippets/csharp/VS_Snippets_Data/xsltransform.transform3/CS/trans_snip2.cs#1)]
  [!code-vb[XslTransform.Transform3#1](~/samples/snippets/visualbasic/VS_Snippets_Data/xsltransform.transform3/VB/trans_snip2.vb#1)]  
   
- 该示例使用以下两个输入的文件：  
+ 该示例使用以下两个输入文件:  
   
  `books.xml`  
   
@@ -1154,30 +1154,30 @@
         <Parameter Name="args" Type="System.Xml.Xsl.XsltArgumentList" />
       </Parameters>
       <Docs>
-        <param name="input">一个对象，实现<see cref="T:System.Xml.XPath.IXPathNavigable" />接口。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.IXPathNavigable" />使用指定<paramref name="args" />并将结果输出到<see cref="T:System.Xml.XmlReader" />。</summary>
-        <returns><see cref="T:System.Xml.XmlReader" />包含转换的结果。</returns>
+        <param name="input">实现 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 接口的对象。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
+        <summary>使用指定的 <paramref name="args" /> 转换 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.Xml.XmlReader" />。</summary>
+        <returns>包含转换结果的 <see cref="T:System.Xml.XmlReader" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
 > [!NOTE]
->  此方法现已过时。 设置<xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性确定如何 XSLT`document()`函数得到解决。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法采用<xref:System.Xml.XmlResolver>对象作为其参数之一。  
+>  此方法现已过时。 <xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性的设置确定如何解析 XSLT `document()`函数。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法, 该方法<xref:System.Xml.XmlResolver>采用对象作为其参数之一。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。 `xsl:output`到输出时，不支持元素<xref:System.Xml.XmlReader>(`xsl:output`元素将被忽略)。 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)有关详细信息。  
+ 与样式表中定义的元素匹配。`xsl:param` `args` 当输出到 (忽略元素) 时, 不支持元素。`xsl:output` <xref:System.Xml.XmlReader> `xsl:output` 有关详细信息, 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)。  
   
- 此方法可以进行异步转换的源文档。  
+ 此方法使您可以执行源文档的异步转换。  
   
- 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段，必须创建<xref:System.Xml.XmlDocument>包含只是在节点片断并将其传递<xref:System.Xml.XmlDocument>到<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
+ 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段, 必须创建一个<xref:System.Xml.XmlDocument>仅包含节点片段的, 并将<xref:System.Xml.XmlDocument>其传递给<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
   
- 以下示例对一个节点片段执行转换。  
+ 下面的示例对节点片段执行转换。  
   
 ```csharp  
 XslTransform xslt = new XslTransform();       
@@ -1194,7 +1194,7 @@ Console.WriteLine("Passing " + tmpDoc.OuterXml + " to print_root.xsl");
 xslt.Transform(tmpDoc, null, Console.Out);  
 ```  
   
- 该示例使用`library.xml`和`print_root.xsl`文件作为输入并输出到控制台如下。  
+ 该示例使用`library.xml`和`print_root.xsl`文件作为输入, 并将以下结果输出到控制台。  
   
 ```  
 Passing <book genre="novel" ISBN="1-861001-57-5"><title>Pride And Prejudice</title></book> to print_root.xsl   
@@ -1269,28 +1269,28 @@ Root node is book.
         <Parameter Name="args" Type="System.Xml.Xsl.XsltArgumentList" />
       </Parameters>
       <Docs>
-        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />包含要转换的数据。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.XPathNavigator" />使用指定<paramref name="args" />并将结果输出到<see cref="T:System.Xml.XmlReader" />。</summary>
-        <returns><see cref="T:System.Xml.XmlReader" />包含转换的结果。</returns>
+        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />，包含要转换的数据。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
+        <summary>使用指定的 <paramref name="args" /> 转换 <see cref="T:System.Xml.XPath.XPathNavigator" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.Xml.XmlReader" />。</summary>
+        <returns>包含转换结果的 <see cref="T:System.Xml.XmlReader" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。 转换选择作为一个整体应用到文档。 换而言之，如果当前节点节点树，而不是文档根节点上设置的则这不会阻止转换过程访问已加载的文档中的所有节点。 执行转换后，<xref:System.Xml.XPath.XPathNavigator>保留为其原始状态。 这意味着，节点，这是当前转换过程之前，将保留当前节点之后<xref:System.Xml.Xsl.XslTransform.Transform%2A>调用方法。  
+ 与样式表中定义的元素匹配。`xsl:param` `args` 转换选项将应用于整个文档。 换言之, 如果当前节点是在文档根节点以外的节点树上设置的, 则不会阻止转换进程访问已加载文档中的所有节点。 执行转换后, 将<xref:System.Xml.XPath.XPathNavigator>保持其原始状态。 这意味着, 在调用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法后, 节点 (在转换进程之前是当前节点) 将保留当前节点。  
   
- 因为<xref:System.Xml.XmlReader>提供了只读、 只输出`xsl:output`元素将被忽略。 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)有关详细信息。  
+ 由于<xref:System.Xml.XmlReader>提供只读输出`xsl:output` , 因此忽略元素。 有关详细信息, 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)。  
   
- 此方法可以进行异步转换的源文档。  
+ 此方法使您可以执行源文档的异步转换。  
   
 > [!NOTE]
->  此方法已过时。 设置<xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性确定如何 XSLT document （） 函数已解决。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法采用<xref:System.Xml.XmlResolver>对象作为其参数之一。  
+>  此方法已过时。 <xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性的设置确定如何解析 XSLT document () 函数。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法, 该方法<xref:System.Xml.XmlResolver>采用对象作为其参数之一。  
   
  ]]></format>
         </remarks>
@@ -1338,7 +1338,7 @@ Root node is book.
         <param name="outputfile">输出文件的 URL。</param>
         <param name="resolver">用于解析 XSLT <c>document()</c> 函数的 <see cref="T:System.Xml.XmlResolver" />。 如果为 <see langword="null" />，则不解析 <c>document()</c> 函数。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="Overload:System.Xml.Xsl.XslTransform.Transform" />方法完成。</param>
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="Overload:System.Xml.Xsl.XslTransform.Transform" />。</param>
         <summary>转换输入文件中的 XML 数据并将结果输出到输出文件。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1346,14 +1346,14 @@ Root node is book.
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
    
   
 ## Examples  
- 下面的示例执行 XSLT 转换，并将输出到文件。 <xref:System.Xml.XmlUrlResolver>凭据使用具有默认解析外部资源。 有关详细信息，请参阅<xref:System.Net.CredentialCache.DefaultCredentials%2A>。  
+ 下面的示例执行 XSLT 转换并输出到文件。 使用<xref:System.Xml.XmlUrlResolver>具有默认凭据的来解析外部资源。 有关详细信息，请参阅<xref:System.Net.CredentialCache.DefaultCredentials%2A>。  
   
  [!code-cpp[XslTransform.Transform7#1](~/samples/snippets/cpp/VS_Snippets_Data/XslTRansform.Transform7/CPP/trans_snip4.cpp#1)]
  [!code-csharp[XslTransform.Transform7#1](~/samples/snippets/csharp/VS_Snippets_Data/XslTRansform.Transform7/CS/trans_snip4.cs#1)]
@@ -1405,28 +1405,28 @@ Root node is book.
         <Parameter Name="output" Type="System.IO.Stream" />
       </Parameters>
       <Docs>
-        <param name="input">一个对象，实现<see cref="T:System.Xml.XPath.IXPathNavigable" />接口。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
+        <param name="input">实现 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 接口的对象。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
         <param name="output">要输出到的流。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.IXPathNavigable" />使用指定<paramref name="args" />并将结果输出到<see cref="T:System.IO.Stream" />。</summary>
+        <summary>使用指定的 <paramref name="args" /> 转换 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.IO.Stream" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
 > [!NOTE]
->  此方法现已过时。 设置<xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性确定如何 XSLT`document()`函数得到解决。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法采用<xref:System.Xml.XmlResolver>对象作为其参数之一。  
+>  此方法现已过时。 <xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性的设置确定如何解析 XSLT `document()`函数。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法, 该方法<xref:System.Xml.XmlResolver>采用对象作为其参数之一。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。  
+ 与样式表中定义的元素匹配。`xsl:param` `args`  
   
- 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段，必须创建<xref:System.Xml.XmlDocument>包含只是在节点片断并将其传递<xref:System.Xml.XmlDocument>到<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
+ 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段, 必须创建一个<xref:System.Xml.XmlDocument>仅包含节点片段的, 并将<xref:System.Xml.XmlDocument>其传递给<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
   
- 以下示例对一个节点片段执行转换。  
+ 下面的示例对节点片段执行转换。  
   
 ```csharp  
 XslTransform xslt = new XslTransform();       
@@ -1443,7 +1443,7 @@ Console.WriteLine("Passing " + tmpDoc.OuterXml + " to print_root.xsl");
 xslt.Transform(tmpDoc, null, Console.Out);  
 ```  
   
- 该示例使用`library.xml`和`print_root.xsl`文件作为输入并输出到控制台如下。  
+ 该示例使用`library.xml`和`print_root.xsl`文件作为输入, 并将以下结果输出到控制台。  
   
 ```  
 Passing <book genre="novel" ISBN="1-861001-57-5"><title>Pride And Prejudice</title></book> to print_root.xsl   
@@ -1522,30 +1522,30 @@ Root node is book.
         <Parameter Name="output" Type="System.IO.TextWriter" />
       </Parameters>
       <Docs>
-        <param name="input">一个对象，实现<see cref="T:System.Xml.XPath.IXPathNavigable" />接口。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
+        <param name="input">实现 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 接口的对象。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
         <param name="output">要输出到的 <see cref="T:System.IO.TextWriter" />。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.IXPathNavigable" />使用指定<paramref name="args" />并将结果输出到<see cref="T:System.IO.TextWriter" />。</summary>
+        <summary>使用指定的 <paramref name="args" /> 转换 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.IO.TextWriter" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
 > [!NOTE]
->  此方法现已过时。 设置<xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性确定如何 XSLT`document()`函数得到解决。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法采用<xref:System.Xml.XmlResolver>对象作为其参数之一。  
+>  此方法现已过时。 <xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性的设置确定如何解析 XSLT `document()`函数。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法, 该方法<xref:System.Xml.XmlResolver>采用对象作为其参数之一。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。  
+ 与样式表中定义的元素匹配。`xsl:param` `args`  
   
- 上的编码属性`xsl:output`到输出时，不支持元素<xref:System.IO.TextWriter>。 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)有关详细信息在其上`xsl:output`支持属性。  
+ 当输出`xsl:output` <xref:System.IO.TextWriter>到时, 不支持元素上的编码属性。 有关[](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)支持的`xsl:output`属性的详细信息, 请参阅 XslTransform 的输出。  
   
- 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段，必须创建<xref:System.Xml.XmlDocument>包含只是在节点片段，并将其传递<xref:System.Xml.XmlDocument>到<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
+ 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段, 必须创建一个<xref:System.Xml.XmlDocument>仅包含节点片段的, 并将<xref:System.Xml.XmlDocument>其传递给<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
   
- 以下示例对一个节点片段执行转换。  
+ 下面的示例对节点片段执行转换。  
   
 ```csharp  
 XslTransform xslt = new XslTransform();       
@@ -1562,7 +1562,7 @@ Console.WriteLine("Passing " + tmpDoc.OuterXml + " to print_root.xsl");
 xslt.Transform(tmpDoc, null, Console.Out);  
 ```  
   
- 该示例使用`library.xml`和`print_root.xsl`文件作为输入并输出到控制台如下。  
+ 该示例使用`library.xml`和`print_root.xsl`文件作为输入, 并将以下结果输出到控制台。  
   
 ```  
 Passing <book genre="novel" ISBN="1-861001-57-5"><title>Pride And Prejudice</title></book> to print_root.xsl   
@@ -1636,30 +1636,30 @@ Root node is book.
         <Parameter Name="resolver" Type="System.Xml.XmlResolver" />
       </Parameters>
       <Docs>
-        <param name="input">一个对象，实现<see cref="T:System.Xml.XPath.IXPathNavigable" />接口。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
+        <param name="input">实现 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 接口的对象。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
         <param name="resolver">用于解析 XSLT <c>document()</c> 函数的 <see cref="T:System.Xml.XmlResolver" />。 如果为 <see langword="null" />，则不解析 <c>document()</c> 函数。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlResolver)" />方法完成。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.IXPathNavigable" />使用指定<paramref name="args" />并将结果输出到<see cref="T:System.Xml.XmlReader" />。</summary>
-        <returns><see cref="T:System.Xml.XmlReader" />包含转换的结果。</returns>
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlResolver)" />。</param>
+        <summary>使用指定的 <paramref name="args" /> 转换 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.Xml.XmlReader" />。</summary>
+        <returns>包含转换结果的 <see cref="T:System.Xml.XmlReader" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。 `xsl:output`到输出时，不支持元素<xref:System.Xml.XmlReader>(`xsl:output`元素将被忽略)。 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)有关详细信息。  
+ 与样式表中定义的元素匹配。`xsl:param` `args` 当输出到 (忽略元素) 时, 不支持元素。`xsl:output` <xref:System.Xml.XmlReader> `xsl:output` 有关详细信息, 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)。  
   
- 此方法可以进行异步转换的源文档。  
+ 此方法使您可以执行源文档的异步转换。  
   
- 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段，必须创建<xref:System.Xml.XmlDocument>包含只是在节点片段，并将其传递<xref:System.Xml.XmlDocument>到<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
+ 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段, 必须创建一个<xref:System.Xml.XmlDocument>仅包含节点片段的, 并将<xref:System.Xml.XmlDocument>其传递给<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
   
- 以下示例对一个节点片段执行转换。  
+ 下面的示例对节点片段执行转换。  
   
 ```csharp  
 XslTransform xslt = new XslTransform();       
@@ -1676,7 +1676,7 @@ Console.WriteLine("Passing " + tmpDoc.OuterXml + " to print_root.xsl");
 xslt.Transform(tmpDoc, null, Console.Out, null);  
 ```  
   
- 该示例使用`library.xml`和`print_root.xsl`文件作为输入并输出到控制台如下。  
+ 该示例使用`library.xml`和`print_root.xsl`文件作为输入, 并将以下结果输出到控制台。  
   
 ```  
 Passing <book genre="novel" ISBN="1-861001-57-5"><title>Pride And Prejudice</title></book> to print_root.xsl   
@@ -1710,7 +1710,7 @@ Root node is book.
    
   
 ## Examples  
- 下面的示例转换 XML 文档并将结果输出到`XmlReader`。 <xref:System.Xml.XmlUrlResolver>所需的凭据与用于处理任何 XSLT`document()`函数。  
+ 下面的示例将转换 XML 文档, 并将结果输出到`XmlReader`。 使用<xref:System.Xml.XmlUrlResolver>必要凭据处理任何 XSLT `document()`函数的。  
   
  [!code-cpp[XslTransform.Transform4#1](~/samples/snippets/cpp/VS_Snippets_Data/XslTransform.Transform4/CPP/trans_snip3.cpp#1)]
  [!code-csharp[XslTransform.Transform4#1](~/samples/snippets/csharp/VS_Snippets_Data/XslTransform.Transform4/CS/trans_snip3.cs#1)]
@@ -1762,28 +1762,28 @@ Root node is book.
         <Parameter Name="output" Type="System.Xml.XmlWriter" />
       </Parameters>
       <Docs>
-        <param name="input">一个对象，实现<see cref="T:System.Xml.XPath.IXPathNavigable" />接口。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
+        <param name="input">实现 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 接口的对象。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
         <param name="output">要输出到的 <see cref="T:System.Xml.XmlWriter" />。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.IXPathNavigable" />使用指定<paramref name="args" />并将结果输出到<see cref="T:System.Xml.XmlWriter" />。</summary>
+        <summary>使用指定的 <paramref name="args" /> 转换 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.Xml.XmlWriter" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
 > [!NOTE]
->  此方法现已过时。 设置<xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性确定如何 XSLT`document()`函数得到解决。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法采用<xref:System.Xml.XmlResolver>对象作为其参数之一。  
+>  此方法现已过时。 <xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性的设置确定如何解析 XSLT `document()`函数。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法, 该方法<xref:System.Xml.XmlResolver>采用对象作为其参数之一。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。 `xsl:output`到输出时，不支持元素<xref:System.Xml.XmlWriter>(`xsl:output`将被忽略)。 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)有关详细信息。  
+ 与样式表中定义的元素匹配。`xsl:param` `args` 当`xsl:output`输出<xref:System.Xml.XmlWriter>到(`xsl:output`被忽略) 时, 不支持元素。 有关详细信息, 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)。  
   
- 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段，必须创建<xref:System.Xml.XmlDocument>包含只是在节点片断并将其传递<xref:System.Xml.XmlDocument>到<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
+ 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段, 必须创建一个<xref:System.Xml.XmlDocument>仅包含节点片段的, 并将<xref:System.Xml.XmlDocument>其传递给<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
   
- 以下示例对一个节点片段执行转换。  
+ 下面的示例对节点片段执行转换。  
   
 ```csharp  
 XslTransform xslt = new XslTransform();       
@@ -1800,7 +1800,7 @@ Console.WriteLine("Passing " + tmpDoc.OuterXml + " to print_root.xsl");
 xslt.Transform(tmpDoc, null, Console.Out);  
 ```  
   
- 该示例使用`library.xml`和`print_root.xsl`文件作为输入并输出到控制台如下。  
+ 该示例使用`library.xml`和`print_root.xsl`文件作为输入, 并将以下结果输出到控制台。  
   
 ```  
 Passing <book genre="novel" ISBN="1-861001-57-5"><title>Pride And Prejudice</title></book> to print_root.xsl   
@@ -1879,26 +1879,26 @@ Root node is book.
         <Parameter Name="output" Type="System.IO.Stream" />
       </Parameters>
       <Docs>
-        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />包含要转换的数据。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
+        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />，包含要转换的数据。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
         <param name="output">要输出到的流。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.XPathNavigator" />使用指定<paramref name="args" />并将结果输出到<see cref="T:System.IO.Stream" />。</summary>
+        <summary>使用指定的 <paramref name="args" /> 转换 <see cref="T:System.Xml.XPath.XPathNavigator" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.IO.Stream" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。 转换选择作为一个整体应用到文档。 换而言之，如果当前节点节点树，而不是文档根节点上设置的则这不会阻止转换过程访问已加载的文档中的所有节点。 执行转换后，<xref:System.Xml.XPath.XPathNavigator>保留为其原始状态。 这意味着，节点，这是当前转换过程之前，将保留当前节点之后<xref:System.Xml.Xsl.XslTransform.Transform%2A>调用方法。  
+ 与样式表中定义的元素匹配。`xsl:param` `args` 转换选项将应用于整个文档。 换言之, 如果当前节点是在文档根节点以外的节点树上设置的, 则不会阻止转换进程访问已加载文档中的所有节点。 执行转换后, 将<xref:System.Xml.XPath.XPathNavigator>保持其原始状态。 这意味着, 在调用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法后, 节点 (在转换进程之前是当前节点) 将保留当前节点。  
   
- 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)有关详细信息在其上`xsl:output`支持属性。  
+ 有关[](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)支持的`xsl:output`属性的详细信息, 请参阅 XslTransform 的输出。  
   
 > [!NOTE]
->  此方法现已过时。 设置<xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性确定如何 XSLT`document()`函数得到解决。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法采用<xref:System.Xml.XmlResolver>对象作为其参数之一。  
+>  此方法现已过时。 <xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性的设置确定如何解析 XSLT `document()`函数。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法, 该方法<xref:System.Xml.XmlResolver>采用对象作为其参数之一。  
   
  ]]></format>
         </remarks>
@@ -1948,26 +1948,26 @@ Root node is book.
         <Parameter Name="output" Type="System.IO.TextWriter" />
       </Parameters>
       <Docs>
-        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />包含要转换的数据。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
+        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />，包含要转换的数据。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
         <param name="output">要输出到的 <see cref="T:System.IO.TextWriter" />。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.XPathNavigator" />使用指定<paramref name="args" />并将结果输出到<see cref="T:System.IO.TextWriter" />。</summary>
+        <summary>使用指定的 <paramref name="args" /> 转换 <see cref="T:System.Xml.XPath.XPathNavigator" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.IO.TextWriter" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。 转换选择作为一个整体应用到文档。 换而言之，如果当前节点节点树，而不是文档根节点上设置的则这不会阻止转换过程访问已加载的文档中的所有节点。 执行转换后，<xref:System.Xml.XPath.XPathNavigator>保留为其原始状态。 这意味着，节点，这是当前转换过程之前，将保留当前节点之后<xref:System.Xml.Xsl.XslTransform.Transform%2A>调用方法。  
+ 与样式表中定义的元素匹配。`xsl:param` `args` 转换选项将应用于整个文档。 换言之, 如果当前节点是在文档根节点以外的节点树上设置的, 则不会阻止转换进程访问已加载文档中的所有节点。 执行转换后, 将<xref:System.Xml.XPath.XPathNavigator>保持其原始状态。 这意味着, 在调用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法后, 节点 (在转换进程之前是当前节点) 将保留当前节点。  
   
- 上的编码属性`xsl:output`到输出时，不支持元素<xref:System.IO.TextWriter>。 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)有关详细信息在其上`xsl:output`支持属性。  
+ 当输出`xsl:output` <xref:System.IO.TextWriter>到时, 不支持元素上的编码属性。 有关[](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)支持的`xsl:output`属性的详细信息, 请参阅 XslTransform 的输出。  
   
 > [!NOTE]
->  此方法现已过时。 设置<xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性确定如何 XSLT`document()`函数得到解决。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法采用<xref:System.Xml.XmlResolver>对象作为其参数之一。  
+>  此方法现已过时。 <xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性的设置确定如何解析 XSLT `document()`函数。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法, 该方法<xref:System.Xml.XmlResolver>采用对象作为其参数之一。  
   
  ]]></format>
         </remarks>
@@ -2012,28 +2012,28 @@ Root node is book.
         <Parameter Name="resolver" Type="System.Xml.XmlResolver" />
       </Parameters>
       <Docs>
-        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />包含要转换的数据。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
+        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />，包含要转换的数据。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
         <param name="resolver">用于解析 XSLT <c>document()</c> 函数的 <see cref="T:System.Xml.XmlResolver" />。 如果为 <see langword="null" />，则不解析 <c>document()</c> 函数。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlResolver)" />方法完成。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.XPathNavigator" />使用指定<paramref name="args" />并将结果输出到<see cref="T:System.Xml.XmlReader" />。</summary>
-        <returns><see cref="T:System.Xml.XmlReader" />包含转换的结果。</returns>
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlResolver)" />。</param>
+        <summary>使用指定的 <paramref name="args" /> 转换 <see cref="T:System.Xml.XPath.XPathNavigator" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.Xml.XmlReader" />。</summary>
+        <returns>包含转换结果的 <see cref="T:System.Xml.XmlReader" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。 转换选择作为一个整体应用到文档。 换而言之，如果当前节点节点树，而不是文档根节点上设置的则这不会阻止转换过程访问已加载的文档中的所有节点。 执行转换后，<xref:System.Xml.XPath.XPathNavigator>保留为其原始状态。 这意味着，节点，这是当前转换过程之前，将保留当前节点之后<xref:System.Xml.Xsl.XslTransform.Transform%2A>调用方法。  
+ 与样式表中定义的元素匹配。`xsl:param` `args` 转换选项将应用于整个文档。 换言之, 如果当前节点是在文档根节点以外的节点树上设置的, 则不会阻止转换进程访问已加载文档中的所有节点。 执行转换后, 将<xref:System.Xml.XPath.XPathNavigator>保持其原始状态。 这意味着, 在调用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法后, 节点 (在转换进程之前是当前节点) 将保留当前节点。  
   
- 因为<xref:System.Xml.XmlReader>提供了只读、 只输出`xsl:output`元素将被忽略。 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)有关详细信息。  
+ 由于<xref:System.Xml.XmlReader>提供只读输出`xsl:output` , 因此忽略元素。 有关详细信息, 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)。  
   
- 此方法可以进行异步转换的源文档。  
+ 此方法使您可以执行源文档的异步转换。  
   
  ]]></format>
         </remarks>
@@ -2083,26 +2083,26 @@ Root node is book.
         <Parameter Name="output" Type="System.Xml.XmlWriter" />
       </Parameters>
       <Docs>
-        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />包含要转换的数据。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
+        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />，包含要转换的数据。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
         <param name="output">要输出到的 <see cref="T:System.Xml.XmlWriter" />。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.XPathNavigator" />使用指定的参数并将结果输出到<see cref="T:System.Xml.XmlWriter" />。</summary>
+        <summary>使用指定的参数转换 <see cref="T:System.Xml.XPath.XPathNavigator" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.Xml.XmlWriter" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。 转换选择作为一个整体应用到文档。 换而言之，如果当前节点节点树，而不是文档根节点上设置的则这不会阻止转换过程访问已加载的文档中的所有节点。 执行转换后，<xref:System.Xml.XPath.XPathNavigator>保留为其原始状态。 这意味着，节点，即当前转换过程之前，将保留当前节点之后<xref:System.Xml.Xsl.XslTransform.Transform%2A>调用方法。  
+ 与样式表中定义的元素匹配。`xsl:param` `args` 转换选项将应用于整个文档。 换言之, 如果当前节点是在文档根节点以外的节点树上设置的, 则不会阻止转换进程访问已加载文档中的所有节点。 执行转换后, 将<xref:System.Xml.XPath.XPathNavigator>保持其原始状态。 这意味着, 在调用该<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法后, 在转换进程之前是当前节点的节点将保留为当前节点。  
   
- `xsl:output`到输出时，不支持元素<xref:System.Xml.XmlWriter>(`xsl:output`将被忽略)。 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)有关详细信息。  
+ 当`xsl:output`输出<xref:System.Xml.XmlWriter>到(`xsl:output`被忽略) 时, 不支持元素。 有关详细信息, 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)。  
   
 > [!NOTE]
->  此方法现已过时。 设置<xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性确定如何 XSLT`document()`函数得到解决。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法采用<xref:System.Xml.XmlResolver>对象作为其参数之一。  
+>  此方法现已过时。 <xref:System.Xml.Xsl.XslTransform.XmlResolver%2A>属性的设置确定如何解析 XSLT `document()`函数。 建议的做法是使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法, 该方法<xref:System.Xml.XmlResolver>采用对象作为其参数之一。  
   
  ]]></format>
         </remarks>
@@ -2148,28 +2148,28 @@ Root node is book.
         <Parameter Name="resolver" Type="System.Xml.XmlResolver" />
       </Parameters>
       <Docs>
-        <param name="input">一个对象，实现<see cref="T:System.Xml.XPath.IXPathNavigable" />接口。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
+        <param name="input">实现 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 接口的对象。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
         <param name="output">要输出到的流。</param>
         <param name="resolver">用于解析 XSLT <c>document()</c> 函数的 <see cref="T:System.Xml.XmlResolver" />。 如果为 <see langword="null" />，则不解析 <c>document()</c> 函数。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="Overload:System.Xml.Xsl.XslTransform.Transform" />方法完成。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.IXPathNavigable" />使用指定<paramref name="args" />并将结果输出到<see cref="T:System.IO.Stream" />。</summary>
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="Overload:System.Xml.Xsl.XslTransform.Transform" />。</param>
+        <summary>使用指定的 <paramref name="args" /> 转换 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.IO.Stream" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。  
+ 与样式表中定义的元素匹配。`xsl:param` `args`  
   
- 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段，必须创建<xref:System.Xml.XmlDocument>包含只是在节点片断并将其传递<xref:System.Xml.XmlDocument>到<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
+ 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段, 必须创建一个<xref:System.Xml.XmlDocument>仅包含节点片段的, 并将<xref:System.Xml.XmlDocument>其传递给<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
   
- 以下示例对一个节点片段执行转换。  
+ 下面的示例对节点片段执行转换。  
   
 ```csharp  
 XslTransform xslt = new XslTransform();       
@@ -2186,7 +2186,7 @@ Console.WriteLine("Passing " + tmpDoc.OuterXml + " to print_root.xsl");
 xslt.Transform(tmpDoc, null, Console.Out, null);  
 ```  
   
- 该示例使用`library.xml`和`print_root.xsl`文件作为输入并输出到控制台如下。  
+ 该示例使用`library.xml`和`print_root.xsl`文件作为输入, 并将以下结果输出到控制台。  
   
 ```  
 Passing <book genre="novel" ISBN="1-861001-57-5"><title>Pride And Prejudice</title></book> to print_root.xsl   
@@ -2220,7 +2220,7 @@ Root node is book.
    
   
 ## Examples  
- 下面的示例执行 ASP.NET 页中的转换。  
+ 下面的示例在 ASP.NET 页中执行转换。  
   
  [!code-aspx-csharp[XslTransform.Transform5#1](~/samples/snippets/csharp/VS_Snippets_Data/XslTransform.Transform5/CS/transcs.aspx#1)]
  [!code-aspx-vb[XslTransform.Transform5#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XslTransform.Transform5/VB/transvb.aspx#1)]  
@@ -2271,30 +2271,30 @@ Root node is book.
         <Parameter Name="resolver" Type="System.Xml.XmlResolver" />
       </Parameters>
       <Docs>
-        <param name="input">一个对象，实现<see cref="T:System.Xml.XPath.IXPathNavigable" />接口。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
+        <param name="input">实现 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 接口的对象。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
         <param name="output">要输出到的 <see cref="T:System.IO.TextWriter" />。</param>
         <param name="resolver">用于解析 XSLT <c>document()</c> 函数的 <see cref="T:System.Xml.XmlResolver" />。 如果为 <see langword="null" />，则不解析 <c>document()</c> 函数。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter,System.Xml.XmlResolver)" />方法完成。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.IXPathNavigable" />使用指定<paramref name="args" />并将结果输出到<see cref="T:System.IO.TextWriter" />。</summary>
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter,System.Xml.XmlResolver)" />。</param>
+        <summary>使用指定的 <paramref name="args" /> 转换 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.IO.TextWriter" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。  
+ 与样式表中定义的元素匹配。`xsl:param` `args`  
   
- 上的编码属性`xsl:output`到输出时，不支持元素<xref:System.IO.TextWriter>。 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)有关详细信息在其上`xsl:output`支持属性。  
+ 当输出`xsl:output` <xref:System.IO.TextWriter>到时, 不支持元素上的编码属性。 有关[](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)支持的`xsl:output`属性的详细信息, 请参阅 XslTransform 的输出。  
   
- 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段，必须创建<xref:System.Xml.XmlDocument>包含只是在节点片断并将其传递<xref:System.Xml.XmlDocument>到<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
+ 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段, 必须创建一个<xref:System.Xml.XmlDocument>仅包含节点片段的, 并将<xref:System.Xml.XmlDocument>其传递给<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
   
- 以下示例对一个节点片段执行转换。  
+ 下面的示例对节点片段执行转换。  
   
 ```csharp  
 XslTransform xslt = new XslTransform();       
@@ -2311,7 +2311,7 @@ Console.WriteLine("Passing " + tmpDoc.OuterXml + " to print_root.xsl");
 xslt.Transform(tmpDoc, null, Console.Out, null);  
 ```  
   
- 该示例使用`library.xml`和`print_root.xsl`文件作为输入并输出到控制台如下。  
+ 该示例使用`library.xml`和`print_root.xsl`文件作为输入, 并将以下结果输出到控制台。  
   
 ```  
 Passing <book genre="novel" ISBN="1-861001-57-5"><title>Pride And Prejudice</title></book> to print_root.xsl   
@@ -2345,7 +2345,7 @@ Root node is book.
    
   
 ## Examples  
- 下面的示例转换的 XML 文件，并输出 HTML 字符串。 <xref:System.IO.StringReader>和<xref:System.IO.StringWriter>类用于读取和写入字符串。  
+ 下面的示例转换 XML 文件并输出 HTML 字符串。 <xref:System.IO.StringReader> 和<xref:System.IO.StringWriter>类用于读取和写入字符串。  
   
  [!code-csharp[XslTransform.Transform6#1](~/samples/snippets/csharp/VS_Snippets_Data/XslTransform.Transform6/CS/transstring.cs#1)]
  [!code-vb[XslTransform.Transform6#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XslTransform.Transform6/VB/transstring.vb#1)]  
@@ -2400,28 +2400,28 @@ Root node is book.
         <Parameter Name="resolver" Type="System.Xml.XmlResolver" />
       </Parameters>
       <Docs>
-        <param name="input">一个对象，实现<see cref="T:System.Xml.XPath.IXPathNavigable" />接口。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
+        <param name="input">实现 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 接口的对象。 在 .NET Framework 中，这可以是 <see cref="T:System.Xml.XmlNode" />（一般为 <see cref="T:System.Xml.XmlDocument" />），或者是包含要转换的数据的 <see cref="T:System.Xml.XPath.XPathDocument" />。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
         <param name="output">要输出到的 <see cref="T:System.Xml.XmlWriter" />。</param>
         <param name="resolver">用于解析 XSLT <c>document()</c> 函数的 <see cref="T:System.Xml.XmlResolver" />。 如果为 <see langword="null" />，则不解析 <c>document()</c> 函数。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />方法完成。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.IXPathNavigable" />使用指定<paramref name="args" />并将结果输出到<see cref="T:System.Xml.XmlWriter" />。</summary>
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.IXPathNavigable,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />。</param>
+        <summary>使用指定的 <paramref name="args" /> 转换 <see cref="T:System.Xml.XPath.IXPathNavigable" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.Xml.XmlWriter" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。 `xsl:output`到输出时，不支持元素<xref:System.Xml.XmlWriter>(`xsl:output`将被忽略)。 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)有关详细信息。  
+ 与样式表中定义的元素匹配。`xsl:param` `args` 当`xsl:output`输出<xref:System.Xml.XmlWriter>到(`xsl:output`被忽略) 时, 不支持元素。 有关详细信息, 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)。  
   
- 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段，必须创建<xref:System.Xml.XmlDocument>包含只是在节点片断并将其传递<xref:System.Xml.XmlDocument>到<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
+ 转换将应用于整个文档。 换句话说，如果你传入文档根节点以外的一个节点，并不能防止转换进程访问已加载文档的所有节点。 若要转换节点片段, 必须创建一个<xref:System.Xml.XmlDocument>仅包含节点片段的, 并将<xref:System.Xml.XmlDocument>其传递给<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法。  
   
- 以下示例对一个节点片段执行转换。  
+ 下面的示例对节点片段执行转换。  
   
 ```csharp  
 XslTransform xslt = new XslTransform();       
@@ -2438,7 +2438,7 @@ Console.WriteLine("Passing " + tmpDoc.OuterXml + " to print_root.xsl");
 xslt.Transform(tmpDoc, null, Console.Out, null);  
 ```  
   
- 该示例使用`library.xml`和`print_root.xsl`文件作为输入并输出到控制台如下。  
+ 该示例使用`library.xml`和`print_root.xsl`文件作为输入, 并将以下结果输出到控制台。  
   
 ```  
 Passing <book genre="novel" ISBN="1-861001-57-5"><title>Pride And Prejudice</title></book> to print_root.xsl   
@@ -2472,7 +2472,7 @@ Root node is book.
    
   
 ## Examples  
- 下面的示例将 XML 文档转换为 HTML 文档。 它显示在表中的 ISBN、 标题和每本书的价格。  
+ 下面的示例将 XML 文档转换为 HTML 文档。 它显示表中每本书的 ISBN、标题和价格。  
   
  [!code-cpp[Classic WebData XslTransform.Transform7 Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XslTransform.Transform7 Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XslTransform.Transform7 Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XslTransform.Transform7 Example/CS/source.cs#1)]
@@ -2534,31 +2534,31 @@ Root node is book.
         <Parameter Name="resolver" Type="System.Xml.XmlResolver" />
       </Parameters>
       <Docs>
-        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />包含要转换的数据。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
+        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />，包含要转换的数据。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
         <param name="output">要输出到的流。</param>
         <param name="resolver">用于解析 XSLT <c>document()</c> 函数的 <see cref="T:System.Xml.XmlResolver" />。 如果为 <see langword="null" />，则不解析 <c>document()</c> 函数。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.Stream,System.Xml.XmlResolver)" />方法完成。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.XPathNavigator" />使用指定<paramref name="args" />并将结果输出到<see cref="T:System.IO.Stream" />。</summary>
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.Stream,System.Xml.XmlResolver)" />。</param>
+        <summary>使用指定的 <paramref name="args" /> 转换 <see cref="T:System.Xml.XPath.XPathNavigator" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.IO.Stream" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。 转换选择作为一个整体应用到文档。 换而言之，如果当前节点节点树，而不是文档根节点上设置的则这不会阻止转换过程访问已加载的文档中的所有节点。 执行转换后，<xref:System.Xml.XPath.XPathNavigator>保留为其原始状态。 这意味着，节点，这是当前转换过程之前，将保留当前节点之后<xref:System.Xml.Xsl.XslTransform.Transform%2A>调用方法。  
+ 与样式表中定义的元素匹配。`xsl:param` `args` 转换选项将应用于整个文档。 换言之, 如果当前节点是在文档根节点以外的节点树上设置的, 则不会阻止转换进程访问已加载文档中的所有节点。 执行转换后, 将<xref:System.Xml.XPath.XPathNavigator>保持其原始状态。 这意味着, 在调用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法后, 节点 (在转换进程之前是当前节点) 将保留当前节点。  
   
- 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)有关详细信息在其上`xsl:output`支持属性。  
+ 有关[](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)支持的`xsl:output`属性的详细信息, 请参阅 XslTransform 的输出。  
   
    
   
 ## Examples  
- 下面的示例加载到客户表<xref:System.Xml.XmlDataDocument>并执行 XSLT 转换来将客户数据提取到一个 HTML 表。 该示例使用 Microsoft SQL Server 2000 Northwind 数据库。  
+ 下面的示例将 customer 表加载到中<xref:System.Xml.XmlDataDocument> , 并执行 XSLT 转换, 以将客户数据提取到 HTML 表中。 该示例使用 Microsoft SQL Server 2000 Northwind 数据库。  
   
  [!code-csharp[XmlDataDocument.CreateNavigator#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlDataDocument.CreateNavigator/CS/dataset_trans.cs#1)]
  [!code-vb[XmlDataDocument.CreateNavigator#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlDataDocument.CreateNavigator/VB/dataset_trans.vb#1)]  
@@ -2613,26 +2613,26 @@ Root node is book.
         <Parameter Name="resolver" Type="System.Xml.XmlResolver" />
       </Parameters>
       <Docs>
-        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />包含要转换的数据。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
+        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />，包含要转换的数据。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
         <param name="output">要输出到的 <see cref="T:System.IO.TextWriter" />。</param>
         <param name="resolver">用于解析 XSLT <c>document()</c> 函数的 <see cref="T:System.Xml.XmlResolver" />。 如果为 <see langword="null" />，则不解析 <c>document()</c> 函数。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter,System.Xml.XmlResolver)" />方法完成。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.XPathNavigator" />使用指定<paramref name="args" />并将结果输出到<see cref="T:System.IO.TextWriter" />。</summary>
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.IO.TextWriter,System.Xml.XmlResolver)" />。</param>
+        <summary>使用指定的 <paramref name="args" /> 转换 <see cref="T:System.Xml.XPath.XPathNavigator" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.IO.TextWriter" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。 转换选择作为一个整体应用到文档。 换而言之，如果当前节点节点树，而不是文档根节点上设置的则这不会阻止转换过程访问已加载的文档中的所有节点。 执行转换后，<xref:System.Xml.XPath.XPathNavigator>保留为其原始状态。 这意味着，节点，这是当前转换过程之前，将保留当前节点之后<xref:System.Xml.Xsl.XslTransform.Transform%2A>调用方法。  
+ 与样式表中定义的元素匹配。`xsl:param` `args` 转换选项将应用于整个文档。 换言之, 如果当前节点是在文档根节点以外的节点树上设置的, 则不会阻止转换进程访问已加载文档中的所有节点。 执行转换后, 将<xref:System.Xml.XPath.XPathNavigator>保持其原始状态。 这意味着, 在调用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法后, 节点 (在转换进程之前是当前节点) 将保留当前节点。  
   
- 上的编码属性`xsl:output`到输出时，不支持元素<xref:System.IO.TextWriter>。 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)有关详细信息在其上`xsl:output`支持属性。  
+ 当输出`xsl:output` <xref:System.IO.TextWriter>到时, 不支持元素上的编码属性。 有关[](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)支持的`xsl:output`属性的详细信息, 请参阅 XslTransform 的输出。  
   
  ]]></format>
         </remarks>
@@ -2680,31 +2680,31 @@ Root node is book.
         <Parameter Name="resolver" Type="System.Xml.XmlResolver" />
       </Parameters>
       <Docs>
-        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />包含要转换的数据。</param>
-        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />包含用作转换输入的命名空间限定参数。</param>
+        <param name="input"><see cref="T:System.Xml.XPath.XPathNavigator" />，包含要转换的数据。</param>
+        <param name="args"><see cref="T:System.Xml.Xsl.XsltArgumentList" />，包含用作转换输入的命名空间限定的参数。</param>
         <param name="output">要输出到的 <see cref="T:System.Xml.XmlWriter" />。</param>
         <param name="resolver">用于解析 XSLT <c>document()</c> 函数的 <see cref="T:System.Xml.XmlResolver" />。 如果为 <see langword="null" />，则不解析 <c>document()</c> 函数。  
   
-<see cref="T:System.Xml.XmlResolver" />后不缓存<see cref="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />方法完成。</param>
-        <summary>中的 XML 数据转换<see cref="T:System.Xml.XPath.XPathNavigator" />使用指定的参数并将结果输出到<see cref="T:System.Xml.XmlWriter" />。</summary>
+完成 <see cref="T:System.Xml.XmlResolver" /> 方法后不缓存 <see cref="M:System.Xml.Xsl.XslTransform.Transform(System.Xml.XPath.XPathNavigator,System.Xml.Xsl.XsltArgumentList,System.Xml.XmlWriter,System.Xml.XmlResolver)" />。</param>
+        <summary>使用指定的参数转换 <see cref="T:System.Xml.XPath.XPathNavigator" /> 中的 XML 数据，并将结果输出到 <see cref="T:System.Xml.XmlWriter" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- <xref:System.Xml.Xsl.XslTransform> 支持 XSLT 1.0 语法。 XSLT 样式表必须包含命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
+ <xref:System.Xml.Xsl.XslTransform>支持 XSLT 1.0 语法。 XSLT 样式表必须包括命名空间声明`xmlns:xsl= http://www.w3.org/1999/XSL/Transform`。  
   
- `args`与匹配`xsl:param`样式表中定义的元素。 转换选择作为一个整体应用到文档。 换而言之，如果当前节点节点树，而不是文档根节点上设置的则这不会阻止转换过程访问已加载的文档中的所有节点。 执行转换后，<xref:System.Xml.XPath.XPathNavigator>保留为其原始状态。 这意味着，节点，即当前转换过程之前，将保留当前节点之后<xref:System.Xml.Xsl.XslTransform.Transform%2A>调用方法。  
+ 与样式表中定义的元素匹配。`xsl:param` `args` 转换选项将应用于整个文档。 换言之, 如果当前节点是在文档根节点以外的节点树上设置的, 则不会阻止转换进程访问已加载文档中的所有节点。 执行转换后, 将<xref:System.Xml.XPath.XPathNavigator>保持其原始状态。 这意味着, 在调用该<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法后, 在转换进程之前是当前节点的节点将保留为当前节点。  
   
- `xsl:output`到输出时，不支持元素<xref:System.Xml.XmlWriter>(`xsl:output`将被忽略)。 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)有关详细信息。  
+ 当`xsl:output`输出<xref:System.Xml.XmlWriter>到(`xsl:output`被忽略) 时, 不支持元素。 有关详细信息, 请参阅[XslTransform 的输出](~/docs/standard/data/xml/outputs-from-an-xsltransform.md)。  
   
    
   
 ## Examples  
- 下面的示例加载并执行 XSLT 转换之前编辑 XML 文档。  
+ 下面的示例在执行 XSLT 转换之前加载并编辑 XML 文档。  
   
  [!code-cpp[XslTransform.Transform2#1](~/samples/snippets/cpp/VS_Snippets_Data/XslTransform.Transform2/CPP/trans_snip.cpp#1)]
  [!code-csharp[XslTransform.Transform2#1](~/samples/snippets/csharp/VS_Snippets_Data/XslTransform.Transform2/CS/trans_snip.cs#1)]
@@ -2758,26 +2758,26 @@ Root node is book.
         <ReturnType>System.Xml.XmlResolver</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>集<see cref="T:System.Xml.XmlResolver" />用来解析外部资源时<see cref="Overload:System.Xml.Xsl.XslTransform.Transform" />调用方法。</summary>
-        <value><see cref="T:System.Xml.XmlResolver" />若要在转换期间使用。 如果设置为<see langword="null" />，XSLT <c>document （)</c>函数未得到解决。</value>
+        <summary>设置调用 <see cref="T:System.Xml.XmlResolver" /> 方法时用于解析外部资源的 <see cref="Overload:System.Xml.Xsl.XslTransform.Transform" />。</summary>
+        <value>要在转换期间使用的 <see cref="T:System.Xml.XmlResolver" />。 如果设置为<see langword="null" />, 则不解析 XSLT <c>document ()</c>函数。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Xml.Xsl.XslTransform>类是.NET Framework 2.0 版中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新 XSLT 处理器。 有关详细信息，请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)并[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
+>  <xref:System.Xml.Xsl.XslTransform>类在 .NET Framework 版本2.0 中已过时。 <xref:System.Xml.Xsl.XslCompiledTransform>类是新的 XSLT 处理器。 有关详细信息, 请参阅[使用 XslCompiledTransform 类](~/docs/standard/data/xml/using-the-xslcompiledtransform-class.md)和[从 XslTransform 类迁移](~/docs/standard/data/xml/migrating-from-the-xsltransform-class.md)。  
   
- 在.NET framework 版本 1.1 中，应用程序的信任级别确定的默认行为：  
+ 在 .NET Framework 版本1.1 中, 应用程序的信任级别确定了默认行为:  
   
- `Fully trusted code:` 默认值<xref:System.Xml.XmlUrlResolver>无用户凭据用于解析`document()`函数。 如果访问外部资源需要身份验证，使用此属性指定<xref:System.Xml.XmlResolver>与所需的凭据。  
+ `Fully trusted code:`使用不<xref:System.Xml.XmlUrlResolver>带用户凭据的默认值来`document()`解析函数。 如果访问外部资源需要身份验证, 请使用此属性指定<xref:System.Xml.XmlResolver>具有必要凭据的。  
   
- `Semi-trusted code:` 该属性设置为`null`，这意味着`document()`函数未得到解决。 因为完全信任才能指定<xref:System.Xml.XmlResolver>，也不能设置此属性。  
+ `Semi-trusted code:`属性设置为`null`, 这`document()`意味着不会解析函数。 由于需要完全信任来指定<xref:System.Xml.XmlResolver>, 因此也不能设置此属性。  
   
- 使用此冲突解决程序时 XSLT`document()`调用函数。 它不用于解析`xsl:import`和`xsl:include`引用样式表中的元素。 若要指定<xref:System.Xml.XmlResolver>用来解析`xsl:import`并`xsl:include`引用样式表中的元素使用<xref:System.Xml.Xsl.XslTransform.Load%2A>重载，它将<xref:System.Xml.XmlResolver>作为其参数之一。  
+ 调用 XSLT `document()`函数时, 将使用此解析程序。 它不用于解析`xsl:import`样式表中引用的元素和`xsl:include`元素。 若要指定<xref:System.Xml.XmlResolver>要用于解析`xsl:import`的和`xsl:include`样式表中<xref:System.Xml.Xsl.XslTransform.Load%2A>引用的元素<xref:System.Xml.XmlResolver> , 请使用重载, 该重载采用作为其参数之一。  
   
 > [!NOTE]
->  此属性是在.NET Framework 1.1 版中已过时。 指定<xref:System.Xml.XmlResolver>使用<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法是建议的做法。 在这种情况下，<xref:System.Xml.XmlResolver>后不缓存<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法完成。  
+>  此属性在 .NET Framework 版本1.1 中已过时。 <xref:System.Xml.XmlResolver> 建议<xref:System.Xml.Xsl.XslTransform.Transform%2A>使用方法来指定。 在这种情况下<xref:System.Xml.XmlResolver> , 在<xref:System.Xml.Xsl.XslTransform.Transform%2A>方法完成后, 不会缓存。  
   
  ]]></format>
         </remarks>

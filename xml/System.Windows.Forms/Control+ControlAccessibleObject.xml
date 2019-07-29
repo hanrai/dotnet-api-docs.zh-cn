@@ -21,22 +21,22 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>提供有关辅助功能应用程序可使用的控件的信息。</summary>
+    <summary>提供关于可以供辅助功能应用程序使用的控件的信息。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Windows 窗体具有辅助功能支持内置的并提供有关你的应用程序，使它能够使用可访问性客户端应用程序的信息。 辅助功能客户端应用程序的示例包括： 屏幕放大器和审阅者实用程序、 语音输入实用程序，屏幕键盘、 其他输入的设备和键盘增强功能实用程序。 有时想要为辅助功能客户端应用程序提供附加信息。 有两种方法来提供这些额外信息。 若要提供的现有控件的有限的辅助功能信息，请设置控件的<xref:System.Windows.Forms.Control.AccessibleName%2A>， <xref:System.Windows.Forms.Control.AccessibleDescription%2A>， <xref:System.Windows.Forms.Control.AccessibleDefaultActionDescription%2A>，和<xref:System.Windows.Forms.Control.AccessibleRole%2A>属性值，将报告给辅助功能客户端应用程序。 或者，如果需要更多的辅助功能信息将包括您的控件，您可以编写您自己的类派生自<xref:System.Windows.Forms.AccessibleObject>或<xref:System.Windows.Forms.Control.ControlAccessibleObject>类。 例如，如果你正在编写您自己的控件的不派生自公共控件，或者您需要为您的控件中的命中测试此类操作，应创建<xref:System.Windows.Forms.Control.ControlAccessibleObject>为您的控件通过调用<xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>方法。  
+ Windows 窗体内置了辅助功能支持, 并提供了有关应用程序的信息, 使其能够使用具有辅助功能的客户端应用程序。 辅助功能客户端应用程序的示例包括: 屏幕弱视和审阅者实用程序、语音输入实用程序、屏幕键盘、备用输入设备和键盘增强实用程序。 有时, 你将需要向具有辅助功能的客户端应用程序提供其他信息。 提供此附加信息的方法有两种。 若要为现有控件提供有限的辅助功能信息, 请<xref:System.Windows.Forms.Control.AccessibleName%2A>设置<xref:System.Windows.Forms.Control.AccessibleDescription%2A>控件<xref:System.Windows.Forms.Control.AccessibleDefaultActionDescription%2A>的、 <xref:System.Windows.Forms.Control.AccessibleRole%2A> 、和属性值, 这些值将报告给具有辅助功能的客户端应用程序。 或者, 如果你需要将更多辅助功能信息包含在控件中, 则可以编写自己的派生自或<xref:System.Windows.Forms.AccessibleObject> <xref:System.Windows.Forms.Control.ControlAccessibleObject>类的类。 例如, 如果您正在编写自己的控件, 该控件不是从公共控件派生的, 或者您需要在控件中进行命中测试, 则应通过<xref:System.Windows.Forms.Control.ControlAccessibleObject> <xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>调用方法为控件创建一个。  
   
 > [!NOTE]
->  如果重写<xref:System.Windows.Forms.AccessibleObject.GetChild%2A?displayProperty=nameWithType>方法，您还必须重写<xref:System.Windows.Forms.AccessibleObject.GetChildCount%2A?displayProperty=nameWithType>方法。 获取或设置<xref:System.Windows.Forms.Control.AccessibilityObject%2A>属性，必须添加对引用`Accessibility`随.NET Framework 一起安装的程序集。  
+>  如果重写<xref:System.Windows.Forms.AccessibleObject.GetChild%2A?displayProperty=nameWithType>方法, 则还必须<xref:System.Windows.Forms.AccessibleObject.GetChildCount%2A?displayProperty=nameWithType>重写方法。 若要获取或设置<xref:System.Windows.Forms.Control.AccessibilityObject%2A>属性, 必须添加对与 .NET Framework 一起安装`Accessibility`的程序集的引用。  
   
  有关辅助性对象的更多信息，请参见 MSDN Library 中的“Active Accessibility”部分。  
   
    
   
 ## Examples  
- 下面的代码示例创建复选框控件派生自<xref:System.Windows.Forms.CheckBox>类，并创建一个自定义<xref:System.Windows.Forms.Control.ControlAccessibleObject>派生的类使用。 派生的类中， `MyCheckBox`，具有<xref:System.Windows.Forms.CheckBox.Appearance%2A>的<xref:System.Windows.Forms.Appearance.Button>默认情况下，使其显示为一个切换按钮。 派生<xref:System.Windows.Forms.Control.ControlAccessibleObject>类， `MyCheckBoxControlAccessibleObject`，重写三个属性，以说明在外观上的差异。  
+ 下面的代码示例创建一个从<xref:System.Windows.Forms.CheckBox>类派生的复选框控件, 并为派生类创建要使用的自定义。 <xref:System.Windows.Forms.Control.ControlAccessibleObject> 派生类`MyCheckBox` <xref:System.Windows.Forms.CheckBox.Appearance%2A>的默认值为,因此它显示为一个切换按钮。<xref:System.Windows.Forms.Appearance.Button> <xref:System.Windows.Forms.Control.ControlAccessibleObject> 派生`MyCheckBoxControlAccessibleObject`类重写了三个属性, 以考虑外观上的差异。  
   
  [!code-cpp[Windows.Forms.Control.ControlAccessibleObject#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Windows.Forms.Control.ControlAccessibleObject/CPP/controlaccessibility.cpp#1)]
  [!code-csharp[Windows.Forms.Control.ControlAccessibleObject#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Windows.Forms.Control.ControlAccessibleObject/CS/controlaccessibility.cs#1)]
@@ -75,7 +75,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例创建复选框控件派生自<xref:System.Windows.Forms.CheckBox>类，并创建一个自定义<xref:System.Windows.Forms.Control.ControlAccessibleObject>派生的类使用。 派生的类中， `MyCheckBox`，具有<xref:System.Windows.Forms.CheckBox.Appearance%2A>的<xref:System.Windows.Forms.Appearance.Button>默认情况下，使其显示为一个切换按钮。 派生<xref:System.Windows.Forms.Control.ControlAccessibleObject>类， `MyCheckBoxControlAccessibleObject`，重写三个属性，以说明在外观上的差异。  
+ 下面的代码示例创建一个从<xref:System.Windows.Forms.CheckBox>类派生的复选框控件, 并为派生类创建要使用的自定义。 <xref:System.Windows.Forms.Control.ControlAccessibleObject> 派生类`MyCheckBox` <xref:System.Windows.Forms.CheckBox.Appearance%2A>的默认值为,因此它显示为一个切换按钮。<xref:System.Windows.Forms.Appearance.Button> <xref:System.Windows.Forms.Control.ControlAccessibleObject> 派生`MyCheckBoxControlAccessibleObject`类重写了三个属性, 以考虑外观上的差异。  
   
  [!code-cpp[Windows.Forms.Control.ControlAccessibleObject#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Windows.Forms.Control.ControlAccessibleObject/CPP/controlaccessibility.cpp#1)]
  [!code-csharp[Windows.Forms.Control.ControlAccessibleObject#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Windows.Forms.Control.ControlAccessibleObject/CS/controlaccessibility.cs#1)]
@@ -83,7 +83,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="ownerControl" />参数值是<see langword="null" />。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="ownerControl" /> 参数值为 <see langword="null" />。</exception>
         <altmember cref="T:System.Windows.Forms.Control.ControlAccessibleObject" />
         <altmember cref="P:System.Windows.Forms.Control.ControlAccessibleObject.Owner" />
       </Docs>
@@ -130,8 +130,8 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取说明<see cref="T:System.Windows.Forms.Control.ControlAccessibleObject" />。</summary>
-        <value>字符串描述<see cref="T:System.Windows.Forms.Control.ControlAccessibleObject" />。</value>
+        <summary>获取 <see cref="T:System.Windows.Forms.Control.ControlAccessibleObject" /> 的说明。</summary>
+        <value>描述 <see cref="T:System.Windows.Forms.Control.ControlAccessibleObject" /> 的字符串。</value>
         <remarks>To be added.</remarks>
         <altmember cref="P:System.Windows.Forms.AccessibleObject.Description" />
       </Docs>
@@ -157,14 +157,14 @@
         <Parameter Name="fileName" Type="System.String" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="fileName">此方法返回时，包含表示与此辅助性对象相关联的帮助文件的路径的字符串。 此参数未经初始化即被传递。</param>
-        <summary>与此辅助性对象相关联的帮助文件获取帮助主题和路径标识符。</summary>
-        <returns>帮助主题或-1，如果没有任何帮助主题的标识符。 返回时，<paramref name="fileName" />参数将包含与此辅助性对象相关联的帮助文件的路径或<see langword="null" />是否存在任何<see langword="IAccessible" />指定接口。</returns>
+        <param name="fileName">当此方法返回时将包含一个字符串，该字符串表示与此辅助功能对象关联的帮助文件的路径。 此参数未经初始化即被传递。</param>
+        <summary>获取帮助主题标识符及与该辅助性对象相关的帮助文件的路径。</summary>
+        <returns>帮助主题的标识符，或者，如果没有帮助主题，则为 -1。 当返回时，<paramref name="fileName" /> 参数将包含与此辅助功能对象关联的帮助文件的路径；如果未指定任何 <see langword="null" /> 接口，则为 <see langword="IAccessible" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 将标识符传递到指定的 WinHelp 文件`fileName`参数来标识所需的帮助主题。  
+ 将标识符传递给`fileName`参数指定的 WinHelp 文件, 以标识所需的帮助主题。  
   
  ]]></format>
         </remarks>
@@ -194,12 +194,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置辅助性对象的句柄。</summary>
-        <value><see cref="T:System.IntPtr" />表示控件的句柄。</value>
+        <value><see cref="T:System.IntPtr" />，它表示控件的句柄。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Windows.Forms.Control.ControlAccessibleObject.Handle%2A>属性<xref:System.Windows.Forms.Control.ControlAccessibleObject>等于<xref:System.Windows.Forms.Control.Handle%2A>属性的<xref:System.Windows.Forms.Control>与其相关联。  
+ 的<xref:System.Windows.Forms.Control.ControlAccessibleObject.Handle%2A> <xref:System.Windows.Forms.Control.Handle%2A> <xref:System.Windows.Forms.Control>属性的值等于与其关联的的属性。<xref:System.Windows.Forms.Control.ControlAccessibleObject>  
   
  ]]></format>
         </remarks>
@@ -224,8 +224,8 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取对象用途或如何使用该对象的说明。</summary>
-        <value>对象用途或如何使用该对象的说明。</value>
+        <summary>获取有关对象的用途或用法的说明。</summary>
+        <value>对象用途或如何使用对象的说明。</value>
         <remarks>To be added.</remarks>
         <altmember cref="E:System.Windows.Forms.Control.QueryAccessibilityHelp" />
         <altmember cref="P:System.Windows.Forms.AccessibleObject.Help" />
@@ -249,13 +249,13 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取对象的快捷键或访问对象的访问密钥。</summary>
-        <value>对象的快捷键或访问密钥为可访问对象或<see langword="null" />是否没有与对象关联的快捷键。</value>
+        <summary>获取辅助性对象的快捷键或访问键。</summary>
+        <value>辅助性对象的对象快捷键或访问键，或者，如果没有与此对象相关联的快捷键，则是 <see langword="null" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 具有快捷键或访问键的所有对象都应都支持此属性。  
+ 具有快捷键或访问键的所有对象都应支持此属性。  
   
  ]]></format>
         </remarks>
@@ -292,7 +292,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>通知辅助功能客户端应用程序<see cref="T:System.Windows.Forms.AccessibleEvents" />。</summary>
+        <summary>通知 <see cref="T:System.Windows.Forms.AccessibleEvents" /> 的辅助功能客户端应用程序。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="NotifyClients">
@@ -317,12 +317,12 @@
       </Parameters>
       <Docs>
         <param name="accEvent">要将其通报给具有辅助功能的客户端应用程序的 <see cref="T:System.Windows.Forms.AccessibleEvents" />。</param>
-        <summary>通知辅助功能客户端应用程序指定的<see cref="T:System.Windows.Forms.AccessibleEvents" />。</summary>
+        <summary>通知指定的 <see cref="T:System.Windows.Forms.AccessibleEvents" /> 的辅助功能客户端应用程序。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须调用<xref:System.Windows.Forms.Control.ControlAccessibleObject.NotifyClients%2A>方法为每个<xref:System.Windows.Forms.AccessibleEvents>对象可访问性客户端应用程序接收通知。 <xref:System.Windows.Forms.Control.ControlAccessibleObject.NotifyClients%2A>方法通常称为在将属性设置或在事件处理程序。 例如，可能会调用<xref:System.Windows.Forms.Control.ControlAccessibleObject.NotifyClients%2A>方法并传入<xref:System.Windows.Forms.AccessibleEvents>的值`Hide`从事件处理程序中<xref:System.Windows.Forms.Control.VisibleChanged?displayProperty=nameWithType>事件。  
+ 您必须为每<xref:System.Windows.Forms.Control.ControlAccessibleObject.NotifyClients%2A>个<xref:System.Windows.Forms.AccessibleEvents>要通知辅助功能客户端应用程序的对象调用方法。 当<xref:System.Windows.Forms.Control.ControlAccessibleObject.NotifyClients%2A>设置属性或从事件处理程序中设置属性时, 通常会调用方法。 例如, 你可以<xref:System.Windows.Forms.Control.ControlAccessibleObject.NotifyClients%2A>调用方法, 并传入<xref:System.Windows.Forms.AccessibleEvents> <xref:System.Windows.Forms.Control.VisibleChanged?displayProperty=nameWithType>事件的事件处理程序`Hide`中的值。  
   
  ]]></format>
         </remarks>
@@ -358,7 +358,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须调用<xref:System.Windows.Forms.Control.ControlAccessibleObject.NotifyClients%2A>方法为每个<xref:System.Windows.Forms.AccessibleEvents>对象可访问性客户端应用程序接收通知。 <xref:System.Windows.Forms.Control.ControlAccessibleObject.NotifyClients%2A>方法通常称为在将属性设置或在事件处理程序。 例如，可能会调用<xref:System.Windows.Forms.Control.ControlAccessibleObject.NotifyClients%2A>方法并传入<xref:System.Windows.Forms.AccessibleEvents>的值`Hide`中从事件处理程序中<xref:System.Windows.Forms.Control.VisibleChanged?displayProperty=nameWithType>事件。  
+ 您必须为每<xref:System.Windows.Forms.Control.ControlAccessibleObject.NotifyClients%2A>个<xref:System.Windows.Forms.AccessibleEvents>要通知辅助功能客户端应用程序的对象调用方法。 当<xref:System.Windows.Forms.Control.ControlAccessibleObject.NotifyClients%2A>设置属性或从事件处理程序中设置属性时, 通常会调用方法。 例如, 您可以<xref:System.Windows.Forms.Control.ControlAccessibleObject.NotifyClients%2A>调用方法, 并传入<xref:System.Windows.Forms.AccessibleEvents> <xref:System.Windows.Forms.Control.VisibleChanged?displayProperty=nameWithType>事件的事件处理程序`Hide`中的的值。  
   
  ]]></format>
         </remarks>
@@ -391,7 +391,7 @@
         <param name="accEvent">要将其通报给具有辅助功能的客户端应用程序的 <see cref="T:System.Windows.Forms.AccessibleEvents" />。</param>
         <param name="objectID"><see cref="T:System.Windows.Forms.AccessibleObject" /> 的标识符。</param>
         <param name="childID">就该辅助性事件要通知的子 <see cref="T:System.Windows.Forms.Control" />。</param>
-        <summary>通知辅助功能客户端应用程序的指定<see cref="T:System.Windows.Forms.AccessibleEvents" />指定的子控件，为提供的标识<see cref="T:System.Windows.Forms.AccessibleObject" />。</summary>
+        <summary>就指定的子控件的指定 <see cref="T:System.Windows.Forms.AccessibleEvents" /> 通知辅助功能客户端应用程序，给定 <see cref="T:System.Windows.Forms.AccessibleObject" /> 的标识。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -424,7 +424,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例创建复选框控件派生自<xref:System.Windows.Forms.CheckBox>类，并创建一个自定义<xref:System.Windows.Forms.Control.ControlAccessibleObject>派生的类使用。 派生的类中， `MyCheckBox`，具有<xref:System.Windows.Forms.CheckBox.Appearance%2A>的<xref:System.Windows.Forms.Appearance.Button>默认情况下，使其显示为一个切换按钮。 派生<xref:System.Windows.Forms.Control.ControlAccessibleObject>类， `MyCheckBoxControlAccessibleObject`，重写三个属性，以说明在外观上的差异。  
+ 下面的代码示例创建一个从<xref:System.Windows.Forms.CheckBox>类派生的复选框控件, 并为派生类创建要使用的自定义。 <xref:System.Windows.Forms.Control.ControlAccessibleObject> 派生类`MyCheckBox` <xref:System.Windows.Forms.CheckBox.Appearance%2A>的默认值为,因此它显示为一个切换按钮。<xref:System.Windows.Forms.Appearance.Button> <xref:System.Windows.Forms.Control.ControlAccessibleObject> 派生`MyCheckBoxControlAccessibleObject`类重写了三个属性, 以考虑外观上的差异。  
   
  [!code-cpp[Windows.Forms.Control.ControlAccessibleObject#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Windows.Forms.Control.ControlAccessibleObject/CPP/controlaccessibility.cpp#1)]
  [!code-csharp[Windows.Forms.Control.ControlAccessibleObject#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Windows.Forms.Control.ControlAccessibleObject/CS/controlaccessibility.cs#1)]
@@ -483,7 +483,7 @@
   
 ## Remarks  
 
-有关有效方法，该控件必须实现<xref:System.Windows.Forms.Automation.IAutomationLiveRegion?displayProperty=nameWithType>接口，并将其`LiveSetting`属性必须返回<xref:System.Windows.Automation.AutomationLiveSetting.Polite?displayProperty=nameWithType>或<xref:System.Windows.Automation.AutomationLiveSetting.Assertive?displayProperty=<nameWithType>。 此外，应用程序必须重新编译为定位.NET Framework 4.8，或选择启用此功能通过使用兼容性开关。
+为了使此方法生效, 控件必须<xref:System.Windows.Forms.Automation.IAutomationLiveRegion?displayProperty=nameWithType>实现接口, 并且其`LiveSetting`属性必须返回<xref:System.Windows.Automation.AutomationLiveSetting.Polite?displayProperty=nameWithType>或<xref:System.Windows.Automation.AutomationLiveSetting.Assertive?displayProperty=<nameWithType>。 此外, 应用程序必须重新编译为目标 .NET Framework 4.8 或使用兼容性开关选择使用此功能。
 
        ]]></format>
         </remarks>

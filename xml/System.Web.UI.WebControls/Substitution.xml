@@ -32,7 +32,7 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>指定缓存输出的网页上的一个部分，该网页不受缓存限制。 在此位置为 <see cref="T:System.Web.UI.WebControls.Substitution" /> 控件检索和替换动态内容。</summary>
+    <summary>指定输出缓存网页上免于缓存的部分。 在此位置，会检索动态内容，并以动态内容替换 <see cref="T:System.Web.UI.WebControls.Substitution" /> 控件。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
@@ -45,16 +45,16 @@
   
 <a name="introduction"></a>   
 ## <a name="introduction"></a>介绍  
- 使用<xref:System.Web.UI.WebControls.Substitution>控件指定在输出缓存 Web 页上要动态内容的部分替换为控件。 <xref:System.Web.UI.WebControls.Substitution>控件提供了在其中缓存内容的大多数页面的部分页面缓存一简化的解决方案。 您可以输出缓存整个页面，然后使用<xref:System.Web.UI.WebControls.Substitution>控件可以指定从缓存中免除的页面部分。 缓存的区域只执行一次，直至缓存项过期或被清除重播缓存中。 动态区域执行每次请求页面。 此缓存模型简化了对网页进行主要是静态的因为您不需要封装到缓存中的 Web 用户控件的部分代码。 例如，此缓存模型可在方案中必须包含静态内容，例如新闻故事的页面和一个<xref:System.Web.UI.WebControls.AdRotator>显示播发的控件。 不更改新闻报道，这意味着它们可以被缓存。 但是，用户请求页上，每次想要显示新的播发。 <xref:System.Web.UI.WebControls.AdRotator>控件直接支持缓存后替换并呈现页面发回，而不考虑是否缓存页的新播发每次。  
+ <xref:System.Web.UI.WebControls.Substitution>使用控件可以指定输出缓存的网页上的一个部分, 该网页需要用来替换控件的动态内容。 对于大部分内容缓存的页面,控件都为部分页面缓存提供简化的解决方案。<xref:System.Web.UI.WebControls.Substitution> 您可以输出缓存整个页面, 然后使用<xref:System.Web.UI.WebControls.Substitution>控件指定不受缓存控制的页面部分。 缓存区域只执行一次, 并从缓存中重播, 直到缓存项过期或被清除为止。 每次请求页面时, 都会执行动态区域。 此缓存模型简化了主要为静态的页的代码, 因为无需将节封装到 Web 用户控件中。 例如, 此缓存模型对于包含静态内容 (如新闻报道) 和<xref:System.Web.UI.WebControls.AdRotator>显示广告的控件的页面非常有用。 新闻故事不会更改, 这意味着可以对其进行缓存。 但是, 用户每次请求页面时, 都要显示新的广告。 <xref:System.Web.UI.WebControls.AdRotator>控件直接支持缓存后替换, 并在每次回发页面时呈现新广告, 无论页面是否已缓存。  
   
 > [!NOTE]
->  可以将放置<xref:System.Web.UI.WebControls.Substitution>中缓存的页面中包含的用户控件的控件。 但是，不能在<xref:System.Web.UI.WebControls.Substitution>输出缓存用户控件中的控件。  
+>  可以将<xref:System.Web.UI.WebControls.Substitution>控件放置在包含在缓存页中的用户控件中。 但是, 不能将<xref:System.Web.UI.WebControls.Substitution>控件放置在输出缓存的用户控件中。  
   
- 当<xref:System.Web.UI.WebControls.Substitution>控件执行时，它调用一个方法，返回的字符串。 该方法返回的字符串是要显示的位置处的页面上的内容<xref:System.Web.UI.WebControls.Substitution>控件。 使用<xref:System.Web.UI.WebControls.Substitution.MethodName%2A>属性来指定要时调用的回调方法的名称<xref:System.Web.UI.WebControls.Substitution>控件执行。 您指定的回调方法必须是包含在页面或用户控件上的静态方法<xref:System.Web.UI.WebControls.Substitution>控件。 回调方法的签名必须匹配的签名<xref:System.Web.HttpResponseSubstitutionCallback>该委托使用<xref:System.Web.HttpContext>参数并返回一个字符串。  
+ <xref:System.Web.UI.WebControls.Substitution>当控件执行时, 它会调用返回字符串的方法。 此方法返回的字符串是要在<xref:System.Web.UI.WebControls.Substitution>控件位置的页面上显示的内容。 使用属性指定在执行<xref:System.Web.UI.WebControls.Substitution>控件时要调用的回调方法的名称。 <xref:System.Web.UI.WebControls.Substitution.MethodName%2A> 指定的回调方法必须是包含该<xref:System.Web.UI.WebControls.Substitution>控件的页或用户控件上的静态方法。 回调方法的签名必须与<xref:System.Web.HttpResponseSubstitutionCallback> <xref:System.Web.HttpContext>采用参数并返回字符串的委托的签名匹配。  
   
- 若要操作的页面输出缓存，可以使用[@ OutputCache](https://msdn.microsoft.com/library/28a9e101-fb44-4198-9cb6-b8a52312fec2)指令<xref:System.Web.HttpCachePolicy>类，或<xref:System.Web.HttpResponse.Cache%2A>属性。 缓存页的详细信息，请参阅[缓存 ASP.NET 页面](https://msdn.microsoft.com/library/e9666a1b-88df-4931-af0b-a754fc65660b(v=vs.100))并[缓存部分 ASP.NET 页面的](https://msdn.microsoft.com/library/cdd8e523-7305-4685-a456-c5be1de1367e)。  
+ 若要为页面操作输出缓存, 可以使用[@ OutputCache](https://msdn.microsoft.com/library/28a9e101-fb44-4198-9cb6-b8a52312fec2)指令、 <xref:System.Web.HttpCachePolicy> <xref:System.Web.HttpResponse.Cache%2A>类或属性。 有关缓存页面的详细信息, 请参阅[缓存 ASP.NET 页面](https://msdn.microsoft.com/library/e9666a1b-88df-4931-af0b-a754fc65660b(v=vs.100))和[缓存 ASP.NET 页面的部分](https://msdn.microsoft.com/library/cdd8e523-7305-4685-a456-c5be1de1367e)。  
   
- 为使用的替代方法<xref:System.Web.UI.WebControls.Substitution>控件，您还可以获取缓存行为使用替换<xref:System.Web.HttpResponseSubstitutionCallback>委托。 此外，可以获得如缓存行为在控件上，替换<xref:System.Web.UI.WebControls.AdRotator>控件，直接支持此功能。 有关详细信息，请参阅[动态更新的缓存页的某些部分](https://msdn.microsoft.com/library/09c9bd9a-0d68-4a5c-aa6f-1b461c208795)。  
+ 作为使用<xref:System.Web.UI.WebControls.Substitution>控件的替代方法, 还可以<xref:System.Web.HttpResponseSubstitutionCallback>使用委托获取替换缓存行为。 此外, 还可以获取直接支持此功能的控件 (如<xref:System.Web.UI.WebControls.AdRotator>控件) 的替换缓存行为。 有关详细信息, 请参阅[动态更新部分缓存页](https://msdn.microsoft.com/library/09c9bd9a-0d68-4a5c-aa6f-1b461c208795)。  
   
 <a name="declarative_syntax"></a>   
 ## <a name="declarative-syntax"></a>声明性语法  
@@ -80,7 +80,7 @@
    
   
 ## Examples  
- 下面的代码示例演示如何添加<xref:System.Web.UI.WebControls.Substitution>以声明方式到输出缓存 Web 页的控件。 加载页时向用户在标签中显示当前日期和时间。 本部分的页面缓存并更新仅每隔 60 秒。 当<xref:System.Web.UI.WebControls.Substitution>控件执行时，它将调用`GetCurrentDateTime`方法。 返回的字符串`GetCurrentDateTime`向用户显示。 此部分中的页未缓存，并更新每次刷新页面。  
+ 下面的代码示例演示如何以声明方式<xref:System.Web.UI.WebControls.Substitution>将控件添加到输出缓存的网页中。 加载页面时, 将在标签中向用户显示当前日期和时间。 页面的此部分缓存并仅每60秒更新一次。 当控件执行时, 它将`GetCurrentDateTime`调用方法。 <xref:System.Web.UI.WebControls.Substitution> 返回的字符串`GetCurrentDateTime`将显示给用户。 页面的此部分不会缓存, 并在每次刷新页面时更新。  
   
  [!code-aspx-csharp[SubstitutionsClass1#1](~/samples/snippets/csharp/VS_Snippets_WebNet/SubstitutionsClass1/CS/substitutionclass1cs.aspx#1)]
  [!code-aspx-vb[SubstitutionsClass1#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/SubstitutionsClass1/VB/substitutionclass1vb.aspx#1)]  
@@ -92,11 +92,11 @@
     <altmember cref="T:System.Web.HttpContext" />
     <altmember cref="T:System.Web.HttpCachePolicy" />
     <altmember cref="P:System.Web.HttpResponse.Cache" />
-    <related type="Article" href="https://msdn.microsoft.com/library/fd47d5f3-1ede-4096-96eb-8d9c96012451">替代 Web 服务器控件</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/fd47d5f3-1ede-4096-96eb-8d9c96012451">替换 Web 服务器控件</related>
     <related type="Article" href="https://msdn.microsoft.com/library/ac11c8ea-df5d-4de8-b315-9ccf1048b0ce">ASP.NET 缓存</related>
-    <related type="Article" href="https://msdn.microsoft.com/library/e9666a1b-88df-4931-af0b-a754fc65660b(v=vs.100)">缓存 ASP.NET 页面</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/e9666a1b-88df-4931-af0b-a754fc65660b(v=vs.100)">缓存 ASP.NET 页</related>
     <related type="Article" href="https://msdn.microsoft.com/library/cdd8e523-7305-4685-a456-c5be1de1367e">缓存 ASP.NET 页面的部分</related>
-    <related type="Article" href="https://msdn.microsoft.com/library/09c9bd9a-0d68-4a5c-aa6f-1b461c208795">动态更新缓存的页面的部分</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/09c9bd9a-0d68-4a5c-aa6f-1b461c208795">动态更新缓存页面的部分</related>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -123,19 +123,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.Substitution.%23ctor%2A>构造函数来创建和初始化的新实例<xref:System.Web.UI.WebControls.Substitution>类。  
+ 使用构造函数来创建和初始化<xref:System.Web.UI.WebControls.Substitution>类的新实例。 <xref:System.Web.UI.WebControls.Substitution.%23ctor%2A>  
   
    
   
 ## Examples  
- 下面的代码示例演示如何添加<xref:System.Web.UI.WebControls.Substitution>以编程方式向输出缓存网页的控件。 加载页时向用户在标签中显示当前日期和时间。 本部分的页面缓存并更新仅每隔 60 秒。 当<xref:System.Web.UI.WebControls.Substitution>控件执行时，它将调用`GetCurrentDateTime`方法。 返回的字符串`GetCurrentDateTime`向用户显示。 此部分中的页未缓存，并更新每次刷新页面。  
+ 下面的代码示例演示如何以编程方式<xref:System.Web.UI.WebControls.Substitution>将控件添加到输出缓存的网页中。 加载页面时, 将在标签中向用户显示当前日期和时间。 页面的此部分缓存并仅每60秒更新一次。 当控件执行时, 它将`GetCurrentDateTime`调用方法。 <xref:System.Web.UI.WebControls.Substitution> 返回的字符串`GetCurrentDateTime`将显示给用户。 页面的此部分不会缓存, 并在每次刷新页面时更新。  
   
  [!code-aspx-csharp[SubstitutionCstr#1](~/samples/snippets/csharp/VS_Snippets_WebNet/SubstitutionCstr/CS/substitutioncstrcs.aspx#1)]
  [!code-aspx-vb[SubstitutionCstr#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/SubstitutionCstr/VB/substitutioncstrvb.aspx#1)]  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/fd47d5f3-1ede-4096-96eb-8d9c96012451">替代 Web 服务器控件</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/fd47d5f3-1ede-4096-96eb-8d9c96012451">替换 Web 服务器控件</related>
       </Docs>
     </Member>
     <Member MemberName="CreateControlCollection">
@@ -156,20 +156,20 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回<see cref="T:System.Web.UI.EmptyControlCollection" />对象，指示<see cref="T:System.Web.UI.WebControls.Substitution" />控件不支持子控件。</summary>
+        <summary>返回一个 <see cref="T:System.Web.UI.EmptyControlCollection" /> 对象，该对象指示 <see cref="T:System.Web.UI.WebControls.Substitution" /> 控件不支持子控件。</summary>
         <returns><see cref="T:System.Web.UI.EmptyControlCollection" />，指示该控件不支持子控件。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Substitution.CreateControlCollection%2A>方法通常用于创建<xref:System.Web.UI.ControlCollection>对象来存储控件的子控件。 实现<xref:System.Web.UI.WebControls.Substitution.CreateControlCollection%2A>方法<xref:System.Web.UI.WebControls.Substitution>控件始终返回<xref:System.Web.UI.EmptyControlCollection>对象，以指示<xref:System.Web.UI.WebControls.Substitution>控件不支持子控件。  
+ 方法通常用于<xref:System.Web.UI.ControlCollection>创建用于存储控件的子控件的对象。 <xref:System.Web.UI.WebControls.Substitution.CreateControlCollection%2A> 控件的<xref:System.Web.UI.WebControls.Substitution.CreateControlCollection%2A>方法<xref:System.Web.UI.EmptyControlCollection> <xref:System.Web.UI.WebControls.Substitution>的实现始终返回对象, 以指示该控件不支持子控件。 <xref:System.Web.UI.WebControls.Substitution>  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>当扩展<see cref="T:System.Web.UI.WebControls.Substitution" />控件，可重写<see cref="M:System.Web.UI.WebControls.Substitution.CreateControlCollection" />中派生的类，以支持子控件的方法。</para></block>
+        <block subset="none" type="overrides"><para>扩展<see cref="T:System.Web.UI.WebControls.Substitution" />控件时, 可以在派生类中<see cref="M:System.Web.UI.WebControls.Substitution.CreateControlCollection" />重写方法, 以支持子控件。</para></block>
         <altmember cref="T:System.Web.UI.EmptyControlCollection" />
         <altmember cref="T:System.Web.UI.ControlCollection" />
-        <related type="Article" href="https://msdn.microsoft.com/library/fd47d5f3-1ede-4096-96eb-8d9c96012451">替代 Web 服务器控件</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/fd47d5f3-1ede-4096-96eb-8d9c96012451">替换 Web 服务器控件</related>
       </Docs>
     </Member>
     <Member MemberName="MethodName">
@@ -194,20 +194,20 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置要时调用的回调方法的名称<see cref="T:System.Web.UI.WebControls.Substitution" />控件执行。</summary>
-        <value>一个字符串，表示要时调用的方法名称<see cref="T:System.Web.UI.WebControls.Substitution" />控件执行。</value>
+        <summary>获取或设置要在 <see cref="T:System.Web.UI.WebControls.Substitution" /> 控件执行时调用的回调方法的名称。</summary>
+        <value>字符串，表示要在 <see cref="T:System.Web.UI.WebControls.Substitution" /> 控件执行时调用的方法的名称。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.Substitution.MethodName%2A>属性来指定要时调用的回调方法的名称<xref:System.Web.UI.WebControls.Substitution>控件执行。 您指定的回调方法必须是包含在页面或用户控件上的静态方法<xref:System.Web.UI.WebControls.Substitution>控件。 回调方法的签名必须匹配的签名<xref:System.Web.HttpResponseSubstitutionCallback>该委托使用<xref:System.Web.HttpContext>参数并返回一个字符串。 回调方法返回的字符串是要显示的位置处的页面上的内容<xref:System.Web.UI.WebControls.Substitution>控件。  
+ 使用属性指定在执行<xref:System.Web.UI.WebControls.Substitution>控件时要调用的回调方法的名称。 <xref:System.Web.UI.WebControls.Substitution.MethodName%2A> 指定的回调方法必须是包含该<xref:System.Web.UI.WebControls.Substitution>控件的页或用户控件上的静态方法。 回调方法的签名必须与<xref:System.Web.HttpResponseSubstitutionCallback> <xref:System.Web.HttpContext>采用参数并返回字符串的委托的签名匹配。 回调方法返回的字符串是要在<xref:System.Web.UI.WebControls.Substitution>控件位置的页面上显示的内容。  
   
- <xref:System.Web.HttpContext>参数封装有关单个 HTTP 请求的所有 HTTP 特定信息。 可用于访问会话变量、 授权信息和个性化设置的详细信息。 有关详细信息，请参阅 <xref:System.Web.HttpResponseSubstitutionCallback>。  
+ <xref:System.Web.HttpContext>参数封装有关单个 http 请求的所有 http 特定的信息。 你可以使用它来访问会话变量、授权信息和个性化设置详细信息。 有关更多信息，请参见<xref:System.Web.HttpResponseSubstitutionCallback>。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何添加<xref:System.Web.UI.WebControls.Substitution>以声明方式到输出缓存 Web 页的控件。 加载页时向用户显示静态的项目符号列表。 本部分的页面缓存并更新仅每隔 60 秒。 当<xref:System.Web.UI.WebControls.Substitution>控件执行时，它将调用`GetUser`方法，它将返回一个字符串，表示当前用户。 此字符串显示在的位置<xref:System.Web.UI.WebControls.Substitution>页上的控件。 此部分中的页未缓存，并更新每次刷新页面。  
+ 下面的代码示例演示如何以声明方式<xref:System.Web.UI.WebControls.Substitution>将控件添加到输出缓存的网页中。 加载页面时, 将向用户显示静态项目符号列表。 页面的此部分缓存并仅每60秒更新一次。 当控件执行时, 它会`GetUser`调用方法, 该方法将返回表示当前用户的字符串。 <xref:System.Web.UI.WebControls.Substitution> 此字符串显示在页面上的<xref:System.Web.UI.WebControls.Substitution>控件位置。 页面的此部分不会缓存, 并在每次刷新页面时更新。  
   
  [!code-aspx-csharp[Substitution.MethodName#1](~/samples/snippets/csharp/VS_Snippets_WebNet/Substitution.MethodName/CS/substitution.methodnamecs.aspx#1)]
  [!code-aspx-vb[Substitution.MethodName#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/Substitution.MethodName/VB/substitution.methodnamevb.aspx#1)]  
@@ -216,7 +216,7 @@
         </remarks>
         <altmember cref="T:System.Web.HttpResponseSubstitutionCallback" />
         <altmember cref="T:System.Web.HttpContext" />
-        <related type="Article" href="https://msdn.microsoft.com/library/fd47d5f3-1ede-4096-96eb-8d9c96012451">替代 Web 服务器控件</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/fd47d5f3-1ede-4096-96eb-8d9c96012451">替换 Web 服务器控件</related>
       </Docs>
     </Member>
     <Member MemberName="OnPreRender">
@@ -242,7 +242,7 @@
         <param name="e">包含事件数据的 <see cref="T:System.EventArgs" /> 对象。</param>
         <summary>引发 <see cref="E:System.Web.UI.Control.PreRender" /> 事件。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.Web.HttpException">对父控件或母版页进行了缓存。</exception>
+        <exception cref="T:System.Web.HttpException">对父级控件或母版页进行了缓存。</exception>
         <altmember cref="M:System.Web.UI.Control.OnPreRender(System.EventArgs)" />
       </Docs>
     </Member>
