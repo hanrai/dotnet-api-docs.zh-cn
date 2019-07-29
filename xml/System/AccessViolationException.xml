@@ -39,34 +39,34 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当代码尝试读取或写入到尚未分配的或不能访问的内存，则将发生访问冲突在非托管或不安全代码。 这通常是因为指针具有错误值。 并非所有通过无效指针的读或写操作都会导致访问冲突，所以访问冲突通常指示已经通过无效指针进行多次读或写操作，并且内存内容可能已损坏。 因此，访问冲突几乎总是指示编程错误。 <xref:System.AccessViolationException>清楚地标识这些严重错误。  
+ 当非托管代码或不安全代码尝试对尚未分配的或不具有访问权限的内存进行读写操作时, 会发生访问冲突。 出现这种情况通常是因为指针具有错误的值。 并非所有通过无效指针的读或写操作都会导致访问冲突，所以访问冲突通常指示已经通过无效指针进行多次读或写操作，并且内存内容可能已损坏。 因此, 访问冲突几乎总是指示严重的编程错误。 <xref:System.AccessViolationException>清楚地识别这些严重错误。  
   
- 在程序中完全由可验证的托管代码组成，所有引用都是有效或者为空，并都会产生访问冲突。 尝试引用为空引用中可验证代码，则会引发任何操作<xref:System.NullReferenceException>异常。 <xref:System.AccessViolationException>发生仅可验证的托管的代码进行交互时与非托管代码或不安全的托管代码。  
+ 在完全由可验证托管代码组成的程序中, 所有引用要么有效要么为 null, 并且不可能访问冲突。 任何尝试在可验证代码中引用空引用的操作都会引发<xref:System.NullReferenceException>异常。 仅<xref:System.AccessViolationException>当可验证托管代码与非托管代码或不安全的托管代码进行交互时才会发生。  
   
-## <a name="troubleshooting-accessviolationexception-exceptions"></a>AccessViolationException 异常的疑难解答  
- <xref:System.AccessViolationException>异常仅出现在不安全托管代码或代码时可验证托管与非托管代码交互：  
+## <a name="troubleshooting-accessviolationexception-exceptions"></a>AccessViolationException 异常疑难解答  
+ <xref:System.AccessViolationException>异常只能出现在不安全的托管代码中, 或在可验证托管代码与非托管代码交互时出现:  
   
--   在不安全的托管代码中发生了访问冲突可以表示为任一<xref:System.NullReferenceException>异常或<xref:System.AccessViolationException>异常，具体取决于平台。  
+-   在不安全的托管代码中发生的访问冲突可以表示为<xref:System.NullReferenceException>异常<xref:System.AccessViolationException>或例外, 具体取决于平台。  
   
--   冒泡到托管代码的非托管代码的访问冲突总是包装在<xref:System.AccessViolationException>异常。  
+-   冒泡到托管代码的非托管代码中的访问冲突始终包装在<xref:System.AccessViolationException>异常中。  
   
- 在任一情况下，您可以确定并更正的原因<xref:System.AccessViolationException>异常，如下所示：  
+ 在任一情况下, 都可以识别并更正<xref:System.AccessViolationException>异常的原因, 如下所示:  
   
  确保您尝试访问的内存已分配。  
- <xref:System.AccessViolationException>尝试访问受保护的内存--即，以访问的内存，并且不分配或不归进程始终引发异常。  
+ <xref:System.AccessViolationException>异常始终由尝试访问受保护的内存 (即, 用于访问未分配的内存或不属于进程的内存) 引发。  
   
- 自动内存管理是公共语言运行时提供的服务之一。 如果托管的代码提供了与非托管代码相同的功能，您可能希望移至托管代码才能利用此功能。 有关详细信息，请参阅 [Automatic Memory Management](~/docs/standard/automatic-memory-management.md)。  
+ 自动内存管理是公共语言运行时提供的服务之一。 如果托管代码与非托管代码提供相同的功能, 你可能希望转到托管代码以利用此功能。 有关详细信息，请参阅 [Automatic Memory Management](~/docs/standard/automatic-memory-management.md)。  
   
  确保您尝试访问的内存未损坏。  
- 如果多次读或写操作时都遇到无效指针，则内存可能已损坏。 这通常发生时读取或写入到外部的预定义的缓冲区的地址。  
+ 如果多次读或写操作时都遇到无效指针，则内存可能已损坏。 当读取或写入预定义缓冲区之外的地址时, 通常会发生这种情况。  
   
 ## <a name="accessviolationexception-and-trycatch-blocks"></a>AccessViolationException 和 try/catch 块  
- 从开始[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]，<xref:System.AccessViolationException>由公共语言运行时引发的异常未由`catch`如果异常发生在由公共语言保留的内存外的结构化的异常处理程序中的语句运行时。 若要处理此类<xref:System.AccessViolationException>异常，则应该应用<xref:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute>属性引发异常的方法。 此更改不会影响<xref:System.AccessViolationException>用户代码，可以继续通过捕获引发的异常`catch`语句。 你想要重新编译并无需修改即可运行的.NET framework 的早期版本编写的代码[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]，可以添加[ \<legacyCorruptedStateExceptionsPolicy >](~/docs/framework/configure-apps/file-schema/runtime/legacycorruptedstateexceptionspolicy-element.md)元素应用应用程序的配置文件。 请注意，也可能会收到通知的异常是否已定义的处理程序<xref:System.AppDomain.FirstChanceException?displayProperty=nameWithType>或<xref:System.AppDomain.UnhandledException?displayProperty=nameWithType>事件。  
+ 从开始<xref:System.AccessViolationException> `catch` , 如果异常发生在公共语言保留的内存之外, 则由公共语言运行时引发的异常不会由结构化异常处理程序中的语句处理。 [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]时会. 若要处理此<xref:System.AccessViolationException>类异常, 应<xref:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute>将属性应用于引发异常的方法。 此更改不会影响<xref:System.AccessViolationException>用户代码引发的异常, 但可以继续`catch`通过语句来捕获异常。 对于你想要重新编译并在上运行而不进行修改的[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)].NET Framework 的以前版本编写的代码, 你可以[ \<将 legacyCorruptedStateExceptionsPolicy >](~/docs/framework/configure-apps/file-schema/runtime/legacycorruptedstateexceptionspolicy-element.md)元素添加到应用的配置文件. 请注意, 如果已为<xref:System.AppDomain.FirstChanceException?displayProperty=nameWithType>或<xref:System.AppDomain.UnhandledException?displayProperty=nameWithType>事件定义处理程序, 则还可以接收例外通知。  
   
 ## <a name="version-information"></a>版本信息  
- 在.NET Framework 2.0 及更高版本中会引发此异常。 在早期版本的.NET Framework，由表示非托管的代码或不安全托管的代码的访问冲突<xref:System.NullReferenceException>在托管代码中。 一个<xref:System.NullReferenceException>时为 null 引用取消引用在托管代码中可验证，不涉及数据损坏，匹配项，并没有方法来区分版本 1.0 或 1.1 中的两种情况也会引发。  
+ .NET Framework 2.0 及更高版本中将引发此异常。 在早期版本的 .NET Framework 中, 非托管代码或不安全的托管代码中的访问冲突由<xref:System.NullReferenceException>托管代码中的表示。 <xref:System.NullReferenceException>当在可验证托管代码中取消引用空引用、不涉及数据损坏的情况, 并且没有办法区分版本1.0 或1.1 中的两种情况时, 也会引发。  
   
- 管理员可以允许所选应用程序恢复到.NET Framework 1.1 版的行为。 将以下行中的放置[&lt;运行时&gt;元素](~/docs/framework/configure-apps/file-schema/runtime/runtime-element.md)部分中的应用程序的配置文件：  
+ 管理员可以允许选定的应用程序恢复到 .NET Framework 版本1.1 的行为。 在应用程序的配置文件的 " [ &lt;运行时&gt;元素](~/docs/framework/configure-apps/file-schema/runtime/runtime-element.md)" 部分中放置以下行:  
   
 ```  
 <legacyNullReferenceExceptionPolicy enabled = "1"/>  
@@ -117,7 +117,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数初始化<xref:System.Exception.Message%2A>为系统提供的描述错误的消息的新实例的属性如"尝试读取或写入受保护的内存。 这通常是指示的其他内存已损坏。" 此消息将当前系统区域性考虑在内。  
+ 此构造函数将<xref:System.Exception.Message%2A>新实例的属性初始化为系统提供的描述错误的消息, 如 "尝试读取或写入受保护的内存。 这通常表示其他内存已损坏。 此消息将当前系统区域性考虑在内。  
   
  下表显示 <xref:System.AccessViolationException> 的实例的初始属性值。  
   
