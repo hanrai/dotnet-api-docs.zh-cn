@@ -26,17 +26,17 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.Control>类公开一个公共<xref:System.Windows.Forms.Control.QueryAccessibilityHelp>事件。 可以使用的属性<xref:System.Windows.Forms.QueryAccessibilityHelpEventArgs>类以返回到可以访问客户端，如屏幕读取器的特定控件的自定义帮助。 当处理<xref:System.Windows.Forms.Control.QueryAccessibilityHelp>事件，必须设置的值<xref:System.Windows.Forms.QueryAccessibilityHelpEventArgs.HelpNamespace%2A>， <xref:System.Windows.Forms.QueryAccessibilityHelpEventArgs.HelpKeyword%2A>，和<xref:System.Windows.Forms.QueryAccessibilityHelpEventArgs.HelpString%2A>为适当的值的属性。  
+ 类公开公共<xref:System.Windows.Forms.Control.QueryAccessibilityHelp>事件。 <xref:System.Windows.Forms.Control> 您可以使用<xref:System.Windows.Forms.QueryAccessibilityHelpEventArgs>类的属性将特定控件的自定义帮助返回到可访问的客户端, 如屏幕阅读器。 处理<xref:System.Windows.Forms.Control.QueryAccessibilityHelp>事件时, 必须将<xref:System.Windows.Forms.QueryAccessibilityHelpEventArgs.HelpNamespace%2A>、 <xref:System.Windows.Forms.QueryAccessibilityHelpEventArgs.HelpKeyword%2A>和<xref:System.Windows.Forms.QueryAccessibilityHelpEventArgs.HelpString%2A>属性的值设置为相应的值。  
   
 > [!NOTE]
->  <xref:System.Windows.Forms.QueryAccessibilityHelpEventArgs.HelpKeyword%2A>属性应为字符串表示形式的数字的帮助主题 id。  
+>  <xref:System.Windows.Forms.QueryAccessibilityHelpEventArgs.HelpKeyword%2A>属性应为数字帮助主题 ID 的字符串表示形式。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何创建一个具有辅助功能的图表控件，并使用<xref:System.Windows.Forms.AccessibleObject>和<xref:System.Windows.Forms.Control.ControlAccessibleObject>类，以公开访问的信息。 控件绘制图例以及两条曲线。 `ChartControlAccessibleObject`类，该类派生自`ControlAccessibleObject`，在使用<xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>方法以提供自定义访问图表控件的信息。 因为不是实际图表图例<xref:System.Windows.Forms.Control>-基于控制，但改为绘制由图表控件，它不提供任何内置的可访问信息。 因此，`ChartControlAccessibleObject`类将重写<xref:System.Windows.Forms.AccessibleObject.GetChild%2A>方法以返回`CurveLegendAccessibleObject`，它表示每个部分的图例可访问信息。 当辅助功能的应用程序使用该控件时，该控件可以提供所需的可访问信息。  
+ 下面的代码示例演示如何创建可访问感知的图表控件, <xref:System.Windows.Forms.AccessibleObject>并使用和<xref:System.Windows.Forms.Control.ControlAccessibleObject>类公开可访问的信息。 控件将两条曲线与图例一起绘制。 <xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>从`ChartControlAccessibleObject` 派生的类在方法中用于为图表控件提供自定义的可访问信息。`ControlAccessibleObject` 因为图表图例不是实际<xref:System.Windows.Forms.Control>的控件, 而是由图表控件绘制的, 所以它不是任何内置的可访问信息。 因此, `ChartControlAccessibleObject`类`CurveLegendAccessibleObject`会<xref:System.Windows.Forms.AccessibleObject.GetChild%2A>重写方法以返回, 该方法表示图例的每个部分的可访问信息。 当可访问感知的应用程序使用此控件时, 控件可以提供必需的可访问信息。  
   
- 此示例演示如何使用<xref:System.Windows.Forms.QueryAccessibilityHelpEventArgs>类的<xref:System.Windows.Forms.Control.QueryAccessibilityHelp>事件。 请参阅<xref:System.Windows.Forms.AccessibleObject>完整的代码示例的类概述。  
+ 此示例演示如何将<xref:System.Windows.Forms.QueryAccessibilityHelpEventArgs>类<xref:System.Windows.Forms.Control.QueryAccessibilityHelp>与事件一起使用。 有关完整的代码示例, 请参阅类概述。<xref:System.Windows.Forms.AccessibleObject>  
   
  [!code-cpp[System.Windows.Forms.AccessibleObject#3](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Windows.Forms.AccessibleObject/CPP/chartcontrol.cpp#3)]
  [!code-csharp[System.Windows.Forms.AccessibleObject#3](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.AccessibleObject/CS/chartcontrol.cs#3)]
@@ -106,9 +106,9 @@
         <Parameter Name="helpKeyword" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="helpNamespace">包含有关的帮助文件<see cref="T:System.Windows.Forms.AccessibleObject" />。</param>
-        <param name="helpString">定义用于获取何种帮助的字符串<see cref="T:System.Windows.Forms.AccessibleObject" />。</param>
-        <param name="helpKeyword">使用的帮助请求关联的关键字<see cref="T:System.Windows.Forms.AccessibleObject" />。</param>
+        <param name="helpNamespace">包含用于 <see cref="T:System.Windows.Forms.AccessibleObject" /> 的帮助的文件。</param>
+        <param name="helpString">定义为 <see cref="T:System.Windows.Forms.AccessibleObject" /> 获取何种帮助的字符串。</param>
+        <param name="helpKeyword">与 <see cref="T:System.Windows.Forms.AccessibleObject" /> 的帮助请求关联的关键字。</param>
         <summary>初始化 <see cref="T:System.Windows.Forms.QueryAccessibilityHelpEventArgs" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -139,15 +139,15 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置指定控件的帮助关键字。</summary>
-        <value>与关联的帮助主题<see cref="T:System.Windows.Forms.AccessibleObject" />所查询。</value>
+        <summary>获取或设置用于指定控件的帮助关键字。</summary>
+        <value>与所查询 <see cref="T:System.Windows.Forms.AccessibleObject" /> 关联的帮助主题。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示如何将此成员。 在示例中，事件处理程序报告的匹配项<xref:System.Windows.Forms.Control.QueryAccessibilityHelp?displayProperty=nameWithType>事件。 此报告可帮助您了解事件发生的并可以帮助您进行调试。 若要报告或频繁发生的事件上多个事件，请考虑更换<xref:System.Windows.Forms.MessageBox.Show%2A?displayProperty=nameWithType>与<xref:System.Console.WriteLine%2A?displayProperty=nameWithType>或将消息附加到多行<xref:System.Windows.Forms.TextBox>。  
+ 下面的代码示例演示如何使用此成员。 在此示例中, 事件处理程序报告<xref:System.Windows.Forms.Control.QueryAccessibilityHelp?displayProperty=nameWithType>事件的发生。 此报表可帮助你了解何时发生事件, 并可帮助你进行调试。 若要报告多个事件或频繁发生的事件, 请考虑<xref:System.Windows.Forms.MessageBox.Show%2A?displayProperty=nameWithType>将<xref:System.Console.WriteLine%2A?displayProperty=nameWithType>消息替换为多行或将<xref:System.Windows.Forms.TextBox>其追加到多行。  
   
- 若要运行此代码示例，请将其粘贴到包含继承的类型的实例的项目<xref:System.Windows.Forms.Control>，如<xref:System.Windows.Forms.Button>或<xref:System.Windows.Forms.ComboBox>。 然后该实例命名`Control1`，并确保事件处理程序相关联<xref:System.Windows.Forms.Control.QueryAccessibilityHelp?displayProperty=nameWithType>事件。  
+ 若要运行示例代码, 请将其粘贴到一个项目中, 该项目包含从<xref:System.Windows.Forms.Control>继承的类型的实例, 如<xref:System.Windows.Forms.ComboBox> <xref:System.Windows.Forms.Button>或。 然后命名该实例`Control1` , 并确保事件处理程序<xref:System.Windows.Forms.Control.QueryAccessibilityHelp?displayProperty=nameWithType>与事件相关联。  
   
  [!code-csharp[System.Windows.Forms.EventExamples#44](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.EventExamples/CS/EventExamples.cs#44)]
  [!code-vb[System.Windows.Forms.EventExamples#44](~/samples/snippets/visualbasic/VS_Snippets_Winforms/System.Windows.Forms.EventExamples/VB/EventExamples.vb#44)]  
@@ -183,15 +183,15 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置一个值，指定帮助文件的名称。</summary>
-        <value>帮助文件的名称。 此名称可以是 C:\path\sample.chm 或/folder/file.htm 窗体中。</value>
+        <summary>获取或设置指定帮助文件的名称的值。</summary>
+        <value>帮助文件的名称。 名称形式可以是 C:\path\sample.chm 或 /folder/file.htm。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示如何将此成员。 在示例中，事件处理程序报告的匹配项<xref:System.Windows.Forms.Control.QueryAccessibilityHelp?displayProperty=nameWithType>事件。 此报告可帮助您了解事件发生的并可以帮助您进行调试。 若要报告或频繁发生的事件上多个事件，请考虑更换<xref:System.Windows.Forms.MessageBox.Show%2A?displayProperty=nameWithType>与<xref:System.Console.WriteLine%2A?displayProperty=nameWithType>或将消息附加到多行<xref:System.Windows.Forms.TextBox>。  
+ 下面的代码示例演示如何使用此成员。 在此示例中, 事件处理程序报告<xref:System.Windows.Forms.Control.QueryAccessibilityHelp?displayProperty=nameWithType>事件的发生。 此报表可帮助你了解何时发生事件, 并可帮助你进行调试。 若要报告多个事件或频繁发生的事件, 请考虑<xref:System.Windows.Forms.MessageBox.Show%2A?displayProperty=nameWithType>将<xref:System.Console.WriteLine%2A?displayProperty=nameWithType>消息替换为多行或将<xref:System.Windows.Forms.TextBox>其追加到多行。  
   
- 若要运行此代码示例，请将其粘贴到包含继承的类型的实例的项目<xref:System.Windows.Forms.Control>，如<xref:System.Windows.Forms.Button>或<xref:System.Windows.Forms.ComboBox>。 然后该实例命名`Control1`，并确保事件处理程序相关联<xref:System.Windows.Forms.Control.QueryAccessibilityHelp?displayProperty=nameWithType>事件。  
+ 若要运行示例代码, 请将其粘贴到一个项目中, 该项目包含从<xref:System.Windows.Forms.Control>继承的类型的实例, 如<xref:System.Windows.Forms.ComboBox> <xref:System.Windows.Forms.Button>或。 然后命名该实例`Control1` , 并确保事件处理程序<xref:System.Windows.Forms.Control.QueryAccessibilityHelp?displayProperty=nameWithType>与事件相关联。  
   
  [!code-csharp[System.Windows.Forms.EventExamples#44](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.EventExamples/CS/EventExamples.cs#44)]
  [!code-vb[System.Windows.Forms.EventExamples#44](~/samples/snippets/visualbasic/VS_Snippets_Winforms/System.Windows.Forms.EventExamples/VB/EventExamples.vb#44)]  
@@ -227,15 +227,15 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置定义为获取何种帮助的字符串<see cref="T:System.Windows.Forms.AccessibleObject" />。</summary>
-        <value>若要检索的辅助性对象的帮助。</value>
+        <summary>获取或设置定义要为 <see cref="T:System.Windows.Forms.AccessibleObject" /> 获取何种帮助的字符串。</summary>
+        <value>要为辅助性对象检索的帮助。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示如何创建一个具有辅助功能的图表控件，并使用<xref:System.Windows.Forms.AccessibleObject>和<xref:System.Windows.Forms.Control.ControlAccessibleObject>类，以公开访问的信息。 控件绘制图例以及两条曲线。 `ChartControlAccessibleObject`类，该类派生自`ControlAccessibleObject`，在使用<xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>方法以提供自定义访问图表控件的信息。 因为不是实际图表图例<xref:System.Windows.Forms.Control>-基于控制，但改为绘制由图表控件，它不提供任何内置的可访问信息。 因此，`ChartControlAccessibleObject`类将重写<xref:System.Windows.Forms.AccessibleObject.GetChild%2A>方法以返回`CurveLegendAccessibleObject`，它表示每个部分的图例可访问信息。 当辅助功能的应用程序使用该控件时，该控件可以提供所需的可访问信息。  
+ 下面的代码示例演示如何创建可访问感知的图表控件, <xref:System.Windows.Forms.AccessibleObject>并使用和<xref:System.Windows.Forms.Control.ControlAccessibleObject>类公开可访问的信息。 控件将两条曲线与图例一起绘制。 <xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>从`ChartControlAccessibleObject` 派生的类在方法中用于为图表控件提供自定义的可访问信息。`ControlAccessibleObject` 因为图表图例不是实际<xref:System.Windows.Forms.Control>的控件, 而是由图表控件绘制的, 所以它不是任何内置的可访问信息。 因此, `ChartControlAccessibleObject`类`CurveLegendAccessibleObject`会<xref:System.Windows.Forms.AccessibleObject.GetChild%2A>重写方法以返回, 该方法表示图例的每个部分的可访问信息。 当可访问感知的应用程序使用此控件时, 控件可以提供必需的可访问信息。  
   
- 此示例演示如何使用<xref:System.Windows.Forms.QueryAccessibilityHelpEventArgs>类的<xref:System.Windows.Forms.Control.QueryAccessibilityHelp>事件。 请参阅<xref:System.Windows.Forms.AccessibleObject>完整的代码示例的类概述。  
+ 此示例演示如何将<xref:System.Windows.Forms.QueryAccessibilityHelpEventArgs>类<xref:System.Windows.Forms.Control.QueryAccessibilityHelp>与事件一起使用。 有关完整的代码示例, 请参阅类概述。<xref:System.Windows.Forms.AccessibleObject>  
   
  [!code-cpp[System.Windows.Forms.AccessibleObject#2](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Windows.Forms.AccessibleObject/CPP/chartcontrol.cpp#2)]
  [!code-csharp[System.Windows.Forms.AccessibleObject#2](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.AccessibleObject/CS/chartcontrol.cs#2)]

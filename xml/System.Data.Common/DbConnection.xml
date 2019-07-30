@@ -1,5 +1,5 @@
 <Type Name="DbConnection" FullName="System.Data.Common.DbConnection">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d9eae00a19ddb04143f39dd8645f8c66fbd095c1" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67240869" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbConnection : System.ComponentModel.Component, IDisposable, System.Data.IDbConnection" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9da4369b329ee9a2630950166793dc348f6d6da3" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68438436" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbConnection : System.ComponentModel.Component, IDisposable, System.Data.IDbConnection" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DbConnection extends System.ComponentModel.Component implements class System.Data.IDbConnection, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Data.Common.DbConnection" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DbConnection&#xA;Inherits Component&#xA;Implements IDbConnection, IDisposable" />
@@ -38,7 +38,7 @@
   <Docs>
     <summary>表示到数据库的连接。</summary>
     <remarks>To be added.</remarks>
-    <block subset="none" type="overrides"><para>继承自<see cref="T:System.Data.Common.DbConnection" />，必须重写以下成员： <see cref="M:System.Data.Common.DbConnection.Close" />， <see cref="M:System.Data.Common.DbConnection.BeginDbTransaction(System.Data.IsolationLevel)" />， <see cref="M:System.Data.Common.DbConnection.ChangeDatabase(System.String)" />， <see cref="M:System.Data.Common.DbConnection.CreateDbCommand" />， <see cref="M:System.Data.Common.DbConnection.Open" />，和<see cref="E:System.Data.Common.DbConnection.StateChange" />。 你还必须提供以下属性： <see cref="P:System.Data.Common.DbConnection.ConnectionString" />， <see cref="P:System.Data.Common.DbConnection.Database" />， <see cref="P:System.Data.Common.DbConnection.DataSource" />， <see cref="P:System.Data.Common.DbConnection.ServerVersion" />，和<see cref="P:System.Data.Common.DbConnection.State" />。</para></block>
+    <block subset="none" type="overrides"><para>当从<see cref="T:System.Data.Common.DbConnection" />继承时, 必须重写以下成员: <see cref="M:System.Data.Common.DbConnection.Close" />、 <see cref="M:System.Data.Common.DbConnection.BeginDbTransaction(System.Data.IsolationLevel)" />、 <see cref="M:System.Data.Common.DbConnection.ChangeDatabase(System.String)" />、 <see cref="M:System.Data.Common.DbConnection.CreateDbCommand" />、 <see cref="M:System.Data.Common.DbConnection.Open" />和<see cref="E:System.Data.Common.DbConnection.StateChange" />。 还必须提供以下属性: <see cref="P:System.Data.Common.DbConnection.ConnectionString" />、 <see cref="P:System.Data.Common.DbConnection.Database" />、 <see cref="P:System.Data.Common.DbConnection.DataSource" />、 <see cref="P:System.Data.Common.DbConnection.ServerVersion" />和<see cref="P:System.Data.Common.DbConnection.State" />。</para></block>
     <related type="Article" href="https://msdn.microsoft.com/library/2a8e2640-3a49-42a1-a3a9-b43026907ae1">DbProviderFactories (ADO.NET)</related>
     <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
   </Docs>
@@ -115,7 +115,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果要创建你自己的连接类型，重写此方法以实现所必需，若要开始一个事务的代码。  
+ 如果要创建自己的连接类型, 请重写此方法以实现开始事务所需的代码。  
   
  ]]></format>
         </remarks>
@@ -165,7 +165,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果不指定隔离级别，使用特定类型的连接的默认隔离级别。  
+ 如果未指定隔离级别, 则使用特定连接类型的默认隔离级别。  
   
  ]]></format>
         </remarks>
@@ -210,7 +210,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果不指定隔离级别，使用特定类型的连接的默认隔离级别。  
+ 如果未指定隔离级别, 则使用特定连接类型的默认隔离级别。  
   
  ]]></format>
         </remarks>
@@ -360,7 +360,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 中提供的值`databaseName`参数必须是有效的数据库名称的当前实例。  
+ `databaseName`参数中提供的值必须是当前实例的有效数据库名称。  
   
  ]]></format>
         </remarks>
@@ -437,14 +437,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Common.DbConnection.Close%2A>方法将回滚所有挂起的事务。 然后释放到连接池连接，或如果禁用连接池时关闭连接。  
+ 方法<xref:System.Data.Common.DbConnection.Close%2A>将回滚所有挂起的事务。 然后, 它会释放到连接池的连接, 或者在禁用连接池的情况下关闭连接。  
   
- 应用程序可以调用<xref:System.Data.Common.DbConnection.Close%2A>不止一次。 不会生成异常。  
+ 应用程序可以调用<xref:System.Data.Common.DbConnection.Close%2A>多次。 不生成异常。  
   
- 如果<xref:System.Data.Common.DbConnection>超出范围，它没有闭合。 因此，必须显式关闭连接通过调用`Close`或`Dispose`，它们在功能上等效。 如果连接池值`Pooling`设置为`true`或`yes`，这也会释放物理连接。  
+ <xref:System.Data.Common.DbConnection>如果超出范围, 则它不会关闭。 因此, 你必须通过调用`Close`或`Dispose`, 来显式关闭连接, 这在功能上是等效的。 如果 "连接池" `Pooling`值设置为`true`或`yes`, 则这也会释放物理连接。  
   
 > [!CAUTION]
->  不要调用`Close`或`Dispose`上**连接**即**DataReader**，或在任何其他托管的对象`Finalize`类的方法。 在终结器中，您应仅释放类直接拥有的非托管的资源。 如果类不拥有任何非托管资源，则不要在类定义中包含 `Finalize` 方法。 有关详细信息，请参阅[垃圾回收](~/docs/standard/garbage-collection/index.md)。  
+>  不要在类`Close`的`Dispose` 方法`Finalize`中对**连接**、 **DataReader**或任何其他托管对象调用或。 在终结器中, 只应释放类直接拥有的非托管资源。 如果类不拥有任何非托管资源，则不要在类定义中包含 `Finalize` 方法。 有关详细信息, 请参阅[垃圾回收](~/docs/standard/garbage-collection/index.md)。  
   
  ]]></format>
         </remarks>
@@ -454,10 +454,12 @@
       </Docs>
     </Member>
     <Member MemberName="CloseAsync">
-      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task CloseAsync (System.Threading.CancellationToken cancellationToken = null);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task CloseAsync(valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Data.Common.DbConnection.CloseAsync(System.Threading.CancellationToken)" />
-      <MemberSignature Language="F#" Value="abstract member CloseAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&#xA;override this.CloseAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="dbConnection.CloseAsync cancellationToken" />
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task CloseAsync ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task CloseAsync() cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Data.Common.DbConnection.CloseAsync" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function CloseAsync () As Task" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual System::Threading::Tasks::Task ^ CloseAsync();" />
+      <MemberSignature Language="F#" Value="abstract member CloseAsync : unit -&gt; System.Threading.Tasks.Task&#xA;override this.CloseAsync : unit -&gt; System.Threading.Tasks.Task" Usage="dbConnection.CloseAsync " />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Data.Common</AssemblyName>
@@ -472,11 +474,8 @@
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Task</ReturnType>
       </ReturnValue>
-      <Parameters>
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="netcore-3.0" />
-      </Parameters>
+      <Parameters />
       <Docs>
-        <param name="cancellationToken">To be added.</param>
         <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
@@ -535,7 +534,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 该连接字符串的确切内容取决于此连接的特定数据源。 若要确定哪些设置有效，请参阅你使用的连接的特定类型的文档。  
+ 该连接字符串的确切内容取决于此连接的特定数据源。 若要确定哪些设置有效, 请参阅您正在使用的特定连接类型的文档。  
   
  ]]></format>
         </remarks>
@@ -657,7 +656,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果要实现您自己的连接，重写此方法以实现创建并返回所需的代码<xref:System.Data.Common.DbCommand>对象。  
+ 如果要实现自己的连接, 请重写此方法以实现创建和返回<xref:System.Data.Common.DbCommand>对象所需的代码。  
   
  ]]></format>
         </remarks>
@@ -704,7 +703,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个连接通常动态更新此属性在当前数据库发生更改时。  
+ 当当前数据库更改时, 连接通常会动态更新此属性。  
   
  ]]></format>
         </remarks>
@@ -747,7 +746,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果数据库的连接已关闭，<xref:System.Data.Common.DbConnection.DataSource%2A>返回中包含的任何内容<xref:System.Data.Common.DbConnection.ConnectionString%2A>为`DataSource`关键字。 如果连接已打开并<xref:System.Data.Common.DbConnection.ConnectionString%2A>数据源关键字值以开始"&#124;`datadirectory`&#124;"，该属性返回中包含的任何内容<xref:System.Data.Common.DbConnection.ConnectionString%2A>为`DataSource`关键字仅。 如果数据库的连接处于打开状态，该属性返回的本机提供程序返回有关`DBPROP_INIT_DATASOURCE`，如果为空，本机提供程序的`DBPROP_DATASOURCENAME`返回。  
+ 如果与数据库的连接已关闭, 则将<xref:System.Data.Common.DbConnection.DataSource%2A>返回`DataSource`关键字<xref:System.Data.Common.DbConnection.ConnectionString%2A>中包含的任何内容。 如果连接已打开, 并且<xref:System.Data.Common.DbConnection.ConnectionString%2A>数据源关键字的值以 "&#124;`datadirectory`&#124;" 开头<xref:System.Data.Common.DbConnection.ConnectionString%2A> , 则`DataSource`属性将返回中包含的所有内容 (仅适用于关键字)。 如果与数据库的连接已打开, 则属性返回本机提供程序为`DBPROP_INIT_DATASOURCE`返回的内容, 如果为空, 则返回本机提供程序的。 `DBPROP_DATASOURCENAME`  
   
  ]]></format>
         </remarks>
@@ -915,7 +914,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新增 ADO.NET 2.0 中功能支持使用`EnlistTransaction`方法在分布式事务中登记。 因为登记中的连接<xref:System.Transactions.Transaction>实例，`EnlistTransaction`中提供的功能利用<xref:System.Transactions>用于管理命名空间的分布式事务。 显式事务中登记连接之后, 不能取消登记或第一个事务完成之前在另一个事务中登记。  
+ ADO.NET 2.0 中的新增项支持使用`EnlistTransaction`方法在分布式事务中登记。 由于它在<xref:System.Transactions.Transaction>实例中登记连接, `EnlistTransaction`因此利用了<xref:System.Transactions>命名空间中的可用功能来管理分布式事务。 在事务中显式登记某个连接后, 在第一个事务完成之前, 该连接将无法取消登记或登记到另一个事务中。  
   
  ]]></format>
         </remarks>
@@ -935,7 +934,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果连接是与事务相关联，正在执行`GetSchema`调用可能会导致某些提供程序引发异常。  
+ 如果连接与事务相关联, 则执行`GetSchema`调用可能会导致某些提供程序引发异常。  
   
  ]]></format>
         </remarks>
@@ -978,7 +977,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果连接是与事务相关联，正在执行`GetSchema`调用可能会导致某些提供程序引发异常。  
+ 如果连接与事务相关联, 则执行`GetSchema`调用可能会导致某些提供程序引发异常。  
   
  ]]></format>
         </remarks>
@@ -1024,7 +1023,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果连接是与事务相关联，正在执行`GetSchema`调用可能会导致某些提供程序引发异常。  
+ 如果连接与事务相关联, 则执行`GetSchema`调用可能会导致某些提供程序引发异常。  
   
  ]]></format>
         </remarks>
@@ -1073,11 +1072,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `restrictionValues`参数可以提供*n*深度的值，指定的特定集合的限制集合。 若要将值设置给定的限制，并且未设置其他限制的值，需要将前面的限制，则为 null，然后将放在你想要为指定值的限制为适当的值。  
+ 参数可以提供 n 个值深度, 这些值由特定集合的限制集合指定。  `restrictionValues` 若要设置给定限制的值, 而不设置其他限制的值, 则需要将前面的限制设置为 null, 然后将相应的值放在中, 以确定要为其指定值的限制。  
   
- 此示例是"表"集合。 如果想要返回仅具有所有者"Carl"相关联的表，以及"Tables"集合存在三个限制 （数据库、 所有者和表名），则必须通过至少以下值： null、"Carl"。 如果未传入限制值，默认值用于该限制。 这将是相同的映射与传入 null，这是传入空字符串作为参数值不同。 在这种情况下，空字符串 ("") 被视为可指定参数的值。  
+ "Tables" 集合就是这样的一个示例。 如果 "Tables" 集合具有三个限制 (数据库、所有者和表名称), 并且您只想返回与 "Carl" 所有者关联的表, 则必须至少传递以下值: null、"Carl"。 如果未传入限制值, 则将默认值用于该限制。 这与传入 null 的映射相同, 后者不同于传入参数值的空字符串。 在这种情况下, 空字符串 ("") 被视为指定参数的值。  
   
- 如果连接是与事务相关联，正在执行`GetSchema`调用可能会导致某些提供程序引发异常。  
+ 如果连接与事务相关联, 则执行`GetSchema`调用可能会导致某些提供程序引发异常。  
   
  ]]></format>
         </remarks>
@@ -1125,11 +1124,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 引发事件时，将通过委托调用事件处理程序。 有关概述，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关概述, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Data.Common.DbConnection.OnStateChange(System.Data.StateChangeEventArgs)" />在派生类中，请务必调用基类的<see cref="M:System.Data.Common.DbConnection.OnStateChange(System.Data.StateChangeEventArgs)" />方法。</para></block>
+        <block subset="none" type="overrides"><para>当在<see cref="M:System.Data.Common.DbConnection.OnStateChange(System.Data.StateChangeEventArgs)" />派生类中重写时, 请确保调用基类的<see cref="M:System.Data.Common.DbConnection.OnStateChange(System.Data.StateChangeEventArgs)" />方法。</para></block>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -1172,7 +1171,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用用户定义的行为，必须重写此方法。 <xref:System.Data.SqlClient.SqlConnection.Open%2A?displayProperty=nameWithType> 如果情况下再次调用将引发异常前关闭。  
+ 此方法必须由用户定义的行为重写。 <xref:System.Data.SqlClient.SqlConnection.Open%2A?displayProperty=nameWithType>如果再次调用而不先关闭, 将引发异常。  
   
  ]]></format>
         </remarks>
@@ -1191,7 +1190,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关 SQL Server 的.NET Framework 数据提供程序中异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关 SQL Server 的 .NET Framework 数据提供程序中的异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -1234,11 +1233,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在调用<xref:System.Data.Common.DbConnection.OpenAsync%2A>，<xref:System.Data.Common.DbConnection.State%2A>必须返回<xref:System.Data.ConnectionState.Connecting>直到返回<xref:System.Threading.Tasks.Task>完成。 然后，如果连接成功<xref:System.Data.Common.DbConnection.State%2A>必须返回<xref:System.Data.ConnectionState.Open>。 如果连接失败，<xref:System.Data.Common.DbConnection.State%2A>必须返回<xref:System.Data.ConnectionState.Closed>。  
+ 调用<xref:System.Data.Common.DbConnection.OpenAsync%2A>后, <xref:System.Data.Common.DbConnection.State%2A>必须返回<xref:System.Data.ConnectionState.Connecting>直到返回<xref:System.Threading.Tasks.Task>完成。 然后, 如果连接成功, <xref:System.Data.Common.DbConnection.State%2A>则必须返回。 <xref:System.Data.ConnectionState.Open> 如果连接失败, <xref:System.Data.Common.DbConnection.State%2A>则必须返回。 <xref:System.Data.ConnectionState.Closed>  
   
- 调用<xref:System.Data.Common.DbConnection.Close%2A>将尝试取消或关闭相应<xref:System.Data.Common.DbConnection.OpenAsync%2A>调用。  
+ 对的调用<xref:System.Data.Common.DbConnection.Close%2A>将尝试取消或关闭相应<xref:System.Data.Common.DbConnection.OpenAsync%2A>的调用。  
   
- 有关 SQL Server 的.NET Framework 数据提供程序中异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关 SQL Server 的 .NET Framework 数据提供程序中的异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -1287,11 +1286,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在调用<xref:System.Data.Common.DbConnection.OpenAsync%2A>，<xref:System.Data.Common.DbConnection.State%2A>必须返回<xref:System.Data.ConnectionState.Connecting>直到返回<xref:System.Threading.Tasks.Task>完成。 然后，如果连接成功<xref:System.Data.Common.DbConnection.State%2A>必须返回<xref:System.Data.ConnectionState.Open>。 如果连接失败，<xref:System.Data.Common.DbConnection.State%2A>必须返回<xref:System.Data.ConnectionState.Closed>。  
+ 调用<xref:System.Data.Common.DbConnection.OpenAsync%2A>后, <xref:System.Data.Common.DbConnection.State%2A>必须返回<xref:System.Data.ConnectionState.Connecting>直到返回<xref:System.Threading.Tasks.Task>完成。 然后, 如果连接成功, <xref:System.Data.Common.DbConnection.State%2A>则必须返回。 <xref:System.Data.ConnectionState.Open> 如果连接失败, <xref:System.Data.Common.DbConnection.State%2A>则必须返回。 <xref:System.Data.ConnectionState.Closed>  
   
- 调用<xref:System.Data.Common.DbConnection.Close%2A>将尝试取消或关闭相应<xref:System.Data.Common.DbConnection.OpenAsync%2A>调用。  
+ 对的调用<xref:System.Data.Common.DbConnection.Close%2A>将尝试取消或关闭相应<xref:System.Data.Common.DbConnection.OpenAsync%2A>的调用。  
   
- 有关 SQL Server 的.NET Framework 数据提供程序中异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关 SQL Server 的 .NET Framework 数据提供程序中的异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -1419,7 +1418,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Common.DbConnection.StateChange>事件中为已关闭的事件更改的状态打开，或打开到结束时发生。  
+ <xref:System.Data.Common.DbConnection.StateChange>事件的状态从 "已关闭" 更改为 "已关闭" 或 "已打开" 时发生。  
   
  ]]></format>
         </remarks>
@@ -1475,9 +1474,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.Data.Common.DbConnection> 实例强制转换为 <xref:System.Data.IDbConnection> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.Data.Common.DbConnection> 实例被强制转换为 <xref:System.Data.IDbConnection> 接口时使用。  
   
- 有关详情，请参阅<xref:System.Data.IDbConnection.BeginTransaction%2A>。  
+ 有关更多信息，请参见<xref:System.Data.IDbConnection.BeginTransaction%2A>。  
   
  ]]></format>
         </remarks>
@@ -1524,7 +1523,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关详情，请参阅<xref:System.Data.IDbConnection.BeginTransaction%2A>。  
+ 有关更多信息，请参见<xref:System.Data.IDbConnection.BeginTransaction%2A>。  
   
  ]]></format>
         </remarks>
@@ -1569,7 +1568,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关详细信息，请参阅[命令和参数](~/docs/framework/data/adonet/commands-and-parameters.md)和<xref:System.Data.IDbConnection.CreateCommand%2A>。  
+ 有关详细信息, 请参阅[命令和参数](~/docs/framework/data/adonet/commands-and-parameters.md)和<xref:System.Data.IDbConnection.CreateCommand%2A>。  
   
  ]]></format>
         </remarks>

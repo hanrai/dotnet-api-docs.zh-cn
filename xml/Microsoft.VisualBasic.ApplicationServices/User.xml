@@ -19,27 +19,27 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>提供对当前用户的相关信息的访问。</summary>
+    <summary>提供对有关当前用户的信息的访问。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 属性和方法公开的`My.User`对象提供对当前用户的相关信息的访问。 Windows 和 Web 应用程序之间，"当前用户"的含义略有不同。 在 Windows 应用程序中，当前用户是运行应用程序的用户。 在 Web 应用程序中，当前用户是访问应用程序的用户。  
+ `My.User`对象公开的属性和方法提供对有关当前用户的信息的访问。 "当前用户" 的含义在 Windows 和 Web 应用程序之间略有不同。 在 Windows 应用程序中, 当前用户是运行应用程序的用户。 在 Web 应用程序中, 当前用户是访问应用程序的用户。  
   
- `My.User`属性还提供对访问<xref:System.Security.Principal.IPrincipal>为当前用户。 主体对象表示用户的安全上下文，包括该用户的标识和该用户所属的任何角色。  
+ 属性还为当前用户提供对<xref:System.Security.Principal.IPrincipal>的访问。 `My.User` 主体对象表示用户的安全上下文, 包括该用户的标识和用户所属的任何角色。  
   
- 对于 Windows 应用程序，此属性提供相同的功能<xref:System.Threading.Thread.CurrentPrincipal%2A>属性。 对于 Web 应用程序，此属性提供相同的功能<xref:System.Web.HttpContext.User%2A>属性返回的对象<xref:System.Web.HttpContext.Current%2A>属性。  
-  
-> [!NOTE]
->  对于 Windows 应用程序，只会生成项目**Windows 应用程序**模板初始化`My.User`默认情况下的对象。 在所有其他 Windows 项目类型，必须初始化`My.User`对象通过调用<xref:Microsoft.VisualBasic.ApplicationServices.User.InitializeWithWindowsUser%2A>方法显式或通过将分配到的值<xref:System.Threading.Thread.CurrentPrincipal%2A>。  
+ 对于 Windows 应用程序, 此属性提供的功能<xref:System.Threading.Thread.CurrentPrincipal%2A>与属性相同。 对于 Web 应用程序, 此属性提供的功能与<xref:System.Web.HttpContext.User%2A> <xref:System.Web.HttpContext.Current%2A>属性返回的对象的属性相同。  
   
 > [!NOTE]
->  `My.User`对象无法报告有关当前 Windows 用户在 Windows 95 和 Windows 98 下时运行，因为这些操作系统不支持登录的用户的概念的信息。 必须实现自定义身份验证使用`My.User`这些操作系统上的对象。  
+>  对于 windows 应用程序, 默认情况下, 只有**windows 应用程序**模板`My.User`上生成的项目会初始化该对象。 在所有其他 Windows 项目类型中, 你必须通过`My.User`显式<xref:Microsoft.VisualBasic.ApplicationServices.User.InitializeWithWindowsUser%2A>调用方法或将值分配给来<xref:System.Threading.Thread.CurrentPrincipal%2A>初始化对象。  
+  
+> [!NOTE]
+>  当`My.User`在 windows 95 和 windows 98 下运行时, 对象无法报告有关当前 Windows 用户的信息, 因为这些操作系统不支持登录用户的概念。 您必须实现自定义身份验证, `My.User`才能在这些操作系统上使用该对象。  
   
    
   
 ## Examples  
- 如果应用程序使用 Windows 或自定义身份验证，并使用该信息来分析此示例将检查`My.User.Name`属性。  
+ 此示例检查应用程序是否正在使用 Windows 或自定义身份验证, 并使用这些信息来`My.User.Name`分析属性。  
   
  [!code-vb[VbVbalrMyUser#3](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrMyUser/VB/Class1.vb#3)]  
   
@@ -80,7 +80,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 属性和方法公开的`My.User`对象提供对当前用户的相关信息的访问。  
+ `My.User`对象公开的属性和方法提供对有关当前用户的信息的访问。  
   
  ]]></format>
         </remarks>
@@ -120,19 +120,19 @@
         <ReturnType>System.Security.Principal.IPrincipal</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置当前主体 （对基于角色的安全性而言）。</summary>
-        <value>一个<see cref="T:System.Security.Principal.IPrincipal" />值，该值表示安全上下文。</value>
+        <summary>获取或设置当前主体（对基于角色的安全性而言）。</summary>
+        <value>一个 <see cref="T:System.Security.Principal.IPrincipal" /> 值，表示安全上下文。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以设置`My.User.CurrentPrincipal`属性设置为一个对象，实现<xref:System.Security.Principal.IPrincipal>接口，以使自定义身份验证。  
+ 可以将`My.User.CurrentPrincipal`属性设置为<xref:System.Security.Principal.IPrincipal>实现接口的对象, 以启用自定义身份验证。  
   
- 在大多数项目类型中，此属性获取和设置线程的当前主体。 在 ASP.NET 应用程序，此属性获取和设置当前 HTTP 请求的用户标识的安全信息。  
+ 在大多数项目类型中, 此属性获取并设置线程的当前主体。 在 ASP.NET 应用程序中, 此属性获取并设置当前 HTTP 请求的用户标识的安全信息。  
   
- 这是一个高级的成员;除非您单击不会显示在 IntelliSense 中**所有**选项卡。  
+ 这是一个高级成员;除非您单击 "**全部**" 选项卡, 否则它不会显示在 IntelliSense 中。  
   
-## <a name="availability-by-project-type"></a>项目类型的可用性  
+## <a name="availability-by-project-type"></a>按项目类型的可用性  
   
 |项目类型|可用|  
 |-|-|  
@@ -147,14 +147,14 @@
    
   
 ## Examples  
- 如果应用程序使用 Windows 或自定义身份验证，并使用该信息来分析此示例将检查`My.User.Name`属性。  
+ 此示例检查应用程序是否正在使用 Windows 或自定义身份验证, 并使用该信息`My.User.Name`来分析属性。  
   
  [!code-vb[VbVbalrMyUser#3](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrMyUser/VB/Class1.vb#3)]  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">调用方没有设置该主体所需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">描述一组应用于代码的安全权限。 关联枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">描述应用于代码的安全权限集。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />。</permission>
         <altmember cref="T:System.Security.Principal.IPrincipal" />
         <related type="Article" href="~/docs/visual-basic/language-reference/objects/index.md">对象 (Visual Basic)</related>
       </Docs>
@@ -185,21 +185,21 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>线程的当前主体设置为启动了应用程序的 Windows 用户。</summary>
+        <summary>将线程的当前主体设置为启动应用程序的 Windows 用户。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用`My.User.InitializeWithWindowsUser`方法将线程的当前主体设置为启动了应用程序的 Windows 用户。 Visual Basic 应用程序模型在 Windows 应用程序中默认情况下，在启动时调用此方法。 在其他项目类型，您必须设置线程的当前主体，通过显式调用此方法或通过将分配到的值<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType>。  
+ 您可以使用`My.User.InitializeWithWindowsUser`方法将线程的当前主体设置为启动应用程序的 Windows 用户。 默认情况下, Windows 应用程序中的 Visual Basic 应用程序模型在启动时调用此方法。 在其他项目类型中, 你必须通过显式调用此方法或通过将值分配给来<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType>设置线程的当前主体。  
   
- 在 Windows 项目中，`My.User`对象所基于线程的当前主体; 因此，此方法可以更改的信息`My.User`返回。 在 ASP.NET 应用程序，`My.User`对象取决于当前 HTTP 请求的用户标识，并不受此方法。  
+ 在 Windows 项目中, `My.User`对象基于线程的当前主体; 因此, 此方法可以更改信息返回的信息。 `My.User` 在 ASP.NET 应用程序中, `My.User`对象基于当前 HTTP 请求的用户标识, 不受此方法的影响。  
   
 > [!NOTE]
->  具体行为`My.User`对象取决于应用程序的类型和运行应用程序的操作系统。 有关详细信息，请参阅<xref:Microsoft.VisualBasic.ApplicationServices.User>类概述。  
+>  `My.User`对象的确切行为取决于应用程序的类型和运行应用程序的操作系统。 有关详细信息, 请参阅<xref:Microsoft.VisualBasic.ApplicationServices.User>类概述。  
   
- 这是一个高级的成员;除非您单击不会显示在 IntelliSense 中**所有**选项卡。  
+ 这是一个高级成员;除非您单击 "**全部**" 选项卡, 否则它不会显示在 IntelliSense 中。  
   
-## <a name="availability-by-project-type"></a>项目类型的可用性  
+## <a name="availability-by-project-type"></a>按项目类型的可用性  
   
 |项目类型|可用|  
 |-|-|  
@@ -213,7 +213,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">描述一组应用于代码的安全权限。 关联枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">描述一组应用于代码的安全权限。 关联的枚举<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />:。</permission>
         <related type="Article" href="~/docs/visual-basic/language-reference/objects/index.md">对象 (Visual Basic)</related>
       </Docs>
     </Member>
@@ -239,12 +239,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置表示当前用户的主体对象。</summary>
-        <value><see cref="T:System.Security.Principal.IPrincipal" />对象，表示当前用户。</value>
+        <value>一个表示当前用户的 <see cref="T:System.Security.Principal.IPrincipal" /> 对象。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在中<xref:Microsoft.VisualBasic.ApplicationServices.User>对象，此属性包装<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType>属性。 重写此方法在派生类来提供不同的行为。 例如，<xref:Microsoft.VisualBasic.ApplicationServices.WebUser.InternalPrincipal%2A?displayProperty=nameWithType>属性重写此属性。  
+ 在对象中, 此属性对<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType>属性进行包装。 <xref:Microsoft.VisualBasic.ApplicationServices.User> 在派生类中重写此方法以提供不同的行为。 例如, 属性将<xref:Microsoft.VisualBasic.ApplicationServices.WebUser.InternalPrincipal%2A?displayProperty=nameWithType>重写此属性。  
   
  ]]></format>
         </remarks>
@@ -272,18 +272,18 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个值，该值指示是否已验证用户。</summary>
+        <summary>获取一个值，该值指示是否验证了用户。</summary>
         <value>如果用户已经过验证，则为 <see langword="True" />；否则为 <see langword="False" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `My.User.IsAuthenticated`属性允许您的代码以确定是否当前用户进行身份验证。  
+ `My.User.IsAuthenticated`属性允许代码确定当前用户是否已经过身份验证。  
   
 > [!NOTE]
->  具体行为`My.User`对象取决于应用程序类型和运行应用程序的操作系统。 有关详细信息，请参阅<xref:Microsoft.VisualBasic.ApplicationServices.User>类概述。  
+>  `My.User`对象的确切行为取决于应用程序的类型和运行应用程序的操作系统。 有关详细信息, 请参阅<xref:Microsoft.VisualBasic.ApplicationServices.User>类概述。  
   
-## <a name="availability-by-project-type"></a>项目类型的可用性  
+## <a name="availability-by-project-type"></a>按项目类型的可用性  
   
 |项目类型|可用|  
 |-|-|  
@@ -298,13 +298,13 @@
    
   
 ## Examples  
- 此示例验证具有已对用户身份验证才能访问资源。  
+ 此示例在访问资源之前验证用户是否已经过身份验证。  
   
  [!code-vb[VbVbalrMyUser#2](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrMyUser/VB/Class1.vb#2)]  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">描述一组应用于代码的安全权限。 关联枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">描述应用于代码的安全权限集。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />。</permission>
         <related type="Article" href="~/docs/visual-basic/language-reference/objects/index.md">对象 (Visual Basic)</related>
       </Docs>
     </Member>
@@ -340,23 +340,23 @@
         <Parameter Name="role" Type="Microsoft.VisualBasic.ApplicationServices.BuiltInRole" Index="0" FrameworkAlternate="netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
-        <param name="role">要为其检查成员身份内置 Windows 角色。</param>
+        <param name="role">要检查其成员资格的内置 Windows 角色。</param>
         <summary>确定当前用户是否属于指定的角色。</summary>
-        <returns><see langword="True" /> 如果当前用户是指定角色; 的成员否则为<see langword="False" />。</returns>
+        <returns>如果当前用户是指定角色的成员，则为 <see langword="True" />；否则为 <see langword="False" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `My.User.IsInRole`方法允许您的代码以确定当前用户是否指定角色的成员。  
+ `My.User.IsInRole`方法允许代码确定当前用户是否为指定角色的成员。  
   
- 重载`My.User.IsInRole`采用一个字符串的方法可轻松访问<xref:System.Security.Principal.IPrincipal.IsInRole%2A>当前主体的方法。  
+ 采用字符串的`My.User.IsInRole`方法的重载提供<xref:System.Security.Principal.IPrincipal.IsInRole%2A>对当前主体的方法的轻松访问。  
   
- 重载`My.User.IsInRole`方法采用`BuiltInRole`枚举的行为不同，具体取决于当前的主体。 如果它是 Windows 用户主体 (<xref:System.Security.Principal.WindowsPrincipal>)，此函数将转换`role`为等效<xref:System.Security.Principal.WindowsBuiltInRole>枚举，并返回因调用<xref:System.Security.Principal.WindowsPrincipal.IsInRole%2A>。 如果当前主体是任何其他主体，此函数将传递中的枚举值的名称`role`的主体<xref:System.Security.Principal.IPrincipal.IsInRole%2A>方法。  
+ 采用枚举的`My.User.IsInRole`方法重载的行为方式不同,具体取决于当前主体。`BuiltInRole` 如果它是 Windows 用户主体<xref:System.Security.Principal.WindowsPrincipal>(), 则此函数将转换`role`为等效<xref:System.Security.Principal.WindowsBuiltInRole>的枚举并返回调用<xref:System.Security.Principal.WindowsPrincipal.IsInRole%2A>的结果。 如果当前主体是任何其他主体, 则此函数会将中`role`的枚举值的名称传递到主体的<xref:System.Security.Principal.IPrincipal.IsInRole%2A>方法。  
   
 > [!NOTE]
->  具体行为`My.User`对象取决于应用程序类型和运行应用程序的操作系统。 有关详细信息，请参阅<xref:Microsoft.VisualBasic.ApplicationServices.User>类概述。  
+>  `My.User`对象的确切行为取决于应用程序的类型和运行应用程序的操作系统。 有关详细信息, 请参阅<xref:Microsoft.VisualBasic.ApplicationServices.User>类概述。  
   
-## <a name="availability-by-project-type"></a>项目类型的可用性  
+## <a name="availability-by-project-type"></a>按项目类型的可用性  
   
 |项目类型|可用|  
 |-|-|  
@@ -371,13 +371,13 @@
    
   
 ## Examples  
- 此示例检查用户是否是管理员才能访问资源。  
+ 此示例在访问资源前检查用户是否为管理员。  
   
  [!code-vb[VbVbalrMyUser#1](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrMyUser/VB/Class1.vb#1)]  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">描述一组应用于代码的安全权限。 关联枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">描述应用于代码的安全权限集。 关联的枚举<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />:。</permission>
         <related type="Article" href="~/docs/visual-basic/language-reference/objects/index.md">对象 (Visual Basic)</related>
       </Docs>
     </Member>
@@ -405,23 +405,23 @@
         <Parameter Name="role" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="role">若要检查成员资格的角色的名称。</param>
+        <param name="role">要检查其成员资格的角色的名称。</param>
         <summary>确定当前用户是否属于指定的角色。</summary>
-        <returns><see langword="True" /> 如果当前用户是指定角色; 的成员否则为<see langword="False" />。</returns>
+        <returns>如果当前用户是指定角色的成员，则为 <see langword="True" />；否则为 <see langword="False" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `My.User.IsInRole`方法允许您的代码以确定当前用户是否指定角色的成员。  
+ `My.User.IsInRole`方法允许代码确定当前用户是否为指定角色的成员。  
   
- 重载`My.User.IsInRole`采用一个字符串的方法可轻松访问<xref:System.Security.Principal.IPrincipal.IsInRole%2A>当前主体的方法。  
+ 采用字符串的`My.User.IsInRole`方法的重载提供<xref:System.Security.Principal.IPrincipal.IsInRole%2A>对当前主体的方法的轻松访问。  
   
- 重载`My.User.IsInRole`方法采用`BuiltInRole`枚举的行为不同，具体取决于当前的主体。 如果它是 Windows 用户主体 (<xref:System.Security.Principal.WindowsPrincipal>)，此函数将转换`role`为等效<xref:System.Security.Principal.WindowsBuiltInRole>枚举，并返回因调用<xref:System.Security.Principal.WindowsPrincipal.IsInRole%2A>。 如果当前主体是任何其他主体，此函数将传递中的枚举值的名称`role`的主体<xref:System.Security.Principal.IPrincipal.IsInRole%2A>方法。  
+ 采用枚举的`My.User.IsInRole`方法重载的行为方式不同,具体取决于当前主体。`BuiltInRole` 如果它是 Windows 用户主体<xref:System.Security.Principal.WindowsPrincipal>(), 则此函数将转换`role`为等效<xref:System.Security.Principal.WindowsBuiltInRole>的枚举并返回调用<xref:System.Security.Principal.WindowsPrincipal.IsInRole%2A>的结果。 如果当前主体是任何其他主体, 则此函数会将中`role`的枚举值的名称传递到主体的<xref:System.Security.Principal.IPrincipal.IsInRole%2A>方法。  
   
 > [!NOTE]
->  具体行为`My.User`对象取决于应用程序类型和运行应用程序的操作系统。 有关详细信息，请参阅<xref:Microsoft.VisualBasic.ApplicationServices.User>类概述。  
+>  `My.User`对象的确切行为取决于应用程序的类型和运行应用程序的操作系统。 有关详细信息, 请参阅<xref:Microsoft.VisualBasic.ApplicationServices.User>类概述。  
   
-## <a name="availability-by-project-type"></a>项目类型的可用性  
+## <a name="availability-by-project-type"></a>按项目类型的可用性  
   
 |项目类型|可用|  
 |-|-|  
@@ -436,13 +436,13 @@
    
   
 ## Examples  
- 此示例检查用户是否是管理员才能访问资源。  
+ 此示例在访问资源前检查用户是否为管理员。  
   
  [!code-vb[VbVbalrMyUser#1](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrMyUser/VB/Class1.vb#1)]  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">描述一组应用于代码的安全权限。 关联枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">描述应用于代码的安全权限集。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />。</permission>
         <altmember cref="T:Microsoft.VisualBasic.ApplicationServices.BuiltInRole" />
         <related type="Article" href="~/docs/visual-basic/language-reference/objects/index.md">对象 (Visual Basic)</related>
       </Docs>
@@ -474,17 +474,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用`My.User`对象以获取有关当前用户的信息。  
+ 可以使用`My.User`对象获取有关当前用户的信息。  
   
- 对用户进行身份验证的主体还可以控制用户名称的格式。 默认情况下，应用程序使用 Windows 身份验证，并且用户名称，格式为 DOMAIN\USERNAME。 主体的自定义实现不一定使用相同的格式。  
-  
-> [!NOTE]
->  `My.User.Name`属性将返回空字符串时运行在 Windows 95 和 Windows 98，因为这些操作系统无法识别用户名。  
+ 对用户进行身份验证的主体也会控制用户名的格式。 默认情况下, 应用程序使用 Windows 身份验证, 用户名的格式为 "域 \ 用户名" 主体的自定义实现不一定要使用相同的格式。  
   
 > [!NOTE]
->  具体行为`My.User`对象取决于应用程序类型和运行应用程序的操作系统。 有关详细信息，请参阅<xref:Microsoft.VisualBasic.ApplicationServices.User>类概述。  
+>  当`My.User.Name`在 windows 95 和 windows 98 下运行时, 该属性将返回空字符串, 因为这些操作系统不识别用户名。  
   
-## <a name="availability-by-project-type"></a>项目类型的可用性  
+> [!NOTE]
+>  `My.User`对象的确切行为取决于应用程序的类型和运行应用程序的操作系统。 有关详细信息, 请参阅<xref:Microsoft.VisualBasic.ApplicationServices.User>类概述。  
+  
+## <a name="availability-by-project-type"></a>按项目类型的可用性  
   
 |项目类型|可用|  
 |-|-|  
@@ -499,13 +499,13 @@
    
   
 ## Examples  
- 如果应用程序使用 Windows 或自定义身份验证，并使用该信息来分析此示例将检查`My.User.Name`属性。  
+ 此示例检查应用程序是否正在使用 Windows 或自定义身份验证, 并使用这些信息来`My.User.Name`分析属性。  
   
  [!code-vb[VbVbalrMyUser#3](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrMyUser/VB/Class1.vb#3)]  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">描述一组应用于代码的安全权限。 关联枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">描述应用于代码的安全权限集。 关联的枚举<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />:。</permission>
         <related type="Article" href="~/docs/visual-basic/language-reference/objects/index.md">对象 (Visual Basic)</related>
         <related type="Article" href="~/docs/visual-basic/developing-apps/programming/accessing-user-data.md">访问用户数据 (Visual Basic)</related>
       </Docs>

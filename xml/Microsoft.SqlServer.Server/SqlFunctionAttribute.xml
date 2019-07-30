@@ -30,12 +30,12 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>用于将用户定义聚合的作为 SQL Server 中的函数的方法定义标记。 特性的属性反映与 SQL Server 注册类型时所使用的物理特征。</summary>
+    <summary>用于将用户定义聚合的方法定义标记为 SQL Server 中的函数。 该特性的属性反映了向 SQL Server 注册该类型时所使用的实体特征。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例显示了聚合函数，返回指定的目录路径中的文件的列表。  
+ 下面的示例演示一个聚合函数, 该函数返回指定目录路径中的文件列表。  
   
  [!code-csharp[DataWorks SqlFunctionAttribute Sample#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlFunctionAttribute Sample/CS/source.cs#1)]
  [!code-vb[DataWorks SqlFunctionAttribute Sample#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlFunctionAttribute Sample/VB/source.vb#1)]  
@@ -65,7 +65,7 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>用户定义聚合的可选特性用来指示方法应注册为函数的 SQL Server 中。 此外用于设置<see cref="P:Microsoft.SqlServer.Server.SqlFunctionAttribute.DataAccess" />， <see cref="P:Microsoft.SqlServer.Server.SqlFunctionAttribute.FillRowMethodName" />， <see cref="P:Microsoft.SqlServer.Server.SqlFunctionAttribute.IsDeterministic" />， <see cref="P:Microsoft.SqlServer.Server.SqlFunctionAttribute.IsPrecise" />， <see cref="P:Microsoft.SqlServer.Server.SqlFunctionAttribute.Name" />， <see cref="P:Microsoft.SqlServer.Server.SqlFunctionAttribute.SystemDataAccess" />，和<see cref="P:Microsoft.SqlServer.Server.SqlFunctionAttribute.TableDefinition" />函数属性的属性。</summary>
+        <summary>用户定义聚合的可选特性，用于指示方法应在 SQL Server 中注册为函数。 还用于设置函数特性的 <see cref="P:Microsoft.SqlServer.Server.SqlFunctionAttribute.DataAccess" />、<see cref="P:Microsoft.SqlServer.Server.SqlFunctionAttribute.FillRowMethodName" />、<see cref="P:Microsoft.SqlServer.Server.SqlFunctionAttribute.IsDeterministic" />、<see cref="P:Microsoft.SqlServer.Server.SqlFunctionAttribute.IsPrecise" />、<see cref="P:Microsoft.SqlServer.Server.SqlFunctionAttribute.Name" />、<see cref="P:Microsoft.SqlServer.Server.SqlFunctionAttribute.SystemDataAccess" /> 和 <see cref="P:Microsoft.SqlServer.Server.SqlFunctionAttribute.TableDefinition" /> 属性。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -93,15 +93,15 @@
         <ReturnType>Microsoft.SqlServer.Server.DataAccessKind</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>指示函数是否需要对存储在 SQL Server 的本地实例中的用户数据的访问。</summary>
-        <value><see cref="T:Microsoft.SqlServer.Server.DataAccessKind" />.<see langword="None" />:不会访问数据。 <see cref="T:Microsoft.SqlServer.Server.DataAccessKind" />.<see langword="Read" />:仅读取用户数据。</value>
+        <summary>指示函数是否需要访问存储在 SQL Server 的本地实例中的用户数据。</summary>
+        <value><see cref="T:Microsoft.SqlServer.Server.DataAccessKind" />.<see langword="None" />:不访问数据。 <see cref="T:Microsoft.SqlServer.Server.DataAccessKind" />.<see langword="Read" />:仅读取用户数据。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认值是<xref:Microsoft.SqlServer.Server.DataAccessKind.None>。<xref:Microsoft.SqlServer.Server.SqlFunctionAttribute.DataAccess%2A> 时也需要连接到远程服务器，如果事务集成所需的 （默认值）。  
+ 默认值为<xref:Microsoft.SqlServer.Server.DataAccessKind.None>。<xref:Microsoft.SqlServer.Server.SqlFunctionAttribute.DataAccess%2A> 如果需要事务集成 (默认值), 则连接到远程服务器时也需要。  
   
- 如果从表值函数 (TVF) 内执行 TRANSACT-SQL 查询<xref:Microsoft.SqlServer.Server.DataAccessKind.Read>属性应设置。  
+ 如果从表值函数 (TVF) 内部执行 transact-sql 查询, 则<xref:Microsoft.SqlServer.Server.DataAccessKind.Read>应设置属性。  
   
  ]]></format>
         </remarks>
@@ -132,7 +132,7 @@
       </ReturnValue>
       <Docs>
         <summary>同一类中的方法名称，该类用于填充表值函数返回的表中的一行数据。</summary>
-        <value>一个<see cref="T:System.String" />值，该值表示用于填充表值函数返回表中的数据行的相同类中方法的名称。</value>
+        <value>一个<see cref="T:System.String" />值, 该值表示相同类中的方法的名称, 该方法用于填充表值函数返回的表中的数据行。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -166,23 +166,23 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>指示用户定义函数是否具有确定性。</summary>
-        <value><see langword="true" /> 如果该函数是具有确定性。否则为<see langword="false" />。</value>
+        <summary>指示用户定义的函数是否是确定性的。</summary>
+        <value>如果该函数是确定性的，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 用户定义函数被认为是如果它始终产生相同的给定输入的值相同且数据库状态相同的输出值确定。  
+ 如果用户定义函数在给定相同输入值和数据库状态时始终产生相同的输出值, 则称该函数是确定性的。  
   
- <xref:Microsoft.SqlServer.Server.SqlFunctionAttribute.IsDeterministic%2A>属性也很有用的索引的索引计算的列和索引的视图窗体中的函数的结果。 如果未指定此属性，该函数假定为非确定性。  
+ 对于索引计算列和索引视图形式的函数结果,属性也非常有用。<xref:Microsoft.SqlServer.Server.SqlFunctionAttribute.IsDeterministic%2A> 如果未指定此属性, 则假定函数为非确定性函数。  
   
- 访问本地数据的函数可以是确定性的。 数据访问特征单独通过捕获<xref:Microsoft.SqlServer.Server.SqlFunctionAttribute.DataAccess%2A>和<xref:Microsoft.SqlServer.Server.SqlFunctionAttribute.SystemDataAccess%2A>属性。  
+ 访问本地数据的函数可以是确定性的。 数据访问特征由<xref:Microsoft.SqlServer.Server.SqlFunctionAttribute.DataAccess%2A>和<xref:Microsoft.SqlServer.Server.SqlFunctionAttribute.SystemDataAccess%2A>属性单独捕获。  
   
- 请注意该数据访问远程服务器 (例如，使用<xref:System.Data.SqlClient.SqlConnection>连接到另一个 SQL Server 实例) 可在用户定义函数。 但是，仍必须遵循<xref:Microsoft.SqlServer.Server.SqlFunctionAttribute.IsDeterministic%2A>声明。 如果公共语言运行时 (CLR) 函数被标记为确定性的它不应在远程服务器导致的副作用。 副作用对上下文连接受到限制，而 SQL Server 不会通过远程连接强制的限制的负面影响。  
+ 请注意, 用户定义的函数中提供了对远程服务器<xref:System.Data.SqlClient.SqlConnection> (例如, 使用连接到其他 SQL Server 实例) 的数据访问。 但是, 您仍然必须遵守<xref:Microsoft.SqlServer.Server.SqlFunctionAttribute.IsDeterministic%2A>声明。 如果公共语言运行时 (CLR) 函数标记为确定性, 则不应在远程服务器中导致副作用。 尽管对上下文连接的副作用受到限制, 但是 SQL Server 不会对远程连接上的副作用强制限制。  
   
  此特性的默认值为 `false`。  
   
- 不要将标记为确定性函数不会始终生成相同的输出值，如果函数提供输入的值相同且数据库状态相同。 将标记为确定性函数时的函数不是真正具有确定性可能导致损坏的索引的视图和计算的列。  
+ 如果函数不始终产生相同的输出值, 则不要将该函数标记为确定性函数, 但给定相同的输入值和数据库状态。 当函数不是真正确定时, 将函数标记为确定性可能会导致索引视图和计算列损坏。  
   
  ]]></format>
         </remarks>
@@ -213,12 +213,12 @@
       </ReturnValue>
       <Docs>
         <summary>指示函数是否涉及不精确的计算，如浮点运算。</summary>
-        <value><see langword="true" /> 如果函数涉及精确的计算;否则为<see langword="false" />。</value>
+        <value>如果函数涉及精确的计算，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个函数的精度是一个用于确定是否计算列使用此函数可编制索引的属性。  
+ 函数的精度是用于确定是否可以为使用此函数的计算列编制索引的属性之一。  
   
  此特性的默认值为 `false`。  
   
@@ -250,15 +250,15 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>在 SQL Server 中应在其下注册该函数的名称。</summary>
-        <value>一个<see cref="T:System.String" />值，该值表示应在其下注册该函数的名称。</value>
+        <summary>函数在 SQL Server 中注册时所使用的名称。</summary>
+        <value>一个 <see cref="T:System.String" /> 值，它表示函数在注册时应使用的名称。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性仅由 Microsoft Visual Studio 用于自动将指定的方法注册为用户定义函数。 它不使用 SQL Server。  
+ 此属性仅由 Microsoft Visual Studio 用来自动将指定的方法注册为用户定义的函数。 SQL Server 未使用此方法。  
   
- 下面的示例指定使用的名称引用用户定义函数`sp_scalarFunc`。  
+ 三个下面的示例指定使用名称`sp_scalarFunc`引用用户定义函数。  
   
    
   
@@ -294,7 +294,7 @@
         <ReturnType>Microsoft.SqlServer.Server.SystemDataAccessKind</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>指示函数是否需要对存储在系统目录或 SQL server 的虚拟系统表中的数据的访问。</summary>
+        <summary>指示函数是否需要访问存储在 SQL Server 的系统目录或虚拟系统表中的数据。</summary>
         <value><see cref="T:Microsoft.SqlServer.Server.DataAccessKind" />.<see langword="None" />:不访问系统数据。 <see cref="T:Microsoft.SqlServer.Server.DataAccessKind" />.<see langword="Read" />:仅读取系统数据。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -330,15 +330,15 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>一个字符串，表示表定义的结果，如果该方法用作表值函数 (TVF)。</summary>
-        <value>一个<see cref="T:System.String" />值，该值表示结果的表定义。</value>
+        <summary>如果方法用作表值函数 (TVF)，则为一个字符串，该字符串表示结果的表定义。</summary>
+        <value>一个 <see cref="T:System.String" /> 值，它表示结果的表定义。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性仅由 Microsoft Visual Studio 用于自动注册为 TVF 指定的方法。 它不使用 SQL Server。  
+ 此属性仅由 Microsoft Visual Studio 用来自动将指定的方法注册为 TVF。 SQL Server 未使用此方法。  
   
- 下面的示例指定使用的名称引用用户定义函数`sp_tableFunc`。 `TableDefinition`属性具有值`letter nchar(1)`。  
+ 下面的示例指定使用名称`sp_tableFunc`引用用户定义函数。 属性的值`letter nchar(1)`为。 `TableDefinition`  
   
    
   

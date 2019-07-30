@@ -18,34 +18,34 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <summary>为 XAML 类型的成员提供 XAML 类型系统标识符。 标识符由 XAML 读取器和 XAML 编写器在处理成员节点的过程 (当 XAML 读取器定位在<see cref="F:System.Xaml.XamlNodeType.StartMember" />)，另外还用于常规 XAML 类型系统逻辑。</summary>
+    <summary>为 XAML 类型的成员提供 XAML 类型系统标识符。 该标识符由 XAML 读取器和 XAML 编写器在处理成员节点的过程中使用（如果 XAML 读取器位于 <see cref="F:System.Xaml.XamlNodeType.StartMember" /> 上），另外还用于常规 XAML 类型系统逻辑。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xaml.XamlMember> 可以使用三种方法用于返回有关 XAML 成员的信息： 标准公共语言运行时 (CLR) 反射;调用内部的仅限引用的反射技术 Api 的使用进行了优化位标志;或调用虚拟的重写`Lookup*`可能提供的 API<xref:System.Xaml.XamlMember>子类。 大部分使用.NET Framework XAML 服务 Api 和<xref:System.Xaml.XamlMember>API，你将使用默认 XAML 架构上下文。 .NET Framework XAML 服务的默认 XAML 架构上下文使用 CLR 类型系统的支持。 这样，若要使用任何类型或成员定义中，或其他可用于、 CLR 和其反射技术的 XAML 读取器和 XAML 编写器。  
+ <xref:System.Xaml.XamlMember>可以使用三种方法来返回有关 XAML 成员的信息: 标准公共语言运行时 (CLR) 反射;调用使用经过优化的位标志的内部 Api 的仅引用反射技术;或调入可能`Lookup*` <xref:System.Xaml.XamlMember>子类提供的 API 的虚拟覆盖。 若要在大多数情况下使用 .NET Framework xaml 服务<xref:System.Xaml.XamlMember> api 和 API, 请使用默认的 xaml 架构上下文。 .NET Framework XAML 服务的默认 XAML 架构上下文将 CLR 支持用于类型系统。 这使得 XAML 读取器和 XAML 编写器可以使用在中定义的任何类型或成员, 也可用于 CLR 及其反射技术。  
   
-## <a name="lookup-apis-and-xamlmember-derived-classes"></a>查找 * Api 和 XamlMember 派生类  
- <xref:System.Xaml.XamlMember> 定义了多个派生类的虚拟成员可能会重写。 这些成员的名称的字符串始终开头`Lookup`。 该 API 的其余部分命名然后引用的虚拟方法影响的属性。 例如，<xref:System.Xaml.XamlMember>派生的类可能会替代<xref:System.Xaml.XamlMember.LookupTargetType%2A>若要影响哪些基本定义的属性<xref:System.Xaml.XamlMember.TargetType%2A>返回派生类中。 您可以预测中的此类属性的返回值<xref:System.Xaml.XamlMember>或现有的派生类通过阅读相关的文档`Lookup*`方法。  
+## <a name="lookup-apis-and-xamlmember-derived-classes"></a>Lookup * Api 和 XamlMember 派生类  
+ <xref:System.Xaml.XamlMember>定义派生类可能重写的若干虚拟成员。 这些成员具有始终以字符串`Lookup`开头的名称。 然后, API 名称的其余部分引用该虚拟方法所影响的属性。 例如, <xref:System.Xaml.XamlMember>派生类可以重写<xref:System.Xaml.XamlMember.LookupTargetType%2A> , 以影响基定义属性<xref:System.Xaml.XamlMember.TargetType%2A>在派生类中返回的内容。 通过阅读相关`Lookup*`方法的文档, 可以预测<xref:System.Xaml.XamlMember>或现有派生类中的此类属性的返回值。  
   
- 目的`Lookup*`方法是提供 XAML 类型系统扩展的技术，其中包含<xref:System.Xaml.XamlMember>基类。 通过派生自<xref:System.Xaml.XamlMember>并重写`Lookup`虚拟成员，您可以定义的 XAML 成员的 XAML 架构的概念 XAML 类型系统中而不受限于后备类型系统或技术的详细信息。 可以使用这种方案下提供的 XAML 架构上下文和仍将返回所需的结果。  
+ `Lookup*`方法的用途是提供一个<xref:System.Xaml.XamlMember>包含基类的 XAML 类型系统扩展技术。 通过从<xref:System.Xaml.XamlMember>和`Lookup`重写虚拟成员, 您可以为 xaml 类型系统中的 xaml 架构定义 xaml 成员的概念, 而不会绑定到后备类型系统或技术的具体内容。 您还可以在此方案下使用提供的 XAML 架构上下文, 并且仍返回所需的结果。  
   
- 例如，考虑<xref:System.Xaml.XamlMember>属性<xref:System.Xaml.XamlMember.IsWritePublic%2A>。 此属性会通知调用方的操作，例如使用<xref:System.Xaml.XamlWriter>的序列化可以将一个值写入此成员上的目标对象。 在默认实现中，通过使用反射技术的后备 CLR 对进行的该成员是否可写确定<xref:System.Type>及其成员 ( <xref:System.Reflection.MemberInfo>)。 因此，默认情况下，XAML 类型系统依赖于 CLR 类型系统。 但是，可以为你 XAML 类型系统的报表的删除此依赖项<xref:System.Xaml.XamlMember.IsWritePublic%2A>通过重写 API <xref:System.Xaml.XamlMember.LookupIsWritePublic%2A>。 在重写中，可以使用其他判断，如特定于你的技术，适用于固定的 XAML 词汇或各种其他策略用于确定是否 XAML 成员是在可写的主查找表的元数据应用XAML 词汇。  
+ 例如, 请考虑<xref:System.Xaml.XamlMember>属性。 <xref:System.Xaml.XamlMember.IsWritePublic%2A> 此属性通知调用方, 如使用<xref:System.Xaml.XamlWriter>进行序列化等操作可以为目标对象上的此成员写入值。 在默认实现中, 确定成员是否可写是通过对后备 CLR <xref:System.Type>及其成员<xref:System.Reflection.MemberInfo>() 使用反射技术来进行的。 因此, 默认情况下, XAML 类型系统依赖于 CLR 类型系统。 但是, 你可以通过重写 API <xref:System.Xaml.XamlMember.IsWritePublic%2A> <xref:System.Xaml.XamlMember.LookupIsWritePublic%2A>来删除 XAML 类型系统报告的依赖关系。 在重写中, 你可以使用其他确定, 例如特定于你的技术的元数据、针对固定 XAML 词汇进行了优化的主查找表或用于确定 XAML 成员是否可在你的XAML 词汇。  
   
-## <a name="constructing-xamlmember-without-xaml-schema-context"></a>构造 XamlMember 而无需 XAML 架构上下文  
- 大多数构造函数<xref:System.Xaml.XamlMember>需要<xref:System.Xaml.XamlSchemaContext>作为其初始化的一部分。 <xref:System.Xaml.XamlSchemaContext>还有很多内部必要<xref:System.Xaml.XamlSchemaContext>操作，例如获取转发从后备类型的信息。 当您在处理<xref:System.Xaml.XamlMember>API，则通常会有<xref:System.Xaml.XamlSchemaContext>如也是可从周边构造<xref:System.Xaml.XamlWriter>。 在这种情况下，您可以将传递<xref:System.Xaml.XamlSchemaContext>引用通过为所有需要 XAML 架构上下文的 XAML 类型系统调用。  
+## <a name="constructing-xamlmember-without-xaml-schema-context"></a>构造没有 XAML 架构上下文的 XamlMember  
+ 大多数构造函数<xref:System.Xaml.XamlMember>都<xref:System.Xaml.XamlSchemaContext>需要作为其初始化的一部分。 <xref:System.Xaml.XamlSchemaContext>许多内部<xref:System.Xaml.XamlSchemaContext>操作 (例如, 获取从支持类型转发的信息) 也需要。 使用 API 时, 通常<xref:System.Xaml.XamlSchemaContext>具有可从<xref:System.Xaml.XamlWriter>周围构造 (如) 获取的。 <xref:System.Xaml.XamlMember> 在这种情况下, 可以将<xref:System.Xaml.XamlSchemaContext>引用传递到需要 xaml 架构上下文的所有 XAML 类型系统调用。  
   
- 一个特定的构造函数， <xref:System.Xaml.XamlMember.%23ctor%28System.String%2CSystem.Xaml.XamlType%2CSystem.Boolean%29>，不需要<xref:System.Xaml.XamlSchemaContext>。 但是，<xref:System.Xaml.XamlMember>构造<xref:System.Xaml.XamlMember.%23ctor%28System.String%2CSystem.Xaml.XamlType%2CSystem.Boolean%29>签名返回`true`为<xref:System.Xaml.XamlMember.IsUnknown%2A>。  
+ 一个特定构造函数<xref:System.Xaml.XamlMember.%23ctor%28System.String%2CSystem.Xaml.XamlType%2CSystem.Boolean%29>不<xref:System.Xaml.XamlSchemaContext>需要。 但是, <xref:System.Xaml.XamlMember> <xref:System.Xaml.XamlMember.IsUnknown%2A>使用签名构造的将为返回`true`。 <xref:System.Xaml.XamlMember.%23ctor%28System.String%2CSystem.Xaml.XamlType%2CSystem.Boolean%29>  
   
- 涉及到了加载路径<xref:System.Xaml.XamlObjectWriter>，此类成员不能写入对象图。 使用.NET Framework XAML 服务实现中，<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A?displayProperty=nameWithType>调用将引发<xref:System.Xaml.XamlObjectWriterException>时的相关<xref:System.Xaml.XamlMember>报表`true`为<xref:System.Xaml.XamlMember.IsUnknown%2A>。  
+ 对于涉及<xref:System.Xaml.XamlObjectWriter>的加载路径, 此类成员不能写入对象图。 使用 .NET Framework XAML 服务实现, <xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A?displayProperty=nameWithType> <xref:System.Xaml.XamlMember> <xref:System.Xaml.XamlObjectWriterException> 当的`true`相关报表时, 调用将引发。 <xref:System.Xaml.XamlMember.IsUnknown%2A>  
   
- 不应构造<xref:System.Xaml.XamlMember>具有值`true`有关<xref:System.Xaml.XamlMember.IsUnknown%2A>除非您的实现可以处理从异常<xref:System.Xaml.XamlObjectWriter>，或有其他方法来调整<xref:System.Xaml.XamlObjectWriter>行为。 例如，一个或多个以下可能的实现，则返回 true:  
+ 您不应构造一个<xref:System.Xaml.XamlMember>具有值<xref:System.Xaml.XamlMember.IsUnknown%2A>的`true` , 除非您的实现可以处理中<xref:System.Xaml.XamlObjectWriter>的异常, 或者您可以使用其他方法来调整<xref:System.Xaml.XamlObjectWriter>行为。 例如, 以下一项或多项操作可能适用于你的实现:  
   
--   XAML 架构上下文是更高版本可用。  
+-   XAML 架构上下文稍后会提供。  
   
--   使用成员调用程序模式。  
+-   你使用成员调用程序模式。  
   
--   谨慎地重写<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A?displayProperty=nameWithType>中自定义 XAML 编写器。  
+-   您在自<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A?displayProperty=nameWithType>定义 XAML 编写器中有意重写。  
   
  ]]></format>
     </remarks>
@@ -85,14 +85,14 @@
         <Parameter Name="schemaContext" Type="System.Xaml.XamlSchemaContext" />
       </Parameters>
       <Docs>
-        <param name="eventInfo">CLR 类型系统<see cref="T:System.Reflection.EventInfo" />用于表示事件成员。</param>
-        <param name="schemaContext"><see cref="T:System.Xaml.XamlSchemaContext" />限定成员的上下文。</param>
-        <summary>初始化的新实例<see cref="T:System.Xaml.XamlMember" />类使用 CLR 类型系统<see cref="T:System.Reflection.EventInfo" />和一个<see cref="T:System.Xaml.XamlSchemaContext" />。</summary>
+        <param name="eventInfo">用于表示事件成员的 CLR 类型系统 <see cref="T:System.Reflection.EventInfo" />。</param>
+        <param name="schemaContext">用于限定成员的 <see cref="T:System.Xaml.XamlSchemaContext" /> 上下文。</param>
+        <summary>使用 CLR 类型系统 <see cref="T:System.Xaml.XamlMember" /> 和 <see cref="T:System.Reflection.EventInfo" /> 初始化 <see cref="T:System.Xaml.XamlSchemaContext" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果成员表示一个事件 （事件处理程序连接点属性），请使用此构造函数。  
+ 如果成员表示事件 (事件处理程序连接点属性), 则使用此构造函数。  
   
  ]]></format>
         </remarks>
@@ -119,14 +119,14 @@
         <Parameter Name="schemaContext" Type="System.Xaml.XamlSchemaContext" />
       </Parameters>
       <Docs>
-        <param name="propertyInfo">CLR 类型系统<see cref="T:System.Reflection.PropertyInfo" />用于表示属性成员。</param>
-        <param name="schemaContext"><see cref="T:System.Xaml.XamlSchemaContext" />限定成员的上下文。</param>
-        <summary>初始化的新实例<see cref="T:System.Xaml.XamlMember" />类使用 CLR 类型系统<see cref="T:System.Reflection.PropertyInfo" />和一个<see cref="T:System.Xaml.XamlSchemaContext" />。</summary>
+        <param name="propertyInfo">用于表示属性成员的 CLR 类型系统 <see cref="T:System.Reflection.PropertyInfo" />。</param>
+        <param name="schemaContext">用于限定成员的 <see cref="T:System.Xaml.XamlSchemaContext" /> 上下文。</param>
+        <summary>使用 CLR 类型系统 <see cref="T:System.Xaml.XamlMember" /> 和 <see cref="T:System.Reflection.PropertyInfo" /> 初始化 <see cref="T:System.Xaml.XamlSchemaContext" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果该成员表示的属性 （并不具体而言是事件处理程序连接），请使用此构造函数。  
+ 如果成员表示属性 (具体不是事件处理程序连接), 则使用此构造函数。  
   
  ]]></format>
         </remarks>
@@ -149,15 +149,15 @@
         <Parameter Name="invoker" Type="System.Xaml.Schema.XamlMemberInvoker" />
       </Parameters>
       <Docs>
-        <param name="eventInfo">CLR 类型系统<see cref="T:System.Reflection.EventInfo" />用于表示事件成员。</param>
-        <param name="schemaContext"><see cref="T:System.Xaml.XamlSchemaContext" />限定成员的上下文。</param>
-        <param name="invoker"><see cref="T:System.Xaml.Schema.XamlMemberInvoker" />处理运行时反射的实现调用针对<see cref="T:System.Xaml.XamlMember" />。</param>
-        <summary>初始化的新实例<see cref="T:System.Xaml.XamlMember" />类使用 CLR 类型系统<see cref="T:System.Reflection.EventInfo" />和一个<see cref="T:System.Xaml.XamlSchemaContext" />，其中包括<see cref="T:System.Xaml.Schema.XamlMemberInvoker" />信息。</summary>
+        <param name="eventInfo">用于表示事件成员的 CLR 类型系统 <see cref="T:System.Reflection.EventInfo" />。</param>
+        <param name="schemaContext">用于限定成员的 <see cref="T:System.Xaml.XamlSchemaContext" /> 上下文。</param>
+        <param name="invoker">可针对 <see cref="T:System.Xaml.Schema.XamlMemberInvoker" /> 处理运行时反射调用的 <see cref="T:System.Xaml.XamlMember" /> 实现。</param>
+        <summary>使用 CLR 类型系统 <see cref="T:System.Xaml.XamlMember" /> 和 <see cref="T:System.Reflection.EventInfo" />（包括 <see cref="T:System.Xaml.XamlSchemaContext" /> 信息）初始化 <see cref="T:System.Xaml.Schema.XamlMemberInvoker" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果成员表示一个事件 （或事件处理程序连接点属性），请使用此构造函数。  
+ 如果成员表示事件 (或事件处理程序连接点属性), 则使用此构造函数。  
   
  ]]></format>
         </remarks>
@@ -180,15 +180,15 @@
         <Parameter Name="invoker" Type="System.Xaml.Schema.XamlMemberInvoker" />
       </Parameters>
       <Docs>
-        <param name="propertyInfo">CLR 类型系统<see cref="T:System.Reflection.PropertyInfo" />用于表示属性成员。</param>
-        <param name="schemaContext"><see cref="T:System.Xaml.XamlSchemaContext" />限定成员的上下文。</param>
-        <param name="invoker"><see cref="T:System.Xaml.Schema.XamlMemberInvoker" />处理运行时调用的实现调用针对<see cref="T:System.Xaml.XamlMember" />。</param>
-        <summary>初始化的新实例<see cref="T:System.Xaml.XamlMember" />类使用反射<see cref="T:System.Reflection.PropertyInfo" />和一个<see cref="T:System.Xaml.XamlSchemaContext" />，其中包括<see cref="T:System.Xaml.Schema.XamlMemberInvoker" />信息。</summary>
+        <param name="propertyInfo">用于表示属性成员的 CLR 类型系统 <see cref="T:System.Reflection.PropertyInfo" />。</param>
+        <param name="schemaContext">用于限定成员的 <see cref="T:System.Xaml.XamlSchemaContext" /> 上下文。</param>
+        <param name="invoker">用于针对 <see cref="T:System.Xaml.Schema.XamlMemberInvoker" /> 处理运行时调用的 <see cref="T:System.Xaml.XamlMember" /> 实现。</param>
+        <summary>使用反射 <see cref="T:System.Xaml.XamlMember" /> 和 <see cref="T:System.Reflection.PropertyInfo" />（包括 <see cref="T:System.Xaml.XamlSchemaContext" /> 信息）初始化 <see cref="T:System.Xaml.Schema.XamlMemberInvoker" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 只有成员表示的属性，并且它不是事件处理程序连接，请使用此构造函数。  
+ 仅当成员表示属性并且不是事件处理程序连接时, 才使用此构造函数。  
   
  ]]></format>
         </remarks>
@@ -218,14 +218,14 @@
       </Parameters>
       <Docs>
         <param name="attachableEventName">可附加事件的字符串名称。</param>
-        <param name="adder">CLR 类型系统<see cref="T:System.Reflection.MethodInfo" />处理程序<see langword="Add" />可附加成员的方法的支持实现。</param>
-        <param name="schemaContext"><see cref="T:System.Xaml.XamlSchemaContext" />限定成员的上下文。</param>
-        <summary>初始化的新实例<see cref="T:System.Xaml.XamlMember" />类的<see cref="T:System.Xaml.XamlMember" />，表示可附加事件。</summary>
+        <param name="adder">可附加成员的支持实现的处理程序 <see langword="Add" /> 方法的 CLR 类型系统 <see cref="T:System.Reflection.MethodInfo" />。</param>
+        <param name="schemaContext">用于限定成员的 <see cref="T:System.Xaml.XamlSchemaContext" /> 上下文。</param>
+        <summary>针对表示可附加事件的 <see cref="T:System.Xaml.XamlMember" /> 初始化 <see cref="T:System.Xaml.XamlMember" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果成员表示可附加事件成员，请使用此构造函数。  
+ 如果成员表示可附加的事件成员, 请使用此构造函数。  
   
  ]]></format>
         </remarks>
@@ -250,24 +250,24 @@
       </Parameters>
       <Docs>
         <param name="name">成员的字符串名称。</param>
-        <param name="declaringType"><see cref="T:System.Xaml.XamlType" />的声明类型的信息。</param>
-        <param name="isAttachable"><see langword="true" /> 若要指示该成员是可附加;否则为<see langword="false" />。</param>
-        <summary>初始化的新实例<see cref="T:System.Xaml.XamlMember" />类使用的字符串名称和声明<see cref="T:System.Xaml.XamlType" />信息。 使用此签名构造的 <see cref="T:System.Xaml.XamlMember" /> 具有很大的限制。</summary>
+        <param name="declaringType">声明类型的 <see cref="T:System.Xaml.XamlType" /> 信息。</param>
+        <param name="isAttachable">如果要指示成员是可附加的，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+        <summary>使用字符串名称和声明 <see cref="T:System.Xaml.XamlMember" /> 信息初始化 <see cref="T:System.Xaml.XamlType" /> 类的新实例。 使用此签名构造的 <see cref="T:System.Xaml.XamlMember" /> 具有很大的限制。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Xaml.XamlMember>构造<xref:System.Xaml.XamlMember.%23ctor%28System.String%2CSystem.Xaml.XamlType%2CSystem.Boolean%29>签名返回`true`为<xref:System.Xaml.XamlMember.IsUnknown%2A>。  
+ 使用签名的返回`true`的。<xref:System.Xaml.XamlMember.IsUnknown%2A> <xref:System.Xaml.XamlMember> <xref:System.Xaml.XamlMember.%23ctor%28System.String%2CSystem.Xaml.XamlType%2CSystem.Boolean%29>  
   
- 涉及到了加载路径<xref:System.Xaml.XamlObjectWriter>，此类成员不能写入对象图。 使用.NET Framework XAML 服务实现中，<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A?displayProperty=nameWithType>调用将引发<xref:System.Xaml.XamlObjectWriterException>时的相关<xref:System.Xaml.XamlMember>报表`true`为<xref:System.Xaml.XamlMember.IsUnknown%2A>。  
+ 对于涉及<xref:System.Xaml.XamlObjectWriter>的加载路径, 此类成员不能写入对象图。 使用 .NET Framework XAML 服务实现, <xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A?displayProperty=nameWithType> <xref:System.Xaml.XamlMember> <xref:System.Xaml.XamlObjectWriterException> 当的`true`相关报表时, 调用将引发。 <xref:System.Xaml.XamlMember.IsUnknown%2A>  
   
- 不应构造<xref:System.Xaml.XamlMember>与<xref:System.Xaml.XamlMember.IsUnknown%2A>`true`除非您的实现可以处理从异常<xref:System.Xaml.XamlObjectWriter>，或有其他方法来调整<xref:System.Xaml.XamlObjectWriter>行为。 例如，一个或多个以下可能的实现，则返回 true:  
+ `true`除非您的实现可以<xref:System.Xaml.XamlMember>处理<xref:System.Xaml.XamlMember.IsUnknown%2A>中<xref:System.Xaml.XamlObjectWriter>的异常, 否则您不应构造, 或者您可以使用其他方法来<xref:System.Xaml.XamlObjectWriter>调整行为。 例如, 以下一项或多项操作可能适用于你的实现:  
   
--   XAML 架构上下文是更高版本可用。  
+-   XAML 架构上下文稍后会提供。  
   
--   使用成员调用程序模式。  
+-   你使用成员调用程序模式。  
   
--   谨慎地重写<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A?displayProperty=nameWithType>中自定义 XAML 编写器。  
+-   您在自<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A?displayProperty=nameWithType>定义 XAML 编写器中有意重写。  
   
  ]]></format>
         </remarks>
@@ -299,15 +299,15 @@
       </Parameters>
       <Docs>
         <param name="attachablePropertyName">可附加属性的字符串名称。</param>
-        <param name="getter">CLR 类型系统<see cref="T:System.Reflection.MethodInfo" />为<see langword="get" />可附加成员的访问器的支持实现。</param>
-        <param name="setter">CLR 类型系统<see cref="T:System.Reflection.MethodInfo" />为<see langword="set" />可附加成员的访问器的支持实现。</param>
-        <param name="schemaContext"><see cref="T:System.Xaml.XamlSchemaContext" />限定成员的上下文。</param>
-        <summary>初始化的新实例<see cref="T:System.Xaml.XamlMember" />类的<see cref="T:System.Xaml.XamlMember" />表示可附加属性。</summary>
+        <param name="getter">可附加成员的支持实现的 <see langword="get" /> 访问器的 CLR 类型系统 <see cref="T:System.Reflection.MethodInfo" />。</param>
+        <param name="setter">可附加成员的支持实现的 <see langword="set" /> 访问器的 CLR 类型系统 <see cref="T:System.Reflection.MethodInfo" />。</param>
+        <param name="schemaContext">用于限定成员的 <see cref="T:System.Xaml.XamlSchemaContext" /> 上下文。</param>
+        <summary>针对表示可附加属性的 <see cref="T:System.Xaml.XamlMember" /> 初始化 <see cref="T:System.Xaml.XamlMember" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果成员表示可附加属性，请使用此构造函数。  
+ 如果成员表示可附加的属性, 请使用此构造函数。  
   
  ]]></format>
         </remarks>
@@ -333,15 +333,15 @@
       </Parameters>
       <Docs>
         <param name="attachableEventName">可附加事件的字符串名称。</param>
-        <param name="adder">CLR 类型系统<see cref="T:System.Reflection.MethodInfo" />处理程序<see langword="Add" />可附加成员的方法的支持实现。</param>
-        <param name="schemaContext"><see cref="T:System.Xaml.XamlSchemaContext" />限定成员的上下文。</param>
-        <param name="invoker"><see cref="T:System.Xaml.Schema.XamlMemberInvoker" />处理运行时调用的实现调用针对<see cref="T:System.Xaml.XamlMember" />。</param>
-        <summary>初始化的新实例<see cref="T:System.Xaml.XamlMember" />类的<see cref="T:System.Xaml.XamlMember" />，表示可附加事件，包括<see cref="T:System.Xaml.Schema.XamlMemberInvoker" />信息。</summary>
+        <param name="adder">可附加成员的支持实现的处理程序 <see langword="Add" /> 方法的 CLR 类型系统 <see cref="T:System.Reflection.MethodInfo" />。</param>
+        <param name="schemaContext">用于限定成员的 <see cref="T:System.Xaml.XamlSchemaContext" /> 上下文。</param>
+        <param name="invoker">用于针对 <see cref="T:System.Xaml.Schema.XamlMemberInvoker" /> 处理运行时调用的 <see cref="T:System.Xaml.XamlMember" /> 实现。</param>
+        <summary>针对表示可附加事件的 <see cref="T:System.Xaml.XamlMember" />（包括 <see cref="T:System.Xaml.XamlMember" /> 信息）初始化 <see cref="T:System.Xaml.Schema.XamlMemberInvoker" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果成员表示可附加事件成员，请使用此构造函数。  
+ 如果成员表示可附加的事件成员, 请使用此构造函数。  
   
  ]]></format>
         </remarks>
@@ -368,16 +368,16 @@
       </Parameters>
       <Docs>
         <param name="attachablePropertyName">可附加属性的字符串名称。</param>
-        <param name="getter">CLR 类型系统<see cref="T:System.Reflection.MethodInfo" />为<see langword="get" />可附加成员的访问器的支持实现。</param>
-        <param name="setter">CLR 类型系统<see cref="T:System.Reflection.MethodInfo" />为<see langword="set" />可附加成员的访问器的支持实现。</param>
-        <param name="schemaContext"><see cref="T:System.Xaml.XamlSchemaContext" />限定成员的上下文。</param>
-        <param name="invoker"><see cref="T:System.Xaml.Schema.XamlMemberInvoker" />处理运行时调用的实现调用针对<see cref="T:System.Xaml.XamlMember" />。</param>
-        <summary>初始化的新实例<see cref="T:System.Xaml.XamlMember" />类的<see cref="T:System.Xaml.XamlMember" />，表示可附加的属性，包括<see cref="T:System.Xaml.Schema.XamlMemberInvoker" />信息。</summary>
+        <param name="getter">可附加成员的支持实现的 <see langword="get" /> 访问器的 CLR 类型系统 <see cref="T:System.Reflection.MethodInfo" />。</param>
+        <param name="setter">可附加成员的支持实现的 <see langword="set" /> 访问器的 CLR 类型系统 <see cref="T:System.Reflection.MethodInfo" />。</param>
+        <param name="schemaContext">用于限定成员的 <see cref="T:System.Xaml.XamlSchemaContext" /> 上下文。</param>
+        <param name="invoker">用于针对 <see cref="T:System.Xaml.Schema.XamlMemberInvoker" /> 处理运行时调用的 <see cref="T:System.Xaml.XamlMember" /> 实现。</param>
+        <summary>针对表示可附加属性的 <see cref="T:System.Xaml.XamlMember" />（包括 <see cref="T:System.Xaml.XamlMember" /> 信息）初始化 <see cref="T:System.Xaml.Schema.XamlMemberInvoker" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果成员表示可附加属性成员，请使用此构造函数。  
+ 如果成员表示可附加的属性成员, 则使用此构造函数。  
   
  ]]></format>
         </remarks>
@@ -404,16 +404,16 @@
         <ReturnType>System.Xaml.XamlType</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.Xaml.XamlType" />声明与此相关联的成员的类型为<see cref="T:System.Xaml.XamlMember" />。</summary>
-        <value><see cref="T:System.Xaml.XamlType" />声明与此相关联的成员的类型为<see cref="T:System.Xaml.XamlMember" />。</value>
+        <summary>获取类型的 <see cref="T:System.Xaml.XamlType" />，该类型声明与此 <see cref="T:System.Xaml.XamlMember" /> 关联的成员。</summary>
+        <value>类型的 <see cref="T:System.Xaml.XamlType" />，该类型声明与此 <see cref="T:System.Xaml.XamlMember" /> 关联的成员。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此值通常设置在初始化期间，通常不是`null`。  
+ 此值通常是在初始化过程中设置的, `null`通常不是这样。  
   
 > [!IMPORTANT]
->  <xref:System.Xaml.XamlMember.DeclaringType%2A> 信息可以传入由构造函数进行初始化。 通过直接调用基类构造函数，初始化<xref:System.Xaml.XamlMember>派生的类可以省略某些值检查的基类中所做的。 因此，派生的初始化可以更改 XAML 成员的报告的类型成员关系信息，以便它不再按预期的方式与其基础 CLR 声明的类型系统信息一致。 对于声明的类型信息的任何安全关键检查，请改为使用的基础 CLR 类型。  
+>  <xref:System.Xaml.XamlMember.DeclaringType%2A>可以通过构造函数传入信息以进行初始化。 通过将直接调用到基构造函数中<xref:System.Xaml.XamlMember> , 派生类的初始化可能会忽略在基类中进行的一些值检查。 因此, 派生的初始化可更改 XAML 成员的已报告类型成员关系信息, 使其不再按预期方式与其基础 CLR 声明的类型系统信息对齐。 对于声明类型信息的任何安全关键检查, 请改用基础 CLR 类型。  
   
  ]]></format>
         </remarks>
@@ -435,13 +435,13 @@
         <ReturnType>System.Xaml.Schema.XamlValueConverter&lt;System.Xaml.XamlDeferringLoader&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.Xaml.Schema.XamlValueConverter`1" />对象，它用于延迟加载的 XAML 声明的对象。</summary>
-        <value>一个<see cref="T:System.Xaml.Schema.XamlValueConverter`1" />与<see cref="T:System.Xaml.XamlDeferringLoader" />泛型约束。</value>
+        <summary>获取一个 <see cref="T:System.Xaml.Schema.XamlValueConverter`1" /> 对象，该对象用于 XAML 声明的对象的延迟加载。</summary>
+        <value>一个对泛型具有 <see cref="T:System.Xaml.Schema.XamlValueConverter`1" /> 约束的 <see cref="T:System.Xaml.XamlDeferringLoader" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Xaml.XamlMember.DeferringLoader%2A>调用<xref:System.Xaml.XamlMember.LookupDeferringLoader%2A>或该方法的特定重写。 在其中的初始内部反射逻辑还未设置信息的情况下会发生此行为。  
+ 调用<xref:System.Xaml.XamlMember.DeferringLoader%2A>此方法的调用或特定的重写。<xref:System.Xaml.XamlMember.LookupDeferringLoader%2A> 在初始内部反射逻辑尚未设置信息的情况下, 会发生此行为。  
   
  ]]></format>
         </remarks>
@@ -463,19 +463,19 @@
         <ReturnType>System.Collections.Generic.IList&lt;System.Xaml.XamlMember&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取 <see cref="T:System.Xaml.XamlMember" /> 对象的列表。 这些报告其中的初始化顺序依赖关系存在相对于此成员<see cref="T:System.Xaml.XamlMember" />。</summary>
+        <summary>获取 <see cref="T:System.Xaml.XamlMember" /> 对象的列表。 这些对象报告一些成员，其中的初始化顺序依赖关系相对于此 <see cref="T:System.Xaml.XamlMember" /> 存在。</summary>
         <value><see cref="T:System.Xaml.XamlMember" /> 对象的列表。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Xaml.XamlMember.DependsOn%2A>调用<xref:System.Xaml.XamlMember.LookupDependsOn%2A>或该方法的特定重写。 在其中的初始内部反射逻辑还未设置信息的情况下会发生此行为。  
+ 调用<xref:System.Xaml.XamlMember.DependsOn%2A>此方法的调用或特定的重写。<xref:System.Xaml.XamlMember.LookupDependsOn%2A> 在初始内部反射逻辑尚未设置信息的情况下, 会发生此行为。  
   
- `DependsOn`可以应用于有意与常规的 XAML 规则相矛盾的对象模型事例的模式。 一般的 XAML 规则是不会传递以初始化文本 （或通过在 XAML 2009 中的工厂方法） 类型的成员必须能够以任意顺序指定。 通过应用`DependsOn`模式为成员，您可以指示 XAML 编写器始终处理之前此成员引用的成员。 您可以应用在其中的当前成员的值需要上下文或其他成员设置后才可用的其他信息的情况下此模式。  
+ 此`DependsOn`模式可应用于特意矛盾一般 XAML 规则的对象模型事例。 一般的 XAML 规则是, 不能作为初始化文本传递的类型成员 (或通过 XAML 2009 中的工厂方法传递的成员) 必须能够以任意顺序分配。 通过向成员`DependsOn`应用模式, 可以指示 XAML 编写器始终处理此成员之前的引用成员。 您可以在以下情况下应用此模式: 当前成员的值需要上下文或其他仅在设置其他成员后才可用的信息。  
   
- `DependsOn`应谨慎应用和它所服务体系结构的用途的属性方案为保留模式。 大量的依赖项也可能会减慢 XAML 处理。 此外，就可以产生循环依赖关系，在这种情况下的 XAML 处理行为是不确定。  
+ 应`DependsOn`慎用此模式, 为其提供结构化用途的属性方案保留。 大量依赖项可能会减慢 XAML 处理的速度。 此外, 还可以生成循环依赖项, 在这种情况下, XAML 处理行为是不确定的。  
   
- 示例`DependsOn`从 WPF 的方案包括某些属性上<xref:System.Windows.Controls.ControlTemplate>并<xref:System.Windows.DataTemplate>，然后在<xref:System.Windows.Trigger>，然后在<xref:System.Windows.Setter>。  
+ WPF `DependsOn`中的示例方案包括、 <xref:System.Windows.DataTemplate>、 <xref:System.Windows.Controls.ControlTemplate> <xref:System.Windows.Trigger>和上的特定属性<xref:System.Windows.Setter>。  
   
  ]]></format>
         </remarks>
@@ -543,7 +543,7 @@
         <Parameter Name="other" Type="System.Xaml.XamlMember" />
       </Parameters>
       <Docs>
-        <param name="other">一个与此对象进行比较的对象。</param>
+        <param name="other">与此对象进行比较的对象。</param>
         <summary>指示当前对象是否等于同一类型的另一个对象。</summary>
         <returns>如果当前对象等于 <paramref name="other" /> 参数，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
@@ -588,13 +588,13 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>此 XAML 成员可返回 XAML 命名空间的列表。</summary>
-        <returns>以字符串形式的 XAML 命名空间标识符的列表。</returns>
+        <summary>返回 XAML 命名空间的列表，此 XAML 成员可能存在于这些命名空间中。</summary>
+        <returns>字符串形式的 XAML 命名空间标识符的列表。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现返回<xref:System.Xaml.XamlType.GetXamlNamespaces%2A?displayProperty=nameWithType>调用的结果<xref:System.Xaml.XamlMember.DeclaringType%2A>相关联这<xref:System.Xaml.XamlMember>。  
+ 默认实现返回<xref:System.Xaml.XamlType.GetXamlNamespaces%2A?displayProperty=nameWithType>与此<xref:System.Xaml.XamlMember>关联的的调用<xref:System.Xaml.XamlMember.DeclaringType%2A>结果。  
   
  ]]></format>
         </remarks>
@@ -616,19 +616,19 @@
         <ReturnType>System.Xaml.Schema.XamlMemberInvoker</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.Xaml.Schema.XamlMemberInvoker" />关联的实现<see cref="T:System.Xaml.XamlMember" />。</summary>
-        <value><see cref="T:System.Xaml.Schema.XamlMemberInvoker" />关联的实现<see cref="T:System.Xaml.XamlMember" />。</value>
+        <summary>获取与此 <see cref="T:System.Xaml.Schema.XamlMemberInvoker" /> 关联的 <see cref="T:System.Xaml.XamlMember" /> 实现。</summary>
+        <value>与此 <see cref="T:System.Xaml.Schema.XamlMemberInvoker" /> 关联的 <see cref="T:System.Xaml.XamlMember" /> 实现。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `Invoker`模式是高级的 XAML 类型系统扩展方法。 `Invoker`模式提供了一种将不同的架构类型映射行为，同时仍在使用从.NET Framework XAML 服务 XAML 类型系统定义的方法。  
+ `Invoker`模式是一种高级的 XAML 类型系统扩展技术。 `Invoker`模式提供了一种方法, 用于注入不同的架构类型映射行为, 同时仍然使用 xaml 类型系统定义 .NET Framework xaml 服务。  
   
- 如果<xref:System.Xaml.XamlMember.LookupInvoker%2A>重写返回`null`，或如果默认实现将返回`null`因为它缺少<xref:System.Xaml.XamlMember.UnderlyingMember%2A>此<xref:System.Xaml.XamlMember>，则<xref:System.Xaml.XamlMember.Invoker%2A>属性将返回<xref:System.Xaml.Schema.XamlMemberInvoker.UnknownInvoker%2A?displayProperty=nameWithType>。  
+ <xref:System.Xaml.XamlMember.UnderlyingMember%2A> `null` <xref:System.Xaml.XamlMember> <xref:System.Xaml.Schema.XamlMemberInvoker.UnknownInvoker%2A?displayProperty=nameWithType>如果重写返回`null`, 或如果默认实现由于缺少此的而返回, 则属性将<xref:System.Xaml.XamlMember.Invoker%2A>返回。 <xref:System.Xaml.XamlMember.LookupInvoker%2A>  
   
- <xref:System.Xaml.Schema.XamlMemberInvoker.UnknownInvoker%2A?displayProperty=nameWithType> 默认值。 这适用于大多数操作，使用.NET Framework XAML 服务和默认 XAML 架构上下文，并将其中没有特定于覆盖`Invoker`模式传递有关构造的 XAML 类型系统实体。  
+ 默认为 <xref:System.Xaml.Schema.XamlMemberInvoker.UnknownInvoker%2A?displayProperty=nameWithType> 类型。 这适用于大多数使用 .NET Framework xaml 服务和默认 xaml 架构上下文的操作, 并且没有为 XAML 类型系统实体`Invoker`的构造传递特定的重写模式。  
   
- 调用<xref:System.Xaml.XamlMember.Invoker%2A>调用<xref:System.Xaml.XamlMember.LookupInvoker%2A>或该方法的特定重写。  
+ 调用<xref:System.Xaml.XamlMember.Invoker%2A>此方法的调用或特定的重写。<xref:System.Xaml.XamlMember.LookupInvoker%2A>  
   
  ]]></format>
         </remarks>
@@ -655,17 +655,17 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个值，该值指示是否此<see cref="T:System.Xaml.XamlMember" />报告为环境属性。</summary>
-        <value><see langword="true" /> 如果此<see cref="T:System.Xaml.XamlMember" />报告为环境属性; 否则为<see langword="false" />。</value>
+        <summary>获取一个值，该值指示是否将此 <see cref="T:System.Xaml.XamlMember" /> 报告为一个环境属性。</summary>
+        <value>如果将此 <see cref="T:System.Xaml.XamlMember" /> 报告为环境属性，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Xaml.XamlMember.IsAmbient%2A>调用<xref:System.Xaml.XamlMember.LookupIsAmbient%2A>或该方法的特定重写。 在实现其中的初始内部反射逻辑还未设置信息中会发生此行为。  
+ 调用<xref:System.Xaml.XamlMember.IsAmbient%2A>此方法的调用或特定的重写。<xref:System.Xaml.XamlMember.LookupIsAmbient%2A> 此行为发生在初始内部反射逻辑尚未设置信息的实现中。  
   
- 检查对环境属性通常是 XAML 处理逻辑，以确保对象和依赖的环境使用的类型限定的值可以正常工作的一部分。 .NET Framework XAML 服务 Api 和默认 XAML 架构上下文将填充此值根据与归属<xref:System.Windows.Markup.AmbientAttribute>。 默认实现<xref:System.Xaml.XamlMember.LookupIsAmbient%2A>使用此现有<xref:System.Windows.Markup.AmbientAttribute>方法，并返回`true`如果<xref:System.Windows.Markup.AmbientAttribute>成员声明上存在。  
+ 检查环境属性通常是 XAML 处理逻辑的一部分, 以确保依赖于类型限定的环境使用的对象和值可以正常工作。 .NET Framework XAML 服务 Api 和默认的 XAML 架构上下文根据的<xref:System.Windows.Markup.AmbientAttribute>特性填充此值。 的<xref:System.Xaml.XamlMember.LookupIsAmbient%2A>默认实现使用此现有<xref:System.Windows.Markup.AmbientAttribute>方法, 如果<xref:System.Windows.Markup.AmbientAttribute>存在于成员`true`声明中, 它将返回。  
   
- <xref:System.Windows.Markup.AmbientAttribute> 在多个 WPF 类型，其中包括的成员上找到<xref:System.Windows.Application>， <xref:System.Windows.Setter>，和<xref:System.Windows.Style>。 它还会在上找到<xref:System.Windows.ResourceDictionary>类型，隐含意思，任何成员，它使用<xref:System.Windows.ResourceDictionary>根据其类型应视为环境即使没有专门特性化成员。  
+ <xref:System.Windows.Markup.AmbientAttribute>在多个 WPF 类型的成员上找到, 其中<xref:System.Windows.Application>包括<xref:System.Windows.Setter>、和<xref:System.Windows.Style>。 它也可以在<xref:System.Windows.ResourceDictionary>类型上找到, 这隐含使用<xref:System.Windows.ResourceDictionary>作为其类型的任何成员都应被视为环境, 即使成员并未专门进行特性化。  
   
  ]]></format>
         </remarks>
@@ -688,13 +688,13 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个值，该值指示是否此<see cref="T:System.Xaml.XamlMember" />是可附加成员。</summary>
-        <value><see langword="true" /> 如果此<see cref="T:System.Xaml.XamlMember" />是可附加成员; 否则为<see langword="false" />。</value>
+        <summary>获取一个值，该值指示此 <see cref="T:System.Xaml.XamlMember" /> 是否为可附加成员。</summary>
+        <value>如果此 <see cref="T:System.Xaml.XamlMember" /> 是可附加成员，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xaml.XamlMember.IsAttachable%2A>值初始化基于哪个构造函数用于构造<xref:System.Xaml.XamlMember>。  
+ 该值<xref:System.Xaml.XamlMember.IsAttachable%2A>是根据用于构造的<xref:System.Xaml.XamlMember>构造函数进行初始化的。  
   
  ]]></format>
         </remarks>
@@ -716,15 +716,15 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个值，该值指示是否此<see cref="T:System.Xaml.XamlMember" />为 XAML 指令。</summary>
-        <value><see langword="true" /> 如果此<see cref="T:System.Xaml.XamlMember" />是 XAML 指令; 否则为<see langword="false" />。</value>
+        <summary>获取一个值，该值指示此 <see cref="T:System.Xaml.XamlMember" /> 是否为 XAML 指令。</summary>
+        <value>如果此 <see cref="T:System.Xaml.XamlMember" /> 是 XAML 指令，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xaml.XamlMember.IsDirective%2A>值初始化基于哪个构造函数用于构造<xref:System.Xaml.XamlMember>。 基<xref:System.Xaml.XamlMember>构造函数初始化，以便<xref:System.Xaml.XamlMember.IsDirective%2A>是`false`。 但是，<xref:System.Xaml.XamlDirective>类 (<xref:System.Xaml.XamlMember>派生的类) 初始化，以便<xref:System.Xaml.XamlMember.IsDirective%2A>是`true`。  
+ 该值<xref:System.Xaml.XamlMember.IsDirective%2A>是根据用于构造的<xref:System.Xaml.XamlMember>构造函数进行初始化的。 基本<xref:System.Xaml.XamlMember>构造函数将初始化为<xref:System.Xaml.XamlMember.IsDirective%2A> `false`, 即。 但是, <xref:System.Xaml.XamlDirective>类<xref:System.Xaml.XamlMember> (派生类) 初始化, <xref:System.Xaml.XamlMember.IsDirective%2A>因此为`true`。  
   
- 如果您希望报告<xref:System.Xaml.XamlMember.IsDirective%2A>作为`true`到 XAML 成员的自定义 XAML 架构类的调用方，请确保从派生<xref:System.Xaml.XamlDirective>因为这是启用此行为的唯一方法。  
+ 如果要将报告<xref:System.Xaml.XamlMember.IsDirective%2A>为`true` xaml 成员的自定义 xaml 架构类的调用方, 请确保派生<xref:System.Xaml.XamlDirective>自, 因为这是启用该行为的唯一方法。  
   
  ]]></format>
         </remarks>
@@ -751,13 +751,13 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个值，该值指示是否此<see cref="T:System.Xaml.XamlMember" />表示事件成员。</summary>
-        <value><see langword="true" /> 如果此<see cref="T:System.Xaml.XamlMember" />表示的事件; 否则为<see langword="false" />。</value>
+        <summary>获取一个值，该值指示此 <see cref="T:System.Xaml.XamlMember" /> 是否表示事件成员。</summary>
+        <value>如果此 <see cref="T:System.Xaml.XamlMember" /> 表示事件，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Xaml.XamlMember.IsEvent%2A>调用<xref:System.Xaml.XamlMember.LookupIsEvent%2A>或该方法的特定重写。  
+ 调用<xref:System.Xaml.XamlMember.IsEvent%2A>此方法的调用或特定的重写。<xref:System.Xaml.XamlMember.LookupIsEvent%2A>  
   
  ]]></format>
         </remarks>
@@ -779,8 +779,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个值，该值指示是否这<see cref="T:System.Xaml.XamlMember" />使用的有效初始化<see langword="xamlName" />字符串作为其<see cref="P:System.Xaml.XamlMember.Name" />。</summary>
-        <value><see langword="true" /> 如果此<see cref="T:System.Xaml.XamlMember" />使用的有效初始化<see langword="xamlName" />字符串; 否则为<see langword="false" />。</value>
+        <summary>获取一个值，该值指示是否使用有效的 <see langword="xamlName" /> 字符串作为其 <see cref="T:System.Xaml.XamlMember" /> 来初始化此 <see cref="P:System.Xaml.XamlMember.Name" />。</summary>
+        <value>如果使用有效的 <see langword="true" /> 字符串来初始化此 <see cref="T:System.Xaml.XamlMember" />，则为 <see langword="xamlName" />；否则为 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/11e4cada-41d2-494d-9531-0d3df4dfcbe3">XamlName</related>
       </Docs>
@@ -806,13 +806,13 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个值，该值指示是否此<see cref="T:System.Xaml.XamlMember" />表示只读成员。</summary>
-        <value><see langword="true" /> 如果此<see cref="T:System.Xaml.XamlMember" />表示只读成员; 否则为<see langword="false" />。</value>
+        <summary>获取一个值，该值指示此 <see cref="T:System.Xaml.XamlMember" /> 是否表示只读成员。</summary>
+        <value>如果此 <see cref="T:System.Xaml.XamlMember" /> 表示只读成员，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Xaml.XamlMember.IsReadOnly%2A>调用<xref:System.Xaml.XamlMember.LookupIsReadOnly%2A>或该方法的特定重写。  
+ 调用<xref:System.Xaml.XamlMember.IsReadOnly%2A>此方法的调用或特定的重写。<xref:System.Xaml.XamlMember.LookupIsReadOnly%2A>  
   
  ]]></format>
         </remarks>
@@ -834,18 +834,18 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个值，该值指示是否这<see cref="T:System.Xaml.XamlMember" />表示具有可调用公共成员<see langword="get" />访问器。</summary>
-        <value><see langword="true" /> 如果此<see cref="T:System.Xaml.XamlMember" />表示可调用公共<see langword="get" />访问器; 否则为<see langword="false" />。</value>
+        <summary>获取一个值，该值指示此 <see cref="T:System.Xaml.XamlMember" /> 是否表示一个具有可调用公共 <see langword="get" /> 访问器的成员。</summary>
+        <value>如果此 <see cref="T:System.Xaml.XamlMember" /> 表示可调用公共 <see langword="true" /> 访问器，则为 <see langword="get" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xaml.XamlMember.IsReadPublic%2A>是否值检查<xref:System.Xaml.XamlMember.DeclaringType%2A>是公共的。 如果<xref:System.Xaml.XamlMember.DeclaringType%2A>是非公共的`get`访问器不是可调用以实用方式，并<xref:System.Xaml.XamlMember.IsReadPublic%2A>返回`false`。  
+ 该值检查是否为公共<xref:System.Xaml.XamlMember.DeclaringType%2A>的。 <xref:System.Xaml.XamlMember.IsReadPublic%2A> 如果<xref:System.Xaml.XamlMember.DeclaringType%2A>是非公共的`get` , 则访问器无法以实用方式调用, <xref:System.Xaml.XamlMember.IsReadPublic%2A>并`false`返回。  
   
- 调用<xref:System.Xaml.XamlMember.IsReadPublic%2A>调用<xref:System.Xaml.XamlMember.LookupIsReadPublic%2A>或该方法的特定重写。  
+ 调用<xref:System.Xaml.XamlMember.IsReadPublic%2A>此方法的调用或特定的重写。<xref:System.Xaml.XamlMember.LookupIsReadPublic%2A>  
   
 > [!IMPORTANT]
->  <xref:System.Xaml.XamlMember.LookupIsReadPublic%2A>方法是虚拟的因此，可以重写。 重写有可能更改 （恶意或不成功） 的报告的访问信息的 XAML 成员，以便它不再按预期的方式与其基础 CLR 声明的类型系统访问信息一致。 对于访问级别的任何安全关键检查，请改为使用的基础 CLR 类型。  
+>  方法<xref:System.Xaml.XamlMember.LookupIsReadPublic%2A>是虚拟的, 因此可以重写。 重写可能会更改 (恶意或其他) 已报告的 XAML 成员访问信息, 使其不再以预期方式与其基础 CLR 声明的类型系统访问信息对齐。 对于访问级别的任何安全关键检查, 请改用基础 CLR 类型。  
   
  ]]></format>
         </remarks>
@@ -867,19 +867,19 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个值，指示该成员是否不用于类型和成员解析的支持系统可解析。</summary>
-        <value><see langword="true" /> 如果成员不可解析;<see langword="false" />如果成员是可解析。</value>
+        <summary>获取一个值，该值指示用于类型和成员解析的支持系统是否无法解析成员。</summary>
+        <value>如果成员不可解析，则为 <see langword="true" />；如果成员可解析，则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Xaml.XamlMember>构造<xref:System.Xaml.XamlMember.%23ctor%28System.String%2CSystem.Xaml.XamlType%2CSystem.Boolean%29>签名返回`true`为<xref:System.Xaml.XamlMember.IsUnknown%2A>。  
+ 使用签名的返回`true`的。<xref:System.Xaml.XamlMember.IsUnknown%2A> <xref:System.Xaml.XamlMember> <xref:System.Xaml.XamlMember.%23ctor%28System.String%2CSystem.Xaml.XamlType%2CSystem.Boolean%29>  
   
- 涉及到了加载路径<xref:System.Xaml.XamlObjectWriter>、 一个<xref:System.Xaml.XamlMember>与`true`为<xref:System.Xaml.XamlMember.IsUnknown%2A>不能向其中写入对象图。 在.NET Framework XAML 服务 Api 中的默认实现<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A?displayProperty=nameWithType>调用将引发<xref:System.Xaml.XamlObjectWriterException>时的相关<xref:System.Xaml.XamlMember>报表`true`为<xref:System.Xaml.XamlMember.IsUnknown%2A>。  
+ 对于涉及<xref:System.Xaml.XamlObjectWriter>的加载路径<xref:System.Xaml.XamlMember> , 无法将具有`true`的<xref:System.Xaml.XamlMember.IsUnknown%2A>用于写入对象关系图。 在 .NET Framework XAML 服务 api 中的默认实现下, <xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A?displayProperty=nameWithType>调用会在<xref:System.Xaml.XamlObjectWriterException>相关<xref:System.Xaml.XamlMember>报表`true` <xref:System.Xaml.XamlMember.IsUnknown%2A>时引发。  
   
- 不应构造<xref:System.Xaml.XamlMember>具有值`true`有关<xref:System.Xaml.XamlMember.IsUnknown%2A>除非您的实现可以处理从异常<xref:System.Xaml.XamlObjectWriter>，或有其他方法来调整<xref:System.Xaml.XamlObjectWriter>行为。  
+ 您不应构造一个<xref:System.Xaml.XamlMember>具有值<xref:System.Xaml.XamlMember.IsUnknown%2A>的`true` , 除非您的实现可以处理中<xref:System.Xaml.XamlObjectWriter>的异常, 或者您可以使用其他方法来调整<xref:System.Xaml.XamlObjectWriter>行为。  
   
- 调用<xref:System.Xaml.XamlMember.IsUnknown%2A>调用<xref:System.Xaml.XamlMember.LookupIsUnknown%2A>或该方法的特定重写。  
+ 调用<xref:System.Xaml.XamlMember.IsUnknown%2A>此方法的调用或特定的重写。<xref:System.Xaml.XamlMember.LookupIsUnknown%2A>  
   
  ]]></format>
         </remarks>
@@ -906,13 +906,13 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个值，该值指示是否此<see cref="T:System.Xaml.XamlMember" />表示只写成员。</summary>
-        <value><see langword="true" /> 如果此<see cref="T:System.Xaml.XamlMember" />表示只写成员; 否则为<see langword="false" />。</value>
+        <summary>获取一个值，该值指示此 <see cref="T:System.Xaml.XamlMember" /> 是否表示只写成员。</summary>
+        <value>如果此 <see cref="T:System.Xaml.XamlMember" /> 表示只写成员，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Xaml.XamlMember.IsWriteOnly%2A>调用<xref:System.Xaml.XamlMember.LookupIsWriteOnly%2A>或该方法的特定重写。  
+ 调用<xref:System.Xaml.XamlMember.IsWriteOnly%2A>此方法的调用或特定的重写。<xref:System.Xaml.XamlMember.LookupIsWriteOnly%2A>  
   
  ]]></format>
         </remarks>
@@ -934,18 +934,18 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个值，该值指示是否这<see cref="T:System.Xaml.XamlMember" />表示具有可调用公共成员<see langword="set" />访问器。</summary>
-        <value><see langword="true" /> 如果此<see cref="T:System.Xaml.XamlMember" />表示可调用公共<see langword="set" />访问器; 否则为<see langword="false" />。</value>
+        <summary>获取一个值，该值指示此 <see cref="T:System.Xaml.XamlMember" /> 是否表示一个具有可调用公共 <see langword="set" /> 访问器的成员。</summary>
+        <value>如果此 <see cref="T:System.Xaml.XamlMember" /> 表示可调用公共 <see langword="true" /> 访问器，则为 <see langword="set" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xaml.XamlMember.IsWritePublic%2A>值将视为是否<xref:System.Xaml.XamlMember.DeclaringType%2A>是公共的决定的一部分。 如果<xref:System.Xaml.XamlMember.DeclaringType%2A>是非公共的`set`访问器不是可调用以实用方式，并<xref:System.Xaml.XamlMember.IsWritePublic%2A>返回`false`。  
+ <xref:System.Xaml.XamlMember.IsWritePublic%2A>值考虑<xref:System.Xaml.XamlMember.DeclaringType%2A>是否作为确定的一部分公开。 如果<xref:System.Xaml.XamlMember.DeclaringType%2A>是非公共的`set` , 则访问器无法以实用方式调用, <xref:System.Xaml.XamlMember.IsWritePublic%2A>并`false`返回。  
   
- 调用<xref:System.Xaml.XamlMember.IsWritePublic%2A>调用<xref:System.Xaml.XamlMember.LookupIsWritePublic%2A>或该方法的特定重写。  
+ 调用<xref:System.Xaml.XamlMember.IsWritePublic%2A>此方法的调用或特定的重写。<xref:System.Xaml.XamlMember.LookupIsWritePublic%2A>  
   
 > [!IMPORTANT]
->  <xref:System.Xaml.XamlMember.LookupIsWritePublic%2A>方法是虚拟的因此，可以重写。 重写有可能更改 （恶意或不成功） 的报告的访问信息的 XAML 成员，以便它不再按预期的方式与其基础 CLR 声明的类型系统访问信息一致。 对于访问级别的任何安全关键检查，请改为使用的基础 CLR 类型。  
+>  方法<xref:System.Xaml.XamlMember.LookupIsWritePublic%2A>是虚拟的, 因此可以重写。 重写可能会更改 (恶意或其他) 已报告的 XAML 成员访问信息, 使其不再以预期方式与其基础 CLR 声明的类型系统访问信息对齐。 对于访问级别的任何安全关键检查, 请改用基础 CLR 类型。  
   
  ]]></format>
         </remarks>
@@ -968,13 +968,13 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>在派生类中实现时，返回<see cref="T:System.Reflection.ICustomAttributeProvider" />实现。</summary>
+        <summary>在派生类中实现时，返回 <see cref="T:System.Reflection.ICustomAttributeProvider" /> 实现。</summary>
         <returns><see cref="T:System.Reflection.ICustomAttributeProvider" /> 实现。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 重写此方法以提供内部反射提供一种方法来获取 CLR 属性值。 在没有重写时，内部反射器使用典型的 CLR 反射逻辑，例如对调用<xref:System.Reflection.CustomAttributeData.GetCustomAttributes%2A>。  
+ 重写此方法以使用替代方法获取内部反射, 以获取 CLR 特性值。 在没有重写的情况下, 内部反射器使用典型的 CLR 反射逻辑, 如<xref:System.Reflection.CustomAttributeData.GetCustomAttributes%2A>对的调用。  
   
  默认实现返回 `null`。  
   
@@ -999,15 +999,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回<see cref="T:System.Xaml.Schema.XamlValueConverter`1" />对象，它用于延迟加载的 XAML 声明的对象。</summary>
-        <returns>一个<see cref="T:System.Xaml.Schema.XamlValueConverter`1" />具有<see cref="T:System.Xaml.XamlDeferringLoader" />泛型约束。</returns>
+        <summary>返回一个 <see cref="T:System.Xaml.Schema.XamlValueConverter`1" /> 对象，该对象用于 XAML 声明的对象的延迟加载。</summary>
+        <returns>对泛型具有 <see cref="T:System.Xaml.Schema.XamlValueConverter`1" /> 约束的 <see cref="T:System.Xaml.XamlDeferringLoader" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.XamlMember.DeferringLoader%2A>属性。 重写此方法，如果你想<xref:System.Xaml.XamlMember.DeferringLoader%2A>从默认内部反射，由启用的值返回不同的值，如果您同时还提供自定义<xref:System.Xaml.Schema.XamlMemberInvoker>信息。  
+ 当调用方从<xref:System.Xaml.XamlMember.DeferringLoader%2A>属性获取值时, 将调用此方法。 如果要<xref:System.Xaml.XamlMember.DeferringLoader%2A>返回与默认内部反射启用的值不同的值, 并且还提供自定义<xref:System.Xaml.Schema.XamlMemberInvoker>信息, 请重写此方法。  
   
- 默认实现返回的对象通过读取<xref:System.Windows.Markup.XamlDeferLoadAttribute>或使用<xref:System.Xaml.XamlDeferringLoader>从声明的类型。 如果这两个对象不可用，则此方法可能返回`null`。  
+ 默认实现通过<xref:System.Windows.Markup.XamlDeferLoadAttribute> <xref:System.Xaml.XamlDeferringLoader>从声明类型读取或使用来返回对象。 如果这两个对象均不可用, 则`null`此方法可能返回。  
   
  ]]></format>
         </remarks>
@@ -1031,19 +1031,19 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回一系列<see cref="T:System.Xaml.XamlMember" />对象。 列表中的项报告一些的成员的初始化顺序依赖关系相对于此的存在其中<see cref="T:System.Xaml.XamlMember" />。</summary>
+        <summary>返回 <see cref="T:System.Xaml.XamlMember" /> 对象的列表。 此列表中的项报告一些成员，其中的初始化顺序依赖关系相对于此 <see cref="T:System.Xaml.XamlMember" /> 存在。</summary>
         <returns><see cref="T:System.Xaml.XamlMember" /> 对象的列表。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.XamlMember.DependsOn%2A>属性。 重写此方法，如果你想<xref:System.Xaml.XamlMember.DependsOn%2A>从默认内部反射，由启用的值返回不同的值，如果您同时还提供自定义<xref:System.Xaml.Schema.XamlMemberInvoker>信息。  
+ 当调用方从<xref:System.Xaml.XamlMember.DependsOn%2A>属性获取值时, 将调用此方法。 如果要<xref:System.Xaml.XamlMember.DependsOn%2A>返回与默认内部反射启用的值不同的值, 并且还提供自定义<xref:System.Xaml.Schema.XamlMemberInvoker>信息, 请重写此方法。  
   
- WPF XAML 读取器和编写器实现属性与这种情况下<xref:System.Windows.Markup.DependsOnAttribute>。 默认实现使用此现有<xref:System.Windows.Markup.DependsOnAttribute>技术。  
+ WPF XAML 读取器和编写器实现将这种<xref:System.Windows.Markup.DependsOnAttribute>情况与结合在一起。 默认实现使用此现有<xref:System.Windows.Markup.DependsOnAttribute>技术。  
   
- 重写此方法，如果不使用<xref:System.Windows.Markup.DependsOnAttribute>为此目的，并想要替换该技术用于指示与您自己的方法的属性处理顺序。 如果不想支持属性的处理顺序，您可以使用的默认实现，因为它未不返回任何结果，哪一个是合适。  
+ 如果你不使用<xref:System.Windows.Markup.DependsOnAttribute>来实现此目的, 并且想要将该方法替换为使用自己的方法指示属性处理顺序, 请重写此方法。 如果不打算支持属性处理顺序, 则可以使用默认实现, 因为它不返回任何适当的结果。  
   
- 列表是只读的。  
+ 列表为只读。  
   
  ]]></format>
         </remarks>
@@ -1067,17 +1067,17 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回<see cref="T:System.Xaml.Schema.XamlMemberInvoker" />与此关联<see cref="T:System.Xaml.XamlMember" />。</summary>
-        <returns><see cref="T:System.Xaml.Schema.XamlMemberInvoker" />信息<see cref="T:System.Xaml.XamlMember" />; 或<see langword="null" />。</returns>
+        <summary>返回与此 <see cref="T:System.Xaml.Schema.XamlMemberInvoker" /> 关联的 <see cref="T:System.Xaml.XamlMember" />。</summary>
+        <returns>此 <see cref="T:System.Xaml.Schema.XamlMemberInvoker" /> 的 <see cref="T:System.Xaml.XamlMember" /> 信息；或者为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法，通过调用<xref:System.Xaml.XamlMember.Invoker%2A>。  
+ 此方法通过调用来<xref:System.Xaml.XamlMember.Invoker%2A>调用。  
   
- 默认实现不需要<xref:System.Xaml.XamlMember>通过使用一个构造函数传递一个初始构造<xref:System.Xaml.Schema.XamlMemberInvoker>。 但是，<xref:System.Xaml.XamlMember.UnderlyingMember%2A>值必须存在<xref:System.Xaml.XamlMember>; 否则为默认实现返回`null`。  
+ 默认实现不要求<xref:System.Xaml.XamlMember>使用传递初始<xref:System.Xaml.Schema.XamlMemberInvoker>的构造函数之一来构造。 但是, <xref:System.Xaml.XamlMember.UnderlyingMember%2A>的<xref:System.Xaml.XamlMember>值必须为; 否则, 默认实现返回`null`。  
   
- 重写此方法，如果也派生<xref:System.Xaml.Schema.XamlMemberInvoker>并打算以返回派生的类。 如果返回`null`，<xref:System.Xaml.XamlMember.Invoker%2A>返回<xref:System.Xaml.Schema.XamlMemberInvoker.UnknownInvoker%2A?displayProperty=nameWithType>向调用方。  
+ 如果还从<xref:System.Xaml.Schema.XamlMemberInvoker>派生并且打算返回派生类, 请重写此方法。 如果返回`null`, <xref:System.Xaml.XamlMember.Invoker%2A>则返回<xref:System.Xaml.Schema.XamlMemberInvoker.UnknownInvoker%2A?displayProperty=nameWithType>到调用方。  
   
  ]]></format>
         </remarks>
@@ -1102,17 +1102,17 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回是否这<see cref="T:System.Xaml.XamlMember" />报告为环境属性。</summary>
-        <returns><see langword="true" /> 若要报告这<see cref="T:System.Xaml.XamlMember" />作为环境属性; 否则为<see langword="false" />。</returns>
+        <summary>返回的值指示是否将此 <see cref="T:System.Xaml.XamlMember" /> 作为环境属性报告。</summary>
+        <returns>如果要将此 <see cref="T:System.Xaml.XamlMember" /> 报告为环境属性，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通过检查环境的 XAML 属性信息的内部调用来调用此方法。 环境属性行为中的 XAML 读取器和 XAML 编写器的公共 API 行为考虑。 引用的内部调用<xref:System.Xaml.XamlMember.LookupIsAmbient%2A>通常是 XAML 处理逻辑，以确保对象和依赖的环境使用的类型限定的值可以正常工作的一部分。 默认.NET Framework XAML 服务实现使用 CLR 属性设置为了获取此信息从反射对后备类型。 具体而言，默认实现可检查<xref:System.Windows.Markup.AmbientAttribute>，并返回`true`有关<xref:System.Xaml.XamlMember.LookupIsAmbient%2A>如果<xref:System.Windows.Markup.AmbientAttribute>成员定义上存在。  
+ 此方法由检查环境 XAML 属性信息的内部调用调用。 环境属性行为在 XAML 读取器和 XAML 编写器的公共 API 行为中进行考虑。 引用<xref:System.Xaml.XamlMember.LookupIsAmbient%2A>的内部调用通常是 XAML 处理逻辑的一部分, 以确保依赖于类型限定的环境使用的对象和值可以正常工作。 XAML 服务实现的默认 .NET Framework 使用 CLR 特性化, 以通过支持类型的反射获取此信息。 具体而言, 默认实现将检查<xref:System.Windows.Markup.AmbientAttribute>并<xref:System.Xaml.XamlMember.LookupIsAmbient%2A>返回`true` if <xref:System.Windows.Markup.AmbientAttribute>在成员定义中是否存在。  
   
- 重写此方法，如果不使用<xref:System.Windows.Markup.AmbientAttribute>为此目的，并想要替换为你自己的技术环境 XAML 属性，该值指示该技术。  
+ 如果你不使用来实现此目的<xref:System.Windows.Markup.AmbientAttribute> , 并且打算使用自己的方法替换指示环境 XAML 属性的该方法, 请重写此方法。  
   
- 示例 Api 从属性与 WPF<xref:System.Windows.Markup.AmbientAttribute>都<xref:System.Windows.Trigger.Property%2A?displayProperty=nameWithType>和<xref:System.Windows.Style.BasedOn%2A?displayProperty=nameWithType>。  
+ WPF 中具有<xref:System.Windows.Markup.AmbientAttribute>的属性的示例 api <xref:System.Windows.Trigger.Property%2A?displayProperty=nameWithType>为<xref:System.Windows.Style.BasedOn%2A?displayProperty=nameWithType>和。  
   
  ]]></format>
         </remarks>
@@ -1136,15 +1136,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回是否这<see cref="T:System.Xaml.XamlMember" />表示一个事件。</summary>
-        <returns><see langword="true" /> 报告此<see cref="T:System.Xaml.XamlMember" />表示的事件; 否则为<see langword="false" />。</returns>
+        <summary>返回的值指示此 <see cref="T:System.Xaml.XamlMember" /> 是否表示一个事件。</summary>
+        <returns>如果要报告此 <see cref="T:System.Xaml.XamlMember" /> 表示事件，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现会检查是否<xref:System.Xaml.XamlMember.UnderlyingMember%2A>属于类型<xref:System.Reflection.EventInfo>，并且，如果是，返回`true`。  
+ 默认实现检查是否<xref:System.Xaml.XamlMember.UnderlyingMember%2A>为类型<xref:System.Reflection.EventInfo>, 如果为, 则返回`true`。  
   
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.XamlMember.IsEvent%2A>。 重写此方法，如果想报告统一的结果为整个<xref:System.Xaml.XamlMember>派生的类，或如果您拥有的专用元数据可用，可以解释为确定 XAML 类型系统表示形式基于每个用例。  
+ 当调用方从<xref:System.Xaml.XamlMember.IsEvent%2A>获取值时, 将调用此方法。 如果您想要为整个<xref:System.Xaml.XamlMember>派生类报告统一的结果, 或者您具有可用的专用元数据 (可以解释为按每个事例确定 XAML 类型系统表示形式), 请重写此方法。  
   
  ]]></format>
         </remarks>
@@ -1168,15 +1168,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回是否这<see cref="T:System.Xaml.XamlMember" />表示预期的只读属性。</summary>
-        <returns><see langword="true" /> 若要报告这<see cref="T:System.Xaml.XamlMember" />为预期的只读属性; 否则为<see langword="false" />。</returns>
+        <summary>返回的值指示此 <see cref="T:System.Xaml.XamlMember" /> 是否表示预期的只读属性。</summary>
+        <returns>如果要将此 <see cref="T:System.Xaml.XamlMember" /> 报告为预期的只读属性，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现返回`true`如果<xref:System.Xaml.XamlMember.UnderlyingMember%2A>存在，但公共`set`访问器不存在，由内部反射。  
+ 如果`true` `set`存在, 则默认实现将返回, 但对于它不存在公共访问器, 这是由内部反射确定的。 <xref:System.Xaml.XamlMember.UnderlyingMember%2A>  
   
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.XamlMember.IsReadOnly%2A>。 重写此方法，如果想报告统一的结果为整个<xref:System.Xaml.XamlMember>派生的类，或如果您拥有的专用元数据可用，可以解释为确定 XAML 类型系统表示形式基于每个用例。  
+ 当调用方从<xref:System.Xaml.XamlMember.IsReadOnly%2A>获取值时, 将调用此方法。 如果您想要为整个<xref:System.Xaml.XamlMember>派生类报告统一的结果, 或者您具有可用的专用元数据 (可以解释为按每个事例确定 XAML 类型系统表示形式), 请重写此方法。  
   
  ]]></format>
         </remarks>
@@ -1200,20 +1200,20 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回是否这<see cref="T:System.Xaml.XamlMember" />表示具有公共属性<see langword="get" />访问器。</summary>
-        <returns><see langword="true" /> 如果此<see cref="T:System.Xaml.XamlMember" />表示具有公共的属性<see langword="get" />访问器; 否则为<see langword="false" />。</returns>
+        <summary>返回的值指示此 <see cref="T:System.Xaml.XamlMember" /> 是否表示一个具有公共 <see langword="get" /> 访问器的属性。</summary>
+        <returns>如果此 <see cref="T:System.Xaml.XamlMember" /> 表示具有公共 <see langword="true" /> 访问器的属性，则为 <see langword="get" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现返回根据内部反射或求反运算的结果<xref:System.Xaml.XamlMember.IsWriteOnly%2A>按该顺序进行处理。  
+ 默认实现返回基于内部反射或的求反的<xref:System.Xaml.XamlMember.IsWriteOnly%2A>结果, 并按该顺序进行处理。  
   
- <xref:System.Xaml.XamlMember.LookupIsReadPublic%2A> 返回是否为公共的则该成员本身它将返回`true`非公共类型声明上公共成员。 使用<xref:System.Xaml.XamlMember.IsReadPublic%2A>相反，如果还想要考虑的声明类型的可见性。  
+ <xref:System.Xaml.XamlMember.LookupIsReadPublic%2A>返回成员本身是否为公共的;它为`true`非公共声明类型上的公共成员返回。 <xref:System.Xaml.XamlMember.IsReadPublic%2A>如果还想要考虑声明类型的可见性, 请改用。  
   
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.XamlMember.IsReadPublic%2A>。 重写此方法，如果想报告统一的结果为整个<xref:System.Xaml.XamlMember>派生的类，或如果您拥有的专用元数据可用于确定这基于每个用例。  
+ 当调用方从<xref:System.Xaml.XamlMember.IsReadPublic%2A>获取值时, 将调用此方法。 如果您想要报告整个<xref:System.Xaml.XamlMember>派生类的统一结果, 或者您有可用于根据每个案例来确定这一点的专用元数据, 请重写此方法。  
   
 > [!IMPORTANT]
->  <xref:System.Xaml.XamlMember.LookupIsReadPublic%2A>方法是虚拟的因此，可以重写。 重写有可能更改 （恶意或不成功） 的报告的访问信息的 XAML 成员，以便它不再按预期的方式与其基础 CLR 声明的类型系统访问信息一致。 对于访问级别的任何安全关键检查，请改为使用的基础 CLR 类型。  
+>  方法<xref:System.Xaml.XamlMember.LookupIsReadPublic%2A>是虚拟的, 因此可以重写。 重写可能会更改 (恶意或其他) 已报告的 XAML 成员访问信息, 使其不再以预期方式与其基础 CLR 声明的类型系统访问信息对齐。 对于访问级别的任何安全关键检查, 请改用基础 CLR 类型。  
   
  ]]></format>
         </remarks>
@@ -1237,15 +1237,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回是否这<see cref="T:System.Xaml.XamlMember" />表示不可解析用于类型和成员解析的支持系统的成员。</summary>
-        <returns><see langword="true" /> 如果此<see cref="T:System.Xaml.XamlMember" />表示不可解析的成员; 否则为<see langword="false" />。</returns>
+        <summary>返回的值指示此 <see cref="T:System.Xaml.XamlMember" /> 是否表示一个用于类型和成员解析的支持系统无法解析的成员。</summary>
+        <returns>如果此 <see cref="T:System.Xaml.XamlMember" /> 表示不可解析的成员，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用方获取从值时，可能会调用此方法<xref:System.Xaml.XamlMember.IsUnknown%2A>。 默认实现返回结果可能会根据内部反射或通过检查`null`的值<xref:System.Xaml.XamlMember.UnderlyingMember%2A>按该顺序进行处理。  
+ 当调用方从<xref:System.Xaml.XamlMember.IsUnknown%2A>获取值时, 可以调用此方法。 默认实现返回基于内部反射或检查`null`值的<xref:System.Xaml.XamlMember.UnderlyingMember%2A>结果, 以该顺序进行处理。  
   
- 重写此方法，如果想报告统一的结果为整个<xref:System.Xaml.XamlMember>派生的类，或如果您拥有的专用元数据可用于确定这基于每个用例。  
+ 如果您想要报告整个<xref:System.Xaml.XamlMember>派生类的统一结果, 或者您有可用于根据每个案例来确定这一点的专用元数据, 请重写此方法。  
   
  ]]></format>
         </remarks>
@@ -1269,15 +1269,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回是否这<see cref="T:System.Xaml.XamlMember" />表示具有公共成员<see langword="set" />访问器但没有公共<see langword="get" />访问器。</summary>
-        <returns><see langword="true" /> 如果此<see cref="T:System.Xaml.XamlMember" />表示只写成员; 否则为<see langword="false" />。</returns>
+        <summary>返回的值指示此 <see cref="T:System.Xaml.XamlMember" /> 是否表示一个具有公共 <see langword="set" /> 访问器但没有公共 <see langword="get" /> 访问器的成员。</summary>
+        <returns>如果此 <see cref="T:System.Xaml.XamlMember" /> 表示只写成员，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现返回`true`如果<xref:System.Xaml.XamlMember.UnderlyingMember%2A>存在具有公共`set`访问器和非公共`get`访问器，由内部反射。  
+ 如果存在具有公共`true` `set`访问器和非公共`get`访问器的, 则默认实现将返回, 这取决于内部反射。 <xref:System.Xaml.XamlMember.UnderlyingMember%2A>  
   
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.XamlMember.IsWriteOnly%2A>。 重写此方法，如果想报告统一的结果为整个<xref:System.Xaml.XamlMember>派生的类，或如果您拥有的专用元数据可用于确定这基于每个用例。  
+ 当调用方从<xref:System.Xaml.XamlMember.IsWriteOnly%2A>获取值时, 将调用此方法。 如果您想要报告整个<xref:System.Xaml.XamlMember>派生类的统一结果, 或者您有可用于根据每个案例来确定这一点的专用元数据, 请重写此方法。  
   
  ]]></format>
         </remarks>
@@ -1301,18 +1301,18 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回是否这<see cref="T:System.Xaml.XamlMember" />表示具有公共成员<see langword="set" />访问器。</summary>
-        <returns><see langword="true" /> 如果此<see cref="T:System.Xaml.XamlMember" />表示一个可写的成员; 否则为<see langword="false" />。</returns>
+        <summary>返回的值指示此 <see cref="T:System.Xaml.XamlMember" /> 是否表示一个具有公共 <see langword="set" /> 访问器的成员。</summary>
+        <returns>如果此 <see cref="T:System.Xaml.XamlMember" /> 表示可写成员，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现返回结果基于内部反射或求反运算的<xref:System.Xaml.XamlMember.IsReadOnly%2A>按该顺序进行处理。  
+ 默认实现返回基于内部反射或的求反的<xref:System.Xaml.XamlMember.IsReadOnly%2A>结果, 并按该顺序进行处理。  
   
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.XamlMember.IsWritePublic%2A>。 重写此方法，如果想报告统一的结果为整个<xref:System.Xaml.XamlMember>派生的类，或如果您拥有的专用元数据可用于确定这基于每个用例。  
+ 当调用方从<xref:System.Xaml.XamlMember.IsWritePublic%2A>获取值时, 将调用此方法。 如果您想要报告整个<xref:System.Xaml.XamlMember>派生类的统一结果, 或者您有可用于根据每个案例来确定这一点的专用元数据, 请重写此方法。  
   
 > [!IMPORTANT]
->  <xref:System.Xaml.XamlMember.LookupIsWritePublic%2A>方法是虚拟的因此，可以重写。 重写有可能更改 （恶意或不成功） 的报告的访问信息的 XAML 成员，以便它不再按预期的方式与其基础 CLR 声明的类型系统访问信息一致。 对于访问级别的任何安全关键检查，请改为使用的基础 CLR 类型。  
+>  方法<xref:System.Xaml.XamlMember.LookupIsWritePublic%2A>是虚拟的, 因此可以重写。 重写可能会更改 (恶意或其他) 已报告的 XAML 成员访问信息, 使其不再以预期方式与其基础 CLR 声明的类型系统访问信息对齐。 对于访问级别的任何安全关键检查, 请改用基础 CLR 类型。  
   
  ]]></format>
         </remarks>
@@ -1358,15 +1358,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回<see cref="T:System.Xaml.XamlType" />类型的其中<see cref="T:System.Xaml.XamlMember" />可以存在。</summary>
-        <returns>类型其中<see cref="T:System.Xaml.XamlMember" />可以存在。</returns>
+        <summary>返回其中可能存在 <see cref="T:System.Xaml.XamlType" /> 的类型的 <see cref="T:System.Xaml.XamlMember" />。</summary>
+        <returns>其中可能存在 <see cref="T:System.Xaml.XamlMember" /> 的类型。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现可区分可附加和非可附加成员。 为非可附加成员<xref:System.Xaml.XamlMember.LookupTargetType%2A>始终返回<xref:System.Xaml.XamlMember.DeclaringType%2A>。 为可附加成员<xref:System.Xaml.XamlMember.LookupTargetType%2A>将返回基于检查结果<xref:System.Xaml.XamlMember.UnderlyingMember%2A>取值函数参数类型和解释基于 XAML 架构上下文类型。  
+ 默认实现可区分可附加和不可附加的成员。 对于不可附加的成员, <xref:System.Xaml.XamlMember.LookupTargetType%2A>始终返回<xref:System.Xaml.XamlMember.DeclaringType%2A>。 对于可附加成员<xref:System.Xaml.XamlMember.LookupTargetType%2A> , 返回基于<xref:System.Xaml.XamlMember.UnderlyingMember%2A>检查访问器参数类型的结果, 并基于 XAML 架构上下文解释该类型。  
   
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.XamlMember.TargetType%2A>。 重写此方法，如果想报告统一的结果为整个<xref:System.Xaml.XamlMember>派生的类，或如果您拥有的专用元数据可用于确定这基于每个用例。  
+ 当调用方从<xref:System.Xaml.XamlMember.TargetType%2A>获取值时, 将调用此方法。 如果您想要报告整个<xref:System.Xaml.XamlMember>派生类的统一结果, 或者您有可用于根据每个案例来确定这一点的专用元数据, 请重写此方法。  
   
  ]]></format>
         </remarks>
@@ -1390,25 +1390,25 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回<see cref="T:System.Xaml.XamlType" />的成员使用的类型。</summary>
-        <returns><see cref="T:System.Xaml.XamlType" />的成员使用的类型。</returns>
+        <summary>返回成员所使用的类型的 <see cref="T:System.Xaml.XamlType" />。</summary>
+        <returns>成员所使用的类型的 <see cref="T:System.Xaml.XamlType" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.XamlMember.Type%2A>。 重写此方法，如果你想<xref:System.Xaml.XamlMember.Type%2A>从默认内部反射，由启用的值返回不同的值，如果您同时还提供自定义<xref:System.Xaml.Schema.XamlMemberInvoker>信息。  
+ 当调用方从<xref:System.Xaml.XamlMember.Type%2A>获取值时, 将调用此方法。 如果要<xref:System.Xaml.XamlMember.Type%2A>返回与默认内部反射启用的值不同的值, 并且还提供自定义<xref:System.Xaml.Schema.XamlMemberInvoker>信息, 请重写此方法。  
   
- 默认实现为其已返回使用不同的代码路径和概念的含义<xref:System.Xaml.XamlType>，它基于是否这<xref:System.Xaml.XamlMember>表示属性、 方法或事件。  
+ 默认实现对返回<xref:System.Xaml.XamlType>的使用不同的代码路径和概念含义, 具体取决于此<xref:System.Xaml.XamlMember>是否表示属性、方法或事件。  
   
--   对于属性，返回<xref:System.Xaml.XamlType>是设置的属性或属性返回的类型。  
+-   对于属性, 返回<xref:System.Xaml.XamlType>的是设置属性或由属性返回的类型。  
   
--   返回的事件<xref:System.Xaml.XamlType>是必需的事件处理程序类型 （CLR 实现中的委托）。  
+-   对于事件, 返回<xref:System.Xaml.XamlType>的是必需的事件处理程序类型 (CLR 实现中的委托)。  
   
--   对于方法，<xref:System.Xaml.XamlType>是返回类型。  
+-   对于方法, <xref:System.Xaml.XamlType>是返回类型。  
   
- 在每种情况下，XAML 架构上下文用于评估的基础系统类型的 XAML 类型。  
+ 在每种情况下, XAML 架构上下文用于计算基础系统类型的 XAML 类型。  
   
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.XamlMember.Type%2A>。 重写此方法，如果想报告统一的结果为整个<xref:System.Xaml.XamlMember>派生的类，或如果您拥有的专用元数据可用于确定这基于每个用例。  
+ 当调用方从<xref:System.Xaml.XamlMember.Type%2A>获取值时, 将调用此方法。 如果您想要报告整个<xref:System.Xaml.XamlMember>派生类的统一结果, 或者您有可用于根据每个案例来确定这一点的专用元数据, 请重写此方法。  
   
  ]]></format>
         </remarks>
@@ -1432,21 +1432,21 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回与此相关联的类型转换器实现<see cref="T:System.Xaml.XamlMember" />。</summary>
-        <returns>一个<see cref="T:System.Xaml.Schema.XamlValueConverter`1" />实例与<see cref="T:System.ComponentModel.TypeConverter" />约束; 或<see langword="null" />。</returns>
+        <summary>返回与此 <see cref="T:System.Xaml.XamlMember" /> 关联的类型转换器实现。</summary>
+        <returns>一个具有 <see cref="T:System.Xaml.Schema.XamlValueConverter`1" /> 约束的 <see cref="T:System.ComponentModel.TypeConverter" /> 实例，或者为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现使用以下逻辑和处理顺序：  
+ 默认实现使用以下逻辑和处理顺序:  
   
--   如果属性设置存在在成员级别 (<xref:System.ComponentModel.TypeConverterAttribute>)，将使用的调用属性信息<xref:System.Xaml.XamlSchemaContext.GetValueConverter%2A>对 XAML 架构上下文。  
+-   如果在成员级别 (<xref:System.ComponentModel.TypeConverterAttribute>) 存在特性化, 则使用特性信息针对 XAML 架构上下文<xref:System.Xaml.XamlSchemaContext.GetValueConverter%2A>调用。  
   
--   如果<xref:System.Xaml.XamlMember.Type%2A>有效，则返回与类型关联的类型转换器。  
+-   如果<xref:System.Xaml.XamlMember.Type%2A>有效, 则返回与该类型关联的类型转换器。  
   
--   如果该成员是一个事件，则返回特定于事件的类型转换器。  
+-   如果成员是事件, 则返回特定于事件的类型转换器。  
   
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.XamlMember.TypeConverter%2A>。 重写此方法，如果想报告统一的结果为整个<xref:System.Xaml.XamlMember>派生的类，或如果您拥有的专用元数据可用于确定这基于每个用例。  
+ 当调用方从<xref:System.Xaml.XamlMember.TypeConverter%2A>获取值时, 将调用此方法。 如果您想要报告整个<xref:System.Xaml.XamlMember>派生类的统一结果, 或者您有可用于根据每个案例来确定这一点的专用元数据, 请重写此方法。  
   
  ]]></format>
         </remarks>
@@ -1470,15 +1470,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回<see langword="get" />与此相关联的访问器<see cref="T:System.Xaml.XamlMember" />。</summary>
-        <returns><see cref="T:System.Reflection.MethodInfo" />关联<see langword="get" />访问器; 或<see langword="null" />。</returns>
+        <summary>返回与此 <see cref="T:System.Xaml.XamlMember" /> 关联的 <see langword="get" /> 访问器。</summary>
+        <returns>关联 <see langword="get" /> 访问器的 <see cref="T:System.Reflection.MethodInfo" />，或者为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现将解释<xref:System.Xaml.XamlMember.UnderlyingMember%2A>属性设置为<xref:System.Reflection.PropertyInfo>，并返回的值<xref:System.Reflection.PropertyInfo.GetGetMethod%2A?displayProperty=nameWithType>(参数设置为`true`)，这意味着返回的方法可能不是公用。 此行为可能会导致`null`对于某些情况。 包括关联的访问器不存在或该成员不是属性的情况。  
+ 默认实现将<xref:System.Xaml.XamlMember.UnderlyingMember%2A>属性解释<xref:System.Reflection.PropertyInfo.GetGetMethod%2A?displayProperty=nameWithType>为<xref:System.Reflection.PropertyInfo> , 并返回的值 (参数设置为`true`), 这意味着返回的方法可以是非公共的。 在`null`某些情况下, 此行为可能会导致。 包括不存在关联的访问器或成员不是属性的情况。  
   
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.Schema.XamlMemberInvoker.UnderlyingGetter%2A>关联的属性<xref:System.Xaml.Schema.XamlMemberInvoker>。 重写此方法，如果想报告统一的结果为整个<xref:System.Xaml.XamlMember>派生的类，或如果您拥有的专用元数据可用于确定这基于每个用例。 请确保实现<xref:System.Xaml.XamlMember.LookupUnderlyingGetter%2A>， <xref:System.Xaml.XamlMember.LookupUnderlyingSetter%2A>，和<xref:System.Xaml.XamlMember.LookupUnderlyingMember%2A>，以便它们都返回相关的结果。  
+ 当调用方从关联<xref:System.Xaml.Schema.XamlMemberInvoker.UnderlyingGetter%2A> <xref:System.Xaml.Schema.XamlMemberInvoker>的的属性获取值时, 将调用此方法。 如果您想要报告整个<xref:System.Xaml.XamlMember>派生类的统一结果, 或者您有可用于根据每个案例来确定这一点的专用元数据, 请重写此方法。 请确保实现<xref:System.Xaml.XamlMember.LookupUnderlyingGetter%2A>、 <xref:System.Xaml.XamlMember.LookupUnderlyingSetter%2A>和<xref:System.Xaml.XamlMember.LookupUnderlyingMember%2A> , 以使它们都返回相关结果。  
   
  ]]></format>
         </remarks>
@@ -1501,17 +1501,17 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回的 CLR 类型系统<see cref="T:System.Reflection.MemberInfo" />与此关联<see cref="T:System.Xaml.XamlMember" />。</summary>
-        <returns>CLR 类型系统<see cref="T:System.Reflection.MemberInfo" />与此相关联的对象<see cref="T:System.Xaml.XamlMember" />; 或<see langword="null" />。</returns>
+        <summary>返回与此 <see cref="T:System.Reflection.MemberInfo" /> 关联的 CLR 类型系统 <see cref="T:System.Xaml.XamlMember" />。</summary>
+        <returns>与此 <see cref="T:System.Reflection.MemberInfo" /> 关联的 CLR 类型系统 <see cref="T:System.Xaml.XamlMember" /> 对象，或者为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现返回构造为基础的基础成员信息。 如果<xref:System.Reflection.MemberInfo>不提供足够的信息来设置基础成员的签名与构造对象时，此方法返回`null`。  
+ 默认实现返回基于构造的基础成员信息。 如果对象是使用未提供足够的信息来设置基础成员的签名构造的, 则此方法返回`null`。 <xref:System.Reflection.MemberInfo>  
   
- 如果在构造期间设置的基础成员，应该不需要调用此方法。  
+ 如果基础成员是在构造过程中设置的, 则无需调用此方法。  
   
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.XamlMember.UnderlyingMember%2A>。 重写此方法，如果想报告统一的结果为整个<xref:System.Xaml.XamlMember>派生的类，或如果您拥有的专用元数据可用于确定这基于每个用例。 请确保实现<xref:System.Xaml.XamlMember.LookupUnderlyingGetter%2A>， <xref:System.Xaml.XamlMember.LookupUnderlyingSetter%2A>，和<xref:System.Xaml.XamlMember.LookupUnderlyingMember%2A>，以便它们都返回相关的结果。  
+ 当调用方从<xref:System.Xaml.XamlMember.UnderlyingMember%2A>获取值时, 将调用此方法。 如果您想要报告整个<xref:System.Xaml.XamlMember>派生类的统一结果, 或者您有可用于根据每个案例来确定这一点的专用元数据, 请重写此方法。 请确保实现<xref:System.Xaml.XamlMember.LookupUnderlyingGetter%2A>、 <xref:System.Xaml.XamlMember.LookupUnderlyingSetter%2A>和<xref:System.Xaml.XamlMember.LookupUnderlyingMember%2A> , 以使它们都返回相关结果。  
   
  ]]></format>
         </remarks>
@@ -1535,15 +1535,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回<see langword="set" />与此相关联的访问器<see cref="T:System.Xaml.XamlMember" />。</summary>
-        <returns><see cref="T:System.Reflection.MethodInfo" />关联<see langword="set" />访问器; 或<see langword="null" />。</returns>
+        <summary>返回与此 <see cref="T:System.Xaml.XamlMember" /> 关联的 <see langword="set" /> 访问器。</summary>
+        <returns>关联 <see langword="set" /> 访问器的 <see cref="T:System.Reflection.MethodInfo" />，或者为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现将解释<xref:System.Xaml.XamlMember.UnderlyingMember%2A>作为<xref:System.Reflection.PropertyInfo>，并返回的值<xref:System.Reflection.PropertyInfo.GetSetMethod%2A?displayProperty=nameWithType>(参数设置为`true`)，这意味着返回的方法可能不是公用。 这可能导致`null`对于某些情况下，其中包括没有此类访问器，或该成员不是属性的情况。  
+ 默认实现将解释<xref:System.Xaml.XamlMember.UnderlyingMember%2A>为<xref:System.Reflection.PropertyInfo> , <xref:System.Reflection.PropertyInfo.GetSetMethod%2A?displayProperty=nameWithType>并返回的值 (参数设置为`true`), 这意味着返回的方法可以是非公共的。 这可能会导致`null`某些情况, 其中包括没有此类访问器或成员不是属性的情况。  
   
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.Schema.XamlMemberInvoker.UnderlyingSetter%2A>关联<xref:System.Xaml.Schema.XamlMemberInvoker>。重写此方法，如果想报告统一的结果为整个<xref:System.Xaml.XamlMember>派生的类，或如果您拥有的专用元数据可用于确定这基于每个用例。 请确保实现<xref:System.Xaml.XamlMember.LookupUnderlyingGetter%2A>， <xref:System.Xaml.XamlMember.LookupUnderlyingSetter%2A>，和<xref:System.Xaml.XamlMember.LookupUnderlyingMember%2A>，以便它们都返回相关的结果。  
+ 当调用方从<xref:System.Xaml.Schema.XamlMemberInvoker.UnderlyingSetter%2A>关联<xref:System.Xaml.Schema.XamlMemberInvoker>的上的获取值时, 将调用此方法。如果您想要报告整个<xref:System.Xaml.XamlMember>派生类的统一结果, 或者您有可用于根据每个案例来确定这一点的专用元数据, 请重写此方法。 请确保实现<xref:System.Xaml.XamlMember.LookupUnderlyingGetter%2A>、 <xref:System.Xaml.XamlMember.LookupUnderlyingSetter%2A>和<xref:System.Xaml.XamlMember.LookupUnderlyingMember%2A> , 以使它们都返回相关结果。  
   
  ]]></format>
         </remarks>
@@ -1566,21 +1566,21 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回与此相关联的值序列化程序实现<see cref="T:System.Xaml.XamlMember" />。</summary>
-        <returns>一个<see cref="T:System.Xaml.Schema.XamlValueConverter`1" />实例与<see cref="T:System.Windows.Markup.ValueSerializer" />约束，或<see langword="null" />。</returns>
+        <summary>返回与此 <see cref="T:System.Xaml.XamlMember" /> 关联的值序列化程序实现。</summary>
+        <returns>一个具有 <see cref="T:System.Xaml.Schema.XamlValueConverter`1" /> 约束的 <see cref="T:System.Windows.Markup.ValueSerializer" /> 实例，或者为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现使用以下逻辑和处理顺序：  
+ 默认实现使用以下逻辑和处理顺序:  
   
--   如果属性设置存在在成员级别 (<xref:System.Windows.Markup.ValueSerializerAttribute>)，将使用的调用属性信息<xref:System.Xaml.XamlSchemaContext.GetValueConverter%2A>对 XAML 架构上下文。  
+-   如果在成员级别 (<xref:System.Windows.Markup.ValueSerializerAttribute>) 存在特性化, 则使用特性信息针对 XAML 架构上下文<xref:System.Xaml.XamlSchemaContext.GetValueConverter%2A>调用。  
   
--   如果<xref:System.Xaml.XamlMember.Type%2A>有效，则返回与类型相关联的值转换器。  
+-   如果<xref:System.Xaml.XamlMember.Type%2A>有效, 则返回与该类型相关联的值转换器。  
   
--   如果上述条件不适用，`null`返回。  
+-   如果前面的条件不适用, `null`则返回。  
   
- 调用此方法，当调用方获取一个值从<xref:System.Xaml.XamlMember.ValueSerializer%2A>。 重写此方法，如果想报告统一的结果为整个<xref:System.Xaml.XamlMember>派生的类，或如果您拥有的专用元数据可用于确定这基于每个用例。  
+ 当调用方从<xref:System.Xaml.XamlMember.ValueSerializer%2A>获取值时, 将调用此方法。 如果您想要报告整个<xref:System.Xaml.XamlMember>派生类的统一结果, 或者您有可用于根据每个案例来确定这一点的专用元数据, 请重写此方法。  
   
  ]]></format>
         </remarks>
@@ -1629,15 +1629,15 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see langword="xamlName" />名称字符串声明此<see cref="T:System.Xaml.XamlMember" />。</summary>
-        <value><see langword="xamlName" />名称字符串声明此<see cref="T:System.Xaml.XamlMember" />。</value>
+        <summary>获取 <see langword="xamlName" /> 名称字符串，该字符串声明此 <see cref="T:System.Xaml.XamlMember" />。</summary>
+        <value><see langword="xamlName" /> 名称字符串，该字符串声明此 <see cref="T:System.Xaml.XamlMember" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 始终在构造过程中设置此值。 由实现的构造函数<xref:System.Xaml.XamlMember>通常将引发异常如果未指定初始名称; 因此，不希望此属性才能为`null`或空字符串，如果使用默认.NET Framework XAML 服务实现。  
+ 此值始终在构造过程中设置。 如果未指定初始名称, <xref:System.Xaml.XamlMember>则由实现的构造函数通常会`null`引发异常; 因此, 如果你使用的是默认 .NET Framework XAML 服务, 则不希望此属性为或空字符串执行.  
   
- [XamlName 语法](~/docs/framework/xaml-services/xamlname-grammar.md)和 CLR 类型和成员的命名规则不是精确相交。 它是可以声明的成员名称是在 CLR 合法的但 XAML 命名下无效。 应尽可能避免这种情况。  
+ CLR 类型和成员的[XamlName 语法](~/docs/framework/xaml-services/xamlname-grammar.md)和命名规则并不完全相交。 可以声明在 CLR 下合法但在 XAML 命名下无效的成员名称。 如果可能, 应尽量避免这种情况。  
   
  ]]></format>
         </remarks>
@@ -1694,7 +1694,7 @@
         <param name="xamlMember1"><see cref="T:System.Xaml.XamlMember" /> 或 <see langword="null" />。</param>
         <param name="xamlMember2"><see cref="T:System.Xaml.XamlMember" /> 或 <see langword="null" />。</param>
         <summary>确定两个指定的 <see cref="T:System.Xaml.XamlMember" /> 对象是否具有不同的值。</summary>
-        <returns><see langword="true" /> 如果的值<paramref name="xamlMember1" />值中的不同<paramref name="xamlMember2" />; 否则为<see langword="false" />。</returns>
+        <returns>如果 <paramref name="xamlMember1" /> 的值与 <paramref name="xamlMember2" /> 的值不同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1714,13 +1714,13 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取单个 XAML 命名空间 URI，用于标识此主 XAML 命名空间<see cref="T:System.Xaml.XamlMember" />。</summary>
-        <value>为此主 XAML 命名空间标识符<see cref="T:System.Xaml.XamlMember" />，以字符串形式。</value>
+        <summary>获取单个 XAML 命名空间 URI，该 URI 标识此 <see cref="T:System.Xaml.XamlMember" /> 的主 XAML 命名空间。</summary>
+        <value>此 <see cref="T:System.Xaml.XamlMember" /> 的主 XAML 命名空间的标识符（字符串形式）。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xaml.XamlMember.PreferredXamlNamespace%2A>属性提供相同的值调用<xref:System.Xaml.XamlMember.GetXamlNamespaces%2A>，然后从返回的列表中获取第一个值字符串。 返回到文本或其他保留 XAML 命名空间信息的表示形式写入成员时，应使用首选的 XAML 命名空间。  
+ 属性提供与调用<xref:System.Xaml.XamlMember.GetXamlNamespaces%2A>相同的值, 并从返回的列表中获取第一个值字符串。 <xref:System.Xaml.XamlMember.PreferredXamlNamespace%2A> 将成员写回保留 XAML 命名空间信息的文本或其他表示形式时, 应使用首选 XAML 命名空间。  
   
  ]]></format>
         </remarks>
@@ -1742,8 +1742,8 @@
         <ReturnType>System.ComponentModel.DesignerSerializationVisibility</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.ComponentModel.DesignerSerializationVisibility" />值，该值指示可视化设计器应如何处理该成员。</summary>
-        <value>值为<see cref="T:System.ComponentModel.DesignerSerializationVisibility" />枚举。 默认值为 <see cref="F:System.ComponentModel.DesignerSerializationVisibility.Visible" />。</value>
+        <summary>获取一个 <see cref="T:System.ComponentModel.DesignerSerializationVisibility" /> 值，该值指示可视化设计器应如何处理成员。</summary>
+        <value><see cref="T:System.ComponentModel.DesignerSerializationVisibility" /> 枚举的一个值。 默认值为 <see cref="F:System.ComponentModel.DesignerSerializationVisibility.Visible" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1763,17 +1763,17 @@
         <ReturnType>System.Xaml.XamlType</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.Xaml.XamlType" />类型的其中<see cref="T:System.Xaml.XamlMember" />可以存在。</summary>
-        <value>类型其中<see cref="T:System.Xaml.XamlMember" />可以存在。</value>
+        <summary>获取其中可能存在 <see cref="T:System.Xaml.XamlType" /> 的类型的 <see cref="T:System.Xaml.XamlMember" />。</summary>
+        <value>其中可能存在 <see cref="T:System.Xaml.XamlMember" /> 的类型。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的值是不同的可附加和非可附加成员。 为非可附加成员<xref:System.Xaml.XamlMember.TargetType%2A>返回<xref:System.Xaml.XamlMember.DeclaringType%2A>。 为可附加成员<xref:System.Xaml.XamlMember.LookupTargetType%2A>返回基于此逻辑的结果：  
+ 对于可附加和不可附加成员, 返回的值不同。 对于不可附加的成员, <xref:System.Xaml.XamlMember.TargetType%2A>将<xref:System.Xaml.XamlMember.DeclaringType%2A>返回。 对于可附加成员<xref:System.Xaml.XamlMember.LookupTargetType%2A> , 返回基于此逻辑的结果:  
   
--   如果反射不能解析支持 (<xref:System.Xaml.XamlMember.IsUnknown%2A> `true`)，此方法返回一个内部常量，用于表示泛型对象类型。  
+-   如果反射无法解析后备 (<xref:System.Xaml.XamlMember.IsUnknown%2A> `true`), 此方法将返回表示泛型对象类型的内部常数。  
   
--   如果前面所有条件不都适用，<xref:System.Xaml.XamlMember.LookupTargetType%2A>调用。 默认实现返回<xref:System.Xaml.XamlType>检查实现的方法基于`get`和`set`访问器。 类可能会替代<xref:System.Xaml.XamlMember.LookupTargetType%2A>若要使用不同的行为，如其他元数据窗体，可能会报告的目标类型为可附加成员。  
+-   如果前面的条件不适用, <xref:System.Xaml.XamlMember.LookupTargetType%2A>则调用。 默认实现返回一个<xref:System.Xaml.XamlType> , 它基于检查`get`实现和`set`访问器的方法。 类可以重写<xref:System.Xaml.XamlMember.LookupTargetType%2A> , 以使用不同的行为, 例如可能会报告可附加成员的目标类型的其他元数据形式。  
   
  ]]></format>
         </remarks>
@@ -1796,8 +1796,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回的字符串表示形式<see cref="T:System.Xaml.XamlMember" />。</summary>
-        <returns>此字符串表示形式<see cref="T:System.Xaml.XamlMember" />。</returns>
+        <summary>返回此 <see cref="T:System.Xaml.XamlMember" /> 的字符串表示形式。</summary>
+        <returns>此 <see cref="T:System.Xaml.XamlMember" /> 的字符串表示形式。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1824,23 +1824,23 @@
         <ReturnType>System.Xaml.XamlType</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.Xaml.XamlType" />的成员使用的类型。</summary>
-        <value><see cref="T:System.Xaml.XamlType" />的成员使用的类型。</value>
+        <summary>获取成员所使用的类型的 <see cref="T:System.Xaml.XamlType" />。</summary>
+        <value>成员所使用的类型的 <see cref="T:System.Xaml.XamlType" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Xaml.XamlMember.Type%2A>调用<xref:System.Xaml.XamlMember.LookupType%2A>或该方法的特定重写。 当初始内部反射逻辑还未设置信息时，将发生这种情况。  
+ 调用<xref:System.Xaml.XamlMember.Type%2A>此方法的调用或特定的重写。<xref:System.Xaml.XamlMember.LookupType%2A> 初始内部反射逻辑尚未设置信息时, 会发生这种情况。  
   
- 中的默认行为 (无<xref:System.Xaml.XamlMember.LookupType%2A>重写)，返回<xref:System.Xaml.XamlType>可以具有不同概念的含义。 适用的含义取决于是否这<xref:System.Xaml.XamlMember>表示属性、 方法或事件，如以下列表所示：  
+ 在默认行为 (不<xref:System.Xaml.XamlMember.LookupType%2A>重写) 中, 返回<xref:System.Xaml.XamlType>的概念含义可能不同。 适用的含义取决于它<xref:System.Xaml.XamlMember>是表示属性、方法还是事件, 如以下列表所示:  
   
--   对于属性，返回<xref:System.Xaml.XamlType>是设置的属性或属性返回的类型。  
+-   对于属性, 返回<xref:System.Xaml.XamlType>的是设置属性或由属性返回的类型。  
   
--   返回的事件<xref:System.Xaml.XamlType>是必需的事件处理程序类型 （CLR 实现中的委托）。  
+-   对于事件, 返回<xref:System.Xaml.XamlType>的是必需的事件处理程序类型 (CLR 实现中的委托)。  
   
--   对于方法，请<xref:System.Xaml.XamlType>是该方法中，这可能是返回类型`null`。  
+-   对于方法, <xref:System.Xaml.XamlType>是该方法的返回类型, 它可以是`null`。  
   
- 在每种情况下，XAML 架构上下文用于评估从后备类型的 XAML 类型。  
+ 在每种情况下, XAML 架构上下文用于计算来自后备类型的 XAML 类型。  
   
  ]]></format>
         </remarks>
@@ -1862,23 +1862,23 @@
         <ReturnType>System.Xaml.Schema.XamlValueConverter&lt;System.ComponentModel.TypeConverter&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.Xaml.Schema.XamlValueConverter`1" />对象，可用于 XAML 声明的对象的类型转换构造。</summary>
-        <value>一个<see cref="T:System.Xaml.Schema.XamlValueConverter`1" />值，与<see cref="T:System.ComponentModel.TypeConverter" />泛型约束。</value>
+        <summary>获取一个 <see cref="T:System.Xaml.Schema.XamlValueConverter`1" /> 对象，该对象可用于 XAML 声明的对象的类型转换构造。</summary>
+        <value>一个对泛型具有 <see cref="T:System.Xaml.Schema.XamlValueConverter`1" /> 约束的 <see cref="T:System.ComponentModel.TypeConverter" /> 值。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Xaml.XamlMember.TypeConverter%2A>调用<xref:System.Xaml.XamlMember.LookupTypeConverter%2A>或该方法的特定重写。 初始内部反射逻辑还未设置信息时，会发生此行为。  
+ 调用<xref:System.Xaml.XamlMember.TypeConverter%2A>此方法的调用或特定的重写。<xref:System.Xaml.XamlMember.LookupTypeConverter%2A> 当初始内部反射逻辑尚未设置此信息时, 会出现此行为。  
   
- 实现返回非 null 属性值<xref:System.Xaml.XamlMember.TypeConverter%2A>不一定是一个有效的<xref:System.ComponentModel.TypeConverter>。 以下是可能的非 null 返回值的列表<xref:System.Xaml.XamlMember.TypeConverter%2A>以及这些值表示的含义：  
+ 为<xref:System.Xaml.XamlMember.TypeConverter%2A>返回非 null 属性值的实现并不一定是有效<xref:System.ComponentModel.TypeConverter>的。 下面是的可能非 null 返回值<xref:System.Xaml.XamlMember.TypeConverter%2A>的列表, 这些值表示的值是什么:  
   
--   返回值报告具有特定于该成员或更普遍的情况为转换器的目标类型的特性的类型转换器。 此行为通常是哪些大多数的 XAML 类型系统和 XAML 处理器所查找的以便实例化的类型转换器，并调用其方法。  
+-   返回值将报告特定于该成员或更一般为转换器的目标类型的类型转换器。 此行为通常是大多数 XAML 类型系统和 XAML 处理器的外观, 以便实例化类型转换器并调用其方法。  
   
--   返回值将报告内置值转换器。 这些转换器存在由 XAML 编写器执行某些内部操作。 具体而言，这些内置值转换器将原始属性字符串值转换为 XAML 语言级别基元。 有关.NET Framework XAML 服务实现中，这些内置类型转换通常将转发到系统程序集中定义的类型转换器。 转换<xref:System.Int32>值具有内置转发转换，因此<xref:System.Xaml.Schema.XamlValueConverter%601.ConverterType%2A>值引用<xref:System.ComponentModel.Int32Converter>。  
+-   返回值报告内置值转换器。 这些转换器适用于 XAML 编写器执行的某些内部操作。 特别是, 这些内置值转换器将原始属性字符串值转换为 XAML 语言级基元。 对于 .NET Framework XAML 服务实现, 这些内置类型转换通常转发到系统程序集中定义的类型转换器。 例如, <xref:System.Int32>值的转换具有内置的正向转换, 因此<xref:System.Xaml.Schema.XamlValueConverter%601.ConverterType%2A>值引用<xref:System.ComponentModel.Int32Converter>。  
   
--   返回值将报告一个不受约束的对象模型; 的特殊情况下即<xref:System.Xaml.XamlMember>已<xref:System.Xaml.XamlMember.Type%2A>的值<xref:System.Object>。 在这种情况下，<xref:System.Xaml.Schema.XamlValueConverter%601>报告<xref:System.Xaml.Schema.XamlValueConverter%601.Name%2A?displayProperty=nameWithType>是 {`Object}`。 但是，<xref:System.Xaml.Schema.XamlValueConverter%601.ConverterInstance%2A>是`null`因为没有实际类型或实例是可用于执行此转换。 相反，不能直到运行时，当特定技术的运行时确定其对象图处理在确定对象模型行为。  
+-   返回值报告不受约束的对象模型的特殊情况;也就是说, 的<xref:System.Xaml.XamlMember> <xref:System.Xaml.XamlMember.Type%2A>值<xref:System.Object>为。 在这种情况下<xref:System.Xaml.Schema.XamlValueConverter%601> , 将报告<xref:System.Xaml.Schema.XamlValueConverter%601.Name%2A?displayProperty=nameWithType>为 {`Object}`。 但是, <xref:System.Xaml.Schema.XamlValueConverter%601.ConverterInstance%2A> `null`因为没有可用于执行此转换的实际类型或实例。 相反, 在运行时, 当特定技术的运行时确定其对象图的处理时, 不能确定对象模型的行为。  
   
- 如果可以访问一个有效<xref:System.ComponentModel.TypeConverter>从<xref:System.Xaml.Schema.XamlValueConverter%601.ConverterInstance%2A>，可以调用它的转换方法。 但是，许多转换方法都依赖于服务上下文。 如果没有可用的类型转换器需要为其编写对象的对象图的典型的角色相同的服务上下文，转换器方法可以引发异常。  
+ 如果可以从<xref:System.ComponentModel.TypeConverter> <xref:System.Xaml.Schema.XamlValueConverter%601.ConverterInstance%2A>访问工作, 则可以调用其转换方法。 但是, 许多转换方法依赖于服务上下文。 如果你没有可用的相同服务上下文, 并且类型转换器需要其为对象图写入对象的典型角色, 则转换器方法可能会引发异常。  
   
  ]]></format>
         </remarks>
@@ -1905,13 +1905,13 @@
         <ReturnType>System.Reflection.MemberInfo</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取 CLR 类型系统<see cref="T:System.Reflection.MemberInfo" />，它可用于构造而成的成员<see cref="T:System.Reflection.PropertyInfo" />， <see cref="T:System.Reflection.MethodInfo" />，或<see cref="T:System.Reflection.EventInfo" />。</summary>
-        <value>CLR 类型系统<see cref="T:System.Reflection.MemberInfo" />信息，为从初始构造函数参数强制转换。 一个<see cref="T:System.Xaml.XamlMember" />构造<see cref="M:System.Xaml.XamlMember.#ctor(System.String,System.Xaml.XamlType,System.Boolean)" />签名返回<see langword="null" />。</value>
+        <summary>获取 CLR 类型系统 <see cref="T:System.Reflection.MemberInfo" />，它可用于由 <see cref="T:System.Reflection.PropertyInfo" />、<see cref="T:System.Reflection.MethodInfo" /> 或 <see cref="T:System.Reflection.EventInfo" /> 构造的成员。</summary>
+        <value>从初始构造函数参数强制转换的 CLR 类型系统 <see cref="T:System.Reflection.MemberInfo" /> 信息。 使用 <see cref="T:System.Xaml.XamlMember" /> 签名构造的 <see cref="M:System.Xaml.XamlMember.#ctor(System.String,System.Xaml.XamlType,System.Boolean)" /> 返回 <see langword="null" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Xaml.XamlMember.UnderlyingMember%2A>调用<xref:System.Xaml.XamlMember.LookupUnderlyingMember%2A>或该方法的特定重写。  
+ 调用<xref:System.Xaml.XamlMember.UnderlyingMember%2A>此方法的调用或特定的重写。<xref:System.Xaml.XamlMember.LookupUnderlyingMember%2A>  
   
  ]]></format>
         </remarks>
@@ -1933,15 +1933,15 @@
         <ReturnType>System.Xaml.Schema.XamlValueConverter&lt;System.Windows.Markup.ValueSerializer&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:System.Xaml.Schema.XamlValueConverter`1" />对象，用于 XAML 声明的对象的值序列化。</summary>
-        <value>一个<see cref="T:System.Xaml.Schema.XamlValueConverter`1" />与<see cref="T:System.Windows.Markup.ValueSerializer" />泛型约束。</value>
+        <summary>获取一个 <see cref="T:System.Xaml.Schema.XamlValueConverter`1" /> 对象，该对象用于 XAML 声明的对象的值序列化。</summary>
+        <value>一个对泛型具有 <see cref="T:System.Xaml.Schema.XamlValueConverter`1" /> 约束的 <see cref="T:System.Windows.Markup.ValueSerializer" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Xaml.XamlMember.ValueSerializer%2A>调用<xref:System.Xaml.XamlMember.LookupValueSerializer%2A>或该方法的特定重写。 初始内部反射逻辑还未设置信息时，会发生此行为。  
+ 调用<xref:System.Xaml.XamlMember.ValueSerializer%2A>此方法的调用或特定的重写。<xref:System.Xaml.XamlMember.LookupValueSerializer%2A> 当初始内部反射逻辑尚未设置此信息时, 会出现此行为。  
   
- 并非所有情况下返回非 null 属性的值<xref:System.Xaml.XamlMember.ValueSerializer%2A>都是工作<xref:System.Windows.Markup.ValueSerializer>。 请参阅<xref:System.Xaml.XamlMember.TypeConverter%2A>; 注意事项同样适用于<xref:System.Xaml.XamlMember.ValueSerializer%2A>。  
+ 并非所有为<xref:System.Xaml.XamlMember.ValueSerializer%2A>返回的非 null 属性值的情况都是有效<xref:System.Windows.Markup.ValueSerializer>的。 请<xref:System.Xaml.XamlMember.TypeConverter%2A>参阅; 同样<xref:System.Xaml.XamlMember.ValueSerializer%2A>适用于。  
   
  ]]></format>
         </remarks>

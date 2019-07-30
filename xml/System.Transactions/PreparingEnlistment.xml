@@ -31,11 +31,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在初始过程 （准备） 阶段事务，事务管理器将此类型传递给资源管理器通过调用<xref:System.Transactions.IEnlistmentNotification.Prepare%2A>方法来获取对事务的资源的投票。 具体取决于是否其投票，以提交或回滚，资源管理器的实现应调用<xref:System.Transactions.PreparingEnlistment.Prepared%2A>或<xref:System.Transactions.PreparingEnlistment.ForceRollback%2A>此类型的方法。  
+ 在事务的初始 (准备) 阶段, 事务管理器通过调用<xref:System.Transactions.IEnlistmentNotification.Prepare%2A>方法将此类型传递给资源管理器, 以获取资源对事务的投票。 资源管理器的实现应调用此类型的<xref:System.Transactions.PreparingEnlistment.Prepared%2A>或<xref:System.Transactions.PreparingEnlistment.ForceRollback%2A>方法, 具体取决于它是否投票提交或回滚。  
   
- 此外可以调用资源管理器<xref:System.Transactions.Enlistment.Done%2A>已调用方法之前的任何时候<xref:System.Transactions.PreparingEnlistment.Prepared%2A>方法。 通过此操作，登记都强制转换只读的票，这意味着它投票事务提交，但不需要接收的最终结果。  
+ 资源管理器还可以在<xref:System.Transactions.Enlistment.Done%2A> <xref:System.Transactions.PreparingEnlistment.Prepared%2A>调用方法之前的任何时间调用方法。 这样, 登记就会强制转换为只读投票, 这意味着它会在事务上提交, 但不需要接收最终结果。  
   
- 持久资源管理器可以检索的信息所需的事务管理器用于从重新登记<xref:System.Transactions.PreparingEnlistment.RecoveryInformation%2A>属性。 有关恢复的详细信息，请参阅[Performing Recovery](https://msdn.microsoft.com/library/d342c5c7-da64-4a4c-8e63-b52f4fbf2691)。  
+ 持久资源管理器可以检索事务管理器从<xref:System.Transactions.PreparingEnlistment.RecoveryInformation%2A>属性重新登记所需的信息。 有关恢复的详细信息, 请参阅[执行恢复](https://msdn.microsoft.com/library/d342c5c7-da64-4a4c-8e63-b52f4fbf2691)。  
   
    
   
@@ -46,7 +46,7 @@
  ]]></format>
     </remarks>
     <threadsafe>此类型是线程安全的。</threadsafe>
-    <related type="Article" href="https://msdn.microsoft.com/library/74b3cfe1-d33a-45b8-91f4-dfd6f6598c4d">单阶段和多阶段中提交事务</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/74b3cfe1-d33a-45b8-91f4-dfd6f6598c4d">在单阶段和多阶段提交事务</related>
   </Docs>
   <Members>
     <MemberGroup MemberName="ForceRollback">
@@ -93,7 +93,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 实现<xref:System.Transactions.IEnlistmentNotification.Prepare%2A>方法的<xref:System.Transactions.IEnlistmentNotification>接口调用此方法，以指示必须回滚事务。  
+ <xref:System.Transactions.IEnlistmentNotification>接口的<xref:System.Transactions.IEnlistmentNotification.Prepare%2A>方法的实现调用此方法, 以指示必须回滚事务。  
   
    
   
@@ -183,11 +183,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在第一个 （准备） 的两阶段提交，资源管理器实现阶段<xref:System.Transactions.IEnlistmentNotification.Prepare%2A>方法的<xref:System.Transactions.IEnlistmentNotification>接口中，调用此方法，以指示可以提交事务。  
+ 在两阶段提交的第一个 (准备阶段) 阶段, 实现<xref:System.Transactions.IEnlistmentNotification.Prepare%2A> <xref:System.Transactions.IEnlistmentNotification>接口的方法的资源管理器将调用此方法以指示可以提交事务。  
   
- 资源管理器可以调用<xref:System.Transactions.Enlistment.Done%2A>方法在之前的任何时候调用此方法。  通过此操作，登记都强制转换只读的票，这意味着它投票事务提交，但不需要接收的最终结果。  
+ 资源管理器可以在调用<xref:System.Transactions.Enlistment.Done%2A>此方法之前的任何时间调用方法。  这样, 登记就会强制转换为只读投票, 这意味着它会在事务上提交, 但不需要接收最终结果。  
   
- 一旦的登记调用此方法，并且它将返回之前，可能，另一个线程或同一个线程可以调入同一个登记方法如<xref:System.Transactions.IEnlistmentNotification.Rollback%2A>若要执行回滚。 如果此方法返回后，资源管理器实现不会释放资源锁之前，这可能导致死锁情况。  
+ 一旦征用调用此方法, 并且在它返回之前, 另一个线程或此同一线程可能会调用同一登记方法 (如) <xref:System.Transactions.IEnlistmentNotification.Rollback%2A>以执行回滚。 如果资源管理器实现在此方法返回之前不释放资源锁, 这可能会导致死锁情况。  
   
    
   

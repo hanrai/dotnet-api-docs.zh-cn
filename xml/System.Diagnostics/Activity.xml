@@ -1,5 +1,5 @@
 <Type Name="Activity" FullName="System.Diagnostics.Activity">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="acd759fdd6beca32c0075e63f6e3aea2b7c5d7fd" /><Meta Name="ms.sourcegitcommit" Value="727af77f0b7ae2636efa3bc47000697540084461" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/15/2019" /><Meta Name="ms.locfileid" Value="67877139" /></Metadata><TypeSignature Language="C#" Value="public class Activity" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="586c05a85e1076d974bb0f7fd7fa614d34ba135b" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68539711" /></Metadata><TypeSignature Language="C#" Value="public class Activity" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Activity extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.Activity" />
   <TypeSignature Language="VB.NET" Value="Public Class Activity" />
@@ -18,21 +18,21 @@
   <Interfaces />
   <Docs>
     <summary>表示具有要用于日志记录的上下文的操作。</summary>
-        <remarks>  
-          <format type="text/markdown"><![CDATA[  
+    <remarks>
+      <format type="text/markdown"><![CDATA[  
 
-`Activity`具有操作名称、 ID、 开始时间和持续时间、 标记和行李。
+`Activity`包含操作名称、ID、开始时间和持续时间、标记和行李。
              
-当前活动可以访问使用静态<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>属性。
+当前活动可以通过静态<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>属性访问。
 
-活动应通过调用构造函数创建的、 根据需要，配置，然后入门<xref:System.Diagnostics.Activity.Start%2A>方法，可维护的活动和集的父-子关系<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>。
+应通过调用构造函数来创建活动, 并根据需要进行配置, 然后使用<xref:System.Diagnostics.Activity.Start%2A>方法 (该方法维护活动和集<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>的父子关系) 启动。
             
-完成活动后，它应停止使用<xref:System.Diagnostics.Activity.Stop?displayProperty=nameWithType>方法。
+活动完成后, 应使用<xref:System.Diagnostics.Activity.Stop?displayProperty=nameWithType>方法停止。
             
-不`Activity`方法允许异常转义作为错误输入的响应。 它们会引发并捕获 （这允许调试器和监视以查看错误），抑制异常，但该操作执行合理 （通常它不执行任何操作） 的操作。
+没有`Activity`方法允许将异常转义为对错误输入的响应。 引发和捕获它们 (允许调试器和监视器查看错误), 但异常被取消, 并且操作具有合理的功能 (通常不执行任何操作)。
 
          ]]></format>
-         </remarks>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -61,7 +61,7 @@
 
 ## Remarks
 
-请注意，<xref:System.Diagnostics.Activity>具有"builder"模式： 调用构造函数中，许多`Set*`并`Add*`Api，，然后调用<xref:System.Diagnostics.Activity.Start>构建活动。 您**必须**调用<xref:System.Diagnostics.Activity.Start>之前使用的新实例。
+请注意<xref:System.Diagnostics.Activity> , 具有 "生成器" 模式: 调用构造函数、多个`Set*`和`Add*` api, 然后调用<xref:System.Diagnostics.Activity.Start>来生成活动。 使用新实例<xref:System.Diagnostics.Activity.Start>之前, 必须调用。
 
  ]]></format>
         </remarks>
@@ -120,9 +120,9 @@
 
 ## Remarks
 
-此键/值对包含在返回的集合<see cref="P:System.Diagnostics.Activity.Baggage" />属性，并还可以通过检索<xref:System.Diagnostics.Activity.GetBaggageItem%2A>方法。 
+此键/值对包含在由<see cref="P:System.Diagnostics.Activity.Baggage" />属性返回的集合中, 还可<xref:System.Diagnostics.Activity.GetBaggageItem%2A>由方法检索。 
 
-`Baggage` 适用于所需的运行时控件的信息。 有关可用于在日志中显示的信息<xref:System.Diagnostics.Activity>，使用<xref:System.Diagnostics.Activity.Tags>属性。
+`Baggage`适用于运行时控制所需的信息。 有关在日志<xref:System.Diagnostics.Activity>中显示的有用信息, 请<xref:System.Diagnostics.Activity.Tags>使用属性。
 
  ]]></format>
         </remarks>
@@ -160,9 +160,9 @@
 
 ## Remarks
 
-返回在集合中包含此键/值对<see cref="P:System.Diagnostics.Activity.Tags" />属性。
+此键/值对包含在由<see cref="P:System.Diagnostics.Activity.Tags" />属性返回的集合中。
 
-<xref:System.Diagnostics.Activity.Tags> 目的为了的信息可用于登录，并具有<xref:System.Diagnostics.Activity>。 所需的运行时控件的信息，请使用<xref:System.Diagnostics.Activity.Baggage>属性。
+<xref:System.Diagnostics.Activity.Tags>适用于用<xref:System.Diagnostics.Activity>来登录的信息。 有关运行时控制所需的信息, 请使用<xref:System.Diagnostics.Activity.Baggage>属性。
 
 ]]></format>
         </remarks>
@@ -188,13 +188,13 @@
       </ReturnValue>
       <Docs>
         <summary>获取键/值对的集合，它表示传递给此 <see cref="T:System.Diagnostics.Activity" /> 的子元素的信息。</summary>
-        <value>字符串-字符串键 / 值对的枚举。</value>
+        <value>字符串字符串键值对的枚举。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-`Baggage` 进行序列化时请求将保留 （以及 ID) 的过程。 通常情况下，`Baggage`细化控制日志记录的活动及其所有子级使用。  一般情况下，如果在运行时不使用数据，则应使用<xref:System.Diagnostics.Activity.Tags>相反。
+`Baggage`当请求离开进程时 (连同 ID), 将序列化。 通常, `Baggage`用于精细控制活动和任何子项的日志记录。  通常, 如果在运行时不使用数据, 则应<xref:System.Diagnostics.Activity.Tags>改用。
 
 ]]></format>
         </remarks>
@@ -220,7 +220,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置当前线程的当前操作 (<see cref="T:System.Diagnostics.Activity" />)。  这会跨异步调用传递。</summary>
-        <value>针对当前线程的当前操作。</value>
+        <value>当前线程的当前操作。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -242,13 +242,13 @@
       <Docs>
         <summary>获取或设置 <see cref="T:System.Diagnostics.Activity" /> 的默认 ID 格式。</summary>
         <value>To be added.</value>
-        <remarks>  
+        <remarks>
           <format type="text/markdown"><![CDATA[  
 
-`Activity`实例会尝试为 Id 使用相同的格式，作为其父级。 如果活动没有父级，则此属性确定要使用的默认格式。
+`Activity`实例尝试对 id 使用与父实例相同的格式。 如果活动没有父级, 则此属性将确定要使用的默认格式。
 
          ]]></format>
-         </remarks>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Duration">
@@ -271,7 +271,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取操作的持续时间。</summary>
-        <value>之间的增量<see cref="P:System.Diagnostics.Activity.StartTimeUtc" />和结束时间，如果<see cref="T:System.Diagnostics.Activity" />已结束 (<see cref="M:System.Diagnostics.Activity.Stop" />或<see cref="M:System.Diagnostics.Activity.SetEndTime(System.DateTime)" />调用)，或<see cref="F:System.TimeSpan.Zero" />如果<see cref="T:System.Diagnostics.Activity" />结束和<see cref="M:System.Diagnostics.Activity.SetEndTime(System.DateTime)" />未调用。</value>
+        <value><see cref="P:System.Diagnostics.Activity.StartTimeUtc" /> <see cref="F:System.TimeSpan.Zero" />如果已结束 (<see cref="M:System.Diagnostics.Activity.Stop" /> <see cref="M:System.Diagnostics.Activity.SetEndTime(System.DateTime)" />或已<see cref="M:System.Diagnostics.Activity.SetEndTime(System.DateTime)" />调用), 则为和结束时间之间的增量, 或者, 如果未结束且未调用,则为。<see cref="T:System.Diagnostics.Activity" /> <see cref="T:System.Diagnostics.Activity" /></value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -292,14 +292,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值用于确定 <see cref="P:System.Diagnostics.Activity.DefaultIdFormat" /> 是否始终用于定义默认 ID 格式。</summary>
-        <value><see langword="true" /> 若要始终使用<see cref="P:System.Diagnostics.Activity.DefaultIdFormat" />; 否则为<see langword="false" />。</value>
-        <remarks>  
+        <value><see langword="true" />如果始终使用<see cref="P:System.Diagnostics.Activity.DefaultIdFormat" />, <see langword="false" />则为; 否则为。</value>
+        <remarks>
           <format type="text/markdown"><![CDATA[  
 
-通常，如果<xref:System.Diagnostics.Activity.ParentId>是定义，其格式确定当前使用的格式<xref:System.Diagnostics.Activity>。 但是，如果`ForceDefaultFormat`设置为`true`，始终由 ID 格式<xref:System.Diagnostics.Activity.DefaultIdFormat>属性，即使<xref:System.Diagnostics.Activity.ParentId>定义和父具有不同的格式。
+通常, 如果<xref:System.Diagnostics.Activity.ParentId>定义了, 则其格式将确定当前<xref:System.Diagnostics.Activity>所使用的格式。 但是, 如果`ForceDefaultFormat`将设置为`true`, 则即使<xref:System.Diagnostics.Activity.ParentId>定义了并且父具有不同<xref:System.Diagnostics.Activity.DefaultIdFormat>的格式, ID 格式也始终由属性定义。
 
          ]]></format>
-         </remarks>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetBaggageItem">
@@ -356,7 +356,7 @@
 
 ## Remarks
 
-ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Diagnostics.Activity.Start>称为通过追加后缀`Activity.Parent.Id`或<xref:System.Diagnostics.Activity.ParentId>。 <xref:System.Diagnostics.Activity>不具有任何 ID，直到它开始。 有关详细信息，请参阅[Id 格式](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md#id-format)。
+ID 具有层次结构: `root-id.id1_id2.id3_`。 当通过<xref:System.Diagnostics.Activity.Start> `Activity.Parent.Id`向或<xref:System.Diagnostics.Activity.ParentId>附加后缀来调用时, 将生成 ID。 <xref:System.Diagnostics.Activity>在开始之前没有 ID。 有关详细信息, 请参阅[Id 格式](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md#id-format)。
 
 ]]></format>
         </remarks>
@@ -379,7 +379,7 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
       </ReturnValue>
       <Docs>
         <summary>获取 <see cref="P:System.Diagnostics.Activity.Id" /> 的格式。</summary>
-        <value>格式为<see cref="P:System.Diagnostics.Activity.Id" />。</value>
+        <value>的格式<see cref="P:System.Diagnostics.Activity.Id" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -409,7 +409,7 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
 
 ## Remarks
 
-操作名称是*粗糙*非常有用的名称进行分组/筛选。 名称通常是一个编译时常量。 Rest Api 的名称都是合理的但参数 （例如特定的帐户） 不应在名称中但而不是在标记中。
+操作名称是适用于分组/筛选的*益处*名称。 该名称通常是编译时常量。 Rest Api 的名称是合理的, 但参数 (如特定帐户) 不应在名称中, 而应在标记中。
 
 ]]></format>
         </remarks>
@@ -435,7 +435,7 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
       </ReturnValue>
       <Docs>
         <summary>获取创建此活动的父级 <see cref="T:System.Diagnostics.Activity" />。</summary>
-        <value>此父<see cref="T:System.Diagnostics.Activity" />，如果它是从相同的过程，或<see langword="null" />如果此实例 （它是根活动） 没有父级，或如果父级是从外部进程。</value>
+        <value>此<see cref="T:System.Diagnostics.Activity" />的父级 (如果它来自同一进程), 或者<see langword="null" /> , 如果此实例没有父项 (它是根活动) 或者父对象来自进程外, 则为。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -459,15 +459,15 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
       </ReturnValue>
       <Docs>
         <summary>获取此活动父级的 ID。</summary>
-        <value>父 ID，如果存在，或<see langword="null" />如果不是。</value>
+        <value>父 ID (如果存在), <see langword="null" />如果不存在, 则为。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-如果此父<xref:System.Diagnostics.Activity>来自进程之外<xref:System.Diagnostics.Activity>不具有父级，但*可能*具有父 ID （其中已从反序列化父级）。  
+如果此<xref:System.Diagnostics.Activity>的父级来自进程外, 则<xref:System.Diagnostics.Activity>没有父级, 但*可能*具有父 ID (从父 ID 反序列化)。  
 
-此属性的值可以是`null`如果这是根<see cref="T:System.Diagnostics.Activity" />(即不具有<xref:System.Diagnostics.Activity.Parent>)。  请参阅[Id 格式](href="https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md#id-format")的更多详细信息。
+如果这是一个根`null` <see cref="T:System.Diagnostics.Activity" /> (即它没有<xref:System.Diagnostics.Activity.Parent>), 则此属性值可以为。  有关更多详细信息, 请参阅[Id 格式](href="https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md#id-format")。
 
 ]]></format>
         </remarks>
@@ -475,29 +475,29 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
     </Member>
     <Member MemberName="ParentSpanId">
       <MemberSignature Language="C#" Value="public System.Diagnostics.ActivitySpanId ParentSpanId { get; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance class System.Diagnostics.ActivitySpanId ParentSpanId" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.Diagnostics.ActivitySpanId ParentSpanId" />
       <MemberSignature Language="DocId" Value="P:System.Diagnostics.Activity.ParentSpanId" />
       <MemberSignature Language="VB.NET" Value="Public ReadOnly Property ParentSpanId As ActivitySpanId" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; property System::Diagnostics::ActivitySpanId ^ ParentSpanId { System::Diagnostics::ActivitySpanId ^ get(); };" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; property System::Diagnostics::ActivitySpanId ParentSpanId { System::Diagnostics::ActivitySpanId get(); };" />
       <MemberSignature Language="F#" Value="member this.ParentSpanId : System.Diagnostics.ActivitySpanId" Usage="System.Diagnostics.Activity.ParentSpanId" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Diagnostics.DiagnosticSource</AssemblyName>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
-      <ReturnValue RefType="Ref">
+      <ReturnValue>
         <ReturnType>System.Diagnostics.ActivitySpanId</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>获取父级的 <see cref="P:System.Diagnostics.Activity.SpanId" />。</summary>
-        <value>父级的<see cref="P:System.Diagnostics.Activity.SpanId" />。</value>
-        <remarks>  
+        <value>父项的<see cref="P:System.Diagnostics.Activity.SpanId" />。</value>
+        <remarks>
           <format type="text/markdown"><![CDATA[  
 
-如果<xref:System.Diagnostics.Activity.ParentId?displayProperty=nameWithType>采用 W3C 格式中，此属性返回<xref:System.Diagnostics.Activity.SpanId>ParentId 的一部分。  否则它将返回一个零<xref:System.Diagnostics.Activity.SpanId>。
+如果采用 W3C 格式, 则此属性<xref:System.Diagnostics.Activity.SpanId>返回 ParentId 的部分。 <xref:System.Diagnostics.Activity.ParentId?displayProperty=nameWithType>  否则, 它将返回<xref:System.Diagnostics.Activity.SpanId>零。
 
          ]]></format>
-         </remarks>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Recorded">
@@ -517,7 +517,7 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
       </ReturnValue>
       <Docs>
         <summary>获取一个值，指示是否已设置 W3CIdFlags.Recorded 标志。</summary>
-        <value><see langword="true" /> 如果设置了 W3CIdFlags.Recorded 标志;否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果设置了 W3CIdFlags 标志, 则为;否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -541,13 +541,13 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
       </ReturnValue>
       <Docs>
         <summary>获取此 <see cref="T:System.Diagnostics.Activity" /> 的根 ID。</summary>
-        <value>根 ID，或<see langword="null" />如果当前实例已<see cref="P:System.Diagnostics.Activity.ParentId" />或<see cref="P:System.Diagnostics.Activity.Id" />。</value>
+        <value>根 ID; <see langword="null" />如果当前实例有<see cref="P:System.Diagnostics.Activity.ParentId" />或<see cref="P:System.Diagnostics.Activity.Id" />, 则为。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-根 ID 是中的子<xref:System.Diagnostics.Activity.Id>或<xref:System.Diagnostics.Activity.ParentId>) 之间 ' |'（或开始位置） 和第一个`.`。 按根 ID 进行筛选，可找到操作处理中涉及的所有活动。 有关详细信息，请参阅[ID 格式](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md#id-format)。
+根 ID 是 "|" 之间的<xref:System.Diagnostics.Activity.Id> <xref:System.Diagnostics.Activity.ParentId>或中的子字符串(或开头) 和第一个`.`。 按根 ID 筛选允许您查找操作处理中涉及的所有活动。 有关详细信息, 请参阅[ID 格式](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md#id-format)。
 
 ]]></format>
         </remarks>
@@ -581,6 +581,31 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="SetIdFormat">
+      <MemberSignature Language="C#" Value="public System.Diagnostics.Activity SetIdFormat (System.Diagnostics.ActivityIdFormat format);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Diagnostics.Activity SetIdFormat(valuetype System.Diagnostics.ActivityIdFormat format) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Diagnostics.Activity.SetIdFormat(System.Diagnostics.ActivityIdFormat)" />
+      <MemberSignature Language="VB.NET" Value="Public Function SetIdFormat (format As ActivityIdFormat) As Activity" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; System::Diagnostics::Activity ^ SetIdFormat(System::Diagnostics::ActivityIdFormat format);" />
+      <MemberSignature Language="F#" Value="member this.SetIdFormat : System.Diagnostics.ActivityIdFormat -&gt; System.Diagnostics.Activity" Usage="activity.SetIdFormat format" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Diagnostics.DiagnosticSource</AssemblyName>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Diagnostics.Activity</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="format" Type="System.Diagnostics.ActivityIdFormat" Index="0" FrameworkAlternate="netcore-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="format">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="SetParentId">
       <MemberSignature Language="C#" Value="public System.Diagnostics.Activity SetParentId (string parentId);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Diagnostics.Activity SetParentId(string parentId) cil managed" />
@@ -611,17 +636,17 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
 
 ## Remarks
 
-此属性应仅在边界方案中使用其中<see cref="T:System.Diagnostics.Activity" />从另一个进程以逻辑方式启动此<see cref="T:System.Diagnostics.Activity" />。 `parentId`引出<xref:System.Diagnostics.Activity.Tags>(以及<xref:System.Diagnostics.Activity.ParentId>属性) 和可用于重新构造因果树。
+此属性应仅用于 "边界" 方案, 其中<see cref="T:System.Diagnostics.Activity" />来自其他进程的逻辑启动此。 <see cref="T:System.Diagnostics.Activity" /> 随即`parentId`打开<xref:System.Diagnostics.Activity.Tags> (以及属性),可用于重新<xref:System.Diagnostics.Activity.ParentId>构造因果树。
 
 ]]></format>
         </remarks>
       </Docs>
     </Member>
     <Member MemberName="SetParentId">
-      <MemberSignature Language="C#" Value="public System.Diagnostics.Activity SetParentId (ref System.Diagnostics.ActivityTraceId traceId, ref System.Diagnostics.ActivitySpanId spanId, System.Diagnostics.ActivityTraceFlags activityTraceFlags = System.Diagnostics.ActivityTraceFlags.None);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Diagnostics.Activity SetParentId([in]valuetype System.Diagnostics.ActivityTraceId&amp; traceId, [in]valuetype System.Diagnostics.ActivitySpanId&amp; spanId, valuetype System.Diagnostics.ActivityTraceFlags activityTraceFlags) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Diagnostics.Activity.SetParentId(System.Diagnostics.ActivityTraceId@,System.Diagnostics.ActivitySpanId@,System.Diagnostics.ActivityTraceFlags)" />
-      <MemberSignature Language="F#" Value="member this.SetParentId :  *  * System.Diagnostics.ActivityTraceFlags -&gt; System.Diagnostics.Activity" Usage="activity.SetParentId (traceId, spanId, activityTraceFlags)" />
+      <MemberSignature Language="C#" Value="public System.Diagnostics.Activity SetParentId (System.Diagnostics.ActivityTraceId traceId, System.Diagnostics.ActivitySpanId spanId, System.Diagnostics.ActivityTraceFlags activityTraceFlags = System.Diagnostics.ActivityTraceFlags.None);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Diagnostics.Activity SetParentId(valuetype System.Diagnostics.ActivityTraceId traceId, valuetype System.Diagnostics.ActivitySpanId spanId, valuetype System.Diagnostics.ActivityTraceFlags activityTraceFlags) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Diagnostics.Activity.SetParentId(System.Diagnostics.ActivityTraceId,System.Diagnostics.ActivitySpanId,System.Diagnostics.ActivityTraceFlags)" />
+      <MemberSignature Language="F#" Value="member this.SetParentId : System.Diagnostics.ActivityTraceId * System.Diagnostics.ActivitySpanId * System.Diagnostics.ActivityTraceFlags -&gt; System.Diagnostics.Activity" Usage="activity.SetParentId (traceId, spanId, activityTraceFlags)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Diagnostics.DiagnosticSource</AssemblyName>
@@ -631,8 +656,8 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
         <ReturnType>System.Diagnostics.Activity</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="traceId" Type="System.Diagnostics.ActivityTraceId" RefType="ref" Index="0" FrameworkAlternate="netcore-3.0" />
-        <Parameter Name="spanId" Type="System.Diagnostics.ActivitySpanId" RefType="ref" Index="1" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="traceId" Type="System.Diagnostics.ActivityTraceId" Index="0" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="spanId" Type="System.Diagnostics.ActivitySpanId" Index="1" FrameworkAlternate="netcore-3.0" />
         <Parameter Name="activityTraceFlags" Type="System.Diagnostics.ActivityTraceFlags" Index="2" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
@@ -674,22 +699,22 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
     </Member>
     <Member MemberName="SpanId">
       <MemberSignature Language="C#" Value="public System.Diagnostics.ActivitySpanId SpanId { get; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance class System.Diagnostics.ActivitySpanId SpanId" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.Diagnostics.ActivitySpanId SpanId" />
       <MemberSignature Language="DocId" Value="P:System.Diagnostics.Activity.SpanId" />
       <MemberSignature Language="VB.NET" Value="Public ReadOnly Property SpanId As ActivitySpanId" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; property System::Diagnostics::ActivitySpanId ^ SpanId { System::Diagnostics::ActivitySpanId ^ get(); };" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; property System::Diagnostics::ActivitySpanId SpanId { System::Diagnostics::ActivitySpanId get(); };" />
       <MemberSignature Language="F#" Value="member this.SpanId : System.Diagnostics.ActivitySpanId" Usage="System.Diagnostics.Activity.SpanId" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Diagnostics.DiagnosticSource</AssemblyName>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
-      <ReturnValue RefType="Ref">
+      <ReturnValue>
         <ReturnType>System.Diagnostics.ActivitySpanId</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>获取 <see cref="P:System.Diagnostics.Activity.Id" /> 的 SPAN 部分。</summary>
-        <value>S p a N 一部分的 ID <see cref="P:System.Diagnostics.Activity.Id" />，如果<see cref="T:System.Diagnostics.Activity" />采用 W3C 格式; 否则为零<see langword="SpanId" />。</value>
+        <value>如果具有 W3C 格式<see cref="P:System.Diagnostics.Activity.Id" />, 则为跨距部分的 ID; 否则为零<see langword="SpanId" />。 <see cref="T:System.Diagnostics.Activity" /></value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -720,13 +745,13 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
 
 ## Remarks
 
-调用`Start`方法执行以下操作：
--   集<xref:System.Diagnostics.Activity.Parent>以保存<xref:System.Diagnostics.Activity.Current>。
--   集<xref:System.Diagnostics.Activity.Current>到此<xref:System.Diagnostics.Activity>。
--   如果<xref:System.Diagnostics.Activity.StartTimeUtc>以前未设置，则将其设置为<xref:System.DateTime.UtcNow?displayProperty=nameWithType>。
--   生成的唯一<xref:System.Diagnostics.Activity.Id>此活动。</item>
+`Start`调用方法会执行以下操作:
+-   要<xref:System.Diagnostics.Activity.Parent> 保存<xref:System.Diagnostics.Activity.Current>的设置。
+-   将<xref:System.Diagnostics.Activity.Current>设置为<xref:System.Diagnostics.Activity>此。
+-   如果<xref:System.Diagnostics.Activity.StartTimeUtc>以前未设置, 则将其设置<xref:System.DateTime.UtcNow?displayProperty=nameWithType>为。
+-   为此活动<xref:System.Diagnostics.Activity.Id>生成唯一。</item>
 
-使用<xref:System.Diagnostics.DiagnosticSource.StartActivity%2A?displayProperty=nameWithType>以启动<see cref="T:System.Diagnostics.Activity" />和写入开始事件。
+<xref:System.Diagnostics.DiagnosticSource.StartActivity%2A?displayProperty=nameWithType> 使用<see cref="T:System.Diagnostics.Activity" />启动并写入开始事件。
 
 ]]></format>
         </remarks>
@@ -752,13 +777,13 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
       </ReturnValue>
       <Docs>
         <summary>获取操作开始的时间。</summary>
-        <value>该操作开始的 UTC 时间。</value>
+        <value>操作开始的 UTC 时间。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-`StartTimeUtc`属性通常是初始化何时<xref:System.Diagnostics.Activity.Start>调用，但可以将其设置在任何时候通过调用<xref:System.Diagnostics.Activity.SetStartTime%2A>。
+在`StartTimeUtc`调用时<xref:System.Diagnostics.Activity.Start> , 通常会初始化属性, 但可以通过调用<xref:System.Diagnostics.Activity.SetStartTime%2A>随时对其进行设置。
 
 ]]></format>
         </remarks>
@@ -790,13 +815,13 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
 
 ## Remarks
 
-此信息不会传递到此子级<xref:System.Diagnostics.Activity>。
-调用`Stop`方法：
+此信息不会传递给此<xref:System.Diagnostics.Activity>的子级。
+`Stop`调用方法:
 
-- 集<xref:System.Diagnostics.Activity.Current>到<xref:System.Diagnostics.Activity.Parent>。
-- 如果结束时间未设置之前，设置<xref:System.Diagnostics.Activity.Duration>之间的差<xref:System.DateTime.UtcNow?displayProperty=nameWithType>和<xref:System.Diagnostics.Activity.StartTimeUtc>。
+- 将<xref:System.Diagnostics.Activity.Current>设置<xref:System.Diagnostics.Activity.Parent>为。
+- 如果以前未设置结束时间, 则将设置<xref:System.Diagnostics.Activity.Duration>为和<xref:System.Diagnostics.Activity.StartTimeUtc>之间<xref:System.DateTime.UtcNow?displayProperty=nameWithType>的差异。
 
-调用<xref:System.Diagnostics.DiagnosticSource.StopActivity%2A?displayProperty=nameWithType>停止<xref:System.Diagnostics.Activity>和写入停止事件。
+<xref:System.Diagnostics.DiagnosticSource.StopActivity%2A?displayProperty=nameWithType> 调用<xref:System.Diagnostics.Activity>停止并写入停止事件。
 
 ]]></format>
         </remarks>
@@ -822,28 +847,28 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
       </ReturnValue>
       <Docs>
         <summary>获取键/值对的集合，这些键/值对表示将与 <see cref="T:System.Diagnostics.Activity" /> 一起记录到日志系统的信息。</summary>
-        <value>字符串-字符串密钥值对的枚举。</value>
+        <value>字符串字符串键值对的枚举。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="TraceId">
       <MemberSignature Language="C#" Value="public System.Diagnostics.ActivityTraceId TraceId { get; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance class System.Diagnostics.ActivityTraceId TraceId" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.Diagnostics.ActivityTraceId TraceId" />
       <MemberSignature Language="DocId" Value="P:System.Diagnostics.Activity.TraceId" />
       <MemberSignature Language="VB.NET" Value="Public ReadOnly Property TraceId As ActivityTraceId" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; property System::Diagnostics::ActivityTraceId ^ TraceId { System::Diagnostics::ActivityTraceId ^ get(); };" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; property System::Diagnostics::ActivityTraceId TraceId { System::Diagnostics::ActivityTraceId get(); };" />
       <MemberSignature Language="F#" Value="member this.TraceId : System.Diagnostics.ActivityTraceId" Usage="System.Diagnostics.Activity.TraceId" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Diagnostics.DiagnosticSource</AssemblyName>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
-      <ReturnValue RefType="Ref">
+      <ReturnValue>
         <ReturnType>System.Diagnostics.ActivityTraceId</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>获取 <see cref="P:System.Diagnostics.Activity.Id" /> 的 TraceId 部分。</summary>
-        <value>TraceId 一部分的 ID <see cref="P:System.Diagnostics.Activity.Id" />，如果该 ID 有 W3C 格式; 否则为零的跟踪 Id。</value>
+        <value>如果 id 具有 W3C 格式<see cref="P:System.Diagnostics.Activity.Id" />, 则为的 TraceId 部分的 id; 否则为零 TraceId。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -864,16 +889,16 @@ ID 具有层次结构： `root-id.id1_id2.id3_`。 生成 ID 时<xref:System.Dia
       </ReturnValue>
       <Docs>
         <summary>获取 W3C <see langword="tracestate" /> 标头。</summary>
-        <value>W3C<see langword="tracestate" />标头。</value>
-        <remarks>  
+        <value>W3C <see langword="tracestate" />标头。</value>
+        <remarks>
           <format type="text/markdown"><![CDATA[  
 
-`tracestate`标头用于传送到包含跟踪父代中的跟踪标识的补充信息。 `tracestate` 包含传达有关多个分布式的跟踪图形中的请求位置信息的键/值对的列表。 此信息通常由分布式的跟踪系统并不应应用于常规用途行李，因为这可能会中断的分布式跟踪的相关性。
+`tracestate`标头用于携带补充信息来跟踪包含在跟踪父级中的标识。 `tracestate`包含键/值对的列表, 这些键/值对在多个分布式跟踪关系图中传达有关请求位置的信息。 此信息通常由分布式跟踪系统使用, 不应用于常规用途行李, 因为这可能会破坏分布式跟踪的相关性。
             
-以逻辑方式`TraceStateString`是只是一种行李 （如果流一样行李），而是因为它应为特殊情况 （它具有其自己的 HTTP 标头），如果它不使用其他行李通常会更方便/有效。
+逻辑`TraceStateString`上只是一种行李 (如果流类似于行李), 但由于它应采用特殊大小写方式 (它有自己的 HTTP 标头), 因此, 如果它不能与其他行李 lumped, 则更方便/有效。
 
          ]]></format>
-         </remarks>
+        </remarks>
       </Docs>
     </Member>
   </Members>

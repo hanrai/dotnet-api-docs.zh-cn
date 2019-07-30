@@ -43,48 +43,48 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>如果主程序集不包含非特定区域性的资源，并且缺少适当的附属程序集引发的异常。</summary>
+    <summary>主程序集不包含非特定区域性的资源和适当的附属程序集缺少时引发的异常。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
-## <a name="net-apps"></a>.NET 应用程序  
+## <a name="net-apps"></a>.NET 应用  
 
-在.NET Framework 和.NET Core 应用中，<xref:System.Resources.MissingManifestResourceException>检索资源的尝试会失败，因为无法从特定程序集加载的资源集的非特定区域性时引发。 尽管当您尝试检索特定资源时引发异常，但它被因未能加载资源集而不是故障以查找的资源。  
+在 .NET Framework 和 .net Core 应用程序<xref:System.Resources.MissingManifestResourceException>中, 如果尝试检索资源失败, 因为无法从特定程序集加载非特定区域性的资源集, 则会引发。 尽管在您尝试检索特定资源时引发了异常, 但这是因为加载资源集失败, 而不是查找资源失败。  
   
 > [!NOTE]
->  有关其他信息，请参阅中的"处理 MissingManifestResourceException 异常"部分<xref:System.Resources.ResourceManager>类主题。  
+>  有关其他信息, 请参阅<xref:System.Resources.ResourceManager>类主题中的 "处理 MissingManifestResourceException 异常" 一节。  
   
- 异常的主要原因包括：  
+ 异常的主要原因包括:  
   
--   资源集不由其完全限定名称标识。 例如，如果`baseName`对的调用中的参数<xref:System.Resources.ResourceManager.%23ctor%28System.String%2CSystem.Reflection.Assembly%29?displayProperty=nameWithType>方法指定一个命名空间，没有设置的资源的根名称，但对资源集时存储在其程序集，在调用分配一个命名空间<xref:System.Resources.ResourceManager.GetString%2A?displayProperty=nameWithType>方法将引发此异常。  
+-   资源集不由其完全限定的名称标识。 例如, 如果对`baseName` <xref:System.Resources.ResourceManager.%23ctor%28System.String%2CSystem.Reflection.Assembly%29?displayProperty=nameWithType>方法的调用中的参数指定不带命名空间的资源集的根名称, 但在将该资源集存储在其程序集中时<xref:System.Resources.ResourceManager.GetString%2A?displayProperty=nameWithType> , 将为该资源集分配一个命名空间, 则调用该方法引发此异常。  
   
-     如果你有嵌入的.resources 文件，其中包含可执行文件中的默认区域性的资源，并且您的应用程序正在引发<xref:System.Resources.MissingManifestResourceException>，可以使用反射工具，如[IL 反汇编程序 (Ildasm.exe)](~/docs/framework/tools/ildasm-exe-il-disassembler.md)来确定资源的完全限定的名称。 在 ILDasm，双击可执行文件的**清单**标志，以打开**清单**窗口。 资源显示为`.mresource`后外部程序集引用和自定义程序集级别属性的项并列出。 此外，还可以将下列简单实用程序，其中列出了在其名称作为命令行参数传递给它的程序集中嵌入资源的完全限定的名称。  
+     如果在可执行文件中嵌入了包含默认区域性资源的 .resources 文件, 并且应用正在引发<xref:System.Resources.MissingManifestResourceException>, 则可以使用反射工具 (如[IL 拆装器 (Ildasm))](~/docs/framework/tools/ildasm-exe-il-disassembler.md)来确定完全限定的资源的名称。 在 ILDasm 中, 双击可执行文件的**清单**标签以打开**清单**窗口。 资源显示为`.mresource`项, 并在外部程序集引用和自定义程序集级别属性后列出。 你还可以编译以下简单的实用工具, 其中列出了程序集中嵌入资源的完全限定名称, 该程序集的名称被作为命令行参数传递给它。  
   
      [!code-csharp[System.Resources.ResourceManager.Class#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.resources.resourcemanager.class/cs/resourcenames.cs#4)]
      [!code-vb[System.Resources.ResourceManager.Class#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.resources.resourcemanager.class/vb/resourcenames.vb#4)]  
   
--   确定将由其资源文件名称 （以及其可选的命名空间） 和文件扩展名而不是其命名空间和根文件名称设置为单独的资源。 例如，将引发此异常，如果名为非特定区域性的资源组`GlobalResources`，并提供的值`GlobalResources.resources`(而不是`GlobalResources`) 对`baseName`参数的<xref:System.Resources.ResourceManager.%23ctor%28System.String%2CSystem.Reflection.Assembly%29?displayProperty=nameWithType>构造函数。  
+-   您可以通过资源文件名 (连同其可选的命名空间) 及其文件扩展名而不是单独的命名空间和文件扩展名来标识资源集。 例如, 如果非特定区域性的资源集已`GlobalResources`命名并且您向<xref:System.Resources.ResourceManager.%23ctor%28System.String%2CSystem.Reflection.Assembly%29?displayProperty=nameWithType>构造函数的`baseName`参数提供了`GlobalResources.resources`值 (而不`GlobalResources`是), 则会引发此异常。  
   
--   找不到方法调用中标识的特定于区域性的资源集，并且不能加载回退资源集。 例如，如果为英语 （美国） 和俄罗斯 （俄语） 区域性创建附属程序集，但无法提供设置非特定区域性的资源，如果应用程序的当前区域性为英语 （英国） 引发此异常。  
+-   找不到在方法调用中标识的区域性特定资源集, 并且无法加载回退资源集。 例如, 如果为英语 (美国) 和俄罗斯 (俄语) 区域性创建附属程序集, 但未能提供非特定区域性的资源集, 则如果应用的当前区域性为英语 (英国), 则会引发此异常。  
   
- <xref:System.Resources.MissingManifestResourceException> 使用 HRESULT COR_E_MISSINGMANIFESTRESOURCE，其值 0x80131532。  
+ <xref:System.Resources.MissingManifestResourceException>使用 COR_E_MISSINGMANIFESTRESOURCE 值为0x80131532 的 HRESULT。  
   
- <xref:System.Resources.MissingManifestResourceException> 使用默认<xref:System.Object.Equals%2A>实现，它支持引用相等性。  
+ <xref:System.Resources.MissingManifestResourceException>使用支持引用<xref:System.Object.Equals%2A>相等性的默认实现。  
   
  有关实例的初始属性值的列表<xref:System.Resources.MissingManifestResourceException>，请参阅<xref:System.Resources.MissingManifestResourceException.%23ctor%2A>构造函数。  
   
 > [!NOTE]
->  我们建议包括一组非特定资源在主程序集中，因此如果附属程序集是不可用，您的应用程序不会失败。  
+>  建议你在主程序集中包含一组非特定的资源, 因此, 如果附属程序集不可用, 你的应用将不会失败。  
   
-## <a name="universal-windows-platform-uwp-apps"></a>通用 Windows 平台 (UWP) 应用程序 
+## <a name="universal-windows-platform-uwp-apps"></a>通用 Windows 平台 (UWP) 应用 
 
-UWP 应用中部署多个区域性，在单个包资源索引 (.pri) 文件中包括非特定区域性的资源。 因此，在 UWP 应用中，如果找不到首选区域性的资源，<xref:System.Resources.MissingManifestResourceException>引发在以下条件之一：  
+UWP 应用在单个包资源索引 (pri) 文件中部署多个区域性的资源, 包括非特定区域性。 因此, 在 UWP 应用中, 如果找不到首选区域性的资源, <xref:System.Resources.MissingManifestResourceException>则会在下列任一条件下引发:  
   
-- 应用程序不包括的.pri 文件，或无法打开.pri 文件。  
+- 应用不包括 pri 文件, 或者无法打开 pri 文件。  
   
-- 应用的.pri 文件不包含设置为给定的根名称的资源。  
+- 应用的 pri 文件不包含给定根名称的资源集。  
   
  ]]></format>
     </remarks>
@@ -141,7 +141,7 @@ UWP 应用中部署多个区域性，在单个包资源索引 (.pri) 文件中�
 |Property|值|  
 |--------------|-----------|  
 |<xref:System.Exception.InnerException%2A>|`null`。|  
-|<xref:System.Exception.Message%2A>|本地化的错误消息为<xref:System.Resources.MissingManifestResourceException>。|  
+|<xref:System.Exception.Message%2A>|的本地化错误消息<xref:System.Resources.MissingManifestResourceException>。|  
   
  ]]></format>
         </remarks>

@@ -30,10 +30,10 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 到主机[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]窗口中，创建派生一个类<xref:System.Windows.Interop.HwndHost>。 重写<xref:System.Windows.Interop.HwndHost.BuildWindowCore%2A>方法，并创建你[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]作为传递给该方法的父窗口的子窗口。  
+ 若要承载[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]窗口, 请创建一个派生自<xref:System.Windows.Interop.HwndHost>的类。 [!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]重写<xref:System.Windows.Interop.HwndHost.BuildWindowCore%2A>方法, 并将窗口创建为传入方法的父窗口的子级。  
   
 > [!IMPORTANT]
->  尽管<xref:System.Windows.Interop.HwndHost>派生自<xref:System.Windows.FrameworkElement>的各种属性<xref:System.Windows.Interop.HwndHost>，来自<xref:System.Windows.FrameworkElement>和其他中间类，如<xref:System.Windows.UIElement>通常不会映射到可能[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]等效项。 而且，并非所有<xref:System.Windows.FrameworkElement>  /  <xref:System.Windows.UIElement>跨互操作边界输入事件传输。 <xref:System.Windows.Interop.HwndHost> 派生自<xref:System.Windows.FrameworkElement>主要，以便<xref:System.Windows.Interop.HwndHost>实例可以插入到各种可能的内容模型，并因此的默认<xref:System.Windows.FrameworkElement>可以应用布局特征。 有关详细信息<xref:System.Windows.Interop.HwndHost>，请参阅[WPF 和 Win32 互操作](~/docs/framework/wpf/advanced/wpf-and-win32-interoperation.md)。  
+>  尽管<xref:System.Windows.Interop.HwndHost> [!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)] <xref:System.Windows.Interop.HwndHost> <xref:System.Windows.UIElement>派生自<xref:System.Windows.FrameworkElement> , 但中的各种属性 (例如) 和其他中间类 (如) 通常不映射到可能的<xref:System.Windows.FrameworkElement>等效项。 此外, 并非所有<xref:System.Windows.FrameworkElement>输入事件都 /  <xref:System.Windows.UIElement>是跨互操作边界传输的。 <xref:System.Windows.Interop.HwndHost>从<xref:System.Windows.FrameworkElement>主要派生, 以便<xref:System.Windows.Interop.HwndHost>可以将实例插入到最广泛的可能内容模型中, 以便可以应用默认<xref:System.Windows.FrameworkElement>布局特征。 有关的更多<xref:System.Windows.Interop.HwndHost>详细信息, 请参阅[WPF 和 Win32 互操作](~/docs/framework/wpf/advanced/wpf-and-win32-interoperation.md)。  
   
  ]]></format>
     </remarks>
@@ -65,7 +65,7 @@
 ## Remarks  
   
 > [!IMPORTANT]
->  此类型或成员的 Internet 安全区域中不可用。  
+>  此类型或成员在 Internet 安全区域中不可用。  
   
  ]]></format>
         </remarks>
@@ -92,23 +92,23 @@
       </Parameters>
       <Docs>
         <param name="hwndParent">父窗口的窗口句柄。</param>
-        <summary>当在派生类中重写，将创建要承载的窗口。</summary>
+        <summary>在派生类中重写时，会创建要承载的窗口。</summary>
         <returns>要创建的子 [!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)] 窗口的句柄。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从内部的实现中调用此方法的实现<xref:System.Windows.Interop.HwndHost.BuildWindowCore%2A>。  
+ 此方法的实现是从的内部实现<xref:System.Windows.Interop.HwndHost.BuildWindowCore%2A>中调用的。  
   
- 仅当由调用线程所有，则将创建子窗口。  
+ 只有在窗口由调用线程所有时, 才会创建子窗口。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写此方法以生成要承载的窗口。  
+        <block subset="none" type="overrides"><para>重写此方法以生成所承载的窗口。  
   
-返回窗口必须是指定的窗口的子级<paramref name="hwndParent" />。  
+返回的窗口必须是指定<paramref name="hwndParent" />的窗口的子级。  
   
-此外，如果由调用线程拥有该窗口将仅创建子窗口。</para></block>
+此外, 仅当窗口由调用线程所有时, 才会创建子窗口。</para></block>
       </Docs>
     </Member>
     <Member MemberName="DestroyWindowCore">
@@ -132,18 +132,18 @@
       </Parameters>
       <Docs>
         <param name="hwnd">包含窗口句柄的结构。</param>
-        <summary>如果在派生类中重写，将销毁所承载的窗口。</summary>
+        <summary>在派生类中重写时，会损坏所承载的窗口。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!IMPORTANT]
->  此类型或成员的 Internet 安全区域中不可用。  
+>  此类型或成员在 Internet 安全区域中不可用。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写此方法要销毁所承载的窗口，因为由创建<see cref="M:System.Windows.Interop.HwndHost.BuildWindowCore(System.Runtime.InteropServices.HandleRef)" />。 <paramref name="hwnd" />参数应为句柄所返回的<see cref="M:System.Windows.Interop.HwndHost.BuildWindowCore(System.Runtime.InteropServices.HandleRef)" />。</para></block>
+        <block subset="none" type="overrides"><para>重写此方法以销毁由<see cref="M:System.Windows.Interop.HwndHost.BuildWindowCore(System.Runtime.InteropServices.HandleRef)" />创建的承载的窗口。 参数应为<see cref="M:System.Windows.Interop.HwndHost.BuildWindowCore(System.Runtime.InteropServices.HandleRef)" />返回的句柄。 <paramref name="hwnd" /></para></block>
       </Docs>
     </Member>
     <MemberGroup MemberName="Dispose">
@@ -159,9 +159,9 @@
 ## Remarks  
   
 > [!IMPORTANT]
->  此类型或成员的 Internet 安全区域中不可用。  
+>  此类型或成员在 Internet 安全区域中不可用。  
   
- 派生的类可以重写此方法 (通过<xref:System.Windows.Interop.HwndHost.Dispose%28System.Boolean%29>签名) 需要执行其他清理操作。  
+ 如果派生类需要执行其他清理操作, <xref:System.Windows.Interop.HwndHost.Dispose%28System.Boolean%29>则可以重写此方法 (通过签名)。  
   
  ]]></format>
         </remarks>
@@ -195,9 +195,9 @@
 ## Remarks  
   
 > [!IMPORTANT]
->  此类型或成员的 Internet 安全区域中不可用。  
+>  此类型或成员在 Internet 安全区域中不可用。  
 >   
->  可以重写此方法，但无法通过此签名。 请参阅<xref:System.Windows.Interop.HwndHost.Dispose%28System.Boolean%29>可重写的签名。 此无参数的签名是所需的接口约定中，并且它将有效地调用活动<xref:System.Windows.Interop.HwndHost.Dispose%28System.Boolean%29>实现，使用`disposing`正在`true`。  
+>  可以重写此方法, 但不能重写此签名。 有关<xref:System.Windows.Interop.HwndHost.Dispose%28System.Boolean%29>可重写签名, 请参阅。 此无参数签名是接口协定所需的签名, 它将有效地调用活动<xref:System.Windows.Interop.HwndHost.Dispose%28System.Boolean%29> `disposing`实现`true`。  
   
  ]]></format>
         </remarks>
@@ -231,7 +231,7 @@
         <Parameter Name="disposing" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="disposing">设置为<see langword="true" />如果从显式释放器调用和<see langword="false" />否则为。</param>
+        <param name="disposing">如果从显式释放器调用，则设置为 <see langword="true" />。否则设置为 <see langword="false" />。</param>
         <summary>立即释放该对象可能持有的任何系统资源。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -239,11 +239,11 @@
 ## Remarks  
   
 > [!IMPORTANT]
->  此类型或成员的 Internet 安全区域中不可用。  
+>  此类型或成员在 Internet 安全区域中不可用。  
   
- 派生的类可以重写此方法，如果他们需要执行其他清理操作。 但是，它们还应调用基实现，以确保释放所有资源。 基实现执行大量工作来释放资源的已知的类的基类。  
+ 如果派生类需要执行其他清理操作, 则可以重写此方法。 但是, 它们还应调用基实现以确保释放所有资源。 基本实现执行相当大的工作来释放基类已知的资源。  
   
- 如果窗口正在承载，它将被销毁。  
+ 如果承载窗口, 它将被销毁。  
   
  调用线程必须与调度程序相同。  
   
@@ -309,12 +309,12 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>垃圾回收器销毁对象之前执行最后的清理工作。</summary>
+        <summary>在垃圾回收器损坏对象之前执行最后的清理工作。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 像大多数终结器，这将调用`Dispose(false)`。  
+ 与大多数终结器一样, `Dispose(false)`此调用。  
   
  ]]></format>
         </remarks>
@@ -348,7 +348,7 @@
         <summary>获取所承载的窗口的窗口句柄。</summary>
         <value>窗口句柄。</value>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">若要获取此对象。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">获取此对象。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
     <Member MemberName="HasFocusWithinCore">
@@ -377,7 +377,7 @@
       <Parameters />
       <Docs>
         <summary>获取一个值，该值指示接收器或其所包含的组件之一是否具有焦点。</summary>
-        <returns><see langword="true" /> 如果接收器或其所包含的组件之一具有焦点，则否则为<see langword="false" />。</returns>
+        <returns>如果接收器或其所包含的组件之一具有焦点，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <altmember cref="M:System.Windows.Interop.IKeyboardInputSink.HasFocusWithin" />
       </Docs>
@@ -410,23 +410,23 @@
         <Parameter Name="constraint" Type="System.Windows.Size" />
       </Parameters>
       <Docs>
-        <param name="constraint">大小<see cref="T:System.Windows.Interop.HwndHost" />对象。</param>
-        <summary>返回由表示的窗口的大小<see cref="T:System.Windows.Interop.HwndHost" />对象，如由布局引擎操作请求。</summary>
-        <returns>大小<see cref="T:System.Windows.Interop.HwndHost" />对象。</returns>
+        <param name="constraint"><see cref="T:System.Windows.Interop.HwndHost" /> 对象的大小。</param>
+        <summary>按照布局引擎操作的要求，返回 <see cref="T:System.Windows.Interop.HwndHost" /> 对象所表示的窗口的大小。</summary>
+        <returns><see cref="T:System.Windows.Interop.HwndHost" /> 对象的大小。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!IMPORTANT]
->  此类型或成员的 Internet 安全区域中不可用。  
+>  此类型或成员在 Internet 安全区域中不可用。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">若要调整布局 (通过让布局引擎起作用时所承载的区域)。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
-        <block subset="none" type="overrides"><para>在[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]，窗口应为在创建窗口时请求布局的大小。 派生的类应重写此方法，只有在具有所需的窗口大小有关的其他信息。  
+        <permission cref="T:System.Security.Permissions.SecurityPermission">为了调整布局 (通过让布局引擎对托管区域进行操作)。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <block subset="none" type="overrides"><para>在[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]中, 窗口应为创建窗口时布局请求的大小。 派生类只应重写此方法, 前提是它们具有有关所需窗口大小的附加信息。  
   
-此处的特定实现已重写<see cref="T:System.Windows.FrameworkElement" />大小约束基于窗口句柄并将一个或多个维度中的零值视为非约束的虚拟成员。 <see cref="T:System.Windows.Forms.Integration.WindowsFormsHost" />类还重写<see cref="M:System.Windows.Forms.Integration.WindowsFormsHost.MeasureOverride(System.Windows.Size)" />如果太大，将导致窗体的剪辑的实现。</para></block>
+此处的特定实现已经是<see cref="T:System.Windows.FrameworkElement" />虚拟成员的替代, 该虚拟成员基于窗口句柄的大小约束, 并将一个或多个维度中的零值视为非约束。 类还会重写<see cref="M:System.Windows.Forms.Integration.WindowsFormsHost.MeasureOverride(System.Windows.Size)" />一个实现, 该实现将导致窗体的剪辑过大。 <see cref="T:System.Windows.Forms.Integration.WindowsFormsHost" /></para></block>
       </Docs>
     </Member>
     <Member MemberName="MessageHook">
@@ -454,18 +454,18 @@
         <ReturnType>System.Windows.Interop.HwndSourceHook</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>所承载的窗口收到的每个未处理的消息，会发生。</summary>
+        <summary>适用于所承载的窗口接收的每条未处理的消息。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!IMPORTANT]
->  此类型或成员的 Internet 安全区域中不可用。  
+>  此类型或成员在 Internet 安全区域中不可用。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">若要添加或删除此事件的处理程序。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">添加或删除此事件的处理程序。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
     <Member MemberName="OnCreateAutomationPeer">
@@ -486,13 +486,13 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>创建<see cref="T:System.Windows.Automation.Peers.AutomationPeer" />为<see cref="T:System.Windows.Interop.HwndHost" />。</summary>
+        <summary>为 <see cref="T:System.Windows.Automation.Peers.AutomationPeer" /> 创建一个 <see cref="T:System.Windows.Interop.HwndHost" />。</summary>
         <returns>特定于类型的 <see cref="T:System.Windows.Automation.Peers.AutomationPeer" /> 实现。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法的实现通常是调用特定构造函数<xref:System.Windows.Automation.Peers.AutomationPeer>实现中，并将其返回作为返回值。 <xref:System.Windows.Interop.HwndHost>的实现<xref:System.Windows.Interop.HwndHost.OnCreateAutomationPeer%2A>实现此目的，但它返回是一个内部类的自动化对等方。  
+ 此方法的实现通常是调用特定<xref:System.Windows.Automation.Peers.AutomationPeer>实现的构造函数, 并将其作为返回值返回。 <xref:System.Windows.Interop.HwndHost> 的<xref:System.Windows.Interop.HwndHost.OnCreateAutomationPeer%2A>实现实现了此功能, 但它返回的自动化对等是一个内部类。  
   
  ]]></format>
         </remarks>
@@ -567,9 +567,9 @@
 ## Remarks  
   
 > [!IMPORTANT]
->  此类型或成员的 Internet 安全区域中不可用。  
+>  此类型或成员在 Internet 安全区域中不可用。  
 >   
->  这是类处理程序的重写<xref:System.Windows.UIElement.OnKeyDown%2A>，并提供转换的行为[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]消息到[!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)]事件，将事件标记为已处理在可能的情况。  
+>  这是类处理程序<xref:System.Windows.UIElement.OnKeyDown%2A>的替代, 提供将[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]消息[!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)]转换为事件的行为, 并在适当时将事件标记为已处理。  
   
  ]]></format>
         </remarks>
@@ -611,9 +611,9 @@
 ## Remarks  
   
 > [!IMPORTANT]
->  此类型或成员的 Internet 安全区域中不可用。  
+>  此类型或成员在 Internet 安全区域中不可用。  
 >   
->  这是类处理程序的重写<xref:System.Windows.UIElement.OnKeyUp%2A>，并提供转换的行为[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]消息到[!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)]事件，将事件标记为已处理在可能的情况。  
+>  这是类处理程序<xref:System.Windows.UIElement.OnKeyUp%2A>的替代, 提供将[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]消息[!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)]转换为事件的行为, 并在适当时将事件标记为已处理。  
   
  ]]></format>
         </remarks>
@@ -646,7 +646,7 @@
       <Docs>
         <param name="msg">助记键和关联数据的消息。</param>
         <param name="modifiers">修改键。</param>
-        <summary>调用此接收器的助记键 （访问键） 之一时调用。</summary>
+        <summary>调用此接收器的助记键（访问键）之一时调用。</summary>
         <returns>始终返回 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <altmember cref="M:System.Windows.Interop.IKeyboardInputSink.OnMnemonic(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />
@@ -685,11 +685,11 @@
 ## Remarks  
   
 > [!IMPORTANT]
->  此类型或成员的 Internet 安全区域中不可用。  
+>  此类型或成员在 Internet 安全区域中不可用。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>子类可以重写此方法以调整窗口根据提供的维度的大小<paramref name="rcBoundingBox" />。</para></block>
+        <block subset="none" type="overrides"><para>子类可以重写此方法, 以根据提供的维度<paramref name="rcBoundingBox" />调整窗口的大小。</para></block>
       </Docs>
     </Member>
     <Member MemberName="RegisterKeyboardInputSinkCore">
@@ -716,9 +716,9 @@
         <Parameter Name="sink" Type="System.Windows.Interop.IKeyboardInputSink" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
-        <param name="sink"><see cref="T:System.Windows.Interop.IKeyboardInputSink" />所包含组件的接收器。</param>
-        <summary>注册<see cref="T:System.Windows.Interop.IKeyboardInputSink" />包含组件的接口。</summary>
-        <returns><see cref="T:System.Windows.Interop.IKeyboardInputSite" />所包含组件的站点。</returns>
+        <param name="sink">所包含组件的 <see cref="T:System.Windows.Interop.IKeyboardInputSink" /> 接收器。</param>
+        <summary>注册所包含组件的 <see cref="T:System.Windows.Interop.IKeyboardInputSink" /> 接口。</summary>
+        <returns>所包含组件的 <see cref="T:System.Windows.Interop.IKeyboardInputSite" /> 站点。</returns>
         <remarks>To be added.</remarks>
         <altmember cref="M:System.Windows.Interop.IKeyboardInputSink.RegisterKeyboardInputSink(System.Windows.Interop.IKeyboardInputSink)" />
       </Docs>
@@ -752,7 +752,7 @@
       <Parameters />
       <Docs>
         <summary>有关此成员的说明，请参见 <see cref="M:System.Windows.Interop.IKeyboardInputSink.HasFocusWithin" />。</summary>
-        <returns><see langword="true" /> 如果接收器或其所包含的组件之一具有焦点，则否则为<see langword="false" />。</returns>
+        <returns>如果接收器或其所包含的组件之一具有焦点，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -789,7 +789,7 @@
       </ReturnValue>
       <Docs>
         <summary>有关此成员的说明，请参见 <see cref="P:System.Windows.Interop.IKeyboardInputSink.KeyboardInputSite" />。</summary>
-        <value>对容器的引用<see cref="T:System.Windows.Interop.IKeyboardInputSite" />接口。</value>
+        <value>对容器的 <see cref="T:System.Windows.Interop.IKeyboardInputSite" /> 接口的引用。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -798,7 +798,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">若要调用此方法。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <related type="Article" href="https://msdn.microsoft.com/library/0ffbde0d-701d-45a3-a6fa-dd71f4d9772e">WPF 和 Win32 互操作概述</related>
         <related type="Article" href="https://msdn.microsoft.com/library/ee5258b7-6567-415a-9b1c-c0cbe46e79ef">输入概述</related>
       </Docs>
@@ -834,7 +834,7 @@
         <Parameter Name="modifiers" Type="System.Windows.Input.ModifierKeys" />
       </Parameters>
       <Docs>
-        <param name="msg">助记键和关联数据的消息。 不要修改此消息结构。 它是通过出于性能原因仅引用进行传递。</param>
+        <param name="msg">助记键和关联数据的消息。 请勿修改此消息结构。 仅由于性能原因，通过引用来传递此消息。</param>
         <param name="modifiers">修改键。</param>
         <summary>有关此成员的说明，请参见 <see cref="M:System.Windows.Interop.IKeyboardInputSink.OnMnemonic(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />。</summary>
         <returns>如果消息已处理，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
@@ -878,9 +878,9 @@
         <Parameter Name="sink" Type="System.Windows.Interop.IKeyboardInputSink" />
       </Parameters>
       <Docs>
-        <param name="sink"><see cref="T:System.Windows.Interop.IKeyboardInputSink" />所包含组件的接收器。</param>
+        <param name="sink">所包含组件的 <see cref="T:System.Windows.Interop.IKeyboardInputSink" /> 接收器。</param>
         <summary>有关此成员的说明，请参见 <see cref="M:System.Windows.Interop.IKeyboardInputSink.RegisterKeyboardInputSink(System.Windows.Interop.IKeyboardInputSink)" />。</summary>
-        <returns><see cref="T:System.Windows.Interop.IKeyboardInputSite" />所包含组件的站点。</returns>
+        <returns>所包含组件的 <see cref="T:System.Windows.Interop.IKeyboardInputSite" /> 站点。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -889,7 +889,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要调用此方法。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
     <Member MemberName="System.Windows.Interop.IKeyboardInputSink.TabInto">
@@ -919,9 +919,9 @@
         <Parameter Name="request" Type="System.Windows.Input.TraversalRequest" />
       </Parameters>
       <Docs>
-        <param name="request">指定是否应将焦点设置到第一项或最后一个制表位。</param>
+        <param name="request">指定是将焦点设置到第一个制表位，还是设置到最后一个制表位。</param>
         <summary>有关此成员的说明，请参见 <see cref="M:System.Windows.Interop.IKeyboardInputSink.TabInto(System.Windows.Input.TraversalRequest)" />。</summary>
-        <returns><see langword="true" /> 如果焦点已设为，请求;<see langword="false" />，如果没有制表位。</returns>
+        <returns>如果已按要求对焦点进行了设置，则为 <see langword="true" />；如果没有制表位，则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -930,7 +930,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">若要调用此方法。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
       </Docs>
     </Member>
     <Member MemberName="System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator">
@@ -964,10 +964,10 @@
         <Parameter Name="modifiers" Type="System.Windows.Input.ModifierKeys" />
       </Parameters>
       <Docs>
-        <param name="msg">消息和相关联的数据。 不要修改此结构。 它是通过出于性能原因仅引用进行传递。</param>
+        <param name="msg">消息及关联数据。 请勿修改此结构。 仅由于性能原因，通过引用来传递此消息。</param>
         <param name="modifiers">修改键。</param>
         <summary>有关此成员的说明，请参见 <see cref="M:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />。</summary>
-        <returns><see langword="true" /> 如果消息已由该方法的实现;否则为<see langword="false" />。</returns>
+        <returns>如果方法实现对该消息进行了处理，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -976,7 +976,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">若要调用此方法。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
     <Member MemberName="System.Windows.Interop.IKeyboardInputSink.TranslateChar">
@@ -1010,10 +1010,10 @@
         <Parameter Name="modifiers" Type="System.Windows.Input.ModifierKeys" />
       </Parameters>
       <Docs>
-        <param name="msg">消息和相关联的数据。 不要修改此结构。 它是通过出于性能原因仅引用进行传递。</param>
+        <param name="msg">消息及关联数据。 请勿修改此结构。 仅由于性能原因，通过引用来传递此消息。</param>
         <param name="modifiers">修改键。</param>
         <summary>有关此成员的说明，请参见 <see cref="M:System.Windows.Interop.IKeyboardInputSink.TranslateChar(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />。</summary>
-        <returns><see langword="true" /> 如果消息已处理，并<see cref="M:System.Windows.Interop.IKeyboardInputSink.OnMnemonic(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />被调用; 否则为不应为<see langword="false" />。</returns>
+        <returns>如果消息已处理并且不应调用 <see cref="M:System.Windows.Interop.IKeyboardInputSink.OnMnemonic(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1043,8 +1043,8 @@
         <Parameter Name="request" Type="System.Windows.Input.TraversalRequest" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
-        <param name="request">指定是否应将焦点设置到第一项或最后一个制表位。</param>
-        <summary>将焦点设置在第一个制表位或接收器的最后一个制表位。</summary>
+        <param name="request">指定是将焦点设置到第一个制表位，还是设置到最后一个制表位。</param>
+        <summary>在接收器的第一个制表位或最后一个制表位上设置焦点。</summary>
         <returns>始终返回 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <altmember cref="M:System.Windows.Interop.IKeyboardInputSink.TabInto(System.Windows.Input.TraversalRequest)" />
@@ -1075,9 +1075,9 @@
         <Parameter Name="modifiers" Type="System.Windows.Input.ModifierKeys" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
-        <param name="msg">消息和相关联的数据。 不要修改此结构。 它是通过出于性能原因仅引用进行传递。</param>
+        <param name="msg">消息及关联数据。 请勿修改此结构。 仅由于性能原因，通过引用来传递此消息。</param>
         <param name="modifiers">修改键。</param>
-        <summary>处理键盘输入在 keydown 消息级。</summary>
+        <summary>在 keydown 消息级处理键盘输入。</summary>
         <returns>始终返回 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <altmember cref="M:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />
@@ -1108,9 +1108,9 @@
         <Parameter Name="modifiers" Type="System.Windows.Input.ModifierKeys" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
-        <param name="msg">消息和相关联的数据。 不要修改此结构。 它是通过出于性能原因仅引用进行传递。</param>
+        <param name="msg">消息及关联数据。 请勿修改此结构。 仅由于性能原因，通过引用来传递此消息。</param>
         <param name="modifiers">修改键。</param>
-        <summary>处理 WM_CHAR、 WM_SYSCHAR、 WM_DEADCHAR 和 WM_SYSDEADCHAR 输入的消息之前<see cref="M:System.Windows.Interop.IKeyboardInputSink.OnMnemonic(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />调用方法。</summary>
+        <summary>在调用 <see cref="M:System.Windows.Interop.IKeyboardInputSink.OnMnemonic(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" /> 方法之前处理 WM_CHAR、WM_SYSCHAR、WM_DEADCHAR 和 WM_SYSDEADCHAR 输入消息。</summary>
         <returns>始终返回 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <altmember cref="M:System.Windows.Interop.IKeyboardInputSink.TranslateChar(System.Windows.Interop.MSG@,System.Windows.Input.ModifierKeys)" />
@@ -1139,14 +1139,14 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>更新子窗口的大小、 可见性和位置以反映元素的当前状态。</summary>
+        <summary>更新子窗口的大小、可见性和位置以反映元素的当前状态。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!IMPORTANT]
->  此类型或成员的 Internet 安全区域中不可用。  
+>  此类型或成员在 Internet 安全区域中不可用。  
   
  ]]></format>
         </remarks>
@@ -1182,11 +1182,11 @@
       </Parameters>
       <Docs>
         <param name="hwnd">所承载的窗口的窗口句柄。</param>
-        <param name="msg">要对其执行操作的消息。</param>
-        <param name="wParam">可能与处理消息相关的信息。 这通常用于存储小段信息，如标志。</param>
-        <param name="lParam">可能与处理消息相关的信息。 这通常用于引用的对象。</param>
-        <param name="handled">是否将标记为已产生的事件处理。</param>
-        <summary>当在派生类中重写，访问承载的子窗口的窗口进程 （句柄）。</summary>
+        <param name="msg">引发操作的消息。</param>
+        <param name="wParam">可能与处理消息有关的信息。 它通常用于存储小段信息，如标志。</param>
+        <param name="lParam">可能与处理消息有关的信息。 它通常用于引用对象。</param>
+        <param name="handled">是否应将所得事件标记为已处理。</param>
+        <summary>在派生类中重写时，访问承载的子窗口的窗口进程（句柄）。</summary>
         <returns>子窗口的窗口句柄。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1194,12 +1194,12 @@
 ## Remarks  
   
 > [!IMPORTANT]
->  此类型或成员的 Internet 安全区域中不可用。  
+>  此类型或成员在 Internet 安全区域中不可用。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">若要调用此方法。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
-        <block subset="none" type="overrides"><para>中的基实现<see cref="T:System.Windows.Interop.HwndHost" />不返回实际的进程，但将返回<c>IntPtr.Zero</c>作为安全模式。</para></block>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <block subset="none" type="overrides"><para>中<see cref="T:System.Windows.Interop.HwndHost" />的基实现不会返回实际过程, 但会返回<c>IntPtr</c>作为故障安全。</para></block>
       </Docs>
     </Member>
   </Members>
