@@ -1,5 +1,5 @@
 <Type Name="Utf8JsonReader" FullName="System.Text.Json.Utf8JsonReader">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d819d79b85a5451effbb779c90de4a7d1fa77343" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68434924" /></Metadata><TypeSignature Language="C#" Value="public struct Utf8JsonReader" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f96f08bbedddf791c3a57f3e7a62c982af293c15" /><Meta Name="ms.sourcegitcommit" Value="406d23aba879fbb482c6da0f64c8ef9494f6a944" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/31/2019" /><Meta Name="ms.locfileid" Value="68686112" /></Metadata><TypeSignature Language="C#" Value="public struct Utf8JsonReader" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit Utf8JsonReader extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Text.Json.Utf8JsonReader" />
   <TypeSignature Language="VB.NET" Value="Public Structure Utf8JsonReader" />
@@ -19,15 +19,15 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>提供高性能的 API，以便提供对 UTF-8 编码 JSON 文本的只进和只读访问权限。</summary>
+    <summary>Provides a high-performance API for forward-only, read-only access to the UTF-8 encoded JSON text.</summary>
     <remarks>
-      <format type="text/markdown"><![CDATA[  
+      <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
 `Utf8JsonReader`在不使用缓存的情况下按顺序处理文本, 默认情况下严格遵循[JSON RFC](https://tools.ietf.org/html/rfc8259)。
 
-当`Utf8JsonReader`遇到无效的 JSON 时, 它<xref:System.Text.Json.JsonReaderException>会引发, 其中包含基本错误信息, 如行号和行中的字节位置。
+当`Utf8JsonReader`遇到无效的 JSON 时, 它<xref:System.Text.Json.JsonException>会引发, 其中包含基本错误信息, 如行号和行中的字节位置。
 
 由于此类型是 ref 结构, 因此不直接支持 async。 但是, 它确实支持重入操作读取不完整的数据, 并在显示更多数据后继续读取。
 
@@ -99,11 +99,20 @@
         <Parameter Name="state" Type="System.Text.Json.JsonReaderState" />
       </Parameters>
       <Docs>
-        <param name="jsonData">To be added.</param>
-        <param name="isFinalBlock">To be added.</param>
-        <param name="state">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="jsonData">The UTF-8 encoded JSON text to process.</param>
+        <param name="isFinalBlock"><see langword="true" /> when the input sequence contains the entire data to process. <see langword="false" /> only if it's known that the input span contains partial data with more data to follow.</param>
+        <param name="state">If this is the first call to the constructor, pass in a default state. Otherwise, capture the state from the previous instance of the <see cref="T:System.Text.Json.Utf8JsonReader" /> and pass that back.</param>
+        <summary>Initializes a new instance of the <see cref="T:System.Text.Json.Utf8JsonReader" /> class.</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+由于此类型是一个 ref 结构, 因此它是一个仅堆栈类型, 并且 ref 结构的所有限制都适用于它。
+这是构造函数接受的<xref:System.Text.Json.JsonReaderState>原因。
+
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -124,12 +133,12 @@
         <Parameter Name="state" Type="System.Text.Json.JsonReaderState" />
       </Parameters>
       <Docs>
-        <param name="jsonData">要处理的 UTF-8 编码 JSON 文本。</param>
-        <param name="isFinalBlock">当输入范围包含要处理的整个数据时，为 <see langword="true" />。 仅当输入范围包含部分数据且将输入更多数据时，为 <see langword="false" />。</param>
-        <param name="state">包含读取器状态的结构。 第一次调用构造函数时，它应反映默认状态；否则，它应从 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的上一个实例捕获状态并传递回去。</param>
-        <summary>初始化 <see cref="T:System.Text.Json.Utf8JsonReader" /> 类的新实例。</summary>
+        <param name="jsonData">The UTF-8 encoded JSON text to process.</param>
+        <param name="isFinalBlock"><see langword="true" /> when the input span contains the entire data to process. <see langword="false" /> only if it's known that the input span contains partial data with more data to follow.</param>
+        <param name="state">A struct that contains the reader state. On the first call to the constructor, it should reflect a default state; otherwise, it should capture the state from the previous instance instance of the <see cref="T:System.Text.Json.Utf8JsonReader" /> and pass that back.</param>
+        <summary>Initializes a new instance of the <see cref="T:System.Text.Json.Utf8JsonReader" /> class.</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
+          <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
@@ -156,7 +165,7 @@
         <ReturnType>System.Int64</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取 <see cref="T:System.Text.Json.Utf8JsonReader" /> 目前为止已为 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的当前实例（带有给定 UTF-8 编码输入文本）使用的字节总数。</summary>
+        <summary>Gets the total number of bytes consumed by the <see cref="T:System.Text.Json.Utf8JsonReader" /> so far for the current instance of the <see cref="T:System.Text.Json.Utf8JsonReader" /> with the given UTF-8 encoded input text.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -177,10 +186,10 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取当前标记的深度。</summary>
+        <summary>Gets the depth of the current token.</summary>
         <value>当前标记的深度。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
+          <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
@@ -206,10 +215,10 @@
         <ReturnType>System.Text.Json.JsonReaderState</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取 <see cref="T:System.Text.Json.Utf8JsonReader" /> 状态的当前快照，该状态必须由调用方捕获并传递回包含更多数据的 <see cref="T:System.Text.Json.Utf8JsonReader" /> 构造函数。</summary>
+        <summary>Gets the current snapshot of the <see cref="T:System.Text.Json.Utf8JsonReader" /> state that must  be captured by the caller and passed back in to the <see cref="T:System.Text.Json.Utf8JsonReader" /> constructor with more data.</summary>
         <value>To be added.</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
+          <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
@@ -236,10 +245,10 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>从源中将下一个 JSON 令牌值读取为 <see cref="T:System.Boolean" />。</summary>
-        <returns>如果 <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> 为 <see cref="F:System.Text.Json.JsonTokenType.True" />，则为 <see langword="true" />；如果 <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> 为 <see cref="F:System.Text.Json.JsonTokenType.False" />，则为 <see langword="false" />。</returns>
+        <summary>Reads the next JSON token value from the source as a <see cref="T:System.Boolean" />.</summary>
+        <returns><see langword="true" /> if the <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> is <see cref="F:System.Text.Json.JsonTokenType.True" />; <see langword="false" /> if the <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> is <see cref="F:System.Text.Json.JsonTokenType.False" />.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是布尔值（即 <see cref="F:System.Text.Json.JsonTokenType.True" /> 或 <see cref="F:System.Text.Json.JsonTokenType.False" />）。</exception>
+        <exception cref="T:System.InvalidOperationException">The value of the JSON token isn't a boolean value (that is, <see cref="F:System.Text.Json.JsonTokenType.True" /> or <see cref="F:System.Text.Json.JsonTokenType.False" />).</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -282,9 +291,11 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>Parses the current JSON token value from the source and decodes the base 64 encoded JSON string as a byte array.</summary>
+        <returns>The byte array that represents the current JSON token value.</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.InvalidOperationException">The type of the JSON token is not a <see cref="F:System.Text.Json.JsonTokenType.String" />.</exception>
+        <exception cref="T:System.FormatException">The value is not encoded as base 64 text and hence cannot be decoded to bytes.</exception>
       </Docs>
     </Member>
     <Member MemberName="GetComment">
@@ -304,9 +315,10 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>Parses the current JSON token value from the source as a comment, transcoded it as a <see cref="T:System.String" />.</summary>
+        <returns>The comment that represents the current JSON token value.</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.InvalidOperationException">The JSON token is not a comment.</exception>
       </Docs>
     </Member>
     <Member MemberName="GetDateTime">
@@ -326,11 +338,11 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTime" />。</summary>
-        <returns>如果可成功解析整个 UTF-8 编码的令牌值，则为日期和时间。</returns>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.DateTime" />.</summary>
+        <returns>The date and time, if the entire UTF-8 encoded token value can be successfully parsed.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
-        <exception cref="T:System.FormatException">JSON 令牌值的格式不受支持。 仅支持部分 ISO 8601 格式。</exception>
+        <exception cref="T:System.InvalidOperationException">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</exception>
+        <exception cref="T:System.FormatException">The JSON token value is in an unsupported format. Only a subset of ISO 8601 formats are supported.</exception>
       </Docs>
     </Member>
     <Member MemberName="GetDateTimeOffset">
@@ -350,11 +362,11 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTimeOffset" />。</summary>
-        <returns>如果可成功解析整个 UTF-8 编码的令牌值，则为日期和时间值。</returns>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.DateTimeOffset" />.</summary>
+        <returns>The date and time value, if the entire UTF-8 encoded token value can be successfully parsed.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
-        <exception cref="T:System.FormatException">JSON 令牌值的格式不受支持。 仅支持部分 ISO 8601 格式。</exception>
+        <exception cref="T:System.InvalidOperationException">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</exception>
+        <exception cref="T:System.FormatException">The JSON token value is in an unsupported format. Only a subset of ISO 8601 formats are supported.</exception>
       </Docs>
     </Member>
     <Member MemberName="GetDecimal">
@@ -374,10 +386,10 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Decimal" />。</summary>
-        <returns>解析为 <see cref="T:System.Decimal" /> 的 UTF-8 编码令牌值。</returns>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.Decimal" />.</summary>
+        <returns>The UTF-8 encoded token value parsed to a <see cref="T:System.Decimal" />.</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
+          <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
@@ -385,8 +397,8 @@
 
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
-        <exception cref="T:System.FormatException">JSON 令牌值表示小于 <see cref="F:System.Decimal.MinValue" /> 或大于 <see cref="F:System.Decimal.MaxValue" /> 的数字。</exception>
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</exception>
+        <exception cref="T:System.FormatException">The JSON token value represents a number less than <see cref="F:System.Decimal.MinValue" /> or greater than <see cref="F:System.Decimal.MaxValue" />.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -407,10 +419,10 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Double" />。</summary>
-        <returns>解析为 <see cref="T:System.Double" /> 的 UTF-8 编码令牌值。</returns>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.Double" />.</summary>
+        <returns>The UTF-8 encoded token value parsed to a <see cref="T:System.Double" />.</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
+          <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
@@ -418,8 +430,8 @@
 
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
-        <exception cref="T:System.FormatException">JSON 令牌值表示小于 <see cref="F:System.Double.MinValue" /> 或大于 <see cref="F:System.Double.MaxValue" /> 的数字。</exception>
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</exception>
+        <exception cref="T:System.FormatException">The JSON token value represents a number less than <see cref="F:System.Double.MinValue" /> or greater than <see cref="F:System.Double.MaxValue" />.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -440,11 +452,11 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Guid" />。</summary>
-        <returns>如果可成功解析整个 UTF-8 编码的令牌值，则为 GUID 值。</returns>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.Guid" />.</summary>
+        <returns>The GUID value, if the entire UTF-8 encoded token value can be successfully parsed.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
-        <exception cref="T:System.FormatException">Guid 不支持 JSON 令牌值的格式。</exception>
+        <exception cref="T:System.InvalidOperationException">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</exception>
+        <exception cref="T:System.FormatException">The JSON token value is in an unsupported format for a Guid.</exception>
       </Docs>
     </Member>
     <Member MemberName="GetInt16">
@@ -486,10 +498,10 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Int32" />。</summary>
-        <returns>解析为 <see cref="T:System.Int32" /> 的 UTF-8 编码令牌值。</returns>
+        <summary>Reads the next JSON token value from the source and parses it to an <see cref="T:System.Int32" />.</summary>
+        <returns>The UTF-8 encoded token value parsed to an <see cref="T:System.Int32" />.</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
+          <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
@@ -497,12 +509,12 @@
 
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
-        <exception cref="T:System.FormatException">JSON 令牌值的数值格式不正确。 例如，它包含小数或采用科学记数法编写。
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</exception>
+        <exception cref="T:System.FormatException">The JSON token value is of the incorrect numeric format. For example, it contains a decimal or is written in scientific notation.
             
-- 或 -
+- or-
 
-JSON 令牌值表示小于 <see cref="F:System.Int32.MinValue" /> 或大于 <see cref="F:System.Int32.MaxValue" /> 的数字。</exception>
+The JSON token value represents a number less than <see cref="F:System.Int32.MinValue" /> or greater than <see cref="F:System.Int32.MaxValue" />.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -523,10 +535,10 @@ JSON 令牌值表示小于 <see cref="F:System.Int32.MinValue" /> 或大于 <see
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Int64" />。</summary>
-        <returns>解析为 <see cref="T:System.Int64" /> 的 UTF-8 编码令牌值。</returns>
+        <summary>Reads the next JSON token value from the source and parses it to an <see cref="T:System.Int64" />.</summary>
+        <returns>The UTF-8 encoded token value parsed to an <see cref="T:System.Int64" />.</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
+          <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
@@ -534,12 +546,12 @@ JSON 令牌值表示小于 <see cref="F:System.Int32.MinValue" /> 或大于 <see
 
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
-        <exception cref="T:System.FormatException">JSON 令牌值的数值格式不正确。 例如，它包含小数或采用科学记数法编写。
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</exception>
+        <exception cref="T:System.FormatException">The JSON token value is of the incorrect numeric format. For example, it contains a decimal or is written in scientific notation.
             
-- 或 -
+- or-
 
-JSON 令牌值表示小于 <see cref="F:System.Int64.MinValue" /> 或大于 <see cref="F:System.Int64.MaxValue" /> 的数字。</exception>
+The JSON token value represents a number less than <see cref="F:System.Int64.MinValue" /> or greater than <see cref="F:System.Int64.MaxValue" />.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -587,10 +599,10 @@ JSON 令牌值表示小于 <see cref="F:System.Int64.MinValue" /> 或大于 <see
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Single" />。</summary>
-        <returns>解析为 <see cref="T:System.Single" /> 的 UTF-8 编码令牌值。</returns>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.Single" />.</summary>
+        <returns>The UTF-8 encoded token value parsed to a <see cref="T:System.Single" />.</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
+          <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
@@ -598,8 +610,8 @@ JSON 令牌值表示小于 <see cref="F:System.Int64.MinValue" /> 或大于 <see
 
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
-        <exception cref="T:System.FormatException">JSON 令牌值表示小于 <see cref="F:System.Single.MinValue" /> 或大于 <see cref="F:System.Single.MaxValue" /> 的数字。</exception>
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</exception>
+        <exception cref="T:System.FormatException">The JSON token value represents a number less than <see cref="F:System.Single.MinValue" /> or greater than <see cref="F:System.Single.MaxValue" />.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -620,14 +632,14 @@ JSON 令牌值表示小于 <see cref="F:System.Int64.MinValue" /> 或大于 <see
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>从源中读取下一个 JSON 令牌值，并作为 <see cref="T:System.String" /> 进行反转义和转码。</summary>
-        <returns>解析为 <see cref="T:System.String" /> 的令牌。</returns>
+        <summary>Reads the next JSON token value from the source, unescaped, and transcoded as a <see cref="T:System.String" />.</summary>
+        <returns>The token value parsed to a <see cref="T:System.String" />.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是字符串（即，不是 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a string (that is, not a <see cref="F:System.Text.Json.JsonTokenType.String" /> or <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />).
 
-- 或 -
+-or-
 
-JSON 字符串包含无效的 UTF-8 字节或无效的 UTF-16 替代项。</exception>
+The JSON string contains invalid UTF-8 bytes or invalid UTF-16 surrogates.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -680,15 +692,15 @@ JSON 字符串包含无效的 UTF-8 字节或无效的 UTF-16 替代项。</exce
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.UInt32" />。</summary>
-        <returns>解析为 <see cref="T:System.UInt32" /> 的 UTF-8 编码令牌值。</returns>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.UInt32" />.</summary>
+        <returns>The UTF-8 encoded token value parsed to a <see cref="T:System.UInt32" />.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
-        <exception cref="T:System.FormatException">JSON 令牌值的数值格式不正确。 例如，它包含小数或采用科学记数法编写。
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</exception>
+        <exception cref="T:System.FormatException">The JSON token value is of the incorrect numeric format. For example, it contains a decimal or is written in scientific notation.
             
-- 或 -
+- or-
 
-JSON 令牌值表示小于 <see cref="F:System.UInt32.MinValue" /> 或大于 <see cref="F:System.UInt32.MaxValue" /> 的数字。</exception>
+The JSON token value represents a number less than <see cref="F:System.UInt32.MinValue" /> or greater than <see cref="F:System.UInt32.MaxValue" />.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -714,15 +726,15 @@ JSON 令牌值表示小于 <see cref="F:System.UInt32.MinValue" /> 或大于 <se
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.UInt64" />。</summary>
-        <returns>解析为 <see cref="T:System.UInt64" /> 的 UTF-8 编码令牌值。</returns>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.UInt64" />.</summary>
+        <returns>The UTF-8 encoded token value parsed to a <see cref="T:System.UInt64" />.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
-        <exception cref="T:System.FormatException">JSON 令牌值的数值格式不正确。 例如，它包含小数或采用科学记数法编写。
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</exception>
+        <exception cref="T:System.FormatException">The JSON token value is of the incorrect numeric format. For example, it contains a decimal or is written in scientific notation.
             
-- 或 -
+- or-
 
-JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <see cref="F:System.UInt64.MaxValue" /> 的数字。</exception>
+The JSON token value represents a number less than <see cref="F:System.UInt64.MinValue" /> or greater than <see cref="F:System.UInt64.MaxValue" />.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -747,10 +759,10 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取值，该值指示要使用哪个 <c>Value</c> 属性来获取令牌值。</summary>
+        <summary>Gets a value that indicates which <c>Value</c> property to use to get the token value.</summary>
         <value><see langword="true" />如果<see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" />应使用来获取标记值, 则为。 <see langword="false" />如果<see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" />应使用, 则为。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
+          <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
@@ -778,8 +790,8 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>Gets the mode of this instance of the <see cref="T:System.Text.Json.Utf8JsonReader" /> which indicates whether all the JSON data was provided or there is more data to come.</summary>
+        <value><see langword="true" />如果读取器是用输入跨距构造的, 或者是包含要处理的整个 JSON 数据的序列, 则为。 <see langword="false" />如果读取器是使用输入范围或序列构造的, 则该输入范围或序列可能包含部分 JSON 数据, 并具有更多数据。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -799,7 +811,7 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <ReturnType>System.SequencePosition</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>如果 <see cref="T:System.Text.Json.Utf8JsonReader" /> 结构使用 ReadOnlySpan&lt;byte&gt; 构造，则获取所提供的 UTF-8 编码输入 ReadOnlySequence&lt;byte&gt; 内的当前 <see cref="T:System.SequencePosition" /> 或默认的 <see cref="T:System.SequencePosition" />。</summary>
+        <summary>Gets the current <see cref="T:System.SequencePosition" /> within the provided UTF-8 encoded input ReadOnlySequence&lt;byte&gt; or a default <see cref="T:System.SequencePosition" /> if the <see cref="T:System.Text.Json.Utf8JsonReader" /> struct was constructed with a ReadOnlySpan&lt;byte&gt;.</summary>
         <value>在提供<see cref="T:System.SequencePosition" />的 utf-8 编码输入 ReadOnlySequence&lt;字节&gt;内的当前值, 或者, <see cref="T:System.SequencePosition" />如果<see cref="T:System.Text.Json.Utf8JsonReader" />结构是使用 ReadOnlySpan&lt;字节&gt;构造的, 则为默认值。</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -821,14 +833,14 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>从输入源中读取下一个 JSON 令牌。</summary>
-        <returns>如果已成功读取下一令牌，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <summary>Read the next JSON token from the input source.</summary>
+        <returns><see langword="true" /> if the token was read successfully; otherwise, <see langword="false" />.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.Text.Json.JsonException">根据 JSON RFC，遇到无效的 JSON 令牌。
+        <exception cref="T:System.Text.Json.JsonException">An invalid JSON token according to the JSON RFC is encountered.
         
-或
+-or-
 
-当前深度超过由最大深度决定的递归限值。</exception>
+The current depth exceeds the recursive limit set by the maximum depth.</exception>
       </Docs>
     </Member>
     <Member MemberName="Skip">
@@ -848,8 +860,26 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>Skips the children of the current JSON token.</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+当<xref:System.Text.Json.Utf8JsonReader.TokenType> 为<xref:System.Text.Json.JsonTokenType.PropertyName?displayProperty=nameWithType>时, 读取器首先移动到属性值。
+
+当<xref:System.Text.Json.Utf8JsonReader.TokenType> (最初或前进后) 为<xref:System.Text.Json.JsonTokenType.StartObject?displayProperty=nameWithtype>或<xref:System.Text.Json.JsonTokenType.StartArray?displayProperty=nameWithType>时, 读取器前进到匹配<xref:System.Text.Json.JsonTokenType.EndObject?displayProperty=nameWithType>的或<xref:System.Text.Json.JsonTokenType.EndArray?displayProperty=nameWithType>。
+            
+对于所有其他标记类型, 读取器不会移动。 在下一次调用<xref:System.Text.Json.Utf8JsonReader.Read>后, 读取器将在下一个值 (在数组中时)、下一个属性名称 (在对象中) 或结束数组/对象标记。
+
+            ]]></format>
+        </remarks>
+        <exception cref="T:System.InvalidOperationException">The reader was given partial data with more data to follow (that is, <see cref="P:System.Text.Json.Utf8JsonReader.IsFinalBlock" /> is <see langword="false" />).</exception>
+        <exception cref="T:System.Text.Json.JsonException">An invalid JSON token was encountered while skipping, according to the JSON RFC.
+
+- or -
+
+The current depth exceeds the recursive limit set by the maximum depth.</exception>
       </Docs>
     </Member>
     <Member MemberName="TokenStartIndex">
@@ -873,9 +903,19 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <ReturnType>System.Int64</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>Gets the index that the last processed JSON token starts at (within the given UTF-8 encoded input text), skipping any white space.</summary>
+        <value>给定 UTF-8 编码输入文本中最后处理的 JSON 标记的起始索引。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+对于 JSON 字符串 (包括属性名称), 此值指向开始引号之前。
+
+对于注释, 此值指向第一个注释分隔符之前 (即 "/")。
+
+            ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TokenType">
@@ -894,7 +934,7 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <ReturnType>System.Text.Json.JsonTokenType</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取 UTF-8 编码 JSON 文本中最后一个处理的 JSON 令牌的类型。</summary>
+        <summary>Gets the type of the last processed JSON token in the UTF-8 encoded JSON text.</summary>
         <value>上次处理的 JSON 令牌的类型。</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -943,10 +983,11 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="value" Type="System.Byte[]" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="value">If the method succeeds, contains the decoded binary representation of the base 64 text.</param>
+        <summary>Tries to parse the current JSON token value from the source and decodes the base 64 encoded JSON string as a byte array.</summary>
+        <returns><see langword="true" /> if the entire token value is encoded as valid base 64 text and can be successfully decoded to bytes; <see langword="false" /> otherwise.</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.InvalidOperationException">The JSON token is not a <see cref="F:System.Text.Json.JsonTokenType.String" />.</exception>
       </Docs>
     </Member>
     <Member MemberName="TryGetDateTime">
@@ -968,11 +1009,11 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="value" Type="System.DateTime" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">在此方法返回时，包含已解析的值。</param>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTime" />。</summary>
-        <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.DateTime" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <param name="value">When this method returns, contains the parsed value.</param>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.DateTime" />.</summary>
+        <returns><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.DateTime" /> value; otherwise, <see langword="false" />.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
+        <exception cref="T:System.InvalidOperationException">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</exception>
       </Docs>
     </Member>
     <Member MemberName="TryGetDateTimeOffset">
@@ -994,11 +1035,11 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="value" Type="System.DateTimeOffset" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">在此方法返回时，包含已解析的值。</param>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTimeOffset" />。</summary>
-        <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.DateTimeOffset" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <param name="value">When this method returns, contains the parsed value.</param>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.DateTimeOffset" />.</summary>
+        <returns><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.DateTimeOffset" /> value; otherwise, <see langword="false" />.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
+        <exception cref="T:System.InvalidOperationException">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</exception>
       </Docs>
     </Member>
     <Member MemberName="TryGetDecimal">
@@ -1020,11 +1061,11 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="value" Type="System.Decimal" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">在此方法返回时，包含已解析的值。</param>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Decimal" />。</summary>
-        <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Decimal" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <param name="value">When this method returns, contains the parsed value.</param>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.Decimal" />.</summary>
+        <returns><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.Decimal" /> value; otherwise, <see langword="false" />.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -1047,11 +1088,11 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="value" Type="System.Double" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">在此方法返回时，包含已解析的值。</param>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Double" />。</summary>
-        <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Double" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <param name="value">When this method returns, contains the parsed value.</param>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.Double" />.</summary>
+        <returns><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.Double" /> value; otherwise, <see langword="false" />.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -1074,17 +1115,19 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="value" Type="System.Guid" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">在此方法返回时，包含已解析的值。</param>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Guid" />。</summary>
-        <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Guid" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <param name="value">When this method returns, contains the parsed value.</param>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.Guid" />.</summary>
+        <returns><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.Guid" /> value; otherwise, <see langword="false" />.</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
 
 此方法仅分析<xref:System.Guid>带有连字符的值, 而不分析任何周围的修饰。 
 
          ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
+        <exception cref="T:System.InvalidOperationException">The value of the JSON token isn't a <see cref="F:System.Text.Json.JsonTokenType.String" />.</exception>
       </Docs>
     </Member>
     <Member MemberName="TryGetInt16">
@@ -1131,11 +1174,11 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="value" Type="System.Int32" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">在此方法返回时，包含已解析的值。</param>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Int32" />。</summary>
-        <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Int32" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <param name="value">When this method returns, contains the parsed value.</param>
+        <summary>Reads the next JSON token value from the source and parses it to an <see cref="T:System.Int32" />.</summary>
+        <returns><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to an <see cref="T:System.Int32" /> value; otherwise, <see langword="false" />.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -1158,11 +1201,11 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="value" Type="System.Int64" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">在此方法返回时，包含已解析的值。</param>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Int64" />。</summary>
-        <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Int64" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <param name="value">When this method returns, contains the parsed value.</param>
+        <summary>Reads the next JSON token value from the source and parses it to an <see cref="T:System.Int64" />.</summary>
+        <returns><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to an <see cref="T:System.Int64" /> value; otherwise, <see langword="false" />.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -1215,11 +1258,11 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="value" Type="System.Single" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">在此方法返回时，包含已解析的值。</param>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Single" />。</summary>
-        <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Single" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <param name="value">When this method returns, contains the parsed value.</param>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.Single" />.</summary>
+        <returns><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to an <see cref="T:System.Single" /> value; otherwise, <see langword="false" />.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -1277,11 +1320,11 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="value" Type="System.UInt32" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">在此方法返回时，包含已解析的值。</param>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.UInt32" />。</summary>
-        <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.UInt32" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <param name="value">When this method returns, contains the parsed value.</param>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.UInt32" />.</summary>
+        <returns><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.UInt32" /> value; otherwise, <see langword="false" />.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -1309,11 +1352,11 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <Parameter Name="value" Type="System.UInt64" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">在此方法返回时，包含已解析的值。</param>
-        <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.UInt64" />。</summary>
-        <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.UInt64" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <param name="value">When this method returns, contains the parsed value.</param>
+        <summary>Reads the next JSON token value from the source and parses it to a <see cref="T:System.UInt64" />.</summary>
+        <returns><see langword="true" /> if the entire UTF-8 encoded token value can be successfully parsed to a <see cref="T:System.UInt64" /> value; otherwise, <see langword="false" />.</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+        <exception cref="T:System.InvalidOperationException">The JSON token value isn't a <see cref="F:System.Text.Json.JsonTokenType.Number" />.</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
       </Docs>
     </Member>
@@ -1334,9 +1377,28 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary>Tries to skip the children of the current JSON token.</summary>
+        <returns><see langword="true" /> if there was enough data for the children to be skipped successfully; otherwise, <see langword="false" />.</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+如果读取器没有足够的数据来完全跳过当前令牌的子级, 则会将其重置为在调用方法之前所处的状态。
+              
+当<xref:System.Text.Json.Utf8JsonReader.TokenType> 为<xref:System.Text.Json.JsonTokenType.PropertyName?displayProperty=nameWithType>时, 读取器首先移动到属性值。
+
+当<xref:System.Text.Json.Utf8JsonReader.TokenType> (最初或前进后) 为<xref:System.Text.Json.JsonTokenType.StartObject?displayProperty=nameWithType>或<xref:System.Text.Json.JsonTokenType.StartArray?displayProperty=nameWithType>时, 读取器前进到匹配<xref:System.Text.Json.JsonTokenType.EndObject?displayProperty=nameWithType>的或<xref:System.Text.Json.JsonTokenType.EndArray?displayProperty=nameWithType>。
+            
+对于所有其他标记类型, 读取器不会移动。 在下一次调用<xref:System.Text.Json.Utf8JsonReader.Read>后, 读取器将在下一个值 (在数组中时)、下一个属性名称 (在对象中) 或结束数组/对象标记。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.Text.Json.JsonException">An invalid JSON token was encountered while skipping, according to the JSON RFC.
+          
+- or -
+
+The current depth exceeds the recursive limit set by the maximum depth.</exception>
       </Docs>
     </Member>
     <Member MemberName="ValueSequence">
@@ -1360,11 +1422,11 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <ReturnType>System.Buffers.ReadOnlySequence&lt;System.Byte&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取最后一个处理的令牌的值作为输入有效负载的 ReadOnlySpan&lt;byte&gt; 切片。 如果在 ReadOnlySequence&lt;byte&gt; 内提供 JSON，并且表示令牌值的切片适合单个段，则 <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> 包含切分的值，因为它可以表示为一个范围。
-否则 <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> 包含令牌值。</summary>
+        <summary>Gets the value of the last processed token as a ReadOnlySpan&lt;byte&gt; slice of the input payload. If the JSON is provided within a ReadOnlySequence&lt;byte&gt; and the slice that represents the token value fits in a single segment, then <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> contains the sliced value since it can be represented as a span.
+Otherwise, <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> contains the token value.</summary>
         <value>To be added.</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
+          <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
@@ -1397,11 +1459,11 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <ReturnType>System.ReadOnlySpan&lt;System.Byte&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取最后一个处理的令牌的值作为输入有效负载的 ReadOnlySpan&lt;byte&gt; 切片。 如果在 ReadOnlySequence&lt;byte&gt; 内提供 JSON，并且表示令牌值的切片适合单个段，则 <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> 包含切分的值，因为它可以表示为一个范围。
-否则 <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> 包含令牌值。</summary>
+        <summary>Gets the value of the last processed token as a ReadOnlySpan&lt;byte&gt; slice of the input payload. If the JSON is provided within a ReadOnlySequence&lt;byte&gt; and the slice that represents the token value fits in a single segment, then <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> contains the sliced value since it can be represented as a span.
+Otherwise, the <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> contains the token value.</summary>
         <value>To be added.</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
+          <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
