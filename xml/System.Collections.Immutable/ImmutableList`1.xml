@@ -67,7 +67,7 @@
   
 ## Remarks
 
-`ImmutableList<T>` 没有公共构造函数;首先检索一个空`ImmutableList<T>`通过使用<xref:System.Collections.Immutable.ImmutableList%601.Empty?displayProperty=nameWithType>。 然后可以调用方法，如<xref:System.Collections.Immutable.ImmutableList%601.Add%2A>和<xref:System.Collections.Immutable.ImmutableList%601.AddRange%2A>，若要填充的集合。 请注意，这些方法返回一个新的对象。 当添加或从一个不可变列表中删除项时，项添加或删除，与创建的原始列表的副本，并且原始列表保持不变。  
+`ImmutableList<T>`没有公共构造函数;首先, `ImmutableList<T>` <xref:System.Collections.Immutable.ImmutableList%601.Empty?displayProperty=nameWithType>使用检索一个空的。 然后, 可以调用方法 (如<xref:System.Collections.Immutable.ImmutableList%601.Add%2A>和<xref:System.Collections.Immutable.ImmutableList%601.AddRange%2A>) 来填充集合。 请注意, 这些方法返回一个新的对象。 如果在不可变列表中添加或删除项, 则会在添加或删除项时创建原始列表的副本, 并且不会更改原始列表。  
   
  ]]></format>
     </remarks>
@@ -327,7 +327,7 @@
         <typeparam name="TOutput">目标数组元素的类型。</typeparam>
         <param name="converter">一个委托，可将每个元素从一种类型转换为另一种类型。</param>
         <summary>将当前不可变列表中的元素转换为另一种类型，并返回包含已转换元素的列表。</summary>
-        <returns>包含转换后的元素从当前的目标类型的列表<see cref="T:System.Collections.Immutable.ImmutableList`1" />。</returns>
+        <returns>目标类型的列表，包含当前 <see cref="T:System.Collections.Immutable.ImmutableList`1" /> 中转换后的元素。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -856,7 +856,7 @@
 ## Remarks  
   
 > [!CAUTION]
->  此枚举器用作值类型 （即，当它不装箱），不要复制它将其分配给第二个变量或将其传递到另一种方法。 释放此枚举器，它返回到资源池，可变引用类型堆栈和值类型枚举器复制 （其可以轻松地会无意中，如果将围绕值传递），是否存在风险时，已经过的堆栈返回到资源池可能仍在使用情况的一个枚举器副本，从而导致数据损坏或异常。  
+>  如果此枚举器用作值类型 (即, 如果它未装箱), 请不要通过将其分配给第二个变量或通过将其传递到其他方法来复制它。 当释放此枚举器时, 它会将可变引用类型堆栈返回到资源池, 并在复制值类型枚举器时 (如果传递值, 这可能很容易意外发生)。枚举器副本可能仍在使用资源池返回的资源池, 从而导致数据损坏或异常。  
   
  ]]></format>
         </remarks>
@@ -1092,7 +1092,7 @@
         <summary>获取位于列表指定索引处的元素。</summary>
         <value>指定索引处的元素。</value>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.IndexOutOfRangeException">在 get 操作中，<paramref name="index" />为负或小于<see cref="P:System.Collections.Immutable.ImmutableList`1.Count" />。</exception>
+        <exception cref="T:System.IndexOutOfRangeException">在 get 操作中，<paramref name="index" /> 为负或不小于 <see cref="P:System.Collections.Immutable.ImmutableList`1.Count" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="ItemRef">
@@ -1120,10 +1120,10 @@
       </Parameters>
       <Docs>
         <param name="index">要返回集中的元素从零开始的索引。</param>
-        <summary>获取到集内的位置的元素的只读引用给定<paramref name="index" />。</summary>
+        <summary>获取对给定 <paramref name="index" /> 处的集元素的只读引用。</summary>
         <returns>对给定位置处的元素的只读引用。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.IndexOutOfRangeException"><paramref name="index" /> 为负或小于<see cref="P:System.Collections.Immutable.ImmutableList`1.Count" />。</exception>
+        <exception cref="T:System.IndexOutOfRangeException"><paramref name="index" /> 为负或不小于 <see cref="P:System.Collections.Immutable.ImmutableList`1.Count" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="LastIndexOf">
@@ -2988,7 +2988,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这是 o （1） 操作，使得只有单一 （小） 的内存分配。 返回的可变列表不是线程安全的。  
+ 这是一项 O (1) 操作, 只会导致一个 (小) 内存分配。 返回的可变列表不是线程安全的。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="BrotliStream" FullName="System.IO.Compression.BrotliStream">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="29f22ad2e73a3181f369f4ab0098911707b10abf" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58731399" /></Metadata><TypeSignature Language="C#" Value="public sealed class BrotliStream : System.IO.Stream" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="22a3f881771a01ad5a30a0a62f3f3c969d964ca0" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68543370" /></Metadata><TypeSignature Language="C#" Value="public sealed class BrotliStream : System.IO.Stream" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit BrotliStream extends System.IO.Stream" />
   <TypeSignature Language="DocId" Value="T:System.IO.Compression.BrotliStream" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class BrotliStream&#xA;Inherits Stream" />
@@ -362,9 +362,21 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary>异步释放 <see cref="T:System.IO.Compression.BrotliStream" /> 使用的非托管资源。</summary>
+        <returns>一个表示异步释放操作的任务。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+使用`DisposeAsync`方法, 可以在不阻塞主线程的情况下执行占用大量资源的释放操作。 在 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] 应用或 [!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] 应用中一个耗时的流操作可能阻塞 UI 线程并让您的应用看起来好像不工作时，这种性能的考虑就显得尤为重要了。 在 Visual Basic 和`async` C#中, async 方法与和`await`关键字一起使用。 
+
+此方法通过将任何更改写入后备存储并关闭流以释放资源来释放 Brotli 流。   
+
+调用`DisposeAsync`会允许出于其他目的重新<xref:System.IO.Compression.BrotliStream>分配所使用的资源。 有关详细信息, 请参阅[清理非托管资源](~/docs/standard/garbage-collection/unmanaged.md)。  
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="EndRead">
@@ -474,10 +486,18 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+        <summary>异步清理这个 Brotli 流的所有缓冲区，并使所有缓冲数据写入基础设备，并且监控取消请求。</summary>
+        <returns>表示异步刷新操作的任务。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+如果在操作完成前取消该操作, 则返回的任务包含<xref:System.Threading.Tasks.TaskStatus.Canceled?displayProperty=nameWithType> <xref:System.Threading.Tasks.Task.Status?displayProperty=nameWithType>属性的值。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Length">
@@ -554,10 +574,22 @@
         <Parameter Name="buffer" Type="System.Span&lt;System.Byte&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="buffer">内存的区域。 当此方法返回时，此区域的内容将替换为从当前源读取的字节。</param>
+        <summary>将当前 Brotli 流中的一个字节序列读取到字节范围，并按读取的字节数向前移动 Brotli 流中的位置。</summary>
+        <returns>读入缓冲区中的总字节数。 如果很多字节当前不可用，则这可小于在缓冲区中分配的字节数；如果已到达流结尾，则为零 (0)。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+<xref:System.IO.Compression.BrotliStream.CanRead%2A>使用属性可确定当前实例是否支持读取。 <xref:System.IO.Compression.BrotliStream.ReadAsync%2A>使用方法从当前流中异步读取。
+
+此方法从当前流中`buffer.Length`读取最多字节, 并将它们存储`buffer`在中。 Brotli 流中的当前位置由读取的字节数提前,但是, 如果发生异常, 则 Brotli 流中的当前位置将保持不变。 如果没有数据可用, 则此方法将被阻止, 直到至少有一个字节的数据可供读取。 `Read`仅当流中没有更多的数据, 但不需要更多的数据时 (如闭合套接字或文件尾), 才返回0。 即使尚未到达流的末尾, 方法也可以随意返回比所请求的字节更少的字节。
+
+ <xref:System.IO.BinaryReader>用于读取基元数据类型。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Read">
@@ -620,11 +652,23 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="buffer">要将数据写入的内存区域。</param>
+        <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+        <summary>从当前 Brotli 流异步读取字节的序列，将其写入字节内存范围，按读取的字节数向前移动 Brotli 流中的位置，并监视取消请求。</summary>
+        <returns>一个表示异步读取操作并将读取的总字节数包装到缓冲区中的任务。 如果很多字节当前不可用，则结果值可小于在缓冲区中分配的字节数；如果已到达 Brotli 流结尾，则结果值可以为 0（零）。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+`ReadAsync`方法使你可以在不阻塞主线程的情况下执行占用大量资源的 i/o 操作。 在 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] 应用或 [!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] 应用中一个耗时的流操作可能阻塞 UI 线程并让您的应用看起来好像不工作时，这种性能的考虑就显得尤为重要了。 在 Visual Basic 和`async` C#中, async 方法与和`await`关键字一起使用。
+
+<xref:System.IO.Compression.BrotliStream.CanRead%2A>使用属性可确定当前实例是否支持读取。
+
+如果在操作完成前取消该操作, 则返回的任务包含<xref:System.Threading.Tasks.TaskStatus.Canceled?displayProperty=nameWithType> <xref:System.Threading.Tasks.Task.Status?displayProperty=nameWithType>属性的值。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="ReadAsync">
@@ -652,13 +696,25 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <param name="offset">To be added.</param>
-        <param name="count">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="buffer">要写入数据的缓冲区。</param>
+        <param name="offset"><paramref name="buffer" /> 中的字节偏移量，从该偏移量开始写入从 Brotli 流中读取的数据。</param>
+        <param name="count">最多读取的字节数。</param>
+        <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+        <summary>读取当前 Brotli 流中的一个字节序列，将其写入从指定索引处开始的字节数组，按读取的字节数向前移动 Brotli 流中的位置，并监视取消请求。</summary>
+        <returns>一个表示异步读取操作（将读取的总字节数包装到 <paramref name="buffer" /> 中）的任务。 如果当前可用字节数少于所请求的字节数，则该结果值可小于所请求的字节数；如果已到达 Brotli 流结尾时，则为 0（零）。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+  
+## Remarks
+
+`ReadAsync`方法使你可以在不阻塞主线程的情况下执行占用大量资源的 i/o 操作。 在 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] 应用或 [!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] 应用中一个耗时的流操作可能阻塞 UI 线程并让您的应用看起来好像不工作时，这种性能的考虑就显得尤为重要了。 在 Visual Basic 和`async` C#中, async 方法与和`await`关键字一起使用。
+
+<xref:System.IO.Compression.BrotliStream.CanRead%2A>使用属性可确定当前实例是否支持读取。
+
+如果在操作完成前取消该操作, 则返回的任务包含<xref:System.Threading.Tasks.TaskStatus.Canceled?displayProperty=nameWithType> <xref:System.Threading.Tasks.Task.Status?displayProperty=nameWithType>属性的值。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Seek">
@@ -743,9 +799,19 @@
         <Parameter Name="buffer" Type="System.ReadOnlySpan&lt;System.Byte&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="buffer">内存的区域。 此方法将此区域的内容复制到当前 Brotli 流。</param>
+        <summary>将一个字节序列从只读字节范围写入当前 Brotli 缓冲流，并按写入的字节数向前移动此 Brotli 流中的当前位置。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+<xref:System.IO.Compression.BrotliStream.CanWrite%2A>使用属性可确定当前实例是否支持写入。 <xref:System.IO.Compression.BrotliStream.WriteAsync%2A>使用方法异步写入当前流。
+
+如果写入操作成功, Brotli 流中的位置将按写入的字节数向前移动。 如果发生异常, 则 Brotli 流中的位置将保持不变。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Write">
@@ -802,11 +868,23 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="buffer">要从中写入数据的内存区域。</param>
+        <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+        <summary>将压缩的字节从指定的字节内存范围异步写入基础 Brotli 流。</summary>
+        <returns>表示异步写入操作的任务。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+`WriteAsync`方法使你可以在不阻塞主线程的情况下执行占用大量资源的 i/o 操作。 在 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] 应用或 [!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] 应用中一个耗时的流操作可能阻塞 UI 线程并让您的应用看起来好像不工作时，这种性能的考虑就显得尤为重要了。 在 Visual Basic 和`async` C#中, async 方法与和`await`关键字一起使用。
+
+<xref:System.IO.Compression.BrotliStream.CanWrite%2A>使用属性可确定当前实例是否支持写入。
+
+如果在操作完成前取消该操作, 则返回的任务包含<xref:System.Threading.Tasks.TaskStatus.Canceled?displayProperty=nameWithType> <xref:System.Threading.Tasks.Task.Status?displayProperty=nameWithType>属性的值。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="WriteAsync">
@@ -834,13 +912,25 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <param name="offset">To be added.</param>
-        <param name="count">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="buffer">包含要压缩的数据的缓冲区。</param>
+        <param name="offset"><paramref name="buffer" /> 中的从零开始的字节偏移量，从此处开始将字节复制到 Brotli 流。</param>
+        <param name="count">最多写入的字节数。</param>
+        <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+        <summary>从指定的字节数组中将压缩的字节异步写入基础 Brotli 流。</summary>
+        <returns>表示异步写入操作的任务。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+`WriteAsync`方法使你可以在不阻塞主线程的情况下执行占用大量资源的 i/o 操作。 在 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] 应用或 [!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] 应用中一个耗时的流操作可能阻塞 UI 线程并让您的应用看起来好像不工作时，这种性能的考虑就显得尤为重要了。 在 Visual Basic 和`async` C#中, async 方法与和`await`关键字一起使用。
+
+<xref:System.IO.Compression.BrotliStream.CanWrite%2A>使用属性可确定当前实例是否支持写入。
+
+如果在操作完成前取消该操作, 则返回的任务包含<xref:System.Threading.Tasks.TaskStatus.Canceled?displayProperty=nameWithType> <xref:System.Threading.Tasks.Task.Status?displayProperty=nameWithType>属性的值。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
   </Members>

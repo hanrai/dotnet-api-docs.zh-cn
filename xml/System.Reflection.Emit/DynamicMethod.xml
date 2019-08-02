@@ -1,5 +1,5 @@
 <Type Name="DynamicMethod" FullName="System.Reflection.Emit.DynamicMethod">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="51fee0eb94e769331af5e08aee6b92d172715a15" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58692007" /></Metadata><TypeSignature Language="C#" Value="public sealed class DynamicMethod : System.Reflection.MethodInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="71e905a95bc7051f218f8ee2fb82ff422b40b7d3" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68437199" /></Metadata><TypeSignature Language="C#" Value="public sealed class DynamicMethod : System.Reflection.MethodInfo" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit DynamicMethod extends System.Reflection.MethodInfo" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.Emit.DynamicMethod" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class DynamicMethod&#xA;Inherits MethodInfo" />
@@ -9,6 +9,7 @@
     <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyVersion>4.0.3.0</AssemblyVersion>
+    <AssemblyVersion>4.1.0.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -35,62 +36,62 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Reflection.Emit.DynamicMethod>类，以生成并在运行时，执行一种方法，而无需生成动态程序集和动态类型，以包含该方法。 回收由实时 (JIT) 编译器创建的可执行代码时<xref:System.Reflection.Emit.DynamicMethod>回收对象。 动态方法是代码的生成并执行少量的最有效方法。  
+ 您可以使用<xref:System.Reflection.Emit.DynamicMethod>类在运行时生成和执行方法, 而不必生成动态程序集和动态类型来包含方法。 回收<xref:System.Reflection.Emit.DynamicMethod>对象时, 由实时 (JIT) 编译器创建的可执行代码将被回收。 动态方法是生成和执行少量代码的最有效方法。  
   
- 可以匿名托管动态方法，也可以是逻辑上相关联，与模块或类型。  
+ 动态方法可以是匿名承载的, 也可以逻辑上与模块或类型相关联。  
   
--   如果匿名托管动态方法，它位于系统提供的程序集，并因此是独立于其他代码。 默认情况下，它没有任何非公共数据的访问权限。 匿名托管动态方法可以具有受限能力跳过 JIT 编译器的可见性检查，如果它已被授予<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType>标志。 动态方法访问其非公共成员的程序集的信任级别必须相同或发出动态方法的调用堆栈的信任级别的子集。 有关匿名托管动态方法的详细信息，请参阅[演练：在部分信任方案中发出代码](~/docs/framework/reflection-and-codedom/walkthrough-emitting-code-in-partial-trust-scenarios.md)。  
+-   如果动态方法是匿名承载的, 则该方法位于系统提供的程序集中, 因此与其他代码隔离。 默认情况下, 它无权访问任何非公共数据。 匿名托管的动态方法可以具有跳过 JIT 编译器的可见性检查的受限能力, 前提是该方法<xref:System.Security.Permissions.ReflectionPermission>已被<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType>授予标志。 动态方法访问其非公共成员的程序集的信任级别必须等于发出动态方法的调用堆栈的信任级别 (或的子集)。 有关匿名承载的动态方法的详细信息, [请参阅演练:在部分信任方案](~/docs/framework/reflection-and-codedom/walkthrough-emitting-code-in-partial-trust-scenarios.md)中发出代码。  
   
--   如果与你指定的模块关联动态方法时，动态方法是该模块在全局范围内有效。 它可以访问该模块中的所有类型和所有`internal`(`Friend`在 Visual Basic 中) 类型的成员。 你可以将关联动态方法与任何模块，无论您创建该模块，提供的索要<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess>标志可以满足的调用堆栈包含您的代码。 如果<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>标志包含在程序集的授予，动态方法可以跳过 JIT 编译器的可见性检查，访问声明为模块中或在任何程序集中的任何其他模块中的所有类型的私有数据。  
+-   如果动态方法与指定的模块相关联, 动态方法将在该模块中有效地成为全局方法。 它可以访问模块中的所有类型以及这些`internal`类型`Friend`的所有 (在 Visual Basic 中) 成员。 无论是否已创建模块, 都可以将动态方法与任何模块相关联, 前提是包含代码的调用<xref:System.Security.Permissions.ReflectionPermission>堆栈可以<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess>满足带标志的请求。 如果该<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>标志包含在 grant 中, 则动态方法可以跳过 JIT 编译器的可见性检查并访问在该模块中声明的所有类型的私有数据或任何程序集中的任何其他模块。  
   
     > [!NOTE]
-    >  当指定动态方法与之关联的模块时，该模块不能用于匿名托管的系统提供程序集中。  
+    >  指定与动态方法关联的模块时, 该模块不得位于系统提供的程序集中, 该程序集用于匿名托管。  
   
--   如果您指定的类型与关联动态方法时，它无论访问级别有权访问的类型，所有成员。 此外，可以跳过 JIT 可见性检查。 这样，该动态方法访问同一模块中或在任何程序集中的任何其他模块中声明其他类型的私有数据。 你可以使用任何类型，关联动态方法，但你的代码必须获得<xref:System.Security.Permissions.ReflectionPermission>两个<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess>和<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess>标志。  
+-   如果动态方法与指定的类型相关联, 则它有权访问该类型的所有成员, 而不考虑访问级别。 此外, 还可以跳过 JIT 可见性检查。 这为动态方法提供对在同一模块中或在任何程序集中的任何其他模块中声明的其他类型的私有数据的访问。 可以将动态方法与任何类型相关联, 但必须<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess>同时向代码授予和<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess>标志。  
   
- 下表显示了哪些类型和成员是一个匿名托管动态方法，使用和不使用 JIT 可见性检查，具体取决于是否可访问<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess>授予标志。  
+ 下表显示了匿名托管的动态方法可访问的类型和成员 (带有和不带 JIT 可见性检查), 具体<xref:System.Security.Permissions.ReflectionPermission>取决于<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess>是否授予了标志。  
   
 ||没有 <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess>|通过 <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess>|  
 |-|-|-|  
-|不要跳过 JIT 可见性检查|在任何程序集中的公共类型的公共成员。|在任何程序集中的公共类型的公共成员。|  
-|正在跳过 JIT 可见性检查，与限制|在任何程序集中的公共类型的公共成员。|所有类型，仅在其信任级别都等于或小于发出动态方法的程序集的信任级别的程序集中的所有成员。|  
+|不跳过 JIT 可见性检查|任何程序集中公共类型的公共成员。|任何程序集中公共类型的公共成员。|  
+|跳过 JIT 可见性检查, 但有限制|任何程序集中公共类型的公共成员。|所有类型的所有成员, 仅在其信任级别等于或小于发出动态方法的程序集的信任级别的程序集中。|  
   
 > [!NOTE]
->  早于[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，发出代码需要<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit?displayProperty=nameWithType>标志。 此权限包含在 FullTrust 和 LocalIntranet 命名权限集，默认情况下，但不是在 Internet 权限设置。 因此，在早期版本的[!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)]库可以与 Internet 权限一起使用，只有在它<xref:System.Security.SecurityCriticalAttribute>属性，也会执行<xref:System.Security.PermissionSet.Assert%2A>为<xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit>。 这种库需要进行仔细的安全检查，因为编码错误可能会导致安全漏洞。 [!INCLUDE[net_v20SP1_short](~/includes/net-v20sp1-short-md.md)] 允许以部分信任形式发出代码而无需发出任何安全请求，因为生成代码本身不是一项特权操作。 也就是说，生成的代码不会具有比发出它的程序集更多的权限。 这使得发出代码的库是安全透明的，且不再需要断言 <xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit>，这简化了编写安全库任务。 若要使用此功能，你的应用程序应面向[!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)]或更高版本。  
+>  在[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]之前, 发出<xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit?displayProperty=nameWithType>标记所需<xref:System.Security.Permissions.ReflectionPermission>的代码。 默认情况下, 此权限包含在 FullTrust 和 LocalIntranet 命名权限集中, 而不是在 Internet 权限集中。 因此, [!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)]在早期版本的库中, 只有当库<xref:System.Security.SecurityCriticalAttribute>具有<xref:System.Security.PermissionSet.Assert%2A>特性并为<xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit>执行时, 才能与 Internet 权限一起使用。 这种库需要进行仔细的安全检查，因为编码错误可能会导致安全漏洞。 [!INCLUDE[net_v20SP1_short](~/includes/net-v20sp1-short-md.md)] 允许以部分信任形式发出代码而无需发出任何安全请求，因为生成代码本身不是一项特权操作。 也就是说，生成的代码不会具有比发出它的程序集更多的权限。 这使得发出代码的库是安全透明的，且不再需要断言 <xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit>，这简化了编写安全库任务。 若要使用此功能, 应用程序应面向[!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)]或更高版本。  
   
- 下表显示了哪些类型和成员是可对与模块或在模块中的类型相关联的动态方法访问。  
+ 下表显示了与模块或模块中的类型相关联的动态方法可以访问的类型和成员。  
   
-||与模块相关联|与类型关联|  
+||与模块关联|与类型关联|  
 |-|-|-|  
-|不要跳过 JIT 可见性检查|模块中的公共、 内部和专用类型的公共和内部成员。<br /><br /> 在任何程序集中的公共类型的公共成员。|关联类型的所有成员。 模块中的所有其他类型的公共和内部成员。<br /><br /> 在任何程序集中的公共类型的公共成员。|  
-|正在跳过 JIT 可见性检查|在任何程序集中的所有类型的所有成员。|在任何程序集中的所有类型的所有成员。|  
+|不跳过 JIT 可见性检查|模块中公共类型、内部类型和私有类型的公共和内部成员。<br /><br /> 任何程序集中公共类型的公共成员。|关联类型的所有成员。 模块中所有其他类型的公共和内部成员。<br /><br /> 任何程序集中公共类型的公共成员。|  
+|跳过 JIT 可见性检查|所有程序集中的所有类型的所有成员。|所有程序集中的所有类型的所有成员。|  
   
- 与模块相关联的动态方法具有该模块的权限。 与类型关联的动态方法具有包含该类型的模块的权限。  
+ 与模块关联的动态方法具有该模块的权限。 与某一类型关联的动态方法具有包含该类型的模块的权限。  
   
- 动态方法和其参数不需要进行命名，但可以指定名称来帮助进行调试。 动态方法或其参数不支持自定义属性。  
+ 动态方法及其参数无需命名, 但你可以指定名称来帮助进行调试。 动态方法或其参数不支持自定义属性。  
   
- 虽然动态方法`static`方法 (`Shared`方法在 Visual Basic 中的)，则委托绑定中引入的宽松规则[!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)]允许动态方法绑定到一个对象，以便其行为类似于实例方法时使用该委托实例调用。 为提供的示例，说明了这一点<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%28System.Type%2CSystem.Object%29>方法重载。  
+ 尽管动态方法是`static`方法 (`Shared` Visual Basic 中的方法), 但中引入的[!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)]委托绑定的宽松规则允许将动态方法绑定到对象, 以便在使用该委托实例调用。 此示例演示了如何为<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%28System.Type%2CSystem.Object%29>方法重载提供此方法。  
   
 > [!NOTE]
->  在[!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)]，动态方法不支持的符号信息、 本地变量的名称和行号映射。 可能的未来版本中删除此限制。 可以使用<xref:System.Reflection.Emit.AssemblyBuilder>在开发以简化调试生成的 Microsoft 中间语言 (MSIL)，然后切换到动态方法最终在部署期间，因为过程<xref:System.Reflection.Emit.ILGenerator>调用是在这两种情况下相同。  
+>  在中[!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)], 动态方法不支持符号信息, 即局部变量名称和行号映射。 在将来的版本中可能会删除此限制。 你可以在<xref:System.Reflection.Emit.AssemblyBuilder>开发过程中使用来简化生成的 Microsoft 中间语言 (MSIL) 的调试, 然后在最终部署过程中切换到动态<xref:System.Reflection.Emit.ILGenerator>方法, 因为这两种情况下的调用都是相同的。  
   
 ## <a name="verification"></a>确认  
- 以下列表总结了动态方法可以在其下包含不可验证的代码的条件。 (例如，动态方法是不可验证的如果其<xref:System.Reflection.Emit.DynamicMethod.InitLocals%2A>属性设置为`false`。)  
+ 下面的列表汇总了动态方法可包含无法验证的代码的情况。 (例如, 如果动态方法的属性设置为, <xref:System.Reflection.Emit.DynamicMethod.InitLocals%2A>则无法`false`对其进行验证。)  
   
--   与安全关键的程序集相关联的动态方法也是安全关键的并且可以跳过验证。 例如，由运行时为桌面应用程序运行的程序集而无需安全属性被处理安全关键。 如果将动态方法与程序集相关联，动态方法可以包含不可验证的代码。  
+-   与安全关键程序集关联的动态方法也是安全关键的, 可跳过验证。 例如, 如果程序集不具有作为桌面应用程序运行的安全属性, 则运行时将其视为安全关键。 如果将动态方法与程序集相关联, 则动态方法可能包含不可验证的代码。  
   
--   与具有 1 级透明度的程序集关联的动态方法包含无法验证的代码时，在实时 (JIT) 编译器会注入安全要求。 仅当完全受信任的代码执行动态方法时，请求成功。 请参阅[安全透明的代码，级别 1](~/docs/framework/misc/security-transparent-code-level-1.md)。  
+-   如果包含不可验证代码的动态方法与具有级别1透明度的程序集相关联, 则实时 (JIT) 编译器将注入安全要求。 仅当动态方法由完全受信任的代码执行时, 请求才会成功。 请参阅[安全透明代码, 级别 1](~/docs/framework/misc/security-transparent-code-level-1.md)。  
   
--   与具有 2 级透明度 （如 mscorlib.dll) 的程序集关联的动态方法包含无法验证的代码时，它将引发异常 （由 JIT 编译器插入），而不是使安全要求。 请参阅[安全透明的代码，级别 2](~/docs/framework/misc/security-transparent-code-level-2.md)。  
+-   如果包含不可验证代码的动态方法与具有2级透明度 (如 mscorlib.dll) 的程序集相关联, 则它会引发异常 (由 JIT 编译器注入), 而不是发出安全要求。 请参阅[安全透明代码, 级别 2](~/docs/framework/misc/security-transparent-code-level-2.md)。  
   
--   始终包含不可验证的代码的匿名托管动态方法将引发异常。 它永远不会可以跳过验证，即使它的创建和执行完全受信任的代码。  
+-   包含不可验证的代码的匿名托管动态方法始终引发异常。 即使它是由完全受信任的代码创建和执行的, 它也永远不会跳过验证。  
   
- 无法验证的代码时引发的异常而异的动态方法调用的方法。 如果调用动态方法使用从返回的委托<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>方法，<xref:System.Security.VerificationException>引发。 如果使用调用动态方法<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法，<xref:System.Reflection.TargetInvocationException>内部引发<xref:System.Security.VerificationException>。  
+ 对于不可验证的代码引发的异常会根据动态方法的调用方式而有所不同。 如果使用从<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>方法返回的委托调用动态方法<xref:System.Security.VerificationException> , 则将引发。 如果通过使用<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法调用动态方法<xref:System.Reflection.TargetInvocationException> , 则将引发与内部<xref:System.Security.VerificationException>的。  
   
    
   
 ## Examples  
- 下面的代码示例创建动态方法采用两个参数。 该示例发出简单函数体打印到控制台中，第一个参数和示例使用第二个参数作为该方法的返回值。 该示例完成方法创建委托，调用委托，它具有不同的参数，并最后调用动态方法使用<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法。  
+ 下面的代码示例创建一个带有两个参数的动态方法。 该示例发出一个简单的函数体, 将第一个参数输出到控制台, 该示例使用第二个参数作为方法的返回值。 该示例通过创建委托来完成方法, 使用不同的参数调用委托, 最后使用<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法调用动态方法。  
   
  [!code-cpp[Reflection.DynamicMethod.All#1](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#1)]
  [!code-csharp[Reflection.DynamicMethod.All#1](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#1)]
@@ -125,6 +126,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -155,16 +157,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数创建的动态方法是匿名的程序集，而不是一个现有类型或模块相关联。 匿名程序集存在只是为了，它是提供用于动态方法的沙盒环境，以将其隔离的其他代码。 此环境提供安全的动态方法发出和执行由部分受信任的代码。  
+ 此构造函数创建的动态方法与匿名程序集相关联, 而不是与现有类型或模块关联。 匿名程序集的存在只是为了为动态方法提供沙盒环境, 即, 将它们与其他代码隔离开来。 此环境使动态方法可由部分受信任的代码发出并执行。  
   
- 此构造函数指定，在实时 (JIT) 可见性检查将强制实施为 Microsoft 中间语言 (MSIL) 的动态方法。 即，动态方法中的代码有权访问的公共类的公共方法。 如果尝试访问的是类型或成员方法引发异常`private`， `protected`，或`internal`(`Friend`在 Visual Basic 中)。 若要创建具有受限能力跳过 JIT 可见性检查的动态方法，请使用<xref:System.Reflection.Emit.DynamicMethod.%23ctor%28System.String%2CSystem.Type%2CSystem.Type%5B%5D%2CSystem.Boolean%29>构造函数。  
+ 此构造函数指定将对动态方法的 Microsoft 中间语言 (MSIL) 强制执行实时 (JIT) 可见性检查。 也就是说, 动态方法中的代码可以访问公共类的公共方法。 如果方法尝试访问的类型或`private`成员为、或`internal` (`Friend`在 Visual Basic 中`protected`), 则会引发异常。 若要创建具有跳过 JIT 可见性检查的受限能力的动态方法, <xref:System.Reflection.Emit.DynamicMethod.%23ctor%28System.String%2CSystem.Type%2CSystem.Type%5B%5D%2CSystem.Boolean%29>请使用构造函数。  
   
- 当构造匿名托管动态方法时，将包含发出程序集的调用堆栈。 调用此方法，而不是实际调用方的权限使用发出程序集的权限。 因此，动态方法不能执行更高的级别的权限比发出它，即使它是传递给并由具有更高的信任级别的程序集执行的程序集。  
+ 构造匿名托管的动态方法时, 将包含发出程序集的调用堆栈。 调用方法时, 将使用发出程序集的权限, 而不是实际调用方的权限。 因此, 动态方法无法以比发出它的程序集更高的特权级别执行, 即使该方法传递到并且由具有较高信任级别的程序集执行。  
   
- 此构造函数指定方法属性<xref:System.Reflection.MethodAttributes.Public?displayProperty=nameWithType>并<xref:System.Reflection.MethodAttributes.Static?displayProperty=nameWithType>，并调用约定<xref:System.Reflection.CallingConventions.Standard?displayProperty=nameWithType>。  
+ 此构造函数指定方法属性<xref:System.Reflection.MethodAttributes.Public?displayProperty=nameWithType>和<xref:System.Reflection.MethodAttributes.Static?displayProperty=nameWithType>调用约定<xref:System.Reflection.CallingConventions.Standard?displayProperty=nameWithType>。  
   
 > [!NOTE]
->  此构造函数中引入了[!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)]或更高版本。  
+>  此构造函数是在或[!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)]更高版本中引入的。  
   
  ]]></format>
         </remarks>
@@ -188,6 +190,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -220,29 +223,29 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数创建的动态方法是匿名的程序集，而不是一个现有类型或模块相关联。 匿名程序集存在只是为了，它是提供用于动态方法的沙盒环境，以将其隔离的其他代码。 此环境提供安全的动态方法发出和执行由部分受信任的代码。  
+ 此构造函数创建的动态方法与匿名程序集相关联, 而不是与现有类型或模块关联。 匿名程序集的存在只是为了为动态方法提供沙盒环境, 即, 将它们与其他代码隔离开来。 此环境使动态方法可由部分受信任的代码发出并执行。  
   
- 匿名托管动态方法不能为任何类型或成员的自动访问`private`， `protected`，或`internal`(`Friend`在 Visual Basic 中)。 这是不同于动态方法与现有类型或模块，其关联的作用域中有权访问隐藏的成员。  
+ 匿名`private`托管的`protected`动态方法`Friend`不能自动访问任何类型或成员(在VisualBasic中)。`internal` 这不同于与现有类型或模块关联的动态方法, 这些方法可以访问其关联范围内的隐藏成员。  
   
- 指定`true`有关`restrictedSkipVisibility`动态方法具有访问类型或成员`private`， `protected`，或`internal`。 这样，受限制的动态方法访问这些成员。 也就是说，仅当满足以下条件时，可以访问成员：  
+ `true` `private`如果动态`protected`方法必须访问、或`internal`类型的类型或成员, 请指定。 `restrictedSkipVisibility` 这为动态方法授予了对这些成员的有限访问权限。 也就是说, 仅当满足以下条件时, 才能访问成员:  
   
 -   目标成员属于具有等于或小于发出动态方法的调用堆栈的信任级别的程序集。  
   
--   发出动态方法的调用堆栈授予<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType>标志。 如此始终以完全信任级别执行的代码。 对于部分受信任的代码，它为 true，仅当主机显式授予的权限。  
+-   向发出动态方法的调用堆栈授予<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType>标志。 在完全信任的情况下执行代码时, 这始终为 true。 对于部分受信任的代码, 仅当主机显式授予权限时才为 true。  
   
     > [!IMPORTANT]
-    >  如果尚未授予该权限，安全异常时引发<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>调用或调用动态方法时，不在此构造函数调用。 发出动态方法不需要任何特殊权限。  
+    >  如果尚未授予该权限, 则在<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>调用或调用动态方法时, 而不是在调用此构造函数时, 将引发安全异常。 发出动态方法不需要任何特殊权限。  
   
- 例如，使用创建的动态方法`restrictedSkipVisibility`设置为`true`可以访问私有成员的调用堆栈上的任何程序集，调用堆栈是否已被授予了受限的成员访问权限。 如果与部分受信任代码调用堆栈上创建动态方法，则它不能访问私有成员中的类型的[!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)]程序集，因为此类程序集是完全受信任。  
+ 例如, 如果已向调用堆栈授予受限成员`restrictedSkipVisibility`访问权限`true` , 则使用设置为的创建的动态方法可以访问调用堆栈上任何程序集的私有成员。 如果动态方法是使用调用堆栈上部分受信任的代码创建的, 则它无法访问[!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)]程序集中类型的私有成员, 因为此类程序集是完全受信任的。  
   
- 如果`restrictedSkipVisibility`是`false`，会强制执行 JIT 可见性检查。 动态方法中的代码有权访问的公共类的公共方法，并尝试访问的是类型或成员，是否会引发异常`private`， `protected`，或`internal`。  
+ 如果`restrictedSkipVisibility` 为`false`, 则强制执行 JIT 可见性检查。 动态方法中的代码有权访问公共类的公共方法, 如果尝试访问的类型或成员`private`为、 `protected`或`internal`, 则会引发异常。  
   
- 当构造匿名托管动态方法时，将包含发出程序集的调用堆栈。 调用此方法，而不是实际调用方的权限使用发出的调用堆栈的权限。 因此，动态方法不能执行更高的级别的权限比发出它，即使它是传递给并由具有更高的信任级别的程序集执行的程序集。  
+ 构造匿名托管的动态方法时, 将包含发出程序集的调用堆栈。 调用方法时, 将使用发出调用堆栈的权限, 而不是实际调用方的权限。 因此, 动态方法无法以比发出它的程序集更高的特权级别执行, 即使该方法传递到并且由具有较高信任级别的程序集执行。  
   
- 此构造函数指定方法属性<xref:System.Reflection.MethodAttributes.Public?displayProperty=nameWithType>并<xref:System.Reflection.MethodAttributes.Static?displayProperty=nameWithType>，并调用约定<xref:System.Reflection.CallingConventions.Standard?displayProperty=nameWithType>。  
+ 此构造函数指定方法属性<xref:System.Reflection.MethodAttributes.Public?displayProperty=nameWithType>和<xref:System.Reflection.MethodAttributes.Static?displayProperty=nameWithType>调用约定<xref:System.Reflection.CallingConventions.Standard?displayProperty=nameWithType>。  
   
 > [!NOTE]
->  此构造函数中引入了[!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)]或更高版本。  
+>  此构造函数是在或[!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)]更高版本中引入的。  
   
  ]]></format>
         </remarks>
@@ -266,6 +269,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -298,20 +302,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数指定方法的特性<xref:System.Reflection.MethodAttributes.Public?displayProperty=nameWithType>并<xref:System.Reflection.MethodAttributes.Static?displayProperty=nameWithType>，调用约定<xref:System.Reflection.CallingConventions.Standard?displayProperty=nameWithType>，和不跳过在实时 (JIT) 可见性检查。  
+ 此构造函数指定方法<xref:System.Reflection.MethodAttributes.Public?displayProperty=nameWithType>属性<xref:System.Reflection.MethodAttributes.Static?displayProperty=nameWithType>和调用约定<xref:System.Reflection.CallingConventions.Standard?displayProperty=nameWithType>, 而不会跳过实时 (JIT) 可见性检查。  
   
- 使用此构造函数创建的动态方法有权访问公共和`internal`(`Friend`在 Visual Basic 中) 包含在模块中的所有类型的成员`m`。  
-  
-> [!NOTE]
->  对于向后兼容，此构造函数要求<xref:System.Security.Permissions.SecurityPermission>与<xref:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence?displayProperty=nameWithType>标志，如果是两个以下条件，则返回 true:`m`是以外调用模块，以及对需求的模块<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>标志已失败。 如果对需求<xref:System.Security.Permissions.SecurityPermission>成功，允许执行该操作。  
+ 使用此构造函数创建的动态方法可以访问模块`internal` `m`中包含`Friend`的所有类型的公共和 (在 Visual Basic) 成员。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，此成员不再需要<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit?displayProperty=nameWithType>标志。 (请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。)若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
+>  为实现向后兼容性, <xref:System.Security.Permissions.SecurityPermission>如果同时<xref:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence?displayProperty=nameWithType>满足以下条件, 则此构造函数要求`m`带有标志: 是一个模块, 而不是调用<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>模块, <xref:System.Security.Permissions.ReflectionPermission>并且具有标志的要求已失败。 如果成功的请求<xref:System.Security.Permissions.SecurityPermission> , 则允许执行该操作。  
+  
+> [!NOTE]
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit?displayProperty=nameWithType> , 此成员不再需要带有标志的。 [!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)] (请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。)若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
    
   
 ## Examples  
- 下面的代码示例创建动态方法采用两个参数。 该示例发出简单函数体打印到控制台中，第一个参数和示例使用第二个参数作为该方法的返回值。 该示例完成方法创建委托，调用委托，它具有不同的参数，并最后调用动态方法使用<xref:System.Reflection.Emit.DynamicMethod.Invoke%28System.Object%2CSystem.Reflection.BindingFlags%2CSystem.Reflection.Binder%2CSystem.Object%5B%5D%2CSystem.Globalization.CultureInfo%29>方法。  
+ 下面的代码示例创建一个带有两个参数的动态方法。 该示例发出一个简单的函数体, 将第一个参数输出到控制台, 该示例使用第二个参数作为方法的返回值。 该示例通过创建委托来完成方法, 使用不同的参数调用委托, 最后使用<xref:System.Reflection.Emit.DynamicMethod.Invoke%28System.Object%2CSystem.Reflection.BindingFlags%2CSystem.Reflection.Binder%2CSystem.Object%5B%5D%2CSystem.Globalization.CultureInfo%29>方法调用动态方法。  
   
  [!code-cpp[Reflection.DynamicMethod.ctor1#1](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.ctor1/cpp/source.cpp#1)]
  [!code-csharp[Reflection.DynamicMethod.ctor1#1](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.ctor1/CS/source.cs#1)]
@@ -321,14 +325,14 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="parameterTypes" /> 的元素为 <see langword="null" /> 或 <see cref="T:System.Void" />。  
   
-- 或 - 
+或 
  <paramref name="m" /> 是为动态方法提供匿名承载的模块。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="m" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="returnType" /> 是一种 <see cref="P:System.Type.IsByRef" /> 为其返回 <see langword="true" /> 的类型。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">若要将动态方法与非调用模块的模块相关联。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">将动态方法与调用模块以外的模块关联。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess" />。</permission>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/how-to-define-and-execute-dynamic-methods.md">如何：定义和执行动态方法</related>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md">反射发出中的安全问题</related>
       </Docs>
@@ -345,6 +349,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -370,41 +375,41 @@
       <Docs>
         <param name="name">动态方法的名称。 它可以是长度为零的字符串，但不能为 <see langword="null" />。</param>
         <param name="returnType">一个 <see cref="T:System.Type" /> 对象，用于指定动态方法的返回类型，如果此方法没有返回类型，则为 <see langword="null" />。</param>
-        <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" />。</param>
+        <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" /> 。</param>
         <param name="owner">一个 <see cref="T:System.Type" />，动态方法与其逻辑关联。 动态方法可以访问类型的所有成员。</param>
         <summary>创建一个动态方法，指定方法名称、返回类型、参数类型和动态方法逻辑关联的类型。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此构造函数创建的动态方法有权访问该类型的所有成员`owner`，并为公共和`internal`(`Friend`在 Visual Basic 中) 中包含的模块的所有其他类型的成员`owner`。  
+ 使用此构造函数创建的动态方法`owner`具有对该类型的所有成员的访问权限, 以及对包含`owner`的模块中所有其他类型的公共和`internal` (`Friend`在 Visual Basic) 成员的访问。  
   
- 此构造函数指定方法的特性<xref:System.Reflection.MethodAttributes.Public?displayProperty=nameWithType>并<xref:System.Reflection.MethodAttributes.Static?displayProperty=nameWithType>，调用约定<xref:System.Reflection.CallingConventions.Standard?displayProperty=nameWithType>，和不跳过在实时 (JIT) 可见性检查。  
-  
-> [!NOTE]
->  对于向后兼容，此构造函数要求<xref:System.Security.Permissions.SecurityPermission>与<xref:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence?displayProperty=nameWithType>标志，如果是两个以下条件，则返回 true:`owner`所在的模块之外调用模块，以及对需求<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>标志已失败。 如果对需求<xref:System.Security.Permissions.SecurityPermission>成功，允许执行该操作。  
+ 此构造函数指定方法<xref:System.Reflection.MethodAttributes.Public?displayProperty=nameWithType>属性<xref:System.Reflection.MethodAttributes.Static?displayProperty=nameWithType>和调用约定<xref:System.Reflection.CallingConventions.Standard?displayProperty=nameWithType>, 而不会跳过实时 (JIT) 可见性检查。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，此成员不再需要<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit?displayProperty=nameWithType>标志。 (请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。)若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
+>  为实现向后兼容性, <xref:System.Security.Permissions.SecurityPermission>如果满足<xref:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence?displayProperty=nameWithType>以下条件, 则此构造函数要求带有`owner`标志: 位于调用<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>模块以外的模块中, 且<xref:System.Security.Permissions.ReflectionPermission>具有标志失败。 如果成功的请求<xref:System.Security.Permissions.SecurityPermission> , 则允许执行该操作。  
+  
+> [!NOTE]
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit?displayProperty=nameWithType> , 此成员不再需要带有标志的。 [!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)] (请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。)若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
    
   
 ## Examples  
- 下面的代码示例创建<xref:System.Reflection.Emit.DynamicMethod>这就是逻辑上相关联的类型。 这种关联使其可以访问到该类型的私有成员。  
+ 下面的代码示例创建一个<xref:System.Reflection.Emit.DynamicMethod>与类型逻辑上关联的。 此关联使其能够访问该类型的私有成员。  
   
- 代码示例定义一个名为`Example`使用私有字段，一个类名为`DerivedFromExample`派生的第一个类，名为的委托类型`UseLikeStatic`返回<xref:System.Int32>类型的参数，且`Example`和<xref:System.Int32>，和一个名为的委托类型`UseLikeInstance`，它返回<xref:System.Int32>具有一个类型参数和<xref:System.Int32>。  
+ 此代码示例定义了一个名`Example`为的类, 该类具有私有字段`DerivedFromExample` , 该类是从第一个类派生的名为`UseLikeStatic`的类, 它是一个名`Example`为的委托类型, 它返回<xref:System.Int32>并具有类型为和<xref:System.Int32>和一个名为`UseLikeInstance`的委托类型, 它返回<xref:System.Int32>并具有一个类型<xref:System.Int32>为的参数。  
   
- 然后，示例代码创建<xref:System.Reflection.Emit.DynamicMethod>更改的实例的专用字段`Example`，并返回以前的值。  
-  
-> [!NOTE]
->  一般情况下，更改类的内部字段不是很好的面向对象的编码做法。  
-  
- 示例代码创建的一个实例`Example`，然后创建两个委托。 第一个是类型的`UseLikeStatic`，其中包含与动态方法相同的参数。 第二个属于类型`UseLikeInstance`，其中缺少第一个参数 (类型的`Example`)。 使用创建此委托<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%28System.Type%2CSystem.Object%29>方法重载; 第二个参数的方法重载是的一个实例`Example`，在这种情况下只需创建，其绑定到新创建的委托的实例。 每当调用该委托，动态方法都作用于的绑定实例`Example`。  
+ 然后, 该代码示例创建<xref:System.Reflection.Emit.DynamicMethod>一个, 它将更改`Example`实例的私有字段并返回以前的值。  
   
 > [!NOTE]
->  委托绑定中引入的这是宽松规则举例[!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)]，以及的新重载<xref:System.Delegate.CreateDelegate%2A?displayProperty=nameWithType>方法。 有关更多信息，请参见 <xref:System.Delegate> 类。  
+>  通常, 更改类的内部字段并不是面向对象的适当编码做法。  
   
- `UseLikeStatic`调用委托时，传入的实例`Example`绑定到`UseLikeInstance`委托。 然后`UseLikeInstance`调用委托时，以便这两个委托都作用于的同一个实例`Example`。 每次调用后显示的内部字段的值中的更改。 最后，`UseLikeInstance`委托绑定到的实例`DerivedFromExample`，并且委托调用重复出现。  
+ 示例代码创建的`Example`实例, 然后创建两个委托。 第一个类型`UseLikeStatic`为, 它具有与动态方法相同的参数。 第二种类型`UseLikeInstance`为, 它缺少第一个参数 (类型`Example`为)。 此委托是使用<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%28System.Type%2CSystem.Object%29>方法重载创建的; 此方法重载的第二个参数是的`Example`实例, 在本例中为刚创建的实例, 该实例绑定到新创建的委托。 无论何时调用该委托, 动态方法都将对的绑定实例`Example`起作用。  
+  
+> [!NOTE]
+>  这是中引入的[!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)]委托绑定的宽松规则的示例, 以及<xref:System.Delegate.CreateDelegate%2A?displayProperty=nameWithType>方法的新重载。 有关更多信息，请参见 <xref:System.Delegate> 类。  
+  
+ 调用委托, 并传入绑定到`UseLikeInstance`委托的的`Example`实例。 `UseLikeStatic` 然后调用`Example`委托, 使这两个委托对相同的实例执行操作。 `UseLikeInstance` 在每次调用后, 将显示内部字段的值中的更改。 最后, `UseLikeInstance`委托绑定到的`DerivedFromExample`实例, 并且委托调用重复。  
   
  [!code-csharp[Reflection.DynamicMethod.ClosedOver#1](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.ClosedOver/cs/source.cs#1)]
  [!code-vb[Reflection.DynamicMethod.ClosedOver#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/Reflection.DynamicMethod.ClosedOver/vb/source.vb#1)]  
@@ -413,14 +418,14 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="parameterTypes" /> 的元素为 <see langword="null" /> 或 <see cref="T:System.Void" />。  
   
-- 或 - 
+或 
  <paramref name="owner" /> 是一个接口、一个数组、一个开放式泛型类型或一个泛型类型或方法的类型参数。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="owner" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="returnType" /> 为 <see langword="null" />，或者为 <see cref="P:System.Type.IsByRef" /> 返回 <see langword="true" /> 的类型。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">若要将动态方法与模块不同于调用模块中的类型相关联。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">若要将动态方法与调用模块以外的模块中的类型相关联, 则为。 关联的枚举<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess" />:。</permission>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/how-to-define-and-execute-dynamic-methods.md">如何：定义和执行动态方法</related>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md">反射发出中的安全问题</related>
       </Docs>
@@ -437,6 +442,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -471,15 +477,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数指定方法的特性<xref:System.Reflection.MethodAttributes.Public?displayProperty=nameWithType>并<xref:System.Reflection.MethodAttributes.Static?displayProperty=nameWithType>，、 调用约定<xref:System.Reflection.CallingConventions.Standard?displayProperty=nameWithType>。  
+ 此构造函数指定方法<xref:System.Reflection.MethodAttributes.Public?displayProperty=nameWithType>特性<xref:System.Reflection.MethodAttributes.Static?displayProperty=nameWithType>和和调用约定<xref:System.Reflection.CallingConventions.Standard?displayProperty=nameWithType>。  
   
- 使用此构造函数创建的动态方法有权访问公共和`internal`(`Friend`在 Visual Basic 中) 包含模块中的所有类型的成员`m`。 跳过 JIT 编译器的可见性检查允许动态方法访问的所有其他类型的私有和受保护成员。 这很有用，例如，编写代码来序列化对象时。  
-  
-> [!NOTE]
->  对于向后兼容，此构造函数要求<xref:System.Security.Permissions.SecurityPermission>与<xref:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence?displayProperty=nameWithType>标志，如果是两个以下条件，则返回 true:`m`是以外调用模块，以及对需求的模块<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>标志已失败。 如果对需求<xref:System.Security.Permissions.SecurityPermission>成功，允许执行该操作。  
+ 使用此构造函数创建的动态方法有权访问包含`internal`模块`Friend` `m`中所有类型的公共和 (在 Visual Basic) 成员中。 通过跳过 JIT 编译器的可见性检查, 动态方法还可以访问所有其他类型的私有和受保护成员。 例如, 在编写代码以序列化对象时, 这很有用。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，此成员不再需要<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit?displayProperty=nameWithType>标志。 (请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。)若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
+>  为实现向后兼容性, <xref:System.Security.Permissions.SecurityPermission>如果同时<xref:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence?displayProperty=nameWithType>满足以下条件, 则此构造函数要求`m`带有标志: 是一个模块, 而不是调用<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>模块, <xref:System.Security.Permissions.ReflectionPermission>并且具有标志的要求已失败。 如果成功的请求<xref:System.Security.Permissions.SecurityPermission> , 则允许执行该操作。  
+  
+> [!NOTE]
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit?displayProperty=nameWithType> , 此成员不再需要带有标志的。 [!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)] (请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。)若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
  ]]></format>
         </remarks>
@@ -492,7 +498,7 @@
 - 或 - 
  <paramref name="m" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="returnType" /> 是一种 <see cref="P:System.Type.IsByRef" /> 为其返回 <see langword="true" /> 的类型。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">若要将动态方法与非调用模块的模块相关联。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">将动态方法与调用模块以外的模块关联。 关联的枚举<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess" />:。</permission>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/how-to-define-and-execute-dynamic-methods.md">如何：定义和执行动态方法</related>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md">反射发出中的安全问题</related>
       </Docs>
@@ -509,6 +515,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -535,7 +542,7 @@
       <Docs>
         <param name="name">动态方法的名称。 它可以是长度为零的字符串，但不能为 <see langword="null" />。</param>
         <param name="returnType">一个 <see cref="T:System.Type" /> 对象，用于指定动态方法的返回类型，如果此方法没有返回类型，则为 <see langword="null" />。</param>
-        <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" />。</param>
+        <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" /> 。</param>
         <param name="owner">一个 <see cref="T:System.Type" />，动态方法与其逻辑关联。 动态方法可以访问类型的所有成员。</param>
         <param name="skipVisibility">要跳过动态方法的 MSIL 访问的类型和成员的 JIT 可见性检查，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
         <summary>创建一个动态方法，指定方法名称、返回类型、参数类型、动态方法逻辑关联的类型，并指定动态方法的 Microsoft 中间语言 (MSIL) 访问的类型和成员是否应跳过实时 (JIT) 可见性检查。</summary>
@@ -543,28 +550,28 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此构造函数创建的动态方法有权访问该类型的所有成员`owner`，并为公共和`internal`(`Friend`在 Visual Basic 中) 中包含的模块的所有其他类型的成员`owner`。 跳过 JIT 编译器的可见性检查允许动态方法访问的所有其他类型的私有和受保护成员。 这很有用，例如，编写代码来序列化对象时。  
+ 使用此构造函数创建的动态方法`owner`具有对该类型的所有成员的访问权限, 以及对包含`owner`的模块中所有其他类型的公共和`internal` (`Friend`在 Visual Basic) 成员的访问。 通过跳过 JIT 编译器的可见性检查, 动态方法还可以访问所有其他类型的私有和受保护成员。 例如, 在编写代码以序列化对象时, 这很有用。  
   
- 此构造函数指定方法的特性<xref:System.Reflection.MethodAttributes.Public?displayProperty=nameWithType>并<xref:System.Reflection.MethodAttributes.Static?displayProperty=nameWithType>，、 调用约定<xref:System.Reflection.CallingConventions.Standard?displayProperty=nameWithType>。  
-  
-> [!NOTE]
->  对于向后兼容，此构造函数要求<xref:System.Security.Permissions.SecurityPermission>与<xref:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence?displayProperty=nameWithType>标志，如果是两个以下条件，则返回 true:`owner`所在的模块之外调用模块，以及对需求<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>标志已失败。 如果对需求<xref:System.Security.Permissions.SecurityPermission>成功，允许执行该操作。  
+ 此构造函数指定方法<xref:System.Reflection.MethodAttributes.Public?displayProperty=nameWithType>特性<xref:System.Reflection.MethodAttributes.Static?displayProperty=nameWithType>和和调用约定<xref:System.Reflection.CallingConventions.Standard?displayProperty=nameWithType>。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，此成员不再需要<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit?displayProperty=nameWithType>标志。 (请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。)若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
+>  为实现向后兼容性, <xref:System.Security.Permissions.SecurityPermission>如果满足<xref:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence?displayProperty=nameWithType>以下条件, 则此构造函数要求带有`owner`标志: 位于调用<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>模块以外的模块中, 且<xref:System.Security.Permissions.ReflectionPermission>具有标志失败。 如果成功的请求<xref:System.Security.Permissions.SecurityPermission> , 则允许执行该操作。  
+  
+> [!NOTE]
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit?displayProperty=nameWithType> , 此成员不再需要带有标志的。 [!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)] (请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。)若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="parameterTypes" /> 的元素为 <see langword="null" /> 或 <see cref="T:System.Void" />。  
   
-- 或 - 
+或 
  <paramref name="owner" /> 是一个接口、一个数组、一个开放式泛型类型或一个泛型类型或方法的类型参数。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 为 <see langword="null" />。  
   
 - 或 - 
  <paramref name="owner" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="returnType" /> 为 <see langword="null" />，或者为 <see cref="P:System.Type.IsByRef" /> 返回 <see langword="true" /> 的类型。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">若要将动态方法与模块不同于调用模块中的类型相关联。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">若要将动态方法与调用模块以外的模块中的类型相关联, 则为。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess" />。</permission>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/how-to-define-and-execute-dynamic-methods.md">如何：定义和执行动态方法</related>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md">反射发出中的安全问题</related>
       </Docs>
@@ -581,6 +588,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -610,7 +618,7 @@
         <param name="name">动态方法的名称。 它可以是长度为零的字符串，但不能为 <see langword="null" />。</param>
         <param name="attributes"><see cref="T:System.Reflection.MethodAttributes" /> 值的按位组合，指定动态方法的属性。 允许的唯一组合为 <see cref="F:System.Reflection.MethodAttributes.Public" /> 和 <see cref="F:System.Reflection.MethodAttributes.Static" />。</param>
         <param name="callingConvention">动态方法的调用约定。 必须为 <see cref="F:System.Reflection.CallingConventions.Standard" />。</param>
-        <param name="returnType">一个 <see cref="T:System.Type" /> 对象，用于指定动态方法的返回类型，如果此方法没有返回类型，则为 <see langword="null" />。</param>
+        <param name="returnType">一个 <see cref="T:System.Type" /> 对象，用于指定动态方法的返回类型，如果此方法没有返回类型，则为 <see langword="null" /> 。</param>
         <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" />。</param>
         <param name="m">一个 <see cref="T:System.Reflection.Module" />，表示动态方法将与之逻辑关联的模块。</param>
         <param name="skipVisibility">要跳过动态方法的 MSIL 访问的类型和成员的 JIT 可见性检查，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
@@ -619,15 +627,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此构造函数创建的动态方法有权访问公共和`internal`(`Friend`在 Visual Basic 中) 包含在模块中的所有公共和内部类型的成员`m`。  
+ 使用此构造函数创建的动态方法可以访问模块`internal` `m`中包含`Friend`的所有公共和内部类型的公共和 (在 Visual Basic) 成员。  
   
- 跳过 JIT 编译器的可见性检查允许动态方法访问的所有其他类型的模块中和所有其他程序集中的私有和受保护成员。 这很有用，例如，编写代码来序列化对象时。  
-  
-> [!NOTE]
->  对于向后兼容，此构造函数要求<xref:System.Security.Permissions.SecurityPermission>与<xref:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence?displayProperty=nameWithType>标志，如果是两个以下条件，则返回 true:`m`是以外调用模块，以及对需求的模块<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>标志已失败。 如果对需求<xref:System.Security.Permissions.SecurityPermission>成功，允许执行该操作。  
+ 通过跳过 JIT 编译器的可见性检查, 动态方法可以访问模块和所有其他程序集中的所有其他类型的私有和受保护成员。 例如, 在编写代码以序列化对象时, 这很有用。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，此成员不再需要<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit?displayProperty=nameWithType>标志。 (请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。)若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
+>  为实现向后兼容性, <xref:System.Security.Permissions.SecurityPermission>如果同时<xref:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence?displayProperty=nameWithType>满足以下条件, 则此构造函数要求`m`带有标志: 是一个模块, 而不是调用<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>模块, <xref:System.Security.Permissions.ReflectionPermission>并且具有标志的要求已失败。 如果成功的请求<xref:System.Security.Permissions.SecurityPermission> , 则允许执行该操作。  
+  
+> [!NOTE]
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit?displayProperty=nameWithType> , 此成员不再需要带有标志的。 [!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)] (请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。)若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
  ]]></format>
         </remarks>
@@ -637,16 +645,16 @@
  <paramref name="m" /> 是为动态方法提供匿名承载的模块。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="m" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="attributes" /> 是标志的组合，而不是 <see cref="F:System.Reflection.MethodAttributes.Public" /> 和 <see cref="F:System.Reflection.MethodAttributes.Static" /> 的组合。  
   
-- 或 - 
+或 
  <paramref name="callingConvention" /> 不是 <see cref="F:System.Reflection.CallingConventions.Standard" />。  
   
-- 或 - 
+或 
  <paramref name="returnType" /> 是一种 <see cref="P:System.Type.IsByRef" /> 为其返回 <see langword="true" /> 的类型。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">若要将动态方法与非调用模块的模块相关联。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">将动态方法与调用模块以外的模块关联。 关联的枚举<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess" />:。</permission>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/how-to-define-and-execute-dynamic-methods.md">如何：定义和执行动态方法</related>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md">反射发出中的安全问题</related>
       </Docs>
@@ -663,6 +671,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -692,8 +701,8 @@
         <param name="name">动态方法的名称。 它可以是长度为零的字符串，但不能为 <see langword="null" />。</param>
         <param name="attributes"><see cref="T:System.Reflection.MethodAttributes" /> 值的按位组合，指定动态方法的属性。 允许的唯一组合为 <see cref="F:System.Reflection.MethodAttributes.Public" /> 和 <see cref="F:System.Reflection.MethodAttributes.Static" />。</param>
         <param name="callingConvention">动态方法的调用约定。 必须为 <see cref="F:System.Reflection.CallingConventions.Standard" />。</param>
-        <param name="returnType">一个 <see cref="T:System.Type" /> 对象，用于指定动态方法的返回类型，如果此方法没有返回类型，则为 <see langword="null" />。</param>
-        <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" />。</param>
+        <param name="returnType">一个 <see cref="T:System.Type" /> 对象，用于指定动态方法的返回类型，如果此方法没有返回类型，则为 <see langword="null" /> 。</param>
+        <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" /> 。</param>
         <param name="owner">一个 <see cref="T:System.Type" />，动态方法与其逻辑关联。 动态方法可以访问类型的所有成员。</param>
         <param name="skipVisibility">要跳过动态方法的 MSIL 访问的类型和成员的 JIT 可见性检查，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
         <summary>创建一个动态方法，指定方法名称、特性、调用约定、返回类型、参数类型、动态方法逻辑关联的类型，并指定动态方法的 Microsoft 中间语言 (MSIL) 访问的类型和成员是否应跳过实时 (JIT) 可见性检查。</summary>
@@ -701,34 +710,34 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 动态方法是包含类型的模块的全局`owner`。 它有权访问该类型的所有成员`owner`。  
+ 动态方法对于包含该类型`owner`的模块是全局性的。 它有权访问该类型`owner`的所有成员。  
   
- 使用此构造函数创建的动态方法有权访问该类型的所有成员`owner`，并为公共和`internal`(`Friend`在 Visual Basic 中) 中包含的模块包含的所有类型的成员`owner`。 跳过 JIT 编译器的可见性检查允许动态方法访问的所有其他类型的私有和受保护成员。 这很有用，例如，编写代码来序列化对象时。  
-  
-> [!NOTE]
->  对于向后兼容，此构造函数要求<xref:System.Security.Permissions.SecurityPermission>与<xref:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence?displayProperty=nameWithType>标志，如果是两个以下条件，则返回 true:`owner`所在的模块之外调用模块，以及对需求<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>标志已失败。 如果对需求<xref:System.Security.Permissions.SecurityPermission>成功，允许执行该操作。  
+ 使用此构造函数创建的动态方法`owner`具有对该类型的所有成员的访问权限, 以及对包含在包含在包含`owner`的模块中的所有类型的公共和`internal` (`Friend`在 Visual Basic) 成员的访问。 通过跳过 JIT 编译器的可见性检查, 动态方法还可以访问所有其他类型的私有和受保护成员。 例如, 在编写代码以序列化对象时, 这很有用。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，此成员不再需要<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit?displayProperty=nameWithType>标志。 (请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。)若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
+>  为实现向后兼容性, <xref:System.Security.Permissions.SecurityPermission>如果满足<xref:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence?displayProperty=nameWithType>以下条件, 则此构造函数要求带有`owner`标志: 位于调用<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>模块以外的模块中, 且<xref:System.Security.Permissions.ReflectionPermission>具有标志失败。 如果成功的请求<xref:System.Security.Permissions.SecurityPermission> , 则允许执行该操作。  
+  
+> [!NOTE]
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.ReflectionEmit?displayProperty=nameWithType> , 此成员不再需要带有标志的。 [!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)] (请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。)若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="parameterTypes" /> 的元素为 <see langword="null" /> 或 <see cref="T:System.Void" />。  
   
-- 或 - 
+或 
  <paramref name="owner" /> 是一个接口、一个数组、一个开放式泛型类型或一个泛型类型或方法的类型参数。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="owner" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="attributes" /> 是标志的组合，而不是 <see cref="F:System.Reflection.MethodAttributes.Public" /> 和 <see cref="F:System.Reflection.MethodAttributes.Static" /> 的组合。  
   
-- 或 - 
+或 
  <paramref name="callingConvention" /> 不是 <see cref="F:System.Reflection.CallingConventions.Standard" />。  
   
 - 或 - 
  <paramref name="returnType" /> 是一种 <see cref="P:System.Type.IsByRef" /> 为其返回 <see langword="true" /> 的类型。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">若要将动态方法与模块不同于调用模块中的类型相关联。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">若要将动态方法与调用模块以外的模块中的类型相关联, 则为。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess" />。</permission>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/how-to-define-and-execute-dynamic-methods.md">如何：定义和执行动态方法</related>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md">反射发出中的安全问题</related>
       </Docs>
@@ -745,6 +754,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -766,12 +776,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 目前，一种动态方法的方法特性是始终<xref:System.Reflection.MethodAttributes.Public>和<xref:System.Reflection.MethodAttributes.Static>。  
+ 目前, 动态方法的方法特性始终<xref:System.Reflection.MethodAttributes.Public>为和。 <xref:System.Reflection.MethodAttributes.Static>  
   
    
   
 ## Examples  
- 下面的代码示例显示动态方法的方法的属性。 此代码示例是为提供一个更大示例的一部分<xref:System.Reflection.Emit.DynamicMethod>类。  
+ 下面的代码示例显示动态方法的方法特性。 此代码示例是为<xref:System.Reflection.Emit.DynamicMethod>类提供的更大示例的一部分。  
   
  [!code-cpp[Reflection.DynamicMethod.All#21](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#21)]
  [!code-csharp[Reflection.DynamicMethod.All#21](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#21)]
@@ -793,6 +803,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -814,12 +825,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 目前，一种动态方法的调用约定是始终<xref:System.Reflection.CallingConventions.Standard>。  
+ 目前, 动态方法的调用约定始终<xref:System.Reflection.CallingConventions.Standard>为。  
   
    
   
 ## Examples  
- 下面的代码示例显示了一种动态方法的调用约定。 此代码示例是为提供一个更大示例的一部分<xref:System.Reflection.Emit.DynamicMethod>类。  
+ 下面的代码示例显示动态方法的调用约定。 此代码示例是为<xref:System.Reflection.Emit.DynamicMethod>类提供的更大示例的一部分。  
   
  [!code-cpp[Reflection.DynamicMethod.All#22](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#22)]
  [!code-csharp[Reflection.DynamicMethod.All#22](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#22)]
@@ -851,6 +862,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -884,14 +896,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>方法或<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法完成动态方法。 任何进一步尝试更改的动态方法，如修改参数定义或发出多个 Microsoft 中间语言 (MSIL)，将被忽略;不会引发异常。  
+ <xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>调用方法<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>或方法完成动态方法。 将忽略更改动态方法的任何进一步尝试, 如修改参数定义或发出更多 Microsoft 中间语言 (MSIL);不引发异常。  
   
- 若要创建动态方法的方法的主体拥有自己的 MSIL 生成器时，调用<xref:System.Reflection.Emit.DynamicMethod.GetDynamicILInfo%2A>方法来获取<xref:System.Reflection.Emit.DynamicILInfo>对象。 如果不具有自己的 MSIL 生成器，调用<xref:System.Reflection.Emit.DynamicMethod.GetILGenerator%2A>方法来获取<xref:System.Reflection.Emit.ILGenerator>可用于生成方法主体的对象。  
+ 若要在有自己的 MSIL 生成器时为动态方法创建方法体, 请调用<xref:System.Reflection.Emit.DynamicMethod.GetDynamicILInfo%2A>方法以<xref:System.Reflection.Emit.DynamicILInfo>获取对象。 如果没有自己的 MSIL 生成器, 请调用<xref:System.Reflection.Emit.DynamicMethod.GetILGenerator%2A>方法来<xref:System.Reflection.Emit.ILGenerator>获取可用于生成方法体的对象。  
   
    
   
 ## Examples  
- 下面的代码示例创建动态方法采用两个参数。 该示例发出简单函数体打印到控制台中，第一个参数和示例使用第二个参数作为该方法的返回值。 该示例完成方法创建委托，调用委托，它具有不同的参数，并最后调用动态方法使用<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法。  
+ 下面的代码示例创建一个带有两个参数的动态方法。 该示例发出一个简单的函数体, 将第一个参数输出到控制台, 该示例使用第二个参数作为方法的返回值。 该示例通过创建委托来完成方法, 使用不同的参数调用委托, 最后使用<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法调用动态方法。  
   
  [!code-cpp[Reflection.DynamicMethod.ctor1#1](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.ctor1/cpp/source.cpp#1)]
  [!code-csharp[Reflection.DynamicMethod.ctor1#1](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.ctor1/CS/source.cs#1)]
@@ -916,6 +928,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -951,32 +964,32 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法的重载创建委托绑定到特定对象。 此类委托称为封闭式其第一个参数。 尽管该方法是静态的但它看起来就像它是实例方法;实例是`target`。  
+ 此方法重载创建绑定到特定对象的委托。 此类委托被称为通过其第一个参数关闭。 尽管该方法是静态的, 但它的作用就像是实例方法;实例为`target`。  
   
- 此方法的重载需要`target`属于相同类型的第一个参数的动态方法，或无法分配给该类型 （例如，派生类）。  签名`delegateType`具有除第一个动态方法的所有参数。 例如，如果动态方法具有参数<xref:System.String>， <xref:System.Int32>，并<xref:System.Byte>，然后`delegateType`具有参数<xref:System.Int32>和<xref:System.Byte>;`target`属于类型<xref:System.String>。  
+ 此方法重载需要`target`与动态方法的第一个参数具有相同的类型, 或可分配给该类型 (例如, 派生类)。  的`delegateType`签名包含除第一个以外的动态方法的所有参数。 例如, 如果动态方法具有参数<xref:System.String>、 <xref:System.Int32>和<xref:System.Byte>, 则`delegateType`具有参数<xref:System.Int32>和<xref:System.Byte>;`target`的类型<xref:System.String>为。  
   
- 调用<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>方法或<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法完成动态方法。 任何进一步尝试更改的动态方法，如修改参数定义或发出多个 Microsoft 中间语言 (MSIL)，将被忽略;不会引发异常。  
+ <xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>调用方法<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>或方法完成动态方法。 将忽略更改动态方法的任何进一步尝试, 如修改参数定义或发出更多 Microsoft 中间语言 (MSIL);不引发异常。  
   
- 若要创建动态方法的方法的主体拥有自己的 MSIL 生成器时，调用<xref:System.Reflection.Emit.DynamicMethod.GetDynamicILInfo%2A>方法来获取<xref:System.Reflection.Emit.DynamicILInfo>对象。 如果不具有自己的 MSIL 生成器，调用<xref:System.Reflection.Emit.DynamicMethod.GetILGenerator%2A>方法来获取<xref:System.Reflection.Emit.ILGenerator>可用于生成方法主体的对象。  
+ 若要在有自己的 MSIL 生成器时为动态方法创建方法体, 请调用<xref:System.Reflection.Emit.DynamicMethod.GetDynamicILInfo%2A>方法以<xref:System.Reflection.Emit.DynamicILInfo>获取对象。 如果没有自己的 MSIL 生成器, 请调用<xref:System.Reflection.Emit.DynamicMethod.GetILGenerator%2A>方法来<xref:System.Reflection.Emit.ILGenerator>获取可用于生成方法体的对象。  
   
    
   
 ## Examples  
- 下面的代码示例将创建该委托将<xref:System.Reflection.Emit.DynamicMethod>到类型的实例，以便该方法作用于同一个实例每次调用它。  
+ 下面的代码示例创建委托, 该委托<xref:System.Reflection.Emit.DynamicMethod>将绑定到类型的实例, 以便在每次调用该方法时, 该方法都在同一实例上操作。  
   
- 代码示例定义一个名为`Example`使用私有字段，一个类名为`DerivedFromExample`派生的第一个类，名为的委托类型`UseLikeStatic`返回<xref:System.Int32>类型的参数，且`Example`和<xref:System.Int32>，和一个名为的委托类型`UseLikeInstance`，它返回<xref:System.Int32>具有一个类型参数和<xref:System.Int32>。  
+ 此代码示例定义了一个名`Example`为的类, 该类具有私有字段`DerivedFromExample` , 该类是从第一个类派生的名为`UseLikeStatic`的类, 它是一个名`Example`为的委托类型, 它返回<xref:System.Int32>并具有类型为和<xref:System.Int32>和一个名为`UseLikeInstance`的委托类型, 它返回<xref:System.Int32>并具有一个类型<xref:System.Int32>为的参数。  
   
- 然后，示例代码创建<xref:System.Reflection.Emit.DynamicMethod>更改的实例的专用字段`Example`，并返回以前的值。  
-  
-> [!NOTE]
->  一般情况下，更改类的内部字段不是很好的面向对象的编码做法。  
-  
- 示例代码创建的一个实例`Example`，然后创建两个委托。 第一个是类型的`UseLikeStatic`，其中包含与动态方法相同的参数。 第二个属于类型`UseLikeInstance`，其中缺少第一个参数 (类型的`Example`)。 使用创建此委托<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%28System.Type%2CSystem.Object%29>方法重载; 第二个参数的方法重载是的一个实例`Example`，在这种情况下只需创建，其绑定到新创建的委托的实例。 每当调用该委托，动态方法都作用于的绑定实例`Example`。  
+ 然后, 该代码示例创建<xref:System.Reflection.Emit.DynamicMethod>一个, 它将更改`Example`实例的私有字段并返回以前的值。  
   
 > [!NOTE]
->  委托绑定中引入的这是宽松规则举例[!INCLUDE[dnprdnext](~/includes/dnprdnext-md.md)]，以及的新重载<xref:System.Delegate.CreateDelegate%2A?displayProperty=nameWithType>方法。 有关更多信息，请参见 <xref:System.Delegate> 类。  
+>  通常, 更改类的内部字段并不是面向对象的适当编码做法。  
   
- `UseLikeStatic`调用委托时，传入的实例`Example`绑定到`UseLikeInstance`委托。 然后`UseLikeInstance`调用委托时，以便这两个委托都作用于的同一个实例`Example`。 每次调用后显示的内部字段的值中的更改。 最后，`UseLikeInstance`委托绑定到的实例`DerivedFromExample`，并且委托调用重复出现。  
+ 示例代码创建的`Example`实例, 然后创建两个委托。 第一个类型`UseLikeStatic`为, 它具有与动态方法相同的参数。 第二种类型`UseLikeInstance`为, 它缺少第一个参数 (类型`Example`为)。 此委托是使用<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%28System.Type%2CSystem.Object%29>方法重载创建的; 此方法重载的第二个参数是的`Example`实例, 在本例中为刚创建的实例, 该实例绑定到新创建的委托。 无论何时调用该委托, 动态方法都将对的绑定实例`Example`起作用。  
+  
+> [!NOTE]
+>  这是中引入的[!INCLUDE[dnprdnext](~/includes/dnprdnext-md.md)]委托绑定的宽松规则的示例, 以及<xref:System.Delegate.CreateDelegate%2A?displayProperty=nameWithType>方法的新重载。 有关更多信息，请参见 <xref:System.Delegate> 类。  
+  
+ 调用委托, 并传入绑定到`UseLikeInstance`委托的的`Example`实例。 `UseLikeStatic` 然后调用`Example`委托, 使这两个委托对相同的实例执行操作。 `UseLikeInstance` 在每次调用后, 将显示内部字段的值中的更改。 最后, `UseLikeInstance`委托绑定到的`DerivedFromExample`实例, 并且委托调用重复。  
   
  [!code-csharp[Reflection.DynamicMethod.ClosedOver#1](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.ClosedOver/cs/source.cs#1)]
  [!code-vb[Reflection.DynamicMethod.ClosedOver#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/Reflection.DynamicMethod.ClosedOver/vb/source.vb#1)]  
@@ -986,7 +999,7 @@
         <exception cref="T:System.InvalidOperationException">动态方法没有方法体。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="target" /> 的类型与动态方法的第一个参数的类型不同，不能赋值给该类型。  
   
-- 或 - 
+或 
  <paramref name="delegateType" /> 的参数数量不正确，或者参数类型不正确。</exception>
       </Docs>
     </Member>
@@ -1002,6 +1015,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1023,12 +1037,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性始终返回`null`的动态方法。 即使是逻辑上与类型关联动态方法，它未声明的类型。  
+ 此属性始终为`null`动态方法返回。 即使动态方法与类型在逻辑上相关联, 它也不是由类型声明的。  
   
    
   
 ## Examples  
- 下面的代码示例显示了一种动态方法的声明类型。 此代码示例是为提供一个更大示例的一部分<xref:System.Reflection.Emit.DynamicMethod>类。  
+ 下面的代码示例显示动态方法的声明类型。 此代码示例是为<xref:System.Reflection.Emit.DynamicMethod>类提供的更大示例的一部分。  
   
  [!code-cpp[Reflection.DynamicMethod.All#23](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#23)]
  [!code-csharp[Reflection.DynamicMethod.All#23](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#23)]
@@ -1055,6 +1069,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1078,14 +1093,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`position`为 0，<xref:System.Reflection.Emit.DynamicMethod.DefineParameter%2A>方法引用返回值。 设置参数信息已返回的值没有影响。  
+ 如果`position`为 0, 则<xref:System.Reflection.Emit.DynamicMethod.DefineParameter%2A>该方法引用返回值。 设置参数信息不会影响返回值。  
   
- 如果动态方法已完成后，通过调用<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>或<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法，<xref:System.Reflection.Emit.DynamicMethod.DefineParameter%2A>方法不起作用。 不引发异常。  
+ 如果已通过调用<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>或<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法完成动态方法, 则该<xref:System.Reflection.Emit.DynamicMethod.DefineParameter%2A>方法不起作用。 不引发异常。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何定义动态方法的参数信息。 此代码示例是为提供一个更大示例的一部分<xref:System.Reflection.Emit.DynamicMethod>类。  
+ 下面的代码示例演示如何定义动态方法的参数信息。 此代码示例是为<xref:System.Reflection.Emit.DynamicMethod>类提供的更大示例的一部分。  
   
  [!code-cpp[Reflection.DynamicMethod.All#33](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#33)]
  [!code-csharp[Reflection.DynamicMethod.All#33](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#33)]
@@ -1098,7 +1113,7 @@
 - 或 - 
  <paramref name="position" /> 小于 0。  
   
-- 或 - 
+或 
  <paramref name="position" /> 大于此方法的参数数目。</exception>
       </Docs>
     </Member>
@@ -1119,6 +1134,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1168,6 +1184,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1187,10 +1204,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对于动态方法，指定`true`为`inherit`没有任何作用，因为该方法未在类型中声明。  
+ 对于动态方法, 为`true` `inherit`指定不起作用, 因为方法未在类型中声明。  
   
 > [!NOTE]
->  目前，动态方法不支持自定义属性。 是返回的唯一特性<xref:System.Runtime.CompilerServices.MethodImplAttribute>; 你可以获取的方法实现标志更轻松地使用<xref:System.Reflection.Emit.DynamicMethod.GetMethodImplementationFlags%2A>方法。  
+>  动态方法当前不支持自定义特性。 返回的唯一属性为<xref:System.Runtime.CompilerServices.MethodImplAttribute>; <xref:System.Reflection.Emit.DynamicMethod.GetMethodImplementationFlags%2A>使用方法可以更轻松地获取方法实现标志。  
   
  ]]></format>
         </remarks>
@@ -1214,6 +1231,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1235,10 +1253,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对于动态方法，指定`true`为`inherit`没有任何作用，因为该方法未在类型中声明。  
+ 对于动态方法, 为`true` `inherit`指定不起作用, 因为方法未在类型中声明。  
   
 > [!NOTE]
->  目前，动态方法不支持自定义属性。 是返回的唯一特性<xref:System.Runtime.CompilerServices.MethodImplAttribute>; 你可以获取的方法实现标志更轻松地使用<xref:System.Reflection.Emit.DynamicMethod.GetMethodImplementationFlags%2A>方法。  
+>  动态方法当前不支持自定义特性。 返回的唯一属性为<xref:System.Runtime.CompilerServices.MethodImplAttribute>; <xref:System.Reflection.Emit.DynamicMethod.GetMethodImplementationFlags%2A>使用方法可以更轻松地获取方法实现标志。  
   
  ]]></format>
         </remarks>
@@ -1263,6 +1281,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1284,11 +1303,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Reflection.Emit.DynamicILInfo>提供类以支持非托管的代码生成。  
+ 提供<xref:System.Reflection.Emit.DynamicILInfo>类以支持非托管代码生成。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">若要执行非托管的代码。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">执行非托管代码。 关联的枚举<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />:。</permission>
         <altmember cref="T:System.Reflection.Emit.DynamicILInfo" />
       </Docs>
     </Member>
@@ -1314,6 +1333,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1336,15 +1356,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 动态方法完成后，通过调用后<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>或<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法，任何进一步尝试添加 MSIL 将被忽略。 不引发异常。  
+ 在通过调用<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>或<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法完成动态方法后, 将忽略添加 MSIL 的任何进一步尝试。 不引发异常。  
   
 > [!NOTE]
->  有对动态方法，甚至在某些方案中完全信任中无法验证代码的限制。 请参阅“验证”部分中的 <xref:System.Reflection.Emit.DynamicMethod> 注释。  
+>  对于动态方法中的不可验证代码, 即使在某些完全信任的情况下也存在限制。 请参阅“验证”部分中的 <xref:System.Reflection.Emit.DynamicMethod> 注释。  
   
    
   
 ## Examples  
- 下面的代码示例创建动态方法采用两个参数。 该示例发出简单函数体打印到控制台中，第一个参数和示例使用第二个参数作为该方法的返回值。 该示例完成方法创建委托，调用委托，它具有不同的参数，并最后调用动态方法使用<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法。  
+ 下面的代码示例创建一个带有两个参数的动态方法。 该示例发出一个简单的函数体, 将第一个参数输出到控制台, 该示例使用第二个参数作为方法的返回值。 该示例通过创建委托来完成方法, 使用不同的参数调用委托, 最后使用<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法调用动态方法。  
   
  [!code-cpp[Reflection.DynamicMethod.ctor1#1](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.ctor1/cpp/source.cpp#1)]
  [!code-csharp[Reflection.DynamicMethod.ctor1#1](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.ctor1/CS/source.cs#1)]
@@ -1367,6 +1387,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1397,15 +1418,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 动态方法完成后，通过调用后<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>或<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法，任何进一步尝试添加 MSIL 将被忽略。 不引发异常。  
+ 在通过调用<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>或<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法完成动态方法后, 将忽略添加 MSIL 的任何进一步尝试。 不引发异常。  
   
 > [!NOTE]
->  有对动态方法，甚至在某些方案中完全信任中无法验证代码的限制。 请参阅“验证”部分中的 <xref:System.Reflection.Emit.DynamicMethod> 注释。  
+>  对于动态方法中的不可验证代码, 即使在某些完全信任的情况下也存在限制。 请参阅“验证”部分中的 <xref:System.Reflection.Emit.DynamicMethod> 注释。  
   
    
   
 ## Examples  
- 下面的代码示例演示了此方法的重载。 此代码示例是为提供一个更大示例的一部分<xref:System.Reflection.Emit.DynamicMethod>类。  
+ 下面的代码示例演示了此方法重载。 此代码示例是为<xref:System.Reflection.Emit.DynamicMethod>类提供的更大示例的一部分。  
   
  [!code-cpp[Reflection.DynamicMethod.All#2](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#2)]
  [!code-csharp[Reflection.DynamicMethod.All#2](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#2)]
@@ -1433,6 +1454,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1449,7 +1471,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 目前，动态方法的方法实现特性是始终<xref:System.Reflection.MethodImplAttributes.IL>和<xref:System.Reflection.MethodImplAttributes.NoInlining>。  
+ 目前, 动态方法的方法实现属性始终<xref:System.Reflection.MethodImplAttributes.IL>为和。 <xref:System.Reflection.MethodImplAttributes.NoInlining>  
   
  ]]></format>
         </remarks>
@@ -1467,6 +1489,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1489,12 +1512,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Reflection.ParameterInfo>此方法返回的对象是仅用于提供信息。 使用<xref:System.Reflection.Emit.DynamicMethod.DefineParameter%2A>方法来设置或更改的参数的特征。  
+ 此方法返回的对象仅用于信息。<xref:System.Reflection.ParameterInfo> <xref:System.Reflection.Emit.DynamicMethod.DefineParameter%2A>使用方法可设置或更改参数的特征。  
   
    
   
 ## Examples  
- 下面的代码示例显示的动态方法的参数。 此代码示例是为提供一个更大示例的一部分<xref:System.Reflection.Emit.DynamicMethod>类。  
+ 下面的代码示例显示动态方法的参数。 此代码示例是为<xref:System.Reflection.Emit.DynamicMethod>类提供的更大示例的一部分。  
   
  [!code-cpp[Reflection.DynamicMethod.All#34](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#34)]
  [!code-csharp[Reflection.DynamicMethod.All#34](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#34)]
@@ -1517,6 +1540,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1538,12 +1562,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果此属性设置为`true`，发出的 Microsoft 中间语言 (MSIL) 包含本地变量的初始化。 如果设置为`false`、 未初始化的局部变量和生成的代码是不可验证的。  
+ 如果将此属性设置为`true`, 则发出的 Microsoft 中间语言 (MSIL) 包括初始化局部变量。 如果将其设置为`false`, 则不初始化局部变量, 并且无法验证所生成的代码。  
   
    
   
 ## Examples  
- 下面的代码示例显示<xref:System.Reflection.Emit.DynamicMethod.InitLocals%2A>的动态方法的属性。 此代码示例是为提供一个更大示例的一部分<xref:System.Reflection.Emit.DynamicMethod>类。  
+ 下面的代码示例显示动态<xref:System.Reflection.Emit.DynamicMethod.InitLocals%2A>方法的属性。 此代码示例是为<xref:System.Reflection.Emit.DynamicMethod>类提供的更大示例的一部分。  
   
  [!code-cpp[Reflection.DynamicMethod.All#24](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#24)]
  [!code-csharp[Reflection.DynamicMethod.All#24](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#24)]
@@ -1569,6 +1593,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1601,28 +1626,28 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 除了列出的异常，调用代码应做好捕获动态方法引发任何异常。  
+ 除了列出的异常, 调用代码还应准备好捕获动态方法引发的任何异常。  
   
- 由创建的委托执行动态方法<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>方法是效率高于执行其与<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法。  
+ 使用<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>方法创建的委托执行动态方法比<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>使用方法执行动态方法更有效。  
   
- 调用<xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>方法或<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>方法完成动态方法。 任何进一步尝试更改的动态方法，如修改参数定义或发出多个 Microsoft 中间语言 (MSIL)，将被忽略;不会引发异常。  
+ <xref:System.Reflection.Emit.DynamicMethod.Invoke%2A>调用方法<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%2A>或方法完成动态方法。 将忽略更改动态方法的任何进一步尝试, 如修改参数定义或发出更多 Microsoft 中间语言 (MSIL);不引发异常。  
   
- 所有动态方法是静态的因此`obj`始终忽略参数。 若要将动态方法，就好像是实例方法，使用<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%28System.Type%2CSystem.Object%29>重载的对象实例。  
+ 所有动态方法都是静态的`obj` , 因此始终忽略参数。 若要将动态方法视为实例方法, 请使用<xref:System.Reflection.Emit.DynamicMethod.CreateDelegate%28System.Type%2CSystem.Object%29>采用对象实例的重载。  
   
- 如果动态方法没有参数的值`parameters`应为`null`。 否则数量、 类型和参数数组中元素的顺序应为数量、 类型和动态方法的参数的顺序相同。  
-  
-> [!NOTE]
->  调用此方法重载<xref:System.Reflection.MethodBase.Invoke%28System.Object%2CSystem.Object%5B%5D%29>方法重载继承自<xref:System.Reflection.MethodBase>类，因此前面的备注适用于这两个重载。  
-  
- 此方法不要求权限直接，但调用动态方法可能会导致安全请求，具体取决于该方法。 例如，使用创建的匿名托管动态方法进行的任何要求`restrictedSkipVisibility`参数设置为`false`。 另一方面，如果创建方法，以`restrictedSkipVisibility`设置为`true`方法以便它可以访问目标程序集的隐藏的成员，将导致对目标程序集加上的权限需求<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>标志。  
+ 如果动态方法没有参数, 则的`parameters`值应为。 `null` 否则, 参数数组中元素的数量、类型和顺序应与动态方法的参数的数量、类型和顺序相同。  
   
 > [!NOTE]
->  早于[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，此方法需要<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess>标志。  
+>  此方法重载由<xref:System.Reflection.MethodBase.Invoke%28System.Object%2CSystem.Object%5B%5D%29> <xref:System.Reflection.MethodBase>从类继承的方法重载调用, 因此上述备注适用于这两个重载。  
+  
+ 此方法不直接要求权限, 但调用动态方法可能会导致安全要求, 具体取决于方法。 例如, 对于在`restrictedSkipVisibility`参数设置为`false`的情况下创建的匿名托管动态方法, 不会产生任何要求。 另一方面, 如果你`restrictedSkipVisibility`创建了一个设置为`true`的方法, 以便它可以访问目标程序集的隐藏成员, 则该方法将导致要求<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess?displayProperty=nameWithType>目标程序集的权限加上<xref:System.Security.Permissions.ReflectionPermission>标志。  
+  
+> [!NOTE]
+>  在[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]之前, 此方法需要<xref:System.Security.Permissions.ReflectionPermission>带有<xref:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess>标志。  
   
    
   
 ## Examples  
- 下面的代码示例调用动态方法与使用美国英语区域性的确切绑定。 此代码示例是为提供一个更大示例的一部分<xref:System.Reflection.Emit.DynamicMethod>类。  
+ 下面的代码示例使用美国英语区域性调用具有完全绑定的动态方法。 此代码示例是为<xref:System.Reflection.Emit.DynamicMethod>类提供的更大示例的一部分。  
   
  [!code-cpp[Reflection.DynamicMethod.All#4](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#4)]
  [!code-csharp[Reflection.DynamicMethod.All#4](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#4)]
@@ -1638,7 +1663,7 @@
 - 或 - 
 该动态方法是匿名承载的，并且是在 <paramref name="skipVisibility" /> 设置为 <see langword="false" /> 的情况下构造的，但是它可以访问不是 <see langword="public" /> 的成员。  
   
-- 或 - 
+或 
 动态方法包含不可验证的代码。 请参阅“验证”部分中的 <see cref="T:System.Reflection.Emit.DynamicMethod" /> 注释。</exception>
         <altmember cref="M:System.Reflection.Emit.DynamicMethod.CreateDelegate(System.Type)" />
       </Docs>
@@ -1660,6 +1685,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1681,10 +1707,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对于动态方法，指定`true`为`inherit`不起作用。 动态方法具有任何继承链。  
+ 对于动态方法, 将`true`指定`inherit`为不起作用。 动态方法没有继承链。  
   
 > [!NOTE]
->  目前，动态方法不支持自定义属性。  
+>  动态方法当前不支持自定义特性。  
   
  ]]></format>
         </remarks>
@@ -1705,6 +1731,7 @@
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1724,37 +1751,37 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Reflection.Emit.DynamicMethod.IsSecurityCritical%2A>， <xref:System.Reflection.Emit.DynamicMethod.IsSecuritySafeCritical%2A>，和<xref:System.Reflection.Emit.DynamicMethod.IsSecurityTransparent%2A>属性报告由公共语言运行时 (CLR) 的动态方法的透明度级别。 下表中显示这些属性的组合：  
+ <xref:System.Reflection.Emit.DynamicMethod.IsSecurityCritical%2A>、和属性<xref:System.Reflection.Emit.DynamicMethod.IsSecurityTransparent%2A>报告由公共语言运行时 (CLR) 确定的动态方法的透明度级别。 <xref:System.Reflection.Emit.DynamicMethod.IsSecuritySafeCritical%2A> 下表显示了这些属性的组合:  
   
 |安全级别|IsSecurityCritical|IsSecurityCritical|IsSecurityTransparent|  
 |--------------------|------------------------|----------------------------|---------------------------|  
 |严重|`true`|`false`|`false`|  
-|可靠关键|`true`|`true`|`false`|  
+|安全关键|`true`|`true`|`false`|  
 |透明|`false`|`false`|`true`|  
   
  使用这些属性比检查程序集及其类型的安全批注、检查当前的信任级别，以及尝试复制运行时的规则要简单得多。  
   
- 动态方法的透明度取决于与之关联的模块。 如果动态方法与一种类型而不是一个模块，其透明度取决于包含该类型的模块。 动态方法没有安全批注，以便为其分配相关联的模块的默认透明性。  
+ 动态方法的透明度取决于它所关联的模块。 如果动态方法与类型而不是模块相关联, 则其透明度取决于包含类型的模块。 动态方法没有安全批注, 因此它们被分配了关联模块的默认透明度。  
   
--   匿名托管动态方法始终是透明的因为包含它们的系统提供的模块是透明的。  
+-   匿名托管的动态方法始终是透明的, 因为系统提供的包含它们的模块是透明的。  
   
--   与受信任的程序集 （即，具有强名称程序集安装在全局程序集缓存中） 相关联的动态方法的透明度是下表中所述。  
+-   下表描述了与受信任的程序集 (即, 全局程序集缓存中安装的强名称程序集) 关联的动态方法的透明度。  
   
-    |程序集批注|1 级透明度|2 级透明度|  
+    |程序集批注|1级透明度|2级透明度|  
     |-------------------------|--------------------------|--------------------------|  
     |完全透明|透明|透明|  
     |完全关键|严重|严重|  
-    |混合的透明度|透明|透明|  
-    |不可知的安全|安全-关键|严重|  
+    |混合透明度|透明|透明|  
+    |不可知安全|安全-关键|严重|  
   
-     例如，如果您将动态方法与在 mscorlib.dll，后者具有级别 2 混合的透明度中的类型相关联的动态方法是透明的而无法执行关键代码。 了解有关透明度级别，请参阅[安全透明的代码，级别 1](~/docs/framework/misc/security-transparent-code-level-1.md)并[安全透明的代码，级别 2](~/docs/framework/misc/security-transparent-code-level-2.md)。  
+     例如, 如果将动态方法与包含第2级混合透明度的 mscorlib.dll 类型相关联, 则动态方法是透明的, 不能执行关键代码。 有关透明度级别的信息, 请参阅[安全透明代码, 级别 1](~/docs/framework/misc/security-transparent-code-level-1.md)和[安全透明代码, 级别 2](~/docs/framework/misc/security-transparent-code-level-2.md)。  
   
     > [!NOTE]
-    >  将与安全无关，例如 System.dll，受信任的 1 级程序集中的模块关联动态方法不允许使用提升的信任。 如果调用动态方法的代码的授予集不包括 System.dll （即，完全信任） 的授予集<xref:System.Security.SecurityException>调用动态方法时引发。  
+    >  将动态方法与受信任的第1级程序集 (如 System.object) 中的模块关联不允许提升信任。 如果调用动态方法的代码的授予集不包括在调用动态方法时引发的权限集 (即完全信任), <xref:System.Security.SecurityException>则会引发。  
   
--   加载程序集的方式取决于与部分受信任的程序集相关联的动态方法的透明度。 如果以 （例如，到沙盒应用程序域） 的部分信任方式加载的程序集，运行时将忽略该程序集的安全批注。 程序集和所有其类型和成员，包括动态方法被视为透明。 运行时才会注意到安全批注仅当部分信任程序集是以完全信任 （例如，为桌面应用程序的默认应用程序域） 加载的。 在这种情况下，运行时分配的动态方法根据程序集的批注的方法的默认透明性。  
+-   与部分受信任的程序集关联的动态方法的透明度取决于程序集的加载方式。 如果程序集在部分信任的情况下 (例如, 在沙盒应用程序域中) 加载, 则运行时将忽略程序集的安全注释。 程序集及其所有类型和成员 (包括动态方法) 都被视为透明的。 只有在完全信任的情况下 (例如, 在桌面应用程序的默认应用程序域中) 加载部分信任程序集时, 运行时才会注意到安全注释。 在这种情况下, 运行时将根据程序集的批注为方法分配默认透明度。  
   
- 有关反射发出和透明度，请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。 有关透明度的信息，请参阅[安全更改](~/docs/framework/security/security-changes.md)。  
+ 有关反射发出和透明度的详细信息, 请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。 有关透明度的信息, 请参阅[安全更改](~/docs/framework/security/security-changes.md)。  
   
  ]]></format>
         </remarks>
@@ -1764,7 +1791,7 @@
         <related type="Article" href="~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md">反射发出中的安全问题</related>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md">反射的安全注意事项</related>
         <related type="Article" href="~/docs/framework/security/security-changes.md">.NET Framework 4.0 版中的安全性更改</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/5fd8f46d-3961-46a7-84af-2eb1f48e75cf">安全透明代码，级别 1</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/5fd8f46d-3961-46a7-84af-2eb1f48e75cf">安全透明代码, 级别1</related>
         <related type="Article" href="https://msdn.microsoft.com/library/4d05610a-0da6-4f08-acea-d54c9d6143c0">安全透明的代码，级别 2</related>
       </Docs>
     </Member>
@@ -1782,6 +1809,7 @@
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1801,37 +1829,37 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Reflection.Emit.DynamicMethod.IsSecurityCritical%2A>， <xref:System.Reflection.Emit.DynamicMethod.IsSecuritySafeCritical%2A>，和<xref:System.Reflection.Emit.DynamicMethod.IsSecurityTransparent%2A>属性报告由公共语言运行时 (CLR) 的动态方法的透明度级别。 下表中显示这些属性的组合：  
+ <xref:System.Reflection.Emit.DynamicMethod.IsSecurityCritical%2A>、和属性<xref:System.Reflection.Emit.DynamicMethod.IsSecurityTransparent%2A>报告由公共语言运行时 (CLR) 确定的动态方法的透明度级别。 <xref:System.Reflection.Emit.DynamicMethod.IsSecuritySafeCritical%2A> 下表显示了这些属性的组合:  
   
 |安全级别|IsSecurityCritical|IsSecurityCritical|IsSecurityTransparent|  
 |--------------------|------------------------|----------------------------|---------------------------|  
 |严重|`true`|`false`|`false`|  
-|可靠关键|`true`|`true`|`false`|  
+|安全关键|`true`|`true`|`false`|  
 |透明|`false`|`false`|`true`|  
   
  使用这些属性比检查程序集及其类型的安全批注、检查当前的信任级别，以及尝试复制运行时的规则要简单得多。  
   
- 动态方法的透明度取决于与之关联的模块。 如果动态方法与一种类型而不是一个模块，其透明度取决于包含该类型的模块。 动态方法没有安全批注，以便为其分配相关联的模块的默认透明性。  
+ 动态方法的透明度取决于它所关联的模块。 如果动态方法与类型而不是模块相关联, 则其透明度取决于包含类型的模块。 动态方法没有安全批注, 因此它们被分配了关联模块的默认透明度。  
   
--   匿名托管动态方法始终是透明的因为包含它们的系统提供的模块是透明的。  
+-   匿名托管的动态方法始终是透明的, 因为系统提供的包含它们的模块是透明的。  
   
--   与受信任的程序集 （即，具有强名称程序集安装在全局程序集缓存中） 相关联的动态方法的透明度是下表中所述。  
+-   下表描述了与受信任的程序集 (即, 全局程序集缓存中安装的强名称程序集) 关联的动态方法的透明度。  
   
-    |程序集批注|1 级透明度|2 级透明度|  
+    |程序集批注|1级透明度|2级透明度|  
     |-------------------------|--------------------------|--------------------------|  
     |完全透明|透明|透明|  
     |完全关键|严重|严重|  
-    |混合的透明度|透明|透明|  
-    |不可知的安全|安全-关键|严重|  
+    |混合透明度|透明|透明|  
+    |不可知安全|安全-关键|严重|  
   
-     例如，如果您将动态方法与在 mscorlib.dll，后者具有级别 2 混合的透明度中的类型相关联的动态方法是透明的而无法执行关键代码。 了解有关透明度级别，请参阅[安全透明的代码，级别 1](~/docs/framework/misc/security-transparent-code-level-1.md)并[安全透明的代码，级别 2](~/docs/framework/misc/security-transparent-code-level-2.md)。  
+     例如, 如果将动态方法与包含第2级混合透明度的 mscorlib.dll 类型相关联, 则动态方法是透明的, 不能执行关键代码。 有关透明度级别的信息, 请参阅[安全透明代码, 级别 1](~/docs/framework/misc/security-transparent-code-level-1.md)和[安全透明代码, 级别 2](~/docs/framework/misc/security-transparent-code-level-2.md)。  
   
     > [!NOTE]
-    >  将与安全无关，例如 System.dll，受信任的 1 级程序集中的模块关联动态方法不允许使用提升的信任。 如果调用动态方法的代码的授予集不包括 System.dll （即，完全信任） 的授予集<xref:System.Security.SecurityException>调用动态方法时引发。  
+    >  将动态方法与受信任的第1级程序集 (如 System.object) 中的模块关联不允许提升信任。 如果调用动态方法的代码的授予集不包括在调用动态方法时引发的权限集 (即完全信任), <xref:System.Security.SecurityException>则会引发。  
   
--   加载程序集的方式取决于与部分受信任的程序集相关联的动态方法的透明度。 如果以 （例如，到沙盒应用程序域） 的部分信任方式加载的程序集，运行时将忽略该程序集的安全批注。 程序集和所有其类型和成员，包括动态方法被视为透明。 运行时才会注意到安全批注仅当部分信任程序集是以完全信任 （例如，为桌面应用程序的默认应用程序域） 加载的。 在这种情况下，运行时分配的动态方法根据程序集的批注的方法的默认透明性。  
+-   与部分受信任的程序集关联的动态方法的透明度取决于程序集的加载方式。 如果程序集在部分信任的情况下 (例如, 在沙盒应用程序域中) 加载, 则运行时将忽略程序集的安全注释。 程序集及其所有类型和成员 (包括动态方法) 都被视为透明的。 只有在完全信任的情况下 (例如, 在桌面应用程序的默认应用程序域中) 加载部分信任程序集时, 运行时才会注意到安全注释。 在这种情况下, 运行时将根据程序集的批注为方法分配默认透明度。  
   
- 有关反射发出和透明度，请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。 有关透明度的信息，请参阅[安全更改](~/docs/framework/security/security-changes.md)。  
+ 有关反射发出和透明度的详细信息, 请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。 有关透明度的信息, 请参阅[安全更改](~/docs/framework/security/security-changes.md)。  
   
  ]]></format>
         </remarks>
@@ -1841,7 +1869,7 @@
         <related type="Article" href="~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md">反射发出中的安全问题</related>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md">反射的安全注意事项</related>
         <related type="Article" href="~/docs/framework/security/security-changes.md">.NET Framework 4.0 版中的安全性更改</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/5fd8f46d-3961-46a7-84af-2eb1f48e75cf">安全透明代码，级别 1</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/5fd8f46d-3961-46a7-84af-2eb1f48e75cf">安全透明代码, 级别1</related>
         <related type="Article" href="https://msdn.microsoft.com/library/4d05610a-0da6-4f08-acea-d54c9d6143c0">安全透明的代码，级别 2</related>
       </Docs>
     </Member>
@@ -1859,6 +1887,7 @@
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1878,37 +1907,37 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Reflection.Emit.DynamicMethod.IsSecurityCritical%2A>， <xref:System.Reflection.Emit.DynamicMethod.IsSecuritySafeCritical%2A>，和<xref:System.Reflection.Emit.DynamicMethod.IsSecurityTransparent%2A>属性报告由公共语言运行时 (CLR) 的动态方法的透明度级别。 下表中显示这些属性的组合：  
+ <xref:System.Reflection.Emit.DynamicMethod.IsSecurityCritical%2A>、和属性<xref:System.Reflection.Emit.DynamicMethod.IsSecurityTransparent%2A>报告由公共语言运行时 (CLR) 确定的动态方法的透明度级别。 <xref:System.Reflection.Emit.DynamicMethod.IsSecuritySafeCritical%2A> 下表显示了这些属性的组合:  
   
 |安全级别|IsSecurityCritical|IsSecurityCritical|IsSecurityTransparent|  
 |--------------------|------------------------|----------------------------|---------------------------|  
 |严重|`true`|`false`|`false`|  
-|可靠关键|`true`|`true`|`false`|  
+|安全关键|`true`|`true`|`false`|  
 |透明|`false`|`false`|`true`|  
   
  使用这些属性比检查程序集及其类型的安全批注、检查当前的信任级别，以及尝试复制运行时的规则要简单得多。  
   
- 动态方法的透明度取决于与之关联的模块。 如果动态方法与一种类型而不是一个模块，其透明度取决于包含该类型的模块。 动态方法没有安全批注，以便为其分配相关联的模块的默认透明性。  
+ 动态方法的透明度取决于它所关联的模块。 如果动态方法与类型而不是模块相关联, 则其透明度取决于包含类型的模块。 动态方法没有安全批注, 因此它们被分配了关联模块的默认透明度。  
   
--   匿名托管动态方法始终是透明的因为包含它们的系统提供的模块是透明的。  
+-   匿名托管的动态方法始终是透明的, 因为系统提供的包含它们的模块是透明的。  
   
--   与受信任的程序集 （即，具有强名称程序集安装在全局程序集缓存中） 相关联的动态方法的透明度是下表中所述。  
+-   下表描述了与受信任的程序集 (即, 全局程序集缓存中安装的强名称程序集) 关联的动态方法的透明度。  
   
-    |程序集批注|1 级透明度|2 级透明度|  
+    |程序集批注|1级透明度|2级透明度|  
     |-------------------------|--------------------------|--------------------------|  
     |完全透明|透明|透明|  
     |完全关键|严重|严重|  
-    |混合的透明度|透明|透明|  
-    |不可知的安全|安全-关键|严重|  
+    |混合透明度|透明|透明|  
+    |不可知安全|安全-关键|严重|  
   
-     例如，如果您将动态方法与在 mscorlib.dll，后者具有级别 2 混合的透明度中的类型相关联的动态方法是透明的而无法执行关键代码。 了解有关透明度级别，请参阅[安全透明的代码，级别 1](~/docs/framework/misc/security-transparent-code-level-1.md)并[安全透明的代码，级别 2](~/docs/framework/misc/security-transparent-code-level-2.md)。  
+     例如, 如果将动态方法与包含第2级混合透明度的 mscorlib.dll 类型相关联, 则动态方法是透明的, 不能执行关键代码。 有关透明度级别的信息, 请参阅[安全透明代码, 级别 1](~/docs/framework/misc/security-transparent-code-level-1.md)和[安全透明代码, 级别 2](~/docs/framework/misc/security-transparent-code-level-2.md)。  
   
     > [!NOTE]
-    >  将与安全无关，例如 System.dll，受信任的 1 级程序集中的模块关联动态方法不允许使用提升的信任。 如果调用动态方法的代码的授予集不包括 System.dll （即，完全信任） 的授予集<xref:System.Security.SecurityException>调用动态方法时引发。  
+    >  将动态方法与受信任的第1级程序集 (如 System.object) 中的模块关联不允许提升信任。 如果调用动态方法的代码的授予集不包括在调用动态方法时引发的权限集 (即完全信任), <xref:System.Security.SecurityException>则会引发。  
   
--   加载程序集的方式取决于与部分受信任的程序集相关联的动态方法的透明度。 如果以 （例如，到沙盒应用程序域） 的部分信任方式加载的程序集，运行时将忽略该程序集的安全批注。 程序集和所有其类型和成员，包括动态方法被视为透明。 运行时才会注意到安全批注仅当部分信任程序集是以完全信任 （例如，为桌面应用程序的默认应用程序域） 加载的。 在这种情况下，运行时分配的动态方法根据程序集的批注的方法的默认透明性。  
+-   与部分受信任的程序集关联的动态方法的透明度取决于程序集的加载方式。 如果程序集在部分信任的情况下 (例如, 在沙盒应用程序域中) 加载, 则运行时将忽略程序集的安全注释。 程序集及其所有类型和成员 (包括动态方法) 都被视为透明的。 只有在完全信任的情况下 (例如, 在桌面应用程序的默认应用程序域中) 加载部分信任程序集时, 运行时才会注意到安全注释。 在这种情况下, 运行时将根据程序集的批注为方法分配默认透明度。  
   
- 有关反射发出和透明度，请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。 有关透明度的信息，请参阅[安全更改](~/docs/framework/security/security-changes.md)。  
+ 有关反射发出和透明度的详细信息, 请参阅[反射发出中的安全问题](~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md)。 有关透明度的信息, 请参阅[安全更改](~/docs/framework/security/security-changes.md)。  
   
  ]]></format>
         </remarks>
@@ -1918,7 +1947,7 @@
         <related type="Article" href="~/docs/framework/reflection-and-codedom/security-issues-in-reflection-emit.md">反射发出中的安全问题</related>
         <related type="Article" href="~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md">反射的安全注意事项</related>
         <related type="Article" href="~/docs/framework/security/security-changes.md">.NET Framework 4.0 版中的安全性更改</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/5fd8f46d-3961-46a7-84af-2eb1f48e75cf">安全透明代码，级别 1</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/5fd8f46d-3961-46a7-84af-2eb1f48e75cf">安全透明代码, 级别1</related>
         <related type="Article" href="https://msdn.microsoft.com/library/4d05610a-0da6-4f08-acea-d54c9d6143c0">安全透明的代码，级别 2</related>
       </Docs>
     </Member>
@@ -1939,6 +1968,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1997,6 +2027,7 @@
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -2011,12 +2042,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果指定了模块创建动态方法后，此属性将返回该模块。 如果创建动态方法后，一种类型已指定为所有者，此属性将返回包含该类型的模块。  
+ 如果在创建动态方法时指定了模块, 则此属性将返回该模块。 如果在创建动态方法时指定了类型作为所有者, 则此属性将返回包含该类型的模块。  
   
    
   
 ## Examples  
- 下面的代码示例显示<xref:System.Reflection.Emit.DynamicMethod.Module%2A>的动态方法的属性。 此代码示例是为提供一个更大示例的一部分<xref:System.Reflection.Emit.DynamicMethod>类。  
+ 下面的代码示例显示动态<xref:System.Reflection.Emit.DynamicMethod.Module%2A>方法的属性。 此代码示例是为<xref:System.Reflection.Emit.DynamicMethod>类提供的更大示例的一部分。  
   
  [!code-cpp[Reflection.DynamicMethod.All#26](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#26)]
  [!code-csharp[Reflection.DynamicMethod.All#26](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#26)]
@@ -2038,6 +2069,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -2061,12 +2093,12 @@
 ## Remarks  
   
 > [!NOTE]
->  不需要对名称动态方法。  
+>  不需要命名动态方法。  
   
    
   
 ## Examples  
- 下面的代码示例显示动态方法的名称。 此代码示例是为提供一个更大示例的一部分<xref:System.Reflection.Emit.DynamicMethod>类。  
+ 下面的代码示例显示动态方法的名称。 此代码示例是为<xref:System.Reflection.Emit.DynamicMethod>类提供的更大示例的一部分。  
   
  [!code-cpp[Reflection.DynamicMethod.All#27](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#27)]
  [!code-csharp[Reflection.DynamicMethod.All#27](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#27)]
@@ -2093,6 +2125,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -2108,12 +2141,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性始终返回`null`的动态方法。  
+ 此属性始终为`null`动态方法返回。  
   
    
   
 ## Examples  
- 下面的代码示例显示一个动态方法的反射的类型。 此代码示例是为提供一个更大示例的一部分<xref:System.Reflection.Emit.DynamicMethod>类。  
+ 下面的代码示例显示动态方法的反射类型。 此代码示例是为<xref:System.Reflection.Emit.DynamicMethod>类提供的更大示例的一部分。  
   
  [!code-cpp[Reflection.DynamicMethod.All#28](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#28)]
  [!code-csharp[Reflection.DynamicMethod.All#28](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#28)]
@@ -2135,6 +2168,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -2156,7 +2190,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性始终返回`null`的动态方法。  
+ 此属性始终为`null`动态方法返回。  
   
  ]]></format>
         </remarks>
@@ -2174,6 +2208,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -2195,12 +2230,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`null`时创建动态方法后，此属性返回的返回类型指定<xref:System.Void?displayProperty=nameWithType>。  
+ 如果`null`在创建动态方法时为返回类型指定, 则此属性返回<xref:System.Void?displayProperty=nameWithType>。  
   
    
   
 ## Examples  
- 下面的代码示例显示了一种动态方法的返回类型。 此代码示例是为提供一个更大示例的一部分<xref:System.Reflection.Emit.DynamicMethod>类。  
+ 下面的代码示例显示动态方法的返回类型。 此代码示例是为<xref:System.Reflection.Emit.DynamicMethod>类提供的更大示例的一部分。  
   
  [!code-cpp[Reflection.DynamicMethod.All#30](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#30)]
  [!code-csharp[Reflection.DynamicMethod.All#30](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#30)]
@@ -2227,6 +2262,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -2242,12 +2278,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 自定义特性上的动态方法的返回类型不进行支持，因此返回的自定义特性的数组<xref:System.Reflection.ICustomAttributeProvider.GetCustomAttributes%2A>方法始终为空。  
+ 动态方法的返回类型不支持自定义特性, 因此该<xref:System.Reflection.ICustomAttributeProvider.GetCustomAttributes%2A>方法返回的自定义特性的数组始终为空。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何显示动态方法的返回类型的自定义特性。 此代码示例是为提供一个更大示例的一部分<xref:System.Reflection.Emit.DynamicMethod>类。  
+ 下面的代码示例演示如何显示动态方法的返回类型的自定义特性。 此代码示例是为<xref:System.Reflection.Emit.DynamicMethod>类提供的更大示例的一部分。  
   
  [!code-cpp[Reflection.DynamicMethod.All#31](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#31)]
  [!code-csharp[Reflection.DynamicMethod.All#31](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#31)]
@@ -2270,6 +2306,7 @@
         <AssemblyName>System.Reflection.Emit.Lightweight</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -2292,12 +2329,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 签名仅包含类型和方法名称，如果有的话。 参数名称不包括。  
+ 签名仅包括类型和方法名称 (如果有)。 不包含参数名称。  
   
    
   
 ## Examples  
- 下面的代码示例显示<xref:System.Reflection.Emit.DynamicMethod.ToString%2A>的动态方法的方法。 此代码示例是为提供一个更大示例的一部分<xref:System.Reflection.Emit.DynamicMethod>类。  
+ 下面的代码示例显示<xref:System.Reflection.Emit.DynamicMethod.ToString%2A>动态方法的方法。 此代码示例是为<xref:System.Reflection.Emit.DynamicMethod>类提供的更大示例的一部分。  
   
  [!code-cpp[Reflection.DynamicMethod.All#32](~/samples/snippets/cpp/VS_Snippets_CLR/Reflection.DynamicMethod.All/cpp/source.cpp#32)]
  [!code-csharp[Reflection.DynamicMethod.All#32](~/samples/snippets/csharp/VS_Snippets_CLR/Reflection.DynamicMethod.All/CS/source.cs#32)]

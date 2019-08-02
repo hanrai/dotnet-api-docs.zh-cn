@@ -31,28 +31,28 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>表示与数据源的开放连接。</summary>
+    <summary>表示到数据源的连接是打开的。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Odbc.OdbcConnection>对象都表示对使用连接字符串或 ODBC 数据源名称 (DSN) 创建的数据源的唯一连接。 使用客户端/服务器数据库系统，它相当于网络连接到服务器。 具体取决于本机 ODBC 驱动程序，某些方法或属性的支持的功能<xref:System.Data.Odbc.OdbcConnection>对象可能不可用。  
+ <xref:System.Data.Odbc.OdbcConnection>对象表示与通过使用连接字符串或 ODBC 数据源名称 (DSN) 创建的数据源的唯一连接。 对于客户端/服务器数据库系统, 它等效于到服务器的网络连接。 <xref:System.Data.Odbc.OdbcConnection>对象的某些方法或属性可能不可用, 具体取决于本机 ODBC 驱动程序支持的功能。  
   
- <xref:System.Data.Odbc.OdbcConnection>对象使用本机资源，例如 ODBC 环境和连接句柄。 应始终显式关闭任何打开<xref:System.Data.Odbc.OdbcConnection>对象通过调用<xref:System.Data.Odbc.OdbcConnection.Close%2A>或**Dispose**之前<xref:System.Data.Odbc.OdbcConnection>对象也会超出范围，或通过将放置在连接`Using`语句。 不执行此操作会使垃圾回收这些本机资源的释放。 它可能不会立即释放它们。 此操作，又，最终会导致基础驱动程序耗尽所有资源或达到最大限制。 这会导致出现间歇性故障。 例如，你可能会遇到`Maximum Connections`-与相关的错误时的多个连接正在等待垃圾回收器删除。 显式关闭连接允许使用更高效的本机资源，增强可伸缩性并提高应用程序的整体性能。  
+ <xref:System.Data.Odbc.OdbcConnection>对象使用本机资源, 如 ODBC 环境和连接句柄。 应始终<xref:System.Data.Odbc.OdbcConnection>通过在<xref:System.Data.Odbc.OdbcConnection>对象超出范围之前调用<xref:System.Data.Odbc.OdbcConnection.Close%2A>或**Dispose**来显式关闭所有打开的对象, 或者在`Using`语句中放置连接。 不这样做会使释放这些本机资源以进行垃圾回收。 它可能不会立即释放它们。 这进而最终会导致底层驱动程序耗尽资源或达到最大限制。 这会导致间歇性故障。 例如, 你可能会遇到`Maximum Connections`与垃圾回收器正在等待删除的许多连接相关的错误。 通过显式关闭连接, 可以更有效地使用本机资源, 从而提高可伸缩性并提高应用程序的总体性能。  
   
 > [!NOTE]
->  若要部署高性能应用程序，您通常必须使用连接池。 但是，当对 ODBC 使用.NET Framework 数据提供程序，您不必启用连接池，因为提供程序会自动管理。  
+>  若要部署高性能应用程序, 你必须经常使用连接池。 但是, 当你使用适用于 ODBC 的 .NET Framework 数据提供程序时, 你不必启用连接池, 因为提供程序会自动管理此。  
   
- 如果一个的`Execute`的方法<xref:System.Data.Odbc.OdbcCommand>类将导致严重<xref:System.Data.Odbc.OdbcException>(例如，SQL Server 严重级别为 20 或更高版本），<xref:System.Data.Odbc.OdbcConnection>可能会关闭。 但是，用户可以重新打开连接并继续操作。  
+ 如果<xref:System.Data.Odbc.OdbcCommand>类的其中`Execute`一个方法导致致命错误<xref:System.Data.Odbc.OdbcException> (例如, SQL Server 严重级别为20或更高), 则<xref:System.Data.Odbc.OdbcConnection>可能会关闭。 但是，用户可以重新打开连接并继续操作。  
   
- 创建的实例的应用程序<xref:System.Data.Odbc.OdbcConnection>对象可以要求所有直接和间接调用方拥有足够的权限的代码通过设置声明性或命令性安全要求。 <xref:System.Data.Odbc.OdbcConnection> 使用创建安全请求<xref:System.Data.Odbc.OdbcPermission>对象。 用户可以验证其代码通过使用具有足够的权限<xref:System.Data.Odbc.OdbcPermissionAttribute>对象。 用户和管理员还可以使用代码访问安全策略工具 (Caspol.exe) 来修改安全策略的计算机、 用户和企业级别。 有关更多信息，请参见 [Code Access Security and ADO.NET](~/docs/framework/data/adonet/code-access-security.md)。  
+ 创建<xref:System.Data.Odbc.OdbcConnection>对象实例的应用程序可以通过设置声明性或命令性安全要求, 要求所有直接和间接调用方具有对代码的足够权限。 <xref:System.Data.Odbc.OdbcConnection>使用<xref:System.Data.Odbc.OdbcPermission>对象创建安全要求。 用户可以使用<xref:System.Data.Odbc.OdbcPermissionAttribute>对象验证其代码是否具有足够的权限。 用户和管理员还可以使用代码访问安全性策略工具 (Caspol.exe) 来修改计算机、用户和企业级别的安全策略。 有关更多信息，请参见 [Code Access Security and ADO.NET](~/docs/framework/data/adonet/code-access-security.md)。  
   
- 有关处理来自数据源的警告和信息性消息的详细信息，请参阅[连接事件](~/docs/framework/data/adonet/connection-events.md)。  
+ 有关处理来自数据源的警告和信息性消息的详细信息, 请参阅[连接事件](~/docs/framework/data/adonet/connection-events.md)。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.Odbc.OdbcCommand>和一个<xref:System.Data.Odbc.OdbcConnection>。 <xref:System.Data.Odbc.OdbcConnection>打开，并设置为<xref:System.Data.Odbc.OdbcCommand.Connection%2A>属性。 该示例然后调用<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>，并关闭连接。 若要实现此目的，<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>传递连接字符串和一个 SQL INSERT 语句的查询字符串。  
+ 下面的示例创建一个<xref:System.Data.Odbc.OdbcCommand>和一个<xref:System.Data.Odbc.OdbcConnection>。 打开并将设置<xref:System.Data.Odbc.OdbcCommand.Connection%2A>为属性。 <xref:System.Data.Odbc.OdbcConnection> 然后, 该示例<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>调用并关闭连接。 为实现此目的, <xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>传递了一个连接字符串和一个 SQL INSERT 语句的查询字符串。  
   
  [!code-csharp[Classic WebData OdbcConnection#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OdbcConnection/CS/source.cs#1)]
  [!code-vb[Classic WebData OdbcConnection#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OdbcConnection/VB/source.vb#1)]  
@@ -97,7 +97,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新实例时<xref:System.Data.Odbc.OdbcConnection>创建后，只写和只读属性设置为以下初始值，除非专门设置使用在其关联的关键字<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性。  
+ 创建的新实例<xref:System.Data.Odbc.OdbcConnection>时, 只写和只读属性设置为以下初始值, 除非它们是使用其在属性中的<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>关联关键字特别设置的。  
   
 |属性|初始值|  
 |----------------|-------------------|  
@@ -105,12 +105,12 @@
 |<xref:System.Data.Odbc.OdbcConnection.ConnectionTimeout%2A>|15|  
 |<xref:System.Data.Odbc.OdbcConnection.Database%2A>|空字符串 ("")|  
   
- 您可以更改这些属性的值只能通过使用<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性。  
+ 只能使用<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性更改这些属性的值。  
   
    
   
 ## Examples  
- 下面的示例创建并打开<xref:System.Data.Odbc.OdbcConnection>。  
+ 下面的示例创建并打开一个<xref:System.Data.Odbc.OdbcConnection>。  
   
  [!code-csharp[Classic WebData OdbcConnection.OdbcConnection#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.OdbcConnection/CS/source.cs#1)]
  [!code-vb[Classic WebData OdbcConnection.OdbcConnection#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.OdbcConnection/VB/source.vb#1)]  
@@ -144,12 +144,12 @@
       </Parameters>
       <Docs>
         <param name="connectionString">用于打开数据源的连接。</param>
-        <summary>初始化的新实例<see cref="T:System.Data.Odbc.OdbcConnection" />类与指定的连接字符串。</summary>
+        <summary>使用指定的连接字符串初始化 <see cref="T:System.Data.Odbc.OdbcConnection" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新实例时<xref:System.Data.Odbc.OdbcConnection>创建后，只写和只读属性设置为以下初始值，除非专门设置使用在其关联的关键字<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性。  
+ 创建的新实例<xref:System.Data.Odbc.OdbcConnection>时, 只写和只读属性设置为以下初始值, 除非它们是使用其在属性中的<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>关联关键字特别设置的。  
   
 |属性|初始值|  
 |----------------|-------------------|  
@@ -157,12 +157,12 @@
 |<xref:System.Data.Odbc.OdbcConnection.ConnectionTimeout%2A>|15|  
 |<xref:System.Data.Odbc.OdbcConnection.Database%2A>|空字符串 ("")|  
   
- 您可以更改这些属性的值只能通过使用<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性。  
+ 只能使用<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性更改这些属性的值。  
   
    
   
 ## Examples  
- 下面的示例创建并打开<xref:System.Data.Odbc.OdbcConnection>。  
+ 下面的示例创建并打开一个<xref:System.Data.Odbc.OdbcConnection>。  
   
  [!code-csharp[Classic WebData OdbcConnection.OdbcConnection1#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.OdbcConnection1/CS/source.cs#1)]
  [!code-vb[Classic WebData OdbcConnection.OdbcConnection1#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.OdbcConnection1/VB/source.vb#1)]  
@@ -196,8 +196,8 @@
         <Parameter Name="isolationLevel" Type="System.Data.IsolationLevel" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="isolationLevel">指定事务的隔离级别的枚举值的按位组合。</param>
-        <summary>开始一个事务在连接上。</summary>
+        <param name="isolationLevel">指定事务隔离级别的枚举值的按位组合。</param>
+        <summary>在该连接上开始事务。</summary>
         <returns>事务。</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -208,7 +208,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>启动一个事务对数据源。</summary>
+        <summary>在数据源中开始事务。</summary>
         <related type="Article" href="https://msdn.microsoft.com/library/9abc3f92-1be3-4e1a-b360-762dc689650e">连接到数据源</related>
       </Docs>
     </MemberGroup>
@@ -236,30 +236,30 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>启动一个事务对数据源。</summary>
+        <summary>在数据源中开始事务。</summary>
         <returns>表示新事务的对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要提交或回滚事务，必须显式使用<xref:System.Data.Odbc.OdbcTransaction.Commit%2A>或<xref:System.Data.Odbc.OdbcTransaction.Rollback%2A>方法。  
+ 若要提交或回滚事务, 则必须显式使用<xref:System.Data.Odbc.OdbcTransaction.Commit%2A>或<xref:System.Data.Odbc.OdbcTransaction.Rollback%2A>方法。  
   
- 若要确保正确执行.NET Framework Data Provider for ODBC 事务管理模型，请避免使用其他事务管理模型，如所提供的数据源。  
+ 若要确保 ODBC 事务管理模型的 .NET Framework 数据提供程序正确执行, 请避免使用其他事务管理模型, 如数据源提供的模型。  
   
 > [!NOTE]
->  如果不指定隔离级别，将由正在使用的驱动程序确定的隔离级别。 若要指定隔离级别，其中<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>方法中，使用的重载的`isolevel`参数。  
+>  如果未指定隔离级别, 隔离级别将由正在使用的驱动程序确定。 若要使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>方法指定隔离级别, 请使用`isolevel`采用参数的重载。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.Odbc.OdbcConnection>和一个<xref:System.Data.Odbc.OdbcTransaction>。 它还演示了如何使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>， <xref:System.Data.Odbc.OdbcTransaction.Commit%2A>，和<xref:System.Data.Odbc.OdbcTransaction.Rollback%2A>方法。  
+ 下面的示例创建一个<xref:System.Data.Odbc.OdbcConnection>和一个<xref:System.Data.Odbc.OdbcTransaction>。 它还演示了如何使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>、 <xref:System.Data.Odbc.OdbcTransaction.Commit%2A>和<xref:System.Data.Odbc.OdbcTransaction.Rollback%2A>方法。  
   
  [!code-csharp[Classic WebData OdbcConnection.BeginTransaction1#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.BeginTransaction1/CS/source.cs#1)]
  [!code-vb[Classic WebData OdbcConnection.BeginTransaction1#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.BeginTransaction1/VB/source.vb#1)]  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">事务是当前处于活动状态。 不支持并行事务。</exception>
+        <exception cref="T:System.InvalidOperationException">事务当前是活动的。 不支持并行事务。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/9abc3f92-1be3-4e1a-b360-762dc689650e">连接到数据源</related>
       </Docs>
     </Member>
@@ -289,28 +289,28 @@
         <Parameter Name="isolevel" Type="System.Data.IsolationLevel" />
       </Parameters>
       <Docs>
-        <param name="isolevel">此连接的事务隔离级别。 如果不指定隔离级别，使用该驱动程序的默认隔离级别。</param>
-        <summary>启动具有指定的事务在数据源<see cref="T:System.Data.IsolationLevel" />值。</summary>
+        <param name="isolevel">该连接的事务隔离级别。 若未指定隔离级别，将使用驱动程序的默认隔离级别。</param>
+        <summary>在数据源中用指定的 <see cref="T:System.Data.IsolationLevel" /> 值开始事务。</summary>
         <returns>表示新事务的对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要提交或回滚事务，必须显式使用<xref:System.Data.Odbc.OdbcTransaction.Commit%2A>或<xref:System.Data.Odbc.OdbcTransaction.Rollback%2A>方法。  
+ 若要提交或回滚事务, 则必须显式使用<xref:System.Data.Odbc.OdbcTransaction.Commit%2A>或<xref:System.Data.Odbc.OdbcTransaction.Rollback%2A>方法。  
   
- 若要确保正确执行.NET Framework Data Provider for ODBC 事务管理模型，请避免使用其他事务管理模型，如所提供的数据源。  
+ 若要确保 ODBC 事务管理模型的 .NET Framework 数据提供程序正确执行, 请避免使用其他事务管理模型, 如数据源提供的模型。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.Odbc.OdbcConnection>和一个<xref:System.Data.Odbc.OdbcTransaction>。 它还演示了如何使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>， <xref:System.Data.Odbc.OdbcTransaction.Commit%2A>，和<xref:System.Data.Odbc.OdbcTransaction.Rollback%2A>方法。  
+ 下面的示例创建一个<xref:System.Data.Odbc.OdbcConnection>和一个<xref:System.Data.Odbc.OdbcTransaction>。 它还演示了如何使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction%2A>、 <xref:System.Data.Odbc.OdbcTransaction.Commit%2A>和<xref:System.Data.Odbc.OdbcTransaction.Rollback%2A>方法。  
   
  [!code-csharp[Classic WebData OdbcConnection.BeginTransaction1#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.BeginTransaction1/CS/source.cs#1)]
  [!code-vb[Classic WebData OdbcConnection.BeginTransaction1#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.BeginTransaction1/VB/source.vb#1)]  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">事务是当前处于活动状态。 不支持并行事务。</exception>
+        <exception cref="T:System.InvalidOperationException">事务当前是活动的。 不支持并行事务。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/9abc3f92-1be3-4e1a-b360-762dc689650e">连接到数据源</related>
       </Docs>
     </Member>
@@ -341,17 +341,17 @@
       </Parameters>
       <Docs>
         <param name="value">数据库名称。</param>
-        <summary>更改与打开关联的当前数据库<see cref="T:System.Data.Odbc.OdbcConnection" />。</summary>
+        <summary>更改与打开的 <see cref="T:System.Data.Odbc.OdbcConnection" /> 关联的当前数据库。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `value`参数必须包含有效的数据库名称，并且不能包含 null 值、 空字符串 ("")，或只有空白字符的字符串。  
+ `value`参数必须包含有效的数据库名称, 不能包含 null 值、空字符串 ("") 或只包含空白字符的字符串。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.Odbc.OdbcConnection>和更改当前数据库。  
+ 下面的示例创建<xref:System.Data.Odbc.OdbcConnection>并更改当前数据库。  
   
  [!code-csharp[Classic WebData OdbcConnection.Database#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.Database/CS/source.cs#1)]
  [!code-vb[Classic WebData OdbcConnection.Database#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.Database/VB/source.vb#1)]  
@@ -393,20 +393,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Odbc.OdbcConnection.Close%2A>方法将回滚所有挂起的事务。 然后释放到连接池连接，或如果禁用连接池时关闭连接。 如果<xref:System.Data.Odbc.OdbcConnection.Close%2A>调用时处理<xref:System.Data.Common.DbConnection.StateChange>事件，无需额外<xref:System.Data.Common.DbConnection.StateChange>的事件触发。  
+ 方法<xref:System.Data.Odbc.OdbcConnection.Close%2A>将回滚所有挂起的事务。 然后, 它会释放到连接池的连接, 或者在禁用连接池的情况下关闭连接。 如果<xref:System.Data.Odbc.OdbcConnection.Close%2A>在<xref:System.Data.Common.DbConnection.StateChange>处理事件时调用, 则不会触发任何其他事件。 <xref:System.Data.Common.DbConnection.StateChange>  
   
- 应用程序可以调用<xref:System.Data.Odbc.OdbcConnection.Close%2A>不止一次，而不会生成异常。  
+ 应用程序可以调用<xref:System.Data.Odbc.OdbcConnection.Close%2A>多个时间而不生成异常。  
   
 > [!NOTE]
->  在.NET Framework 数据提供程序使用用于 ODBC 时，您无需启用连接池，因为 ODBC 驱动程序管理器会自动管理。 有关如何启用和禁用连接池的详细信息，请参阅 Microsoft 开放式数据库连接 (ODBC) 文档。  
+>  使用用于 ODBC 的 .NET Framework 数据提供程序时, 不必启用连接池, 因为 ODBC 驱动程序管理器会自动管理此。 有关如何启用和禁用连接池的详细信息, 请参阅 Microsoft 开放式数据库连接 (ODBC) 文档。  
   
 > [!CAUTION]
->  不要调用<xref:System.Data.Odbc.OdbcConnection.Close%2A>或`Dispose`连接、 DataReader 或在任何其他托管的对象上`Finalize`类的方法。 在终结器中，您应仅释放类直接拥有的非托管的资源。 如果类不拥有任何非托管资源，则不要在类定义中包含 `Finalize` 方法。 有关详细信息，请参阅[垃圾回收](~/docs/standard/garbage-collection/index.md)。  
+>  不要在类<xref:System.Data.Odbc.OdbcConnection.Close%2A>的`Dispose` `Finalize`方法中对连接、DataReader 或任何其他托管对象调用或。 在终结器中, 只应释放类直接拥有的非托管资源。 如果类不拥有任何非托管资源，则不要在类定义中包含 `Finalize` 方法。 有关详细信息, 请参阅[垃圾回收](~/docs/standard/garbage-collection/index.md)。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.Odbc.OdbcConnection>、 将其打开，显示的某些属性，然后关闭连接。  
+ 下面的示例创建一个<xref:System.Data.Odbc.OdbcConnection>, 将其打开, 显示其部分属性, 然后关闭连接。  
   
  [!code-csharp[Classic WebData OdbcConnection.Close#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.Close/CS/source.cs#1)]
  [!code-vb[Classic WebData OdbcConnection.Close#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.Close/VB/source.vb#1)]  
@@ -466,14 +466,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置用于打开数据源的字符串。</summary>
-        <value>包含设置，例如建立初始连接所需的数据源名称的 ODBC 驱动程序连接字符串。 默认值为空字符串 ("")。 最大长度为 1024年个字符。</value>
+        <value>包括一些需要建立初始连接的设置（例如，数据源名称）的 ODBC 驱动程序连接字符串。 默认值为空字符串 ("")。 最大长度是 1024 个字符。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性设计为尽可能与 ODBC 连接字符串格式相匹配。 <xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>可设置仅当连接关闭，并且只要它设置它传递时, 保持不变，驱动程序管理器和基础驱动程序。 因此，对于语法<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>必须完全匹配哪些驱动程序管理器和基础驱动程序支持。  
+ 此<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性设计为尽可能匹配 ODBC 连接字符串格式。 仅当连接关闭时才可以设置,一旦设置了连接,就会将它原样传递到驱动程序管理器和基础驱动程序。<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A> 因此, 的<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>语法必须与驱动程序管理器和基础驱动程序支持的内容完全匹配。  
   
- 可以使用<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性，以连接到各种数据源。 这包括 ODBC 数据源名称 (DSN)。 下面的示例说明了几个可能的连接字符串。  
+ 您可以使用<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性连接到各种数据源。 这包括 ODBC 数据源名称 (DSN)。 下面的示例演示几个可能的连接字符串。  
   
 ```  
 "Driver={SQL Server};Server=(local);Trusted_Connection=Yes;Database=AdventureWorks;"  
@@ -490,15 +490,15 @@
 ```  
   
 > [!NOTE]
->  用于 ODBC 的.NET Framework 数据提供程序不支持`Persist Security Info`其他.NET Framework 数据提供程序支持的关键字。 但是，<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性的行为就像`Persist Security Info`已设置为`false`。 这意味着您不能检索从密码<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性如果在打开连接。 当<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性从读取<xref:System.Data.Odbc.OdbcConnection>已打开的对象，则返回连接字符串减去密码。 不能更改此行为;因此，如果应用程序要求密码，单独进行存储，然后再调<xref:System.Data.Odbc.OdbcConnection.Open%2A>。  
+>  适用于 ODBC 的 .NET Framework 数据提供程序不支持`Persist Security Info`其他 .NET Framework 数据提供程序支持的关键字。 但是, 属性<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>的行为`Persist Security Info`与设置为`false`时的行为相同。 这意味着, 如果已打开连接, 则不<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>能从属性中检索密码。 <xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A> 当<xref:System.Data.Odbc.OdbcConnection>从已打开的对象中读取该属性时, 将返回该连接字符串而不是密码。 不能更改此行为;因此, 如果应用程序需要密码, 请在调用<xref:System.Data.Odbc.OdbcConnection.Open%2A>前将其单独存储。  
   
- 许多字符串中指定的设置具有相应的只读属性 (例如， `Server=(local)`，它对应于<xref:System.Data.Odbc.OdbcConnection.DataSource%2A>属性)。 打开连接，除非检测到错误后，会更新这些属性。 在这种情况下，不会更新任何属性。 <xref:System.Data.Odbc.OdbcConnection> 属性 (如<xref:System.Data.Odbc.OdbcConnection.Database%2A>) 只返回默认设置或在指定的那些设置<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>。  
+ 字符串中指定的许多设置都具有对应的只读属性 (例如`Server=(local)`, 与<xref:System.Data.Odbc.OdbcConnection.DataSource%2A>属性相对应)。 这些属性在连接打开后进行更新, 但在检测到错误时除外。 在这种情况下, 不会更新任何属性。 <xref:System.Data.Odbc.OdbcConnection>属性 (例如<xref:System.Data.Odbc.OdbcConnection.Database%2A>) 只返回默认设置或<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>在中指定的设置。  
   
- 在 Microsoft.NET Framework 1.0 版中，连接字符串的验证才会应用程序调用<xref:System.Data.Odbc.OdbcConnection.Open%2A>方法。 它负责的基础 ODBC 驱动程序来验证连接字符串。 如果连接字符串包含无效或不受支持的属性，该驱动程序可能会引发<xref:System.Data.Odbc.OdbcException>在运行时。  
+ 在 Microsoft .NET Framework 版本1.0 中, 在应用程序调用<xref:System.Data.Odbc.OdbcConnection.Open%2A>方法之前, 不会对连接字符串进行验证。 基础 ODBC 驱动程序负责验证连接字符串。 如果连接字符串包含无效或不支持的属性, 则驱动程序可能<xref:System.Data.Odbc.OdbcException>会在运行时引发。  
   
- 但是，在.NET Framework 1.1 版和更高版本中，连接字符串的一些基本验证，就会发生设置<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性。 在该时间的数据提供程序验证的连接字符串是否满足"关键字 = value;..."格式，但它不会验证关键字或值是否有效。 当应用程序调用时，基础 ODBC 驱动程序会执行剩余的验证<xref:System.Data.Odbc.OdbcConnection.Open%2A>方法。  
+ 但是, 在 .NET Framework 版本1.1 及更高版本中, 只要设置了<xref:System.Data.Odbc.OdbcConnection.ConnectionString%2A>属性, 就会发生对连接字符串的基本验证。 此时, 数据访问接口将验证连接字符串是否满足 "关键字 = 值; ..."格式, 但它不验证关键字或值是否有效。 当应用程序调用<xref:System.Data.Odbc.OdbcConnection.Open%2A>方法时, 基础 ODBC 驱动程序会执行剩余的验证。  
   
- ODBC 连接字符串具有以下语法：  
+ ODBC 连接字符串具有以下语法:  
   
 ```  
 connection-string ::= empty-string[;] | attribute[;] | attribute; connection-string  
@@ -510,20 +510,20 @@ attribute-value ::= character-string
 driver-defined-attribute-keyword ::= identifier  
 ```  
   
- 其中`character-string`具有零个或多个字符;`identifier`具有一个或多个字符;`attribute-keyword`不区分大小写;`attribute-value`可以是区分大小写; 和 DSN 关键字的值不会不能仅由空白。  
+ 其中`character-string`包含零个或多个字符;`identifier`包含一个或多个字符;`attribute-keyword`不区分大小写;`attribute-value`可以区分大小写; DSN 关键字的值不能仅包含空格。  
   
- 由于连接字符串和初始化文件语法，关键字和属性值应避免使用包含字符 []{}（)，;？* = ！ @ 不括在大括号。 DSN 关键字的值不能只包含空格，且不应包含前导空格。 由于系统信息的语法，关键字和数据源名称不能包含反斜杠 (\\) 字符。  
+ 由于连接字符串和初始化文件语法, 应避免包含字符 []{}(),;？* =! @ 没有括在大括号中。 DSN 关键字的值不能只包含空格, 并且不能包含前导空格。 由于系统信息的语法, 关键字和数据源名称不能包含反斜杠 (\\) 字符。  
   
- 应用程序不需要驱动程序关键字之后添加的属性值两边的大括号，除非该属性包含用分号 （;），在这种情况下需要使用大括号。 如果驱动程序收到的属性值包含大括号，驱动程序不应删除它们，但它们应是返回的连接字符串的一部分。  
+ 应用程序无需在 Driver 关键字后面的属性值前后添加大括号, 除非该属性包含分号 (;), 在这种情况下, 需要使用大括号。 如果驱动程序接收的属性值包括大括号, 驱动程序不应将其删除, 而是返回的连接字符串的一部分。  
   
- 用大括号括起来的 DSN 或连接字符串值 ({})，其中包含任何字符 []{}（)，;？* = ！ @ 传递不变到驱动程序。 但是，当在关键字将这些字符，驱动程序管理器时使用文件 Dsn，将返回错误，但将连接字符串传递给正则连接字符串的驱动程序。 避免使用嵌入的大括号中的关键字值。  
+ 使用大括号 ({}) 括起来的 DSN 或连接字符串值, 其中包含任何字符 []{}(),;？* =! @ 将原封不动地传递给驱动程序。 但是, 当你在关键字中使用这些字符时, 驱动程序管理器将在你使用文件 Dsn 时返回一个错误, 但会将连接字符串传递到常规连接字符串的驱动程序。 避免在关键字值中使用嵌入的大括号。  
   
- 连接字符串可能包含任意数量的驱动程序定义的关键字。 由于 DRIVER 关键字不使用来自系统的信息，该驱动程序必须定义足够的关键字，以便驱动程序可以连接到数据源连接字符串中使用的信息。 该驱动程序定义到数据源连接所需的关键字。  
+ 连接字符串可能包含任意数量的驱动程序定义的关键字。 由于 DRIVER 关键字不使用系统中的信息, 因此驱动程序必须定义足够的关键字, 以便驱动程序只能使用连接字符串中的信息连接到数据源。 驱动程序定义连接数据源所需的关键字。  
   
- 如果在连接字符串中有重复任何关键字，则将选择的值不能保证。  
+ 如果在连接字符串中重复任何关键字, 则无法保证将选择哪个值。  
   
 > [!NOTE]
->  如果 ODBC 驱动程序支持连接字符串长度超过 1024年个字符，可以使用数据源名称 (DSN) 超过最大长度限制。  
+>  如果 ODBC 驱动程序支持的连接字符串长度超过1024个字符, 则可以使用数据源名称 (DSN) 来超过最大长度限制。  
   
  ]]></format>
         </remarks>
@@ -564,13 +564,13 @@ driver-defined-attribute-keyword ::= identifier
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置尝试建立在终止尝试并生成错误之前的连接时等待的时间。</summary>
-        <value>以秒为单位来等待连接打开时间。 默认值为 15 秒。</value>
+        <summary>获取或设置在尝试建立连接时终止尝试并生成错误之前所等待的时间。</summary>
+        <value>等待连接打开的时间（以秒为单位）。 默认值为 15 秒。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 与用于 SQL Server 和 OLE DB 的.NET Framework 数据提供程序，用于 ODBC 的.NET Framework 数据提供程序不支持此属性设置为连接字符串值，因为它不是有效的 ODBC 连接关键字。 若要指定连接超时值，设置<xref:System.Data.Odbc.OdbcConnection.ConnectionTimeout%2A>属性之前调用<xref:System.Data.Odbc.OdbcConnection.Open%2A>。 这相当于设置 ODBC `SQLSetConnectAttr` SQL_ATTR_LOGIN_TIMOUT 属性。  
+ 与用于 SQL Server 和 OLE DB 的 .NET Framework 数据提供程序不同, 用于 ODBC 的 .NET Framework 数据提供程序不支持将此属性设置为连接字符串值, 因为它不是有效的 ODBC 连接关键字。 若要指定连接超时, 请在调用<xref:System.Data.Odbc.OdbcConnection.ConnectionTimeout%2A> <xref:System.Data.Odbc.OdbcConnection.Open%2A>之前设置属性。 这等效于设置 ODBC `SQLSetConnectAttr` SQL_ATTR_LOGIN_TIMOUT 属性。  
   
  ]]></format>
         </remarks>
@@ -602,7 +602,7 @@ driver-defined-attribute-keyword ::= identifier
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>创建并返回<see cref="T:System.Data.Odbc.OdbcCommand" />对象与关联<see cref="T:System.Data.Odbc.OdbcConnection" />。</summary>
+        <summary>创建并返回一个与该 <see cref="T:System.Data.Odbc.OdbcCommand" /> 关联的 <see cref="T:System.Data.Odbc.OdbcConnection" /> 对象。</summary>
         <returns>一个 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</returns>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/9abc3f92-1be3-4e1a-b360-762dc689650e">连接到数据源</related>
@@ -668,19 +668,19 @@ driver-defined-attribute-keyword ::= identifier
       </ReturnValue>
       <Docs>
         <summary>获取当前数据库的名称或打开连接后要使用的数据库的名称。</summary>
-        <value>当前数据库的名称。 默认值为空字符串 ("") 之前打开连接。</value>
+        <value>当前数据库的名称。 在打开连接前，默认值一直为空字符串 ("")。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 首先，<xref:System.Data.Odbc.OdbcConnection.Database%2A>在连接字符串中设置属性。 <xref:System.Data.Odbc.OdbcConnection.Database%2A>属性可以通过使用更新<xref:System.Data.Odbc.OdbcConnection.ChangeDatabase%2A>方法。 如果您更改当前数据库使用的 SQL 语句或<xref:System.Data.Odbc.OdbcConnection.ChangeDatabase%2A>方法中，发送一条信息性消息，然后更新的属性。  
+ 首先, <xref:System.Data.Odbc.OdbcConnection.Database%2A>在连接字符串中设置属性。 可以使用方法更新<xref:System.Data.Odbc.OdbcConnection.Database%2A>属性 <xref:System.Data.Odbc.OdbcConnection.ChangeDatabase%2A> 。 如果使用 SQL 语句或<xref:System.Data.Odbc.OdbcConnection.ChangeDatabase%2A>方法更改当前数据库, 将发送一条信息性消息, 然后更新属性。  
   
- 检索<xref:System.Data.Odbc.OdbcConnection.Database%2A>属性相当于调用 ODBC 函数`SQLGetInfo`与`Attribute`参数设置为 SQL_ATTR_CURRENT_CATALOG。  
+ 检索属性等效于调用 ODBC 函数`SQLGetInfo`并`Attribute`将参数设置为 SQL_ATTR_CURRENT_CATALOG。 <xref:System.Data.Odbc.OdbcConnection.Database%2A>  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.Odbc.OdbcConnection>和更改当前数据库。  
+ 下面的示例创建<xref:System.Data.Odbc.OdbcConnection>并更改当前数据库。  
   
  [!code-csharp[Classic WebData OdbcConnection.Database#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.Database/CS/source.cs#1)]
  [!code-vb[Classic WebData OdbcConnection.Database#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.Database/VB/source.vb#1)]  
@@ -724,18 +724,18 @@ driver-defined-attribute-keyword ::= identifier
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取服务器名称或数据源的文件名。</summary>
-        <value>服务器名称或数据源的文件名。 默认值为空字符串 ("") 之前打开连接。</value>
+        <summary>获取数据源的服务器名或文件名。</summary>
+        <value>数据源的服务器名或文件名。 在打开连接前，默认值一直为空字符串 ("")。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 检索<xref:System.Data.Odbc.OdbcConnection.DataSource%2A>属性相当于调用 ODBC 函数`SQLGetInfo`与`InfoType`参数设置为 SQL_SERVER_NAME。  
+ 检索属性等效于调用 ODBC 函数`SQLGetInfo`并`InfoType`将参数设置为 SQL_SERVER_NAME。 <xref:System.Data.Odbc.OdbcConnection.DataSource%2A>  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.Odbc.OdbcConnection>并显示后端数据源名称。  
+ 下面的示例创建一个<xref:System.Data.Odbc.OdbcConnection> , 并显示后端数据源名称。  
   
  [!code-csharp[Classic WebData OdbcConnection.DataSource#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.DataSource/CS/source.cs#1)]
  [!code-vb[Classic WebData OdbcConnection.DataSource#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OdbcConnection.DataSource/VB/source.vb#1)]  
@@ -810,13 +810,13 @@ driver-defined-attribute-keyword ::= identifier
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取指定当前连接的 ODBC 驱动程序的名称。</summary>
-        <value>ODBC 驱动程序的名称。 这通常是 DLL 名称 (例如 Sqlsrv32.dll)。 默认值为空字符串 ("") 之前打开连接。</value>
+        <summary>获取为当前连接指定的 ODBC 驱动程序名称。</summary>
+        <value>ODBC 驱动程序的名称。 它通常是 DLL 名称（例如 Sqlsrv32.dll）。 在打开连接前，默认值一直为空字符串 ("")。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 检索<xref:System.Data.Odbc.OdbcConnection.Driver%2A>属性相当于调用 ODBC 函数`SQLGetInfo`与`InfoType`参数设置为 SQL_DRIVER_NAME。  
+ 检索属性等效于调用 ODBC 函数`SQLGetInfo`并`InfoType`将参数设置为 SQL_DRIVER_NAME。 <xref:System.Data.Odbc.OdbcConnection.Driver%2A>  
   
  ]]></format>
         </remarks>
@@ -853,11 +853,11 @@ driver-defined-attribute-keyword ::= identifier
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新增 ADO.NET 2.0 中功能支持使用<xref:System.Data.Common.DbConnection.EnlistTransaction%2A>方法在分布式事务中登记。 因为登记中的连接<xref:System.Transactions.Transaction>实例， **EnlistTransaction**利用中提供的功能<xref:System.Transactions>用于管理命名空间的分布式事务，使其优于**EnlistDistributedTransaction**实现此目的。 有关详细信息，请参阅[分布式事务](~/docs/framework/data/adonet/distributed-transactions.md)。  
+ ADO.NET 2.0 中的新增项支持使用<xref:System.Data.Common.DbConnection.EnlistTransaction%2A>方法在分布式事务中登记。 由于它在<xref:System.Transactions.Transaction>实例中登记连接, **EnlistTransaction**利用<xref:System.Transactions>命名空间中的可用功能来管理分布式事务, 使其**更适合EnlistDistributedTransaction**此目的。 有关详细信息, 请参阅[分布式事务](~/docs/framework/data/adonet/distributed-transactions.md)。  
   
- 你可以继续在现有使用分布式的事务中登记<xref:System.Data.Odbc.OdbcConnection.EnlistDistributedTransaction*>方法如果禁用自动登记。 在现有分布式事务中登记可以确保，提交或回滚事务，如果数据源的代码所做的修改也提交或回滚。 有关分布式事务的详细信息，请参阅[分布式事务](~/docs/framework/data/adonet/distributed-transactions.md)。  
+ 如果禁用自动登记, 则可以使用<xref:System.Data.Odbc.OdbcConnection.EnlistDistributedTransaction*>方法继续在现有分布式事务中登记。 在现有分布式事务中登记可确保在提交或回滚事务后, 还会提交或回滚数据源中的代码所做的修改。 有关分布式事务的详细信息, 请参阅[分布式事务](~/docs/framework/data/adonet/distributed-transactions.md)。  
   
- <xref:System.Data.Odbc.OdbcConnection.EnlistDistributedTransaction%2A> 如果返回的异常<xref:System.Data.Odbc.OdbcConnection>已经启动了事务使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction*>。 但是，如果该事务是在数据源启动的本地事务 (例如，通过显式执行 BEGIN TRANSACTION 语句使用<xref:System.Data.Odbc.OdbcCommand>对象)，<xref:System.Data.Odbc.OdbcConnection.EnlistDistributedTransaction%2A>回滚本地事务，并在现有登记作为请求的分布式的事务。 不会收到通知，本地事务已回滚，并且负责不管理任何本地事务使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction*>。  
+ <xref:System.Data.Odbc.OdbcConnection.EnlistDistributedTransaction%2A>如果已使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction*>启动了<xref:System.Data.Odbc.OdbcConnection>事务, 则返回异常。 但是, 如果事务是从数据源启动的本地事务 (例如, 通过使用<xref:System.Data.Odbc.OdbcCommand>对象显式执行 BEGIN TRANSACTION 语句), <xref:System.Data.Odbc.OdbcConnection.EnlistDistributedTransaction%2A>则回滚本地事务并在现有中登记请求的分布式事务。 您将不会收到本地事务已回滚的通知, 并且负责管理所有未使用<xref:System.Data.Odbc.OdbcConnection.BeginTransaction*>启动的本地事务。  
   
  ]]></format>
         </remarks>
@@ -891,7 +891,7 @@ driver-defined-attribute-keyword ::= identifier
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新增 ADO.NET 2.0 中功能支持使用<xref:System.Data.Common.DbConnection.EnlistTransaction%2A>方法在分布式事务中登记。 因为登记中的连接<xref:System.Transactions.Transaction>实例， **EnlistTransaction**利用中提供的功能<xref:System.Transactions>用于管理命名空间的分布式事务，使其优于**EnlistDistributedTransaction**，使用该**System.EnterpriseServices.ITransaction**对象。 它还具有略有不同的语义： 后显式事务上登记连接，不能取消登记或第一个事务完成之前在另一个事务中登记。 有关分布式事务的详细信息，请参阅[分布式事务](~/docs/framework/data/adonet/distributed-transactions.md)。  
+ ADO.NET 2.0 中的新增项支持使用<xref:System.Data.Common.DbConnection.EnlistTransaction%2A>方法在分布式事务中登记。 由于它在<xref:System.Transactions.Transaction>实例中登记连接, **EnlistTransaction**利用<xref:System.Transactions>命名空间中的可用功能来管理分布式事务, 使其**更适合EnlistDistributedTransaction**, 它使用**System.enterpriseservices.servicedcomponent. ITransaction**对象。 它还具有略微不同的语义: 在事务中显式登记某个连接后, 在第一个事务完成之前, 不能取消登记该连接或在另一个事务中登记。 有关分布式事务的详细信息, 请参阅[分布式事务](~/docs/framework/data/adonet/distributed-transactions.md)。  
   
  ]]></format>
         </remarks>
@@ -960,16 +960,16 @@ driver-defined-attribute-keyword ::= identifier
       </Parameters>
       <Docs>
         <param name="collectionName">指定要返回的架构的名称。</param>
-        <summary>返回此数据源的架构信息<see cref="T:System.Data.Odbc.OdbcConnection" />使用架构名称指定的名称。</summary>
+        <summary>使用架构名称的指定名称，返回此 <see cref="T:System.Data.Odbc.OdbcConnection" /> 的数据源的架构信息。</summary>
         <returns>一个包含架构信息的 <see cref="T:System.Data.DataTable" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当`collectionName`为 null，<xref:System.Data.DataTable>包含有关所有可用的元数据和任何限制的信息。  
+ 当`collectionName`为 null 时, <xref:System.Data.DataTable>将包含有关所有可用元数据和任何限制的信息。  
   
 > [!NOTE]
->  将应用于的所有限制`SQLStatistics`方法也适用于`ODBCConnection.GetSchema("indexes")`集合。  
+>  适用于此`SQLStatistics`方法的所有限制也适用`ODBCConnection.GetSchema("indexes")`于集合。  
   
  ]]></format>
         </remarks>
@@ -1002,21 +1002,21 @@ driver-defined-attribute-keyword ::= identifier
       </Parameters>
       <Docs>
         <param name="collectionName">指定要返回的架构的名称。</param>
-        <param name="restrictionValues">指定一组请求的架构的限制值。</param>
+        <param name="restrictionValues">为请求的架构指定一组限制值。</param>
         <summary>通过使用指定字符串作为架构名称，指定字符串数组作为限制值，返回此 <see cref="T:System.Data.Odbc.OdbcConnection" /> 的数据源的架构信息。</summary>
         <returns>一个包含架构信息的 <see cref="T:System.Data.DataTable" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当`collectionName`指定为 null，<xref:System.Data.DataTable>包含有关可用的所有元数据和其限制的信息。  
+ 当`collectionName`指定为 null 时, 将<xref:System.Data.DataTable>包含有关所有可用元数据及其限制的信息。  
   
- `restrictionValues`参数可以提供*n*深度的值指定的特定集合的限制集合。 若要将值设置给定的限制，并且未设置其他限制的值，必须设置前面的限制条件，则为 null，然后将放在你想要为指定值的限制为适当的值。  
+ 参数可以提供 n 个值的深度, 这些值由特定集合的限制集合指定。  `restrictionValues` 若要设置给定限制的值, 而不设置其他限制的值, 则必须将前面的限制设置为 null, 然后将相应的值放在中, 以确定要为其指定值的限制。  
   
- 此示例是"表"集合。 如果"Tables"集合具有三个限制 （数据库、 所有者和表名称），并且想要返回仅具有所有者"Carl，"相关联的表，则需要在至少传递以下值： null、"Carl"。 如果未传入限制值，默认值用于该限制。 这将是相同的映射与传入 null，这是传入空字符串作为参数值不同。 在这种情况下，空字符串 ("") 被视为可指定参数的值。  
+ "Tables" 集合就是这样的一个示例。 如果 "Tables" 集合具有三个限制 (数据库、所有者和表名称), 并且您想要只返回与 "Carl" 所有者关联的表, 则需要至少传入以下值: null、"Carl"。 如果未传入限制值, 则将默认值用于该限制。 这与传入 null 的映射相同, 后者不同于传入参数值的空字符串。 在这种情况下, 空字符串 ("") 被视为指定参数的值。  
   
 > [!NOTE]
->  将应用于 SQLStatistics 方法的所有限制将都适用于 ODBCConnection.GetSchema("indexes") 集合。  
+>  适用于 SQLStatistics 方法的所有限制将应用到 GetSchema ("索引") 集合。  
   
  ]]></format>
         </remarks>
@@ -1046,12 +1046,12 @@ driver-defined-attribute-keyword ::= identifier
         <ReturnType>System.Data.Odbc.OdbcInfoMessageEventHandler</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>ODBC 驱动程序发送警告或信息性消息时发生。</summary>
+        <summary>在 ODBC 驱动程序发送警告或信息性消息时发生。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 要处理警告或信息性消息，由服务器发送客户端应创建<xref:System.Data.Odbc.OdbcInfoMessageEventHandler>委托来侦听此事件。  
+ 如果客户端需要处理警告或服务器发送的信息性消息, 则应<xref:System.Data.Odbc.OdbcInfoMessageEventHandler>创建一个委托来侦听此事件。  
   
  ]]></format>
         </remarks>
@@ -1082,15 +1082,15 @@ driver-defined-attribute-keyword ::= identifier
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>指定的属性设置打开与数据源的连接<see cref="P:System.Data.Odbc.OdbcConnection.ConnectionString" />。</summary>
+        <summary>使用 <see cref="P:System.Data.Odbc.OdbcConnection.ConnectionString" /> 指定的属性设置打开到数据源的连接。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Odbc.OdbcConnection>绘制从连接池中的打开的连接，如果有可用。 否则，它在建立与数据源的新连接。  
+ 从连接池绘制打开的连接 (如果有)。 <xref:System.Data.Odbc.OdbcConnection> 否则, 它将建立与数据源的新连接。  
   
 > [!NOTE]
->  如果<xref:System.Data.Odbc.OdbcConnection>超出范围，它表示该连接不会不会自动关闭。 因此，必须显式关闭连接通过调用<xref:System.Data.Odbc.OdbcConnection.Close%2A>， **Dispose**，或通过将放置在连接`Using`语句。  
+>  <xref:System.Data.Odbc.OdbcConnection>如果超出范围, 则它表示的连接不会自动关闭。 因此, 必须通过调用<xref:System.Data.Odbc.OdbcConnection.Close%2A>、 **Dispose**或将连接置于`Using`语句中来显式关闭连接。  
   
  ]]></format>
         </remarks>
@@ -1122,26 +1122,26 @@ driver-defined-attribute-keyword ::= identifier
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>指示当释放最后一个基础连接时可以释放 ODBC 驱动程序管理器环境句柄。</summary>
+        <summary>指示当释放最后的基础连接时可以释放 ODBC 驱动程序管理器环境句柄。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `ReleaseObjectPool` 可以调用以释放 ODBC 环境句柄。 您可能想要调用此方法，如果，例如，连接对象将不再次使用。 当在环境中的所有连接都将都关闭时，可以释放环境。 请注意，仅仅调用此方法不会实际释放环境中存在的活动连接。  
+ `ReleaseObjectPool`可以调用来释放 ODBC 环境句柄。 例如, 如果不会再次使用连接对象, 则可能需要调用此方法。 在环境中的所有连接都关闭后, 就可以释放环境了。 请注意, 单独调用方法并不会实际释放环境中存在的活动连接。  
   
- 最后释放环境之前，必须执行以下操作：  
+ 在最终释放环境之前, 必须执行以下操作:  
   
-1.  调用<xref:System.Data.Odbc.OdbcConnection.Close%2A>释放<xref:System.Data.Odbc.OdbcConnection>环境中的对象。  
+1.  调用<xref:System.Data.Odbc.OdbcConnection.Close%2A>以从环境<xref:System.Data.Odbc.OdbcConnection>中释放对象。  
   
-2.  允许每个连接的对象。  
+2.  允许每个连接对象超时。  
   
 3.  调用 <xref:System.Data.Odbc.OdbcConnection.ReleaseObjectPool%2A>。  
   
 4.  调用垃圾回收。  
   
- 相反，如果在调用<xref:System.Data.Odbc.OdbcConnection.Close%2A>上的所有活动连接，并调用垃圾回收，但不是调用<xref:System.Data.Odbc.OdbcConnection.ReleaseObjectPool%2A>，保留环境的资源保持可用。  
+ 相反, 如果您对<xref:System.Data.Odbc.OdbcConnection.Close%2A>所有活动连接调用, 并调用垃圾回收, 但不调用<xref:System.Data.Odbc.OdbcConnection.ReleaseObjectPool%2A>, 则为环境保留的资源仍可用。  
   
- 释放环境句柄后，新的请求<xref:System.Data.Odbc.OdbcConnection>创建一个新环境。  
+ 环境句柄发布后, 新<xref:System.Data.Odbc.OdbcConnection>的请求会创建新的环境。  
   
  ]]></format>
         </remarks>
@@ -1182,15 +1182,15 @@ driver-defined-attribute-keyword ::= identifier
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个字符串，包含客户端连接到服务器的版本。</summary>
+        <summary>获取一个包含客户端所连接到的服务器的版本的字符串。</summary>
         <value>连接的服务器的版本。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Data.Odbc.OdbcConnection.ServerVersion%2A>不受基础 ODBC 驱动程序，为空字符串 ("") 返回。  
+ 如果<xref:System.Data.Odbc.OdbcConnection.ServerVersion%2A>基础 ODBC 驱动程序不支持, 则返回空字符串 ("")。  
   
- <xref:System.Data.Odbc.OdbcConnection.ServerVersion%2A>属性采用的形式 '*# #。 # #。 # # #*，其中的前两个数字的主版本，接下来的两位数字是次版本，并最后四位数的发行版本。 驱动程序必须呈现此窗体中的产品版本，但也可以附加以字符串形式的特定于产品的版本 (例如，"04.01.0000 Rdb 4.1")。 此字符串的形式 '*major.minor.build*其中*主要*并*次要*是两个数字和*生成*正是四个数字位数。  
+ 属性采用 "*# #. # #. # # # #*" 格式, 其中, 前两个数字是主版本, 接下来的两个数字是次版本号, 最后四位数字是发布版本。 <xref:System.Data.Odbc.OdbcConnection.ServerVersion%2A> 驱动程序必须呈现此窗体中的产品版本, 但也可以将产品特定版本作为字符串追加 (例如, "04.01.0000 Rdb 4.1")。 此字符串的格式为 "*主要. 次要. 内部版本*", 其中*主要版本号*和*次要版本号*都是两位数, 并且*内部版本号*正好为四位数字。  
   
  ]]></format>
         </remarks>
@@ -1238,14 +1238,14 @@ driver-defined-attribute-keyword ::= identifier
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 下面被允许的状态更改：  
+ 允许的状态更改如下:  
   
--   从`Closed`到`Open`，并使用<xref:System.Data.Odbc.OdbcConnection.Open%2A>方法。  
+-   从`Closed`到`Open`,使用<xref:System.Data.Odbc.OdbcConnection.Open%2A>方法。  
   
--   从`Open`到`Closed`，使用<xref:System.Data.Odbc.OdbcConnection.Close%2A>或**释放**方法。  
+-   从`Open`到`Closed`,使用<xref:System.Data.Odbc.OdbcConnection.Close%2A>或**Dispose**方法。  
   
 > [!NOTE]
->  调用<xref:System.Data.Odbc.OdbcConnection.State%2A>上打开的连接属性会增加应用程序系统开销，因为每个此类调用会导致 SQL_ATTR_CONNECTION_DEAD 调用基础 ODBC 驱动程序来确定连接是否仍有效。  
+>  对打开的连接调用属性会增加应用程序开销,因为每个这样的调用都会导致对基础ODBC驱动程序的SQL_ATTR_CONNECTION_DEAD调用,以确定连接是否仍然有效。<xref:System.Data.Odbc.OdbcConnection.State%2A>  
   
  ]]></format>
         </remarks>
@@ -1271,7 +1271,7 @@ driver-defined-attribute-keyword ::= identifier
         <ReturnType>System.Data.StateChangeEventHandler</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>当连接的状态更改时发生。</summary>
+        <summary>当连接状态改变时发生。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1327,8 +1327,8 @@ driver-defined-attribute-keyword ::= identifier
         <Parameter Name="isolevel" Type="System.Data.IsolationLevel" Index="0" FrameworkAlternate="netframework-1.1" />
       </Parameters>
       <Docs>
-        <param name="isolevel">指定的隔离级别的枚举值的按位组合。</param>
-        <summary>开始使用指定的隔离级别的数据库事务。</summary>
+        <param name="isolevel">指定隔离级别的枚举值的按位组合。</param>
+        <summary>以指定的隔离级别启动数据库事务。</summary>
         <returns>表示新事务的对象。</returns>
         <remarks>To be added.</remarks>
         <forInternalUseOnly />

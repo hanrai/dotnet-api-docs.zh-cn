@@ -1,5 +1,5 @@
 <Type Name="HttpClient" FullName="System.Net.Http.HttpClient">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="939b636d24fc0ba7dfb1eb08ed2bfc24a465f26f" /><Meta Name="ms.sourcegitcommit" Value="9170ef1c277dbe29b425d453dc133624b156d393" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/01/2019" /><Meta Name="ms.locfileid" Value="67488167" /></Metadata><TypeSignature Language="C#" Value="public class HttpClient : System.Net.Http.HttpMessageInvoker" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="74ff44a707bc142463a2ebc8e731df5d9bb6554a" /><Meta Name="ms.sourcegitcommit" Value="f991677a7374c45590a432ff7ab830beb05f2ccd" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/27/2019" /><Meta Name="ms.locfileid" Value="68591119" /></Metadata><TypeSignature Language="C#" Value="public class HttpClient : System.Net.Http.HttpMessageInvoker" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit HttpClient extends System.Net.Http.HttpMessageInvoker" />
   <TypeSignature Language="DocId" Value="T:System.Net.Http.HttpClient" />
   <TypeSignature Language="VB.NET" Value="Public Class HttpClient&#xA;Inherits HttpMessageInvoker" />
@@ -28,15 +28,15 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Http.HttpClient>类实例充当要发送的 HTTP 请求的会话。 <xref:System.Net.Http.HttpClient>实例是应用于该实例执行的所有请求设置的集合。 此外，每个<xref:System.Net.Http.HttpClient>实例使用其自己的连接池，隔离其请求与请求执行由其他<xref:System.Net.Http.HttpClient>实例。  
+ <xref:System.Net.Http.HttpClient>类实例充当发送 HTTP 请求的会话。 <xref:System.Net.Http.HttpClient>实例是对该实例执行的所有请求应用的设置的集合。 此外, 每个<xref:System.Net.Http.HttpClient>实例都使用其自己的连接池, 并从其他<xref:System.Net.Http.HttpClient>实例所执行的请求隔离其请求。  
   
- <xref:System.Net.Http.HttpClient>还可作为基类的更具体的 HTTP 客户端。 例如，就会提供特定于 Facebook web 服务的附加方法 FacebookHttpClient (GetFriends 方法，例如)。 派生的类应重写在类上的虚方法。 请改用可接受的构造函数重载<xref:System.Net.Http.HttpMessageHandler>配置任何快照前或后请求处理来代替。
+ <xref:System.Net.Http.HttpClient>还可用作更具体的 HTTP 客户端的基类。 例如, FacebookHttpClient 提供特定于 Facebook web 服务的其他方法 (例如, GetFriends 方法)。 派生类不应重写类的虚方法。 而应使用接受<xref:System.Net.Http.HttpMessageHandler>的构造函数重载来配置任何预处理或后请求处理。
   
- 默认情况下，在.NET Framework 和 Mono<xref:System.Net.HttpWebRequest>用于将请求发送到服务器。 可以通过指定不同的通道中的构造函数重载采用一个修改此行为<xref:System.Net.Http.HttpMessageHandler>实例作为参数。 如果身份验证或缓存等功能是必需的<xref:System.Net.Http.WebRequestHandler>可以用来配置设置而传递给构造函数实例可以。 返回处理程序可传递到一个构造函数重载采用<xref:System.Net.Http.HttpMessageHandler>参数。  
+ 默认情况下, 在 .NET Framework 和<xref:System.Net.HttpWebRequest> Mono 上, 用于将请求发送到服务器。 可以通过在采用<xref:System.Net.Http.HttpMessageHandler>实例作为参数的构造函数重载之一中指定不同的通道来修改此行为。 如果需要使用身份验证或缓存等功能<xref:System.Net.Http.WebRequestHandler> , 可使用来配置设置, 并将实例传递给构造函数。 返回的处理程序可传递给采用<xref:System.Net.Http.HttpMessageHandler>参数的构造函数重载之一。  
   
- 如果应用程序使用<xref:System.Net.Http.HttpClient>中的相关类和<xref:System.Net.Http>命名空间打算下载大量数据 （50 兆字节或多个），则该应用程序应流式传输这些下载并使用默认缓冲。 如果使用的默认缓冲，则客户端内存使用情况将变得很大，甚至可能会导致显著降低性能。  
+ 如果<xref:System.Net.Http>命名空间中<xref:System.Net.Http.HttpClient>使用和相关类的应用打算下载大量数据 (50 mb 或更多), 则应用应流式传输这些下载内容, 而不使用默认缓冲。 如果使用默认缓冲, 则客户端内存使用量将会非常大, 这可能会显著降低性能。  
   
- 下面的方法是线程安全：  
+ 以下方法是线程安全的:  
   
 1.  <xref:System.Net.Http.HttpClient.CancelPendingRequests%2A>  
   
@@ -56,7 +56,7 @@
   
 9. <xref:System.Net.Http.HttpClient.SendAsync%2A>  
   
- <xref:System.Net.Http.HttpClient> 旨在实例化一次和重复使用整个应用程序的生命周期。 实例化的每个请求的 HttpClient 类将用完的重负载下可用的插槽数。 这将导致 SocketException 错误。 下面是正确使用 HttpClient 示例。  
+ <xref:System.Net.Http.HttpClient>用于在应用程序的整个生存期内实例化一次并重复使用。 实例化每个请求的 HttpClient 类将耗尽重负载下可用的插槽数。 这将导致 SocketException 错误。 下面是正确使用 HttpClient 的示例。  
   
 ```csharp
 public class GoodController : ApiController
@@ -71,40 +71,40 @@ public class GoodController : ApiController
 }
 ```  
   
-<xref:System.Net.Http.HttpClient>是一个高级别 API，包装在何处运行每个平台上可用的较低级别功能。
+<xref:System.Net.Http.HttpClient>是一个高级 API, 用于包装其运行的每个平台上可用的较低级别功能。
 
-每个平台上<xref:System.Net.Http.HttpClient>将尝试使用最佳的可用传输：
+在每个平台<xref:System.Net.Http.HttpClient>上, 尝试使用最佳的可用传输:
 
-| **主机/运行时**            | **后端**                                                                               |
+| **主机/运行时**            | **把**                                                                               |
 | --------------------------- | ----------------------------------------------------------------------------------------- |
 | Windows/.NET Framework      | <xref:System.Net.HttpWebRequest>                                                          |
 | Windows/Mono                | <xref:System.Net.HttpWebRequest>                                                          |
-| Windows/UWP                 | Windows 本机<xref:System.Net.Http.WinHttpHandler>(支持 HTTP 2.0)                   |
-| Windows/.NET Core 1.0-2.0   | Windows 本机<xref:System.Net.Http.WinHttpHandler>(支持 HTTP 2.0)                   |
-| Android/Xamarin             | 在生成时选择。 可以使用<xref:System.Net.HttpWebRequest>或配置为使用 Android 的本机 [`HttpURLConnection`](https://developer.xamarin.com/api/type/Java.Net.HttpURLConnection/) |
-| iOS、 tvOS、 watchOS/Xamarin  | 在生成时选择。 可以使用<xref:System.Net.HttpWebRequest>或将配置为使用 Apple [ `NSUrlSession` ](https://developer.xamarin.com/api/type/MonoTouch.Foundation.NSUrlSession/) (支持 HTTP 2.0) |
-| macOS/Xamarin               | 在生成时选择。 可以使用<xref:System.Net.HttpWebRequest>或将配置为使用 Apple [ `NSUrlSession` ](https://developer.xamarin.com/api/type/MonoTouch.Foundation.NSUrlSession/) (支持 HTTP 2.0) |
+| Windows/UWP                 | Windows native <xref:System.Net.Http.WinHttpHandler> (支持 HTTP 2.0)                   |
+| Windows/.NET Core 1.0-2。0   | Windows native <xref:System.Net.Http.WinHttpHandler> (支持 HTTP 2.0)                   |
+| Android/Xamarin             | 在生成时选择。 可以使用<xref:System.Net.HttpWebRequest>或配置为使用 Android 的本机[`HttpURLConnection`](https://developer.xamarin.com/api/type/Java.Net.HttpURLConnection/) |
+| iOS、tvOS、watchOS/Xamarin  | 在生成时选择。 可以使用<xref:System.Net.HttpWebRequest>或配置为使用 Apple 的[`NSUrlSession`](https://developer.xamarin.com/api/type/MonoTouch.Foundation.NSUrlSession/) (支持 HTTP 2.0) |
+| macOS/Xamarin               | 在生成时选择。 可以使用<xref:System.Net.HttpWebRequest>或配置为使用 Apple 的[`NSUrlSession`](https://developer.xamarin.com/api/type/MonoTouch.Foundation.NSUrlSession/) (支持 HTTP 2.0) |
 | macOS/Mono                  | <xref:System.Net.HttpWebRequest>                                                          |
-| macOS/.NET Core 1.0-2.0     | `libcurl`-基于 HTTP 传输协议 (HTTP 2.0 支持)                                         |
+| macOS/.NET Core 1.0-2。0     | `libcurl`基于的 HTTP 传输 (支持 HTTP 2.0)                                         |
 | Linux/Mono                  | <xref:System.Net.HttpWebRequest>                                                          |
-| Linux/.NET Core 1.0-2.0     | `libcurl`-基于 HTTP 传输协议 (HTTP 2.0 支持)                                         |
-| .NET core 2.1 和更高版本     | <xref:System.Net.Http.SocketsHttpHandler?displayProperty=nameWithType>                    |
+| Linux/.NET Core 1.0-2。0     | `libcurl`基于的 HTTP 传输 (支持 HTTP 2.0)                                         |
+| .NET Core 2.1 及更高版本     | <xref:System.Net.Http.SocketsHttpHandler?displayProperty=nameWithType>                    |
 
-用户还可以配置的特定传输<xref:System.Net.Http.HttpClient>通过调用<xref:System.Net.Http.HttpClient.%23ctor*>构造函数采用<xref:System.Net.Http.HttpMessageHandler>。
+用户还可以通过<xref:System.Net.Http.HttpClient> <xref:System.Net.Http.HttpClient.%23ctor*>调用采用<xref:System.Net.Http.HttpMessageHandler>的构造函数, 为配置特定传输。
 
-### <a name="httpclient-and-net-core"></a>HttpClient 和.NET Core
+### <a name="httpclient-and-net-core"></a>HttpClient 和 .NET Core
 
-从.NET Core 2.1<xref:System.Net.Http.SocketsHttpHandler?displayProperty=nameWithType>类而不是`HttpClientHandler`提供实现由更高级别的 HTTP 网络类如`HttpClient`。 使用<xref:System.Net.Http.SocketsHttpHandler>提供了很多优点：
+从 .net Core 2.1 开始, <xref:System.Net.Http.SocketsHttpHandler?displayProperty=nameWithType>类`HttpClientHandler`而不是提供由较高级别的 HTTP 网络类 (如) `HttpClient`使用的实现。 使用<xref:System.Net.Http.SocketsHttpHandler>可提供多种优势:
 
 - 对照以前的实现，可以看到显著的性能改进。
 
-- 消除平台依赖项，这样可以简化部署和维护。 例如，`libcurl`不再依赖于.NET Core 用于 macOS 和.NET Core 适用于 Linux。
+- 消除了平台依赖项, 从而简化了部署和服务。 例如, `libcurl`不再依赖于适用于 macOS 的 .net core 和适用于 Linux 的 .net core。
 
-- 在所有.NET 平台上一致的行为。
+- 各种 .NET 平台的行为一致。
 
-如果此更改不需要，可以配置应用程序以使用较旧<xref:System.Net.Http.HttpClientHandler?displayProperty=nameWithType>改为在多方面：
+如果不需要此更改, 可以通过多种方式将应用程序配置为<xref:System.Net.Http.HttpClientHandler?displayProperty=nameWithType>使用旧版本:
 
-- 通过调用<xref:System.AppContext.SetSwitch%2A?displayProperty=nameWithType>方法，如下所示：
+- 通过调用<xref:System.AppContext.SetSwitch%2A?displayProperty=nameWithType>方法, 如下所示:
 
    ```csharp
    AppContext.SetSwitch("System.Net.Http.UseSocketsHttpHandler", false);
@@ -113,7 +113,7 @@ public class GoodController : ApiController
    ```vb
    AppContext.SetSwitch("System.Net.Http.UseSocketsHttpHandler", False)
    ``` 
-- 通过定义`System.Net.Http.UseSocketsHttpHandler`切入 *。 netcore.runtimeconfig.json*配置文件：
+- 通过在`System.Net.Http.UseSocketsHttpHandler` *. runtimeconfig.template.json*配置文件中定义开关 netcore:
 
   ```json
   "runtimeOptions": {
@@ -123,12 +123,12 @@ public class GoodController : ApiController
   }
   ```
   
-- 通过定义一个名为环境变量`DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER`并将其设置为`false`则为 0。
+- 通过定义名为`DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER`的环境变量并将其设置`false`为或0。
 
 ## Examples  
  [!code-csharp[System.Net.Http.HttpClient#1](~/samples/snippets/csharp/VS_Snippets_Misc/system.net.http.httpclient/cs/source.cs#1)]  
   
- 前面的代码示例使用`async Task Main()`入口点。 该功能需要 C# 7.1 或更高版本。
+ 前面的代码示例使用`async Task Main()`入口点。 该功能需要C# 7.1 或更高版本。
  
  ]]></format>
     </remarks>
@@ -152,7 +152,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Http.HttpClient> 旨在实例化一次和重复使用整个应用程序的生命周期。 实例化的每个请求的 HttpClient 类将用完的重负载下可用的插槽数。 这将导致 SocketException 错误。 下面是正确使用 HttpClient 示例。  
+ <xref:System.Net.Http.HttpClient>用于在应用程序的整个生存期内实例化一次并重复使用。 实例化每个请求的 HttpClient 类将耗尽重负载下可用的插槽数。 这将导致 SocketException 错误。 下面是正确使用 HttpClient 的示例。  
   
 ```csharp  
 public class GoodController : ApiController  
@@ -198,7 +198,7 @@ public class GoodController : ApiController
         <remarks>
           <format type="text/markdown"><![CDATA[    
 ## Remarks  
-使用此构造函数是等效于调用[ `HttpClient(new HttpClientHandler(), true)` ](xref:System.Net.Http.HttpClient.%23ctor(System.Net.Http.HttpMessageHandler,System.Boolean))构造函数。
+使用此构造函数等效于调用[`HttpClient(new HttpClientHandler(), true)`](xref:System.Net.Http.HttpClient.%23ctor(System.Net.Http.HttpMessageHandler,System.Boolean))构造函数。
 ]]></format>
         </remarks>
       </Docs>
@@ -233,9 +233,9 @@ public class GoodController : ApiController
         <remarks>
           <format type="text/markdown"><![CDATA[    
 ## Remarks  
-使用此构造函数是等效于调用[ `HttpClient(handler, true)` ](xref:System.Net.Http.HttpClient.%23ctor(System.Net.Http.HttpMessageHandler,System.Boolean))构造函数。
+使用此构造函数等效于调用[`HttpClient(handler, true)`](xref:System.Net.Http.HttpClient.%23ctor(System.Net.Http.HttpMessageHandler,System.Boolean))构造函数。
 
-指定`handler`通过调用将被释放[HttpClient.Dispose](xref:System.Net.Http.HttpMessageInvoker.Dispose)。  
+指定`handler`的将通过调用[HttpClient](xref:System.Net.Http.HttpMessageInvoker.Dispose)来释放。  
 ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="handler" /> 为 <see langword="null" />。</exception>
@@ -305,7 +305,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 发送时<xref:System.Net.Http.HttpRequestMessage>的相对 Uri，对消息 Uri 将添加到<xref:System.Net.Http.HttpClient.BaseAddress%2A>属性来创建绝对 Uri。  
+ 当<xref:System.Net.Http.HttpRequestMessage>使用相对 Uri 发送时, 消息 Uri 将添加<xref:System.Net.Http.HttpClient.BaseAddress%2A>到属性中以创建绝对 uri。  
   
  ]]></format>
         </remarks>
@@ -342,7 +342,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法后<xref:System.Net.Http.HttpClient>实例仍可用于执行其他请求。  
+ 调用此方法后, <xref:System.Net.Http.HttpClient>仍可使用实例执行其他请求。  
   
  ]]></format>
         </remarks>
@@ -367,9 +367,30 @@ public class GoodController : ApiController
         <ReturnType>System.Net.IWebProxy</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取或设置全局 HTTP 代理。</summary>
+        <value>用于实例化<see cref="T:System.Net.HttpWebRequest" />的每个调用所使用的代理。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks
+如果在通过其构造函数传递的 <xref:System.Net.Http.HttpClient> <xref:System.Net.Http.HttpClientHandler>中未显式设置代理, 则此静态属性将确定所有 实例都使用的默认代理。 
+
+此属性返回的默认实例将根据你的平台, 初始化以下一组不同的规则:
+* **对于 Windows:** 从环境变量中读取代理配置, 或者从用户的代理设置中读取代理配置 (如果未定义)。
+
+* **对于 macOS:** 从环境变量中读取代理配置, 如果未定义, 则从系统的代理设置中读取。
+
+* **对于 Linux:** 从环境变量读取代理配置, 或者, 如果未定义这些配置, 此属性将初始化绕过所有地址的非配置实例。
+
+用于在 Windows 和基于`DefaultProxy` Unix 的平台上进行初始化的环境变量包括:
+* HTTP_PROXY: 用于 HTTP 请求的代理服务器的主机名或 IP 地址。
+* HTTPS_PROXY: HTTPS 请求上使用的代理服务器的主机名或 IP 地址。
+* ALL_PROXY: 在未定义 HTTP_PROXY 和/或 HTTPS_PROXY 的情况下, 用于 HTTP 和/或 HTTPS 请求的代理服务器的主机名或 IP 地址。
+* NO_PROXY: 应从代理中排除的主机名的逗号分隔列表。
+
+ ]]></format>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">传递的值不能为 <see langword="null" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="DefaultRequestHeaders">
@@ -403,7 +424,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性上设置的标头不需要再次设置对请求消息。  
+ 此属性上设置的标头不需要再次设置为请求消息。  
   
  ]]></format>
         </remarks>
@@ -428,10 +449,23 @@ public class GoodController : ApiController
         <ReturnType>System.Version</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
-      </Docs>
+        <summary>获取或设置对此 <see cref="T:System.Net.Http.HttpClient" /> 实例发出的后续请求使用的默认 HTTP 版本。</summary>
+        <value>用于此<see cref="T:System.Net.Http.HttpClient" />实例发出的任何请求的默认版本。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+`DefaultRequestVersion`默认<xref:System.Net.HttpVersion.Version11?displayProperty=nameWithType>情况下为。
+
+<xref:System.Net.Http.HttpClient.GetAsync%2A> <xref:System.Net.Http.HttpClient.GetStringAsync%2A> <xref:System.Net.Http.HttpClient.SendAsync%2A>属性指定要用于使用此<xref:System.Net.Http.HttpClient>实例发送的任何请求的默认 HTTP 版本, 如对、或的调用。 `DefaultRequestVersion`
+
+`DefaultRequestVersion` 只要<xref:System.Net.Http.HttpClient>实例尚未启动任何请求, 就可以更改该属性。
+ ]]></format>
+      </remarks>
+      <exception cref="T:System.ArgumentNullException">在设置操作中，<see langword="DefaultRequestVersion" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException"><see cref="T:System.Net.Http.HttpClient" /> 实例已启动一个或多个请求。</exception>
+      <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Net.Http.HttpClient" /> 实例已被释放。</exception>
+    </Docs>
     </Member>
     <MemberGroup MemberName="DeleteAsync">
       <AssemblyInfo>
@@ -480,7 +514,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -524,7 +558,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -569,7 +603,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -614,7 +648,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -657,11 +691,11 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法由公共`Dispose()`方法和<xref:System.Object.Finalize%2A>方法。 `Dispose()` 调用受保护`Dispose(Boolean)`方法替换`disposing`参数设置为`true`。 <xref:System.Object.Finalize%2A> 调用`Dispose`与`disposing`设置为`false`。  
+ 此方法由公共`Dispose()`方法<xref:System.Object.Finalize%2A>和方法调用。 `Dispose()`调用受保护`Dispose(Boolean)`的方法, `disposing`并将参数`true`设置为。 <xref:System.Object.Finalize%2A>在`Dispose` 设置`disposing` 为`false`的情况调用。  
   
  当 `disposing` 参数为 `true` 时，此方法释放该 <xref:System.Net.Http.HttpClient> 引用的、由任何托管对象持有的全部资源。 此方法调用每个引用对象的 `Dispose()` 方法。  
   
- 调用此方法时，<xref:System.Net.Http.HttpClient.CancelPendingRequests%2A>调用方法来中止所有挂起的请求。  
+ 调用此方法时, <xref:System.Net.Http.HttpClient.CancelPendingRequests%2A>将调用方法以中止所有挂起的请求。  
   
  ]]></format>
         </remarks>
@@ -680,7 +714,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止该操作。  
+ 操作不会阻止。  
   
  ]]></format>
         </remarks>
@@ -721,7 +755,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -764,7 +798,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -809,7 +843,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成基于`completionOption`读取部分或全部 （包括内容） 的响应后的参数。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>部分或全部响应 (包括`completionOption`内容) 后, 将根据参数完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -853,7 +887,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -898,7 +932,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成基于`completionOption`读取部分或全部 （包括内容） 的响应后的参数。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>部分或全部响应 (包括`completionOption`内容) 后, 将根据参数完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -942,7 +976,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -988,7 +1022,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成基于`completionOption`读取部分或全部 （包括内容） 的响应后的参数。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>部分或全部响应 (包括`completionOption`内容) 后, 将根据参数完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -1034,7 +1068,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成基于`completionOption`读取部分或全部 （包括内容） 的响应后的参数。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>部分或全部响应 (包括`completionOption`内容) 后, 将根据参数完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -1055,7 +1089,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止该操作。  
+ 操作不会阻止。  
   
  ]]></format>
         </remarks>
@@ -1101,7 +1135,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取整个响应正文后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应正文后, 返回的对象将完成。  
   
  ]]></format>
         </remarks>
@@ -1149,7 +1183,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取整个响应正文后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应正文后, 返回的对象将完成。  
   
  ]]></format>
         </remarks>
@@ -1170,7 +1204,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止该操作。  
+ 操作不会阻止。  
   
  ]]></format>
         </remarks>
@@ -1216,7 +1250,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成后读取的响应标头。 此方法不会不读取操作和缓冲响应正文。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>响应标头后, 返回的对象将完成。 此方法不读取或缓冲响应正文。  
   
  ]]></format>
         </remarks>
@@ -1264,7 +1298,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成后读取的响应标头。 此方法不会不读取操作和缓冲响应正文。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>响应标头后, 返回的对象将完成。 此方法不读取或缓冲响应正文。  
   
  ]]></format>
         </remarks>
@@ -1285,7 +1319,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。  
+ 此操作不会阻止。  
   
  ]]></format>
         </remarks>
@@ -1331,7 +1365,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取整个响应正文后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应正文后, 返回的对象将完成。  
   
  ]]></format>
         </remarks>
@@ -1379,7 +1413,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取整个响应正文后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应正文后, 返回的对象将完成。  
   
  ]]></format>
         </remarks>
@@ -1418,7 +1452,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序可以设置<xref:System.Net.Http.HttpClient.MaxResponseContentBufferSize%2A>属性设置为较低的值来限制对缓冲区的响应的大小，在读取响应时。 如果响应内容的大小大于<xref:System.Net.Http.HttpClient.MaxResponseContentBufferSize%2A>属性，将引发异常。  
+ 应用可以将<xref:System.Net.Http.HttpClient.MaxResponseContentBufferSize%2A>属性设置为较小的值, 以限制读取响应时缓冲区的响应大小。 如果响应内容的大小大于<xref:System.Net.Http.HttpClient.MaxResponseContentBufferSize%2A>属性, 则会引发异常。  
   
  ]]></format>
         </remarks>
@@ -1459,7 +1493,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -1497,7 +1531,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -1537,7 +1571,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -1577,7 +1611,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -1596,7 +1630,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。  
+ 此操作不会阻止。  
   
  ]]></format>
         </remarks>
@@ -1639,7 +1673,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -1684,7 +1718,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -1730,7 +1764,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -1776,7 +1810,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -1797,7 +1831,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。  
+ 此操作不会阻止。  
   
  ]]></format>
         </remarks>
@@ -1840,7 +1874,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -1885,7 +1919,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -1931,7 +1965,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -1977,7 +2011,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取 （包括内容） 的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>整个响应 (包括内容) 后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -1998,7 +2032,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。  
+ 此操作不会阻止。  
   
  ]]></format>
         </remarks>
@@ -2039,7 +2073,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取包含内容的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>包含内容的整个响应后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -2085,7 +2119,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 具体取决于值`completionOption`参数，返回<xref:System.Threading.Tasks.Task%601>对象便可立即响应可用或读取包含内容的整个响应。  
+ 此操作不会阻止。 根据`completionOption`参数的值, 返回<xref:System.Threading.Tasks.Task%601>的对象将在响应可用或包含内容的整个响应 (包括内容) 之后立即完成。  
   
  ]]></format>
         </remarks>
@@ -2130,7 +2164,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>读取包含内容的整个响应后，将完成对象。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>包含内容的整个响应后, 将完成返回的对象。  
   
  ]]></format>
         </remarks>
@@ -2177,7 +2211,7 @@ public class GoodController : ApiController
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 具体取决于值`completionOption`参数，返回<xref:System.Threading.Tasks.Task%601>对象便可立即响应可用或读取包含内容的整个响应。  
+ 此操作不会阻止。 根据`completionOption`参数的值, 返回<xref:System.Threading.Tasks.Task%601>的对象将在响应可用或包含内容的整个响应 (包括内容) 之后立即完成。  
   
  ]]></format>
         </remarks>
@@ -2219,11 +2253,11 @@ public class GoodController : ApiController
 ## Remarks  
  默认值是 100,000 毫秒（100 秒）。  
   
- 若要设置无限超时，请将属性值设置为<xref:System.Threading.Timeout.InfiniteTimeSpan>。  
+ 若要设置无限超时, 请将属性值设置<xref:System.Threading.Timeout.InfiniteTimeSpan>为。  
   
- 域名系统 (DNS) 查询可能需要最多 15 秒钟才能返回或超时时间。如果你的请求包含需要解析的主机名，并设置<xref:System.Net.Http.HttpClient.Timeout%2A>的值不超过 15 秒，可能需要花费 15 秒或更长时间才<xref:System.Net.WebException>引发来指示你的请求超时。  
+ 域名系统 (DNS) 查询可能需要长达15秒钟的时间来返回或超时。如果你的请求包含需要解析的主机名, 并且你<xref:System.Net.Http.HttpClient.Timeout%2A>将其设置为小于15秒的值, 则可能需要15秒或更<xref:System.Net.WebException>长时间, 然后才会引发以指示请求超时。  
   
- 相同的超时值将适用于所有请求使用此<xref:System.Net.Http.HttpClient>实例。  也可以设置不同的使用的各个请求的超时<xref:System.Threading.CancellationTokenSource>任务。 请注意，只有较短的两个超时将适用。  
+ 使用此<xref:System.Net.Http.HttpClient>实例的所有请求都将使用相同的超时值。  你还可以使用任务上的<xref:System.Threading.CancellationTokenSource>为单个请求设置不同的超时。 请注意, 只会应用两个超时中较短的一个。  
   
  ## <a name="example"></a>示例
  

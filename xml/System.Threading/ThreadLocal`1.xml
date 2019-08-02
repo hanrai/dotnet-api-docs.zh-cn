@@ -1,5 +1,5 @@
 <Type Name="ThreadLocal&lt;T&gt;" FullName="System.Threading.ThreadLocal&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="229261779e88f1a3f244ed38b75d05b22d5635ba" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58737579" /></Metadata><TypeSignature Language="C#" Value="public class ThreadLocal&lt;T&gt; : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f85db67fb53d297d1aec96b0ff39c4bed9963729" /><Meta Name="ms.sourcegitcommit" Value="e7974886b08aa83a8fb461e8550f31a7d4331ee3" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/23/2019" /><Meta Name="ms.locfileid" Value="68392309" /></Metadata><TypeSignature Language="C#" Value="public class ThreadLocal&lt;T&gt; : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ThreadLocal`1&lt;T&gt; extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Threading.ThreadLocal`1" />
   <TypeSignature Language="VB.NET" Value="Public Class ThreadLocal(Of T)&#xA;Implements IDisposable" />
@@ -58,7 +58,7 @@
   
  ]]></format>
     </remarks>
-    <threadsafe>除<see cref="M:System.Threading.ThreadLocal`1.Dispose" />的所有公共和受保护的成员<see cref="T:System.Threading.ThreadLocal`1" />是线程安全的可能从多个线程同时使用。 返回值<see cref="P:System.Threading.ThreadLocal`1.Value" />和<see cref="P:System.Threading.ThreadLocal`1.IsValueCreated" />属性是特定于访问属性时的线程。</threadsafe>
+    <threadsafe>除<see cref="M:System.Threading.ThreadLocal`1.Dispose" />外, 所有的公共和受保护的成员<see cref="T:System.Threading.ThreadLocal`1" />都是线程安全的, 可从多个线程并发使用。 为<see cref="P:System.Threading.ThreadLocal`1.Value" /> 和<see cref="P:System.Threading.ThreadLocal`1.IsValueCreated" />属性返回的值特定于在其上访问该属性的线程。</threadsafe>
     <altmember cref="T:System.Lazy`1" />
     <altmember cref="T:System.Threading.AsyncLocal`1" />
     <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">延迟初始化</related>
@@ -112,9 +112,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认值`T`用于初始化实例时<xref:System.Threading.ThreadLocal%601.Value%2A>第一次访问。  
+ `T` 当<xref:System.Threading.ThreadLocal%601.Value%2A>首次访问时, 将使用的默认值来初始化实例。  
   
- 此构造函数是等效于调用<xref:System.Threading.ThreadLocal%601.%23ctor%28System.Boolean%29>构造函数，值为`false`为`trackAllValues`参数。  
+ 此构造函数等效于使用<xref:System.Threading.ThreadLocal%601.%23ctor%28System.Boolean%29> `trackAllValues`参数的`false`值调用构造函数。  
   
  ]]></format>
         </remarks>
@@ -158,7 +158,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`trackAllValues`是`false`、 仅为当前线程的此实例的值是可访问。 尝试使用<xref:System.Threading.ThreadLocal%601.Values%2A>属性来检索所有值，则会引发<xref:System.InvalidOperationException>异常。  
+ 如果`trackAllValues` 为`false`, 则仅可访问当前线程的此实例的值。 尝试使用<xref:System.Threading.ThreadLocal%601.Values%2A>属性检索所有值会<xref:System.InvalidOperationException>引发异常。  
   
  ]]></format>
         </remarks>
@@ -239,7 +239,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`trackAllValues`是`false`、 仅为当前线程的此实例的值是可访问。 尝试使用<xref:System.Threading.ThreadLocal%601.Values%2A>属性来检索所有值，则会引发<xref:System.InvalidOperationException>异常。  
+ 如果`trackAllValues` 为`false`, 则仅可访问当前线程的此实例的值。 尝试使用<xref:System.Threading.ThreadLocal%601.Values%2A>属性检索所有值会<xref:System.InvalidOperationException>引发异常。  
   
  ]]></format>
         </remarks>
@@ -295,9 +295,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在完成使用 `Dispose` 后，应调用 <xref:System.Threading.ThreadLocal%601>。 `Dispose` 方法使 <xref:System.Threading.ThreadLocal%601> 处于不可用状态。 在调用`Dispose`，必须释放对所有引用<xref:System.Threading.ThreadLocal%601>这样垃圾回收器才能收回内存的<xref:System.Threading.ThreadLocal%601>占用。  
+ 在完成使用 `Dispose` 后，应调用 <xref:System.Threading.ThreadLocal%601>。 `Dispose` 方法使 <xref:System.Threading.ThreadLocal%601> 处于不可用状态。 调用`Dispose`后, 必须释放对的<xref:System.Threading.ThreadLocal%601>所有引用, 以便垃圾回收器能够<xref:System.Threading.ThreadLocal%601>回收占用的内存。  
   
- 有关详细信息，请参阅[清理了非托管资源](~/docs/standard/garbage-collection/unmanaged.md)并[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
+ 有关详细信息, 请参阅[清理非托管资源](~/docs/standard/garbage-collection/unmanaged.md)和[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
   
 > [!NOTE]
 >  每次释放对 `Dispose` 的最后一个引用前，均应调用 <xref:System.Threading.ThreadLocal%601>。 否则，在垃圾回收器调用 <xref:System.Threading.ThreadLocal%601> 对象的 `Finalize` 方法之前，该对象正在使用的资源不会被释放。  
@@ -347,7 +347,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 与大多数的成员的不同<xref:System.Threading.ThreadLocal%601>，此方法不是线程安全。  
+ 与的大多数成员<xref:System.Threading.ThreadLocal%601>不同, 此方法不是线程安全的。  
   
  ]]></format>
         </remarks>
@@ -467,14 +467,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法会初始化当前线程，强制与访问这种情况<xref:System.Threading.ThreadLocal%601.Value%2A>直接。  
+ 调用此方法会强制初始化当前线程, 就像直接访问<xref:System.Threading.ThreadLocal%601.Value%2A>一样。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ObjectDisposedException">已释放了 <see cref="T:System.Threading.ThreadLocal`1" /> 实例。</exception>
         <exception cref="T:System.NullReferenceException">当前线程的 <see cref="P:System.Threading.ThreadLocal`1.Value" /> 为 null 引用（Visual Basic 中为 Nothing）。</exception>
         <exception cref="T:System.InvalidOperationException">初始化函数尝试以递归方式引用 <see cref="P:System.Threading.ThreadLocal`1.Value" />。</exception>
-        <exception cref="T:System.MissingMemberException">没有提供默认构造函数，且没有提供值工厂。</exception>
+        <exception cref="T:System.MissingMemberException">没有提供无参数构造函数，且没有提供值工厂。</exception>
         <altmember cref="T:System.Lazy`1" />
         <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">延迟初始化</related>
         <related type="Article" href="https://msdn.microsoft.com/library/8cd68620-dcc3-4f20-8835-c728a6820e71">如何：执行对象的延迟初始化</related>
@@ -520,13 +520,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果此实例未以前初始化当前线程，访问<xref:System.Threading.ThreadLocal%601.Value%2A>将尝试对其进行初始化。 如果在构造期间没有提供初始化函数，初始化将发生这种情况调用函数以检索的初始值<xref:System.Threading.ThreadLocal%601.Value%2A>。 否则，将使用的默认值。 如果引发异常，该异常缓存，并在每次后续访问的属性引发。  
+ 如果之前未为当前线程初始化此实例, 则访问<xref:System.Threading.ThreadLocal%601.Value%2A>将尝试对其进行初始化。 如果初始化函数是在构造过程中提供的, 则通过调用函数来检索的初始值来执行<xref:System.Threading.ThreadLocal%601.Value%2A>初始化。 否则, 将使用的默认值。 如果引发异常, 则在每次访问该属性时, 将缓存并引发此异常。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ObjectDisposedException">已释放了 <see cref="T:System.Threading.ThreadLocal`1" /> 实例。</exception>
         <exception cref="T:System.InvalidOperationException">初始化函数尝试以递归方式引用 <see cref="P:System.Threading.ThreadLocal`1.Value" />。</exception>
-        <exception cref="T:System.MissingMemberException">没有提供默认构造函数，且没有提供值工厂。</exception>
+        <exception cref="T:System.MissingMemberException">没有提供无参数构造函数，且没有提供值工厂。</exception>
         <altmember cref="T:System.Lazy`1" />
         <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">延迟初始化</related>
         <related type="Article" href="https://msdn.microsoft.com/library/8cd68620-dcc3-4f20-8835-c728a6820e71">如何：执行对象的延迟初始化</related>

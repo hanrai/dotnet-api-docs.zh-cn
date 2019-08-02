@@ -44,14 +44,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Runtime.InteropServices.UnmanagedType>枚举，其中<xref:System.Runtime.InteropServices.MarshalAsAttribute?displayProperty=nameWithType>特性以指定在与非托管代码互操作封送类型的方式。  此枚举可用于封送代码使用.NET Framework 中不可用的简单值类型 （I1、 I2、 I4、 i8、r8 R4，、 U2、 U4 和 U8），非托管类型和各种其他类型。  
+ 使用带有属性的<xref:System.Runtime.InteropServices.UnmanagedType>枚举来指定如何在与非托管代码互操作过程中对类型进行<xref:System.Runtime.InteropServices.MarshalAsAttribute?displayProperty=nameWithType>封送处理。  您可以使用此枚举来使用简单的值类型 (I1、I2、I4、I8、R4、R8、U2、U4 和 U8)、不可在 .NET Framework 中使用的非托管类型以及各种其他类型对代码进行封送处理。  
   
  有关详细信息，请参阅[与非托管代码交互操作](~/docs/framework/interop/index.md)。  
   
    
   
 ## Examples  
- 下面的代码段演示如何在托管的源代码中声明非托管的 COM 组件实现的接口。 <xref:System.Runtime.InteropServices.ComImportAttribute?displayProperty=nameWithType>属性防止`IMyStorage`从 com 返回用于导出的接口 （COM 客户端应使用现有的 COM 组件直接。）在此示例中，<xref:System.Runtime.InteropServices.MarshalAsAttribute>指定多个<xref:System.Runtime.InteropServices.UnmanagedType>成员，表示由原始 COM 接口的类型。  
+ 下面的代码段演示如何在托管源代码中声明由 COM 组件实现的非托管接口。 <xref:System.Runtime.InteropServices.ComImportAttribute?displayProperty=nameWithType>特性禁止将接口导出`IMyStorage`回来供 COM 使用。 (COM 客户端应直接使用现有的 COM 组件。)在此示例中<xref:System.Runtime.InteropServices.MarshalAsAttribute> , 指定<xref:System.Runtime.InteropServices.UnmanagedType>了若干成员, 这些成员表示原始 COM 接口使用的类型。  
   
  [!code-cpp[ImprovedInteropSnippets#2](~/samples/snippets/cpp/VS_Snippets_CLR/ImprovedInteropSnippets/CPP/codefile2.cpp#2)]
  [!code-csharp[ImprovedInteropSnippets#2](~/samples/snippets/csharp/VS_Snippets_CLR/ImprovedInteropSnippets/CS/codefile2.cs#2)]
@@ -310,7 +310,7 @@
       </ReturnValue>
       <MemberValue>23</MemberValue>
       <Docs>
-        <summary>用于在结构中出现的内联定长字符数组。 <see langword="ByValTStr" /> 类型的行为类似于结构内的 C 样式、 固定大小字符串 (例如， <c>char s [5]</c>)。 与 <see langword="ByValTStr" /> 一起使用的字符类型由应用于包含结构的 <see cref="T:System.Runtime.InteropServices.StructLayoutAttribute" /> 属性的 <see cref="T:System.Runtime.InteropServices.CharSet" /> 参数确定。 应始终使用 <see cref="F:System.Runtime.InteropServices.MarshalAsAttribute.SizeConst" /> 字段来指示数组的大小。</summary>
+        <summary>用于在结构中出现的内联定长字符数组。 <see langword="ByValTStr" /> 类型的行为类似于结构中大小固定的字符串 C 样式（例如，<c>char s[5]</c>）。 与 <see langword="ByValTStr" /> 一起使用的字符类型由应用于包含结构的 <see cref="T:System.Runtime.InteropServices.StructLayoutAttribute" /> 属性的 <see cref="T:System.Runtime.InteropServices.CharSet" /> 参数确定。 应始终使用 <see cref="F:System.Runtime.InteropServices.MarshalAsAttribute.SizeConst" /> 字段来指示数组的大小。</summary>
       </Docs>
     </Member>
     <Member MemberName="Currency">
@@ -710,7 +710,7 @@
       </ReturnValue>
       <MemberValue>26</MemberValue>
       <Docs>
-        <summary>COM <see langword="IDispatch" /> 指针（Microsoft Visual Basic 6.0 中的 <see langword="Object" />）。</summary>
+        <summary>COM <see langword="IDispatch" /> 指针（Microsoft Visual Basic 6.0 中的<see langword="Object" /> ）。</summary>
       </Docs>
     </Member>
     <Member MemberName="IInspectable">
@@ -1052,7 +1052,7 @@
       </ReturnValue>
       <MemberValue>21</MemberValue>
       <Docs>
-        <summary>一个 2 字节、以 null 结尾的 Unicode 字符串。 不能使用<see langword="LPWStr" />与非托管字符串值，除非字符串已通过使用非托管<see langword="CoTaskMemAlloc" />函数。</summary>
+        <summary>一个 2 字节、以 null 结尾的 Unicode 字符串。 不能将 <see langword="LPWStr" /> 值用于未托管的字符串，除非该字符串使用未托管的 <see langword="CoTaskMemAlloc" /> 函数创建。</summary>
       </Docs>
     </Member>
     <Member MemberName="R4">

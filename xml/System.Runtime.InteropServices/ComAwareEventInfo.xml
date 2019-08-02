@@ -1,5 +1,5 @@
 <Type Name="ComAwareEventInfo" FullName="System.Runtime.InteropServices.ComAwareEventInfo">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="cae1017a4ca43406a4f977816aacf86779b3e034" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67248286" /></Metadata><TypeSignature Language="C#" Value="public class ComAwareEventInfo : System.Reflection.EventInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8353483975c0b433b5b50b5404c4549764b36c90" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68543613" /></Metadata><TypeSignature Language="C#" Value="public class ComAwareEventInfo : System.Reflection.EventInfo" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ComAwareEventInfo extends System.Reflection.EventInfo" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.ComAwareEventInfo" />
   <TypeSignature Language="VB.NET" Value="Public Class ComAwareEventInfo&#xA;Inherits EventInfo" />
@@ -49,11 +49,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常情况下，编译器会自动嵌入到调用<xref:System.Runtime.InteropServices.ComAwareEventInfo.AddEventHandler%28System.Object%2CSystem.Delegate%29?displayProperty=nameWithType>和<xref:System.Runtime.InteropServices.ComAwareEventInfo.RemoveEventHandler%28System.Object%2CSystem.Delegate%29?displayProperty=nameWithType>而不是使用正则方法将处理程序添加和删除的事件处理程序方法。 如果发生这种情况，需要嵌入上定义相应的事件的接口。  
+ 通常, 编译器将自动嵌入对<xref:System.Runtime.InteropServices.ComAwareEventInfo.AddEventHandler%28System.Object%2CSystem.Delegate%29?displayProperty=nameWithType>和方法的调用, 而不是使用常规的<xref:System.Runtime.InteropServices.ComAwareEventInfo.RemoveEventHandler%28System.Object%2CSystem.Delegate%29?displayProperty=nameWithType> add 处理程序和删除事件处理程序方法。 如果需要嵌入相应事件的定义接口, 则会发生这种情况。  
   
- 可以通过将嵌入整个程序集使用包含此接口来指定此 **/link**编译器上或通过设置选项**嵌入互操作类型**属性设置为`True`视觉对象中Studio。  
+ 可以通过在编译器上使用 **/link**选项, 或在 Visual Studio 中将 "**嵌入互操作类型**" 属性设置为`True` , 来指定此项。  
   
- <xref:System.Runtime.InteropServices.ComAwareEventInfo>类型派生<xref:System.Reflection.EventInfo>类，并重写<xref:System.Reflection.EventInfo.AddEventHandler%28System.Object%2CSystem.Delegate%29?displayProperty=nameWithType>和<xref:System.Reflection.EventInfo.RemoveEventHandler%28System.Object%2CSystem.Delegate%29?displayProperty=nameWithType>方法。  
+ 类型派生<xref:System.Reflection.EventInfo.AddEventHandler%28System.Object%2CSystem.Delegate%29?displayProperty=nameWithType>自类, 并重写和<xref:System.Reflection.EventInfo.RemoveEventHandler%28System.Object%2CSystem.Delegate%29?displayProperty=nameWithType>方法。 <xref:System.Reflection.EventInfo> <xref:System.Runtime.InteropServices.ComAwareEventInfo>  
   
  ]]></format>
     </remarks>
@@ -140,25 +140,25 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法是类似于<xref:System.Reflection.EventInfo.AddEventHandler%28System.Object%2CSystem.Delegate%29?displayProperty=nameWithType>方法，但它可以将事件附加到 COM 对象。  
+ 此方法类似<xref:System.Reflection.EventInfo.AddEventHandler%28System.Object%2CSystem.Delegate%29?displayProperty=nameWithType>于方法, 只是它允许你将事件附加到 COM 对象。  
   
- 如果`target`是一个 COM 对象，此方法将委托添加到一个事件，通过使用<xref:System.Runtime.InteropServices.ComEventsHelper.Combine%28System.Object%2CSystem.Guid%2CSystem.Int32%2CSystem.Delegate%29?displayProperty=nameWithType>方法。  
+ 如果`target`是 COM 对象, 则此方法<xref:System.Runtime.InteropServices.ComEventsHelper.Combine%28System.Object%2CSystem.Guid%2CSystem.Int32%2CSystem.Delegate%29?displayProperty=nameWithType>使用方法将委托添加到事件。  
   
- <xref:System.Runtime.InteropServices.ComAwareEventInfo.AddEventHandler%2A> 便于将调用转发给相应的托管委托注册 COM 事件接收器。 它需要以下信息：  
+ <xref:System.Runtime.InteropServices.ComAwareEventInfo.AddEventHandler%2A>有助于注册将调用转发到相应托管委托的 COM 事件接收器。 它需要以下信息:  
   
 -   目标对象本身 (`target`)。  
   
 -   源接口的 GUID。  
   
--   对应于指定的事件的 COM 接口上的方法的 DispID。  
+-   与指定事件相对应的 COM 接口上的方法的 DispID。  
   
--   将 COM 对象触发相应的事件时调用的委托 (`handler`)。  
+-   当 COM 对象触发相应事件 (`handler`) 时将调用的委托。  
   
- <xref:System.Runtime.InteropServices.ComAwareEventInfo.AddEventHandler%2A> 查找相应的 COM 源接口 (指定的第一个参数为<xref:System.Runtime.InteropServices.ComEventInterfaceAttribute.%23ctor%28System.Type%2CSystem.Type%29?displayProperty=nameWithType>构造函数)。 它然后查找其名称是与事件名称相同的源接口上的方法。 值`GuidAttribute`在源接口是 GUID 传递给<xref:System.Runtime.InteropServices.ComEventsHelper.Combine%28System.Object%2CSystem.Guid%2CSystem.Int32%2CSystem.Delegate%29?displayProperty=nameWithType>; 的值`DispIDAttribute`的方法是传递给的 DispID 值<xref:System.Runtime.InteropServices.ComEventsHelper.Combine%28System.Object%2CSystem.Guid%2CSystem.Int32%2CSystem.Delegate%29?displayProperty=nameWithType>。  
+ <xref:System.Runtime.InteropServices.ComAwareEventInfo.AddEventHandler%2A>查找对应的 COM 源接口 (指定为<xref:System.Runtime.InteropServices.ComEventInterfaceAttribute.%23ctor%28System.Type%2CSystem.Type%29?displayProperty=nameWithType>构造函数的第一个参数)。 然后, 它会在源接口上查找其名称与事件名称相同的方法。 源接口`GuidAttribute`上的值是传递给<xref:System.Runtime.InteropServices.ComEventsHelper.Combine%28System.Object%2CSystem.Guid%2CSystem.Int32%2CSystem.Delegate%29?displayProperty=nameWithType>的 GUID; 方法`DispIDAttribute`上的值是传递给<xref:System.Runtime.InteropServices.ComEventsHelper.Combine%28System.Object%2CSystem.Guid%2CSystem.Int32%2CSystem.Delegate%29?displayProperty=nameWithType>的 DispID 值。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于与非托管代码的操作。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于处理非托管代码。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />。</permission>
       </Docs>
     </Member>
     <Member MemberName="Attributes">
@@ -199,7 +199,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 4 字节整数，表示此实例反映的事件设置的属性的位图中，将返回属性。  
+ 属性以4个字节的整数返回, 表示为此实例反射的事件设置的属性的位图。  
   
  ]]></format>
         </remarks>
@@ -334,7 +334,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法调用<xref:System.Reflection.MemberInfo.GetCustomAttributes%2A>方法的基础<xref:System.Reflection.EventInfo>对象。  
+ 此方法调用<xref:System.Reflection.MemberInfo.GetCustomAttributes%2A>基础<xref:System.Reflection.EventInfo>对象的方法。  
   
  ]]></format>
         </remarks>
@@ -408,8 +408,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>返回当前 <see cref="T:System.Runtime.InteropServices.ComAwareEventInfo" /> 的 <see cref="T:System.Reflection.CustomAttributeData" /> 对象列表。</summary>
+        <returns><see cref="T:System.Reflection.CustomAttributeData" /> 对象的泛型列表，表示已应用到当前 <see cref="T:System.Runtime.InteropServices.ComAwareEventInfo" /> 的特性的相关数据。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -438,9 +438,9 @@
         <Parameter Name="nonPublic" Type="System.Boolean" Index="0" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="nonPublic">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="nonPublic">如果包括非公共方法，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+        <summary>返回在元数据中与某事件相关联的公共或非公共方法。</summary>
+        <returns>一个数组，表示在元数据中已与事件相关联的方法。 如果没有此类方法，则返回空数组。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -481,12 +481,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法返回`null`的事件的声明在 C#`event`关键字或 Visual Basic`Event`关键字。 这是因为 C# 和 Visual Basic 编译器不会生成此类方法。  
+ 对于`null` C#用关键字或VisualBasic`Event`关键字声明的事件, 此方法将返回。 `event` 这是因为C#和 Visual Basic 编译器不会生成此类方法。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.MethodAccessException"><paramref name="nonPublic" /> 为 <see langword="true" />，表示用于添加事件处理程序委托的方法为非公共的，并且调用方无权对非公共方法进行反射。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
       </Docs>
     </Member>
     <Member MemberName="GetRemoveMethod">
@@ -524,7 +524,7 @@
         <returns>用于从事件源中移除事件处理程序委托的方法。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.MethodAccessException"><paramref name="nonPublic" /> 为 <see langword="true" />，表示用于添加事件处理程序委托的方法为非公共的，并且调用方无权对非公共方法进行反射。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
       </Docs>
     </Member>
@@ -564,7 +564,7 @@
         <summary>指示是否对此成员应用指定特性的一个或多个实例。</summary>
         <returns>如果已对此成员应用指定特性，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="T:System.Object" />
         <altmember cref="T:System.Delegate" />
         <altmember cref="T:System.EventHandler" />
@@ -592,8 +592,8 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取与当前 <see cref="T:System.Runtime.InteropServices.ComAwareEventInfo" /> 对象关联的元数据令牌。</summary>
+        <value>表示元数据标记的32位整数。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -619,8 +619,8 @@
         <ReturnType>System.Reflection.Module</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取与当前 <see cref="T:System.Runtime.InteropServices.ComAwareEventInfo" /> 对象关联的模块。</summary>
+        <value>与当前<see cref="T:System.Runtime.InteropServices.ComAwareEventInfo" />对象关联的模块。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -737,21 +737,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法是类似于<xref:System.Reflection.EventInfo.RemoveEventHandler%28System.Object%2CSystem.Delegate%29?displayProperty=nameWithType>方法，但还允许你分离来自 COM 对象的事件。  
+ 此方法与<xref:System.Reflection.EventInfo.RemoveEventHandler%28System.Object%2CSystem.Delegate%29?displayProperty=nameWithType>方法类似, 只是它允许你将事件与 COM 对象分离。  
   
- 如果`target`是一个 COM 对象，此方法通过使用发布到事件的委托<xref:System.Runtime.InteropServices.ComEventsHelper.Remove%28System.Object%2CSystem.Guid%2CSystem.Int32%2CSystem.Delegate%29?displayProperty=nameWithType>方法。  
+ 如果`target`是 COM 对象, 则此方法通过<xref:System.Runtime.InteropServices.ComEventsHelper.Remove%28System.Object%2CSystem.Guid%2CSystem.Int32%2CSystem.Delegate%29?displayProperty=nameWithType>使用方法向事件发布委托。  
   
- <xref:System.Runtime.InteropServices.ComAwareEventInfo.RemoveEventHandler%2A> 便于正在注销 COM 事件接收器将调用转发给相应的托管委托。 它需要以下信息：  
+ <xref:System.Runtime.InteropServices.ComAwareEventInfo.RemoveEventHandler%2A>简化将调用转发到相应托管委托的 COM 事件接收器。 它需要以下信息:  
   
 -   目标对象本身 (`target`)。  
   
 -   源接口的 GUID。  
   
--   对应于指定的事件的 COM 接口上的方法的 DispID。  
+-   与指定事件相对应的 COM 接口上的方法的 DispID。  
   
--   将 COM 对象触发相应的事件时调用的委托 (`handler`)。  
+-   当 COM 对象触发相应事件 (`handler`) 时将调用的委托。  
   
- <xref:System.Runtime.InteropServices.ComAwareEventInfo.RemoveEventHandler%2A> 查找相应的 COM 源接口 (指定的第一个参数为<xref:System.Runtime.InteropServices.ComEventInterfaceAttribute.%23ctor%28System.Type%2CSystem.Type%29?displayProperty=nameWithType>构造函数)。 它然后它会查找其名称是与事件名称相同的源接口上的方法。 值`GuidAttribute`在源接口是 GUID 传递给<xref:System.Runtime.InteropServices.ComEventsHelper.Remove%28System.Object%2CSystem.Guid%2CSystem.Int32%2CSystem.Delegate%29?displayProperty=nameWithType>; 的值`DispIDAttribute`的方法是传递给的 DispID 值<xref:System.Runtime.InteropServices.ComEventsHelper.Remove%28System.Object%2CSystem.Guid%2CSystem.Int32%2CSystem.Delegate%29?displayProperty=nameWithType>。  
+ <xref:System.Runtime.InteropServices.ComAwareEventInfo.RemoveEventHandler%2A>查找对应的 COM 源接口 (指定为<xref:System.Runtime.InteropServices.ComEventInterfaceAttribute.%23ctor%28System.Type%2CSystem.Type%29?displayProperty=nameWithType>构造函数的第一个参数)。 然后, 它会在源接口上查找其名称与事件名称相同的方法。 源接口`GuidAttribute`上的值是传递给<xref:System.Runtime.InteropServices.ComEventsHelper.Remove%28System.Object%2CSystem.Guid%2CSystem.Int32%2CSystem.Delegate%29?displayProperty=nameWithType>的 GUID; 方法`DispIDAttribute`上的值是传递给<xref:System.Runtime.InteropServices.ComEventsHelper.Remove%28System.Object%2CSystem.Guid%2CSystem.Int32%2CSystem.Delegate%29?displayProperty=nameWithType>的 DispID 值。  
   
  ]]></format>
         </remarks>
@@ -766,8 +766,8 @@
   
  <paramref name="target" /> 参数为 <see langword="null" />，并且此事件不是静态事件。  
   
-- 或 - 
-未在目标上声明 <see cref="T:System.Reflection.EventInfo" />。</exception>
+或 
+未在目标上声明 <see cref="T:System.Reflection.EventInfo" /> 。</exception>
         <exception cref="T:System.MethodAccessException"><block subset="none" type="note">
             <para>  
  在<see href="https://go.microsoft.com/fwlink/?LinkID=247912">适用于 Windows 应用商店应用的 .NET</see> 或<see href="https://docs.microsoft.com/dotnet/standard/cross-platform/cross-platform-development-with-the-portable-class-library">可移植类库</see>中，改为捕获基类异常 <see cref="T:System.MemberAccessException" />。  
@@ -776,7 +776,7 @@
           </block>  
   
  调用方没有对成员的访问权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于与非托管代码的操作。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于处理非托管代码。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />。</permission>
       </Docs>
     </Member>
   </Members>

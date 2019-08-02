@@ -1,5 +1,5 @@
 <Type Name="Storyboard" FullName="System.Windows.Media.Animation.Storyboard">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="21bd826f9553a4c8bcb17f10f68d36ff1da133bf" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55309223" /></Metadata><TypeSignature Language="C#" Value="public class Storyboard : System.Windows.Media.Animation.ParallelTimeline" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="be0dcb93289fd4cf19b8de1c865ef276d7706b92" /><Meta Name="ms.sourcegitcommit" Value="e7974886b08aa83a8fb461e8550f31a7d4331ee3" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/23/2019" /><Meta Name="ms.locfileid" Value="68399682" /></Metadata><TypeSignature Language="C#" Value="public class Storyboard : System.Windows.Media.Animation.ParallelTimeline" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi Storyboard extends System.Windows.Media.Animation.ParallelTimeline" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Media.Animation.Storyboard" />
   <TypeSignature Language="VB.NET" Value="Public Class Storyboard&#xA;Inherits ParallelTimeline" />
@@ -22,22 +22,22 @@
 ## Remarks  
   
 ## <a name="interactively-controlling-storyboards"></a>以交互方式控制情节提要  
- 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在标记中，您可以指定<xref:System.Windows.Media.Animation.BeginStoryboard.Name%2A>的属性<xref:System.Windows.Media.Animation.BeginStoryboard>对象，将创建它; 有关示例，请参阅[如何：使用事件触发器来控制情节提要启动后](~/docs/framework/wpf/graphics-multimedia/how-to-use-event-triggers-to-control-a-storyboard-after-it-starts.md)。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制标记, 请指定创建<xref:System.Windows.Media.Animation.BeginStoryboard.Name%2A>它的<xref:System.Windows.Media.Animation.BeginStoryboard>对象的属性; 例如, 有关示例, 请参阅[如何:在情节提要启动](~/docs/framework/wpf/graphics-multimedia/how-to-use-event-triggers-to-control-a-storyboard-after-it-starts.md)后, 使用事件触发器控制情节提要。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
-## <a name="data-binding-and-animating-timelines"></a>数据绑定和动画时间线  
- 大多数时间线属性可以是数据绑定或动画处理;但是，由于计时系统工作的方式，数据绑定或动画时间线不类似于其他数据绑定或动画处理的对象。 若要了解它们的行为，最好先了解一下激活时间线的含义。  
+## <a name="data-binding-and-animating-timelines"></a>数据绑定和动画处理时间线  
+ 大多数时间线属性可以是数据绑定的或动态的;但是, 由于计时系统的工作方式, 数据绑定或动画时间线的行为与其他数据绑定或动画对象的行为不同。 若要了解其行为, 有助于理解激活时间线的方式。  
   
- 激活时间线时，副本由时间线及其子时间线的副本。 这些副本均已冻结 （使只读的） 和<xref:System.Windows.Media.Animation.Clock>根据它们来创建对象。 这些时钟将执行对目标属性进行动画处理的实际工作。 如果数据绑定或进行动画处理，其当前值的快照由创建它的时钟时，时间线。 即使原始时间线可能会继续更改，其时钟却没有。  
+ 激活时间线时, 将生成时间线及其子时间线。 这些副本会被冻结 (变为只读), 并<xref:System.Windows.Media.Animation.Clock>从它们创建对象。 这些时钟将执行对目标属性进行动画处理的实际工作。 如果时间线是数据绑定的或动态的, 则在创建其时钟时, 将生成其当前值的快照。 即使原始时间线可能会继续更改, 时钟也不会更改。  
   
- 时间线以反映数据绑定或动画更改，必须重新创建它的时钟。 时钟不会重新为你自动创建。 以下是应用时间线更改的几种方法：  
+ 对于反映数据绑定或动画更改的时间线, 必须重新创建其时钟。 不会自动为您重新创建时钟。 以下是应用时间线更改的几种方法：  
   
--   如果时间线是或属于<xref:System.Windows.Media.Animation.Storyboard>，你可以使其通过重新应用其情节提要使用反映更改<xref:System.Windows.Media.Animation.BeginStoryboard>或<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法。 这还会产生重新启动动画的附带影响。 在代码中，可以使用<xref:System.Windows.Media.Animation.Storyboard.Seek%2A>方法将情节提要回其之前的位置。  
+-   如果时间线是或属于<xref:System.Windows.Media.Animation.Storyboard>, 则可以通过<xref:System.Windows.Media.Animation.BeginStoryboard>使用或<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法重新应用它的情节提要, 使其反映更改。 这还会产生重新启动动画的附带影响。 在代码中, 可以使用<xref:System.Windows.Media.Animation.Storyboard.Seek%2A>方法将演示图板前进到其之前的位置。  
   
--   如果您将动画应用于属性使用直接<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%2A>方法中，调用<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%2A>再次方法并将其传递已修改的动画。  
+-   如果使用<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%2A>方法将动画直接应用到属性, 请再次<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%2A>调用方法并向其传递已修改的动画。  
   
--   如果您正在直接在时钟级别上，创建和应用一组新的时钟，并使用它们来替换以前创建的时钟的集。  
+-   如果正在直接使用时钟级别, 请创建并应用新的时钟集, 并使用它们来替换以前创建的时钟集。  
   
- 有关数据的示例绑定动画，请参见[密钥样条动画示例](https://go.microsoft.com/fwlink/?LinkID=160011)。  
+ 有关数据绑定动画的示例, 请参阅[主要曲线动画示例](https://go.microsoft.com/fwlink/?LinkID=160011)。  
   
  ]]></format>
     </remarks>
@@ -77,7 +77,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -136,16 +136,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果目标的属性已进行动画处理，则会使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace>的切换行为。  
+ 如果目标属性已进行动画处理, 则使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace>切换行为替换它们。  
   
- 不能暂停、 恢复后，或否则以交互方式控制它们启动后开始使用此方法的情节提要。 若要使情节提要可以控制，请使用<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>或<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法。  
+ 无法暂停、恢复或以其他方式在启动后以交互方式控制通过此方法启动的情节提要。 若要使情节提要可控制, <xref:System.Windows.Media.Animation.Storyboard.Begin%2A>请<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>使用或方法。  
   
- 从情节提要触发器<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 开始情节提要会触发<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
    
   
 ## Examples  
- 下面的示例使用演示图板进行动画处理<xref:System.Windows.Media.TextEffect>。 <xref:System.Windows.Media.TextEffect>包含在<xref:System.Windows.FrameworkContentElement>的命名作用域。  
+ 下面的示例使用情节提要对进行动画<xref:System.Windows.Media.TextEffect>处理。 <xref:System.Windows.Media.TextEffect> 包含<xref:System.Windows.FrameworkContentElement>在的名称作用域内。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementStoryboardExampleUsingWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/FrameworkContentElementStoryboardExample.cs#frameworkcontentelementstoryboardexampleusingwholepage)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementStoryboardExampleUsingWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/frameworkcontentelementstoryboardexample.vb#frameworkcontentelementstoryboardexampleusingwholepage)]  
@@ -185,11 +185,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果目标的属性已进行动画处理，则会使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace>的切换行为。  
+ 如果目标属性已进行动画处理, 则使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace>切换行为替换它们。  
   
- 不能暂停、 恢复后，或否则以交互方式控制它们启动后开始使用此方法的情节提要。 若要使情节提要可以控制，请使用<xref:System.Windows.Media.Animation.Storyboard.Begin%28System.Windows.FrameworkElement%2CSystem.Boolean%29>或<xref:System.Windows.Media.Animation.Storyboard.Begin%28System.Windows.FrameworkElement%2CSystem.Windows.Media.Animation.HandoffBehavior%2CSystem.Boolean%29>方法。  
+ 无法暂停、恢复或以其他方式在启动后以交互方式控制通过此方法启动的情节提要。 若要使情节提要可控制, <xref:System.Windows.Media.Animation.Storyboard.Begin%28System.Windows.FrameworkElement%2CSystem.Boolean%29>请<xref:System.Windows.Media.Animation.Storyboard.Begin%28System.Windows.FrameworkElement%2CSystem.Windows.Media.Animation.HandoffBehavior%2CSystem.Boolean%29>使用或方法。  
   
- 从情节提要触发器<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 开始情节提要会触发<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
  ]]></format>
         </remarks>
@@ -228,18 +228,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果目标的属性已进行动画处理，则会使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace>的切换行为。  
+ 如果目标属性已进行动画处理, 则使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace>切换行为替换它们。  
   
- 若要以交互方式控制此情节提要，必须指定相同`containingObject`时调用的交互式方法用于开始情节提要  
+ 若要以交互方式控制此情节提要, 必须`containingObject`在调用用于开始情节提要的交互式方法时指定相同的  
   
- 调用此方法时，<xref:System.Windows.Media.Animation.Clock>情节提要和它所包含的任何时间线创建对象。 这些时钟与`containingObject`。  
+ 调用此方法时, <xref:System.Windows.Media.Animation.Clock>将为情节提要及其包含的任何时间线创建对象。 这些时钟与一起`containingObject`存储。  
   
- 从情节提要触发器<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 开始情节提要会触发<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
    
   
 ## Examples  
- 下面的示例使用可控制演示图板进行动画处理<xref:System.Windows.Media.TextEffect>。 <xref:System.Windows.Media.TextEffect>包含在<xref:System.Windows.FrameworkContentElement>的命名作用域。  
+ 下面的示例使用可控制的情节提要对<xref:System.Windows.Media.TextEffect>进行动画处理。 <xref:System.Windows.Media.TextEffect> 包含<xref:System.Windows.FrameworkContentElement>在的名称作用域内。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementControlStoryboardExampleUsingWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/FrameworkContentElementControlStoryboardExample.cs#frameworkcontentelementcontrolstoryboardexampleusingwholepage)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementControlStoryboardExampleUsingWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/frameworkcontentelementcontrolstoryboardexample.vb#frameworkcontentelementcontrolstoryboardexampleusingwholepage)]  
@@ -280,22 +280,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当应用<xref:System.Windows.Media.Animation.Storyboard>， <xref:System.Windows.Media.Animation.AnimationTimeline>，或<xref:System.Windows.Media.Animation.AnimationClock>属性使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose> <xref:System.Windows.Media.Animation.HandoffBehavior>，则所有<xref:System.Windows.Media.Animation.Clock>之前与该属性相关联的对象继续消耗系统资源时，计时系统不自动删除这些时钟。  
+ <xref:System.Windows.Media.Animation.Storyboard> <xref:System.Windows.Media.Animation.AnimationTimeline>使用将、<xref:System.Windows.Media.Animation.AnimationClock>或应用到属性时<xref:System.Windows.Media.Animation.Clock> , 以前与该属性关联的任何对象将继续使用系统资源; 计时系统不会<xref:System.Windows.Media.Animation.HandoffBehavior> <xref:System.Windows.Media.Animation.HandoffBehavior.Compose>自动删除这些时钟。  
   
- 若要避免出现性能问题时应用大量时钟使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose>，它们完成后，您应该从属性的基值删除组合时钟。 删除时钟有多种方法。  
+ 若要避免在使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose>应用大量时钟时出现性能问题, 应在完成后从动画属性中删除组合时钟。 删除时钟有多种方法。  
   
--   若要从属性中删除所有时钟，请使用<xref:System.Windows.Media.Animation.Animatable.ApplyAnimationClock%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationClock%29>或<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationTimeline%29>经过动画处理的对象的方法。 指定要进行动画处理的第一个参数的属性和`null`为第二个。 这将从属性中删除所有的动画时钟。  
+-   若要从属性中删除所有时钟, 请<xref:System.Windows.Media.Animation.Animatable.ApplyAnimationClock%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationClock%29>使用<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationTimeline%29>动画对象的或方法。 将要进行动画处理的属性指定为第一个`null`参数, 并将指定为第二个参数。 这将从属性中移除所有动画时钟。  
   
--   若要删除特定<xref:System.Windows.Media.Animation.AnimationClock>从列表中的时钟，使用<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性<xref:System.Windows.Media.Animation.AnimationClock>检索<xref:System.Windows.Media.Animation.ClockController>，然后调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>方法<xref:System.Windows.Media.Animation.ClockController>。 这通常是<xref:System.Windows.Media.Animation.Clock.Completed>时钟的事件处理程序。 请注意，只有根时钟可以受<xref:System.Windows.Media.Animation.ClockController>;<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性的子时钟返回`null`。 另请注意，<xref:System.Windows.Media.Animation.Clock.Completed>如果时钟的有效持续时间将永远不调用事件。  在这种情况下，用户必须确定何时调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>。  
+-   若要从时钟<xref:System.Windows.Media.Animation.AnimationClock>列表中删除特定的, 请<xref:System.Windows.Media.Animation.Clock.Controller%2A>使用的<xref:System.Windows.Media.Animation.AnimationClock>属性来检索<xref:System.Windows.Media.Animation.ClockController>, 然后调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>的方法<xref:System.Windows.Media.Animation.ClockController>。 通常在时钟的<xref:System.Windows.Media.Animation.Clock.Completed>事件处理程序中完成此操作。 请注意, 只能通过<xref:System.Windows.Media.Animation.ClockController>控制根时钟, 子时钟的<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性返回。 `null` 另请注意, <xref:System.Windows.Media.Animation.Clock.Completed>如果时钟的有效持续时间是永久性的, 则不会调用此事件。  在这种情况下, 用户必须确定何时调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>。  
   
- 此动画问题主要出现在生存期较长的对象上。  垃圾回收对象时，它的时钟也会断开连接和垃圾回收。  
+ 此动画问题主要出现在生存期较长的对象上。  当对对象进行垃圾回收时, 还会断开其时钟的连接并对其进行垃圾回收。  
   
- 有关时钟对象的详细信息，请参阅[动画和计时系统概述](~/docs/framework/wpf/graphics-multimedia/animation-and-timing-system-overview.md)。  
+ 有关时钟对象的详细信息, 请参阅[动画和计时系统概述](~/docs/framework/wpf/graphics-multimedia/animation-and-timing-system-overview.md)。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace><xref:System.Windows.Media.Animation.HandoffBehavior>进行动画处理时在用户左键单击，并<xref:System.Windows.Media.Animation.HandoffBehavior.Compose><xref:System.Windows.Media.Animation.HandoffBehavior>用户单击鼠标右键时。  
+ 下面的示例使用在<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace> <xref:System.Windows.Media.Animation.HandoffBehavior>用户左键单击时进行动画处理, <xref:System.Windows.Media.Animation.HandoffBehavior.Compose> <xref:System.Windows.Media.Animation.HandoffBehavior>当用户单击鼠标右键时使用。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementStoryboardWithHandoffBehaviorExampleWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/FrameworkContentElementStoryboardWithHandoffBehaviorExample.cs#frameworkcontentelementstoryboardwithhandoffbehaviorexamplewholepage)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementStoryboardWithHandoffBehaviorExampleWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/frameworkcontentelementstoryboardwithhandoffbehaviorexample.vb#frameworkcontentelementstoryboardwithhandoffbehaviorexamplewholepage)]  
@@ -337,13 +337,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果目标的属性已进行动画处理，则会使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace>的切换行为。  
+ 如果目标属性已进行动画处理, 则使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace>切换行为替换它们。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于启动情节提要的交互式方法时必须使用相同的参数  
   
- 调用此方法时，<xref:System.Windows.Media.Animation.Clock>情节提要和它所包含的任何时间线创建对象。 这些时钟与`containingObject`。  
+ 调用此方法时, <xref:System.Windows.Media.Animation.Clock>将为情节提要及其包含的任何时间线创建对象。 这些时钟与一起`containingObject`存储。  
   
- 从情节提要触发器<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 开始情节提要会触发<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
  ]]></format>
         </remarks>
@@ -381,11 +381,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果目标的属性已进行动画处理，则会使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace>的切换行为。  
+ 如果目标属性已进行动画处理, 则使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace>切换行为替换它们。  
   
- 调用此方法时，<xref:System.Windows.Media.Animation.Clock>情节提要和它所包含的任何时间线创建对象。 这些时钟与`containingObject`。  
+ 调用此方法时, <xref:System.Windows.Media.Animation.Clock>将为情节提要及其包含的任何时间线创建对象。 这些时钟与一起`containingObject`存储。  
   
- 从情节提要触发器<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 开始情节提要会触发<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
  ]]></format>
         </remarks>
@@ -423,7 +423,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace><xref:System.Windows.Media.Animation.HandoffBehavior>进行动画处理时在用户左键单击，并<xref:System.Windows.Media.Animation.HandoffBehavior.Compose><xref:System.Windows.Media.Animation.HandoffBehavior>用户单击鼠标右键时。  
+ 下面的示例使用在<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace> <xref:System.Windows.Media.Animation.HandoffBehavior>用户左键单击时进行动画处理, <xref:System.Windows.Media.Animation.HandoffBehavior.Compose> <xref:System.Windows.Media.Animation.HandoffBehavior>当用户单击鼠标右键时使用。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#GraphicsMMFrameworkElementStoryboardHandoffBehaviorExample](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/FrameworkElementStoryboardHandoffBehaviorExample.cs#graphicsmmframeworkelementstoryboardhandoffbehaviorexample)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#GraphicsMMFrameworkElementStoryboardHandoffBehaviorExample](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/frameworkelementstoryboardhandoffbehaviorexample.vb#graphicsmmframeworkelementstoryboardhandoffbehaviorexample)]  
@@ -461,36 +461,36 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果目标的属性已进行动画处理，则会使用指定的切换行为。  
+ 如果目标属性已进行动画处理, 则使用指定的移交行为替换它们。  
   
- 若要以交互方式控制此情节提要，必须指定相同`containingObject`时调用的交互式方法用于开始情节提要  
+ 若要以交互方式控制此情节提要, 必须`containingObject`在调用用于开始情节提要的交互式方法时指定相同的  
   
- 调用此方法时，<xref:System.Windows.Media.Animation.Clock>情节提要和它所包含的任何时间线创建对象。 这些时钟与`containingObject`。  
+ 调用此方法时, <xref:System.Windows.Media.Animation.Clock>将为情节提要及其包含的任何时间线创建对象。 这些时钟与一起`containingObject`存储。  
   
- 从情节提要触发器<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 开始情节提要会触发<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
-## <a name="using-the-compose-handoffbehavior"></a>使用组合 HandoffBehavior  
- 当应用<xref:System.Windows.Media.Animation.Storyboard>， <xref:System.Windows.Media.Animation.AnimationTimeline>，或<xref:System.Windows.Media.Animation.AnimationClock>属性使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose> <xref:System.Windows.Media.Animation.HandoffBehavior>，则所有<xref:System.Windows.Media.Animation.Clock>之前与该属性相关联的对象继续消耗系统资源时，计时系统不自动删除这些时钟。  
+## <a name="using-the-compose-handoffbehavior"></a>使用撰写 HandoffBehavior  
+ <xref:System.Windows.Media.Animation.Storyboard> <xref:System.Windows.Media.Animation.AnimationTimeline>使用将、<xref:System.Windows.Media.Animation.AnimationClock>或应用到属性时<xref:System.Windows.Media.Animation.Clock> , 以前与该属性关联的任何对象将继续使用系统资源; 计时系统不会<xref:System.Windows.Media.Animation.HandoffBehavior> <xref:System.Windows.Media.Animation.HandoffBehavior.Compose>自动删除这些时钟。  
   
- 若要避免出现性能问题时应用大量时钟使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose>，它们完成后，您应该从属性的基值删除组合时钟。 删除时钟有多种方法。  
+ 若要避免在使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose>应用大量时钟时出现性能问题, 应在完成后从动画属性中删除组合时钟。 删除时钟有多种方法。  
   
--   若要从属性中删除所有时钟，请使用<xref:System.Windows.Media.Animation.Animatable.ApplyAnimationClock%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationClock%29>或<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationTimeline%29>经过动画处理的对象的方法。 指定要进行动画处理的第一个参数的属性和`null`为第二个。 这将从属性中删除所有的动画时钟。  
+-   若要从属性中删除所有时钟, 请<xref:System.Windows.Media.Animation.Animatable.ApplyAnimationClock%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationClock%29>使用<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationTimeline%29>动画对象的或方法。 将要进行动画处理的属性指定为第一个`null`参数, 并将指定为第二个参数。 这将从属性中移除所有动画时钟。  
   
--   若要删除特定<xref:System.Windows.Media.Animation.AnimationClock>从列表中的时钟，使用<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性<xref:System.Windows.Media.Animation.AnimationClock>检索<xref:System.Windows.Media.Animation.ClockController>，然后调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>方法<xref:System.Windows.Media.Animation.ClockController>。 这通常是<xref:System.Windows.Media.Animation.Clock.Completed>时钟的事件处理程序。 请注意，只有根时钟可以受<xref:System.Windows.Media.Animation.ClockController>;<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性的子时钟返回`null`。 另请注意，<xref:System.Windows.Media.Animation.Clock.Completed>如果时钟的有效持续时间将永远不调用事件。  在这种情况下，用户必须确定何时调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>。  
+-   若要从时钟<xref:System.Windows.Media.Animation.AnimationClock>列表中删除特定的, 请<xref:System.Windows.Media.Animation.Clock.Controller%2A>使用的<xref:System.Windows.Media.Animation.AnimationClock>属性来检索<xref:System.Windows.Media.Animation.ClockController>, 然后调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>的方法<xref:System.Windows.Media.Animation.ClockController>。 通常在时钟的<xref:System.Windows.Media.Animation.Clock.Completed>事件处理程序中完成此操作。 请注意, 只能通过<xref:System.Windows.Media.Animation.ClockController>控制根时钟, 子时钟的<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性返回。 `null` 另请注意, <xref:System.Windows.Media.Animation.Clock.Completed>如果时钟的有效持续时间是永久性的, 则不会调用此事件。  在这种情况下, 用户必须确定何时调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>。  
   
- 此动画问题主要出现在生存期较长的对象上。  垃圾回收对象时，它的时钟也会断开连接和垃圾回收。  
+ 此动画问题主要出现在生存期较长的对象上。  当对对象进行垃圾回收时, 还会断开其时钟的连接并对其进行垃圾回收。  
   
- 有关时钟对象的详细信息，请参阅[动画和计时系统概述](~/docs/framework/wpf/graphics-multimedia/animation-and-timing-system-overview.md)。  
+ 有关时钟对象的详细信息, 请参阅[动画和计时系统概述](~/docs/framework/wpf/graphics-multimedia/animation-and-timing-system-overview.md)。  
   
    
   
 ## Examples  
- 下面的示例使用可控制演示图板进行动画处理<xref:System.Windows.Media.TextEffect>。 <xref:System.Windows.Media.TextEffect>包含在<xref:System.Windows.FrameworkContentElement>的命名作用域。  
+ 下面的示例使用可控制的情节提要对<xref:System.Windows.Media.TextEffect>进行动画处理。 <xref:System.Windows.Media.TextEffect> 包含<xref:System.Windows.FrameworkContentElement>在的名称作用域内。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementControlStoryboardExampleUsingWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/FrameworkContentElementControlStoryboardExample.cs#frameworkcontentelementcontrolstoryboardexampleusingwholepage)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementControlStoryboardExampleUsingWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/frameworkcontentelementcontrolstoryboardexample.vb#frameworkcontentelementcontrolstoryboardexampleusingwholepage)]  
   
- 下面的示例使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace><xref:System.Windows.Media.Animation.HandoffBehavior>进行动画处理时在用户左键单击，并<xref:System.Windows.Media.Animation.HandoffBehavior.Compose><xref:System.Windows.Media.Animation.HandoffBehavior>用户单击鼠标右键时。  
+ 下一个示例使用在<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace> <xref:System.Windows.Media.Animation.HandoffBehavior>用户左键单击时进行动画处理, <xref:System.Windows.Media.Animation.HandoffBehavior.Compose> <xref:System.Windows.Media.Animation.HandoffBehavior>当用户单击鼠标右键时使用。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementStoryboardWithHandoffBehaviorExampleWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/FrameworkContentElementStoryboardWithHandoffBehaviorExample.cs#frameworkcontentelementstoryboardwithhandoffbehaviorexamplewholepage)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementStoryboardWithHandoffBehaviorExampleWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/frameworkcontentelementstoryboardwithhandoffbehaviorexample.vb#frameworkcontentelementstoryboardwithhandoffbehaviorexamplewholepage)]  
@@ -533,13 +533,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果目标的属性已进行动画处理，则会使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace>的切换行为。  
+ 如果目标属性已进行动画处理, 则使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace>切换行为替换它们。  
   
- 若要以交互方式控制此情节提要，必须指定相同`containingObject`时调用的交互式方法用于开始情节提要  
+ 若要以交互方式控制此情节提要, 必须`containingObject`在调用用于开始情节提要的交互式方法时指定相同的  
   
- 调用此方法时，<xref:System.Windows.Media.Animation.Clock>情节提要和它所包含的任何时间线创建对象。 这些时钟与`containingObject`。  
+ 调用此方法时, <xref:System.Windows.Media.Animation.Clock>将为情节提要及其包含的任何时间线创建对象。 这些时钟与一起`containingObject`存储。  
   
- 从情节提要触发器<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 开始情节提要会触发<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
  ]]></format>
         </remarks>
@@ -579,22 +579,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法时，<xref:System.Windows.Media.Animation.Clock>情节提要和它所包含的任何时间线创建对象。 这些时钟与`containingObject`。  
+ 调用此方法时, <xref:System.Windows.Media.Animation.Clock>将为情节提要及其包含的任何时间线创建对象。 这些时钟与一起`containingObject`存储。  
   
- 从情节提要触发器<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 开始情节提要会触发<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
-## <a name="using-the-compose-handoffbehavior"></a>使用组合 HandoffBehavior  
- 当应用<xref:System.Windows.Media.Animation.Storyboard>， <xref:System.Windows.Media.Animation.AnimationTimeline>，或<xref:System.Windows.Media.Animation.AnimationClock>属性使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose> <xref:System.Windows.Media.Animation.HandoffBehavior>，则所有<xref:System.Windows.Media.Animation.Clock>之前与该属性相关联的对象继续消耗系统资源时，计时系统不自动删除这些时钟。  
+## <a name="using-the-compose-handoffbehavior"></a>使用撰写 HandoffBehavior  
+ <xref:System.Windows.Media.Animation.Storyboard> <xref:System.Windows.Media.Animation.AnimationTimeline>使用将、<xref:System.Windows.Media.Animation.AnimationClock>或应用到属性时<xref:System.Windows.Media.Animation.Clock> , 以前与该属性关联的任何对象将继续使用系统资源; 计时系统不会<xref:System.Windows.Media.Animation.HandoffBehavior> <xref:System.Windows.Media.Animation.HandoffBehavior.Compose>自动删除这些时钟。  
   
- 若要避免出现性能问题时应用大量时钟使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose>，它们完成后，您应该从属性的基值删除组合时钟。 删除时钟有多种方法。  
+ 若要避免在使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose>应用大量时钟时出现性能问题, 应在完成后从动画属性中删除组合时钟。 删除时钟有多种方法。  
   
--   若要从属性中删除所有时钟，请使用<xref:System.Windows.Media.Animation.Animatable.ApplyAnimationClock%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationClock%29>或<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationTimeline%29>经过动画处理的对象的方法。 指定要进行动画处理的第一个参数的属性和`null`为第二个。 这将从属性中删除所有的动画时钟。  
+-   若要从属性中删除所有时钟, 请<xref:System.Windows.Media.Animation.Animatable.ApplyAnimationClock%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationClock%29>使用<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationTimeline%29>动画对象的或方法。 将要进行动画处理的属性指定为第一个`null`参数, 并将指定为第二个参数。 这将从属性中移除所有动画时钟。  
   
--   若要删除特定<xref:System.Windows.Media.Animation.AnimationClock>从列表中的时钟，使用<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性<xref:System.Windows.Media.Animation.AnimationClock>检索<xref:System.Windows.Media.Animation.ClockController>，然后调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>方法<xref:System.Windows.Media.Animation.ClockController>。 这通常是<xref:System.Windows.Media.Animation.Clock.Completed>时钟的事件处理程序。 请注意，只有根时钟可以受<xref:System.Windows.Media.Animation.ClockController>;<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性的子时钟返回`null`。 另请注意，<xref:System.Windows.Media.Animation.Clock.Completed>如果时钟的有效持续时间将永远不调用事件。  在这种情况下，用户必须确定何时调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>。  
+-   若要从时钟<xref:System.Windows.Media.Animation.AnimationClock>列表中删除特定的, 请<xref:System.Windows.Media.Animation.Clock.Controller%2A>使用的<xref:System.Windows.Media.Animation.AnimationClock>属性来检索<xref:System.Windows.Media.Animation.ClockController>, 然后调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>的方法<xref:System.Windows.Media.Animation.ClockController>。 通常在时钟的<xref:System.Windows.Media.Animation.Clock.Completed>事件处理程序中完成此操作。 请注意, 只能通过<xref:System.Windows.Media.Animation.ClockController>控制根时钟, 子时钟的<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性返回。 `null` 另请注意, <xref:System.Windows.Media.Animation.Clock.Completed>如果时钟的有效持续时间是永久性的, 则不会调用此事件。  在这种情况下, 用户必须确定何时调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>。  
   
- 此动画问题主要出现在生存期较长的对象上。  垃圾回收对象时，它的时钟也会断开连接和垃圾回收。  
+ 此动画问题主要出现在生存期较长的对象上。  当对对象进行垃圾回收时, 还会断开其时钟的连接并对其进行垃圾回收。  
   
- 有关时钟对象的详细信息，请参阅[动画和计时系统概述](~/docs/framework/wpf/graphics-multimedia/animation-and-timing-system-overview.md)。  
+ 有关时钟对象的详细信息, 请参阅[动画和计时系统概述](~/docs/framework/wpf/graphics-multimedia/animation-and-timing-system-overview.md)。  
   
  ]]></format>
         </remarks>
@@ -629,34 +629,34 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于启动情节提要的交互式方法时必须使用相同的参数  
   
- 调用此方法时，<xref:System.Windows.Media.Animation.Clock>情节提要和它所包含的任何时间线创建对象。 这些时钟与`containingObject`。  
+ 调用此方法时, <xref:System.Windows.Media.Animation.Clock>将为情节提要及其包含的任何时间线创建对象。 这些时钟与一起`containingObject`存储。  
   
- 从情节提要触发器<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 开始情节提要会触发<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
-## <a name="using-the-compose-handoffbehavior"></a>使用组合 HandoffBehavior  
- 当应用<xref:System.Windows.Media.Animation.Storyboard>， <xref:System.Windows.Media.Animation.AnimationTimeline>，或<xref:System.Windows.Media.Animation.AnimationClock>属性使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose> <xref:System.Windows.Media.Animation.HandoffBehavior>，则所有<xref:System.Windows.Media.Animation.Clock>之前与该属性相关联的对象继续消耗系统资源时，计时系统不自动删除这些时钟。  
+## <a name="using-the-compose-handoffbehavior"></a>使用撰写 HandoffBehavior  
+ <xref:System.Windows.Media.Animation.Storyboard> <xref:System.Windows.Media.Animation.AnimationTimeline>使用将、<xref:System.Windows.Media.Animation.AnimationClock>或应用到属性时<xref:System.Windows.Media.Animation.Clock> , 以前与该属性关联的任何对象将继续使用系统资源; 计时系统不会<xref:System.Windows.Media.Animation.HandoffBehavior> <xref:System.Windows.Media.Animation.HandoffBehavior.Compose>自动删除这些时钟。  
   
- 若要避免出现性能问题时应用大量时钟使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose>，它们完成后，您应该从属性的基值删除组合时钟。 删除时钟有多种方法。  
+ 若要避免在使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose>应用大量时钟时出现性能问题, 应在完成后从动画属性中删除组合时钟。 删除时钟有多种方法。  
   
--   若要从属性中删除所有时钟，请使用<xref:System.Windows.Media.Animation.Animatable.ApplyAnimationClock%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationClock%29>或<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationTimeline%29>经过动画处理的对象的方法。 指定要进行动画处理的第一个参数的属性和`null`为第二个。 这将从属性中删除所有的动画时钟。  
+-   若要从属性中删除所有时钟, 请<xref:System.Windows.Media.Animation.Animatable.ApplyAnimationClock%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationClock%29>使用<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationTimeline%29>动画对象的或方法。 将要进行动画处理的属性指定为第一个`null`参数, 并将指定为第二个参数。 这将从属性中移除所有动画时钟。  
   
--   若要删除特定<xref:System.Windows.Media.Animation.AnimationClock>从列表中的时钟，使用<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性<xref:System.Windows.Media.Animation.AnimationClock>检索<xref:System.Windows.Media.Animation.ClockController>，然后调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>方法<xref:System.Windows.Media.Animation.ClockController>。 这通常是<xref:System.Windows.Media.Animation.Clock.Completed>时钟的事件处理程序。 请注意，只有根时钟可以受<xref:System.Windows.Media.Animation.ClockController>;<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性的子时钟返回`null`。 另请注意，<xref:System.Windows.Media.Animation.Clock.Completed>如果时钟的有效持续时间将永远不调用事件。  在这种情况下，用户必须确定何时调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>。  
+-   若要从时钟<xref:System.Windows.Media.Animation.AnimationClock>列表中删除特定的, 请<xref:System.Windows.Media.Animation.Clock.Controller%2A>使用的<xref:System.Windows.Media.Animation.AnimationClock>属性来检索<xref:System.Windows.Media.Animation.ClockController>, 然后调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>的方法<xref:System.Windows.Media.Animation.ClockController>。 通常在时钟的<xref:System.Windows.Media.Animation.Clock.Completed>事件处理程序中完成此操作。 请注意, 只能通过<xref:System.Windows.Media.Animation.ClockController>控制根时钟, 子时钟的<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性返回。 `null` 另请注意, <xref:System.Windows.Media.Animation.Clock.Completed>如果时钟的有效持续时间是永久性的, 则不会调用此事件。  在这种情况下, 用户必须确定何时调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>。  
   
- 此动画问题主要出现在生存期较长的对象上。  垃圾回收对象时，它的时钟也会断开连接和垃圾回收。  
+ 此动画问题主要出现在生存期较长的对象上。  当对对象进行垃圾回收时, 还会断开其时钟的连接并对其进行垃圾回收。  
   
- 有关时钟对象的详细信息，请参阅[动画和计时系统概述](~/docs/framework/wpf/graphics-multimedia/animation-and-timing-system-overview.md)。  
+ 有关时钟对象的详细信息, 请参阅[动画和计时系统概述](~/docs/framework/wpf/graphics-multimedia/animation-and-timing-system-overview.md)。  
   
    
   
 ## Examples  
- 下面的示例演示如何创建可控制情节提要。  
+ 下面的示例演示如何创建可控制的情节提要。  
   
  [!code-csharp[animation_ovws_procedural_snip#ControllableStoryboardExampleWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/animation_ovws_procedural_snip/CSharp/ControllableStoryboardExample.cs#controllablestoryboardexamplewholepage)]
  [!code-vb[animation_ovws_procedural_snip#ControllableStoryboardExampleWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/animation_ovws_procedural_snip/visualbasic/controllablestoryboardexample.vb#controllablestoryboardexamplewholepage)]  
   
- 下面的示例使用<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace><xref:System.Windows.Media.Animation.HandoffBehavior>进行动画处理时在用户左键单击，并<xref:System.Windows.Media.Animation.HandoffBehavior.Compose><xref:System.Windows.Media.Animation.HandoffBehavior>用户单击鼠标右键时。  
+ 下一个示例使用在<xref:System.Windows.Media.Animation.HandoffBehavior.SnapshotAndReplace> <xref:System.Windows.Media.Animation.HandoffBehavior>用户左键单击时进行动画处理, <xref:System.Windows.Media.Animation.HandoffBehavior.Compose> <xref:System.Windows.Media.Animation.HandoffBehavior>当用户单击鼠标右键时使用。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#GraphicsMMFrameworkElementStoryboardHandoffBehaviorExample](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/FrameworkElementStoryboardHandoffBehaviorExample.cs#graphicsmmframeworkelementstoryboardhandoffbehaviorexample)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#GraphicsMMFrameworkElementStoryboardHandoffBehaviorExample](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/frameworkelementstoryboardhandoffbehaviorexample.vb#graphicsmmframeworkelementstoryboardhandoffbehaviorexample)]  
@@ -696,24 +696,24 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要以交互方式控制此情节提要，必须指定相同`containingObject`时调用的交互式方法用于开始情节提要  
+ 若要以交互方式控制此情节提要, 必须`containingObject`在调用用于开始情节提要的交互式方法时指定相同的  
   
- 调用此方法时，<xref:System.Windows.Media.Animation.Clock>情节提要和它所包含的任何时间线创建对象。 这些时钟与`containingObject`。  
+ 调用此方法时, <xref:System.Windows.Media.Animation.Clock>将为情节提要及其包含的任何时间线创建对象。 这些时钟与一起`containingObject`存储。  
   
- 从情节提要触发器<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 开始情节提要会触发<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
-## <a name="using-the-compose-handoffbehavior"></a>使用组合 HandoffBehavior  
- 当应用<xref:System.Windows.Media.Animation.Storyboard>， <xref:System.Windows.Media.Animation.AnimationTimeline>，或<xref:System.Windows.Media.Animation.AnimationClock>属性使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose> <xref:System.Windows.Media.Animation.HandoffBehavior>，则所有<xref:System.Windows.Media.Animation.Clock>之前与该属性相关联的对象继续消耗系统资源时，计时系统不自动删除这些时钟。  
+## <a name="using-the-compose-handoffbehavior"></a>使用撰写 HandoffBehavior  
+ <xref:System.Windows.Media.Animation.Storyboard> <xref:System.Windows.Media.Animation.AnimationTimeline>使用将、<xref:System.Windows.Media.Animation.AnimationClock>或应用到属性时<xref:System.Windows.Media.Animation.Clock> , 以前与该属性关联的任何对象将继续使用系统资源; 计时系统不会<xref:System.Windows.Media.Animation.HandoffBehavior> <xref:System.Windows.Media.Animation.HandoffBehavior.Compose>自动删除这些时钟。  
   
- 若要避免出现性能问题时应用大量时钟使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose>，它们完成后，您应该从属性的基值删除组合时钟。 删除时钟有多种方法。  
+ 若要避免在使用<xref:System.Windows.Media.Animation.HandoffBehavior.Compose>应用大量时钟时出现性能问题, 应在完成后从动画属性中删除组合时钟。 删除时钟有多种方法。  
   
--   若要从属性中删除所有时钟，请使用<xref:System.Windows.Media.Animation.Animatable.ApplyAnimationClock%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationClock%29>或<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationTimeline%29>经过动画处理的对象的方法。 指定要进行动画处理的第一个参数的属性和`null`为第二个。 这将从属性中删除所有的动画时钟。  
+-   若要从属性中删除所有时钟, 请<xref:System.Windows.Media.Animation.Animatable.ApplyAnimationClock%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationClock%29>使用<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationTimeline%29>动画对象的或方法。 将要进行动画处理的属性指定为第一个`null`参数, 并将指定为第二个参数。 这将从属性中移除所有动画时钟。  
   
--   若要删除特定<xref:System.Windows.Media.Animation.AnimationClock>从列表中的时钟，使用<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性<xref:System.Windows.Media.Animation.AnimationClock>检索<xref:System.Windows.Media.Animation.ClockController>，然后调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>方法<xref:System.Windows.Media.Animation.ClockController>。 这通常是<xref:System.Windows.Media.Animation.Clock.Completed>时钟的事件处理程序。 请注意，只有根时钟可以受<xref:System.Windows.Media.Animation.ClockController>;<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性的子时钟返回`null`。 另请注意，<xref:System.Windows.Media.Animation.Clock.Completed>如果时钟的有效持续时间将永远不调用事件。  在这种情况下，用户必须确定何时调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>。  
+-   若要从时钟<xref:System.Windows.Media.Animation.AnimationClock>列表中删除特定的, 请<xref:System.Windows.Media.Animation.Clock.Controller%2A>使用的<xref:System.Windows.Media.Animation.AnimationClock>属性来检索<xref:System.Windows.Media.Animation.ClockController>, 然后调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>的方法<xref:System.Windows.Media.Animation.ClockController>。 通常在时钟的<xref:System.Windows.Media.Animation.Clock.Completed>事件处理程序中完成此操作。 请注意, 只能通过<xref:System.Windows.Media.Animation.ClockController>控制根时钟, 子时钟的<xref:System.Windows.Media.Animation.Clock.Controller%2A>属性返回。 `null` 另请注意, <xref:System.Windows.Media.Animation.Clock.Completed>如果时钟的有效持续时间是永久性的, 则不会调用此事件。  在这种情况下, 用户必须确定何时调用<xref:System.Windows.Media.Animation.ClockController.Remove%2A>。  
   
- 此动画问题主要出现在生存期较长的对象上。  垃圾回收对象时，它的时钟也会断开连接和垃圾回收。  
+ 此动画问题主要出现在生存期较长的对象上。  当对对象进行垃圾回收时, 还会断开其时钟的连接并对其进行垃圾回收。  
   
- 有关时钟对象的详细信息，请参阅[动画和计时系统概述](~/docs/framework/wpf/graphics-multimedia/animation-and-timing-system-overview.md)。  
+ 有关时钟对象的详细信息, 请参阅[动画和计时系统概述](~/docs/framework/wpf/graphics-multimedia/animation-and-timing-system-overview.md)。  
   
  ]]></format>
         </remarks>
@@ -743,9 +743,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于生成的可修改副本冻结<xref:System.Windows.Freezable>对象 (或任何<xref:System.Windows.Freezable>对象)。 为方便起见，此方法隐藏继承的版本使用的强类型实现。  
+ 此方法用于生成冻结<xref:System.Windows.Freezable>对象 (或任何<xref:System.Windows.Freezable>对象) 的可修改副本。 为方便起见, 此方法使用强类型实现隐藏了继承的版本。  
   
- 有关详情，请参阅<xref:System.Windows.Freezable.Clone%2A?displayProperty=nameWithType>。  
+ 有关更多信息，请参见<xref:System.Windows.Freezable.Clone%2A?displayProperty=nameWithType>。  
   
  ]]></format>
         </remarks>
@@ -775,19 +775,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在内部调用此方法<xref:System.Windows.Freezable.CreateInstance%2A>创建的新实例时<xref:System.Windows.Media.Animation.Storyboard>类的各种克隆方法 (如<xref:System.Windows.Freezable.Clone%2A>和<xref:System.Windows.Freezable.CloneCurrentValue%2A>)。  
+ 此<xref:System.Windows.Freezable.CreateInstance%2A>方法是在创建<xref:System.Windows.Media.Animation.Storyboard>类的新实例以用于各种<xref:System.Windows.Freezable.Clone%2A>克隆方法 (如和<xref:System.Windows.Freezable.CloneCurrentValue%2A>) 时进行的。  
   
    
   
 ## Examples  
- 下面的示例演示的典型实现<xref:System.Windows.Freezable.CreateInstanceCore%2A>。  
+ 下面的示例演示的<xref:System.Windows.Freezable.CreateInstanceCore%2A>典型实现。  
   
  [!code-csharp[freezablesample_procedural#CreateInstanceCoreExample](~/samples/snippets/csharp/VS_Snippets_Wpf/freezablesample_procedural/CSharp/freezablesample.cs#createinstancecoreexample)]
  [!code-vb[freezablesample_procedural#CreateInstanceCoreExample](~/samples/snippets/visualbasic/VS_Snippets_Wpf/freezablesample_procedural/visualbasic/freezablesample.vb#createinstancecoreexample)]  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>每个<see cref="T:System.Windows.Media.Animation.Storyboard" />子类必须实现此方法。 典型的实现是只需调用类默认构造函数，并返回结果。</para></block>
+        <block subset="none" type="overrides"><para>每<see cref="T:System.Windows.Media.Animation.Storyboard" />个子类必须实现此方法。 典型的实现是只调用类的无参数构造函数并返回结果。</para></block>
         <altmember cref="M:System.Windows.Freezable.CreateInstanceCore" />
       </Docs>
     </Member>
@@ -802,9 +802,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 时钟的<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeed%2A>速度是相对于现实世界的时间的时间的当前前进的速率。  
+ 时钟的<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeed%2A>速度是其时间当前正在前进的速度, 与实际时间相比。  
   
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -866,9 +866,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 时钟的<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeed%2A>速度是相对于现实世界的时间的时间的当前前进的速率。  
+ 时钟的<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeed%2A>速度是其时间当前正在前进的速度, 与实际时间相比。  
   
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -907,9 +907,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 时钟的<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeed%2A>速度是相对于现实世界的时间的时间的当前前进的速率。  
+ 时钟的<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeed%2A>速度是其时间当前正在前进的速度, 与实际时间相比。  
   
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -949,11 +949,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 时钟的第一次迭代的值为 1。  
+ 时钟的第一个迭代的值为1。  
   
- 如果此演示图板<xref:System.Windows.Media.Animation.Timeline.AutoReverse%2A>设置的`true`、 完整的迭代包含正向和反向迭代，而不仅仅是其中一个段。  
+ 如果此情节提要<xref:System.Windows.Media.Animation.Timeline.AutoReverse%2A>的`true`设置为, 则完整迭代包含正向反向对, 而不只是这些段中的一个。  
   
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -992,11 +992,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 时钟的第一次迭代的值为 1。  
+ 时钟的第一个迭代的值为1。  
   
- 如果此演示图板<xref:System.Windows.Media.Animation.Timeline.AutoReverse%2A>设置的`true`、 完整的迭代包含正向和反向迭代，而不仅仅是其中一个段。  
+ 如果此情节提要<xref:System.Windows.Media.Animation.Timeline.AutoReverse%2A>的`true`设置为, 则完整迭代包含正向反向对, 而不只是这些段中的一个。  
   
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1035,13 +1035,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 时钟的第一次迭代的值为 1。  
+ 时钟的第一个迭代的值为1。  
   
- 如果此时钟的时间线具有<xref:System.Windows.Media.Animation.Timeline.AutoReverse%2A>设置的`true`、 完整的迭代包含正向和反向迭代，而不仅仅是其中一个段。  
+ 如果此时钟的时间线<xref:System.Windows.Media.Animation.Timeline.AutoReverse%2A>的设置为`true`, 则完整迭代包含正向反向对, 而不只是这些段中的一个。  
   
- 而不考虑其当前迭代中，定位时钟都会将其当前迭代为 1。 重新启动时钟也为 1 返回其当前迭代。  
+ 无论其当前迭代如何, 查找时钟都会将其当前迭代返回1。 重新启动时钟还会将其当前迭代返回1。  
   
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1081,7 +1081,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1119,7 +1119,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1157,7 +1157,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1201,9 +1201,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法不会告知你是否暂停情节提要。 若要确定是否已暂停情节提要，请使用<xref:System.Windows.Media.Animation.Storyboard.GetIsPaused%2A>方法。  
+ 此方法不告知情节提要是否已暂停。 若要确定情节提要是否已暂停, 请<xref:System.Windows.Media.Animation.Storyboard.GetIsPaused%2A>使用方法。  
   
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1241,9 +1241,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法不会告知你是否暂停情节提要。 若要确定是否已暂停情节提要，请使用<xref:System.Windows.Media.Animation.Storyboard.GetIsPaused%2A>方法。  
+ 此方法不告知情节提要是否已暂停。 若要确定情节提要是否已暂停, 请<xref:System.Windows.Media.Animation.Storyboard.GetIsPaused%2A>使用方法。  
   
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1281,9 +1281,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法不会告知你是否暂停情节提要。 若要确定是否已暂停情节提要，请使用<xref:System.Windows.Media.Animation.Storyboard.GetIsPaused%2A>方法。  
+ 此方法不告知情节提要是否已暂停。 若要确定情节提要是否已暂停, 请<xref:System.Windows.Media.Animation.Storyboard.GetIsPaused%2A>使用方法。  
   
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1322,7 +1322,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1361,7 +1361,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1400,7 +1400,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1445,7 +1445,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1484,7 +1484,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1523,7 +1523,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要使用此方法检索有关演示图板的时钟的信息，必须可控制情节提要。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使用此方法检索有关情节提要时钟的信息, 情节提要必须可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1562,7 +1562,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Windows.Media.Animation.Storyboard.Target%2A>附加使用动画时间线以指示它们针对的对象的属性。 有关情节提要目标的工作原理的详细信息，请参阅<xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>。 有关如何附加属性的工作的详细信息，请参阅[附加属性概述](~/docs/framework/wpf/advanced/attached-properties-overview.md)。  
+ 使用带有动画时间线的附加属性来指示其目标对象。<xref:System.Windows.Media.Animation.Storyboard.Target%2A> 有关演示图板目标如何工作的详细信息, <xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>请参阅。 有关附加属性的工作方式的详细信息, 请参阅[附加属性概述](~/docs/framework/wpf/advanced/attached-properties-overview.md)。  
   
  ]]></format>
         </remarks>
@@ -1596,7 +1596,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法获取<xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>附加属性上指定的对象。 有关情节提要目标的工作原理的详细信息，请参阅<xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>。 有关如何附加属性的工作的详细信息，请参阅[附加属性概述](~/docs/framework/wpf/advanced/attached-properties-overview.md)。  
+ 此方法获取指定<xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>对象上的附加属性。 有关演示图板目标如何工作的详细信息, <xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>请参阅。 有关附加属性的工作方式的详细信息, 请参阅[附加属性概述](~/docs/framework/wpf/advanced/attached-properties-overview.md)。  
   
  ]]></format>
         </remarks>
@@ -1630,9 +1630,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法获取<xref:System.Windows.Media.Animation.Storyboard.TargetProperty%2A>附加属性上指定的对象。 有关情节提要目标的工作原理的详细信息，请参阅<xref:System.Windows.Media.Animation.Storyboard.TargetProperty%2A>附加属性。 有关如何附加属性的工作的详细信息，请参阅[附加属性概述](~/docs/framework/wpf/advanced/attached-properties-overview.md)。  
+ 此方法获取指定<xref:System.Windows.Media.Animation.Storyboard.TargetProperty%2A>对象上的附加属性。 有关演示图板目标如何工作的详细信息, <xref:System.Windows.Media.Animation.Storyboard.TargetProperty%2A>请参阅附加属性。 有关附加属性的工作方式的详细信息, 请参阅[附加属性概述](~/docs/framework/wpf/advanced/attached-properties-overview.md)。  
   
- 请注意，如果<xref:System.Windows.Media.Animation.Storyboard.TargetProperty%2A>已设置在标记中，此方法返回一个空<xref:System.Windows.PropertyPath>因为解析和分析该内部存储的属性引用。  
+ 请注意, 如果<xref:System.Windows.Media.Animation.Storyboard.TargetProperty%2A>是在标记中设置的, 则此方法<xref:System.Windows.PropertyPath>将返回一个空的, 因为属性引用在分析后会在内部解析并存储。  
   
  ]]></format>
         </remarks>
@@ -1676,12 +1676,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法暂停情节提要，但如果不是活动或暂停当前已无明显的效果。 产生了负面影响，它还会暂停所有关联的子项。  
+ 此方法将暂停情节提要, 但如果它未处于活动状态或当前已暂停, 则没有任何明显的效果。 作为副作用, 所有关联的子级也会暂停。  
   
- 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
-## <a name="beginning-a-paused-storyboard"></a>从暂停的情节提要  
- 当您<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>已暂停情节提要，它显示为恢复并重新启动。 但是，这是实际情况并非如此。 <xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法实际上会暂停<xref:System.Windows.Media.Animation.Storyboard>使用新的未暂停版本。 每次<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法调用时，时钟对象创建的情节提要。 这些时钟分配给它们进行动画处理的属性。 因此，当<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>调用方法同样，不重新启动它的时钟，并将它们替换用新时钟。  
+## <a name="beginning-a-paused-storyboard"></a>开始暂停的情节提要  
+ <xref:System.Windows.Media.Animation.Storyboard.Begin%2A>当已暂停的情节提要时, 它似乎会恢复并重新启动。 但是, 这并不是实际发生的情况。 此<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法会将暂停<xref:System.Windows.Media.Animation.Storyboard>的替换为新的未暂停版本。 每次<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>调用方法时, 都会为情节提要创建时钟对象。 这些时钟会分配给它们的动画属性。 因此, 当再次<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>调用该方法时, 它不会重新启动其时钟, 而是将其替换为新的时钟。  
   
  ]]></format>
         </remarks>
@@ -1713,26 +1713,26 @@
       </Parameters>
       <Docs>
         <param name="containingObject">在调用 <see cref="M:System.Windows.Media.Animation.Storyboard.Begin(System.Windows.FrameworkContentElement,System.Boolean)" /> 方法时指定的对象。 此对象包含为此情节提要及其子级创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象。</param>
-        <summary>暂停与此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 关联的指定 <see cref="T:System.Windows.FrameworkContentElement" /> 的 <see cref="T:System.Windows.Media.Animation.Clock" />。</summary>
+        <summary>暂停与此 <see cref="T:System.Windows.Media.Animation.Clock" /> 关联的指定 <see cref="T:System.Windows.FrameworkContentElement" /> 的 <see cref="T:System.Windows.Media.Animation.Storyboard" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法暂停情节提要，但如果不是活动或暂停当前已无明显的效果。 产生了负面影响，它还会暂停所有关联的子项。  
+ 此方法将暂停情节提要, 但如果它未处于活动状态或当前已暂停, 则没有任何明显的效果。 作为副作用, 所有关联的子级也会暂停。  
   
- 查找暂停的情节提要不会恢复它。 恢复暂停的情节提要的唯一方法是使用<xref:System.Windows.Media.Animation.Storyboard.Resume%2A>方法。 调用<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法再次暂停的情节提要会替换为一个新的活动，具有恢复它的外观。  
+ 查找已暂停的情节提要不会将其恢复。 恢复暂停的情节提要的唯一方法是使用<xref:System.Windows.Media.Animation.Storyboard.Resume%2A>方法。 再次调用<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法会将暂停的情节提要替换为新的情节提要, 这具有恢复它的外观。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 从示例，请参阅[如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 例如, 有关示例, [请参阅如何:在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
- 暂停演示图板的时钟将触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 暂停演示图板的时钟会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
-## <a name="beginning-a-paused-storyboard"></a>从暂停的情节提要  
- 当您<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>已暂停情节提要，它显示为恢复并重新启动。 但是，这是实际情况并非如此。 <xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法实际上是替换了本身未暂停的版本。 每次<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法调用时，时钟对象创建的情节提要。 这些时钟分配给它们进行动画处理的属性。 因此，当<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>调用方法同样，不重新启动它的时钟，并将它们替换用新时钟。  
+## <a name="beginning-a-paused-storyboard"></a>开始暂停的情节提要  
+ <xref:System.Windows.Media.Animation.Storyboard.Begin%2A>当已暂停的情节提要时, 它似乎会恢复并重新启动。 但是, 这并不是实际发生的情况。 此<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法实际会将自身替换为未暂停版本。 每次<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>调用方法时, 都会为情节提要创建时钟对象。 这些时钟会分配给它们的动画属性。 因此, 当再次<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>调用该方法时, 它不会重新启动其时钟, 而是将其替换为新的时钟。  
   
    
   
 ## Examples  
- 下面的示例使用可控制演示图板进行动画处理<xref:System.Windows.Media.TextEffect>。 <xref:System.Windows.Media.TextEffect>包含在<xref:System.Windows.FrameworkContentElement>的命名作用域。  
+ 下面的示例使用可控制的情节提要对<xref:System.Windows.Media.TextEffect>进行动画处理。 <xref:System.Windows.Media.TextEffect> 包含<xref:System.Windows.FrameworkContentElement>在的名称作用域内。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementControlStoryboardExampleUsingWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/FrameworkContentElementControlStoryboardExample.cs#frameworkcontentelementcontrolstoryboardexampleusingwholepage)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementControlStoryboardExampleUsingWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/frameworkcontentelementcontrolstoryboardexample.vb#frameworkcontentelementcontrolstoryboardexampleusingwholepage)]  
@@ -1768,21 +1768,21 @@
       </Parameters>
       <Docs>
         <param name="containingObject">在调用 <see cref="M:System.Windows.Media.Animation.Storyboard.Begin(System.Windows.FrameworkElement,System.Boolean)" /> 方法时指定的对象。 此对象包含为此情节提要及其子级创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象。</param>
-        <summary>暂停与此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 关联的指定 <see cref="T:System.Windows.FrameworkElement" /> 的 <see cref="T:System.Windows.Media.Animation.Clock" />。</summary>
+        <summary>暂停与此 <see cref="T:System.Windows.Media.Animation.Clock" /> 关联的指定 <see cref="T:System.Windows.FrameworkElement" /> 的 <see cref="T:System.Windows.Media.Animation.Storyboard" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法暂停情节提要，但如果不是活动或暂停当前已无明显的效果。 产生了负面影响，它还会暂停所有关联的子项。  
+ 此方法将暂停情节提要, 但如果它未处于活动状态或当前已暂停, 则没有任何明显的效果。 作为副作用, 所有关联的子级也会暂停。  
   
- 查找暂停的情节提要不会恢复它。 恢复暂停的情节提要的唯一方法是使用<xref:System.Windows.Media.Animation.Storyboard.Resume%2A>方法。 调用<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法再次暂停的情节提要会替换为一个新的活动，具有恢复它的外观。  
+ 查找已暂停的情节提要不会将其恢复。 恢复暂停的情节提要的唯一方法是使用<xref:System.Windows.Media.Animation.Storyboard.Resume%2A>方法。 再次调用<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法会将暂停的情节提要替换为新的情节提要, 这具有恢复它的外观。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
- 暂停演示图板的时钟将触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 暂停演示图板的时钟会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
-## <a name="beginning-a-paused-storyboard"></a>从暂停的情节提要  
- 当您<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>已暂停情节提要，它显示为恢复并重新启动。 但是，这是实际情况并非如此。 <xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法实际上是替换了本身未暂停的版本。 每次<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法调用时，时钟对象创建的情节提要。 这些时钟分配给它们进行动画处理的属性。 因此，当<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>调用方法同样，不重新启动它的时钟，并将它们替换用新时钟。  
+## <a name="beginning-a-paused-storyboard"></a>开始暂停的情节提要  
+ <xref:System.Windows.Media.Animation.Storyboard.Begin%2A>当已暂停的情节提要时, 它似乎会恢复并重新启动。 但是, 这并不是实际发生的情况。 此<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法实际会将自身替换为未暂停版本。 每次<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>调用方法时, 都会为情节提要创建时钟对象。 这些时钟会分配给它们的动画属性。 因此, 当再次<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>调用该方法时, 它不会重新启动其时钟, 而是将其替换为新的时钟。  
   
  ]]></format>
         </remarks>
@@ -1795,7 +1795,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>删除为此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象 无论其 <see cref="P:System.Windows.Media.Animation.Timeline.FillBehavior" /> 设置如何，属于此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 的动画将不再影响曾尤其进行动画处理的属性。</summary>
+        <summary>删除为此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象 无论其 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 设置如何，属于此 <see cref="P:System.Windows.Media.Animation.Timeline.FillBehavior" /> 的动画将不再影响曾尤其进行动画处理的属性。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="Remove">
@@ -1821,14 +1821,14 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>删除为此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象 无论其 <see cref="P:System.Windows.Media.Animation.Timeline.FillBehavior" /> 设置如何，属于此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 的动画将不再影响曾尤其进行动画处理的属性。</summary>
+        <summary>删除为此 <see cref="T:System.Windows.Media.Animation.Clock" /> 创建的 <see cref="T:System.Windows.Media.Animation.Storyboard" />对象 无论其 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 设置如何，属于此 <see cref="P:System.Windows.Media.Animation.Timeline.FillBehavior" /> 的动画将不再影响曾尤其进行动画处理的属性。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
- 对所执行的所有交互操作<xref:System.Windows.Media.Animation.Clock>，并因此同样，在<xref:System.Windows.Media.Animation.Storyboard>，计时引擎，这种情况下一步呈现之前短暂发生的下一计时周期发生。 这意味着，<xref:System.Windows.Media.Animation.Storyboard.Remove%2A>方法仍在此之前将影响动画的属性。 换而言之下, 一次显示帧，则会删除情节提要。 如果需要取消此时间之前从属性动画的关联，请使用<xref:System.Windows.UIElement.BeginAnimation%2A>方法替换`animation`的参数值`null`。  
+ 对执行的<xref:System.Windows.Media.Animation.Clock>所有交互式操作, 因此也<xref:System.Windows.Media.Animation.Storyboard>会出现在计时引擎的下一个时钟周期内, 这会在下一次呈现之前发生。 这意味着该方法<xref:System.Windows.Media.Animation.Storyboard.Remove%2A>在此之前仍会影响动画属性。 换句话说, 下一次显示帧时, 将删除该情节提要。 如果需要在此时间之前将动画与属性解除关联, 请将<xref:System.Windows.UIElement.BeginAnimation%2A>方法`animation`与参数值`null`一起使用。  
   
  ]]></format>
         </remarks>
@@ -1860,14 +1860,14 @@
       </Parameters>
       <Docs>
         <param name="containingObject">在调用 <see cref="M:System.Windows.Media.Animation.Storyboard.Begin(System.Windows.FrameworkContentElement,System.Boolean)" /> 方法时指定的对象。 此对象包含为此情节提要及其子级创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象。</param>
-        <summary>删除为此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象 无论其 <see cref="P:System.Windows.Media.Animation.Timeline.FillBehavior" /> 设置如何，属于此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 的动画将不再影响曾尤其进行动画处理的属性。</summary>
+        <summary>删除为此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象 无论其 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 设置如何，属于此 <see cref="P:System.Windows.Media.Animation.Timeline.FillBehavior" /> 的动画将不再影响曾尤其进行动画处理的属性。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
- 删除情节提要的时钟触发器<xref:System.Windows.Media.Animation.Timeline.RemoveRequested>事件。  
+ 删除情节提要的时钟会触发<xref:System.Windows.Media.Animation.Timeline.RemoveRequested>该事件。  
   
  ]]></format>
         </remarks>
@@ -1899,14 +1899,14 @@
       </Parameters>
       <Docs>
         <param name="containingObject">在调用 <see cref="M:System.Windows.Media.Animation.Storyboard.Begin(System.Windows.FrameworkElement,System.Boolean)" /> 方法时指定的对象。 此对象包含为此情节提要及其子级创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象。</param>
-        <summary>删除为此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象 无论其 <see cref="P:System.Windows.Media.Animation.Timeline.FillBehavior" /> 设置如何，属于此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 的动画将不再影响曾尤其进行动画处理的属性。</summary>
+        <summary>删除为此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象 无论其 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 设置如何，属于此 <see cref="P:System.Windows.Media.Animation.Timeline.FillBehavior" /> 的动画将不再影响曾尤其进行动画处理的属性。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
- 删除情节提要的时钟触发器<xref:System.Windows.Media.Animation.Timeline.RemoveRequested>事件。  
+ 删除情节提要的时钟会触发<xref:System.Windows.Media.Animation.Timeline.RemoveRequested>该事件。  
   
  ]]></format>
         </remarks>
@@ -1918,7 +1918,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>恢复为此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 创建的 <see cref="T:System.Windows.Media.Animation.Clock" />。</summary>
+        <summary>恢复为此 <see cref="T:System.Windows.Media.Animation.Clock" /> 创建的 <see cref="T:System.Windows.Media.Animation.Storyboard" />。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="Resume">
@@ -1944,12 +1944,12 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>恢复为此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 创建的 <see cref="T:System.Windows.Media.Animation.Clock" />。</summary>
+        <summary>恢复为此 <see cref="T:System.Windows.Media.Animation.Clock" /> 创建的 <see cref="T:System.Windows.Media.Animation.Storyboard" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -1981,23 +1981,23 @@
       </Parameters>
       <Docs>
         <param name="containingObject">在调用 <see cref="M:System.Windows.Media.Animation.Storyboard.Begin(System.Windows.FrameworkContentElement,System.Boolean)" /> 方法时指定的对象。 此对象包含为此情节提要及其子级创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象。</param>
-        <summary>恢复为此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 创建的 <see cref="T:System.Windows.Media.Animation.Clock" />。</summary>
+        <summary>恢复为此 <see cref="T:System.Windows.Media.Animation.Clock" /> 创建的 <see cref="T:System.Windows.Media.Animation.Storyboard" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 恢复未暂停的情节提要没有任何影响。  
+ 恢复未暂停的情节提要不起作用。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
- 查找暂停的情节提要不会恢复它。 恢复暂停的情节提要的唯一方法是使用<xref:System.Windows.Media.Animation.Storyboard.Resume%2A>方法。 调用<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法情节提要启动后将替换旧情节提要，具有恢复它的外观。  
+ 查找已暂停的情节提要不会将其恢复。 恢复暂停的情节提要的唯一方法是使用<xref:System.Windows.Media.Animation.Storyboard.Resume%2A>方法。 在情节提要启动后调用方法会替换旧的情节提要,这看起来是恢复它的外观。<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>  
   
- 恢复暂停的演示图板的时钟触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 恢复暂停的情节提要的时钟会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
    
   
 ## Examples  
- 下面的示例使用可控制演示图板进行动画处理<xref:System.Windows.Media.TextEffect>。 <xref:System.Windows.Media.TextEffect>包含在<xref:System.Windows.FrameworkContentElement>的命名作用域。  
+ 下面的示例使用可控制的情节提要对<xref:System.Windows.Media.TextEffect>进行动画处理。 <xref:System.Windows.Media.TextEffect> 包含<xref:System.Windows.FrameworkContentElement>在的名称作用域内。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementControlStoryboardExampleUsingWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/FrameworkContentElementControlStoryboardExample.cs#frameworkcontentelementcontrolstoryboardexampleusingwholepage)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementControlStoryboardExampleUsingWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/frameworkcontentelementcontrolstoryboardexample.vb#frameworkcontentelementcontrolstoryboardexampleusingwholepage)]  
@@ -2033,18 +2033,18 @@
       </Parameters>
       <Docs>
         <param name="containingObject">在调用 <see cref="M:System.Windows.Media.Animation.Storyboard.Begin(System.Windows.FrameworkElement,System.Boolean)" /> 方法时指定的对象。 此对象包含为此情节提要及其子级创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象。</param>
-        <summary>恢复为此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 创建的 <see cref="T:System.Windows.Media.Animation.Clock" />。</summary>
+        <summary>恢复为此 <see cref="T:System.Windows.Media.Animation.Clock" /> 创建的 <see cref="T:System.Windows.Media.Animation.Storyboard" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 恢复未暂停的情节提要没有任何影响。  
+ 恢复未暂停的情节提要不起作用。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
- 查找暂停的情节提要不会恢复它。 恢复暂停的情节提要的唯一方法是使用<xref:System.Windows.Media.Animation.Storyboard.Resume%2A>方法。 调用<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法情节提要启动后将替换旧情节提要，具有恢复它的外观。  
+ 查找已暂停的情节提要不会将其恢复。 恢复暂停的情节提要的唯一方法是使用<xref:System.Windows.Media.Animation.Storyboard.Resume%2A>方法。 在情节提要启动后调用方法会替换旧的情节提要,这看起来是恢复它的外观。<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>  
   
- 恢复暂停的演示图板的时钟触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 恢复暂停的情节提要的时钟会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
  ]]></format>
         </remarks>
@@ -2091,9 +2091,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 请注意，查找操作不会情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>或<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>到帐户设置。 情节提要被视为如同它具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>为 1 且无<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>。  
+ 请注意, 查找操作不会考虑情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>的<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>或设置。 将该情节提要视为具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A> 1 和 no <xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>的。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -2126,15 +2126,15 @@
       </Parameters>
       <Docs>
         <param name="offset">一个正值或负值，它表示时间线应从指定的 <paramref name="origin" /> 向前或向后移动的量。</param>
-        <param name="origin">从此处应用 <paramref name="offset" /> 的位置。</param>
+        <param name="origin">开始应用 <paramref name="offset" /> 的位置。</param>
         <summary>将此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 定位到指定位置。 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 在时钟下一次走动时执行请求的定位操作。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 请注意，查找操作不会情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>或<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>到帐户设置。 情节提要被视为如同它具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>为 1 且无<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>。  
+ 请注意, 查找操作不会考虑情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>的<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>或设置。 将该情节提要视为具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A> 1 和 no <xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>的。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -2169,24 +2169,24 @@
       <Docs>
         <param name="containingObject">在调用 <see cref="M:System.Windows.Media.Animation.Storyboard.Begin(System.Windows.FrameworkContentElement,System.Boolean)" /> 方法时指定的对象。 此对象包含为此情节提要及其子级创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象。</param>
         <param name="offset">一个正值或负值，它表示时间线应从指定的 <paramref name="origin" /> 向前或向后移动的量。</param>
-        <param name="origin">从此处应用 <paramref name="offset" /> 的位置。</param>
+        <param name="origin">开始应用 <paramref name="offset" /> 的位置。</param>
         <summary>将此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 定位到指定位置。 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 在时钟下一次走动时执行请求的定位操作。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 请注意，查找操作不会情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>或<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>到帐户设置。 情节提要被视为如同它具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>为 1 且无<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>。  
+ 请注意, 查找操作不会考虑情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>的<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>或设置。 将该情节提要视为具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A> 1 和 no <xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>的。  
   
- 此方法将更改情节提要时钟<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>到<xref:System.Windows.Media.Animation.ClockState.Active>。 此方法具有下一次处理一个对勾之前不会影响计时树。 其副作用是，引发相应事件是还不在此之前。  
+ 此方法将情节提要时钟的<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>更改<xref:System.Windows.Media.Animation.ClockState.Active>为。 直到下一次处理计时周期时, 此方法才会对计时树产生任何影响。 副作用是, 在此之前, 也不会引发相应的事件。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
- 查找情节提要触发器<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件。  
+ 查找情节提要会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件。  
   
    
   
 ## Examples  
- 下面的示例演示这两<xref:System.Windows.Media.Animation.Storyboard.Seek%2A>和<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>方法。  
+ 下面的示例演示<xref:System.Windows.Media.Animation.Storyboard.Seek%2A>了和<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>方法。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementSeekExampleUsingWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/FrameworkContentElementSeekExample.cs#frameworkcontentelementseekexampleusingwholepage)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementSeekExampleUsingWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/frameworkcontentelementseekexample.vb#frameworkcontentelementseekexampleusingwholepage)]  
@@ -2224,29 +2224,29 @@
       <Docs>
         <param name="containingObject">在调用 <see cref="M:System.Windows.Media.Animation.Storyboard.Begin(System.Windows.FrameworkElement,System.Boolean)" /> 方法时指定的对象。 此对象包含为此情节提要及其子级创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象。</param>
         <param name="offset">一个正值或负值，它表示时间线应从指定的 <paramref name="origin" /> 向前或向后移动的量。</param>
-        <param name="origin">从此处应用 <paramref name="offset" /> 的位置。</param>
+        <param name="origin">开始应用 <paramref name="offset" /> 的位置。</param>
         <summary>将此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 定位到指定位置。 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 在时钟下一次走动时执行请求的定位操作。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 请注意，查找操作不会情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>或<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>到帐户设置。 情节提要被视为如同它具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>为 1 且无<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>。  
+ 请注意, 查找操作不会考虑情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>的<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>或设置。 将该情节提要视为具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A> 1 和 no <xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>的。  
   
- 此方法将更改情节提要时钟<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>到<xref:System.Windows.Media.Animation.ClockState.Active>。 此方法具有下一次处理一个对勾之前不会影响计时树。 其副作用是，引发相应事件是还不在此之前。  
+ 此方法将情节提要时钟的<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>更改<xref:System.Windows.Media.Animation.ClockState.Active>为。 直到下一次处理计时周期时, 此方法才会对计时树产生任何影响。 副作用是, 在此之前, 也不会引发相应的事件。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找和停止，并且如果它由可控制将其删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除, 如果它可控制。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
- 查找情节提要触发器<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件。  
+ 查找情节提要会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件。  
   
    
   
 ## Examples  
- 下面的示例演示如何以定位到一秒钟，直到情节提要开始 （跳过）。  
+ 下面的示例演示演示图板开始后如何查找 (skip) 到一秒。  
   
  [!code-csharp[timingbehaviors_procedural_snip#SeekStoryboardExampleWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/timingbehaviors_procedural_snip/CSharp/SeekStoryboardExample.cs#seekstoryboardexamplewholepage)]
  [!code-vb[timingbehaviors_procedural_snip#SeekStoryboardExampleWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/timingbehaviors_procedural_snip/visualbasic/seekstoryboardexample.vb#seekstoryboardexamplewholepage)]  
   
- 下面的示例演示这两<xref:System.Windows.Media.Animation.Storyboard.Seek%2A>和<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>方法。  
+ 下一个示例显示<xref:System.Windows.Media.Animation.Storyboard.Seek%2A>和<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>方法。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#SeekExampleUsingWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/SeekExample.cs#seekexampleusingwholepage)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#SeekExampleUsingWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/seekexample.vb#seekexampleusingwholepage)]  
@@ -2296,11 +2296,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A> 对齐的查找时间<xref:System.Windows.Media.Animation.Storyboard>与最后一个时钟周期。 值会立即更新以反映由于更改<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>，即使在屏幕的屏幕更新之前不会反映这些更改。  
+ <xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>将的<xref:System.Windows.Media.Animation.Storyboard> seeked 时间与上一个时钟周期进行对齐。 值会立即更新以反映所做的更改<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>, 即使屏幕更新后屏幕不会反映这些更改。  
   
- 请注意，查找操作不会情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>或<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>到帐户设置。 情节提要被视为如同它具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>为 1 且无<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>。  
+ 请注意, 查找操作不会考虑情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>的<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>或设置。 将该情节提要视为具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A> 1 和 no <xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>的。  
   
- 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -2333,17 +2333,17 @@
       </Parameters>
       <Docs>
         <param name="offset">一个正值或负值，它表示时间线应从指定的 <paramref name="origin" /> 向前或向后移动的量。</param>
-        <param name="origin">从此处应用 <paramref name="offset" /> 的位置。</param>
+        <param name="origin">开始应用 <paramref name="offset" /> 的位置。</param>
         <summary>立即将此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 指定到新位置（同步）。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A> 对齐的查找时间<xref:System.Windows.Media.Animation.Storyboard>与最后一个时钟周期。 值会立即更新以反映由于更改<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>，即使在屏幕的屏幕更新之前不会反映这些更改。  
+ <xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>将的<xref:System.Windows.Media.Animation.Storyboard> seeked 时间与上一个时钟周期进行对齐。 值会立即更新以反映所做的更改<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>, 即使屏幕更新后屏幕不会反映这些更改。  
   
- 请注意，查找操作不会情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>或<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>到帐户设置。 情节提要被视为如同它具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>为 1 且无<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>。  
+ 请注意, 查找操作不会考虑情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>的<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>或设置。 将该情节提要视为具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A> 1 和 no <xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>的。  
   
- 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -2378,28 +2378,28 @@
       <Docs>
         <param name="containingObject">在调用 <see cref="M:System.Windows.Media.Animation.Storyboard.Begin(System.Windows.FrameworkContentElement,System.Boolean)" /> 方法时指定的对象。 此对象包含为此情节提要及其子级创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象。</param>
         <param name="offset">一个正值或负值，它表示时间线应从指定的 <paramref name="origin" /> 向前或向后移动的量。</param>
-        <param name="origin">从此处应用 <paramref name="offset" /> 的位置。</param>
+        <param name="origin">开始应用 <paramref name="offset" /> 的位置。</param>
         <summary>立即将此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 指定到新位置（同步）。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A> 对齐的查找时间<xref:System.Windows.Media.Animation.Storyboard>与最后一个时钟周期。 值会立即更新以反映由于更改<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>，即使在屏幕的屏幕更新之前不会反映这些更改。  
+ <xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>将的<xref:System.Windows.Media.Animation.Storyboard> seeked 时间与上一个时钟周期进行对齐。 值会立即更新以反映所做的更改<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>, 即使屏幕更新后屏幕不会反映这些更改。  
   
- 请注意，查找操作不会情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>或<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>到帐户设置。 情节提要被视为如同它具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>为 1 且无<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>。  
+ 请注意, 查找操作不会考虑情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>的<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>或设置。 将该情节提要视为具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A> 1 和 no <xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>的。  
   
- 此方法将更改情节提要时钟的<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>到  
+ 此方法将情节提要时钟的<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>更改为  
   
  <xref:System.Windows.Media.Animation.ClockState.Active>。  
   
- 查找情节提要触发器<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件。  
+ 查找情节提要会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
    
   
 ## Examples  
- 下面的示例演示这两<xref:System.Windows.Media.Animation.Storyboard.Seek%2A>和<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>方法。  
+ 下面的示例演示<xref:System.Windows.Media.Animation.Storyboard.Seek%2A>了和<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>方法。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementSeekExampleUsingWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/FrameworkContentElementSeekExample.cs#frameworkcontentelementseekexampleusingwholepage)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementSeekExampleUsingWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/frameworkcontentelementseekexample.vb#frameworkcontentelementseekexampleusingwholepage)]  
@@ -2437,28 +2437,28 @@
       <Docs>
         <param name="containingObject">在调用 <see cref="M:System.Windows.Media.Animation.Storyboard.Begin(System.Windows.FrameworkElement,System.Boolean)" /> 方法时指定的对象。 此对象包含为此情节提要及其子级创建的 <see cref="T:System.Windows.Media.Animation.Clock" /> 对象。</param>
         <param name="offset">一个正值或负值，它表示时间线应从指定的 <paramref name="origin" /> 向前或向后移动的量。</param>
-        <param name="origin">从此处应用 <paramref name="offset" /> 的位置。</param>
+        <param name="origin">开始应用 <paramref name="offset" /> 的位置。</param>
         <summary>立即将此 <see cref="T:System.Windows.Media.Animation.Storyboard" /> 指定到新位置（同步）。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A> 对齐的查找时间<xref:System.Windows.Media.Animation.Storyboard>与最后一个时钟周期。 值会立即更新以反映由于更改<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>，即使在屏幕的屏幕更新之前不会反映这些更改。  
+ <xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>将的<xref:System.Windows.Media.Animation.Storyboard> seeked 时间与上一个时钟周期进行对齐。 值会立即更新以反映所做的更改<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>, 即使屏幕更新后屏幕不会反映这些更改。  
   
- 请注意，查找操作不会情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>或<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>到帐户设置。 情节提要被视为如同它具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>为 1 且无<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>。  
+ 请注意, 查找操作不会考虑情节提要<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>的<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>或设置。 将该情节提要视为具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A> 1 和 no <xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>的。  
   
- 此方法将更改情节提要时钟的<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>到  
+ 此方法将情节提要时钟的<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>更改为  
   
  <xref:System.Windows.Media.Animation.ClockState.Active>。  
   
- 查找情节提要触发器<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件。  
+ 查找情节提要会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
    
   
 ## Examples  
- 下面的示例演示这两<xref:System.Windows.Media.Animation.Storyboard.Seek%2A>和<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>方法。  
+ 下面的示例演示<xref:System.Windows.Media.Animation.Storyboard.Seek%2A>了和<xref:System.Windows.Media.Animation.Storyboard.SeekAlignedToLastTick%2A>方法。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#SeekExampleUsingWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/SeekExample.cs#seekexampleusingwholepage)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#SeekExampleUsingWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/seekexample.vb#seekexampleusingwholepage)]  
@@ -2507,7 +2507,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -2546,14 +2546,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
- 调用此方法会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 调用此方法将<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>触发事件。  
   
    
   
 ## Examples  
- 下面的示例使用可控制演示图板进行动画处理<xref:System.Windows.Media.TextEffect>。 <xref:System.Windows.Media.TextEffect>包含在<xref:System.Windows.FrameworkContentElement>的命名作用域。  
+ 下面的示例使用可控制的情节提要对<xref:System.Windows.Media.TextEffect>进行动画处理。 <xref:System.Windows.Media.TextEffect> 包含<xref:System.Windows.FrameworkContentElement>在的名称作用域内。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementControlStoryboardExampleUsingWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/FrameworkContentElementControlStoryboardExample.cs#frameworkcontentelementcontrolstoryboardexampleusingwholepage)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementControlStoryboardExampleUsingWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/frameworkcontentelementcontrolstoryboardexample.vb#frameworkcontentelementcontrolstoryboardexampleusingwholepage)]  
@@ -2595,9 +2595,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
- 调用此方法会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 调用此方法将<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>触发事件。  
   
  ]]></format>
         </remarks>
@@ -2631,10 +2631,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法设置<xref:System.Windows.Media.Animation.Storyboard.Target%2A>附加属性上指定的对象。 有关情节提要目标的工作原理的详细信息，请参阅<xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>。 有关如何附加属性的工作的详细信息，请参阅[附加属性概述](~/docs/framework/wpf/advanced/attached-properties-overview.md)。  
+ 此方法设置指定<xref:System.Windows.Media.Animation.Storyboard.Target%2A>对象上的附加属性。 有关演示图板目标如何工作的详细信息, <xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>请参阅。 有关附加属性的工作方式的详细信息, 请参阅[附加属性概述](~/docs/framework/wpf/advanced/attached-properties-overview.md)。  
   
 > [!NOTE]
->  <xref:System.Windows.Media.Animation.Storyboard.Target%2A>属性不是可序列化，因为它可以将设置为任何<xref:System.Windows.DependencyObject>。 不保证可以从 XAML 正确引用该对象。  
+>  属性不可序列化, 因为它可以设置为 any <xref:System.Windows.DependencyObject>。 <xref:System.Windows.Media.Animation.Storyboard.Target%2A> 不保证可以从 XAML 正确引用此对象。  
   
  ]]></format>
         </remarks>
@@ -2669,7 +2669,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法设置<xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>附加属性上指定的对象。 有关情节提要目标的工作原理的详细信息，请参阅<xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>。 有关如何附加属性的工作的详细信息，请参阅[附加属性概述](~/docs/framework/wpf/advanced/attached-properties-overview.md)。  
+ 此方法设置指定<xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>对象上的附加属性。 有关演示图板目标如何工作的详细信息, <xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>请参阅。 有关附加属性的工作方式的详细信息, 请参阅[附加属性概述](~/docs/framework/wpf/advanced/attached-properties-overview.md)。  
   
  ]]></format>
         </remarks>
@@ -2704,7 +2704,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法设置<xref:System.Windows.Media.Animation.Storyboard.TargetProperty%2A>附加属性上指定的对象。 有关情节提要目标的工作原理的详细信息，请参阅<xref:System.Windows.Media.Animation.Storyboard.TargetProperty%2A>。 有关如何附加属性的工作的详细信息，请参阅[附加属性概述](~/docs/framework/wpf/advanced/attached-properties-overview.md)。  
+ 此方法设置指定<xref:System.Windows.Media.Animation.Storyboard.TargetProperty%2A>对象上的附加属性。 有关演示图板目标如何工作的详细信息, <xref:System.Windows.Media.Animation.Storyboard.TargetProperty%2A>请参阅。 有关附加属性的工作方式的详细信息, 请参阅[附加属性概述](~/docs/framework/wpf/advanced/attached-properties-overview.md)。  
   
  ]]></format>
         </remarks>
@@ -2748,7 +2748,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -2785,18 +2785,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将推进情节提要的当前时间和结束活动期;情节提要的行为在此时指定通过其<xref:System.Windows.Media.Animation.Timeline.FillBehavior%2A>设置。 如果<xref:System.Windows.Media.Animation.Timeline.FillBehavior%2A>设置为<xref:System.Windows.Media.Animation.FillBehavior.HoldEnd>，情节提要填充; 如果该属性设置为<xref:System.Windows.Media.Animation.FillBehavior.Stop>，情节提要停止。  
+ 此方法使情节提要的当前时间前进到其活动周期的结束时间;此时情节提要的行为由其<xref:System.Windows.Media.Animation.Timeline.FillBehavior%2A>设置来指定。 如果<xref:System.Windows.Media.Animation.Timeline.FillBehavior%2A>设置为<xref:System.Windows.Media.Animation.FillBehavior.HoldEnd>, 则情节提要将填充; 如果属性设置为<xref:System.Windows.Media.Animation.FillBehavior.Stop>, 则情节提要将停止。  
   
- 带有无限持续时间在 storyboard 上调用此方法，无限数量的重复项无效。 在处于非活动状态的情节提要上调用此方法不起作用。  
+ 在持续时间无限的情节提要上调用此方法不会产生任何影响。 对非活动情节提要调用此方法不起任何作用。  
   
- 将时钟至其填充期会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件。  
+ 将时钟前进到其填充期会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
    
   
 ## Examples  
- 下面的示例使用可控制演示图板进行动画处理<xref:System.Windows.Media.TextEffect>。 <xref:System.Windows.Media.TextEffect>包含在<xref:System.Windows.FrameworkContentElement>的命名作用域。  
+ 下面的示例使用可控制的情节提要对<xref:System.Windows.Media.TextEffect>进行动画处理。 <xref:System.Windows.Media.TextEffect> 包含<xref:System.Windows.FrameworkContentElement>在的名称作用域内。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementControlStoryboardExampleUsingWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/FrameworkContentElementControlStoryboardExample.cs#frameworkcontentelementcontrolstoryboardexampleusingwholepage)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementControlStoryboardExampleUsingWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/frameworkcontentelementcontrolstoryboardexample.vb#frameworkcontentelementcontrolstoryboardexampleusingwholepage)]  
@@ -2836,13 +2836,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将推进情节提要的当前时间和结束活动期;情节提要的行为在此时指定通过其<xref:System.Windows.Media.Animation.Timeline.FillBehavior%2A>设置。 如果<xref:System.Windows.Media.Animation.Timeline.FillBehavior%2A>设置为<xref:System.Windows.Media.Animation.FillBehavior.HoldEnd>，情节提要填充; 如果该属性设置为<xref:System.Windows.Media.Animation.FillBehavior.Stop>，情节提要停止。  
+ 此方法使情节提要的当前时间前进到其活动周期的结束时间;此时情节提要的行为由其<xref:System.Windows.Media.Animation.Timeline.FillBehavior%2A>设置来指定。 如果<xref:System.Windows.Media.Animation.Timeline.FillBehavior%2A>设置为<xref:System.Windows.Media.Animation.FillBehavior.HoldEnd>, 则情节提要将填充; 如果属性设置为<xref:System.Windows.Media.Animation.FillBehavior.Stop>, 则情节提要将停止。  
   
- 带有无限持续时间在 storyboard 上调用此方法，无限数量的重复项无效。 在处于非活动状态的情节提要上调用此方法不起作用。  
+ 在持续时间无限的情节提要上调用此方法不会产生任何影响。 对非活动情节提要调用此方法不起任何作用。  
   
- 将时钟至其填充期会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件。  
+ 将时钟前进到其填充期会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -2885,7 +2885,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 请注意，停止情节提要不会激发<xref:System.Windows.Media.Animation.Timeline.Completed>事件。  
+ 请注意, 停止情节提要不会引发<xref:System.Windows.Media.Animation.Timeline.Completed>事件。  
   
  ]]></format>
         </remarks>
@@ -2922,16 +2922,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Windows.Media.Animation.ClockState.Stopped>情节提要不会再影响其目标属性： 属性已进行动画处理还原为其以前的值。  
+ <xref:System.Windows.Media.Animation.ClockState.Stopped>情节提要不再影响其目标属性: 已进行动画处理的属性将恢复为其以前的值。  
   
- 停止时钟将触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>并<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件，但不是<xref:System.Windows.Media.Animation.Timeline.Completed>事件。  
+ 停止时钟会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated> <xref:System.Windows.Media.Animation.Timeline.Completed>事件, 但不会触发事件。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
    
   
 ## Examples  
- 下面的示例使用可控制演示图板进行动画处理<xref:System.Windows.Media.TextEffect>。 <xref:System.Windows.Media.TextEffect>包含在<xref:System.Windows.FrameworkContentElement>的命名作用域。  
+ 下面的示例使用可控制的情节提要对<xref:System.Windows.Media.TextEffect>进行动画处理。 <xref:System.Windows.Media.TextEffect> 包含<xref:System.Windows.FrameworkContentElement>在的名称作用域内。  
   
  [!code-csharp[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementControlStoryboardExampleUsingWholePage](~/samples/snippets/csharp/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/CSharp/FrameworkContentElementControlStoryboardExample.cs#frameworkcontentelementcontrolstoryboardexampleusingwholepage)]
  [!code-vb[StoryboardBeginAnimation_procedural_snip#FrameworkContentElementControlStoryboardExampleUsingWholePage](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StoryboardBeginAnimation_procedural_snip/visualbasic/frameworkcontentelementcontrolstoryboardexample.vb#frameworkcontentelementcontrolstoryboardexampleusingwholepage)]  
@@ -2971,11 +2971,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Windows.Media.Animation.ClockState.Stopped>情节提要不会再影响其目标属性： 属性已进行动画处理还原为其以前的值。  
+ <xref:System.Windows.Media.Animation.ClockState.Stopped>情节提要不再影响其目标属性: 已进行动画处理的属性将恢复为其以前的值。  
   
- 停止时钟将触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>并<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件，但不是<xref:System.Windows.Media.Animation.Timeline.Completed>事件。  
+ 停止时钟会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated> <xref:System.Windows.Media.Animation.Timeline.Completed>事件, 但不会触发事件。  
   
- 若要以交互方式控制此情节提要，必须使用相同`containingObject`参数调用用于开始情节提要的交互式方法时。 可控制情节提要可以暂停、 恢复、 查找、 停止和删除。 若要使情节提要可以控制在代码中，必须使用情节提要的适当重载<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法并指定`true`以使其可以控制。 有关示例，请参见 [如何：控制演示图板启动后](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)。  
+ 若要以交互方式控制此情节提要, 在`containingObject`调用用于开始情节提要的交互式方法时, 必须使用相同的参数。 可控制的情节提要可以暂停、恢复、查找、停止和删除。 若要使 storyboard 能够控制代码, 必须使用情节提要的<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法的适当重载, 并指定`true`以使其可控制。 有关示例，请参见 [如何：在演示图板启动](~/docs/framework/wpf/graphics-multimedia/how-to-control-a-storyboard-after-it-starts.md)后对其进行控制。  
   
  ]]></format>
         </remarks>
@@ -2999,10 +2999,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 目标对象必须是依赖项对象。  
+ 目标对象必须是依赖对象。  
   
 > [!NOTE]
->  <xref:System.Windows.Media.Animation.Storyboard.Target%2A>属性不是可序列化，因为它可以将设置为任何<xref:System.Windows.DependencyObject>。 没有任何保证可以在 XAML 中正确引用该对象。  
+>  属性不可序列化, 因为它可以设置为 any <xref:System.Windows.DependencyObject>。 <xref:System.Windows.Media.Animation.Storyboard.Target%2A> 不保证可以在 XAML 中正确地引用此对象。  
   
 <a name="dependencyPropertyInfo_Target"></a>   
 ## <a name="dependency-property-information"></a>依赖项属性信息  
@@ -3010,7 +3010,7 @@
 |||  
 |-|-|  
 |标识符字段|<xref:System.Windows.Media.Animation.Storyboard.TargetProperty>|  
-|元数据属性设置为 `true`|无|  
+|元数据属性设置为`true`|None|  
   
  ]]></format>
         </remarks>
@@ -3034,22 +3034,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置此属性是可选的。 如果<xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>未指定，情节提要的动画应用于下列情况之一：  
+ 设置此属性是可选的。 <xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>如果未指定, 演示图板的动画将应用于以下项之一:  
   
--   如果使用启动情节提要动画所属<xref:System.Windows.Media.Animation.BeginStoryboard>，拥有的元素<xref:System.Windows.Media.Animation.BeginStoryboard>触发情节提要的操作为目标。  
+-   如果动画所属的情节提要是使用<xref:System.Windows.Media.Animation.BeginStoryboard>启动的, 则将<xref:System.Windows.Media.Animation.BeginStoryboard>拥有触发情节提要的操作的元素作为目标。  
   
--   如果使用启动情节提要<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法，<xref:System.Windows.FrameworkElement>或<xref:System.Windows.FrameworkContentElement>指定当启动情节提要时采用了<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法为目标。  
+-   如果使用<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法启动了情节提要<xref:System.Windows.FrameworkElement> , 则为, <xref:System.Windows.FrameworkContentElement>在使用<xref:System.Windows.Media.Animation.Storyboard.Begin%2A>方法启动情节提要时指定或。  
   
- 如果使用子时间线上设置此属性，这些子时间线"继承"的父<xref:System.Windows.Media.Animation.Storyboard.TargetName%2A>除非指定其自己。  
+ 如果在具有子级的时间线上设置此属性, 则这些子时间线会 "继承<xref:System.Windows.Media.Animation.Storyboard.TargetName%2A> " 父项, 除非它们指定自己的。  
   
-## <a name="making-an-object-targetable"></a>使对象作为目标  
- 当使用[!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)]，执行以下两个操作，以使对象可通过一个情节提要之一：  
+## <a name="making-an-object-targetable"></a>使对象不再  
+ 使用[!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)]时, 可以执行以下两项操作之一, 使不再的对象成为情节提要的一个对象:  
   
--   如果对象是<xref:System.Windows.FrameworkElement>或<xref:System.Windows.FrameworkContentElement>，将其<xref:System.Windows.FrameworkElement.Name%2A>属性。  
+-   如果对象为<xref:System.Windows.FrameworkElement> <xref:System.Windows.FrameworkContentElement>或, 则设置其<xref:System.Windows.FrameworkElement.Name%2A>属性。  
   
--   如果对象是<xref:System.Windows.Freezable>或自定义<xref:System.Windows.FrameworkContentElement>或<xref:System.Windows.FrameworkContentElement>，将其分配名称使用[X:name 指令](~/docs/framework/xaml-services/x-name-directive.md)标记扩展。  
+-   如果对象是<xref:System.Windows.Freezable>或自定义<xref:System.Windows.FrameworkContentElement>的或<xref:System.Windows.FrameworkContentElement>, 则使用[x:Name 指令](~/docs/framework/xaml-services/x-name-directive.md)标记扩展为其分配一个名称。  
   
- 使用代码时，您使对象可通过使用<xref:System.Windows.NameScope.RegisterName%2A>方法以将对象分配一个名称。  
+ 使用代码时, 通过使用<xref:System.Windows.NameScope.RegisterName%2A>方法将对象命名为不再。  
   
 <a name="dependencyPropertyInfo_TargetName"></a>   
 ## <a name="dependency-property-information"></a>依赖项属性信息  
@@ -3057,7 +3057,7 @@
 |||  
 |-|-|  
 |标识符字段|<xref:System.Windows.Media.Animation.Storyboard.TargetNameProperty>|  
-|元数据属性设置为 `true`|无|  
+|元数据属性设置为`true`|None|  
   
  ]]></format>
         </remarks>

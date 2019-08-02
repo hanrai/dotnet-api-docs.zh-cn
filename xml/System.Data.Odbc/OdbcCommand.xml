@@ -51,17 +51,17 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Odbc.OdbcCommand>类提供了以下方法用来对数据源执行命令：  
+ <xref:System.Data.Odbc.OdbcCommand>类提供以下方法用于对数据源执行命令:  
   
-|项|描述|  
+|项|说明|  
 |----------|-----------------|  
 |<xref:System.Data.Odbc.OdbcCommand.ExecuteReader%2A>|执行返回行的命令。|  
-|<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>|执行命令，例如 SQL INSERT、 DELETE、 UPDATE 和 SET 语句。|  
-|<xref:System.Data.Odbc.OdbcCommand.ExecuteScalar%2A>|从数据库中检索单个值，例如，一个聚合值。|  
+|<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>|执行 SQL INSERT、DELETE、UPDATE 和 SET 语句等命令。|  
+|<xref:System.Data.Odbc.OdbcCommand.ExecuteScalar%2A>|从数据库中检索单个值, 例如聚合值。|  
   
- 你可以重置<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>属性和重复使用<xref:System.Data.Odbc.OdbcCommand>对象。 但是，您必须关闭<xref:System.Data.Odbc.OdbcDataReader>执行新的或上一命令之前。  
+ 可以重置<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>属性并重新使用该<xref:System.Data.Odbc.OdbcCommand>对象。 但是, 必须<xref:System.Data.Odbc.OdbcDataReader>先关闭, 然后才能执行新的或前一个命令。  
   
- 如果执行此命令会导致严重<xref:System.Data.Odbc.OdbcException>SQL Server 严重级别为 20 或更多，例如<xref:System.Data.Odbc.OdbcConnection>可能会关闭。 但是，用户可以重新打开连接并继续操作。  
+ 如果执行命令导致严重<xref:System.Data.Odbc.OdbcException> , 如 SQL Server 严重级别为20或更大, <xref:System.Data.Odbc.OdbcConnection>则可能会关闭。 但是，用户可以重新打开连接并继续操作。  
   
    
   
@@ -113,7 +113,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 基构造函数初始化为其默认值的所有字段。 下表显示的实例的初始属性值<xref:System.Data.Odbc.OdbcCommand>。  
+ 基本构造函数将所有字段初始化为其默认值。 下表显示了实例的<xref:System.Data.Odbc.OdbcCommand>初始属性值。  
   
 |属性|初始值|  
 |----------------|-------------------|  
@@ -184,7 +184,7 @@
       <Docs>
         <param name="cmdText">查询的文本。</param>
         <param name="connection">表示数据源连接的 <see cref="T:System.Data.Odbc.OdbcConnection" /> 对象。</param>
-        <summary>初始化的新实例<see cref="T:System.Data.Odbc.OdbcCommand" />文本的查询的类和一个<see cref="T:System.Data.Odbc.OdbcConnection" />对象。</summary>
+        <summary>用查询文本和 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象初始化 <see cref="T:System.Data.Odbc.OdbcConnection" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/40494916-c25a-4cb8-8f7c-fcb8d378464e">执行命令</related>
       </Docs>
@@ -222,16 +222,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 下表显示了此实现的实例的初始属性值<xref:System.Data.Odbc.OdbcCommand>。  
+ 下表显示了此实现的<xref:System.Data.Odbc.OdbcCommand>实例的初始属性值。  
   
 |属性|初始值|  
 |----------------|-------------------|  
 |<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>|`cmdText`|  
 |<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>|30|  
 |<xref:System.Data.Odbc.OdbcCommand.CommandType%2A>|`Text`|  
-|<xref:System.Data.Odbc.OdbcCommand.Connection%2A>|一个新<xref:System.Data.Odbc.OdbcConnection>，它是为`connection`参数。|  
+|<xref:System.Data.Odbc.OdbcCommand.Connection%2A>|一个新<xref:System.Data.Odbc.OdbcConnection>的, 它是`connection`参数的值。|  
   
- 可以通过设置相关的属性来更改这些参数的任何一个的值。  
+ 您可以通过设置相关属性来更改这些参数中的任何一个参数的值。  
   
  ]]></format>
         </remarks>
@@ -262,14 +262,14 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>尝试取消执行<see cref="T:System.Data.Odbc.OdbcCommand" />。</summary>
+        <summary>尝试取消执行 <see cref="T:System.Data.Odbc.OdbcCommand" />。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果没有要取消的命令，则不会有任何反应。 但是，如果在过程中，命令，并且取消尝试失败，会不生成任何异常。  
+ 如果没有要取消的命令，则不会有任何反应。 但是, 如果有一个命令正在处理, 并且取消尝试失败, 则不会生成异常。  
   
- 取消一个线程上的查询<xref:System.Data.Odbc.OdbcCommand.Cancel%2A>必须从另一个线程调用。 因为您不能使用执行命令，以异步方式<xref:System.Data.Odbc.OdbcCommand>，若要取消从另一个线程，命令必须以同步方式运行一个线程。 这意味着，<xref:System.Data.Odbc.OdbcCommand>对象必须可从两个线程访问。  
+ 若要在一个线程上取消查询<xref:System.Data.Odbc.OdbcCommand.Cancel%2A> , 必须从另一个线程调用。 由于不能使用<xref:System.Data.Odbc.OdbcCommand>异步执行命令, 因此, 若要从另一个线程取消命令, 一个线程必须同步运行。 这意味着<xref:System.Data.Odbc.OdbcCommand>对象必须可从两个线程进行访问。  
   
  ]]></format>
         </remarks>
@@ -325,74 +325,74 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Data.IDbCommand.CommandType%2A>属性设置为`StoredProcedure`，则<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>属性应设置使用标准 ODBC 存储过程转义序列。 设置<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>为存储过程的名称不能与它为其他.NET Framework 数据提供程序。  
+ 当属性设置为`StoredProcedure`时, <xref:System.Data.Odbc.OdbcCommand.CommandText%2A>应使用标准 ODBC 存储过程转义序列来设置属性。 <xref:System.Data.IDbCommand.CommandType%2A> 如果将设置为存储过程的名称, 则该存储过程的名称将与其他 .NET Framework 数据提供程序的名称相同。 <xref:System.Data.Odbc.OdbcCommand.CommandText%2A>  
   
- 许多语言功能，例如外部联接和标量函数调用，通常被实现的数据源。 即使这些功能的语法通常是特定于源的数据。 因此，ODBC 定义包含以下语言功能的标准语法的转义序列：  
+ 许多语言功能 (例如外部联接和标量函数调用) 通常由数据源实现。 即使这些功能的语法通常也是特定于数据源的。 因此, ODBC 定义的转义序列包含以下语言功能的标准语法:  
   
--   日期、 时间、 时间戳和日期时间间隔文本  
+-   日期、时间、时间戳和日期时间间隔文本  
   
--   标量函数，例如数字、 字符串和数据类型转换函数  
+-   标量函数, 例如数字、字符串和数据类型转换函数  
   
--   喜欢谓词转义字符  
+-   LIKE 谓词转义符  
   
 -   外部联接  
   
 -   过程调用  
   
- 使用 ODBC 的转义序列是按如下所示：  
+ ODBC 使用的转义序列如下所示:  
   
 ```  
 {extension}  
 ```  
   
- 此转义序列进行识别和分析由 ODBC 驱动程序。 然后，它们与数据源特定语法替换任何转义序列。  
+ ODBC 驱动程序可识别并分析此转义序列。 然后, 它们将任何转义序列替换为特定于数据源的语法。  
   
- 过程是在数据源中存储的可执行对象。 通常情况下，它是已预编译的一个或多个 SQL 语句。 调用过程的转义序列是  
+ 过程是存储在数据源中的可执行对象。 通常, 它是一个或多个已预编译的 SQL 语句。 用于调用过程的转义序列是  
   
 ```  
 {[?=]call procedure-name[([parameter][,[parameter]]...)]}  
 ```  
   
- 其中`procedure-name`指定过程的名称和`parameter`指定过程参数。  
+ 其中`procedure-name`指定过程的名称, 并`parameter`指定过程参数。  
   
- 该命令时调用 Execute 方法之一执行此存储的过程 (例如，<xref:System.Data.Odbc.OdbcCommand.ExecuteReader%2A>或<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>)。  
+ 在调用执行方法之一时 (例如<xref:System.Data.Odbc.OdbcCommand.ExecuteReader%2A>或<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>), 该命令将执行此存储过程。  
   
- 不能设置<xref:System.Data.Odbc.OdbcCommand.Connection%2A>，<xref:System.Data.Odbc.OdbcCommand.CommandType%2A>和<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>时当前连接正在执行 execute 或提取操作的属性。  
+ 如果当前连接正在<xref:System.Data.Odbc.OdbcCommand.Connection%2A>执行<xref:System.Data.Odbc.OdbcCommand.CommandType%2A>执行<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>或提取操作, 则不能设置、和属性。  
   
- ODBC.NET 提供程序不支持命名的参数，将参数传递给 SQL 语句或存储的过程调用的<xref:System.Data.Odbc.OdbcCommand>时<xref:System.Data.Odbc.OdbcCommand.CommandType%2A>设置为`Text`。 在这种情况下，必须使用问号 （？） 占位符。 例如：  
+ <xref:System.Data.Odbc.OdbcCommand>当设置<xref:System.Data.Odbc.OdbcCommand.CommandType%2A> 为`Text`时, ODBC.NET 提供程序不支持使用命名参数将参数传递给 SQL 语句或由调用的存储过程。 在这种情况下, 必须使用问号 (？) 占位符。 例如:  
   
 ```  
 SELECT * FROM Customers WHERE CustomerID = ?  
 ```  
   
- 因此，在其中的顺序<xref:System.Data.Odbc.OdbcParameter>对象添加到<xref:System.Data.Odbc.OdbcParameterCollection>必须直接对应于参数的问号占位符的位置。  
+ 因此, 将<xref:System.Data.Odbc.OdbcParameter>对象添加到的<xref:System.Data.Odbc.OdbcParameterCollection>顺序必须直接对应于参数的问号占位符的位置。  
   
- 如果参数包含 null 值，用于 ODBC 的.NET Framework 数据提供程序仍将该参数绑定，但将使用默认参数，如果通过使用 SQL_DEFAULT_PARAM，而不 null 值定义的一个。 例如， <xref:System.Data.Odbc.OdbcParameterCollection>:  
+ 如果参数包含 null 值, 则用于 ODBC 的 .NET Framework 数据提供程序仍将绑定该参数, 但如果已使用 SQL_DEFAULT_PARAM 定义了一个参数, 则使用默认参数, 而不是使用 null 值。 例如<xref:System.Data.Odbc.OdbcParameterCollection>:  
   
 ```  
 {1, null, 2}  
 ```  
   
- 传递到<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>属性：  
+ 传递到<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>属性:  
   
 ```  
 {call sp(?, ?, ?)}  
 ```  
   
- 用于绑定的第一个参数为值 1、 第三个参数的值为 2 和 SQL_DEFAULT_PARAM 作为第二个参数的 ODBC 将导致.NET Framework 数据提供程序。 但是，此行为是依赖于驱动程序的。 如果驱动程序不支持此功能，只是不要传递的值中的参数。 例如，使用<xref:System.Data.Odbc.OdbcParameterCollection>:  
+ 导致 ODBC 的 .NET Framework 数据提供程序将第一个参数绑定到值 1, 将第三个参数绑定到值 2, 将第二个参数绑定为 SQL_DEFAULT_PARAM。 但是, 此行为取决于驱动程序。 如果驱动程序不支持此功能, 则不会传入参数的值。 例如, 使用<xref:System.Data.Odbc.OdbcParameterCollection>:  
   
 ```  
 {1, 2}  
 ```  
   
- 设置和<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>属性设置为以下：  
+ 并将<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>属性设置为以下内容:  
   
 ```  
 {call sp(?, null, ?)}  
 ```  
   
 > [!NOTE]
->  如果省略一个参数，则仍必须显示的逗号分隔该参数与其他参数。 如果省略输入参数或输入/输出参数，则该过程使用参数的默认值。 另一种方法来指定输入参数或输入/输出参数的默认值是设置的长度/指示器缓冲区的值绑定到为 SQL_DEFAULT_PARAM 参数。  
+>  如果省略了某个参数, 则仍必须显示用逗号分隔的参数。 如果省略了输入或输入/输出参数, 则该过程将使用参数的默认值。 指定输入参数或输入/输出参数的默认值的另一种方法是将绑定到参数的长度/指示器缓冲区的值设置为 SQL_DEFAULT_PARAM。  
   
  ]]></format>
         </remarks>
@@ -430,13 +430,13 @@ SELECT * FROM Customers WHERE CustomerID = ?
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置在终止尝试执行命令并生成错误之前的等待时间。</summary>
+        <summary>获取或设置在终止对执行命令的尝试并生成错误之前的等待时间。</summary>
         <value>等待命令执行所需的时间（以秒为单位）。 默认值为 30 秒。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值为零 (0) 指定的等待时间，而不是没有等待时间，没有限制，因此应当避免。  
+ 如果值为零 (0), 则不会限制等待时间, 而不是等待时间, 因此应避免这样做。  
   
  ]]></format>
         </remarks>
@@ -483,20 +483,20 @@ SELECT * FROM Customers WHERE CustomerID = ?
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Data.Odbc.OdbcCommand.CommandType%2A>属性设置为`StoredProcedure`，应设置<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>属性设置为完整的 ODBC 调用语法。 该命令执行此存储的过程调用 Execute 方法之一时 (例如，<xref:System.Data.Odbc.OdbcCommand.ExecuteReader%2A>或<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>)。  
+ 当属性设置为`StoredProcedure`时<xref:System.Data.Odbc.OdbcCommand.CommandText%2A> , 应将属性设置为完整的 ODBC 调用语法。 <xref:System.Data.Odbc.OdbcCommand.CommandType%2A> 然后, 该命令会在您调用某一 Execute 方法 (例如<xref:System.Data.Odbc.OdbcCommand.ExecuteReader%2A>或<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>) 时执行此存储过程。  
   
- <xref:System.Data.Odbc.OdbcCommand.Connection%2A>，<xref:System.Data.Odbc.OdbcCommand.CommandType%2A>和<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>不能设置属性，如果当前连接正在执行 execute 或 fetch 操作。  
+ 如果<xref:System.Data.Odbc.OdbcCommand.Connection%2A>当前<xref:System.Data.Odbc.OdbcCommand.CommandType%2A>连接正在执行执行或提取操作, 则不能设置、和<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>属性。  
   
- 用于 ODBC 的.NET Framework 数据提供程序不支持传递命名参数的 SQL 语句或存储过程调用的<xref:System.Data.Odbc.OdbcCommand>。 无论在哪一种情况下，使用问号 （？） 占位符。 例如：  
+ 用于 ODBC 的 .NET Framework 数据提供程序不支持将命名参数传递给 SQL 语句或由<xref:System.Data.Odbc.OdbcCommand>调用的存储过程。 在这两种情况下, 请使用问号 (？) 占位符。 例如:  
   
 ```  
 SELECT * FROM Customers WHERE CustomerID = ?  
 ```  
   
- 依据的顺序<xref:System.Data.Odbc.OdbcParameter>对象添加到<xref:System.Data.Odbc.OdbcParameterCollection>必须直接对应于参数的问号占位符的位置。  
+ 将<xref:System.Data.Odbc.OdbcParameter>对象添加到的<xref:System.Data.Odbc.OdbcParameterCollection>顺序必须直接对应于参数的问号占位符的位置。  
   
 > [!NOTE]
->  用于 ODBC 的.NET Framework 数据提供程序不支持<xref:System.Data.CommandType>设置的`TableDirect`。  
+>  适用于 ODBC 的 .NET Framework 数据提供程序不支持<xref:System.Data.CommandType>的`TableDirect`设置。  
   
  ]]></format>
         </remarks>
@@ -552,9 +552,9 @@ SELECT * FROM Customers WHERE CustomerID = ?
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不能设置<xref:System.Data.Odbc.OdbcCommand.Connection%2A>， <xref:System.Data.Odbc.OdbcCommand.CommandType%2A>，和<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>时当前连接正在执行 execute 或提取操作的属性。  
+ 如果当前连接正在<xref:System.Data.Odbc.OdbcCommand.Connection%2A>执行<xref:System.Data.Odbc.OdbcCommand.CommandType%2A>执行或<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>提取操作, 则不能设置、和属性。  
   
- 如果在事务执行过程中设置了 <xref:System.Data.Odbc.OdbcCommand.Connection%2A>，并且 <xref:System.Data.Odbc.OdbcCommand.Transaction%2A> 属性不为 null，则会生成 <xref:System.InvalidOperationException>。 如果您设置<xref:System.Data.Odbc.OdbcCommand.Connection%2A>提交或回滚事务后，<xref:System.Data.Odbc.OdbcCommand.Transaction%2A>属性不为 null，<xref:System.Data.Odbc.OdbcCommand.Transaction%2A>属性设置为 null 值。  
+ 如果在事务执行过程中设置了 <xref:System.Data.Odbc.OdbcCommand.Connection%2A>，并且 <xref:System.Data.Odbc.OdbcCommand.Transaction%2A> 属性不为 null，则会生成 <xref:System.InvalidOperationException>。 如果在提交<xref:System.Data.Odbc.OdbcCommand.Connection%2A>或回滚事务后设置, <xref:System.Data.Odbc.OdbcCommand.Transaction%2A>并且属性不为 null, <xref:System.Data.Odbc.OdbcCommand.Transaction%2A>则将属性设置为 null 值。  
   
  ]]></format>
         </remarks>
@@ -623,7 +623,7 @@ SELECT * FROM Customers WHERE CustomerID = ?
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Odbc.OdbcCommand.CreateParameter%2A>方法是强类型版本<xref:System.Data.IDbCommand.CreateParameter%2A>。  
+ 方法是的<xref:System.Data.IDbCommand.CreateParameter%2A>强类型版本。 <xref:System.Data.Odbc.OdbcCommand.CreateParameter%2A>  
   
  ]]></format>
         </remarks>
@@ -748,8 +748,8 @@ SELECT * FROM Customers WHERE CustomerID = ?
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置一个值，指示命令对象是否应在自定义的界面控件中可见。</summary>
-        <value><see langword="true" /> 如果命令对象应在控件; 中可见否则为<see langword="false" />。 默认值为 <see langword="true" />。</value>
+        <summary>获取或设置一个值，指示该命令对象在自定义界面控件中是否应可见。</summary>
+        <value><see langword="true" />如果命令对象应在控件中可见, 则为; 否则为。否则为<see langword="false" />。 默认值为 <see langword="true" />。</value>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/40494916-c25a-4cb8-8f7c-fcb8d378464e">执行命令</related>
       </Docs>
@@ -840,21 +840,21 @@ SELECT * FROM Customers WHERE CustomerID = ?
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>执行 SQL 语句针对<see cref="P:System.Data.Odbc.OdbcCommand.Connection" />并返回受影响的行数。</summary>
-        <returns>对于 UPDATE、 INSERT 和 DELETE 语句，返回值为命令所影响的行数。 对于所有其他类型的语句，返回值为-1。</returns>
+        <summary>针对 <see cref="P:System.Data.Odbc.OdbcCommand.Connection" /> 执行 SQL 语句并返回受影响的行数。</summary>
+        <returns>对于 UPDATE、INSERT 和 DELETE 语句，返回值为该命令所影响的行数。 对于其他所有类型的语句，返回值为 -1。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>执行目录操作 （例如，查询数据库的结构或创建数据库对象，如表）; 或在数据库中，将数据更改而无需使用<xref:System.Data.DataSet>、 通过执行插入、 更新或删除语句。  
+ 您可以使用<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>执行目录操作 (例如, 查询数据库的结构或创建数据库对象, 如表); 或者, 通过执行 UPDATE、INSERT 或 DELETE 来更改数据库中的数据, <xref:System.Data.DataSet>而无需使用。前瞻性.  
   
- 此外可以使用<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>执行多个 SQL 语句，如果基础 ODBC 驱动程序支持此功能。 在这种情况下，返回值是通过在命令中的所有语句影响的行数。  
+ 如果基础 ODBC 驱动<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>程序支持此功能, 则还可以使用执行多个 SQL 语句。 在这种情况下, 返回值是由命令中的所有语句影响的行数。  
   
- 尽管<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>返回任何行，任何输出参数或返回的数据填充映射到参数的值。  
+ 尽管<xref:System.Data.Odbc.OdbcCommand.ExecuteNonQuery%2A>未返回任何行, 但映射到参数的任何输出参数或返回值都将用数据填充。  
   
- 对于 UPDATE、 INSERT 和 DELETE 语句，返回值为命令所影响的行数。 对于所有其他类型的语句，返回值为-1。 如果发生回滚，则返回值也为-1。  
+ 对于 UPDATE、INSERT 和 DELETE 语句，返回值为该命令所影响的行数。 对于其他所有类型的语句，返回值为 -1。 如果发生回滚, 则返回值也为-1。  
   
- 存在触发器对表和数据是要添加或更改表中，返回的值包括受 insert 或 update 操作和触发器或触发器的影响的行数的行数。  
+ 如果表中存在触发器, 并且在表中添加或更改了数据, 则返回值将包含受 insert 或 update 操作影响的行数以及触发器或触发器所影响的行数。  
   
  ]]></format>
         </remarks>
@@ -871,7 +871,7 @@ SELECT * FROM Customers WHERE CustomerID = ?
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>将发送<see cref="P:System.Data.Odbc.OdbcCommand.CommandText" />到<see cref="P:System.Data.Odbc.OdbcCommand.Connection" />，并生成<see cref="T:System.Data.Odbc.OdbcDataReader" />。</summary>
+        <summary>将 <see cref="P:System.Data.Odbc.OdbcCommand.CommandText" /> 发送到 <see cref="P:System.Data.Odbc.OdbcCommand.Connection" /> 并生成一个 <see cref="T:System.Data.Odbc.OdbcDataReader" />。</summary>
         <related type="Article" href="https://msdn.microsoft.com/library/40494916-c25a-4cb8-8f7c-fcb8d378464e">执行命令</related>
       </Docs>
     </MemberGroup>
@@ -899,15 +899,15 @@ SELECT * FROM Customers WHERE CustomerID = ?
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>将发送<see cref="P:System.Data.Odbc.OdbcCommand.CommandText" />到<see cref="P:System.Data.Odbc.OdbcCommand.Connection" />，并生成<see cref="T:System.Data.Odbc.OdbcDataReader" />。</summary>
+        <summary>将 <see cref="P:System.Data.Odbc.OdbcCommand.CommandText" /> 发送到 <see cref="P:System.Data.Odbc.OdbcCommand.Connection" /> 并生成一个 <see cref="T:System.Data.Odbc.OdbcDataReader" />。</summary>
         <returns>一个 <see cref="T:System.Data.Odbc.OdbcDataReader" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应设置<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>属性设置为存储过程的完整 ODBC 调用语法。 该命令执行此存储的过程调用时<xref:System.Data.Odbc.OdbcCommand.ExecuteReader%2A>。  
+ 应将<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>属性设置为存储过程的完整 ODBC 调用语法。 当你调用<xref:System.Data.Odbc.OdbcCommand.ExecuteReader%2A>时, 该命令将执行此存储过程。  
   
- 虽然<xref:System.Data.Odbc.OdbcDataReader>使用时，关联<xref:System.Data.Odbc.OdbcConnection>是繁忙的服务<xref:System.Data.Odbc.OdbcDataReader>。 在此状态下，没有其他操作可以执行上<xref:System.Data.Odbc.OdbcConnection>而不关闭它。 这是种情况一直<xref:System.Data.Odbc.OdbcDataReader.Close%2A>方法的<xref:System.Data.Odbc.OdbcDataReader>调用。  
+ 使用时, 关联<xref:System.Data.Odbc.OdbcConnection>的正忙于为提供服务<xref:System.Data.Odbc.OdbcDataReader>。 <xref:System.Data.Odbc.OdbcDataReader> 在此状态下, 不能执行任何其他操作, 而<xref:System.Data.Odbc.OdbcConnection>只是将其关闭。 在调用的<xref:System.Data.Odbc.OdbcDataReader.Close%2A>方法<xref:System.Data.Odbc.OdbcDataReader>之前, 会出现这种情况。  
   
  ]]></format>
         </remarks>
@@ -941,22 +941,22 @@ SELECT * FROM Customers WHERE CustomerID = ?
       </Parameters>
       <Docs>
         <param name="behavior"><see langword="System.Data.CommandBehavior" /> 值之一。</param>
-        <summary>将发送<see cref="P:System.Data.Odbc.OdbcCommand.CommandText" />到<see cref="P:System.Data.Odbc.OdbcCommand.Connection" />，并生成<see cref="T:System.Data.Odbc.OdbcDataReader" />使用之一<see langword="CommandBehavior" />值。</summary>
-        <returns>一个 <see cref="T:System.Data.Odbc.OdbcDataReader" /> 对象。</returns>
+        <summary>将 <see cref="P:System.Data.Odbc.OdbcCommand.CommandText" /> 发送到 <see cref="P:System.Data.Odbc.OdbcCommand.Connection" />，并使用 <see langword="CommandBehavior" /> 值之一构造 <see cref="T:System.Data.Odbc.OdbcDataReader" />。</summary>
+        <returns><see cref="T:System.Data.Odbc.OdbcDataReader" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果您期望的 SQL 语句，以返回单个行，则指定`SingleRow`作为<xref:System.Data.CommandBehavior>值可能会提高应用程序的性能。  
+ 如果希望 SQL 语句仅返回一行, 则将指定`SingleRow` <xref:System.Data.CommandBehavior>为值可以提高应用程序性能。  
   
- 应设置<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>属性设置为存储过程的完整 ODBC 调用语法。 该命令执行此存储的过程调用时<xref:System.Data.Odbc.OdbcCommand.ExecuteReader%2A>。  
+ 应将<xref:System.Data.Odbc.OdbcCommand.CommandText%2A>属性设置为存储过程的完整 ODBC 调用语法。 当你调用<xref:System.Data.Odbc.OdbcCommand.ExecuteReader%2A>时, 该命令将执行此存储过程。  
   
- <xref:System.Data.Odbc.OdbcDataReader>支持启用大型二进制值，以高效读取以特殊模式。 有关详细信息，请参阅`SequentialAccess`设置为<xref:System.Data.CommandBehavior>。  
+ <xref:System.Data.Odbc.OdbcDataReader>支持一种特殊模式, 该模式允许有效读取较大的二进制值。 有关详细信息, 请参阅`SequentialAccess`的<xref:System.Data.CommandBehavior>设置。  
   
 > [!NOTE]
->  `SequentialAccess`的值<xref:System.Data.CommandBehavior>是不限制设置; 它只是意味着必须将至少顺序访问<xref:System.Data.Odbc.OdbcDataReader>。 例如，当使用中的 SQL Server ODBC 驱动程序`SequentialAccess`模式下，仍可以移动到的第一列<xref:System.Data.Odbc.OdbcDataReader>后具有读取按顺序处理所有其他列的行。  
+>  的`SequentialAccess` <xref:System.Data.Odbc.OdbcDataReader>值不是限制设置; 它只是表示你将至少具有对的顺序访问。 <xref:System.Data.CommandBehavior> 例如, 当您在`SequentialAccess`模式下使用 SQL Server ODBC 驱动程序时, 仍可以在按顺序读取所有其他列后移动到<xref:System.Data.Odbc.OdbcDataReader>行的第一列。  
   
- 虽然<xref:System.Data.Odbc.OdbcDataReader>使用时，关联<xref:System.Data.Odbc.OdbcConnection>是繁忙的服务<xref:System.Data.Odbc.OdbcDataReader>。 在此状态下，没有其他操作可以执行上<xref:System.Data.Odbc.OdbcConnection>而不关闭它。 这种情况，直到你调用<xref:System.Data.Odbc.OdbcDataReader.Close%2A?displayProperty=nameWithType>方法。 如果<xref:System.Data.Odbc.OdbcDataReader>使用创建<xref:System.Data.CommandBehavior>设置为`CloseConnection`，正在关闭<xref:System.Data.Odbc.OdbcDataReader>自动关闭的连接。  
+ 使用时, 关联<xref:System.Data.Odbc.OdbcConnection>的正忙于为提供服务<xref:System.Data.Odbc.OdbcDataReader>。 <xref:System.Data.Odbc.OdbcDataReader> 在此状态下, 不能执行任何其他操作, 而<xref:System.Data.Odbc.OdbcConnection>只是将其关闭。 在调用<xref:System.Data.Odbc.OdbcDataReader.Close%2A?displayProperty=nameWithType>方法之前, 会出现这种情况。 <xref:System.Data.Odbc.OdbcDataReader>如果`CloseConnection`创建时<xref:System.Data.CommandBehavior> 将设置为<xref:System.Data.Odbc.OdbcDataReader> , 则关闭会自动关闭连接。  
   
  ]]></format>
         </remarks>
@@ -988,12 +988,12 @@ SELECT * FROM Customers WHERE CustomerID = ?
       <Parameters />
       <Docs>
         <summary>执行查询，并返回由查询返回的结果集中的第一行的第一列。 其他列或行将被忽略。</summary>
-        <returns>结果中的第一行的第一列设置，或为空引用的结果集是否为空。</returns>
+        <returns>结果集中第一行的第一列或 null 引用（如果结果集为空）。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Data.Odbc.OdbcCommand.ExecuteScalar%2A>方法来从数据源中检索单个值 （例如，一个聚合值）。 这需要比使用更少的代码<xref:System.Data.Odbc.OdbcCommand.ExecuteReader%2A>方法，以及执行从返回的数据生成单个值所需的操作<xref:System.Data.Odbc.OdbcDataReader>。  
+ <xref:System.Data.Odbc.OdbcCommand.ExecuteScalar%2A>使用方法从数据源中检索单个值 (例如聚合值)。 这需要比使用<xref:System.Data.Odbc.OdbcCommand.ExecuteReader%2A>方法更少的代码, 然后执行从返回<xref:System.Data.Odbc.OdbcDataReader>的数据生成单个值所需的操作。  
   
  ]]></format>
         </remarks>
@@ -1037,16 +1037,16 @@ SELECT * FROM Customers WHERE CustomerID = ?
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Data.Odbc.OdbcCommand.CommandType%2A>设置为`Text`，用于 ODBC 的.NET Framework 数据提供程序不支持传递命名参数的 SQL 语句或存储过程调用的<xref:System.Data.Odbc.OdbcCommand>。 无论在哪一种情况下，使用问号 （？） 占位符。 例如：  
+ 当<xref:System.Data.Odbc.OdbcCommand.CommandType%2A>设置为`Text`时, 用于 ODBC 的 .NET Framework 数据提供程序不支持将命名参数传递给 SQL 语句或由调用的<xref:System.Data.Odbc.OdbcCommand>存储过程。 在这两种情况下, 请使用问号 (？) 占位符。 例如:  
   
 ```  
 SELECT * FROM Customers WHERE CustomerID = ?  
 ```  
   
- 依据的顺序<xref:System.Data.Odbc.OdbcParameter>对象添加到<xref:System.Data.Odbc.OdbcParameterCollection>必须直接对应于问号占位符参数的命令文本中的位置。  
+ 将<xref:System.Data.Odbc.OdbcParameter>对象添加到的<xref:System.Data.Odbc.OdbcParameterCollection>顺序必须直接对应于命令文本中参数的问号占位符的位置。  
   
 > [!NOTE]
->  如果在集合中的参数与要执行的查询的要求不匹配，则可能会导致错误。  
+>  如果集合中的参数与要执行的查询的要求不匹配, 则可能会导致错误。  
   
  ]]></format>
         </remarks>
@@ -1083,11 +1083,11 @@ SELECT * FROM Customers WHERE CustomerID = ?
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Odbc.OdbcCommand.Prepare%2A>方法调用 ODBC`SQLPrepare`函数。 具体取决于基础 ODBC 驱动程序和数据源的功能，准备的语句，如果未绑定所有参数，或在执行它，如果不是所有参数都已都都绑定时，可能会检查参数信息，例如数据类型。 应用程序应取消应用于上一个 SQL 语句准备新的 SQL 语句在同一个之前的所有参数都绑定的最大互操作性， <xref:System.Data.Odbc.OdbcCommand>。 这可以防止引起以前被应用于新的 SQL 语句的参数信息的错误。  
+ 方法调用 ODBC `SQLPrepare`函数。 <xref:System.Data.Odbc.OdbcCommand.Prepare%2A> 根据基础 ODBC 驱动程序和数据源的功能, 当语句准备就绪时, 可能会检查数据类型等参数信息、是否已绑定所有参数, 或者在未绑定所有参数的情况下执行。 为了实现最大的互操作性, 应用程序应在准备同一<xref:System.Data.Odbc.OdbcCommand>上的新 sql 语句之前, 取消所有应用于以前的 sql 语句的参数的绑定。 这可以防止以前的参数信息应用于新 SQL 语句导致的错误。  
   
- 如果调用后调用 Execute 方法<xref:System.Data.Odbc.OdbcCommand.Prepare%2A>，任何大于指定的值的参数值<xref:System.Data.Odbc.OdbcParameter.Size%2A>属性将被自动截断到初始指定大小的参数，并会返回任何截断错误.  
+ 如果在调用<xref:System.Data.Odbc.OdbcCommand.Prepare%2A>后调用 Execute 方法, 则任何大于<xref:System.Data.Odbc.OdbcParameter.Size%2A>属性指定的值的参数值都将自动截断为该参数的原始指定大小, 并且不返回截断错误.  
   
- 输出参数 （无论是否已准备） 必须具有用户指定的数据类型。 如果指定可变长度数据类型，则必须指定最大值<xref:System.Data.Odbc.OdbcParameter.Size%2A>。  
+ 输出参数 (是否准备好) 必须具有用户指定的数据类型。 如果指定可变长度数据类型, 则还必须指定最大值<xref:System.Data.Odbc.OdbcParameter.Size%2A>。  
   
  ]]></format>
         </remarks>
@@ -1122,12 +1122,12 @@ SELECT * FROM Customers WHERE CustomerID = ?
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>重置<see cref="P:System.Data.Odbc.OdbcCommand.CommandTimeout" />属性设置为默认值。</summary>
+        <summary>将 <see cref="P:System.Data.Odbc.OdbcCommand.CommandTimeout" /> 属性重置为默认值。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认值<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>为 30 秒。  
+ 的默认值<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>为30秒。  
   
  ]]></format>
         </remarks>
@@ -1213,9 +1213,9 @@ SELECT * FROM Customers WHERE CustomerID = ?
         <Parameter Name="behavior" Type="System.Data.CommandBehavior" Index="0" FrameworkAlternate="netframework-1.1" />
       </Parameters>
       <Docs>
-        <param name="behavior">指定的命令行为的枚举值的按位组合。</param>
-        <summary>执行<see cref="P:System.Data.IDbCommand.CommandText" />针对<see cref="P:System.Data.IDbCommand.Connection" />，并生成<see cref="T:System.Data.IDataReader" />使用指定的行为。</summary>
-        <returns>一个 <see cref="T:System.Data.IDataReader" /> 对象。</returns>
+        <param name="behavior">枚举值的按位组合，这些枚举值指定命令行为。</param>
+        <summary>针对 <see cref="P:System.Data.IDbCommand.Connection" /> 执行 <see cref="P:System.Data.IDbCommand.CommandText" />，并使用指定行为生成 <see cref="T:System.Data.IDataReader" />。</summary>
+        <returns><see cref="T:System.Data.IDataReader" /> 对象。</returns>
         <remarks>To be added.</remarks>
         <forInternalUseOnly />
       </Docs>
@@ -1299,7 +1299,7 @@ SELECT * FROM Customers WHERE CustomerID = ?
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不能设置<xref:System.Data.Odbc.OdbcCommand.Transaction%2A>如果它已被设置为特定值，并且该命令执行的过程中的属性。 如果事务属性设置为<xref:System.Data.Odbc.OdbcTransaction>未连接到相同的对象<xref:System.Data.Odbc.OdbcConnection>作为<xref:System.Data.Odbc.OdbcCommand>对象，请尝试执行语句，下一步时将会引发异常。  
+ 如果属性已设置<xref:System.Data.Odbc.OdbcCommand.Transaction%2A>为特定值, 并且命令正在执行过程中, 则不能设置此属性。 如果将 transaction 属性设置为<xref:System.Data.Odbc.OdbcTransaction>未连接到<xref:System.Data.Odbc.OdbcConnection> <xref:System.Data.Odbc.OdbcCommand>对象的对象, 则在下一次尝试执行语句时将引发异常。  
   
  ]]></format>
         </remarks>
@@ -1342,9 +1342,9 @@ SELECT * FROM Customers WHERE CustomerID = ?
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认值<xref:System.Data.UpdateRowSource>值是**同时**除非自动生成命令，如同<xref:System.Data.Odbc.OdbcCommandBuilder>，默认值是在这种情况下**None**。  
+ 默认<xref:System.Data.UpdateRowSource>值为<xref:System.Data.Odbc.OdbcCommandBuilder>,**除非自动**生成命令 (与相同), 在这种情况下, 默认值为**None**。  
   
- 有关如何使用详细信息<xref:System.Data.Odbc.OdbcCommand.UpdatedRowSource%2A>属性，请参阅[DataAdapter 参数](~/docs/framework/data/adonet/dataadapter-parameters.md)。  
+ 有关如何使用<xref:System.Data.Odbc.OdbcCommand.UpdatedRowSource%2A>属性的详细信息, 请参阅[DataAdapter Parameters](~/docs/framework/data/adonet/dataadapter-parameters.md)。  
   
  ]]></format>
         </remarks>

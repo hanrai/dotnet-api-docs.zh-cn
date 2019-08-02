@@ -1,5 +1,5 @@
 <Type Name="ECDsaCng" FullName="System.Security.Cryptography.ECDsaCng">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="3bb89ff48430135e8e45786e8e3aed2ddf2ef945" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57921348" /></Metadata><TypeSignature Language="C#" Value="public sealed class ECDsaCng : System.Security.Cryptography.ECDsa" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="78628e093e5b401a7a31c9a4a34c4f52e5b65bbd" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68542460" /></Metadata><TypeSignature Language="C#" Value="public sealed class ECDsaCng : System.Security.Cryptography.ECDsa" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ECDsaCng extends System.Security.Cryptography.ECDsa" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.ECDsaCng" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ECDsaCng&#xA;Inherits ECDsa" />
@@ -32,12 +32,12 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此类派生<xref:System.Security.Cryptography.ECDsa>抽象基类。  
+ 此类派生<xref:System.Security.Cryptography.ECDsa>自抽象基类。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.Security.Cryptography.ECDsaCng>类来签署一条消息以及如何使用该签名来验证消息未被修改。  
+ 下面的示例演示如何使用<xref:System.Security.Cryptography.ECDsaCng>类对消息进行签名, 以及如何使用签名来验证消息是否未被更改。  
   
  [!code-csharp[ECDsaCng#1](~/samples/snippets/csharp/VS_Snippets_CLR/ecdsacng/cs/program.cs#1)]
  [!code-vb[ECDsaCng#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/ecdsacng/vb/program.vb#1)]  
@@ -92,7 +92,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 随机密钥对具有 521 位的公钥长度。  
+ 随机密钥对的公钥长度为521位。  
   
  ]]></format>
         </remarks>
@@ -139,7 +139,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 随机密钥对将具有定义的公共密钥长度`keySize`参数。  
+ 随机密钥对的公钥长度由`keySize`参数定义。  
   
  ]]></format>
         </remarks>
@@ -226,11 +226,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `curve` 必须验证 (即，它必须返回`true`) 时传递给<xref:System.Security.Cryptography.ECCurve.Validate%2A?displayProperty=nameWithType>方法，并且必须已命名或显式素数。  
+ `curve``true`传递<xref:System.Security.Cryptography.ECCurve.Validate%2A?displayProperty=nameWithType>给方法时, 必须验证 (即必须返回), 并且必须是已命名或显式质数。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.Cryptography.CryptographicException"><paramref name="curve" /> 不进行验证。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="curve" /> 为 <see langword="null" />。</exception>
+        <exception cref="T:System.PlatformNotSupportedException">如果 <paramref name="curve" /> 不包含带 FriendlyName 的 Oid。</exception>
       </Docs>
     </Member>
     <Member MemberName="Dispose">
@@ -382,7 +384,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要反序列化 XML 密钥，请使用<xref:System.Security.Cryptography.ECDsaCng.FromXmlString%28System.String%2CSystem.Security.Cryptography.ECKeyXmlFormat%29>改为重载。  
+ 若要反序列化 XML 密钥, <xref:System.Security.Cryptography.ECDsaCng.FromXmlString%28System.String%2CSystem.Security.Cryptography.ECKeyXmlFormat%29>请改用重载。  
   
  ]]></format>
         </remarks>
@@ -495,13 +497,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性接受以下算法： <xref:System.Security.Cryptography.CngAlgorithm.MD5%2A>， <xref:System.Security.Cryptography.CngAlgorithm.Sha1%2A>， <xref:System.Security.Cryptography.CngAlgorithm.Sha256%2A>， <xref:System.Security.Cryptography.CngAlgorithm.Sha384%2A>，和<xref:System.Security.Cryptography.CngAlgorithm.Sha512%2A>。  
+ 此属性接受以下算法: <xref:System.Security.Cryptography.CngAlgorithm.MD5%2A>、 <xref:System.Security.Cryptography.CngAlgorithm.Sha1%2A>、 <xref:System.Security.Cryptography.CngAlgorithm.Sha256%2A>、 <xref:System.Security.Cryptography.CngAlgorithm.Sha384%2A>和<xref:System.Security.Cryptography.CngAlgorithm.Sha512%2A>。  
   
- 此外可以使用其他自定义哈希算法。  
+ 还可以使用其他自定义哈希算法。  
   
- 默认的算法是<xref:System.Security.Cryptography.CngAlgorithm.Sha256%2A>。  
+ 默认算法为<xref:System.Security.Cryptography.CngAlgorithm.Sha256%2A>。  
   
- 如果要签名或验证已进行哈希处理的数据，则不使用此属性。  
+ 如果要对已进行哈希处理的数据进行签名或验证, 则不会使用此属性。  
   
  ]]></format>
         </remarks>
@@ -624,7 +626,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`parameters`仅包含<xref:System.Security.Cryptography.ECParameters.Q>、 只导入的公共密钥。 如果`parameters`还包含<xref:System.Security.Cryptography.ECParameters.D>，导入完整密钥对。 <xref:System.Security.Cryptography.ECParameters.Curve>字段指定要导入的曲线类型。  
+ 如果`parameters` 仅<xref:System.Security.Cryptography.ECParameters.Q>包含, 则只导入公钥。 如果`parameters`还包含<xref:System.Security.Cryptography.ECParameters.D>, 则导入完整密钥对。 <xref:System.Security.Cryptography.ECParameters.Curve>字段指定要导入的曲线类型。  
   
  ]]></format>
         </remarks>
@@ -771,15 +773,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将生成用于指定数据的签名的哈希处理输入的数据使用<xref:System.Security.Cryptography.ECDsaCng.HashAlgorithm%2A>属性，然后对结果进行签名。  
+ 此方法通过使用<xref:System.Security.Cryptography.ECDsaCng.HashAlgorithm%2A>属性对输入数据进行哈希处理, 然后对结果进行签名来为指定的数据生成签名。  
   
- <xref:System.Security.Permissions.KeyContainerPermissionFlags.Sign?displayProperty=nameWithType>标志是必需的如果下一代加密技术 (CNG) 密钥不随机生成的<xref:System.Security.Cryptography.ECDsaCng>对象。  
+ 如果<xref:System.Security.Permissions.KeyContainerPermissionFlags.Sign?displayProperty=nameWithType> <xref:System.Security.Cryptography.ECDsaCng>对象不随机生成下一代加密技术 (CNG) 密钥, 则需要此标志。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="data" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.Security.Cryptography.CryptographicException">与该实例关联的密钥信息没有私钥。</exception>
-        <permission cref="T:System.Security.Permissions.KeyContainerPermission">表示对数据进行签名的权限。 要求值： <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 关联的枚举： <see cref="F:System.Security.Permissions.KeyContainerPermissionFlags.Sign" /></permission>
+        <permission cref="T:System.Security.Permissions.KeyContainerPermission">用于对数据进行签名的权限。 需求值: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 关联的枚举:<see cref="F:System.Security.Permissions.KeyContainerPermissionFlags.Sign" /></permission>
       </Docs>
     </Member>
     <Member MemberName="SignData">
@@ -823,15 +825,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将生成指定的数据流的签名的哈希处理输入的数据使用<xref:System.Security.Cryptography.ECDsaCng.HashAlgorithm%2A>属性，然后对结果进行签名。  
+ 此方法通过使用<xref:System.Security.Cryptography.ECDsaCng.HashAlgorithm%2A>属性对输入数据进行哈希处理, 然后对结果进行签名, 从而为指定数据流生成签名。  
   
- <xref:System.Security.Permissions.KeyContainerPermissionFlags.Sign?displayProperty=nameWithType>标志是必需的如果下一代加密技术 (CNG) 密钥不随机生成的<xref:System.Security.Cryptography.ECDsaCng>对象。  
+ 如果<xref:System.Security.Permissions.KeyContainerPermissionFlags.Sign?displayProperty=nameWithType> <xref:System.Security.Cryptography.ECDsaCng>对象不随机生成下一代加密技术 (CNG) 密钥, 则需要此标志。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="data" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.Security.Cryptography.CryptographicException">与该实例关联的密钥信息没有私钥。</exception>
-        <permission cref="T:System.Security.Permissions.KeyContainerPermission">表示对数据进行签名的权限。 要求值： <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 关联的枚举： <see cref="F:System.Security.Permissions.KeyContainerPermissionFlags.Sign" /></permission>
+        <permission cref="T:System.Security.Permissions.KeyContainerPermission">用于对数据进行签名的权限。 需求值: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 关联的枚举:<see cref="F:System.Security.Permissions.KeyContainerPermissionFlags.Sign" /></permission>
       </Docs>
     </Member>
     <Member MemberName="SignData">
@@ -879,16 +881,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将生成用于指定数据的签名的哈希处理输入的数据使用<xref:System.Security.Cryptography.ECDsaCng.HashAlgorithm%2A>属性，然后对结果进行签名  
+ 此方法通过使用<xref:System.Security.Cryptography.ECDsaCng.HashAlgorithm%2A>属性对输入数据进行哈希处理, 然后对结果进行签名, 为指定数据生成签名  
   
- <xref:System.Security.Permissions.KeyContainerPermissionFlags.Sign?displayProperty=nameWithType>标志是必需的如果下一代加密技术 (CNG) 密钥不随机生成的<xref:System.Security.Cryptography.ECDsaCng>对象。  
+ 如果<xref:System.Security.Permissions.KeyContainerPermissionFlags.Sign?displayProperty=nameWithType> <xref:System.Security.Cryptography.ECDsaCng>对象不随机生成下一代加密技术 (CNG) 密钥, 则需要此标志。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="data" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="count" /> 或 <paramref name="offset" /> 导致读取超出数据字符串范围。</exception>
         <exception cref="T:System.Security.Cryptography.CryptographicException">与该实例关联的密钥信息没有私钥。</exception>
-        <permission cref="T:System.Security.Permissions.KeyContainerPermission">表示对数据进行签名的权限。 要求值： <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 关联的枚举： <see cref="F:System.Security.Permissions.KeyContainerPermissionFlags.Sign" /></permission>
+        <permission cref="T:System.Security.Permissions.KeyContainerPermission">用于对数据进行签名的权限。 需求值: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 关联的枚举:<see cref="F:System.Security.Permissions.KeyContainerPermissionFlags.Sign" /></permission>
       </Docs>
     </Member>
     <Member MemberName="SignHash">
@@ -938,13 +940,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Permissions.KeyContainerPermissionFlags.Sign?displayProperty=nameWithType>标志是必需的如果下一代加密技术 (CNG) 密钥不随机生成的<xref:System.Security.Cryptography.ECDsaCng>对象。  
+ 如果<xref:System.Security.Permissions.KeyContainerPermissionFlags.Sign?displayProperty=nameWithType> <xref:System.Security.Cryptography.ECDsaCng>对象不随机生成下一代加密技术 (CNG) 密钥, 则需要此标志。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="hash" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.Security.Cryptography.CryptographicException">与该实例关联的密钥信息没有私钥。</exception>
-        <permission cref="T:System.Security.Permissions.KeyContainerPermission">表示对数据进行签名的权限。 要求值： <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 关联的枚举： <see cref="F:System.Security.Permissions.KeyContainerPermissionFlags.Sign" /></permission>
+        <permission cref="T:System.Security.Permissions.KeyContainerPermission">用于对数据进行签名的权限。 需求值: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 关联的枚举:<see cref="F:System.Security.Permissions.KeyContainerPermissionFlags.Sign" /></permission>
       </Docs>
     </Member>
     <MemberGroup MemberName="ToXmlString">
@@ -986,7 +988,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要将当前的密钥转换为 XML 表示形式，使用<xref:System.Security.Cryptography.ECDsaCng.ToXmlString%28System.Security.Cryptography.ECKeyXmlFormat%29>改为重载。  
+ 若要将当前键转换为 XML 表示形式, 请<xref:System.Security.Cryptography.ECDsaCng.ToXmlString%28System.Security.Cryptography.ECKeyXmlFormat%29>改用重载。  
   
  ]]></format>
         </remarks>
@@ -1137,7 +1139,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法生成给定数据的签名的哈希处理输入的数据使用<xref:System.Security.Cryptography.ECDsaCng.HashAlgorithm%2A>属性，然后对结果进行签名。  
+ 此方法通过使用<xref:System.Security.Cryptography.ECDsaCng.HashAlgorithm%2A>属性对输入数据进行哈希处理, 然后对结果进行签名, 为给定数据生成签名。  
   
  ]]></format>
         </remarks>
@@ -1187,7 +1189,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法进行哈希处理的输入的数据使用<xref:System.Security.Cryptography.ECDsaCng.HashAlgorithm%2A>之前验证属性。  
+ 此方法在验证前使用<xref:System.Security.Cryptography.ECDsaCng.HashAlgorithm%2A>属性对输入数据进行哈希处理。  
   
  ]]></format>
         </remarks>
@@ -1241,13 +1243,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法进行哈希处理的输入的数据使用<xref:System.Security.Cryptography.ECDsaCng.HashAlgorithm%2A>之前验证属性。  
+ 此方法在验证前使用<xref:System.Security.Cryptography.ECDsaCng.HashAlgorithm%2A>属性对输入数据进行哈希处理。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset" /> 或 <paramref name="count" /> 小于零。  
   
-- 或 - 
+或 
  <paramref name="offset" /> 或 <paramref name="count" /> 大于在 <paramref name="data" /> 参数中传递的字节数组的长度。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="data" /> 或 <paramref name="signature" /> 为 <see langword="null" />。</exception>
       </Docs>

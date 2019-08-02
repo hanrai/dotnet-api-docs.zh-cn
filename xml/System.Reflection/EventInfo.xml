@@ -1,5 +1,5 @@
 <Type Name="EventInfo" FullName="System.Reflection.EventInfo">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="74dc8680d90c06f0e02bb931daa4d22a04c95cfb" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58693962" /></Metadata><TypeSignature Language="C#" Value="public abstract class EventInfo : System.Reflection.MemberInfo, System.Runtime.InteropServices._EventInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0b768824efc67da30406b693aedf8daa2a7aa8e1" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68543926" /></Metadata><TypeSignature Language="C#" Value="public abstract class EventInfo : System.Reflection.MemberInfo, System.Runtime.InteropServices._EventInfo" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi abstract serializable beforefieldinit EventInfo extends System.Reflection.MemberInfo implements class System.Runtime.InteropServices._EventInfo" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.EventInfo" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class EventInfo&#xA;Inherits MemberInfo&#xA;Implements _EventInfo" />
@@ -56,23 +56,23 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Reflection.EventInfo>类来检查事件，并挂接事件处理程序中的代码示例所示<xref:System.Reflection.EventInfo.AddEventHandler%2A>方法。  
+ 使用类检查事件并挂钩事件处理程序, 如<xref:System.Reflection.EventInfo.AddEventHandler%2A>方法的示例代码中所示。 <xref:System.Reflection.EventInfo>  
   
 > [!NOTE]
->  <xref:System.Reflection.EventInfo> 不是要用来引发事件。 对象由其内部状态指示引发事件。  
+>  <xref:System.Reflection.EventInfo>不应用于引发事件。 对象引发由其内部状态决定的事件。  
   
- 事件与委托一起使用。 事件侦听器实例化时引发的事件源调用的事件处理程序委托。 若要连接到事件源，事件侦听器将此委托添加到源上的调用列表。 当引发事件时，调用事件处理程序委托的 invoke 方法。 支持这两个多路广播和单路事件通知。 `Add`和`Remove`必须在元数据中标记方法，以及与事件相关联的事件处理程序委托类。  
+ 事件与委托一起使用。 事件侦听器实例化事件处理程序委托, 每当事件源引发事件时都会调用该委托。 为了连接到事件源, 事件侦听器会将此委托添加到源的调用列表。 引发事件时, 将调用事件处理程序委托的 invoke 方法。 支持多播和单强制转换事件通知。 `Add` 和`Remove`方法以及与事件关联的事件处理程序委托类必须在元数据中标记为。  
   
- 委托是面向对象的函数指针。 在 C 或 c + + 中，函数指针是一种方法对的引用。 委托与 C 或 c + + 函数指针不同包含两个引用： 对方法，并对支持该方法的对象的引用的引用。 委托可以调用的方法，而不必知道类类型声明或继承的方法。 委托只需知道该方法的返回类型和参数列表。  
+ 委托是面向对象的函数指针。 在 C 或C++中, 函数指针是对方法的引用。 与 C 或C++函数指针不同, 委托包含两个引用: 对方法的引用和对支持方法的对象的引用。 委托可以调用方法, 而无需知道声明或继承方法的类类型。 委托只需要知道方法的返回类型和参数列表。  
   
- 事件模型同样适用于单强制转换和多路广播委托。 当调用委托的调用时调用方法时，只有单个对象可以对其进行调用的方法。 多路广播的修饰符可以应用于委托声明，它允许多个方法时调用该委托的 invoke 方法调用。  
+ 对于单强制转换和多播委托, 事件模型同样适用。 调用委托的 invoke 方法时, 只会有一个对象在其上调用方法。 多路广播修饰符可应用于委托声明, 这允许在调用委托的 invoke 方法时调用多个方法。  
   
- 调用<xref:System.Reflection.ICustomAttributeProvider.GetCustomAttributes%2A?displayProperty=nameWithType>上`EventInfo`时`inherit`参数`GetCustomAttributes`是`true`不会遍历类型层次结构。 使用<xref:System.Attribute?displayProperty=nameWithType>继承的自定义特性。  
+ <xref:System.Reflection.ICustomAttributeProvider.GetCustomAttributes%2A?displayProperty=nameWithType> `true` 如果的参数`GetCustomAttributes`不遍历类型层次结构, 则调用。 `inherit` `EventInfo` 使用<xref:System.Attribute?displayProperty=nameWithType>可继承自定义属性。  
   
    
   
 ## Examples  
- 下面的代码获取<xref:System.Reflection.EventInfo>对象<xref:System.Windows.Forms.Control.Click>事件的<xref:System.Windows.Forms.Button>类。  
+ 下面的代码获取<xref:System.Reflection.EventInfo> <xref:System.Windows.Forms.Button>类的<xref:System.Windows.Forms.Control.Click>事件的对象。  
   
  [!code-cpp[type_getevent1#1](~/samples/snippets/cpp/VS_Snippets_CLR/type_getevent1/CPP/type_getevent1.cpp#1)]
  [!code-csharp[type_getevent1#1](~/samples/snippets/csharp/VS_Snippets_CLR/type_getevent1/CS/type_getevent1.cs#1)]
@@ -80,9 +80,9 @@
   
  ]]></format>
     </remarks>
-    <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">继承者完全信任。 不能由部分受信任代码继承此类。</permission>
+    <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">完全信任继承者。 此类不能由部分受信任的代码继承。</permission>
     <threadsafe>此类型是线程安全的。</threadsafe>
-    <block subset="none" type="overrides"><para>继承自<see langword="EventInfo" />，必须重写以下成员： <see cref="M:System.Reflection.EventInfo.GetAddMethod(System.Boolean)" />， <see cref="M:System.Reflection.EventInfo.GetRemoveMethod(System.Boolean)" />，和<see cref="M:System.Reflection.EventInfo.GetRaiseMethod(System.Boolean)" />。</para></block>
+    <block subset="none" type="overrides"><para>当从<see langword="EventInfo" />继承时, 必须重写以下成员: <see cref="M:System.Reflection.EventInfo.GetAddMethod(System.Boolean)" />、 <see cref="M:System.Reflection.EventInfo.GetRemoveMethod(System.Boolean)" />和<see cref="M:System.Reflection.EventInfo.GetRaiseMethod(System.Boolean)" />。</para></block>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -116,7 +116,7 @@
       <Docs>
         <summary>初始化 <see langword="EventInfo" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
       </Docs>
     </Member>
     <Member MemberName="AddEventHandler">
@@ -173,20 +173,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法尝试将添加要同步目标对象上的事件的委托。  
+ 此方法尝试添加委托, 以便同步目标对象上的事件。  
   
- 每次引发事件时由目标参数处理程序封装的方法的调用。  
+ 每次由目标参数引发事件时, 都将调用该处理程序所封装的方法或方法。  
   
-可以使用`AddEventHandler`方法后已编译该程序，不能使用 + = 语法 C# 或 Visual Basic 时加载的类型时`WithEvents`和`Handles`挂接事件的关键字。   
+当您在已`AddEventHandler`编译程序之后加载类型时, 您可以使用方法, 当不能使用C# + = 语法或 Visual Basic `WithEvents`和`Handles`关键字来挂接事件时。   
   
 ## Examples  
- 下面的示例创建的实例<xref:System.Timers.Timer?displayProperty=nameWithType>类，创建事件处理程序使用动态程序集，并动态事件处理程序挂钩。 使用后期绑定执行所有操作。  
+ 下面的示例创建<xref:System.Timers.Timer?displayProperty=nameWithType>类的一个实例, 使用动态程序集创建一个事件处理程序, 并挂钩动态事件处理程序。 所有操作都使用后期绑定来执行。  
   
- <xref:System.Timers.Timer>类型的变量中存储实例<xref:System.Object>，并访问的所有代码<xref:System.Timers.Timer>会因此后期绑定。 该示例使用<xref:System.Type.GetEvent%2A?displayProperty=nameWithType>方法以获取<xref:System.Timers.Timer.Elapsed>事件，并<xref:System.Reflection.EventInfo.EventHandlerType%2A>属性获取事件的委托类型。  
+ 实例存储在类型<xref:System.Object>的变量中, 而访问的<xref:System.Timers.Timer>所有代码都在后期绑定。 <xref:System.Timers.Timer> 该示例使用<xref:System.Type.GetEvent%2A?displayProperty=nameWithType>方法来<xref:System.Timers.Timer.Elapsed>获取事件, 并<xref:System.Reflection.EventInfo.EventHandlerType%2A>使用属性来获取事件的委托类型。  
   
- 此示例获取<xref:System.Reflection.MethodInfo>有关`Invoke`方法的委托类型，并获取从委托的签名<xref:System.Reflection.MethodInfo>实例。 该示例然后使用一个模块，其中包含名为的单个类型创建动态程序集`Handler`，并提供类型`static`方法 (`Shared`在 Visual Basic 中的方法) 名为`DynamicHandler`处理事件。  
+ 该示例获取委托<xref:System.Reflection.MethodInfo>类型的`Invoke`方法的, 并从<xref:System.Reflection.MethodInfo>实例获取委托的签名。 然后, 该示例创建一个动态程序集, 该程序集包含一个`Handler`包含名为的单一`static`类型的模块, 并为该`DynamicHandler`类型提供了一个名为的方法 (`Shared`在 Visual Basic 中) 用于处理事件。  
   
- 创建动态类型后，此示例获取<xref:System.Reflection.MethodInfo>完成方法并使用它来创建委托实例。 此实例将传递给<xref:System.Reflection.EventInfo.AddEventHandler%2A>挂接事件的方法。 然后，程序暂停以允许引发事件。  
+ 创建动态类型后, 此示例将获取<xref:System.Reflection.MethodInfo>完成方法的, 并使用它来创建委托实例。 此实例会传递<xref:System.Reflection.EventInfo.AddEventHandler%2A>给方法以挂接事件。 然后, 程序将暂停, 以允许引发事件。  
   
  [!code-csharp[AddEventHandler#1](~/samples/snippets/csharp/VS_Snippets_CLR/AddEventHandler/cs/source.cs)]
  [!code-vb[AddEventHandler#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/AddEventHandler/vb/source.vb)]  
@@ -212,9 +212,9 @@
   
  <paramref name="target" /> 参数为 <see langword="null" />，并且此事件不是静态事件。  
   
-- 或 - 
+或 
 未在目标上声明 <see cref="T:System.Reflection.EventInfo" />。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Object" />
         <altmember cref="T:System.Delegate" />
         <altmember cref="T:System.EventHandler" />
@@ -259,7 +259,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性等效于调用<xref:System.Reflection.EventInfo.GetAddMethod%2A>值为`true`。  
+ 此属性等效于调用<xref:System.Reflection.EventInfo.GetAddMethod%2A>值为的。 `true`  
   
  ]]></format>
         </remarks>
@@ -309,7 +309,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 4 字节整数表示此实例反映的事件设置的属性的位图中，将返回属性。  
+ 属性以4字节为整数返回, 表示为此实例反射的事件设置的属性的位图。  
   
  ]]></format>
         </remarks>
@@ -404,9 +404,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例使用<xref:System.Reflection.EventInfo.EventHandlerType%2A>属性，以发现事件的委托类型，并显示其参数类型。  
+ 下面的示例使用<xref:System.Reflection.EventInfo.EventHandlerType%2A>属性发现事件的委托类型并显示其参数类型。  
   
- 该示例定义名为的委托`MyDelegate`和名为的事件`ev`类型的`MyDelegate`。 中的代码`Main`方法通过获取该事件的委托类型来发现事件签名获取`Invoke`方法的委托类型，然后检索和显示的参数。  
+ 该示例定义一个名`MyDelegate`为的委托和一个类型`MyDelegate`为`ev`的事件。 `Main`方法中的代码通过获取事件的委托类型, `Invoke`获取委托类型的方法, 然后检索并显示参数来发现事件签名。  
   
  [!code-cpp[eventarg#1](~/samples/snippets/cpp/VS_Snippets_CLR/EventArg/CPP/eventarg.cpp#1)]
  [!code-csharp[eventarg#1](~/samples/snippets/csharp/VS_Snippets_CLR/EventArg/CS/eventarg.cs#1)]
@@ -472,12 +472,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `GetAddMethod` 初始化并添加事件订阅方法。 `AddEventHandler`方法用于将事件处理程序委托添加到事件源的调用列表。  
+ `GetAddMethod`初始化并添加事件订阅方法。 `AddEventHandler`方法用于将事件处理程序委托添加到事件源的调用列表。  
   
    
   
 ## Examples  
- 通常情况下，该方法具有以下签名：  
+ 通常, 该方法具有以下签名:  
   
 ```  
 add_<EventName>(<EventHandlerType> handler)  
@@ -485,7 +485,7 @@ add_<EventName>(<EventHandlerType> handler)
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
       </Docs>
     </Member>
@@ -535,12 +535,12 @@ add_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `GetAddMethod`初始化并添加事件订阅方法作为布尔值。 `AddEventHandler`方法用于将事件处理程序委托添加到事件源的调用列表。  
+ `GetAddMethod`初始化并将事件订阅方法添加为布尔值。 `AddEventHandler`方法用于将事件处理程序委托添加到事件源的调用列表。  
   
    
   
 ## Examples  
- 通常情况下，该方法具有以下签名：  
+ 通常, 该方法具有以下签名:  
   
 ```  
 add_<EventName>(<EventHandlerType> handler)  
@@ -549,7 +549,7 @@ add_<EventName>(<EventHandlerType> handler)
  ]]></format>
         </remarks>
         <exception cref="T:System.MethodAccessException"><paramref name="nonPublic" /> 为 <see langword="true" />，用于添加事件处理程序委托的方法为非公共方法，且调用方没有权限反映非公共方法。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
       </Docs>
     </Member>
@@ -638,22 +638,22 @@ add_<EventName>(<EventHandlerType> handler)
       <Parameters />
       <Docs>
         <summary>返回在元数据中使用 <see langword=".other" /> 指令与事件相关联的公共方法。</summary>
-        <returns><see cref="T:System.Reflection.EventInfo" /> 对象的数组，表示已在元数据中通过使用 <see langword=".other" /> 指令与事件相关联的公共方法。 如果没有此类公共方法，则返回空数组。</returns>
+        <returns>一个数组，表示在元数据中通过使用 <see langword=".other" /> 指令与事件相关联的公共方法。 如果没有此类公共方法，则返回空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 事件的元数据可将四种类型的方法与事件相关联：  
+ 事件的元数据可以将四种类型的方法与事件相关联:  
   
--   `.addon`指令指定了用于添加事件处理程序的方法。 使用<xref:System.Reflection.EventInfo.GetAddMethod%2A>方法来检索<xref:System.Reflection.EventInfo>为该方法。  
+-   `.addon`指令指定用于添加事件处理程序的方法。 <xref:System.Reflection.EventInfo.GetAddMethod%2A>使用方法<xref:System.Reflection.EventInfo>检索该方法的。  
   
--   `.removeon`指令指定用来分离事件处理程序的方法。 使用<xref:System.Reflection.EventInfo.GetRemoveMethod%2A>方法来检索<xref:System.Reflection.EventInfo>为该方法。  
+-   `.removeon`指令指定用于分离事件处理程序的方法。 <xref:System.Reflection.EventInfo.GetRemoveMethod%2A>使用方法<xref:System.Reflection.EventInfo>检索该方法的。  
   
--   `.fire`指令指定用来引发事件的方法。 使用<xref:System.Reflection.EventInfo.GetRaiseMethod%2A>方法来检索<xref:System.Reflection.EventInfo>为该方法。  
+-   `.fire`指令指定用于引发事件的方法。 <xref:System.Reflection.EventInfo.GetRaiseMethod%2A>使用方法<xref:System.Reflection.EventInfo>检索该方法的。  
   
--   `.other`指令指定与事件关联的任何其他方法。 使用<xref:System.Reflection.EventInfo.GetOtherMethods%2A>方法来检索其中的数组<xref:System.Reflection.EventInfo>为这些方法的对象。  
+-   `.other`指令指定与事件关联的任何其他方法。 使用方法检索这些方法的<xref:System.Reflection.EventInfo>对象数组。 <xref:System.Reflection.EventInfo.GetOtherMethods%2A>  
   
- 与事件使用关联的方法`.other`指令具有向运行时没有特别的意义。 C# 和 Visual Basic 编译器不要使用`.other`指令。  
+ 使用`.other`指令与事件相关联的方法对运行时没有特别的意义。 C#和 Visual Basic 编译器不使用`.other`指令。  
   
  ]]></format>
         </remarks>
@@ -695,22 +695,22 @@ add_<EventName>(<EventHandlerType> handler)
       <Docs>
         <param name="nonPublic">如果包括非公共方法，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
         <summary>返回在元数据中使用 <see langword=".other" /> 指令与事件相关联的方法，指定是否包括非公共方法。</summary>
-        <returns><see cref="T:System.Reflection.EventInfo" /> 对象的数组，表示已通过在元数据中使用 <see langword=".other" /> 指令与事件相关联的方法。 如果没有与该规范匹配的方法，则返回空数组。</returns>
+        <returns>一个数组，表示在元数据中通过使用 <see langword=".other" /> 指令与事件相关联的方法。 如果没有与该规范匹配的方法，则返回空数组。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 事件的元数据可将四种类型的方法与事件相关联：  
+ 事件的元数据可以将四种类型的方法与事件相关联:  
   
--   `.addon`指令指定了用于添加事件处理程序的方法。 使用<xref:System.Reflection.EventInfo.GetAddMethod%2A>方法来检索<xref:System.Reflection.EventInfo>为该方法。  
+-   `.addon`指令指定用于添加事件处理程序的方法。 <xref:System.Reflection.EventInfo.GetAddMethod%2A>使用方法<xref:System.Reflection.EventInfo>检索该方法的。  
   
--   `.removeon`指令指定用来分离事件处理程序的方法。 使用<xref:System.Reflection.EventInfo.GetRemoveMethod%2A>方法来检索<xref:System.Reflection.EventInfo>为此方法。  
+-   `.removeon`指令指定用于分离事件处理程序的方法。 <xref:System.Reflection.EventInfo.GetRemoveMethod%2A>使用方法<xref:System.Reflection.EventInfo>检索此方法的。  
   
--   `.fire`指令指定用来引发事件的方法。 使用<xref:System.Reflection.EventInfo.GetRaiseMethod%2A>方法来检索<xref:System.Reflection.EventInfo>为此方法。  
+-   `.fire`指令指定用于引发事件的方法。 <xref:System.Reflection.EventInfo.GetRaiseMethod%2A>使用方法<xref:System.Reflection.EventInfo>检索此方法的。  
   
--   `.other`指令指定与事件关联的任何其他方法。 使用<xref:System.Reflection.EventInfo.GetOtherMethods%2A>方法来检索其中的数组<xref:System.Reflection.EventInfo>为这些方法的对象。  
+-   `.other`指令指定与事件关联的任何其他方法。 使用方法检索这些方法的<xref:System.Reflection.EventInfo>对象数组。 <xref:System.Reflection.EventInfo.GetOtherMethods%2A>  
   
- 与事件使用关联的方法`.other`指令具有向运行时没有特别的意义。 C# 和 Visual Basic 编译器不要使用`.other`指令。  
+ 使用`.other`指令与事件相关联的方法对运行时没有特别的意义。 C#和 Visual Basic 编译器不使用`.other`指令。  
   
  ]]></format>
         </remarks>
@@ -769,11 +769,11 @@ add_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法通常返回`null`为事件声明在 C#`event`关键字或 Visual Basic`Event`关键字。 这是因为 C# 和 Visual Basic 编译器不会生成此类方法默认情况下。  
+ 此方法通常返回`null` C# `event`用关键字或 Visual Basic `Event`关键字声明的事件。 这是因为和C# Visual Basic 编译器在默认情况下不生成此类方法。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
       </Docs>
     </Member>
@@ -823,12 +823,12 @@ add_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法通常返回`null`为事件声明在 C#`event`关键字或 Visual Basic`Event`关键字。 这是因为 C# 和 Visual Basic 编译器不会生成此类方法默认情况下。  
+ 此方法通常返回`null` C# `event`用关键字或 Visual Basic `Event`关键字声明的事件。 这是因为和C# Visual Basic 编译器在默认情况下不生成此类方法。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.MethodAccessException"><paramref name="nonPublic" /> 为 <see langword="true" />，用于添加事件处理程序委托的方法为非公共方法，且调用方没有权限反映非公共方法。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
       </Docs>
     </Member>
@@ -884,7 +884,7 @@ add_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 通常情况下，该方法具有以下签名：  
+ 通常, 该方法具有以下签名:  
   
 ```  
 remove_<EventName>(<EventHandlerType> handler)  
@@ -892,7 +892,7 @@ remove_<EventName>(<EventHandlerType> handler)
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
       </Docs>
     </Member>
@@ -942,7 +942,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 通常情况下，该方法具有以下签名：  
+ 通常, 该方法具有以下签名:  
   
 ```  
 remove_<EventName>(<EventHandlerType> handler)  
@@ -951,7 +951,7 @@ remove_<EventName>(<EventHandlerType> handler)
  ]]></format>
         </remarks>
         <exception cref="T:System.MethodAccessException"><paramref name="nonPublic" /> 为 <see langword="true" />，用于添加事件处理程序委托的方法为非公共方法，且调用方没有权限反映非公共方法。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />:。</permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
       </Docs>
     </Member>
@@ -1078,7 +1078,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性确定事件的名称是否具有特殊含义。 名称的开头或包含下划线字符 (_)、 属性访问器和运算符重载的方法是可能需要特殊处理某些编译器的名称的示例。  
+ 此属性确定事件名称是否具有特殊意义。 以或开头的名称包含下划线字符 (_)、属性访问器和运算符重载方法是可能需要某些编译器特殊处理的名称的示例。  
   
  ]]></format>
         </remarks>
@@ -1127,7 +1127,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性将替代<xref:System.Reflection.MemberInfo.MemberType%2A>。 因此，检查一系列<xref:System.Reflection.MemberInfo>对象，例如，返回的数组<xref:System.Type.GetMembers%2A>-<xref:System.Reflection.MemberInfo.MemberType%2A>属性返回<xref:System.Reflection.MemberTypes.Event?displayProperty=nameWithType>仅当给定的成员是一个事件。  
+ 此属性将<xref:System.Reflection.MemberInfo.MemberType%2A>重写。 因此, 在<xref:System.Reflection.MemberInfo>检查一组对象时 (例如, <xref:System.Type.GetMembers%2A>返回<xref:System.Reflection.MemberInfo.MemberType%2A>的数组), 属性仅在给定成员<xref:System.Reflection.MemberTypes.Event?displayProperty=nameWithType>是事件时返回。  
   
  ]]></format>
         </remarks>
@@ -1255,7 +1255,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性等效于调用<xref:System.Reflection.EventInfo.GetRaiseMethod%2A>值为`true`。  
+ 此属性等效于调用<xref:System.Reflection.EventInfo.GetRaiseMethod%2A>值为的。 `true`  
   
  ]]></format>
         </remarks>
@@ -1315,9 +1315,9 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法尝试删除可能会同步目标对象上的事件的委托。  
+ 此方法尝试删除可能在目标对象上同步此事件的委托。  
   
- 通过目标、 方法或通过封装的方法引发事件时`handler`将无法再调用。  
+ 当目标引发事件时, 将不再调用通过`handler`封装的方法。  
   
  ]]></format>
         </remarks>
@@ -1332,7 +1332,7 @@ remove_<EventName>(<EventHandlerType> handler)
   
  <paramref name="target" /> 参数为 <see langword="null" />，并且此事件不是静态事件。  
   
-- 或 - 
+或 
 未在目标上声明 <see cref="T:System.Reflection.EventInfo" />。</exception>
         <exception cref="T:System.MethodAccessException"><block subset="none" type="note">
             <para>  
@@ -1342,7 +1342,7 @@ remove_<EventName>(<EventHandlerType> handler)
           </block>  
   
  调用方没有对成员的访问权限。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Object" />
         <altmember cref="T:System.Delegate" />
         <altmember cref="T:System.EventHandler" />
@@ -1387,7 +1387,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性等效于调用<xref:System.Reflection.EventInfo.GetRemoveMethod%2A>值为`true`。  
+ 此属性等效于调用<xref:System.Reflection.EventInfo.GetRemoveMethod%2A>值为的。 `true`  
   
  ]]></format>
         </remarks>
@@ -1439,7 +1439,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::GetIDsOfNames`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::GetIDsOfNames`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>
@@ -1522,7 +1522,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::GetTypeInfo`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::GetTypeInfo`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>
@@ -1567,7 +1567,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::GetTypeInfoCount`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::GetTypeInfoCount`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>
@@ -1626,7 +1626,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::Invoke`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::Invoke`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>

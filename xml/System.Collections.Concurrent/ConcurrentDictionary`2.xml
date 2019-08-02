@@ -79,22 +79,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对于非常大<xref:System.Collections.Concurrent.ConcurrentDictionary%602>对象，您可以将最大数组大小增加到 2 千兆字节 (GB) 的 64 位系统上通过设置[ `<gcAllowVeryLargeObjects>` ](~/docs/framework/configure-apps/file-schema/runtime/gcallowverylargeobjects-element.md) configuration 元素`true`在运行时环境中。  
+ 对于非常大<xref:System.Collections.Concurrent.ConcurrentDictionary%602>的对象, 可以通过在运行时环境中[`<gcAllowVeryLargeObjects>`](~/docs/framework/configure-apps/file-schema/runtime/gcallowverylargeobjects-element.md)将配置元素设置为来`true`将64位系统上的最大数组大小增加到 2 gb。  
   
 > [!NOTE]
->  <xref:System.Collections.Concurrent.ConcurrentDictionary%602> 实现<xref:System.Collections.Generic.IReadOnlyCollection%601>并<xref:System.Collections.Generic.IReadOnlyDictionary%602>开头的接口[!INCLUDE[net_v46](~/includes/net-v46-md.md)]; 在以前版本的.NET Framework 中，<xref:System.Collections.Concurrent.ConcurrentDictionary%602>类未实现这些接口。  
+>  <xref:System.Collections.Concurrent.ConcurrentDictionary%602>[!INCLUDE[net_v46](~/includes/net-v46-md.md)] <xref:System.Collections.Concurrent.ConcurrentDictionary%602>实现和接口<xref:System.Collections.Generic.IReadOnlyDictionary%602> (从开始); 在以前版本的 .NET Framework 中, 类未实现这些接口。 <xref:System.Collections.Generic.IReadOnlyCollection%601>  
   
- 像<xref:System.Collections.Generic.Dictionary%602?displayProperty=nameWithType>类，<xref:System.Collections.Concurrent.ConcurrentDictionary%602>实现<xref:System.Collections.Generic.IDictionary%602>接口。 此外，<xref:System.Collections.Concurrent.ConcurrentDictionary%602>用于添加或更新在字典中，键/值对提供几种方法下, 表中所述。  
+ 与类一样, <xref:System.Collections.Concurrent.ConcurrentDictionary%602>实现<xref:System.Collections.Generic.IDictionary%602>接口。 <xref:System.Collections.Generic.Dictionary%602?displayProperty=nameWithType> 此外, <xref:System.Collections.Concurrent.ConcurrentDictionary%602>提供了几种在字典中添加或更新键/值对的方法, 如下表所述。  
   
-|任务|使用此方法|用法说明|  
+|任务|使用此方法|使用说明|  
 |----------------|---------------------|-----------------|  
-|如果它尚不存在字典中向字典中，添加新的密钥|<xref:System.Collections.Concurrent.ConcurrentDictionary%602.TryAdd%2A>|如果字典中当前不存在该键，则此方法将添加指定的键/值对。 该方法返回`true`或`false`具体取决于是否已添加新对。|  
-|如果该注册表项具有特定值，更新为现有键在字典中值|<xref:System.Collections.Concurrent.ConcurrentDictionary%602.TryUpdate%2A>|此方法检查是否该密钥具有指定的值，如果它，则用新值更新该键。 它相当于<xref:System.Threading.Interlocked.CompareExchange%2A>方法，它的用于字典元素不同。|  
-|无条件地，在字典中存储键/值对，并覆盖已存在的键的值|索引器的资源库： `dictionary[key] = newValue`||  
-|将键/值对添加到字典中，或如果密钥已存在，更新基于键的现有值的键的值|<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%28%600%2CSystem.Func%7B%600%2C%601%7D%2CSystem.Func%7B%600%2C%601%2C%601%7D%29><br /><br /> 或<br /><br /> <xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%28%600%2C%601%2CSystem.Func%7B%600%2C%601%2C%601%7D%29>|<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%28%600%2CSystem.Func%7B%600%2C%601%7D%2CSystem.Func%7B%600%2C%601%2C%601%7D%29> 接受的密钥和两个委托。 它使用的第一个委托，如果键不存在字典; 中它接受键，并返回应添加的密钥的值。 如果在项存在; 它使用第二个委托它接受的键和其当前值，并返回新值应为键设置。<br /><br /> <xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%28%600%2C%601%2CSystem.Func%7B%600%2C%601%2C%601%7D%29> 接受键、 值添加，以及更新委托。 这是上一重载相同，只不过它不使用委托来添加密钥。|  
-|获取此键在字典中，将值添加到字典并将其返回如果该键不存在的值|<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%28%600%2C%601%29><br /><br /> 或<br /><br /> <xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%28%600%2CSystem.Func%7B%600%2C%601%7D%29>|这些重载提供迟缓初始化为键/值对在字典中，仅当找不到添加的值。<br /><br /> <xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%28%600%2C%601%29> 采用要添加密钥不存在的值。<br /><br /> <xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%28%600%2CSystem.Func%7B%600%2C%601%7D%29> 将一个委托，它将生成值，如果不存在。|  
+|如果字典中不存在新项, 则将其添加到字典中|<xref:System.Collections.Concurrent.ConcurrentDictionary%602.TryAdd%2A>|如果字典中当前不存在该键, 则此方法将添加指定的键/值对。 方法返回`true`或`false` , 具体取决于是否已添加新对。|  
+|更新字典中现有键的值 (如果该注册表项具有特定值)|<xref:System.Collections.Concurrent.ConcurrentDictionary%602.TryUpdate%2A>|此方法检查键是否具有指定的值, 如果它存在, 则使用新值更新该键。 它与<xref:System.Threading.Interlocked.CompareExchange%2A>方法类似, 只是它用于字典元素。|  
+|无条件地将键/值对存储在字典中, 并覆盖已存在的键的值|索引器的 setter:`dictionary[key] = newValue`||  
+|将键/值对添加到字典中, 或者如果该键已存在, 则根据键的现有值更新该键的值|<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%28%600%2CSystem.Func%7B%600%2C%601%7D%2CSystem.Func%7B%600%2C%601%2C%601%7D%29><br /><br /> 或<br /><br /> <xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%28%600%2C%601%2CSystem.Func%7B%600%2C%601%2C%601%7D%29>|<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%28%600%2CSystem.Func%7B%600%2C%601%7D%2CSystem.Func%7B%600%2C%601%2C%601%7D%29>接受密钥和两个委托。 如果字典中不存在该键, 则使用第一个委托;它接受键并返回应为该项添加的值。 如果该键存在, 它将使用第二个委托;它接受键及其当前值, 并返回应为密钥设置的新值。<br /><br /> <xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%28%600%2C%601%2CSystem.Func%7B%600%2C%601%2C%601%7D%29>接受键、要添加的值和更新委托。 这与上一个重载相同, 不同之处在于它不使用委托来添加密钥。|  
+|获取字典中的键的值, 将值添加到字典中, 如果键不存在, 则返回它|<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%28%600%2C%601%29><br /><br /> 或<br /><br /> <xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%28%600%2CSystem.Func%7B%600%2C%601%7D%29>|这些重载为字典中的键/值对提供延迟初始化, 仅在不存在时才添加值。<br /><br /> <xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%28%600%2C%601%29>如果键不存在, 则采用要添加的值。<br /><br /> <xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%28%600%2CSystem.Func%7B%600%2C%601%7D%29>如果键不存在, 则使用将生成值的委托。|  
   
- 所有这些操作是原子操作，并且是线程安全的所有其他操作方面<xref:System.Collections.Concurrent.ConcurrentDictionary%602>类。 唯一的例外是，它是接受一个委托，委托的方法<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>和<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>。 修改和向字典中，写入操作<xref:System.Collections.Concurrent.ConcurrentDictionary%602>使用细粒度锁定，以确保线程安全。 （在字典上的读取操作执行无锁方式。）但是，外部锁以避免出现问题造成的执行锁下的未知的代码调用这些方法的委托。 因此，执行这些委托的代码不是受该操作的原子性。  
+ 所有这些操作都是原子操作, 对<xref:System.Collections.Concurrent.ConcurrentDictionary%602>类的所有其他操作都是线程安全的。 唯一的例外是接受委托<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>的方法, 即和。 <xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A> 对于字典的修改和写入操作, <xref:System.Collections.Concurrent.ConcurrentDictionary%602>使用细粒度锁定以确保线程安全。 (对字典的读取操作以无锁方式执行。)但是, 这些方法的委托在锁的外部调用, 以避免在锁定下执行未知代码导致的问题。 因此, 这些委托执行的代码不服从操作的原子性。  
   
    
   
@@ -106,7 +106,7 @@
   
  ]]></format>
     </remarks>
-    <threadsafe>所有公共和受保护成员<see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />是线程安全的可能从多个线程同时使用。 但是，通过一个接口访问成员<see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />实现，其中包括扩展方法不能保证是线程安全并可能需要由调用方同步。</threadsafe>
+    <threadsafe>的所有公共和受保护<see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />的成员都是线程安全的, 可从多个线程并发使用。 但是, 通过实现的接口之一 (包括扩展<see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />方法) 访问的成员不一定是线程安全的, 并且可能需要由调用方进行同步。</threadsafe>
     <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
     <related type="Article" href="https://msdn.microsoft.com/library/81b64b95-13f7-4532-9249-ab532f629598">如何：在 ConcurrentDictionary 中添加和移除项</related>
   </Docs>
@@ -154,7 +154,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认的并发级别等于 Cpu 数。 并发级别越高，更多的并发写入操作可以发生而不会相互干扰和阻塞。 较高的并发级别值也会导致需要所有锁的操作 (例如，表重设大小，`ToArray`和`Count`) 以变得更高。 构造大型字典时，默认的容量 (DEFAULT_CAPACITY)，它表示初始存储桶数，是字典的非常小的大小和调整大小活动数之间进行权衡。 此外，容量不应为整除小的质数。 默认的容量为 31。  
+ 默认并发级别等于 Cpu 数。 并发级别越高, 同步写入操作的时间就越多, 无干扰和阻塞。 更高的并发级别值还会导致需要所有锁 (例如, 表大小调整`ToArray`和`Count`) 的操作变得更昂贵。 默认容量 (DEFAULT_CAPACITY) 表示初始的存储桶数, 这是在非常小的字典大小与构造大字典时的重设大小之间的权衡。 此外, 容量不应为小的质数。 默认容量为31。  
   
  ]]></format>
         </remarks>
@@ -193,7 +193,7 @@
         <param name="collection"><see cref="T:System.Collections.Generic.IEnumerable`1" />，它的元素被复制到新 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />。</param>
         <summary>初始化 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 类的新实例，该实例包含从指定的 <see cref="T:System.Collections.Generic.IEnumerable`1" /> 中复制的元素，具有默认的并发级别和默认的初始容量，并为键类型使用默认比较器。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="collection" /> 或其中的任一键为<see langword="null" />。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="collection" /> 或其中的任一键为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="collection" /> 包含一个或多个重复键。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
         <related type="Article" href="https://msdn.microsoft.com/library/81b64b95-13f7-4532-9249-ab532f629598">如何：在 ConcurrentDictionary 中添加和移除项</related>
@@ -409,7 +409,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示如何调用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>方法：  
+ 下面的示例演示如何调用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>方法:  
   
  [!code-csharp[System.Collections.Concurrent.ConcurrentDictionary#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.collections.concurrent.concurrentdictionary/cs/concdictionary.cs#3)]
  [!code-vb[System.Collections.Concurrent.ConcurrentDictionary#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.collections.concurrent.concurrentdictionary/vb/concdictionary.vb#3)]  
@@ -462,9 +462,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果您调用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>在不同线程上同时`addValueFactory`可能被调用多次，但其键/值对可能不会添加到每个调用的字典。  
+ 如果在不同<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>的线程上同时调用`addValueFactory` , 可以多次调用, 但对于每个调用, 其键/值对可能不会添加到字典中。  
 
- 修改和向字典中，写入操作<xref:System.Collections.Concurrent.ConcurrentDictionary%602>使用细粒度锁定，以确保线程安全。 （在字典上的读取操作执行无锁方式。）但是，`addValueFactory`和`updateValueFactory`锁以避免出现的问题的可执行锁下的未知的代码从外部调用委托。 因此，<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>都不是所有其他操作方面原子<xref:System.Collections.Concurrent.ConcurrentDictionary%602>类。  
+ 对于字典的修改和写入操作, <xref:System.Collections.Concurrent.ConcurrentDictionary%602>使用细粒度锁定以确保线程安全。 (对字典的读取操作以无锁方式执行。)但是, 在`addValueFactory`锁`updateValueFactory`的外部调用和委托, 以避免在锁定下执行未知代码导致的问题。 因此, <xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>对于<xref:System.Collections.Concurrent.ConcurrentDictionary%602>类上的所有其他操作而言, 不是原子的。  
   
  ]]></format>
         </remarks>
@@ -522,7 +522,7 @@
  [!code-vb[System.Collections.ConcurrentColAddUpdate#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.collections.concurrentcoladdupdate/vb/module1.vb#1)]  
 
 ## Remarks  
- 修改和向字典中，写入操作<xref:System.Collections.Concurrent.ConcurrentDictionary%602>使用细粒度锁定，以确保线程安全。 （在字典上的读取操作执行无锁方式。）但是，`updateValueFactory`锁以避免出现的问题的可执行锁下的未知的代码从外部调用委托。 因此，<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>都不是所有其他操作方面原子<xref:System.Collections.Concurrent.ConcurrentDictionary%602>类。  
+ 对于字典的修改和写入操作, <xref:System.Collections.Concurrent.ConcurrentDictionary%602>使用细粒度锁定以确保线程安全。 (对字典的读取操作以无锁方式执行。)但是, 在`updateValueFactory`锁的外部调用委托, 以避免在锁定下执行未知代码导致的问题。 因此, <xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>对于<xref:System.Collections.Concurrent.ConcurrentDictionary%602>类上的所有其他操作而言, 不是原子的。  
   
  ]]></format>
         </remarks>
@@ -565,7 +565,7 @@
         <Parameter Name="factoryArgument" Type="TArg" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.7.2;netframework-4.8;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <typeparam name="TArg">要传递到的参数的类型<paramref name="addValueFactory" />和<paramref name="updateValueFactory" />。</typeparam>
+        <typeparam name="TArg">要传递到<paramref name="addValueFactory" />和<paramref name="updateValueFactory" />的参数的类型。</typeparam>
         <param name="key">要添加的键或应更新其值的键。</param>
         <param name="addValueFactory">用于为空缺键生成值的函数。</param>
         <param name="updateValueFactory">用以基于键的现有值为现有键生成新值的函数。</param>
@@ -576,9 +576,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果您调用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>在不同线程上同时`addValueFactory`可能被调用多次，但其键/值对可能不会添加到每个调用的字典。  
+ 如果在不同<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>的线程上同时调用`addValueFactory` , 可以多次调用, 但对于每个调用, 其键/值对可能不会添加到字典中。  
 
- 修改和向字典中，写入操作<xref:System.Collections.Concurrent.ConcurrentDictionary%602>使用细粒度锁定，以确保线程安全。 （在字典上的读取操作执行无锁方式。）但是，`addValueFactory`和`updateValueFactory`锁以避免出现的问题的可执行锁下的未知的代码从外部调用委托。 因此，<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>都不是所有其他操作方面原子<xref:System.Collections.Concurrent.ConcurrentDictionary%602>类。  
+ 对于字典的修改和写入操作, <xref:System.Collections.Concurrent.ConcurrentDictionary%602>使用细粒度锁定以确保线程安全。 (对字典的读取操作以无锁方式执行。)但是, 在`addValueFactory`锁`updateValueFactory`的外部调用和委托, 以避免在锁定下执行未知代码导致的问题。 因此, <xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>对于<xref:System.Collections.Concurrent.ConcurrentDictionary%602>类上的所有其他操作而言, 不是原子的。  
   
  ]]></format>
         </remarks>
@@ -707,7 +707,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性具有快照语义，表示中的项数<xref:System.Collections.Concurrent.ConcurrentDictionary%602?displayProperty=nameWithType>时刻访问了属性。  
+ 此属性具有快照语义, 表示在访问该属性时中<xref:System.Collections.Concurrent.ConcurrentDictionary%602?displayProperty=nameWithType>的项数。  
   
  ]]></format>
         </remarks>
@@ -765,7 +765,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从字典中返回的枚举器可以安全地使用与并发读取和写入字典中，但它不表示字典时刻快照。 通过枚举器公开的内容可能包含字典后所做的修改<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetEnumerator%2A>调用。  
+ 从字典返回的枚举器可安全地用于字典中的读取和写入, 但它并不表示字典的时间点快照。 通过枚举器公开的内容可能包含调用后<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetEnumerator%2A>对字典所做的修改。  
   
  ]]></format>
         </remarks>
@@ -780,12 +780,12 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>如果该键不存在，则将键/值对添加到 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 中。 如果该键已存在，则返回新值或现有值。</summary>
+        <summary>如果指定的键尚不存在，则将键/值对添加到 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 中。 如果该键已存在，则返回新值或现有值。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示如何调用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>方法：  
+ 下面的示例演示如何调用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>方法:  
   
  [!code-csharp[System.Collections.Concurrent.ConcurrentDictionary#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.collections.concurrent.concurrentdictionary/cs/concdictionary.cs#3)]
  [!code-vb[System.Collections.Concurrent.ConcurrentDictionary#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.collections.concurrent.concurrentdictionary/vb/concdictionary.vb#3)]  
@@ -831,22 +831,22 @@
         <param name="key">要添加的元素的键。</param>
         <param name="valueFactory">用于为键生成值的函数。</param>
         <summary>如果该键不存在，则通过使用指定的函数将键/值对添加到 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 中。 如果该键存在，则返回新值或现有值。</summary>
-        <returns>键的值。 如果字典中已存在该键，则为该键的现有值；如果字典中不存在该键，则为新值。</returns>
+        <returns>键的值。 如果字典中已存在指定的键，则为该键的现有值；如果字典中不存在指定的键，则为新值。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks   
- 修改和向字典中，写入操作<xref:System.Collections.Concurrent.ConcurrentDictionary%602>使用细粒度锁定，以确保线程安全。 （在字典上的读取操作执行无锁方式。）但是，`valueFactory`锁以避免出现的问题的可执行锁下的未知的代码从外部调用委托。 因此，<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>都不是所有其他操作方面原子<xref:System.Collections.Concurrent.ConcurrentDictionary%602>类。  
+ 对于字典的修改和写入操作, <xref:System.Collections.Concurrent.ConcurrentDictionary%602>使用细粒度锁定以确保线程安全。 (对字典的读取操作以无锁方式执行。)但是, 在`valueFactory`锁的外部调用委托, 以避免在锁定下执行未知代码导致的问题。 因此, <xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>对于<xref:System.Collections.Concurrent.ConcurrentDictionary%602>类上的所有其他操作而言, 不是原子的。  
 
- 由于键/值可通过另一个线程时，插入`valueFactory`是生成一个值，您不能信任，只是因为`valueFactory`执行，它生成的值将插入到字典中并返回。 如果您调用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>在不同线程上同时`valueFactory`可能被调用多次，但只有一个键/值对将添加到字典。 
+ 由于在生成值时`valueFactory` , 另一个线程可以插入键/值, 因此您不能信任这一点, 因为`valueFactory`已执行, 其生成的值将插入到字典中并返回。 如果在不同<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>的线程上同时调用`valueFactory` , 则可以多次调用, 但只会将一个键/值对添加到字典中。 
  
- 返回值取决于字典并将由另一个线程后插入一个键/值中的键是否存在<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>之前调用`valueFactory`生成一个值：
+ 返回值取决于字典中的键是否存在, 以及是否在调用之后<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>但在生成值之前`valueFactory`由另一个线程插入了键/值:
 
  | 方案 | 返回值 |
  | -------- | ------------ |
- | 密钥已在字典中。 | 返回现有值。 |
- | 该密钥不在字典中。 `valueFactory` 生成一个值。 在重新检查的密钥，未找到键。 | 键/值插入到字典中，并返回的值。 |
- | 该密钥不在字典中。 `valueFactory` 生成一个值。 虽然`valueFactory`是生成值，另一个线程将插入该密钥的值。 之后`valueFactory`执行和后重新检查的密钥，找到键被其他线程插入。 | 返回由另一个线程插入的值。 |
+ | 字典中已存在该键。 | 返回现有值。 |
+ | 该键不在字典中。 `valueFactory`生成一个值。 对于密钥, 在重新检查上找不到任何键。 | 键/值将插入字典, 并返回值。 |
+ | 该键不在字典中。 `valueFactory`生成一个值。 生成`valueFactory`值时, 另一个线程将为键插入值。 执行`valueFactory`后, 在重新检查项后, 将找到另一个线程插入的键。 | 返回其他线程插入的值。 |
   
  ]]></format>
         </remarks>
@@ -890,8 +890,8 @@
       <Docs>
         <param name="key">要添加的元素的键。</param>
         <param name="value">当键不存在时要添加的值。</param>
-        <summary>如果该键不存在，则将键/值对添加到 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 中。 如果该键存在，则返回新值或现有值。</summary>
-        <returns>键的值。 如果字典中已存在该键，则为该键的现有值；如果字典中不存在该键，则为新值。</returns>
+        <summary>如果指定的键尚不存在，则将键/值对添加到 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 中。 如果该键存在，则返回新值或现有值。</summary>
+        <returns>键的值。 如果字典中已存在指定的键，则为该键的现有值；如果字典中不存在指定的键，则为新值。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="key" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.OverflowException">字典中已包含元素的最大数量(<see cref="F:System.Int32.MaxValue" />)。</exception>
@@ -931,31 +931,31 @@
         <Parameter Name="factoryArgument" Type="TArg" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.7.2;netframework-4.8;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <typeparam name="TArg">要传递到的参数的类型<paramref name="valueFactory" />。</typeparam>
+        <typeparam name="TArg">要传入<paramref name="valueFactory" />的参数的类型。</typeparam>
         <param name="key">要添加的元素的键。</param>
         <param name="valueFactory">用于为键生成值的函数。</param>
         <param name="factoryArgument">要传入 <paramref name="valueFactory" /> 的参数值。</param>
         <summary>使用指定函数和参数将键/值对添加到 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />中（若尚无键）；或返回现有值（若已有键）。</summary>
-        <returns>键的值。 如果字典中已存在该键，则为该键的现有值；如果字典中不存在该键，则为新值。</returns>
+        <returns>键的值。 如果字典中已存在指定的键，则为该键的现有值；如果字典中不存在指定的键，则为新值。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks   
- 修改和向字典中，写入操作<xref:System.Collections.Concurrent.ConcurrentDictionary%602>使用细粒度锁定，以确保线程安全。 （在字典上的读取操作执行无锁方式。）但是，`valueFactory`锁以避免出现的问题的可执行锁下的未知的代码从外部调用委托。 因此，<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>都不是所有其他操作方面原子<xref:System.Collections.Concurrent.ConcurrentDictionary%602>类。  
+ 对于字典的修改和写入操作, <xref:System.Collections.Concurrent.ConcurrentDictionary%602>使用细粒度锁定以确保线程安全。 (对字典的读取操作以无锁方式执行。)但是, 在`valueFactory`锁的外部调用委托, 以避免在锁定下执行未知代码导致的问题。 因此, <xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>对于<xref:System.Collections.Concurrent.ConcurrentDictionary%602>类上的所有其他操作而言, 不是原子的。  
 
- 由于键/值可通过另一个线程时，插入`valueFactory`是生成一个值，您不能信任，只是因为`valueFactory`执行，它生成的值将插入到字典中并返回。 如果您调用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>在不同线程上同时`valueFactory`可能被调用多次，但只有一个键/值对将添加到字典。 
+ 由于在生成值时`valueFactory` , 另一个线程可以插入键/值, 因此您不能信任这一点, 因为`valueFactory`已执行, 其生成的值将插入到字典中并返回。 如果在不同<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>的线程上同时调用`valueFactory` , 则可以多次调用, 但只会将一个键/值对添加到字典中。 
  
- 返回值取决于字典并将由另一个线程后插入一个键/值中的键是否存在<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>之前调用`valueFactory`生成一个值：
+ 返回值取决于字典中的键是否存在, 以及是否在调用之后<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetOrAdd%2A>但在生成值之前`valueFactory`由另一个线程插入了键/值:
 
  | 方案 | 返回值 |
  | -------- | ------------ |
- | 密钥已在字典中。 | 返回现有值。 |
- | 该密钥不在字典中。 `valueFactory` 生成一个值。 在重新检查的密钥，未找到键。 | 键/值插入到字典中，并返回的值。 |
- | 该密钥不在字典中。 `valueFactory` 生成一个值。 虽然`valueFactory`是生成值，另一个线程将插入该密钥的值。 之后`valueFactory`执行和后重新检查的密钥，找到键被其他线程插入。 | 返回由另一个线程插入的值。 |
+ | 字典中已存在该键。 | 返回现有值。 |
+ | 该键不在字典中。 `valueFactory`生成一个值。 对于密钥, 在重新检查上找不到任何键。 | 键/值将插入字典, 并返回值。 |
+ | 该键不在字典中。 `valueFactory`生成一个值。 生成`valueFactory`值时, 另一个线程将为键插入值。 执行`valueFactory`后, 在重新检查项后, 将找到另一个线程插入的键。 | 返回其他线程插入的值。 |
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="key" /> 是<see langword="null" />引用 (在 Visual Basic 中为 Nothing)。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="key" /> 为 <see langword="null" /> 引用（在 Visual Basic 中为 Nothing）。</exception>
         <exception cref="T:System.OverflowException">字典包含过多元素。</exception>
       </Docs>
     </Member>
@@ -987,7 +987,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个值，该值指示 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 是否为空。</summary>
+        <summary>获取一个指示 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 是否为空的值。</summary>
         <value>如果 <see langword="true" /> 为空，则为 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />；否则为 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
@@ -1030,10 +1030,10 @@
       <Docs>
         <param name="key">要获取或设置的值的键。</param>
         <summary>获取或设置与指定的键关联的值。</summary>
-        <value>位于指定索引处的键/值对的值。</value>
+        <value>位于指定索引处的键/值对。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="key" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.Collections.Generic.KeyNotFoundException">已检索该属性且集合中不存在 <paramref name="key" />。</exception>
+        <exception cref="T:System.Collections.Generic.KeyNotFoundException">已检索该属性，并且集合中不存在 <paramref name="key" />。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
         <related type="Article" href="https://msdn.microsoft.com/library/81b64b95-13f7-4532-9249-ab532f629598">如何：在 ConcurrentDictionary 中添加和移除项</related>
       </Docs>
@@ -1069,7 +1069,7 @@
         <ReturnType>System.Collections.Generic.ICollection&lt;TKey&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获得一个包含 <see cref="T:System.Collections.Generic.Dictionary`2" /> 中的键的集合。</summary>
+        <summary>获取包含 <see cref="T:System.Collections.Generic.Dictionary`2" /> 中的键的集合。</summary>
         <value><see cref="T:System.Collections.Generic.Dictionary`2" /> 中的键的集合。</value>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
@@ -1150,7 +1150,7 @@
       </Parameters>
       <Docs>
         <param name="keyValuePair">要在 <see cref="T:System.Collections.Generic.ICollection`1" /> 中定位的键。</param>
-        <summary>获取 <see cref="T:System.Collections.Generic.ICollection`1" /> 是否包含具有指定键的元素。</summary>
+        <summary>获取一个值，该值指示 <see cref="T:System.Collections.Generic.ICollection`1" /> 是否包含具有指定键的元素。</summary>
         <returns>如果 <see langword="true" /> 包含具有指定键的元素，则为 <see cref="T:System.Collections.Generic.ICollection`1" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
@@ -1190,7 +1190,7 @@
       <Docs>
         <param name="array">一维数组，它是从 <see cref="T:System.Collections.ICollection" /> 中复制的元素的目标。 该数组的索引必须从零开始。</param>
         <param name="index"><paramref name="array" /> 中从零开始的索引，从此处开始复制。</param>
-        <summary>从特定的数组索引处开始，将 <see cref="T:System.Collections.ICollection" /> 的元素复制到一个数组中。</summary>
+        <summary>从指定的数组索引开始，将 <see cref="T:System.Collections.ICollection" /> 中的元素复制到一个数组中。</summary>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
         <related type="Article" href="https://msdn.microsoft.com/library/81b64b95-13f7-4532-9249-ab532f629598">如何：在 ConcurrentDictionary 中添加和移除项</related>
@@ -1311,7 +1311,7 @@
       <Docs>
         <param name="key">用作要添加的元素的键的对象。</param>
         <param name="value">用作要添加的元素的值的对象。</param>
-        <summary>将指定的键和值添加到 <see cref="T:System.Collections.Generic.IDictionary`2" /> 中。</summary>
+        <summary>向 <see cref="T:System.Collections.Generic.IDictionary`2" /> 中添加指定的键和值。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="key" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 中已存在具有相同键的元素。</exception>
@@ -1355,7 +1355,7 @@
       <Docs>
         <param name="key">要移除的元素的键。</param>
         <summary>从 <see cref="T:System.Collections.Generic.IDictionary`2" /> 中移除包含指定键的元素。</summary>
-        <returns>如果该元素已成功移除，则为 <see langword="true" />；否则为 <see langword="false" />。 如果在原始 <see langword="false" /> 中没有找到 <paramref name="key" />，此方法也会返回 <see cref="T:System.Collections.Generic.IDictionary`2" />。</returns>
+        <returns>如果该元素已成功移除，则为 <see langword="true" />；否则为 <see langword="false" />。 如果在原始 <see cref="T:System.Collections.Generic.IDictionary`2" /> 中没有找到 <paramref name="key" />，此方法也会返回 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="key" /> 为 <see langword="null" />。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
@@ -1392,7 +1392,7 @@
         <ReturnType>System.Collections.Generic.IEnumerable&lt;TKey&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获得一个包含 <see cref="T:System.Collections.Generic.Dictionary`2" /> 中的键的集合。</summary>
+        <summary>获取包含 <see cref="T:System.Collections.Generic.Dictionary`2" /> 中的键的集合。</summary>
         <value>包含 <see cref="T:System.Collections.Generic.Dictionary`2" /> 中的键的集合。</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1467,11 +1467,11 @@
       <Docs>
         <param name="array">一维数组，它是从 <see cref="T:System.Collections.ICollection" /> 中复制的元素的目标。 该数组的索引必须从零开始。</param>
         <param name="index"><paramref name="array" /> 中从零开始的索引，从此处开始复制。</param>
-        <summary>从特定的数组索引处开始，将 <see cref="T:System.Collections.ICollection" /> 的元素复制到一个数组中。</summary>
+        <summary>从指定的数组索引开始，将 <see cref="T:System.Collections.ICollection" /> 中的元素复制到一个数组中。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="array" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> 小于 0。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="index" /> 等于或大于的长度<paramref name="array" />。  
+        <exception cref="T:System.ArgumentException"><paramref name="index" /> 等于或大于 <paramref name="array" /> 的长度。  
   
 或 
 源 <see cref="T:System.Collections.ICollection" /> 中的元素个数大于从 <paramref name="index" /> 到目标 <paramref name="array" /> 末尾之间的可用空间。</exception>
@@ -1511,7 +1511,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取一个值，它指示对 <see cref="T:System.Collections.ICollection" /> 的访问是否与 SyncRoot 同步。</summary>
-        <value>如果对 <see langword="true" /> 的访问是同步的（线程安全），则为 <see cref="T:System.Collections.ICollection" />；否则为 <see langword="false" />。 有关<see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />此属性始终返回<see langword="false" />。</value>
+        <value>如果对 <see langword="true" /> 的访问是同步的（线程安全），则为 <see cref="T:System.Collections.ICollection" />；否则为 <see langword="false" />。 对于<see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />此属性, 始终<see langword="false" />返回。</value>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
         <related type="Article" href="https://msdn.microsoft.com/library/81b64b95-13f7-4532-9249-ab532f629598">如何：在 ConcurrentDictionary 中添加和移除项</related>
@@ -1595,13 +1595,13 @@
         <summary>将指定的键和值添加到字典中。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="key" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="key" /> 不能赋给的键类型的类型<see cref="T:System.Collections.Generic.Dictionary`2" />。  
+        <exception cref="T:System.ArgumentException"><paramref name="key" /> 所属类型不可分配给 <see cref="T:System.Collections.Generic.Dictionary`2" /> 的键类型。  
   
 或 
- <paramref name="value" /> 不能赋给中的值类型的类型<see cref="T:System.Collections.Generic.Dictionary`2" />。  
+ <paramref name="value" /> 属于不能分配给 <see cref="T:System.Collections.Generic.Dictionary`2" /> 中的值类型的类型。  
   
 或 
-中已存在具有相同键的值<see cref="T:System.Collections.Generic.Dictionary`2" />。</exception>
+<see cref="T:System.Collections.Generic.Dictionary`2" /> 中已存在相同键的值。</exception>
         <exception cref="T:System.OverflowException">字典中已包含元素的最大数量(<see cref="F:System.Int32.MaxValue" />)。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
         <related type="Article" href="https://msdn.microsoft.com/library/81b64b95-13f7-4532-9249-ab532f629598">如何：在 ConcurrentDictionary 中添加和移除项</related>
@@ -1680,7 +1680,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>为 <see cref="T:System.Collections.IDictionaryEnumerator" /> 提供一个 <see cref="T:System.Collections.Generic.IDictionary`2" />。</summary>
+        <summary>为 <see cref="T:System.Collections.IDictionaryEnumerator" /> 提供 <see cref="T:System.Collections.Generic.IDictionary`2" />。</summary>
         <returns>用于 <see cref="T:System.Collections.IDictionaryEnumerator" /> 的 <see cref="T:System.Collections.Generic.IDictionary`2" />。</returns>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
@@ -1719,7 +1719,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取一个值，该值指示 <see cref="T:System.Collections.Generic.IDictionary`2" /> 是否具有固定大小。</summary>
-        <value>如果 <see langword="true" /> 具有固定大小，则为 <see cref="T:System.Collections.Generic.IDictionary`2" />；否则为 <see langword="false" />。 对于 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />，该属性总是返回 <see langword="false" />。</value>
+        <value>如果 <see langword="true" /> 具有固定大小，则为 <see cref="T:System.Collections.Generic.IDictionary`2" />；否则为 <see langword="false" />。 对于 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />，此属性始终返回 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
         <related type="Article" href="https://msdn.microsoft.com/library/81b64b95-13f7-4532-9249-ab532f629598">如何：在 ConcurrentDictionary 中添加和移除项</related>
@@ -1757,7 +1757,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取一个值，该值指示 <see cref="T:System.Collections.Generic.IDictionary`2" /> 是否为只读。</summary>
-        <value>如果 <see langword="true" /> 是只读的，则为 <see cref="T:System.Collections.Generic.IDictionary`2" />；否则为 <see langword="false" />。 对于 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />，该属性总是返回 <see langword="false" />。</value>
+        <value>如果 <see langword="true" /> 是只读的，则为 <see cref="T:System.Collections.Generic.IDictionary`2" />；否则为 <see langword="false" />。 对于 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />，此属性始终返回 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
         <related type="Article" href="https://msdn.microsoft.com/library/81b64b95-13f7-4532-9249-ab532f629598">如何：在 ConcurrentDictionary 中添加和移除项</related>
@@ -1799,10 +1799,10 @@
       <Docs>
         <param name="key">要获取或设置的值的键。</param>
         <summary>获取或设置与指定的键关联的值。</summary>
-        <value>如果 <see langword="null" /> 不在字典中或 <paramref name="key" /> 的类型属于不可分配给 <paramref name="key" /> 的键类型，则为与指定的键关联的值或为 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />。</value>
+        <value>与指定键关联的值；如果 <paramref name="key" /> 不在字典中或 <paramref name="key" /> 属于不能分配给 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 的键类型的类型，则为 <see langword="null" />。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="key" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentException">正在分配一个值，且 <paramref name="key" /> 的类型不可分配为密钥类型或 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 的值类型。</exception>
+        <exception cref="T:System.ArgumentException">将分配一个值，并且 <paramref name="key" /> 属于不能分配给 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 的键类型或值类型的类型。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
         <related type="Article" href="https://msdn.microsoft.com/library/81b64b95-13f7-4532-9249-ab532f629598">如何：在 ConcurrentDictionary 中添加和移除项</related>
       </Docs>
@@ -1839,7 +1839,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取包含 <see cref="T:System.Collections.ICollection" /> 的键的 <see cref="T:System.Collections.Generic.IDictionary`2" />。</summary>
-        <value>包含 <see cref="T:System.Collections.Generic.IDictionary`2" /> 的键的接口。</value>
+        <value>包含 <see cref="T:System.Collections.Generic.IDictionary`2" /> 的密钥的接口。</value>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
         <related type="Article" href="https://msdn.microsoft.com/library/81b64b95-13f7-4532-9249-ab532f629598">如何：在 ConcurrentDictionary 中添加和移除项</related>
@@ -1961,7 +1961,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从字典中返回的枚举器可以安全地使用与并发读取和写入字典中，但它不表示字典时刻快照。 通过枚举器公开的内容可能包含字典后所做的修改<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetEnumerator%2A>调用。  
+ 从字典返回的枚举器可安全地用于字典中的读取和写入, 但它并不表示字典的时间点快照。 通过枚举器公开的内容可能包含调用后<xref:System.Collections.Concurrent.ConcurrentDictionary%602.GetEnumerator%2A>对字典所做的修改。  
   
  ]]></format>
         </remarks>
@@ -2040,17 +2040,17 @@
         <param name="key">要添加的元素的键。</param>
         <param name="value">要添加的元素的值。 对于引用类型，该值可以为 <see langword="null" />。</param>
         <summary>尝试将指定的键和值添加到 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 中。</summary>
-        <returns>如果成功地将键/值对添加到 <see langword="true" />，则为 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />；如果该键已存在，则为 <see langword="false" />。</returns>
+        <returns>如果该键/值对已成功添加到 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />，则为 <see langword="true" />；如果该键已存在，则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法返回`false`如果该键已存在。 使用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.TryUpdate%2A>或<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>方法来更新的值，如果键已存在。  
+ 如果键已`false`存在, 则此方法返回。 如果键已<xref:System.Collections.Concurrent.ConcurrentDictionary%602.AddOrUpdate%2A>存在, 则使用或方法更新值。<xref:System.Collections.Concurrent.ConcurrentDictionary%602.TryUpdate%2A>  
   
    
   
 ## Examples  
- 下面的示例演示如何调用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.TryAdd%2A?displayProperty=nameWithType>方法：  
+ 下面的示例演示如何调用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.TryAdd%2A?displayProperty=nameWithType>方法:  
   
  [!code-csharp[System.Collections.Concurrent.ConcurrentDictionary#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.collections.concurrent.concurrentdictionary/cs/concdictionary.cs#2)]
  [!code-vb[System.Collections.Concurrent.ConcurrentDictionary#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.collections.concurrent.concurrentdictionary/vb/concdictionary.vb#2)]  
@@ -2102,7 +2102,7 @@
         <param name="key">要获取的值的键。</param>
         <param name="value">当此方法返回时，将包含 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 中具有指定键的对象；如果操作失败，则包含类型的默认值。</param>
         <summary>尝试从 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 获取与指定的键关联的值。</summary>
-        <returns>如果在 <see langword="true" /> 中找到该键，则为 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" />；否则为 <see langword="false" />。</returns>
+        <returns>如果在 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 中找到该键，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="key" /> 为 <see langword="null" />。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
@@ -2142,14 +2142,14 @@
       </Parameters>
       <Docs>
         <param name="key">要移除并返回的元素的键。</param>
-        <param name="value">当此方法返回时，将包含从 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 中移除的对象；如果 <see langword="TValue" /> 不存在，则包含 <paramref name="key" /> 类型的默认值。</param>
+        <param name="value">当此方法返回时，将包含从 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 中移除的对象；如果 <paramref name="key" /> 不存在，则包含 <see langword="TValue" /> 类型。</param>
         <summary>尝试从 <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2" /> 中移除并返回具有指定键的值。</summary>
-        <returns>如果成功地移除了对象，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <returns>如果已成功移除对象，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示如何调用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.TryRemove%2A?displayProperty=nameWithType>方法：  
+ 下面的示例演示如何调用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.TryRemove%2A?displayProperty=nameWithType>方法:  
   
  [!code-csharp[System.Collections.Concurrent.ConcurrentDictionary#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.collections.concurrent.concurrentdictionary/cs/concdictionary.cs#2)]
  [!code-vb[System.Collections.Concurrent.ConcurrentDictionary#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.collections.concurrent.concurrentdictionary/vb/concdictionary.vb#2)]  
@@ -2195,15 +2195,15 @@
       </Parameters>
       <Docs>
         <param name="key">与 <paramref name="comparisonValue" /> 进行比较并且可能被替换的值键。</param>
-        <param name="newValue">当比较结果相等时，该值将替换具有指定 <paramref name="key" /> 的元素的值。</param>
+        <param name="newValue">一个值，当比较结果相等时，将替换具有指定 <paramref name="key" /> 的元素的值。</param>
         <param name="comparisonValue">与具有指定 <paramref name="key" /> 的元素的值进行比较的值。</param>
         <summary>如果具有 <paramref name="key" /> 的现有值等于 <paramref name="comparisonValue" />，则将与 <paramref name="key" /> 关联的值更新为 <paramref name="newValue" />。</summary>
-        <returns>如果具有 <see langword="true" /> 的值与 <paramref name="key" /> 相等且被替换为 <paramref name="comparisonValue" />，则为 <paramref name="newValue" />；否则为 <see langword="false" />。</returns>
+        <returns>如果具有 <paramref name="key" /> 的值与 <paramref name="comparisonValue" /> 相等且替换为 <paramref name="newValue" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示如何调用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.TryUpdate%2A>方法：  
+ 下面的示例演示如何调用<xref:System.Collections.Concurrent.ConcurrentDictionary%602.TryUpdate%2A>方法:  
   
  [!code-csharp[System.Collections.Concurrent.ConcurrentDictionary#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.collections.concurrent.concurrentdictionary/cs/concdictionary.cs#2)]
  [!code-vb[System.Collections.Concurrent.ConcurrentDictionary#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.collections.concurrent.concurrentdictionary/vb/concdictionary.vb#2)]  

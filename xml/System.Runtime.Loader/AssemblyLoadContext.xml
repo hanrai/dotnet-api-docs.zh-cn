@@ -1,5 +1,5 @@
 <Type Name="AssemblyLoadContext" FullName="System.Runtime.Loader.AssemblyLoadContext">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="28286c826bff3f763da1cd6ebc352fc8ee8a0d3b" /><Meta Name="ms.sourcegitcommit" Value="727af77f0b7ae2636efa3bc47000697540084461" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/15/2019" /><Meta Name="ms.locfileid" Value="67877111" /></Metadata><TypeSignature Language="C#" Value="public abstract class AssemblyLoadContext" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="fe808c4c4c712badb2f053cd6b67adeb6ee31b76" /><Meta Name="ms.sourcegitcommit" Value="f991677a7374c45590a432ff7ab830beb05f2ccd" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/27/2019" /><Meta Name="ms.locfileid" Value="68591114" /></Metadata><TypeSignature Language="C#" Value="public abstract class AssemblyLoadContext" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit AssemblyLoadContext extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Loader.AssemblyLoadContext" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class AssemblyLoadContext" />
@@ -26,52 +26,52 @@
       <format type="text/markdown"><![CDATA[
 
 ## Remarks
- <xref:System.Runtime.Loader.AssemblyLoadContext>表示加载上下文。 从概念上讲，加载上下文创建和加载、 解析时，可能会卸载一组程序集的作用域。
+ <xref:System.Runtime.Loader.AssemblyLoadContext>表示加载上下文。 从概念上讲, 加载上下文创建用于加载、解析和可能卸载一组程序集的作用域。
  
- <xref:System.Runtime.Loader.AssemblyLoadContext> 是一个抽象类。 <xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)?displayProperty=nameWithType>需要实现创建一个具体类。
+ <xref:System.Runtime.Loader.AssemblyLoadContext> 是一个抽象类。 <xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)?displayProperty=nameWithType>需要实现才能创建具体的类。
  
- <xref:System.Runtime.Loader.AssemblyLoadContext>存在主要是为了提供程序集绑定隔离。 它允许在单个进程中加载同一程序集的多个版本。 它取代了由多个提供的隔离机制<xref:System.AppDomain>.NET Framework 中的实例。
+ <xref:System.Runtime.Loader.AssemblyLoadContext>存在主要用于提供程序集绑定隔离。 它允许在单个进程中加载同一程序集的多个版本。 它将替换 .NET Framework 中的多个<xref:System.AppDomain>实例提供的隔离机制。
  
  > [!NOTE]
- > <xref:System.Runtime.Loader.AssemblyLoadContext> 不提供任何安全功能。 所有代码都具有完全权限的过程。
+ > <xref:System.Runtime.Loader.AssemblyLoadContext>不提供任何安全功能。 所有代码都具有该进程的完全权限。
 
-### <a name="usage-in-the-runtime"></a>在运行时中的使用情况
- 在运行时实现两个程序集加载上下文：
- * <xref:System.Runtime.Loader.AssemblyLoadContext.Default?displayProperty=nameWithType> 表示用于应用程序主程序集及其依赖静态运行时的默认绑定上下文。
- * <xref:System.Reflection.Assembly.LoadFile(System.String)?displayProperty=nameWithType>方法将它加载通过实例化的最基本的程序集隔离开来<xref:System.Runtime.Loader.AssemblyLoadContext>。 具有此操作将加载其自身中的每个程序集的简单隔离方案<xref:System.Runtime.Loader.AssemblyLoadContext>没有依赖关系得到解决。
+### <a name="usage-in-the-runtime"></a>运行时中的用法
+ 运行时实现了两个程序集加载上下文:
+ * <xref:System.Runtime.Loader.AssemblyLoadContext.Default?displayProperty=nameWithType>表示运行时用于应用程序主程序集及其静态依赖项的默认绑定上下文。
+ * 方法通过实例化最基本<xref:System.Runtime.Loader.AssemblyLoadContext>的程序集来隔离它加载的程序集。 <xref:System.Reflection.Assembly.LoadFile(System.String)?displayProperty=nameWithType> 它有一个简化的隔离方案, 该方案单独<xref:System.Runtime.Loader.AssemblyLoadContext>加载每个程序集, 但没有依赖项解析。
  
 ### <a name="application-usage"></a>应用程序使用情况
- 应用程序可以创建其自己<xref:System.Runtime.Loader.AssemblyLoadContext>创建自定义解决方案的高级绑定方案。 自定义项侧重于定义依赖关系解决机制。
+ 应用程序可以创建自己<xref:System.Runtime.Loader.AssemblyLoadContext>的, 以便为高级绑定方案创建自定义解决方案。 自定义重点介绍如何定义依赖项解析机制。
  
- <xref:System.Runtime.Loader.AssemblyLoadContext>提供了两个扩展点，以实现托管程序集解析：
- 1. <xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)?displayProperty=nameWithType>提供的第一次机会<xref:System.Runtime.Loader.AssemblyLoadContext>若要解决该程序集，将其加载，并将其返回。 如果<xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)?displayProperty=nameWithType>将返回`null`，则加载程序将尝试加载到程序集<xref:System.Runtime.Loader.AssemblyLoadContext.Default?displayProperty=nameWithType>。
- 2. 如果<xref:System.Runtime.Loader.AssemblyLoadContext.Default?displayProperty=nameWithType>无法解析的程序集，原始<xref:System.Runtime.Loader.AssemblyLoadContext>获取第二个机会解决该程序集。 运行时将引发<xref:System.Runtime.Loader.AssemblyLoadContext.Resolving>事件。
+ <xref:System.Runtime.Loader.AssemblyLoadContext>提供了两个扩展点来实现托管程序集解析:
+ 1. 为解析程序集、加载和<xref:System.Runtime.Loader.AssemblyLoadContext>返回程序集提供了第一种机会。<xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)?displayProperty=nameWithType> <xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)?displayProperty=nameWithType>如果返回`null`, 加载程序将尝试将程序集<xref:System.Runtime.Loader.AssemblyLoadContext.Default?displayProperty=nameWithType>加载到中。
+ 2. 如果无法解析程序集, 则原始<xref:System.Runtime.Loader.AssemblyLoadContext>的另一种机会是解析程序集。 <xref:System.Runtime.Loader.AssemblyLoadContext.Default?displayProperty=nameWithType> 运行时引发<xref:System.Runtime.Loader.AssemblyLoadContext.Resolving>事件。
  
- 此外<xref:System.Runtime.Loader.AssemblyLoadContext.LoadUnmanagedDll(System.String)?displayProperty=nameWithType>虚方法允许自定义默认的非托管程序集解析。 默认实现返回`null`，这将导致运行时搜索要使用其默认搜索策略，这对于大多数情况下已足够。
+ 此外, <xref:System.Runtime.Loader.AssemblyLoadContext.LoadUnmanagedDll(System.String)?displayProperty=nameWithType>虚拟方法允许自定义默认的非托管程序集解析。 默认实现返回`null`, 这会使运行时搜索使用其默认搜索策略, 这在大多数情况下都足够了。
 
 ### <a name="technical-challenges"></a>技术挑战
- * 不能加载多个版本在单个进程中运行时。
+ * 不能在一个进程中加载多个版本的运行时。
      > [!CAUTION]
-     > 正在加载多个副本或不同版本的 framework 程序集可能会导致意外且难以诊断的行为。
+     > 加载多个副本或不同版本的 framework 程序集可能会导致意外的和难以诊断的行为。
      
      > [!TIP]
-     > 使用远程处理和/或进程间通信使用进程边界来解决此隔离问题。
+     > 通过远程处理和/或进程间通信使用处理边界来解决此隔离问题。
  
- * 程序集加载时间会使测试和调试困难。 程序集是通常加载，而无需立即解决其依赖项。 在需要进行加载依赖项：
-     * 当代码分支到的从属程序集。
-     * 当代码加载资源。
-     * 当代码显式加载程序集。
+ * 程序集加载的时间可能会使测试和调试变得困难。 通常会加载程序集, 而不会立即解析其依赖项。 依赖项在需要时加载:
+     * 当代码分支到依赖程序集时。
+     * 当代码加载资源时。
+     * 当代码显式加载程序集时。
  
- * 实现<xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)?displayProperty=nameWithType>可以添加新依赖项可能需要进行隔离，以允许存在的不同版本。 最简单的实现会在默认上下文中将这些依赖关系。 精心的设计可以隔离的新的依赖项。
+ * 的实现<xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)?displayProperty=nameWithType>可能会添加新的依赖项, 这可能需要进行隔离才能存在不同的版本。 最自然的实现会将这些依赖项置于默认上下文中。 仔细设计可以隔离新的依赖项。
  
- * 绑定隔离进程创建多个类型具有相同的类型名称。
-     * 这可能会导致令人混淆的错误消息，例如"Foo.Foo 无法将类型转换为类型 Foo.Foo。"
-     * 跨隔离边界封送处理是重要的。 典型的解决方案是使用仅加载到默认加载上下文的程序集中定义的接口。
+ * 绑定隔离过程创建多个类型相同的类型。
+     * 这可能会导致混淆错误消息, 例如 "type Foo. Foo 无法转换为 Foo 类型。"
+     * 跨隔离边界进行的封送处理是非常重要的。 典型的解决方案是使用在程序集中定义的接口, 该接口仅加载到默认加载上下文中。
  
  ]]></format>
     </remarks>
-    <related type="Article" href="https://github.com/dotnet/coreclr/blob/master/Documentation/design-docs/assemblyloadcontext.md">AssemblyLoadContext CoreCLR 的设计文档</related>
-    <related type="Article" href="~/docs/standard/assembly/unloadability-howto.md">如何使用和调试.NET Core 中的程序集 unloadability</related>
+    <related type="Article" href="https://github.com/dotnet/coreclr/blob/master/Documentation/design-docs/assemblyloadcontext.md">AssemblyLoadContext CoreCLR 设计文档</related>
+    <related type="Article" href="~/docs/standard/assembly/unloadability-howto.md">如何在 .NET Core 中使用和调试程序集可卸载性</related>
     <related type="Article" href="https://github.com/dotnet/coreclr/blob/master/Documentation/design-docs/unloadability.md">AssemblyLoadContext unloadability 设计文档</related>
   </Docs>
   <Members>
@@ -101,7 +101,7 @@
 
 ## Remarks
 
-此构造函数受到保护。 仅从调用<xref:System.Runtime.Loader.AssemblyLoadContext>类或其派生的类。
+此构造函数受到保护。 它只能从<xref:System.Runtime.Loader.AssemblyLoadContext>类或它的派生类中调用。
 
  ]]></format>
         </remarks>
@@ -130,7 +130,7 @@
 
 ## Remarks
 
-此构造函数受到保护。 仅从调用<xref:System.Runtime.Loader.AssemblyLoadContext>类或其派生的类。
+此构造函数受到保护。 它只能从<xref:System.Runtime.Loader.AssemblyLoadContext>类或它的派生类中调用。
 
  ]]></format>
         </remarks>
@@ -175,7 +175,7 @@
       </ReturnValue>
       <Docs>
         <summary>返回一个包含所有 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> 实例的集合。</summary>
-        <value>所有的集合<see cref="T:System.Runtime.Loader.AssemblyLoadContext" />实例。</value>
+        <value>所有<see cref="T:System.Runtime.Loader.AssemblyLoadContext" />实例的集合。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -196,7 +196,7 @@
       </ReturnValue>
       <Docs>
         <summary>返回一个集合，它包含在 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> 中加载的 <see cref="T:System.Reflection.Assembly" /> 实例。</summary>
-        <value>一系列<see cref="T:System.Reflection.Assembly" />中加载实例<see cref="T:System.Runtime.Loader.AssemblyLoadContext" />。</value>
+        <value>在中加载的<see cref="T:System.Reflection.Assembly" />实例的集合。 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /></value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -217,12 +217,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取由最近调用 <see cref="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection" /> 而设置的 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />。</summary>
-        <value><see cref="T:System.Runtime.Loader.AssemblyLoadContext" />到最新的调用设置<see cref="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection" />。 此值可为 <see langword="null" />。 值存储在<see cref="T:System.Threading.AsyncLocal`1" />，因此，值是唯一的每个异步上下文。</value>
+        <value>由<see cref="T:System.Runtime.Loader.AssemblyLoadContext" />最近对的<see cref="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection" />调用设置的。 此值可为 <see langword="null" />。 值存储在<see cref="T:System.Threading.AsyncLocal`1" />中, 因此, 每个异步上下文的值都是唯一的。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
 ## Remarks
-有关详细信息，请参阅[AssemblyLoadContext.CurrentContextualReflectionContext.NET Core 中的设计文档](https://github.com/dotnet/coreclr/blob/master/Documentation/design-docs/AssemblyLoadContext.ContextualReflection.md)。
+有关详细信息, 请参阅[AssemblyLoadContext. CurrentContextualReflectionContext design doc in .Net Core](https://github.com/dotnet/coreclr/blob/master/Documentation/design-docs/AssemblyLoadContext.ContextualReflection.md)。
 
  ]]></format>
         </remarks>
@@ -279,7 +279,7 @@
           <format type="text/markdown"><![CDATA[
 
 ## Remarks
-有关详细信息，请参阅[AssemblyLoadContext.CurrentContextualReflectionContext.NET Core 中的设计文档](https://github.com/dotnet/coreclr/blob/master/Documentation/design-docs/AssemblyLoadContext.ContextualReflection.md)。
+有关详细信息, 请参阅[AssemblyLoadContext. CurrentContextualReflectionContext design doc in .Net Core](https://github.com/dotnet/coreclr/blob/master/Documentation/design-docs/AssemblyLoadContext.ContextualReflection.md)。
 
  ]]></format>
         </remarks>
@@ -311,10 +311,31 @@
           <format type="text/markdown"><![CDATA[
 
 ## Remarks
-有关详细信息，请参阅[AssemblyLoadContext.CurrentContextualReflectionContext.NET Core 中的设计文档](https://github.com/dotnet/coreclr/blob/master/Documentation/design-docs/AssemblyLoadContext.ContextualReflection.md)。
+有关详细信息, 请参阅[AssemblyLoadContext. CurrentContextualReflectionContext design doc in .Net Core](https://github.com/dotnet/coreclr/blob/master/Documentation/design-docs/AssemblyLoadContext.ContextualReflection.md)。
 
  ]]></format>
         </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Finalize">
+      <MemberSignature Language="C#" Value="~AssemblyLoadContext ();" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void Finalize() cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Runtime.Loader.AssemblyLoadContext.Finalize" />
+      <MemberSignature Language="VB.NET" Value="Finalize ()" />
+      <MemberSignature Language="C++ CLI" Value="!AssemblyLoadContext ()" />
+      <MemberSignature Language="F#" Value="override this.Finalize : unit -&gt; unit" Usage="assemblyLoadContext.Finalize " />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Runtime.Loader</AssemblyName>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="GetAssemblyName">
@@ -401,12 +422,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取一个值，该值指示此 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> 是否可回收。</summary>
-        <value><see langword="true" /> 如果此<see cref="T:System.Runtime.Loader.AssemblyLoadContext" />可回收; 否则为<see langword="false" />。 如果未在构造函数中指定一个值，该值是<see langword="false" />。</value>
+        <value><see langword="true" />如果此<see cref="T:System.Runtime.Loader.AssemblyLoadContext" />为可回收, <see langword="false" />则为; 否则为。 如果未在构造函数中指定值, 则该值为<see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
 ## Remarks
-有关详细信息，请参阅[如何使用和调试.NET Core 中的程序集 unloadability](~/docs/standard/assembly/unloadability-howto.md)。
+有关详细信息, 请参阅[如何在 .Net Core 中使用和调试程序集 unloadability](~/docs/standard/assembly/unloadability-howto.md)。
 
  ]]></format>
         </remarks>
@@ -444,10 +465,10 @@
           <format type="text/markdown"><![CDATA[
  
 ## Remarks
- 在程序集解析期间<xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)>方法具有程序集名称解析为加载的程序集的第一次机会。 它可以加载程序集，也可以返回`null`。 如果它返回`null`，解析过程将继续。 请参阅<xref:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName(System.Reflection.AssemblyName)>为完整的过程的描述。
+ 在程序集解析过程<xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)>中, 方法将首次将程序集名称解析为已加载的程序集。 它可以加载程序集, 也可以`null`返回。 如果它返回`null`, 解决过程将继续。 有关<xref:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName(System.Reflection.AssemblyName)>完整的过程说明, 请参阅。
  
  > [!IMPORTANT]
- > 若要防止递归堆栈溢出，不要调用此实例的<xref:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName(System.Reflection.AssemblyName)>从此方法的方法。
+ > 若要阻止递归堆栈溢出, 请不要从此方法中<xref:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName(System.Reflection.AssemblyName)>调用此实例的方法。
  
  ]]></format>
         </remarks>
@@ -486,21 +507,21 @@
 
 ## Remarks
 
-<xref:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName%2A> 加载程序集通过解决<xref:System.Reflection.AssemblyName>。 这会触发完整的解决方法。 解析回退序列执行此过程：
+<xref:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName%2A>通过解析<xref:System.Reflection.AssemblyName>来加载程序集。 这会触发完全解决。 解析回退顺序遵循以下过程:
 
 1. 方法调用<xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)>。
 
    > [!IMPORTANT]
-   > <xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)> 必须调用此方法，以防止递归堆栈溢出。
+   > <xref:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)>不得调用此方法以防止递归堆栈溢出。
 
-2. 除非加载程序集或引发异常，该方法会尝试加载程序集在默认<xref:System.Runtime.Loader.AssemblyLoadContext>。
-3. 除非加载程序集或引发异常，该方法将触发<xref:System.Runtime.Loader.AssemblyLoadContext.Resolving>事件。
-4. 除非加载程序集或引发异常，该方法将触发<xref:System.AppDomain.AssemblyResolve>事件。
+2. 除非加载了程序集或引发了异常, 否则该方法将尝试加载默认<xref:System.Runtime.Loader.AssemblyLoadContext>中的程序集。
+3. 除非加载了程序集或引发了异常, 否则方法将触发<xref:System.Runtime.Loader.AssemblyLoadContext.Resolving>事件。
+4. 除非加载了程序集或引发了异常, 否则方法将触发<xref:System.AppDomain.AssemblyResolve>事件。
  
 > [!NOTE]
-> <xref:System.IO.FileLoadException> 如果引发`assemblyRef`指定完整的程序集名称和匹配的简单名称的第一个程序集具有不兼容的版本或区域性。 加载程序不会继续探测的其他程序集的简单名称相匹配。
+> <xref:System.IO.FileLoadException>如果`assemblyRef`指定完整的程序集名称, 并且与该简单名称匹配的第一个程序集具有不兼容的版本或区域性, 则会引发。 加载程序不会继续探测与简单名称匹配的其他程序集。
  
-每个<xref:System.Runtime.Loader.AssemblyLoadContext>可以仅加载：
+每<xref:System.Runtime.Loader.AssemblyLoadContext>个只能加载:
  
 * 可执行程序集的一个版本。
 * 每个区域性的附属程序集的一个版本。
@@ -585,9 +606,9 @@
           <format type="text/markdown"><![CDATA[
 
 ## Remarks
- 托管程序集的本机映像是预实时编译以优化特定平台上运行。
+ 托管程序集的本机映像是预实时编译的, 以优化在特定平台上运行的。
  
- 程序集路径指向的 IL 版本的程序集的路径。 因为 IL 通常包含在本机映像，它是一个可选参数。 它可由运行时作为回退如果找不到本机映像。
+ 程序集路径引用程序集的 IL 版本的路径。 这是一个可选参数, 因为 IL 通常包含在本机映像中。 如果找不到本机映像, 则运行时可以将其用作回退。
  
  ]]></format>
         </remarks>
@@ -695,14 +716,14 @@
       <Docs>
         <param name="unmanagedDllName">非托管库的名称。 这通常是不带路径或扩展名的文件名。</param>
         <summary>允许派生的类按名称加载非托管库。</summary>
-        <returns>已加载库的句柄或为 <see langword="null" />。</returns>
+        <returns>已加载库的句柄或为 <see cref="F:System.IntPtr.Zero" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
 ## Remarks
- 默认实现始终返回`null`。 当`null`返回，则在运行时加载的库使用其默认策略。
+ 默认实现始终返回 <xref:System.IntPtr.Zero?displayProperty=nameWithType>。 当<xref:System.IntPtr.Zero?displayProperty=nameWithType>返回时, 运行时将加载该库及其默认策略。
  
- 可以重写此虚拟方法，以自定义的非托管的库搜索算法。 在重写时可以使用名称来标识库。 已加载的库不需要匹配所请求名称，但可以根据需要转换。 这可能包括调整平台特定命名的名称。
+ 可以重写此虚方法以自定义非托管库搜索算法。 重写时, 该名称可用于标识库。 加载的库不需要匹配请求的名称, 但可以根据需要进行转换。 这可能包括调整平台特定命名的名称。
  
  ]]></format>
         </remarks>
@@ -792,14 +813,14 @@
           <format type="text/markdown"><![CDATA[
 
 ## Remarks
- 若要返回的程序集的指定，或返回此事件的处理程序负责`null`如果无法识别该程序集。
+ 此事件的处理程序负责返回指定的程序集; 如果程序集未被识别, 则为`null`返回。
  
  > [!IMPORTANT]
- >  如果此事件注册了多个事件处理程序，直到事件处理程序返回值不是按顺序调用事件处理程序`null`。 后续的事件处理程序将被忽略。
+ >  如果为此事件注册了多个事件处理程序, 则将按顺序调用事件处理程序, 直到事件处理程序返回一个不`null`为的值。 后续事件处理程序将被忽略。
  
- 有关处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。
+ 有关处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。
  
- 它是值得注意的内容是否可以对任何此事件添加处理程序<xref:System.Runtime.Loader.AssemblyLoadContext>，包括默认上下文。
+ 值得注意的是, 可以在任何<xref:System.Runtime.Loader.AssemblyLoadContext>情况下为此事件添加处理程序, 包括默认上下文。
  
  ]]></format>
         </remarks>
@@ -822,13 +843,13 @@
       </ReturnValue>
       <Docs>
         <summary>在解析本机库失败时发生。</summary>
-        <remarks>  
+        <remarks>
           <format type="text/markdown"><![CDATA[  
 
-如果本机库无法解析由默认的解析逻辑将引发此事件 (包括<xref:System.Runtime.Loader.AssemblyLoadContext.LoadUnmanagedDll%2A>)。
+如果无法通过默认解析逻辑 (包括<xref:System.Runtime.Loader.AssemblyLoadContext.LoadUnmanagedDll%2A>) 解析本机库, 则会引发此事件。
 
          ]]></format>
-         </remarks>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="SetProfileOptimizationRoot">
@@ -857,9 +878,17 @@
         <Parameter Name="directoryPath" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="directoryPath">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="directoryPath">存储优化配置文件的目录的完整路径。</param>
+        <summary>设置用于存储此加载上下文的优化配置文件的根路径。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[ 
+
+## Remarks        
+
+配置文件优化通过对可能执行的方法进行后台编译, 从而提高了多核计算机上加载上下文的启动性能。 有关更多信息，请参见<xref:System.Runtime.ProfileOptimization>。
+
+         ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="StartProfileOptimization">
@@ -888,8 +917,38 @@
         <Parameter Name="profile" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="profile">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="profile">优化配置文件的名称。</param>
+        <summary>启动指定配置文件的配置文件优化。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[ 
+
+## Remarks        
+
+配置文件优化通过对可能执行的方法进行后台编译, 从而提高了多核计算机上加载上下文的启动性能。 有关更多信息，请参见<xref:System.Runtime.ProfileOptimization>。
+
+         ]]></format>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToString">
+      <MemberSignature Language="C#" Value="public override string ToString ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance string ToString() cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Runtime.Loader.AssemblyLoadContext.ToString" />
+      <MemberSignature Language="VB.NET" Value="Public Overrides Function ToString () As String" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; override System::String ^ ToString();" />
+      <MemberSignature Language="F#" Value="override this.ToString : unit -&gt; string" Usage="assemblyLoadContext.ToString " />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Runtime.Loader</AssemblyName>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>返回此加载上下文的字符串表示形式。</summary>
+        <returns>此加载上下文的字符串表示形式。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -916,9 +975,9 @@
 
 ## Remarks
 
-+ 如果它是可回收 AssemblyLoadContext 只能是卸载。
-+ 卸载将以异步方式发生。
-+ 卸载不会发生时对 AssemblyLoadContext 的引用。
++ AssemblyLoadContext 只能在可回收后卸载。
++ 卸载将以异步方式进行。
++ 当存在对 AssemblyLoadContext 的引用时, 将不会进行卸载。
 
  ]]></format>
         </remarks>

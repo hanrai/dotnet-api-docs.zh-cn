@@ -1,5 +1,5 @@
 <Type Name="ClientWebSocket" FullName="System.Net.WebSockets.ClientWebSocket">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9cd80b5ea6aa0e424a41915e64f28a5f5d180de4" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58690565" /></Metadata><TypeSignature Language="C#" Value="public class ClientWebSocket : System.Net.WebSockets.WebSocket, IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ceb89eee2557dac901093a6b37b6ef988cdf03ec" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68542499" /></Metadata><TypeSignature Language="C#" Value="public class ClientWebSocket : System.Net.WebSockets.WebSocket, IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ClientWebSocket extends System.Net.WebSockets.WebSocket implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Net.WebSockets.ClientWebSocket" />
   <TypeSignature Language="VB.NET" Value="Public Class ClientWebSocket&#xA;Inherits WebSocket&#xA;Implements IDisposable" />
@@ -35,7 +35,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一些类和类中的元素的<xref:System.Net.WebSockets>命名空间支持在 Windows 7、 Windows Vista SP2 和 Windows Server 2008 上。 但是，在 Windows 8 和 Windows Server 2012 上支持的客户端和服务器 Websocket 仅对公共实现。 中的类元素<xref:System.Net.WebSockets>支持在 Windows 7、 Windows Vista SP2 和 Windows Server 2008 的命名空间都是抽象类的元素。 这允许继承并扩展这些抽象类的类和类元素与实际的客户端 Websocket 实现应用程序开发人员。  
+ <xref:System.Net.WebSockets>命名空间中的某些类和类元素在 windows 7、windows Vista SP2 和 windows Server 2008 上受支持。 但是, Windows 8 和 Windows Server 2012 只支持客户端和服务器 Websocket 的公共实现。 在 windows 7、windows <xref:System.Net.WebSockets> Vista SP2 和 windows Server 2008 上受支持的命名空间中的类元素是抽象类元素。 这样, 应用程序开发人员便可以通过实际的客户端 Websocket 实现来继承和扩展这些抽象类类和类元素。  
   
  ]]></format>
     </remarks>
@@ -105,7 +105,7 @@
       <Parameters />
       <Docs>
         <summary>中止连接并取消任何挂起的 IO 操作。</summary>
-        <remarks>`ClientWebSocket`后会被中止时不能重复使用。</remarks>
+        <remarks>一旦中止, 就不能再使用。`ClientWebSocket`</remarks>
       </Docs>
     </Member>
     <Member MemberName="CloseAsync">
@@ -154,7 +154,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task>对象将完成后<xref:System.Net.WebSockets.ClientWebSocket>实例已关闭。  
+ 此操作不会阻止。 在<xref:System.Net.WebSockets.ClientWebSocket>实例<xref:System.Threading.Tasks.Task>关闭后, 返回的对象将完成。  
   
  ]]></format>
         </remarks>
@@ -206,7 +206,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task>对象将在输出后将完成上<xref:System.Net.WebSockets.ClientWebSocket>实例已关闭。  
+ 此操作不会阻止。 返回<xref:System.Threading.Tasks.Task>的对象将在<xref:System.Net.WebSockets.ClientWebSocket>实例上的输出关闭之后完成。  
   
  ]]></format>
         </remarks>
@@ -322,11 +322,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.WebSockets.ClientWebSocket.ConnectAsync%2A>方法启动与远程网络目标，WebSocket 握手，然后协商子协议。  
+ <xref:System.Net.WebSockets.ClientWebSocket.ConnectAsync%2A>方法使用远程网络目标启动 WebSocket 握手, 然后协商子协议。  
   
- 对于普通的 WebSocket 连接，使用`ws://`在 uri 中的方案。 对于通过 TLS/SSL 安全 WebSocket 连接，使用`wss://`方案。  
+ 对于普通 WebSocket 连接, 请在`ws://` uri 中使用方案。 若要使用 TLS/SSL 的安全 WebSocket 连接, `wss://`请使用方案。  
   
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task>对象将连接请求后完成上<xref:System.Net.WebSockets.ClientWebSocket>实例已完成。  
+ 此操作不会阻止。 返回<xref:System.Threading.Tasks.Task>的对象将在<xref:System.Net.WebSockets.ClientWebSocket>实例上的连接请求完成后完成。  
   
  ]]></format>
         </remarks>
@@ -433,19 +433,21 @@
       </Parameters>
       <Docs>
         <param name="buffer">要接受响应的缓冲区。</param>
-        <param name="cancellationToken">一个取消标记，用于传播应取消此操作的通知。</param>
+        <param name="cancellationToken">可用于传播应取消此操作的通知的取消标记。</param>
         <summary>将 <see cref="T:System.Net.WebSockets.ClientWebSocket" /> 上的数据作为异步操作进行接收。</summary>
         <returns>表示异步操作的任务对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将接收请求后完成上<xref:System.Net.WebSockets.ClientWebSocket>实例已完成。  
+ 此操作不会阻止。 返回<xref:System.Threading.Tasks.Task%601>的对象将在<xref:System.Net.WebSockets.ClientWebSocket>实例上的接收请求完成后完成。  
   
- 只有一个发送和接收每个支持<xref:System.Net.WebSockets.ClientWebSocket>并行中的对象。  
+ 每个<xref:System.Net.WebSockets.ClientWebSocket>对象上只支持一个发送和一个接收。  
   
  ]]></format>
         </remarks>
+        <exception cref="T:System.InvalidOperationException">未连接 <see cref="T:System.Net.WebSockets.ClientWebSocket" />。</exception>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Net.WebSockets.ClientWebSocket" /> 已关闭。</exception>
       </Docs>
     </Member>
     <Member MemberName="ReceiveAsync">
@@ -473,11 +475,22 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="buffer">要接收响应的内存区域。</param>
+        <param name="cancellationToken">可用于传播应取消此操作的通知的取消标记。</param>
+        <summary>以异步操作方式，将 <see cref="T:System.Net.WebSockets.ClientWebSocket" /> 上的数据接收到字节内存范围。</summary>
+        <returns>表示异步操作的任务对象。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 此操作不会阻止。 返回<xref:System.Threading.Tasks.Task%601>的对象将在<xref:System.Net.WebSockets.ClientWebSocket>实例上的接收请求完成后完成。  
+  
+ 每个<xref:System.Net.WebSockets.ClientWebSocket>对象上只支持一个发送和一个接收。  
+  
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.InvalidOperationException">未连接 <see cref="T:System.Net.WebSockets.ClientWebSocket" />。</exception>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Net.WebSockets.ClientWebSocket" /> 已关闭。</exception>
       </Docs>
     </Member>
     <Member MemberName="SendAsync">
@@ -514,21 +527,24 @@
       </Parameters>
       <Docs>
         <param name="buffer">包含要发送的消息的缓冲区。</param>
-        <param name="messageType">指定缓冲区是明文格式还是二进制格式。</param>
-        <param name="endOfMessage">指定这是否为最后一个异步发送。 如果这是最后一个发送，则设置为 <see langword="true" /> ；否则为 <see langword="false" />。</param>
-        <param name="cancellationToken">一个取消标记，用于传播应取消此操作的通知。</param>
-        <summary>将 <see cref="T:System.Net.WebSockets.ClientWebSocket" /> 上的数据作为异步操作发送。</summary>
+        <param name="messageType">指定缓冲区是明文格式还是二进制格式的一个枚举值。</param>
+        <param name="endOfMessage">要指示这是最终异步发送，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+        <param name="cancellationToken">可用于传播应取消此操作的通知的取消标记。</param>
+        <summary>以异步操作方式，发送 <see cref="T:System.Net.WebSockets.ClientWebSocket" /> 上的数据。</summary>
         <returns>表示异步操作的任务对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task>对象将在发送请求后完成上<xref:System.Net.WebSockets.ClientWebSocket>实例已完成。  
+## Remarks
+
+ 此操作不会阻止。 返回<xref:System.Threading.Tasks.Task>的对象将在<xref:System.Net.WebSockets.ClientWebSocket>实例上的发送请求完成后完成。  
   
- 只有一个发送和接收每个支持<xref:System.Net.WebSockets.ClientWebSocket>并行中的对象。  
+ 每个<xref:System.Net.WebSockets.ClientWebSocket>对象上只支持一个发送和一个接收。  
   
  ]]></format>
         </remarks>
+        <exception cref="T:System.InvalidOperationException">未连接 <see cref="T:System.Net.WebSockets.ClientWebSocket" />。</exception>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Net.WebSockets.ClientWebSocket" /> 已关闭。</exception>
       </Docs>
     </Member>
     <Member MemberName="SendAsync">
@@ -558,13 +574,25 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="3" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <param name="messageType">To be added.</param>
-        <param name="endOfMessage">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="buffer">包含要发送的消息的内存区域。</param>
+        <param name="messageType">指定缓冲区是明文格式还是二进制格式的一个枚举值。</param>
+        <param name="endOfMessage">要指示这是最终异步发送，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+        <param name="cancellationToken">可用于传播应取消此操作的通知的取消标记。</param>
+        <summary>以异步操作方式，从只读字节内存范围发送 <see cref="T:System.Net.WebSockets.ClientWebSocket" /> 上的数据。</summary>
+        <returns>表示异步操作的任务对象。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks
+
+此操作不会阻止。 返回<xref:System.Threading.Tasks.Task>的对象将在<xref:System.Net.WebSockets.ClientWebSocket>实例上的发送请求完成后完成。
+  
+每个<xref:System.Net.WebSockets.ClientWebSocket>对象上只支持一个发送和一个接收。
+  
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.InvalidOperationException">未连接 <see cref="T:System.Net.WebSockets.ClientWebSocket" />。</exception>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Net.WebSockets.ClientWebSocket" /> 已关闭。</exception>
       </Docs>
     </Member>
     <Member MemberName="State">

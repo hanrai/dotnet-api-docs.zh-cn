@@ -50,18 +50,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Data.SqlClient.SqlConnection>对象表示到 SQL Server 数据源的唯一会话。 使用客户端/服务器数据库系统，它相当于网络连接到服务器。 <xref:System.Data.SqlClient.SqlConnection> 使用连同<xref:System.Data.SqlClient.SqlDataAdapter>和<xref:System.Data.SqlClient.SqlCommand>以连接到 Microsoft SQL Server 数据库时提高性能。 对于所有第三方 SQL Server 产品和其他 OLE DB 支持的数据源，使用<xref:System.Data.OleDb.OleDbConnection>。  
+ <xref:System.Data.SqlClient.SqlConnection>对象表示 SQL Server 数据源的唯一会话。 对于客户端/服务器数据库系统, 它等效于到服务器的网络连接。 <xref:System.Data.SqlClient.SqlConnection>与<xref:System.Data.SqlClient.SqlDataAdapter> 和<xref:System.Data.SqlClient.SqlCommand>结合使用, 以提高连接到 Microsoft SQL Server 数据库时的性能。 对于所有第三方 SQL Server 产品和其他 OLE DB 支持的数据源, 请<xref:System.Data.OleDb.OleDbConnection>使用。  
   
- 创建的实例时<xref:System.Data.SqlClient.SqlConnection>，所有属性都设置为其初始值。 有关这些值的列表，请参阅<xref:System.Data.SqlClient.SqlConnection>构造函数。  
+ 创建的<xref:System.Data.SqlClient.SqlConnection>实例时, 所有属性都将设置为其初始值。 有关这些值的列表, 请参见<xref:System.Data.SqlClient.SqlConnection>构造函数。  
   
- 请参阅<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>有关连接字符串中的关键字的列表。  
+ 有关<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>连接字符串中关键字的列表, 请参阅。  
   
- 如果<xref:System.Data.SqlClient.SqlConnection>超出范围，则不会关闭。 因此，必须显式关闭连接通过调用`Close`或`Dispose`。 `Close` 和`Dispose`在功能上等效。 如果连接池值`Pooling`设置为`true`或`yes`，则基础连接已返回到连接池。 但是，如果`Pooling`设置为`false`或`no`，则实际上关闭基础连接到服务器。  
+ <xref:System.Data.SqlClient.SqlConnection>如果超出范围, 则不会将其关闭。 因此, 必须通过调用`Close`或`Dispose`显式关闭连接。 `Close`和`Dispose`在功能上是等效的。 如果连接池值`Pooling`设置为`true`或`yes`, 则基础连接将返回到连接池。 另一方面, 如果`Pooling`将设置为`false`或`no`, 则与服务器的基础连接实际上是关闭的。  
   
 > [!NOTE]
 >  从连接池中提取连接或将连接返回到连接池时，服务器上不会引发登录和注销事件，这是因为在将连接返回到连接池时实际上并没有将其关闭。 有关详细信息，请参阅 [SQL Server 连接池 (ADO.NET)](~/docs/framework/data/adonet/sql-server-connection-pooling.md)。  
   
- 若要确保始终关闭连接，请打开的内部连接`using`阻止，如下面的代码段中所示。 这样做可确保当代码退出块时自动关闭连接。  
+ 若要确保始终关闭连接, 请在`using`块中打开连接, 如下面的代码段所示。 这样做可确保在代码退出块时自动关闭连接。  
   
 ```vb  
 Using connection As New SqlConnection(connectionString)  
@@ -80,21 +80,21 @@ using (SqlConnection connection = new SqlConnection(connectionString))
 ```  
   
 > [!NOTE]
->  若要部署高性能应用程序，必须使用连接池。 SQL Server 中使用.NET Framework 数据提供程序时，您无需启用连接池，因为提供程序管理是自动，尽管可以修改某些设置。 有关详细信息，请参阅 [SQL Server 连接池 (ADO.NET)](~/docs/framework/data/adonet/sql-server-connection-pooling.md)。  
+>  若要部署高性能应用程序, 必须使用连接池。 使用 SQL Server 的 .NET Framework 数据提供程序时, 无需启用连接池, 因为提供程序会自动管理此操作, 但你可以修改某些设置。 有关详细信息，请参阅 [SQL Server 连接池 (ADO.NET)](~/docs/framework/data/adonet/sql-server-connection-pooling.md)。  
   
- 如果<xref:System.Data.SqlClient.SqlException>生成的方法执行<xref:System.Data.SqlClient.SqlCommand>，则<xref:System.Data.SqlClient.SqlConnection>保持打开状态时的严重级别为 19 或更少。 20 或更高版本的严重级别时，服务器通常会关闭<xref:System.Data.SqlClient.SqlConnection>。 但是，用户可以重新打开连接并继续操作。  
+ 如果由执行的<xref:System.Data.SqlClient.SqlCommand>方法生成, 则当严重性级别<xref:System.Data.SqlClient.SqlConnection>为19或更低时, 将保持打开状态。 <xref:System.Data.SqlClient.SqlException> 当严重性级别为20或更大时, 服务器通常会关闭<xref:System.Data.SqlClient.SqlConnection>。 但是，用户可以重新打开连接并继续操作。  
   
- 创建的实例的应用程序<xref:System.Data.SqlClient.SqlConnection>对象可以要求所有直接和间接调用方拥有足够的权限的代码通过设置声明性或命令性安全要求。 <xref:System.Data.SqlClient.SqlConnection> 可以使用的安全要求<xref:System.Data.SqlClient.SqlClientPermission>对象。 用户可以验证其代码通过使用具有足够的权限<xref:System.Data.SqlClient.SqlClientPermissionAttribute>对象。 用户和管理员还可以使用[Caspol.exe （代码访问安全策略工具）](~/docs/framework/tools/caspol-exe-code-access-security-policy-tool.md)修改计算机、 用户和企业级别的安全策略。 有关详细信息，请参阅 [ .NET 中的安全性](~/docs/standard/security/index.md)。 有关示例，演示了如何使用安全要求，请参阅[代码访问安全性和 ADO.NET](~/docs/framework/data/adonet/code-access-security.md)。  
+ 创建<xref:System.Data.SqlClient.SqlConnection>对象实例的应用程序可以通过设置声明性或命令性安全要求, 要求所有直接和间接调用方具有对代码的足够权限。 <xref:System.Data.SqlClient.SqlConnection>使用<xref:System.Data.SqlClient.SqlClientPermission>对象进行安全要求。 用户可以使用<xref:System.Data.SqlClient.SqlClientPermissionAttribute>对象验证其代码是否具有足够的权限。 用户和管理员还可以使用[caspol.exe (代码访问安全策略工具)](~/docs/framework/tools/caspol-exe-code-access-security-policy-tool.md)在计算机、用户和企业级别修改安全策略。 有关详细信息，请参阅 [ .NET 中的安全性](~/docs/standard/security/index.md)。 有关演示如何使用安全要求的示例, 请参阅[代码访问安全性和 ADO.NET](~/docs/framework/data/adonet/code-access-security.md)。  
   
- 有关处理来自服务器的警告和信息性消息的详细信息，请参阅[连接事件](~/docs/framework/data/adonet/connection-events.md)。 有关 SQL Server 引擎错误和错误消息的详细信息，请参阅[数据库引擎错事件和错误](/sql/relational-databases/errors-events/database-engine-events-and-errors)。
+ 有关处理来自服务器的警告和信息性消息的详细信息, 请参阅[连接事件](~/docs/framework/data/adonet/connection-events.md)。 有关 SQL Server 引擎错误和错误消息的详细信息, 请参阅[数据库引擎事件和错误](/sql/relational-databases/errors-events/database-engine-events-and-errors)。
   
 > [!CAUTION]
->  您可以强制 TCP，而不是共享内存。 您可以通过前缀 tcp 实现： 在连接中的服务器名称为字符串，也可以使用本地主机。  
+>  可以强制 TCP 而不是共享内存。 为此, 可以在连接字符串中对服务器名称使用 tcp: 前缀, 也可以使用 localhost。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlCommand>和一个<xref:System.Data.SqlClient.SqlConnection>。 <xref:System.Data.SqlClient.SqlConnection>打开，并设置为<xref:System.Data.SqlClient.SqlCommand.Connection%2A>为<xref:System.Data.SqlClient.SqlCommand>。 该示例然后调用<xref:System.Data.SqlClient.SqlCommand.ExecuteNonQuery%2A>。 若要完成此操作，请<xref:System.Data.SqlClient.SqlCommand.ExecuteNonQuery%2A>连接字符串和一个查询字符串传递[!INCLUDE[tsql](~/includes/tsql-md.md)]INSERT 语句。 使用在代码退出时会自动关闭连接块。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlCommand>和一个<xref:System.Data.SqlClient.SqlConnection>。 打开并将设置<xref:System.Data.SqlClient.SqlCommand.Connection%2A>为<xref:System.Data.SqlClient.SqlCommand>的。 <xref:System.Data.SqlClient.SqlConnection> 然后, 该示例<xref:System.Data.SqlClient.SqlCommand.ExecuteNonQuery%2A>调用。 为实现此目的, <xref:System.Data.SqlClient.SqlCommand.ExecuteNonQuery%2A>传递了一个连接字符串和一个作为[!INCLUDE[tsql](~/includes/tsql-md.md)] INSERT 语句的查询字符串。 当代码退出 using 块时, 连接会自动关闭。  
   
  [!code-csharp[Classic WebData SqlCommand.ExecuteNonQuery Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlCommand.ExecuteNonQuery Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlCommand.ExecuteNonQuery Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlCommand.ExecuteNonQuery Example/VB/source.vb#1)]  
@@ -150,7 +150,7 @@ using (SqlConnection connection = new SqlConnection(connectionString))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新实例时<xref:System.Data.SqlClient.SqlConnection>创建读/写属性设置为以下初始值，除非专门设置使用在其关联的关键字<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>属性。  
+ 创建的新实例<xref:System.Data.SqlClient.SqlConnection>时, 读/写属性将设置为以下初始值, 除非它们是使用其在属性中的<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>关联关键字特别设置的。  
   
 |属性|初始值|  
 |----------------|-------------------|  
@@ -159,12 +159,12 @@ using (SqlConnection connection = new SqlConnection(connectionString))
 |<xref:System.Data.SqlClient.SqlConnection.Database%2A>|空字符串 ("")|  
 |<xref:System.Data.SqlClient.SqlConnection.DataSource%2A>|空字符串 ("")|  
   
- 您可以更改这些属性的值只能通过使用<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>属性。 <xref:System.Data.SqlClient.SqlConnectionStringBuilder>类提供用于创建和管理的连接字符串的内容的功能。  
+ 只能使用<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>属性更改这些属性的值。 <xref:System.Data.SqlClient.SqlConnectionStringBuilder>类提供用于创建和管理连接字符串内容的功能。  
   
    
   
 ## Examples  
- 下面的示例创建并打开<xref:System.Data.SqlClient.SqlConnection>。  
+ 下面的示例创建并打开一个<xref:System.Data.SqlClient.SqlConnection>。  
   
  [!code-csharp[Classic WebData SqlConnection.SqlConnection Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.SqlConnection Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.SqlConnection Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.SqlConnection Example/VB/source.vb#1)]  
@@ -213,7 +213,7 @@ using (SqlConnection connection = new SqlConnection(connectionString))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新实例时<xref:System.Data.SqlClient.SqlConnection>创建读/写属性设置为以下初始值，除非专门设置使用在其关联的关键字<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>属性。  
+ 创建的新实例<xref:System.Data.SqlClient.SqlConnection>时, 读/写属性将设置为以下初始值, 除非它们是使用其在属性中的<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>关联关键字特别设置的。  
   
 |属性|初始值|  
 |----------------|-------------------|  
@@ -222,12 +222,12 @@ using (SqlConnection connection = new SqlConnection(connectionString))
 |<xref:System.Data.SqlClient.SqlConnection.Database%2A>|空字符串 ("")|  
 |<xref:System.Data.SqlClient.SqlConnection.DataSource%2A>|空字符串 ("")|  
   
- 您可以更改这些属性的值只能通过使用<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>属性。 <xref:System.Data.SqlClient.SqlConnection>类提供用于创建和管理的连接字符串的内容的功能。  
+ 只能使用<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>属性更改这些属性的值。 <xref:System.Data.SqlClient.SqlConnection>类提供用于创建和管理连接字符串内容的功能。  
   
    
   
 ## Examples  
- 下面的示例创建并打开<xref:System.Data.SqlClient.SqlConnection>。  
+ 下面的示例创建并打开一个<xref:System.Data.SqlClient.SqlConnection>。  
   
  [!code-csharp[Classic WebData SqlConnection.SqlConnection1 Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.SqlConnection1 Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.SqlConnection1 Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.SqlConnection1 Example/VB/source.vb#1)]  
@@ -235,7 +235,7 @@ using (SqlConnection connection = new SqlConnection(connectionString))
  ]]></format>
         </remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/9abc3f92-1be3-4e1a-b360-762dc689650e">连接到数据源 (ADO.NET)</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -399,25 +399,25 @@ using (SqlConnection connection = new SqlConnection(connectionString))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此命令将映射到 SQL Server 实现的 BEGIN TRANSACTION。  
+ 此命令映射到 BEGIN TRANSACTION 的 SQL Server 实现。  
   
- 您必须显式提交或回滚事务使用<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>或<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。 若要确保正确执行.NET Framework Data Provider for SQL Server 事务管理模式，避免使用其他事务管理模型，例如 SQL Server 提供的。  
+ 必须使用<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>或<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法显式提交或回滚事务。 为了确保 SQL Server 事务管理模型的 .NET Framework 数据提供程序正确执行, 请避免使用其他事务管理模型, 如 SQL Server 提供的模型。  
   
 > [!NOTE]
->  如果不指定隔离级别，使用默认隔离级别。 若要指定隔离级别，其中<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>方法中，使用的重载`iso`参数 (<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>)。 设置事务的隔离级别仍然保持事务完成后，直到关闭或释放连接。 隔离级别设置为**快照**在数据库中未启用快照隔离级别后不会引发异常。 事务将会完成使用默认隔离级别。  
+>  如果未指定隔离级别, 则使用默认的隔离级别。 若要使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>方法指定隔离级别, 请使用`iso`采用参数 (<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>) 的重载。 在事务完成后, 为事务设置的隔离级别将保留, 直到关闭或释放连接。 在未启用快照隔离级别的数据库中, 将隔离级别设置为**snapshot**不会引发异常。 该事务将使用默认隔离级别完成。  
   
 > [!CAUTION]
->  如果级别 16 或更高的错误发生在服务器上启动事务，事务将不会回滚直到<xref:System.Data.SqlClient.SqlDataReader.Read%2A>调用方法。 不引发任何异常**ExecuteReader**。  
+>  如果事务已启动并且服务器上发生级别16或更高的错误, 则在调用<xref:System.Data.SqlClient.SqlDataReader.Read%2A>方法之前, 不会回滚事务。 **ExecuteReader**上不引发异常。  
   
 > [!CAUTION]
->  当你的查询返回大量数据并调用`BeginTransaction`、<xref:System.Data.SqlClient.SqlException>因为 SQL Server 不允许并行事务使用 MARS 时引发。 若要避免此问题，始终将关联事务与该命令，该连接，和 / 或之前任何读取器处于打开状态。  
+>  如果查询返回大量的数据和调用`BeginTransaction` <xref:System.Data.SqlClient.SqlException> , 则会引发, 因为 SQL Server 在使用 MARS 时不允许并行事务。 若要避免此问题, 请始终在打开任何读取器之前将事务与命令和/或连接关联。  
   
- SQL Server 事务的详细信息，请参阅[事务 (Transact SQL)](/sql/t-sql/language-elements/transactions-transact-sql)。
+ 有关 SQL Server 事务的详细信息, 请参阅[事务 (transact-sql)](/sql/t-sql/language-elements/transactions-transact-sql)。
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>、 一个<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>，和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A> <xref:System.Data.SqlClient.SqlTransaction.Commit%2A>、、和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。  
   
  [!code-csharp[Classic WebData SqlConnection.BeginTransaction Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.BeginTransaction Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction Example/VB/source.vb#1)]  
@@ -473,22 +473,22 @@ using (SqlConnection connection = new SqlConnection(connectionString))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此命令将映射到 SQL Server 实现的 BEGIN TRANSACTION。  
+ 此命令映射到 BEGIN TRANSACTION 的 SQL Server 实现。  
   
- 您必须显式提交或回滚事务使用<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>或<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。 若要确保正确执行.NET Framework Data Provider for SQL Server 事务管理模式，避免使用其他事务管理模型，例如 SQL Server 提供的。  
+ 必须使用<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>或<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法显式提交或回滚事务。 为了确保 SQL Server 事务管理模型的 .NET Framework 数据提供程序正确执行, 请避免使用其他事务管理模型, 如 SQL Server 提供的模型。  
   
 > [!NOTE]
-> 提交或回滚事务后，自动提交模式 （SQL Server 默认值） 中的所有后续命令仍然存在该事务的隔离级别。 这可能会产生意外的结果，如的隔离级别是 REPEATABLE READ 持久保存和锁定行外的其他用户。 若要重置为默认值 (READ COMMITTED) 的隔离级别，请执行[!INCLUDE[tsql](~/includes/tsql-md.md)]设置事务隔离级别 READ COMMITTED 语句或调用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A?displayProperty=nameWithType>跟<xref:System.Data.SqlClient.SqlTransaction.Commit%2A?displayProperty=nameWithType>。 SQL Server 隔离级别的详细信息，请参阅[事务隔离级别](/sql/t-sql/language-elements/transaction-isolation-levels)。
+> 提交或回滚事务后, 事务的隔离级别将对处于自动提交模式 (SQL Server 默认值) 的所有后续命令保持。 这可能会产生意外的结果, 例如, 可重复读持久的隔离级别和锁定其他用户行。 若要将隔离级别重置为默认值 (已提交读) [!INCLUDE[tsql](~/includes/tsql-md.md)] , 请执行设置事务隔离级别 READ 已提交<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A?displayProperty=nameWithType>语句, 或<xref:System.Data.SqlClient.SqlTransaction.Commit%2A?displayProperty=nameWithType>调用后跟。 有关 SQL Server 隔离级别的详细信息, 请参阅[事务隔离级别](/sql/t-sql/language-elements/transaction-isolation-levels)。
   
- SQL Server 事务的详细信息，请参阅[事务 (Transact SQL)](/sql/t-sql/language-elements/transactions-transact-sql)。
+ 有关 SQL Server 事务的详细信息, 请参阅[事务 (transact-sql)](/sql/t-sql/language-elements/transactions-transact-sql)。
   
 > [!CAUTION]
->  当你的查询返回大量数据并调用`BeginTransaction`、<xref:System.Data.SqlClient.SqlException>因为 SQL Server 不允许并行事务使用 MARS 时引发。 若要避免此问题，始终将关联事务与该命令，该连接，和 / 或之前任何读取器处于打开状态。  
+>  如果查询返回大量的数据和调用`BeginTransaction` <xref:System.Data.SqlClient.SqlException> , 则会引发, 因为 SQL Server 在使用 MARS 时不允许并行事务。 若要避免此问题, 请始终在打开任何读取器之前将事务与命令和/或连接关联。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>、 一个<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>，和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A> <xref:System.Data.SqlClient.SqlTransaction.Commit%2A>、、和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。  
   
  [!code-csharp[Classic WebData SqlConnection.BeginTransaction1 Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction1 Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.BeginTransaction1 Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction1 Example/VB/source.vb#1)]  
@@ -499,7 +499,7 @@ using (SqlConnection connection = new SqlConnection(connectionString))
         <exception cref="T:System.InvalidOperationException">不支持并行事务。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/f46570de-9e50-4fe6-8710-a8c31fa8569b">事务 (ADO.NET)</related>
         <related type="Article" href="https://msdn.microsoft.com/library/9abc3f92-1be3-4e1a-b360-762dc689650e">连接到数据源 (ADO.NET)</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -544,23 +544,23 @@ using (SqlConnection connection = new SqlConnection(connectionString))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此命令将映射到 SQL Server 实现的 BEGIN TRANSACTION。  
+ 此命令映射到 BEGIN TRANSACTION 的 SQL Server 实现。  
   
- 长度`transactionName`参数不能超过 32 个字符; 否则将引发异常。  
+ `transactionName`参数的长度不能超过32个字符; 否则将引发异常。  
   
- 中的值`transactionName`参数可用于更高版本调用<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>并在`savePoint`参数的<xref:System.Data.SqlClient.SqlTransaction.Save%2A>方法。  
+ `transactionName`参数中的值可用于稍后在<xref:System.Data.SqlClient.SqlTransaction.Save%2A>方法的`savePoint`参数中<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>调用和。  
   
- 您必须显式提交或回滚事务使用<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>或<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。 若要确保[!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)]数据提供程序的 SQL Server 事务管理模型的性能是否正确，应避免使用其他事务管理模型，例如 SQL Server 提供的。  
+ 必须使用<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>或<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法显式提交或回滚事务。 若要确保 SQL Server 事务[!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)]管理模型的数据提供程序正确执行, 请避免使用其他事务管理模型, 如 SQL Server 提供的模型。  
   
- SQL Server 事务的详细信息，请参阅[事务 (Transact SQL)](/sql/t-sql/language-elements/transactions-transact-sql)。
+ 有关 SQL Server 事务的详细信息, 请参阅[事务 (transact-sql)](/sql/t-sql/language-elements/transactions-transact-sql)。
   
 > [!CAUTION]
->  当你的查询返回大量数据并调用`BeginTransaction`、<xref:System.Data.SqlClient.SqlException>因为 SQL Server 不允许并行事务使用 MARS 时引发。 若要避免此问题，始终将关联事务与该命令，该连接，和 / 或之前任何读取器处于打开状态。  
+>  如果查询返回大量的数据和调用`BeginTransaction` <xref:System.Data.SqlClient.SqlException> , 则会引发, 因为 SQL Server 在使用 MARS 时不允许并行事务。 若要避免此问题, 请始终在打开任何读取器之前将事务与命令和/或连接关联。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>、 一个<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>，和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A> <xref:System.Data.SqlClient.SqlTransaction.Commit%2A>、、和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。  
   
  [!code-csharp[Classic WebData SqlConnection.BeginTransaction2 Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction2 Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.BeginTransaction2 Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction2 Example/VB/source.vb#1)]  
@@ -571,7 +571,7 @@ using (SqlConnection connection = new SqlConnection(connectionString))
         <exception cref="T:System.InvalidOperationException">不支持并行事务。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/f46570de-9e50-4fe6-8710-a8c31fa8569b">事务 (ADO.NET)</related>
         <related type="Article" href="https://msdn.microsoft.com/library/9abc3f92-1be3-4e1a-b360-762dc689650e">连接到数据源 (ADO.NET)</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -618,24 +618,24 @@ using (SqlConnection connection = new SqlConnection(connectionString))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此命令将映射到 SQL Server 实现的 BEGIN TRANSACTION。  
+ 此命令映射到 BEGIN TRANSACTION 的 SQL Server 实现。  
   
- 中的值`transactionName`参数可用于更高版本调用<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>并在`savePoint`参数的<xref:System.Data.SqlClient.SqlTransaction.Save%2A>方法。  
+ `transactionName`参数中的值可用于稍后在<xref:System.Data.SqlClient.SqlTransaction.Save%2A>方法的`savePoint`参数中<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>调用和。  
   
- 您必须显式提交或回滚事务使用<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>或<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。 若要确保正确执行 SQL Server 事务管理模式，避免使用其他事务管理模型，例如 SQL Server 提供的。  
+ 必须使用<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>或<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法显式提交或回滚事务。 若要确保 SQL Server 事务管理模型正确执行, 请避免使用其他事务管理模型, 如 SQL Server 提供的模型。  
   
 > [!NOTE]
->  提交或回滚事务后，自动提交模式 （SQL Server 默认值） 中的所有后续命令仍然存在该事务的隔离级别。 这可能会产生意外的结果，如的隔离级别是 REPEATABLE READ 持久保存和锁定行外的其他用户。 若要重置为默认值 (READ COMMITTED) 的隔离级别，请执行[!INCLUDE[tsql](~/includes/tsql-md.md)]设置事务隔离级别 READ COMMITTED 语句或调用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A?displayProperty=nameWithType>跟<xref:System.Data.SqlClient.SqlTransaction.Commit%2A?displayProperty=nameWithType>。 SQL Server 隔离级别的详细信息，请参阅[事务隔离级别](/sql/t-sql/language-elements/transaction-isolation-levels)。
+>  提交或回滚事务后, 事务的隔离级别将对处于自动提交模式 (SQL Server 默认值) 的所有后续命令保持。 这可能会产生意外的结果, 例如, 可重复读持久的隔离级别和锁定其他用户行。 若要将隔离级别重置为默认值 (已提交读) [!INCLUDE[tsql](~/includes/tsql-md.md)] , 请执行设置事务隔离级别 READ 已提交<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A?displayProperty=nameWithType>语句, 或<xref:System.Data.SqlClient.SqlTransaction.Commit%2A?displayProperty=nameWithType>调用后跟。 有关 SQL Server 隔离级别的详细信息, 请参阅[事务隔离级别](/sql/t-sql/language-elements/transaction-isolation-levels)。
   
- SQL Server 事务的详细信息，请参阅[事务 (Transact SQL)](/sql/t-sql/language-elements/transactions-transact-sql)。
+ 有关 SQL Server 事务的详细信息, 请参阅[事务 (transact-sql)](/sql/t-sql/language-elements/transactions-transact-sql)。
   
 > [!CAUTION]
->  当你的查询返回大量数据并调用`BeginTransaction`、<xref:System.Data.SqlClient.SqlException>因为 SQL Server 不允许并行事务使用 MARS 时引发。 若要避免此问题，始终将关联事务与该命令，该连接，和 / 或之前任何读取器处于打开状态。  
+>  如果查询返回大量的数据和调用`BeginTransaction` <xref:System.Data.SqlClient.SqlException> , 则会引发, 因为 SQL Server 在使用 MARS 时不允许并行事务。 若要避免此问题, 请始终在打开任何读取器之前将事务与命令和/或连接关联。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>、 一个<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>，和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A> <xref:System.Data.SqlClient.SqlTransaction.Commit%2A>、、和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。  
   
  [!code-csharp[Classic WebData SqlConnection.BeginTransaction3 Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction3 Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.BeginTransaction3 Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction3 Example/VB/source.vb#1)]  
@@ -646,7 +646,7 @@ using (SqlConnection connection = new SqlConnection(connectionString))
         <exception cref="T:System.InvalidOperationException">不支持并行事务。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/f46570de-9e50-4fe6-8710-a8c31fa8569b">事务 (ADO.NET)</related>
         <related type="Article" href="https://msdn.microsoft.com/library/9abc3f92-1be3-4e1a-b360-762dc689650e">连接到数据源 (ADO.NET)</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -693,12 +693,12 @@ using (SqlConnection connection = new SqlConnection(connectionString))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 中提供的值`database`参数必须是有效的数据库名称。 `database`参数不能包含 null 值、 空字符串或仅有空白字符的字符串。  
+ `database`参数中提供的值必须是有效的数据库名称。 `database`参数不能包含 null 值、空字符串或只包含空白字符的字符串。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>并显示它的一些只读属性。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection> , 并显示其一些只读属性。  
   
  [!code-csharp[Classic WebData SqlConnection.Database Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.Database Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.Database Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.Database Example/VB/source.vb#1)]  
@@ -759,18 +759,18 @@ using (SqlConnection connection = new SqlConnection(connectionString))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当在 Windows Server 上使用 SQL Server 时，开发人员可以充分利用可以让客户端应用程序提供当前和新密码，以更改现有密码的功能。 应用程序可以实现功能，如初始登录期间提示用户输入新密码，如果旧证书已过期，并且可以完成此操作，而无需管理员干预。  
+ 使用 Windows Server 上的 SQL Server 时, 开发人员可以利用功能, 使客户端应用程序能够同时提供当前密码和新密码, 以便更改现有密码。 应用程序可以实现一些功能, 例如, 如果旧密码已过期, 则在初始登录时提示用户输入新密码, 而无需管理员干预即可完成此操作。  
   
- <xref:System.Data.SqlClient.SqlConnection.ChangePassword%2A>方法更改为用户提供所示的 SQL Server 密码`connectionString`参数中提供的值`newPassword`参数。 如果连接字符串包含为使用集成安全性选项 (即，"集成的安全性 = True"或同等身份)，将引发异常。  
+ 方法将提供`connectionString`的参数中指示的用户的 SQL Server 密码更改为在`newPassword`参数中提供的值。 <xref:System.Data.SqlClient.SqlConnection.ChangePassword%2A> 如果连接字符串包含用于集成安全性的选项 (即 "集成安全性 = True" 或等效项), 则会引发异常。  
   
- 若要确定密码是否已过期，调用<xref:System.Data.SqlClient.SqlConnection.Open%2A>方法将引发<xref:System.Data.SqlClient.SqlException>。 若要指示包含在连接字符串的密码必须重置，<xref:System.Data.SqlClient.SqlException.Number%2A>异常的属性包含状态值 18487 或 18488。 第一个值 (18487) 指示的密码已过期的第二个 (18488) 指示在登录之前，必须重置密码。  
+ 若要确定密码是否已过期, 调用<xref:System.Data.SqlClient.SqlConnection.Open%2A>方法将<xref:System.Data.SqlClient.SqlException>引发。 为了指示必须重置连接字符串中包含的密码, 该异常的<xref:System.Data.SqlClient.SqlException.Number%2A>属性包含状态值18487或18488。 第一个值 (18487) 指示密码已过期, 第二个值 (18488) 指示必须在登录前重置密码。  
   
- 此方法将打开到服务器连接、 请求密码更改和已完成后立即关闭连接。 此连接不是检索从，也不会返回到 SQL Server 连接池。  
+ 此方法将打开自身与服务器的连接, 请求密码更改, 并在完成后立即关闭连接。 不从 SQL Server 连接池检索此连接, 也不会返回此连接。  
   
    
   
 ## Examples  
- 以下是更改密码的一个简单示例：  
+ 下面是更改密码的简单示例:  
   
 ```csharp
 class Program {  
@@ -794,7 +794,7 @@ End Module
   
 ```  
   
- 以下控制台应用程序演示如何更改用户的密码，因为当前的密码已过期所涉及的问题。  
+ 下面的控制台应用程序演示更改用户密码所涉及的问题, 因为当前密码已过期。  
   
  [!code-csharp[DataWorks SqlConnection.ChangePassword#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlConnection.ChangePassword/CS/source.cs#1)]
  [!code-vb[DataWorks SqlConnection.ChangePassword#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlConnection.ChangePassword/VB/source.vb#1)]  
@@ -808,7 +808,7 @@ Or
         <exception cref="T:System.ArgumentNullException"><paramref name="connectionString" /> 或 <paramref name="newPassword" /> 参数为 null。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">连接字符串 (ADO.NET)</related>
         <related type="Article" href="https://msdn.microsoft.com/library/9abc3f92-1be3-4e1a-b360-762dc689650e">连接到数据源 (ADO.NET)</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -848,16 +848,16 @@ Or
       <Docs>
         <param name="connectionString">包含连接至服务器的足够信息的连接字符串。 连接字符串不应使用以下任何一个连接字符串关键字：<see langword="Integrated Security = true" />、<see langword="UserId" /> 或 <see langword="Password" />；或 <see langword="ContextConnection = true" />。</param>
         <param name="credential">一个 <see cref="T:System.Data.SqlClient.SqlCredential" /> 对象。</param>
-        <param name="newPassword">新密码 <paramref name="newPassword" />  必须为只读。 该密码也必须符合服务器上设置的任何密码安全策略（例如：最小长度、特定字符要求）。</param>
+        <param name="newPassword">新密码 <paramref name="newPassword" /> 必须为只读。 该密码也必须符合服务器上设置的任何密码安全策略（例如：最小长度、特定字符要求）。</param>
         <param name="newSecurePassword">To be added.</param>
         <summary>更改 <see cref="T:System.Data.SqlClient.SqlCredential" /> 对象中指示的用户的 SQL Server 密码。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentException">连接字符串包含的任意组合<see langword="UserId" />， <see langword="Password" />，或<see langword="Integrated Security=true" />。
+        <exception cref="T:System.ArgumentException">连接字符串包含 <see langword="UserId" />、 <see langword="Password" /> 或 <see langword="Integrated Security=true" /> 的任意组合。
 
 或 
-连接字符串包含<see langword="Context Connection=true" />。  
+连接字符串包含 <see langword="Context Connection=true" />。  
 
-或
+- 或 -
 
 <paramref name="newSecurePassword" />（或 <paramref name="newPassword" />）的长度超过 128 个字符。
 
@@ -865,7 +865,7 @@ Or
 
 <paramref name="newSecurePassword" />（或 <paramref name="newPassword" />）不是只读的。
 
-或
+- 或 -
 
 <paramref name="newSecurePassword" />（或 <paramref name="newPassword" />）是一个空字符串。</exception>
         <exception cref="T:System.ArgumentNullException">其中一个参数（<paramref name="connectionString" />、<paramref name="credential" /> 或 <paramref name="newSecurePassword" />）为 null。</exception>
@@ -908,7 +908,7 @@ Or
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlConnection.ClearAllPools%2A> 重置 （或清空） 连接池。 如果在调用时在使用中的连接，它们被适当标记并且将放弃 （而不是返回到池） 时<xref:System.Data.SqlClient.SqlConnection.Close%2A>对其调用。  
+ <xref:System.Data.SqlClient.SqlConnection.ClearAllPools%2A>重置 (或清空) 连接池。 如果在调用时正在使用连接, 则会将其标记为适当的, 并且在调用时将丢弃 (而不是返回池) <xref:System.Data.SqlClient.SqlConnection.Close%2A> 。  
   
  ]]></format>
         </remarks>
@@ -955,7 +955,7 @@ Or
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlConnection.ClearPool%2A> 清除与关联的连接池`connection`。 如果与其他连接相关联`connection`是用在调用时，它们被适当标记并且时丢弃 （而不是返回到池）<xref:System.Data.SqlClient.SqlConnection.Close%2A>对其调用。  
+ <xref:System.Data.SqlClient.SqlConnection.ClearPool%2A>清除与`connection`关联的连接池。 如果在调用时, `connection`与关联的其他连接正在使用中, 则在调用时, 它们将被适当标记并被丢弃 (而不是返回<xref:System.Data.SqlClient.SqlConnection.Close%2A>池中)。  
   
  ]]></format>
         </remarks>
@@ -1003,9 +1003,9 @@ Or
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlConnection.ClientConnectionId%2A> 无论哪个版本的服务器的工作原理您连接到，但扩展的事件日志和连接环形缓冲区上的条目将不会出现在[!INCLUDE[sskatmai_r2](~/includes/sskatmai-r2-md.md)]及更早版本。  
+ <xref:System.Data.SqlClient.SqlConnection.ClientConnectionId%2A>无论连接到哪个服务器版本, 都是有效的, 但连接环形缓冲区错误的扩展事件日志和条目将不会出现在[!INCLUDE[sskatmai_r2](~/includes/sskatmai-r2-md.md)]和更早的版本中。  
   
- 您可以在扩展的事件日志，以查看失败是否在服务器上启用日志记录连接 ID 的扩展的事件中找到的连接 ID。 此外可以在连接环形缓冲区中查找连接 ID ([在 SQL Server 2008 使用连接环形缓冲区解决连接问题](https://go.microsoft.com/fwlink/?LinkId=207752)) 对于某些连接错误。 如果连接 ID 不是在连接环形缓冲区中，可以认为是网络错误。  
+ 如果启用了日志记录连接 ID 的扩展事件, 则可以在扩展事件日志中找到连接 ID, 以查看服务器上是否出现故障。 你还可以在连接环形缓冲区中找到连接 ID (对于特定的连接错误, 则为[SQL Server 2008 中的连接故障排除](https://go.microsoft.com/fwlink/?LinkId=207752))。 如果连接 ID 不在连接环形缓冲区中, 可以假设出现网络错误。  
   
  ]]></format>
         </remarks>
@@ -1052,25 +1052,25 @@ Or
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlConnection.Close%2A>方法将回滚所有挂起的事务。 然后释放到连接池连接，或如果禁用连接池时关闭连接。  
+ 方法<xref:System.Data.SqlClient.SqlConnection.Close%2A>将回滚所有挂起的事务。 然后, 它会释放到连接池的连接, 或者在禁用连接池的情况下关闭连接。  
   
 > [!NOTE]
->  挂起的事务开始使用[!INCLUDE[tsql](~/includes/tsql-md.md)]或<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>连接重置时，如果启用了连接池时，会自动回滚。 如果连接池处于关闭状态，则事务会回滚后`SqlConnection.Close`调用。 通过启动事务<xref:System.Transactions>通过控制`System.Transactions`基础结构，并且不受`SqlConnection.Close`。  
+>  如果启用了连接[!INCLUDE[tsql](~/includes/tsql-md.md)]池<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A> , 则在重置连接时, 使用或启动的挂起事务会自动回滚。 如果连接池处于关闭状态, 则在调用之后`SqlConnection.Close`回滚事务。 通过<xref:System.Transactions> `System.Transactions`基础结构控制启动的事务, 这些事务不受影响`SqlConnection.Close`。  
   
- 应用程序可以调用<xref:System.Data.SqlClient.SqlConnection.Close%2A>不止一次。 不会生成异常。  
+ 应用程序可以调用<xref:System.Data.SqlClient.SqlConnection.Close%2A>多次。 不生成异常。  
   
- 如果<xref:System.Data.SqlClient.SqlConnection>超出范围，则不会关闭。 因此，必须显式关闭连接通过调用`Close`或`Dispose`。 `Close` 和`Dispose`在功能上等效。 如果连接池值`Pooling`设置为`true`或`yes`，则基础连接已返回到连接池。 但是，如果`Pooling`设置为`false`或`no`，则关闭基础连接到服务器。  
+ <xref:System.Data.SqlClient.SqlConnection>如果超出范围, 则不会将其关闭。 因此, 必须通过调用`Close`或`Dispose`显式关闭连接。 `Close`和`Dispose`在功能上是等效的。 如果连接池值`Pooling`设置为`true`或`yes`, 则基础连接将返回到连接池。 另一方面, 如果`Pooling`将设置为`false`或`no`, 则将关闭与服务器的基础连接。  
   
 > [!NOTE]
 >  从连接池中提取连接或将连接返回到连接池时，服务器上不会引发登录和注销事件，这是因为在将连接返回到连接池时实际上并没有将其关闭。 有关详细信息，请参阅 [SQL Server 连接池 (ADO.NET)](~/docs/framework/data/adonet/sql-server-connection-pooling.md)。  
   
 > [!CAUTION]
->  不要调用`Close`或`Dispose`连接、 DataReader 或在任何其他托管的对象上`Finalize`类的方法。 在终结器中，您应仅释放类直接拥有的非托管的资源。 如果类不拥有任何非托管资源，则不要在类定义中包含 `Finalize` 方法。 有关详细信息，请参阅[垃圾回收](~/docs/standard/garbage-collection/index.md)。  
+>  不要在类`Close`的`Dispose` `Finalize`方法中对连接、DataReader 或任何其他托管对象调用或。 在终结器中, 只应释放类直接拥有的非托管资源。 如果类不拥有任何非托管资源，则不要在类定义中包含 `Finalize` 方法。 有关详细信息, 请参阅[垃圾回收](~/docs/standard/garbage-collection/index.md)。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>，将其打开，显示的某些属性。 结束时自动关闭连接`using`块。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>, 将其打开, 并显示其部分属性。 在`using`块的末尾自动关闭连接。  
   
  [!code-csharp[Classic WebData SqlConnection.Open Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.Open Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.Open Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.Open Example/VB/source.vb#1)]  
@@ -1143,9 +1143,9 @@ Or
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对于参数化查询，SqlClient 往返到 SQL Server 的参数元数据，以查看哪些参数需要加密以及如何 （应使用哪个密钥和算法）。 如果应用程序将多次调用相同的查询，一个额外往返生成指向服务器的每个时间，这会降低应用程序性能。  
+ 对于参数化查询, SqlClient 将对参数元数据进行 SQL Server 往返, 以查看它需要加密的参数以及如何 (应使用哪些密钥和算法)。 如果应用程序多次调用相同的查询, 则每次对服务器进行一次额外的往返, 这会降低应用程序性能。  
   
- 与**ColumnEncryptionQueryMetadataCacheEnabled**设置为 true，如果多次调用相同的查询，往返服务器都能一次。 缓存有设置为 2000年： 查询一个非可配置的最大大小参数。  
+ 如果将**sqlconnection.columnencryptionquerymetadatacacheenabled**设置为 true, 则如果多次调用相同的查询, 则只会进行一次服务器往返。 缓存的最大可配置的最大大小参数设置为2000查询。  
   
  ]]></format>
         </remarks>
@@ -1252,77 +1252,77 @@ Or
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>类似于的 OLE DB 连接字符串，但并不完全相同。 不同于 OLE DB 或 ADO，则返回的连接字符串是与用户设置相同<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>，如果 Persist Security Info 值设置为安全信息减去`false`（默认值）。 SQL Server 的.NET Framework 数据提供程序不会持久保存或连接字符串中返回密码，除非将持久性安全信息设置为`true`。  
+ <xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>与 OLE DB 连接字符串类似, 但并不完全相同。 与 OLE DB 或 ADO 不同, 返回的连接字符串与用户设置<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>的连接字符串相同, 如果 "持久性安全信息" 值设置为`false` (默认值), 则减去安全信息。 SQL Server 的 .NET Framework 数据提供程序不会保留或返回连接字符串中的密码, 除非你将持久性安全信息设置`true`为。  
 
- 可以使用<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>属性，以连接到数据库。 下面的示例说明了典型的连接字符串。  
+ 您可以使用<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>属性连接到数据库。 下面的示例演示了一个典型的连接字符串。  
   
 ```  
 "Persist Security Info=False;Integrated Security=true;Initial Catalog=Northwind;server=(local)"  
 ```  
   
- 使用新<xref:System.Data.SqlClient.SqlConnectionStringBuilder>在运行时构造有效的连接字符串。 有关详细信息，请参阅[连接字符串生成器](~/docs/framework/data/adonet/connection-string-builders.md)。  
+ 使用 new <xref:System.Data.SqlClient.SqlConnectionStringBuilder>在运行时构造有效的连接字符串。 有关详细信息，请参阅[连接字符串生成器](~/docs/framework/data/adonet/connection-string-builders.md)。  
   
- <xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>仅当连接关闭时，可以设置属性。 许多连接字符串值都有相应的只读属性。 设置连接字符串时，会更新这些属性，除非检测到错误。 在这种情况下，不会更新任何属性。 <xref:System.Data.SqlClient.SqlConnection> 属性返回中包含的那些设置<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>。  
+ 仅<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>当关闭连接时, 才能设置属性。 很多连接字符串值都具有对应的只读属性。 如果设置了连接字符串, 则在检测到错误时, 将更新这些属性。 在这种情况下, 不会更新任何属性。 <xref:System.Data.SqlClient.SqlConnection>属性仅返回中<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>包含的那些设置。  
   
- 若要连接到本地计算机，请指定"(local)"的服务器。 如果未指定服务器名称，将尝试连接到本地计算机上的默认实例。  
+ 若要连接到本地计算机, 请为服务器指定 "(local)"。 如果未指定服务器名称, 则将尝试连接到本地计算机上的默认实例。  
   
- 重置<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>关闭的连接将重置所有连接字符串值 （和相关的属性） 包括密码。 例如，如果设置包含的连接字符串"数据库 = AdventureWorks"，然后重置的连接字符串"数据源 = myserver; 集成的安全性 = true"，则<xref:System.Data.SqlClient.SqlConnection.Database%2A>属性不再设置为"AdventureWorks"。  
+ 重置<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>关闭的连接上的将重置所有连接字符串值 (以及相关属性), 包括密码。 例如, 如果您设置了包含 "Database = AdventureWorks" 的连接字符串, 然后将连接字符串重置为 "Data Source = myserver; 集成 Security = true", 则该<xref:System.Data.SqlClient.SqlConnection.Database%2A>属性将不再设置为 "AdventureWorks"。  
   
- 在设置之后立即分析连接字符串。 如果在分析时，运行时异常，如发现语法错误<xref:System.ArgumentException>，生成。 仅当尝试打开连接时，可以发现其他错误。  
+ 设置后, 将立即分析连接字符串。 如果在分析时发现语法错误, 则会生成运行时异常 ( <xref:System.ArgumentException>如)。 只有在尝试打开连接时, 才能找到其他错误。  
   
- 连接字符串的基本格式包含一系列的关键字/值对之间用分号分隔。 每个关键字和它的值之间用等号 (=) 连接。 若要包含的值包含分号、 单引号字符或双引号字符，则该值必须括在双引号。 如果值包含分号和双引号字符，则该值可以用单引号引起来。 单引号还是双引号字符开头的值的情况下很有用。 相反，如果的值以单引号开头，则可以使用双引号。 如果值包含单引号和双引号字符，用于将值括起来的引号字符必须成对每次它发生时的值中出现。  
+ 连接字符串的基本格式包括一系列由分号分隔的关键字/值对。 每个关键字和它的值之间用等号 (=) 连接。 若要包含包含分号、单引号或双引号字符的值, 必须将该值用双引号引起来。 如果该值同时包含分号和双引号字符, 则该值可以用单引号引起来。 如果值以双引号字符开头, 则单引号也很有用。 相反, 如果值以单引号开头, 则可以使用双引号。 如果该值同时包含单引号和双引号字符, 则每次在值中出现时, 用来将值括起来的引号字符必须成对出现。  
   
- 中的字符串值包含前导或尾随空格，则该值必须括在单引号或双引号引起来。 周围的整数、 布尔值或枚举的值的任何前导或尾随空格将被忽略，即使用引号括起来。 但是，会保留空格的字符串字面常数关键字或值中。 而不使用分隔符，可能的连接字符串中使用单引号或双引号括起来 (例如，数据源 = my'Server 或数据源 = 我的"服务器)，除非引号字符是值中的第一个或最后一个字符。  
+ 若要在字符串值中包含前导空格或尾随空格, 则必须用单引号或双引号将该值引起来。 即使用引号引起来, 也会忽略整数、布尔值或枚举值前后的任何前导空格或尾随空格。 但是, 字符串文字关键字或值中的空格将被保留。 在不使用分隔符的情况下, 可以在连接字符串中使用单引号或双引号 (例如, Data Source = my'Server 或 Data Source = my "Server), 除非引号字符是值中的第一个字符或最后一个字符。  
   
  关键字不区分大小写。  
   
- 下表列出了中的关键字值的有效名称<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>。  
+ 下表列出了中<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>的关键字值的有效名称。  
   
-|关键字|默认|描述|  
+|关键字|默认|说明|  
 |-------------|-------------|-----------------|  
-|Addr|不适用|同义词**数据源**。|  
-|Address|不适用|同义词**数据源**。|  
-|应用|不适用|同义词**应用程序名称**。|  
-|Application Name|不适用|应用程序或.NET SQLClient 数据提供程序如果未不提供任何应用程序名称的名称。<br /><br /> 应用程序名称可以是 128 个字符或更少。|  
-|`ApplicationIntent`|`ReadWrite`|连接到服务器时声明应用程序工作负荷类型。 可能的值为 `ReadOnly` 和 `ReadWrite`。 例如：<br /><br /> `ApplicationIntent=ReadOnly`<br /><br /> 有关对 Always On 可用性组的 SqlClient 支持的详细信息，请参阅[对高可用性、灾难恢复的 SqlClient 支持](~/docs/framework/data/adonet/sql/sqlclient-support-for-high-availability-disaster-recovery.md)。|  
-|Asynchronous Processing<br /><br /> 或<br /><br /> Async|false|当`true`，支持异步操作。 已识别的值为 `true`、`false`、`yes` 和 `no`。<br /><br /> 将忽略此属性从[!INCLUDE[net_v45](~/includes/net-v45-md.md)]。 有关 SqlClient 支持异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。|  
-|AttachDBFilename<br /><br /> 或<br /><br /> 扩展属性<br /><br /> 或<br /><br /> 初始文件名|不适用|包括可附加数据库的完整路径名称的主数据库文件的名称。 AttachDBFilename 只能用于扩展名为.mdf 的主数据文件。<br /><br /> 如果在连接字符串中指定 AttachDBFileName 关键字的值，则数据库连接，并成为连接的默认数据库。<br /><br /> 如果未指定此密钥，并且以前附加该数据库，将不会重新附加数据库。 在以前附加的数据库将用作该连接的默认数据库。<br /><br /> 如果 AttachDBFileName 关键字以及指定此密钥，则此项的值将用作别名。 但是，如果已在另一个附加的数据库中使用该名称，则连接将失败。<br /><br /> 路径可能是绝对或相对使用 DataDirectory 替代字符串。 如果使用 DataDirectory，则数据库文件必须存在的替换字符串指向的目录的子目录中。 **注意：** 远程服务器、 HTTP 和 UNC 路径名称中不受支持。 <br /><br /> 必须使用关键字 database （或其别名之一） 指定数据库名称，如以下所示：<br /><br /> <code>"AttachDbFileName=&#124;DataDirectory&#124;\data\YourDB.mdf;integrated security=true;database=YourDatabase"</code><br /><br /> 如果日志文件和数据文件存在于同一个目录中，并且在附加主数据文件时使用“database”关键字，则将生成错误。 在这种情况下，请移除日志文件。 附加数据库后，将基于物理路径自动生成一个新日志文件。|  
-|身份验证|不适用|用于身份验证方法[连接到 SQL 数据库使用 Azure Active Directory 身份验证](https://azure.microsoft.com/documentation/articles/sql-database-aad-authentication/#7-connect-to-your-database-by-using-azure-active-directory-identities)。<br /><br /> 有效值为：<br /><br /> Active Directory 集成、 Active Directory 密码，Sql 密码。|  
-|列加密设置|不适用|启用或禁用[Always Encrypted](/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-2017)连接的功能。|  
-|连接超时值<br /><br /> 或<br /><br /> Connection Timeout<br /><br /> 或<br /><br /> 超时|15|长度 （以秒为单位） 的时间来等待终止尝试并生成错误之前连接到服务器。<br /><br /> 有效值为大于或等于 0 且小于或等于 2147483647。<br /><br /> 打开连接到 Azure SQL 数据库时，设置连接超时为 30 秒。|  
-|连接生存期<br /><br /> 或<br /><br /> Load Balance Timeout|0|连接返回到池中后，创建时间将与当前时间进行比较，如果时间跨度（秒）超过 `Connection Lifetime` 指定的值，该连接将被破坏。 在聚集配置中可以使用它来强制在运行服务器和刚联机的服务器之间达到负载平衡。<br /><br /> 值为零 (0) 会导致池的连接具有的最大连接超时值。|  
-|ConnectRetryCount|1|控件在客户端标识空闲连接失败后尝试重新连接的次数。 有效值为 0 到 255。 默认值为 1。 0 表示不尝试重新连接 （禁用连接复原）。<br /><br /> 有关空闲连接复原的其他信息，请参阅[技术文章 – 空闲连接复原](https://go.microsoft.com/fwlink/?LinkId=393996)。|  
-|ConnectRetryInterval|10|指定每次连接重试尝试 (ConnectRetryCount) 之间的时间。 有效值为 1 到 60 秒 (默认值 = 10)，应用后第一次重新连接尝试。 检测到断开的连接时，客户端立即尝试重新连接;这是第一次重新连接尝试，仅当 ConnectRetryCount 大于 0。 如果第一次重新连接尝试失败并且 ConnectRetryCount 大于 1，客户端将等待 ConnectRetryInterval 尝试第二个和后续的重新连接尝试。<br /><br /> 有关空闲连接复原的其他信息，请参阅[技术文章 – 空闲连接复原](https://go.microsoft.com/fwlink/?LinkId=393996)。|  
-|Context Connection|false|`true` 如果应建立到 SQL Server 进程内连接。|  
-|Current Language<br /><br /> 或<br /><br /> 语言|不适用|设置数据库服务器的警告或错误消息所使用的语言。<br /><br /> 语言名称可以是 128 个字符或更少。|  
-|“数据源”<br /><br /> 或<br /><br /> 服务器<br /><br /> 或<br /><br /> Address<br /><br /> 或<br /><br /> Addr<br /><br /> 或<br /><br /> 网络地址|不适用|要连接到 SQL server 实例的名称或网络地址。 可以在服务器名之后指定的端口号：<br /><br /> `server=tcp:servername, portnumber`<br /><br /> 在指定的本地实例时，始终使用 (local)。 若要强制使用某个协议，添加以下前缀之一：<br /><br /> `np:(local),  tcp:(local), lpc:(local)`<br /><br /> 从[!INCLUDE[net_v45](~/includes/net-v45-md.md)]，您还可以连接到 LocalDB 数据库，如下所示：<br /><br /> `server=(localdb)\\myInstance`<br /><br /> 有关 LocalDB 的详细信息，请参阅[SqlClient 对 LocalDB 的支持](~/docs/framework/data/adonet/sql/sqlclient-support-for-localdb.md)。<br /><br /> **数据源**必须使用 TCP 格式或 Named Pipes 格式。<br /><br /> TCP 格式如下所示：<br /><br /> -tcp:\<主机名 >\\< 实例名称\><br />-tcp:\<主机名称 >，\<TCP/IP 端口号 ><br /><br /> 必须以前缀开头的 TCP 格式"tcp:"且后跟数据库实例中指定的主机名和实例名称。 连接到 Azure SQL 数据库时，此格式不适用。 不指定任何协议时，自动选择将 TCP 连接到 Azure SQL 数据库的连接。<br /><br /> 必须通过以下方式之一中指定的主机名：<br /><br /> -   NetBIOSName<br />-   IPv4Address<br />-   IPv6Address<br /><br /> 实例名称用于解析为托管数据库实例的特定 TCP/IP 端口号。 或者，还允许直接指定 TCP/IP 端口号。 如果两个实例名称和端口号不存在，则使用默认数据库实例。<br /><br /> Named Pipes 格式如下所示：<br /><br /> -np:\\\\< 主机名\>\pipe\\< 管道名称\><br /><br /> 必须以前缀开头的命名管道格式"np:"且后跟一个命名的管道名称。<br /><br /> 必须通过以下方式之一中指定的主机名：<br /><br /> -   NetBIOSName<br />-   IPv4Address<br />-   IPv6Address<br /><br /> 管道名称用于标识.NET Framework 应用程序将连接到的数据库实例。<br /><br /> 如果的值**网络**指定键，则前缀"tcp:"和"np:"不应指定。 **注意：** 您可以强制 TCP 的使用而不是共享内存，或者由前缀**tcp:** 到在连接字符串，或使用的服务器名称**localhost**。|  
-|Encrypt|false|当`true`，SQL Server 的服务器是否安装了证书，客户端和服务器之间发送的所有数据使用 SSL 加密。 已识别的值为 `true`、`false`、`yes` 和 `no`。 有关详细信息，请参阅[连接字符串语法](~/docs/framework/data/adonet/connection-string-syntax.md)。<br /><br /> 从开始[!INCLUDE[net_v45](~/includes/net-v45-md.md)]，当`TrustServerCertificate`为 false 和`Encrypt`为 true，连接字符串中指定的服务器名称 （或 IP 地址），SQL Server SSL 证书中的服务器名称 （或 IP 地址） 必须完全匹配。 否则，连接尝试将失败。 有关对其使用者启动带通配符 （*） 的证书的支持信息，请参阅[接受通配符服务器证书用于服务器身份验证](https://support.microsoft.com/kb/258858)。|  
-|Enlist|'true'|`true` 指示 SQL Server 连接池进程会自动登记在创建线程的当前事务上下文中的连接。|  
-|Failover Partner|不适用|数据库镜像配置故障转移合作伙伴服务器的名称。<br /><br /> 如果此密钥的值为""，然后**Initial Catalog**必须存在，且其值不能""。<br /><br /> 服务器名称可为 128 个字符或更少。<br /><br /> 如果指定故障转移合作伙伴，但故障转移伙伴服务器未配置为数据库镜像和 （使用 Server 关键字指定） 的主服务器不可用，则连接将失败。<br /><br /> 如果指定故障转移伙伴和主服务器未配置为数据库镜像，与主服务器 （使用 Server 关键字指定） 的连接会成功，如果主服务器不可用。|  
-|Initial Catalog<br /><br /> 或<br /><br /> 数据库|不适用|数据库的名称。<br /><br /> 数据库名称可以是 128 个字符或更少。|  
-|Integrated Security<br /><br /> 或<br /><br /> Trusted_Connection|false|当`false`，在连接中指定用户 ID 和密码。 当`true`，使用当前 Windows 帐户凭据进行身份验证。<br /><br /> 可识别的值为`true`， `false`， `yes`， `no`，并`sspi`（强烈推荐），这等同于`true`。<br /><br /> 如果指定并集成用户 ID 和密码安全性设置为 true，用户 ID 和密码将被忽略，将使用集成安全性。<br /><br /> <xref:System.Data.SqlClient.SqlCredential> 是更安全的方式来指定使用 SQL Server 身份验证的连接凭据 (`Integrated Security=false`)。|  
-|Max Pool Size|100|最大允许在池中的连接数。<br /><br /> 有效值为大于或等于 1。 值小于**最小池大小**生成错误。|  
-|Min Pool Size|0|最小允许在池中的连接数。<br /><br /> 有效值为大于或等于 0。 在此字段中的为零 (0) 意味着最初打开没有最小的连接。<br /><br /> 值大于**最大池大小**生成错误。|  
-|MultipleActiveResultSets|false|当`true`，应用程序可以维护多个活动结果集 (MARS)。 当`false`，应用程序必须处理或取消某一批中的所有结果集，可以在该连接上执行任何其他批次前。<br /><br /> 可识别的值为`true`和`false`。<br /><br /> 有关详细信息，请参阅[多个活动结果集 (MARS)](~/docs/framework/data/adonet/sql/multiple-active-result-sets-mars.md)。|  
-|`MultiSubnetFailover`|false|始终指定`multiSubnetFailover=True`连接到可用性组侦听器的 SQL Server 2012 （或更高版本） 可用性组或 SQL Server 2012 （或更高版本） 故障转移群集实例时。 `multiSubnetFailover=True` 配置 SqlClient 以提供更快的检测和连接到 （当前） 活动服务器。 可能的值为`Yes`并`No`，`True`并`False`或`1`和`0`。 例如：<br /><br /> `MultiSubnetFailover=True`<br /><br /> 默认值为 `False`。 始终在 Ag 的 SqlClient 的支持的详细信息，请参阅[SqlClient 对高可用性和灾难恢复的支持](~/docs/framework/data/adonet/sql/sqlclient-support-for-high-availability-disaster-recovery.md)。|  
-|Network Library<br /><br /> 或<br /><br /> 网络<br /><br /> 或<br /><br /> Net|不适用|用于建立与 SQL Server 实例的连接的网络库。 支持的值包括：<br /><br /> dbnmpntw （命名管道）<br /><br /> dbmsrpcn （多协议、 Windows RPC）<br /><br /> dbmsadsn （Apple 介绍）<br /><br /> dbmsgnet (VIA)<br /><br /> dbmslpcn （共享内存）<br /><br /> dbmsspxn (IPX/SPX)<br /><br /> dbmssocn (TCP/IP)<br /><br /> Dbmsvinn (Banyan Vines)<br /><br /> 必须在系统上安装您要连接到的相应网络 DLL。 如果未指定网络，并且使用本地服务器 (例如，"。"或"(local)")，使用共享的内存。 在此示例中，网络库是 Win32 Winsock TCP/IP (dbmssocn)，1433 是使用的端口。<br /><br /> `Network Library=dbmssocn;Data Source=000.000.000.000,1433;`|  
-|Packet Size|8000|以字节为单位的用于与 SQL Server 的实例进行通信的网络数据包大小。<br /><br /> 数据包大小可能会大于或等于 512 且小于或等于 32768。|  
-|Password<br /><br /> 或<br /><br /> PWD|不适用|记录的 SQL Server 帐户的密码。 不建议这样做。 若要维护高级别的安全性，我们强烈建议你使用`Integrated Security`或`Trusted_Connection`关键字相反。 <xref:System.Data.SqlClient.SqlCredential> 是更安全的方式来指定使用 SQL Server 身份验证的连接凭据。<br /><br /> 密码必须是 128 个字符或更少。|  
-|Persist Security Info<br /><br /> 或<br /><br /> PersistSecurityInfo|false|如果设置为`false`或`no`（强烈推荐），如果连接处于打开状态，或者一直处于打开状态，安全敏感信息，如密码，则不返回作为连接的一部分。 重置连接字符串将重置所有连接字符串的值包括密码。 已识别的值为 `true`、`false`、`yes` 和 `no`。|  
-|PoolBlockingPeriod|自动|设置连接池暂停时段行为。 请参阅<xref:System.Data.SqlClient.SqlConnectionStringBuilder.PoolBlockingPeriod>属性的详细信息。|  
-|Pooling|'true'|当此项的值设置为 true 时，任何新创建的连接将添加到池时关闭应用程序中。 若要打开同一个连接的下一步尝试，该连接将从池中取出。<br /><br /> 如果它们具有相同的连接字符串，连接被视为相同。 不同的连接具有不同的连接字符串。<br /><br /> 此密钥的值可以是"true"、"false"、"yes"否"。|  
-|Replication|false|`true` 如果使用的连接支持复制。|  
-|Transaction Binding|Implicit Unbind|控制与登记的连接关联`System.Transactions`事务。<br /><br /> 可能的值有：<br /><br /> `Transaction Binding=Implicit Unbind;`<br /><br /> `Transaction Binding=Explicit Unbind;`<br /><br /> 隐式取消绑定可使连接与事务结束时分离。 分离后，在自动模式下对连接执行其他请求。 在事务处于活动状态的情况下，执行请求时不会检查 `System.Transactions.Transaction.Current` 属性。 事务结束后，会在自动提交模式下执行其他请求。<br /><br /> 如果系统结束事务 (使用的范围内的块) 的最后一个命令完成之前，它会引发<xref:System.InvalidOperationException>。<br /><br /> 显式取消绑定会导致连接一直附加到之前连接关闭的事务或显式`SqlConnection.TransactionEnlist(null)`调用。 从[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]，更改到隐式取消绑定使显式取消绑定已过时。 如果 `InvalidOperationException` 不是登记事务或者登记事务未处于活动状态，则将引发 `Transaction.Current`。|  
-|TransparentNetworkIPResolution|请参阅说明。|将该键的值设置为 `true` 时，需要应用程序检索特定 DNS 条目的所有 IP 地址并尝试连接到列表中的第一个地址。 如果未在 0.5 秒内建立连接，应用程序将尝试并行连接到所有其他地址。 第一个地址响应后，应用程序将与响应的 IP 地址建立连接。<br /><br /> 如果`MultiSubnetFailover`键设置为`true`，`TransparentNetworkIPResolution`将被忽略。<br /><br /> 如果`Failover Partner`项设置，`TransparentNetworkIPResolution`将被忽略。<br /><br /> 此键的值必须是`true`， `false`， `yes`，或`no`。<br /><br /> 值为`yes`是处理相同的值作为`true`。<br /><br /> 值为`no`是处理相同的值作为`false`。<br /><br /> 默认值如下所示：<br /><br /> <ul><li>`false` 时间：<br /><br /> <ul><li>连接到 Azure SQL 数据库数据源的结尾：<br /><br /> <ul><li>.database.chinacloudapi.cn</li><li>.database.usgovcloudapi.net</li><li>.database.cloudapi.de</li><li>.database.windows.net</li></ul></li><li>`Authentication` Active Directory 密码或 Active Directory 集成</li></ul></li><li>在所有其他情况下，它表示 `true`。</li></ul>|  
-|TrustServerCertificate|false|如果设置为`true`，使用 SSL 来加密的通道时绕过证书链以验证信任。 如果将 TrustServerCertificate 设置为`true`和加密设置为`false`，未加密通道。 已识别的值为 `true`、`false`、`yes` 和 `no`。 有关详细信息，请参阅[连接字符串语法](~/docs/framework/data/adonet/connection-string-syntax.md)。|  
-|类型系统版本|不适用|一个字符串值，指示类型系统应用程序需要。 可用于客户端应用程序的功能取决于 SQL Server 版本和数据库的兼容性级别。 如果使用的是 SQL Server 的其他版本，则显式设置编写的客户端应用程序所针对的类型系统版本可避免导致应用程序中断的潜在问题。 **注意：** 不能为 SQL Server 中在进程内执行的公共语言运行库 (CLR) 代码设置类型系统版本。 有关详细信息，请参阅[SQL Server 公共语言运行时集成](~/docs/framework/data/adonet/sql/sql-server-common-language-runtime-integration.md)。 <br /><br /> 可能的值有：<br /><br /> `Type System Version=SQL Server 2012;`<br /><br /> `Type System Version=SQL Server 2008;`<br /><br /> `Type System Version=SQL Server 2005;`<br /><br /> `Type System Version=Latest;`<br /><br /> `Type System Version=SQL Server 2012;` 指定应用程序将需要版本 11.0.0.0 的 Microsoft.SqlServer.Types.dll。 其他`Type System Version`设置将需要版本 10.0.0.0 的 Microsoft.SqlServer.Types.dll。<br /><br /> `Latest` 已过时，不应使用。 `Latest` 与 `Type System Version=SQL Server 2008;` 相等。|  
-|User ID<br /><br /> 或<br /><br /> UID<br /><br /> 或|不适用|SQL Server 登录帐户。 不建议这样做。 若要维护高级别的安全性，我们强烈建议你使用`Integrated Security`或`Trusted_Connection`关键字相反。 <xref:System.Data.SqlClient.SqlCredential> 是更安全的方式来指定使用 SQL Server 身份验证的连接凭据。<br /><br /> 用户 ID 必须为 128 个字符或更少。|  
-|User Instance|false|一个值，该值指示是否将重定向到调用方的帐户下运行的运行时启动实例中的默认 SQL Server Express 实例的连接。|  
-|Workstation ID<br /><br /> 或<br /><br /> WSID|本地计算机名称|连接到 SQL Server 的工作站的名称。<br /><br /> ID 必须为 128 个字符或更少。|  
+|Addr|不可用|**数据源**的同义词。|  
+|Address|不可用|**数据源**的同义词。|  
+|应用|不可用|**应用程序名称**的同义词。|  
+|Application Name|不可用|应用程序的名称, 如果未提供应用程序名称, 则为 ".NET SQLClient Data Provider"。<br /><br /> 应用程序名称的长度不能超过128个字符。|  
+|`ApplicationIntent`|`ReadWrite`|在连接到服务器时声明应用程序工作负荷类型。 可能的值为 `ReadOnly` 和 `ReadWrite`。 例如:<br /><br /> `ApplicationIntent=ReadOnly`<br /><br /> 有关对 Always On 可用性组的 SqlClient 支持的详细信息，请参阅[对高可用性、灾难恢复的 SqlClient 支持](~/docs/framework/data/adonet/sql/sqlclient-support-for-high-availability-disaster-recovery.md)。|  
+|Asynchronous Processing<br /><br /> 或<br /><br /> Async|false|如果`true`为, 则启用异步操作支持。 已识别的值为 `true`、`false`、`yes` 和 `no`。<br /><br /> 在 [!INCLUDE[net_v45](~/includes/net-v45-md.md)] 开始时，忽略此属性。 有关异步编程的 SqlClient 支持的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。|  
+|AttachDBFilename<br /><br /> 或<br /><br /> 扩展属性<br /><br /> - 或 -<br /><br /> 初始文件名|不可用|主数据库文件的名称, 包括可附加数据库的完整路径名。 仅支持具有 .mdf 扩展名的主数据文件的 AttachDBFilename。<br /><br /> 如果在连接字符串中指定了 AttachDBFileName 键的值, 则附加数据库并成为连接的默认数据库。<br /><br /> 如果未指定此键, 并且以前附加了数据库, 则将不会重新附加该数据库。 以前附加的数据库将用作连接的默认数据库。<br /><br /> 如果将此密钥与 AttachDBFileName 键一起指定, 则此项的值将用作别名。 但是, 如果该名称已在另一附加数据库中使用, 则连接将失败。<br /><br /> 路径可以是绝对路径或相对路径, 方法是使用 DataDirectory 替换字符串。 如果使用了 DataDirectory, 则数据库文件必须存在于替换字符串指向的目录的子目录中。 **注意：** 远程服务器、HTTP 和 UNC 路径名称不受支持。 <br /><br /> 数据库名称必须用关键字 "database" (或它的一个别名) 指定, 如下所示:<br /><br /> <code>"AttachDbFileName=&#124;DataDirectory&#124;\data\YourDB.mdf;integrated security=true;database=YourDatabase"</code><br /><br /> 如果日志文件和数据文件存在于同一个目录中，并且在附加主数据文件时使用“database”关键字，则将生成错误。 在这种情况下，请移除日志文件。 附加数据库后，将基于物理路径自动生成一个新日志文件。|  
+|身份验证|不可用|用于[通过使用 Azure Active Directory 身份验证连接到 SQL 数据库](https://azure.microsoft.com/documentation/articles/sql-database-aad-authentication/#7-connect-to-your-database-by-using-azure-active-directory-identities)的身份验证方法。<br /><br /> 有效值为：<br /><br /> Active Directory 集成, Active Directory 密码, Sql 密码。|  
+|列加密设置|不可用|启用或禁用连接的[Always Encrypted](/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-2017)功能。|  
+|连接超时<br /><br /> 或<br /><br /> Connection Timeout<br /><br /> 或<br /><br /> 超时|15|在终止尝试并生成错误之前等待连接到服务器的时间长度 (以秒为单位)。<br /><br /> 有效值大于或等于0且小于或等于2147483647。<br /><br /> 打开到 Azure SQL 数据库的连接时, 将连接超时值设置为30秒。|  
+|连接生存期<br /><br /> 或<br /><br /> Load Balance Timeout|0|连接返回到池中后，创建时间将与当前时间进行比较，如果时间跨度（秒）超过 `Connection Lifetime` 指定的值，该连接将被破坏。 在聚集配置中可以使用它来强制在运行服务器和刚联机的服务器之间达到负载平衡。<br /><br /> 如果值为零 (0), 则池连接的最大连接超时。|  
+|ConnectRetryCount|1|控制客户端标识空闲连接失败后的重新连接尝试次数。 有效值为0至255。 默认值为 1。 0表示不尝试重新连接 (禁用连接复原)。<br /><br /> 有关空闲连接复原的其他信息, 请参阅[技术文章-空闲连接复原](https://go.microsoft.com/fwlink/?LinkId=393996)。|  
+|ConnectRetryInterval|10|指定每次连接重试尝试 (ConnectRetryCount) 之间的时间。 有效值为1到60秒 (默认值 = 10), 在第一次重新连接尝试之后应用。 检测到断开连接时, 客户端会立即尝试重新连接;这是第一次重新连接尝试, 并且仅当 ConnectRetryCount 大于0时才会发生。 如果第一次重新连接尝试失败并且 ConnectRetryCount 大于 1, 则客户端将等待 ConnectRetryInterval 尝试再次重新连接尝试。<br /><br /> 有关空闲连接复原的其他信息, 请参阅[技术文章-空闲连接复原](https://go.microsoft.com/fwlink/?LinkId=393996)。|  
+|Context Connection|false|`true`如果应建立与 SQL Server 的进程内连接。|  
+|Current Language<br /><br /> 或<br /><br /> 语言|不可用|设置用于数据库服务器警告或错误消息的语言。<br /><br /> 语言名称长度不能超过128个字符。|  
+|“数据源”<br /><br /> 或<br /><br /> 服务器<br /><br /> 或<br /><br /> Address<br /><br /> 或<br /><br /> Addr<br /><br /> 或<br /><br /> 网络地址|不可用|要连接到的 SQL Server 实例的名称或网络地址。 端口号可以在服务器名称之后指定:<br /><br /> `server=tcp:servername, portnumber`<br /><br /> 指定本地实例时, 始终使用 (local)。 若要强制使用协议, 请添加以下前缀之一:<br /><br /> `np:(local),  tcp:(local), lpc:(local)`<br /><br /> 从开始[!INCLUDE[net_v45](~/includes/net-v45-md.md)], 你还可以连接到 LocalDB 数据库, 如下所示:<br /><br /> `server=(localdb)\\myInstance`<br /><br /> 有关 LocalDB 的详细信息, 请参阅[SqlClient 对 localdb 的支持](~/docs/framework/data/adonet/sql/sqlclient-support-for-localdb.md)。<br /><br /> **数据源**必须使用 TCP 格式或命名管道格式。<br /><br /> TCP 格式如下所示:<br /><br /> -tcp:\<主机名 >\\< 实例名称\><br />-tcp:\<主机名 >,\<tcp/ip 端口号 ><br /><br /> TCP 格式必须以前缀 "TCP:" 开头, 后面是由主机名和实例名指定的数据库实例。 连接到 Azure SQL 数据库时, 此格式不适用。 如果未指定协议, 则会自动选择 TCP 连接到 Azure SQL 数据库。<br /><br /> 必须通过以下方式之一指定主机名:<br /><br /> -   NetBIOSName<br />-   IPv4Address<br />-   IPv6Address<br /><br /> 实例名称用于解析数据库实例所托管的特定 TCP/IP 端口号。 另外, 也允许直接指定 TCP/IP 端口号。 如果实例名称和端口号不存在, 则使用默认数据库实例。<br /><br /> 命名管道格式如下所示:<br /><br /> -np:\\\\< 的主机\>名\\\pipe < 管道名称\><br /><br /> 命名管道格式必须以前缀 "np:" 开头并且后跟命名管道名称。<br /><br /> 必须通过以下方式之一指定主机名:<br /><br /> -   NetBIOSName<br />-   IPv4Address<br />-   IPv6Address<br /><br /> 管道名称用于标识将 .NET Framework 应用程序连接到的数据库实例。<br /><br /> 如果指定**网络**密钥的值, 则不应指定前缀 "tcp:" 和 "np:"。 **注意：** 你可以通过在连接字符串中将**tcp:** 作为服务器名的前缀, 或使用**localhost**来强制使用 tcp 而不是共享内存。|  
+|Encrypt|false|如果`true`为, 则 SQL Server 在服务器安装了证书的情况下, 对客户端和服务器之间发送的所有数据使用 SSL 加密。 已识别的值为 `true`、`false`、`yes` 和 `no`。 有关详细信息, 请参阅[连接字符串语法](~/docs/framework/data/adonet/connection-string-syntax.md)。<br /><br /> 从开始`TrustServerCertificate` `Encrypt` , 当为 false 且为 true 时, SQL Server SSL 证书中的服务器名称 (或 ip 地址) 必须与连接字符串中指定的服务器名称 (或 ip 地址) 完全匹配。 [!INCLUDE[net_v45](~/includes/net-v45-md.md)] 否则，连接尝试将失败。 有关使用者以通配符 (*) 开头的证书支持的详细信息, 请参阅服务器[证书用于服务器身份验证的接受通配符](https://support.microsoft.com/kb/258858)。|  
+|Enlist|'true'|`true`指示 SQL Server 连接池程序将在创建线程的当前事务上下文中自动登记连接。|  
+|Failover Partner|不可用|配置了数据库镜像的故障转移伙伴服务器的名称。<br /><br /> 如果此项的值为 "", 则必须存在**初始目录**, 并且其值不能为 ""。<br /><br /> 服务器名称的长度不能超过128个字符。<br /><br /> 如果你指定故障转移伙伴, 但没有为数据库镜像配置故障转移伙伴服务器, 并且主服务器 (使用 Server 关键字指定) 不可用, 则连接将失败。<br /><br /> 如果你指定故障转移伙伴并且没有为数据库镜像配置主服务器, 则在主服务器可用时, 与主服务器 (使用 Server 关键字指定) 的连接将成功。|  
+|Initial Catalog<br /><br /> 或<br /><br /> 数据库|不可用|数据库的名称。<br /><br /> 数据库名称的长度不能超过128个字符。|  
+|Integrated Security<br /><br /> 或<br /><br /> Trusted_Connection|false|如果`false`为, 则在连接中指定用户 ID 和密码。 如果`true`为, 则使用当前的 Windows 帐户凭据进行身份验证。<br /><br /> 识别的值`true`为`false`、 `yes` `true`、、和`sspi` (强烈建议), 它等效于。 `no`<br /><br /> 如果指定了用户 ID 和密码, 并将 "集成安全性" 设置为 "true", 则将忽略用户 ID 和密码, 并使用集成安全性。<br /><br /> <xref:System.Data.SqlClient.SqlCredential>为使用 SQL Server Authentication (`Integrated Security=false`) 的连接指定凭据的更安全方法。|  
+|Max Pool Size|100|池中允许的最大连接数。<br /><br /> 有效值大于或等于1。 小于**最小池大小**的值会生成错误。|  
+|Min Pool Size|0|池中允许的最小连接数。<br /><br /> 有效值大于或等于0。 此字段中的零 (0) 表示最初没有打开最小值连接。<br /><br /> 大于**最大池大小**的值会生成错误。|  
+|MultipleActiveResultSets|false|如果`true`为, 则应用程序可以维护多个活动的结果集 (MARS)。 如果`false`为, 则应用程序必须处理或取消一个批处理中的所有结果集, 然后才能对该连接执行任何其他批处理。<br /><br /> 识别的值`true`为`false`和。<br /><br /> 有关详细信息，请参阅[多个活动结果集 (MARS)](~/docs/framework/data/adonet/sql/multiple-active-result-sets-mars.md)。|  
+|`MultiSubnetFailover`|false|连接到`multiSubnetFailover=True` SQL Server 2012 (或更高版本) 可用性组或 SQL Server 2012 (或更高版本) 故障转移群集实例的可用性组侦听器时, 应始终指定。 `multiSubnetFailover=True`配置 SqlClient 以更快检测和连接到 (当前) 活动服务器。 可能的值`Yes`为`No`、 `True` 、 `False` 、和`1` 。 `0` 例如:<br /><br /> `MultiSubnetFailover=True`<br /><br /> 默认值为 `False`。 有关 SqlClient 对 Always On Ag 的支持的详细信息, 请参阅[SqlClient 对高可用性、灾难恢复的支持](~/docs/framework/data/adonet/sql/sqlclient-support-for-high-availability-disaster-recovery.md)。|  
+|Network Library<br /><br /> 或<br /><br /> 网络<br /><br /> 或<br /><br /> Net|不可用|用于建立与 SQL Server 实例的连接的网络库。 支持的值包括：<br /><br /> dbnmpntw (命名管道)<br /><br /> dbmsrpcn (多协议, Windows RPC)<br /><br /> dbmsadsn (Apple 交谈)<br /><br /> dbmsgnet (通过)<br /><br /> dbmslpcn (共享内存)<br /><br /> dbmsspxn (IPX/SPX)<br /><br /> dbmssocn (TCP/IP)<br /><br /> Dbmsvinn (Banyan Vines)<br /><br /> 必须在系统上安装您要连接到的相应网络 DLL。 如果未指定网络, 并且你使用的是本地服务器 (例如, "." 或 "(local)"), 则使用共享内存。 在此示例中，网络库是 Win32 Winsock TCP/IP (dbmssocn)，1433 是使用的端口。<br /><br /> `Network Library=dbmssocn;Data Source=000.000.000.000,1433;`|  
+|Packet Size|8000|用于与 SQL Server 的实例进行通信的网络数据包的大小 (以字节为单位)。<br /><br /> 数据包大小可以大于或等于512且小于或等于32768。|  
+|Password<br /><br /> 或<br /><br /> PWD|不可用|登录 SQL Server 帐户的密码。 不建议使用。 为了保持较高的安全级别, 强烈建议您`Integrated Security`改用或`Trusted_Connection`关键字。 <xref:System.Data.SqlClient.SqlCredential>为使用 SQL Server 身份验证的连接指定凭据的更安全方法。<br /><br /> 密码长度不能超过128个字符。|  
+|Persist Security Info<br /><br /> - 或 -<br /><br /> PersistSecurityInfo|false|如果设置为`false` " `no`或" (强烈建议), 则在连接处于打开状态或一直处于打开状态时, 不会将安全敏感信息 (如密码) 作为连接的一部分返回。 重置连接字符串将重置所有连接字符串值 (包括密码)。 已识别的值为 `true`、`false`、`yes` 和 `no`。|  
+|PoolBlockingPeriod|自动|设置连接池的阻塞期行为。 有关<xref:System.Data.SqlClient.SqlConnectionStringBuilder.PoolBlockingPeriod>详细信息, 请参阅属性。|  
+|Pooling|'true'|如果此项的值设置为 true, 则在应用程序关闭时, 将向池中添加任何新创建的连接。 在下一次尝试打开相同的连接时, 该连接将从池中提取。<br /><br /> 如果连接具有相同的连接字符串, 则将其视为相同。 不同连接具有不同的连接字符串。<br /><br /> 此键的值可以为 "true"、"false"、"yes" 或 "no"。|  
+|Replication|false|`true`如果使用连接支持复制。|  
+|Transaction Binding|Implicit Unbind|控制与登记`System.Transactions`的事务的连接关联。<br /><br /> 可能的值有：<br /><br /> `Transaction Binding=Implicit Unbind;`<br /><br /> `Transaction Binding=Explicit Unbind;`<br /><br /> 隐式取消连接将导致连接在结束时与事务分离。 分离后，在自动模式下对连接执行其他请求。 在事务处于活动状态的情况下，执行请求时不会检查 `System.Transactions.Transaction.Current` 属性。 事务结束后，会在自动提交模式下执行其他请求。<br /><br /> 如果在最后一个命令完成之前系统结束了事务 (在 using 块的作用域中), 则会引发<xref:System.InvalidOperationException>。<br /><br /> 显式取消绑定会导致连接保持附加到事务, 直到连接关闭或调用显式`SqlConnection.TransactionEnlist(null)` 。 从开始[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)], 隐式取消更改会使显式解除绑定过时。 如果 `InvalidOperationException` 不是登记事务或者登记事务未处于活动状态，则将引发 `Transaction.Current`。|  
+|TransparentNetworkIPResolution|请参阅说明。|将该键的值设置为 `true` 时，需要应用程序检索特定 DNS 条目的所有 IP 地址并尝试连接到列表中的第一个地址。 如果未在 0.5 秒内建立连接，应用程序将尝试并行连接到所有其他地址。 第一个地址响应后，应用程序将与响应的 IP 地址建立连接。<br /><br /> 如果该键设置为`true`, `TransparentNetworkIPResolution`则将被忽略。 `MultiSubnetFailover`<br /><br /> 如果设置`Failover Partner`了密钥, `TransparentNetworkIPResolution`则将忽略。<br /><br /> 此项的值`true`必须是`yes`、 `false`、或`no`。<br /><br /> 的值`yes`与的`true`值相同。<br /><br /> 的值`no`与的`false`值相同。<br /><br /> 默认值如下所示:<br /><br /> <ul><li>`false`即使<br /><br /> <ul><li>连接到 Azure SQL 数据库, 其中的数据源结尾为:<br /><br /> <ul><li>.database.chinacloudapi.cn</li><li>.database.usgovcloudapi.net</li><li>.database.cloudapi.de</li><li>.database.windows.net</li></ul></li><li>`Authentication`为 "Active Directory Password" 或 "Active Directory 集成"</li></ul></li><li>在所有其他情况下，它表示 `true`。</li></ul>|  
+|TrustServerCertificate|false|如果设置为`true`, 则在跳过证书链以验证信任时, 使用 SSL 来加密通道。 如果将 "TrustServerCertificate" `true`设置为, 并将`false`"加密" 设置为, 则不会加密该通道。 已识别的值为 `true`、`false`、`yes` 和 `no`。 有关详细信息, 请参阅[连接字符串语法](~/docs/framework/data/adonet/connection-string-syntax.md)。|  
+|类型系统版本|不可用|一个字符串值, 该值指示应用程序所需的类型系统。 可用于客户端应用程序的功能取决于 SQL Server 版本和数据库的兼容性级别。 如果使用的是 SQL Server 的其他版本，则显式设置编写的客户端应用程序所针对的类型系统版本可避免导致应用程序中断的潜在问题。 **注意：** 不能为 SQL Server 中在进程内执行的公共语言运行库 (CLR) 代码设置类型系统版本。 有关详细信息, 请参阅[SQL Server 公共语言运行时集成](~/docs/framework/data/adonet/sql/sql-server-common-language-runtime-integration.md)。 <br /><br /> 可能的值有：<br /><br /> `Type System Version=SQL Server 2012;`<br /><br /> `Type System Version=SQL Server 2008;`<br /><br /> `Type System Version=SQL Server 2005;`<br /><br /> `Type System Version=Latest;`<br /><br /> `Type System Version=SQL Server 2012;`指定应用程序将需要11.0.0.0 版本的。 其他`Type System Version`设置将需要 "版本 10.0.0.0"。<br /><br /> `Latest`已过时, 不应使用。 `Latest` 与 `Type System Version=SQL Server 2008;` 相等。|  
+|User ID<br /><br /> 或<br /><br /> 标识号<br /><br /> - 或 -|不可用|SQL Server 的登录帐户。 不建议使用。 为了保持较高的安全级别, 强烈建议您`Integrated Security`改用或`Trusted_Connection`关键字。 <xref:System.Data.SqlClient.SqlCredential>为使用 SQL Server 身份验证的连接指定凭据的更安全方法。<br /><br /> 用户 ID 不得超过128个字符。|  
+|User Instance|false|一个值, 该值指示是否将连接从默认 SQL Server Express 实例重定向到在调用方帐户下运行的运行时启动的实例。|  
+|Workstation ID<br /><br /> - 或 -<br /><br /> WSID|本地计算机名称|连接到 SQL Server 的工作站的名称。<br /><br /> ID 不得超过128个字符。|  
   
- 以下列表包含连接池内的值的有效名称<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>。 有关详细信息，请参阅 [SQL Server 连接池 (ADO.NET)](~/docs/framework/data/adonet/sql-server-connection-pooling.md)。  
+ 下面的列表包含中<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>的连接池值的有效名称。 有关详细信息，请参阅 [SQL Server 连接池 (ADO.NET)](~/docs/framework/data/adonet/sql-server-connection-pooling.md)。  
   
--   连接生存期 （或负载平衡超时）  
+-   连接生存期 (或负载平衡超时)  
   
 -   Enlist  
   
@@ -1332,21 +1332,21 @@ Or
   
 -   Pooling  
   
- 当您在设置关键字或连接池需要一个布尔值的值时，可以是使用而不是 'true'，和否而不是 'false'。 整数值表示为字符串。  
+ 在设置需要布尔值的关键字或连接池值时, 可以使用 "是" 而不是 "true" 和 "no" 而不是 "false"。 整数值表示为字符串。  
 
 > [!NOTE]
->  SQL Server 的.NET Framework 数据提供程序使用其自己的协议来与 SQL Server 通信。 因此，它不支持使用 ODBC 数据源名称 (DSN) 的连接到 SQL Server，因为它不会添加一个 ODBC 层时。  
+>  SQL Server 的 .NET Framework 数据提供程序使用自己的协议与 SQL Server 进行通信。 因此, 在连接到 SQL Server 时, 它不支持使用 ODBC 数据源名称 (DSN), 因为它不会添加 ODBC 层。  
   
 > [!NOTE]
->  通用数据链接 (UDL) 文件不支持.NET Framework 数据提供程序适用于 SQL Server。  
+>  SQL Server 的 .NET Framework 数据提供程序不支持通用数据链接 (UDL) 文件。  
   
 > [!CAUTION]
->  在此版本中，应用程序时应小心构造基于用户输入 （例如，从一个对话框，并将其追加到连接字符串检索用户 ID 和密码信息时） 的连接字符串。 应用程序应确保用户不能在这些值中嵌入其他连接字符串参数 (例如，输入密码作为"validpassword; database = somedb"尝试附加到不同的数据库中)。 如果你需要构造基于用户输入的连接字符串，使用新<xref:System.Data.SqlClient.SqlConnectionStringBuilder>，该验证的连接字符串，并有助于消除此问题。 请参阅[连接字符串生成器](~/docs/framework/data/adonet/connection-string-builders.md)有关详细信息。  
+>  在此版本中, 应用程序在构造基于用户输入的连接字符串时应小心 (例如, 从对话框检索用户 ID 和密码信息, 并将其附加到连接字符串)。 应用程序应确保用户无法在这些值中嵌入其他连接字符串参数 (例如, 在尝试附加到其他数据库时将密码输入为 "validpassword; database = somedb")。 如果需要基于用户输入构造连接字符串, 请使用新<xref:System.Data.SqlClient.SqlConnectionStringBuilder>的, 它将验证连接字符串并帮助消除此问题。 有关详细信息, 请参阅[连接字符串生成器](~/docs/framework/data/adonet/connection-string-builders.md)。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>，并设置<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>之前打开的连接属性。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection> , 并在<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>打开连接之前设置属性。  
   
  [!code-csharp[Classic WebData SqlConnection.ConnectionString Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.ConnectionString Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.ConnectionString Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.ConnectionString Example/VB/source.vb#1)]  
@@ -1412,12 +1412,12 @@ Or
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您可以通过使用连接等待的时间量设置为超时`Connect Timeout`或`Connection Timeout`连接字符串中的关键字。 值为 0 表示没有限制，并应避免在<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>因为连接尝试将无限期等待。  
+ 可以使用连接字符串中的`Connect Timeout`或`Connection Timeout`关键字设置连接等待超时的时间。 如果值为 0, 则表示没有限制, 应避免在中<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A> , 因为尝试无限期地等待连接。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>，并设置`Connection Timeout`为 30 秒的连接字符串中。 该代码打开连接，并显示<xref:System.Data.SqlClient.SqlConnection.ConnectionTimeout%2A>控制台窗口中的属性。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection> , 并在`Connection Timeout`连接字符串中将设置为30秒。 该代码会打开连接, 并在<xref:System.Data.SqlClient.SqlConnection.ConnectionTimeout%2A>控制台窗口中显示属性。  
   
  [!code-csharp[Classic WebData SqlConnection.ConnectionTimeout Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.ConnectionTimeout Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.ConnectionTimeout Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.ConnectionTimeout Example/VB/source.vb#1)]  
@@ -1549,21 +1549,21 @@ Or
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `Persist Security Info = true` 若要获取的值所需<xref:System.Data.SqlClient.SqlCredential>对象与<xref:System.Data.SqlClient.SqlConnection.Credential%2A>。  
+ `Persist Security Info = true`需要获取<xref:System.Data.SqlClient.SqlCredential> <xref:System.Data.SqlClient.SqlConnection.Credential%2A>对象的值。  
   
- 默认值<xref:System.Data.SqlClient.SqlConnection.Credential%2A>为 null。  
+ 的默认值<xref:System.Data.SqlClient.SqlConnection.Credential%2A>为 null。  
   
- <xref:System.InvalidOperationException>将引发异常：  
+ 将<xref:System.InvalidOperationException>引发异常:  
   
--   如果<xref:System.Data.SqlClient.SqlConnection.Credential%2A>上打开的连接设置。  
+-   如果<xref:System.Data.SqlClient.SqlConnection.Credential%2A>为打开的连接设置, 则为。  
   
--   如果<xref:System.Data.SqlClient.SqlConnection.Credential%2A>时设置`Context Connection=true`。  
+-   如果<xref:System.Data.SqlClient.SqlConnection.Credential%2A>在时`Context Connection=true`设置了。  
   
--   如果<xref:System.Data.SqlClient.SqlConnection.Credential%2A>时设置`Integrated Security = true`。  
+-   如果<xref:System.Data.SqlClient.SqlConnection.Credential%2A>在时`Integrated Security = true`设置了。  
   
--   如果<xref:System.Data.SqlClient.SqlConnection.Credential%2A>时使用的连接字符串设置`Password`。  
+-   如果<xref:System.Data.SqlClient.SqlConnection.Credential%2A>在连接字符串使用`Password`时设置, 则为。  
   
--   如果<xref:System.Data.SqlClient.SqlConnection.Credential%2A>时使用的连接字符串设置`UserID`。  
+-   如果<xref:System.Data.SqlClient.SqlConnection.Credential%2A>在连接字符串使用`UserID`时设置, 则为。  
   
  ]]></format>
         </remarks>
@@ -1643,12 +1643,12 @@ Or
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlConnection.Database%2A>属性会动态更新。 如果您当前的数据库使用更改[!INCLUDE[tsql](~/includes/tsql-md.md)]语句或<xref:System.Data.SqlClient.SqlConnection.ChangeDatabase%2A>方法发送一条信息性消息和自动更新的属性。  
+ <xref:System.Data.SqlClient.SqlConnection.Database%2A>属性会动态更新。 如果使用[!INCLUDE[tsql](~/includes/tsql-md.md)]语句<xref:System.Data.SqlClient.SqlConnection.ChangeDatabase%2A>或方法更改当前数据库, 将发送一条信息性消息, 并自动更新属性。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>并显示它的一些只读属性。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection> , 并显示其一些只读属性。  
   
  [!code-csharp[Classic WebData SqlConnection.Database Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.Database Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.Database Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.Database Example/VB/source.vb#1)]  
@@ -1703,19 +1703,19 @@ Or
       </ReturnValue>
       <Docs>
         <summary>获取要连接的 SQL Server 的实例的名称。</summary>
-        <value>要连接到 SQL Server 实例的名称。 默认值为一个空字符串。</value>
+        <value>要连接到的 SQL Server 实例的名称。 默认值为一个空字符串。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  <xref:System.Data.SqlClient.SqlConnection.DataSource%2A>属性返回`null`如果的连接字符串为<xref:System.Data.SqlClient.SqlConnection>是"上下文连接 = true"。  
+>  如果<xref:System.Data.SqlClient.SqlConnection.DataSource%2A> `null`的连接<xref:System.Data.SqlClient.SqlConnection>字符串为 "context connection = true", 则属性返回。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>并显示它的一些只读属性。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection> , 并显示其一些只读属性。  
   
  [!code-csharp[Classic WebData SqlConnection.DataSource Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.DataSource Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.DataSource Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.DataSource Example/VB/source.vb#1)]  
@@ -1822,11 +1822,11 @@ Or
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Data.SqlClient.SqlConnection.EnlistTransaction%2A>方法在分布式事务中登记。 因为登记中的连接<xref:System.Transactions.Transaction>实例， **EnlistTransaction**利用中提供的功能<xref:System.Transactions>用于管理命名空间的分布式事务，使其优于**EnlistDistributedTransaction**实现此目的。 有关详细信息，请参阅[分布式事务](~/docs/framework/data/adonet/distributed-transactions.md)。  
+ 您可以使用<xref:System.Data.SqlClient.SqlConnection.EnlistTransaction%2A>方法在分布式事务中登记。 由于它在<xref:System.Transactions.Transaction>实例中登记连接, **EnlistTransaction**利用<xref:System.Transactions>命名空间中的可用功能来管理分布式事务, 使其**更适合EnlistDistributedTransaction**此目的。 有关详细信息, 请参阅[分布式事务](~/docs/framework/data/adonet/distributed-transactions.md)。  
   
- 你可以继续在现有使用分布式的事务中登记**EnlistDistributedTransaction**方法如果禁用自动登记。 在现有分布式事务中登记可以确保，提交或回滚事务，如果数据源的代码所做的修改也提交或回滚。  
+ 如果禁用了自动登记, 则可以使用**EnlistDistributedTransaction**方法继续在现有分布式事务中登记。 在现有分布式事务中登记可确保在提交或回滚事务后, 还会提交或回滚数据源中的代码所做的修改。  
   
- `EnlistDistributedTransaction` 如果返回的异常<xref:System.Data.SqlClient.SqlConnection>已经启动了事务使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>。 但是，如果该事务是在数据源启动的本地事务 (例如，通过显式执行 BEGIN TRANSACTION 语句使用<xref:System.Data.SqlClient.SqlCommand>对象)， **EnlistDistributedTransaction**回滚本地事务并根据请求在现有分布式事务中登记。 您不会收到通知，本地事务已回滚，并且负责不管理任何本地事务使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>。  
+ `EnlistDistributedTransaction`如果已使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>启动了<xref:System.Data.SqlClient.SqlConnection>事务, 则返回异常。 但是, 如果事务是从数据源启动的本地事务 (例如, 通过使用<xref:System.Data.SqlClient.SqlCommand>对象显式执行 BEGIN TRANSACTION 语句), 则**EnlistDistributedTransaction**将回滚本地事务,根据请求在现有分布式事务中登记。 你不会收到本地事务已回滚的通知, 并且负责管理所有未使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>启动的本地事务。  
   
  ]]></format>
         </remarks>
@@ -1863,7 +1863,7 @@ Or
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Data.SqlClient.SqlConnection.EnlistTransaction%2A>方法在分布式事务中登记。 因为登记中的连接<xref:System.Transactions.Transaction>实例， **EnlistTransaction**利用中提供的功能<xref:System.Transactions>用于管理命名空间的分布式事务，使其优于**EnlistDistributedTransaction**，使用该**System.EnterpriseServices.ITransaction**对象。 它还具有略有不同的语义： 后显式事务上登记连接，不能取消登记或第一个事务完成之前在另一个事务中登记。 有关分布式事务的详细信息，请参阅[分布式事务](~/docs/framework/data/adonet/distributed-transactions.md)。  
+ 您可以使用<xref:System.Data.SqlClient.SqlConnection.EnlistTransaction%2A>方法在分布式事务中登记。 由于它在<xref:System.Transactions.Transaction>实例中登记连接, **EnlistTransaction**利用<xref:System.Transactions>命名空间中的可用功能来管理分布式事务, 使其**更适合EnlistDistributedTransaction**, 它使用**System.enterpriseservices.servicedcomponent. ITransaction**对象。 它还具有略微不同的语义: 在事务中显式登记某个连接后, 在第一个事务完成之前, 不能取消登记该连接或在另一个事务中登记。 有关分布式事务的详细信息, 请参阅[分布式事务](~/docs/framework/data/adonet/distributed-transactions.md)。  
   
  ]]></format>
         </remarks>
@@ -1907,12 +1907,12 @@ Or
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当您将设置<xref:System.Data.SqlClient.SqlConnection.FireInfoMessageEventOnUserErrors%2A>到`true`，则以前视为作为现在处理异常的错误<xref:System.Data.SqlClient.SqlConnection.InfoMessage>事件。 所有事件立即激发和事件处理程序处理。 如果是<xref:System.Data.SqlClient.SqlConnection.FireInfoMessageEventOnUserErrors%2A>设置为`false`，然后<xref:System.Data.SqlClient.SqlConnection.InfoMessage>过程结束时处理事件。  
+ 当你将<xref:System.Data.SqlClient.SqlConnection.FireInfoMessageEventOnUserErrors%2A>设置`true`为时, 先前被视为异常的错误现在作为<xref:System.Data.SqlClient.SqlConnection.InfoMessage>事件处理。 所有事件都立即触发, 并由事件处理程序进行处理。 如果将设置为`false`, 则<xref:System.Data.SqlClient.SqlConnection.InfoMessage>在过程结束时将处理事件。 <xref:System.Data.SqlClient.SqlConnection.FireInfoMessageEventOnUserErrors%2A>  
   
 > [!NOTE]
->  会导致服务器停止处理命令的错误严重级别为 17 或更高版本需要作为异常进行处理。 在这种情况下，无论如何在 <xref:System.Data.SqlClient.SqlConnection.InfoMessage> 事件中处理该错误，都会引发异常。  
+>  严重级别为17或更高的错误会导致服务器停止处理此命令, 需要将该错误作为异常进行处理。 在这种情况下，无论如何在 <xref:System.Data.SqlClient.SqlConnection.InfoMessage> 事件中处理该错误，都会引发异常。  
   
- 有关处理事件的详细信息，请参阅[连接事件](~/docs/framework/data/adonet/connection-events.md)。 SQL Server 引擎生成的错误的详细信息，请参阅[数据库引擎错误](/sql/relational-databases/errors-events/database-engine-events-and-errors)。
+ 有关使用事件的详细信息, 请参阅[连接事件](~/docs/framework/data/adonet/connection-events.md)。 有关 SQL Server 引擎生成的错误的详细信息, 请参阅[数据库引擎错误](/sql/relational-databases/errors-events/database-engine-events-and-errors)。
   
  ]]></format>
         </remarks>
@@ -1933,7 +1933,7 @@ Or
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果您尝试检索多个版本控制的存储过程的架构信息，最新版本的架构只被返回。
+ 如果尝试检索多个版本控制存储过程的架构信息, 则仅返回最新版本的架构。
   
  ]]></format>
         </remarks>
@@ -2007,15 +2007,15 @@ Or
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您可能需要数据库、 表或列的架构信息。 此示例中：  
+ 可能需要数据库、表或列的架构信息。 此示例:  
   
 -   使用 GetSchema 获取架构信息。  
   
--   架构限制用于获取指定的信息。  
+-   使用架构限制获取指定的信息。  
   
--   获取架构信息的数据库、 表和某些列。  
+-   获取数据库、表和某些列的架构信息。  
   
- 运行示例之前，需要创建示例数据库中，使用以下[!INCLUDE[tsql](~/includes/tsql-md.md)]:  
+ 在运行该示例之前, 需要使用以下[!INCLUDE[tsql](~/includes/tsql-md.md)]内容创建示例数据库:  
   
 ```  
 USE [master]  
@@ -2081,7 +2081,7 @@ ALTER TABLE [dbo].[Course] CHECK CONSTRAINT [FK_Course_Department]
 GO  
 ```  
   
- [如何从数据库获取架构信息](https://code.msdn.microsoft.com/How-to-Get-Schema-b66d62e2)Visual Studio 项目中具有此代码示例的 C# 和 Visual Basic 版本。  
+ 在 Visual Studio 项目中,[如何从数据库获取架构信息](https://code.msdn.microsoft.com/How-to-Get-Schema-b66d62e2) C#以及此代码示例的 Visual Basic 版本。  
   
 ```csharp  
 using System;  
@@ -2287,11 +2287,11 @@ class Program {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `restrictionValues`参数可以提供*n*深度的值，指定的特定集合的限制集合。 为了将值设置给定的限制，并且未设置其他限制的值，您需要将前面的限制条件设置为`null`然后将为你想要为指定值的限制中的相应值。  
+ 参数可以提供 n 个值深度, 这些值由特定集合的限制集合指定。  `restrictionValues` 为了设置给定限制的值, 而不设置其他限制的值, 你需要将前面的限制设置为`null` , 然后将相应的值放在中, 以便为你要指定的值指定限制。  
   
- 此示例是"表"集合。 如果"Tables"集合具有三个限制-数据库、 所有者和表名称--和你想要返回仅具有所有者"Carl"相关联的表，则需要传递以下值： null、"Carl"。 如果未传入限制值，默认值用于该限制。 这是相同的映射与传入`null`，这是传入空字符串作为参数值不同。 在这种情况下，空字符串 ("") 被视为可指定参数的值。  
+ "Tables" 集合就是这样的一个示例。 如果 "表" 集合具有三个限制 (数据库、所有者和表名称), 并且您只想返回与 "Carl" 所有者关联的表, 则需要传入以下值: null、"Carl"。 如果未传入限制值, 则将默认值用于该限制。 这与传入`null`的映射相同, 这不同于传入参数值的空字符串。 在这种情况下, 空字符串 ("") 被视为指定参数的值。  
   
- 有关代码示例演示<xref:System.Data.SqlClient.SqlConnection.GetSchema%2A>，请参阅<xref:System.Data.SqlClient.SqlConnection.GetSchema%2A>。  
+ 有关演示<xref:System.Data.SqlClient.SqlConnection.GetSchema%2A>的代码示例, 请<xref:System.Data.SqlClient.SqlConnection.GetSchema%2A>参阅。  
   
  ]]></format>
         </remarks>
@@ -2342,15 +2342,15 @@ class Program {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 要处理警告或信息性消息，由服务器发送客户端应创建<xref:System.Data.SqlClient.SqlInfoMessageEventHandler>委托来侦听此事件。  
+ 如果客户端需要处理警告或服务器发送的信息性消息, 则应<xref:System.Data.SqlClient.SqlInfoMessageEventHandler>创建一个委托来侦听此事件。  
   
- <xref:System.Data.SqlClient.SqlConnection.InfoMessage>事件发生时在严重级别为 10 的消息或小于返回由 SQL Server。 严重级别介于 11 到 20 之间的消息引发错误和严重级别高于 20 会导致连接断开的消息。 SQL Server 错误级别的详细信息，请参阅[数据库引擎错误严重性](/sql/relational-databases/errors-events/database-engine-error-severities)。
+ SQL Server <xref:System.Data.SqlClient.SqlConnection.InfoMessage>返回严重级别为10或更小的消息时, 将发生此事件。 严重性介于11和20之间的消息引发错误, 并且严重性超过20的消息会导致连接关闭。 有关 SQL Server 错误级别的详细信息, 请参阅[数据库引擎错误严重性](/sql/relational-databases/errors-events/database-engine-error-severities)。
   
- 有关详细信息和示例，请参阅[连接事件](~/docs/framework/data/adonet/connection-events.md)。  
+ 有关详细信息和示例, 请参阅[连接事件](~/docs/framework/data/adonet/connection-events.md)。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/5a29de74-acfc-4134-8616-829dd7ce0710">处理连接事件</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/5a29de74-acfc-4134-8616-829dd7ce0710">使用连接事件</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -2421,21 +2421,21 @@ class Program {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlConnection>绘制从连接池中的打开的连接，如果有可用。 否则，它在建立与 SQL Server 实例的新连接。  
+ 从连接池绘制打开的连接 (如果有)。 <xref:System.Data.SqlClient.SqlConnection> 否则, 它将建立与 SQL Server 实例的新连接。  
   
 > [!NOTE]
->  如果<xref:System.Data.SqlClient.SqlConnection>超出范围，它没有闭合。 因此，必须显式关闭连接通过调用<xref:System.Data.SqlClient.SqlConnection.Close%2A>。  
+>  <xref:System.Data.SqlClient.SqlConnection>如果超出范围, 则它不会关闭。 因此, 必须通过调用<xref:System.Data.SqlClient.SqlConnection.Close%2A>显式关闭连接。  
   
 > [!NOTE]
->  如果指定时要连接到 SQL Server 和使用以外，在 TCP/IP 协议的实例的 1433年以外的端口号<xref:System.Data.SqlClient.SqlConnection.Open%2A>方法失败。 若要指定端口号 1433年以外，包括"server = machinename，端口号"中的连接字符串和使用 TCP/IP 协议。  
+>  如果你在尝试连接到 SQL Server 的实例而不是 tcp/ip 以外的协议时指定了1433以外的端口号, 则该方法将<xref:System.Data.SqlClient.SqlConnection.Open%2A>失败。 若要指定1433以外的端口号, 请在连接字符串中包含 "server = machinename, 端口号", 并使用 TCP/IP 协议。  
   
 > [!NOTE]
->  SQL Server 的.NET Framework 数据提供程序需要"允许对非托管程序集调用"已启用的安全权限 (<xref:System.Security.Permissions.SecurityPermission>与<xref:System.Security.Permissions.SecurityPermissionFlag>设置为`UnmanagedCode`) 以打开<xref:System.Data.SqlClient.SqlConnection>启用 SQL 调试。  
+>  SQL Server 的 .NET Framework 数据提供程序需要启用了 "允许调用非托管程序集的安全" 权限<xref:System.Security.Permissions.SecurityPermission> ( <xref:System.Security.Permissions.SecurityPermissionFlag>设置<xref:System.Data.SqlClient.SqlConnection>为`UnmanagedCode`) 以打开启用了 SQL 调试的。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>，将打开，并显示它的一些属性。 结束时自动关闭连接`using`块。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>, 将其打开, 并显示其部分属性。 在`using`块的末尾自动关闭连接。  
   
  [!code-csharp[Classic WebData SqlConnection.Open Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.Open Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.Open Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.Open Example/VB/source.vb#1)]  
@@ -2444,7 +2444,7 @@ class Program {
         </remarks>
         <exception cref="T:System.InvalidOperationException">如果不指定数据源或服务器，则无法打开连接。  
   
-或 
+or 
 连接已打开。</exception>
         <exception cref="T:System.Data.SqlClient.SqlException">打开连接时出现的连接级别错误。 如果 <see cref="P:System.Data.SqlClient.SqlException.Number" /> 属性包含值 18487 或 18488，这表明指定的密码已过期或必须重置。 有关更多信息，请参阅 <see cref="M:System.Data.SqlClient.SqlConnection.ChangePassword(System.String,System.String)" /> 方法。  
   
@@ -2493,11 +2493,11 @@ App.config 文件中的 <see langword="&lt;system.data.localdb&gt;" /> 标记具
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在调用<xref:System.Data.SqlClient.SqlConnection.OpenAsync%2A>，<xref:System.Data.SqlClient.SqlConnection.State%2A>必须返回<xref:System.Data.ConnectionState.Connecting>直到返回<xref:System.Threading.Tasks.Task>完成。 然后，如果连接成功<xref:System.Data.SqlClient.SqlConnection.State%2A>必须返回<xref:System.Data.ConnectionState.Open>。 如果连接失败，<xref:System.Data.SqlClient.SqlConnection.State%2A>必须返回<xref:System.Data.ConnectionState.Closed>。  
+ 调用<xref:System.Data.SqlClient.SqlConnection.OpenAsync%2A>后, <xref:System.Data.SqlClient.SqlConnection.State%2A>必须返回<xref:System.Data.ConnectionState.Connecting>直到返回<xref:System.Threading.Tasks.Task>完成。 然后, 如果连接成功, <xref:System.Data.SqlClient.SqlConnection.State%2A>则必须返回。 <xref:System.Data.ConnectionState.Open> 如果连接失败, <xref:System.Data.SqlClient.SqlConnection.State%2A>则必须返回。 <xref:System.Data.ConnectionState.Closed>  
   
- 调用<xref:System.Data.SqlClient.SqlConnection.Close%2A>将尝试取消或关闭相应<xref:System.Data.SqlClient.SqlConnection.OpenAsync%2A>调用。  
+ 对的调用<xref:System.Data.SqlClient.SqlConnection.Close%2A>将尝试取消或关闭相应<xref:System.Data.SqlClient.SqlConnection.OpenAsync%2A>的调用。  
   
- 有关 SQL Server 的.NET Framework 数据提供程序中异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关 SQL Server 的 .NET Framework 数据提供程序中的异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -2555,16 +2555,16 @@ App.config 文件中的 <see langword="&lt;system.data.localdb&gt;" /> 标记具
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果应用程序执行大容量复制操作或发送或接收大量文本或图像数据，数据包大小大于默认值可以提高效率，因为它会导致减少网络读取和写入操作。 如果应用程序发送和接收的少量信息，您可以数据包大小设置为 512 个字节 (使用中的数据包大小值<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>)，即足以进行多数数据传输操作。 对于大多数应用程序，默认数据包大小是最佳的。  
+ 如果应用程序执行大容量复制操作, 或者发送或接收大量文本或图像数据, 则大于默认值的数据包大小可能会提高效率, 因为它会导致网络读写操作更少。 如果应用程序发送和接收的信息量较少, 则可以将数据包大小设置为512字节 (使用中<xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A>的 "数据包大小" 值), 这对大多数数据传输操作来说已经足够了。 对于大多数应用程序而言, 默认数据包大小是最佳的。  
   
- <xref:System.Data.SqlClient.SqlConnection.PacketSize%2A> 可能的 512 和 32767 之间的字节范围中的值。 如果值超出此范围生成异常。  
+ <xref:System.Data.SqlClient.SqlConnection.PacketSize%2A>可能为512到32767字节范围内的值。 如果值超出此范围, 则会生成异常。  
   
- 将默认值设置为一个数字大于 8000 将导致数据包，而不是减少 SQL Server 的整体可伸缩性的高效得多 SinglePage 分配器的 SQL Server 实例上使用多页分配器。 SQL Server 如何使用内存的详细信息，请参阅[内存管理体系结构指南](/sql/relational-databases/memory-management-architecture-guide)。
+ 如果将默认值设置为大于8000的数字, 则数据包将使用实例上的多页分配器 SQL Server 而不是更有效的 SinglePage 分配器, 从而降低 SQL Server 的整体可伸缩性。 有关 SQL Server 如何使用内存的详细信息, 请参阅[内存管理体系结构指南](/sql/relational-databases/memory-management-architecture-guide)。
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>，其中包括设置`Packet Size`为 512 中的连接字符串。 它将显示<xref:System.Data.SqlClient.SqlConnection.PacketSize%2A>和<xref:System.Data.SqlClient.SqlConnection.ServerVersion%2A>控制台窗口中的属性。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>, 包括在连接`Packet Size`字符串中将设置为512。 它在控制台<xref:System.Data.SqlClient.SqlConnection.PacketSize%2A>窗口<xref:System.Data.SqlClient.SqlConnection.ServerVersion%2A>中显示和属性。  
   
  [!code-csharp[Classic WebData SqlConnection.PacketSize Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.PacketSize Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.PacketSize Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.PacketSize Example/VB/source.vb#1)]  
@@ -2638,7 +2638,7 @@ App.config 文件中的 <see langword="&lt;system.data.localdb&gt;" /> 标记具
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果未启用统计信息收集，调用此方法会不引发任何错误。  
+ 如果未启用统计信息收集, 并且调用了此方法, 则不会引发错误。  
   
  ]]></format>
         </remarks>
@@ -2683,7 +2683,7 @@ App.config 文件中的 <see langword="&lt;system.data.localdb&gt;" /> 标记具
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法时，检索到的值是在当前点的时间。 如果您继续使用该连接，则值不正确。 需要重新执行该方法来获取最新的值。  
+ 调用此方法时, 检索到的值是当前时间点的值。 如果继续使用连接, 则值不正确。 需要重新执行方法才能获得最新的值。  
   
  ]]></format>
         </remarks>
@@ -2739,14 +2739,14 @@ App.config 文件中的 <see langword="&lt;system.data.localdb&gt;" /> 标记具
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 版本是窗体 *# #。 # #。 # # #*，其中前两个数字是否为主要版本，接下来的两位数字是次版本，而最后四个数字是否为发布版本。 字符串的形式*major.minor.build*，其中主要和次要恰好由两位数字，生成是四位数字。  
+ 版本的格式为 *# #. # #. # #*# #, 其中前两位数字是主版本, 接下来的两位数字是次版本号, 最后四位数字是发布版本。 此字符串的格式为 "*主要版本. 次要版本. 内部版本. 内部*版本号", 其中主要版本号和次要版本号都是两位数, 并且内部版本号正好为四位数。  
   
  当返回的任务未完成，且在调用 <xref:System.Data.SqlClient.SqlConnection.OpenAsync%2A> 后未打开连接时，调用了 <xref:System.Data.SqlClient.SqlConnection.ServerVersion%2A>。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>，并显示<xref:System.Data.SqlClient.SqlConnection.ServerVersion%2A>属性。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>并<xref:System.Data.SqlClient.SqlConnection.ServerVersion%2A>显示属性。  
   
  [!code-csharp[Classic WebData ISqlConnection.ServerVersion Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData ISqlConnection.ServerVersion Example/CS/source.cs#1)]
  [!code-vb[Classic WebData ISqlConnection.ServerVersion Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData ISqlConnection.ServerVersion Example/VB/source.vb#1)]  
@@ -2811,7 +2811,7 @@ App.config 文件中的 <see langword="&lt;system.data.localdb&gt;" /> 标记具
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回<xref:System.Data.ConnectionState>指示的状态枚举<xref:System.Data.SqlClient.SqlConnection>。 关闭并重新打开该连接将刷新的值<xref:System.Data.SqlClient.SqlConnection.State%2A>。  
+ 返回指示的状态<xref:System.Data.SqlClient.SqlConnection>的枚举。<xref:System.Data.ConnectionState> 关闭并重新打开连接将刷新的值<xref:System.Data.SqlClient.SqlConnection.State%2A>。  
   
  ]]></format>
         </remarks>
@@ -2843,7 +2843,7 @@ App.config 文件中的 <see langword="&lt;system.data.localdb&gt;" /> 标记具
         <ReturnType>System.Data.StateChangeEventHandler</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>当连接的状态更改时发生。</summary>
+        <summary>当连接状态改变时发生。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -2883,12 +2883,12 @@ App.config 文件中的 <see langword="&lt;system.data.localdb&gt;" /> 标记具
       </ReturnValue>
       <Docs>
         <summary>如果设置为 <see langword="true" />，则对当前连接启用统计信息收集。</summary>
-        <value>如果启用了统计信息收集，则返回 <see langword="true" />；否则返回 <see langword="false" />。 <see langword="false" /> 默认值。</value>
+        <value>如果启用了统计信息收集，则返回 <see langword="true" />；否则返回 <see langword="false" />。 默认为 <see langword="false" /> 类型。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 启用统计信息收集有细微，但可测量的性能影响，因此应启用仅在需要时。  
+ 启用统计信息收集对性能具有很小的影响, 但应仅在需要时才启用它。  
   
  ]]></format>
         </remarks>
@@ -2924,7 +2924,7 @@ App.config 文件中的 <see langword="&lt;system.data.localdb&gt;" /> 标记具
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
-完成事务后，必须显式提交或回滚该事务通过<xref:System.Data.IDbTransaction.Commit>或<xref:System.Data.IDbTransaction.Rollback>方法。
+事务完成后, 必须使用<xref:System.Data.IDbTransaction.Commit>或<xref:System.Data.IDbTransaction.Rollback>方法显式提交或回滚事务。
 
 ]]></format>
         </remarks>
@@ -2961,7 +2961,7 @@ App.config 文件中的 <see langword="&lt;system.data.localdb&gt;" /> 标记具
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
-完成事务后，必须显式提交或回滚该事务通过<xref:System.Data.IDbTransaction.Commit>或<xref:System.Data.IDbTransaction.Rollback>方法。
+事务完成后, 必须使用<xref:System.Data.IDbTransaction.Commit>或<xref:System.Data.IDbTransaction.Rollback>方法显式提交或回滚事务。
 
 ]]></format>
         </remarks>
@@ -3031,7 +3031,7 @@ App.config 文件中的 <see langword="&lt;system.data.localdb&gt;" /> 标记具
 ## Remarks  
  此成员是显式接口成员的实现。 它只能在 <xref:System.Data.SqlClient.SqlConnection> 实例被强制转换为 <xref:System.ICloneable> 接口时使用。  
   
- .NET Compact Framework 仅支持此成员。  
+ 仅 .NET Compact Framework 支持此成员。  
   
  ]]></format>
         </remarks>
@@ -3083,12 +3083,12 @@ App.config 文件中的 <see langword="&lt;system.data.localdb&gt;" /> 标记具
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 该字符串通常包含客户端的网络名称。 <xref:System.Data.SqlClient.SqlConnection.WorkstationId%2A>属性对应于`Workstation ID`连接字符串属性。  
+ 该字符串通常包含客户端的网络名称。 <xref:System.Data.SqlClient.SqlConnection.WorkstationId%2A>属性对应`Workstation ID`于连接字符串属性。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>，并显示<xref:System.Data.SqlClient.SqlConnection.WorkstationId%2A>属性。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>并<xref:System.Data.SqlClient.SqlConnection.WorkstationId%2A>显示属性。  
   
  [!code-csharp[Classic WebData SqlConnection.WorkstationId Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.WorkstationId Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.WorkstationId Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.WorkstationId Example/VB/source.vb#1)]  

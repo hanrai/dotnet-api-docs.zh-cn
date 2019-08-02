@@ -22,28 +22,28 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>自动生成用于协调对所做更改的单表命令<see cref="T:System.Data.DataSet" />与关联的数据源。 此类不能被继承。</summary>
+    <summary>自动生成用于协调对 <see cref="T:System.Data.DataSet" /> 的更改与关联的数据源的单表命令。 此类不能被继承。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Odbc.OdbcDataAdapter>不会自动生成协调对所做的更改所需的 SQL 语句<xref:System.Data.DataSet>与数据源相关联。 但是，可以创建<xref:System.Data.Odbc.OdbcCommandBuilder>对象，它通过设置生成的单表更新的 SQL 语句<xref:System.Data.Odbc.OdbcDataAdapter.SelectCommand%2A>属性的<xref:System.Data.Odbc.OdbcDataAdapter>。 <xref:System.Data.Odbc.OdbcCommandBuilder>然后生成未设置任何其他 SQL 语句。  
+ 不会自动生成对与数据源关联的<xref:System.Data.DataSet>更改进行协调所需的 SQL 语句。 <xref:System.Data.Odbc.OdbcDataAdapter> 但是, 您可以通过<xref:System.Data.Odbc.OdbcCommandBuilder> <xref:System.Data.Odbc.OdbcDataAdapter.SelectCommand%2A>设置的属性<xref:System.Data.Odbc.OdbcDataAdapter>, 创建一个为单表更新生成 SQL 语句的对象。 然后<xref:System.Data.Odbc.OdbcCommandBuilder> , 将生成未设置的任何其他 SQL 语句。  
   
- 之间的关系<xref:System.Data.Odbc.OdbcDataAdapter>及其相应<xref:System.Data.Odbc.OdbcCommandBuilder>始终是一对一。 若要创建这种对应关系，您可以设置<xref:System.Data.Odbc.OdbcDataAdapter>属性的<xref:System.Data.Odbc.OdbcCommandBuilder>对象。 这将导致<xref:System.Data.Odbc.OdbcCommandBuilder>将自身注册为侦听器，它将生成的输出<xref:System.Data.Odbc.OdbcDataAdapter.RowUpdating>影响事件<xref:System.Data.DataSet>。  
+ 与其对应<xref:System.Data.Odbc.OdbcDataAdapter> <xref:System.Data.Odbc.OdbcCommandBuilder>的之间的关系始终为一对一关系。 若要创建此函件, 请设置<xref:System.Data.Odbc.OdbcDataAdapter> <xref:System.Data.Odbc.OdbcCommandBuilder>对象的属性。 这会导致<xref:System.Data.Odbc.OdbcCommandBuilder>将自身注册为侦听器, 这会生成影响的<xref:System.Data.Odbc.OdbcDataAdapter.RowUpdating> <xref:System.Data.DataSet>事件的输出。  
   
- 若要生成 INSERT、 UPDATE 或 DELETE 语句<xref:System.Data.Odbc.OdbcCommandBuilder>使用<xref:System.Data.Odbc.OdbcDataAdapter.SelectCommand%2A>属性来检索一组的元数据。 如果您更改的值<xref:System.Data.Odbc.OdbcDataAdapter.SelectCommand%2A>已检索了的元数据，如第一次更新，则应调用后<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>方法来更新元数据。  
+ 若要生成 INSERT、UPDATE 或 DELETE 语句, 请<xref:System.Data.Odbc.OdbcCommandBuilder> <xref:System.Data.Odbc.OdbcDataAdapter.SelectCommand%2A>使用属性来检索所需的一组元数据。 如果在检索元数据<xref:System.Data.Odbc.OdbcDataAdapter.SelectCommand%2A>后更改的值 (例如, 在第一次更新之后), 则应<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>调用方法来更新元数据。  
   
 > [!NOTE]
->  如果 SELECT 语句分配给<xref:System.Data.Odbc.OdbcDataAdapter.SelectCommand%2A>属性使用列名称使用别名生成 INSERT、 UPDATE 和 DELETE 语句可能不准确或失败。 如果基础 ODBC 驱动程序不能提供的列别名的相应基列名称 (使用 SQL_DESC_BASE_COLUMN_NAME 值`SQLColAttribute`)，无法生成 INSERT、 UPDATE 和 DELETE 语句中使用的别名名称。 例如，适用于 Oracle 的 Microsoft ODBC 驱动程序返回的别名名称作为基列名称。 因此，生成的 INSERT、 UPDATE 和 DELETE 语句会导致错误。  
+>  如果分配<xref:System.Data.Odbc.OdbcDataAdapter.SelectCommand%2A>给属性的 SELECT 语句使用别名列名称, 则生成的 INSERT、UPDATE 和 DELETE 语句可能不准确或失败。 如果基础 ODBC 驱动程序无法为别名列名 (使用的 SQL_DESC_BASE_COLUMN_NAME 值`SQLColAttribute`) 提供相应的基本列名称, 则可以在生成的 INSERT、UPDATE 和 DELETE 语句中使用别名。 例如, 用于 Oracle 的 Microsoft ODBC 驱动程序返回别名作为基列名称。 因此, 生成的 INSERT、UPDATE 和 DELETE 语句将导致错误。  
   
- <xref:System.Data.Odbc.OdbcCommandBuilder>还使用<xref:System.Data.Odbc.OdbcCommand.Connection%2A>， <xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>，和<xref:System.Data.Odbc.OdbcCommand.Transaction%2A>属性引用的<xref:System.Data.Odbc.OdbcDataAdapter.SelectCommand%2A>。 用户应调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果修改一个或多个这些属性，或如果的值<xref:System.Data.Odbc.OdbcDataAdapter.SelectCommand%2A>更改属性本身。 否则为<xref:System.Data.Odbc.OdbcDataAdapter.InsertCommand%2A>， <xref:System.Data.Odbc.OdbcDataAdapter.UpdateCommand%2A>，和<xref:System.Data.Odbc.OdbcDataAdapter.DeleteCommand%2A>属性保留其以前的值。  
+ <xref:System.Data.Odbc.OdbcCommandBuilder>还<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>使用引用的<xref:System.Data.Odbc.OdbcCommand.Transaction%2A> 、和属性。<xref:System.Data.Odbc.OdbcDataAdapter.SelectCommand%2A> <xref:System.Data.Odbc.OdbcCommand.Connection%2A> 如果修改了其中<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>一个或多个属性, 则用户应调用, 如果<xref:System.Data.Odbc.OdbcDataAdapter.SelectCommand%2A>属性本身的值已更改, 则应调用。 否则, <xref:System.Data.Odbc.OdbcDataAdapter.InsertCommand%2A>、 <xref:System.Data.Odbc.OdbcDataAdapter.UpdateCommand%2A>和<xref:System.Data.Odbc.OdbcDataAdapter.DeleteCommand%2A>属性将保留其以前的值。  
   
- 如果您调用<xref:System.ComponentModel.Component.Dispose%2A>，则<xref:System.Data.Odbc.OdbcCommandBuilder>会与其<xref:System.Data.Odbc.OdbcDataAdapter>，并且无法再使用生成的命令。  
+ 如果调用<xref:System.ComponentModel.Component.Dispose%2A> <xref:System.Data.Odbc.OdbcCommandBuilder> , 将从<xref:System.Data.Odbc.OdbcDataAdapter>解除关联, 并且不再使用生成的命令。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Data.Odbc.OdbcCommand>一起<xref:System.Data.Odbc.OdbcDataAdapter>和<xref:System.Data.Odbc.OdbcConnection>，以从数据源选择的行。 该示例传递一个已初始化<xref:System.Data.DataSet>，连接字符串、 一个 SQL SELECT 语句，查询字符串和数据源表的名称的字符串。 然后该示例创建<xref:System.Data.Odbc.OdbcCommandBuilder>。  
+ 下面的示例使用<xref:System.Data.Odbc.OdbcCommand> <xref:System.Data.Odbc.OdbcDataAdapter>和和<xref:System.Data.Odbc.OdbcConnection>来从数据源中选择行。 该示例传递了一个已<xref:System.Data.DataSet>初始化的、一个连接字符串、一个 SQL SELECT 语句的查询字符串和一个作为数据源表名称的字符串。 然后, 该示例创建<xref:System.Data.Odbc.OdbcCommandBuilder>一个。  
   
  [!code-csharp[Classic WebData OdbcCommandBuilder#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OdbcCommandBuilder/CS/mysample.cs#1)]
  [!code-vb[Classic WebData OdbcCommandBuilder#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OdbcCommandBuilder/VB/mysample.vb#1)]  
@@ -88,7 +88,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 基构造函数初始化为其默认值的所有字段。  
+ 基本构造函数将所有字段初始化为其默认值。  
   
  ]]></format>
         </remarks>
@@ -118,15 +118,15 @@
         <Parameter Name="adapter" Type="System.Data.Odbc.OdbcDataAdapter" />
       </Parameters>
       <Docs>
-        <param name="adapter"><see cref="T:System.Data.Odbc.OdbcDataAdapter" />对象将与此相关联<see cref="T:System.Data.Odbc.OdbcCommandBuilder" />。</param>
-        <summary>初始化的新实例<see cref="T:System.Data.Odbc.OdbcCommandBuilder" />类与关联的<see cref="T:System.Data.Odbc.OdbcDataAdapter" />对象。</summary>
+        <param name="adapter">与此 <see cref="T:System.Data.Odbc.OdbcDataAdapter" /> 关联的 <see cref="T:System.Data.Odbc.OdbcCommandBuilder" /> 对象。</param>
+        <summary>使用关联的 <see cref="T:System.Data.Odbc.OdbcCommandBuilder" /> 对象初始化 <see cref="T:System.Data.Odbc.OdbcDataAdapter" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Odbc.OdbcCommandBuilder>将自身注册为侦听器<xref:System.Data.Odbc.OdbcDataAdapter.RowUpdating>由生成的事件<xref:System.Data.Odbc.OdbcDataAdapter>此属性中指定。  
+ 将<xref:System.Data.Odbc.OdbcCommandBuilder>自身注册为在此属性<xref:System.Data.Odbc.OdbcDataAdapter.RowUpdating>中指定的<xref:System.Data.Odbc.OdbcDataAdapter>生成的事件侦听器。  
   
- 当你创建的新实例<xref:System.Data.Odbc.OdbcCommandBuilder>，任何现有<xref:System.Data.Odbc.OdbcCommandBuilder>与此相关<xref:System.Data.Odbc.OdbcDataAdapter>发布。  
+ 当你创建的新实例<xref:System.Data.Odbc.OdbcCommandBuilder>时, 将释放与此<xref:System.Data.Odbc.OdbcDataAdapter>关联的任何现有<xref:System.Data.Odbc.OdbcCommandBuilder> 。  
   
  ]]></format>
         </remarks>
@@ -196,15 +196,15 @@
         <ReturnType>System.Data.Odbc.OdbcDataAdapter</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置<see cref="T:System.Data.Odbc.OdbcDataAdapter" />对象的哪些<see cref="T:System.Data.Odbc.OdbcCommandBuilder" />对象将生成的 SQL 语句。</summary>
-        <value><see cref="T:System.Data.Odbc.OdbcDataAdapter" />对象关联的<see cref="T:System.Data.Odbc.OdbcCommandBuilder" />。</value>
+        <summary>获取或设置此 <see cref="T:System.Data.Odbc.OdbcDataAdapter" /> 对象将为其生成 SQL 语句的 <see cref="T:System.Data.Odbc.OdbcCommandBuilder" /> 对象。</summary>
+        <value>与此 <see cref="T:System.Data.Odbc.OdbcDataAdapter" /> 关联的 <see cref="T:System.Data.Odbc.OdbcCommandBuilder" /> 对象。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Odbc.OdbcCommandBuilder>将自身注册为侦听器<xref:System.Data.Odbc.OdbcDataAdapter.RowUpdating>由生成的事件<xref:System.Data.Odbc.OdbcDataAdapter>此属性中指定。  
+ 将<xref:System.Data.Odbc.OdbcCommandBuilder>自身注册为在此属性<xref:System.Data.Odbc.OdbcDataAdapter.RowUpdating>中指定的<xref:System.Data.Odbc.OdbcDataAdapter>生成的事件侦听器。  
   
- 当你创建的新实例<xref:System.Data.Odbc.OdbcCommandBuilder>，任何现有<xref:System.Data.Odbc.OdbcCommandBuilder>与此相关<xref:System.Data.Odbc.OdbcDataAdapter>发布。  
+ 当你创建的新实例<xref:System.Data.Odbc.OdbcCommandBuilder>时, 将释放与此<xref:System.Data.Odbc.OdbcDataAdapter>关联的任何现有<xref:System.Data.Odbc.OdbcCommandBuilder> 。  
   
  ]]></format>
         </remarks>
@@ -237,21 +237,21 @@
         <Parameter Name="command" Type="System.Data.Odbc.OdbcCommand" />
       </Parameters>
       <Docs>
-        <param name="command"><see cref="T:System.Data.Odbc.OdbcCommand" />引用存储的过程是派生参数信息。 派生的参数添加到<see cref="P:System.Data.Odbc.OdbcCommand.Parameters" />的集合<see cref="T:System.Data.Odbc.OdbcCommand" />。</param>
-        <summary>从在指定的存储过程检索参数信息<see cref="T:System.Data.Odbc.OdbcCommand" />，并填充<see cref="P:System.Data.Odbc.OdbcCommand.Parameters" />指定的集合<see cref="T:System.Data.Odbc.OdbcCommand" />对象。</summary>
+        <param name="command">引用将从其中导出参数信息的存储过程的 <see cref="T:System.Data.Odbc.OdbcCommand" />。 将派生参数添加到 <see cref="P:System.Data.Odbc.OdbcCommand.Parameters" /> 的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 集合中。</param>
+        <summary>从在 <see cref="T:System.Data.Odbc.OdbcCommand" /> 中指定的存储过程中检索参数信息并填充指定的 <see cref="P:System.Data.Odbc.OdbcCommand.Parameters" /> 对象的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 集合。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Odbc.OdbcCommandBuilder.DeriveParameters%2A> 将覆盖任何现有参数信息<xref:System.Data.Odbc.OdbcCommand>。  
+ <xref:System.Data.Odbc.OdbcCommandBuilder.DeriveParameters%2A>覆盖的<xref:System.Data.Odbc.OdbcCommand>任何现有参数信息。  
   
- <xref:System.Data.Odbc.OdbcCommandBuilder.DeriveParameters%2A> 需要更多调用数据源中获取信息。 如果在提前知道参数信息，则更有效地通过显式设置的信息填充的参数集合。  
+ <xref:System.Data.Odbc.OdbcCommandBuilder.DeriveParameters%2A>需要对数据源进行额外的调用以获取信息。 如果事先知道了参数信息, 则通过显式设置信息更有效地填充参数集合。  
   
- 您只能使用<xref:System.Data.Odbc.OdbcCommandBuilder.DeriveParameters%2A>的存储过程。 不能使用<xref:System.Data.Odbc.OdbcCommandBuilder.DeriveParameters%2A>填充<xref:System.Data.Odbc.OdbcParameterCollection>使用任意 Transact SQL 语句，如参数化 SELECT 语句。  
+ 只能与存储过程<xref:System.Data.Odbc.OdbcCommandBuilder.DeriveParameters%2A>一起使用。 不能使用<xref:System.Data.Odbc.OdbcCommandBuilder.DeriveParameters%2A>来<xref:System.Data.Odbc.OdbcParameterCollection>填充任意 transact-sql 语句, 如参数化 SELECT 语句。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">基础 ODBC 驱动程序不支持返回存储的过程参数信息，或命令文本不是有效的存储的过程名称，或<see cref="T:System.Data.CommandType" />指定不是<see langword="CommandType.StoredProcedure" />。</exception>
+        <exception cref="T:System.InvalidOperationException">基础 ODBC 驱动程序不支持返回存储过程参数信息，或者命令文本不是有效的存储过程名称，或者指定的 <see cref="T:System.Data.CommandType" /> 不是 <see langword="CommandType.StoredProcedure" />。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">自动生成命令</related>
       </Docs>
     </Member>
@@ -288,16 +288,16 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>获取自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行删除操作的数据源所需的对象。</summary>
+        <summary>获取在数据源中执行删除操作所需的自动生成的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.Odbc.OdbcCommand>要执行对象。  
+ 您可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>方法来进行信息性或故障排除, 因为它<xref:System.Data.Odbc.OdbcCommand>返回要执行的对象。  
   
- 此外可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>并修改<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.Odbc.OdbcDataAdapter>。  
+ 您还可以将<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>并<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.Odbc.OdbcDataAdapter>显式设置该值。  
   
- 首先生成的 SQL 语句后，必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>仍将使用从上一语句，这可能不是正确的信息。 SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>。  
+ 首次生成 SQL 语句后, 如果以任何方式更改<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>语句, 则必须显式调用。 否则, <xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>仍将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>时, 将首先生成 SQL 语句。  
   
  ]]></format>
         </remarks>
@@ -328,17 +328,17 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>获取自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行删除操作的数据源所需的对象。</summary>
-        <returns>自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行删除操作所需的对象。</returns>
+        <summary>获取在数据源中执行删除操作所需的自动生成的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</summary>
+        <returns>自动生成的、执行删除操作所需的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.Odbc.OdbcCommand>要执行对象。  
+ 您可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>方法来进行信息性或故障排除, 因为它<xref:System.Data.Odbc.OdbcCommand>返回要执行的对象。  
   
- 此外可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>并修改<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.Odbc.OdbcDataAdapter>。  
+ 您还可以将<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>并<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.Odbc.OdbcDataAdapter>显式设置该值。  
   
- 首先生成的 SQL 语句后，必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>将使用从上一语句，这可能不是正确的信息。 SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>。  
+ 首次生成 SQL 语句后, 如果以任何方式更改<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>语句, 则必须显式调用。 否则, <xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>时, 将首先生成 SQL 语句。  
   
  ]]></format>
         </remarks>
@@ -370,26 +370,26 @@
         <Parameter Name="useColumnsForParameterNames" Type="System.Boolean" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="useColumnsForParameterNames">如果<see langword="true" />，它是否可以生成与列名相匹配的参数名称。 如果为 <see langword="false" />，则生成 <c>@p1</c>、<c>@p2</c>，以此类推。</param>
-        <summary>获取自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行删除操作的数据源所需的对象。</summary>
-        <returns>自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行删除操作所需的对象。</returns>
+        <param name="useColumnsForParameterNames">如果为 <see langword="true" />，则如有可能，将生成与列名相匹配的参数名称。 如果为 <see langword="false" />，则生成 <c>@p1</c>、<c>@p2</c>，以此类推。</param>
+        <summary>获取在数据源中执行删除操作所需的自动生成的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</summary>
+        <returns>自动生成的、执行删除操作所需的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.Odbc.OdbcCommand>要执行对象。  
+ 您可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>方法来进行信息性或故障排除, 因为它<xref:System.Data.Odbc.OdbcCommand>返回要执行的对象。  
   
- 此外可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>并修改<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.Odbc.OdbcDataAdapter>。  
+ 您还可以将<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>并<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.Odbc.OdbcDataAdapter>显式设置该值。  
   
- 首先生成的 SQL 语句后，必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>将使用从上一语句，这可能不是正确的信息。 SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>。  
+ 首次生成 SQL 语句后, 如果以任何方式更改<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>语句, 则必须显式调用。 否则, <xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetDeleteCommand%2A>时, 将首先生成 SQL 语句。  
   
- 生成参数名称时的默认行为是使用`@p1`， `@p2`，为各种参数，依此类推。 传递`true`有关`useColumnsForParameterNames`参数允许你强制<xref:System.Data.Odbc.OdbcCommandBuilder>生成改为基于列名称的参数。 仅当满足以下条件时，此操作将成功：  
+ 生成参数名称时, 默认行为是对各种参数使用`@p1`、 `@p2`等。 通过`true` 为<xref:System.Data.Odbc.OdbcCommandBuilder>参数传递, 可以强制根据列名生成参数。 `useColumnsForParameterNames` 仅当满足以下条件时, 此操作才会成功:  
   
--   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>已指定，并且其长度等于或大于生成的参数名称。  
+-   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>已指定, 其长度等于或大于生成的参数名称。  
   
--   生成的参数名称符合中指定的条件<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>正则表达式。  
+-   生成的参数名称满足<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>正则表达式中指定的条件。  
   
--   一个<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>指定。  
+-   指定<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>了。  
   
  ]]></format>
         </remarks>
@@ -402,16 +402,16 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>获取自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行插入操作的数据源所需的对象。</summary>
+        <summary>获取在数据源中执行插入操作所需的自动生成的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.Odbc.OdbcCommand>要执行对象。  
+ 您可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>方法来进行信息性或故障排除, 因为它<xref:System.Data.Odbc.OdbcCommand>返回要执行的对象。  
   
- 此外可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>并修改<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.Odbc.OdbcDataAdapter>。  
+ 您还可以将<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>并<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.Odbc.OdbcDataAdapter>显式设置该值。  
   
- 首先生成的 SQL 语句后，必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>将使用从上一语句，这可能不是正确的信息。 SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>。  
+ 首次生成 SQL 语句后, 如果以任何方式更改<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>语句, 则必须显式调用。 否则, <xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>时, 将首先生成 SQL 语句。  
   
  ]]></format>
         </remarks>
@@ -442,17 +442,17 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>获取自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行插入操作的数据源所需的对象。</summary>
-        <returns>自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行插入操作所需的对象。</returns>
+        <summary>获取在数据源中执行插入操作所需的自动生成的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</summary>
+        <returns>自动生成的、执行插入操作所需的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.Odbc.OdbcCommand>要执行对象。  
+ 您可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>方法来进行信息性或故障排除, 因为它<xref:System.Data.Odbc.OdbcCommand>返回要执行的对象。  
   
- 此外可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>并修改<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.Odbc.OdbcDataAdapter>。  
+ 您还可以将<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>并<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.Odbc.OdbcDataAdapter>显式设置该值。  
   
- 首先生成的 SQL 语句后，必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>仍将使用从上一语句，这可能不是正确的信息。 SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>。  
+ 首次生成 SQL 语句后, 如果以任何方式更改<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>语句, 则必须显式调用。 否则, <xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>仍将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>时, 将首先生成 SQL 语句。  
   
  ]]></format>
         </remarks>
@@ -484,26 +484,26 @@
         <Parameter Name="useColumnsForParameterNames" Type="System.Boolean" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="useColumnsForParameterNames">如果<see langword="true" />，它是否可以生成与列名相匹配的参数名称。 如果为 <see langword="false" />，则生成 <c>@p1</c>、<c>@p2</c>，以此类推。</param>
-        <summary>获取自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行插入操作的数据源所需的对象。</summary>
-        <returns>自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行插入操作所需的对象。</returns>
+        <param name="useColumnsForParameterNames">如果为 <see langword="true" />，则如有可能，将生成与列名相匹配的参数名称。 如果为 <see langword="false" />，则生成 <c>@p1</c>、<c>@p2</c>，以此类推。</param>
+        <summary>获取在数据源中执行插入操作所需的自动生成的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</summary>
+        <returns>自动生成的、执行插入操作所需的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.Odbc.OdbcCommand>要执行对象。  
+ 您可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>方法来进行信息性或故障排除, 因为它<xref:System.Data.Odbc.OdbcCommand>返回要执行的对象。  
   
- 此外可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>并修改<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.Odbc.OdbcDataAdapter>。  
+ 您还可以将<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>并<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.Odbc.OdbcDataAdapter>显式设置该值。  
   
- 首先生成的 SQL 语句后，必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>将使用从上一语句，这可能不是正确的信息。 SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>。  
+ 首次生成 SQL 语句后, 如果以任何方式更改<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>语句, 则必须显式调用。 否则, <xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetInsertCommand%2A>时, 将首先生成 SQL 语句。  
   
- 生成参数名称时的默认行为是使用`@p1`， `@p2`，为各种参数，依此类推。 传递`true`有关`useColumnsForParameterNames`参数允许你强制<xref:System.Data.Common.DbCommandBuilder>生成改为基于列名称的参数。 仅当满足以下条件时，此操作将成功：  
+ 生成参数名称时, 默认行为是对各种参数使用`@p1`、 `@p2`等。 通过`true` 为<xref:System.Data.Common.DbCommandBuilder>参数传递, 可以强制根据列名生成参数。 `useColumnsForParameterNames` 仅当满足以下条件时, 此操作才会成功:  
   
--   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>已指定，并且其长度等于或大于生成的参数名称。  
+-   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>已指定, 其长度等于或大于生成的参数名称。  
   
--   生成的参数名称符合中指定的条件<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>正则表达式。  
+-   生成的参数名称满足<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>正则表达式中指定的条件。  
   
--   一个<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>指定。  
+-   指定<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>了。  
   
  ]]></format>
         </remarks>
@@ -609,16 +609,16 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>获取自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行数据源的更新所需的对象。</summary>
+        <summary>获取在数据源中执行更新操作所需的自动生成的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.Odbc.OdbcCommand>要执行对象。  
+ 您可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>方法来进行信息性或故障排除, 因为它<xref:System.Data.Odbc.OdbcCommand>返回要执行的对象。  
   
- 此外可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>并修改<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.Odbc.OdbcDataAdapter>。  
+ 您还可以将<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>并<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.Odbc.OdbcDataAdapter>显式设置该值。  
   
- 首先生成的 SQL 语句后，必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>将使用从上一语句，这可能不是正确的信息。 SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>。  
+ 首次生成 SQL 语句后, 如果以任何方式更改<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>语句, 则必须显式调用。 否则, <xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>时, 将首先生成 SQL 语句。  
   
  ]]></format>
         </remarks>
@@ -649,17 +649,17 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>获取自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行数据源的更新所需的对象。</summary>
-        <returns>自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行更新所需的对象。</returns>
+        <summary>获取在数据源中执行更新操作所需的自动生成的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</summary>
+        <returns>自动生成的、执行更新所需的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.Odbc.OdbcCommand>要执行对象。  
+ 您可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>方法来进行信息性或故障排除, 因为它<xref:System.Data.Odbc.OdbcCommand>返回要执行的对象。  
   
- 此外可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>并修改<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.Odbc.OdbcDataAdapter>。  
+ 您还可以将<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>并<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.Odbc.OdbcDataAdapter>显式设置该值。  
   
- 首先生成的 SQL 语句后，必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>仍将使用从上一语句，这可能不是正确的信息。 SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>。  
+ 首次生成 SQL 语句后, 如果以任何方式更改<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>语句, 则必须显式调用。 否则, <xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>仍将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>时, 将首先生成 SQL 语句。  
   
  ]]></format>
         </remarks>
@@ -691,26 +691,26 @@
         <Parameter Name="useColumnsForParameterNames" Type="System.Boolean" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="useColumnsForParameterNames">如果<see langword="true" />，它是否可以生成与列名相匹配的参数名称。 如果为 <see langword="false" />，则生成 <c>@p1</c>、<c>@p2</c>，以此类推。</param>
-        <summary>获取自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行数据源的更新所需的对象。</summary>
-        <returns>自动生成<see cref="T:System.Data.Odbc.OdbcCommand" />执行更新所需的对象。</returns>
+        <param name="useColumnsForParameterNames">如果为 <see langword="true" />，则如有可能，将生成与列名相匹配的参数名称。 如果为 <see langword="false" />，则生成 <c>@p1</c>、<c>@p2</c>，以此类推。</param>
+        <summary>获取在数据源中执行更新操作所需的自动生成的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</summary>
+        <returns>自动生成的、执行更新所需的 <see cref="T:System.Data.Odbc.OdbcCommand" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.Odbc.OdbcCommand>要执行对象。  
+ 您可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>方法来进行信息性或故障排除, 因为它<xref:System.Data.Odbc.OdbcCommand>返回要执行的对象。  
   
- 此外可以使用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>并修改<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.Odbc.OdbcDataAdapter>。  
+ 您还可以将<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>并<xref:System.Data.Odbc.OdbcCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.Odbc.OdbcDataAdapter>显式设置该值。  
   
- 首先生成的 SQL 语句后，必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>仍将使用从上一语句，这可能不是正确的信息。 SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>。  
+ 首次生成 SQL 语句后, 如果以任何方式更改<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>语句, 则必须显式调用。 否则, <xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>仍将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.Odbc.OdbcCommandBuilder.GetUpdateCommand%2A>时, 将首先生成 SQL 语句。  
   
- 生成参数名称时的默认行为是使用`@p1`， `@p2`，为各种参数，依此类推。 传递`true`有关`useColumnsForParameterNames`参数允许你强制<xref:System.Data.Common.DbCommandBuilder>生成改为基于列名称的参数。 仅当满足以下条件时，此操作将成功：  
+ 生成参数名称时, 默认行为是对各种参数使用`@p1`、 `@p2`等。 通过`true` 为<xref:System.Data.Common.DbCommandBuilder>参数传递, 可以强制根据列名生成参数。 `useColumnsForParameterNames` 仅当满足以下条件时, 此操作才会成功:  
   
--   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>已指定，并且其长度等于或大于生成的参数名称。  
+-   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>已指定, 其长度等于或大于生成的参数名称。  
   
--   生成的参数名称符合中指定的条件<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>正则表达式。  
+-   生成的参数名称满足<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>正则表达式中指定的条件。  
   
--   一个<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>指定。  
+-   指定<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>了。  
   
  ]]></format>
         </remarks>
@@ -723,7 +723,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>指定在正确的目录的情况下不带引号的标识符，则会返回正确引用该标识符的形式。 这包括正确地转义该标识符中的任何嵌入的引号。</summary>
+        <summary>给定了具有正确的目录大小写设置且不带引号的标识符时，返回该标识符的正确的带引号形式。 这包括正确地转义该标识符中的任何嵌入引号。</summary>
         <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">自动生成命令</related>
       </Docs>
     </MemberGroup>
@@ -752,9 +752,9 @@
         <Parameter Name="unquotedIdentifier" Type="System.String" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="unquotedIdentifier">原始的未加引号的标识符。</param>
-        <summary>指定在正确的目录的情况下不带引号的标识符，则会返回正确引用该标识符的形式。 这包括正确地转义该标识符中的任何嵌入的引号。</summary>
-        <returns>带引号的标识符的版本。 标识符中嵌入的引号被正确地转义。</returns>
+        <param name="unquotedIdentifier">不带引号的原始标识符。</param>
+        <summary>给定了具有正确的目录大小写设置且不带引号的标识符时，返回该标识符的正确的带引号形式。 这包括正确地转义该标识符中的任何嵌入引号。</summary>
+        <returns>带引号的标识符版本。 标识符内的嵌入引号被正确地转义。</returns>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">自动生成命令</related>
       </Docs>
@@ -785,10 +785,10 @@
         <Parameter Name="connection" Type="System.Data.Odbc.OdbcConnection" Index="1" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="unquotedIdentifier">原始的未加引号的标识符。</param>
-        <param name="connection">如果连接通过，将导致托管的包装从 ODBC 驱动程序，调用 sqlgetinfo （sql_identifier_quote_char） 获取的引号字符。 当连接未通过时，使用来自引用该字符串<see cref="P:System.Data.Common.DbCommandBuilder.QuotePrefix" />和<see cref="P:System.Data.Common.DbCommandBuilder.QuoteSuffix" />。</param>
-        <summary>指定在正确的目录的情况下不带引号的标识符，则会返回正确引用该标识符的形式。 这包括正确地转义该标识符中的任何嵌入的引号。</summary>
-        <returns>带引号的标识符的版本。 标识符中嵌入的引号被正确地转义。</returns>
+        <param name="unquotedIdentifier">不带引号的原始标识符。</param>
+        <param name="connection">当连接是通过时，会导致托管包装从获取 ODBC 驱动程序的引号字符，调用 SQLGetInfo （SQL_IDENTIFIER_QUOTE_CHAR）。 如果连接未通过时，使用从 <see cref="P:System.Data.Common.DbCommandBuilder.QuotePrefix" /> 和 <see cref="P:System.Data.Common.DbCommandBuilder.QuoteSuffix" />的值中引用该字符串。</param>
+        <summary>给定了具有正确的目录大小写设置且不带引号的标识符时，返回该标识符的正确的带引号形式。 这包括正确地转义该标识符中的任何嵌入引号。</summary>
+        <returns>带引号的标识符版本。 标识符内的嵌入引号被正确地转义。</returns>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">自动生成命令</related>
       </Docs>
@@ -820,8 +820,8 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置要使用其名称包含空格或保留的标记等字符的数据库对象 （例如，表或列） 时使用的开始字符。</summary>
-        <value>起始字符或要使用的字符。 默认值为一个空字符串。</value>
+        <summary>获取或设置使用其名称包含空格或保留标记等字符的数据库对象（例如，表或列）时使用的开始字符。</summary>
+        <value>要使用的起始字符。 默认值为一个空字符串。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -852,8 +852,8 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置字符或多个用于处理数据库对象时，（适用于示例中，表或列），其名称包含空格或保留的标记等字符结束。</summary>
-        <value>结束字符或要使用的字符。 默认值为一个空字符串。</value>
+        <summary>获取或设置使用其名称包含空格或保留标记等字符的数据库对象（例如，表或列）时使用的结束字符。</summary>
+        <value>要使用的结束字符。 默认值为一个空字符串。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -877,7 +877,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>清除与此相关的命令<see cref="T:System.Data.Odbc.OdbcCommandBuilder" />。</summary>
+        <summary>清除与此 <see cref="T:System.Data.Odbc.OdbcCommandBuilder" /> 关联的命令。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -917,7 +917,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>提供带引号的标识符，返回该标识符，包括正确的正确不带引号的形式地非转义该标识符中的任何嵌入的引号。</summary>
+        <summary>给定了带引号的标识符时，返回该标识符的正确的不带引号形式，包括正确地非转义该标识符中的任何嵌入引号。</summary>
         <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">自动生成命令</related>
       </Docs>
     </MemberGroup>
@@ -946,9 +946,9 @@
         <Parameter Name="quotedIdentifier" Type="System.String" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="quotedIdentifier">将已删除其嵌入的引号的标识符。</param>
-        <summary>提供带引号的标识符，返回该标识符，包括正确的正确不带引号的形式地非转义该标识符中的任何嵌入的引号。</summary>
-        <returns>不带引号的标识符，其嵌入引号被正确进行非转义。</returns>
+        <param name="quotedIdentifier">其嵌入引号将被移除的标识符。</param>
+        <summary>给定了带引号的标识符时，返回该标识符的正确的不带引号形式，包括正确地非转义该标识符中的任何嵌入引号。</summary>
+        <returns>不带引号的标识符，带有已正确进行非转义的嵌入引号。</returns>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">自动生成命令</related>
       </Docs>
@@ -979,10 +979,10 @@
         <Parameter Name="connection" Type="System.Data.Odbc.OdbcConnection" Index="1" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="quotedIdentifier">将已删除其嵌入的引号的标识符。</param>
+        <param name="quotedIdentifier">其嵌入引号将被移除的标识符。</param>
         <param name="connection"><see cref="T:System.Data.Odbc.OdbcConnection" /></param>
-        <summary>提供带引号的标识符，返回该标识符，包括正确的正确不带引号的形式地非转义该标识符中的任何嵌入的引号。</summary>
-        <returns>不带引号的标识符，其嵌入引号被正确进行非转义。</returns>
+        <summary>给定了带引号的标识符时，返回该标识符的正确的不带引号形式，包括正确地非转义该标识符中的任何嵌入引号。</summary>
+        <returns>不带引号的标识符，带有已正确进行非转义的嵌入引号。</returns>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">自动生成命令</related>
       </Docs>

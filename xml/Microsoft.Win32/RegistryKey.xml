@@ -40,26 +40,26 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要获取的实例<xref:Microsoft.Win32.RegistryKey>，使用的静态成员之一<xref:Microsoft.Win32.Registry>类。  
+ 若要获取的<xref:Microsoft.Win32.RegistryKey>实例, 请使用<xref:Microsoft.Win32.Registry>类的静态成员之一。  
   
- 在注册表的作用好似一台计算机上的操作系统和应用程序信息的中央存储库。 注册表组织层次结构格式，基于存储在它的元素的逻辑顺序 (请参阅<xref:Microsoft.Win32.Registry>此层次结构中的基本项)。 当将信息存储在注册表中，选择相应的位置所存储信息的类型。 请务必避免破坏其他应用程序创建的因为这可能会导致出现意外的行为，这些应用程序，还可以在自己的应用程序时产生不利影响的信息。  
+ 注册表充当计算机上的操作系统和应用程序的信息的中央存储库。 注册表是按照分层格式组织的, 它基于存储在其中的元素的逻辑排序 (有关此层次结构<xref:Microsoft.Win32.Registry>中的基本级别项, 请参阅)。 在注册表中存储信息时, 请根据存储的信息类型选择适当的位置。 请确保避免破坏其他应用程序创建的信息, 因为这可能会导致这些应用程序出现意外的行为, 并且还可能会对自己的应用程序造成不利影响。  
   
 > [!IMPORTANT]
->  此类型实现<xref:System.IDisposable>接口。 在使用完类型后，您应直接或间接释放类型。 若要直接释放类型，调用其<xref:System.IDisposable.Dispose%2A>中的方法`try` / `catch`块。 若要间接释放类型，请使用 `using`（在 C# 中）或 `Using`（在 Visual Basic 中）等语言构造。 有关详细信息，请参阅中的"使用对象实现 IDisposable"一节<xref:System.IDisposable>接口主题。  
+>  此类型实现<xref:System.IDisposable>接口。 在使用完类型后，您应直接或间接释放类型。 若要直接<xref:System.IDisposable.Dispose%2A>释放类型, 请`try` / `catch`在块中调用其方法。 若要间接释放类型，请使用 `using`（在 C# 中）或 `Using`（在 Visual Basic 中）等语言构造。 有关详细信息, 请参阅<xref:System.IDisposable>接口主题中的 "使用实现 IDisposable 的对象" 一节。  
   
- 注册表项是在注册表中，组织的基本单元，并可以在文件资源管理器中的文件夹进行比较。 特定密钥可以有子项，就像一个文件夹可以拥有子文件夹。 每个键可以删除，只要用户具有适当权限来执行此操作，并且不是基项或直接下面这些基项的位置。 每个密钥还可以有多个与其相关的值 （值可以比较到一个文件），用于存储信息-例如，在计算机上安装的应用程序有关的信息。 每个值存储信息，从而可以检索或更新时所需的一个特定的部分。 例如，可以创建<xref:Microsoft.Win32.RegistryKey>公司，在下找到密钥 HKEY_LOCAL_MACHINE\Software，然后一个用于你的公司创建每个应用程序的子项。 每个子项包含的信息特定于该应用程序，如颜色设置、 屏幕位置和大小，或识别文件扩展名。  
+ 注册表项是注册表中组织的基本单位, 可以与文件资源管理器中的文件夹进行比较。 某个特定键可以有子项, 就像文件夹可以有子文件夹一样。 只要用户具有相应的权限来执行此操作, 则每个密钥都可以删除, 并且该密钥不是基本密钥, 也不是基本密钥下直接的级别。 每个键还可以有多个关联的值 (可与文件进行比较), 这些值用于存储信息-例如, 有关计算机上安装的应用程序的信息。 每个值都包含一条特定的信息, 可在需要时检索或更新。 例如, 可以在密钥 HKEY_LOCAL_MACHINE\Software 下<xref:Microsoft.Win32.RegistryKey>为公司创建, 然后为公司创建的每个应用程序创建子项。 每个子项保存特定于该应用程序的信息, 如颜色设置、屏幕位置和大小, 或者可识别的文件扩展名。  
   
- 请注意，存储在注册表中的信息可供其他应用程序和用户，因此不应存储安全数据或关键应用程序信息。  
+ 请注意, 存储在注册表中的信息可供其他应用程序和用户使用, 因此不应用于存储安全数据或关键应用程序信息。  
   
 > [!CAUTION]
->  不会公开<xref:Microsoft.Win32.RegistryKey>，恶意程序无法创建数千个无意义的子项或键/值对的方式中的对象。 例如，不允许调用方可以输入任意键或值。  
+>  不要以这样<xref:Microsoft.Win32.RegistryKey>的方式公开对象: 恶意程序可能会创建数千个无意义子项或键/值对。 例如, 不允许调用方输入任意密钥或值。  
   
- 从开始[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]，注册表项的长度不再限制为 255 个字符。  
+ 从开始, 注册表项的长度不再限制为255个字符。 [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]  
   
    
   
 ## Examples  
- 下面的代码示例演示如何 HKEY_CURRENT_USER 下创建子项、 操作其内容，并删除的子项。  
+ 下面的代码示例演示如何在 HKEY_CURRENT_USER 下创建一个子项, 操作其内容, 然后删除该子项。  
   
  [!code-cpp[Microsoft.Win32.RegistryKey2#1](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CPP/source.cpp#1)]
  [!code-csharp[Microsoft.Win32.RegistryKey2#1](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CS/source.cs#1)]
@@ -101,14 +101,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在系统键上调用此方法不会影响，因为永远不会关闭系统密钥。  
+ 对系统键调用此方法不起任何作用, 因为系统密钥永远不会关闭。  
   
- 此方法不执行任何操作的实例上调用`RegistryKey`已关闭。  
+ 如果在已关闭`RegistryKey`的实例上调用此方法, 则此方法不执行任何操作。  
   
    
   
 ## Examples  
- 此代码示例是为提供一个更大示例的一部分<xref:Microsoft.Win32.RegistryKey>类。  
+ 此代码示例是为<xref:Microsoft.Win32.RegistryKey>类提供的更大示例的一部分。  
   
  [!code-cpp[Microsoft.Win32.RegistryKey2#4](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CPP/source.cpp#4)]
  [!code-csharp[Microsoft.Win32.RegistryKey2#4](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CS/source.cs#4)]
@@ -166,15 +166,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要执行此操作，用户必须具有注册表层次结构中的权限在此级别和更低版本。  
+ 要执行此操作, 用户必须在注册表层次结构中具有此级别和下面的权限。  
   
 > [!CAUTION]
->  不会公开<xref:Microsoft.Win32.RegistryKey>，恶意程序无法创建数千个无意义的子项或键/值对的方式中的对象。 例如，不允许调用方可以输入任意键或值。  
+>  不要以这样<xref:Microsoft.Win32.RegistryKey>的方式公开对象: 恶意程序可能会创建数千个无意义子项或键/值对。 例如, 不允许调用方输入任意密钥或值。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何 HKEY_CURRENT_USER 下创建子项、 操作其内容，并删除的子项。  
+ 下面的代码示例演示如何在 HKEY_CURRENT_USER 下创建一个子项, 操作其内容, 然后删除该子项。  
   
  [!code-cpp[Microsoft.Win32.RegistryKey2#1](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CPP/source.cpp#1)]
  [!code-csharp[Microsoft.Win32.RegistryKey2#1](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CS/source.cs#1)]
@@ -184,14 +184,14 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="subkey" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有创建或打开注册表项所需的权限。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />上其调用此方法关闭 （无法访问关闭的项）。</exception>
-        <exception cref="T:System.UnauthorizedAccessException"><see cref="T:Microsoft.Win32.RegistryKey" />无法写入; 例如，它不作为可写入项打开，或者用户没有必需的访问权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">调用此方法时所针对的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问已关闭的项）。</exception>
+        <exception cref="T:System.UnauthorizedAccessException">无法写入 <see cref="T:Microsoft.Win32.RegistryKey" />；例如，它不是作为可写入项打开的，或者用户没有必需的访问权限。</exception>
         <exception cref="T:System.IO.IOException">嵌套级别超过 510。  
   
 或 
 出现系统错误，如删除注册表项，或尝试在 <see cref="F:Microsoft.Win32.Registry.LocalMachine" /> 根中创建注册表项。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">无法修改指定的注册表项，如果存在，或创建注册表键如果的功能它尚不存在。 关联枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" />， <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Create" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于修改指定的注册表项 (如果存在) 或创建注册表项 (如果它尚不存在) 的功能。 关联的枚举<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" />:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Create" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Boolean)" />
       </Docs>
@@ -236,26 +236,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要执行此操作，用户必须具有注册表层次结构中的权限在此级别和更低版本。  
+ 要执行此操作, 用户必须在注册表层次结构中具有此级别和下面的权限。  
   
 > [!CAUTION]
->  不会公开<xref:Microsoft.Win32.RegistryKey>，恶意程序无法创建数千个无意义的子项或键/值对的方式中的对象。 例如，不允许调用方可以输入任意键或值。  
+>  不要以这样<xref:Microsoft.Win32.RegistryKey>的方式公开对象: 恶意程序可能会创建数千个无意义子项或键/值对。 例如, 不允许调用方输入任意密钥或值。  
   
- 若要使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法，您必须拥有的实例<xref:Microsoft.Win32.RegistryKey>类。 若要获取的实例<xref:Microsoft.Win32.RegistryKey>，使用的静态成员之一<xref:Microsoft.Win32.Registry>类。  
+ 若要使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法, 必须具有<xref:Microsoft.Win32.RegistryKey>类的实例。 若要获取的<xref:Microsoft.Win32.RegistryKey>实例, 请使用<xref:Microsoft.Win32.Registry>类的静态成员之一。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="subkey" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有创建或打开注册表项所需的权限。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="permissionCheck" /> 包含无效值。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />上其调用此方法关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.ObjectDisposedException">调用此方法时所针对的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问已关闭的项）。</exception>
         <exception cref="T:System.UnauthorizedAccessException">无法写入 <see cref="T:Microsoft.Win32.RegistryKey" />；例如，它不是作为可写入项打开的，或者用户没有必需的访问权限。</exception>
         <exception cref="T:System.IO.IOException">嵌套级别超过 510。  
   
 或 
 出现系统错误，如删除注册表项，或尝试在 <see cref="F:Microsoft.Win32.Registry.LocalMachine" /> 根中创建注册表项。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">无法修改指定的注册表项，如果存在，或创建注册表键如果的功能它尚不存在。 关联枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" />， <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Create" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于修改指定的注册表项 (如果存在) 或创建注册表项 (如果它尚不存在) 的功能。 关联的枚举<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" />:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Create" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Boolean)" />
       </Docs>
@@ -302,12 +302,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要执行此操作，用户必须具有注册表层次结构中的权限在此级别和更低版本。  
+ 要执行此操作, 用户必须在注册表层次结构中具有此级别和下面的权限。  
   
 > [!CAUTION]
->  不会公开<xref:Microsoft.Win32.RegistryKey>，恶意程序无法创建数千个无意义的子项或键/值对的方式中的对象。 例如，不允许调用方可以输入任意键或值。  
+>  不要以这样<xref:Microsoft.Win32.RegistryKey>的方式公开对象: 恶意程序可能会创建数千个无意义子项或键/值对。 例如, 不允许调用方输入任意密钥或值。  
   
- 若要使用<xref:Microsoft.Win32.RegistryKey.CreateSubKey%2A>方法，您必须拥有的实例<xref:Microsoft.Win32.RegistryKey>类。 若要获取的实例<xref:Microsoft.Win32.RegistryKey>，使用的静态成员之一<xref:Microsoft.Win32.Registry>类。  
+ 若要使用<xref:Microsoft.Win32.RegistryKey.CreateSubKey%2A>方法, 必须具有<xref:Microsoft.Win32.RegistryKey>类的实例。 若要获取的<xref:Microsoft.Win32.RegistryKey>实例, 请使用<xref:Microsoft.Win32.Registry>类的静态成员之一。  
   
  ]]></format>
         </remarks>
@@ -361,32 +361,32 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:Microsoft.Win32.RegistryKey.CreateSubKey%2A>方法创建一个具有指定的访问控制的注册表项`registrySecurity`参数。 <xref:Microsoft.Win32.RegistryKey>返回对象表示的注册表项，但该对象不受中指定的访问控制`registrySecurity`参数。  
+ 方法创建一个注册表项, 该注册表项具有`registrySecurity`参数指定的访问控制。 <xref:Microsoft.Win32.RegistryKey.CreateSubKey%2A> 返回<xref:Microsoft.Win32.RegistryKey>的对象表示注册表项, 但该对象不受`registrySecurity`参数中指定的访问控制限制。  
   
- 如果`permissionCheck`是<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree?displayProperty=nameWithType>，为读/写访问打开项。 如果`permissionCheck`是<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree?displayProperty=nameWithType>，为读取访问权限打开项。  
+ 如果`permissionCheck` 为<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree?displayProperty=nameWithType>, 则打开密钥以进行读/写访问。 如果`permissionCheck` 为<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree?displayProperty=nameWithType>, 则打开密钥以进行读访问。  
   
- 为了向后兼容的项打开用于读取和写入如果`permissionCheck`是<xref:Microsoft.Win32.RegistryKeyPermissionCheck.Default?displayProperty=nameWithType>和父项也有<xref:Microsoft.Win32.RegistryKeyPermissionCheck.Default?displayProperty=nameWithType>。 如果父项有任何其他设置，读/写状态是由父项的设置控制。  
+ 为实现向后兼容性, 如果`permissionCheck`为<xref:Microsoft.Win32.RegistryKeyPermissionCheck.Default?displayProperty=nameWithType> , 则打开密钥以进行读取和写入, 并且<xref:Microsoft.Win32.RegistryKeyPermissionCheck.Default?displayProperty=nameWithType>父键也具有。 如果父项具有任何其他设置, 则读取/写入状态由父项的设置控制。  
   
- 若要执行此操作，用户必须具有注册表层次结构中的权限在此级别和更低版本。  
+ 要执行此操作, 用户必须在注册表层次结构中具有此级别和下面的权限。  
   
 > [!CAUTION]
->  不会公开<xref:Microsoft.Win32.RegistryKey>，恶意程序无法创建数千个无意义的子项或键/值对的方式中的对象。 例如，不允许调用方可以输入任意键或值。  
+>  不要以这样<xref:Microsoft.Win32.RegistryKey>的方式公开对象: 恶意程序可能会创建数千个无意义子项或键/值对。 例如, 不允许调用方输入任意密钥或值。  
   
- 若要使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法，您必须拥有的实例<xref:Microsoft.Win32.RegistryKey>类。 若要获取的实例<xref:Microsoft.Win32.RegistryKey>，使用的静态成员之一<xref:Microsoft.Win32.Registry>类。  
+ 若要使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法, 必须具有<xref:Microsoft.Win32.RegistryKey>类的实例。 若要获取的<xref:Microsoft.Win32.RegistryKey>实例, 请使用<xref:Microsoft.Win32.Registry>类的静态成员之一。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="subkey" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有创建或打开注册表项所需的权限。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="permissionCheck" /> 包含无效值。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />上其调用此方法关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.ObjectDisposedException">调用此方法时所针对的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问已关闭的项）。</exception>
         <exception cref="T:System.UnauthorizedAccessException">无法写入当前 <see cref="T:Microsoft.Win32.RegistryKey" />；例如，它未作为可写入项打开，或用户没有必要的访问权限。</exception>
         <exception cref="T:System.IO.IOException">嵌套级别超过 510。  
   
 或 
 出现系统错误，如删除注册表项，或尝试在 <see cref="F:Microsoft.Win32.Registry.LocalMachine" /> 根中创建注册表项。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">无法修改指定的注册表项，如果存在，或创建注册表键如果的功能它尚不存在。 关联枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" />， <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Create" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于修改指定的注册表项 (如果存在) 或创建注册表项 (如果它尚不存在) 的功能。 关联的枚举<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" />:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Create" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Boolean)" />
       </Docs>
@@ -435,12 +435,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要执行此操作，用户必须具有注册表层次结构中的权限在此级别和更低版本。  
+ 要执行此操作, 用户必须在注册表层次结构中具有此级别和下面的权限。  
   
 > [!CAUTION]
->  不会公开<xref:Microsoft.Win32.RegistryKey>，恶意程序无法创建数千个无意义的子项或键/值对的方式中的对象。 例如，不允许调用方可以输入任意键或值。  
+>  不要以这样<xref:Microsoft.Win32.RegistryKey>的方式公开对象: 恶意程序可能会创建数千个无意义子项或键/值对。 例如, 不允许调用方输入任意密钥或值。  
   
- 若要使用<xref:Microsoft.Win32.RegistryKey.CreateSubKey%2A>方法，您必须拥有的实例<xref:Microsoft.Win32.RegistryKey>类。 若要获取的实例<xref:Microsoft.Win32.RegistryKey>，使用的静态成员之一<xref:Microsoft.Win32.Registry>类。  
+ 若要使用<xref:Microsoft.Win32.RegistryKey.CreateSubKey%2A>方法, 必须具有<xref:Microsoft.Win32.RegistryKey>类的实例。 若要获取的<xref:Microsoft.Win32.RegistryKey>实例, 请使用<xref:Microsoft.Win32.Registry>类的静态成员之一。  
   
  ]]></format>
         </remarks>
@@ -495,25 +495,25 @@
       <Docs>
         <param name="subkey">要创建或打开的子项的名称或路径。</param>
         <param name="permissionCheck">用于指定打开该项是进行读取还是读取/写入访问的枚举值之一。</param>
-        <param name="registryOptions">使用; 的注册表选项例如，用于创建可变的键。</param>
-        <param name="options">使用; 的注册表选项例如，用于创建可变的键。</param>
-        <summary>创建一个子项或打开子项以进行写访问，使用指定的权限检查和注册表选项。</summary>
+        <param name="registryOptions">要使用的注册表选项；例如，用于创建可变键的注册表选项。</param>
+        <param name="options">要使用的注册表选项；例如，用于创建可变键的注册表选项。</param>
+        <summary>使用指定的权限检查和注册表选项，创建或打开一个用于写访问的子项。</summary>
         <returns>新创建的子项，如果操作失败，则为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要获取当前<xref:Microsoft.Win32.RegistryKey>对象，指定一个空字符串 ("") 为`subkey`。  
+ 若要获取当前<xref:Microsoft.Win32.RegistryKey>对象, 请为`subkey`指定一个空字符串 ("")。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="subkey" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ObjectDisposedException">当前<see cref="T:Microsoft.Win32.RegistryKey" />对象已关闭 （无法访问关闭的项）。</exception>
-        <exception cref="T:System.UnauthorizedAccessException">当前<see cref="T:Microsoft.Win32.RegistryKey" />对象不能写入; 例如，它不作为可写入项打开或用户没有所需的访问权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">当前的 <see cref="T:Microsoft.Win32.RegistryKey" /> 对象已关闭（无法访问关闭的项）。</exception>
+        <exception cref="T:System.UnauthorizedAccessException">无法写入当前 <see cref="T:Microsoft.Win32.RegistryKey" /> 对象；例如，它未作为可写入项打开，或用户不具有所需的访问权限。</exception>
         <exception cref="T:System.IO.IOException">嵌套级别超过 510。  
   
-或 
-发生系统错误，例如，删除密钥或尝试创建中的键<see cref="F:Microsoft.Win32.Registry.LocalMachine" />根。</exception>
+- 或 - 
+发生系统错误，例如，删除了项，或者尝试在 <see cref="F:Microsoft.Win32.Registry.LocalMachine" /> 根中创建项。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有创建或打开注册表项所需的权限。</exception>
       </Docs>
     </Member>
@@ -559,17 +559,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要获取当前<xref:Microsoft.Win32.RegistryKey>对象，指定一个空字符串 ("") 为`subkey`。  
+ 若要获取当前<xref:Microsoft.Win32.RegistryKey>对象, 请为`subkey`指定一个空字符串 ("")。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="subkey" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ObjectDisposedException">当前<see cref="T:Microsoft.Win32.RegistryKey" />对象已关闭。 无法访问关闭的项。</exception>
-        <exception cref="T:System.UnauthorizedAccessException">当前<see cref="T:Microsoft.Win32.RegistryKey" />对象不能写入; 例如，它不作为可写入项打开或用户没有所需的访问权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">当前的 <see cref="T:Microsoft.Win32.RegistryKey" /> 对象被关闭。 无法访问已关闭的项。</exception>
+        <exception cref="T:System.UnauthorizedAccessException">无法写入当前 <see cref="T:Microsoft.Win32.RegistryKey" /> 对象；例如，它未作为可写入项打开，或用户不具有所需的访问权限。</exception>
         <exception cref="T:System.IO.IOException">嵌套级别超过 510。  
   
-或 
-发生系统错误，例如，删除密钥或尝试创建中的键<see cref="F:Microsoft.Win32.Registry.LocalMachine" />根。</exception>
+- 或 - 
+发生系统错误，例如，删除了项，或者尝试在 <see cref="F:Microsoft.Win32.Registry.LocalMachine" /> 根中创建项。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有创建或打开注册表项所需的权限。</exception>
       </Docs>
     </Member>
@@ -619,9 +619,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要删除子级子项，请使用<xref:Microsoft.Win32.RegistryKey.DeleteSubKeyTree%2A>。  
+ 若要删除子子项, <xref:Microsoft.Win32.RegistryKey.DeleteSubKeyTree%2A>请使用。  
   
- 删除注册表项时要格外小心。  
+ 删除注册表项时请小心。  
   
    
   
@@ -634,14 +634,14 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException"><paramref name="subkey" />有子级子项</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="subkey" />参数未指定有效的注册表项</exception>
+        <exception cref="T:System.InvalidOperationException"><paramref name="subkey" /> 有子级子项</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="subkey" /> 参数未指定有效的注册表项</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="subkey" /> 为 <see langword="null" /></exception>
-        <exception cref="T:System.Security.SecurityException">用户没有删除该密钥所需的权限。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />操作已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.Security.SecurityException">用户没有删除该项所需的权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">要操作的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">有关修改指定的注册表项的功能。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于修改指定注册表项的功能。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String)" />
@@ -685,26 +685,26 @@
       </Parameters>
       <Docs>
         <param name="subkey">要删除的子项的名称。 此字符串不区分大小写。</param>
-        <param name="throwOnMissingSubKey">指示在找不到指定子项的情况下是否引发异常。 如果此参数为<see langword="true" />和指定的子项不存在，则引发异常。 如果此参数为<see langword="false" />和指定的子项不存在，不执行任何操作。</param>
+        <param name="throwOnMissingSubKey">指示在找不到指定子项的情况下是否引发异常。 如果该参数为 <see langword="true" />，并且指定的子项不存在，则引发异常。 如果该参数为 <see langword="false" />，并且指定的子项不存在，则不执行任何操作。</param>
         <summary>删除指定的子项，并指定在找不到该子项时是否引发异常。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要删除子级子项，请使用<xref:Microsoft.Win32.RegistryKey.DeleteSubKeyTree%2A>。  
+ 若要删除子子项, <xref:Microsoft.Win32.RegistryKey.DeleteSubKeyTree%2A>请使用。  
   
- 删除注册表项时要格外小心。  
+ 删除注册表项时请小心。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException"><paramref name="subkey" /> 有子级子项。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="subkey" /> 未指定有效的注册表项，并<paramref name="throwOnMissingSubKey" />是<see langword="true" />。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="subkey" /> 未指定有效的注册表项，并且 <paramref name="throwOnMissingSubKey" /> 为 <see langword="true" />。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="subkey" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.Security.SecurityException">用户没有删除该密钥所需的权限。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />操作已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.Security.SecurityException">用户没有删除该项所需的权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">要操作的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">有关修改指定的注册表项的功能。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于修改指定注册表项的功能。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String)" />
@@ -718,7 +718,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>删除子项和任何子级子项递归，具有可选的异常处理。</summary>
+        <summary>使用可选的异常处理方以递归方式删除一个子项以及任何子级子项。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="DeleteSubKeyTree">
@@ -762,15 +762,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须具有适当权限才能删除子项，并且其树。  
+ 您必须具有相应的权限才能删除该子项及其树。  
   
 > [!CAUTION]
->  删除特定密钥将在树中删除该密钥下的所有项。 将不提供任何警告。 如果你想要删除一个子项，仅在不必须使用任何子级子项时<xref:Microsoft.Win32.RegistryKey.DeleteSubKey%2A>方法。  
+>  删除特定的密钥会删除树中该密钥下面的所有条目。 不会提供任何警告。 如果只希望在子项没有子项时删除子项, 请使用<xref:Microsoft.Win32.RegistryKey.DeleteSubKey%2A>方法。  
   
    
   
 ## Examples  
- 此代码示例是为提供一个更大示例的一部分<xref:Microsoft.Win32.RegistryKey>类。  
+ 此代码示例是为<xref:Microsoft.Win32.RegistryKey>类提供的更大示例的一部分。  
   
  [!code-cpp[Microsoft.Win32.RegistryKey2#4](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CPP/source.cpp#4)]
  [!code-csharp[Microsoft.Win32.RegistryKey2#4](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CS/source.cs#4)]
@@ -784,11 +784,11 @@
 或 
  <paramref name="subkey" /> 未指定有效的注册表子项。</exception>
         <exception cref="T:System.IO.IOException">发生了 I/O 错误。</exception>
-        <exception cref="T:System.Security.SecurityException">用户没有删除该密钥所需的权限。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />操作已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.Security.SecurityException">用户没有删除该项所需的权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">要操作的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">有关修改指定的注册表项的功能。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于修改指定注册表项的功能。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String)" />
@@ -834,19 +834,19 @@
       </Parameters>
       <Docs>
         <param name="subkey">要删除的子项的名称。 此字符串不区分大小写。</param>
-        <param name="throwOnMissingSubKey">指示在找不到指定子项的情况下是否引发异常。 如果此参数为<see langword="true" />和指定的子项不存在，则引发异常。 如果此参数为<see langword="false" />和指定的子项不存在，不执行任何操作。</param>
+        <param name="throwOnMissingSubKey">指示在找不到指定子项的情况下是否引发异常。 如果该参数为 <see langword="true" />，并且指定的子项不存在，则引发异常。 如果该参数为 <see langword="false" />，并且指定的子项不存在，则不执行任何操作。</param>
         <summary>以递归方式删除指定的子项和任何子级子项，并指定在找不到子项时是否引发异常。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentException">尝试删除树的根配置单元。  
   
 或 
- <paramref name="subkey" /> 未指定有效的注册表子项，并<paramref name="throwOnMissingSubKey" />是<see langword="true" />。</exception>
+ <paramref name="subkey" /> 未指定有效的注册表子项，并且 <paramref name="throwOnMissingSubKey" /> 为 <see langword="true" />。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="subkey" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问已关闭的项）。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <exception cref="T:System.Security.SecurityException">用户没有删除该密钥所需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">有关修改指定的注册表项的功能。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <exception cref="T:System.Security.SecurityException">用户没有删除该项所需的权限。</exception>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于修改指定注册表项的功能。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
     <MemberGroup MemberName="DeleteValue">
@@ -895,12 +895,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在 Windows 95、 Windows 98、 Windows 98 Second Edition 和 Windows Millennium Edition 上，指定空字符串作为`name`参数不会删除默认值。  
+ 在 windows 95、windows 98、windows 98 Second edition 和 windows Millennium edition 上, 为`name`参数指定一个空字符串不会删除默认值。  
   
    
   
 ## Examples  
- 此代码示例是为提供一个更大示例的一部分<xref:Microsoft.Win32.RegistryKey>类。  
+ 此代码示例是为<xref:Microsoft.Win32.RegistryKey>类提供的更大示例的一部分。  
   
  [!code-cpp[Microsoft.Win32.RegistryKey2#3](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CPP/source.cpp#3)]
  [!code-csharp[Microsoft.Win32.RegistryKey2#3](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CS/source.cs#3)]
@@ -910,9 +910,9 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="name" /> 不是对值的有效引用。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有删除该值所需的权限。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />操作已关闭 （无法访问关闭的项）。</exception>
-        <exception cref="T:System.UnauthorizedAccessException"><see cref="T:Microsoft.Win32.RegistryKey" />操作是只读的。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">用于删除指定的注册表项的功能。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" /></permission>
+        <exception cref="T:System.ObjectDisposedException">要操作的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
+        <exception cref="T:System.UnauthorizedAccessException">正在处理的 <see cref="T:Microsoft.Win32.RegistryKey" /> 为只读。</exception>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于删除指定的注册表项。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Boolean)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetValue(System.String)" />
@@ -957,26 +957,26 @@
       </Parameters>
       <Docs>
         <param name="name">要删除的值的名称。</param>
-        <param name="throwOnMissingValue">指示在找不到指定值的情况下是否引发异常。 如果此参数为<see langword="true" />和指定的值不存在，则引发异常。 如果此参数为<see langword="false" />和指定的值不存在，不执行任何操作。</param>
+        <param name="throwOnMissingValue">指示在找不到指定值的情况下是否引发异常。 如果该参数为 <see langword="true" />，并且指定的值不存在，则引发异常。 如果该参数为 <see langword="false" />，并且指定的值不存在，则不执行任何操作。</param>
         <summary>从此项中删除指定的值，并指定在找不到该值时是否引发异常。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`throwOnMissingValue`是`false`，没有办法指示如果已成功删除，而无需随后尝试访问刚刚删除的值。 因此，这种方式在注册表中删除值时要小心。  
+ 如果`throwOnMissingValue` 为`false`, 则无法判断删除是否成功, 无需再尝试访问刚删除的值。 因此, 以这种方式从注册表中删除值时, 请务必小心。  
   
- 在 Windows 95、 Windows 98、 Windows 98 Second Edition 和 Windows Millennium Edition 上，指定空字符串作为`name`参数不会删除默认值。  
+ 在 windows 95、windows 98、windows 98 Second edition 和 windows Millennium edition 上, 为`name`参数指定一个空字符串不会删除默认值。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="name" /> 不是为值的有效引用和<paramref name="throwOnMissingValue" />是<see langword="true" />。  
+        <exception cref="T:System.ArgumentException"><paramref name="name" /> 不是对值的有效引用，并且 <paramref name="throwOnMissingValue" /> 为 <see langword="true" />。  
   
 或 
  <paramref name="name" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有删除该值所需的权限。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />操作已关闭 （无法访问关闭的项）。</exception>
-        <exception cref="T:System.UnauthorizedAccessException"><see cref="T:Microsoft.Win32.RegistryKey" />操作是只读的。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">用于删除指定的注册表项的功能。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" /></permission>
+        <exception cref="T:System.ObjectDisposedException">要操作的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
+        <exception cref="T:System.UnauthorizedAccessException">正在处理的 <see cref="T:Microsoft.Win32.RegistryKey" /> 为只读。</exception>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于删除指定的注册表项。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Boolean)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetValue(System.String)" />
@@ -1023,9 +1023,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在完成使用 `Dispose` 后，应调用 <xref:Microsoft.Win32.RegistryKey>。 `Dispose` 方法使 <xref:Microsoft.Win32.RegistryKey> 处于不可用状态。 在调用`Dispose`，必须释放对所有引用<xref:Microsoft.Win32.RegistryKey>这样垃圾回收器才能收回内存的<xref:Microsoft.Win32.RegistryKey>占用。  
+ 在完成使用 `Dispose` 后，应调用 <xref:Microsoft.Win32.RegistryKey>。 `Dispose` 方法使 <xref:Microsoft.Win32.RegistryKey> 处于不可用状态。 调用`Dispose`后, 必须释放对的<xref:Microsoft.Win32.RegistryKey>所有引用, 以便垃圾回收器能够<xref:Microsoft.Win32.RegistryKey>回收占用的内存。  
   
- 有关详细信息，请参阅[清理了非托管资源](~/docs/standard/garbage-collection/unmanaged.md)并[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
+ 有关详细信息, 请参阅[清理非托管资源](~/docs/standard/garbage-collection/unmanaged.md)和[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
   
 > [!NOTE]
 >  每次释放对 `Dispose` 的最后一个引用前，均应调用 <xref:Microsoft.Win32.RegistryKey>。 否则，在垃圾回收器调用 <xref:Microsoft.Win32.RegistryKey> 对象的 `Finalize` 方法之前，该对象正在使用的资源不会被释放。  
@@ -1054,7 +1054,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>关闭该密钥和其刷新到磁盘如果内容已被修改。</summary>
+        <summary>关闭该项，如果内容已修改，则将其刷新到磁盘。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1096,13 +1096,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不需要调用`Flush`写出对项的更改。 注册表更改刷新到磁盘时注册表使用其惰性刷新器。 惰性刷新会自动地定期系统指定的时间间隔后。 注册表更改也会刷新到磁盘上的系统关闭。  
+ 不需要调用`Flush`来写出对键的更改。 当注册表使用其惰性惰性时, 注册表更改会刷新到磁盘。 在系统指定的时间间隔后, 延迟刷新会自动进行。 系统关闭时, 注册表更改也会刷新到磁盘。  
   
- 与不同<xref:Microsoft.Win32.RegistryKey.Close%2A>，则`Flush`函数将返回仅当所有数据都写入注册表。  
+ 与<xref:Microsoft.Win32.RegistryKey.Close%2A>不同的`Flush`是, 仅当所有数据都已写入注册表时, 函数才返回。  
   
- `Flush`函数还可能写出的部分或所有其他密钥。 过度调用此函数可以具有负面影响应用程序的性能。  
+ `Flush`函数还可能会写出或所有其他键的部分。 过度调用此函数可能对应用程序的性能产生负面影响。  
   
- 应用程序应只调用`Flush`如果它必须是绝对某些注册表更改记录到磁盘。 一般情况下，`Flush`很少需要使用即使有的话。  
+ 仅当应用程序必须`Flush`为绝对时才应调用, 以便将注册表更改记录到磁盘中。 通常情况`Flush`下, 很少需要使用。  
   
  ]]></format>
         </remarks>
@@ -1162,8 +1162,8 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="handle" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有执行此操作所需的权限。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
     <Member MemberName="FromHandle">
@@ -1211,9 +1211,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `view`后续操作，例如打开子项中使用此方法的参数。  
+ 此`view`方法的参数在后续操作 (如打开子项) 中使用。  
   
- 如果`view`是<xref:Microsoft.Win32.RegistryView.Registry64>但是计算机正在运行 32 位操作系统，则返回的键将使用<xref:Microsoft.Win32.RegistryView.Registry32>视图。  
+ 如果`view` <xref:Microsoft.Win32.RegistryView.Registry32>为<xref:Microsoft.Win32.RegistryView.Registry64>但计算机运行的是32位操作系统, 则返回的密钥将使用视图。  
   
  ]]></format>
         </remarks>
@@ -1221,8 +1221,8 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="handle" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有执行此操作所需的权限。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
     <MemberGroup MemberName="GetAccessControl">
@@ -1264,19 +1264,19 @@
       <Parameters />
       <Docs>
         <summary>返回当前注册表项的访问控制安全性。</summary>
-        <returns>一个对象，表示由当前的注册表项中描述的访问控制权限<see cref="T:Microsoft.Win32.RegistryKey" />。</returns>
+        <returns>一个对象，该对象描述针对由当前 <see cref="T:Microsoft.Win32.RegistryKey" /> 表示的注册表项的访问控制权限。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法的重载是等效于调用<xref:Microsoft.Win32.RegistryKey.GetAccessControl%28System.Security.AccessControl.AccessControlSections%29>方法的重载下列标志的按位组合： <xref:System.Security.AccessControl.AccessControlSections.Access?displayProperty=nameWithType>， <xref:System.Security.AccessControl.AccessControlSections.Owner?displayProperty=nameWithType>，和<xref:System.Security.AccessControl.AccessControlSections.Group?displayProperty=nameWithType>。 该重载可用于搜索的其他权限。  
+ 此方法重载<xref:Microsoft.Win32.RegistryKey.GetAccessControl%28System.Security.AccessControl.AccessControlSections%29>等效于调用具有以下标志的按位组合的方法重载: <xref:System.Security.AccessControl.AccessControlSections.Access?displayProperty=nameWithType>、 <xref:System.Security.AccessControl.AccessControlSections.Owner?displayProperty=nameWithType>和<xref:System.Security.AccessControl.AccessControlSections.Group?displayProperty=nameWithType>。 您可以使用该重载搜索其他权限。  
   
- 用户必须具有<xref:System.Security.AccessControl.RegistryRights.ReadPermissions?displayProperty=nameWithType>权限才能调用此方法。  
+ 用户必须有<xref:System.Security.AccessControl.RegistryRights.ReadPermissions?displayProperty=nameWithType>权调用此方法。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Security.SecurityException">用户没有所需的权限。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />操作已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.Security.SecurityException">用户没有必要的权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">要操作的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
         <exception cref="T:System.InvalidOperationException">当前项已被删除。</exception>
       </Docs>
     </Member>
@@ -1311,21 +1311,21 @@
         <Parameter Name="includeSections" Type="System.Security.AccessControl.AccessControlSections" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="includeSections">枚举值的按位组合，指定要获取安全信息的类型。</param>
+        <param name="includeSections">枚举值的按位组合，它指定要获取的安全信息类型。</param>
         <summary>返回当前注册表项的访问控制安全性的指定部分。</summary>
-        <returns>一个对象，表示由当前的注册表项中描述的访问控制权限<see cref="T:Microsoft.Win32.RegistryKey" />。</returns>
+        <returns>一个对象，该对象描述针对由当前 <see cref="T:Microsoft.Win32.RegistryKey" /> 表示的注册表项的访问控制权限。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要请求当前向用户授予的访问权限，指定以下标志的按位组合： <xref:System.Security.AccessControl.AccessControlSections.Access?displayProperty=nameWithType>， <xref:System.Security.AccessControl.AccessControlSections.Owner?displayProperty=nameWithType>，和<xref:System.Security.AccessControl.AccessControlSections.Group?displayProperty=nameWithType>。 或者，可以使用<xref:Microsoft.Win32.RegistryKey.GetAccessControl>方法重载，它指定确切的值的组合。  
+ 若要请求当前授予给用户的访问权限, 请指定以下标志的按位组合<xref:System.Security.AccessControl.AccessControlSections.Access?displayProperty=nameWithType>: <xref:System.Security.AccessControl.AccessControlSections.Owner?displayProperty=nameWithType>、和<xref:System.Security.AccessControl.AccessControlSections.Group?displayProperty=nameWithType>。 或者, 您可以使用<xref:Microsoft.Win32.RegistryKey.GetAccessControl>方法重载, 它指定确切的值组合。  
   
- 用户必须具有<xref:System.Security.AccessControl.RegistryRights.ReadPermissions?displayProperty=nameWithType>权限才能调用此方法。  
+ 用户必须有<xref:System.Security.AccessControl.RegistryRights.ReadPermissions?displayProperty=nameWithType>权调用此方法。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Security.SecurityException">用户没有所需的权限。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />操作已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.Security.SecurityException">用户没有必要的权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">要操作的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
         <exception cref="T:System.InvalidOperationException">当前项已被删除。</exception>
       </Docs>
     </Member>
@@ -1368,12 +1368,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法执行不是以递归方式查找名称。 它调用它的基级上返回的名称。  
+ 此方法不会以递归方式查找名称。 它将返回它所调用的基本级别上的名称。  
   
    
   
 ## Examples  
- 此代码示例是为提供一个更大示例的一部分<xref:Microsoft.Win32.RegistryKey>类。  
+ 此代码示例是为<xref:Microsoft.Win32.RegistryKey>类提供的更大示例的一部分。  
   
  [!code-cpp[Microsoft.Win32.RegistryKey2#2](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CPP/source.cpp#2)]
  [!code-csharp[Microsoft.Win32.RegistryKey2#2](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CS/source.cs#2)]
@@ -1382,10 +1382,10 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">用户没有读取该项所需的权限。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />操作已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.ObjectDisposedException">要操作的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <exception cref="T:System.IO.IOException">出现系统错误，例如当前项已被删除。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">有关从注册表中读取的功能。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
+        <exception cref="T:System.IO.IOException">发生系统错误，例如，当前项已被删除。</exception>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于读取注册表的能力。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
         <altmember cref="P:Microsoft.Win32.RegistryKey.SubKeyCount" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetValueNames" />
       </Docs>
@@ -1436,30 +1436,30 @@
       </Parameters>
       <Docs>
         <param name="name">要检索的值的名称。 此字符串不区分大小写。</param>
-        <summary>检索与指定名称关联的值。 返回<see langword="null" />如果注册表中不存在名称/值对。</summary>
-        <returns>与关联的值<paramref name="name" />，或<see langword="null" />如果<paramref name="name" />找不到。</returns>
+        <summary>检索与指定名称关联的值。 如果注册表中不存在名称/值对，则返回 <see langword="null" />。</summary>
+        <returns>与 <paramref name="name" /> 关联的值；如果未找到 <paramref name="name" />，则为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  注册表项可以具有不与任何名称相关联的一个值。 在注册表编辑器中显示此未命名的值时，而不是名称将显示字符串"(Default)"。 若要检索此未命名的值，指定`null`或空字符串 ("") 为`name`。  
+>  注册表项可以有一个不与任何名称关联的值。 在注册表编辑器中显示此未命名值时, 将显示字符串 "(默认值)", 而不是名称。 若要检索此未命名值, `null`请为`name`指定或为空字符串 ("")。  
   
- 当<xref:Microsoft.Win32.RegistryKey.GetValue%2A>方法检索可扩充字符串值 (<xref:Microsoft.Win32.RegistryValueKind.ExpandString?displayProperty=nameWithType>)，它将展开使用本地环境中的数据的环境字符串。 若要从远程计算机上的注册表中检索可扩充字符串值，请使用<xref:Microsoft.Win32.RegistryKey.GetValue%28System.String%2CSystem.Object%2CMicrosoft.Win32.RegistryValueOptions%29>方法重载来指定不希望扩展的环境字符串。  
-  
-> [!NOTE]
->  如果已存储为一个字符串值，该值包含对环境变量的可展开引用 (<xref:Microsoft.Win32.RegistryValueKind.String?displayProperty=nameWithType>)，而不是可扩展字符串 (<xref:Microsoft.Win32.RegistryValueKind.ExpandString?displayProperty=nameWithType>)，<xref:Microsoft.Win32.RegistryKey.GetValue%2A>不会展开它。 检索通过调用后，可以扩展此类字符串<xref:System.Environment.ExpandEnvironmentVariables%2A>方法。  
+ 当方法检索可扩充字符串值 (<xref:Microsoft.Win32.RegistryValueKind.ExpandString?displayProperty=nameWithType>) 时, 它将使用本地环境中的数据展开环境字符串。 <xref:Microsoft.Win32.RegistryKey.GetValue%2A> 若要从远程计算机上的注册表中检索可扩充字符串值, 请<xref:Microsoft.Win32.RegistryKey.GetValue%28System.String%2CSystem.Object%2CMicrosoft.Win32.RegistryValueOptions%29>使用方法重载来指定你不希望扩展环境字符串。  
   
 > [!NOTE]
->  要从中检索数据的建议<xref:Microsoft.Win32.Registry.PerformanceData>密钥是使用<xref:System.Diagnostics.PerformanceCounter>类而不是<xref:Microsoft.Win32.RegistryKey.GetValue%2A?displayProperty=nameWithType>方法。  
+>  如果包含对环境变量的可扩充引用的值存储为字符串 (<xref:Microsoft.Win32.RegistryValueKind.String?displayProperty=nameWithType>), 而不是作为可扩充字符串 (<xref:Microsoft.Win32.RegistryValueKind.ExpandString?displayProperty=nameWithType>), <xref:Microsoft.Win32.RegistryKey.GetValue%2A>则不会对其进行扩展。 您可以通过调用<xref:System.Environment.ExpandEnvironmentVariables%2A>方法来扩展此类字符串。  
+  
+> [!NOTE]
+>  从<xref:Microsoft.Win32.Registry.PerformanceData>键检索数据的建议方法是<xref:System.Diagnostics.PerformanceCounter>使用类, 而<xref:Microsoft.Win32.RegistryKey.GetValue%2A?displayProperty=nameWithType>不是方法。  
 >   
->  <xref:Microsoft.Win32.RegistryKey.GetValue%2A> 不支持类型为 REG_NONE 或 REG_LINK 中读取的值。  在这两种情况下，默认值 (`null`) 返回而不是实际值。  
+>  <xref:Microsoft.Win32.RegistryKey.GetValue%2A>不支持读取 REG_NONE 或 REG_LINK 类型的值。  在这两种情况下, 将`null`返回默认值 (), 而不是实际值。  
   
    
   
 ## Examples  
- 下面的代码示例创建一个测试项，并将不同的数据类型的值添加到该密钥。 该示例然后读取名称/值对，并将其显示在控制台中，使用<xref:Microsoft.Win32.RegistryKey.GetValueKind%2A>方法来检索相应的注册表数据类型。  
+ 下面的代码示例创建一个测试键, 并向该键添加不同数据类型的值。 然后, 该示例读取名称/值对, 并使用<xref:Microsoft.Win32.RegistryKey.GetValueKind%2A>方法检索相应的注册表数据类型, 将其显示在控制台中。  
   
  [!code-cpp[Microsoft.Win32.RegistryValueKind#1](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryValueKind/CPP/source.cpp#1)]
  [!code-csharp[Microsoft.Win32.RegistryValueKind#1](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryValueKind/CS/source.cs#1)]
@@ -1467,12 +1467,12 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Security.SecurityException">用户没有读取注册表项中所需的权限。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />包含指定值是否关闭 （无法访问关闭的项）。</exception>
-        <exception cref="T:System.IO.IOException"><see cref="T:Microsoft.Win32.RegistryKey" />包含指定值已标记为删除。</exception>
+        <exception cref="T:System.Security.SecurityException">该用户没有读取注册表项所需的权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">包含指定值的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
+        <exception cref="T:System.IO.IOException">包含指定值的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已标记为删除。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">若要从注册表中读取。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
-        <permission cref="T:System.Security.Permissions.EnvironmentPermission">若要读取注册表项的类型 REG_EXPAND_SZ。 关联的枚举： <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">从注册表进行读取。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
+        <permission cref="T:System.Security.Permissions.EnvironmentPermission">读取类型为 REG_EXPAND_SZ 的注册表项。 关联的枚举:<see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetValueNames" />
         <altmember cref="Overload:Microsoft.Win32.RegistryKey.SetValue" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String)" />
@@ -1517,32 +1517,32 @@
       </Parameters>
       <Docs>
         <param name="name">要检索的值的名称。 此字符串不区分大小写。</param>
-        <param name="defaultValue">要返回的值<paramref name="name" />不存在。</param>
+        <param name="defaultValue">当 <paramref name="name" /> 不存在时返回的值。</param>
         <summary>检索与指定名称关联的值。 如果未找到名称，则返回你提供的默认值。</summary>
-        <returns>与关联的值<paramref name="name" />，嵌入的任何环境变量展开，或<paramref name="defaultValue" />如果<paramref name="name" />找不到。</returns>
+        <returns>与 <paramref name="name" /> 关联的值，不展开嵌入的任何环境变量；如果未找到 <paramref name="defaultValue" />，则为 <paramref name="name" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 请使用此重载<xref:Microsoft.Win32.RegistryKey.GetValue%2A>以处理在尚未-不存在名称的情况，第一次你的应用程序运行。 只要调用此重载，可使用`defaultValue`参数来指定要返回的值`name`不存在。  
+ 使用此重载<xref:Microsoft.Win32.RegistryKey.GetValue%2A>来处理名称尚不存在的情况, 例如, 首次运行应用程序时。 每次调用此重载时, 如果`defaultValue` `name`不存在, 请使用参数来指定要返回的值。  
   
 > [!NOTE]
->  注册表项可以具有不与任何名称相关联的一个值。 在注册表编辑器中显示此未命名的值时，而不是名称将显示字符串"(Default)"。 若要检索此未命名的值，指定`null`或空字符串 ("") 为`name`。  
+>  注册表项可以有一个不与任何名称关联的值。 在注册表编辑器中显示此未命名值时, 将显示字符串 "(默认值)", 而不是名称。 若要检索此未命名值, `null`请为`name`指定或为空字符串 ("")。  
   
- 当<xref:Microsoft.Win32.RegistryKey.GetValue%2A>方法检索可扩充字符串值 (<xref:Microsoft.Win32.RegistryValueKind.ExpandString?displayProperty=nameWithType>)，它将展开使用本地环境中的数据的环境字符串。 若要从远程计算机上的注册表中检索可扩充字符串值，请使用<xref:Microsoft.Win32.RegistryKey.GetValue%2A>重载来指定不希望扩展的环境字符串。  
-  
-> [!NOTE]
->  如果已存储为一个字符串值，该值包含对环境变量的可展开引用 (<xref:Microsoft.Win32.RegistryValueKind.String?displayProperty=nameWithType>)，而不是可扩展字符串 (<xref:Microsoft.Win32.RegistryValueKind.ExpandString?displayProperty=nameWithType>)，则<xref:Microsoft.Win32.RegistryKey.GetValue%2A>方法不会展开。 检索通过调用后，可以扩展此类字符串<xref:System.Environment.ExpandEnvironmentVariables%2A>方法。  
+ 当方法检索可扩充字符串值 (<xref:Microsoft.Win32.RegistryValueKind.ExpandString?displayProperty=nameWithType>) 时, 它将使用本地环境中的数据展开环境字符串。 <xref:Microsoft.Win32.RegistryKey.GetValue%2A> 若要从远程计算机上的注册表中检索可扩充字符串值, 请<xref:Microsoft.Win32.RegistryKey.GetValue%2A>使用重载来指定你不希望扩展环境字符串。  
   
 > [!NOTE]
->  要从中检索数据的建议<xref:Microsoft.Win32.Registry.PerformanceData>密钥是使用<xref:System.Diagnostics.PerformanceCounter>类而不是<xref:Microsoft.Win32.RegistryKey.GetValue%2A?displayProperty=nameWithType>方法。  
+>  如果包含对环境变量的可扩充引用的值存储为字符串 (<xref:Microsoft.Win32.RegistryValueKind.String?displayProperty=nameWithType>), 而不是作为可扩充字符串 (<xref:Microsoft.Win32.RegistryValueKind.ExpandString?displayProperty=nameWithType>), 则该<xref:Microsoft.Win32.RegistryKey.GetValue%2A>方法不会将其展开。 您可以通过调用<xref:System.Environment.ExpandEnvironmentVariables%2A>方法来扩展此类字符串。  
+  
+> [!NOTE]
+>  从<xref:Microsoft.Win32.Registry.PerformanceData>键检索数据的建议方法是<xref:System.Diagnostics.PerformanceCounter>使用类, 而<xref:Microsoft.Win32.RegistryKey.GetValue%2A?displayProperty=nameWithType>不是方法。  
 >   
->  <xref:Microsoft.Win32.RegistryKey.GetValue%2A> 不支持类型为 REG_NONE 或 REG_LINK 中读取的值。  在这两种情况下，默认值 (`null`) 返回而不是实际值。  
+>  <xref:Microsoft.Win32.RegistryKey.GetValue%2A>不支持读取 REG_NONE 或 REG_LINK 类型的值。  在这两种情况下, 将`null`返回默认值 (), 而不是实际值。  
   
    
   
 ## Examples  
- 下面的代码示例将创建一个测试项具有值，并检索该值。 然后，此示例尝试检索该密钥; 不存在的值在这种情况下<xref:Microsoft.Win32.RegistryKey.GetValue%2A>方法将返回指定的默认值。  
+ 下面的代码示例创建一个具有值的测试键并检索该值。 然后, 该示例尝试从该键检索不存在的值;在这种情况<xref:Microsoft.Win32.RegistryKey.GetValue%2A>下, 该方法将返回指定的默认值。  
   
  [!code-cpp[Classic RegistryKey.GetValue Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic RegistryKey.GetValue Example/CPP/source.cpp#1)]
  [!code-csharp[Classic RegistryKey.GetValue Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic RegistryKey.GetValue Example/CS/source.cs#1)]
@@ -1550,12 +1550,12 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Security.SecurityException">用户没有读取注册表项中所需的权限。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />包含指定值是否关闭 （无法访问关闭的项）。</exception>
-        <exception cref="T:System.IO.IOException"><see cref="T:Microsoft.Win32.RegistryKey" />包含指定值已标记为删除。</exception>
+        <exception cref="T:System.Security.SecurityException">该用户没有读取注册表项所需的权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">包含指定值的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
+        <exception cref="T:System.IO.IOException">包含指定值的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已标记为删除。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">若要从注册表中读取。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
-        <permission cref="T:System.Security.Permissions.EnvironmentPermission">若要读取注册表项的类型 REG_EXPAND_SZ。 关联的枚举： <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">从注册表进行读取。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
+        <permission cref="T:System.Security.Permissions.EnvironmentPermission">读取类型为 REG_EXPAND_SZ 的注册表项。 关联的枚举:<see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetValueNames" />
         <altmember cref="Overload:Microsoft.Win32.RegistryKey.SetValue" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String)" />
@@ -1603,27 +1603,27 @@
       </Parameters>
       <Docs>
         <param name="name">要检索的值的名称。 此字符串不区分大小写。</param>
-        <param name="defaultValue">要返回的值<paramref name="name" />不存在。</param>
+        <param name="defaultValue">当 <paramref name="name" /> 不存在时返回的值。</param>
         <param name="options">枚举值之一，它指定对所检索值的可选处理方式。</param>
         <summary>检索与指定的名称和检索选项关联的值。 如果未找到名称，则返回你提供的默认值。</summary>
-        <returns>与关联的值<paramref name="name" />并根据指定处理<paramref name="options" />，或<paramref name="defaultValue" />如果<paramref name="name" />找不到。</returns>
+        <returns>与 <paramref name="name" /> 关联的值，按指定的 <paramref name="options" /> 对其进行处理；如果未找到 <paramref name="defaultValue" />，则为 <paramref name="name" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此重载用于指定所检索值的特殊处理。 例如，可以指定<xref:Microsoft.Win32.RegistryValueOptions.DoNotExpandEnvironmentNames?displayProperty=nameWithType>检索类型的注册表值时<xref:Microsoft.Win32.RegistryValueKind.ExpandString?displayProperty=nameWithType>要检索的字符串而不展开嵌入的环境变量。  
+ 使用此重载可指定对检索到的值进行特殊处理。 例如, 可以指定<xref:Microsoft.Win32.RegistryValueOptions.DoNotExpandEnvironmentNames?displayProperty=nameWithType>在检索类型<xref:Microsoft.Win32.RegistryValueKind.ExpandString?displayProperty=nameWithType>的注册表值时检索字符串, 而无需扩展嵌入的环境变量。  
   
- 使用`defaultValue`参数来指定要返回的值`name`不存在。  
+ `defaultValue` 如果`name`不存在, 请使用参数来指定要返回的值。  
   
 > [!NOTE]
->  注册表项可以具有不与任何名称相关联的一个值。 在注册表编辑器中显示此未命名的值时，而不是名称将显示字符串"(Default)"。 若要检索此未命名的值，指定`null`或空字符串 ("") 为`name`。  
+>  注册表项可以有一个不与任何名称关联的值。 在注册表编辑器中显示此未命名值时, 将显示字符串 "(默认值)", 而不是名称。 若要检索此未命名值, `null`请为`name`指定或为空字符串 ("")。  
 >   
->  <xref:Microsoft.Win32.RegistryKey.GetValue%2A> 不支持类型为 REG_NONE 或 REG_LINK 中读取的值。  在这两种情况下，默认值 (`null`) 返回而不是实际值。  
+>  <xref:Microsoft.Win32.RegistryKey.GetValue%2A>不支持读取 REG_NONE 或 REG_LINK 类型的值。  在这两种情况下, 将`null`返回默认值 (), 而不是实际值。  
   
    
   
 ## Examples  
- 下面的代码示例创建一个测试项、 添加具有嵌入式的环境变量的值并且检索扩展和非扩展窗体中的值。  
+ 下面的代码示例创建一个测试键, 添加一个具有嵌入的环境变量的值, 并在展开和未展开的窗体中检索值。  
   
  [!code-cpp[RegistryValueOptions#1](~/samples/snippets/cpp/VS_Snippets_CLR/RegistryValueOptions/CPP/RegistryValueOptions.cpp#1)]
  [!code-csharp[RegistryValueOptions#1](~/samples/snippets/csharp/VS_Snippets_CLR/RegistryValueOptions/CS/source.cs#1)]
@@ -1631,13 +1631,13 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Security.SecurityException">用户没有读取注册表项中所需的权限。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />包含指定值是否关闭 （无法访问关闭的项）。</exception>
-        <exception cref="T:System.IO.IOException"><see cref="T:Microsoft.Win32.RegistryKey" />包含指定值已标记为删除。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="options" /> 不是有效<see cref="T:Microsoft.Win32.RegistryValueOptions" />值; 例如，转换为的无效值<see cref="T:Microsoft.Win32.RegistryValueOptions" />。</exception>
+        <exception cref="T:System.Security.SecurityException">该用户没有读取注册表项所需的权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">包含指定值的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
+        <exception cref="T:System.IO.IOException">包含指定值的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已标记为删除。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="options" /> 不是有效的 <see cref="T:Microsoft.Win32.RegistryValueOptions" /> 值；例如，无效值将强制转换为 <see cref="T:Microsoft.Win32.RegistryValueOptions" />。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">若要从注册表中读取。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
-        <permission cref="T:System.Security.Permissions.EnvironmentPermission">若要读取注册表项的类型 REG_EXPAND_SZ。 关联的枚举： <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">从注册表进行读取。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
+        <permission cref="T:System.Security.Permissions.EnvironmentPermission">读取类型为 REG_EXPAND_SZ 的注册表项。 关联的枚举:<see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
         <altmember cref="T:Microsoft.Win32.RegistryValueOptions" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetValueNames" />
         <altmember cref="Overload:Microsoft.Win32.RegistryKey.SetValue" />
@@ -1685,21 +1685,21 @@
       <Docs>
         <param name="name">要检索其注册表数据类型的值的名称。 此字符串不区分大小写。</param>
         <summary>检索与指定名称关联的值的注册表数据类型。</summary>
-        <returns>与关联的值的注册表数据类型<paramref name="name" />。</returns>
+        <returns>与 <paramref name="name" /> 关联的值的注册表数据类型。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!NOTE]
->  注册表项可以具有不与任何名称相关联的一个值。 在注册表编辑器中显示此未命名的值时，而不是名称将显示字符串"(Default)"。 若要检索此未命名的值的注册表数据类型，请指定`null`或空字符串 ("") 为`name`。  
+>  注册表项可以有一个不与任何名称关联的值。 在注册表编辑器中显示此未命名值时, 将显示字符串 "(默认值)", 而不是名称。 若要检索此未命名值的注册表数据类型, 请`null`为`name`指定或为空字符串 ("")。  
   
- 有关受支持的注册表数据类型的说明，请参阅<xref:Microsoft.Win32.RegistryValueKind>枚举。  
+ 有关支持的注册表数据类型的说明, 请参阅<xref:Microsoft.Win32.RegistryValueKind>枚举。  
   
    
   
 ## Examples  
- 下面的代码示例创建一个测试项，并将不同的数据类型的值添加到该密钥。 该示例然后读取名称/值对，并将其显示在控制台中，使用<xref:Microsoft.Win32.RegistryKey.GetValueKind%2A>方法来检索相应的注册表数据类型。  
+ 下面的代码示例创建一个测试键, 并向该键添加不同数据类型的值。 然后, 该示例读取名称/值对, 并使用<xref:Microsoft.Win32.RegistryKey.GetValueKind%2A>方法检索相应的注册表数据类型, 将其显示在控制台中。  
   
  [!code-cpp[Microsoft.Win32.RegistryValueKind#1](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryValueKind/CPP/source.cpp#1)]
  [!code-csharp[Microsoft.Win32.RegistryValueKind#1](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryValueKind/CS/source.cs#1)]
@@ -1707,16 +1707,16 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Security.SecurityException">用户没有读取注册表项中所需的权限。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />包含指定值是否关闭 （无法访问关闭的项）。</exception>
-        <exception cref="T:System.IO.IOException">包含指定的值的子项不存在。  
+        <exception cref="T:System.Security.SecurityException">该用户没有读取注册表项所需的权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">包含指定值的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
+        <exception cref="T:System.IO.IOException">包含指定值的子项不存在。  
   
 或 
-通过指定的名称/值对<paramref name="name" />不存在。  
+由 <paramref name="name" /> 指定的名称/值对不存在。  
   
-在 Windows 95、 Windows 98 或 Windows Millennium Edition 上不会引发此异常。</exception>
+在 Windows 95、Windows 98 或 Windows Millennium Edition 中不引发此异常。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">若要从注册表中读取。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">从注册表进行读取。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetValueNames" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetValue(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object)" />
@@ -1762,14 +1762,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果找到该密钥没有值名称，则返回空数组。  
+ 如果未找到键的值名称, 则返回空数组。  
   
- 注册表项可以具有默认值-即，在其中名称是空字符串的名称/值对 ("")。 如果已为注册表项设置默认值，返回的数组<xref:Microsoft.Win32.RegistryKey.GetValueNames%2A>方法包含空字符串。  
+ 注册表项可以具有默认值 (即名称/值对, 其中名称为空字符串 (""))。 如果已为注册表项设置了默认值, 则<xref:Microsoft.Win32.RegistryKey.GetValueNames%2A>方法返回的数组包含空字符串。  
   
    
   
 ## Examples  
- 此代码示例是为提供一个更大示例的一部分<xref:Microsoft.Win32.RegistryKey>类。  
+ 此代码示例是为<xref:Microsoft.Win32.RegistryKey>类提供的更大示例的一部分。  
   
  [!code-cpp[Microsoft.Win32.RegistryKey2#2](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CPP/source.cpp#2)]
  [!code-csharp[Microsoft.Win32.RegistryKey2#2](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CS/source.cs#2)]
@@ -1777,11 +1777,11 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Security.SecurityException">用户没有读取注册表项中所需的权限。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />操作已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.Security.SecurityException">该用户没有读取注册表项所需的权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">要操作的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <exception cref="T:System.IO.IOException">发生系统错误;例如，当前项已被删除。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">有关从注册表中读取的功能。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
+        <exception cref="T:System.IO.IOException">发生系统错误；例如，当前项已被删除。</exception>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于读取注册表的能力。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetValue(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetSubKeyNames" />
       </Docs>
@@ -1819,15 +1819,15 @@
         <ReturnType>Microsoft.Win32.SafeHandles.SafeRegistryHandle</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取<see cref="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" />对象，表示注册表项的当前<see cref="T:Microsoft.Win32.RegistryKey" />对象将封装。</summary>
+        <summary>获取一个 <see cref="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" /> 对象，该对象表示当前 <see cref="T:Microsoft.Win32.RegistryKey" /> 对象封装的注册表项。</summary>
         <value>注册表项的句柄。</value>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ObjectDisposedException">注册表项已关闭。 无法访问关闭的项。</exception>
+        <exception cref="T:System.ObjectDisposedException">注册表项已关闭。 无法访问已关闭的项。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <exception cref="T:System.IO.IOException">将出现系统错误，例如，删除当前的密钥。</exception>
+        <exception cref="T:System.IO.IOException">发生系统错误，例如，删除了当前项。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有读取注册表项所需的权限。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
     <Member MemberName="Name">
@@ -1868,12 +1868,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 密钥的名称在注册表中，开始时始终在基项 HKEY_LOCAL_MACHINE 中包括此项的绝对路径。  
+ 密钥名称在注册表中包括此密钥的绝对路径, 始终从基本密钥开始, 例如 HKEY_LOCAL_MACHINE。  
   
    
   
 ## Examples  
- 此代码示例是为提供一个更大示例的一部分<xref:Microsoft.Win32.RegistryKey>类。  
+ 此代码示例是为<xref:Microsoft.Win32.RegistryKey>类提供的更大示例的一部分。  
   
  [!code-cpp[Microsoft.Win32.RegistryKey2#4](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CPP/source.cpp#4)]
  [!code-csharp[Microsoft.Win32.RegistryKey2#4](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CS/source.cs#4)]
@@ -1881,7 +1881,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问已关闭的项）。</exception>
         <altmember cref="M:Microsoft.Win32.RegistryKey.ToString" />
       </Docs>
     </Member>
@@ -1924,10 +1924,10 @@
       <Docs>
         <param name="hKey">要打开的 HKEY。</param>
         <param name="view">要使用的注册表视图。</param>
-        <summary>打开一个新<see cref="T:Microsoft.Win32.RegistryKey" />，表示使用指定的视图在本地计算机上请求的键。</summary>
+        <summary>打开一个新的 <see cref="T:Microsoft.Win32.RegistryKey" />，它使用指定的视图在本地计算机上表示请求的项。</summary>
         <returns>请求的注册表项。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="hKey" /> 或<paramref name="view" />无效。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="hKey" /> 或 <paramref name="view" /> 无效。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有执行此操作所需的权限。</exception>
       </Docs>
@@ -1975,22 +1975,22 @@
         <Parameter Name="machineName" Type="System.String" Index="1" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="hKey">若要打开，HKEY 从<see cref="T:Microsoft.Win32.RegistryHive" />枚举。</param>
+        <param name="hKey">要从 <see cref="T:Microsoft.Win32.RegistryHive" /> 枚举中打开的 HKEY。</param>
         <param name="machineName">远程计算机。</param>
-        <summary>打开一个新<see cref="T:Microsoft.Win32.RegistryKey" />表示远程计算机上请求的键。</summary>
+        <summary>打开一个新的 <see cref="T:Microsoft.Win32.RegistryKey" />，它表示远程计算机上的请求的项。</summary>
         <returns>请求的注册表项。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果打开本地计算机注册表`machineName`是<xref:System.String.Empty?displayProperty=nameWithType>。 请求的项必须是远程计算机上的根项，并由相应标识<xref:Microsoft.Win32.RegistryHive>值。  
+ 如果`machineName`为, 则会<xref:System.String.Empty?displayProperty=nameWithType>打开本地计算机注册表。 请求的密钥必须是远程计算机上的根密钥, 并由适当<xref:Microsoft.Win32.RegistryHive>的值标识。  
   
- 为了使远程打开的密钥，服务器和客户端计算机必须是运行远程注册表服务，而且必须启用远程管理。  
+ 为了远程打开密钥, 服务器和客户端计算机都必须运行远程注册表服务, 并启用远程管理。  
   
    
   
 ## Examples  
- 下面的代码示例显示如何打开远程计算机上的注册表项和枚举密钥的值。 远程计算机必须运行远程注册表服务。 调用该程序时，远程计算机的名称指定为命令行参数。  
+ 下面的代码示例演示如何在远程计算机上打开注册表项并枚举该项的值。 远程计算机必须运行远程注册表服务。 调用程序时, 将远程计算机的名称指定为命令行参数。  
   
  [!code-cpp[Microsoft.Win32.RegistryKey.OpenRemoteBaseKey#1](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey.OpenRemoteBaseKey/CPP/source.cpp#1)]
  [!code-csharp[Microsoft.Win32.RegistryKey.OpenRemoteBaseKey#1](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey.OpenRemoteBaseKey/CS/source.cs#1)]
@@ -2001,9 +2001,9 @@
         <exception cref="T:System.ArgumentException"><paramref name="hKey" /> 无效。</exception>
         <exception cref="T:System.IO.IOException"><paramref name="machineName" /> 未找到。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="machineName" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.Security.SecurityException">用户没有适当的权限来执行此操作。</exception>
+        <exception cref="T:System.Security.SecurityException">用户不具有执行该操作的适当权限。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="T:Microsoft.Win32.RegistryHive" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Boolean)" />
       </Docs>
@@ -2053,19 +2053,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果打开本地计算机注册表`machineName`是<xref:System.String.Empty?displayProperty=nameWithType>。 请求的项必须是远程计算机上的根项，并由相应标识<xref:Microsoft.Win32.RegistryHive>值。  
+ 如果`machineName`为, 则会<xref:System.String.Empty?displayProperty=nameWithType>打开本地计算机注册表。 请求的密钥必须是远程计算机上的根密钥, 并由适当<xref:Microsoft.Win32.RegistryHive>的值标识。  
   
- 为了使远程打开的密钥，服务器和客户端计算机必须是运行远程注册表服务，而且必须启用远程管理。  
+ 为了远程打开密钥, 服务器和客户端计算机都必须运行远程注册表服务, 并启用远程管理。  
   
- 在 64 位版本的 Windows，对于 32 位和 64 位应用程序可以单独存储的注册表部分。 没有 32 位应用程序的 32 位视图和 64 位应用程序的 64 位视图。 如果`view`是<xref:Microsoft.Win32.RegistryView.Registry64>但远程计算机正在运行 32 位操作系统，则返回的键将使用<xref:Microsoft.Win32.RegistryView.Registry32>视图。  
+ 在64位版本的 Windows 上, 将分别为32位和64位应用程序存储注册表部分。 对于32位应用程序, 有32位视图, 适用于64位应用程序的64位视图。 如果`view`为<xref:Microsoft.Win32.RegistryView.Registry64> , 但远程计算机运行的是32位操作系统, 则<xref:Microsoft.Win32.RegistryView.Registry32>返回的密钥将使用视图。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="hKey" /> 或<paramref name="view" />无效。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="hKey" /> 或 <paramref name="view" /> 无效。</exception>
         <exception cref="T:System.IO.IOException"><paramref name="machineName" /> 未找到。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="machineName" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <exception cref="T:System.Security.SecurityException">用户没有所需的权限来执行此操作。</exception>
+        <exception cref="T:System.Security.SecurityException">用户不具有执行该操作所需的权限。</exception>
       </Docs>
     </Member>
     <MemberGroup MemberName="OpenSubKey">
@@ -2108,23 +2108,23 @@
         <Parameter Name="name" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="name">名称或要以只读方式打开的子项的路径。</param>
+        <param name="name">要以只读方式打开的子项的名称或路径。</param>
         <summary>以只读方式检索子项。</summary>
-        <returns>请求的子项或<see langword="null" />如果操作失败。</returns>
+        <returns>请求的子项；如果操作失败，则为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 它可以使用其他方法和属性操作之前，必须打开的项。 若要修改键，必须打开的重载与它<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法，可用于指定写访问权限，如<xref:Microsoft.Win32.RegistryKey.OpenSubKey%28System.String%2CMicrosoft.Win32.RegistryKeyPermissionCheck%29>重载或<xref:Microsoft.Win32.RegistryKey.OpenSubKey%28System.String%2CSystem.Boolean%29>重载。  
+ 必须先打开密钥, 然后才能使用其他方法和属性进行操作。 若要修改某个密钥, 必须使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法的重载打开该密钥, 该方法允许你指定写入访问权限, 如<xref:Microsoft.Win32.RegistryKey.OpenSubKey%28System.String%2CMicrosoft.Win32.RegistryKeyPermissionCheck%29>重载或<xref:Microsoft.Win32.RegistryKey.OpenSubKey%28System.String%2CSystem.Boolean%29>重载。  
   
- 如果没有找到指定的子项，然后`null`返回。  
+ 如果找不到指定的子项, `null`则返回。  
   
- 若要使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法，您必须拥有的实例<xref:Microsoft.Win32.RegistryKey>。 若要获取的实例<xref:Microsoft.Win32.RegistryKey>，使用的静态成员的一个<xref:Microsoft.Win32.Registry>类。  
+ 若要使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法, 必须具有的<xref:Microsoft.Win32.RegistryKey>实例。 若要获取的<xref:Microsoft.Win32.RegistryKey>实例, 请使用<xref:Microsoft.Win32.Registry>类的静态成员之一。  
   
    
   
 ## Examples  
- 下面的代码示例创建一个测试项，并使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法打开它，演示这两种方法的重载。  
+ 下面的代码示例创建一个测试键, 并使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法将其打开, 同时演示方法的两个重载。  
   
  [!code-cpp[RegistryKey.OpenSubKey#1](~/samples/snippets/cpp/VS_Snippets_CLR/RegistryKey.OpenSubKey/CPP/opensubkey.cpp#1)]
  [!code-csharp[RegistryKey.OpenSubKey#1](~/samples/snippets/csharp/VS_Snippets_CLR/RegistryKey.OpenSubKey/CS/opensubkey.cs#1)]
@@ -2133,10 +2133,10 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 为 <see langword="null" /></exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问已关闭的项）。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有读取注册表项所需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">用于读取指定的注册表项的功能。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于读取指定的注册表项。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String)" />
@@ -2184,21 +2184,21 @@
         <param name="name">要创建或打开的子项的名称或路径。</param>
         <param name="permissionCheck">用于指定打开该项是进行读取还是读取/写入访问的枚举值之一。</param>
         <summary>检索指定的子项以进行读取或读/写访问。</summary>
-        <returns>请求的子项或<see langword="null" />如果操作失败。</returns>
+        <returns>请求的子项；如果操作失败，则为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 而不是引发异常，此方法返回`null`如果所需的键不存在。  
+ 如果请求的项不存在, 则此`null`方法将返回, 而不是引发异常。  
   
- 如果`permissionCheck`是<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree?displayProperty=nameWithType>，该密钥打开用于读取和写入; 如果`permissionCheck`是<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree?displayProperty=nameWithType>或<xref:Microsoft.Win32.RegistryKeyPermissionCheck.Default?displayProperty=nameWithType>，为读取除非通过打开父项打开项<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree?displayProperty=nameWithType>。  
+ 如果`permissionCheck`为<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree?displayProperty=nameWithType> `permissionCheck` <xref:Microsoft.Win32.RegistryKeyPermissionCheck.Default?displayProperty=nameWithType> <xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree?displayProperty=nameWithType>, 则打开密钥以进行读取和写入; 如果为或, 则将打开密钥以供读取, 除非已打开父键。 <xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree?displayProperty=nameWithType>  
   
- 若要使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法，您必须拥有的实例<xref:Microsoft.Win32.RegistryKey>类。 若要获取的实例<xref:Microsoft.Win32.RegistryKey>，使用的静态成员之一<xref:Microsoft.Win32.Registry>类。  
+ 若要使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法, 必须具有<xref:Microsoft.Win32.RegistryKey>类的实例。 若要获取的<xref:Microsoft.Win32.RegistryKey>实例, 请使用<xref:Microsoft.Win32.Registry>类的静态成员之一。  
   
    
   
 ## Examples  
- 下面的代码示例创建一个包含 100 键/值对的子项，并将其关闭。 该示例打开与子项<xref:Microsoft.Win32.RegistryKeyPermissionCheck.Default>，记录它读取所有值，并关闭该子项的时间。 该示例打开与子项<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree>并记录读取所有值所用的时间。 最后，该示例计算并显示提高百分比。  
+ 下面的代码示例创建一个包含100键/值对的子项并将其关闭。 该示例使用<xref:Microsoft.Win32.RegistryKeyPermissionCheck.Default>打开子项, 记录读取所有值所用的时间, 并关闭子项。 该示例使用<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree>打开该子项, 并记录读取所有值所用的时间。 最后, 该示例计算并显示改进百分比。  
   
  [!code-csharp[RegistryKey.OpenSubKey_PermCheck#1](~/samples/snippets/csharp/VS_Snippets_CLR/RegistryKey.OpenSubKey_PermCheck/cs/source.cs#1)]
  [!code-vb[RegistryKey.OpenSubKey_PermCheck#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/RegistryKey.OpenSubKey_PermCheck/vb/source.vb#1)]  
@@ -2207,10 +2207,10 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 为 <see langword="null" /></exception>
         <exception cref="T:System.ArgumentException"><paramref name="permissionCheck" /> 包含无效值。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问已关闭的项）。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有读取注册表项所需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">用于读取指定的注册表项的功能。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于读取指定的注册表项。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String)" />
@@ -2256,24 +2256,24 @@
         <Parameter Name="writable" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="name">名称或要打开的子项的路径。</param>
-        <param name="writable">设置为<see langword="true" />如果需要写访问密钥。</param>
-        <summary>检索指定的子项，并指定是否要应用于键写访问权限。</summary>
-        <returns>请求的子项或<see langword="null" />如果操作失败。</returns>
+        <param name="name">要打开的子项的名称或路径。</param>
+        <param name="writable">如果需要项的写访问权限，则设置为 <see langword="true" />。</param>
+        <summary>检索指定的子项，并指定是否将写访问权限应用于该项。</summary>
+        <returns>请求的子项；如果操作失败，则为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果所需的键不存在，此方法返回`null`而不是引发异常。  
+ 如果请求的项不存在, 则此方法返回`null` , 而不是引发异常。  
   
- 如果`writable`是`true`、 的项将打开用于读取和写入，否则，将以只读方式打开密钥。  
+ 如果`writable` 为`true`, 则将打开该密钥以进行读写, 否则, 将以只读方式打开该密钥。  
   
- 若要使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法，您必须拥有的实例<xref:Microsoft.Win32.RegistryKey>方法。 若要获取的实例<xref:Microsoft.Win32.RegistryKey>，使用的静态成员之一<xref:Microsoft.Win32.Registry>类。  
+ 若要使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法, 必须具有<xref:Microsoft.Win32.RegistryKey>方法的实例。 若要获取的<xref:Microsoft.Win32.RegistryKey>实例, 请使用<xref:Microsoft.Win32.Registry>类的静态成员之一。  
   
    
   
 ## Examples  
- 下面的代码示例创建一个测试项，并使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法打开它，演示这两种方法的重载。  
+ 下面的代码示例创建一个测试键, 并使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法将其打开, 同时演示方法的两个重载。  
   
  [!code-cpp[RegistryKey.OpenSubKey#1](~/samples/snippets/cpp/VS_Snippets_CLR/RegistryKey.OpenSubKey/CPP/opensubkey.cpp#1)]
  [!code-csharp[RegistryKey.OpenSubKey#1](~/samples/snippets/csharp/VS_Snippets_CLR/RegistryKey.OpenSubKey/CS/opensubkey.cs#1)]
@@ -2282,10 +2282,10 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />已关闭 （无法访问关闭的项）。</exception>
-        <exception cref="T:System.Security.SecurityException">用户没有访问指定的模式下的注册表项所需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">用于读取指定的注册表项的功能。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问已关闭的项）。</exception>
+        <exception cref="T:System.Security.SecurityException">用户没有在指定模式下访问注册表项所需的权限。</exception>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于读取指定的注册表项。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String)" />
@@ -2335,18 +2335,18 @@
         <param name="name">要创建或打开的子项的名称或路径。</param>
         <param name="rights">注册表项的权限。</param>
         <summary>检索具有指定名称和访问权限的子项。 从 .NET Framework 4.6 开始可用。</summary>
-        <returns>请求的子项或<see langword="null" />如果操作失败。</returns>
+        <returns>请求的子项；如果操作失败，则为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 它可以使用其他方法和属性操作之前，必须打开的项。 若要修改键，必须打开的重载与它<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法，可用于指定写入访问权限。  
+ 必须先打开密钥, 然后才能使用其他方法和属性进行操作。 若要修改某个密钥, 必须使用允许你指定写入访问权限<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>的方法重载打开它。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />已关闭 （无法访问关闭的项）。</exception>
-        <exception cref="T:System.Security.SecurityException">用户没有访问指定的模式下的注册表项所需的权限。</exception>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问已关闭的项）。</exception>
+        <exception cref="T:System.Security.SecurityException">用户没有在指定模式下访问注册表项所需的权限。</exception>
       </Docs>
     </Member>
     <Member MemberName="OpenSubKey">
@@ -2389,30 +2389,30 @@
         <param name="permissionCheck">用于指定打开该项是进行读取还是读取/写入访问的枚举值之一。</param>
         <param name="rights">枚举值的按位组合，它指定所需的安全访问。</param>
         <summary>检索指定的子项以进行读取或读/写访问，请求指定的访问权限。</summary>
-        <returns>请求的子项或<see langword="null" />如果操作失败。</returns>
+        <returns>请求的子项；如果操作失败，则为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 而不是引发异常，此方法返回`null`如果所需的键不存在。  
+ 如果请求的项不存在, 则此`null`方法将返回, 而不是引发异常。  
   
- 如果`permissionCheck`是<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree?displayProperty=nameWithType>，该密钥打开用于读取和写入; 如果`permissionCheck`是<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree?displayProperty=nameWithType>或<xref:Microsoft.Win32.RegistryKeyPermissionCheck.Default?displayProperty=nameWithType>，为读取除非通过打开父项打开项<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree?displayProperty=nameWithType>。  
+ 如果`permissionCheck`为<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree?displayProperty=nameWithType> `permissionCheck` <xref:Microsoft.Win32.RegistryKeyPermissionCheck.Default?displayProperty=nameWithType> <xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree?displayProperty=nameWithType>, 则打开密钥以进行读取和写入; 如果为或, 则将打开密钥以供读取, 除非已打开父键。 <xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree?displayProperty=nameWithType>  
   
- 为指定的访问权限`permissionCheck`为指定的访问权限的优先级高于`rights`。 例如，如果您指定<xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree?displayProperty=nameWithType>有关`permissionCheck`并<xref:System.Security.AccessControl.RegistryRights.WriteKey?displayProperty=nameWithType>为`rights`，写入到子项的尝试会引发异常。  
+ 为`permissionCheck`指定的访问权限优先于为`rights`指定的访问权限。 <xref:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree?displayProperty=nameWithType>例如, 如果为`permissionCheck`指定和<xref:System.Security.AccessControl.RegistryRights.WriteKey?displayProperty=nameWithType> `rights`, 则尝试写入子项会引发异常。  
   
- 若要使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法，您必须拥有的实例<xref:Microsoft.Win32.RegistryKey>类。 若要获取的实例<xref:Microsoft.Win32.RegistryKey>，使用的静态成员之一<xref:Microsoft.Win32.Registry>类。  
+ 若要使用<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A>方法, 必须具有<xref:Microsoft.Win32.RegistryKey>类的实例。 若要获取的<xref:Microsoft.Win32.RegistryKey>实例, 请使用<xref:Microsoft.Win32.Registry>类的静态成员之一。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 为 <see langword="null" /></exception>
         <exception cref="T:System.ArgumentException"><paramref name="permissionCheck" /> 包含无效值。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问已关闭的项）。</exception>
         <exception cref="T:System.Security.SecurityException"><paramref name="rights" /> 包含无效的注册表权限值。  
   
 或 
-用户没有所请求的权限。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">用于读取指定的注册表项的功能。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+用户没有所要求的权限。</exception>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于读取指定的注册表项。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String)" />
@@ -2458,17 +2458,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要修改的注册表项的权限，请使用<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A>方法来获取<xref:System.Security.AccessControl.RegistrySecurity>对象表示的现有 Windows 访问控制安全性，请修改该<xref:System.Security.AccessControl.RegistrySecurity>对象，以及如何将<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A>方法来更新的安全性键。  
+ 若要修改注册表项的权限, 请使用<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A>方法<xref:System.Security.AccessControl.RegistrySecurity>获取表示现有 Windows 访问控制安全性的对象, 修改该<xref:System.Security.AccessControl.RegistrySecurity>对象, 然后使用<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A>方法更新的安全性键。  
   
 > [!CAUTION]
->  <xref:System.Security.AccessControl.RegistrySecurity>对象指定的用于`registrySecurity`替换现有的注册表项的安全性。 若要添加新用户的权限，请使用<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A>方法来获取现有的访问控制安全性，然后再修改它。  
+>  为指定用于`registrySecurity`替换注册表项的现有安全性的对象。<xref:System.Security.AccessControl.RegistrySecurity> 若要为新用户添加权限, 请使用<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A>方法获取现有的访问控制安全性, 然后对其进行修改。  
   
    
   
 ## Examples  
- 下面的代码示例创建一个测试项。 允许当前用户<xref:System.Security.AccessControl.RegistryRights.ReadKey>并<xref:System.Security.AccessControl.RegistryRights.Delete>但拒绝权限<xref:System.Security.AccessControl.RegistryRights.ChangePermissions>和<xref:System.Security.AccessControl.RegistryRights.WriteKey>权限。 后续尝试操作密钥成功或失败，具体取决于这些权限。  
+ 下面的代码示例创建一个测试键。 允许<xref:System.Security.AccessControl.RegistryRights.ReadKey>当前用户和<xref:System.Security.AccessControl.RegistryRights.Delete>权限, 但被拒绝<xref:System.Security.AccessControl.RegistryRights.ChangePermissions>和<xref:System.Security.AccessControl.RegistryRights.WriteKey>权限。 后续尝试操作密钥的操作将会成功或失败, 具体取决于这些权限。  
   
- 删除密钥之前，代码就会暂停。 您可以切换到注册表编辑器并验证使用注册表编辑器中访问该密钥时，应用相同的访问权限。 (此效果最佳，如果您使用**RunAs**从命令行运行注册表编辑器和示例代码而无需管理员权限的本地用户。 注册表编辑器中始终允许管理员才能更改权限，即使特定管理员已拒绝这些权限。 如果已定义一个名为 TestUser，该命令的本地用户`runas /user:TestUser cmd`打开一个命令窗口，可以从其运行注册表编辑器，然后选择示例代码。)  
+ 在删除密钥之前, 代码将暂停。 当使用注册表编辑器访问密钥时, 可以切换到注册表编辑器, 验证是否应用了相同的访问权限。 (如果从命令行使用**RunAs**来运行注册表编辑器, 并使用示例代码作为本地用户, 而无需管理员权限, 这种方法最有效。 注册表编辑器始终允许管理员更改权限, 即使特定管理员拒绝了这些权限。 如果你已定义了名为 TestUser 的本地用户, `runas /user:TestUser cmd`则该命令将打开一个命令窗口, 你可以在其中运行注册表编辑器, 然后运行示例代码。)  
   
  [!code-cpp[RegistrySecurity101#1](~/samples/snippets/cpp/VS_Snippets_CLR/RegistrySecurity101/cpp/source.cpp#1)]
  [!code-csharp[RegistrySecurity101#1](~/samples/snippets/csharp/VS_Snippets_CLR/RegistrySecurity101/CS/source.cs#1)]
@@ -2476,9 +2476,9 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.UnauthorizedAccessException">当前<see cref="T:Microsoft.Win32.RegistryKey" />对象表示一个密钥与访问控制安全性，并且调用方不具有<see cref="F:System.Security.AccessControl.RegistryRights.ChangePermissions" />权限。</exception>
+        <exception cref="T:System.UnauthorizedAccessException">当前的 <see cref="T:Microsoft.Win32.RegistryKey" /> 对象表示一个具有访问控制安全性的项，并且调用方没有 <see cref="F:System.Security.AccessControl.RegistryRights.ChangePermissions" /> 权限。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="registrySecurity" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />操作已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.ObjectDisposedException">要操作的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
       </Docs>
     </Member>
     <MemberGroup MemberName="SetValue">
@@ -2488,7 +2488,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>设置注册表项中的名称/值对的值。 注册表数据类型确定具体取决于重载，从所存储数据的类型或指定<see cref="T:Microsoft.Win32.RegistryValueKind" />。</summary>
+        <summary>设置注册表项中的名称/值对的值。 从所存储数据的类型或指定的 <see cref="T:Microsoft.Win32.RegistryValueKind" /> 确定注册表数据类型，具体取决于重载。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="SetValue">
@@ -2529,31 +2529,31 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 由于许多值可以存储在注册表中的每个项，必须使用`name`参数来指定你想要设置的特定值。  
+ 由于注册表中的每个键都可以存储许多值, 因此必须使用`name`参数来指定要设置的特定值。  
   
 > [!NOTE]
->  注册表项可以具有不与任何名称相关联的一个值。 在注册表编辑器中显示此未命名的值时，而不是名称将显示字符串"(Default)"。 若要设置此未命名的值，指定`null`或空字符串 ("") 为`name`。  
+>  注册表项可以有一个不与任何名称关联的值。 在注册表编辑器中显示此未命名值时, 将显示字符串 "(默认值)", 而不是名称。 若要设置此未命名值, `null`请为`name`指定或为空字符串 ("")。  
   
- 若要设置某个项中的值，必须具有写访问权限来打开密钥。 具有写访问权限打开一个键后，您可以更改任何该注册表项中的名称/值对。  
+ 若要设置项中的值, 必须使用写访问权限打开该项。 打开具有写访问权限的项后, 可以更改该项中的任何名称/值对。  
   
- 如果指定`name`不存在的项中创建和关联的值设置为`value`。  
+ 如果密钥中`name`不存在指定的, 则会创建它, 并将关联的值设置为`value`。  
   
- 此重载<xref:Microsoft.Win32.RegistryKey.SetValue%2A>将 64 位整数存储为字符串 (<xref:Microsoft.Win32.RegistryValueKind.String?displayProperty=nameWithType>)。 若要存储为 64 位数字<xref:Microsoft.Win32.RegistryValueKind.QWord?displayProperty=nameWithType>值，请使用<xref:Microsoft.Win32.RegistryKey.SetValue%28System.String%2CSystem.Object%2CMicrosoft.Win32.RegistryValueKind%29>重载，指定<xref:Microsoft.Win32.RegistryValueKind>。  
+ 此重载<xref:Microsoft.Win32.RegistryKey.SetValue%2A>将64位整数存储为字符串 (<xref:Microsoft.Win32.RegistryValueKind.String?displayProperty=nameWithType>)。 若要将64位数字存储<xref:Microsoft.Win32.RegistryValueKind.QWord?displayProperty=nameWithType>为值, 请<xref:Microsoft.Win32.RegistryKey.SetValue%28System.String%2CSystem.Object%2CMicrosoft.Win32.RegistryValueKind%29>使用指定<xref:Microsoft.Win32.RegistryValueKind>的重载。  
   
- 此重载<xref:Microsoft.Win32.RegistryKey.SetValue%2A>存储所有字符串值作为<xref:Microsoft.Win32.RegistryValueKind.String?displayProperty=nameWithType>，即使它们包含对环境变量可展开的引用。 若要保存为可展开的字符串的字符串值 (<xref:Microsoft.Win32.RegistryValueKind.ExpandString?displayProperty=nameWithType>)，使用<xref:Microsoft.Win32.RegistryKey.SetValue%28System.String%2CSystem.Object%2CMicrosoft.Win32.RegistryValueKind%29>重载，指定<xref:Microsoft.Win32.RegistryValueKind>。  
+ 此重载<xref:Microsoft.Win32.RegistryKey.SetValue%2A>将所有字符串值存储为<xref:Microsoft.Win32.RegistryValueKind.String?displayProperty=nameWithType>, 即使它们包含对环境变量的可展开引用。 若要将字符串值保存为可扩充<xref:Microsoft.Win32.RegistryValueKind.ExpandString?displayProperty=nameWithType>字符串 (), <xref:Microsoft.Win32.RegistryKey.SetValue%28System.String%2CSystem.Object%2CMicrosoft.Win32.RegistryValueKind%29>请使用指定<xref:Microsoft.Win32.RegistryValueKind>的重载。  
   
- 此方法的重载数字类型，而不是 32 位整数存储为字符串。 枚举元素存储为包含的元素名称的字符串。  
+ 此方法重载将非32位整数以外的数值类型存储为字符串。 枚举元素作为包含元素名称的字符串存储。  
   
 > [!CAUTION]
->  不会公开<xref:Microsoft.Win32.RegistryKey>，恶意程序无法创建数千个无意义的子项或键/值对的方式中的对象。 例如，不允许调用方可以输入任意键或值。  
+>  不要以这样<xref:Microsoft.Win32.RegistryKey>的方式公开对象: 恶意程序可能会创建数千个无意义子项或键/值对。 例如, 不允许调用方输入任意密钥或值。  
   
 > [!NOTE]
->  在 Windows 98 和 Windows Millennium Edition 上注册表不是 Unicode，而不是所有 Unicode 字符都是有效的所有代码页。 最佳的匹配项都替换为对当前代码页无效的 Unicode 字符。 不引发异常。  
+>  在 Windows 98 和 Windows Millennium Edition 中, 注册表不是 Unicode, 并且并非所有 Unicode 字符对于所有代码页都有效。 对于当前代码页无效的 Unicode 字符被替换为最佳可用匹配项。 不引发异常。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何将<xref:Microsoft.Win32.RegistryKey.SetValue%2A>方法确定注册表数据类型时设置值。 该示例创建一个测试项，并向该项添加不同数据类型的值。 该示例然后读取名称/值对，并将其显示在控制台中，使用<xref:Microsoft.Win32.RegistryKey.GetValueKind%2A>方法来显示相应的注册表数据类型。  
+ 下面的代码示例演示了<xref:Microsoft.Win32.RegistryKey.SetValue%2A>方法在设置值时如何确定注册表数据类型。 该示例创建一个测试键, 并将不同数据类型的值添加到该键。 然后, 该示例将读取名称/值对, 并将其显示在控制台中<xref:Microsoft.Win32.RegistryKey.GetValueKind%2A> , 方法是使用方法来显示相应的注册表数据类型。  
   
  [!code-cpp[Microsoft.Win32.RegistryKey.SetValue1#1](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey.SetValue1/CPP/source.cpp#1)]
  [!code-csharp[Microsoft.Win32.RegistryKey.SetValue1#1](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey.SetValue1/CS/source.cs#1)]
@@ -2562,16 +2562,16 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentException"><paramref name="value" /> 是不支持的数据类型。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />包含指定值是否关闭 （无法访问关闭的项）。</exception>
-        <exception cref="T:System.UnauthorizedAccessException"><see cref="T:Microsoft.Win32.RegistryKey" />是只读的因此无法写入; 例如，该密钥未打开具有写访问权限。  
+        <exception cref="T:System.ArgumentException"><paramref name="value" /> 不是受支持的数据类型。</exception>
+        <exception cref="T:System.ObjectDisposedException">包含指定值的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
+        <exception cref="T:System.UnauthorizedAccessException"><see cref="T:Microsoft.Win32.RegistryKey" /> 只读，因此无法写入；例如，项不是用写访问权限打开的。  
   
-或 
-<see cref="T:Microsoft.Win32.RegistryKey" />对象表示根级别节点，并且操作系统是 Windows Millennium Edition 或 Windows 98。</exception>
+- 或 - 
+<see cref="T:Microsoft.Win32.RegistryKey" /> 对象表示根级别节点，操作系统为 Windows Millennium Edition 或 Windows 98。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有创建或修改注册表项所需的权限。</exception>
-        <exception cref="T:System.IO.IOException"><see cref="T:Microsoft.Win32.RegistryKey" />对象表示根级别节点，并且操作系统是 Windows 2000、 Windows XP 或 Windows Server 2003。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">若要修改指定的注册表项，如果存在，或创建注册表项，如果尚不存在。 关联枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" />， <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Create" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <exception cref="T:System.IO.IOException"><see cref="T:Microsoft.Win32.RegistryKey" /> 对象表示根级别节点，操作系统为 Windows 2000、Windows XP 或 Windows Server 2003。</exception>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">如果指定的注册表项存在, 则对其进行修改, 如果该注册表项不存在, 则创建该注册表项。 关联的枚举<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" />:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Create" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetValue(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetValueKind(System.String)" />
         <altmember cref="P:Microsoft.Win32.RegistryKey.ValueCount" />
@@ -2624,33 +2624,33 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 由于许多值可以存储在注册表中的每个项，必须使用`name`参数来指定你想要设置的特定值。  
+ 由于注册表中的每个键都可以存储许多值, 因此必须使用`name`参数来指定要设置的特定值。  
   
 > [!NOTE]
->  注册表项可以具有不与任何名称相关联的一个值。 在注册表编辑器中显示此未命名的值时，而不是名称将显示字符串"(Default)"。 若要设置此未命名的值，指定`null`或空字符串 ("") 为`name`。  
+>  注册表项可以有一个不与任何名称关联的值。 在注册表编辑器中显示此未命名值时, 将显示字符串 "(默认值)", 而不是名称。 若要设置此未命名值, `null`请为`name`指定或为空字符串 ("")。  
   
- 若要设置某个项中的值，必须具有写访问权限来打开密钥。 具有写访问权限打开一个键后，您可以更改任何该注册表项中的名称/值对。  
+ 若要设置项中的值, 必须使用写访问权限打开该项。 打开具有写访问权限的项后, 可以更改该项中的任何名称/值对。  
   
- 如果指定`name`不存在键，它创建，并且相关联的值设置为`value`。  
-  
-> [!NOTE]
->  指定的注册表数据类型<xref:Microsoft.Win32.RegistryValueKind.Unknown>等同于使用<xref:Microsoft.Win32.RegistryKey.SetValue%2A>重载。  
-  
- 如果指定的类型`value`不匹配指定`valueKind`，且不能为数据转换，<xref:System.ArgumentException>引发。 例如，可以存储<xref:System.Int64?displayProperty=nameWithType>作为<xref:Microsoft.Win32.RegistryValueKind.DWord?displayProperty=nameWithType>，但前提是其值小于最大值<xref:System.Int32?displayProperty=nameWithType>。 不能存储作为单个字符串值<xref:Microsoft.Win32.RegistryValueKind.MultiString?displayProperty=nameWithType>。  
+ 如果密钥中`name`不存在指定的, 则会创建它, 并将关联的值设置为。 `value`  
   
 > [!NOTE]
->  如果已装箱的值将传递进行<xref:Microsoft.Win32.RegistryValueKind.DWord?displayProperty=nameWithType>或<xref:Microsoft.Win32.RegistryValueKind.QWord?displayProperty=nameWithType>，执行该转换使用固定区域性。  
+>  指定注册表数据类型与<xref:Microsoft.Win32.RegistryValueKind.Unknown> <xref:Microsoft.Win32.RegistryKey.SetValue%2A>使用重载的数据类型相同。  
+  
+ 如果指定`value`的类型与指定`valueKind`的不匹配, 并且不能转换数据, <xref:System.ArgumentException>则会引发。 例如, 可以将存储<xref:System.Int64?displayProperty=nameWithType> <xref:Microsoft.Win32.RegistryValueKind.DWord?displayProperty=nameWithType>为, 但前提是它的值小于的最大值<xref:System.Int32?displayProperty=nameWithType>。 不能将单个字符串值存储为<xref:Microsoft.Win32.RegistryValueKind.MultiString?displayProperty=nameWithType>。  
+  
+> [!NOTE]
+>  如果为<xref:Microsoft.Win32.RegistryValueKind.DWord?displayProperty=nameWithType>或<xref:Microsoft.Win32.RegistryValueKind.QWord?displayProperty=nameWithType>传递装箱值, 则将使用固定区域性完成转换。  
   
 > [!CAUTION]
->  不会公开<xref:Microsoft.Win32.RegistryKey>，恶意程序无法创建数千个无意义的子项或键/值对的方式中的对象。 例如，不允许调用方可以输入任意键或值。  
+>  不要以这样<xref:Microsoft.Win32.RegistryKey>的方式公开对象: 恶意程序可能会创建数千个无意义子项或键/值对。 例如, 不允许调用方输入任意密钥或值。  
   
 > [!NOTE]
->  在 Windows 98 和 Windows Millennium Edition 上注册表不是 Unicode，而不是所有 Unicode 字符都是有效的所有代码页。 最佳的匹配项都替换为对当前代码页无效的 Unicode 字符。 不引发异常。  
+>  在 Windows 98 和 Windows Millennium Edition 中, 注册表不是 Unicode, 并且并非所有 Unicode 字符对于所有代码页都有效。 对于当前代码页无效的 Unicode 字符被替换为最佳可用匹配项。 不引发异常。  
   
    
   
 ## Examples  
- 下面的代码示例创建一个测试项，并使用<xref:Microsoft.Win32.RegistryKey.SetValue%2A>方法来存储多个值，指定每个值的注册表数据类型。 该示例然后读取名称/值对，并将其显示在控制台中，使用<xref:Microsoft.Win32.RegistryKey.GetValueKind%2A>方法来显示相应的注册表数据类型。  
+ 下面的代码示例创建一个测试键, 并使用<xref:Microsoft.Win32.RegistryKey.SetValue%2A>方法存储多个值, 并为每个值指定注册表数据类型。 然后, 该示例将读取名称/值对, 并将其显示在控制台中<xref:Microsoft.Win32.RegistryKey.GetValueKind%2A> , 方法是使用方法来显示相应的注册表数据类型。  
   
  [!code-cpp[Microsoft.Win32.RegistryValueKind#1](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryValueKind/CPP/source.cpp#1)]
  [!code-csharp[Microsoft.Win32.RegistryValueKind#1](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryValueKind/CS/source.cs#1)]
@@ -2659,16 +2659,16 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> 为 <see langword="null" />。</exception>
-        <exception cref="T:System.ArgumentException">类型<paramref name="value" />与指定的注册表数据类型不匹配<paramref name="valueKind" />，因此可能不会正确转换该数据。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />包含指定值是否关闭 （无法访问关闭的项）。</exception>
-        <exception cref="T:System.UnauthorizedAccessException"><see cref="T:Microsoft.Win32.RegistryKey" />是只读的因此无法写入; 例如，该密钥未打开具有写访问权限。  
+        <exception cref="T:System.ArgumentException"><paramref name="value" /> 的类型与 <paramref name="valueKind" /> 指定的注册表数据类型不匹配，因此，未能正确转换该数据。</exception>
+        <exception cref="T:System.ObjectDisposedException">包含指定值的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
+        <exception cref="T:System.UnauthorizedAccessException"><see cref="T:Microsoft.Win32.RegistryKey" /> 只读，因此无法写入；例如，项不是用写访问权限打开的。  
   
-或 
-<see cref="T:Microsoft.Win32.RegistryKey" />对象表示根级别节点，并且操作系统是 Windows Millennium Edition 或 Windows 98。</exception>
+- 或 - 
+<see cref="T:Microsoft.Win32.RegistryKey" /> 对象表示根级别节点，操作系统为 Windows Millennium Edition 或 Windows 98。</exception>
         <exception cref="T:System.Security.SecurityException">用户没有创建或修改注册表项所需的权限。</exception>
-        <exception cref="T:System.IO.IOException"><see cref="T:Microsoft.Win32.RegistryKey" />对象表示根级别节点，并且操作系统是 Windows 2000、 Windows XP 或 Windows Server 2003。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">若要修改指定的注册表项，如果存在，或创建注册表项，如果尚不存在。 关联枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" />， <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Create" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够访问指定的注册表密钥如果它是一个远程的密钥。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <exception cref="T:System.IO.IOException"><see cref="T:Microsoft.Win32.RegistryKey" /> 对象表示根级别节点，操作系统为 Windows 2000、Windows XP 或 Windows Server 2003。</exception>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">如果指定的注册表项存在, 则对其进行修改, 如果该注册表项不存在, 则创建该注册表项。 关联的枚举<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Write" />:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Create" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于访问指定注册表项 (如果它是远程密钥) 的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetValueKind(System.String)" />
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetValue(System.String)" />
         <altmember cref="P:Microsoft.Win32.RegistryKey.ValueCount" />
@@ -2713,12 +2713,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性执行而不是以递归方式计数名称。 它仅返回从中调用基本级别上的名称的计数。  
+ 此属性不会以递归方式计算名称。 它仅返回从中调用的基级别的名称计数。  
   
    
   
 ## Examples  
- 此代码示例是为提供一个更大示例的一部分<xref:Microsoft.Win32.RegistryKey>类。  
+ 此代码示例是为<xref:Microsoft.Win32.RegistryKey>类提供的更大示例的一部分。  
   
  [!code-cpp[Microsoft.Win32.RegistryKey2#2](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CPP/source.cpp#2)]
  [!code-csharp[Microsoft.Win32.RegistryKey2#2](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CS/source.cs#2)]
@@ -2726,11 +2726,11 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Security.SecurityException">用户没有读取的权限的密钥。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />操作已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.Security.SecurityException">用户没有该项的读取权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">要操作的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <exception cref="T:System.IO.IOException">出现系统错误，例如当前项已被删除。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">用于读取指定的注册表项的功能。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
+        <exception cref="T:System.IO.IOException">发生系统错误，例如，当前项已被删除。</exception>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于读取指定的注册表项。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
         <altmember cref="M:Microsoft.Win32.RegistryKey.GetSubKeyNames" />
       </Docs>
     </Member>
@@ -2762,7 +2762,7 @@
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
-此方法具有相同的效果与调用<xref:Microsoft.Win32.RegistryKey.Close%2A>。
+此方法与调用<xref:Microsoft.Win32.RegistryKey.Close%2A>的效果相同。
 
 ]]></format>
         </remarks>
@@ -2802,17 +2802,17 @@
       <Parameters />
       <Docs>
         <summary>检索此项的字符串表示形式。</summary>
-        <returns>表示此项的字符串。 如果指定的键是无效 （找不到） 然后<see langword="null" />返回。</returns>
+        <returns>表示此项的字符串。 如果指定的项无效（找不到），则返回 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回值包含指定的密钥和密钥的十六进制值的注册表路径。 注册表路径包含指定键的绝对根，始终从 1 开始的基键的注册表中，例如，HKEY_LOCAL_MACHINE。  
+ 返回值包括指定键的注册表路径和该键的十六进制值。 注册表路径包括指定键的绝对根, 始终在注册表的某个基键 (例如 HKEY_LOCAL_MACHINE) 中启动。  
   
    
   
 ## Examples  
- 此代码示例是为提供一个更大示例的一部分<xref:Microsoft.Win32.RegistryKey>类。  
+ 此代码示例是为<xref:Microsoft.Win32.RegistryKey>类提供的更大示例的一部分。  
   
  [!code-cpp[Microsoft.Win32.RegistryKey2#4](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CPP/source.cpp#4)]
  [!code-csharp[Microsoft.Win32.RegistryKey2#4](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CS/source.cs#4)]
@@ -2820,7 +2820,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />正在访问已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.ObjectDisposedException">访问的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
         <altmember cref="P:Microsoft.Win32.RegistryKey.Name" />
       </Docs>
     </Member>
@@ -2862,12 +2862,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 每个注册表项具有未与任何名称关联的默认值。 此未命名的值可以通过设置<xref:Microsoft.Win32.RegistryKey.SetValue%2A>方法，并指定`null`或空字符串 ("") 为`name`。 如果将永远不会设置默认值，它不计入返回的总计数<xref:Microsoft.Win32.RegistryKey.ValueCount%2A>属性; 后已设置，但是，它始终计数。  
+ 每个注册表项都有一个默认值, 该默认值不与任何名称关联。 可以通过使用<xref:Microsoft.Win32.RegistryKey.SetValue%2A>方法并为`null` `name`指定或空字符串 ("") 来设置此未命名值。 如果从未设置默认值, 则它不会影响<xref:Microsoft.Win32.RegistryKey.ValueCount%2A>属性返回的总数; 但是, 在设置后, 它将始终计数。  
   
    
   
 ## Examples  
- 此代码示例是为提供一个更大示例的一部分<xref:Microsoft.Win32.RegistryKey>类。  
+ 此代码示例是为<xref:Microsoft.Win32.RegistryKey>类提供的更大示例的一部分。  
   
  [!code-cpp[Microsoft.Win32.RegistryKey2#2](~/samples/snippets/cpp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CPP/source.cpp#2)]
  [!code-csharp[Microsoft.Win32.RegistryKey2#2](~/samples/snippets/csharp/VS_Snippets_CLR/Microsoft.Win32.RegistryKey2/CS/source.cs#2)]
@@ -2875,11 +2875,11 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Security.SecurityException">用户没有读取的权限的密钥。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:Microsoft.Win32.RegistryKey" />操作已关闭 （无法访问关闭的项）。</exception>
+        <exception cref="T:System.Security.SecurityException">用户没有该项的读取权限。</exception>
+        <exception cref="T:System.ObjectDisposedException">要操作的 <see cref="T:Microsoft.Win32.RegistryKey" /> 已关闭（无法访问关闭的项）。</exception>
         <exception cref="T:System.UnauthorizedAccessException">用户没有必需的注册表权限。</exception>
-        <exception cref="T:System.IO.IOException">出现系统错误，例如当前项已被删除。</exception>
-        <permission cref="T:System.Security.Permissions.RegistryPermission">用于读取指定的注册表项的功能。 关联的枚举： <see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
+        <exception cref="T:System.IO.IOException">发生系统错误，例如，当前项已被删除。</exception>
+        <permission cref="T:System.Security.Permissions.RegistryPermission">用于读取指定的注册表项。 关联的枚举:<see cref="F:System.Security.Permissions.RegistryPermissionAccess.Read" /></permission>
       </Docs>
     </Member>
     <Member MemberName="View">
@@ -2919,14 +2919,14 @@
         <value>用于创建注册表项的视图。  
   
 或 
- <see cref="F:Microsoft.Win32.RegistryView.Default" />如果未使用视图。</value>
+ 如果未使用视图，则为 <see cref="F:Microsoft.Win32.RegistryView.Default" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在 64 位版本的 Windows，对于 32 位和 64 位应用程序可以单独存储的注册表部分。 没有 32 位应用程序的 32 位视图和 64 位应用程序的 64 位视图。  
+ 在64位版本的 Windows 上, 将分别为32位和64位应用程序存储注册表部分。 对于32位应用程序, 有32位视图, 适用于64位应用程序的64位视图。  
   
- 不要假定视图始终对应的实际视图<xref:Microsoft.Win32.RegistryKey>。  
+ 不要假设视图始终与的实际视图<xref:Microsoft.Win32.RegistryKey>相对应。  
   
  ]]></format>
         </remarks>

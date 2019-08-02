@@ -1,5 +1,5 @@
 <Type Name="FieldBuilder" FullName="System.Reflection.Emit.FieldBuilder">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f3ba2e5eb31deaee5c7ffed1b99191c421a4baa4" /><Meta Name="ms.sourcegitcommit" Value="7845f124909a0999a19cc65f40feab5e75cd9b8d" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="05/06/2019" /><Meta Name="ms.locfileid" Value="65064754" /></Metadata><TypeSignature Language="C#" Value="public sealed class FieldBuilder : System.Reflection.FieldInfo, System.Runtime.InteropServices._FieldBuilder" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7ce2a26a77265b2eb4386ff58908e7c8da7f2463" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68437186" /></Metadata><TypeSignature Language="C#" Value="public sealed class FieldBuilder : System.Reflection.FieldInfo, System.Runtime.InteropServices._FieldBuilder" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit FieldBuilder extends System.Reflection.FieldInfo implements class System.Runtime.InteropServices._FieldBuilder" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.Emit.FieldBuilder" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class FieldBuilder&#xA;Inherits FieldInfo&#xA;Implements _FieldBuilder" />
@@ -47,10 +47,10 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 获取的实例`FieldBuilder`通过调用<xref:System.Reflection.Emit.TypeBuilder.DefineField%2A>， <xref:System.Reflection.Emit.ModuleBuilder.DefineInitializedData%2A>，或<xref:System.Reflection.Emit.ModuleBuilder.DefineUninitializedData%2A>。  
+ `FieldBuilder`通过调用<xref:System.Reflection.Emit.TypeBuilder.DefineField%2A>、 <xref:System.Reflection.Emit.ModuleBuilder.DefineInitializedData%2A>或获取的实例。<xref:System.Reflection.Emit.ModuleBuilder.DefineUninitializedData%2A>  
   
 > [!NOTE]
->  <xref:System.Reflection.Emit.FieldBuilder.SetValue%2A>目前不支持方法。 作为一种解决方法，检索<xref:System.Reflection.FieldInfo>通过专用于反映将已完成的类型和调用<xref:System.Reflection.FieldInfo.SetValue%2A>设置字段的值。  
+>  当前<xref:System.Reflection.Emit.FieldBuilder.SetValue%2A>不支持此方法。 作为一种解决方法, <xref:System.Reflection.FieldInfo>可通过反射完成类型并调用<xref:System.Reflection.FieldInfo.SetValue%2A>来设置字段的值, 来检索。  
   
    
   
@@ -122,7 +122,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 下面的代码示例演示如何使用`Attributes`。  
+ 下面的代码示例阐释了的用法`Attributes`。  
   
  [!code-cpp[FieldBuilder_ReflectedType#1](~/samples/snippets/cpp/VS_Snippets_CLR/FieldBuilder_ReflectedType/CPP/fieldbuilder_reflectedtype.cpp#1)]
  [!code-csharp[FieldBuilder_ReflectedType#1](~/samples/snippets/csharp/VS_Snippets_CLR/FieldBuilder_ReflectedType/CS/fieldbuilder_reflectedtype.cs#1)]
@@ -162,7 +162,7 @@
       </ReturnValue>
       <Docs>
         <summary>指示对声明该字段的类型的 <see cref="T:System.Type" /> 对象的引用。 此属性是只读的。</summary>
-        <value>对引用<see cref="T:System.Type" />声明此字段的类型的对象。</value>
+        <value>对声明该字段的类型的 <see cref="T:System.Type" /> 对象的引用。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -195,7 +195,7 @@
       </ReturnValue>
       <Docs>
         <summary>指示该字段的内部元数据句柄。 此属性是只读的。</summary>
-        <value>此字段的内部元数据句柄。</value>
+        <value>该字段的内部元数据句柄。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotSupportedException">不支持此方法。</exception>
       </Docs>
@@ -230,7 +230,7 @@
       </ReturnValue>
       <Docs>
         <summary>指示表示该字段的类型的 <see cref="T:System.Type" /> 对象。 此属性是只读的。</summary>
-        <value><see cref="T:System.Type" />对象，表示此字段的类型。</value>
+        <value><see cref="T:System.Type" /> 对象，表示该字段的类型。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -275,7 +275,7 @@
         <Parameter Name="inherit" Type="System.Boolean" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="inherit">基类中自定义属性的控件继承。</param>
+        <param name="inherit">控制来自基类的自定义属性的继承性。</param>
         <summary>返回为该字段定义的所有自定义属性。</summary>
         <returns>类型 <see cref="T:System.Object" /> 的数组，该类型对象表示由此 <see cref="T:System.Reflection.Emit.FieldBuilder" /> 实例表示的构造函数的所有自定义属性。</returns>
         <remarks>To be added.</remarks>
@@ -314,8 +314,8 @@
         <Parameter Name="inherit" Type="System.Boolean" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="attributeType">自定义属性类型。</param>
-        <param name="inherit">基类中自定义属性的控件继承。</param>
+        <param name="attributeType">自定义特性类型。</param>
+        <param name="inherit">控制来自基类的自定义属性的继承性。</param>
         <summary>返回为由给定类型标识的该字段定义的所有自定义属性。</summary>
         <returns>类型 <see cref="T:System.Object" /> 的数组，该类型对象表示由此 <see cref="T:System.Reflection.Emit.FieldBuilder" /> 实例表示的构造函数的所有自定义属性。</returns>
         <remarks>To be added.</remarks>
@@ -393,11 +393,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果此字段为`static`，则`obj`参数将被忽略。 对于非静态字段，`obj`应是继承或声明该字段的类的实例。  
+ 如果该字段为`static`, 则`obj`忽略该参数。 对于非静态字段, `obj`应为继承或声明该字段的类的实例。  
   
- 返回类型<xref:System.Reflection.Emit.FieldBuilder.GetValue%2A>是<xref:System.Object>。 例如，如果该字段将持有一个布尔值基元值，实例<xref:System.Object>值将返回带有适当的布尔值。 返回值之前<xref:System.Reflection.Emit.FieldBuilder.GetValue%2A>检查以确定用户是否具有访问权限。  
+ 的返回类型<xref:System.Reflection.Emit.FieldBuilder.GetValue%2A>为<xref:System.Object>。 例如, 如果该字段包含布尔基元值, 则返回一个具有相应<xref:System.Object>布尔值的实例。 返回该值之前, <xref:System.Reflection.Emit.FieldBuilder.GetValue%2A>请检查用户是否具有访问权限。  
   
- 对于完全受信任的代码将忽略访问限制。 `Private` 构造函数、 方法、 字段和属性可以访问并完全受信任代码时使用反射来调用。  
+ 对于完全受信任的代码, 将忽略访问限制。 `Private`只要代码完全受信任, 就可以使用反射来访问和调用构造函数、方法、字段和属性。  
   
  ]]></format>
         </remarks>
@@ -437,7 +437,7 @@
       </Parameters>
       <Docs>
         <param name="attributeType">属性的类型。</param>
-        <param name="inherit">基类中自定义属性的控件继承。</param>
+        <param name="inherit">控制来自基类的自定义属性的继承性。</param>
         <summary>指示是否在字段上定义了具有指定类型的属性。</summary>
         <returns>如果该字段上定义了一个或多个 <paramref name="attributeType" /> 实例，则为 <see langword="true" />否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
@@ -460,6 +460,7 @@
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Reflection.Emit</AssemblyName>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -469,7 +470,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取在其中定义包含此字段的类型的模块。</summary>
-        <value>一个<see cref="T:System.Reflection.Module" />，表示在其中定义此字段的动态模块。</value>
+        <value><see cref="T:System.Reflection.Module" />，表示在其中定义此字段的动态模块。</value>
         <remarks>To be added.</remarks>
         <altmember cref="T:System.Reflection.Module" />
       </Docs>
@@ -504,12 +505,12 @@
       </ReturnValue>
       <Docs>
         <summary>指示该字段的名称。 此属性是只读的。</summary>
-        <value>一个<see cref="T:System.String" />包含此字段的名称。</value>
+        <value>包含该字段的名称的 <see cref="T:System.String" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 下面的代码示例演示如何使用`Name`。  
+ 下面的代码示例阐释了的用法`Name`。  
   
  [!code-csharp[FieldBuilder Example](~/samples/snippets/csharp/VS_Snippets_CLR/FieldBuilder_Class_Name/FieldBuilder.cs)]
  [!code-vb[FieldBuilde Example](~/samples/snippets/visualbasic/VS_Snippets_CLR/FieldBuilder_Class_Name/FieldBuilder.vb)]  
@@ -547,14 +548,14 @@
       </ReturnValue>
       <Docs>
         <summary>指示对从中获取此对象的 <see cref="T:System.Type" /> 对象的引用。 此属性是只读的。</summary>
-        <value>对引用<see cref="T:System.Type" />从中获取此实例对象。</value>
+        <value>对从中获取该实例的 <see cref="T:System.Type" /> 对象的引用。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Reflection.Emit.FieldBuilder>对象都表示特定类的字段。 为了获取<xref:System.Reflection.Emit.FieldBuilder>对象，<xref:System.Type>表示支持字段的类的对象进行查询。 此属性保存到的引用<xref:System.Type>对象。  
+ <xref:System.Reflection.Emit.FieldBuilder>对象表示特定类的字段。 为了获得<xref:System.Reflection.Emit.FieldBuilder>对象<xref:System.Type> , 将查询表示支持字段的类的对象。 此属性包含对该对象的<xref:System.Type>引用。  
   
- 下面的代码示例演示如何使用`ReflectedType`。  
+ 下面的代码示例阐释了的用法`ReflectedType`。  
   
  [!code-cpp[FieldBuilder_ReflectedType#1](~/samples/snippets/cpp/VS_Snippets_CLR/FieldBuilder_ReflectedType/CPP/fieldbuilder_reflectedtype.cpp#1)]
  [!code-csharp[FieldBuilder_ReflectedType#1](~/samples/snippets/csharp/VS_Snippets_CLR/FieldBuilder_ReflectedType/CS/fieldbuilder_reflectedtype.cs#1)]
@@ -607,7 +608,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `defaultValue` 仅限于以下类型： `Boolean`， `SByte`， `Int16`， `Int32`， `Int64`， `Byte`， `UInt16`， `UInt32`， `UInt64`， `Single`， `Double`， `DateTime``Char`， `String`，和`Enum`。 如果字段类型是引用类型，需要 CLS 符合性`defaultValue`为`null`。 但是，从开始[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]，`defaultValue`可以为非 null 的类型，只要可以将值分配给该引用类型的引用。 例如，`Int32`值可以分配给类型的字段<xref:System.Object>。 这不符合 CLS，但可能会在互操作方案中有用。  
+ `defaultValue``Boolean`限制为以下类型:、 、`Byte`、、 `Int32` `Int64` 、、`UInt64`、、 、、、`UInt16` `UInt32` `Int16` `SByte` `Single` `Double` `DateTime`、 `Char`、 `String`和。`Enum` 如果字段类型为引用类型, 则 CLS 遵从性要求`defaultValue` `null`为。 但是, 从开始[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)], `defaultValue`只要可将值分配给该引用类型, 引用类型就不能为 null。 例如, 可以将`Int32`一个值分配给类型<xref:System.Object>为的字段。 这不符合 CLS, 但在互操作方案中可能很有用。  
   
  ]]></format>
         </remarks>
@@ -617,7 +618,7 @@
 或 
 <paramref name="defaultValue" /> 类型与该字段类型不匹配。  
   
-或 
+- 或 - 
 该字段的类型为 <see cref="T:System.Object" /> 或其他引用类型，并且 <paramref name="defaultValue" /> 不是 <see langword="null" />无法将该值分配给引用类型。</exception>
       </Docs>
     </Member>
@@ -674,7 +675,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示如何使用`SetCustomAttribute`中的上下文<xref:System.Reflection.Emit.FieldBuilder>，并使用<xref:System.Reflection.Emit.CustomAttributeBuilder>。  
+ 下面的代码示例演示如何使用`SetCustomAttribute`在的<xref:System.Reflection.Emit.FieldBuilder>上下文<xref:System.Reflection.Emit.CustomAttributeBuilder>中使用。  
   
  [!code-cpp[FieldBuilder_SetCustomAttributes#1](~/samples/snippets/cpp/VS_Snippets_CLR/FieldBuilder_SetCustomAttributes/CPP/fieldbuilder_setcustomattributes.cpp#1)]
  [!code-csharp[FieldBuilder_SetCustomAttributes#1](~/samples/snippets/csharp/VS_Snippets_CLR/FieldBuilder_SetCustomAttributes/CS/fieldbuilder_setcustomattributes.cs#1)]
@@ -734,12 +735,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关如何设置格式，请参阅 ECMA 第 II 文档有关的详细信息中的元数据规范`binaryAttribute`。 可联机获取该文档；请参阅 MSDN 上的 [ECMA C# 和公共语言基础结构标准](https://go.microsoft.com/fwlink/?LinkID=99212)和 Ecma International 网站上的[标准 ECMA-335 - 公共语言基础结构 (CLI)](https://go.microsoft.com/fwlink/?LinkID=65552)。  
+ 有关如何格式化`binaryAttribute`的详细信息, 请参阅 ECMA Partition II 文档中的元数据规范。 可联机获取该文档；请参阅 MSDN 上的 [ECMA C# 和公共语言基础结构标准](https://go.microsoft.com/fwlink/?LinkID=99212)和 Ecma International 网站上的[标准 ECMA-335 - 公共语言基础结构 (CLI)](https://go.microsoft.com/fwlink/?LinkID=65552)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用`SetCustomAttribute`的上下文中<xref:System.Reflection.Emit.FieldBuilder>，使用的字节 blob。  
+ 下面的代码示例演示如何使用字节`SetCustomAttribute` blob 在的<xref:System.Reflection.Emit.FieldBuilder>上下文中使用。  
   
  [!code-cpp[FieldBuilder_SetCustomAttributes#1](~/samples/snippets/cpp/VS_Snippets_CLR/FieldBuilder_SetCustomAttributes/CPP/fieldbuilder_setcustomattributes.cpp#1)]
  [!code-csharp[FieldBuilder_SetCustomAttributes#1](~/samples/snippets/csharp/VS_Snippets_CLR/FieldBuilder_SetCustomAttributes/CS/fieldbuilder_setcustomattributes.cs#1)]
@@ -789,13 +790,13 @@
         <Parameter Name="unmanagedMarshal" Type="System.Reflection.Emit.UnmanagedMarshal" Index="0" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="unmanagedMarshal">描述符，指定此字段的本机封送处理。</param>
+        <param name="unmanagedMarshal">一个描述符，指定此字段的本机封送处理。</param>
         <summary>描述该字段的本机封送处理。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 下面的代码示例演示如何使用`SetMarshal`。  
+ 下面的代码示例阐释了的用法`SetMarshal`。  
   
  [!code-cpp[FieldBuilder_SetOffset#1](~/samples/snippets/cpp/VS_Snippets_CLR/FieldBuilder_SetOffset/CPP/fieldbuilder_setoffset.cpp#1)]
  [!code-csharp[FieldBuilder_SetOffset#1](~/samples/snippets/csharp/VS_Snippets_CLR/FieldBuilder_SetOffset/CS/fieldbuilder_setoffset.cs#1)]
@@ -850,7 +851,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 下面的代码示例演示如何使用`SetOffset`。  
+ 下面的代码示例阐释了的用法`SetOffset`。  
   
  [!code-cpp[FieldBuilder_SetOffset#1](~/samples/snippets/cpp/VS_Snippets_CLR/FieldBuilder_SetOffset/CPP/fieldbuilder_setoffset.cpp#1)]
  [!code-csharp[FieldBuilder_SetOffset#1](~/samples/snippets/csharp/VS_Snippets_CLR/FieldBuilder_SetOffset/CS/fieldbuilder_setoffset.cs#1)]
@@ -906,14 +907,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法会将分配`val`反射了由此实例的字段的参数<xref:System.Object> `obj`。 如果该字段是静态的`obj`将被忽略。 对于非静态字段，`obj`应是继承或声明该字段的类的实例。  
+ 此方法会将`val`参数分配给在上<xref:System.Object> `obj`由此实例反映的字段。 如果该字段为静态, `obj`则将被忽略。 对于非静态字段, `obj`应为继承或声明该字段的类的实例。  
   
- 新值将作为传递<xref:System.Object>。 例如，如果字段的类型为布尔值的实例<xref:System.Object>值传递与相应的布尔值。 设置值前<xref:System.Reflection.Emit.FieldBuilder.SetValue%2A>检查以确定用户是否具有访问权限。  
+ 新值作为<xref:System.Object>传递。 例如, 如果该字段的类型为布尔值, 则会传递<xref:System.Object>一个具有适当布尔值的实例。 设置该值之前, <xref:System.Reflection.Emit.FieldBuilder.SetValue%2A>请检查用户是否具有访问权限。  
   
- 对于完全受信任的代码将忽略访问限制。 `Private` 构造函数、 方法、 字段和属性可以访问并完全受信任代码时使用反射来调用。  
+ 对于完全受信任的代码, 将忽略访问限制。 `Private`只要代码完全受信任, 就可以使用反射来访问和调用构造函数、方法、字段和属性。  
   
 > [!NOTE]
->  当前不支持该方法。 作为一种解决方法，检索<xref:System.Reflection.FieldInfo>通过专用于反映将已完成的类型和调用<xref:System.Reflection.FieldInfo.SetValue%2A>设置字段的值。  
+>  当前不支持该方法。 作为一种解决方法, <xref:System.Reflection.FieldInfo>可通过反射完成类型并调用<xref:System.Reflection.FieldInfo.SetValue%2A>来设置字段的值, 来检索。  
   
  ]]></format>
         </remarks>
@@ -964,7 +965,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::GetIDsOfNames`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::GetIDsOfNames`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>
@@ -1011,7 +1012,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::GetTypeInfo`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::GetTypeInfo`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>
@@ -1054,7 +1055,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::GetTypeInfoCount`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::GetTypeInfoCount`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>
@@ -1111,7 +1112,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于访问托管类到从非托管代码，不应从托管代码调用。 有关详细信息`IDispatch::Invoke`，请参阅 MSDN 库。  
+ 此方法用于从非托管代码访问托管类, 不应从托管代码调用。 有关`IDispatch::Invoke`的详细信息, 请参阅 MSDN library。  
   
  ]]></format>
         </remarks>
