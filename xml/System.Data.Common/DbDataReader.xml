@@ -1,5 +1,5 @@
 <Type Name="DbDataReader" FullName="System.Data.Common.DbDataReader">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d479e17a4c080cf6d5c9adf20fdffaee9d3d4ae0" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68438375" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbDataReader : MarshalByRefObject, IDisposable, System.Collections.IEnumerable, System.Data.IDataReader" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4244d7084f3d26663b3dd6cdcb1078113ecee543" /><Meta Name="ms.sourcegitcommit" Value="5c332e8417c001736f7e2f33a84791feebba2cd7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/30/2019" /><Meta Name="ms.locfileid" Value="68632574" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbDataReader : MarshalByRefObject, IDisposable, System.Collections.IEnumerable, System.Data.IDataReader" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DbDataReader extends System.MarshalByRefObject implements class System.Collections.IEnumerable, class System.Data.IDataReader, class System.Data.IDataRecord, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Data.Common.DbDataReader" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DbDataReader&#xA;Inherits MarshalByRefObject&#xA;Implements IDataReader, IDisposable, IEnumerable" />
@@ -199,7 +199,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>释放 <see cref="T:System.Data.Common.DbDataReader" /> 使用的资源并调用 <see cref="M:System.Data.SqlClient.SqlDataReader.Close" />。</summary>
+        <summary>释放 <see cref="T:System.Data.Common.DbDataReader" /> 使用的资源并调用 <see cref="M:System.Data.Common.DbDataReader.Close" />。</summary>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </MemberGroup>
@@ -298,7 +298,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法调用 <xref:System.Data.SqlClient.SqlDataReader.Close%2A>。  
+ 此方法调用 <xref:System.Data.Common.DbDataReader.Close%2A>。  
   
  ]]></format>
         </remarks>
@@ -420,6 +420,7 @@
         <summary>获取指定列的布尔值形式的值。</summary>
         <returns>指定列的值。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的强制转换无效。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -464,6 +465,7 @@
         <summary>以字节的形式获取指定列的值。</summary>
         <returns>指定列的值。</returns>
         <remarks>To be added.</remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的强制转换无效。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -513,9 +515,10 @@
         <param name="buffer">要将数据复制到的缓冲区。</param>
         <param name="bufferOffset">要将数据复制到的位置的缓冲区索引。</param>
         <param name="length">最多读取的字符数。</param>
-        <summary>从指定列读取一个字节流（从 <paramref name="dataOffset" /> 指示的位置开始），读到缓冲区中（从 <paramref name="bufferOffset" /> 指示的位置开始）。</summary>
+        <summary>从指定列中指定索引处开始读取指定字节数，并将其写入缓冲区中从指定位置开始的缓冲区。</summary>
         <returns>读取的实际字节数。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的强制转换无效。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -560,6 +563,7 @@
         <summary>以单个字符的形式获取指定列的值。</summary>
         <returns>指定列的值。</returns>
         <remarks>To be added.</remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的强制转换无效。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -609,7 +613,7 @@
         <param name="buffer">要将数据复制到的缓冲区。</param>
         <param name="bufferOffset">要将数据复制到的位置的缓冲区索引。</param>
         <param name="length">最多读取的字符数。</param>
-        <summary>从指定列读取一个字符流，从 <paramref name="dataOffset" /> 指示的位置开始，读到缓冲区中，从 <paramref name="bufferOffset" /> 指示的位置开始。</summary>
+        <summary>从指定列中指定索引处开始读取指定字符数，并将其写入从指定位置开始的缓冲区。</summary>
         <returns>读取的实际字符数。</returns>
         <remarks>To be added.</remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
@@ -654,9 +658,10 @@
       </Parameters>
       <Docs>
         <param name="ordinal">从零开始的列序号。</param>
-        <summary>返回被请求的列序号的 <see cref="T:System.Data.Common.DbDataReader" /> 对象。</summary>
-        <returns><see cref="T:System.Data.Common.DbDataReader" /> 对象。</returns>
+        <summary>返回所请求列的嵌套数据读取器。</summary>
+        <returns>数据读取器。</returns>
         <remarks>To be added.</remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -698,7 +703,7 @@
       <Docs>
         <param name="ordinal">从零开始的列序号。</param>
         <summary>获取指定列的数据类型的名称。</summary>
-        <returns>一个字符串，表示数据类型的名称。</returns>
+        <returns>数据类型的名称。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -722,7 +727,7 @@ private static void GetDataTypes(String connectionString) {
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidCastException">指定的强制转换无效。</exception>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -766,6 +771,7 @@ private static void GetDataTypes(String connectionString) {
         <summary>以 <see cref="T:System.DateTime" /> 对象的形式获取指定列的值。</summary>
         <returns>指定列的值。</returns>
         <remarks>To be added.</remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的强制转换无效。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -847,9 +853,10 @@ private static void GetDataTypes(String connectionString) {
       </Parameters>
       <Docs>
         <param name="ordinal">从零开始的列序号。</param>
-        <summary>以 <see cref="T:System.Decimal" /> 对象的形式获取指定列的值。</summary>
+        <summary>获取指定列的 <see cref="T:System.Decimal" /> 形式的值。</summary>
         <returns>指定列的值。</returns>
         <remarks>To be added.</remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的强制转换无效。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -992,6 +999,7 @@ private static void GetDataTypes(String connectionString) {
         <summary>获取指定列的数据类型。</summary>
         <returns>指定列的数据类型。</returns>
         <remarks>To be added.</remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的强制转换无效。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -1031,36 +1039,28 @@ private static void GetDataTypes(String connectionString) {
         <Parameter Name="ordinal" Type="System.Int32" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <typeparam name="T">同步获取作为类型的指定列的值。</typeparam>
-        <param name="ordinal">要检索的列。</param>
-        <summary>同步获取作为类型的指定列的值。</summary>
-        <returns>要检索的列。</returns>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
- ]]></format>
-        </remarks>
-        <exception cref="T:System.InvalidOperationException">连接中断或在数据检索期间已关闭。  
+        <typeparam name="T">要返回的值的类型。</typeparam>
+        <param name="ordinal">从零开始的列序号。</param>
+        <summary>获取指定列的值作为请求的类型。</summary>
+        <returns>指定列的值。</returns>
+	<exception cref="T:System.InvalidOperationException">在数据检索期间删除或关闭连接。  
 
-- 或 - 
-数据检索期间，<see cref="T:System.Data.SqlClient.SqlDataReader" /> 处于关闭状态。  
+或 
+在数据检索期间关闭数据读取器。  
   
-- 或 -
+或
 
-没有要读取的就绪数据 (例如，第一个 <see cref="M:System.Data.SqlClient.SqlDataReader.Read" /> 未被调用或返回错误)。  
+没有可读取的数据（例如尚未调用第一个 <see cref="M:System.Data.Common.DbDataReader.Read" />，或调用返回了 <see langword="false" />）。  
 
 - 或 -
 
-按顺序模式尝试读取上一步骤中读取的列。  
+读取器试图按顺序模式读取曾读取的列。  
 
-- 或 -
+或
 
 没有正在进行的异步操作。 以顺序模式运行时，这适用于所有 Get* 方法，读取流时也可对其进行调用。</exception>
-        <exception cref="T:System.IndexOutOfRangeException">尝试读取不存在的列。</exception>
-        <exception cref="T:System.InvalidCastException"><paramref name="T" /> 与 SQL Server 返回的类型不匹配或无法进行强制转换。</exception>
+        <exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
+        <exception cref="T:System.InvalidCastException">数据库返回的值不匹配或不能转换为 <typeparamref name="T" />。</exception>
       </Docs>
     </Member>
     <MemberGroup MemberName="GetFieldValueAsync&lt;T&gt;">
@@ -1069,15 +1069,7 @@ private static void GetDataTypes(String connectionString) {
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>异步获取作为类型的指定列的值。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
- ]]></format>
-        </remarks>
+        <summary>异步获取指定列的值作为请求的类型。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="GetFieldValueAsync&lt;T&gt;">
@@ -1116,45 +1108,44 @@ private static void GetDataTypes(String connectionString) {
       </Parameters>
       <Docs>
         <typeparam name="T">要返回的值的类型。</typeparam>
-        <param name="ordinal">要返回的值的类型。</param>
-        <summary>异步获取作为类型的指定列的值。</summary>
-        <returns>要返回的值的类型。</returns>
+        <param name="ordinal">从零开始的列序号。</param>
+        <summary>异步获取指定列的值作为请求的类型。</summary>
+        <returns><see cref="P:System.Threading.Tasks.Task`1.Result" /> 包含指定列的值的任务。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- `T`可以是以下类型之一:  
-  
-|||||  
-|-|-|-|-|  
-|Boolean|Byte|Char|DateTime|  
-|DateTimeOffset|十进制|Double|Float|  
-|GUID|Int16|Int32|Int64|  
-|String||||  
-  
- 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+          <format type="text/markdown"><![CDATA[
+ ## Remarks 
+ 仅当在顺序模式下创建读取器时, 才需要此异步方法来避免阻塞调用线程。
+ 
+ 如果未指定顺序模式, 则每次 ReadAsync 完成时, 所有列值都将在内存中可用, 并且调用该方法的同步版本不应阻止调用线程。
+
+ 此异步方法的默认实现调用其同步对应项, 并返回已完成的任务, 可能会阻止调用线程。
+
+ 支持[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)的数据访问接口应使用异步 i/o 操作来重写默认的 inmplementation。
+
+ 当返回任务还未完成时， DbDataReader 对象的其他方法和属性不应调用 。
+
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">连接中断或在数据检索期间已关闭。  
+
+        <exception cref="T:System.InvalidOperationException">在数据检索期间删除或关闭连接。  
   
-- 或 -
+或
 
-数据检索期间，<see cref="T:System.Data.Common.DbDataReader" /> 处于关闭状态。  
+在数据检索期间关闭数据读取器。  
 
-- 或 -
+或
 
-没有要读取的就绪数据 (例如，第一个 <see cref="M:System.Data.Common.DbDataReader.Read" /> 未被调用或返回错误)。  
+没有可读取的数据（例如尚未调用第一个 <see cref="M:System.Data.Common.DbDataReader.Read" />，或调用返回了 <see langword="false" />）。
 
-- 或 -
+或
 
 按顺序模式尝试读取上一步骤中读取的列。  
 
 - 或 -
 
-没有正在进行的异步操作。 以顺序模式运行时，这适用于所有 Get* 方法，读取流时也可对其进行调用。</exception>
-        <exception cref="T:System.IndexOutOfRangeException">尝试读取不存在的列。</exception>
-        <exception cref="T:System.InvalidCastException"><paramref name="T" /> 与数据源返回的类型不匹配或无法进行强制转换。</exception>
+没有正在进行的异步操作。 以顺序模式运行时，这适用于所有 Get_*_ 方法，读取流时也可对其进行调用。</exception>
+        <exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
+        <exception cref="T:System.InvalidCastException">数据库返回的值不匹配或不能转换为 <typeparamref name="T" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetFieldValueAsync&lt;T&gt;">
@@ -1193,36 +1184,35 @@ private static void GetDataTypes(String connectionString) {
       </Parameters>
       <Docs>
         <typeparam name="T">要返回的值的类型。</typeparam>
-        <param name="ordinal">要返回的值的类型。</param>
-        <param name="cancellationToken">取消指示，用于对应该取消操作的通知进行传播。 此构造函数不对取消做保证。 设置为 <see langword="CancellationToken.None" /> 将此方法等效于 <see cref="M:System.Data.Common.DbDataReader.GetFieldValueAsync``1(System.Int32)" />。 返回任务必须标记为已取消。</param>
-        <summary>异步获取作为类型的指定列的值。</summary>
-        <returns>要返回的值的类型。</returns>
+        <param name="ordinal">从零开始的列序号。</param>
+        <param name="cancellationToken">用于取消异步操作的令牌。</param>
+        <summary>异步获取指定列的值作为请求的类型。</summary>
+        <returns><see cref="P:System.Threading.Tasks.Task`1.Result" /> 包含指定列的值的任务。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- `T`可以是以下类型之一:  
-  
-|||||  
-|-|-|-|-|  
-|Boolean|Byte|Char|DateTime|  
-|DateTimeOffset|十进制|Double|Float|  
-|GUID|Int16|Int32|Int64|  
-|String||||  
-  
- 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+          <format type="text/markdown"><![CDATA[
+ ## Remarks 
+ 仅当在顺序模式下创建读取器时, 才需要此异步方法来避免阻塞调用线程。
+ 
+ 如果未指定顺序模式, 则每次 ReadAsync 完成时, 所有列值都将在内存中可用, 并且调用该方法的同步版本不应阻止调用线程。
+
+ 此异步方法的默认实现调用其同步对应项, 并返回已完成的任务, 可能会阻止调用线程。 如果传递了已取消的取消标记, 则默认实现还会返回已取消的任务。
+
+ 支持[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)的数据访问接口应使用异步 i/o 操作来重写默认的 inmplementation。
+
+ 该方法可用于请求操作之前接受取消标记。 实现可能会忽略该请求。
+ 
+ 当返回任务还未完成时， DbDataReader 对象的其他方法和属性不应调用 。
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">连接中断或在数据检索期间已关闭。  
+        <exception cref="T:System.InvalidOperationException">在数据检索期间删除或关闭连接。  
   
-- 或 -
+或
 
-数据检索期间，<see cref="T:System.Data.Common.DbDataReader" /> 处于关闭状态。  
+在数据检索期间关闭数据读取器。  
 
-- 或 -
+或
 
-没有要读取的就绪数据 (例如，第一个 <see cref="M:System.Data.Common.DbDataReader.Read" /> 未被调用或返回错误)。  
+没有可读取的数据（例如尚未调用第一个 <see cref="M:System.Data.Common.DbDataReader.Read" />，或调用返回了 <see langword="false" />）。
 
 - 或 -
 
@@ -1230,9 +1220,9 @@ private static void GetDataTypes(String connectionString) {
 
 - 或 -
 
-没有正在进行的异步操作。 以顺序模式运行时，这适用于所有 Get* 方法，读取流时也可对其进行调用。</exception>
-        <exception cref="T:System.IndexOutOfRangeException">尝试读取不存在的列。</exception>
-        <exception cref="T:System.InvalidCastException"><paramref name="T" /> 与数据源返回的类型不匹配或无法进行强制转换。</exception>
+没有正在进行的异步操作。 以顺序模式运行时，这适用于所有 Get_*_ 方法，读取流时也可对其进行调用。</exception>
+        <exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
+        <exception cref="T:System.InvalidCastException">数据库返回的值不匹配或不能转换为 <typeparamref name="T" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetFloat">
@@ -1275,6 +1265,7 @@ private static void GetDataTypes(String connectionString) {
         <summary>以单精度浮点数字的形式获取指定列的值。</summary>
         <returns>指定列的值。</returns>
         <remarks>To be added.</remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的强制转换无效。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -1316,9 +1307,10 @@ private static void GetDataTypes(String connectionString) {
       </Parameters>
       <Docs>
         <param name="ordinal">从零开始的列序号。</param>
-        <summary>以全局唯一标识符 (GUID) 的形式获取指定列的值。</summary>
+        <summary>获取指定列的值作为全局唯一标识符 (GUID)。</summary>
         <returns>指定列的值。</returns>
         <remarks>To be added.</remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的强制转换无效。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -1363,6 +1355,7 @@ private static void GetDataTypes(String connectionString) {
         <summary>获取指定列的 16 位有符号整数形式的值。</summary>
         <returns>指定列的值。</returns>
         <remarks>To be added.</remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的强制转换无效。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -1431,6 +1424,7 @@ private static void GetCredits(String connectionString) {
   
  ]]></format>
         </remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的强制转换无效。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -1475,6 +1469,7 @@ private static void GetCredits(String connectionString) {
         <summary>以 64 位有符号整数的形式获取指定列的值。</summary>
         <returns>指定列的值。</returns>
         <remarks>To be added.</remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的强制转换无效。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -1605,9 +1600,10 @@ private static void GetCredits(String connectionString) {
       </Parameters>
       <Docs>
         <param name="ordinal">从零开始的列序号。</param>
-        <summary>返回指定列的提供程序特定的字段类型。</summary>
-        <returns>描述指定列的数据类型的 <see cref="T:System.Type" /> 对象。</returns>
+        <summary>获取指定列的特定于提供程序的类型。</summary>
+        <returns>特定于提供程序的 .NET 类型。</returns>
         <remarks>To be added.</remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -1650,7 +1646,7 @@ private static void GetCredits(String connectionString) {
       </Parameters>
       <Docs>
         <param name="ordinal">从零开始的列序号。</param>
-        <summary>以 <see cref="T:System.Object" /> 实例的形式获取指定列的值。</summary>
+        <summary>以特定于提供程序的类型实例的形式获取指定列的值。</summary>
         <returns>指定列的值。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1703,7 +1699,7 @@ private static void GetCredits(String connectionString) {
       <Docs>
         <param name="values">要将属性列复制到的 <see cref="T:System.Object" /> 数组。</param>
         <summary>在当前行的集合中获取提供程序特定的所有属性列。</summary>
-        <returns>数组中 <see cref="T:System.Object" /> 的实例的数目。</returns>
+        <returns>数组中元素的实例数。</returns>
         <remarks>To be added.</remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -1743,7 +1739,8 @@ private static void GetCredits(String connectionString) {
         <summary>返回一个 <see cref="T:System.Data.DataTable" />，它描述 <see cref="T:System.Data.Common.DbDataReader" /> 的列元数据。</summary>
         <returns>一个描述列元数据的 <see cref="T:System.Data.DataTable" />。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><see cref="T:System.Data.SqlClient.SqlDataReader" /> 是关闭的。</exception>
+        <exception cref="T:System.InvalidOperationException"><see cref="T:System.Data.Common.DbDataReader" /> 是关闭的。</exception>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -1779,24 +1776,21 @@ private static void GetCredits(String connectionString) {
         <Parameter Name="ordinal" Type="System.Int32" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="ordinal">检索作为 <see cref="T:System.IO.Stream" /> 的数据。</param>
-        <summary>检索作为 <see cref="T:System.IO.Stream" /> 的数据。</summary>
-        <returns>返回的对象。</returns>
+        <param name="ordinal">从零开始的列序号。</param>
+        <summary>获取从指定列检索数据的流。</summary>
+        <returns>一个流。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
  <xref:System.Data.Common.DbDataReader.GetStream%2A>仅支持检索可转换为字节数组的值。  
-  
- 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">连接中断或在数据检索期间已关闭。  
+        <exception cref="T:System.InvalidOperationException">在数据检索期间删除或关闭连接。  
   
 - 或 -
 
-数据检索期间，<see cref="T:System.Data.Common.DbDataReader" /> 处于关闭状态。  
+在数据检索期间关闭数据读取器。  
 
 - 或 -
 
@@ -1804,12 +1798,12 @@ private static void GetCredits(String connectionString) {
 
 - 或 -
 
-按顺序模式尝试读取上一步骤中读取的列。  
+数据读取器按顺序模式尝试读取上一步骤中读取的列。  
 
-- 或 -
+或
 
 没有正在进行的异步操作。 以顺序模式运行时，这适用于所有 Get* 方法，读取流时也可对其进行调用。</exception>
-        <exception cref="T:System.IndexOutOfRangeException">尝试读取不存在的列。</exception>
+        <exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的列不是支持用 <see cref="T:System.IO.Stream" /> 读取的二进制类型。</exception>
       </Docs>
     </Member>
@@ -1853,6 +1847,7 @@ private static void GetCredits(String connectionString) {
         <summary>以 <see cref="T:System.String" /> 实例的形式获取指定列的值。</summary>
         <returns>指定列的值。</returns>
         <remarks>To be added.</remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的强制转换无效。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -1889,37 +1884,34 @@ private static void GetCredits(String connectionString) {
         <Parameter Name="ordinal" Type="System.Int32" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="ordinal">检索作为 <see cref="T:System.IO.TextReader" /> 的数据。</param>
-        <summary>检索作为 <see cref="T:System.IO.TextReader" /> 的数据。</summary>
-        <returns>返回的对象。</returns>
+        <param name="ordinal">从零开始的列序号。</param>
+        <summary>获取文本读取器以从列中检索数据。</summary>
+        <returns>文本读取器。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
  <xref:System.Data.Common.DbDataReader.GetTextReader%2A>仅支持检索可转换为字符数组 (字符串) 的值。  
-  
- 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">连接中断或在数据检索期间已关闭。  
+        <exception cref="T:System.InvalidOperationException">在数据检索期间删除或关闭连接。  
   
-- 或 -
+或
 
-数据检索期间，<see cref="T:System.Data.Common.DbDataReader" /> 处于关闭状态。  
+在数据检索期间关闭数据读取器。  
 
-- 或 -
+或
 
 没有要读取的就绪数据 (例如，第一个 <see cref="M:System.Data.Common.DbDataReader.Read" /> 未被调用或返回错误)。  
 
-- 或 -
+或
 
-按顺序模式尝试读取上一步骤中读取的列。  
+数据读取器按顺序模式尝试读取上一步骤中读取的列。  
 
-- 或 -
+或
 
 没有正在进行的异步操作。 以顺序模式运行时，这适用于所有 Get* 方法，读取流时也可对其进行调用。</exception>
-        <exception cref="T:System.IndexOutOfRangeException">尝试读取不存在的列。</exception>
+        <exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <exception cref="T:System.InvalidCastException">指定的列不是支持用 <see cref="T:System.IO.TextReader" /> 读取的文本类型。</exception>
       </Docs>
     </Member>
@@ -1963,6 +1955,7 @@ private static void GetCredits(String connectionString) {
         <summary>以 <see cref="T:System.Object" /> 实例的形式获取指定列的值。</summary>
         <returns>指定列的值。</returns>
         <remarks>To be added.</remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -2040,7 +2033,7 @@ private static void GetCredits(String connectionString) {
       </ReturnValue>
       <Docs>
         <summary>获取一个值，该值指示此 <see cref="T:System.Data.Common.DbDataReader" /> 是否包含一个或多个行。</summary>
-        <value>如果 <see cref="T:System.Data.Common.DbDataReader" /> 包含一行或多行，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
+        <value>如果 <see cref="T:System.Data.Common.DbDataReader" /> 包含一行或多行，则为 <see langword="true" />；否则，为 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -2081,7 +2074,7 @@ private static void GetCredits(String connectionString) {
         <summary>获取一个值，该值指示 <see cref="T:System.Data.Common.DbDataReader" /> 是否已关闭。</summary>
         <value>如果 <see cref="T:System.Data.Common.DbDataReader" /> 已关闭，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException"><see cref="T:System.Data.SqlClient.SqlDataReader" /> 是关闭的。</exception>
+        <exception cref="T:System.InvalidOperationException"><see cref="T:System.Data.Common.DbDataReader" /> 是关闭的。</exception>
         <block subset="none" type="overrides"><para>应实现此<see cref="P:System.Data.Common.DbDataReader.RecordsAffected" />属性, 以便在读取器关闭时返回值。</para></block>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -2124,15 +2117,16 @@ private static void GetCredits(String connectionString) {
       <Docs>
         <param name="ordinal">从零开始的列序号。</param>
         <summary>获取一个值，该值指示列中是否包含不存在或丢失的值。</summary>
-        <returns>如果指定的列与 <see cref="T:System.DBNull" /> 等效，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <returns>如果指定的列与 <see cref="T:System.DBNull" /> 等效，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法可在调用类型化 get 方法 (例如<xref:System.Data.Common.DbDataReader.GetByte%2A> <xref:System.Data.Common.DbDataReader.GetChar%2A>、等) 前检查是否有空列值, 以避免引发错误。  
+ 调用此方法可在调用类型为 Get_ * _ 方法 (例如<xref:System.Data.Common.DbDataReader.GetByte%2A> <xref:System.Data.Common.DbDataReader.GetChar%2A>、等) 前检查是否有空列值, 以避免引发异常。  
   
  ]]></format>
         </remarks>
+	<exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -2143,7 +2137,7 @@ private static void GetCredits(String connectionString) {
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary><see cref="M:System.Data.Common.DbDataReader.IsDBNull(System.Int32)" /> 的异步版本，其获取指示列是否包含不存在或缺失值的值。</summary>
+        <summary>异步获取一个值，该值指示列中是否包含不存在的或缺少的值。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="IsDBNullAsync">
@@ -2179,23 +2173,30 @@ private static void GetCredits(String connectionString) {
       </Parameters>
       <Docs>
         <param name="ordinal">从零开始的要检索的列。</param>
-        <summary><see cref="M:System.Data.Common.DbDataReader.IsDBNull(System.Int32)" /> 的异步版本，其获取指示列是否包含不存在或缺失值的值。</summary>
-        <returns>如果指定的列值与 <see langword="true" /> 等效，则为 <see langword="DBNull" />；否则为 <see langword="false" />。</returns>
+        <summary>异步获取一个值，该值指示列中是否包含不存在的或缺少的值。</summary>
+        <returns>一个 <see cref="T:System.Threading.Tasks.Task`1" />，如果指定的列值等于 <see langword="DBNull" />，则其 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性为 <see langword="true" />，如果不等于，则为 <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+          <format type="text/markdown"><![CDATA[
+ ## Remarks
+ 仅当在顺序模式下创建读取器时, 才需要此异步方法来避免阻塞调用线程。
+ 
+ 如果未指定顺序模式, 则每次 ReadAsync 完成时, 所有列值都将在内存中可用, 并且调用该方法的同步版本不应阻止调用线程。
+
+ 此异步方法的默认实现调用其同步对应项, 并返回已完成的任务, 可能会阻止调用线程。
+
+ 支持[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)的数据访问接口应使用异步 i/o 操作来重写默认的 inmplementation。
+
+ 当返回任务还未完成时， DbDataReader 对象的其他方法和属性不应调用 。
+
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">连接中断或在数据检索期间已关闭。  
+<exception cref="T:System.InvalidOperationException">在数据检索期间删除或关闭连接。  
   
-- 或 -
+或
 
-数据检索期间，<see cref="T:System.Data.Common.DbDataReader" /> 处于关闭状态。  
+在数据检索期间关闭数据读取器。  
 
-- 或 -
+或
 
 没有要读取的就绪数据 (例如，第一个 <see cref="M:System.Data.Common.DbDataReader.Read" /> 未被调用或返回错误)。  
 
@@ -2206,7 +2207,7 @@ private static void GetCredits(String connectionString) {
 - 或 -
 
 没有正在进行的异步操作。 以顺序模式运行时，这适用于所有 Get* 方法，读取流时也可对其进行调用。</exception>
-        <exception cref="T:System.IndexOutOfRangeException">尝试读取不存在的列。</exception>
+        <exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
       </Docs>
     </Member>
     <Member MemberName="IsDBNullAsync">
@@ -2242,24 +2243,33 @@ private static void GetCredits(String connectionString) {
       </Parameters>
       <Docs>
         <param name="ordinal">从零开始的要检索的列。</param>
-        <param name="cancellationToken">取消指示，用于对应该取消操作的通知进行传播。 此构造函数不对取消做保证。 设置为 <see langword="CancellationToken.None" /> 将此方法等效于 <see cref="M:System.Data.Common.DbDataReader.IsDBNullAsync(System.Int32)" />。 返回任务必须标记为已取消。</param>
-        <summary><see cref="M:System.Data.Common.DbDataReader.IsDBNull(System.Int32)" /> 的异步版本，其获取指示列是否包含不存在或缺失值的值。 可选地，发送操作应取消的注明。</summary>
-        <returns>如果指定的列值与 <see langword="true" /> 等效，则为 <see langword="DBNull" />；否则为 <see langword="false" />。</returns>
+        <param name="cancellationToken">用于取消异步操作的令牌。</param>
+        <summary>异步获取一个值，该值指示列中是否包含不存在的或缺少的值。</summary>
+        <returns>一个 <see cref="T:System.Threading.Tasks.Task`1" />，如果指定的列值等于 <see langword="DBNull" />，则其 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性为 <see langword="true" />，如果不等于，则为 <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
-  
+          <format type="text/markdown"><![CDATA[
+ ## Remarks
+ 仅当在顺序模式下创建读取器时, 才需要此异步方法来避免阻塞调用线程。
+ 
+ 如果未指定顺序模式, 则每次 ReadAsync 完成时, 所有列值都将在内存中可用, 并且调用该方法的同步版本不应阻止调用线程。
+
+ 此异步方法的默认实现调用其同步对应项, 并返回已完成的任务, 可能会阻止调用线程。 如果传递了已取消的取消标记, 则默认实现还会返回已取消的任务。
+
+ 支持[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)的数据访问接口应使用异步 i/o 操作来重写默认的 inmplementation。
+
+ 该方法可用于请求操作之前接受取消标记。 实现可能会忽略该请求。
+ 
+ 当返回任务还未完成时， DbDataReader 对象的其他方法和属性不应调用 。
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">连接中断或在数据检索期间已关闭。  
+
+	<exception cref="T:System.InvalidOperationException">在数据检索期间删除或关闭连接。  
   
 - 或 -
 
-数据检索期间，<see cref="T:System.Data.Common.DbDataReader" /> 处于关闭状态。  
+在数据检索期间关闭数据读取器。  
 
-- 或 -
+或
 
 没有要读取的就绪数据 (例如，第一个 <see cref="M:System.Data.Common.DbDataReader.Read" /> 未被调用或返回错误)。  
 
@@ -2269,7 +2279,7 @@ private static void GetCredits(String connectionString) {
 
 - 或 - 
 没有正在进行的异步操作。 以顺序模式运行时，这适用于所有 Get* 方法，读取流时也可对其进行调用。</exception>
-        <exception cref="T:System.IndexOutOfRangeException">尝试读取不存在的列。</exception>
+        <exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
       </Docs>
     </Member>
     <MemberGroup MemberName="Item">
@@ -2323,7 +2333,7 @@ private static void GetCredits(String connectionString) {
         <summary>以 <see cref="T:System.Object" /> 实例的形式获取指定列的值。</summary>
         <value>指定列的值。</value>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.IndexOutOfRangeException">传递的索引位于 0 至 <see cref="P:System.Data.IDataRecord.FieldCount" /> 的范围之外。</exception>
+        <exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -2424,7 +2434,7 @@ private static void GetCredits(String connectionString) {
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>实现一个 <see cref="M:System.Data.Common.DbDataReader.NextResult" /> 的异步版本，但阻塞调用线程时同步返回一个任务。</summary>
+        <summary>在读取一批语句的结果时，使读取器异步前进到下一个结果。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -2466,16 +2476,16 @@ private static void GetCredits(String connectionString) {
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><see cref="M:System.Data.Common.DbDataReader.NextResult" /> 的异步版本，读取批处理语句的结果时，将读取器推进到下一个结果。  
-  
-通过 CancellationToken.None 调用 <see cref="M:System.Data.Common.DbDataReader.NextResultAsync(System.Threading.CancellationToken)" />。</summary>
-        <returns>表示异步操作的任务。</returns>
+        <summary>在读取一批语句的结果时，使读取器异步前进到下一个结果。</summary>
+        <returns>一个 <see cref="T:System.Threading.Tasks.Task`1" />，如果有更多的结果集，则其 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性为 <see langword="true" />，如果没有，则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
-  
 ## Remarks  
- 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
-  
+ 此异步方法的默认实现调用其同步对应项, 并返回已完成的任务, 可能会阻止调用线程。
+
+ 支持[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)的数据访问接口应使用异步 i/o 操作来重写默认的 inmplementation。
+
+ 当返回任务还未完成时， DbDataReader 对象的其他方法和属性不应调用 。
  ]]></format>
         </remarks>
         <exception cref="T:System.Data.Common.DbException">执行命令文本时出现的一个错误。</exception>
@@ -2514,18 +2524,18 @@ private static void GetCredits(String connectionString) {
       </Parameters>
       <Docs>
         <param name="cancellationToken">取消指令。</param>
-        <summary>这是 <see cref="M:System.Data.Common.DbDataReader.NextResult" /> 的异步版本。 提供程序应使用合适的实现进行重写。 可选择性忽略 <paramref name="cancellationToken" />。  
-  
-默认实现调用同步 <see cref="M:System.Data.Common.DbDataReader.NextResult" /> 方法并返回已完成任务，以便阻止调用线程。 如果传递到已取消 <paramref name="cancellationToken" />，则默认实现将返回已取消的任务。 <see cref="M:System.Data.Common.DbDataReader.NextResult" /> 引发的异常将通过任务异常属性传递。  
-  
-当返回任务还未完成时， DbDataReader 对象的其他方法和属性不应调用 。</summary>
-        <returns>表示异步操作的任务。</returns>
+        <summary>在读取一批语句的结果时，使读取器异步前进到下一个结果。</summary>
+        <returns>一个 <see cref="T:System.Threading.Tasks.Task`1" />，如果有更多的结果集，则其 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性为 <see langword="true" />，如果没有，则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
-  
 ## Remarks  
- 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
-  
+ 此异步方法的默认实现调用其同步对应项, 并返回已完成的任务, 可能会阻止调用线程。 如果传递了已取消的取消标记, 则默认实现还会返回已取消的任务。
+
+ 支持[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)的数据访问接口应使用异步 i/o 操作来重写默认的 inmplementation。
+
+ 该方法可用于请求操作之前接受取消标记。 实现可能会忽略该请求。
+ 
+ 当返回任务还未完成时， DbDataReader 对象的其他方法和属性不应调用 。
  ]]></format>
         </remarks>
         <exception cref="T:System.Data.Common.DbException">执行命令文本时出现的一个错误。</exception>
@@ -2585,7 +2595,7 @@ private static void GetCredits(String connectionString) {
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>实现一个 <see cref="M:System.Data.Common.DbDataReader.Read" /> 的异步版本，但阻塞调用线程时同步返回一个任务。</summary>
+        <summary>使读取器异步前进到结果集中的下一条记录。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -2627,14 +2637,17 @@ private static void GetCredits(String connectionString) {
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><see cref="M:System.Data.Common.DbDataReader.Read" />的异步版本，将读取器前移到结果集的下一条记录。 此方法通过 CancellationToken.None 调用 <see cref="M:System.Data.Common.DbDataReader.ReadAsync(System.Threading.CancellationToken)" />。</summary>
-        <returns>表示异步操作的任务。</returns>
+        <summary>使读取器异步前进到结果集中的下一条记录。</summary>
+        <returns>一个 <see cref="T:System.Threading.Tasks.Task`1" />，如果有更多的行，则其 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性为 <see langword="true" />，如果没有，则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
-  
 ## Remarks  
- 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
-  
+ 此异步方法的默认实现调用其同步对应项, 并返回已完成的任务, 可能会阻止调用线程。
+
+ 支持[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)的数据访问接口应使用异步 i/o 操作来重写默认的 inmplementation。
+ 
+ 当返回任务还未完成时， DbDataReader 对象的其他方法和属性不应调用 。
+
  ]]></format>
         </remarks>
         <exception cref="T:System.Data.Common.DbException">执行命令文本时出现的一个错误。</exception>
@@ -2673,18 +2686,19 @@ private static void GetCredits(String connectionString) {
       </Parameters>
       <Docs>
         <param name="cancellationToken">取消指令。</param>
-        <summary>这是 <see cref="M:System.Data.Common.DbDataReader.Read" /> 的异步版本。  提供程序应使用合适的实现进行重写。 可选择性忽略的 cancellationToken。  
-  
-默认实现调用同步 <see cref="M:System.Data.Common.DbDataReader.Read" /> 方法并返回已完成任务，以便阻止调用线程。 如果传递到已取消的取消标记，则默认实现将返回已取消的 cancellationToken。  Read 引发的异常将通过返回的任务异常属性传递。  
-  
-在返回的任务完成前，不要调用 <see langword="DbDataReader" /> 对象的其他方法和属性。</summary>
-        <returns>表示异步操作的任务。</returns>
+        <summary>使读取器异步前进到结果集中的下一条记录。</summary>
+        <returns>一个 <see cref="T:System.Threading.Tasks.Task`1" />，如果有更多的行，则其 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性为 <see langword="true" />，如果没有，则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
-  
 ## Remarks  
- 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
-  
+ 此异步方法的默认实现调用其同步对应项, 并返回已完成的任务, 可能会阻止调用线程。 如果传递了已取消的取消标记, 则默认实现还会返回已取消的任务。
+
+ 支持[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)的数据访问接口应使用异步 i/o 操作来重写默认的 inmplementation。
+
+ 该方法可用于请求操作之前接受取消标记。 实现可能会忽略该请求。
+ 
+ 当返回任务还未完成时， DbDataReader 对象的其他方法和属性不应调用 。
+
  ]]></format>
         </remarks>
         <exception cref="T:System.Data.Common.DbException">执行命令文本时出现的一个错误。</exception>

@@ -1,5 +1,5 @@
 <Type Name="ReceiveErrorHandling" FullName="System.ServiceModel.ReceiveErrorHandling">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="aecd43c408bd0e60da80645b5d0fde609f059196" /><Meta Name="ms.sourcegitcommit" Value="f991677a7374c45590a432ff7ab830beb05f2ccd" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/27/2019" /><Meta Name="ms.locfileid" Value="68591312" /></Metadata><TypeSignature Language="C#" Value="public enum ReceiveErrorHandling" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="acb32fca02aaed6e8e028a11968f658c39420ee8" /><Meta Name="ms.sourcegitcommit" Value="406d23aba879fbb482c6da0f64c8ef9494f6a944" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/31/2019" /><Meta Name="ms.locfileid" Value="68686334" /></Metadata><TypeSignature Language="C#" Value="public enum ReceiveErrorHandling" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed ReceiveErrorHandling extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.ReceiveErrorHandling" />
   <TypeSignature Language="VB.NET" Value="Public Enum ReceiveErrorHandling" />
@@ -15,12 +15,12 @@
     <BaseTypeName>System.Enum</BaseTypeName>
   </Base>
   <Docs>
-    <summary>一个指定病毒消息处理的枚举。</summary>
+    <summary>指定对有害消息的处理。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果某个消息多次尝试向应用程序传递都以失败告终，则此消息为病毒消息。 这仅在使用基于消息队列 (MSMQ) 的绑定时适用。 默认值为 `Fault`，此时侦听器会出错，ServiceHost 也会因此出错。 如果服务因为病毒消息而出错，则会引发 <xref:System.ServiceModel.MsmqPoisonMessageException>。 该异常含有 MSMQ 消息的 `LookupId`，可用于通过 System.Messaging API 将消息移除。 <xref:System.ServiceModel.ReceiveErrorHandling> 枚举的某些值，例如 `Reject` 和 `Move` 仅在 [!INCLUDE[wv](~/includes/wv-md.md)] 上可用。 将 <xref:System.ServiceModel.Channels.MsmqBindingElementBase.ReceiveErrorHandling%2A> 属性设置为该枚举的其中一个值可以控制病毒消息处理。  
+ *病毒消息*是一种无法重复传递到应用程序的消息。 这仅在使用基于消息队列 (MSMQ) 的绑定时适用。 默认值为 `Fault`，此时侦听器会出错，ServiceHost 也会因此出错。 如果服务因为病毒消息而出错，则会引发 <xref:System.ServiceModel.MsmqPoisonMessageException>。 该异常含有 MSMQ 消息的 `LookupId`，可用于通过 System.Messaging API 将消息移除。 <xref:System.ServiceModel.ReceiveErrorHandling> 枚举的某些值，例如 `Reject` 和 `Move` 仅在 [!INCLUDE[wv](~/includes/wv-md.md)] 上可用。 将 <xref:System.ServiceModel.Channels.MsmqBindingElementBase.ReceiveErrorHandling%2A> 属性设置为该枚举的其中一个值可以控制病毒消息处理。  
   
    
   
@@ -55,14 +55,6 @@
       <MemberValue>1</MemberValue>
       <Docs>
         <summary>此选项可删除病毒消息。 消息始终没有传递到应用程序。 如果此时消息的 TTL 已过期，则此消息就会出现发送端的死信队列中。 如果不是这种情况，则该消息将不会显示在任何位置。 此选项指示用户实际并不在意该消息是否丢失。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 适用的平台：[!INCLUDE[wxp](~/includes/wxp-md.md)]、[!INCLUDE[ws2003](~/includes/ws2003-md.md)] 与 [!INCLUDE[wv](~/includes/wv-md.md)]。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Fault">
@@ -85,14 +77,6 @@
       <MemberValue>0</MemberValue>
       <Docs>
         <summary>此选项会向导致 ServiceHost 出现错误的侦听器发送一个错误。 必须利用其他一些外部机制将该消息从应用程序中移除，应用程序才能继续处理队列中的消息。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 适用的平台：Windows XP、Windows Server 2003 与 Windows Vista。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Move">
@@ -115,14 +99,6 @@
       <MemberValue>3</MemberValue>
       <Docs>
         <summary>选择此选项会将病毒消息移动到病毒消息队列，以供以后由病毒消息处理应用程序进行处理。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 适用的平台：仅限 [!INCLUDE[wv](~/includes/wv-md.md)]。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Reject">
@@ -145,14 +121,6 @@
       <MemberValue>2</MemberValue>
       <Docs>
         <summary>选择此选项会指示消息队列 (MSMQ) 将否定确认发送回发送队列管理器，以说明应用程序无法接收此消息。 该消息会放入发送队列管理器的死信队列中。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 适用的平台：仅限 [!INCLUDE[wv](~/includes/wv-md.md)]。  
-  
- ]]></format>
-        </remarks>
       </Docs>
     </Member>
   </Members>

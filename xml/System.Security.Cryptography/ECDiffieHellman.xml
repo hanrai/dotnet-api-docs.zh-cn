@@ -1,5 +1,5 @@
 <Type Name="ECDiffieHellman" FullName="System.Security.Cryptography.ECDiffieHellman">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="28ee10e6dca770f4da03d5ce3e0e00016f6324a2" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68541237" /></Metadata><TypeSignature Language="C#" Value="public abstract class ECDiffieHellman : System.Security.Cryptography.AsymmetricAlgorithm" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a97ac852478265e2a864d14fb4d0535d818a75b2" /><Meta Name="ms.sourcegitcommit" Value="406d23aba879fbb482c6da0f64c8ef9494f6a944" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/31/2019" /><Meta Name="ms.locfileid" Value="68686072" /></Metadata><TypeSignature Language="C#" Value="public abstract class ECDiffieHellman : System.Security.Cryptography.AsymmetricAlgorithm" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ECDiffieHellman extends System.Security.Cryptography.AsymmetricAlgorithm" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.ECDiffieHellman" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ECDiffieHellman&#xA;Inherits AsymmetricAlgorithm" />
@@ -549,9 +549,11 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>以 ECPrivateKey 格式导出当前密钥。</summary>
+        <returns>一个字节数组，它包含此密钥的 ECPrivateKey 表示形式。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.Security.Cryptography.CryptographicException">未能导出密钥。</exception>
+        <altmember cref="Overload:System.Security.Cryptography.ECDiffieHellman.TryExportECPrivateKey" />
       </Docs>
     </Member>
     <Member MemberName="ExportExplicitParameters">
@@ -655,9 +657,10 @@
         <Parameter Name="xmlString" Type="System.String" Index="0" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="xmlString">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="xmlString">用于重新构造 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 对象的 XML 字符串。</param>
+        <summary>在所有情况下均引发此方法。</summary>
         <remarks>To be added.</remarks>
+        <exception cref="System.NotImplementedException">在所有情况下。</exception>
       </Docs>
     </Member>
     <Member MemberName="GenerateKey">
@@ -729,10 +732,22 @@
         <Parameter Name="bytesRead" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="source">To be added.</param>
-        <param name="bytesRead">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="source">ASN.1-BER 编码中 ECPrivateKey 结构的字节。</param>
+        <param name="bytesRead">此方法返回时，包含一个指示从 <paramref name="source" /> 中读取的字节数的值。 该参数未经初始化即被处理。</param>
+        <summary>从 ECPrivateKey 结构中导入公共/私有密钥对，替换此对象的密钥。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 此方法只支持 ECPrivateKey 的二进制 (BER/CER/DER) 编码。
+如果值采用 Base64 编码或 PEM 文本格式, 则调用方必须在调用此方法之前对内容进行 Base64 编码。
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.Security.Cryptography.CryptographicException"><paramref name="source" /> 的内容不表示 ASN.1-BER 编码的 PKCS#8 ECPrivateKey 结构。
+
+- 或 -
+
+密钥导入失败。</exception>
       </Docs>
     </Member>
     <Member MemberName="ImportEncryptedPkcs8PrivateKey">
@@ -762,11 +777,41 @@
         <Parameter Name="bytesRead" Type="System.Int32" RefType="out" Index="2" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="passwordBytes">To be added.</param>
-        <param name="source">To be added.</param>
-        <param name="bytesRead">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="passwordBytes">解密密钥材料时用作密码的字节。</param>
+        <param name="source">ASN.1-BER 编码中 PKCS#8 EncryptedPrivateKeyInfo 结构的字节。</param>
+        <param name="bytesRead">此方法返回时，包含一个指示从 <paramref name="source" /> 中读取的字节数的值。 该参数未经初始化即被处理。</param>
+        <summary>使用基于字节的密码解密之后，从 PKCS#8 EncryptedPrivateKeyInfo 结构中导入公/私钥对，以替换此对象的密钥。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 密码字节直接传递到由 EncryptedPrivateKeyInfo 内容指示的算法使用的密钥派生函数 (KDF)。
+这样, 就可以与使用 PBKDF2 (基于密码的密钥派生函数 2) 处理密码时使用 UTF-8 以外文本编码的其他系统兼容。
+此方法只支持 EncryptedPrivateKeyInfo 的二进制 (BER/CER/DER) 编码。
+如果值采用 Base64 编码或 PEM 文本格式, 则调用方必须在调用此方法之前对内容进行 Base64 编码。
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.Security.Cryptography.CryptographicException">密码不正确。
+
+或
+
+<paramref name="source" /> 的内容表示要应用的密钥派生功能 (KDF) 是旧的 PKCS#12 KDF，它需要基于 <see cref="T:System.Char" /> 的密码。
+
+或
+
+<paramref name="source" /> 的内容不表示 ASN.1-BER 编码的 PKCS#8 EncryptedPrivateKeyInfo 结构。
+
+- 或 -
+
+<paramref name="source" /> 的内容指示密钥用于此实例表示的算法以外的算法。
+
+或
+
+<paramref name="source" /> 的内容表示密钥采用的格式不受支持。
+
+或
+
+特定于算法的密钥导入失败。</exception>
       </Docs>
     </Member>
     <Member MemberName="ImportEncryptedPkcs8PrivateKey">
@@ -796,11 +841,36 @@
         <Parameter Name="bytesRead" Type="System.Int32" RefType="out" Index="2" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="password">To be added.</param>
-        <param name="source">To be added.</param>
-        <param name="bytesRead">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="password">用于解密密钥材料的密码。</param>
+        <param name="source">ASN.1-BER 编码中 PKCS#8 EncryptedPrivateKeyInfo 结构的字节。</param>
+        <param name="bytesRead">此方法返回时，包含一个指示从 <paramref name="source" /> 中读取的字节数的值。 该参数未经初始化即被处理。</param>
+        <summary>使用基于字符的密码解密之后，从 PKCS#8 EncryptedPrivateKeyInfo 结构中导入公/私钥对，以替换此对象的密钥。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 当的内容`source`指示使用 PBKDF1 (基于密码的密钥派生函数 1) 或 PBKDF2 (基于密码的密钥派生函数 2) 的算法时, 密码将通过 utf-8 编码转换为字节。
+此方法只支持 EncryptedPrivateKeyInfo 的二进制 (BER/CER/DER) 编码。
+如果值采用 Base64 编码或 PEM 文本格式, 则调用方必须在调用此方法之前对内容进行 Base64 编码。
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.Security.Cryptography.CryptographicException">密码不正确。
+
+或
+
+<paramref name="source" /> 的内容不表示 ASN.1-BER 编码的 PKCS#8 EncryptedPrivateKeyInfo 结构。
+
+或
+
+<paramref name="source" /> 的内容指示密钥用于此实例表示的算法以外的算法。
+
+或
+
+<paramref name="source" /> 的内容表示密钥采用的格式不受支持。
+
+或
+
+特定于算法的密钥导入失败。</exception>
       </Docs>
     </Member>
     <Member MemberName="ImportParameters">
@@ -872,10 +942,30 @@
         <Parameter Name="bytesRead" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="source">To be added.</param>
-        <param name="bytesRead">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="source">ASN.1-BER 编码中 PKCS#8 PrivateKeyInfo 结构的字节。</param>
+        <param name="bytesRead">此方法返回时，包含一个指示从 <paramref name="source" /> 中读取的字节数的值。 该参数未经初始化即被处理。</param>
+        <summary>解密后，从 PKCS#8 PrivateKeyInfo 结构中导入公/私钥对，以替换此对象的密钥。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 此方法只支持 PrivateKeyInfo 的二进制 (BER/CER/DER) 编码。
+如果值采用 Base64 编码或 PEM 文本格式, 则调用方必须在调用此方法之前对内容进行 Base64 编码。
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.Security.Cryptography.CryptographicException"><paramref name="source" /> 的内容不表示 ASN.1-BER 编码的 PKCS#8 PrivateKeyInfo 结构。
+
+或
+
+<paramref name="source" /> 的内容指示密钥用于此实例表示的算法以外的算法。
+
+- 或 -
+
+<paramref name="source" /> 的内容表示密钥采用的格式不受支持。
+
+或
+
+特定于算法的密钥导入失败。</exception>        
       </Docs>
     </Member>
     <Member MemberName="ImportSubjectPublicKeyInfo">
@@ -904,10 +994,30 @@
         <Parameter Name="bytesRead" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="source">To be added.</param>
-        <param name="bytesRead">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="source">ASN.1-DER 编码中的 X.509 SubjectPublicKeyInfo 结构的字节。</param>
+        <param name="bytesRead">此方法返回时，包含一个指示从 <paramref name="source" /> 中读取的字节数的值。 该参数未经初始化即被处理。</param>
+        <summary>解密后，从 X.509 SubjectPublicKeyInfo 结构中导入公钥，以替换此对象的密钥。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 此方法只支持 SubjectPublicKeyInfo 的二进制 (DER) 编码。
+如果值采用 Base64 编码或 PEM 文本格式, 则调用方必须在调用此方法之前对内容进行 Base64 编码。
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.Security.Cryptography.CryptographicException"><paramref name="source" /> 的内容不表示 ASN.1-DER 编码的 X.509 SubjectPublicKeyInfo 结构。
+
+或
+
+<paramref name="source" /> 的内容指示密钥用于此实例表示的算法以外的算法。
+
+- 或 -
+
+<paramref name="source" /> 的内容表示密钥采用的格式不受支持。
+
+或
+
+特定于算法的密钥导入失败。</exception>
       </Docs>
     </Member>
     <Member MemberName="KeyExchangeAlgorithm">
@@ -1044,10 +1154,11 @@
         <Parameter Name="includePrivateParameters" Type="System.Boolean" Index="0" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="includePrivateParameters">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="includePrivateParameters">若要包含专用参数，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+        <summary>在所有情况下均引发此方法。</summary>
+        <returns>此方法不返回值。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="System.NotImplementedException">在所有情况下。</exception>
       </Docs>
     </Member>
     <Member MemberName="TryExportECPrivateKey">
@@ -1076,11 +1187,13 @@
         <Parameter Name="bytesWritten" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="destination">用于接收 ECPrivateKey 数据的字节范围。</param>
+        <param name="bytesWritten">此方法返回时，包含一个指示写入 <paramref name="destination" /> 的字节数的值。 该参数未经初始化即被处理。</param>
+        <summary>尝试以 ECPrivateKey 格式将当前密钥导入所提供的缓冲区。</summary>
+        <returns>如果 <paramref name="destination" /> 具有足够的大小以接收输出，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.Security.Cryptography.CryptographicException">未能导出密钥。</exception>
+        <altmember cref="M:System.Security.Cryptography.ECDiffieHellman.ExportECPrivateKey()" />
       </Docs>
     </Member>
     <Member MemberName="TryExportEncryptedPkcs8PrivateKey">
@@ -1110,13 +1223,26 @@
         <Parameter Name="bytesWritten" Type="System.Int32" RefType="out" Index="3" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="passwordBytes">To be added.</param>
-        <param name="pbeParameters">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="passwordBytes">加密密钥材料时用作密码的字节。</param>
+        <param name="pbeParameters">加密密钥材料时使用的基于密码加密 (PBE) 参数。</param>
+        <param name="destination">接收 PKCS#8 EncryptedPrivateKeyInfo 数据的字节范围。</param>
+        <param name="bytesWritten">此方法返回时，包含一个指示写入 <paramref name="destination" /> 的字节数的值。 该参数未经初始化即被处理。</param>
+        <summary>尝试使用基于字节的密码以 PKCS#8 EncryptedPrivateKeyInfo 格式将当前密钥导出到所提供的缓冲区。</summary>
+        <returns>如果 <paramref name="destination" /> 具有足够的大小以接收输出，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 密码字节直接传递到由指示`pbeParameters`的算法使用的密钥派生函数 (KDF)。
+这样, 就可以与使用 PBKDF2 (基于密码的密钥派生函数 2) 处理密码时使用 UTF-8 以外文本编码的其他系统兼容。
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.Security.Cryptography.CryptographicException">未能导出密钥。
+
+- 或 -
+
+<paramref name="pbeParameters" /> 指示应使用需要基于 <see cref="T:System.Char" /> 密码的 <see cref="F:System.Security.Cryptography.PbeEncryptionAlgorithm.TripleDes3KeyPkcs12" />。</exception>
+        <altmember cref="Overload:System.Security.Cryptography.AsymmetricAlgorithm.ExportEncryptedPkcs8PrivateKey" />        
       </Docs>
     </Member>
     <Member MemberName="TryExportEncryptedPkcs8PrivateKey">
@@ -1146,13 +1272,21 @@
         <Parameter Name="bytesWritten" Type="System.Int32" RefType="out" Index="3" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="password">To be added.</param>
-        <param name="pbeParameters">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="password">加密密钥材料时使用的密码。</param>
+        <param name="pbeParameters">加密密钥材料时使用的基于密码加密 (PBE) 参数。</param>
+        <param name="destination">接收 PKCS#8 EncryptedPrivateKeyInfo 数据的字节范围。</param>
+        <param name="bytesWritten">此方法返回时，包含一个指示写入 <paramref name="destination" /> 的字节数的值。 该参数未经初始化即被处理。</param>
+        <summary>尝试使用基于字符的密码以 PKCS#8 EncryptedPrivateKeyInfo 格式将当前密钥导入所提供的缓冲区。</summary>
+        <returns>如果 <paramref name="destination" /> 具有足够的大小以接收输出，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 当`pbeParameters`指示使用 PBKDF2 (基于密码的密钥派生函数 2) 的算法时, 通过 utf-8 编码将密码转换为字节。
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.Security.Cryptography.CryptographicException">未能导出密钥。</exception>
+        <altmember cref="Overload:System.Security.Cryptography.AsymmetricAlgorithm.ExportEncryptedPkcs8PrivateKey" />
       </Docs>
     </Member>
     <Member MemberName="TryExportPkcs8PrivateKey">
@@ -1181,11 +1315,13 @@
         <Parameter Name="bytesWritten" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="destination">接收 PKCS#8 PrivateKeyInfo 数据的字节范围。</param>
+        <param name="bytesWritten">此方法返回时，包含一个指示写入 <paramref name="destination" /> 的字节数的值。 该参数未经初始化即被处理。</param>
+        <summary>尝试以 PKCS#8 PrivateKeyInfo 格式将当前密钥导出到所提供的缓冲区。</summary>
+        <returns>如果 <paramref name="destination" /> 具有足够的大小以接收输出，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.Security.Cryptography.CryptographicException">未能导出密钥。</exception>
+        <altmember cref="Overload:System.Security.Cryptography.AsymmetricAlgorithm.ExportPkcs8PrivateKey" />        
       </Docs>
     </Member>
     <Member MemberName="TryExportSubjectPublicKeyInfo">
@@ -1214,11 +1350,13 @@
         <Parameter Name="bytesWritten" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="destination">接收 X.509 SubjectPublicKeyInfo 数据的字节范围。</param>
+        <param name="bytesWritten">此方法返回时，包含一个指示写入 <paramref name="destination" /> 的字节数的值。 该参数未经初始化即被处理。</param>
+        <summary>尝试以 X.509 SubjectPublicKeyInfo 格式将当前密钥导出到所提供的缓冲区。</summary>
+        <returns>如果 <paramref name="destination" /> 具有足够的大小以接收输出，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.Security.Cryptography.CryptographicException">未能导出密钥。</exception>
+        <altmember cref="Overload:System.Security.Cryptography.AsymmetricAlgorithm.ExportSubjectPublicKeyInfo" />        
       </Docs>
     </Member>
   </Members>
