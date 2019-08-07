@@ -1,5 +1,5 @@
 <Type Name="PipeWriter" FullName="System.IO.Pipelines.PipeWriter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="516bf85c50018c232baa1f57d372bb071e982018" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68437780" /></Metadata><TypeSignature Language="C#" Value="public abstract class PipeWriter : System.Buffers.IBufferWriter&lt;byte&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="818fb4247b3b59e76e13e0f277dc8ccd9fee8a50" /><Meta Name="ms.sourcegitcommit" Value="7b48428cbeb3a3c0221a3a096013b2659d01348c" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/04/2019" /><Meta Name="ms.locfileid" Value="68776250" /></Metadata><TypeSignature Language="C#" Value="public abstract class PipeWriter : System.Buffers.IBufferWriter&lt;byte&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit PipeWriter extends System.Object implements class System.Buffers.IBufferWriter`1&lt;unsigned int8&gt;" />
   <TypeSignature Language="DocId" Value="T:System.IO.Pipelines.PipeWriter" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class PipeWriter&#xA;Implements IBufferWriter(Of Byte)" />
@@ -91,9 +91,9 @@
         <Parameter Name="leaveOpen" Type="System.Boolean" Index="0" FrameworkAlternate="dotnet-plat-ext-3.0" />
       </Parameters>
       <Docs>
-        <param name="leaveOpen">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="leaveOpen">一个可选标志，它指示释放返回的 <see cref="T:System.IO.Stream" /> 会使 <see cref="T:System.IO.Pipelines.PipeReader" /> 保持打开 (<see langword="true" />) 还是完成 <see cref="T:System.IO.Pipelines.PipeReader" /> (<see langword="false" />)。</param>
+        <summary>返回 <see cref="T:System.IO.Pipelines.PipeWriter" /> 包装的基础 <see cref="T:System.IO.Stream" />。</summary>
+        <returns>基础流。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -213,9 +213,9 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
-        <param name="cancellationToken">To be added.</param>
+        <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="T:System.Threading.CancellationToken.None" />。</param>
         <summary>使已写入的字节可用于 <see cref="T:System.IO.Pipelines.PipeReader" />，并运行 <see cref="M:System.IO.Pipelines.PipeReader.ReadAsync(System.Threading.CancellationToken)" /> 延续。</summary>
-        <returns>To be added.</returns>
+        <returns>表示并包装异步刷新操作的任务。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -323,10 +323,19 @@
         <Parameter Name="state" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="callback">To be added.</param>
-        <param name="state">To be added.</param>
+        <param name="callback">要注册的回调。</param>
+        <param name="state">要在被调用时传递给 <paramref name="callback" /> 的状态对象。</param>
         <summary>注册管道的 <see cref="T:System.IO.Pipelines.PipeReader" /> 端已完成时执行的回调。</summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+> [!IMPORTANT]
+> `OnReaderCompleted`不能在的<xref:System.IO.Pipelines.PipeWriter>所有实现上调用。 未来版本中将删除此方法。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="WriteAsync">
@@ -349,10 +358,10 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
-        <param name="source">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>将 <paramref name="source" /> 写入到管道并使数据可由 <see cref="T:System.IO.Pipelines.PipeReader" /> 访问</summary>
-        <returns>To be added.</returns>
+        <param name="source">要写入的只读字节内存区域。</param>
+        <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="T:System.Threading.CancellationToken.None" />。</param>
+        <summary>将指定字节内存范围写入管道，并使数据可供 <see cref="T:System.IO.Pipelines.PipeReader" /> 访问。</summary>
+        <returns>表示异步写入操作并包装刷新异步操作的任务。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

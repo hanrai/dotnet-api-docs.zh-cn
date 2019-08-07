@@ -1,5 +1,5 @@
 <Type Name="EnumerationOptions" FullName="System.IO.EnumerationOptions">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="2b096c7281930e86a54e11f4a538add8cb6382d5" /><Meta Name="ms.sourcegitcommit" Value="434f60616a9793fa8436744549fc856e94f7a648" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/24/2018" /><Meta Name="ms.locfileid" Value="36560531" /></Metadata><TypeSignature Language="C#" Value="public class EnumerationOptions" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="58778ec585c1b5f5dbdb49f601f01dc3681004ca" /><Meta Name="ms.sourcegitcommit" Value="6845874ed1101d071f7fab3f359117b4718bf105" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/01/2019" /><Meta Name="ms.locfileid" Value="68710796" /></Metadata><TypeSignature Language="C#" Value="public class EnumerationOptions" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit EnumerationOptions extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.IO.EnumerationOptions" />
   <TypeSignature Language="VB.NET" Value="Public Class EnumerationOptions" />
@@ -8,6 +8,10 @@
   <AssemblyInfo>
     <AssemblyName>System.IO.FileSystem</AssemblyName>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+  </AssemblyInfo>
+  <AssemblyInfo>
+    <AssemblyName>netstandard</AssemblyName>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -29,9 +33,13 @@
         <AssemblyName>System.IO.FileSystem</AssemblyName>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary>使用推荐默认选项初始化 <see cref="T:System.IO.EnumerationOptions" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -47,12 +55,16 @@
         <AssemblyName>System.IO.FileSystem</AssemblyName>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IO.FileAttributes</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取或设置要跳过的属性。 默认值为 <c>FileAttributes.Hidden | FileAttributes.System</c>。</summary>
+        <value>要跳过的特性。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -68,13 +80,28 @@
         <AssemblyName>System.IO.FileSystem</AssemblyName>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取或设置建议的缓冲区大小（以字节为单位）。 默认值为 0（无建议）。</summary>
+        <value>缓冲区大小。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+并非所有平台都使用用户分配的缓冲区, 一些平台需要固定缓冲区或具有足够空间的缓冲区来返回完整结果。 此选项非常有用的一种情况是在 Windows 上进行远程共享枚举。 如果具有较大的缓冲区, 则可能会提高性能, 因为可以通过网络 (例如, 通过网络共享) 对更多结果进行批处理。
+例如, "大" 缓冲区将为16K。 典型为4K。
+            
+如果在当前平台上没有用于本机 Api 的含义, 或如果它太小而无法获取至少一个结果, 则不会使用建议的缓冲区大小。
+
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="IgnoreInaccessible">
@@ -89,12 +116,16 @@
         <AssemblyName>System.IO.FileSystem</AssemblyName>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取或设置一个值，该值指示是否在拒绝访问时跳过文件或目录（例如 <see cref="T:System.UnauthorizedAccessException" /> 或 <see cref="T:System.Security.SecurityException" />）。 默认值为 <see langword="true" />。</summary>        
+        <value><see langword="true" />若要跳过 innacessible 文件或目录, 则为;否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -110,13 +141,26 @@
         <AssemblyName>System.IO.FileSystem</AssemblyName>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IO.MatchCasing</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取或设置大小写匹配行为。</summary>
+        <value>指示大小写匹配行为的枚举值之一。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+对于允许指定匹配表达式的 Api, 此属性允许您指定大小写匹配行为。
+默认值为匹配平台默认值, 该默认值为搜集与临时文件夹区分大小写。
+
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="MatchType">
@@ -131,13 +175,26 @@
         <AssemblyName>System.IO.FileSystem</AssemblyName>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IO.MatchType</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取或设置匹配类型。</summary>
+        <value>指示匹配类型的枚举值之一。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+对于允许指定匹配表达式的 Api, 此属性可用于指定如何解释 match 表达式。
+默认值为简单匹配, 其中 "*" 始终为0个或更多个字符, "？" 是单个字符。
+
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="RecurseSubdirectories">
@@ -152,12 +209,16 @@
         <AssemblyName>System.IO.FileSystem</AssemblyName>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取或设置一个值，该值指示在枚举时是否递归到子目录中。 默认值为 <see langword="false" />。</summary>
+        <value><see langword="true" />递归到子目录;否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -173,12 +234,16 @@
         <AssemblyName>System.IO.FileSystem</AssemblyName>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取或设置一个值，该值指示是否返回特殊目录项“.”和“..”。</summary>
+        <value><see langword="true" />若要返回特殊目录条目, 请输入 "." 和 "...";否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
