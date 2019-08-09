@@ -1,5 +1,5 @@
 <Type Name="Hash" FullName="System.Security.Policy.Hash">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="224c66d93d18b83f7dc711f1234a8a448ef9e038" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56773676" /></Metadata><TypeSignature Language="C#" Value="public sealed class Hash : System.Security.Policy.EvidenceBase, System.Runtime.Serialization.ISerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="01bb9512e6888fb24b0b8425a487ad462a3e0852" /><Meta Name="ms.sourcegitcommit" Value="43c8e74d92c78325492baf27e41b400443f0dfbf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/08/2019" /><Meta Name="ms.locfileid" Value="68858342" /></Metadata><TypeSignature Language="C#" Value="public sealed class Hash : System.Security.Policy.EvidenceBase, System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit Hash extends System.Security.Policy.EvidenceBase implements class System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.Security.Policy.Hash" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Hash&#xA;Inherits EvidenceBase&#xA;Implements ISerializable" />
@@ -41,10 +41,12 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 哈希值表示一个唯一值，对应于一组特定的字节数。 而不是按名称、 版本或指定其他引用程序集，哈希值将指定没有二义性的程序集。 名称受到极少数情况下，其中指定完全不同的代码相同的名称冲突。 代码的不同变体意外地标记为使用相同的版本。 但是，即使只更改的单个位会导致非常不同的哈希值。  
+ 哈希值表示对应于一组特定字节的唯一值。 哈希值无歧义地指定程序集, 而不是按名称、版本或其他指定引用程序集。 在将同一名称提供给完全不同的代码的罕见情况下, 名称可能会发生冲突。 不同版本的代码可能会被意外标记为同一版本。 但是, 即使更改一个位, 也会导致哈希值非常不同。  
   
- 哈希值是指代而无需使用数字签名的策略中的特定程序集的安全加密方法。 安全哈希算法设计，这样就无法以意外或恶意尝试通过以下任一方式构造具有相同的哈希值的不同程序集计算方式。 默认情况下，证据从<xref:System.Security.Cryptography.SHA1>并<xref:System.Security.Cryptography.MD5>支持哈希算法，但可以通过使用任何哈希算法<xref:System.Security.Policy.Hash.GenerateHash%2A>。  
-  
+ 哈希值是一种加密安全的方式, 用于在不使用数字签名的情况下引用策略中的特定程序集。 安全哈希算法旨在使计算无法通过意外或恶意尝试构造具有相同哈希值的不同程序集。 默认情况下, 会支持<xref:System.Security.Cryptography.SHA1>和<xref:System.Security.Cryptography.MD5>哈希算法中的证据, 尽管任何哈希算法都<xref:System.Security.Policy.Hash.GenerateHash%2A>可以通过使用。  
+
+ 由于 MD5 和 SHA1 出现冲突, Microsoft 建议使用基于 SHA256 或更好的安全模型。
+
  ]]></format>
     </remarks>
   </Docs>
@@ -79,7 +81,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用属性或方法之一时才执行哈希值计算。  
+ 在调用一个属性或方法之前, 不会执行哈希值计算。  
   
  ]]></format>
         </remarks>
@@ -146,8 +148,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回<xref:System.Security.Policy.Hash>对象只包含<xref:System.Security.Policy.Hash.MD5%2A>属性。  
-  
+ 返回<xref:System.Security.Policy.Hash>的对象<xref:System.Security.Policy.Hash.MD5%2A>只包含属性。  
+
+ 由于 MD5 发生冲突, Microsoft 建议使用基于 SHA256 或更好的安全模型。
+
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="md5" /> 参数为 <see langword="null" />。</exception>
@@ -187,8 +191,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回<xref:System.Security.Policy.Hash>对象只包含<xref:System.Security.Policy.Hash.SHA1%2A>属性。  
-  
+ 返回<xref:System.Security.Policy.Hash>的对象<xref:System.Security.Policy.Hash.SHA1%2A>只包含属性。  
+
+ 由于 SHA1 出现冲突, Microsoft 建议基于 SHA256 或更好的安全模型。
+
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="sha1" /> 参数为 <see langword="null" />。</exception>
@@ -226,7 +232,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回<xref:System.Security.Policy.Hash>对象只包含<xref:System.Security.Policy.Hash.SHA256%2A>属性。  
+ 返回<xref:System.Security.Policy.Hash>的对象<xref:System.Security.Policy.Hash.SHA256%2A>只包含属性。  
   
  ]]></format>
         </remarks>
@@ -268,7 +274,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 类构造函数中指定的程序集提供了用于计算哈希值的字节。 `hashAlg`参数是一个对象派生自特定<xref:System.Security.Cryptography.HashAlgorithm>。 返回的哈希值是由标识的类型的`hashAlg`。  
+ 类构造函数中指定的程序集提供用于计算哈希值的字节。 参数是从特定<xref:System.Security.Cryptography.HashAlgorithm>派生的对象。 `hashAlg` 返回的哈希值是由`hashAlg`标识的类型。  
   
  ]]></format>
         </remarks>
@@ -320,11 +326,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 提供此方法以支持继承的<xref:System.Runtime.Serialization.ISerializable>接口。  
+ 提供此方法是为了支持<xref:System.Runtime.Serialization.ISerializable>接口的继承。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
       </Docs>
     </Member>
     <Member MemberName="MD5">
@@ -358,12 +364,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 类构造函数中指定的程序集提供了用于计算哈希值的字节。  
+ 类构造函数中指定的程序集提供哈希计算的字节。  
   
-   
+ 由于 MD5 发生冲突, Microsoft 建议 SHA256。 
   
 ## Examples  
- 以下示例计算<xref:System.Security.Cryptography.MD5>的哈希`myAssembly`将其存储在`hashcode`。  
+ 下面的示例计算的<xref:System.Security.Cryptography.MD5> `myAssembly`哈希值, 并将`hashcode`其存储在中。  
   
  [!code-cpp[Classic Hash.MD5 Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Hash.MD5 Example/CPP/source.cpp#1)]
  [!code-csharp[Classic Hash.MD5 Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Hash.MD5 Example/CS/source.cs#1)]
@@ -404,12 +410,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在构造函数中指定的程序集提供了用于计算哈希值的字节。  
+ 构造函数中指定的程序集提供哈希计算的字节。  
   
-   
+ 由于与 SHA1 冲突，Microsoft 建议使用 SHA256。  
   
 ## Examples  
- 以下示例计算<xref:System.Security.Cryptography.SHA1>的哈希`myAssembly`将其存储在`hashcode`。  
+ 下面的示例计算的<xref:System.Security.Cryptography.SHA1> `myAssembly`哈希值, 并将`hashcode`其存储在中。  
   
  [!code-cpp[Classic Hash.SHA1 Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Hash.SHA1 Example/CPP/source.cpp#1)]
  [!code-csharp[Classic Hash.SHA1 Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Hash.SHA1 Example/CS/source.cs#1)]
@@ -447,7 +453,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 中指定的程序集<xref:System.Security.Policy.Hash.%23ctor%2A>构造函数提供了用于计算哈希值的字节。  
+ <xref:System.Security.Policy.Hash.%23ctor%2A>构造函数中指定的程序集提供哈希计算的字节数。  
   
  ]]></format>
         </remarks>
@@ -485,7 +491,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要获取易于理解的对象表示形式在调试期间，此方法很有用。  
+ 在调试过程中, 此方法非常有用, 可获取对象的易于阅读的表示形式。  
   
  ]]></format>
         </remarks>

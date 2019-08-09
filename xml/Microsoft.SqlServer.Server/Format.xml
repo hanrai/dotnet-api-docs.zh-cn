@@ -1,5 +1,5 @@
 <Type Name="Format" FullName="Microsoft.SqlServer.Server.Format">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ffca0cda31e32a79ce7ab852c13be008741be0df" /><Meta Name="ms.sourcegitcommit" Value="feb111e137a41d186aef01d83f04819d820520eb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/21/2019" /><Meta Name="ms.locfileid" Value="67307951" /></Metadata><TypeSignature Language="C#" Value="public enum Format" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="be5f535ee480cb98adb7125b1bc94a478773c9aa" /><Meta Name="ms.sourcegitcommit" Value="08fc3691deb7adaf0dfd751b9d9d0b23a3d3a7b8" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/09/2019" /><Meta Name="ms.locfileid" Value="68903412" /></Metadata><TypeSignature Language="C#" Value="public enum Format" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed Format extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:Microsoft.SqlServer.Server.Format" />
   <TypeSignature Language="VB.NET" Value="Public Enum Format" />
@@ -27,39 +27,39 @@
   
 ## Remarks  
 
-此枚举由<xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute>和<xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute>以指示用户定义类型 (UDT) 或聚合的序列化格式。 利用`Native`和`UserDefined`枚举成员都有特殊要求。   
+此枚举由<xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute>和<xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute>用于指示用户定义类型 (UDT) 或聚合的序列化格式。 `Native` 和`UserDefined`枚举成员的使用具有特殊要求。   
 
 - `Format.Native`
 
-   对于要求`Format.Native`格式是：  
+   `Format.Native`格式的要求如下:  
   
-   - <xref:System.Runtime.InteropServices.StructLayoutAttribute>与<xref:System.Runtime.InteropServices.StructLayoutAttribute.Value>属性值为<xref:System.Runtime.InteropServices.LayoutKind.Sequential?displayProperty=nameWithType>必须应用于聚合或如果它一个类，而不是结构中定义的 UDT。 这控制数据字段的物理布局，用于强制其出现顺序依次布局的成员。 SQL Server 使用此属性确定具有多个字段的 Udt 的字段顺序。
+   - 如果属性值<xref:System.Runtime.InteropServices.LayoutKind.Sequential?displayProperty=nameWithType>为, 则必须将其应用到聚合或 UDT (如果它是在类中定义的, 而不是在结构中定义的)。 <xref:System.Runtime.InteropServices.StructLayoutAttribute.Value> <xref:System.Runtime.InteropServices.StructLayoutAttribute> 这会控制数据字段的物理布局, 并用于强制成员按其出现的顺序进行排列。 SQL Server 使用此属性确定具有多个字段的 Udt 的字段顺序。
   
-   - 该类型必须包含至少一个成员 （序列化的值不能为零字节的大小）。  
+   - 该类型必须包含至少一个成员 (序列化值的大小不能为零个字节)。  
   
-   - 聚合的所有字段必须都是*blittable*; 也就是说，它们必须在托管和非托管内存中具有共同的表示形式并不需要进行特殊处理互操作封送处理程序。  
+   - 聚合的所有字段必须是可*复制*的;也就是说, 它们必须在托管内存和非托管内存中都有共同的表示形式, 并且不需要互操作封送拆收器进行特殊处理。  
   
-   - UDT 的所有字段应都为可序列化的以下类型之一： `bool`， `byte`， `sbyte`， `short`， `ushort`， `int`， `uint`， `long`， `ulong`， `float``double`， <xref:System.Data.SqlTypes.SqlByte>， <xref:System.Data.SqlTypes.SqlInt16>， <xref:System.Data.SqlTypes.SqlInt32>， <xref:System.Data.SqlTypes.SqlInt64>， <xref:System.Data.SqlTypes.SqlDateTime>， <xref:System.Data.SqlTypes.SqlSingle>， <xref:System.Data.SqlTypes.SqlDouble>， <xref:System.Data.SqlTypes.SqlMoney>，或包含的其中一个字段的用户定义的其他值类型类型。  
+   - `bool`UDT 的所有字段应为以下类型之一:、 `ushort` `int` `byte` `long`、 `sbyte`、 `short`、、 `uint` 、、、`float` 、 `ulong``double` 、、<xref:System.Data.SqlTypes.SqlMoney>、 、<xref:System.Data.SqlTypes.SqlDateTime>、 、<xref:System.Data.SqlTypes.SqlInt64>、、、或由用户定义的值类型, 其中包含其中一项的字段<xref:System.Data.SqlTypes.SqlSingle> <xref:System.Data.SqlTypes.SqlInt32> <xref:System.Data.SqlTypes.SqlByte> <xref:System.Data.SqlTypes.SqlInt16> <xref:System.Data.SqlTypes.SqlDouble>各种.  
 
-   - 聚合必须指定为值`MaxByteSize`。  
+   - 聚合不得为`MaxByteSize`指定值。  
   
-   - 聚合不能有 [NonSerialized] 的任何字段。  
+   - 聚合不能包含任何 [非系列化] 字段。  
   
-   - 字段不能标记为显式布局 (与<xref:System.Runtime.InteropServices.StructLayoutAttribute.Value?displayProperty=nameWithType>的<xref:System.Runtime.InteropServices.LayoutKind.Explicit?displayProperty=nameWithType>)。  
+   - 字段不能标记为显式布局 (具有<xref:System.Runtime.InteropServices.StructLayoutAttribute.Value?displayProperty=nameWithType>的<xref:System.Runtime.InteropServices.LayoutKind.Explicit?displayProperty=nameWithType>)。  
 
 - `Format.UserDefined`
 
-   对于要求`Format.UserDefined`格式是：
+   `Format.UserDefined`格式的要求如下:
 
-   - 聚合必须指定的值`MaxByteSize`。  
+   - 聚合必须为`MaxByteSize`指定一个值。  
   
-   - 指定<xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute.IsByteOrdered%2A?displayProperty=nameWithType>特性属性。 默认值为 `false`。  
+   - <xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute.IsByteOrdered%2A?displayProperty=nameWithType>指定特性属性。 默认值为 `false`。  
   
-   - 如果省略中的任何字段<xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A?displayProperty=nameWithType>或<xref:Microsoft.SqlServer.Server.IBinarySerialize.Write%2A?displayProperty=nameWithType>方法，该字段的状态不序列化。  
+   - 如果省略<xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A?displayProperty=nameWithType>或<xref:Microsoft.SqlServer.Server.IBinarySerialize.Write%2A?displayProperty=nameWithType>方法中的任何字段, 则不会序列化该字段的状态。  
 
 ## Examples  
 
-下面的示例演示`UserDefinedType`Point UDT 属性。  UDT 是字节顺序，名为"点"，其名为"ValidatePoint"的验证方法并使用本机序列化格式。  
+下面的示例演示`UserDefinedType`点 UDT 的特性。  UDT 按字节顺序排序, 命名为 "Point", 包含一个名为 "ValidatePoint" 的验证方法, 并使用本机序列化格式。  
   
 [!code-csharp[DataWorks SqlUserDefinedTypeAttribute Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlUserDefinedTypeAttribute Example/CS/source.cs#1)]
 [!code-vb[DataWorks SqlUserDefinedTypeAttribute Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlUserDefinedTypeAttribute Example/VB/source.vb#1)]  
