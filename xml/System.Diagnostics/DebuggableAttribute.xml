@@ -1,5 +1,5 @@
 <Type Name="DebuggableAttribute" FullName="System.Diagnostics.DebuggableAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="1ba7bd96bfc3406b6ad2ec9352f6fa0598e656b8" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58743505" /></Metadata><TypeSignature Language="C#" Value="public sealed class DebuggableAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1ba7bd96bfc3406b6ad2ec9352f6fa0598e656b8" /><Meta Name="ms.sourcegitcommit" Value="08fc3691deb7adaf0dfd751b9d9d0b23a3d3a7b8" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/09/2019" /><Meta Name="ms.locfileid" Value="68896410" /></Metadata><TypeSignature Language="C#" Value="public sealed class DebuggableAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit DebuggableAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.DebuggableAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class DebuggableAttribute&#xA;Inherits Attribute" />
@@ -44,13 +44,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.DebuggableAttribute>控制运行时如何处理该模块中的代码。 运行时可能会跟踪附加信息的生成的代码，并且它可能会禁用某些优化基于包含此属性的值。  
+ <xref:System.Diagnostics.DebuggableAttribute>控制运行时如何处理模块中的代码。 运行时可能会跟踪有关生成的代码的额外信息, 并且可能会根据此属性中包含的值来禁用某些优化。  
   
- 调试程序可能选择忽略<xref:System.Diagnostics.DebuggableAttribute>加载程序集时设置。 但是，将调试器附加到正在运行的程序可能会阻止调试器更改设置，因为它们已应用。  
+ 调试器可以选择在加载程序集<xref:System.Diagnostics.DebuggableAttribute>时忽略设置。 但是, 将调试器附加到正在运行的程序可能会阻止调试器更改设置, 因为这些设置已应用。  
   
- 若要使用<xref:System.Diagnostics.DebuggableAttribute>与使用反射发出动态程序集<xref:System.Reflection.Emit.AssemblyBuilder.DefineDynamicModule%2A>方法，发出<xref:System.Diagnostics.DebuggableAttribute>之前，调用<xref:System.Reflection.Emit.AssemblyBuilder.DefineDynamicModule%2A>方法，以确保这些设置将应用于整个程序集。  
+ 若要将<xref:System.Diagnostics.DebuggableAttribute>用于使用反射发出<xref:System.Reflection.Emit.AssemblyBuilder.DefineDynamicModule%2A>方法的动态程序集, 请<xref:System.Diagnostics.DebuggableAttribute>在调用<xref:System.Reflection.Emit.AssemblyBuilder.DefineDynamicModule%2A>方法前发出, 以确保将这些设置应用于整个程序集。  
   
- 有关使用属性的详细信息，请参阅[属性](~/docs/standard/attributes/index.md)。  
+ 有关使用特性的详细信息, 请参阅[特性](~/docs/standard/attributes/index.md)。  
   
  ]]></format>
     </remarks>
@@ -107,7 +107,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Diagnostics.DebuggableAttribute.%23ctor%28System.Diagnostics.DebuggableAttribute.DebuggingModes%29>构造函数与`modes`的参数值<xref:System.Diagnostics.DebuggableAttribute.DebuggingModes.Default>等效于调用<xref:System.Diagnostics.DebuggableAttribute.%23ctor%28System.Boolean%2CSystem.Boolean%29>具有构造函数`isJITTrackingEnabled`的参数值`true`。  
+ `isJITTrackingEnabled` `true` <xref:System.Diagnostics.DebuggableAttribute.%23ctor%28System.Boolean%2CSystem.Boolean%29>使用参数值<xref:System.Diagnostics.DebuggableAttribute.%23ctor%28System.Diagnostics.DebuggableAttribute.DebuggingModes%29> 调用<xref:System.Diagnostics.DebuggableAttribute.DebuggingModes.Default>构造函数等效于使用参数值调用构造函数。 `modes`  
   
  ]]></format>
         </remarks>
@@ -150,11 +150,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数设置的属性<xref:System.Diagnostics.DebuggableAttribute.IsJITTrackingEnabled%2A>和<xref:System.Diagnostics.DebuggableAttribute.IsJITOptimizerDisabled%2A>。  
+ 此构造函数设置属性<xref:System.Diagnostics.DebuggableAttribute.IsJITTrackingEnabled%2A>和<xref:System.Diagnostics.DebuggableAttribute.IsJITOptimizerDisabled%2A>。  
   
- `isJITTrackingEnabled`的参数值`true`会导致运行时跟踪调试器在代码生成; 过程的重要信息的值为`false`不产生任何跟踪，但这不会阻止调试。 在.NET Framework 2.0 版中不起此参数。  在版本 2.0 中，始终生成 JIT 跟踪信息，Microsoft 中间语言 (MSIL) 偏移量相对于在方法中，本机代码偏移量。  
+ 的`isJITTrackingEnabled` `false`参数值会导致运行时跟踪在代码生成过程中对调试器重要的信息; 值不会进行跟踪, 但不会阻止调试。 `true` 此参数在 .NET Framework 版本2.0 中不起作用。  在版本2.0 中, 始终生成 JIT 跟踪信息, 即方法中本机代码偏移量的 Microsoft 中间语言 (MSIL) 偏移量。  
   
- `isJITOptimizerDisabled`的参数值`true`优化以进行调试; 值为`false`执行优化。  
+ 参数值为`false`调试优化;值为"`true`优化执行"。 `isJITOptimizerDisabled`  
   
  ]]></format>
         </remarks>
@@ -194,7 +194,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.DebuggableAttribute.DebuggingFlags%2A>属性控制如何在运行时跟踪的重要信息对调试器在代码生成过程。 此信息可帮助调试程序提供丰富的调试体验。  
+ <xref:System.Diagnostics.DebuggableAttribute.DebuggingFlags%2A>属性控制运行时如何在代码生成过程中跟踪对调试器重要的信息。 此信息有助于调试器提供丰富的调试体验。  
   
  ]]></format>
         </remarks>
@@ -235,7 +235,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值为`true`可以提高性能调试运行时，可能导致执行性能降低。 值为`false`可以提高执行性能。 当<xref:System.Diagnostics.DebuggableAttribute.IsJITOptimizerDisabled%2A>设置为`false`，单步执行代码可能会导致不同的行为比如果设置为`true`因为编译器可能对指令重新排序或插入到公共代码的跳转。  
+ 值为可`true`增强运行时调试的性能, 这可能会导致执行性能下降。 值为可`false`提高执行性能。 当<xref:System.Diagnostics.DebuggableAttribute.IsJITOptimizerDisabled%2A>设置为`false`时, 单步执行代码可能会导致不同的行为, 而不`true`是设置为, 因为编译器可能会对指令重新排序或插入对通用代码的跳转。  
   
  ]]></format>
         </remarks>
@@ -276,12 +276,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.DebuggableAttribute.IsJITTrackingEnabled%2A> 控制是否在运行时跟踪的重要信息对调试器在代码生成过程。 此信息可帮助调试程序提供丰富的调试体验。  
+ <xref:System.Diagnostics.DebuggableAttribute.IsJITTrackingEnabled%2A>控制运行时是否在代码生成过程中跟踪对调试器重要的信息。 此信息有助于调试器提供丰富的调试体验。  
   
- 从.NET Framework 2.0 开始，在调试期间，始终启用 JIT 跟踪信息，并忽略此属性的值。  
+ 从 .NET Framework 2.0 开始, 调试过程中始终启用 JIT 跟踪信息, 并且忽略此属性值。  
   
 > [!NOTE]
->  此属性不控制可进行调试，但会指示实时 (JIT) 编译器生成跟踪信息。 具体而言，编译器可跟踪对本机代码的方法内的偏移量的 Microsoft 中间语言 MSIL 偏移量。  
+>  此属性不控制调试功能, 但会告诉实时 (JIT) 编译器生成跟踪信息。 具体而言, 编译器将跟踪 Microsoft 中间语言 (MSIL) 与方法内的本机代码偏移量的偏移量。  
   
  ]]></format>
         </remarks>
