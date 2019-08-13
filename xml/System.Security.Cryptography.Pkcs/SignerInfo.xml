@@ -1,5 +1,5 @@
 <Type Name="SignerInfo" FullName="System.Security.Cryptography.Pkcs.SignerInfo">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="21d1ce2d78815e6bf06ac742d845b3fac00cfd97" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58551626" /></Metadata><TypeSignature Language="C#" Value="public sealed class SignerInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="34475c5032278e74852ddc8ca3a9dc103f36ea84" /><Meta Name="ms.sourcegitcommit" Value="43c8e74d92c78325492baf27e41b400443f0dfbf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/08/2019" /><Meta Name="ms.locfileid" Value="68858865" /></Metadata><TypeSignature Language="C#" Value="public sealed class SignerInfo" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SignerInfo extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.Pkcs.SignerInfo" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SignerInfo" />
@@ -27,11 +27,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 所表示的签名<xref:System.Security.Cryptography.Pkcs.SignerInfo>类可以是通过消息内容或签名。 后一种签名被称为*副署*。  
+ <xref:System.Security.Cryptography.Pkcs.SignerInfo>类表示的签名可以通过消息内容或签名来进行。 后一种签名称为*副署*。  
   
- 此实现的 CMS/PKCS #7 仅支持一个级别的副署。  也就是说，签名可以进行签名，该窗体副署，但不能重新签署该副署。  
+ CMS/PKCS #7 的这种实现仅支持一个级别的副署。  也就是说, 可以对签名进行签名, 这会形成副署, 但无法再次对该副署进行签名。  
   
- 此类没有公共构造函数;因此，它不能公开实例化。 它是只读的类可以从访问<xref:System.Security.Cryptography.Pkcs.SignedCms.SignerInfos%2A?displayProperty=nameWithType>属性。  
+ 此类没有公共构造函数;因此, 不能对其进行公共实例化。 它是可通过<xref:System.Security.Cryptography.Pkcs.SignedCms.SignerInfos%2A?displayProperty=nameWithType>属性访问的只读类。  
   
  ]]></format>
     </remarks>
@@ -59,9 +59,22 @@
         <Parameter Name="asnEncodedData" Type="System.Security.Cryptography.AsnEncodedData" Index="0" FrameworkAlternate="dotnet-plat-ext-3.0" />
       </Parameters>
       <Docs>
-        <param name="asnEncodedData">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="asnEncodedData">要添加到文档的 ASN.1 编码属性。</param>
+        <summary>将指定属性添加到当前文档中。</summary>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+如果文档中已存在指定的属性, 则该属性将与现有属性合并。
+
+添加后, 会重新对文档进行编码。
+
+         ]]></format>
+         </remarks>
+        <exception cref="T:System.Security.Cryptography.CryptographicException">找不到原始签名者。
+        
+ 或
+
+ASN1 损坏数据。</exception>
       </Docs>
     </Member>
     <Member MemberName="Certificate">
@@ -94,7 +107,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果未包括在签名时使用的签名证书，则<xref:System.Security.Cryptography.Pkcs.CmsSigner.IncludeOption%2A?displayProperty=nameWithType>属性，则该证书将不返回。  
+ 如果签名证书未通过使用<xref:System.Security.Cryptography.Pkcs.CmsSigner.IncludeOption%2A?displayProperty=nameWithType>属性包括在签名时间, 则将不会返回证书。  
   
  ]]></format>
         </remarks>
@@ -141,7 +154,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法不提供身份验证的 CMS/PKCS #7 消息签名者信息。  
+ 此方法不提供 CMS/PKCS #7 消息签名者信息的身份验证。  
   
  ]]></format>
         </remarks>
@@ -193,9 +206,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果数字签名验证失败或不满足所有验证要求，则此方法将引发异常。  
+ 如果数字签名验证失败或未满足任何验证要求, 此方法将引发异常。  
   
- 如果需要更复杂的验证，则调用方可以指定仅对签名进行验证，然后使用<xref:System.Security.Cryptography.X509Certificates.X509Chain>对象以执行自定义验证。  
+ 如果需要更复杂的验证, 调用方可以指定只验证签名, 然后使用<xref:System.Security.Cryptography.X509Certificates.X509Chain>对象来执行自定义验证。  
   
  ]]></format>
         </remarks>
@@ -239,9 +252,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果数字签名验证失败或不满足所有验证要求，则此方法将引发异常。  
+ 如果数字签名验证失败或未满足任何验证要求, 此方法将引发异常。  
   
- 如果需要更复杂的验证，则调用方可以指定仅对签名进行验证，然后使用<xref:System.Security.Cryptography.X509Certificates.X509Chain>对象以执行自定义验证。  
+ 如果需要更复杂的验证, 调用方可以指定只验证签名, 然后使用<xref:System.Security.Cryptography.X509Certificates.X509Chain>对象来执行自定义验证。  
   
  ]]></format>
         </remarks>
@@ -294,26 +307,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此实现的 CMS/PKCS #7 仅支持一个级别的副署。  也就是说，签名可以进行签名，该窗体副署，但不能重新签署该副署。  
+ CMS/PKCS #7 的这种实现仅支持一个级别的副署。  也就是说, 可以对签名进行签名, 这会形成副署, 但无法再次对该副署进行签名。  
   
- 此方法显示在其中选择为此消息的签名者的用户界面。 这要求在当前进程是否正在*用户交互模式*，这意味着，<xref:System.Environment.UserInteractive%2A?displayProperty=nameWithType>属性设置为`true`。 进程在用户交互模式下是通常情况下，除非它是服务进程正在运行的 Web 应用程序中。  
+ 此方法显示一个用户界面, 您可以在其中为此邮件选择签名者。 这要求当前进程在*用户交互模式下*运行, 这意味着该<xref:System.Environment.UserInteractive%2A?displayProperty=nameWithType>属性设置为。 `true` 进程通常处于用户交互模式, 除非它是服务进程或在 Web 应用程序中运行。  
   
- 签名者的证书满足以下条件将显示在列表中：  
+ 其证书满足以下条件的签名者将显示在列表中:  
   
 -   证书具有关联的私钥。  
   
--   该证书会在其有效期内。  
+-   证书在其有效期内。  
   
--   证书具有没有密钥用法或支持数字签名或认可密钥用法。  
+-   证书没有密钥用法或支持数字签名或认可的密钥用法。  
   
- 签名者证书选择从我的存储。  
+ 从 "我的存储" 中选择签名者证书。  
   
 ## <a name="net-framework-security"></a>.NET Framework 安全性  
- 需要以下权限来显示用户界面：  
+ 要显示用户界面, 需要具备以下权限:  
   
 -   <xref:System.Security.Permissions.UIPermissionWindow.SafeTopLevelWindows?displayProperty=nameWithType>  
   
- 访问签名密钥所需的以下权限：  
+ 访问签名密钥需要以下权限:  
   
 -   <xref:System.Security.Permissions.KeyContainerPermissionFlags.Open?displayProperty=nameWithType>  
   
@@ -358,10 +371,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此实现的 CMS/PKCS #7 仅支持一个级别的副署。  也就是说，签名可以进行签名，该窗体副署，但不能重新签署该副署。  
+ CMS/PKCS #7 的这种实现仅支持一个级别的副署。  也就是说, 可以对签名进行签名, 这会形成副署, 但无法再次对该副署进行签名。  
   
 ## <a name="net-framework-security"></a>.NET Framework 安全性  
- 访问签名密钥所需的以下权限：  
+ 访问签名密钥需要以下权限:  
   
 -   <xref:System.Security.Permissions.KeyContainerPermissionFlags.Open?displayProperty=nameWithType>  
   
@@ -403,7 +416,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此实现的 CMS/PKCS #7 仅支持一个级别的副署。 也就是说，签名可以进行签名，该窗体副署，但不能重新签署该副署。  
+ CMS/PKCS #7 的这种实现仅支持一个级别的副署。 也就是说, 可以对签名进行签名, 这会形成副署, 但无法再次对该副署进行签名。  
   
  ]]></format>
         </remarks>
@@ -593,9 +606,24 @@
         <Parameter Name="asnEncodedData" Type="System.Security.Cryptography.AsnEncodedData" Index="0" FrameworkAlternate="dotnet-plat-ext-3.0" />
       </Parameters>
       <Docs>
-        <param name="asnEncodedData">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="asnEncodedData">要从文档中删除的 ASN.1 编码属性。</param>
+        <summary>从当前文档中删除指定属性。</summary>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+删除后, 会重新对文档进行编码。
+
+         ]]></format>
+         </remarks>
+        <exception cref="T:System.Security.Cryptography.CryptographicException">找不到原始签名者。
+
+ 或
+
+找不到属性。
+
+ - 或 -
+ 
+ASN1 损坏数据。</exception>
       </Docs>
     </Member>
     <Member MemberName="SignatureAlgorithm">
@@ -661,11 +689,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可能包含在已签名特性的一个示例<xref:System.Security.Cryptography.CryptographicAttributeObjectCollection>集合来检索<xref:System.Security.Cryptography.Pkcs.SignerInfo.SignedAttributes%2A>属性是<xref:System.Security.Cryptography.Pkcs.Pkcs9SigningTime>签名时间属性。  
+ 可在<xref:System.Security.Cryptography.CryptographicAttributeObjectCollection> <xref:System.Security.Cryptography.Pkcs.SignerInfo.SignedAttributes%2A>属性检索的集合中包含的已签名特性的一个示例是<xref:System.Security.Cryptography.Pkcs.Pkcs9SigningTime>签名时间特性。  
   
- 已签名的特性与的其余部分一起进行签名<xref:System.Security.Cryptography.Pkcs.SignedCms>消息内容。 这意味着已成功验证签名的参与方可充满信心，这些属性的内容可信的且未更改。  
+ 签名属性与其余<xref:System.Security.Cryptography.Pkcs.SignedCms>消息内容一起进行签名。 这意味着成功验证签名的参与方可以确信这些属性的内容可信并且未被更改。  
   
- 一个<xref:System.Security.Cryptography.Pkcs.Pkcs9ContentType>对象和一个<xref:System.Security.Cryptography.Pkcs.Pkcs9MessageDigest>对象将自动生成并放入<xref:System.Security.Cryptography.Pkcs.SignerInfo.SignedAttributes%2A>属性时<xref:System.Security.Cryptography.Pkcs.CmsSigner.SignedAttributes%2A?displayProperty=nameWithType>相应的签名者的属性不为空。  
+ 当相应签名者<xref:System.Security.Cryptography.Pkcs.Pkcs9MessageDigest>的<xref:System.Security.Cryptography.Pkcs.SignerInfo.SignedAttributes%2A> <xref:System.Security.Cryptography.Pkcs.Pkcs9ContentType> 属性不为空时,将自动生成对象和对象<xref:System.Security.Cryptography.Pkcs.CmsSigner.SignedAttributes%2A?displayProperty=nameWithType>并将其放置在属性中。  
   
  ]]></format>
         </remarks>
@@ -753,9 +781,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 未签名的特性未签名和其余<xref:System.Security.Cryptography.Pkcs.SignedCms>消息内容。 虽然参与方已成功验证的签名，未签名的特性已更改，而不应被视为具有可靠性或完整性。  
+ 无符号特性与<xref:System.Security.Cryptography.Pkcs.SignedCms>消息内容的其余部分一起进行签名。 即使某一方成功验证了签名, 但未签名的属性也可能已更改, 不应将其视为具有真实性或完整性。  
   
- 可能包含在未签名特性的示例<xref:System.Security.Cryptography.CryptographicAttributeObjectCollection>集合来检索<xref:System.Security.Cryptography.Pkcs.SignerInfo.UnsignedAttributes%2A>属性是一个副署。  
+ 可能包含在<xref:System.Security.Cryptography.CryptographicAttributeObjectCollection> <xref:System.Security.Cryptography.Pkcs.SignerInfo.UnsignedAttributes%2A>由属性检索的集合中的未签名特性的一个示例是副署。  
   
  ]]></format>
         </remarks>
@@ -797,7 +825,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 版本确定消息是否是 PKCS #7 消息还是加密消息语法 (CMS) 消息。 CMS 是较新的 PKCS #7 超集。  
+ 版本确定消息是 PKCS #7 消息还是加密消息语法 (CMS) 消息。 CMS 是 PKCS #7 的新超集。  
   
  ]]></format>
         </remarks>

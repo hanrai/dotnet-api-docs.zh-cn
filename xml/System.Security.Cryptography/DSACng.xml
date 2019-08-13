@@ -1,5 +1,5 @@
 <Type Name="DSACng" FullName="System.Security.Cryptography.DSACng">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c92759d4c18e64ab51451b98cd2cf13111fc40c2" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56781158" /></Metadata><TypeSignature Language="C#" Value="public sealed class DSACng : System.Security.Cryptography.DSA" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5b97c9b1fbb07ebd0e92fba4af8daf3a4444f6ae" /><Meta Name="ms.sourcegitcommit" Value="08fc3691deb7adaf0dfd751b9d9d0b23a3d3a7b8" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/09/2019" /><Meta Name="ms.locfileid" Value="68894373" /></Metadata><TypeSignature Language="C#" Value="public sealed class DSACng : System.Security.Cryptography.DSA" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit DSACng extends System.Security.Cryptography.DSA" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.DSACng" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class DSACng&#xA;Inherits DSA" />
@@ -84,7 +84,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有效密钥大小范围为从 512 到 3,072 位，增量为 64。 我们建议的所有键使用的最小大小为 2048 位。  
+ 有效密钥大小范围为512到3072位, 增量为64。 建议为所有密钥使用最小大小2048位。  
   
  ]]></format>
         </remarks>
@@ -124,9 +124,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Cryptography.CngKey.AlgorithmGroup%2A?displayProperty=nameWithType>的`key`必须是<xref:System.Security.Cryptography.CngAlgorithmGroup.Dsa%2A?displayProperty=nameWithType>。  
+ <xref:System.Security.Cryptography.CngKey.AlgorithmGroup%2A?displayProperty=nameWithType>的必须`key`是。<xref:System.Security.Cryptography.CngAlgorithmGroup.Dsa%2A?displayProperty=nameWithType>  
   
- 此构造函数创建密钥的副本。 即使`key`是已释放，DSA 中此密钥对象的副本保持活动状态。  
+ 此构造函数创建密钥的副本。 `key`即使已被释放, DSA 中此密钥对象的副本仍保持活动状态。  
   
  ]]></format>
         </remarks>
@@ -366,9 +366,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Cryptography.CngKey>密钥重置，例如通过更改的情况下，释放对象<xref:System.Security.Cryptography.CngKey.KeySize%2A?displayProperty=nameWithType>属性，通过使用<xref:System.Security.Cryptography.DSACng.ImportParameters%2A?displayProperty=nameWithType>方法来创建新的密钥，或通过释放父<xref:System.Security.Cryptography.DSACng>对象。 因此，应确保，在这些情况下不再使用的键对象。  
+ 如果重置密钥, 则会释放该<xref:System.Security.Cryptography.CngKey.KeySize%2A?displayProperty=nameWithType> <xref:System.Security.Cryptography.DSACng.ImportParameters%2A?displayProperty=nameWithType> <xref:System.Security.Cryptography.DSACng>对象, 例如通过更改属性、使用方法创建新密钥或释放父对象。 <xref:System.Security.Cryptography.CngKey> 因此, 应确保在这些情况下不会再使用该密钥对象。  
   
- 这<xref:System.Security.Cryptography.CngKey>对象不是与相同<xref:System.Security.Cryptography.CngKey>对象传递给<xref:System.Security.Cryptography.DSACng.%23ctor%2A>构造函数中，如果使用该构造函数。 但是，它将指向相同的 CNG 密钥。  
+ 如果<xref:System.Security.Cryptography.CngKey>使用了该构造函数, 则<xref:System.Security.Cryptography.CngKey>此对象与传递<xref:System.Security.Cryptography.DSACng.%23ctor%2A>给构造函数的对象不同。 但是, 它会指向同一 CNG 密钥。  
   
  ]]></format>
         </remarks>
@@ -479,11 +479,11 @@
         <Parameter Name="bytesWritten" Type="System.Int32" RefType="out" Index="2" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="hash">To be added.</param>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="hash">一个只读字节范围，其中包含要签名的数据的哈希。</param>
+        <param name="destination">要写入数字签名的缓冲区。</param>
+        <param name="bytesWritten">此方法返回时，写入到 <paramref name="destination" /> 的字节数。</param>
+        <summary>尝试为指定数据创建数字签名。</summary>
+        <returns>如果已成功创建数字签名，则为 <see langword="true" />；如果 <paramref name="destination" /> 缓冲区太小，则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -559,9 +559,9 @@
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="rgbHash" /> 参数为 <see langword="null" />。  
   
-- 或 - 
+或 
 <paramref name="rgbSignature" /> 参数为 <see langword="null" />。</exception>
-        <exception cref="T:System.PlatformNotSupportedException"><paramref name="rgbHash" /> 比 DSA 键的 Q 值短。</exception>
+        <exception cref="T:System.PlatformNotSupportedException"><paramref name="rgbHash" /> 比 DSA 密钥的 Q 值短。</exception>
       </Docs>
     </Member>
     <Member MemberName="VerifySignature">
@@ -587,11 +587,12 @@
         <Parameter Name="signature" Type="System.ReadOnlySpan&lt;System.Byte&gt;" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="hash">To be added.</param>
-        <param name="signature">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="hash">一个只读字节范围，其中包含已签名的数据。</param>
+        <param name="signature">一个只读字节范围，其中包含要验证的签名。</param>
+        <summary>验证指定数字签名是否与指定数据相匹配。</summary>
+        <returns>如果 <paramref name="signature" /> 与使用指定数据计算的签名相匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.PlatformNotSupportedException"><paramref name="hash" /> 比 DSA 密钥的 Q 值短。</exception>
       </Docs>
     </Member>
   </Members>

@@ -1,5 +1,5 @@
 <Type Name="Activity" FullName="System.Diagnostics.Activity">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="586c05a85e1076d974bb0f7fd7fa614d34ba135b" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68539711" /></Metadata><TypeSignature Language="C#" Value="public class Activity" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4a68c8e1f38efc70288219fa27a445b1f829d820" /><Meta Name="ms.sourcegitcommit" Value="08fc3691deb7adaf0dfd751b9d9d0b23a3d3a7b8" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/09/2019" /><Meta Name="ms.locfileid" Value="68896459" /></Metadata><TypeSignature Language="C#" Value="public class Activity" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Activity extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.Activity" />
   <TypeSignature Language="VB.NET" Value="Public Class Activity" />
@@ -19,16 +19,18 @@
   <Docs>
     <summary>表示具有要用于日志记录的上下文的操作。</summary>
     <remarks>
-      <format type="text/markdown"><![CDATA[  
+      <format type="text/markdown"><![CDATA[
+
+## Remarks
 
 `Activity`包含操作名称、ID、开始时间和持续时间、标记和行李。
-             
+
 当前活动可以通过静态<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>属性访问。
 
 应通过调用构造函数来创建活动, 并根据需要进行配置, 然后使用<xref:System.Diagnostics.Activity.Start%2A>方法 (该方法维护活动和集<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>的父子关系) 启动。
-            
+
 活动完成后, 应使用<xref:System.Diagnostics.Activity.Stop?displayProperty=nameWithType>方法停止。
-            
+
 没有`Activity`方法允许将异常转义为对错误输入的响应。 引发和捕获它们 (允许调试器和监视器查看错误), 但异常被取消, 并且操作具有合理的功能 (通常不执行任何操作)。
 
          ]]></format>
@@ -600,10 +602,18 @@ ID 具有层次结构: `root-id.id1_id2.id3_`。 当通过<xref:System.Diagnosti
         <Parameter Name="format" Type="System.Diagnostics.ActivityIdFormat" Index="0" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="format">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="format">枚举值之一，它指定 <see cref="P:System.Diagnostics.Activity.Id" /> 属性的格式。</param>
+        <summary>在开始前，设置此 <see cref="T:System.Diagnostics.Activity" /> 的 ID 格式。</summary>
+        <returns>便于链接的 <see langword="this" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+
+## Remarks
+
+指定的`Parent.IdFormat`格式将优先于, 格式为<xref:System.Diagnostics.Activity.ParentId> 、 <xref:System.Diagnostics.Activity.DefaultIdFormat>和<xref:System.Diagnostics.Activity.ForceDefaultIdFormat>。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="SetParentId">
@@ -661,12 +671,20 @@ ID 具有层次结构: `root-id.id1_id2.id3_`。 当通过<xref:System.Diagnosti
         <Parameter Name="activityTraceFlags" Type="System.Diagnostics.ActivityTraceFlags" Index="2" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="traceId">To be added.</param>
-        <param name="spanId">To be added.</param>
-        <param name="activityTraceFlags">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="traceId">父活动的 TraceId。</param>
+        <param name="spanId">父活动的 SpanId。</param>
+        <param name="activityTraceFlags">其中一个枚举值，该值指定由 W3C 标准定义的与活动关联的标志。</param>
+        <summary>使用 TraceId 和 SpanId 的 W3C 约定设置父 ID。</summary>
+        <returns>便于链接的 <see langword="this" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+
+## Remarks
+
+此方法的优点是, 无需进行字符串操作即可设置 ID。
+
+        ]]></format>
+        </remarks> 
       </Docs>
     </Member>
     <Member MemberName="SetStartTime">

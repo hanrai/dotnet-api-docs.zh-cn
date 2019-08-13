@@ -1,5 +1,5 @@
 <Type Name="UTF8Encoding" FullName="System.Text.UTF8Encoding">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="567bccf4e3679939d5849b3e1088df8da667065d" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68438742" /></Metadata><TypeSignature Language="C#" Value="public class UTF8Encoding : System.Text.Encoding" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7088d553aa894e006add89f8658de26841fe5002" /><Meta Name="ms.sourcegitcommit" Value="08fc3691deb7adaf0dfd751b9d9d0b23a3d3a7b8" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/09/2019" /><Meta Name="ms.locfileid" Value="68901365" /></Metadata><TypeSignature Language="C#" Value="public class UTF8Encoding : System.Text.Encoding" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit UTF8Encoding extends System.Text.Encoding" />
   <TypeSignature Language="DocId" Value="T:System.Text.UTF8Encoding" />
   <TypeSignature Language="VB.NET" Value="Public Class UTF8Encoding&#xA;Inherits Encoding" />
@@ -373,10 +373,25 @@
         <Parameter Name="chars" Type="System.ReadOnlySpan&lt;System.Char&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="chars">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="chars">包含要编码的字符集的范围。</param>
+        <summary>计算对指定字符范围进行编码所产生的字节数。</summary>
+        <returns>对指定字符范围进行编码所产生的字节数。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 若要计算存储生成的字节<xref:System.Text.UTF8Encoding.GetBytes%2A>所需的确切大小, 请<xref:System.Text.UTF8Encoding.GetByteCount%2A>调用方法。 若要计算最大大小, 请调用<xref:System.Text.UTF8Encoding.GetMaxByteCount%2A>方法。 方法通常分配较少的内存, 而<xref:System.Text.UTF8Encoding.GetMaxByteCount%2A>方法的执行速度通常更快。 <xref:System.Text.UTF8Encoding.GetByteCount%2A>  
+  
+ 使用错误检测时, 无效序列会导致此方法引发<xref:System.ArgumentException>异常。 如果未检测到错误, 将忽略无效的序列, 且不会引发异常。  
+  
+ 若要确保已编码的字节在另存为文件或流时正确解码, 可以使用前导码作为编码字节流的前缀。 将前导头插入字节流的开头 (例如, 要写入文件的字节序列的开头) 是开发人员的责任, 而前导码中的字节数不会反映在<xref:System.Text.UTF8Encoding.GetByteCount%2A>方法返回的值中。  
+  
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">启用了错误检测，并且 <paramref name="chars" /> 包含无效的字符序列。</exception>
+        <exception cref="T:System.Text.EncoderFallbackException">发生了回退（如需完整说明，请参阅 [.NET Framework 中的字符编码](~/docs/standard/base-types/character-encoding.md)） 
+－和－ 
+ 将 <see cref="P:System.Text.Encoding.EncoderFallback" /> 设置为 <see cref="T:System.Text.EncoderExceptionFallback" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetByteCount">
@@ -595,10 +610,10 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="chars" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> 或 <paramref name="count" /> 小于零。  
   
-或 
+- 或 - 
  <paramref name="index" /> 和 <paramref name="count" /> 不表示 <paramref name="chars" />中的有效范围。  
   
-- 或 - 
+或 
 得到的字节数大于可作为整数返回的最大数量。</exception>
         <exception cref="T:System.ArgumentException">启用了错误检测，并且 <paramref name="chars" /> 包含无效的字符序列。</exception>
         <exception cref="T:System.Text.EncoderFallbackException">发生了回退（如需完整说明，请参阅 [.NET Framework 中的字符编码](~/docs/standard/base-types/character-encoding.md)） 
@@ -676,11 +691,24 @@
         <Parameter Name="bytes" Type="System.Span&lt;System.Byte&gt;" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="chars">To be added.</param>
-        <param name="bytes">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="chars">要编码的字符范围。</param>
+        <param name="bytes">要包含生成的字节集的范围。</param>
+        <summary>将指定的字符范围编码为指定的字节范围。</summary>
+        <returns>写入 <paramref name="bytes" /> 的实际字节数。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 若要计算存储生成的字节<xref:System.Text.UTF8Encoding.GetBytes%2A>所需的确切大小, 请<xref:System.Text.UTF8Encoding.GetByteCount%2A>调用方法。 若要计算最大大小, 请调用<xref:System.Text.UTF8Encoding.GetMaxByteCount%2A>方法。 方法通常分配较少的内存, 而<xref:System.Text.UTF8Encoding.GetMaxByteCount%2A>方法的执行速度通常更快。 <xref:System.Text.UTF8Encoding.GetByteCount%2A>  
+  
+ 使用错误检测时, 无效序列会导致此方法引发<xref:System.ArgumentException>异常。 如果未检测到错误, 将忽略无效的序列, 且不会引发异常。  
+  
+ 要转换的数据 (如从流中读取的数据) 只能在顺序块中使用。 在这种情况下, 或者如果数据量很大以致需要分为较小块<xref:System.Text.Decoder> , 请分别使用<xref:System.Text.Encoder>或<xref:System.Text.UTF8Encoding.GetDecoder%2A>方法或<xref:System.Text.UTF8Encoding.GetEncoder%2A>方法返回的。  
+  
+ 若要确保已编码的字节在另存为文件或流时正确解码, 可以使用前导码作为编码字节流的前缀。 将前导头插入字节流的开头 (例如, 在要写入文件的字节序列的开头), 这是开发人员的责任。 <xref:System.Text.UTF8Encoding.GetBytes%2A>方法不在编码字节序列的开头之前预置前导头。  
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetBytes">
@@ -841,7 +869,7 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="chars" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="bytes" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="charIndex" />、<paramref name="charCount" /> 或 <paramref name="byteIndex" /> 小于零。  
   
@@ -941,10 +969,10 @@
  <paramref name="bytes" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="charIndex" />、<paramref name="charCount" /> 或 <paramref name="byteIndex" /> 小于零。  
   
-或 
+- 或 - 
  <paramref name="charIndex" /> 和 <paramref name="charCount" /> 不表示 <paramref name="chars" />中的有效范围。  
   
-- 或 - 
+或 
  <paramref name="byteIndex" /> 不是 <paramref name="bytes" /> 中的有效索引。</exception>
         <exception cref="T:System.ArgumentException">启用了错误检测，并且 <paramref name="s" /> 包含无效的字符序列。  
   
@@ -993,10 +1021,19 @@
         <Parameter Name="bytes" Type="System.ReadOnlySpan&lt;System.Byte&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="bytes">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="bytes">包含要解码的字节集的范围。</param>
+        <summary>计算对指定字节范围进行解码所产生的字符数。</summary>
+        <returns>对指定字节范围进行解码所产生的字符数。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 若要计算存储所生成的<xref:System.Text.UTF8Encoding.GetChars%2A>字符所需的准确大小, 请<xref:System.Text.UTF8Encoding.GetCharCount%2A>调用方法。 若要计算最大大小, 请<xref:System.Text.UTF8Encoding.GetMaxCharCount%2A>调用方法。 方法通常分配较少的内存, 而<xref:System.Text.UTF8Encoding.GetMaxCharCount%2A>方法的执行速度通常更快。 <xref:System.Text.UTF8Encoding.GetCharCount%2A>  
+  
+ 使用错误检测时, 无效序列会导致此方法引发<xref:System.ArgumentException>异常。 如果未检测到错误, 将忽略无效的序列, 且不会引发异常。  
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetCharCount">
@@ -1139,10 +1176,10 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="bytes" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> 或 <paramref name="count" /> 小于零。  
   
-- 或 - 
+或 
  <paramref name="index" /> 和 <paramref name="count" /> 不表示 <paramref name="bytes" />中的有效范围。  
   
-或 
+- 或 - 
 得到的字节数大于可作为整数返回的最大数量。</exception>
         <exception cref="T:System.ArgumentException">启用了错误检测，并且 <paramref name="bytes" /> 包含无效的字节序列。</exception>
         <exception cref="T:System.Text.DecoderFallbackException">发生了回退（如需完整说明，请参阅 [.NET Framework 中的字符编码](~/docs/standard/base-types/character-encoding.md)） 
@@ -1189,11 +1226,24 @@
         <Parameter Name="chars" Type="System.Span&lt;System.Char&gt;" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="bytes">To be added.</param>
-        <param name="chars">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="bytes">包含要解码的字节的范围。</param>
+        <param name="chars">要包含生成的字符集的范围。</param>
+        <summary>将指定的字节范围解码为指定的字符范围。</summary>
+        <returns>写入 <paramref name="chars" /> 的实际字符数。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 若要计算存储所生成的<xref:System.Text.UTF8Encoding.GetChars%2A>字符所需的准确大小, 请<xref:System.Text.UTF8Encoding.GetCharCount%2A>调用方法。 若要计算最大大小, 请<xref:System.Text.UTF8Encoding.GetMaxCharCount%2A>调用方法。 方法通常分配较少的内存, 而<xref:System.Text.UTF8Encoding.GetMaxCharCount%2A>方法的执行速度通常更快。 <xref:System.Text.UTF8Encoding.GetCharCount%2A>  
+  
+ 使用错误检测时, 无效序列会导致此方法引发<xref:System.ArgumentException>异常。 如果未检测到错误, 将忽略无效的序列, 且不会引发异常。  
+  
+ 如果要解码的字节集包含字节顺序标记 (BOM), 并且非 BOM 感知类型的方法返回的字节范围为, 则该字符`U+FFFE`将包含在此方法返回的字符范围内。 可以通过调用<xref:System.String.TrimStart%2A?displayProperty=nameWithType>方法将其移除。  
+  
+ 要转换的数据 (如从流中读取的数据) 只能在顺序块中使用。 在这种情况下, 或者如果数据量很大以致需要分为较小块<xref:System.Text.Decoder> , 请分别使用<xref:System.Text.Encoder>或<xref:System.Text.UTF8Encoding.GetDecoder%2A>方法<xref:System.Text.UTF8Encoding.GetEncoder%2A>提供的对象或方法。  
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetChars">
@@ -1263,12 +1313,12 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="bytes" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="chars" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="byteCount" /> 或 <paramref name="charCount" /> 小于零。</exception>
         <exception cref="T:System.ArgumentException">启用了错误检测，并且 <paramref name="bytes" /> 包含无效的字节序列。  
   
-- 或 - 
+或 
  <paramref name="charCount" /> 少于所产生的字符数。</exception>
         <exception cref="T:System.Text.DecoderFallbackException">发生了回退（如需完整说明，请参阅 [.NET Framework 中的字符编码](~/docs/standard/base-types/character-encoding.md)） 
 －和－ 
@@ -1362,11 +1412,11 @@
 或 
  <paramref name="byteindex" /> 和 <paramref name="byteCount" /> 不表示 <paramref name="bytes" />中的有效范围。  
   
-- 或 - 
+或 
  <paramref name="charIndex" /> 不是 <paramref name="chars" /> 中的有效索引。</exception>
         <exception cref="T:System.ArgumentException">启用了错误检测，并且 <paramref name="bytes" /> 包含无效的字节序列。  
   
-- 或 - 
+或 
  <paramref name="chars" /> 中从 <paramref name="charIndex" /> 到数组结尾没有足够容量来容纳所产生的字符。</exception>
         <exception cref="T:System.Text.DecoderFallbackException">发生了回退（如需完整说明，请参阅 [.NET Framework 中的字符编码](~/docs/standard/base-types/character-encoding.md)） 
 －和－ 
@@ -1687,7 +1737,7 @@
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="byteCount" /> 小于零。  
   
-或 
+- 或 - 
 得到的字节数大于可作为整数返回的最大数量。</exception>
         <exception cref="T:System.Text.DecoderFallbackException">发生了回退（如需完整说明，请参阅 [.NET Framework 中的字符编码](~/docs/standard/base-types/character-encoding.md)） 
 －和－ 
@@ -1882,9 +1932,35 @@
         <ReturnType>System.ReadOnlySpan&lt;System.Byte&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取采用 UTF-8 格式编码的 Unicode 字节顺序标记（如果此对象配置为提供一个这样的标记）。</summary>
+        <value>如果将此对象配置为提供一个字节, 则为包含 Unicode 字节顺序标记的字节跨距;否则为默认跨度。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ <xref:System.Text.UTF8Encoding>对象可以提供前导码, 这是一个字节范围, 可以作为编码过程中所产生的字节序列的前缀。 前面带有字节顺序标记 (码位`U+FEFF`) 的已编码字节序列可帮助解码器确定字节顺序和转换格式, 或 UTF。 Unicode 字节顺序标记 (BOM) 序列化为 0xEF 0xBB 0xBF。 请注意, Unicode 标准既不需要也不建议使用 UTF-8 编码流的 BOM。  
+  
+ 可以通过以下方式<xref:System.Text.UTF8Encoding>实例化`Preamble`其为有效 BOM 的对象:  
+  
+-   通过检索<xref:System.Text.UTF8Encoding> <xref:System.Text.Encoding.UTF8%2A?displayProperty=nameWithType>由属性返回的对象。  
+  
+-   通过调用<xref:System.Text.UTF8Encoding> `encoderShouldEmitUTF8Identifier`具有参数的构造函数, 并将其值设置为。 `true`  
+  
+ 所有其他<xref:System.Text.UTF8Encoding>对象都配置为返回默认跨度, 而不是有效的 BOM。  
+  
+ BOM 为某些文件提供了几乎特定的编码标识, 否则这些文件会丢失对其编码的引用, 例如未标记或标记错误的 web 数据, 或在业务不存在国际问题时存储的随机文本文件。 如果数据一致且标记正确, 通常可以避免用户问题。  
+  
+ 对于提供编码类型的标准, BOM 有些多余。 但是, 可以使用它来帮助服务器发送正确的编码标头。 或者, 它可以用作回退, 以防编码在其他情况下丢失。  
+  
+ 使用 BOM 存在一些缺点。 例如, 了解如何限制使用 BOM 的数据库字段可能很困难。 文件的串联可能也是一个问题, 例如, 当文件以这样一种方式进行合并时, 不需要的字符会在数据中间结束。 但尽管有几个缺点, 但强烈建议使用 BOM。  
+  
+ 有关字节顺序和字节顺序标记的详细信息, 请参阅[unicode 主页](https://go.microsoft.com/fwlink/?LinkId=37123)上的 unicode 标准。  
+  
+> [!IMPORTANT]
+>  若要确保已编码的字节在另存为文件或流时正确解码, 可以使用前导码作为编码字节流开头的前缀。 请注意, <xref:System.Text.UTF8Encoding.GetBytes%2A>该方法不会将 bom 预置到编码字节序列上; 在适当的字节流开始提供 bom 是开发人员的责任。
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
   </Members>

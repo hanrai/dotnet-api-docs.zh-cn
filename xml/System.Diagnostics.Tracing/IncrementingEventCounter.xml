@@ -1,5 +1,5 @@
 <Type Name="IncrementingEventCounter" FullName="System.Diagnostics.Tracing.IncrementingEventCounter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a4d200a548b8301ed771729f2eb4ccfd0f28445c" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68540015" /></Metadata><TypeSignature Language="C#" Value="public class IncrementingEventCounter : System.Diagnostics.Tracing.DiagnosticCounter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="087f04e4f5d30e7b8b28f44158902f0c69032712" /><Meta Name="ms.sourcegitcommit" Value="08fc3691deb7adaf0dfd751b9d9d0b23a3d3a7b8" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/09/2019" /><Meta Name="ms.locfileid" Value="68906886" /></Metadata><TypeSignature Language="C#" Value="public class IncrementingEventCounter : System.Diagnostics.Tracing.DiagnosticCounter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit IncrementingEventCounter extends System.Diagnostics.Tracing.DiagnosticCounter" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.Tracing.IncrementingEventCounter" />
   <TypeSignature Language="VB.NET" Value="Public Class IncrementingEventCounter&#xA;Inherits DiagnosticCounter" />
@@ -18,7 +18,11 @@
     <remarks>
       <format type="text/markdown"><![CDATA[  
 
-`IncrementingEventCounter`不会计算平均和标准偏差等统计信息, 因为它只累积计数器值。
+## Remarks
+
+`IncrementingEventCounter`用于跟踪始终递增的值, 例如请求总数、引发的异常的总数, 等等。对于这类指标, 只需报告总值并不一定用于监视其运行状况。 例如, 跟踪进程的整个持续时间内分配的字节数对于诊断任何可能存在的内存太多的问题没有用处。 一种指标, 可帮助我们在过去的分钟、小时或某个任意时间间隔内分配的字节数, 而不是整个过程的持续时间。 `IncrementingEventCounter`可用于跟踪和报告由指标使用者指定的时间间隔内的增量。
+
+`IncrementingEventCounter`不会计算平均和标准偏差等统计信息, 因为它只跟踪一段时间内的增量。
 
     ]]></format>
     </remarks>
@@ -46,7 +50,9 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-只要事件计数器附加到事件计数器<see cref="T:System.Diagnostics.Tracing.EventSource" /> , 就会将其附加到, 除非显式释放它们。
+## Remarks
+
+<xref:System.Diagnostics.Tracing.IncrementingEventCounter><xref:System.Diagnostics.Tracing.EventSource>只要它们附加到的实时, 除非显式释放它们。
 
          ]]></format>
         </remarks>
@@ -68,9 +74,17 @@
         <ReturnType>System.TimeSpan</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取或设置此指标应显示为的速率。</summary>
+        <value>获取或设置此度量值的显示速率</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+
+## Remarks
+
+`DisplayRateTimeScale`属性的值以字符串的形式包含在有效负载中。
+
+         ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Increment">
@@ -113,8 +127,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>返回当前递增事件计数器实例的字符串表示形式。</summary>
+        <returns>当前递增事件计数器的名称和增量。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
