@@ -1,5 +1,5 @@
 <Type Name="PollingCounter" FullName="System.Diagnostics.Tracing.PollingCounter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="de7fa120fc4ba761c0de31760a68875f6500e72c" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68539967" /></Metadata><TypeSignature Language="C#" Value="public class PollingCounter : System.Diagnostics.Tracing.DiagnosticCounter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0fd828e9646ba65d166367916d42a99f59de8ff2" /><Meta Name="ms.sourcegitcommit" Value="08fc3691deb7adaf0dfd751b9d9d0b23a3d3a7b8" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/09/2019" /><Meta Name="ms.locfileid" Value="68906776" /></Metadata><TypeSignature Language="C#" Value="public class PollingCounter : System.Diagnostics.Tracing.DiagnosticCounter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit PollingCounter extends System.Diagnostics.Tracing.DiagnosticCounter" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.Tracing.PollingCounter" />
   <TypeSignature Language="VB.NET" Value="Public Class PollingCounter&#xA;Inherits DiagnosticCounter" />
@@ -14,11 +14,19 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary><span data-ttu-id="179e0-101">提供 <see cref="T:System.Diagnostics.Tracing.EventCounter" /> 的一个变体，用于收集类似的统计信息并将其计算为<see cref="T:System.Diagnostics.Tracing.EventCounter" />。</span><span class="sxs-lookup"><span data-stu-id="179e0-101">Provides a variant of <see cref="T:System.Diagnostics.Tracing.EventCounter" /> that collects and calculates similar statistics as <see cref="T:System.Diagnostics.Tracing.EventCounter" />.</span></span></summary>
+    <summary><span data-ttu-id="c84bf-101">提供 <see cref="T:System.Diagnostics.Tracing.EventCounter" /> 的一个变体，用于收集类似的统计信息并将其计算为<see cref="T:System.Diagnostics.Tracing.EventCounter" />。</span><span class="sxs-lookup"><span data-stu-id="c84bf-101">Provides a variant of <see cref="T:System.Diagnostics.Tracing.EventCounter" /> that collects and calculates similar statistics as <see cref="T:System.Diagnostics.Tracing.EventCounter" />.</span></span></summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
 
-<span data-ttu-id="179e0-102">`PollingCounter`与的不同之处在于, 它需要一个回调函数来自行收集指标, 而不是要求用户每次都调用<see cref="M:System.Diagnostics.Tracing.EventCounter.WriteMetric(System.Double)" />。 <see cref="T:System.Diagnostics.Tracing.EventCounter" /></span><span class="sxs-lookup"><span data-stu-id="179e0-102">`PollingCounter` differs from <see cref="T:System.Diagnostics.Tracing.EventCounter" /> in that it takes a callback function to collect metrics on its own rather than requiring the user to call <see cref="M:System.Diagnostics.Tracing.EventCounter.WriteMetric(System.Double)" /> every time.</span></span>
+## Remarks
+
+<span data-ttu-id="c84bf-102"><xref:System.Diagnostics.Tracing.PollingCounter>是的一个变<xref:System.Diagnostics.Tracing.EventCounter>体, 它使用回调方法来轮询值, 而不是要求编写器在<xref:System.Diagnostics.Tracing.EventCounter.WriteMetric%2A?displayProperty=nameWithType>每次跟踪值时显式调用`metricProvider` , 这是一个轮询值的回调方法。</span><span class="sxs-lookup"><span data-stu-id="c84bf-102"><xref:System.Diagnostics.Tracing.PollingCounter> is a variant of <xref:System.Diagnostics.Tracing.EventCounter> that uses a callback method to poll for values rather than requiring the writer to explicitly call <xref:System.Diagnostics.Tracing.EventCounter.WriteMetric%2A?displayProperty=nameWithType> each time a value is tracked, `metricProvider` is a callback method that polls for values.</span></span> <span data-ttu-id="c84bf-103">实例轮询和报告通过每个侦听器请求的`metricProvider`间隔只调用一次检索的值。 <xref:System.Diagnostics.Tracing.PollingCounter></span><span class="sxs-lookup"><span data-stu-id="c84bf-103">The <xref:System.Diagnostics.Tracing.PollingCounter> instance polls and reports a value retrieved by calling `metricProvider` exactly once per the interval requested by the listener.</span></span> 
+
+<span data-ttu-id="c84bf-104">一直到它所附加到<xref:System.Diagnostics.Tracing.EventSource>的生存时间,除非显式释放它。<xref:System.Diagnostics.Tracing.PollingCounter></span><span class="sxs-lookup"><span data-stu-id="c84bf-104">A <xref:System.Diagnostics.Tracing.PollingCounter> lives as long as the <xref:System.Diagnostics.Tracing.EventSource> that it is attached to unless it is explicitly disposed.</span></span>
+
+<span data-ttu-id="c84bf-105">`PollingCounter`与的不同之处在于, 它需要一个回调函数来自行收集指标, 而不是要求用户每次都调用<xref:System.Diagnostics.Tracing.EventCounter.WriteMetric%2A>。 <xref:System.Diagnostics.Tracing.EventCounter></span><span class="sxs-lookup"><span data-stu-id="c84bf-105">`PollingCounter` differs from <xref:System.Diagnostics.Tracing.EventCounter> in that it takes a callback function to collect metrics on its own rather than requiring the user to call <xref:System.Diagnostics.Tracing.EventCounter.WriteMetric%2A> every time.</span></span>
+
+<span data-ttu-id="c84bf-106">有关在运行时性能<xref:System.Diagnostics.Tracing.PollingCounter>计数器的运行时中使用的示例, 请参阅 GitHub 上的[RuntimeEventSource](https://github.com/dotnet/coreclr/blob/master/src/System.Private.CoreLib/src/System/Diagnostics/Eventing/RuntimeEventSource.cs)的 CoreCLR 源。</span><span class="sxs-lookup"><span data-stu-id="c84bf-106">For an example that uses <xref:System.Diagnostics.Tracing.PollingCounter> inside the runtime for runtime performance counters, see the CoreCLR source for [RuntimeEventSource](https://github.com/dotnet/coreclr/blob/master/src/System.Private.CoreLib/src/System/Diagnostics/Eventing/RuntimeEventSource.cs) on GitHub.</span></span>
 
       ]]></format>
     </remarks>
@@ -41,17 +49,11 @@
         <Parameter Name="metricProvider" Type="System.Func&lt;System.Double&gt;" />
       </Parameters>
       <Docs>
-        <param name="name"><span data-ttu-id="179e0-103">此 <see cref="T:System.Diagnostics.Tracing.PollingCounter" /> 实例的名称。</span><span class="sxs-lookup"><span data-stu-id="179e0-103">The name for this <see cref="T:System.Diagnostics.Tracing.PollingCounter" /> instance.</span></span></param>
-        <param name="eventSource"><span data-ttu-id="179e0-104">事件源。</span><span class="sxs-lookup"><span data-stu-id="179e0-104">The event source.</span></span></param>
-        <param name="metricProvider">To be added.</param>
-        <summary><span data-ttu-id="179e0-105">初始化 <see cref="T:System.Diagnostics.Tracing.PollingCounter" /> 类的新实例。</span><span class="sxs-lookup"><span data-stu-id="179e0-105">Initializes a new instance of the <see cref="T:System.Diagnostics.Tracing.PollingCounter" /> class.</span></span></summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-
-<span data-ttu-id="179e0-106">只要轮询计数器附加到的计数器<see cref="T:System.Diagnostics.Tracing.EventSource" /> , 这些计数器就会实时轮询。</span><span class="sxs-lookup"><span data-stu-id="179e0-106">Polling counters live as long as the <see cref="T:System.Diagnostics.Tracing.EventSource" /> that they are attached to unless they are explicitly disposed.</span></span>
-
-        ]]></format>
-        </remarks>
+        <param name="name"><span data-ttu-id="c84bf-107">此 <see cref="T:System.Diagnostics.Tracing.PollingCounter" /> 实例的名称。</span><span class="sxs-lookup"><span data-stu-id="c84bf-107">The name for this <see cref="T:System.Diagnostics.Tracing.PollingCounter" /> instance.</span></span></param>
+        <param name="eventSource"><span data-ttu-id="c84bf-108">事件源。</span><span class="sxs-lookup"><span data-stu-id="c84bf-108">The event source.</span></span></param>
+        <param name="metricProvider"><span data-ttu-id="c84bf-109">将用于轮询值的方法。</span><span class="sxs-lookup"><span data-stu-id="c84bf-109">A method that will be used to poll the value.</span></span></param>
+        <summary><span data-ttu-id="c84bf-110">初始化 <see cref="T:System.Diagnostics.Tracing.PollingCounter" /> 类的新实例。</span><span class="sxs-lookup"><span data-stu-id="c84bf-110">Initializes a new instance of the <see cref="T:System.Diagnostics.Tracing.PollingCounter" /> class.</span></span></summary>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="ToString">
@@ -71,8 +73,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary><span data-ttu-id="c84bf-111">返回当前轮询计数器实例的字符串表示形式。</span><span class="sxs-lookup"><span data-stu-id="c84bf-111">Returns a string representation of the current polling counter instance.</span></span></summary>
+        <returns><span data-ttu-id="c84bf-112">当前轮询计数器的名称和平均值。</span><span class="sxs-lookup"><span data-stu-id="c84bf-112">The name and mean of the current polling counter.</span></span></returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
