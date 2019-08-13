@@ -1,5 +1,5 @@
 <Type Name="DiagnosticListener" FullName="System.Diagnostics.DiagnosticListener">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4763ab72c8ad9e4816cfcecd2fa46cbf44e165de" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68543203" /></Metadata><TypeSignature Language="C#" Value="public class DiagnosticListener : System.Diagnostics.DiagnosticSource, IDisposable, IObservable&lt;System.Collections.Generic.KeyValuePair&lt;string,object&gt;&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d12a6b6ab7d8bfe931a64c996a545c7c99db7280" /><Meta Name="ms.sourcegitcommit" Value="0807ab0a64414edc9b4d09d3877857e83cb7f7a4" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/13/2019" /><Meta Name="ms.locfileid" Value="68972595" /></Metadata><TypeSignature Language="C#" Value="public class DiagnosticListener : System.Diagnostics.DiagnosticSource, IDisposable, IObservable&lt;System.Collections.Generic.KeyValuePair&lt;string,object&gt;&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DiagnosticListener extends System.Diagnostics.DiagnosticSource implements class System.IDisposable, class System.IObservable`1&lt;valuetype System.Collections.Generic.KeyValuePair`2&lt;string, object&gt;&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.DiagnosticListener" />
   <TypeSignature Language="VB.NET" Value="Public Class DiagnosticListener&#xA;Inherits DiagnosticSource&#xA;Implements IDisposable, IObservable(Of KeyValuePair(Of String, Object))" />
@@ -29,7 +29,11 @@
     <summary>提供抽象 <see cref="T:System.Diagnostics.DiagnosticSource" /> 类的实现，它表示源将其信息（事件）发送到的指定位置。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[
-        
+
+## Remarks
+
+`DiagnosticListener`是一个 NotificationSource, 这意味着返回的结果可用于记录通知, 但它也有<xref:System.Diagnostics.DiagnosticListener.Subscribe%2A>方法, 因此可以任意转发通知。 因此, 其工作是将来自制造者的东西转发到所有侦听器 (多转换)。 通常情况下, 不应使用, <xref:System.Diagnostics.DiagnosticListener>而是使用默认设置, 以便通知尽可能公共。
+
 有关<xref:System.Diagnostics.DiagnosticSource> 和<xref:System.Diagnostics.DiagnosticListener>类的详细信息, 请参阅[DiagnosticSource 用户指南](https://github.com/dotnet/corefx/blob/d3942d4671919edb0cca6ddc1840190f524a809d/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md)。
 
         ]]></format>
@@ -59,13 +63,7 @@
       <Docs>
         <param name="name">此 <see cref="T:System.Diagnostics.DiagnosticListener" /> 的名称。</param>
         <summary>创建一个新的 <see cref="T:System.Diagnostics.DiagnosticListener" />。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-
-`DiagnosticListener`是一个 NotificationSource, 这意味着返回的结果可用于记录通知, 但它也有<xref:System.Diagnostics.DiagnosticListener.Subscribe%2A>方法, 因此可以任意转发通知。 因此, 其工作是将来自制造者的东西转发到所有侦听器 (多转换)。 通常情况下, 不应使用, <see cref="T:System.Diagnostics.DiagnosticListener" />而是使用默认设置, 以便通知尽可能公共。
- 
-         ]]></format>
-        </remarks>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="AllListeners">
@@ -266,9 +264,9 @@
         <Parameter Name="payload" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="activity">To be added.</param>
-        <param name="payload">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="activity">受外部事件影响的活动。</param>
+        <param name="payload">一个表示传出请求的对象。</param>
+        <summary>调用所有订阅服务器的 OnActivityExport 方法。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -291,9 +289,9 @@
         <Parameter Name="payload" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="activity">To be added.</param>
-        <param name="payload">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="activity">受外部事件影响的活动。</param>
+        <param name="payload">表示传入请求的对象。</param>
+        <summary>调用所有订阅服务器的 OnActivityImport 方法。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -437,10 +435,10 @@
         <Parameter Name="onActivityExport" Type="System.Action&lt;System.Diagnostics.Activity,System.Object&gt;" Index="3" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="observer">To be added.</param>
-        <param name="isEnabled">To be added.</param>
-        <param name="onActivityImport">To be added.</param>
-        <param name="onActivityExport">To be added.</param>
+        <param name="observer">订阅者。</param>
+        <param name="isEnabled">一个委托，它根据事件名称和最多两个上下文对象筛选事件（可为 <see langword="null" />），如果不需要事件筛选器，则为 <see langword="null" />。</param>
+        <param name="onActivityImport">一个操作委托，用于接收由外部事件影响的活动以及表示传入请求的对象。</param>
+        <param name="onActivityExport">一个操作委托，用于接收由外部事件影响的活动以及表示传出请求的对象。</param>
         <summary>添加一个订阅者，根据事件名称和最多两个上下文对象筛选事件（可选），并指定提供程序在进程外部导入或导出活动时调用的方法。</summary>
         <returns>对允许侦听器在 <see cref="T:System.Diagnostics.DiagnosticSource" /> 发送完通知前停止接收这些通知的接口的引用。</returns>
         <remarks>

@@ -1,5 +1,5 @@
 <Type Name="WindowsRuntimeStorageExtensions" FullName="System.IO.WindowsRuntimeStorageExtensions">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5f536cba5b3add0b256e2534ec907b30a860b209" /><Meta Name="ms.sourcegitcommit" Value="4ee26ac79338b0bf99fa1e0913e8a06b21994d8e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/26/2019" /><Meta Name="ms.locfileid" Value="58453904" /></Metadata><TypeSignature Language="C#" Value="public static class WindowsRuntimeStorageExtensions" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c931811cfa5d85e3e11c3b856ccd1b47dddbffd5" /><Meta Name="ms.sourcegitcommit" Value="0807ab0a64414edc9b4d09d3877857e83cb7f7a4" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/13/2019" /><Meta Name="ms.locfileid" Value="68972583" /></Metadata><TypeSignature Language="C#" Value="public static class WindowsRuntimeStorageExtensions" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit WindowsRuntimeStorageExtensions extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.IO.WindowsRuntimeStorageExtensions" />
   <TypeSignature Language="VB.NET" Value="Public Module WindowsRuntimeStorageExtensions" />
@@ -26,25 +26,25 @@
 
 ## Remarks
 
-这些扩展方法仅在开发 Windows 应用商店应用程序后才可用。 方法提供用于读取或写入 Windows 应用商店应用中打开文件的便捷的方法。 不创建的实例`WindowsRuntimeStorageExtensions`类; 相反，使用这些方法的实例<xref:Windows.Storage.IStorageFile>和<xref:Windows.Storage.IStorageFolder>接口。
+仅当开发 Windows 应用商店应用时, 这些扩展方法才可用。 方法提供了在 Windows 应用商店应用中打开文件以进行读取或写入的便利方法。 不创建`WindowsRuntimeStorageExtensions`类的实例, 而是使用<xref:Windows.Storage.IStorageFile>和<xref:Windows.Storage.IStorageFolder>接口的实例中的这些方法。
 
-`WindowsRuntimeStorageExtensions`类包含两个扩展的方法<xref:Windows.Storage.IStorageFile>用于读取或写入：
+类包含两个扩展<xref:Windows.Storage.IStorageFile>以进行读取或写入的方法: `WindowsRuntimeStorageExtensions`
 
   - <xref:System.IO.WindowsRuntimeStorageExtensions.OpenStreamForReadAsync(Windows.Storage.IStorageFile)>
   - <xref:System.IO.WindowsRuntimeStorageExtensions.OpenStreamForWriteAsync(Windows.Storage.IStorageFile)>
 
-WindowsRuntimeStorageExtensions 类包含两个扩展的方法<xref:Windows.Storage.IStorageFolder>用于读取和写入：
+System.io.windowsruntimestorageextensions 类包含两个扩展<xref:Windows.Storage.IStorageFolder>以进行读取和写入的方法:
   - <xref:System.IO.WindowsRuntimeStorageExtensions.OpenStreamForReadAsync(Windows.Storage.IStorageFolder,System.String)>
   - <xref:System.IO.WindowsRuntimeStorageExtensions.OpenStreamForWriteAsync(Windows.Storage.IStorageFolder,System.String,Windows.Storage.CreationCollisionOption)>
 
 ## Examples
 
-下面的示例演示如何在应用程序数据作为打开文件<xref:System.IO.Stream>在 Windows 应用商店应用程序，并向其使用的实例写入<xref:System.IO.StreamWriter>类。 随后，将该文件的内容使用的实例<xref:System.IO.StreamReader>类。
+下面的示例演示如何在 Windows 应用商店应用程序中以的<xref:System.IO.Stream>形式打开应用程序数据中的文件, 并使用<xref:System.IO.StreamWriter>类的实例向其写入数据。 然后, 它使用<xref:System.IO.StreamReader>类的实例来读取该文件的内容。
 
 [!code-csharp[windowsruntimestorageextensions#8](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage4.xaml.cs#8)]
 [!code-vb[windowsruntimestorageextensions#8](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/vb/blankpage4.xaml.vb#8)]
 
-下一个示例显示了与前面的示例关联的 XAML 代码。 
+下一个示例演示与前面的示例相关联的 XAML 代码。 
 
 [!code-xaml[windowsruntimestorageextensions#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage4.xaml#7)]
 
@@ -52,6 +52,26 @@ WindowsRuntimeStorageExtensions 类包含两个扩展的方法<xref:Windows.Stor
     </remarks>
   </Docs>
   <Members>
+    <MemberGroup MemberName="CreateSafeFileHandle">
+      <AssemblyInfo>
+        <AssemblyName>System.Runtime.WindowsRuntime</AssemblyName>
+        <AssemblyVersion>4.0.14.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Docs>
+        <summary>创建并返回对正在扩展的 IStorage 实例的安全文件句柄的引用。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+在 Windows 10 周年<xref:Windows.Storage.IStorageFolder>更新中, 新<xref:Windows.Storage.IStorageFile>的接口已添加到中, 允许创建标准 Win32 文件句柄`IStorageFolderHandleAccess` : `IStorageItemHandleAccess`和。 扩展方法`Create`组利用这些接口的方法。 `CreateSafeFileHandle`
+
+API 的主要优点是可以访问中转`SafeFileHandle`。 如果<xref:System.IO.FileStream>要在[AppContainer](https://docs.microsoft.com/en-us/windows/win32/secauthz/appcontainer-isolation)中运行<xref:Windows.Storage.IStorageItem>或<xref:Windows.Storage.IStorageFolder>时创建, 这一点至关重要。 在 AppContainer 中运行时, 应用程序具有非常有限的文件访问权限。 例如, 图片和文档文件夹需要通过`RuntimeBroker.exe`代理的本机文件句柄, 因为应用程序本身不具有对大多数文件的权限。 此 API 获取代理的句柄。 如果访问用户数据文件夹或使用文件选取器, 则应始终使用此 API 来创建<xref:System.IO.FileStream>。 在这些情况下, 使用<xref:System.AccessViolationException>路径通常会引发。
+
+          ]]></format>
+        </remarks>
+      </Docs>
+    </MemberGroup>
     <Member MemberName="CreateSafeFileHandle">
       <MemberSignature Language="C#" Value="public static Microsoft.Win32.SafeHandles.SafeFileHandle CreateSafeFileHandle (this Windows.Storage.IStorageFolder rootDirectory, string relativePath, System.IO.FileMode mode);" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.Win32.SafeHandles.SafeFileHandle CreateSafeFileHandle(class Windows.Storage.IStorageFolder rootDirectory, string relativePath, valuetype System.IO.FileMode mode) cil managed" />
@@ -78,12 +98,27 @@ WindowsRuntimeStorageExtensions 类包含两个扩展的方法<xref:Windows.Stor
         <Parameter Name="mode" Type="System.IO.FileMode" Index="2" FrameworkAlternate="dotnet-plat-ext-3.0" />
       </Parameters>
       <Docs>
-        <param name="rootDirectory">To be added.</param>
-        <param name="relativePath">To be added.</param>
-        <param name="mode">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="rootDirectory">当前存储文件夹实例。</param>
+        <param name="relativePath">要添加句柄的文件名称。</param>
+        <param name="mode">操作系统应在其中打开该文件的模式。</param>
+        <summary>为当前存储文件夹实例中的文件创建安全文件句柄。</summary>
+        <returns>如果操作成功，则为安全文件句柄实例；如果从 <paramref name="rootDirectory" /> 到 IStorageFolderHandleAccess 的转换返回 <see langword="null" />，则为 <see langword="null" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+调用此方法时, 如果指定模式为<xref:System.IO.FileMode.Append?displayProperty=nameWithType>, 则将使用<xref:System.IO.FileAccess.Read?displayProperty=nameWithType>访问权限打开文件。 对于任何其他模式, 将使用<xref:System.IO.FileAccess.ReadWrite?displayProperty=nameWithType>访问权限打开文件。
+
+此外, 此方法将使用<xref:System.IO.FileShare.Read?displayProperty=nameWithType>流共享访问<xref:System.IO.FileOptions.None?displayProperty=nameWithType>和高级文件创建选项来打开文件。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="rootDirectory" /> 为 <see langword="null" />。
+
+或
+
+<paramref name="relativePath" /> 为 <see langword="null" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="CreateSafeFileHandle">
@@ -112,13 +147,14 @@ WindowsRuntimeStorageExtensions 类包含两个扩展的方法<xref:Windows.Stor
         <Parameter Name="options" Type="System.IO.FileOptions" Index="3" FrameworkAlternate="dotnet-plat-ext-3.0" />
       </Parameters>
       <Docs>
-        <param name="windowsRuntimeFile">To be added.</param>
-        <param name="access">To be added.</param>
-        <param name="share">To be added.</param>
-        <param name="options">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="windowsRuntimeFile">存储文件实例。</param>
+        <param name="access">打开文件时应使用的访问类型。 默认值为 <see cref="F:System.IO.FileAccess.ReadWrite" />。</param>
+        <param name="share">对于同一文件，其他 <see cref="T:System.IO.FileStream" /> 对象可以具有的流共享访问类型。 默认值为 <see cref="F:System.IO.FileShare.Read" />。</param>
+        <param name="options">用于创建 <see cref="T:System.IO.FileStream" /> 对象的高级选项。 默认值为 <see cref="F:System.IO.FileOptions.None" />。</param>
+        <summary>为当前存储文件实例创建安全文件句柄。</summary>
+        <returns>如果操作成功，则为安全文件句柄实例；如果从 <paramref name="windowsRuntimeFile" /> 到 IStorageItemHandleAccess 的转换返回 <see langword="null" />，则为 <see langword="null" />。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="windowsRuntimeFile" /> 为 <see langword="null" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="CreateSafeFileHandle">
@@ -149,15 +185,20 @@ WindowsRuntimeStorageExtensions 类包含两个扩展的方法<xref:Windows.Stor
         <Parameter Name="options" Type="System.IO.FileOptions" Index="5" FrameworkAlternate="dotnet-plat-ext-3.0" />
       </Parameters>
       <Docs>
-        <param name="rootDirectory">To be added.</param>
-        <param name="relativePath">To be added.</param>
-        <param name="mode">To be added.</param>
-        <param name="access">To be added.</param>
-        <param name="share">To be added.</param>
-        <param name="options">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="rootDirectory">当前存储文件夹实例。</param>
+        <param name="relativePath">要添加句柄的文件名称。</param>
+        <param name="mode">操作系统应在其中打开该文件的模式。</param>
+        <param name="access">打开文件时应使用的访问类型。</param>
+        <param name="share">对于同一文件，其他 <see cref="T:System.IO.FileStream" /> 对象可以具有的流共享访问类型。 默认值为 <see cref="F:System.IO.FileShare.Read" />。</param>
+        <param name="options">用于创建 <see cref="T:System.IO.FileStream" /> 对象的高级选项。 默认值为 <see cref="F:System.IO.FileOptions.None" />。</param>
+        <summary>为当前存储文件夹实例中的文件创建安全文件句柄。</summary>
+        <returns>如果操作成功，则为安全文件句柄实例；如果从 <paramref name="rootDirectory" /> 到 IStorageFolderHandleAccess 的转换返回 <see langword="null" />，则为 <see langword="null" />。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="rootDirectory" /> 为 <see langword="null" />。
+
+- 或 -
+
+<paramref name="relativePath" /> 为 <see langword="null" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="OpenStreamForReadAsync">
@@ -193,16 +234,16 @@ WindowsRuntimeStorageExtensions 类包含两个扩展的方法<xref:Windows.Stor
 ## Remarks
 
 > [!NOTE]
-> 在 Visual Basic 中和C#，可以为任何类型的对象上的实例方法调用此方法<xref:Windows.Storage.IStorageFile>。 当使用实例方法语法调用此方法时，请省略第一个参数。 有关详细信息，请参阅[扩展方法 (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md)或[扩展方法 (C#编程指南)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)。
+> 在 Visual Basic 和C#中, 你可以在类型<xref:Windows.Storage.IStorageFile>为的任何对象上将此方法作为实例方法来调用。 当使用实例方法语法调用此方法时，请省略第一个参数。 有关详细信息, 请参阅[扩展方法 (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md)或[扩展方法C# (编程指南)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)。
 
 ## Examples
 
-下面的示例演示如何打开一个文件作为<xref:System.IO.Stream>在 Windows 应用商店应用中，并通过使用的实例读取其内容<xref:System.IO.StreamReader>类。
+下面的示例演示如何<xref:System.IO.Stream>在 Windows 应用商店应用程序中将文件作为打开, 并通过使用<xref:System.IO.StreamReader>类的实例来读取其内容。
 
 [!code-csharp[windowsruntimestorageextensions#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage.xaml.cs#2)]
 [!code-vb[windowsruntimestorageextensions#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/vb/blankpage.xaml.vb#2)]
 
-下一个示例显示了与前面的示例关联的 XAML 代码。 
+下一个示例演示与前面的示例相关联的 XAML 代码。 
 
 [!code-xaml[windowsruntimestorageextensions#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage.xaml#1)]
 
@@ -248,16 +289,16 @@ WindowsRuntimeStorageExtensions 类包含两个扩展的方法<xref:Windows.Stor
 ## Remarks
 
 > [!NOTE]
-> 在 Visual Basic 中和C#，可以作为实例方法的类型 IStorageFolder 任何对象上调用此方法。 当使用实例方法语法调用此方法时，请省略第一个参数。 有关详细信息，请参阅[扩展方法 (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md)或[扩展方法 (C#编程指南)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)。
+> 在 Visual Basic 和C#中, 你可以调用此方法作为 IStorageFolder 类型的任何对象上的实例方法。 当使用实例方法语法调用此方法时，请省略第一个参数。 有关详细信息, 请参阅[扩展方法 (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md)或[扩展方法C# (编程指南)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)。
 
 ## Examples
 
-下面的示例演示如何打开一个文件作为<xref:System.IO.Stream>在 Windows 应用商店应用中，并通过使用的实例读取其内容<xref:System.IO.StreamReader>类。
+下面的示例演示如何<xref:System.IO.Stream>在 Windows 应用商店应用程序中将文件作为打开, 并通过使用<xref:System.IO.StreamReader>类的实例来读取其内容。
 
 [!code-csharp[windowsruntimestorageextensions#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage2.xaml.cs#4)]
 [!code-vb[windowsruntimestorageextensions#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/vb/blankpage2.xaml.vb#4)]
 
-下一个示例显示了与前面的示例关联的 XAML 代码。 
+下一个示例演示与前面的示例相关联的 XAML 代码。 
 
 [!code-xaml[windowsruntimestorageextensions#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage2.xaml#3)]
 
@@ -301,16 +342,16 @@ WindowsRuntimeStorageExtensions 类包含两个扩展的方法<xref:Windows.Stor
 ## Remarks
 
 > [!NOTE]
-> 在 Visual Basic 中和C#，可以为任何类型的对象上的实例方法调用此方法<xref:Windows.Storage.IStorageFile>。 当使用实例方法语法调用此方法时，请省略第一个参数。 有关详细信息，请参阅[扩展方法 (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md)或[扩展方法 (C#编程指南)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)。
+> 在 Visual Basic 和C#中, 你可以在类型<xref:Windows.Storage.IStorageFile>为的任何对象上将此方法作为实例方法来调用。 当使用实例方法语法调用此方法时，请省略第一个参数。 有关详细信息, 请参阅[扩展方法 (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md)或[扩展方法C# (编程指南)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)。
 
 ## Examples
 
-下面的示例演示如何打开一个文件作为<xref:System.IO.Stream>在 Windows 应用商店应用程序，并向其使用的实例写入<xref:System.IO.StreamReader>类。
+下面的示例演示如何<xref:System.IO.Stream>在 Windows 应用商店应用程序中以为形式打开文件, 并使用<xref:System.IO.StreamReader>类的实例向其写入。
 
 [!code-csharp[windowsruntimestorageextensions#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage3.xaml.cs#6)]
 [!code-vb[windowsruntimestorageextensions#6](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/vb/blankpage3.xaml.vb#6)]
 
-下一个示例显示了与前面的示例关联的 XAML 代码。 
+下一个示例演示与前面的示例相关联的 XAML 代码。 
 
 [!code-xaml[windowsruntimestorageextensions#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage3.xaml#5)]
 
@@ -357,16 +398,16 @@ WindowsRuntimeStorageExtensions 类包含两个扩展的方法<xref:Windows.Stor
 ## Remarks
 
 > [!NOTE]
-> 在 Visual Basic 中和C#，可以为任何类型的对象上的实例方法调用此方法<xref:Windows.Storage.IStorageFolder>。 当使用实例方法语法调用此方法时，请省略第一个参数。 有关详细信息，请参阅[扩展方法 (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md)或[扩展方法 (C#编程指南)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)。
+> 在 Visual Basic 和C#中, 你可以在类型<xref:Windows.Storage.IStorageFolder>为的任何对象上将此方法作为实例方法来调用。 当使用实例方法语法调用此方法时，请省略第一个参数。 有关详细信息, 请参阅[扩展方法 (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md)或[扩展方法C# (编程指南)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)。
 
 ## Examples
 
-下面的示例演示如何打开一个文件作为<xref:System.IO.Stream>在 Windows 应用商店应用程序，并向其使用的实例写入<xref:System.IO.StreamReader>类。
+下面的示例演示如何<xref:System.IO.Stream>在 Windows 应用商店应用程序中以为形式打开文件, 并使用<xref:System.IO.StreamReader>类的实例向其写入。
 
 [!code-csharp[windowsruntimestorageextensions#8](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage4.xaml.cs#8)]
 [!code-vb[windowsruntimestorageextensions#8](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/vb/blankpage4.xaml.vb#8)]
 
-下一个示例显示了与前面的示例关联的 XAML 代码。 
+下一个示例演示与前面的示例相关联的 XAML 代码。 
 
 [!code-xaml[windowsruntimestorageextensions#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage4.xaml#7)]
 
