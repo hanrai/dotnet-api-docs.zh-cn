@@ -1,5 +1,5 @@
 <Type Name="NSUrlSessionHandler" FullName="System.Net.Http.NSUrlSessionHandler">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="964cbc0b88e3cd43b45c73b9933c35a395199809" /><Meta Name="ms.sourcegitcommit" Value="434f60616a9793fa8436744549fc856e94f7a648" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/25/2018" /><Meta Name="ms.locfileid" Value="39797503" /></Metadata><TypeSignature Language="C#" Value="public class NSUrlSessionHandler : System.Net.Http.HttpMessageHandler" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="64de6095b161110353ac57b362cbbe723fe56404" /><Meta Name="ms.sourcegitcommit" Value="0807ab0a64414edc9b4d09d3877857e83cb7f7a4" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/13/2019" /><Meta Name="ms.locfileid" Value="68972652" /></Metadata><TypeSignature Language="C#" Value="public class NSUrlSessionHandler : System.Net.Http.HttpMessageHandler" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit NSUrlSessionHandler extends System.Net.Http.HttpMessageHandler" />
   <TypeSignature Language="DocId" Value="T:System.Net.Http.NSUrlSessionHandler" />
   <TypeSignature Language="VB.NET" Value="Public Class NSUrlSessionHandler&#xA;Inherits HttpMessageHandler" />
@@ -14,8 +14,12 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>通过 Xamarin 堆栈在 Apple 平台上由  <see cref="T:System.Net.Http.HttpClient" /> 使用的默认消息处理程序（iOS、macOS、watchOS、tvOS）</summary>
+    <remarks><para>NSUrlSessionHandler 是将其工作委托给 Apple 内置 <see cref="T:Foundation.NSUrlSession" />的 HTTP 客户端处理程序。   这是在编译应用程序时的默认设置, 但你可以通过选择不同的处理程序在应用程序中手动选择退出。  </para>
+      <para> </para>
+      <para>使用 Apple NSUrlSession 的优点比使用任何基于套接字的实现 (主要是在移动设备上), 它会以你的名义自动打开广播, 并在无线电中断的情况下避免可能的超时或错误。</para>
+      <para> </para>
+      <para>此外, 还可以将处理程序配置为在应用程序挂起或停止运行的情况下继续下载。</para></remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -31,7 +35,7 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary>NSUrlSessionHandler 的默认构造函数通过设置为默认值的  <see cref="T:Foundation.NSUrlSessionConfiguration" /> 配置处理程序，并将资源超时自定义为 24 小时（原因是 Apple 自己的传输不支持无限超时）。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -51,8 +55,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取或设置允许自动重定向的值。 它的默认值为 <see langword="true" />。</summary>
+        <value><see langword="true" />允许自动重定向;否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -72,8 +76,8 @@
         <ReturnType>System.Net.ICredentials</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取或设置此处理程序使用的身份验证信息。</summary>
+        <value>与该处理程序关联的身份验证凭据。 默认值为 <see langword="null" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -134,11 +138,8 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="xamarinios-10.8">
+        <Attribute>
           <AttributeName>System.Diagnostics.DebuggerStepThrough</AttributeName>
-        </Attribute>
-        <Attribute FrameworkAlternate="">
-          <AttributeName>System.Runtime.CompilerServices.AsyncStateMachine(typeof(System.Net.Http.NSUrlSessionHandler/&lt;SendAsync&gt;c__async1))</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>
@@ -149,11 +150,11 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
-        <param name="request">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="request">要发送的 HTTP 请求消息。</param>
+        <param name="cancellationToken">用于取消操作的取消令牌。</param>
+        <summary>以异步操作发送 HTTP 请求。</summary>
+        <returns>表示异步操作的任务对象。</returns>
+        <remarks>此操作不会阻止。 它将返回实例<see cref="T:System.Threading.Tasks.Task`1" />  以表示异步操作。 操作完成时, <see cref="P:System.Threading.Tasks.Task`1.Result" />将包含响应消息。</remarks>
       </Docs>
     </Member>
   </Members>

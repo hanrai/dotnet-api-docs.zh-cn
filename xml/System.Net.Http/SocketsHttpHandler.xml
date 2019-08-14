@@ -1,5 +1,5 @@
 <Type Name="SocketsHttpHandler" FullName="System.Net.Http.SocketsHttpHandler">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="652ff7e690e9dc802e86546a417b0b84424b85f7" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67237794" /></Metadata><TypeSignature Language="C#" Value="public sealed class SocketsHttpHandler : System.Net.Http.HttpMessageHandler" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f45af4dd43abcc12125dbcd2b935b829949aeb9d" /><Meta Name="ms.sourcegitcommit" Value="8af6a5b7dc34602affd2891b564c1f359eb643a2" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/13/2019" /><Meta Name="ms.locfileid" Value="68984185" /></Metadata><TypeSignature Language="C#" Value="public sealed class SocketsHttpHandler : System.Net.Http.HttpMessageHandler" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SocketsHttpHandler extends System.Net.Http.HttpMessageHandler" />
   <TypeSignature Language="DocId" Value="T:System.Net.Http.SocketsHttpHandler" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SocketsHttpHandler&#xA;Inherits HttpMessageHandler" />
@@ -18,17 +18,17 @@
     <remarks>
       <format type="text/markdown"><![CDATA[
 
-从.NET Core 2.1`SocketsHttpHandler`类提供实现由更高级别的 HTTP 网络类如<xref:System.Net.Http.HttpClient>。 使用`SocketsHttpHandler`提供了很多优点：
+从 .net Core 2.1 开始, `SocketsHttpHandler`类提供由较高级别的 HTTP 网络类 (如) <xref:System.Net.Http.HttpClient>使用的实现。 使用`SocketsHttpHandler`可提供多种优势:
 
 - 对照以前的实现，可以看到显著的性能改进。
 
-- 消除平台依赖项，这样可以简化部署和维护。 例如，`libcurl`不再依赖于.NET Core 用于 macOS 和.NET Core 适用于 Linux。
+- 消除了平台依赖项, 从而简化了部署和服务。 例如, `libcurl`不再依赖于适用于 macOS 的 .net core 和适用于 Linux 的 .net core。
 
-- 在所有.NET 平台上一致的行为。
+- 各种 .NET 平台的行为一致。
 
-如果此更改不需要，可以配置应用程序以使用较旧<xref:System.Net.Http.HttpClientHandler?displayProperty=nameWithType>类中通过多种方式：
+如果不需要此更改, 可以通过多种方式将应用程序配置为<xref:System.Net.Http.HttpClientHandler?displayProperty=nameWithType>使用较旧的类:
 
-- 通过调用<xref:System.AppContext.SetSwitch%2A?displayProperty=nameWithType>方法，如下所示：
+- 通过调用<xref:System.AppContext.SetSwitch%2A?displayProperty=nameWithType>方法, 如下所示:
 
    ```csharp
    AppContext.SetSwitch("System.Net.Http.UseSocketsHttpHandler", false);
@@ -37,7 +37,7 @@
    ```vb
    AppContext.SetSwitch("System.Net.Http.UseSocketsHttpHandler", False)
    ```
-- 通过定义`System.Net.Http.UseSocketsHttpHandler`切入 *。 netcore.runtimeconfig.json*配置文件：
+- 通过在`System.Net.Http.UseSocketsHttpHandler` *. runtimeconfig.template.json*配置文件中定义开关 netcore:
 
   ```json
   "runtimeOptions": {
@@ -47,7 +47,7 @@
   }
   ```
 
-- 通过定义一个名为环境变量`DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER`并将其设置为`false`则为 0。
+- 通过定义名为`DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER`的环境变量并将其设置`false`为或0。
 
          ]]></format>
     </remarks>
@@ -107,8 +107,8 @@
         <ReturnType>System.Net.DecompressionMethods</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取或设置处理程序用于自动解压缩 HTTP 内容响应的解压缩方法类型。</summary>
+        <value>处理程序用于自动解压缩 HTTP 内容响应的解压缩方法类型。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -149,8 +149,8 @@
         <ReturnType>System.Net.CookieContainer</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取或设置托管 cookie 容器对象。</summary>
+        <value>托管 cookie 容器对象。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -191,9 +191,15 @@
         <ReturnType>System.Net.ICredentials</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>使用默认（系统）代理时，获取或设置用于提交到默认代理服务器进行身份验证的凭据。</summary>
+        <value>用于向身份验证代理验证用户身份的凭据。</value>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+只有在 <xref:System.Net.Http.SocketsHttpHandler.UseProxy> 设置为 `true` 且 <xref:System.Net.Http.SocketsHttpHandler.Proxy> 设置为 `null` 时才使用默认代理。
+
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="Dispose">
@@ -257,8 +263,8 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取或设置允许的最大 HTTP 重定向数。</summary>
+        <value>允许的最大 HTTP 重定向数。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -278,8 +284,8 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取或设置允许向单个服务器连接的最大并行 TCP 连接数。</summary>
+        <value>单个服务器允许的最大并发 TCP 连接数。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -299,9 +305,15 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取或设置可从响应中排出的最大数据量（以字节为单位）。</summary>
+        <value>可从响应中排出的最大数据量 (以字节为单位)。</value>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+在完全读取内容之前取消请求或释放响应时发生排出。 如果已排出的字节数超过此量, 则将关闭连接而不是重复使用连接。
+
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="MaxResponseHeadersLength">
@@ -320,9 +332,15 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>获取或设置响应标头的最大长度，以千字节（1024 字节）为单位。</summary>
+        <value>服务器响应中的标头部分的最大大小 (kb)。</value>
+        <remarks><remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+For example, if the value is 64, then 65,536 bytes are allowed for the maximum response headers' length.
+
+         ]]></format>
+         </remarks></remarks>
       </Docs>
     </Member>
     <Member MemberName="PooledConnectionIdleTimeout">
@@ -342,7 +360,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置池中的连接处于空闲状态多长时间后才能视为可重复使用。</summary>
-        <value>池中的连接最长空闲时间。 此属性的默认值为 2 分钟。</value>
+        <value>池中连接的最长空闲时间。 此属性的默认值为2分钟。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentOutOfRangeException">指定的值小于 <see cref="F:System.TimeSpan.Zero" /> 或等于 <see cref="F:System.Threading.Timeout.InfiniteTimeSpan" />。</exception>
       </Docs>
@@ -384,8 +402,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取或设置一个值，该值指示处理程序是否随请求发送授权标头。</summary>
+        <value><see langword="true" />如果处理程序使用请求发送 Authorization 标头, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -426,8 +444,8 @@
         <ReturnType>System.Net.IWebProxy</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>当  <see cref="P:System.Net.Http.SocketsHttpHandler.UseProxy" /> 属性为 <see langword="true" /> 时，获取或设置自定义代理。</summary>
+        <value>自定义代理。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -471,10 +489,10 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
-        <param name="request">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="request">要发送的 HTTP 请求消息。</param>
+        <param name="cancellationToken">取消标记。</param>
+        <summary>以异步操作发送 HTTP 请求。</summary>
+        <returns>表示异步操作的任务对象。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -494,8 +512,8 @@
         <ReturnType>System.Net.Security.SslClientAuthenticationOptions</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>获取或设置用于客户端 TLS 身份验证的选项集。</summary>
+        <value>用于客户端 TLS 身份验证的选项集。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
