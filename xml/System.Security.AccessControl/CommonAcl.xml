@@ -1,5 +1,5 @@
 <Type Name="CommonAcl" FullName="System.Security.AccessControl.CommonAcl">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7ed9c6867806a346d0490130f4e1d6cc262b19e7" /><Meta Name="ms.sourcegitcommit" Value="42a3c35677e9d87eeb503607ae50c9d39827d414" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="12/17/2018" /><Meta Name="ms.locfileid" Value="53460067" /></Metadata><TypeSignature Language="C#" Value="public abstract class CommonAcl : System.Security.AccessControl.GenericAcl" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7fdc532164d2f3c6e1dc7a8fe38e8b3f3cb1c1fe" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69086444" /></Metadata><TypeSignature Language="C#" Value="public abstract class CommonAcl : System.Security.AccessControl.GenericAcl" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit CommonAcl extends System.Security.AccessControl.GenericAcl" />
   <TypeSignature Language="DocId" Value="T:System.Security.AccessControl.CommonAcl" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class CommonAcl&#xA;Inherits GenericAcl" />
@@ -29,41 +29,41 @@
   
 ## Remarks  
   
--   继承和访问掩码标志的某些组合是毫无意义：  
+-   继承和访问掩码标志的某些组合是毫无意义的:  
   
 -   删除具有零访问掩码的任何访问控制项 (ACE)。  
   
--   删除了对象 Acl 中的仅继承 Ace。  
+-   删除对象 Acl 中仅有的 Ace。  
   
--   <xref:System.Security.AccessControl.PropagationFlags.InheritOnly><xref:System.Security.AccessControl.PropagationFlags.NoPropagateInherit>， <xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit>，和<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>叶中的所有 ace 标志对象 Acl 将被清除。  
+-   <xref:System.Security.AccessControl.PropagationFlags.InheritOnly>已<xref:System.Security.AccessControl.PropagationFlags.NoPropagateInherit>清除<xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit>叶对象<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit> acl 中所有 ace 上的、、和标志。  
   
--   具有的 Ace<xref:System.Security.AccessControl.PropagationFlags.InheritOnly>没有标志<xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit>或<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>标志是无意义; 它们删除。  
+-   在缺少<xref:System.Security.AccessControl.PropagationFlags.InheritOnly> <xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit>或标志的情况中具有标志的ace毫无意义,它们会被删除。<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>  
   
--   <xref:System.Security.AccessControl.PropagationFlags.NoPropagateInherit>没有标志<xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit>或<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>可以删除标志。  
+-   不能删除<xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit>或<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>标记中的标志。<xref:System.Security.AccessControl.PropagationFlags.NoPropagateInherit>  
   
--   具有的 Ace<xref:System.Security.AccessControl.AuditFlags>的值<xref:System.Security.AccessControl.AuditFlags.Success>或<xref:System.Security.AccessControl.AuditFlags.Failure>在自定义访问控制列表 (Dacl) 中删除。  
+-   删除值为<xref:System.Security.AccessControl.AuditFlags.Success> 或<xref:System.Security.AccessControl.AuditFlags.Failure>在自由访问控制列表 (dacl) 中的 ace。 <xref:System.Security.AccessControl.AuditFlags>  
   
--   任何审核未指定的 ACE<xref:System.Security.AccessControl.AuditFlags.Success>或<xref:System.Security.AccessControl.AuditFlags.Failure>中删除。  
+-   不指定<xref:System.Security.AccessControl.AuditFlags.Success>或<xref:System.Security.AccessControl.AuditFlags.Failure>的任何审核 ACE 都将被删除。  
   
--   上的 Dacl，删除 SystemAudit 和 SystemAlarm Ace。  
+-   在 Dacl 上, 删除了 SystemAudit 和 SystemAlarm Ace。  
   
--   在系统访问控制列表 (Sacl)，删除 AccessAllowed 和 AccessDenied Ace。  
+-   在系统访问控制列表 (Sacl) 上, 删除了 AccessAllowed 和 AccessDenied Ace。  
   
- 按照下面的算法维护规范顺序：  
+ 根据以下算法维护规范顺序:  
   
--   显式 Ace 的优先级高于继承 Ace;此规则适用于 Dacl 和 Sacl。  
+-   显式 Ace 优先于继承的 Ace;此规则适用于 Dacl 和 Sacl。  
   
--   之间的显式 Ace 的 Dacl 中拒绝访问的 Ace 的优先级高于允许访问的 Ace。 为目录对象的 Acl，非对象 Ace 对象 Ace 早于。  
+-   在 Dacl 中, 拒绝访问的 Ace 的优先级高于允许访问的 Ace。 对于目录对象 Acl, 非对象 Ace 位于对象 Ace 之前。  
   
--   所有通用 Ace 优先于 noncommon Ace。  
+-   所有常见 Ace 优先于 noncommon Ace。  
   
--   继承的 Ace 在规范化之后维护其相对顺序。  
+-   继承的 Ace 在 canonicity 后保持其相对顺序。  
   
--   无法识别和自定义的 Ace 的 Dacl 和 Sacl 中不允许。  
+-   Dacl 和 Sacl 中都不允许识别的和自定义的 Ace。  
   
--   在连续范围 （显式 AccessDenied 和 Sacl 上的所有显式 Ace 的 Dacl 上 AccessAllowed Ace），Ace 按使用进行排序<xref:System.Security.Principal.SecurityIdentifier.CompareTo%2A>方法的<xref:System.Security.Principal.SecurityIdentifier>与 Ace 关联的对象。  
+-   在连续范围内 (dacl 上的显式 AccessDenied 和 AccessAllowed ace, sacl 上的所有显式 ace), ace 使用<xref:System.Security.Principal.SecurityIdentifier.CompareTo%2A>与 ace 关联的<xref:System.Security.Principal.SecurityIdentifier>对象的方法进行排序。  
   
- 如果适用，组合相邻的 Ace。  这将减少 ACL 的大小而不会影响它会授予的访问控制语义。  
+ 如果适用, 则将相邻的 Ace 组合在一起。  这会减少 ACL 的大小, 而不会影响它所授予的访问控制语义。  
   
  ]]></format>
     </remarks>

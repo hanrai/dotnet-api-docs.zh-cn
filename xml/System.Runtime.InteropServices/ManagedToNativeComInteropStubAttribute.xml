@@ -1,5 +1,5 @@
 <Type Name="ManagedToNativeComInteropStubAttribute" FullName="System.Runtime.InteropServices.ManagedToNativeComInteropStubAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5f699b3ece09df9cbfe266bdd3be60bf4c0cb37f" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58725861" /></Metadata><TypeSignature Language="C#" Value="public sealed class ManagedToNativeComInteropStubAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a92a198990b3f70f8993031598764294d43920ca" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69063799" /></Metadata><TypeSignature Language="C#" Value="public sealed class ManagedToNativeComInteropStubAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ManagedToNativeComInteropStubAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.ManagedToNativeComInteropStubAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ManagedToNativeComInteropStubAttribute&#xA;Inherits Attribute" />
@@ -40,38 +40,38 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此特性使互操作的开发人员具有封送处理有关的知识和互操作调用来执行以下操作的内部工作原理：  
+ 此特性允许具有有关封送的知识的互操作开发人员和互操作调用的内部工作原理来执行以下操作:  
   
--   在生成时，而不是运行时充分利用自定义互操作存根 （stub）。  
+-   在生成时 (而非运行时) 利用自定义的互操作存根。  
   
--   调试自定义互操作存根 （stub）。  
+-   调试自定义的互操作存根。  
   
--   提供在运行时不提供存根封送处理功能。  
+-   在运行时不提供的存根内提供封送处理功能。  
   
--   提供特定于用户的方法分派的功能。  
+-   提供用户特定的方法调度功能。  
   
- 在一个接口来指定相应的存根 （stub） 方法为托管到本机 COM 互操作的方法将该属性。  
+ 对接口中的方法应用属性, 以指定托管到本机 COM 互操作的相应存根方法。  
   
- 如果在运行时遇到此特性，则公共语言运行时不会动态生成互操作存根。 相反，它将调用自定义在生成时创建的存根。  
+ 如果在运行时遇到此属性, 则公共语言运行时不会动态生成互操作存根。 相反, 它调用生成时创建的自定义存根。  
   
- <xref:System.Runtime.InteropServices.ManagedToNativeComInteropStubAttribute>属性具有以下特征：  
+ 该<xref:System.Runtime.InteropServices.ManagedToNativeComInteropStubAttribute>属性具有以下特征:  
   
--   该属性可以使用仅在从标记的接口方法上`[ComImport]`。 如果该特性应用于非接口类型，它将忽略由运行时。  
+-   特性仅可用于标记`[ComImport]`的接口中的方法。 如果该特性应用于非接口类型, 则运行时将忽略该特性。  
   
--   该属性可以使用仅一次在接口中的相同方法。 如果使用了多次，编译器将生成重复的属性错误。  
+-   特性只能在接口中的同一方法上使用一次。 如果多次使用该方法, 则编译器会生成重复的属性错误。  
   
--   属性不是可继承自基接口。 派生的接口必须显式指定该属性。  
+-   该特性不能从基接口继承。 派生接口必须显式分配属性。  
   
--   包含特性化的方法的程序集还必须包含自定义的存根 （stub）。  
+-   包含特性化方法的程序集还必须包含自定义的存根。  
   
- 重载的存根方法都有效。 虽然指定的类型和存根 （stub） 方法的名称，运行时将发现相应的存根 （stub）。 这是通过检查接口方法上的所有参数，然后再执行完整签名匹配的使用显式`this`指针。  
+ 重载的存根方法是有效的。 尽管仅指定存根方法的类型和名称, 但运行时将发现相应的存根。 它通过检查接口方法上的所有参数, 然后使用显式`this`指针执行完全签名匹配来实现此功能。  
   
- 还有可能共享相同的存根 （stub） 方法; 接口中的多个方法但是，您应谨慎使用共享的存根。  
+ 接口中的多个方法也可能共享相同的存根 (stub) 方法;但是, 当你使用共享存根时, 应小心。  
   
 > [!NOTE]
->  存根 （stub） 方法必须是静态的。  
+>  存根方法必须是静态的。  
   
- 您可以通知运行时在生成时，而不是使用以下 C# 代码的运行时使用自定义互操作存根 （stub）：  
+ 可以通知运行时在生成时使用自定义的互操作存根, 而不是在运行时C#使用以下代码:  
   
 ```  
 [ComImport]  
@@ -83,7 +83,7 @@ interface IMyInterface
 }  
 ```  
   
- 然后可以使用以下代码以声明相应的存根 （stub） 方法：  
+ 然后, 可以使用以下代码声明相应的存根方法:  
   
 ```  
 class TestStubClass  
@@ -130,7 +130,7 @@ class TestStubClass
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentException">找不到 <paramref name="methodName" />。  
   
-- 或 - 
+或 
 该方法不是静态或非泛型方法。  
   
 - 或 - 

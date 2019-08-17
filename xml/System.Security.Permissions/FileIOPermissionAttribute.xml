@@ -1,5 +1,5 @@
 <Type Name="FileIOPermissionAttribute" FullName="System.Security.Permissions.FileIOPermissionAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b599a9ea377f44e725a5d0687451309213796809" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67246760" /></Metadata><TypeSignature Language="C#" Value="public sealed class FileIOPermissionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="060a4acca3cebd3156660d18e7eec75baccda584" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69058223" /></Metadata><TypeSignature Language="C#" Value="public sealed class FileIOPermissionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit FileIOPermissionAttribute extends System.Security.Permissions.CodeAccessSecurityAttribute" />
   <TypeSignature Language="DocId" Value="T:System.Security.Permissions.FileIOPermissionAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class FileIOPermissionAttribute&#xA;Inherits CodeAccessSecurityAttribute" />
@@ -42,25 +42,25 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用绝对路径指定的文件和目录。 当访问文件，创建或打开文件时执行安全检查。 除非关闭并重新打开该文件，安全检查是不会再次执行。 首次访问该文件时检查权限降至最低的安全检查在应用程序性能的影响，因为打开的文件只发生一次，而读取和写入可能发生多次。  
+ 使用绝对路径指定文件和目录。 在访问文件时, 会在创建或打开文件时执行安全检查。 除非关闭并重新打开该文件, 否则不会再次执行安全检查。 第一次访问文件时检查权限会将安全检查对应用程序性能的影响降到最低, 因为打开文件只发生一次, 而读取和写入可以发生多次。  
   
- 声明是允许的范围取决于<xref:System.Security.Permissions.SecurityAction>的使用。  
+ 允许的声明的范围取决于所使用的<xref:System.Security.Permissions.SecurityAction> 。  
   
- 声明的安全特性的安全信息的属性目标的元数据中的存储，以及在运行时访问系统。 安全特性仅用于声明性安全。 对于命令性安全，使用相应的权限类。  
+ 安全特性声明的安全信息存储在属性目标的元数据中, 由系统在运行时进行访问。 安全特性仅用于声明性安全。 对于命令性安全, 请使用相应的权限类。  
   
 > [!CAUTION]
->  `Unrestricted` <xref:System.Security.Permissions.FileIOPermission> 授予对文件系统，包括多个可用来访问某一特定文件的路径名中的所有路径的权限。 向<xref:System.Security.CodeAccessPermission.Deny%2A>访问到文件中，您必须`Deny`文件的所有可能路径。 例如，如果\\\server\share 为映射到网络驱动器 X`Deny`访问权限\\\server\share\file，您必须`Deny` \\\server\share\file X:\file，可以使用任何其他路径访问文件。  
+>  `Unrestricted`<xref:System.Security.Permissions.FileIOPermission>授予对文件系统中所有路径的权限, 包括可用于访问单个给定文件的多个路径名。 若<xref:System.Security.CodeAccessPermission.Deny%2A>要访问文件, 则必须`Deny`具有文件的所有可能路径。 \\例如, 如果 \server\share 映射到网络驱动器 X, 若要\\ `Deny`访问 \server\share\file, 则必须`Deny` \\\server\share\file、X:\file 和可用于访问的任何其他路径文件.  
   
    
   
 ## Examples  
- 下面的代码示例演示如何请求<xref:System.Security.Permissions.FileIOPermission>通过使用<xref:System.Security.Permissions.FileIOPermissionAttribute>类，指示仅是向代码授予的权限。  
+ 下面的代码示例演示如何<xref:System.Security.Permissions.FileIOPermission> <xref:System.Security.Permissions.FileIOPermissionAttribute>使用类请求, 指示要授予代码的唯一权限。  
   
  [!code-cpp[Classic FileIOPermissionAttribute Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic FileIOPermissionAttribute Example/CPP/source.cpp#1)]
  [!code-csharp[Classic FileIOPermissionAttribute Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic FileIOPermissionAttribute Example/CS/source.cs#1)]
  [!code-vb[Classic FileIOPermissionAttribute Example#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_Classic/classic FileIOPermissionAttribute Example/VB/source.vb#1)]  
   
- 下面的示例演示如何要求调用代码具有不受限制<xref:System.Security.Permissions.FileIOPermission>。 通常情况下在托管库 (Dll)，以帮助防止潜在的有害代码的方法或类中进行的需求。  
+ 下面的示例演示如何要求调用代码具有不受限制<xref:System.Security.Permissions.FileIOPermission>的。 通常会在托管库 (Dll) 中做出一些要求, 以帮助保护方法或类免受潜在的有害代码的影响。  
   
  [!code-cpp[Classic FileIOPermissionAttribute Example#2](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic FileIOPermissionAttribute Example/CPP/source.cpp#2)]
  [!code-csharp[Classic FileIOPermissionAttribute Example#2](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic FileIOPermissionAttribute Example/CS/source.cs#2)]
@@ -104,7 +104,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例创建的多个实例<xref:System.Security.Permissions.FileIOPermissionAttribute>类来设置各种文件 I/O 权限级别。  
+ 下面的代码示例创建<xref:System.Security.Permissions.FileIOPermissionAttribute>类的多个实例, 以设置不同级别的文件 i/o 权限。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermissionAttribute#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CPP/fileiopermissionattribute.cpp#1)]
  [!code-csharp[System.Security.Permissions.FileIOPermissionAttribute#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CS/fileiopermissionattribute.cs#1)]
@@ -157,12 +157,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性设置为单个文件或目录的访问权限。 使用其他属性指定的其他文件和目录。  
+ 此属性设置单个文件或目录的访问权限。 使用其他属性来指定其他文件和目录。  
   
    
   
 ## Examples  
- 下面的代码示例设置<xref:System.Security.Permissions.FileIOPermissionAttribute.All%2A>属性，以授予对指定目录的完全访问权限。  
+ 下面的代码示例将<xref:System.Security.Permissions.FileIOPermissionAttribute.All%2A>属性设置为授予对指定目录的完全访问权限。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermissionAttribute#6](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CPP/fileiopermissionattribute.cpp#6)]
  [!code-csharp[System.Security.Permissions.FileIOPermissionAttribute#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CS/fileiopermissionattribute.cs#6)]
@@ -203,9 +203,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性获取或设置允许的访问权限的本地计算机和网络驱动器上的所有文件。  
+ 此属性获取或设置对本地计算机和网络驱动器上的所有文件的允许访问权限。  
   
- 个人<xref:System.Security.Permissions.FileIOPermissionAccess>值可以由使用按位`AND`操作。  
+ 可以使用<xref:System.Security.Permissions.FileIOPermissionAccess>按位`AND`运算来确定单个值。  
   
  ]]></format>
         </remarks>
@@ -241,9 +241,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 本地文件是包含在本地计算机上的文件。 通过网络驱动器不访问任何文件是本地文件。  
+ 本地文件是包含在本地计算机上的文件。 不是通过网络驱动器访问的任何文件都是本地文件。  
   
- 个人<xref:System.Security.Permissions.FileIOPermissionAccess>值可以由使用按位`AND`操作。  
+ 可以使用<xref:System.Security.Permissions.FileIOPermissionAccess>按位`AND`运算来确定单个值。  
   
  ]]></format>
         </remarks>
@@ -280,12 +280,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性设置为单个文件或目录的访问权限。 使用其他属性指定的其他文件和目录。  
+ 此属性设置单个文件或目录的访问权限。 使用其他属性来指定其他文件和目录。  
   
    
   
 ## Examples  
- 下面的代码示例设置<xref:System.Security.Permissions.FileIOPermissionAttribute.Append%2A>属性，以授予<xref:System.Security.Permissions.FileIOPermissionAccess.Append>对指定目录中的文件的访问。  
+ 下面的代码示例将<xref:System.Security.Permissions.FileIOPermissionAttribute.Append%2A>属性设置为授予<xref:System.Security.Permissions.FileIOPermissionAccess.Append>对指定目录中文件的访问权限。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermissionAttribute#4](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CPP/fileiopermissionattribute.cpp#4)]
  [!code-csharp[System.Security.Permissions.FileIOPermissionAttribute#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CS/fileiopermissionattribute.cs#4)]
@@ -325,10 +325,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性获取或设置单个文件或目录的访问权限。 使用其他<xref:System.Security.Permissions.FileIOPermissionAttribute>特性来指定其他文件和目录。  
+ 此属性获取或设置对单个文件或目录的访问权限。 使用其他<xref:System.Security.Permissions.FileIOPermissionAttribute>属性来指定其他文件和目录。  
   
 > [!IMPORTANT]
->  个人或组，或没有执行给定的文件和其属性的特定操作的权限的人员，介绍了访问控制列表 (ACL)。  能够更改 ACL 是一种重要权限，应谨慎授予。  
+>  访问控制列表 (ACL) 描述对给定文件及其属性具有或没有特定操作权限的个人或组。  更改 ACL 的能力是一项重要的权限, 应小心授予。  
   
  ]]></format>
         </remarks>
@@ -366,9 +366,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 永远不会由应用程序代码，应仅由安全系统中，调用此方法。  
+ 此方法应仅由安全系统调用, 而不是由应用程序代码调用。  
   
- 在编译时，属性将安全声明转换为元数据中的序列化形式。 此方法返回与此特性相对应的权限从创建元数据中的声明性安全数据。  
+ 在编译时, 特性将安全声明转换为元数据中的序列化格式。 元数据中的声明性安全数据是根据此方法返回的与此属性对应的权限创建的。  
   
  ]]></format>
         </remarks>
@@ -406,17 +406,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 路径发现权限控制对路径本身中的信息的访问。 这可以保护路径中的敏感信息（如用户名）以及有关路径中显示的目录结构的信息。 此值不授予对路径所指代的文件或文件夹的访问权限。  
+ 路径发现控制对路径本身中的信息的访问。 这可以保护路径中的敏感信息（如用户名）以及有关路径中显示的目录结构的信息。 此值不授予对路径所指代的文件或文件夹的访问权限。  
   
 > [!NOTE]
->  出于性能原因，<xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A>应仅授予目录，而不授予文件。 例如，<xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A>权限应授予路径如 C:\test 和 C:\test\\，而不适用于文件，如 C:\test\example.txt。  
+>  出于性能原因, <xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A>应仅授予目录而非文件。 例如, <xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A>权限应授予 C:\test 和 C:\test\\等路径, 而不是对文件 (如 C:\test\example.txt.)  
   
- 此属性设置为单个文件或目录的访问权限。 使用其他属性指定的其他文件和目录。  
+ 此属性设置单个文件或目录的访问权限。 使用其他属性来指定其他文件和目录。  
   
    
   
 ## Examples  
- 下面的代码示例设置<xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A>属性，以授予<xref:System.Security.Permissions.FileIOPermissionAccess.PathDiscovery>对指定目录中的文件的访问。  
+ 下面的代码示例将<xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A>属性设置为授予<xref:System.Security.Permissions.FileIOPermissionAccess.PathDiscovery>对指定目录中文件的访问权限。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermissionAttribute#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CPP/fileiopermissionattribute.cpp#3)]
  [!code-csharp[System.Security.Permissions.FileIOPermissionAttribute#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CS/fileiopermissionattribute.cs#3)]
@@ -457,12 +457,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性设置为单个文件或目录的访问权限。 使用其他属性指定的其他文件和目录。  
+ 此属性设置单个文件或目录的访问权限。 使用其他属性来指定其他文件和目录。  
   
    
   
 ## Examples  
- 下面的示例设置<xref:System.Security.Permissions.FileIOPermissionAttribute.Read%2A>属性，以授予<xref:System.Security.Permissions.FileIOPermissionAccess.Read>对指定目录中的文件的访问。  
+ 下面的示例将<xref:System.Security.Permissions.FileIOPermissionAttribute.Read%2A>属性设置为授予<xref:System.Security.Permissions.FileIOPermissionAccess.Read>对指定目录中文件的访问权限。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermissionAttribute#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CPP/fileiopermissionattribute.cpp#2)]
  [!code-csharp[System.Security.Permissions.FileIOPermissionAttribute#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CS/fileiopermissionattribute.cs#2)]
@@ -502,10 +502,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性获取或设置单个文件或目录的访问权限。 使用其他<xref:System.Security.Permissions.FileIOPermissionAttribute>特性来指定其他文件和目录。  
+ 此属性获取或设置对单个文件或目录的访问权限。 使用其他<xref:System.Security.Permissions.FileIOPermissionAttribute>属性来指定其他文件和目录。  
   
 > [!IMPORTANT]
->  个人或组，或没有执行给定的文件和其属性的特定操作的权限的人员，介绍了访问控制列表 (ACL)。  能够查看 ACL 是一种重要权限，应谨慎授予。  
+>  访问控制列表 (ACL) 描述对给定文件及其属性具有或没有特定操作权限的个人或组。  查看 ACL 的功能是一个重要的权限, 应小心授予。  
   
  ]]></format>
         </remarks>
@@ -541,10 +541,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性设置<xref:System.Security.Permissions.FileIOPermissionAttribute.Append%2A>， <xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A>， <xref:System.Security.Permissions.FileIOPermissionAttribute.Read%2A>，和<xref:System.Security.Permissions.FileIOPermissionAttribute.Write%2A>单个文件或目录的属性。 使用其他<xref:System.Security.Permissions.FileIOPermissionAttribute>特性来指定其他文件和目录。 都仅; 用于文件数据的访问权限它们不包括的访问控制属性<xref:System.Security.Permissions.FileIOPermissionAttribute.ViewAccessControl%2A>和<xref:System.Security.Permissions.FileIOPermissionAttribute.ChangeAccessControl%2A>。  
+ 此属性设置<xref:System.Security.Permissions.FileIOPermissionAttribute.Append%2A>单个文件或<xref:System.Security.Permissions.FileIOPermissionAttribute.Read%2A>目录的<xref:System.Security.Permissions.FileIOPermissionAttribute.Write%2A> 、 <xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A>、和属性。 使用其他<xref:System.Security.Permissions.FileIOPermissionAttribute>属性来指定其他文件和目录。 访问权限仅适用于文件数据;它们不包括访问控制属性<xref:System.Security.Permissions.FileIOPermissionAttribute.ViewAccessControl%2A>和。 <xref:System.Security.Permissions.FileIOPermissionAttribute.ChangeAccessControl%2A>  
   
 > [!NOTE]
->  `get`的 C# 编译器兼容性提供访问器。 C# 编译器需要特性属性为读/写。  
+>  提供访问器是为了C#实现编译器兼容性。 `get` C#编译器要求特性属性为可读/写。  
   
  ]]></format>
         </remarks>
@@ -582,12 +582,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性设置为单个文件或目录的访问权限。 使用其他属性指定的其他文件和目录。  
+ 此属性设置单个文件或目录的访问权限。 使用其他属性来指定其他文件和目录。  
   
    
   
 ## Examples  
- 下面的示例设置<xref:System.Security.Permissions.FileIOPermissionAttribute.Write%2A>属性，以授予<xref:System.Security.Permissions.FileIOPermissionAccess.Write>对指定目录中的文件的访问。  
+ 下面的示例将<xref:System.Security.Permissions.FileIOPermissionAttribute.Write%2A>属性设置为授予<xref:System.Security.Permissions.FileIOPermissionAccess.Write>对指定目录中文件的访问权限。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermissionAttribute#5](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CPP/fileiopermissionattribute.cpp#5)]
  [!code-csharp[System.Security.Permissions.FileIOPermissionAttribute#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CS/fileiopermissionattribute.cs#5)]

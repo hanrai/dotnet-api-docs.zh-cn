@@ -1,5 +1,5 @@
 <Type Name="Binding" FullName="System.ServiceModel.Channels.Binding">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c89b7105c9fd5725eaa64587f0ecdb9e09cdca39" /><Meta Name="ms.sourcegitcommit" Value="10aa513a7461eb2abbf8d1e35d2a045d4e5a9be7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/09/2019" /><Meta Name="ms.locfileid" Value="67665171" /></Metadata><TypeSignature Language="C#" Value="public abstract class Binding : System.ServiceModel.IDefaultCommunicationTimeouts" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9a10ae7d575439ada3d41fbbfbc2e78091722c09" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69157629" /></Metadata><TypeSignature Language="C#" Value="public abstract class Binding : System.ServiceModel.IDefaultCommunicationTimeouts" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit Binding extends System.Object implements class System.ServiceModel.IDefaultCommunicationTimeouts" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Channels.Binding" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class Binding&#xA;Implements IDefaultCommunicationTimeouts" />
@@ -34,7 +34,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 表示一个绑定元素集合，其中每一个元素都描述一个终结点与其他终结点的通信方式的一个方面，这些元素一致地内置到客户端上的通道工厂和服务上的通道侦听器中。 绑定包含绑定元素集合，这些元素与协议通道、传输通道和消息编码器相对应。 协议通道可以有任意数目的绑定元素，但是每个传输通道和消息编码器都有且只有一个绑定元素。 一个绑定中通常有六层绑定元素。 只有堆栈底部的传输和编码绑定元素是必需的。 因为如果未指定的编码，都需要为每个绑定，一个编码，Windows Communication Foundation (WCF) 将添加一个默认编码。 对于 HTTP 和 HTTPS 传输，默认编码是 Text/XML，对于其他传输，默认编码为二进制编码。  
+ 表示一个绑定元素集合，其中每一个元素都描述一个终结点与其他终结点的通信方式的一个方面，这些元素一致地内置到客户端上的通道工厂和服务上的通道侦听器中。 绑定包含绑定元素集合，这些元素与协议通道、传输通道和消息编码器相对应。 协议通道可以有任意数目的绑定元素，但是每个传输通道和消息编码器都有且只有一个绑定元素。 一个绑定中通常有六层绑定元素。 只有堆栈底部的传输和编码绑定元素是必需的。 由于每个绑定都需要一个编码, 因此, 如果未指定编码, Windows Communication Foundation (WCF) 会为你添加默认编码。 对于 HTTP 和 HTTPS 传输，默认编码是 Text/XML，对于其他传输，默认编码为二进制编码。  
   
  下表总结了每层的选项。  
   
@@ -50,7 +50,7 @@
   
  每个绑定元素都提供在客户端上生成通道工厂和在服务上生成通道侦听器的规范。 例如，在构建通道工厂堆栈时，对于绑定中的每个绑定元素，堆栈中都有一个通道工厂。 在服务上，堆栈中的通道侦听器也具有同样的对应关系。 客户端和服务上的一致性对于在这些终结点之间建立基于通道的连接非常重要。 这样，每个工厂和侦听器才能处理通道堆栈中与之连接的相应通道的发送和接收操作，然后，这些通道才能发送和接收用于通信的消息。  
   
- 每个 <xref:System.ServiceModel.Channels.Binding> 实例都具有 <xref:System.ServiceModel.Channels.Binding.Name%2A> 和 <xref:System.ServiceModel.Channels.Binding.Namespace%2A>，它们结合起来在服务的元数据中唯一标识每个实例。 如果不指定任何名称或命名空间，WCF 将为您添加默认值。 默认名称是`null`，默认命名空间为`http://tempuri.org/`。 绑定的这一用户名不同于协议名称的规范，后者由 <xref:System.ServiceModel.Channels.Binding.Scheme%2A> 属性指定。 例如，如果要添加更多 HTTP 绑定，可以将它们命名为任何名称，并可将其所有架构都设置为“http”。 不存在基于 <xref:System.ServiceModel.Channels.Binding.Scheme%2A> 的固有应用程序或计算机调度。 这样，就避免了一个常见问题，即无法为已知协议注册附加处理程序。 通过给每个版本提供不同的名称，还可以轻松地并行使用一个绑定的多个版本。  
+ 每个 <xref:System.ServiceModel.Channels.Binding> 实例都具有 <xref:System.ServiceModel.Channels.Binding.Name%2A> 和 <xref:System.ServiceModel.Channels.Binding.Namespace%2A>，它们结合起来在服务的元数据中唯一标识每个实例。 如果未指定名称或命名空间, WCF 将为你添加默认值。 默认名称为`null` , 默认命名空间为`http://tempuri.org/`。 绑定的这一用户名不同于协议名称的规范，后者由 <xref:System.ServiceModel.Channels.Binding.Scheme%2A> 属性指定。 例如，如果要添加更多 HTTP 绑定，可以将它们命名为任何名称，并可将其所有架构都设置为“http”。 不存在基于 <xref:System.ServiceModel.Channels.Binding.Scheme%2A> 的固有应用程序或计算机调度。 这样，就避免了一个常见问题，即无法为已知协议注册附加处理程序。 通过给每个版本提供不同的名称，还可以轻松地并行使用一个绑定的多个版本。  
   
  <xref:System.ServiceModel.Channels.Binding> 类实现 <xref:System.ServiceModel.IDefaultCommunicationTimeouts> 接口，从而减少通过长时间占用资源来实施的拒绝服务 (DOS) 攻击。 该实现指定打开和关闭连接的通信超时值，以及与接收和发送消息相关联的读写操作的通信超时值。 用于获取和设置这些超时值的属性及其默认值操作总结在下表中。  
   
@@ -113,7 +113,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认名称是`null`，默认命名空间为`http://tempuri.org/`。  
+ 默认名称为`null` , 默认命名空间为`http://tempuri.org/`。  
   
    
   
@@ -1119,7 +1119,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置绑定的 XML 命名空间。</summary>
-        <value>绑定的 XML 命名空间。 默认值是<c>"http://tempuri.org/"</c>。</value>
+        <value>绑定的 XML 命名空间。 默认值为<c>"http://tempuri.org/"</c>。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1217,7 +1217,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置连接在撤消之前保持非活动状态的最大时间间隔，在此时间间隔内未接收任何应用程序消息。</summary>
-        <value>一个 <see cref="T:System.TimeSpan" />，指定在超时前应用程序接收消息的时间。默认值为 10 分钟。</value>
+        <value>一个 <see cref="T:System.TimeSpan" />，指定在超时前应用程序接收消息的时间。默认值为10分钟。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1232,7 +1232,7 @@
   
  如果对绑定或通道启用了事务流，执行操作所需的时间可能会比指定的超时时间长。 在这些情况下，将会因为超时过期而导致操作失败，事务也将随之中止。  
   
- 与会话，使用的安全性时<xref:System.ServiceModel.Channels.Binding.ReceiveTimeout%2A>的绑定上设置的值还用作会话超时。  
+ 如果将安全与会话一起使用, <xref:System.ServiceModel.Channels.Binding.ReceiveTimeout%2A>则在绑定上设置的值也将用作会话超时。  
   
  ]]></format>
         </remarks>
