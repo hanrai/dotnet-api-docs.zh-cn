@@ -1,5 +1,5 @@
 <Type Name="ITaskItem" FullName="Microsoft.Build.Framework.ITaskItem">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ddbd8bc697b14e174e0f1d571b36a209bb11ad24" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55351668" /></Metadata><TypeSignature Language="C#" Value="public interface ITaskItem" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="df309ff8972c36066a771176f2843167603c4096" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69287725" /></Metadata><TypeSignature Language="C#" Value="public interface ITaskItem" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ITaskItem" />
   <TypeSignature Language="DocId" Value="T:Microsoft.Build.Framework.ITaskItem" />
   <TypeSignature Language="VB.NET" Value="Public Interface ITaskItem" />
@@ -26,16 +26,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 数<xref:Microsoft.Build.Framework.ITaskItem>生成过程中创建的对象可能不精确对应于由于以下原因在项目文件中声明的项：  
+ 在生成过程<xref:Microsoft.Build.Framework.ITaskItem>中创建的对象数可能与项目文件中声明的项不完全相对应, 原因如下:  
   
--   任务有时创建未声明为项目文件中的项。  
+-   任务有时会创建未在项目文件中声明的项。  
   
--   可以使用通配符，这可能会产生多个项生成时在项目文件中声明的项集合。  
+-   在项目文件中, 可以使用通配符声明项集合, 这可能会在生成时创建许多项。  
   
    
   
 ## Examples  
- 下面的示例显示了创建了一个或多个目录的任务的代码。  
+ 下面的示例演示用于创建一个或多个目录的任务的代码。  
   
  [!code-csharp[msbuild_MakeDirTask#1](~/samples/snippets/csharp/VS_Snippets_Misc/msbuild_MakeDirTask/CS/msbuild_MakeDirTask.cs#1)]  
   
@@ -71,9 +71,9 @@
   
 -   不包括内置元数据。  
   
--   此方法应返回的元数据的克隆。  
+-   此方法应返回元数据的克隆。  
   
--   此字典写入应不会反映在基础项。  
+-   写入此字典不应在基础项中反映出来。  
   
  ]]></format>
         </remarks>
@@ -106,13 +106,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 请遵循以下指导原则时实现此方法。  
+ 实现此方法时, 请遵循以下指导原则。  
   
--   不会覆盖<xref:Microsoft.Build.Framework.ITaskItem.ItemSpec%2A>属性。  
+-   不要覆盖<xref:Microsoft.Build.Framework.ITaskItem.ItemSpec%2A>属性。  
   
--   不会覆盖现有元数据条目。  
+-   不要覆盖现有元数据条目。  
   
--   不要复制没有意义的目标项的元数据条目。  
+-   不要复制对目标项没有意义的元数据项。  
   
  ]]></format>
         </remarks>
@@ -169,9 +169,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 项规范是一个任意字符串。 如果项表示磁盘上的文件，项规范将该文件的路径。  
+ 项规范是任意字符串。 如果项表示磁盘上的文件, 则项规范将是该文件的路径。  
   
- <xref:Microsoft.Build.Framework.ITaskItem.ItemSpec%2A>文件是在项目中的以下项声明`File.cs`。  
+ <xref:Microsoft.Build.Framework.ITaskItem.ItemSpec%2A> 项目`File.cs`文件中的以下项声明的为。  
   
 ```xml  
 <ItemGroup>  
@@ -182,7 +182,7 @@
    
   
 ## Examples  
- 下面的示例显示了创建了一个或多个目录的任务的代码。  
+ 下面的示例演示用于创建一个或多个目录的任务的代码。  
   
  [!code-csharp[msbuild_MakeDirTask#1](~/samples/snippets/csharp/VS_Snippets_Misc/msbuild_MakeDirTask/CS/msbuild_MakeDirTask.cs#1)]  
   

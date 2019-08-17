@@ -1,5 +1,5 @@
 <Type Name="ResourceExpressionBuilder" FullName="System.Web.Compilation.ResourceExpressionBuilder">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e37af5ae454bdbf307032e6156ab3ed6e9833353" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55363550" /></Metadata><TypeSignature Language="C#" Value="public class ResourceExpressionBuilder : System.Web.Compilation.ExpressionBuilder" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="cda9bf229e23684a0f06b483f852a11ff205da2f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69142094" /></Metadata><TypeSignature Language="C#" Value="public class ResourceExpressionBuilder : System.Web.Compilation.ExpressionBuilder" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ResourceExpressionBuilder extends System.Web.Compilation.ExpressionBuilder" />
   <TypeSignature Language="DocId" Value="T:System.Web.Compilation.ResourceExpressionBuilder" />
   <TypeSignature Language="VB.NET" Value="Public Class ResourceExpressionBuilder&#xA;Inherits ExpressionBuilder" />
@@ -31,27 +31,27 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Compilation.ResourceExpressionBuilder>类创建用于检索资源值时执行页的代码。 资源文件通常包含针对特定语言或区域性本地化的信息。  
+ <xref:System.Web.Compilation.ResourceExpressionBuilder>类创建代码, 以在执行页时检索资源值。 资源文件通常包含针对特定语言或区域性进行了本地化的信息。  
   
- 资源表达式形式`<%$ Resources: ClassKey, ResourceKey %>`页内。 冒号 （:） 前面的表达式的一部分指定的表达式生成器来使用，类型和冒号后面的部分表示的类名称和资源键。 前面的表达式将从名为的文件中检索以下值`ClassKey.resx`:  
+ 资源表达式采用页面中的`<%$ Resources: ClassKey, ResourceKey %>`格式。 冒号前面的表达式部分 (:)指定要使用的表达式生成器的类型, 冒号后面的部分表示类名称和资源键。 上述表达式将从名为`ClassKey.resx`的文件中检索以下值:  
   
 ```  
 <data name="ResourceKey"><value xml:space="preserve">Hello!</value></data>  
 ```  
   
- 当页分析器遇到与表达式`Resources`前缀，它将创建的实例<xref:System.Web.Compilation.ResourceExpressionBuilder>类。 <xref:System.Web.Compilation.ResourceExpressionBuilder>类计算表达式的值或生成代码，以在页执行时返回该表达式的值。  
+ 当页分析器遇到带有前缀的`Resources`表达式时, 它将创建<xref:System.Web.Compilation.ResourceExpressionBuilder>类的一个实例。 <xref:System.Web.Compilation.ResourceExpressionBuilder>类计算表达式或生成代码, 以在执行页时返回表达式的值。  
   
- 如果将编译的页中遇到这种表达式<xref:System.Web.Compilation.ResourceExpressionBuilder>对象生成代码，从资源文件中检索指定的值。 如果将编译的页中遇到这种表达式<xref:System.Web.Compilation.ResourceExpressionBuilder>对象在分析页时从资源文件返回值。  
+ 如果在要编译的页面中遇到表达式, 则<xref:System.Web.Compilation.ResourceExpressionBuilder>对象将生成从资源文件中检索指定值的代码。 如果在不进行编译的页面中遇到表达式, 则在分析页面<xref:System.Web.Compilation.ResourceExpressionBuilder>时, 对象将返回资源文件中的值。  
   
    
   
 ## Examples  
- 下面的代码示例检索从资源文件的默认货币。  
+ 下面的代码示例从资源文件中检索默认货币。  
   
  [!code-aspx-csharp[System.Web.Compilation.ResourceExpressionBuilder#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Compilation.ResourceExpressionBuilder/CS/Default.aspx#1)]
  [!code-aspx-vb[System.Web.Compilation.ResourceExpressionBuilder#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Compilation.ResourceExpressionBuilder/VB/Default.aspx#1)]
   
- 此代码从名为的资源文件中读取以下值`Financial.resx`App_GlobalResources 目录中。  
+ 此代码从 App_GlobalResources 目录中名为`Financial.resx`的资源文件中读取以下值。  
   
 ```  
 <data name="Currency"><value xml:space="preserve">US dollars</value></data>  
@@ -122,7 +122,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 形式的表达式时调用此方法`<%$ Resources: someResourceKey %>`使用非编译功能的页中遇到。 从资源文件中的键/值对检索相应的值。  
+ 当使用无编译功能的页面中遇到形式`<%$ Resources: someResourceKey %>`的表达式时, 将调用此方法。 它从资源文件中的键/值对中检索相应的值。  
   
  ]]></format>
         </remarks>
@@ -161,7 +161,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在 CodeDOM 创建期间调用此方法的页面或控件。 <xref:System.CodeDom.CodeExpression>返回对象的类型是<xref:System.CodeDom.CodeMethodInvokeExpression>和表示在页执行过程中检索资源值时要调用的方法。  
+ 此方法在创建页面或控件的 CodeDOM 过程中调用。 <xref:System.CodeDom.CodeMethodInvokeExpression>返回的<xref:System.CodeDom.CodeExpression>对象的类型为, 它表示在页执行过程中检索资源值时要调用的方法。  
   
  ]]></format>
         </remarks>
@@ -209,7 +209,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法分析该表达式并返回<xref:System.Web.Compilation.ResourceExpressionFields.ClassKey%2A>和一个<xref:System.Web.Compilation.ResourceExpressionFields.ResourceKey%2A>属性值在返回<xref:System.Web.Compilation.ResourceExpressionFields>对象，如果在表达式中提供了这些属性。  
+ 如果表达式中提供了这些属性, <xref:System.Web.Compilation.ResourceExpressionFields.ClassKey%2A>则此<xref:System.Web.Compilation.ResourceExpressionFields.ResourceKey%2A>方法分析表达式并在<xref:System.Web.Compilation.ResourceExpressionFields>返回的对象中返回一个属性值。  
   
  ]]></format>
         </remarks>
@@ -247,7 +247,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回<xref:System.Object>属于类型<xref:System.Web.Compilation.ResourceExpressionFields>。 此方法分析该表达式并返回<xref:System.Web.Compilation.ResourceExpressionFields.ClassKey%2A>和一个<xref:System.Web.Compilation.ResourceExpressionFields.ResourceKey%2A>属性值在返回<xref:System.Web.Compilation.ResourceExpressionFields>对象，如果在表达式中提供了这些属性。  
+ 返回<xref:System.Object>的类型<xref:System.Web.Compilation.ResourceExpressionFields>为。 如果表达式中提供了这些属性, <xref:System.Web.Compilation.ResourceExpressionFields.ClassKey%2A>则此<xref:System.Web.Compilation.ResourceExpressionFields.ResourceKey%2A>方法分析表达式并在<xref:System.Web.Compilation.ResourceExpressionFields>返回的对象中返回一个属性值。  
   
  ]]></format>
         </remarks>
@@ -278,7 +278,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Compilation.ResourceExpressionBuilder.SupportsEvaluate%2A>属性指示是否<xref:System.Web.Compilation.ResourceExpressionBuilder.EvaluateExpression%2A>方法已在类中实现。 <xref:System.Web.Compilation.ResourceExpressionBuilder.EvaluateExpression%2A> 必须实现表达式生成器的表达式计算中使用非编译功能的页中。 <xref:System.Web.Compilation.ResourceExpressionBuilder> 在未编译页面中支持的资源值的计算，因此此属性始终返回`true`。  
+ 属性指示<xref:System.Web.Compilation.ResourceExpressionBuilder.EvaluateExpression%2A>方法是否已在类中实现。 <xref:System.Web.Compilation.ResourceExpressionBuilder.SupportsEvaluate%2A> <xref:System.Web.Compilation.ResourceExpressionBuilder.EvaluateExpression%2A>必须在表达式生成器内实现, 才能在使用非编译功能的页中计算表达式。 <xref:System.Web.Compilation.ResourceExpressionBuilder>支持在未编译的页中计算资源值, 因此此属性始终返回`true`。  
   
  ]]></format>
         </remarks>
