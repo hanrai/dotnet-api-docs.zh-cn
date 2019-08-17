@@ -1,5 +1,5 @@
 <Type Name="SqlTransaction" FullName="System.Data.SqlClient.SqlTransaction">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f4ea6161724d0adb9781f204eb559c74723ecd9f" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63890287" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlTransaction : System.Data.Common.DbTransaction, IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a0a857c8d092a1314b00b93c891284025e546b6f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69123249" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlTransaction : System.Data.Common.DbTransaction, IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SqlTransaction extends System.Data.Common.DbTransaction implements class System.Data.IDbTransaction, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Data.SqlClient.SqlTransaction" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SqlTransaction&#xA;Inherits DbTransaction&#xA;Implements IDisposable" />
@@ -42,17 +42,17 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序创建<xref:System.Data.SqlClient.SqlTransaction>对象通过调用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>上<xref:System.Data.SqlClient.SqlConnection>对象。 执行事务 （例如，提交或中止事务），与关联的所有后续操作<xref:System.Data.SqlClient.SqlTransaction>对象。  
+ 应用程序通过对<xref:System.Data.SqlClient.SqlTransaction> <xref:System.Data.SqlClient.SqlConnection>对象调用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>来创建对象。 与事务关联的所有后续操作 (例如, 提交或中止事务) 都在<xref:System.Data.SqlClient.SqlTransaction>对象上执行。  
   
 > [!NOTE]
->  `Try`/`Catch` 当提交或回滚时，应始终使用异常处理<xref:System.Data.SqlClient.SqlTransaction>。 这两<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>并<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>生成<xref:System.InvalidOperationException>或如果连接将终止该事务已在服务器上回滚。  
+>  `Try`/`Catch`提交或回滚<xref:System.Data.SqlClient.SqlTransaction>时, 应始终使用异常处理。 如果连接<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>已终止,则和生成;如果事务已在服务器上回滚,则生成。<xref:System.Data.SqlClient.SqlTransaction.Commit%2A> <xref:System.InvalidOperationException>  
   
- SQL Server 事务的详细信息，请参阅[显式事务](https://msdn.microsoft.com/library/ms175127\(SQL.105\).aspx)并[编码高效事务](https://msdn.microsoft.com/library/ms187484\(SQL.105\).aspx)。  
+ 有关 SQL Server 事务的详细信息, 请参阅[显式事务](https://msdn.microsoft.com/library/ms175127\(SQL.105\).aspx)和[编码高效事务](https://msdn.microsoft.com/library/ms187484\(SQL.105\).aspx)。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>， <xref:System.Data.SqlClient.SqlTransaction.Commit%2A>，和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。 事务回滚任何错误时，或如果它已释放而无需首先提交。 `Try`/`Catch` 错误处理用于尝试提交或回滚事务时处理任何错误。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>、 <xref:System.Data.SqlClient.SqlTransaction.Commit%2A>和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。 事务会回滚到任何错误, 或者, 如果在未事先提交的情况下将其释放, 则为。 `Try`/`Catch`错误处理用于在尝试提交或回滚事务时处理任何错误。  
   
  [!code-csharp[Classic WebData SqlConnection.BeginTransaction Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.BeginTransaction Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction Example/VB/source.vb#1)]  
@@ -103,17 +103,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlTransaction.Commit%2A>方法等效于 TRANSACT-SQL COMMIT TRANSACTION 语句。 您无法回滚事务后已提交，因为所有修改已都成为数据库的永久部分。 有关详细信息，请参阅[COMMIT TRANSACTION (TRANSACT-SQL) ](/sql/t-sql/language-elements/commit-transaction-transact-sql)。
+ <xref:System.Data.SqlClient.SqlTransaction.Commit%2A>方法等效于 transact-sql COMMIT TRANSACTION 语句。 在事务提交后, 不能回滚事务, 因为所有修改都已成为数据库的永久部分。 有关详细信息, 请参阅[COMMIT TRANSACTION (transact-sql) ](/sql/t-sql/language-elements/commit-transaction-transact-sql)。
   
 > [!NOTE]
->  `Try`/`Catch` 当提交或回滚时，应始终使用异常处理<xref:System.Data.SqlClient.SqlTransaction>。 这两`Commit`并<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>生成<xref:System.InvalidOperationException>或如果连接将终止该事务已在服务器上回滚。  
+>  `Try`/`Catch`提交或回滚<xref:System.Data.SqlClient.SqlTransaction>时, 应始终使用异常处理。 如果连接<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>已终止<xref:System.InvalidOperationException> , 则和将生成; 如果事务已在服务器上回滚, 则生成。 `Commit`  
   
- SQL Server 事务的详细信息，请参阅[事务 (Transact SQL)](/sql/t-sql/language-elements/transactions-transact-sql)。
+ 有关 SQL Server 事务的详细信息, 请参阅[事务 (transact-sql)](/sql/t-sql/language-elements/transactions-transact-sql)。
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>， <xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>，和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。 该事务会回滚任何错误。 `Try`/`Catch` 错误处理用于尝试提交或回滚事务时处理任何错误。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>、 <xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。 任何错误都将回滚事务。 `Try`/`Catch`错误处理用于在尝试提交或回滚事务时处理任何错误。  
   
  [!code-csharp[Classic WebData SqlConnection.BeginTransaction Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.BeginTransaction Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction Example/VB/source.vb#1)]  
@@ -123,7 +123,7 @@
         <exception cref="T:System.Exception">在尝试提交事务时出错。</exception>
         <exception cref="T:System.InvalidOperationException">已提交或回滚事务。  
   
- - 或 -  
+ 或  
   
  连接已断开。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/local-transactions.md">本地事务</related>
@@ -167,7 +167,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 单个应用程序可能有多个数据库连接，每个都具有零个或多个事务。 此属性可以确定与创建的特定事务关联的连接对象<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>。  
+ 单个应用程序可以有多个数据库连接, 每个连接都有零个或多个事务。 此属性可让你确定与创建<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>的特定事务关联的连接对象。  
   
  ]]></format>
         </remarks>
@@ -315,9 +315,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不支持并行事务。 因此，<xref:System.Data.IsolationLevel>适用于整个事务。  
+ 不支持并行事务。 因此, <xref:System.Data.IsolationLevel>适用于整个事务。  
   
- SQL Server 隔离级别的详细信息，请参阅[事务隔离级别](/sql/t-sql/language-elements/transaction-isolation-levels)。
+ 有关 SQL Server 隔离级别的详细信息, 请参阅[事务隔离级别](/sql/t-sql/language-elements/transaction-isolation-levels)。
   
  ]]></format>
         </remarks>
@@ -376,19 +376,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法等效于 TRANSACT-SQL ROLLBACK TRANSACTION 语句。 有关详细信息，请参阅[ROLLBACK TRANSACTION (TRANSACT-SQL) ](/sql/t-sql/language-elements/rollback-transaction-transact-sql)。
+ <xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法等效于 transact-sql ROLLBACK TRANSACTION 语句。 有关详细信息, 请参阅[ROLLBACK TRANSACTION (transact-sql) ](/sql/t-sql/language-elements/rollback-transaction-transact-sql)。
   
- 可以仅回滚事务从挂起状态 (后<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>已调用之前<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>称为)。 在调用前释放回滚事务`Commit`或`Rollback`调用。  
+ 只能从挂起状态回滚事务 (在调用之后<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>但在调用之前<xref:System.Data.SqlClient.SqlTransaction.Commit%2A> )。 当事务在被调用之前`Commit` `Rollback`被释放时, 将回滚该事务。  
   
 > [!NOTE]
->  `Try`/`Catch` 回滚事务时，应始终使用异常处理。 一个`Rollback`生成<xref:System.InvalidOperationException>或如果连接将终止该事务已在服务器上回滚。  
+>  `Try`/`Catch`在回滚事务时, 应始终使用异常处理。 如果连接已终止, 或者事务已在服务器上回滚, 则`Rollback`会生成。 <xref:System.InvalidOperationException>  
   
- SQL Server 事务的详细信息，请参阅[事务 (Transact SQL)](/sql/t-sql/language-elements/transactions-transact-sql)。
+ 有关 SQL Server 事务的详细信息, 请参阅[事务 (transact-sql)](/sql/t-sql/language-elements/transactions-transact-sql)。
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>， <xref:System.Data.SqlClient.SqlTransaction.Commit%2A>，和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。 该事务会回滚任何错误。 `Try`/`Catch` 错误处理用于尝试提交或回滚事务时处理任何错误。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>、 <xref:System.Data.SqlClient.SqlTransaction.Commit%2A>和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。 任何错误都将回滚事务。 `Try`/`Catch`错误处理用于在尝试提交或回滚事务时处理任何错误。  
   
  [!code-csharp[Classic WebData SqlConnection.BeginTransaction Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.BeginTransaction Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction Example/VB/source.vb#1)]  
@@ -445,19 +445,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法等效于 TRANSACT-SQL ROLLBACK TRANSACTION 语句。 有关详细信息，请参阅[事务 (Transact SQL)](/sql/t-sql/language-elements/transactions-transact-sql)。  
+ <xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法等效于 transact-sql ROLLBACK TRANSACTION 语句。 有关详细信息, 请参阅[事务 (transact-sql)](/sql/t-sql/language-elements/transactions-transact-sql)。  
   
- 可以仅回滚事务从挂起状态 (后<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>已调用之前<xref:System.Data.SqlClient.SqlTransaction.Commit%2A>称为)。 如果释放之前回滚事务`Commit`或`Rollback`调用。  
+ 只能从挂起状态回滚事务 (在调用之后<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>但在调用之前<xref:System.Data.SqlClient.SqlTransaction.Commit%2A> )。 如果事务在调用之前`Commit` `Rollback`被释放, 则回滚事务。  
   
 > [!NOTE]
->  `Try`/`Catch` 回滚事务时，应始终使用异常处理。 一个`Rollback`生成<xref:System.InvalidOperationException>或如果连接将终止该事务已在服务器上回滚。  
+>  `Try`/`Catch`在回滚事务时, 应始终使用异常处理。 如果连接已终止, 或者事务已在服务器上回滚, 则`Rollback`会生成。 <xref:System.InvalidOperationException>  
   
- SQL Server 事务的详细信息，请参阅[事务 (Transact SQL)](/sql/t-sql/language-elements/transactions-transact-sql)。
+ 有关 SQL Server 事务的详细信息, 请参阅[事务 (transact-sql)](/sql/t-sql/language-elements/transactions-transact-sql)。
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>， <xref:System.Data.SqlClient.SqlTransaction.Commit%2A>，和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。 该事务会回滚任何错误。 `Try`/`Catch` 错误处理用于尝试提交或回滚事务时处理任何错误。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>和一个<xref:System.Data.SqlClient.SqlTransaction>。 它还演示了如何使用<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>、 <xref:System.Data.SqlClient.SqlTransaction.Commit%2A>和<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法。 任何错误都将回滚事务。 `Try`/`Catch`错误处理用于在尝试提交或回滚事务时处理任何错误。  
   
  [!code-csharp[Classic WebData SqlConnection.BeginTransaction2 Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction2 Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlConnection.BeginTransaction2 Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlConnection.BeginTransaction2 Example/VB/source.vb#1)]  
@@ -467,7 +467,7 @@
         <exception cref="T:System.ArgumentException">未指定事务名称。</exception>
         <exception cref="T:System.InvalidOperationException">已提交或回滚事务。  
   
- - 或 -  
+ 或  
   
  连接已断开。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/local-transactions.md">执行事务</related>
@@ -514,11 +514,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlTransaction.Save%2A> 方法是等效于 TRANSACT-SQL SAVE TRANSACTION 语句。  
+ <xref:System.Data.SqlClient.SqlTransaction.Save%2A>方法等效于 Transact-sql SAVE TRANSACTION 语句。  
   
- 中使用的值`savePoint`参数可以是值中使用的相同`transactionName`参数的某些实现<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>方法。  
+ `savePoint`参数中使用的值可以与<xref:System.Data.SqlClient.SqlConnection.BeginTransaction%2A>方法的某些实现的`transactionName`参数中使用的值相同。  
   
- 保存点提供了一种机制来回滚部分事务。 创建保存点使用<xref:System.Data.SqlClient.SqlTransaction.Save%2A>方法，并稍后再调用<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>方法以回滚到保存点，而不是回滚到事务的起始位置。  
+ 保存点提供了回滚部分事务的机制。 使用<xref:System.Data.SqlClient.SqlTransaction.Save%2A>方法创建保存点, 然后<xref:System.Data.SqlClient.SqlTransaction.Rollback%2A>调用方法以回滚到保存点, 而不是回滚到事务的开始。  
   
  ]]></format>
         </remarks>

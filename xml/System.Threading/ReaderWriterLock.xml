@@ -1,5 +1,5 @@
 <Type Name="ReaderWriterLock" FullName="System.Threading.ReaderWriterLock">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c3e44698bf9b3581837778729caf8bb923358a40" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58715584" /></Metadata><TypeSignature Language="C#" Value="public sealed class ReaderWriterLock : System.Runtime.ConstrainedExecution.CriticalFinalizerObject" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="edfc6eed7e390687d9d58a733bb641ebef3b9d37" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69143952" /></Metadata><TypeSignature Language="C#" Value="public sealed class ReaderWriterLock : System.Runtime.ConstrainedExecution.CriticalFinalizerObject" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ReaderWriterLock extends System.Runtime.ConstrainedExecution.CriticalFinalizerObject" />
   <TypeSignature Language="DocId" Value="T:System.Threading.ReaderWriterLock" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ReaderWriterLock&#xA;Inherits CriticalFinalizerObject" />
@@ -42,39 +42,39 @@
 > [!IMPORTANT]
 >  [!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)] 有下面两个读取器-编写器锁：<xref:System.Threading.ReaderWriterLockSlim> 和 <xref:System.Threading.ReaderWriterLock>。 建议对所有新开发的项目使用 <xref:System.Threading.ReaderWriterLockSlim>。 虽然 <xref:System.Threading.ReaderWriterLockSlim> 类似于 <xref:System.Threading.ReaderWriterLock>，但不同之处在于，前者简化了递归规则以及锁状态的升级和降级规则。 <xref:System.Threading.ReaderWriterLockSlim> 避免了许多潜在的死锁情况。 另外，<xref:System.Threading.ReaderWriterLockSlim> 的性能显著优于 <xref:System.Threading.ReaderWriterLock>。  
   
- <xref:System.Threading.ReaderWriterLock> 用于同步对资源的访问。 在任何给定时间，它允许多个线程的并发读访问权限，或者在单个线程的写访问权限。 在某个资源不常更改的情况下`ReaderWriterLock`提供了更好的吞吐量比简单的一次锁定，例如<xref:System.Threading.Monitor>。  
+ <xref:System.Threading.ReaderWriterLock>用于同步对资源的访问。 在任何给定时间, 它都允许对多个线程执行并发读取访问, 或允许单个线程的写入访问。 在资源更改不频繁的情况下, 与简单`ReaderWriterLock`的一次性锁 ( <xref:System.Threading.Monitor>例如) 相比, 提供更好的吞吐量。  
   
- `ReaderWriterLock` 其中大多数访问是读取、 写入不太频繁出现而和短时间内的效果最佳。 多个读取器备用与单个编写器，以便读取器和编写器都不会阻止很长一段。  
+ `ReaderWriterLock`在大多数访问都是读取的情况下最适合使用写入, 而不是在短期内进行写入。 多个读取器将替换为单个编写器, 这样就不会长时间阻止读取器和编写器。  
   
 > [!NOTE]
->  长时间持有读取器锁或编写器锁将人都饿着其他线程。 为了获得最佳性能，请考虑重新构建应用程序以最大程度减少写入的持续时间。  
+>  长时间持有读取器锁或写入器锁将枯竭其他线程。 为了获得最佳性能, 请考虑重构应用程序以最大程度地缩短写入的持续时间。  
   
- 线程可以持有一个读取器锁或编写器锁，但不是能同时在同一时间。 而不是为了获取写入器锁释放读取器锁，可以使用<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>和<xref:System.Threading.ReaderWriterLock.DowngradeFromWriterLock%2A>。  
+ 线程可以持有读取器锁或写入器锁, 但不能同时持有两者。 您可以使用<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>和<xref:System.Threading.ReaderWriterLock.DowngradeFromWriterLock%2A>, 而不是释放读取器锁以获取写线程锁。  
   
- 递归锁请求增加锁的锁计数。  
+ 递归锁请求增加了锁的锁计数。  
   
- 单独排队阅读器和编写器。 当一个线程释放写入器锁时，所有线程队列中等待的读取器在该时刻被都授予读取器锁;当所有这些读取器锁已发布，编写器中的下一个线程等待队列，如果任何，被授予写线程锁，等等。 换而言之，`ReaderWriterLock`的访问者、 集合和一个写入器之间的备用项。  
+ 读取器和编写器分别排入队列。 当某个线程释放写入器锁时, 在该时刻等待读取器队列中的所有线程都被授予读取器锁;所有这些读取器锁都已释放后, 在编写器队列中等待的下一个线程 (如果有) 被授予写入器锁, 依此类推。 换句话说, `ReaderWriterLock`在读取器集合和一个编写器之间交替。  
   
- 当编写器队列中的线程正在等待活动的读取器锁释放时，请求新的读取器锁的线程会累积读取器队列中。 未授予他们的请求，即使它们无法与现有读取器锁持有者; 共享的并发访问这有助于保护对无限期阻塞读取器的编写器。  
+ 当编写器队列中的线程正在等待释放活动的读取器锁时, 请求新读取器锁的线程将在读取器队列中累积。 不会授予其请求, 即使它们可能与现有读取器锁持有者共享并发访问;这有助于防止读者无限的读者堵塞写入器。  
   
- 为上获取锁的大多数方法`ReaderWriterLock`接受超时值。 使用超时值以避免在应用程序中的死锁。 例如，线程可能会获取对资源的编写器锁，然后请求在第二个资源，则读取器锁在此期间，另一个线程可能会获取写线程锁在第二个资源，并请求对第一个读取器锁。 如果不使用超时，线程死锁。  
+ 获取对`ReaderWriterLock`接受超时值的锁的大多数方法。 使用超时可避免应用程序中出现死锁。 例如, 线程可能会在一个资源上获取写线程锁, 然后在第二个资源上请求读取器锁;同时, 另一个线程可能会在第二个资源上获取写线程锁, 并在第一个资源上请求读取器锁。 除非使用超时, 否则线程会死锁。  
   
- 如果超时间隔过期并且尚未授予锁请求，该方法将控制返回到调用线程通过引发<xref:System.ApplicationException>。 一个线程可以捕获此异常，并确定接下来要采取的操作。  
+ 如果超时间隔过期并且尚未授予锁请求, 则方法会通过引发<xref:System.ApplicationException>来将控件返回给调用线程。 线程可以捕获此异常, 并确定接下来要执行的操作。  
   
- 超时以毫秒为单位表示。 如果您使用<xref:System.TimeSpan?displayProperty=nameWithType>若要指定超时值，使用的值是表示的整毫秒的总数<xref:System.TimeSpan>。 下表显示了有效的超时值以毫秒为单位。  
+ 超时以毫秒为单位。 如果使用<xref:System.TimeSpan?displayProperty=nameWithType>指定超时值, 则使用的值是表示<xref:System.TimeSpan>的总毫秒数。 下表显示了有效的超时值 (以毫秒为单位)。  
   
-|值|描述|  
+|值|说明|  
 |-----------|-----------------|  
-|-1|在线程等待，直到已获取锁，而不考虑需要多长时间。 指定整数超时，该常量的方法的<xref:System.Threading.Timeout.Infinite>可用。|  
-|0|在线程等待获取锁。 如果不能立即获取的锁，该方法返回。|  
+|-1|线程会一直等待, 直到获取锁, 而不考虑它所需的时间。 对于指定整数超时的方法, 可以使用常量<xref:System.Threading.Timeout.Infinite> 。|  
+|0|线程不等待获取锁。 如果无法立即获取锁定, 则该方法将返回。|  
 |>0|要等待的毫秒数。|  
   
- -1，但不允许负的超时值。 如果指定-1 之外的负整数，是改为使用超时值为零。 （也就是说，如果方法返回而不等待，不能立即获取的锁。）如果指定<xref:System.TimeSpan>表示的负毫秒数，而-1<xref:System.ArgumentOutOfRangeException>引发。  
+ 但不允许使用负超时值 (-1)。 如果指定一个非-1 的负整数, 则改用超时值0。 (也就是说, 如果无法立即获取锁定, 则该方法将返回而不等待。)如果指定<xref:System.TimeSpan>表示负- <xref:System.ArgumentOutOfRangeException> 1 的负毫秒数的, 则会引发。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.Threading.ReaderWriterLock>若要保护的共享的资源，一个整数值名为`resource`，即同时读取和写入以独占方式由多个线程。 请注意，<xref:System.Threading.ReaderWriterLock>在类级别声明的这样就全部线程可见。  
+ 下面的示例演示如何使用<xref:System.Threading.ReaderWriterLock>保护共享资源 (一个名为`resource`的整数值), 该资源同时以多个线程的形式进行读取和写入。 <xref:System.Threading.ReaderWriterLock>请注意, 在类级别声明, 以便它对所有线程都可见。  
   
  [!code-cpp[System.Threading.ReaderWriterLock#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.ReaderWriterLock#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CS/source.cs#1)]
@@ -125,7 +125,7 @@
 ## Examples  
  下面的代码示例演示如何创建 <xref:System.Threading.ReaderWriterLock> 类的新实例。  
   
- 此代码是为提供一个更大示例的一部分<xref:System.Threading.ReaderWriterLock>类。  
+ 此代码是为<xref:System.Threading.ReaderWriterLock>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Threading.ReaderWriterLock#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CPP/source.cpp#2)]
  [!code-csharp[System.Threading.ReaderWriterLock#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CS/source.cs#2)]
@@ -193,23 +193,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.ReaderWriterLock.AcquireReaderLock%2A> 如果另一个线程持有写线程锁，或至少一个线程正在等待编写器锁将阻止。  
+ <xref:System.Threading.ReaderWriterLock.AcquireReaderLock%2A>如果其他线程具有写入器锁, 或者至少有一个线程正在等待编写器锁, 则为。  
   
 > [!NOTE]
->  如果当前线程已将写线程锁，则会不获取任何读取器锁。 相反，编写器锁的锁计数会递增。 这会阻止线程在其自己编写器锁阻塞。 结果应完全与调用<xref:System.Threading.ReaderWriterLock.AcquireWriterLock%2A>，并额外调用<xref:System.Threading.ReaderWriterLock.ReleaseWriterLock%2A>释放写入器锁时是必需的。  
+>  如果当前线程已具有写入器锁, 则不获取读取器锁。 相反, 写入器锁的锁计数将增加。 这会阻止线程在其自己的编写器锁上阻塞。 结果与调用<xref:System.Threading.ReaderWriterLock.AcquireWriterLock%2A>完全相同, 并且释放写入器锁时需要对<xref:System.Threading.ReaderWriterLock.ReleaseWriterLock%2A>的额外调用。  
   
- `AcquireReaderLock` 支持递归读取器锁请求。 也就是说，线程可以 AcquireReaderLock 多次调用，其中每次递增锁计数。 必须调用<xref:System.Threading.ReaderWriterLock.ReleaseReaderLock%2A>一次为每次调用`AcquireReaderLock`。 或者，可以调用<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>来减少锁计数为零，立即。  
+ `AcquireReaderLock`支持递归读取器-锁请求。 也就是说, 一个线程可多次调用 AcquireReaderLock, 这将每次递增锁计数。 每次调用<xref:System.Threading.ReaderWriterLock.ReleaseReaderLock%2A> `AcquireReaderLock`时都必须调用一次。 或者, 你可以调用<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>来立即将锁计数减小到零。  
   
- 递归锁请求都始终立即授予，但不将读取器队列中的请求的线程。 使用递归锁时要注意，若要避免长时间阻止编写器锁的请求。  
+ 始终立即授予递归锁请求, 而无需将请求线程放入读取器队列。 请谨慎使用递归锁, 以避免长时间阻止写入方锁请求。  
   
- 有效超时值，请参阅<xref:System.Threading.ReaderWriterLock>。  
+ 有关有效的超时值, 请参阅<xref:System.Threading.ReaderWriterLock>。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何获取和释放读取器锁，以及如何处理的请求超时时引发的异常。  
+ 下面的代码示例演示如何获取和释放读取器锁, 以及如何处理请求超时时引发的异常。  
   
- 此代码是为提供一个更大示例的一部分<xref:System.Threading.ReaderWriterLock>类。  
+ 此代码是为<xref:System.Threading.ReaderWriterLock>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Threading.ReaderWriterLock#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CPP/source.cpp#2)]
  [!code-csharp[System.Threading.ReaderWriterLock#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CS/source.cs#2)]
@@ -271,16 +271,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.ReaderWriterLock.AcquireReaderLock%2A> 如果另一个线程持有写线程锁，或至少一个线程正在等待编写器锁将阻止。  
+ <xref:System.Threading.ReaderWriterLock.AcquireReaderLock%2A>如果其他线程具有写入器锁, 或者至少有一个线程正在等待编写器锁, 则为。  
   
 > [!NOTE]
->  如果当前线程已将写线程锁，则会不获取任何读取器锁。 相反，编写器锁的锁计数会递增。 这会阻止线程在其自己编写器锁阻塞。 结果应完全与调用<xref:System.Threading.ReaderWriterLock.AcquireWriterLock%2A>，并额外调用<xref:System.Threading.ReaderWriterLock.ReleaseWriterLock%2A>释放写入器锁时是必需的。  
+>  如果当前线程已具有写入器锁, 则不获取读取器锁。 相反, 写入器锁的锁计数将增加。 这会阻止线程在其自己的编写器锁上阻塞。 结果与调用<xref:System.Threading.ReaderWriterLock.AcquireWriterLock%2A>完全相同, 并且释放写入器锁时需要对<xref:System.Threading.ReaderWriterLock.ReleaseWriterLock%2A>的额外调用。  
   
- `AcquireReaderLock` 支持递归读取器锁请求。 也就是说，线程可以 AcquireReaderLock 多次调用，其中每次递增锁计数。 必须调用<xref:System.Threading.ReaderWriterLock.ReleaseReaderLock%2A>一次为每次调用`AcquireReaderLock`。 或者，可以调用<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>来减少锁计数为零，立即。  
+ `AcquireReaderLock`支持递归读取器-锁请求。 也就是说, 一个线程可多次调用 AcquireReaderLock, 这将每次递增锁计数。 每次调用<xref:System.Threading.ReaderWriterLock.ReleaseReaderLock%2A> `AcquireReaderLock`时都必须调用一次。 或者, 你可以调用<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>来立即将锁计数减小到零。  
   
- 递归锁请求都始终立即授予，但不将读取器队列中的请求的线程。 使用递归锁时要注意，若要避免长时间阻止编写器锁的请求。  
+ 始终立即授予递归锁请求, 而无需将请求线程放入读取器队列。 请谨慎使用递归锁, 以避免长时间阻止写入方锁请求。  
   
- 有效超时值，请参阅<xref:System.Threading.ReaderWriterLock>。  
+ 有关有效的超时值, 请参阅<xref:System.Threading.ReaderWriterLock>。  
   
  ]]></format>
         </remarks>
@@ -343,25 +343,25 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法进行阻止，如果另一个线程读取器锁或写线程锁。 将写线程锁交替使用多个并发读取器锁的方法的说明，请参阅<xref:System.Threading.ReaderWriterLock>类。  
+ 如果其他线程具有读取器锁或写入器锁, 则此方法将会阻止。 有关编写器锁与多个并发读取器锁交替的方式的说明, 请<xref:System.Threading.ReaderWriterLock>参阅类。  
   
- 已读取器锁的线程可以获取写线程锁在以下两种方式： 通过发布之前，调用读取器锁<xref:System.Threading.ReaderWriterLock.AcquireWriterLock%2A>，或通过调用<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>。  
+ 已具有读取器锁的线程可以通过以下两种方式之一获取编写器锁: 通过在调用<xref:System.Threading.ReaderWriterLock.AcquireWriterLock%2A>前释放读取器锁或通过调用<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>来获取写线程锁。  
   
 > [!CAUTION]
->  如果某个线程调用`AcquireWriterLock`虽然它仍有读取器锁，它将阻止其自身的读取器锁; 如果指定无限期超时，则该线程将发生死锁。 若要避免这类死锁，请使用<xref:System.Threading.ReaderWriterLock.IsReaderLockHeld%2A>以确定当前线程是否已具有读取器锁。  
+>  如果线程在仍`AcquireWriterLock`具有读取器锁的情况下调用, 它将在其自己的读取器锁上阻塞; 如果指定了无限超时, 则线程将死锁。 若要避免这种死<xref:System.Threading.ReaderWriterLock.IsReaderLockHeld%2A>锁, 请使用确定当前线程是否已具有读取器锁。  
   
- `AcquireWriterLock` 支持递归锁写入器锁请求。 也就是说，线程可以调用`AcquireWriterLock`多次，其中的锁计数递增每个时间。 必须调用<xref:System.Threading.ReaderWriterLock.ReleaseWriterLock%2A>一次为每次调用`AcquireWriterLock`。 或者，可以调用<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>来减少锁计数为零，立即。  
+ `AcquireWriterLock`支持递归写入器锁请求。 也就是说, 一个线程可以调用`AcquireWriterLock`多次, 这将每次递增锁计数。 每次调用<xref:System.Threading.ReaderWriterLock.ReleaseWriterLock%2A> `AcquireWriterLock`时都必须调用一次。 或者, 你可以调用<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>来立即将锁计数减小到零。  
   
- 递归锁请求始终立即授予而无需编写器队列中放置请求的线程。  
+ 始终立即授予递归锁请求, 而不将发出请求的线程置于编写器队列中。  
   
- 有效超时值，请参阅<xref:System.Threading.ReaderWriterLock>。  
+ 有关有效的超时值, 请参阅<xref:System.Threading.ReaderWriterLock>。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何获取和释放的编写器锁，以及如何处理的请求超时时引发的异常。  
+ 下面的代码示例演示如何获取和释放编写器锁, 以及如何处理请求超时时引发的异常。  
   
- 此代码是为提供一个更大示例的一部分<xref:System.Threading.ReaderWriterLock>类。  
+ 此代码是为<xref:System.Threading.ReaderWriterLock>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Threading.ReaderWriterLock#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CPP/source.cpp#2)]
  [!code-csharp[System.Threading.ReaderWriterLock#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CS/source.cs#2)]
@@ -423,18 +423,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法进行阻止，如果另一个线程读取器锁或写线程锁。 将写线程锁交替使用多个并发读取器锁的方法的说明，请参阅<xref:System.Threading.ReaderWriterLock>类。  
+ 如果其他线程具有读取器锁或写入器锁, 则此方法将会阻止。 有关编写器锁与多个并发读取器锁交替的方式的说明, 请<xref:System.Threading.ReaderWriterLock>参阅类。  
   
- 已读取器锁的线程可以获取写线程锁在以下两种方式： 通过发布之前，调用读取器锁<xref:System.Threading.ReaderWriterLock.AcquireWriterLock%2A>，或通过调用<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>。  
+ 已具有读取器锁的线程可以通过以下两种方式之一获取编写器锁: 通过在调用<xref:System.Threading.ReaderWriterLock.AcquireWriterLock%2A>前释放读取器锁或通过调用<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>来获取写线程锁。  
   
 > [!CAUTION]
->  如果某个线程调用`AcquireWriterLock`虽然它仍有读取器锁，它将阻止其自身的读取器锁; 如果指定无限期超时，则该线程将发生死锁。 若要避免这类死锁，请使用<xref:System.Threading.ReaderWriterLock.IsReaderLockHeld%2A>以确定当前线程是否已具有读取器锁。  
+>  如果线程在仍`AcquireWriterLock`具有读取器锁的情况下调用, 它将在其自己的读取器锁上阻塞; 如果指定了无限超时, 则线程将死锁。 若要避免这种死<xref:System.Threading.ReaderWriterLock.IsReaderLockHeld%2A>锁, 请使用确定当前线程是否已具有读取器锁。  
   
- `AcquireWriterLock` 支持递归锁写入器锁请求。 也就是说，线程可以调用`AcquireWriterLock`多次，其中的锁计数递增每个时间。 必须调用<xref:System.Threading.ReaderWriterLock.ReleaseWriterLock%2A>一次为每次调用`AcquireWriterLock`。 或者，可以调用<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>来减少锁计数为零，立即。  
+ `AcquireWriterLock`支持递归写入器锁请求。 也就是说, 一个线程可以调用`AcquireWriterLock`多次, 这将每次递增锁计数。 每次调用<xref:System.Threading.ReaderWriterLock.ReleaseWriterLock%2A> `AcquireWriterLock`时都必须调用一次。 或者, 你可以调用<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>来立即将锁计数减小到零。  
   
- 递归锁请求始终立即授予而无需编写器队列中放置请求的线程。  
+ 始终立即授予递归锁请求, 而不将发出请求的线程置于编写器队列中。  
   
- 有效超时值，请参阅<xref:System.Threading.ReaderWriterLock>。  
+ 有关有效的超时值, 请参阅<xref:System.Threading.ReaderWriterLock>。  
   
  ]]></format>
         </remarks>
@@ -488,16 +488,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Threading.ReaderWriterLock.WriterSeqNum%2A>和`AnyWritersSince`以提高应用程序性能。 例如，一个线程可能会缓存在持有读取器锁获取的信息。 线程可以使用后释放和更高版本重新获取该锁，`AnyWritersSince`以决定是否其他线程已在此期间; 中写入到的资源在没有，可以使用缓存的信息。 此方法很有用其中读取的锁保护的信息是昂贵;例如，运行数据库查询。  
+ 你可以使用<xref:System.Threading.ReaderWriterLock.WriterSeqNum%2A>和`AnyWritersSince`提高应用程序性能。 例如, 线程可能会缓存它在持有读线程锁时获得的信息。 在释放并之后 reacquiring 该锁后, 线程可以使用`AnyWritersSince`来确定其他线程是否已写入该资源, 如果不是, 则可以使用缓存的信息。 此方法在读取受锁定保护的信息时非常有用,例如, 运行数据库查询。  
   
- 调用方必须按顺序的序列号，才能读取器锁或写线程锁持有。  
+ 为了使序列号有用, 调用方必须持有读取器锁或写入器锁。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Threading.ReaderWriterLock.AnyWritersSince%2A>方法和<xref:System.Threading.ReaderWriterLock.WriterSeqNum%2A>属性以确定是否另一个线程获取自当前线程的受保护的资源编写器锁上次持有写线程锁。  
+ 下面的代码示例演示如何使用<xref:System.Threading.ReaderWriterLock.AnyWritersSince%2A>方法<xref:System.Threading.ReaderWriterLock.WriterSeqNum%2A>和属性来确定其他线程是否在当前线程上次持有写入器锁后获取受保护资源上的编写器锁。  
   
- 此代码是为提供一个更大示例的一部分<xref:System.Threading.ReaderWriterLock>类。  
+ 此代码是为<xref:System.Threading.ReaderWriterLock>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Threading.ReaderWriterLock#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CPP/source.cpp#2)]
  [!code-csharp[System.Threading.ReaderWriterLock#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CS/source.cs#2)]
@@ -558,19 +558,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.ReaderWriterLock.DowngradeFromWriterLock%2A> 释放写入器锁，而不考虑递归锁计数，并将还原为写线程锁升级之前由该线程将读取器锁。 还原上读取器锁的锁计数。  
+ <xref:System.Threading.ReaderWriterLock.DowngradeFromWriterLock%2A>释放编写器锁, 而不考虑递归锁计数, 并在升级到写入器锁之前还原线程所持有的读取器锁。 对读取器锁的锁计数进行了还原。  
   
 > [!NOTE]
->  `DowngradeFromWriterLock` 接受<xref:System.Threading.LockCookie>获取通过调用<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>。 不要使用`LockCookie`返回的<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>。  
+>  `DowngradeFromWriterLock`接受通过<xref:System.Threading.LockCookie>调用<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>获取的。 不要使用`LockCookie` <xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>返回的。  
   
- 一个线程不会阻止从编写器锁降级时，即使其他线程等待写线程锁，因为所有读取器锁请求被授予权限时编写器锁被释放。  
+ 当从编写器锁降级时, 即使其他线程正在等待编写器锁, 线程也不会阻止, 因为在释放编写器锁时, 将授予所有读取器锁请求。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何请求读取器锁，将读取器锁升级为写线程锁，并再次降级到读取器锁。  
+ 下面的代码示例演示如何请求读取器锁, 将读取器锁升级到写入器锁, 并再次降级到读取器锁。  
   
- 此代码是为提供一个更大示例的一部分<xref:System.Threading.ReaderWriterLock>类。  
+ 此代码是为<xref:System.Threading.ReaderWriterLock>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Threading.ReaderWriterLock#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CPP/source.cpp#2)]
  [!code-csharp[System.Threading.ReaderWriterLock#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CS/source.cs#2)]
@@ -627,7 +627,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 垃圾回收器调用<xref:System.Threading.ReaderWriterLock.Finalize%2A>时当前<xref:System.Threading.ReaderWriterLock>对象已准备好完成。  
+ 当当前<xref:System.Threading.ReaderWriterLock.Finalize%2A> <xref:System.Threading.ReaderWriterLock>对象准备好完成时, 垃圾回收器将调用。  
   
  ]]></format>
         </remarks>
@@ -731,7 +731,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示了当尝试获取具有的编写器锁，在线程上的读取器锁`ReaderWriterLock`不会授予读取器锁，但改为写线程锁上的锁计数会递增。  
+ 下面的代码示例演示当尝试获取具有编写器锁定的线程上的读取器锁时, 不会授予读取`ReaderWriterLock`器锁, 而是递增写入器锁上的锁计数。  
   
  [!code-cpp[System.Threading.ReaderWriterLock.IsWriterLockHeld#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock.IsWriterLockHeld/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.ReaderWriterLock.IsWriterLockHeld#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock.IsWriterLockHeld/CS/source.cs#1)]
@@ -784,14 +784,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.ReaderWriterLock.ReleaseLock%2A> 释放读取器锁或写线程锁，而不考虑递归锁计数。 若要还原的锁，其中包括锁计数的状态将传递<xref:System.Threading.LockCookie>到<xref:System.Threading.ReaderWriterLock.RestoreLock%2A>。  
+ <xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>释放读取器锁或写入器锁, 而不考虑递归锁计数。 若要还原锁的状态, 包括锁计数, 请将传递<xref:System.Threading.LockCookie>给。 <xref:System.Threading.ReaderWriterLock.RestoreLock%2A>  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>方法才能释放锁，而不考虑多少次已获取线程，以及如何还原锁更高版本的状态。  
+ 下面的代码示例演示了如何使用<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>方法来释放锁, 而不管线程获取该锁的次数, 以及如何在以后还原该锁的状态。  
   
- 此代码是为提供一个更大示例的一部分<xref:System.Threading.ReaderWriterLock>类。  
+ 此代码是为<xref:System.Threading.ReaderWriterLock>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Threading.ReaderWriterLock#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CPP/source.cpp#2)]
  [!code-csharp[System.Threading.ReaderWriterLock#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CS/source.cs#2)]
@@ -852,17 +852,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.ReaderWriterLock.ReleaseReaderLock%2A> 减少锁计数。 当计数达到零时，释放锁。  
+ <xref:System.Threading.ReaderWriterLock.ReleaseReaderLock%2A>减少锁计数。 如果计数为零, 则释放锁。  
   
 > [!NOTE]
->  如果线程持有写线程锁，则调用`ReleaseReaderLock`具有相同的效果与调用<xref:System.Threading.ReaderWriterLock.ReleaseWriterLock%2A>。 如果线程不持有任何锁，则调用`ReleaseReaderLock`引发<xref:System.ApplicationException>。  
+>  如果线程具有写入器锁, 则调用`ReleaseReaderLock`与调用<xref:System.Threading.ReaderWriterLock.ReleaseWriterLock%2A>的效果相同。 如果线程没有锁, 则调用`ReleaseReaderLock`会<xref:System.ApplicationException>引发。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何获取和释放读取器锁，以及如何处理的请求超时时引发的异常。  
+ 下面的代码示例演示如何获取和释放读取器锁, 以及如何处理请求超时时引发的异常。  
   
- 此代码是为提供一个更大示例的一部分<xref:System.Threading.ReaderWriterLock>类。  
+ 此代码是为<xref:System.Threading.ReaderWriterLock>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Threading.ReaderWriterLock#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CPP/source.cpp#2)]
  [!code-csharp[System.Threading.ReaderWriterLock#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CS/source.cs#2)]
@@ -924,17 +924,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.ReaderWriterLock.ReleaseWriterLock%2A> 减少写线程锁计数。 当计数达到零时，将写线程锁被释放。  
+ <xref:System.Threading.ReaderWriterLock.ReleaseWriterLock%2A>递减写入器锁计数。 当计数达到零时, 将释放写入器锁。  
   
 > [!NOTE]
->  如果线程持有读线程锁或任何锁，则调用`ReleaseWriterLock`引发<xref:System.ApplicationException>。  
+>  如果线程具有读取器锁或没有锁, 则调用`ReleaseWriterLock`将<xref:System.ApplicationException>引发。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何获取和释放的编写器锁，以及如何处理的请求超时时引发的异常。  
+ 下面的代码示例演示如何获取和释放编写器锁, 以及如何处理请求超时时引发的异常。  
   
- 此代码是为提供一个更大示例的一部分<xref:System.Threading.ReaderWriterLock>类。  
+ 此代码是为<xref:System.Threading.ReaderWriterLock>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Threading.ReaderWriterLock#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CPP/source.cpp#2)]
  [!code-csharp[System.Threading.ReaderWriterLock#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CS/source.cs#2)]
@@ -996,21 +996,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 状态还原由`RestoreLock`包括递归锁计数。  
+ 还原的状态`RestoreLock`包括递归锁计数。  
   
- 如果它尝试还原读取器锁，另一个线程获取写线程锁之后, 或如果它尝试还原将写线程锁，读取器锁或写线程锁获得另一个线程后将一个线程阻止。 因为`RestoreLock`不接受一个超时，您需要采取措施以避免可能的死锁。  
+ 如果线程在另一个线程获取了写入器锁后尝试还原读取器锁, 或在另一个线程获取了读取器锁或写入器锁之后尝试还原写入器锁, 则会阻止该线程。 由于`RestoreLock`不接受超时, 因此应小心避免可能出现的死锁。  
   
 > [!CAUTION]
->  然后再调用`RestoreLock`，请确保已发布到在调用获取的所有锁<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>。 例如，一个线程锁死如果它获取读取器锁，，然后尝试还原早期的编写器锁。 使用<xref:System.Threading.ReaderWriterLock.IsReaderLockHeld%2A>和<xref:System.Threading.ReaderWriterLock.IsWriterLockHeld%2A>来检测此类额外的锁。  
+>  在调用`RestoreLock`之前, 请确保已释放<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>调用后获取的所有锁。 例如, 如果线程获取读取器锁, 然后尝试还原以前的编写器锁, 则该线程会死锁。 使用<xref:System.Threading.ReaderWriterLock.IsReaderLockHeld%2A> 和<xref:System.Threading.ReaderWriterLock.IsWriterLockHeld%2A>检测此类附加锁。  
   
- 不要使用<xref:System.Threading.LockCookie>从返回<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>。  
+ 不要使用从<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>返回<xref:System.Threading.LockCookie>的。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>方法才能释放锁，而不考虑多少次已获取线程，以及如何还原锁更高版本的状态。  
+ 下面的代码示例演示了如何使用<xref:System.Threading.ReaderWriterLock.ReleaseLock%2A>方法来释放锁, 而不管线程获取该锁的次数, 以及如何在以后还原该锁的状态。  
   
- 此代码是为提供一个更大示例的一部分<xref:System.Threading.ReaderWriterLock>类。  
+ 此代码是为<xref:System.Threading.ReaderWriterLock>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Threading.ReaderWriterLock#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CPP/source.cpp#2)]
  [!code-csharp[System.Threading.ReaderWriterLock#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CS/source.cs#2)]
@@ -1083,23 +1083,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当线程调用`UpgradeToWriterLock`释放读取器锁，而不考虑锁定计数，并在线程进入队列的写入器锁结束。 因此，其他线程可能会写入之前请求升级被授予写入器锁的线程资源。  
+ 当线程调用`UpgradeToWriterLock`读取器锁时, 无论锁计数如何, 线程都将进入写入器锁队列的末尾。 因此, 在向请求升级的线程授予了写入方锁之前, 其他线程可能会写入资源。  
   
 > [!IMPORTANT]
->  直到调用线程不会引发超时异常<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>方法可以重新获取读线程锁。 如果没有其他线程等待编写器锁，这会立即执行。 但是，如果另一个线程将排队，等待写线程锁，该线程的调用<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>方法不能发布及其锁，所有当前读取器和一个线程已获取并释放写入器锁之前重新获取读线程锁。 这是 true，即使请求编写器锁的其他线程的当前线程在调用后请求<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>方法。  
+>  在调用<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>方法的线程可以重新获取读取器锁之前, 不会引发超时异常。 如果没有其他线程正在等待编写器锁, 则会立即发生这种情况。 但是, 如果另一个线程排队等候写入器锁, 则调用此<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>方法的线程将无法重新获取读取器锁, 直到所有当前读取器都释放了其锁, 并且一个线程已获取并释放了写入器锁。 即使在当前线程调用<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>了方法之后请求编写器锁的其他线程请求, 也是如此。  
   
- 若要还原的锁定状态，请调用<xref:System.Threading.ReaderWriterLock.DowngradeFromWriterLock%2A>使用<xref:System.Threading.LockCookie>返回的`UpgradeToWriterLock`。 请勿使用此功能`LockCookie`与<xref:System.Threading.ReaderWriterLock.RestoreLock%2A>。  
+ 若要还原锁定状态, 请<xref:System.Threading.ReaderWriterLock.DowngradeFromWriterLock%2A>使用返回<xref:System.Threading.LockCookie> `UpgradeToWriterLock`的调用。 请勿将此`LockCookie`与一起<xref:System.Threading.ReaderWriterLock.RestoreLock%2A>使用。  
   
- 当线程必须没有读取器锁时，不要使用`UpgradeToWriterLock`。 请改用 <xref:System.Threading.ReaderWriterLock.AcquireWriterLock%2A>。  
+ 当线程没有读取器锁时, 请不要使用`UpgradeToWriterLock`。 请改用 <xref:System.Threading.ReaderWriterLock.AcquireWriterLock%2A>。  
   
- 有效超时值，请参阅<xref:System.Threading.ReaderWriterLock>。  
+ 有关有效的超时值, 请参阅<xref:System.Threading.ReaderWriterLock>。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何请求读取器锁，将读取器锁升级为写线程锁，并再次降级到读取器锁。  
+ 下面的代码示例演示如何请求读取器锁, 将读取器锁升级到写入器锁, 并再次降级到读取器锁。  
   
- 此代码是为提供一个更大示例的一部分<xref:System.Threading.ReaderWriterLock>类。  
+ 此代码是为<xref:System.Threading.ReaderWriterLock>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Threading.ReaderWriterLock#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CPP/source.cpp#2)]
  [!code-csharp[System.Threading.ReaderWriterLock#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CS/source.cs#2)]
@@ -1157,16 +1157,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当线程调用`UpgradeToWriterLock`释放读取器锁，而不考虑锁定计数，并在线程进入队列的写入器锁结束。 因此，其他线程可能会写入之前请求升级被授予写入器锁的线程资源。  
+ 当线程调用`UpgradeToWriterLock`读取器锁时, 无论锁计数如何, 线程都将进入写入器锁队列的末尾。 因此, 在向请求升级的线程授予了写入方锁之前, 其他线程可能会写入资源。  
   
 > [!IMPORTANT]
->  直到调用线程不会引发超时异常<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>方法可以重新获取读线程锁。 如果没有其他线程等待编写器锁，这会立即执行。 但是，如果另一个线程将排队，等待写线程锁，该线程的调用<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>方法不能发布及其锁，所有当前读取器和一个线程已获取并释放写入器锁之前重新获取读线程锁。 这是 true，即使请求编写器锁的其他线程的当前线程在调用后请求<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>方法。  
+>  在调用<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>方法的线程可以重新获取读取器锁之前, 不会引发超时异常。 如果没有其他线程正在等待编写器锁, 则会立即发生这种情况。 但是, 如果另一个线程排队等候写入器锁, 则调用此<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>方法的线程将无法重新获取读取器锁, 直到所有当前读取器都释放了其锁, 并且一个线程已获取并释放了写入器锁。 即使在当前线程调用<xref:System.Threading.ReaderWriterLock.UpgradeToWriterLock%2A>了方法之后请求编写器锁的其他线程请求, 也是如此。  
   
- 若要还原的锁定状态，请调用<xref:System.Threading.ReaderWriterLock.DowngradeFromWriterLock%2A>使用<xref:System.Threading.LockCookie>返回的`UpgradeToWriterLock`。 请勿使用此功能`LockCookie`与<xref:System.Threading.ReaderWriterLock.RestoreLock%2A>。  
+ 若要还原锁定状态, 请<xref:System.Threading.ReaderWriterLock.DowngradeFromWriterLock%2A>使用返回<xref:System.Threading.LockCookie> `UpgradeToWriterLock`的调用。 请勿将此`LockCookie`与一起<xref:System.Threading.ReaderWriterLock.RestoreLock%2A>使用。  
   
- 当线程必须没有读取器锁时，不要使用`UpgradeToWriterLock`。 请改用 <xref:System.Threading.ReaderWriterLock.AcquireWriterLock%2A>。  
+ 当线程没有读取器锁时, 请不要使用`UpgradeToWriterLock`。 请改用 <xref:System.Threading.ReaderWriterLock.AcquireWriterLock%2A>。  
   
- 有效超时值，请参阅<xref:System.Threading.ReaderWriterLock>。  
+ 有关有效的超时值, 请参阅<xref:System.Threading.ReaderWriterLock>。  
   
  ]]></format>
         </remarks>
@@ -1216,18 +1216,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 序列都会增加只要某一线程获取写线程锁。 您可以保存的序列号并将其传递给<xref:System.Threading.ReaderWriterLock.AnyWritersSince%2A>在更高版本时，如果你想要确定其他线程是否已在此期间获取写线程锁。  
+ 每当线程获取写线程锁时, 序列号就会增加。 如果要确定其他线程是否在同一时间获取<xref:System.Threading.ReaderWriterLock.AnyWritersSince%2A>了编写器锁, 可以保存序列号并在以后将其传递到。  
   
- 可以使用`WriterSeqNum`以提高应用程序性能。 例如，一个线程可能会缓存在持有读取器锁获取的信息。 释放并稍后重新获取该锁之后，线程可以确定其他线程拥有的资源通过调用编写`AnyWritersSince`; 如果没有，可以使用缓存的信息。 此技术时，可以读取由锁保护的信息是昂贵;例如，运行数据库查询。  
+ 你可以使用`WriterSeqNum`来提高应用程序性能。 例如, 线程可能会缓存它在持有读线程锁时获得的信息。 在释放并之后 reacquiring 锁定后, 线程可以通过调用`AnyWritersSince`来确定其他线程是否已写入资源; 如果不是, 则可以使用缓存的信息。 当读取受锁定保护的信息时, 此方法非常有用;例如, 运行数据库查询。  
   
- 调用方必须按顺序的序列号，才能读取器锁或写线程锁持有。  
+ 为了使序列号有用, 调用方必须持有读取器锁或写入器锁。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Threading.ReaderWriterLock.WriterSeqNum%2A>属性和<xref:System.Threading.ReaderWriterLock.AnyWritersSince%2A>方法以确定是否另一个线程获取自当前线程的受保护的资源编写器锁上次持有写线程锁。  
+ 下面的代码示例演示如何使用<xref:System.Threading.ReaderWriterLock.WriterSeqNum%2A>属性<xref:System.Threading.ReaderWriterLock.AnyWritersSince%2A>和方法来确定自当前线程上次持有写入器锁后, 其他线程是否已获取受保护资源上的编写器锁。  
   
- 此代码是为提供一个更大示例的一部分<xref:System.Threading.ReaderWriterLock>类。  
+ 此代码是为<xref:System.Threading.ReaderWriterLock>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Threading.ReaderWriterLock#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CPP/source.cpp#2)]
  [!code-csharp[System.Threading.ReaderWriterLock#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ReaderWriterLock/CS/source.cs#2)]

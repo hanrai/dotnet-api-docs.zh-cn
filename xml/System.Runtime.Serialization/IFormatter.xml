@@ -1,5 +1,5 @@
 <Type Name="IFormatter" FullName="System.Runtime.Serialization.IFormatter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="23f47f6f000517dc57769bfe04fb4c405b492f4f" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58705091" /></Metadata><TypeSignature Language="C#" Value="public interface IFormatter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="50f410e86381178377bec311147321dc9672db41" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69087459" /></Metadata><TypeSignature Language="C#" Value="public interface IFormatter" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IFormatter" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Serialization.IFormatter" />
   <TypeSignature Language="VB.NET" Value="Public Interface IFormatter" />
@@ -34,13 +34,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此接口必须由标识为中的格式化程序的任何类实现<xref:System.Runtime.Serialization>体系结构。  
+ 此接口必须由<xref:System.Runtime.Serialization>架构中标识为格式化程序的任何类实现。  
   
- 对象控制其自己的序列化可以执行操作来实现<xref:System.Runtime.Serialization.ISerializable>接口。 为了使要进行序列化的对象，必须将标记为可序列化该对象。 可以通过将可序列化的特性应用于一个类来执行此操作。 如果关系图中的任何对象不可序列化，序列化将失败。  
+ 控制其自己的序列化的对象可以通过实现<xref:System.Runtime.Serialization.ISerializable>接口来实现此目的。 若要对对象进行序列化, 必须将该对象标记为可序列化。 为此, 可将可序列化属性应用于类。 如果关系图中的任何对象不可序列化, 则序列化将会失败。  
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>所有格式化程序必须实现此接口。 使用<see cref="M:System.Runtime.Serialization.IFormatter.Serialize(System.IO.Stream,System.Object)" />对象图进行序列化。 使用<see cref="M:System.Runtime.Serialization.IFormatter.Deserialize(System.IO.Stream)" />反序列化流并创建原始对象或对象图形的克隆。</para></block>
+    <block subset="none" type="overrides"><para>所有格式化程序都必须实现此接口。 用于<see cref="M:System.Runtime.Serialization.IFormatter.Serialize(System.IO.Stream,System.Object)" />序列化对象或对象图形。 使用<see cref="M:System.Runtime.Serialization.IFormatter.Deserialize(System.IO.Stream)" />对流进行反序列化, 并创建原始对象或对象图形的复本。</para></block>
     <altmember cref="T:System.Runtime.Serialization.Formatter" />
     <altmember cref="T:System.Runtime.Serialization.ISerializable" />
     <related type="Article" href="~/docs/standard/serialization/xml-and-soap-serialization.md">XML 和 SOAP 序列化</related>
@@ -81,9 +81,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当尝试解析中的信息的类型编码流，格式化程序上调用<xref:System.Runtime.Serialization.SerializationBinder.BindToType%2A>方法<xref:System.Runtime.Serialization.SerializationBinder>。 此方法将为这些参数解析<xref:System.Type>对象。 联编程序可以查找<xref:System.Type>在反序列化的序列化时间比其他程序集中的时间。  
+ 尝试从流中编码的信息解析类型时, 格式化程序将调用<xref:System.Runtime.Serialization.SerializationBinder.BindToType%2A> <xref:System.Runtime.Serialization.SerializationBinder>上的方法。 此方法将这些参数解析为<xref:System.Type>对象。 联编程序可以在反<xref:System.Type>序列化时找到与序列化时间不同的程序集中的。  
   
- 设置此属性在序列化期间起不起作用。  
+ 设置此属性在序列化过程中不起作用。  
   
  ]]></format>
         </remarks>
@@ -124,7 +124,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性的值传递给任何对象，实现<xref:System.Runtime.Serialization.ISerializable>或<xref:System.Runtime.Serialization.ISerializationSurrogate>。 <xref:System.Runtime.Serialization.StreamingContext>指示目标 （在序列化） 或数据源 （在反序列化）。 一个对象，实现<xref:System.Runtime.Serialization.ISerializable>可以更改它的值根据传输的数据<xref:System.Runtime.Serialization.IFormatter.Context%2A>。  
+ 此属性的值将传递给实现<xref:System.Runtime.Serialization.ISerializable>或<xref:System.Runtime.Serialization.ISerializationSurrogate>的任何对象。 <xref:System.Runtime.Serialization.StreamingContext>指示在数据的序列化过程中或源 (在反序列化期间) 的目标。 实现<xref:System.Runtime.Serialization.ISerializable>的对象可根据的<xref:System.Runtime.Serialization.IFormatter.Context%2A>值更改其传输的数据。  
   
  ]]></format>
         </remarks>
@@ -169,9 +169,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.IFormatter.Deserialize%2A>方法从流中读取图形信息并重新构造原始关系图的克隆。 保留的关系图的拓扑。  
+ <xref:System.Runtime.Serialization.IFormatter.Deserialize%2A>方法从流中读取关系图信息并重新构造原始关系图的克隆。 将保留关系图的拓扑。  
   
- 反序列化进程分配适当的类型的空对象，并重新填充从传输中的数据字段`serializationStream`流。 请务必注意，调用任何构造函数是曾在对象上反序列化过程。  
+ 反序列化进程分配适当类型的空对象, 并从`serializationStream`流中传输的数据重新填充其字段。 请务必注意, 在反序列化期间, 不会对对象调用任何构造函数。  
   
  ]]></format>
         </remarks>
@@ -218,9 +218,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.IFormatter.Serialize%2A>方法自动序列化所提供的对象和所有对象，都连接到所提供的流。  
+ <xref:System.Runtime.Serialization.IFormatter.Serialize%2A>方法会自动将提供的对象和所有连接到它的对象序列化到所提供的流。  
   
- 默认情况下，序列化进程对象的状态记录通过收集其所有字段 （公钥和私钥） 的值。 这些字段将保存到流以及如由其类型的程序集限定名称的对象的相关信息。  
+ 默认情况下, 序列化过程通过收集对象的所有字段 (公共和私有) 的值来记录对象的状态。 这些字段将连同有关对象的信息 (例如, 由程序集的类型限定的名称) 一起保存到流中。  
   
  ]]></format>
         </remarks>
@@ -262,7 +262,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Runtime.Serialization.ISerializationSurrogate>允许用户指定最适用于处理特定对象或对象的类的序列化。 将其视为实现<xref:System.Runtime.Serialization.ISerializable>但提供的一个不同的对象。  
+ <xref:System.Runtime.Serialization.ISerializationSurrogate>允许用户指定最适合处理特定对象或对象类的序列化的对象。 将其视为的<xref:System.Runtime.Serialization.ISerializable>实现, 但由其他对象提供。  
   
  ]]></format>
         </remarks>
