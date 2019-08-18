@@ -1,5 +1,5 @@
 <Type Name="HttpTransportBindingElement" FullName="System.ServiceModel.Channels.HttpTransportBindingElement">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e31a7c30fb75e6ef021b9fc3f8e4fd1e3e5fb977" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58553628" /></Metadata><TypeSignature Language="C#" Value="public class HttpTransportBindingElement : System.ServiceModel.Channels.TransportBindingElement, System.ServiceModel.Description.IPolicyExportExtension, System.ServiceModel.Description.IWsdlExportExtension" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="03787e77a3a53a2348eb832cc35526d7009e8f80" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69156307" /></Metadata><TypeSignature Language="C#" Value="public class HttpTransportBindingElement : System.ServiceModel.Channels.TransportBindingElement, System.ServiceModel.Description.IPolicyExportExtension, System.ServiceModel.Description.IWsdlExportExtension" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit HttpTransportBindingElement extends System.ServiceModel.Channels.TransportBindingElement implements class System.ServiceModel.Description.IPolicyExportExtension, class System.ServiceModel.Description.IWsdlExportExtension" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Channels.HttpTransportBindingElement" />
   <TypeSignature Language="VB.NET" Value="Public Class HttpTransportBindingElement&#xA;Inherits TransportBindingElement&#xA;Implements IPolicyExportExtension, IWsdlExportExtension" />
@@ -37,9 +37,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Channels.HttpTransportBindingElement> 类是创建实现 HTTP 传输协议的自定义绑定的起始点。 HTTP 是用于互操作性用途的主要传输。 通过 Windows Communication Foundation (WCF) 以确保与其他非 WCF Web 服务堆栈的互操作性支持此传输。  
+ <xref:System.ServiceModel.Channels.HttpTransportBindingElement> 类是创建实现 HTTP 传输协议的自定义绑定的起始点。 HTTP 是用于互操作性用途的主要传输。 Windows Communication Foundation (WCF) 支持此传输以确保与其他非 WCF Web 服务堆栈的互操作性。  
   
- WCF 服务模型使用此类实现的工厂对象创建<xref:System.ServiceModel.Channels.IChannelFactory>和<xref:System.ServiceModel.Channels.IChannelListener>接口。 这些工厂对象反过来创建使用 HTTP 协议传输 SOAP 消息的通道和侦听器。  
+ WCF 服务模型使用此类创建实现和<xref:System.ServiceModel.Channels.IChannelFactory> <xref:System.ServiceModel.Channels.IChannelListener>接口的工厂对象。 这些工厂对象反过来创建使用 HTTP 协议传输 SOAP 消息的通道和侦听器。  
   
  您可以通过设置此类的属性来配置此类创建的工厂，例如：<xref:System.ServiceModel.Channels.HttpTransportBindingElement.AuthenticationScheme%2A>、<xref:System.ServiceModel.Channels.HttpTransportBindingElement.HostNameComparisonMode%2A> 和 <xref:System.ServiceModel.Channels.HttpTransportBindingElement.MaxBufferSize%2A>。  
   
@@ -446,7 +446,7 @@ int odd=calc.Add(5,4);
 ## Remarks  
  本地地址是指位于本地 LAN 或 Intranet 上的地址。  
   
- WCF 始终忽略代理，如果服务地址以开始`http://localhost`。 如果希望客户端在与同一台计算机上的服务通话时使用代理，则应使用主机名称而非 `localhost`。  
+ 如果服务地址以开头`http://localhost`, WCF 将始终忽略代理。 如果希望客户端在与同一台计算机上的服务通话时使用代理，则应使用主机名称而非 `localhost`。  
   
    
   
@@ -904,7 +904,7 @@ httpBinding.MaxBufferSize = 16384;
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认值<xref:System.ServiceModel.Channels.HttpTransportBindingElement.MaxPendingAccepts%2A>为 0，这意味着 WCF 将为你配置值。 您可以增加更好的可伸缩性的数量。 在自承载情况下，此属性控制并发 BeginGetContext 调用 WCF 将调用的最大数目。 每次 BeginGetContext 调用一些内存被固定缓冲托管堆中。 如果过多的缓冲区已固定，可能会导致过多的堆碎片。 在 web 承载情况下将忽略此属性。  
+ 的<xref:System.ServiceModel.Channels.HttpTransportBindingElement.MaxPendingAccepts%2A>默认值为 0, 这意味着 WCF 将为你配置值。 可以增加数量以获得更好的可伸缩性。 在自承载的情况下, 此属性控制 WCF 将调用的同时 BeginGetContext 调用的最大数目。 每次调用 BeginGetContext 时, 都将在托管堆中固定一些内存, 以便进行缓冲。 如果固定的缓冲区过多, 可能会导致过多的堆碎片。 在 web 承载的情况下, 将忽略此属性。  
   
  ]]></format>
         </remarks>
@@ -1080,7 +1080,7 @@ httpBinding.ProxyAuthenticationScheme = AuthenticationSchemes.Digest;
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 服务器使用领域对受保护的资源进行分区；每个分区可以拥有其各自的身份验证方案或授权数据库。 领域仅用于基本和摘要式身份验证。 在客户端成功进行身份验证之后，该身份验证对给定领域内的所有资源都有效。 有关领域的详细说明，请参阅[RFC 2617](https://go.microsoft.com/fwlink/?LinkID=95943)。  
+ 服务器使用领域对受保护的资源进行分区；每个分区可以拥有其各自的身份验证方案或授权数据库。 领域仅用于基本和摘要式身份验证。 在客户端成功进行身份验证之后，该身份验证对给定领域内的所有资源都有效。 有关领域的详细说明, 请参阅[RFC 2617](https://go.microsoft.com/fwlink/?LinkID=95943)。  
   
  ]]></format>
         </remarks>
@@ -1160,7 +1160,7 @@ HttpTransportBindingElement httpBinding = new HttpTransportBindingElement();
 Console.WriteLine("The scheme of the binding is {0}.",httpBinding.Scheme);  
 ```  
   
- 输出为："绑定方案为 http。"  
+ 输出为："绑定的方案是 http。"  
   
  ]]></format>
         </remarks>
@@ -1289,7 +1289,7 @@ Console.WriteLine("The scheme of the binding is {0}.",httpBinding.Scheme);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法写入到 WSDL 信息与绑定相关的语句特定协定公开和使用由 Windows Communication Foundation (WCF) 以通知客户端绑定堆栈中的此自定义绑定元素存在。  
+ 此方法将绑定相关的语句写入特定协定公开的 WSDL 信息, Windows Communication Foundation (WCF) 使用此方法与客户端通信, 以便在绑定堆栈中存在此自定义绑定元素。  
   
  此方法接受两个参数：<xref:System.ServiceModel.Description.MetadataExporter> 和 <xref:System.ServiceModel.Description.PolicyConversionContext> 对象。 使用 <xref:System.ServiceModel.Description.PolicyConversionContext.GetBindingAssertions%2A>, <xref:System.ServiceModel.Description.PolicyConversionContext.GetMessageBindingAssertions%2A> 和 <xref:System.ServiceModel.Description.PolicyConversionContext.GetOperationBindingAssertions%2A> 方法以获取从不同范围导出的策略断言的集合。 然后，使用此方法将您自己的策略断言添加到适当的集合中。  
   
@@ -1402,10 +1402,10 @@ Console.WriteLine("The scheme of the binding is {0}.",httpBinding.Scheme);
       <Docs>
         <summary>获取或设置传输模式。</summary>
         <value><see cref="P:System.ServiceModel.Channels.HttpTransportBindingElement.TransferMode" /> 的下列成员值之一： 
-缓冲 
-流模式 
--   StreamedRequest 
--   StreamedResponse</value>
+-缓冲 
+-流式处理 
+-StreamedRequest 
+-StreamedResponse</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1461,7 +1461,7 @@ Console.WriteLine("The scheme of the binding is {0}.",httpBinding.Scheme);
 > [!NOTE]
 >  将此属性设置为 `true` 时不会发送其他 NTLM 身份验证质询，因此会提高性能，但是由于不要求所有请求都提供身份验证信息，所以存在安全风险。 必须确定为提高性能冒此风险是否值得。  
   
- 有关详情，请参阅<xref:System.Net.HttpListener.UnsafeConnectionNtlmAuthentication%2A>。  
+ 有关详细信息，请参阅 <xref:System.Net.HttpListener.UnsafeConnectionNtlmAuthentication%2A>。  
   
    
   

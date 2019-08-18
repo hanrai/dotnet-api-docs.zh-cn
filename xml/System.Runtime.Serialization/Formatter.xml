@@ -1,5 +1,5 @@
 <Type Name="Formatter" FullName="System.Runtime.Serialization.Formatter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0ad2932f20aa808ff86f7a6f0791e393cd25b585" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58733912" /></Metadata><TypeSignature Language="C#" Value="public abstract class Formatter : System.Runtime.Serialization.IFormatter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f90b964f0ed57d27c537a300ef07ff33237f63a8" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69087494" /></Metadata><TypeSignature Language="C#" Value="public abstract class Formatter : System.Runtime.Serialization.IFormatter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract serializable beforefieldinit Formatter extends System.Object implements class System.Runtime.Serialization.IFormatter" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Serialization.Formatter" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class Formatter&#xA;Implements IFormatter" />
@@ -47,11 +47,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.Formatter> 是`abstract`基类的所有运行时序列化格式化程序，并提供一些帮助器方法用于实现<xref:System.Runtime.Serialization.IFormatter>接口。 <xref:System.Runtime.Serialization.Formatter>还管理队列对象的序列化并在每个对象的基础上生成 Id。  
+ <xref:System.Runtime.Serialization.Formatter>是所有`abstract`运行时序列化格式化程序的基类, 并提供一些用于<xref:System.Runtime.Serialization.IFormatter>实现接口的帮助器方法。 <xref:System.Runtime.Serialization.Formatter>还管理用于序列化的排队对象并基于每个对象生成 id。  
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>继承自<see cref="T:System.Runtime.Serialization.Formatter" />，必须重写以下成员： 
+    <block subset="none" type="overrides"><para>当从<see cref="T:System.Runtime.Serialization.Formatter" />继承时, 必须重写以下成员: 
 -   <see cref="M:System.Runtime.Serialization.Formatter.Serialize(System.IO.Stream,System.Object)" />  
   
 -   <see cref="M:System.Runtime.Serialization.Formatter.Deserialize(System.IO.Stream)" />  
@@ -132,7 +132,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 创建<xref:System.Collections.Queue>对于序列化的对象和一个<xref:System.Runtime.Serialization.ObjectIDGenerator>若要为其生成 Id。  
+ 为要序列化的对象创建<xref:System.Runtime.Serialization.ObjectIDGenerator> , 并为其生成 id。 <xref:System.Collections.Queue>  
   
  ]]></format>
         </remarks>
@@ -177,11 +177,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.SerializationBinder>来自反序列化期间传递的类型名称的类型执行查找。 如果没有<xref:System.Runtime.Serialization.SerializationBinder>，则使用默认值。  
+ 在<xref:System.Runtime.Serialization.SerializationBinder>反序列化过程中通过类型名称对类型执行查找。 如果未<xref:System.Runtime.Serialization.SerializationBinder>设置, 则使用默认值。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此属性。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此属性。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Context">
@@ -222,11 +222,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.StreamingContext>是相对值的指示是要反序列化的位的源或目标的正在序列化的位。 它不会影响对默认的序列化，但作为参数传递<xref:System.Runtime.Serialization.ISerializable>和<xref:System.Runtime.Serialization.ISerializationSurrogate>。  
+ <xref:System.Runtime.Serialization.StreamingContext>表示要反序列化的位的源或要序列化的位的目标。 它不会影响默认序列化, 但会作为参数传递给<xref:System.Runtime.Serialization.ISerializable>和。 <xref:System.Runtime.Serialization.ISerializationSurrogate>  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此属性。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此属性。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Deserialize">
@@ -268,7 +268,7 @@
         <summary>当在派生类中重写时，将连接到格式化程序的流反序列化（在创建该流时），以创建与最初序列化为该流的图形相同的对象图形。</summary>
         <returns>对象的反序列化图形的顶级对象。</returns>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
         <related type="Article" href="~/docs/standard/serialization/xml-and-soap-serialization.md">XML 和 SOAP 序列化</related>
       </Docs>
     </Member>
@@ -311,7 +311,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在先进先出顺序基于如何它们传递到返回的对象<xref:System.Runtime.Serialization.Formatter.Schedule%2A>。 对象的 ID 放入`objID`参数，该对象从函数返回。  
+ 根据传递到<xref:System.Runtime.Serialization.Formatter.Schedule%2A>对象的方式, 按首先的顺序返回对象。 对象的 ID 放入`objID`参数, 并从函数返回对象。  
   
  ]]></format>
         </remarks>
@@ -353,7 +353,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.ObjectIDGenerator>维护的已发现的对象和它们提供的 Id 列表。  
+ <xref:System.Runtime.Serialization.ObjectIDGenerator>维护已标识的对象列表和提供的 id。  
   
  ]]></format>
         </remarks>
@@ -393,7 +393,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 计划使用序列化的对象<xref:System.Runtime.Serialization.Formatter.Schedule%2A>方法被推入队列。  
+ 计划用<xref:System.Runtime.Serialization.Formatter.Schedule%2A>方法进行序列化的对象会推送到队列中。  
   
  ]]></format>
         </remarks>
@@ -439,7 +439,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.Formatter.Schedule%2A> 获取该对象的 ID 并将其放在更高版本的序列化的队列，如果这是一个新的对象 id。 计划是工作队列的对象进行序列化，它包含在格式化程序。 如果该对象已在工作队列中，它将不添加第二次，但任何一个，不会引发异常。  
+ <xref:System.Runtime.Serialization.Formatter.Schedule%2A>获取对象的 ID, 并将其放在队列中, 以便以后序列化 (如果这是新的对象 ID)。 计划是要序列化的对象的工作队列, 保存在格式化程序内。 如果该对象已在工作队列中, 则不会第二次添加该对象, 但也不会引发异常。  
   
  ]]></format>
         </remarks>
@@ -486,7 +486,7 @@
         <param name="graph">位于要序列化图形的根位置的对象。</param>
         <summary>当在派生类中重写时，将具有指定根的对象图形序列化为已经连接到格式化程序的流。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
         <related type="Article" href="~/docs/standard/serialization/xml-and-soap-serialization.md">XML 和 SOAP 序列化</related>
       </Docs>
     </Member>
@@ -528,13 +528,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Runtime.Serialization.SurrogateSelector>若要查找的实现<xref:System.Runtime.Serialization.ISerializationSurrogate>，以控制特定类型的序列化。  
+ 使用可查找的实现, 该实现控制特定类型的序列化。 <xref:System.Runtime.Serialization.ISerializationSurrogate> <xref:System.Runtime.Serialization.SurrogateSelector>  
   
- 如果对象类型具有匹配的代理项，则序列化和反序列化移交给该代理项即使该类型实现<xref:System.Runtime.Serialization.ISerializable>接口。  
+ 如果对象类型具有匹配的代理项, 则即使类型实现<xref:System.Runtime.Serialization.ISerializable>接口, 序列化和反序列化仍会传递到代理项。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此属性。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此属性。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteArray">
@@ -576,7 +576,7 @@
         <param name="memberType">数组包含的元素的类型。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入一个数组。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteBoolean">
@@ -616,7 +616,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入一个 Boolean 值。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteByte">
@@ -656,7 +656,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入一个 8 位无符号整数。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteChar">
@@ -696,7 +696,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入一个 Unicode 字符。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteDateTime">
@@ -736,7 +736,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入一个 <see cref="T:System.DateTime" /> 值。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
         <altmember cref="T:System.DateTime" />
       </Docs>
     </Member>
@@ -777,7 +777,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入一个 <see cref="T:System.Decimal" /> 值。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
         <altmember cref="T:System.Decimal" />
       </Docs>
     </Member>
@@ -818,7 +818,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入一个双精度浮点数字。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteInt16">
@@ -858,7 +858,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入一个 16 位有符号整数。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteInt32">
@@ -898,7 +898,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向流中写入一个 32 位有符号整数。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteInt64">
@@ -938,7 +938,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向流中写入一个 64 位有符号整数。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteMember">
@@ -981,7 +981,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要使用此方法正常，所有`Write`方法 (<xref:System.Runtime.Serialization.Formatter.WriteArray%2A>方法，<xref:System.Runtime.Serialization.Formatter.WriteBoolean%2A>方法，<xref:System.Runtime.Serialization.Formatter.WriteByte%2A>方法中，依次类推) 应具有相应的功能。  
+ 若要正确使用此方法, 所有`Write`方法 (<xref:System.Runtime.Serialization.Formatter.WriteArray%2A>方法、 <xref:System.Runtime.Serialization.Formatter.WriteBoolean%2A>方法、 <xref:System.Runtime.Serialization.Formatter.WriteByte%2A>方法等) 都应具有相应的功能。  
   
  ]]></format>
         </remarks>
@@ -1029,11 +1029,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用图形查看器来处理工作计划对象。  
+ 使用图形查看遍历来计划对象, 以处理工作。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteSByte">
@@ -1078,7 +1078,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入一个 8 位有符号整数。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteSingle">
@@ -1118,7 +1118,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入一个单精度浮点数字。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteTimeSpan">
@@ -1158,7 +1158,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入一个 <see cref="T:System.TimeSpan" /> 值。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
         <altmember cref="T:System.TimeSpan" />
       </Docs>
     </Member>
@@ -1204,7 +1204,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入一个 16 位无符号整数。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteUInt32">
@@ -1249,7 +1249,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入一个 32 位无符号整数。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteUInt64">
@@ -1294,7 +1294,7 @@
         <param name="name">成员名。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入一个 64 位无符号整数。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteValueType">
@@ -1336,7 +1336,7 @@
         <param name="memberType">值类型的 <see cref="T:System.Type" />。</param>
         <summary>当在派生类中重写时，向已经连接到格式化程序的流中写入给定类型的值。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>您必须在派生类中实现此方法。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中实现此方法。</para></block>
         <altmember cref="T:System.ValueType" />
       </Docs>
     </Member>

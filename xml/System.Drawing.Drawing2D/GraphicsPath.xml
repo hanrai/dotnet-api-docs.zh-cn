@@ -1,5 +1,5 @@
 <Type Name="GraphicsPath" FullName="System.Drawing.Drawing2D.GraphicsPath">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d76b4f131ed0fb365205bcfc0d72419e1798de9f" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63882199" /></Metadata><TypeSignature Language="C#" Value="public sealed class GraphicsPath : MarshalByRefObject, ICloneable, IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="09ff9fdc49146379087c70b61a84e3348f410789" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69249726" /></Metadata><TypeSignature Language="C#" Value="public sealed class GraphicsPath : MarshalByRefObject, ICloneable, IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit GraphicsPath extends System.MarshalByRefObject implements class System.ICloneable, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Drawing.Drawing2D.GraphicsPath" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class GraphicsPath&#xA;Inherits MarshalByRefObject&#xA;Implements ICloneable, IDisposable" />
@@ -34,19 +34,19 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序使用路径来绘制形状的轮廓、 填充的形状，内部和创建剪辑区域。 图形引擎维护世界坐标空间中的路径中的几何形状的坐标。  
+ 应用程序使用路径来绘制形状的轮廓、填充形状的内部和创建剪辑区域。 图形引擎在世界坐标空间内维护路径中几何形状的坐标。  
   
- 路径可能组成的任意数量的图形 （子路径）。 每个图或者组成一系列相互连接的直线和曲线或几何形状基元。 图形的起点是序列中的连接的直线和曲线的第一个点。 结束点是在序列中的最后一个点。 由基元规范定义几何形状基元的起始和结束点。  
+ 路径可以包含任意数量的图形 (子路径)。 每个图形均由一系列连接的直线和曲线或几何形状基元组成。 图的起点是连接直线和曲线序列中的第一个点。 结束点是序列中的最后一个点。 几何形状基元的起始点和结束点由基元规范定义。  
   
- 一个图，它包含一系列相互连接的直线和曲线 （其开始和结束点可以是同一） 是开放的图形，除非它被显式关闭。 可以通过使用显式地关闭图<xref:System.Drawing.Drawing2D.GraphicsPath.CloseFigure%2A>方法，这会关闭当前图形通过连接一条从终结点到起始点。 包含几何形状基元图是闭合的图。  
+ 由一系列连接的直线和曲线 (其起始点和结束点可能一致) 组成的图形是开放图形, 除非它是显式闭合的。 可以通过使用<xref:System.Drawing.Drawing2D.GraphicsPath.CloseFigure%2A>方法显式关闭图形, 该方法通过将线条从结束点连接到起始点来关闭当前图形。 由几何形状基元组成的图形是闭合图形。  
   
- 用于填充和剪辑的目的 (例如，如果使用呈现路径<xref:System.Drawing.Graphics.FillPath%2A>)、 所有打开图通过将行从图中的第一个点添加到其终结点已关闭。  
+ 出于填充和剪裁目的 (例如, 如果使用<xref:System.Drawing.Graphics.FillPath%2A>呈现路径), 将通过从图形的第一个点到最后一个点添加线条来关闭所有打开的图形。  
   
- 创建路径时或图形已关闭隐式启动一个新图形。 一个新图形时显式创建<xref:System.Drawing.Drawing2D.GraphicsPath.StartFigure%2A>调用方法。  
+ 当创建路径或关闭图形时, 将隐式启动一个新图形。 当调用<xref:System.Drawing.Drawing2D.GraphicsPath.StartFigure%2A>方法时, 将显式创建一个新图形。  
   
- 几何形状基元添加到路径，它将添加图形包含几何形状，并还将隐式开始一个新图形。 因此，没有始终在当前图形路径中。 时的直线和曲线将添加到路径中，根据需要连接到的新的直线和曲线以形成一系列相互连接的直线和曲线的起始点的当前图形的结束点被添加隐式行。  
+ 将几何形状基元添加到路径时, 它将添加一个包含几何形状的图形, 并且还隐式启动一个新图形。 因此, 在路径中始终有一个当前图形。 将直线和曲线添加到路径时, 会根据需要添加隐式线条, 以将当前图形的结束点连接到新直线和曲线的起点, 以形成一系列连接的直线和曲线。  
   
- 图中描述直线和曲线的段的起点和终点之间的跟踪方式的方向。 中的直线和曲线添加到图中，或定义的几何形状基元的顺序定义了方向。 方向是在确定剪辑以及填充的路径内部使用。  
+ 图有一个方向, 该方向说明了如何在起始点和结束点之间跟踪线条和曲线段。 方向定义为: 直线和曲线添加到图形的顺序, 或由几何形状基元定义。 方向用于确定用于剪辑和填充的路径内部。  
   
  ]]></format>
     </remarks>
@@ -302,22 +302,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果以前的行或在图中的曲线的行被添加上一个段的终结点连接到弧线的开头。  
+ 如果图中有前面的行或曲线, 则会添加一条线, 以将上一段的端点连接到弧线的开头。  
   
- 圆弧轨迹沿着由指定矩形绑定的椭圆的周界。 通过从 （0 度角） 椭圆的 x 轴沿顺时针方向度量的中的开始角度度数确定弧线的起始点。 通过从起始点沿顺时针方向度量的中的扫描角度度数位于同样到终结点。 如果大于 360 度或小于-360 度的扫描角度，是分别将弧线扫过完全 360 度或-360 度。  
+ 圆弧沿指定矩形所限定的椭圆的外围进行跟踪。 圆弧的起点是通过从椭圆的 x 轴 (0 度角) 沿起始角度的度数顺时针度量来确定的。 此终结点的定位方式类似于从起始点沿顺时针方向测量扫描角度的度数。 如果扫描角度大于360度或小于360度, 则圆弧将分别扫描360度或-360 度。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
--   创建一个矩形，从中定义圆弧。  
+-   创建一个矩形, 其中定义了 arc。  
   
 -   创建一个路径`myPath`。  
   
--   定义 180 度椭圆弧扫过从 0 度到 180 度，并将其追加到的路径。  
+-   定义从0度到180度扫描并将其追加到路径的180度椭圆弧。  
   
--   向屏幕中绘制该路径。  
+-   将路径绘制到屏幕上。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#1](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#1)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#1](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#1)]
@@ -364,9 +364,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果以前的行或在图中的曲线的行被添加上一个段的终结点连接到弧线的开头。  
+ 如果图中有前面的行或曲线, 则会添加一条线, 以将上一段的端点连接到弧线的开头。  
   
- 圆弧轨迹沿着由指定矩形绑定的椭圆的周界。 通过从 （0 度角） 椭圆的 x 轴沿顺时针方向度量的中的开始角度度数确定弧线的起始点。 通过从起始点沿顺时针方向度量的中的扫描角度度数位于同样到终结点。 如果大于 360 度或小于-360 度的扫描角度，是分别将弧线扫过完全 360 度或-360 度。  
+ 圆弧沿指定矩形所限定的椭圆的外围进行跟踪。 圆弧的起点是通过从椭圆的 x 轴 (0 度角) 沿起始角度的度数顺时针度量来确定的。 此终结点的定位方式类似于从起始点沿顺时针方向测量扫描角度的度数。 如果扫描角度大于360度或小于360度, 则圆弧将分别扫描360度或-360 度。  
   
    
   
@@ -420,9 +420,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果以前的行或在图中的曲线的行被添加上一个段的终结点连接到弧线的开头。  
+ 如果图中有前面的行或曲线, 则会添加一条线, 以将上一段的端点连接到弧线的开头。  
   
- 圆弧轨迹沿着由指定矩形绑定的椭圆的周界。 通过从 （0 度角） 椭圆的 x 轴沿顺时针方向度量的中的开始角度度数确定弧线的起始点。 通过从起始点沿顺时针方向度量的中的扫描角度度数位于同样到终结点。 如果大于 360 度或小于-360 度的扫描角度，是分别将弧线扫过完全 360 度或-360 度。  
+ 圆弧沿指定矩形所限定的椭圆的外围进行跟踪。 圆弧的起点是通过从椭圆的 x 轴 (0 度角) 沿起始角度的度数顺时针度量来确定的。 此终结点的定位方式类似于从起始点沿顺时针方向测量扫描角度的度数。 如果扫描角度大于360度或小于360度, 则圆弧将分别扫描360度或-360 度。  
   
    
   
@@ -476,9 +476,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果以前的行或在图中的曲线的行被添加上一个段的终结点连接到弧线的开头。  
+ 如果图中有前面的行或曲线, 则会添加一条线, 以将上一段的端点连接到弧线的开头。  
   
- 圆弧轨迹沿着由指定矩形绑定的椭圆的周界。 通过从 （0 度角） 椭圆的 x 轴沿顺时针方向度量的中的开始角度度数确定弧线的起始点。 通过从起始点沿顺时针方向度量的中的扫描角度度数位于同样到终结点。 如果大于 360 度或小于-360 度的扫描角度，是分别将弧线扫过完全 360 度或-360 度。  
+ 圆弧沿指定矩形所限定的椭圆的外围进行跟踪。 圆弧的起点是通过从椭圆的 x 轴 (0 度角) 沿起始角度的度数顺时针度量来确定的。 此终结点的定位方式类似于从起始点沿顺时针方向测量扫描角度的度数。 如果扫描角度大于360度或小于360度, 则圆弧将分别扫描360度或-360 度。  
   
    
   
@@ -537,9 +537,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 三次曲线控制点为使用第二个和第三个点构造从第一个点到第四个点。  
+ 通过使用第二个点和第三个点作为控制点, 从第一个点到第四个点构造三次曲线。  
   
- 如果没有上一个行或在图中的曲线段，添加一条线连接到三次曲线的起始点的上一个段的终结点。  
+ 如果图中有上一个直线段或曲线段, 则将添加一条线, 以将上一段的端点连接到三条曲线的起点。  
   
    
   
@@ -589,9 +589,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 三次曲线控制点为使用第二个和第三个点构造从第一个点到第四个点。  
+ 通过使用第二个点和第三个点作为控制点, 从第一个点到第四个点构造三次曲线。  
   
- 如果没有上一个行或在图中的曲线段，添加一条线连接到三次曲线的起始点的上一个段的终结点。  
+ 如果图中有上一个直线段或曲线段, 则将添加一条线, 以将上一段的端点连接到三条曲线的起点。  
   
    
   
@@ -649,22 +649,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 三次曲线控制点为使用第二个和第三个点构造从第一个点到第四个点。  
+ 通过使用第二个点和第三个点作为控制点, 从第一个点到第四个点构造三次曲线。  
   
- 如果没有上一个行或在图中的曲线段，添加一条线连接到三次曲线的起始点的上一个段的终结点。  
+ 如果图中有上一个直线段或曲线段, 则将添加一条线, 以将上一段的端点连接到三条曲线的起点。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
 -   创建一个路径。  
   
--   添加由点 （50，50），定义一条三次方贝塞尔曲线 （70，0），（100，120） 和 （150，50） 的路径。  
+-   向路径添加点 (50, 50)、(70, 0)、(100、120) 和 (150, 50) 定义的三次贝塞尔曲线。  
   
 -   闭合曲线。  
   
--   向屏幕中绘制该路径。  
+-   将路径绘制到屏幕上。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#2](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#2)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#2](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#2)]
@@ -721,9 +721,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 三次曲线控制点为使用第二个和第三个点构造从第一个点到第四个点。  
+ 通过使用第二个点和第三个点作为控制点, 从第一个点到第四个点构造三次曲线。  
   
- 如果没有上一个行或在图中的曲线段，添加一条线连接到三次曲线的起始点的上一个段的终结点。  
+ 如果图中有上一个直线段或曲线段, 则将添加一条线, 以将上一段的端点连接到三条曲线的起点。  
   
    
   
@@ -782,20 +782,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `points`参数指定终结点的数组和已连接的曲线的控制点。 第一条曲线的第一个点从构造中的第四个点`points`作为管理点使用的第二个和第三个点的数组。 除了前一条曲线的终结点，在序列中的每个后续曲线需要完全三个点： 序列中的接下来两个点是控点和第三个是添加曲线的终结点。  
+ `points`参数指定已连接曲线的端点和控制点的数组。 第一条曲线通过使用第二个点和第三个点`points`作为控制点, 从数组中的第一个点构造到第四个点。 除了前一条曲线的端点外, 序列中的每个后续曲线还需要三个点: 序列中的下两个点为控制点, 第三个点为添加曲线的端点。  
   
- 如果以前的行或在图中的曲线，添加一条线连接到序列中第一个三次曲线的起始点的上一个段的终结点。  
+ 如果图中有前面的行或曲线, 则会添加一条线, 以将上一段的端点连接到序列中第一条立方曲线的起点。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
--   创建七个点 （表示两个已连接的贝塞尔曲线） 的数组。  
+-   创建一个由七个点组成的数组 (表示两个连接的贝塞尔曲线)。  
   
--   创建一个路径，并将贝塞尔曲线点的一系列添加到路径。  
+-   创建一个路径, 并将一系列贝赛尔曲线点添加到该路径。  
   
--   向屏幕中绘制该路径。  
+-   将路径绘制到屏幕上。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#3](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#3)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#3](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#3)]
@@ -838,14 +838,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `points`参数指定终结点的数组和已连接的曲线的控制点。 第一条曲线的第一个点从构造中的第四个点`points`作为管理点使用的第二个和第三个点的数组。 除了前一条曲线的终结点，在序列中的每个后续曲线需要完全三个点： 序列中的接下来两个点是控点和第三个是添加曲线的终结点。  
+ `points`参数指定已连接曲线的端点和控制点的数组。 第一条曲线通过使用第二个点和第三个点`points`作为控制点, 从数组中的第一个点构造到第四个点。 除了前一条曲线的端点外, 序列中的每个后续曲线还需要三个点: 序列中的下两个点为控制点, 第三个点为添加曲线的端点。  
   
- 如果以前的行或在图中的曲线，添加一条线连接到序列中第一个三次曲线的起始点的上一个段的终结点。  
+ 如果图中有前面的行或曲线, 则会添加一条线, 以将上一段的端点连接到序列中第一条立方曲线的起点。  
   
    
   
 ## Examples  
- 有关示例，请参阅：  
+ 有关示例, 请参阅:  
   
  <xref:System.Drawing.Drawing2D.GraphicsPath.AddBeziers%28System.Drawing.Point%5B%5D%29>  
   
@@ -895,7 +895,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果需要则用户必须保留原始的点。 原始点可以转换为三次方贝塞尔曲线的控制点在内部，因此没有用于返回原始点机制。 如果第一个点和中的最后一个点`points`数组不是相同的点，通过连接这两个点来闭合曲线。 张力值不能设置为此方法，默认值为等效于 0.5 的值。  
+ 用户必须保留原始点 (如果需要)。 原始点在内部转换为三次 Bezier 控制点, 因此没有用于返回原始点的机制。 如果`points`数组中的第一个点和最后一个点不是同一点, 则通过连接这两个点来结束曲线。 不能为此方法设置张力值, 默认值为等效于0.5 的值。  
   
    
   
@@ -939,7 +939,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果需要则用户必须保留原始的点。 原始点可以转换为三次方贝塞尔曲线的控制点在内部，因此没有用于返回原始点机制。 如果第一个点和中的最后一个点`points`数组不是相同的点，通过连接这两个点来闭合曲线。 张力值不能设置为此方法，默认值为等效于 0.5 的值。  
+ 用户必须保留原始点 (如果需要)。 原始点在内部转换为三次 Bezier 控制点, 因此没有用于返回原始点的机制。 如果`points`数组中的第一个点和最后一个点不是同一点, 则通过连接这两个点来结束曲线。 不能为此方法设置张力值, 默认值为等效于0.5 的值。  
   
    
   
@@ -985,20 +985,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果需要则用户必须保留原始的点。 原始点可以转换为三次方贝塞尔曲线的控制点在内部，因此没有用于返回原始点机制。 如果第一个点和中的最后一个点`points`数组不是相同的点，通过连接这两个点来闭合曲线。  
+ 用户必须保留原始点 (如果需要)。 原始点在内部转换为三次 Bezier 控制点, 因此没有用于返回原始点的机制。 如果`points`数组中的第一个点和最后一个点不是同一点, 则通过连接这两个点来结束曲线。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
--   创建六个点 （表示基数样条） 的数组。  
+-   创建一个包含六个点 (表示基数样条) 的数组。  
   
--   创建一个路径，并将闭合基数样条曲线添加到 （关闭从终结点到起始点） 的路径。  
+-   创建一个路径, 并将闭合基数样条曲线添加到该路径 (从终结点到起始点)。  
   
--   向屏幕中绘制该路径。  
+-   将路径绘制到屏幕上。  
   
- 请注意，使用 0.5 的张力。  
+ 请注意, 使用张力为0.5。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#4](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#4)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#4](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#4)]
@@ -1043,7 +1043,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果需要则用户必须保留原始的点。 原始点可以转换为三次方贝塞尔曲线的控制点在内部，因此没有用于返回原始点机制。 如果第一个点和中的最后一个点`points`数组不是相同的点，通过连接这两个点来闭合曲线。  
+ 用户必须保留原始点 (如果需要)。 原始点在内部转换为三次 Bezier 控制点, 因此没有用于返回原始点的机制。 如果`points`数组中的第一个点和最后一个点不是同一点, 则通过连接这两个点来结束曲线。  
   
    
   
@@ -1096,7 +1096,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果需要则用户必须保留原始的点。 原始点可以转换为三次方贝塞尔曲线的控制点在内部，因此没有用于返回原始点机制。  
+ 用户必须保留原始点 (如果需要)。 原始点在内部转换为三次 Bezier 控制点, 因此没有用于返回原始点的机制。  
   
    
   
@@ -1140,7 +1140,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果需要则用户必须保留原始的点。 原始点可以转换为三次方贝塞尔曲线的控制点在内部，因此没有用于返回原始点机制。  
+ 用户必须保留原始点 (如果需要)。 原始点在内部转换为三次 Bezier 控制点, 因此没有用于返回原始点的机制。  
   
    
   
@@ -1186,7 +1186,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果需要则用户必须保留原始的点。 原始点可以转换为三次方贝塞尔曲线的控制点在内部，因此没有用于返回原始点机制。  
+ 用户必须保留原始点 (如果需要)。 原始点在内部转换为三次 Bezier 控制点, 因此没有用于返回原始点的机制。  
   
    
   
@@ -1232,7 +1232,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果需要则用户必须保留原始的点。 原始点可以转换为三次方贝塞尔曲线的控制点在内部，因此没有用于返回原始点机制。  
+ 用户必须保留原始点 (如果需要)。 原始点在内部转换为三次 Bezier 控制点, 因此没有用于返回原始点的机制。  
   
    
   
@@ -1282,22 +1282,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果需要则用户必须保留原始的点。 原始点可以转换为三次方贝塞尔曲线的控制点在内部，因此没有用于返回原始点机制。  
+ 用户必须保留原始点 (如果需要)。 原始点在内部转换为三次 Bezier 控制点, 因此没有用于返回原始点的机制。  
   
- 指定的数组中的点开始曲线`offset`参数并包含指定的点 （段） 数`numberOfSegments`。  
+ 曲线从`offset`参数所指定的数组中的点开始, 包括`numberOfSegments`指定的点数 (段) 数。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
--   创建四个点 （表示基数样条） 的数组。  
+-   创建由四个点组成的数组 (表示基数样条)。  
   
--   创建一个路径，并使用点的数组，向该路径添加曲线。  
+-   创建一个路径并使用点数组, 将该曲线添加到该路径。  
   
--   在屏幕上绘制该路径。  
+-   绘制屏幕的路径。  
   
- 请注意，尽管数组具有四个点，只有三个段，这是对的调用的第三个参数中指定的数字<xref:System.Drawing.Drawing2D.GraphicsPath.AddCurve%2A>。  
+ 请注意, 尽管数组包含四个点, 但只有三个段, 这是调用<xref:System.Drawing.Drawing2D.GraphicsPath.AddCurve%2A>的第三个参数中指定的数字。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#5](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#5)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#5](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#5)]
@@ -1346,9 +1346,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果需要则用户必须保留原始的点。 原始点可以转换为三次方贝塞尔曲线的控制点在内部，因此没有用于返回原始点机制。  
+ 用户必须保留原始点 (如果需要)。 原始点在内部转换为三次 Bezier 控制点, 因此没有用于返回原始点的机制。  
   
- 指定的数组中的点开始曲线`offset`，并包含指定的点 （段） 数`numberOfSegments`。  
+ 曲线从指定的`offset`数组中的点开始, 并包含由`numberOfSegments`指定的点数 (段) 数。  
   
    
   
@@ -1401,13 +1401,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
  创建定义椭圆的边框。  
   
- 创建一个路径，并向该路径添加椭圆。  
+ 创建一个路径并将该椭圆添加到该路径。  
   
- 向屏幕中绘制该路径。  
+ 将路径绘制到屏幕上。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#6](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#6)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#6](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#6)]
@@ -1590,7 +1590,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将添加指定的指向此实例的末尾所定义的线段<xref:System.Drawing.Drawing2D.GraphicsPath>。 如果存在以前的行或中的曲线<xref:System.Drawing.Drawing2D.GraphicsPath>，绘制一条线段以连接到新的直线线段的第一个点的路径中的最后一个点。  
+ 此方法将指定点定义的线段添加到此<xref:System.Drawing.Drawing2D.GraphicsPath>的末尾。 如果中有前面的<xref:System.Drawing.Drawing2D.GraphicsPath>行或曲线, 则绘制线段以将路径中的最后一个点连接到新线段中的第一个点。  
   
    
   
@@ -1636,7 +1636,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将添加指定的指向此实例的末尾所定义的线段<xref:System.Drawing.Drawing2D.GraphicsPath>。 如果存在以前的行或中的曲线<xref:System.Drawing.Drawing2D.GraphicsPath>，绘制一条线段以连接到新的直线线段的第一个点的路径中的最后一个点。  
+ 此方法将指定点定义的线段添加到此<xref:System.Drawing.Drawing2D.GraphicsPath>的末尾。 如果中有前面的<xref:System.Drawing.Drawing2D.GraphicsPath>行或曲线, 则绘制线段以将路径中的最后一个点连接到新线段中的第一个点。  
   
    
   
@@ -1686,12 +1686,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将添加指定的点到当前图末尾所定义的线段。 如果存在以前的行或中的曲线<xref:System.Drawing.Drawing2D.GraphicsPath>，绘制一条线段以连接到新的直线线段的第一个点的路径中的最后一个点。  
+ 此方法将指定点定义的线段添加到当前图形的末尾。 如果中有前面的<xref:System.Drawing.Drawing2D.GraphicsPath>行或曲线, 则绘制线段以将路径中的最后一个点连接到新线段中的第一个点。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码创建一个路径，添加形成一个三角形的三行，然后在屏幕上绘制该路径。  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码将创建一个路径, 添加三行构成三角形, 然后在屏幕上绘制路径。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#7](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#7)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#7](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#7)]
@@ -1740,7 +1740,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将添加指定的指向此实例的末尾所定义的线段<xref:System.Drawing.Drawing2D.GraphicsPath>。 如果存在以前的行或中的曲线<xref:System.Drawing.Drawing2D.GraphicsPath>，绘制一条线段以连接到新的直线线段的第一个点的路径中的最后一个点。  
+ 此方法将指定点定义的线段添加到此<xref:System.Drawing.Drawing2D.GraphicsPath>的末尾。 如果中有前面的<xref:System.Drawing.Drawing2D.GraphicsPath>行或曲线, 则绘制线段以将路径中的最后一个点连接到新线段中的第一个点。  
   
    
   
@@ -1793,20 +1793,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果以前的行或在图中的曲线，添加一条线连接的上一段直线起始点的终结点。 `points`参数指定终结点的数组。 前两个指定的第一个行。 每个其他点指定的起始点是前一行的终结点的线段的端点。  
+ 如果图中有前面的行或曲线, 则会添加一条线来连接上一段的终结点, 以将该行的起点连接起来。 `points`参数指定终结点的数组。 前两个指定第一行。 每个附加点指定一个线段的端点, 其起点是上一行的端点。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
--   创建一个描述一个三角形的四个点的数组。  
+-   创建描述三角形的四个点的数组。  
   
--   创建一个路径，并将添加的行的数组。  
+-   创建一个路径并添加行的数组。  
   
--   向屏幕中绘制该路径。  
+-   将路径绘制到屏幕上。  
   
- 请注意，每行后的第一个点作为终结点作为起始点和新点使用以前的点。  
+ 请注意, 第一个点后面的每行都使用上一点作为起点, 并使用新点作为终结点。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#8](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#8)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#8](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#8)]
@@ -1849,7 +1849,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果以前的行或在图中的曲线，添加一条线连接的上一段直线起始点的终结点。 `points`参数指定终结点的数组。 前两个指定的第一个行。 每个其他点指定的起始点是前一行的终结点的线段的端点。  
+ 如果图中有前面的行或曲线, 则会添加一条线来连接上一段的终结点, 以将该行的起点连接起来。 `points`参数指定终结点的数组。 前两个指定第一行。 每个附加点指定一个线段的端点, 其起点是上一行的端点。  
   
    
   
@@ -1895,13 +1895,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
--   将创建两个路径一个右端向上三角形和另一个向上端向下三角形。  
+-   创建两个路径, 其中一个是直角三角形, 另一个是向上三角形。  
   
--   将第二个路径添加到第一个。  
+-   向第一个路径添加第二个路径。  
   
--   在屏幕上绘制产生的路径。  
+-   将生成的路径绘制到屏幕上。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#9](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#9)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#9](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#9)]
@@ -1957,7 +1957,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 扇形的椭圆和两条射线相交的部分轮廓的终结点的部分轮廓由定义。 处开头部分的轮廓`startAngle`（从 x 轴顺时针测量），结尾处`startAngle`  +  `sweepAngle`。  
+ 饼形由椭圆的部分轮廓和两条与部分轮廓的端点相交的射线定义。 部分轮廓`startAngle`从 x 轴顺时针测量, 到`startAngle`  +  `sweepAngle`结束。  
   
    
   
@@ -2011,12 +2011,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 扇形的椭圆和两条射线相交的部分轮廓的终结点的部分轮廓由定义。 处开头部分的轮廓`startAngle`（从 x 轴顺时针测量），结尾处`startAngle`  +  `sweepAngle`。  
+ 饼形由椭圆的部分轮廓和两条与部分轮廓的端点相交的射线定义。 部分轮廓`startAngle`从 x 轴顺时针测量, 到`startAngle`  +  `sweepAngle`结束。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码创建一个图形路径、 添加扇形，，然后在屏幕上绘制该路径。  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 此代码创建一个图形路径, 添加扇形, 然后在屏幕上绘制该路径。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#10](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#10)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#10](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#10)]
@@ -2069,7 +2069,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 扇形的椭圆和两条射线相交的部分轮廓的终结点的部分轮廓由定义。 处开头部分的轮廓`startAngle`（从 x 轴顺时针测量），结尾处`startAngle`  +  `sweepAngle`。  
+ 饼形由椭圆的部分轮廓和两条与部分轮廓的端点相交的射线定义。 部分轮廓`startAngle`从 x 轴顺时针测量, 到`startAngle`  +  `sweepAngle`结束。  
   
    
   
@@ -2122,18 +2122,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 中的点`points`数组指定的多边形的顶点。 如果数组中的第一个点不是最后一个点相同，将连接这两个点来闭合该多边形。  
+ `points`数组中的点指定多边形的顶点。 如果数组中的第一个点与最后一个点不同, 则这两个点将连接以关闭多边形。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
--   创建定义多边形的点数组。  
+-   创建定义多边形的点的数组。  
   
--   创建一个路径，并向该路径添加多边形。  
+-   创建一个路径并将多边形添加到该路径。  
   
--   在屏幕上绘制该路径。  
+-   绘制屏幕的路径。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#11](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#11)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#11](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#11)]
@@ -2176,7 +2176,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 中的点`points`数组指定的多边形的顶点。 如果数组中的第一个点不是最后一个点相同，将连接这两个点来闭合该多边形。  
+ `points`数组中的点指定多边形的顶点。 如果数组中的第一个点与最后一个点不同, 则这两个点将连接以关闭多边形。  
   
    
   
@@ -2229,13 +2229,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
 -   创建一个路径。  
   
--   创建一个矩形并将该矩形添加到路径。  
+-   创建一个矩形, 并将该矩形添加到该路径。  
   
--   在屏幕上绘制该路径。  
+-   绘制屏幕的路径。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#12](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#12)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#12](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#12)]
@@ -2326,13 +2326,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
 -   创建一个路径。  
   
--   创建的矩形的数组，并向该路径添加矩形。  
+-   创建矩形的数组, 并将矩形添加到该路径。  
   
--   在屏幕上绘制该路径。  
+-   绘制屏幕的路径。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#13](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#13)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#13](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#13)]
@@ -2433,17 +2433,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
 -   创建一个路径。  
   
--   设置字符串和字体自变量。  
+-   设置字符串和字体参数。  
   
 -   将字符串添加到路径。  
   
--   在屏幕上绘制的字符串。  
+-   在屏幕上绘制字符串。  
   
- 有两个需要前面所指出的重要事项。首先，请注意，`fontStyle`参数转换为整数。 <xref:System.Drawing.Drawing2D.GraphicsPath.AddString%2A>这样的两个或多个方法都将需要这<xref:System.Drawing.FontStyle>成员可以组合起来，以创建所需的字体样式 (在这种情况下，<xref:System.Drawing.FontStyle.Italic>和<xref:System.Drawing.FontStyle.Underline>)。 其次，注意<xref:System.Drawing.Graphics.FillPath%2A>使用方法而不是<xref:System.Drawing.Graphics.DrawPath%2A>方法。 如果<xref:System.Drawing.Graphics.FillPath%2A>使用时，呈现实心文字，而如果<xref:System.Drawing.Graphics.DrawPath%2A>是使用，该文本则为轮廓样式。  
+ 有两个重要事项需要指出。首先, 请注意`fontStyle` , 参数将转换为整数。 方法需要这样做, 以便可以组合两<xref:System.Drawing.FontStyle>个或更多成员, 以创建所需的字体样式<xref:System.Drawing.FontStyle.Italic> (在本例<xref:System.Drawing.FontStyle.Underline>中为和)。 <xref:System.Drawing.Drawing2D.GraphicsPath.AddString%2A> 其次, 请注意<xref:System.Drawing.Graphics.FillPath%2A> , 使用方法而不<xref:System.Drawing.Graphics.DrawPath%2A>是方法。 如果<xref:System.Drawing.Graphics.FillPath%2A>使用, 则呈现实文本, 而如果<xref:System.Drawing.Graphics.DrawPath%2A>使用, 则文本将为大纲样式。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#14](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#14)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#14](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#14)]
@@ -2630,24 +2630,24 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Drawing.Drawing2D.GraphicsPath.SetMarkers%2A>方法中的当前位置处创建一个标记<xref:System.Drawing.Drawing2D.GraphicsPath>。 使用<xref:System.Drawing.Drawing2D.GraphicsPathIterator.NextMarker%2A>方法来循环访问路径中的现有标记。  
+ 使用方法在中的当前位置创建标记<xref:System.Drawing.Drawing2D.GraphicsPath>。 <xref:System.Drawing.Drawing2D.GraphicsPath.SetMarkers%2A> <xref:System.Drawing.Drawing2D.GraphicsPathIterator.NextMarker%2A>使用方法可循环访问路径中的现有标记。  
   
- 标记用于分隔的子路径的组。 一个或多个子路径可以包含两个标记之间。  
+ 标记用于分隔子路径组。 两个标记之间可以包含一个或多个子路径。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
 -   创建一个路径。  
   
--   将多个对象添加到路径。  
+-   向路径添加几个对象。  
   
--   将标记添加到路径。  
+-   向路径添加标记。  
   
 -   清除路径中的所有标记。  
   
--   在屏幕上绘制该路径。  
+-   绘制屏幕的路径。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#15](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#15)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#15](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#15)]
@@ -2691,19 +2691,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
 -   创建一个路径。  
   
 -   向路径添加几个图形。  
   
--   在屏幕上绘制该路径。  
+-   绘制屏幕的路径。  
   
--   克隆一份该路径。  
+-   克隆该路径的副本。  
   
--   在屏幕上绘制新的路径。  
+-   将新路径绘制到屏幕。  
   
- 请注意，在调用<xref:System.Drawing.Drawing2D.GraphicsPath.Clone%2A>方法必须强制转换为<xref:System.Drawing.Drawing2D.GraphicsPath>。  
+ 请注意, 调用<xref:System.Drawing.Drawing2D.GraphicsPath.Clone%2A>方法必须强制转换<xref:System.Drawing.Drawing2D.GraphicsPath>为。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#16](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#16)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#16](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#16)]
@@ -2743,15 +2743,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
 -   创建一个路径。  
   
 -   向路径添加几个开放图形。  
   
--   关闭所有图形路径中。  
+-   关闭路径中的所有数字。  
   
--   在屏幕上绘制该路径。  
+-   绘制屏幕的路径。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#17](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#17)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#17](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#17)]
@@ -2791,7 +2791,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码创建一个三角形： 创建一个新的路径，指定图形的起点，将两个相交行添加到图中，然后关闭该图形以形成一个三角形。 然后在屏幕上绘制的路径。  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 此代码创建一个三角形, 方法是创建一个新路径, 开始一个图形, 向该图形添加两条交叉线, 然后关闭该图形以形成一个三角形。 然后, 将路径绘制到屏幕上。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#18](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#18)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#18](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#18)]
@@ -2834,7 +2834,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Drawing.Drawing2D.GraphicsPath.Dispose%2A>允许使用的资源<xref:System.Drawing.Drawing2D.GraphicsPath>重新分配用于其他目的。  
+ 调用<xref:System.Drawing.Drawing2D.GraphicsPath.Dispose%2A>会允许出于其他目的重新<xref:System.Drawing.Drawing2D.GraphicsPath>分配此所使用的资源。  
   
  ]]></format>
         </remarks>
@@ -3025,19 +3025,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
 -   创建图形路径和平移矩阵。  
   
--   向使用四个点的路径添加曲线。  
+-   使用四个点将曲线添加到路径。  
   
--   将路径 （曲线） 绘制到屏幕上，使用黑色的笔。  
+-   使用黑色笔将路径 (曲线) 绘制到屏幕。  
   
--   将该曲线下移 10 个像素并将它。  
+-   将曲线向下移动10个像素, 并对其进行平展。  
   
--   使用红色笔在屏幕上绘制曲线。  
+-   使用红笔将曲线绘制到屏幕。  
   
- 请注意，红色曲线具有平展连接点的行。  
+ 请注意, 红色曲线具有连接点的平展线条。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#19](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#19)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#19](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#19)]
@@ -3092,32 +3092,32 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回边框的大小会影响端帽、 笔的宽度和笔斜联接限制的类型，并因此生成"松配合"于被限定路径。 近似公式是： 初始边框放大通过笔的宽度，并且此结果乘以斜角限制，加上一些额外边距以容纳端帽。  
+ 返回的边框的大小受端端帽的类型、笔宽度和笔的斜接限制的影响, 因此产生了对绑定路径的 "松动的"。 大致公式是: 初始边界矩形被钢笔宽度放大, 此结果乘以斜接限制, 加上一些额外的边距来允许结束大写字母。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
 -   创建图形路径。  
   
--   向其添加一个椭圆 （圆圈） 并将其绘制到屏幕。  
+-   向其添加一个省略号 (圆圈), 并将其绘制到屏幕上。  
   
--   检索调用带圆圈的边界矩形<xref:System.Drawing.Drawing2D.GraphicsPath.GetBounds%2A>并将该矩形绘制到屏幕。  
+-   通过调用来<xref:System.Drawing.Drawing2D.GraphicsPath.GetBounds%2A>检索圆的边框, 并将矩形绘制到屏幕上。  
   
 -   创建第二个图形路径。  
   
--   添加一个圆形和扩大的宽度为 10 的路径。  
+-   添加一个圆圈, 并将路径扩大到宽度10。  
   
--   在屏幕上绘制该路径。  
+-   绘制屏幕的路径。  
   
--   检索第二个圆圈的边界矩形。  
+-   检索第二个圆圈的边框。  
   
--   在屏幕上绘制的边框。  
+-   将边框绘制到屏幕上。  
   
--   在对话框中显示的矩形大小。  
+-   在对话框中显示矩形大小。  
   
- 请注意，在右侧的边界矩形 （到行的附加宽度的帐户） 更大。  
+ 请注意, 右侧的边框较大 (用于说明线条的额外宽度)。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#20](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#20)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#20](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#20)]
@@ -3165,7 +3165,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回边框的大小会影响端帽、 笔的宽度和笔斜联接限制的类型，并因此生成"松配合"于被限定路径。 近似公式是： 初始边框放大通过笔的宽度，并且此结果乘以斜角限制，加上一些额外边距以容纳端帽。  
+ 返回的边框的大小受端端帽的类型、笔宽度和笔的斜接限制的影响, 因此产生了对绑定路径的 "松动的"。 大致公式是: 初始边界矩形被钢笔宽度放大, 此结果乘以斜接限制, 加上一些额外的边距来允许结束大写字母。  
   
    
   
@@ -3211,7 +3211,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回边框的大小会影响端帽、 笔的宽度和笔斜联接限制的类型，并因此生成"松配合"于被限定路径。 近似公式是： 初始边框放大通过笔的宽度，并且此结果乘以斜角限制，加上一些额外边距以容纳端帽。  
+ 返回的边框的大小受端端帽的类型、笔宽度和笔的斜接限制的影响, 因此产生了对绑定路径的 "松动的"。 大致公式是: 初始边界矩形被钢笔宽度放大, 此结果乘以斜接限制, 加上一些额外的边距来允许结束大写字母。  
   
    
   
@@ -3253,7 +3253,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 代码创建一个路径，将行添加到路径，然后获取路径中最后一个点。  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 此代码创建一个路径, 在该路径中添加一行, 然后获取该路径中的最后一个点。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#21](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#21)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#21](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#21)]
@@ -3312,7 +3312,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法测试以查看是否给定路径的轮廓的呈现可见指定点处。  
+ 此方法测试给定路径的轮廓在指定点是否可见。  
   
    
   
@@ -3363,7 +3363,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法测试以查看是否给定路径的轮廓的呈现可见指定点处。  
+ 此方法测试给定路径的轮廓在指定点是否可见。  
   
    
   
@@ -3411,7 +3411,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法测试以查看是否给定路径的轮廓的呈现可见指定点处。 世界坐标给出了点的坐标，以进行测试。 转换矩阵的`graphics`在临时应用之前测试可见性。  
+ 此方法测试给定路径的轮廓在指定点是否可见。 要测试的点的坐标在世界坐标内提供。 在测试可见性`graphics`之前, 将临时应用的转换矩阵。  
   
    
   
@@ -3459,7 +3459,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法测试以查看是否给定路径的轮廓的呈现可见指定点处。 世界坐标给出了点的坐标，以进行测试。 转换矩阵的`graphics`在临时应用之前测试可见性。  
+ 此方法测试给定路径的轮廓在指定点是否可见。 要测试的点的坐标在世界坐标内提供。 在测试可见性`graphics`之前, 将临时应用的转换矩阵。  
   
    
   
@@ -3507,7 +3507,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法测试以查看是否给定路径的轮廓的呈现可见指定点处。  
+ 此方法测试给定路径的轮廓在指定点是否可见。  
   
    
   
@@ -3555,7 +3555,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法测试以查看是否给定路径的轮廓的呈现可见指定点处。  
+ 此方法测试给定路径的轮廓在指定点是否可见。  
   
    
   
@@ -3605,22 +3605,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法测试以查看是否给定路径的轮廓的呈现可见指定点处。 世界坐标给出了点的坐标，以进行测试。 转换矩阵的`graphics`在临时应用之前测试可见性。  
+ 此方法测试给定路径的轮廓在指定点是否可见。 要测试的点的坐标在世界坐标内提供。 在测试可见性`graphics`之前, 将临时应用的转换矩阵。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件。 该代码执行下列操作：  
   
 -   创建一个路径。  
   
 -   向路径添加一个矩形。  
   
--   创建一个宽钢笔和使用 （以便更清晰的示例） 的笔，加宽路径  
+-   创建宽笔并使用该笔扩大路径 (以使示例更清晰),  
   
--   测试点 （100，50） 以查看它是否位于内 （下） 是一个矩形的边缘通过调用<xref:System.Drawing.Drawing2D.GraphicsPath.IsOutlineVisible%2A>。  
+-   测试一个点 (100, 50), 以确定它是否位于矩形的某个边缘 (通过调用<xref:System.Drawing.Drawing2D.GraphicsPath.IsOutlineVisible%2A>)。  
   
- （在这种情况下，true），结果显示在消息框中。 换而言之边缘呈现该点上。  
+ 结果显示在消息框中 (在本例中为 true)。 换句话说, 边缘呈现在该点上。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#22](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#22)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#22](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#22)]
@@ -3669,7 +3669,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法测试以查看是否给定路径的轮廓的呈现可见指定点处。 世界坐标给出了点的坐标，以进行测试。 转换矩阵的`graphics`参数在临时应用之前测试可见性。  
+ 此方法测试给定路径的轮廓在指定点是否可见。 要测试的点的坐标在世界坐标内提供。 测试可见性之前, `graphics`将临时应用参数的转换矩阵。  
   
    
   
@@ -3813,7 +3813,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 世界坐标给出了点的坐标，以进行测试。 转换矩阵的`graphics`参数在临时应用之前测试可见性。  
+ 要测试的点的坐标在世界坐标内提供。 测试可见性之前, `graphics`将临时应用参数的转换矩阵。  
   
    
   
@@ -3859,7 +3859,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 世界坐标给出了点的坐标，以进行测试。 转换矩阵的`graphics`参数在临时应用之前测试可见性。  
+ 要测试的点的坐标在世界坐标内提供。 测试可见性之前, `graphics`将临时应用参数的转换矩阵。  
   
    
   
@@ -3991,18 +3991,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 世界坐标给出了点的坐标，以进行测试。 转换矩阵的`graphics`在临时应用之前测试可见性。  
+ 要测试的点的坐标在世界坐标内提供。 在测试可见性`graphics`之前, 将临时应用的转换矩阵。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
--   创建一个路径，并向该路径添加一个椭圆。  
+-   创建一个路径并将一个椭圆添加到该路径。  
   
--   测试是否指定的点包含在该路径。  
+-   测试指定点是否包含在路径中。  
   
--   在对话框中显示的结果。  
+-   在对话框中显示结果。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#23](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#23)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#23](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#23)]
@@ -4049,7 +4049,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 世界坐标给出了点的坐标，以进行测试。 转换矩阵的`graphics`参数在临时应用之前测试可见性。  
+ 要测试的点的坐标在世界坐标内提供。 测试可见性之前, `graphics`将临时应用参数的转换矩阵。  
   
    
   
@@ -4153,16 +4153,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回由字节数组<xref:System.Drawing.Drawing2D.GraphicsPath.PathTypes%2A>属性路径中指定点类型和数据点的标志。 对于每个点，位 0 到 2 指示一个点的类型和 3 到 7 位保留一组指定的点的属性的标志。 下表显示了可能的值以及它们的含义。  
+ 由<xref:System.Drawing.Drawing2D.GraphicsPath.PathTypes%2A>属性返回的字节数组指定路径中数据点的点类型和标志。 对于每个点, 0 到2位表示点的类型, 位3到7保留一组指定点的属性的标志。 下表显示了可能的值及其含义。  
   
 |值|含义|  
 |-----------|-------------|  
-|0|指示该点是图形的开头。|  
-|1|指示该点是一条线的两个终结点之一。|  
-|3|指示该点的三次方贝塞尔样条的终结点或管理点。|  
-|0x7|屏蔽指示的 point 类型的三个低顺序位之外的所有位。|  
-|0x20|指定点是一个标记。|  
-|0x80|指定点已关闭的子路径 （图） 中的最后一个点。|  
+|0|指示点是图形的起点。|  
+|1|指示点是行的两个终结点之一。|  
+|3|指示点是三次贝塞尔曲线的端点或控制点。|  
+|0x7|屏蔽除三个低序位之外的所有位, 指示点类型。|  
+|0x20|指定该点是一个标记。|  
+|0x80|指定点是闭合子路径中的最后一个点 (图)。|  
   
  ]]></format>
         </remarks>
@@ -4227,21 +4227,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
 -   创建一个路径。  
   
--   将多个基元添加到它。  
+-   向其中添加几个基元。  
   
--   将路径的点数组绘制到屏幕。  
+-   将路径点数组绘制到屏幕上。  
   
--   将路径重置为一个空状态。  
+-   将路径重置为空状态。  
   
--   重新获取该 points 数组 （如果存在）。  
+-   重新获取点数组 (如果存在)。  
   
--   将数组绘制到屏幕。  
+-   将数组绘制到屏幕上。  
   
- 请注意它找到重置调用之后没有数组。  
+ 请注意, 它在重置调用后找不到数组。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#24](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#24)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#24](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#24)]
@@ -4281,15 +4281,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
--   创建一个路径，并将几个基元添加到路径。  
+-   创建路径并向路径添加几个基元。  
   
--   将路径的点数组绘制到屏幕。  
+-   将路径点数组绘制到屏幕上。  
   
--   将反转后的点数组绘制到屏幕。  
+-   将反转点数组绘制到屏幕上。  
   
- 请注意，从第一个点的第二个列表是按相反的顺序。  
+ 请注意, 第二个点列表与第一个点列表顺序相反。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#25](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#25)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#25](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#25)]
@@ -4329,14 +4329,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法可用于单独的部分路径的路径上创建一个标记。 然后，可以使用<xref:System.Drawing.Drawing2D.GraphicsPathIterator.NextMarker%2A>方法来循环访问路径中的标记。  
+ 此方法在路径上创建可用于分隔路径部分的标记。 然后, 可以使用<xref:System.Drawing.Drawing2D.GraphicsPathIterator.NextMarker%2A>方法遍历路径中的标记。  
   
- 标记用于分隔的子路径的组。 可以在路径中的两个标记之间包含一个或多个子路径。  
+ 标记用于分隔子路径组。 路径中的两个标记之间可以包含一个或多个子路径。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码创建一个路径和将几个基元添加到由标记分隔的路径并绘制到屏幕的路径。  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码将创建一个路径, 并将多个基元添加到由标记分隔的路径中, 并将路径绘制到屏幕。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#26](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#26)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#26](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#26)]
@@ -4376,22 +4376,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果需要则用户必须保留原始的点。 原始点可以转换为三次方贝塞尔曲线的控制点在内部，因此没有用于返回原始点机制。  
+ 用户必须保留原始点 (如果需要)。 原始点在内部转换为三次 Bezier 控制点, 因此没有用于返回原始点的机制。  
   
- 此方法启动新的子路径的路径中。 子路径使您可以将一个路径部分，并使用<xref:System.Drawing.Drawing2D.GraphicsPathIterator>类循环访问子路径。  
+ 此方法在路径中启动一个新的子路径。 子路径允许将路径分隔到各个部分, 并使用<xref:System.Drawing.Drawing2D.GraphicsPathIterator>类来循环访问子路径。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
 -   创建一个路径。  
   
--   将添加两个集的数字。 第一组数字将合并到的两个图形的四个基元。 第二组数字将合并相同的四个基元 （不过，它们在 y 轴偏移量） 到三个数字。  
+-   添加两个图形集。 第一组图表将四个基元合并为两个图形。 第二组插图合并了相同的四个基元 (除了它们在 y 轴上的偏移量), 并将其转换为三个图形。  
   
--   将所有图形都绘制到屏幕。  
+-   将所有图形绘制到屏幕上。  
   
- 请注意，两个数字组之间出现差异。  
+ 请注意两个图形集之间的外观区别。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#27](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#27)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#27](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#27)]
@@ -4433,22 +4433,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 转换可以缩放、 转换、 旋转或倾斜<xref:System.Drawing.Drawing2D.GraphicsPath>。  
+ 转换可以缩放、平移、旋转或倾斜<xref:System.Drawing.Drawing2D.GraphicsPath>。  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
--   创建一个路径，并向该路径添加一个椭圆。  
+-   创建一个路径并将一个椭圆添加到该路径。  
   
--   在屏幕上绘制路径。  
+-   绘制屏幕的路径。  
   
--   创建一个转换矩阵来转换路径 100 个单位 x 轴方向。  
+-   创建一个转换矩阵, 以将路径100单位转换为 x 轴方向。  
   
--   在屏幕上绘制的已转换的路径。  
+-   将转换的路径绘制到屏幕上。  
   
- 请注意，已转换的椭圆绘制红色，原始椭圆绘制黑色。  
+ 请注意, 原始椭圆以黑色绘制, 而变换后的椭圆则绘制为红色。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#28](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#28)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#28](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#28)]
@@ -4649,15 +4649,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
--   创建一个路径，并向该路径添加一个矩形。  
+-   创建一个路径并将一个矩形添加到该路径。  
   
--   将该矩形绘制到屏幕以黑色。  
+-   将该矩形绘制为黑色。  
   
--   个 warp 使用透视环绕的路径。  
+-   使用透视变形个 warp 路径。  
   
--   绘制到屏幕以红色弯曲的矩形 （路径）。  
+-   用红色将扭曲矩形 (路径) 绘制到屏幕。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#29](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#29)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#29](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#29)]
@@ -4708,7 +4708,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法在此创建原始行四周的轮廓<xref:System.Drawing.Drawing2D.GraphicsPath>，与现有行的新轮廓之间距离等于的宽度<xref:System.Drawing.Pen>对调用中使用<xref:System.Drawing.Drawing2D.GraphicsPath.Widen%2A>。 如果你想要填充的线条间空间必须使用<xref:System.Drawing.Graphics.FillPath%2A>而不是<xref:System.Drawing.Graphics.DrawPath%2A>。  
+ 此方法在此<xref:System.Drawing.Drawing2D.GraphicsPath>中的原始行周围创建一个轮廓, 其中的现有行与新的轮廓等于在调用中<xref:System.Drawing.Drawing2D.GraphicsPath.Widen%2A>使用的<xref:System.Drawing.Pen>宽度的。 如果要填充行之间的空间, 则必须使用<xref:System.Drawing.Graphics.FillPath%2A>而不是。 <xref:System.Drawing.Graphics.DrawPath%2A>  
   
    
   
@@ -4753,7 +4753,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法在此创建原始行四周的轮廓<xref:System.Drawing.Drawing2D.GraphicsPath>，与现有行的新轮廓之间距离等于的宽度<xref:System.Drawing.Pen>对调用中使用<xref:System.Drawing.Drawing2D.GraphicsPath.Widen%2A>。 如果你想要填充的线条间空间必须使用<xref:System.Drawing.Graphics.FillPath%2A>而不是<xref:System.Drawing.Graphics.DrawPath%2A>。  
+ 此方法在此<xref:System.Drawing.Drawing2D.GraphicsPath>中的原始行周围创建一个轮廓, 其中的现有行与新的轮廓等于在调用中<xref:System.Drawing.Drawing2D.GraphicsPath.Widen%2A>使用的<xref:System.Drawing.Pen>宽度的。 如果要填充行之间的空间, 则必须使用<xref:System.Drawing.Graphics.FillPath%2A>而不是。 <xref:System.Drawing.Graphics.DrawPath%2A>  
   
    
   
@@ -4800,22 +4800,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法在此创建原始行四周的轮廓<xref:System.Drawing.Drawing2D.GraphicsPath>，与现有行的新轮廓之间距离等于的宽度<xref:System.Drawing.Pen>对调用中使用<xref:System.Drawing.Drawing2D.GraphicsPath.Widen%2A>。 如果你想要填充的线条间空间必须使用<xref:System.Drawing.Graphics.FillPath%2A>而不是<xref:System.Drawing.Graphics.DrawPath%2A>。  
+ 此方法在此<xref:System.Drawing.Drawing2D.GraphicsPath>中的原始行周围创建一个轮廓, 其中的现有行与新的轮廓等于在调用中<xref:System.Drawing.Drawing2D.GraphicsPath.Widen%2A>使用的<xref:System.Drawing.Pen>宽度的。 如果要填充行之间的空间, 则必须使用<xref:System.Drawing.Graphics.FillPath%2A>而不是。 <xref:System.Drawing.Graphics.DrawPath%2A>  
   
    
   
 ## Examples  
- 下面的代码示例设计为使用 Windows 窗体，并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
+ 下面的代码示例旨在与 Windows 窗体一起使用, 并且它需要<xref:System.Windows.Forms.PaintEventArgs> `e`一个<xref:System.Windows.Forms.Form.OnPaint%2A>事件对象。 该代码执行下列操作：  
   
--   创建一个路径，并向该路径添加两个椭圆。  
+-   创建一个路径, 并将两个省略号添加到该路径。  
   
--   用黑色绘制该路径。  
+-   以黑色绘制路径。  
   
--   将加宽路径。  
+-   扩展路径。  
   
--   用红色绘制该路径。  
+-   用红色绘制路径。  
   
- 请注意，使用第二个呈现<xref:System.Drawing.Graphics.FillPath%2A>而不是<xref:System.Drawing.Graphics.DrawPath%2A>，因此呈现的图具有填充的轮廓。  
+ 请注意, 第二个<xref:System.Drawing.Graphics.FillPath%2A>呈现使用<xref:System.Drawing.Graphics.DrawPath%2A>而不是, 因此呈现的图形的轮廓已填充。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#30](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#30)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#30](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#30)]

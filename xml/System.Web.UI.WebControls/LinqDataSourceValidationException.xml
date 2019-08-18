@@ -1,5 +1,5 @@
 <Type Name="LinqDataSourceValidationException" FullName="System.Web.UI.WebControls.LinqDataSourceValidationException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="62766df0ebc45e194067654c3d1a68e83473c5be" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55312213" /></Metadata><TypeSignature Language="C#" Value="public class LinqDataSourceValidationException : Exception, System.Web.DynamicData.IDynamicValidatorException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bbaddf486803c0dcc0984d6f452e14da42b85436" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69390813" /></Metadata><TypeSignature Language="C#" Value="public class LinqDataSourceValidationException : Exception, System.Web.DynamicData.IDynamicValidatorException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit LinqDataSourceValidationException extends System.Exception implements class System.Runtime.Serialization.ISerializable, class System.Web.DynamicData.IDynamicValidatorException" />
   <TypeSignature Language="DocId" Value="T:System.Web.UI.WebControls.LinqDataSourceValidationException" />
   <TypeSignature Language="VB.NET" Value="Public Class LinqDataSourceValidationException&#xA;Inherits Exception&#xA;Implements IDynamicValidatorException" />
@@ -32,18 +32,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.LinqDataSourceValidationException>类包含类型转换和属性资源库异常。 所有在验证过程中引发的异常都包含在<xref:System.Web.UI.WebControls.LinqDataSourceValidationException.InnerExceptions%2A>集合。 可以通过循环检索每个验证异常<xref:System.Web.UI.WebControls.LinqDataSourceValidationException.InnerExceptions%2A>集合。  
+ <xref:System.Web.UI.WebControls.LinqDataSourceValidationException>类包含类型转换和属性 setter 异常。 在验证过程中引发的所有异常都包含在<xref:System.Web.UI.WebControls.LinqDataSourceValidationException.InnerExceptions%2A>集合中。 可以通过循环访问<xref:System.Web.UI.WebControls.LinqDataSourceValidationException.InnerExceptions%2A>集合来检索每个验证异常。  
   
- 您通常需要处理中的异常<xref:System.Web.UI.WebControls.LinqDataSource.Updating>， <xref:System.Web.UI.WebControls.LinqDataSource.Deleting>，和<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>事件。 如果引发验证异常，`Exception`的属性<xref:System.Web.UI.WebControls.LinqDataSourceUpdateEventArgs>， <xref:System.Web.UI.WebControls.LinqDataSourceDeleteEventArgs>，或<xref:System.Web.UI.WebControls.LinqDataSourceInsertEventArgs>对象包含<xref:System.Web.UI.WebControls.LinqDataSourceValidationException>对象。 如果不引发任何异常，`Exception`属性包含`null`。  
+ 通常会在<xref:System.Web.UI.WebControls.LinqDataSource.Updating>、 <xref:System.Web.UI.WebControls.LinqDataSource.Deleting>和<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>事件中处理异常。 如果引发验证异常, `Exception`则<xref:System.Web.UI.WebControls.LinqDataSourceUpdateEventArgs>、 <xref:System.Web.UI.WebControls.LinqDataSourceDeleteEventArgs>或<xref:System.Web.UI.WebControls.LinqDataSourceInsertEventArgs>对象的属性将包含一个<xref:System.Web.UI.WebControls.LinqDataSourceValidationException>对象。 如果未引发异常, 则属性`Exception`将包含`null`。  
   
- 若要处理验证异常，创建一个处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Updating>， <xref:System.Web.UI.WebControls.LinqDataSource.Deleting>，或<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>事件。 事件处理程序中，检查是否`Exception`的事件参数类的属性包含的值而不`null`。 如果`Exception`属性不为 null，引发一个或多个验证异常并可以检索中的每个验证异常<xref:System.Web.UI.WebControls.LinqDataSourceValidationException.InnerExceptions%2A>属性。  
+ 若要处理验证异常, 请为<xref:System.Web.UI.WebControls.LinqDataSource.Updating>、 <xref:System.Web.UI.WebControls.LinqDataSource.Deleting>或<xref:System.Web.UI.WebControls.LinqDataSource.Inserting>事件创建处理程序。 在事件处理程序中, 检查事件`Exception`参数类的属性是否包含以外`null`的值。 如果属性不为 null, 则引发一个或多个验证异常, 你可以<xref:System.Web.UI.WebControls.LinqDataSourceValidationException.InnerExceptions%2A>在属性中检索每个验证异常。 `Exception`  
   
- 如果值与属性类型不匹配，则会发生验证异常。 例如，尝试使用非数字字符更新一个整数属性会导致验证异常。 LINQ to SQL 类还可以包含自定义的验证条件，以确保该属性包含在预期的范围或模式内的值。  
+ 如果值与属性的类型不匹配, 则会发生验证异常。 例如, 尝试使用非数字字符更新整数属性会导致验证异常。 LINQ to SQL 类还可以包含自定义验证条件, 这些条件可确保属性包含的值在预期范围或模式内。  
   
    
   
 ## Examples  
- 下面的示例演示的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件。 它通过使用显示的任何验证异常消息<xref:System.Web.UI.WebControls.Label>控件。  
+ 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件的事件处理程序。 它通过使用<xref:System.Web.UI.WebControls.Label>控件显示任何验证异常消息。  
   
 ```vb  
 Protected Sub LinqDataSource_Updating(ByVal sender As Object, _  
@@ -108,7 +108,7 @@ protected void LinqDataSource_Updating(object sender,
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 描述错误的系统提供的消息将当前系统区域性考虑在内。  
+ 系统提供的描述错误的消息将考虑当前系统区域性。  
   
  下表显示 <xref:System.Web.UI.WebControls.LinqDataSourceValidationException> 类的实例的初始属性值。  
   
@@ -187,7 +187,7 @@ protected void LinqDataSource_Updating(object sender,
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 反序列化来重建通过流传输的异常对象期间调用此构造函数。  
+ 在反序列化过程中调用此构造函数来重建通过流传输的异常对象。  
   
  ]]></format>
         </remarks>
@@ -252,7 +252,7 @@ protected void LinqDataSource_Updating(object sender,
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常不使用此构造函数，因为验证异常存储在<xref:System.Web.UI.WebControls.LinqDataSourceValidationException.InnerExceptions%2A>属性，不<xref:System.Exception.InnerException%2A>属性。  
+ 通常不会使用此构造函数, 因为验证异常存储在<xref:System.Web.UI.WebControls.LinqDataSourceValidationException.InnerExceptions%2A>属性中, <xref:System.Exception.InnerException%2A>而不是属性中。  
   
  ]]></format>
         </remarks>
@@ -295,7 +295,7 @@ protected void LinqDataSource_Updating(object sender,
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.LinqDataSourceValidationException.GetObjectData%2A>方法将添加到异常信息<xref:System.Runtime.Serialization.SerializationInfo>针对于序列化的对象。 在反序列化期间重建异常从<xref:System.Runtime.Serialization.SerializationInfo>通过流传输。  
+ 方法将有关异常的信息添加<xref:System.Runtime.Serialization.SerializationInfo>到作为序列化目标的对象。 <xref:System.Web.UI.WebControls.LinqDataSourceValidationException.GetObjectData%2A> 在反序列化期间, 将从<xref:System.Runtime.Serialization.SerializationInfo>通过流传输的重新构造异常。  
   
  ]]></format>
         </remarks>
@@ -327,12 +327,12 @@ protected void LinqDataSource_Updating(object sender,
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.LinqDataSourceValidationException.InnerExceptions%2A>集合包含在更新前的数据验证过程中引发的所有验证异常、 插入或删除操作。 如果值与属性类型不匹配，则会发生验证异常。 例如，如果尝试使用非数字字符更新一个整数属性，则会引发验证异常。 LINQ to SQL 类还可以包含自定义的验证条件，以确保该属性包含在预期的范围或模式内的值。  
+ <xref:System.Web.UI.WebControls.LinqDataSourceValidationException.InnerExceptions%2A>集合包含在更新、插入或删除操作之前在数据验证期间引发的所有验证异常。 如果值与属性的类型不匹配, 则会发生验证异常。 例如, 如果你尝试使用非数字字符更新整数属性, 则会引发验证异常。 LINQ to SQL 类还可以包含自定义验证条件, 这些条件可确保属性包含的值在预期范围或模式内。  
   
    
   
 ## Examples  
- 下面的示例演示的事件处理程序<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件。 它通过使用显示的任何验证异常消息<xref:System.Web.UI.WebControls.Label>控件。  
+ 下面的示例演示<xref:System.Web.UI.WebControls.LinqDataSource.Updating>事件的事件处理程序。 它通过使用<xref:System.Web.UI.WebControls.Label>控件显示任何验证异常消息。  
   
 ```vb  
 Protected Sub LinqDataSource_Updating(ByVal sender As Object, _  
