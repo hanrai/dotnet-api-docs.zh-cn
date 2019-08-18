@@ -1,5 +1,5 @@
 <Type Name="HttpRequestValidationException" FullName="System.Web.HttpRequestValidationException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b80e2cd13c3d4b7ed0d6e841717d9adee56606a8" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57931696" /></Metadata><TypeSignature Language="C#" Value="public sealed class HttpRequestValidationException : System.Web.HttpException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="38a3f931323283b99c9703a03b937388f87cf6d3" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69385659" /></Metadata><TypeSignature Language="C#" Value="public sealed class HttpRequestValidationException : System.Web.HttpException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit HttpRequestValidationException extends System.Web.HttpException" />
   <TypeSignature Language="DocId" Value="T:System.Web.HttpRequestValidationException" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class HttpRequestValidationException&#xA;Inherits HttpException" />
@@ -26,13 +26,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 约束和验证用户输入是在 Web 应用程序以阻止黑客攻击，依赖于恶意输入字符串中必不可少。 跨站点脚本攻击是此类攻击的一个示例。 通过各种形式的输入，可以在请求中传递其他类型的恶意或不需要的数据。 通过限制的低级别的应用程序中传递的数据类型，可以防止不需要的事件，即使编程人员使用的你的代码不落实到位，有适当的验证方法。  
+ 约束和验证用户输入在 Web 应用程序中至关重要, 以防黑客攻击依赖于恶意输入字符串。 跨站点脚本攻击是此类攻击的一个示例。 其他类型的恶意或不需要的数据可通过各种输入形式通过请求传入。 通过限制在应用程序的较低级别传递的数据类型, 您可以防止不必要的事件, 即使使用您的代码的程序员没有适当的验证技巧。  
   
- 请求验证检测到潜在的恶意客户端输入并引发此异常来中止处理请求。 请求中止可以表明攻击者尝试破坏应用程序，如跨站点脚本攻击的安全。 强烈建议你的应用程序显式检查所有输入有关请求中止。 但是，可以通过设置禁用请求验证`validateRequest`到指令中的属性`false`，如以下示例所示：  
+ 请求验证会检测潜在的恶意客户端输入, 并引发此异常以中止处理请求。 请求中止可能表示试图危害应用程序的安全性, 如跨站点脚本攻击。 强烈建议应用程序显式检查有关请求中止的所有输入。 但是, 你可以通过将指令中的`validateRequest`属性设置为来`false`禁用请求验证, 如以下示例中所示:  
   
  `<%@ Page validateRequest="false" %>`  
   
- 若要为应用程序禁用请求验证，必须修改或创建一个 Web.config 文件对应用程序和组`validateRequest`的属性`pages`部分`false`，如以下示例所示：  
+ 若要对应用程序禁用请求验证, 必须修改或创建应用程序的 web.config 文件, 并将`validateRequest` `pages`节的特性设置为`false`, 如下面的示例中所示:  
   
 ```  
 <configuration>   
@@ -42,15 +42,15 @@
 </configuration>   
 ```  
   
- 若要禁用请求验证的服务器上的所有应用程序，可以执行此项修改 Machine.config 文件。  
+ 若要对服务器上的所有应用程序禁用请求验证, 则可以对 Machine.config 文件进行此修改。  
   
 > [!NOTE]
->  强烈建议你的应用程序显式检查所有输入，它使用以及由 ASP.NET 请求验证。 请求验证功能不能捕获所有攻击，尤其是那些专门针对应用程序逻辑精心设计。  
+>  强烈建议应用程序显式检查它使用的所有输入以及 ASP.NET 执行的请求验证。 请求验证功能无法捕获所有的攻击, 尤其是专门针对应用程序逻辑精心设计的攻击。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用检查恶意用户输入<xref:System.Web.HttpRequestValidationException>。  
+ 下面的代码示例演示如何使用<xref:System.Web.HttpRequestValidationException>检查恶意用户输入。  
   
 > [!IMPORTANT]
 >  此示例具有一个接受用户输入的文本框，这是一个潜在的安全威胁。 默认情况下，ASP.NET 网页验证用户输入是否不包含脚本或 HTML 元素。 有关详细信息，请参阅[脚本侵入概述](https://msdn.microsoft.com/library/772c7312-211a-4eb3-8d6e-eec0aa1dcc07)。  
@@ -117,7 +117,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 内容`message`参数用于人工可读。 调用方<xref:System.Web.HttpRequestValidationException.%23ctor%28System.String%29>构造函数需要确保`message`本地化字符串。  
+ `message`参数的内容可供用户阅读。 <xref:System.Web.HttpRequestValidationException.%23ctor%28System.String%29>构造函数的调用方需要确保`message`字符串已本地化。  
   
  ]]></format>
         </remarks>
@@ -153,7 +153,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 因前一个异常而直接引发的异常应在 <xref:System.Exception.InnerException%2A> 属性中包含对前一个异常的引用。 <xref:System.Exception.InnerException%2A>属性将返回相同的值传递到<xref:System.Web.HttpRequestValidationException.%23ctor%28System.String%2CSystem.Exception%29>构造函数，或`null`如果<xref:System.Exception.InnerException%2A>属性不提供对内部异常值<xref:System.Web.HttpRequestValidationException.%23ctor%28System.String%2CSystem.Exception%29>构造函数。  
+ 因前一个异常而直接引发的异常应在 <xref:System.Exception.InnerException%2A> 属性中包含对前一个异常的引用。 <xref:System.Web.HttpRequestValidationException.%23ctor%28System.String%2CSystem.Exception%29> `null` 属性返回<xref:System.Exception.InnerException%2A>传递到构造函数中的相同值, 或者, 如果属性不向<xref:System.Web.HttpRequestValidationException.%23ctor%28System.String%2CSystem.Exception%29>构造函数提供内部异常值, 则为。 <xref:System.Exception.InnerException%2A>  
   
  ]]></format>
         </remarks>
