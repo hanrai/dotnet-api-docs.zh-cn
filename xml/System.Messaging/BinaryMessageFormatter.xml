@@ -1,5 +1,5 @@
 <Type Name="BinaryMessageFormatter" FullName="System.Messaging.BinaryMessageFormatter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b7aa6901ecea81f22e8c4975a6f7d7c1c957a61f" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56786579" /></Metadata><TypeSignature Language="C#" Value="public class BinaryMessageFormatter : ICloneable, System.Messaging.IMessageFormatter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e10a52fc29a480a4d626cc03f43198b0e711ce77" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69116118" /></Metadata><TypeSignature Language="C#" Value="public class BinaryMessageFormatter : ICloneable, System.Messaging.IMessageFormatter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit BinaryMessageFormatter extends System.Object implements class System.ICloneable, class System.Messaging.IMessageFormatter" />
   <TypeSignature Language="DocId" Value="T:System.Messaging.BinaryMessageFormatter" />
   <TypeSignature Language="VB.NET" Value="Public Class BinaryMessageFormatter&#xA;Implements ICloneable, IMessageFormatter" />
@@ -31,11 +31,11 @@
  
 [!INCLUDE [untrusted-data-class-note](~/includes/untrusted-data-class-note.md)]
 
- <xref:System.Messaging.BinaryMessageFormatter>非常有效，可用于序列化大多数对象。 结果是非常紧凑且快速地分析，但不允许为松散耦合的消息传递作为<xref:System.Messaging.XmlMessageFormatter>does。 松散耦合的方式，客户端和服务器独立可以发送和接收的类型版本。  
+ <xref:System.Messaging.BinaryMessageFormatter>非常高效, 可用于序列化大多数对象。 分析结果非常简洁、速度快, 但不允许将松散耦合的消息传递为<xref:System.Messaging.XmlMessageFormatter> 。 松散耦合意味着客户端和服务器可以独立地为发送和接收的类型版本。  
   
- 应用程序将消息发送到队列使用的实例时<xref:System.Messaging.MessageQueue>类中，格式化程序对象序列化为流，并将其插入到消息正文。 从队列使用读取时<xref:System.Messaging.MessageQueue>，格式化程序反序列化到消息数据<xref:System.Messaging.Message.Body%2A>属性的<xref:System.Messaging.Message>。  
+ 当应用程序使用<xref:System.Messaging.MessageQueue>类的实例将消息发送到队列时, 格式化程序将对象序列化为流并将其插入消息正文。 当使用<xref:System.Messaging.MessageQueue>从队列进行读取时, 格式化程序将消息数据<xref:System.Messaging.Message.Body%2A>反序列化为的属性<xref:System.Messaging.Message>。  
   
- <xref:System.Messaging.BinaryMessageFormatter> 提供了更快的吞吐量比<xref:System.Messaging.XmlMessageFormatter>。 使用<xref:System.Messaging.BinaryMessageFormatter>时纯速度而不是松散耦合的消息传递所需的。  
+ <xref:System.Messaging.BinaryMessageFormatter>提供比更快的<xref:System.Messaging.XmlMessageFormatter>吞吐量。 <xref:System.Messaging.BinaryMessageFormatter>如果需要, 请使用纯速度而不是松散耦合消息。  
   
    
   
@@ -90,7 +90,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须指定值<xref:System.Messaging.BinaryMessageFormatter.TopObjectFormat%2A>属性 （用于定义关系图中的根对象的布局方式） 和<xref:System.Messaging.BinaryMessageFormatter.TypeFormat%2A>属性 （用于定义对象的类型说明的布局方式） 使用的实例之前<xref:System.Messaging.BinaryMessageFormatter>类序列化并发送一条消息。  
+ 您必须为<xref:System.Messaging.BinaryMessageFormatter.TopObjectFormat%2A>属性指定值 (定义关系图中的根对象的布局方式) <xref:System.Messaging.BinaryMessageFormatter.TypeFormat%2A>和属性 (定义如何布局对象类型说明), 然后才能<xref:System.Messaging.BinaryMessageFormatter>使用类的实例来序列化和发送消息。  
   
  ]]></format>
         </remarks>
@@ -154,9 +154,9 @@
 
 [!INCLUDE [untrusted-data-class-note](~/includes/untrusted-data-class-note.md)]
 
- <xref:System.Messaging.BinaryMessageFormatter.CanRead%2A> 返回`false`如果消息正文不是一个二进制对象。  
+ <xref:System.Messaging.BinaryMessageFormatter.CanRead%2A>如果`false`消息正文不是二进制对象, 则返回。  
   
- 接收计算机上<xref:System.Messaging.BinaryMessageFormatter.CanRead%2A>返回`true`如果本地存在类的程序集，要反序列化。 程序集必须在全局程序集缓存中，找到或链接到该应用程序 （例如，如果该对象表示的自定义类）。  
+ 在接收计算机上, <xref:System.Messaging.BinaryMessageFormatter.CanRead%2A>如果`true`要反序列化的类的程序集在本地存在, 则返回。 必须在全局程序集缓存中找到该程序集, 或将其链接到应用程序 (例如, 如果该对象表示一个自定义类)。  
   
  ]]></format>
         </remarks>
@@ -194,7 +194,7 @@
 
 [!INCLUDE [untrusted-data-class-note](~/includes/untrusted-data-class-note.md)]
  
-此方法创建格式化程序的副本并初始化所有其属性设置为此值<xref:System.Messaging.BinaryMessageFormatter>。 它用于实现可伸缩性，但不是保证读取或写入线程安全性。  
+此方法创建格式化程序的副本, 并将其所有属性初始化为此<xref:System.Messaging.BinaryMessageFormatter>的值。 它用于可伸缩性, 但不保证读取或写入线程安全。  
   
  ]]></format>
         </remarks>
@@ -234,7 +234,7 @@
   
 [!INCLUDE [untrusted-data-method-note](~/includes/untrusted-data-method-note.md)]
   
- 消息的正文必须以二进制格式，并且必须使用相同的序列化程序进行反序列化形式的最初序列化的消息。 如果正文表示自定义类，该类的程序集必须位于本地。  
+ 消息的正文必须为二进制格式, 必须使用相同的序列化程序将消息反序列化为最初序列化该消息的消息。 如果正文表示自定义类, 则该类的程序集必须在本地存在。  
   
  ]]></format>
         </remarks>
@@ -275,7 +275,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值定义如何图形的顶级（根）对象如何进行与查找和加载其程序集相关的反序列化。</summary>
-        <value>定义的反序列化行为的枚举值之一。</value>
+        <value>定义反序列化行为的枚举值之一。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -283,7 +283,7 @@
  
 [!INCLUDE [untrusted-data-class-note](~/includes/untrusted-data-class-note.md)]
 
-目前，你应该接受默认值， `AssemblyStyle`。  
+目前, 应接受默认值`AssemblyStyle`。  
   
  ]]></format>
         </remarks>
@@ -328,7 +328,7 @@
 
 [!INCLUDE [untrusted-data-class-note](~/includes/untrusted-data-class-note.md)]
 
- 目前，你应该接受默认值， `TypesWhenNeeded`。  
+ 目前, 应接受默认值`TypesWhenNeeded`。  
   
  ]]></format>
         </remarks>
@@ -369,9 +369,9 @@
 
 [!INCLUDE [untrusted-data-method-note](~/includes/untrusted-data-method-note.md)]
 
- 顶级对象格式和类型格式无需指定要写入到队列，因为它们必须读取时。 <xref:System.Messaging.BinaryMessageFormatter.TopObjectFormat%2A>和<xref:System.Messaging.BinaryMessageFormatter.TypeFormat%2A>仅在反序列化消息时，格式化程序使用属性。  
+ 在读取时, 不需要指定 top 对象格式和类型格式来写入队列。 仅当<xref:System.Messaging.BinaryMessageFormatter.TypeFormat%2A>反序列化消息时, 格式化程序才使用和属性。<xref:System.Messaging.BinaryMessageFormatter.TopObjectFormat%2A>  
   
- <xref:System.Messaging.BinaryMessageFormatter>可以序列化大多数对象，但结果不松散耦合。 但是，它是 compact，因此格式化程序是用于大型对象有效。  
+ <xref:System.Messaging.BinaryMessageFormatter>可以序列化大多数对象, 但结果并不松耦合。 不过, 它是压缩的, 因此格式化程序对于大型对象是高效的。  
   
  ]]></format>
         </remarks>

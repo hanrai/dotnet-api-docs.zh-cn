@@ -1,5 +1,5 @@
 <Type Name="PrincipalContext" FullName="System.DirectoryServices.AccountManagement.PrincipalContext">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="05a24762a978422603358d22eb2e895e9f81fc2f" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58560816" /></Metadata><TypeSignature Language="C#" Value="public class PrincipalContext : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1432f32dbe130b057d9bceb618bc435d0535a081" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69252133" /></Metadata><TypeSignature Language="C#" Value="public class PrincipalContext : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit PrincipalContext extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.DirectoryServices.AccountManagement.PrincipalContext" />
   <TypeSignature Language="VB.NET" Value="Public Class PrincipalContext&#xA;Implements IDisposable" />
@@ -30,7 +30,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 搜索操作的主体上下文定义搜索基础，以及对于 insert 操作上下文对象插入到容器。  
+ 对于搜索操作, 主体上下文定义搜索基础, 对于插入操作, 上下文定义要插入对象的容器。  
   
  ]]></format>
     </remarks>
@@ -47,11 +47,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.DirectoryServices.AccountManagement.PrincipalContext>构造函数的参数和服务器上，执行验证，但不是尝试验证凭据。  
+ <xref:System.DirectoryServices.AccountManagement.PrincipalContext>构造函数执行参数和服务器的验证, 但不尝试验证凭据。  
   
- 时创建的主体上下文对象时没有指定一个容器，它可以用于表示多个不同的容器。 一个容器可能会用作查询操作的基础，而更多的容器可以容纳新创建的主体对象。 例如，域上下文类型插入时会用户或组，帐户管理 API 将使用默认的已知用户容器中，"CN = Users，DC = Fabrikam，DC = com"。 API 时的存储中插入计算机时，使用的默认"CN = Computers，DC = Fabrikam，DC = com"容器。 请注意，可以由域管理员更改默认容器名称。 主体对象构造函数可以仅指定一个主体上下文，因为其他上下文被称为默认行为时应用程序创建的域上下文，而无需指定一个容器。 由于应用程序目录不具有已知的容器，该应用程序必须在构造函数中指定一个容器或<xref:System.ArgumentException>引发。 因为 SAM 没有容器，<xref:System.ArgumentException>如果应用程序尝试在构造函数中指定的容器，将引发。  
+ 如果在未指定容器的情况下创建主体上下文对象, 则可以使用它来表示多个不同的容器。 一个容器可用作查询操作的基础, 而其他容器则可以保存新创建的主体对象。 例如, 当用户或组插入到域上下文类型中时, 帐户管理 API 将使用默认的已知用户容器 "CN = Users, DC = Fabrikam, DC = com"。 在应用商店中插入计算机时, API 将使用默认的 "CN = 计算机, DC = Fabrikam, DC = com" 容器。 请注意, 域管理员可以更改默认容器名称。 由于主体对象构造函数只能指定一个主体上下文, 因此, 当应用程序在未指定容器的情况下创建域上下文时, 其他上下文将公开为默认行为。 由于应用程序目录没有众所周知的容器, 因此应用程序必须在构造函数中指定容器, 否则<xref:System.ArgumentException>将引发。 由于 SAM 没有容器, 如果应用程序<xref:System.ArgumentException>尝试在构造函数中指定容器, 则会引发。  
   
- 构造函数采用用户名称作为参数，每个版本中`userName`字符串可以是各种不同的格式。 为三个支持的 NameFormats 是 Nt4Name、 UserPrincipalName 和 SamAccountName。 有关名称格式的详细信息，请参阅 ADS_NAME_TYPE_ENUM 文档[此处](https://go.microsoft.com/fwlink/?LinkID=99942)。  
+ 在采用用户名作为参数的构造函数的每个版本中, `userName`字符串可以采用各种不同的格式。 的三个受支持的 NameFormats 是 Nt4Name、UserPrincipalName 和 SamAccountName。 有关名称格式的详细信息, 请参阅[此处](https://go.microsoft.com/fwlink/?LinkID=99942)的 ADS_NAME_TYPE_ENUM 文档。  
   
  ]]></format>
         </remarks>
@@ -142,7 +142,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.InvalidOperationException>连接到服务器，如果为指定的容器的后续目录操作调用中，可能会引发<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>主体上下文不是有效的容器。 容器定义的对象的架构类具有主体类，为用户、 组或计算机，在其 possibleInferiors 属性中的。  
+ 如果<xref:System.InvalidOperationException>为<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>主体上下文指定的容器不是有效的容器, 则可能会在连接到服务器的后续目录操作调用中引发。 容器定义为一个对象, 其 schema 类在其 possibleInferiors 属性中具有主体类 (用户、组或计算机)。  
   
  ]]></format>
         </remarks>
@@ -192,7 +192,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.InvalidOperationException>连接到服务器，如果为指定的容器的后续目录操作调用中，可能会引发<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>主体上下文不是有效的容器。 容器定义的对象的架构类具有主体类，为用户、 组或计算机，在其 possibleInferiors 属性中的。  
+ 如果<xref:System.InvalidOperationException>为<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>主体上下文指定的容器不是有效的容器, 则可能会在连接到服务器的后续目录操作调用中引发。 容器定义为一个对象, 其 schema 类在其 possibleInferiors 属性中具有主体类 (用户、组或计算机)。  
   
  ]]></format>
         </remarks>
@@ -275,7 +275,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.InvalidOperationException>连接到服务器，如果为指定的容器的后续目录操作调用中，可能会引发<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>主体上下文不是有效的容器。 容器定义的对象的架构类具有主体类，为用户、 组或计算机，在其 possibleInferiors 属性中的。  
+ 如果<xref:System.InvalidOperationException>为<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>主体上下文指定的容器不是有效的容器, 则可能会在连接到服务器的后续目录操作调用中引发。 容器定义为一个对象, 其 schema 类在其 possibleInferiors 属性中具有主体类 (用户、组或计算机)。  
   
  ]]></format>
         </remarks>
@@ -326,7 +326,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.InvalidOperationException>连接到服务器，如果为指定的容器的后续目录操作调用中，可能会引发<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>主体上下文不是有效的容器。 容器定义的对象的架构类具有主体类，为用户、 组或计算机，在其 possibleInferiors 属性中的。  
+ 如果<xref:System.InvalidOperationException>为<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>主体上下文指定的容器不是有效的容器, 则可能会在连接到服务器的后续目录操作调用中引发。 容器定义为一个对象, 其 schema 类在其 possibleInferiors 属性中具有主体类 (用户、组或计算机)。  
   
  ]]></format>
         </remarks>
@@ -359,12 +359,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取主体上下文连接到的服务器的名称。</summary>
-        <value>主体上下文连接到的服务器的名称或<see langword="null" />如果主体上下文未连接到服务器。</value>
+        <value>主体上下文连接到的服务器的名称, 或者<see langword="null" /> , 如果主体上下文未连接到服务器, 则为。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当上下文类型是<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>，此属性返回的域控制器或应用程序目录实例的名称。 当上下文类型是<xref:System.DirectoryServices.AccountManagement.ContextType.Machine>，此属性返回的计算机名称。  
+ 当上下文类型为<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>时, 此属性返回域控制器或应用程序目录实例的名称。 当上下文类型为<xref:System.DirectoryServices.AccountManagement.ContextType.Machine>时, 此属性将返回计算机名称。  
   
  ]]></format>
         </remarks>
@@ -389,12 +389,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取在构造函数的容器参数中指定的值。</summary>
-        <value>要用作上下文的根的存储区中的容器或<see langword="null" />如果未指定的容器。</value>
+        <value>存储区上要用作上下文的根的容器, 或者<see langword="null" /> , 如果未指定容器, 则为。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 所有查询都在此根下执行，并且所有插入都在此容器中执行。 有关<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>和<xref:System.DirectoryServices.AccountManagement.ContextType.ApplicationDirectory>上下文类型，此属性是容器对象的可分辨的名称。 有关<xref:System.DirectoryServices.AccountManagement.ContextType.Machine>上下文类型，此属性必须为`null`。  
+ 所有查询都在此根下执行，并且所有插入都在此容器中执行。 对于<xref:System.DirectoryServices.AccountManagement.ContextType.Domain> 和<xref:System.DirectoryServices.AccountManagement.ContextType.ApplicationDirectory>上下文类型, 此属性是容器对象的可分辨名称。 对于<xref:System.DirectoryServices.AccountManagement.ContextType.Machine>上下文类型, 此属性必须为`null`。  
   
  ]]></format>
         </remarks>
@@ -424,7 +424,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当应用程序不会不能直接创建主体的上下文，并指定上下文类型时，使用此属性。 例如，当应用程序会枚举组成员身份，则此属性可以用于确定主体所属的存储区的类型。  
+ 当应用程序不直接创建主体上下文和指定上下文类型时, 将使用此属性。 例如, 当应用程序枚举组成员身份时, 此属性可用于确定主体所属的存储区的类型。  
   
  ]]></format>
         </remarks>
@@ -475,7 +475,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取构造函数中指定作为 <paramref name="name" /> 参数的值。</summary>
-        <value>在域或服务器的名称<see cref="F:System.DirectoryServices.AccountManagement.ContextType.Domain" />上下文类型、 主机名<see cref="F:System.DirectoryServices.AccountManagement.ContextType.Machine" />上下文类型的承载的服务器名称<see cref="F:System.DirectoryServices.AccountManagement.ContextType.ApplicationDirectory" />实例，或<see langword="null" />如果未设置。</value>
+        <value>用于<see cref="F:System.DirectoryServices.AccountManagement.ContextType.Domain" />上下文类型的域或服务器的名称、 <see cref="F:System.DirectoryServices.AccountManagement.ContextType.Machine" />上下文类型的主机名、承载<see cref="F:System.DirectoryServices.AccountManagement.ContextType.ApplicationDirectory" />实例的服务器的名称, 或者<see langword="null" />如果未设置名称, 则为。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -521,12 +521,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取在构造函数的用户名参数中指定的值。</summary>
-        <value>用于连接到存储的用户名或<see langword="null" />如果用户名不存在。</value>
+        <value>用于连接到存储区的用户名, <see langword="null" />如果不存在用户名, 则为。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以通过将其传递用户名称的任意一种各种不同的格式设置此属性。 有关可接受类型的格式的完整列表，请参阅 ADS_NAME_TYPE_ENUM 文档[此处](https://go.microsoft.com/fwlink/?LinkID=99942)。  
+ 可以通过向其传递任意一种不同格式的用户名来设置此属性。 有关可接受的格式类型的完整列表, 请参阅[此处](https://go.microsoft.com/fwlink/?LinkID=99942)的 ADS_NAME_TYPE_ENUM 文档。  
   
  ]]></format>
         </remarks>
@@ -543,7 +543,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
-`userName`在此方法的这两个重载的参数必须采用格式*用户名*(例如， *mcampbell*) 而非*域 \ 用户名*或*用户名\@域*。   
+此`userName`方法的两个重载中的参数必须采用格式*用户名*(例如*mcampbell*), 而不能采用域*\*用户名或*用户名\@域*。   
   
  ]]></format>
         </remarks>
@@ -579,9 +579,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.DirectoryServices.AccountManagement.PrincipalContext.ValidateCredentials%2A>方法将绑定到构造函数中指定的服务器。 如果`username`并`password`自变量是`null`，此方法验证当前主体的默认凭据。  
+ <xref:System.DirectoryServices.AccountManagement.PrincipalContext.ValidateCredentials%2A>方法绑定到构造函数中指定的服务器。 `username`如果和`password`参数为`null`, 则此方法将验证当前主体的默认凭据。  
 
-`userName`参数必须采用格式*用户名*(例如， *mcampbell*) 而非*域 \ 用户名*或*用户名\@域*。
+*\@*   参数必须采用格式用户名 (例如 mcampbell), 而不能采用域 \ 用户名或用户名域。 `userName`
 
  ]]></format>
         </remarks>
@@ -619,9 +619,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.DirectoryServices.AccountManagement.PrincipalContext.ValidateCredentials%2A>方法将绑定到构造函数中指定的服务器。 如果`username`并`password`参数是`null`，此方法验证当前主体的默认凭据。  
+ <xref:System.DirectoryServices.AccountManagement.PrincipalContext.ValidateCredentials%2A>方法绑定到构造函数中指定的服务器。 `username`如果和`password`参数为`null`, 则此方法将验证当前主体的默认凭据。  
 
-`userName`参数必须采用格式*用户名*(例如， *mcampbell*) 而非*域 \ 用户名*或*用户名\@域*。 
+*\@*   参数必须采用格式用户名 (例如 mcampbell), 而不能采用域 \ 用户名或用户名域。 `userName` 
  
  ]]></format>
         </remarks>

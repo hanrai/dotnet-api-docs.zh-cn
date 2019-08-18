@@ -1,5 +1,5 @@
 <Type Name="FirstChanceExceptionEventArgs" FullName="System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="29a24a3dad4fe1dce54dd6d4847aa5d5115398cd" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58730822" /></Metadata><TypeSignature Language="C#" Value="public class FirstChanceExceptionEventArgs : EventArgs" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="169bae8320df5ccab499f54dc4a4009bcb8b6dfc" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69271893" /></Metadata><TypeSignature Language="C#" Value="public class FirstChanceExceptionEventArgs : EventArgs" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit FirstChanceExceptionEventArgs extends System.EventArgs" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs" />
   <TypeSignature Language="VB.NET" Value="Public Class FirstChanceExceptionEventArgs&#xA;Inherits EventArgs" />
@@ -30,21 +30,21 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此类提供的异常处理程序<xref:System.AppDomain.FirstChanceException?displayProperty=nameWithType>有权访问该异常的事件。  
+ 此类为有权访问异常的<xref:System.AppDomain.FirstChanceException?displayProperty=nameWithType>事件提供异常处理程序。  
   
    
   
 ## Examples  
- 下面的示例创建名为应用程序域的一系列`Child_0`通过`Child_3`，使用`Worker`每个应用程序域中的对象。 每个`Worker`对象具有对引用`Worker`对象在下一步的应用程序域中，除`Worker`最后一个应用程序域中。 <xref:System.AppDomain.FirstChanceException>以外的所有应用程序域中处理事件`Child_1`。  
+ 下面的示例创建一个名为`Child_0` `Child_3`的应用程序域系列, 其中`Worker`每个应用程序域中有一个对象。 每`Worker`个对象都有一个对`Worker`下一个应用程序域中的对象的引用`Worker` , 最后一个应用程序域中的除外。 此<xref:System.AppDomain.FirstChanceException>事件在除之外`Child_1`的所有应用程序域中进行处理。  
   
- 当已创建应用程序域时，默认应用程序域调用`TestException`方法的第一个子应用程序域。 每个`Worker`对象调用`TestException`方法在接下来，直到最后一个`Worker`引发的异常处理的或未经处理的。 因此，当前线程通过所有应用程序域和`TestException`添加到每个应用程序域中的堆栈。  
+ 创建应用程序域后, 默认应用程序域将为第一个`TestException`子应用程序域调用方法。 每`Worker`个对象都`TestException`为下一个调用方法, 直到最后`Worker`引发处理或未处理的异常。 因此, 当前线程通过所有应用程序域, 并`TestException`添加到每个应用程序域中的堆栈中。  
   
- 当最后一个`Worker`对象处理异常，<xref:System.AppDomain.FirstChanceException>仅在最后一个应用程序域中引发事件。 其他应用程序域永远不会有机会处理异常，因此不会引发事件。  
+ 当最后一个`Worker`对象处理异常时<xref:System.AppDomain.FirstChanceException> , 只会在最后一个应用程序域中引发事件。 其他应用程序域绝不会有机会处理异常, 因此不会引发事件。  
   
- 当最后一个`Worker`对象不处理异常，<xref:System.AppDomain.FirstChanceException>具有事件处理程序的每个应用程序域中引发事件。 每个事件处理程序完成后，堆栈将继续展开，直到通过默认应用程序域中捕获的异常。  
+ 如果最后一个`Worker`对象不处理异常<xref:System.AppDomain.FirstChanceException> , 则会在具有事件处理程序的每个应用程序域中引发事件。 每个事件处理程序完成后, 堆栈将继续展开, 直到默认应用程序域捕获到该异常。  
   
 > [!NOTE]
->  若要查看堆栈显示如更接近引发该事件的增长和更接近于默认应用程序域，请更改`e.Exception.Message`到`e.Exception`中`FirstChanceHandler`事件处理程序。 请注意，当`TestException`调用跨应用程序域边界，它会出现两次： 一次为代理和存根 （stub） 的一次。  
+>  在事件处理程序中`e.Exception.Message` `FirstChanceHandler` , 若要查看随着事件更接近且更接近于默认应用程序域, 堆栈显示`e.Exception`方式如何增长。 请注意, `TestException`当跨应用程序域边界调用时, 它会出现两次: 一次用于代理, 一次用于存根。  
   
  [!code-csharp[System.AppDomain.FirstChanceException#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.appdomain.firstchanceexception/cs/example.cs#1)]
  [!code-vb[System.AppDomain.FirstChanceException#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.appdomain.firstchanceexception/vb/example.vb#1)]  
@@ -86,7 +86,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 公共语言运行时，调用此构造函数不是由应用程序代码。  
+ 此构造函数由公共语言运行时调用, 而不是由应用程序代码调用。  
   
  ]]></format>
         </remarks>
@@ -130,7 +130,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 处理的方法<xref:System.AppDomain.UnhandledException?displayProperty=nameWithType>事件可以检查该异常并执行相应的日志记录或其他通知服务。  
+ 处理<xref:System.AppDomain.UnhandledException?displayProperty=nameWithType>事件的方法可以检查异常并执行适当的日志记录或其他通知服务。  
   
  有关示例代码，请参阅 <xref:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs>。  
   

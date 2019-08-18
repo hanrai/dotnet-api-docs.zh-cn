@@ -1,5 +1,5 @@
 <Type Name="WindowsTokenRoleProvider" FullName="System.Web.Security.WindowsTokenRoleProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6796d2e9d996798458a3220651b88e1fab831db9" /><Meta Name="ms.sourcegitcommit" Value="16d2d159872fd213cae4b8f371d7ae9c8b027c89" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="11/17/2018" /><Meta Name="ms.locfileid" Value="51884504" /></Metadata><TypeSignature Language="C#" Value="public class WindowsTokenRoleProvider : System.Web.Security.RoleProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a755cc29f6556eb0b7046de53c8a66b07cc3f462" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69050648" /></Metadata><TypeSignature Language="C#" Value="public class WindowsTokenRoleProvider : System.Web.Security.RoleProvider" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit WindowsTokenRoleProvider extends System.Web.Security.RoleProvider" />
   <TypeSignature Language="DocId" Value="T:System.Web.Security.WindowsTokenRoleProvider" />
   <TypeSignature Language="VB.NET" Value="Public Class WindowsTokenRoleProvider&#xA;Inherits RoleProvider" />
@@ -20,14 +20,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.WindowsTokenRoleProvider>类是只读的角色成员资格提供程序检索 Windows 安全组所基于的 Windows 用户的角色信息。 它会与使用 Windows 身份验证模式的 IIS 身份验证设置，禁用匿名身份验证的 ASP.NET 应用程序十分有用。 你可以配置 ASP.NET 应用程序以允许或拒绝特定的 Windows 组中的用户的成员身份基于访问权限。  
+ <xref:System.Web.Security.WindowsTokenRoleProvider>类是一个只读的角色成员资格提供程序, 它基于 windows 安全组检索 windows 用户的角色信息。 它最适用于使用 Windows 身份验证模式的 ASP.NET 应用程序, 其中 IIS 身份验证设置禁用匿名身份验证。 可以将 ASP.NET 应用程序配置为根据用户在特定 Windows 组中的成员身份来允许或拒绝访问。  
   
- 不能使用<xref:System.Web.Security.WindowsTokenRoleProvider>类来创建或删除角色或修改基于 Windows 组成员资格的角色的成员身份。 此功能由 Windows 操作系统管理。 <xref:System.Web.Security.WindowsTokenRoleProvider>类仅支持<xref:System.Web.Security.WindowsTokenRoleProvider.IsUserInRole%2A>并<xref:System.Web.Security.WindowsTokenRoleProvider.GetRolesForUser%2A>方法的<xref:System.Web.Security.RoleProvider>抽象类。  
+ 不能使用<xref:System.Web.Security.WindowsTokenRoleProvider>类来创建或删除角色, 或修改基于 Windows 组成员身份的角色的成员身份。 此功能由 Windows 操作系统管理。 类仅支持<xref:System.Web.Security.RoleProvider>抽象类的<xref:System.Web.Security.WindowsTokenRoleProvider.GetRolesForUser%2A> 和方法。<xref:System.Web.Security.WindowsTokenRoleProvider.IsUserInRole%2A> <xref:System.Web.Security.WindowsTokenRoleProvider>  
   
    
   
 ## Examples  
- 下面的示例演示 ASP.NET 应用程序的 Web.config 文件。 它指定应用程序使用这两个 Windows 身份验证和<xref:System.Web.Security.WindowsTokenRoleProvider>类，以检索其 Windows 用户的角色信息。 元素指定只有 builtin\ 管理员组中的用户允许访问应用程序。  
+ 下面的示例演示 ASP.NET 应用程序的 web.config 文件。 它指定应用程序使用 windows 身份验证和<xref:System.Web.Security.WindowsTokenRoleProvider>类来检索 windows 用户的角色信息。 元素指定只有 BUILTIN\Administrators 组中的用户可以访问应用程序。  
   
 ```  
 <configuration>  
@@ -82,7 +82,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.WindowsTokenRoleProvider.%23ctor%2A>构造函数由 ASP.NET 创建的实例调用<xref:System.Web.Security.WindowsTokenRoleProvider>为应用程序的配置中指定的类。 此构造函数不是要在代码中使用。  
+ 构造函数由 ASP.NET 调用, 以创建在应用程序的<xref:System.Web.Security.WindowsTokenRoleProvider>配置中指定的类的实例。 <xref:System.Web.Security.WindowsTokenRoleProvider.%23ctor%2A> 不应在代码中使用此构造函数。  
   
  ]]></format>
         </remarks>
@@ -117,7 +117,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法不受<xref:System.Web.Security.WindowsTokenRoleProvider>类，始终会引发<xref:System.Configuration.Provider.ProviderException>。  
+ <xref:System.Web.Security.WindowsTokenRoleProvider>该类不支持此方法, 它始终<xref:System.Configuration.Provider.ProviderException>引发。  
   
  ]]></format>
         </remarks>
@@ -153,12 +153,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 与其他角色提供程序，如不同<xref:System.Web.Security.SqlRoleProvider>，则<xref:System.Web.Security.WindowsTokenRoleProvider>类不会将角色信息关联的应用程序。 相反，角色信息是来自本地计算机上的 Windows 组。 在同一服务器上的多个应用程序使用<xref:System.Web.Security.WindowsTokenRoleProvider>类始终共享相同的角色信息。 尽管`applicationName`可以在该应用程序的 Web.config 文件中配置<xref:System.Web.Security.WindowsTokenRoleProvider.ApplicationName%2A>属性不用于检索其角色信息。  
+ 不同于等其他角色提供<xref:System.Web.Security.SqlRoleProvider>程序<xref:System.Web.Security.WindowsTokenRoleProvider> , 类不会将角色信息与应用程序关联。 而是从本地计算机上的 Windows 组中获取角色信息。 使用<xref:System.Web.Security.WindowsTokenRoleProvider>类的同一服务器上的多个应用程序始终共享相同的角色信息。 虽然可在应用程序的 web.config 文件中配置<xref:System.Web.Security.WindowsTokenRoleProvider.ApplicationName%2A> , 但不会使用属性来检索角色信息。 `applicationName`  
   
    
   
 ## Examples  
- 下面的示例演示中的元素`system.web`的 ASP.NET 应用程序的 Web.config 文件部分。 指定应用程序的<xref:System.Web.Security.WindowsTokenRoleProvider>实例并设置<xref:System.Web.Security.WindowsTokenRoleProvider.ApplicationName%2A>属性设置为`MyApplication`。  
+ 下面的示例演示 ASP.NET 应用程序的`system.web` web.config 文件的节中的元素。 它指定应用程序的<xref:System.Web.Security.WindowsTokenRoleProvider>实例, 并<xref:System.Web.Security.WindowsTokenRoleProvider.ApplicationName%2A>将属性设置`MyApplication`为。  
   
 ```  
 <roleManager defaultProvider="WindowsProvider"   
@@ -206,7 +206,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法不受<xref:System.Web.Security.WindowsTokenRoleProvider>类，始终会引发<xref:System.Configuration.Provider.ProviderException>。  
+ <xref:System.Web.Security.WindowsTokenRoleProvider>该类不支持此方法, 它始终<xref:System.Configuration.Provider.ProviderException>引发。  
   
  ]]></format>
         </remarks>
@@ -325,14 +325,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法<xref:System.Web.Security.Roles>类来检索从 Windows 操作系统中指定的用户所属 Windows 组的列表。 <xref:System.Web.Security.WindowsTokenRoleProvider.GetRolesForUser%2A>标识 LOGON_USER 服务器变量可以仅为当前登录的用户，调用方法。 如果中提供的值`username`参数不是当前登录的用户的名称<xref:System.Configuration.Provider.ProviderException?displayProperty=nameWithType>引发。  
+ 此方法由<xref:System.Web.Security.Roles>类调用, 以从 windows 操作系统中检索指定用户所在的 windows 组的列表。 只能<xref:System.Web.Security.WindowsTokenRoleProvider.GetRolesForUser%2A>为当前登录用户调用该方法, 如 LOGON_USER 服务器变量所标识。 如果`username`参数中提供的值不是当前登录的用户的名称<xref:System.Configuration.Provider.ProviderException?displayProperty=nameWithType> , 则会引发。  
   
- 有关详细信息 ASP.NET 和 Windows 身份验证，请参阅[ASP.NET 身份验证](https://msdn.microsoft.com/library/fc10b0ef-4ce4-4a7f-9174-886325221ee1(v=vs.100))。  
+ 有关 ASP.NET 和 Windows 身份验证的详细信息, 请参阅[ASP.NET authentication](https://msdn.microsoft.com/library/fc10b0ef-4ce4-4a7f-9174-886325221ee1(v=vs.100))。  
   
    
   
 ## Examples  
- 下面的代码示例使用<xref:System.Web.Security.WindowsTokenRoleProvider.GetRolesForUser%2A>方法来检索指定用户角色的列表，并将绑定到的角色列表<xref:System.Web.UI.WebControls.GridView>控件。 启用角色管理的 Web.config 文件的示例，请参阅<xref:System.Web.Security.WindowsTokenRoleProvider>。  
+ 下面的代码示例使用<xref:System.Web.Security.WindowsTokenRoleProvider.GetRolesForUser%2A>方法检索指定用户的角色列表, 并将角色列表绑定<xref:System.Web.UI.WebControls.GridView>到控件。 有关启用角色管理的 Web.config 文件的示例, 请参阅<xref:System.Web.Security.WindowsTokenRoleProvider>。  
   
  [!code-aspx-csharp[System.Web.Security.WindowsTokenRoleProvider#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Security.WindowsTokenRoleProvider/CS/viewrolescs.aspx#1)]
  [!code-aspx-vb[System.Web.Security.WindowsTokenRoleProvider#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Security.WindowsTokenRoleProvider/VB/viewrolesvb.aspx#1)]  
@@ -371,7 +371,7 @@
         <Parameter Name="roleName" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="roleName">要获取其用户列表的角色的名称。</param>
+        <param name="roleName">一个角色名称，将获取该角色的用户列表。</param>
         <summary>Windows 标记角色提供程序不支持此方法。</summary>
         <returns>无。 <see cref="T:System.Web.Security.WindowsTokenRoleProvider" /> 类不支持该方法，该方法始终引发 <see cref="T:System.Configuration.Provider.ProviderException" />。</returns>
         <remarks>To be added.</remarks>
@@ -407,7 +407,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.WindowsTokenRoleProvider.Initialize%2A>方法初始化<xref:System.Web.Security.WindowsTokenRoleProvider>类的属性值与 ASP.NET 应用程序配置文件 (Web.config) 中指定，但不可在代码中直接使用。  
+ 方法使用 ASP.NET 应用<xref:System.Web.Security.WindowsTokenRoleProvider>程序配置文件 (web.config) 中指定的属性值初始化类, 但不应在代码中直接使用。 <xref:System.Web.Security.WindowsTokenRoleProvider.Initialize%2A>  
   
  ]]></format>
         </remarks>
@@ -458,16 +458,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.WindowsTokenRoleProvider.IsUserInRole%2A>方法使您能够检查用户是否为所描述的常见 Windows 角色之一<xref:System.Security.Principal.WindowsBuiltInRole>枚举。 此方法很有用的应用程序本地化为多种语言。 此重载<xref:System.Web.Security.WindowsTokenRoleProvider.IsUserInRole%2A>方法不是属于<xref:System.Web.Security.RoleProvider>基类并且仅可以通过强制转换访问<xref:System.Web.Security.Roles.Provider%2A>的属性<xref:System.Web.Security.Roles>声明为类<xref:System.Web.Security.WindowsTokenRoleProvider>类型。  
+ 方法使你能够检查用户是否处于<xref:System.Security.Principal.WindowsBuiltInRole>枚举描述的常见 Windows 角色之一中。 <xref:System.Web.Security.WindowsTokenRoleProvider.IsUserInRole%2A> 此方法对于本地化为多种语言的应用程序很有用。 此<xref:System.Web.Security.WindowsTokenRoleProvider.IsUserInRole%2A>方法的重载不是<xref:System.Web.Security.RoleProvider>基类的一部分, 只能通过<xref:System.Web.Security.Roles.Provider%2A>将<xref:System.Web.Security.Roles>类的属性转换为<xref:System.Web.Security.WindowsTokenRoleProvider>类型来访问此重载。  
   
- 您可以调用<xref:System.Web.Security.WindowsTokenRoleProvider.IsUserInRole%2A>仅为当前登录的用户，明确要求通过 LOGON_USER 服务器变量的方法。 如果中提供的值`username`参数不是当前登录的用户的名称<xref:System.Web.HttpException>引发。  
+ 只能为当前已<xref:System.Web.Security.WindowsTokenRoleProvider.IsUserInRole%2A>登录用户调用该方法, 由 LOGON_USER 服务器变量标识。 如果`username`参数中提供的值不是当前登录的用户的名称<xref:System.Web.HttpException> , 则会引发。  
   
- <xref:System.Web.Security.WindowsTokenRoleProvider.IsUserInRole%2A> 仅为当前登录的用户标识的 LOGON_USER 服务器变量调用方法。 当前登录的用户必须是 Windows 身份验证的用户。 有关 ASP.NET 和 Windows 身份验证的详细信息，请参阅[ASP.NET 身份验证](https://msdn.microsoft.com/library/fc10b0ef-4ce4-4a7f-9174-886325221ee1(v=vs.100))。  
+ <xref:System.Web.Security.WindowsTokenRoleProvider.IsUserInRole%2A>只能为 LOGON_USER 服务器变量标识的当前登录用户调用方法。 当前登录的用户必须是经过 Windows 身份验证的用户。 有关 ASP.NET 和 Windows 身份验证的详细信息, 请参阅[ASP.NET authentication](https://msdn.microsoft.com/library/fc10b0ef-4ce4-4a7f-9174-886325221ee1(v=vs.100))。  
   
    
   
 ## Examples  
- 下面的代码示例以编程方式检查当前登录的用户是否为管理员角色允许用户查看应用程序的角色信息之前。 启用角色管理的 Web.config 文件的示例，请参阅<xref:System.Web.Security.WindowsTokenRoleProvider>。  
+ 下面的代码示例以编程方式检查当前登录的用户是否属于管理员角色, 然后允许用户查看该应用程序的角色信息。 有关启用角色管理的 Web.config 文件的示例, 请参阅<xref:System.Web.Security.WindowsTokenRoleProvider>。  
   
  [!code-aspx-csharp[System.Web.Security.WindowsTokenRoleProvider#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Security.WindowsTokenRoleProvider/CS/ViewRoles2cs.aspx#2)]
  [!code-aspx-vb[System.Web.Security.WindowsTokenRoleProvider#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Security.WindowsTokenRoleProvider/VB/ViewRoles2vb.aspx#2)]  
@@ -477,7 +477,7 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="username" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.Configuration.Provider.ProviderException">当前执行用户不具有附加到 <see cref="T:System.Security.Principal.WindowsIdentity" /> 的已验证身份的 <see cref="P:System.Web.UI.Page.User" /> 对于非 HTTP 方案，当前执行用户不具有附加到 <see cref="T:System.Security.Principal.WindowsIdentity" /> 的已验证身份的 <see cref="P:System.Threading.Thread.CurrentPrincipal" />。  
   
-或 
+- 或 - 
  <paramref name="username" /> 与当前 <see cref="P:System.Security.Principal.WindowsIdentity.Name" /> 的 <see cref="T:System.Security.Principal.WindowsIdentity" /> 不匹配。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/a0d2f19d-a2a7-496d-88b6-30133f8ea3d6">了解 ASP.NET 角色管理</related>
       </Docs>
@@ -511,12 +511,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.WindowsTokenRoleProvider.IsUserInRole%2A>调用方法<xref:System.Web.Security.Roles>类和<xref:System.Security.Principal.IPrincipal.IsInRole%2A>方法的<xref:System.Web.UI.Page.User%2A>属性来确定用户是否是 Windows 组中。 您可以调用<xref:System.Web.Security.WindowsTokenRoleProvider.IsUserInRole%2A>仅为当前登录的用户，明确要求通过 LOGON_USER 服务器变量的方法。 当前登录的用户必须是 Windows 身份验证的用户。 有关 ASP.NET 和 Windows 身份验证的详细信息，请参阅[ASP.NET 身份验证](https://msdn.microsoft.com/library/fc10b0ef-4ce4-4a7f-9174-886325221ee1(v=vs.100))。  
+ <xref:System.Web.Security.WindowsTokenRoleProvider.IsUserInRole%2A> 方法<xref:System.Web.Security.Roles>由类和<xref:System.Security.Principal.IPrincipal.IsInRole%2A>属性的方法调用,以确定用户是否在Windows组中。<xref:System.Web.UI.Page.User%2A> 只能为当前已<xref:System.Web.Security.WindowsTokenRoleProvider.IsUserInRole%2A>登录用户调用该方法, 由 LOGON_USER 服务器变量标识。 当前登录的用户必须是经过 Windows 身份验证的用户。 有关 ASP.NET 和 Windows 身份验证的详细信息, 请参阅[ASP.NET authentication](https://msdn.microsoft.com/library/fc10b0ef-4ce4-4a7f-9174-886325221ee1(v=vs.100))。  
   
    
   
 ## Examples  
- 下面的代码示例以编程方式检查当前登录的用户是否为管理员角色允许用户查看应用程序的角色信息之前。 启用角色管理的 Web.config 文件的示例，请参阅<xref:System.Web.Security.WindowsTokenRoleProvider>。  
+ 下面的代码示例以编程方式检查当前登录的用户是否属于管理员角色, 然后允许用户查看该应用程序的角色信息。 有关启用角色管理的 Web.config 文件的示例, 请参阅<xref:System.Web.Security.WindowsTokenRoleProvider>。  
   
  [!code-aspx-csharp[System.Web.Security.WindowsTokenRoleProvider#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Security.WindowsTokenRoleProvider/CS/viewrolescs.aspx#1)]
  [!code-aspx-vb[System.Web.Security.WindowsTokenRoleProvider#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Security.WindowsTokenRoleProvider/VB/viewrolesvb.aspx#1)]  
@@ -525,7 +525,7 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="username" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="roleName" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.Configuration.Provider.ProviderException">当前执行用户不具有附加到 <see cref="T:System.Security.Principal.WindowsIdentity" /> 的已验证身份的 <see cref="P:System.Web.UI.Page.User" /> 对于非 HTTP 方案，当前执行用户不具有附加到 <see cref="T:System.Security.Principal.WindowsIdentity" /> 的已验证身份的 <see cref="P:System.Threading.Thread.CurrentPrincipal" />。  
   
@@ -565,7 +565,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法不受<xref:System.Web.Security.WindowsTokenRoleProvider>类，始终会引发<xref:System.Configuration.Provider.ProviderException>。  
+ <xref:System.Web.Security.WindowsTokenRoleProvider>该类不支持此方法, 它始终<xref:System.Configuration.Provider.ProviderException>引发。  
   
  ]]></format>
         </remarks>
@@ -592,7 +592,7 @@
         <Parameter Name="roleName" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="roleName">要在数据源中搜索的角色名。</param>
+        <param name="roleName">要在数据源中搜索的角色的名称。</param>
         <summary>Windows 标记角色提供程序不支持此方法。</summary>
         <returns>无。 <see cref="T:System.Web.Security.WindowsTokenRoleProvider" /> 类不支持该方法，该方法始终引发 <see cref="T:System.Configuration.Provider.ProviderException" />。</returns>
         <remarks>To be added.</remarks>

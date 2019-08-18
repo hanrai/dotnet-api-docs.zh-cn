@@ -1,5 +1,5 @@
 <Type Name="CodeAccessPermission" FullName="System.Security.CodeAccessPermission">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="1381ae7784396c7037e78007904cf10bb8a3ac86" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56788789" /></Metadata><TypeSignature Language="C#" Value="public abstract class CodeAccessPermission : System.Security.IPermission, System.Security.IStackWalk" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="601db96d6568f82c6748112c908cd958d402cf4c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69161847" /></Metadata><TypeSignature Language="C#" Value="public abstract class CodeAccessPermission : System.Security.IPermission, System.Security.IStackWalk" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract serializable beforefieldinit CodeAccessPermission extends System.Object implements class System.Security.IPermission, class System.Security.ISecurityEncodable, class System.Security.IStackWalk" />
   <TypeSignature Language="DocId" Value="T:System.Security.CodeAccessPermission" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class CodeAccessPermission&#xA;Implements IPermission, IStackWalk" />
@@ -46,16 +46,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 代码访问权限使用堆栈遍历来确保代码的所有调用方已被授予权限。 权限对象是否`null`，对其进行处理的状态的权限对象相同<xref:System.Security.Permissions.PermissionState.None?displayProperty=nameWithType>。  
+ 代码访问权限使用堆栈审核来确保已为代码的所有调用方授予了权限。 如果权限对象为`null`, 则该对象的处理方式与状态<xref:System.Security.Permissions.PermissionState.None?displayProperty=nameWithType>相同。  
   
- 调用堆栈通常表示为向下增长，因此的调用堆栈中调用方法中较低的调用堆栈。  
+ 调用堆栈通常表示为向下增长, 因此调用堆栈中较高位置的方法调用堆栈中较低的调用方法。  
   
- 继承者<xref:System.Security.CodeAccessPermission>类必须被授予完全信任才能正常工作作为安全基础结构扩展的权限。 若要确定继承者是完全受信任<xref:System.Security.CodeAccessPermission>问题<xref:System.Security.Permissions.SecurityAction.InheritanceDemand>有关<xref:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence>  =  `true`并<xref:System.Security.Permissions.SecurityPermissionFlag.ControlPolicy>  =  `true`。  
+ 必须向<xref:System.Security.CodeAccessPermission>类的继承者授予完全信任, 才能作为权限扩展安全基础结构。 若要确定继承方是完全受信任<xref:System.Security.CodeAccessPermission>的, <xref:System.Security.Permissions.SecurityAction.InheritanceDemand>请<xref:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence>为<xref:System.Security.Permissions.SecurityPermissionFlag.ControlPolicy>  =  `true`和 =  `true`发出。  
   
    
   
 ## Examples  
- 下面的代码示例显示了一个权限派生自<xref:System.Security.CodeAccessPermission>类。  
+ 下面的代码示例演示一个派生自<xref:System.Security.CodeAccessPermission>类的权限。  
   
  [!code-cpp[System.Security.Permissions.NameIdPermission#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.NameIdPermission/CPP/nameidpermission.cpp#1)]
  [!code-csharp[System.Security.Permissions.NameIdPermission#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.NameIdPermission/CS/nameidpermission.cs#1)]
@@ -63,14 +63,14 @@
   
  ]]></format>
     </remarks>
-    <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">表示继承者提供的证据以及查看和修改策略的能力。 关联枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence" />， <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPolicy" />。</permission>
-    <block subset="none" type="overrides"><para>继承自<see cref="T:System.Security.CodeAccessPermission" />，还必须实现<see cref="T:System.Security.Permissions.IUnrestrictedPermission" />接口。  
+    <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">使继承者能够提供证据并查看和修改策略。 关联的枚举<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlEvidence" />: <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPolicy" />、。</permission>
+    <block subset="none" type="overrides"><para>当从<see cref="T:System.Security.CodeAccessPermission" />继承时, 还必须<see cref="T:System.Security.Permissions.IUnrestrictedPermission" />实现接口。  
   
-以下<see cref="T:System.Security.CodeAccessPermission" />成员必须被重写： <see cref="M:System.Security.CodeAccessPermission.Copy" />， <see cref="M:System.Security.CodeAccessPermission.Intersect(System.Security.IPermission)" />， <see cref="M:System.Security.CodeAccessPermission.IsSubsetOf(System.Security.IPermission)" />， <see cref="M:System.Security.CodeAccessPermission.ToXml" />， <see cref="M:System.Security.CodeAccessPermission.FromXml(System.Security.SecurityElement)" />，和<see cref="M:System.Security.CodeAccessPermission.Union(System.Security.IPermission)" />。  
+必须重<see cref="T:System.Security.CodeAccessPermission" />写以下成员: <see cref="M:System.Security.CodeAccessPermission.Copy" />、 <see cref="M:System.Security.CodeAccessPermission.Intersect(System.Security.IPermission)" />、 <see cref="M:System.Security.CodeAccessPermission.IsSubsetOf(System.Security.IPermission)" />、 <see cref="M:System.Security.CodeAccessPermission.ToXml" />、 <see cref="M:System.Security.CodeAccessPermission.FromXml(System.Security.SecurityElement)" />和。 <see cref="M:System.Security.CodeAccessPermission.Union(System.Security.IPermission)" />  
   
-您还必须定义的构造函数的<see cref="T:System.Security.Permissions.PermissionState" />作为其唯一参数。  
+还必须定义一个采用<see cref="T:System.Security.Permissions.PermissionState" />作为唯一的参数的构造函数。  
   
-你必须应用<see cref="T:System.SerializableAttribute" />继承的类属性<see cref="T:System.Security.CodeAccessPermission" />。</para></block>
+您必须将<see cref="T:System.SerializableAttribute" />特性应用于从<see cref="T:System.Security.CodeAccessPermission" />继承的类。</para></block>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -100,7 +100,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数调用以初始化类型中的状态，每当创建派生类的实例。 尽管您可以在派生的类构造函数的构造函数声明中显式调用此构造函数，但这通常没有必要;大多数编译器将自动生成用于你的调用。  
+ 每当创建派生类的实例时, 都将调用此构造函数来初始化类型中的状态。 尽管可以在派生类构造函数的构造函数声明中显式调用此构造函数, 但这通常是不必要的;大多数编译器会自动为你生成调用。  
   
  ]]></format>
         </remarks>
@@ -148,14 +148,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用堆栈通常表示为向下增长，因此的调用堆栈中调用方法中较低的调用堆栈。 调用<xref:System.Security.CodeAccessPermission.Assert%2A>阻止的堆栈遍历更低时沿着之外调用此方法的代码在调用堆栈中向上继续在调用堆栈中。 因此，即使调用堆栈上的高级调用方没有必需的权限来访问资源，但可以仍然访问已对所需的权限调用此方法的代码。 断言是仅当该代码调用有效<xref:System.Security.CodeAccessPermission.Assert%2A>传递断言的权限的安全检查。  
+ 调用堆栈通常表示为向下增长, 因此调用堆栈中较高位置的方法调用堆栈中较低的调用方法。 调用<xref:System.Security.CodeAccessPermission.Assert%2A>可防止调用堆栈中的堆栈遍历在调用堆栈之外的堆栈遍历超出调用此方法的代码的范围。 因此, 即使调用堆栈中较高位置的调用方没有访问资源所需的权限, 它们仍可以通过对所需权限调用此方法的代码来访问它。 仅当调用<xref:System.Security.CodeAccessPermission.Assert%2A>的代码为其断言的权限传递安全检查时, 断言才有效。  
   
- 对调用<xref:System.Security.CodeAccessPermission.Assert%2A>调用代码返回给调用方之前均有效。 只有一个<xref:System.Security.CodeAccessPermission.Assert%2A>可以处于活动状态的帧。 尝试调用<xref:System.Security.CodeAccessPermission.Assert%2A>时活动<xref:System.Security.CodeAccessPermission.Assert%2A>中的帧结果上存在<xref:System.Security.SecurityException>。 调用<xref:System.Security.CodeAccessPermission.RevertAssert%2A>或<xref:System.Security.CodeAccessPermission.RevertAll%2A>若要删除活动<xref:System.Security.CodeAccessPermission.Assert%2A>。  
+ 在调用代码<xref:System.Security.CodeAccessPermission.Assert%2A>返回到其调用方之前, 对的调用将有效。 帧上<xref:System.Security.CodeAccessPermission.Assert%2A>只能有一个处于活动状态。 如果在帧上<xref:System.Security.CodeAccessPermission.Assert%2A>存在活动<xref:System.Security.CodeAccessPermission.Assert%2A>时尝试调用, 则会生成一个<xref:System.Security.SecurityException>。 调用<xref:System.Security.CodeAccessPermission.RevertAssert%2A>或<xref:System.Security.CodeAccessPermission.RevertAll%2A>删除活动<xref:System.Security.CodeAccessPermission.Assert%2A>。  
   
- <xref:System.Security.CodeAccessPermission.Assert%2A> 将忽略不授予，因为对该权限的请求将不会成功的权限。 但是，如果调用堆栈上的低级代码调用<xref:System.Security.CodeAccessPermission.Demand%2A>对该权限<xref:System.Security.SecurityException>堆栈遍历到达尝试调用的代码时引发<xref:System.Security.CodeAccessPermission.Assert%2A>。 这是因为该调用的代码<xref:System.Security.CodeAccessPermission.Assert%2A>未被授予权限，即使它试图<xref:System.Security.CodeAccessPermission.Assert%2A>它。  
+ <xref:System.Security.CodeAccessPermission.Assert%2A>对于未授予的权限, 将忽略, 因为对该权限的请求将不会成功。 但是, 如果调用堆栈上的代码越低<xref:System.Security.CodeAccessPermission.Demand%2A>就会调用该权限<xref:System.Security.SecurityException> , 则当堆栈遍历到达尝试调用<xref:System.Security.CodeAccessPermission.Assert%2A>的代码时, 将引发。 发生这种情况是因为调用<xref:System.Security.CodeAccessPermission.Assert%2A>的代码未被授予权限, 即使它<xref:System.Security.CodeAccessPermission.Assert%2A>尝试了该权限。  
   
 > [!CAUTION]
->  因为调用<xref:System.Security.CodeAccessPermission.Assert%2A>删除调用链中的所有代码的要求必须授予访问指定的资源的权限，它可以打开安全方面的问题，如果使用不当。 因此，它应非常小心地使用。  
+>  因为调用<xref:System.Security.CodeAccessPermission.Assert%2A>消除了调用链中的所有代码都必须被授予访问指定资源的权限的要求, 所以如果使用不当或不当, 则会导致安全问题。 因此, 使用它时要格外小心。  
   
  ]]></format>
         </remarks>
@@ -163,7 +163,7 @@
   
 - 或 - 
 已存在一个用于当前帧的活动的 <see cref="M:System.Security.CodeAccessPermission.Assert" />。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">它能够调用<see cref="M:System.Security.CodeAccessPermission.Assert" />。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Assertion" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于调用<see cref="M:System.Security.CodeAccessPermission.Assert" />的功能。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Assertion" /></permission>
         <block subset="none" type="overrides"><para>不能重写此方法。</para></block>
         <related type="Article" href="~/docs/framework/misc/using-the-assert-method.md">使用 Assert 方法</related>
       </Docs>
@@ -203,12 +203,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 权限对象的副本与原始权限对象的资源表示相同的访问权限。  
+ 权限对象的副本表示与原始权限对象相同的资源访问权限。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何重写的<xref:System.Security.CodeAccessPermission.Copy%2A>方法。 此代码示例是为提供一个更大示例的一部分<xref:System.Security.CodeAccessPermission>类。  
+ 下面的代码示例演示如何重写<xref:System.Security.CodeAccessPermission.Copy%2A>方法。 此代码示例是为<xref:System.Security.CodeAccessPermission>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.NameIdPermission#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.NameIdPermission/CPP/nameidpermission.cpp#2)]
  [!code-csharp[System.Security.Permissions.NameIdPermission#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.NameIdPermission/CS/nameidpermission.cs#2)]
@@ -216,7 +216,7 @@
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>必须重写此方法在派生类中。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中重写此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Demand">
@@ -262,15 +262,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 安全库通常使用此方法以确保调用方有权访问的资源。 例如，安全类库中的文件类调用<xref:System.Security.CodeAccessPermission.Demand%2A>为必需<xref:System.Security.Permissions.FileIOPermission>之前执行由调用方请求的文件操作。  
+ 此方法通常由安全库用于确保调用方有权访问资源。 例如, 在执行调用方请求的文件操作之前, <xref:System.Security.CodeAccessPermission.Demand%2A>安全类库中<xref:System.Security.Permissions.FileIOPermission>的文件类会调用所需的。  
   
- 调用此方法的代码的权限不会检查;检查开始从该代码的直接调用方，并且在堆栈中向上继续进行。 调用堆栈通常表示为向下增长，因此的调用堆栈中调用方法中较低的调用堆栈。 <xref:System.Security.CodeAccessPermission.Demand%2A> 仅当没有<xref:System.Security.SecurityException>引发。  
+ 不检查调用此方法的代码的权限;该检查从该代码的直接调用方开始, 并沿堆栈向上进行。 调用堆栈通常表示为向下增长, 因此调用堆栈中较高位置的方法调用堆栈中较低的调用方法。 <xref:System.Security.CodeAccessPermission.Demand%2A>仅当未<xref:System.Security.SecurityException>引发时才成功。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">调用堆栈中处于较高位置的调用方不具有当前实例所指定的权限。  
   
-- 或 - 
+或 
 调用堆栈中处于较高位置的调用方已经在当前权限对象上调用了 <see cref="M:System.Security.CodeAccessPermission.Deny" />。</exception>
         <block subset="none" type="overrides"><para>不能重写此方法。</para></block>
       </Docs>
@@ -325,13 +325,13 @@
 ## Remarks  
   
 > [!IMPORTANT]
->  <xref:System.Security.CodeAccessPermission.Deny%2A>方法应仅用于保护资源免受意外访问完全受信任的代码。 它不应以防止故意误用资源受信任的代码。 例如，如果方法`A`问题<xref:System.Security.CodeAccessPermission.Deny%2A>的权限，然后调用方法`B`，方法`B`而公开可以重写<xref:System.Security.CodeAccessPermission.Deny%2A>通过发出<xref:System.Security.CodeAccessPermission.Assert%2A>。 所调用的方法始终是堆栈中。 因此，如果方法`B`尝试访问受保护的资源，安全系统开始检查与它的权限，因为方法`B`是直接调用方，上下然后遍历堆栈上要确认是否有任何<xref:System.Security.CodeAccessPermission.Deny%2A>或<xref:System.Security.CodeAccessPermission.PermitOnly%2A>堆栈中较低。 方法`B`，这尝试访问的资源，可以停止堆栈遍历立即使用<xref:System.Security.CodeAccessPermission.Assert%2A>方法。 在这种情况下，<xref:System.Security.CodeAccessPermission.Deny%2A>方法将位于堆栈上`A`永远不会发现 （调用方法）。  
+>  此<xref:System.Security.CodeAccessPermission.Deny%2A>方法应仅用于防止完全受信任的代码意外访问资源。 不应使用它来防止不受信任的代码有意滥用资源。 例如, `A`如果方法<xref:System.Security.CodeAccessPermission.Deny%2A>发出权限的, 然后调用方法`B`, 则<xref:System.Security.CodeAccessPermission.Assert%2A>方法`B`可以<xref:System.Security.CodeAccessPermission.Deny%2A>通过发出来 overtly 重写。 调用的方法在堆栈中始终更高。 因此, 如果方法`B`尝试访问受保护的资源, 则安全系统会开始检查其权限, 因为方法`B`是直接调用方, 然后向下遍历堆栈以<xref:System.Security.CodeAccessPermission.Deny%2A>确认没有或<xref:System.Security.CodeAccessPermission.PermitOnly%2A>堆栈中的下限。 尝试`B`访问资源的方法可以<xref:System.Security.CodeAccessPermission.Assert%2A>使用方法立即停止堆栈遍历。 在这种情况下<xref:System.Security.CodeAccessPermission.Deny%2A> , 从不会发现放置在`A`堆栈 by 方法 (调用方法) 上的。  
   
- 此方法会阻止调用堆栈中的高级调用方通过调用此方法的代码访问受保护的资源，即使这些调用方已被授予权限来访问它。 调用堆栈通常表示为向下增长，因此的调用堆栈中调用方法中较低的调用堆栈。  
+ 此方法阻止调用堆栈中较高位置的调用方通过调用此方法的代码访问受保护的资源, 即使这些调用方已被授予访问该方法的权限。 调用堆栈通常表示为向下增长, 因此调用堆栈中较高位置的方法调用堆栈中较低的调用方法。  
   
- <xref:System.Security.CodeAccessPermission.Deny%2A> 可以限制程序员的责任或帮助防止出现意外的安全问题，因为它有助于防止调用的方法<xref:System.Security.CodeAccessPermission.Deny%2A>被用来访问被拒绝的权限所保护的资源。 如果一个方法调用<xref:System.Security.CodeAccessPermission.Deny%2A>对权限，并且如果<xref:System.Security.CodeAccessPermission.Demand%2A>的调用堆栈中较低级别的调用方调用该权限，该安全检查将失败时达到<xref:System.Security.CodeAccessPermission.Deny%2A>。  
+ <xref:System.Security.CodeAccessPermission.Deny%2A>可以限制程序员的责任, 或帮助防止意外的安全问题, 因为它有助于防止调用<xref:System.Security.CodeAccessPermission.Deny%2A>的方法访问由拒绝的权限保护的资源。 如果方法对权限<xref:System.Security.CodeAccessPermission.Deny%2A>进行调用, 并且调用堆栈中<xref:System.Security.CodeAccessPermission.Demand%2A>的调用方调用了某个权限, 则该安全检查到达时将<xref:System.Security.CodeAccessPermission.Deny%2A>失败。  
   
- 对调用<xref:System.Security.CodeAccessPermission.Deny%2A>调用代码返回给调用方之前均有效。 只有一个<xref:System.Security.CodeAccessPermission.Deny%2A>可以处于活动状态的帧。 尝试调用<xref:System.Security.CodeAccessPermission.Deny%2A>时活动<xref:System.Security.CodeAccessPermission.Deny%2A>中的帧结果上存在<xref:System.Security.SecurityException>。 调用<xref:System.Security.CodeAccessPermission.RevertDeny%2A>或<xref:System.Security.CodeAccessPermission.RevertAll%2A>若要删除活动<xref:System.Security.CodeAccessPermission.Deny%2A>。 <xref:System.Security.CodeAccessPermission.Deny%2A> 将忽略不授予，因为对该权限的请求将不会成功的权限。  
+ 在调用代码<xref:System.Security.CodeAccessPermission.Deny%2A>返回到其调用方之前, 对的调用将有效。 帧上<xref:System.Security.CodeAccessPermission.Deny%2A>只能有一个处于活动状态。 如果在帧上<xref:System.Security.CodeAccessPermission.Deny%2A>存在活动<xref:System.Security.CodeAccessPermission.Deny%2A>时尝试调用, 则会生成一个<xref:System.Security.SecurityException>。 调用<xref:System.Security.CodeAccessPermission.RevertDeny%2A>或<xref:System.Security.CodeAccessPermission.RevertAll%2A>删除活动<xref:System.Security.CodeAccessPermission.Deny%2A>。 <xref:System.Security.CodeAccessPermission.Deny%2A>对于未授予的权限, 将忽略, 因为对该权限的请求将不会成功。  
   
  ]]></format>
         </remarks>
@@ -371,14 +371,14 @@
         <Parameter Name="obj" Type="System.Object" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="obj">要与当前的 <see cref="T:System.Security.CodeAccessPermission" /> 进行比较的 <see cref="T:System.Security.CodeAccessPermission" /> 对象。</param>
+        <param name="obj">要与当前的 <see cref="T:System.Security.CodeAccessPermission" /> 比较的 <see cref="T:System.Security.CodeAccessPermission" /> 对象。</param>
         <summary>确定指定的 <see cref="T:System.Security.CodeAccessPermission" /> 对象是否等于当前的 <see cref="T:System.Security.CodeAccessPermission" />。</summary>
         <returns>如果指定的 <see cref="T:System.Security.CodeAccessPermission" /> 对象等于当前的 <see cref="T:System.Security.CodeAccessPermission" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关详情，请参阅<xref:System.Object.Equals%2A>。  
+ 有关详细信息，请参阅 <xref:System.Object.Equals%2A>。  
   
  ]]></format>
         </remarks>
@@ -421,12 +421,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 扩展了安全对象的自定义代码需要实现<xref:System.Security.CodeAccessPermission.ToXml%2A>和<xref:System.Security.CodeAccessPermission.FromXml%2A>可以对对象安全编码的方法。  
+ 扩展安全对象的自定义代码需要实现<xref:System.Security.CodeAccessPermission.ToXml%2A>和<xref:System.Security.CodeAccessPermission.FromXml%2A>方法, 以使对象安全 encodable。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何重写的<xref:System.Security.CodeAccessPermission.FromXml%2A>方法。 此代码示例是为提供一个更大示例的一部分<xref:System.Security.CodeAccessPermission>类。  
+ 下面的代码示例演示如何重写<xref:System.Security.CodeAccessPermission.FromXml%2A>方法。 此代码示例是为<xref:System.Security.CodeAccessPermission>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.NameIdPermission#10](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.NameIdPermission/CPP/nameidpermission.cpp#10)]
  [!code-csharp[System.Security.Permissions.NameIdPermission#10](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.NameIdPermission/CS/nameidpermission.cs#10)]
@@ -439,7 +439,7 @@
   
 - 或 - 
 不支持 <paramref name="elem" /> 参数的版本号。</exception>
-        <block subset="none" type="overrides"><para>必须重写此方法在派生类中。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中重写此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="GetHashCode">
@@ -478,7 +478,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 相同的权限的两个实例的哈希代码可能会有所不同，因此不应使用的哈希代码来比较两个<xref:System.Security.CodeAccessPermission>对象。  
+ 同一权限的两个实例的哈希代码可能不同, 因此, 不应使用哈希代码来比较两个<xref:System.Security.CodeAccessPermission>对象。  
   
  ]]></format>
         </remarks>
@@ -517,17 +517,17 @@
       <Docs>
         <param name="target">要与当前权限相交的权限。 它必须与当前权限属于同一类型。</param>
         <summary>通过派生类实现时，创建和返回是当前权限和指定权限的交集的权限。</summary>
-        <returns>一个新权限，它表示当前权限与指定权限的交集。 如果交集为空，则此新权限为 <see langword="null" />。</returns>
+        <returns>表示当前权限和指定权限的交集的一个新权限。 如果交集为空，则此新权限为 <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 两个权限的交集是描述两者共同描述的操作组的权限。 只有传递两个原始权限的请求将通过该交集。  
+ 两个权限的交集是描述它们共同描述的一组操作的权限。 只有同时传递两个原始权限的请求才会传递交集。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何重写的<xref:System.Security.CodeAccessPermission.Intersect%2A>方法。 此代码示例是为提供一个更大示例的一部分<xref:System.Security.CodeAccessPermission>类。  
+ 下面的代码示例演示如何重写<xref:System.Security.CodeAccessPermission.Intersect%2A>方法。 此代码示例是为<xref:System.Security.CodeAccessPermission>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.NameIdPermission#5](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.NameIdPermission/CPP/nameidpermission.cpp#5)]
  [!code-csharp[System.Security.Permissions.NameIdPermission#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.NameIdPermission/CS/nameidpermission.cs#5)]
@@ -536,7 +536,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="target" /> 参数不为 <see langword="null" />，并且不是与当前权限属于相同类的实例。</exception>
-        <block subset="none" type="overrides"><para>必须重写此方法在派生类中。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中重写此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="IsSubsetOf">
@@ -577,15 +577,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果当前权限指定一组操作完全包含指定的权限，则当前权限是指定权限的子集。 例如，表示对 C:\example.txt 访问权限的权限是到 c： 表示访问权限的子集\\。 如果此方法返回`true`，当前权限表示对受保护资源的访问权限不超过指定的权限。  
+ 如果当前权限指定的一组操作完全包含在指定权限中, 则当前权限是指定权限的子集。 例如, 表示对 C:\example.txt 的访问权限的权限是表示 C:\\访问权限的权限的子集。 如果此方法返回`true`, 则当前权限表示对受保护资源的访问权限比指定权限更多。  
   
- 以下语句所需进行`true`的所有重写<xref:System.Security.CodeAccessPermission.IsSubsetOf%2A>方法。 *X*， *Y*，和*Z*表示自定义代码访问权限对象不是空引用*U*表示的不受限制的代码访问权限，并*N*表示的空权限<xref:System.Security.Permissions.PermissionState>的<xref:System.Security.Permissions.PermissionState.None>。  
+ 以下语句`true`对于<xref:System.Security.CodeAccessPermission.IsSubsetOf%2A>方法的所有重写都是必需的。 *X*、 *Y*和*Z*表示自定义代码访问权限对象, 这些权限对象不是 null 引用, 而*U*表示不受限制 <xref:System.Security.Permissions.PermissionState>的代码访问权限, 而 N 表示为的空权限<xref:System.Security.Permissions.PermissionState.None>.  
   
 -   *X*。IsSubsetOf (*X*) 返回`true`。  
   
--   *X*。IsSubsetOf (*Y*) 返回相同的值*Y*。IsSubsetOf (*X*) 当且仅当*X*并*Y*表示相同的权限集。  
+-   *X*。IsSubsetOf (*y*) 返回与*Y*相同的值。当且仅当*X*和*Y*表示相同权限集时, IsSubsetOf (*X*)。  
   
--   如果*X*。IsSubsetOf (*Y*) 和*Y*。IsSubsetOf (*Z*) 都返回`true`， *X*。IsSubsetOf (*Z*) 返回`true`。  
+-   如果为*X*IsSubsetOf (*y*) 和*Y*。IsSubsetOf (*Z*) 均返回`true` *X*。IsSubsetOf (*Z*) 返回`true`。  
   
 -   *X*。IsSubsetOf (*U*) 返回`true`。  
   
@@ -593,12 +593,12 @@
   
 -   *N*。IsSubsetOf (*X*) 返回`true`。  
   
- 如果*X*并*Y*表示自定义代码访问权限对象是 null 引用，则*X*。IsSubsetOf (*Y*) 返回`true`。 如果*Z*也为 null，则复合集运算*X*。Union (*Y*)。IsSubsetOf (*Z*) 也会返回`true`因为两个 null 权限的联合是 null 的权限。  
+ 如果*x*和*Y*表示自定义代码访问权限对象, 这些权限对象为空引用*X*。IsSubsetOf (*Y*) 返回`true`。 如果*Z*也为 null, 则为复合集运算*X*。Union (*Y*)。IsSubsetOf (*Z*) 还返回`true` , 因为两个 null 权限的联合是 null 权限。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何重写的<xref:System.Security.CodeAccessPermission.IsSubsetOf%2A>方法。 此代码示例是为提供一个更大示例的一部分<xref:System.Security.CodeAccessPermission>类。  
+ 下面的代码示例演示如何重写<xref:System.Security.CodeAccessPermission.IsSubsetOf%2A>方法。 此代码示例是为<xref:System.Security.CodeAccessPermission>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.NameIdPermission#4](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.NameIdPermission/CPP/nameidpermission.cpp#4)]
  [!code-csharp[System.Security.Permissions.NameIdPermission#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.NameIdPermission/CS/nameidpermission.cs#4)]
@@ -606,8 +606,8 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="target" /> 参数不是 <see langword="null" />，而且与当前权限不是同一类型。</exception>
-        <block subset="none" type="overrides"><para>必须重写此方法在派生类中。</para></block>
+        <exception cref="T:System.ArgumentException"><paramref name="target" /> 参数不为 <see langword="null" />，并且与当前权限不属于同一类型。</exception>
+        <block subset="none" type="overrides"><para>必须在派生类中重写此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="PermitOnly">
@@ -654,13 +654,13 @@
 ## Remarks  
   
 > [!IMPORTANT]
->  <xref:System.Security.CodeAccessPermission.PermitOnly%2A>方法应仅用于保护资源免受意外访问完全受信任的代码。 它不应以防止故意误用资源受信任的代码。 例如，如果方法`A`问题<xref:System.Security.CodeAccessPermission.PermitOnly%2A>的权限，然后调用方法`B`，方法`B`而公开可以重写<xref:System.Security.CodeAccessPermission.PermitOnly%2A>通过发出<xref:System.Security.CodeAccessPermission.Assert%2A>。 所调用的方法始终是堆栈中。 因此，如果方法`B`尝试访问受保护的资源，安全系统开始检查与它的权限，因为方法`B`是直接调用方，上下然后遍历堆栈上要确认是否有任何<xref:System.Security.CodeAccessPermission.Deny%2A>或<xref:System.Security.CodeAccessPermission.PermitOnly%2A>堆栈中较低。 方法`B`，这尝试访问的资源，可以停止堆栈遍历立即使用<xref:System.Security.CodeAccessPermission.Assert%2A>方法。 在这种情况下，<xref:System.Security.CodeAccessPermission.PermitOnly%2A>方法将位于堆栈上`A`永远不会发现 （调用方法）。  
+>  此<xref:System.Security.CodeAccessPermission.PermitOnly%2A>方法应仅用于防止完全受信任的代码意外访问资源。 不应使用它来防止不受信任的代码有意滥用资源。 例如, `A`如果方法<xref:System.Security.CodeAccessPermission.PermitOnly%2A>发出权限的, 然后调用方法`B`, 则<xref:System.Security.CodeAccessPermission.Assert%2A>方法`B`可以<xref:System.Security.CodeAccessPermission.PermitOnly%2A>通过发出来 overtly 重写。 调用的方法在堆栈中始终更高。 因此, 如果方法`B`尝试访问受保护的资源, 则安全系统会开始检查其权限, 因为方法`B`是直接调用方, 然后向下遍历堆栈以<xref:System.Security.CodeAccessPermission.Deny%2A>确认没有或<xref:System.Security.CodeAccessPermission.PermitOnly%2A>堆栈中的下限。 尝试`B`访问资源的方法可以<xref:System.Security.CodeAccessPermission.Assert%2A>使用方法立即停止堆栈遍历。 在这种情况下<xref:System.Security.CodeAccessPermission.PermitOnly%2A> , 从不会发现放置在`A`堆栈 by 方法 (调用方法) 上的。  
   
- <xref:System.Security.CodeAccessPermission.PermitOnly%2A> 类似于<xref:System.Security.CodeAccessPermission.Deny%2A>，同时会导致堆栈审核失败时它们原本应该成功。 不同之处在于<xref:System.Security.CodeAccessPermission.Deny%2A>指定将导致失败，则堆栈审核的权限，但<xref:System.Security.CodeAccessPermission.PermitOnly%2A>指定唯一的权限，但不会导致堆栈审核失败。  
+ <xref:System.Security.CodeAccessPermission.PermitOnly%2A>类似<xref:System.Security.CodeAccessPermission.Deny%2A>于, 在这两个情况下, 堆栈遍历将会失败, 否则将会成功。 不同之处在于<xref:System.Security.CodeAccessPermission.Deny%2A>指定将导致堆栈遍历失败的权限, 但<xref:System.Security.CodeAccessPermission.PermitOnly%2A>指定不会导致堆栈遍历失败的唯一权限。  
   
- 调用此方法，以确保你的代码可以用于访问指定的资源。 对调用<xref:System.Security.CodeAccessPermission.PermitOnly%2A>调用代码返回给调用方之前均有效。 只有一个<xref:System.Security.CodeAccessPermission.PermitOnly%2A>可以处于活动状态的帧。 尝试调用<xref:System.Security.CodeAccessPermission.PermitOnly%2A>时活动<xref:System.Security.CodeAccessPermission.PermitOnly%2A>中的帧结果上存在<xref:System.Security.SecurityException>。 调用<xref:System.Security.CodeAccessPermission.RevertPermitOnly%2A>或<xref:System.Security.CodeAccessPermission.RevertAll%2A>若要删除活动<xref:System.Security.CodeAccessPermission.PermitOnly%2A>。  
+ 调用此方法以确保你的代码只能用于访问指定的资源。 在调用代码<xref:System.Security.CodeAccessPermission.PermitOnly%2A>返回到其调用方之前, 对的调用将有效。 帧上<xref:System.Security.CodeAccessPermission.PermitOnly%2A>只能有一个处于活动状态。 如果在帧上<xref:System.Security.CodeAccessPermission.PermitOnly%2A>存在活动<xref:System.Security.CodeAccessPermission.PermitOnly%2A>时尝试调用, 则会生成一个<xref:System.Security.SecurityException>。 调用<xref:System.Security.CodeAccessPermission.RevertPermitOnly%2A>或<xref:System.Security.CodeAccessPermission.RevertAll%2A>删除活动<xref:System.Security.CodeAccessPermission.PermitOnly%2A>。  
   
- <xref:System.Security.CodeAccessPermission.PermitOnly%2A> 将忽略不授予，因为对该权限的请求将不会成功的权限。 但是，如果在调用的低级代码堆栈更高版本调用<xref:System.Security.CodeAccessPermission.Demand%2A>对该权限<xref:System.Security.SecurityException>堆栈遍历到达尝试调用的代码时引发<xref:System.Security.CodeAccessPermission.PermitOnly%2A>。 这是因为该调用的代码<xref:System.Security.CodeAccessPermission.PermitOnly%2A>未被授予权限，即使它调用<xref:System.Security.CodeAccessPermission.PermitOnly%2A>对该权限。 调用堆栈通常表示为向下增长，因此的调用堆栈中调用方法中较低的调用堆栈。  
+ <xref:System.Security.CodeAccessPermission.PermitOnly%2A>对于未授予的权限, 将忽略, 因为对该权限的请求将不会成功。 但是, 如果调用堆栈上较低的代码以后<xref:System.Security.CodeAccessPermission.Demand%2A>调用了该权限<xref:System.Security.SecurityException> , 则当堆栈遍历到达尝试调用<xref:System.Security.CodeAccessPermission.PermitOnly%2A>的代码时, 将引发。 这是因为调用<xref:System.Security.CodeAccessPermission.PermitOnly%2A>的代码没有获得权限, 即使它是为该权限调用<xref:System.Security.CodeAccessPermission.PermitOnly%2A>的。 调用堆栈通常表示为向下增长, 因此调用堆栈中较高位置的方法调用堆栈中较低的调用方法。  
   
  ]]></format>
         </remarks>
@@ -707,7 +707,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果没有任何替代 (<xref:System.Security.CodeAccessPermission.Assert%2A>， <xref:System.Security.CodeAccessPermission.Deny%2A>，或<xref:System.Security.CodeAccessPermission.PermitOnly%2A>) 的当前帧<xref:System.ExecutionEngineException>引发。  
+ 如果当前帧没有替代 (<xref:System.Security.CodeAccessPermission.Assert%2A>、 <xref:System.Security.CodeAccessPermission.Deny%2A>或<xref:System.Security.CodeAccessPermission.PermitOnly%2A>), <xref:System.ExecutionEngineException>则会引发。  
   
  ]]></format>
         </remarks>
@@ -753,11 +753,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果没有任何<xref:System.Security.CodeAccessPermission.Assert%2A>当前帧<xref:System.ExecutionEngineException>引发。  
+ 如果当前帧没有<xref:System.ExecutionEngineException> , 则会引发。 <xref:System.Security.CodeAccessPermission.Assert%2A>  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">当前框架没有前一个 <see cref="M:System.Security.CodeAccessPermission.Assert" />。</exception>
+        <exception cref="T:System.InvalidOperationException">当前帧不再具有以前的 <see cref="M:System.Security.CodeAccessPermission.Assert" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="RevertDeny">
@@ -805,11 +805,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果没有任何<xref:System.Security.CodeAccessPermission.Deny%2A>当前帧<xref:System.ExecutionEngineException>引发。  
+ 如果当前帧没有<xref:System.ExecutionEngineException> , 则会引发。 <xref:System.Security.CodeAccessPermission.Deny%2A>  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">当前框架没有前一个 <see cref="M:System.Security.CodeAccessPermission.Deny" />。</exception>
+        <exception cref="T:System.InvalidOperationException">当前帧不再具有以前的 <see cref="M:System.Security.CodeAccessPermission.Deny" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="RevertPermitOnly">
@@ -851,11 +851,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果没有任何<xref:System.Security.CodeAccessPermission.PermitOnly%2A>当前帧<xref:System.ExecutionEngineException>引发。  
+ 如果当前帧没有<xref:System.ExecutionEngineException> , 则会引发。 <xref:System.Security.CodeAccessPermission.PermitOnly%2A>  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException">当前框架没有前一个 <see cref="M:System.Security.CodeAccessPermission.PermitOnly" />。</exception>
+        <exception cref="T:System.InvalidOperationException">当前帧不再具有以前的 <see cref="M:System.Security.CodeAccessPermission.PermitOnly" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="System.Security.IPermission.Demand">
@@ -1020,7 +1020,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法可在调试时需要该权限显示为字符串。  
+ 当你需要以字符串形式显示权限时, 此方法可用于调试。  
   
  ]]></format>
         </remarks>
@@ -1061,12 +1061,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 扩展了安全对象的自定义代码需要实现<xref:System.Security.CodeAccessPermission.ToXml%2A>和<xref:System.Security.CodeAccessPermission.FromXml%2A>可以对对象安全编码的方法。  
+ 扩展安全对象的自定义代码需要实现<xref:System.Security.CodeAccessPermission.ToXml%2A>和<xref:System.Security.CodeAccessPermission.FromXml%2A>方法, 以使对象安全 encodable。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何重写的<xref:System.Security.CodeAccessPermission.ToXml%2A>方法。 此代码示例是为提供一个更大示例的一部分<xref:System.Security.CodeAccessPermission>类。  
+ 下面的代码示例演示如何重写<xref:System.Security.CodeAccessPermission.ToXml%2A>方法。 此代码示例是为<xref:System.Security.CodeAccessPermission>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.NameIdPermission#11](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.NameIdPermission/CPP/nameidpermission.cpp#11)]
  [!code-csharp[System.Security.Permissions.NameIdPermission#11](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.NameIdPermission/CS/nameidpermission.cs#11)]
@@ -1074,7 +1074,7 @@
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>必须重写此方法在派生类中。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中重写此方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Union">
@@ -1115,12 +1115,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对的调用结果<xref:System.Security.CodeAccessPermission.Union%2A>是当前权限和指定的权限表示所表示的所有操作的权限。 任何请求都会通过任一权限传递其联合。  
+ 调用的结果<xref:System.Security.CodeAccessPermission.Union%2A>是一个权限, 它表示当前权限和指定权限所表示的所有操作。 任何传递任意权限的需求都将传递其联合。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何重写的<xref:System.Security.CodeAccessPermission.Union%2A>方法。 此代码示例是为提供一个更大示例的一部分<xref:System.Security.CodeAccessPermission>类。  
+ 下面的代码示例演示如何重写<xref:System.Security.CodeAccessPermission.Union%2A>方法。 此代码示例是为<xref:System.Security.CodeAccessPermission>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.NameIdPermission#12](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.NameIdPermission/CPP/nameidpermission.cpp#12)]
  [!code-csharp[System.Security.Permissions.NameIdPermission#12](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.NameIdPermission/CS/nameidpermission.cs#12)]
@@ -1129,7 +1129,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.NotSupportedException"><paramref name="other" /> 参数不为 <see langword="null" />。 被传递 <see langword="null" /> 时，此方法仅在该级别上受支持。</exception>
-        <block subset="none" type="overrides"><para>必须重写此方法在派生类中。 如果应返回权限的副本的值<paramref name="other" />参数是<see langword="null" />。</para></block>
+        <block subset="none" type="overrides"><para>必须在派生类中重写此方法。 如果<paramref name="other" />参数的值为<see langword="null" />, 则应返回权限的副本。</para></block>
       </Docs>
     </Member>
   </Members>
