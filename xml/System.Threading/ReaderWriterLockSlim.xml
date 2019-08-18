@@ -1,5 +1,5 @@
 <Type Name="ReaderWriterLockSlim" FullName="System.Threading.ReaderWriterLockSlim">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7f8cf7b04c105b6589b9a0adbbf5930b0ae54096" /><Meta Name="ms.sourcegitcommit" Value="e7974886b08aa83a8fb461e8550f31a7d4331ee3" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/23/2019" /><Meta Name="ms.locfileid" Value="68393479" /></Metadata><TypeSignature Language="C#" Value="public class ReaderWriterLockSlim : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bccb975feff4e3305b575f6d69439f620330aec9" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69098803" /></Metadata><TypeSignature Language="C#" Value="public class ReaderWriterLockSlim : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ReaderWriterLockSlim extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Threading.ReaderWriterLockSlim" />
   <TypeSignature Language="VB.NET" Value="Public Class ReaderWriterLockSlim&#xA;Implements IDisposable" />
@@ -49,7 +49,7 @@
  不管递归策略如何, 在任何时候都只能有一个线程处于写入模式。 当线程处于写入模式时, 任何其他线程都不能在任何模式下进入锁定状态。 在任何时候, 只能有一个线程处于可升级模式。 任意数量的线程都可以处于读取模式, 并且在其他线程处于读取模式时, 可以有一个处于可升级模式的线程。  
   
 > [!IMPORTANT]
->  此类型实现<xref:System.IDisposable>接口。 在使用完类型后，您应直接或间接释放类型。 若要直接<xref:System.IDisposable.Dispose%2A>释放类型, 请`try` / `catch`在块中调用其方法。 若要间接释放类型，请使用 `using`（在 C# 中）或 `Using`（在 Visual Basic 中）等语言构造。 有关详细信息, 请参阅<xref:System.IDisposable>接口主题中的 "使用实现 IDisposable 的对象" 一节。  
+>  此类型实现 <xref:System.IDisposable> 接口。 在使用完类型后，您应直接或间接释放类型。 若要直接释放类型，请在 `try`/`catch` 块中调用其 <xref:System.IDisposable.Dispose%2A> 方法。 若要间接释放类型，请使用 `using`（在 C# 中）或 `Using`（在 Visual Basic 中）等语言构造。 有关详细信息，请参阅 <xref:System.IDisposable> 接口主题中的“使用实现 IDisposable 的对象”一节。  
   
  <xref:System.Threading.ReaderWriterLockSlim>具有托管线程关联;也就是说, 每个<xref:System.Threading.Thread>对象都必须进行自己的方法调用来进入和退出锁模式。 任何线程都无法更改另一个线程的模式。  
   
@@ -503,7 +503,7 @@
 或 
 <see cref="P:System.Threading.ReaderWriterLockSlim.RecursionPolicy" /> 属性为 <see cref="F:System.Threading.LockRecursionPolicy.NoRecursion" />，并且当前线程在已持有写入锁定时已尝试获取读取锁定。  
   
-- 或 - 
+或 
 递归数将超出计数器的容量。 此限值很大，因此应用程序应该不会遇到此异常。</exception>
         <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Threading.ReaderWriterLockSlim" /> 对象已释放。</exception>
       </Docs>
@@ -577,10 +577,10 @@
         </remarks>
         <exception cref="T:System.Threading.LockRecursionException"><see cref="P:System.Threading.ReaderWriterLockSlim.RecursionPolicy" /> 属性为 <see cref="F:System.Threading.LockRecursionPolicy.NoRecursion" />，而且当前线程已进入任意模式的锁定状态。  
   
-- 或 - 
+或 
 当前线程已进入读取模式，因此尝试进入可升级模式将有可能导致死锁。  
   
-或 
+- 或 - 
 递归数将超出计数器的容量。 此限制数值很大，因此任何情况下应用程序都不应遇到此情况。</exception>
         <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Threading.ReaderWriterLockSlim" /> 对象已释放。</exception>
       </Docs>
@@ -1066,7 +1066,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取当前线程进入读取模式锁定状态的次数，用于指示递归。</summary>
-        <value>如果当前线程未进入读取模式, 则为 0 (零); 如果线程已进入读取模式但尚未以递归方式进入, 则为 1; 如果线程*已递归进入*锁定状态, 则为*n* 。</value>
+        <value>如果当前线程未进入读取模式, 则为 0 (零); 如果线程已进入读取模式但尚未以递归方式进入, 则为 1; 如果线程已递归进入锁定状态 , 则为*n* 。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1108,7 +1108,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取当前线程进入可升级模式锁定状态的次数，用于指示递归。</summary>
-        <value>如果当前线程未进入可升级模式, 则为 0; 如果线程已进入可升级模式但尚未以递归方式进入, 则为 1; 如果线程已进入可升级模式, 则为*n* *-1*次。</value>
+        <value>如果当前线程未进入可升级模式, 则为 0; 如果线程已进入可升级模式但尚未以递归方式进入, 则为 1; 如果线程已进入可升级模式, 则为*n* -1 次。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1363,10 +1363,10 @@
         </remarks>
         <exception cref="T:System.Threading.LockRecursionException"><see cref="P:System.Threading.ReaderWriterLockSlim.RecursionPolicy" /> 属性为 <see cref="F:System.Threading.LockRecursionPolicy.NoRecursion" />，而且当前线程已进入锁定状态。  
   
-或 
+- 或 - 
 初始状态下，当前线程进入读取模式锁定状态，因此尝试进入可升级模式将有可能导致死锁。  
   
-- 或 - 
+或 
 递归数将超出计数器的容量。 此限制数值很大，因此任何情况下应用程序都不应遇到此情况。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> 的值为负，但不等于 <see cref="F:System.Threading.Timeout.Infinite" /> (-1)，这是唯一允许使用的负值。</exception>
         <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Threading.ReaderWriterLockSlim" /> 对象已释放。</exception>
@@ -1427,7 +1427,7 @@
         </remarks>
         <exception cref="T:System.Threading.LockRecursionException"><see cref="P:System.Threading.ReaderWriterLockSlim.RecursionPolicy" /> 属性为 <see cref="F:System.Threading.LockRecursionPolicy.NoRecursion" />，而且当前线程已进入锁定状态。  
   
-或 
+- 或 - 
 初始状态下，当前线程进入读取模式锁定状态，因此尝试进入可升级模式将有可能导致死锁。  
   
 - 或 - 
@@ -1518,7 +1518,7 @@
 - 或 - 
 初始状态下，当前线程进入读取模式锁定状态，因此尝试进入写入模式将有可能导致死锁。  
   
-- 或 - 
+或 
 递归数将超出计数器的容量。 此限制数值很大，因此任何情况下应用程序都不应遇到此情况。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> 的值为负，但不等于 <see cref="F:System.Threading.Timeout.Infinite" /> (-1)，这是唯一允许使用的负值。</exception>
         <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Threading.ReaderWriterLockSlim" /> 对象已释放。</exception>
@@ -1582,7 +1582,7 @@
 递归数将超出计数器的容量。 此限制数值很大，因此任何情况下应用程序都不应遇到此情况。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> 的值为负，但不等于 -1 毫秒，这是唯一允许使用的负值。  
   
-或 
+- 或 - 
 <paramref name="timeout" /> 的值大于 <see cref="F:System.Int32.MaxValue" /> 毫秒。</exception>
         <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Threading.ReaderWriterLockSlim" /> 对象已释放。</exception>
       </Docs>

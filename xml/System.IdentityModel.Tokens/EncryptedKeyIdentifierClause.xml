@@ -1,5 +1,5 @@
 <Type Name="EncryptedKeyIdentifierClause" FullName="System.IdentityModel.Tokens.EncryptedKeyIdentifierClause">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d024b37d7af897c3f011358338739d4e23365f3e" /><Meta Name="ms.sourcegitcommit" Value="6b9d64332f31de312efea785fbb19e4d80f544d5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/12/2019" /><Meta Name="ms.locfileid" Value="67027134" /></Metadata><TypeSignature Language="C#" Value="public sealed class EncryptedKeyIdentifierClause : System.IdentityModel.Tokens.BinaryKeyIdentifierClause" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4b9c51afd6edcf98d1081fd533ecc4f6a055d000" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69281851" /></Metadata><TypeSignature Language="C#" Value="public sealed class EncryptedKeyIdentifierClause : System.IdentityModel.Tokens.BinaryKeyIdentifierClause" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit EncryptedKeyIdentifierClause extends System.IdentityModel.Tokens.BinaryKeyIdentifierClause" />
   <TypeSignature Language="DocId" Value="T:System.IdentityModel.Tokens.EncryptedKeyIdentifierClause" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class EncryptedKeyIdentifierClause&#xA;Inherits BinaryKeyIdentifierClause" />
@@ -22,7 +22,7 @@
 ## Remarks  
  除非创建自定义安全令牌服务，否则，通常不需要使用 <xref:System.IdentityModel.Tokens.EncryptedKeyIdentifierClause>。 当安全令牌服务返回安全令牌时，已颁发的安全令牌包含对附加的和未附加的安全令牌的引用。 附加引用是指包含在 SOAP 消息的安全标头中的安全令牌，而未附加引用则是未包含在 SOAP 消息的安全标头中的安全令牌。 这些引用通常确认已颁发的安全令牌的真实性。 使用 <xref:System.IdentityModel.Tokens.EncryptedKeyIdentifierClause> 类可引用加密密钥。 <xref:System.IdentityModel.Tokens.EncryptedKeyIdentifierClause.GetEncryptedKey%2A> 方法返回加密密钥。  
   
- WCF 接受格式正确的传输格式方面的已包装的密钥。 接受并使用在网络上指定的密钥换行算法。 未验证该算法与终结点指定的 <xref:System.ServiceModel.Security.SecurityAlgorithmSuite> 的兼容性。  
+ WCF 接受格式正确的已打包密钥, 这些密钥在格式上是正确的。 接受并使用在网络上指定的密钥换行算法。 未验证该算法与终结点指定的 <xref:System.ServiceModel.Security.SecurityAlgorithmSuite> 的兼容性。  
   
  ]]></format>
     </remarks>
@@ -68,7 +68,7 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="encryptionMethod" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="encryptedKey" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="encryptedKey" /> 的长度为零。</exception>
       </Docs>
@@ -114,7 +114,7 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="encryptionMethod" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="encryptedKey" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="encryptedKey" /> 的长度为零。</exception>
       </Docs>
@@ -244,7 +244,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.IdentityModel.Tokens.EncryptedKeyIdentifierClause.CarriedKeyName%2A>属性序列化为 XML 时，将其放`<CarriedKeyName>`元素。 对于加密密钥，`<CarriedKeyName>`元素是可选元素，它将一个用户可读名称与密钥值相关联。 然后可以使用此名称引用密钥使用`<KeyName>`元素内的`<KeyInfo>`元素。 相同`<CarriedKeyName>`元素值，不同的 ID 值，可以在单个文档内出现多次。 键的值必须在所有相同`<EncryptedKey>`具有相同标识的元素`<CarriedKeyName>`名称在 XML 文档内。  
+ 当属性序列化为 XML 时, 它将放置`<CarriedKeyName>`在元素中。 <xref:System.IdentityModel.Tokens.EncryptedKeyIdentifierClause.CarriedKeyName%2A> 对于加密密钥, `<CarriedKeyName>`元素是一个可选元素, 它将用户可读名称与密钥值相关联。 然后, 可以使用此名称通过`<KeyName>` `<KeyInfo>`元素中的元素引用密钥。 与 ID `<CarriedKeyName>`值不同, 相同的元素值可以在单个文档中多次出现。 在 XML 文档中用同一`<EncryptedKey>` `<CarriedKeyName>`名称标识的所有元素中, 该键的值必须相同。  
   
  ]]></format>
         </remarks>

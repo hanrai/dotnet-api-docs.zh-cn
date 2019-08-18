@@ -1,5 +1,5 @@
 <Type Name="IInstanceContextProvider" FullName="System.ServiceModel.Dispatcher.IInstanceContextProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="28c37f44bfb30eb2dcec7a72634b22bd36550b6c" /><Meta Name="ms.sourcegitcommit" Value="16d2d159872fd213cae4b8f371d7ae9c8b027c89" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="11/17/2018" /><Meta Name="ms.locfileid" Value="51868176" /></Metadata><TypeSignature Language="C#" Value="public interface IInstanceContextProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d5fe22adabd6c7ddbd809e7be39d5cd041175a39" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69150295" /></Metadata><TypeSignature Language="C#" Value="public interface IInstanceContextProvider" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IInstanceContextProvider" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Dispatcher.IInstanceContextProvider" />
   <TypeSignature Language="VB.NET" Value="Public Interface IInstanceContextProvider" />
@@ -19,10 +19,10 @@
 ## Remarks  
  实现 <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider> 接口，以向系统提供相应的 <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType> 对象。 通常，实现此接口是为了支持共享会话、启用服务实例池、控制服务实例的生存期或将客户端之间的上下文分组。  
   
- 例如，若要实现共享，则可插入自定义 <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider>，从而确定要进行关联的来自客户端的会话或调用和 <xref:System.ServiceModel.InstanceContext> 对象。 有关演示共享实例上下文的示例，请参阅[InstanceContextSharing](https://msdn.microsoft.com/library/4a6a46d7-b7d7-4bb5-a0dd-03ffa3cbc230)。  
+ 例如，若要实现共享，则可插入自定义 <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider>，从而确定要进行关联的来自客户端的会话或调用和 <xref:System.ServiceModel.InstanceContext> 对象。 有关演示实例上下文共享的示例, 请参阅[InstanceContextSharing](https://msdn.microsoft.com/library/4a6a46d7-b7d7-4bb5-a0dd-03ffa3cbc230)。  
   
 > [!NOTE]
->  当<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider>插入到 Windows Communication Foundation (WCF)，控制的创建常规属性<xref:System.ServiceModel.InstanceContext>对象 (<xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType>属性) 不再处于选中状态和不起作用。  
+>  当插入到 Windows Communication Foundation (WCF) 中时, 控制<xref:System.ServiceModel.InstanceContext>对象创建 ( <xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType>属性) 的普通属性将不再处于选中状态, 并且不起作用。 <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider>  
   
  还有一种更为常见的机制，即 <xref:System.ServiceModel.InstanceContext>，您可以在创建 <xref:System.ServiceModel.InstanceContext> 对象时，利用该机制对其进行初始化（例如，将自定义扩展附加到每个 <xref:System.ServiceModel.Dispatcher.IInstanceContextInitializer?displayProperty=nameWithType>）。  
   
@@ -58,7 +58,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.GetExistingInstanceContext%2A> 方法是在接收消息时调用的。 返回要用于消息处理的 <xref:System.ServiceModel.InstanceContext> 对象或 `null`。 情况下`null`，创建一个新 WCF<xref:System.ServiceModel.InstanceContext>对象的消息，然后调用<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.InitializeInstanceContext%2A>方法。  
+ <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.GetExistingInstanceContext%2A> 方法是在接收消息时调用的。 返回要用于消息处理的 <xref:System.ServiceModel.InstanceContext> 对象或 `null`。 对于`null`, WCF 将为<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.InitializeInstanceContext%2A>消息创建一个新<xref:System.ServiceModel.InstanceContext>的对象, 然后调用方法。  
   
  如果您返回 `null`，则新的 <xref:System.ServiceModel.InstanceContext> 对象将遍历调节系统，并增加 <xref:System.ServiceModel.Dispatcher.ServiceThrottle.MaxConcurrentInstances%2A?displayProperty=nameWithType> 的计数值。  
   
@@ -127,9 +127,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A> 有关如何关闭和回收空闲 WCF 时调用<xref:System.ServiceModel.InstanceContext>对象，以便您可以通知运行时是否要继续执行此操作。  
+ <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A>当 WCF 即将关闭并回收空闲<xref:System.ServiceModel.InstanceContext>对象时调用, 以便可以通知运行时是否继续执行此操作。  
   
- 有关演示共享实例上下文的示例，请参阅[InstanceContextSharing](https://msdn.microsoft.com/library/4a6a46d7-b7d7-4bb5-a0dd-03ffa3cbc230)。  
+ 有关演示实例上下文共享的示例, 请参阅[InstanceContextSharing](https://msdn.microsoft.com/library/4a6a46d7-b7d7-4bb5-a0dd-03ffa3cbc230)。  
   
  ]]></format>
         </remarks>
@@ -162,7 +162,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.NotifyIdle%2A>时调用方法<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A>方法将返回`false`若要使您能够提供的 WCF<xref:System.ServiceModel.Dispatcher.InstanceContextIdleCallback?displayProperty=nameWithType>对象，用于通知运行时的<xref:System.ServiceModel.InstanceContext>已完成其工作。 当<xref:System.ServiceModel.Dispatcher.InstanceContextIdleCallback?displayProperty=nameWithType>对象通知运行时，<xref:System.ServiceModel.InstanceContext>已完成其工作、 WCF 调用<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A>再一次。 此循环将一直继续，直到 <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A> 返回 `true`，然后上下文被关闭并回收。  
+ 方法返回<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A> <xref:System.ServiceModel.InstanceContext> <xref:System.ServiceModel.Dispatcher.InstanceContextIdleCallback?displayProperty=nameWithType> <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.NotifyIdle%2A> 时`false` , 将调用方法, 以使你能够为 WCF 提供一个对象, 该对象用于通知运行时已完成其工作。 当对象通知运行时<xref:System.ServiceModel.InstanceContext>已完成其工作时, WCF 将再次调用<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A>一次。 <xref:System.ServiceModel.Dispatcher.InstanceContextIdleCallback?displayProperty=nameWithType> 此循环将一直继续，直到 <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A> 返回 `true`，然后上下文被关闭并回收。  
   
  ]]></format>
         </remarks>

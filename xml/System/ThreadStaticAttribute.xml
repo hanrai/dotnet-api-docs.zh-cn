@@ -1,5 +1,5 @@
 <Type Name="ThreadStaticAttribute" FullName="System.ThreadStaticAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ba7f6c207809025b013b88d46ad82761ef60cc87" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58721081" /></Metadata><TypeSignature Language="C#" Value="public class ThreadStaticAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e81be9c1815291ab9511fff2c31612aa676379c1" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69404923" /></Metadata><TypeSignature Language="C#" Value="public class ThreadStaticAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit ThreadStaticAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.ThreadStaticAttribute" />
   <TypeSignature Language="VB.NET" Value="Public Class ThreadStaticAttribute&#xA;Inherits Attribute" />
@@ -47,28 +47,28 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个`static`字段标记有<xref:System.ThreadStaticAttribute>线程间不共享。 每个执行线程具有单独的实例的字段中，独立设置并为该字段获取值。 如果在另一个线程访问该字段，则它将包含不同的值。  
+ `static` 使用<xref:System.ThreadStaticAttribute>标记的字段不会在线程之间共享。 每个执行线程都有单独的字段实例, 并分别设置和获取该字段的值。 如果在不同的线程上访问该字段, 则该字段将包含不同的值。  
   
- 请注意，除了应用<xref:System.ThreadStaticAttribute>属性到字段，还必须定义其作为`static`字段 （在 C# 中) 或`Shared`字段 （在 Visual Basic)。  
+ 请注意<xref:System.ThreadStaticAttribute> , 除了将特性应用于字段外, 还必须将其定义`static`为字段C# `Shared` (在中) 或字段 (在 Visual Basic 中)。  
   
 > [!NOTE]
->  请勿为使用标记字段指定初始值`ThreadStaticAttribute`，因为只有一次，当类构造函数执行，并因此影响只有一个线程将发生此类初始化。 如果不指定一个初始值，您可以借助正在初始化为其默认值，如果它是值类型，或该字段`null`如果它是引用类型。  
+>  不要为标记有`ThreadStaticAttribute`的字段指定初始值, 因为此类初始化只发生一次, 在类构造函数执行时, 因此只影响一个线程。 如果不指定初始值, 则可以依赖于初始化为其默认值的字段 (如果它是值类型), 或者`null`将其设置为引用类型。  
   
- 使用此属性，因为它是，和从其派生。  
+ 按原样使用此属性, 不从其派生。  
   
- 有关使用属性的详细信息，请参阅[属性](~/docs/standard/attributes/index.md)。  
+ 有关使用特性的详细信息, 请参阅[特性](~/docs/standard/attributes/index.md)。  
   
    
   
 ## Examples  
- 下面的示例实例化的随机数生成器，创建 10 个线程除了主线程，然后在每个线程中生成两个亿个随机数字。 它使用<xref:System.ThreadStaticAttribute>属性来计算每个线程的随机数字的个数和之和。 它还定义了两个附加的每个线程字段`previous`和`abnormal`，这样，以检测损坏的随机数生成器。  
+ 下面的示例实例化一个随机数生成器, 除了主线程外, 还创建了十个线程, 然后在每个线程中生成2000000个随机数字。 它使用<xref:System.ThreadStaticAttribute>特性来计算每个线程的总数和随机数计数。 它还定义了两个附加的每个`previous`线程`abnormal`字段和, 它们允许它检测随机数生成器的损坏。  
   
  [!code-csharp[System.ThreadStaticAttribute#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threadstaticattribute/cs/threadsafe2a.cs#1)]
  [!code-vb[System.ThreadStaticAttribute#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threadstaticattribute/vb/threadsafe2a.vb#1)]  
   
- 该示例使用`lock`C# 中的语句和`SyncLock`构造在 Visual Basic 中的随机数字生成器对访问进行同步。 这可以防止损坏的随机数生成器，这通常会在其返回值为零的所有后续调用。  
+ 该示例使用中`lock` C#的语句和`SyncLock` Visual Basic 中的构造来同步对随机数生成器的访问。 这可以防止随机数生成器损坏, 这通常会导致对所有后续调用返回零值。  
   
- 此示例还使用<xref:System.Threading.CountdownEvent>类，以确保每个线程已完成生成随机数字，然后再显示的调用总数。 否则，如果主线程完成之前它会生成的其他线程的执行，它会显示方法调用的总数不准确的值。  
+ 该示例还使用<xref:System.Threading.CountdownEvent>类来确保每个线程在显示调用总数之前已经完成了随机数的生成。 否则, 如果主线程在其生成的附加线程之前完成执行, 则它将为方法调用的总数显示不准确的值。  
   
  ]]></format>
     </remarks>

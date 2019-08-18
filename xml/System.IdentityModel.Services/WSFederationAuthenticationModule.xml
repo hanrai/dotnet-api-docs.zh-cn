@@ -1,5 +1,5 @@
 <Type Name="WSFederationAuthenticationModule" FullName="System.IdentityModel.Services.WSFederationAuthenticationModule">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0905b13de01b677d6acc1b90aba8e7904efd4601" /><Meta Name="ms.sourcegitcommit" Value="2dd0eede6edd6dd3d2aa8f79010848658b967609" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/18/2019" /><Meta Name="ms.locfileid" Value="59355574" /></Metadata><TypeSignature Language="C#" Value="public class WSFederationAuthenticationModule : System.IdentityModel.Services.HttpModuleBase" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a131cae0a9eb30df1d6a862b72b081d3ef8187e6" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69282310" /></Metadata><TypeSignature Language="C#" Value="public class WSFederationAuthenticationModule : System.IdentityModel.Services.HttpModuleBase" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit WSFederationAuthenticationModule extends System.IdentityModel.Services.HttpModuleBase" />
   <TypeSignature Language="DocId" Value="T:System.IdentityModel.Services.WSFederationAuthenticationModule" />
   <TypeSignature Language="VB.NET" Value="Public Class WSFederationAuthenticationModule&#xA;Inherits HttpModuleBase" />
@@ -21,70 +21,70 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IdentityModel.Services.WSFederationAuthenticationModule>类实现一个 HTTP 模块，已知为 WS 联合身份验证模块 (WSFAM)。 WSFAM 被实施了现有的 Windows Identity Foundation (WIF)。 WSFAM 为 web.config 文件中创建一项添加到 ASP.NET 管道。 它派生<xref:System.IdentityModel.Services.HttpModuleBase>，它可以实现<xref:System.Web.IHttpModule>。 注册要侦听的 ASP.NET 运行时<xref:System.Web.HttpApplication.EndRequest>和<xref:System.Web.HttpApplication.AuthenticateRequest>事件。 侦听<xref:System.Web.HttpApplication.EndRequest>事件，可让客户端重定向到安全令牌服务 (STS) 获取安全令牌对请求的资源授权失败时 WSFAM。 侦听<xref:System.Web.HttpApplication.AuthenticateRequest>事件，WSFAM 监视从 STS 响应，其中包含请求的令牌的 HTTP 请求。 如果此类标记存在且有效，它创建的实例<xref:System.Security.Claims.ClaimsPrincipal>使用存在于令牌的声明身份验证的用户。  
+ <xref:System.IdentityModel.Services.WSFederationAuthenticationModule>类实现称为 WS 联合身份验证模块 (WSFAM) 的 HTTP 模块。 Windows Identity Foundation (WIF) 已在 WSFAM 中实现了此方法。 通过在 web.config 文件中输入项, 可以将 WSFAM 添加到 ASP.NET 管道。 它派生自<xref:System.IdentityModel.Services.HttpModuleBase>, 它实现<xref:System.Web.IHttpModule>。 它向 ASP.NET 运行时注册<xref:System.Web.HttpApplication.EndRequest> , 以侦听和<xref:System.Web.HttpApplication.AuthenticateRequest>事件。 <xref:System.Web.HttpApplication.EndRequest>侦听事件时, 允许 WSFAM 将客户端重定向到 security token service (STS), 以便在请求的资源上授权失败时获取安全令牌。 如果侦听事件, WSFAM 可以监视来自 STS 的响应的 HTTP 请求, 其中包含所请求的令牌。 <xref:System.Web.HttpApplication.AuthenticateRequest> 如果此类标记存在且有效, 它将使用令牌中存在<xref:System.Security.Claims.ClaimsPrincipal>的声明为已经过身份验证的用户创建实例。  
   
- 当使用 WSFAM，由会话身份验证模块 (SAM)，这是一个实例提供会话管理的<xref:System.IdentityModel.Services.SessionAuthenticationModule>从其中派生的类。 SAM 也添加到配置文件中的 ASP.NET 管道。 SAM 监视对身份验证 （会话） cookie 的请求。 当这些 cookie 存在并有效时，该模块中提取<xref:System.Security.Claims.ClaimsPrincipal>从身份验证的用户<xref:System.IdentityModel.Tokens.SessionSecurityToken>，并设置<xref:System.Web.HttpContext.User%2A?displayProperty=nameWithType>属性和线程主体<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType>属性。  
+ 当使用 WSFAM 时, 会话管理由会话身份验证模块 (SAM) 提供, 会话身份验证模块 (SAM) <xref:System.IdentityModel.Services.SessionAuthenticationModule>是类的实例, 或者是派生自的类。 SAM 还会添加到配置文件中的 ASP.NET 管道。 SAM 监视身份验证 (会话) cookie 的请求。 如果这些 cookie 存在且<xref:System.Security.Claims.ClaimsPrincipal>有效, 模块将<xref:System.IdentityModel.Tokens.SessionSecurityToken>从中提取经过身份验证的用户的, 并设置<xref:System.Web.HttpContext.User%2A?displayProperty=nameWithType>属性和线程主体<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType>属性。  
   
- WSFAM 提供：  
+ WSFAM 提供:  
   
--   ASP.NET 应用程序身份验证外包给安全令牌服务 (STS) 使用的 WS 联合身份验证协议的功能。 标识可以跨一个或多个身份识别领域联合，并且涉及多个 Sts。  
+-   ASP.NET 应用程序通过使用 WS 联合身份验证协议将身份验证外包给 security token service (STS) 的功能。 标识可跨一个或多个标识领域进行联合, 并涉及多个 Sts。  
   
--   ASP.NET 应用程序的基于声明的标识。 在身份验证，WSFAM 生成从中发送的 STS 的安全令牌的声明主体，并将此声明主体设置线程主体。 然后可以使用此主体以进一步授权、 演示文稿和它所代表的用户的逻辑决定在代码中。  
+-   ASP.NET 应用程序的基于声明的标识。 在身份验证期间, WSFAM 从 STS 发送的安全令牌中的声明生成一个主体, 并将此声明主体设置为线程主体。 然后, 你可以使用此主体对你的代码中所代表的用户进行进一步的授权、演示和逻辑决策。  
   
- WSFAM 公开提供要在 WS 联合身份验证登录和注销请求中使用的消息参数的默认值的多个属性。 这些属性通常从初始化[ &lt;wsFederation&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/wsfederation.md)配置文件中的元素。 这些属性的最重要的是：  
+ WSFAM 公开多个属性, 这些属性提供要在 WS-FEDERATION 登录和注销请求中使用的默认消息参数。 这些属性通常是从配置文件中的[ &lt;wsFederation&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/wsfederation.md)元素初始化的。 这些属性最重要的是:  
   
--   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性，用于指定要将 WS 联合身份验证登录和注销请求发送到安全令牌服务 (STS) 的地址。  
+-   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性, 指定要向其发送 WS 联合身份验证登录和注销请求的 security token service (STS) 的地址。  
   
--   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Realm%2A>属性，用于在 WS 联合身份验证登录请求中指定要使用的 wtrealm 参数。 Wtrealm 参数标识信赖方 (RP) 应用程序到 STS 的安全领域。  
+-   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Realm%2A>属性, 该属性指定要在 WS 联合身份验证登录请求中使用的 wtrealm 参数。 Wtrealm 参数将信赖方 (RP) 应用程序的安全领域标识到 STS。  
   
- 登录消息参数还可以更改基于每个请求通过提供一个事件处理程序委托，它为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件。  
+ 还可以通过为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件提供事件处理程序委托, 按请求来更改登录消息参数。  
   
- 两个属性控制模块的行为。 两个属性通常还会初始化从`<wsFederation>`配置中的元素。  
+ 两个属性控制模块的行为。 这两个属性通常也是从配置中`<wsFederation>`的元素初始化的。  
   
--   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.PassiveRedirectEnabled%2A>属性指定该模块是否应进行身份验证执行被动重定向到 STS。  
+-   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.PassiveRedirectEnabled%2A>属性指定该模块是否应执行被动重定向到 STS 进行身份验证。  
   
--   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.PersistentCookiesOnPassiveRedirects%2A>属性指定是否应持久会话。 如果此属性设置为 true，SAM 用于会话 cookie 写入客户端。 在从客户端的后续请求，SAM 提供会话 cookie 中保存使用该令牌进行身份验证。  
+-   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.PersistentCookiesOnPassiveRedirects%2A>属性指定会话是否应为持久性会话。 如果将此属性设置为 true, 则使用 SAM 将会话 cookie 写入客户端。 在来自客户端的后续请求中, SAM 通过使用会话 cookie 中保留的令牌提供身份验证。  
   
- WSFAM 在登录期间引发几个事件和注销，可供 ASP.NET 开发人员更改模块的默认行为和控制的身份验证和声明处理如何会发生的详细信息。  
+ WSFAM 会在登录和注销期间引发若干事件, 这允许 ASP.NET 开发人员更改模块的默认行为, 并控制如何进行身份验证和声明处理的详细信息。  
   
- WS 联合身份验证登录请求发送到 STS 之前，将引发以下事件：  
+ 在将 WS 联合身份验证登录请求发送到 STS 之前, 将引发以下事件:  
   
--   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.AuthorizationFailed>：当启用被动重定向和授权请求的资源上失败时引发。  
+-   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.AuthorizationFailed>：当被动重定向启用并且授权在请求的资源上失败时引发。  
   
--   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>：前一刻引发 WSFAM 发送到 STS WS 联合身份验证登录请求。 此事件可用于更改登录请求中的参数。  
+-   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>：在 WSFAM 将 WS 联合身份验证登录请求发送到 STS 之前引发。 可以使用此事件更改登录请求中的参数。  
   
- 从 STS 接收 （发出安全令牌） 的登录响应时，将引发以下事件：  
+ 从 STS 收到登录响应 (颁发的安全令牌) 时将引发以下事件:  
   
--   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SecurityTokenReceived>：发送由 STS 的安全令牌从响应中读取之后引发。  
+-   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SecurityTokenReceived>：在从响应中读取 STS 发送的安全令牌后引发。  
   
--   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SecurityTokenValidated>：验证令牌后引发。 此事件可用于筛选、 转换或添加到声明主体的声明 (<xref:System.Security.Claims.ClaimsPrincipal>) 创建的安全令牌。  
+-   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SecurityTokenValidated>：在验证令牌后立即引发。 你可以使用此事件来筛选、转换或添加声明到从安全令牌创建的<xref:System.Security.Claims.ClaimsPrincipal>声明主体 ()。  
   
--   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SessionSecurityTokenCreated>：会话令牌前一刻引发 (<xref:System.IdentityModel.Tokens.SessionSecurityToken>) 从主体用来设置线程主体的声明和当前用户创建并写入会话 cookie。 使你有机会修改会话令牌或启用或禁用写入会话 cookie。  
+-   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SessionSecurityTokenCreated>：在从声明主体创建的会话<xref:System.IdentityModel.Tokens.SessionSecurityToken>令牌 () 开始之前引发, 用于设置线程主体和当前用户, 并将其写入会话 cookie。 使您有机会修改会话令牌或启用或禁用写入会话 cookie。  
   
--   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignedIn>：之后已设置线程主体和当前用户的身份验证结束时引发。  
+-   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignedIn>：恰好在设置了线程主体和当前用户后, 在身份验证结束时引发。  
   
--   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignInError>：如果在登录过程中发生异常，引发。 可以取消请求，并防止异常返回给调用方。  
+-   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignInError>：在登录过程中发生异常时引发。 您可以取消该请求并防止异常返回给调用方。  
   
- 登录时从会话中注销或处理 WS 联合身份验证注销清理请求 (wsignoutcleanup1.0) 时，将引发以下事件：  
+ 当从会话中注销或处理 WS-FEDERATION 注销清理请求 (wsignoutcleanup1.0 1.0) 时, 将引发以下事件:  
   
--   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SigningOut>：删除该会话以便你执行任何可能依赖于会话的清理或取消注销前引发。  
+-   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SigningOut>：在删除会话之前引发, 以使您能够执行可能依赖于会话或取消注销的任何清理。  
   
--   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignedOut>：只需删除该会话后引发。  
+-   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignedOut>：在会话删除后立即引发。  
   
--   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOutError>：如果在注销期间会发生异常，引发。可以取消注销，并防止异常返回给调用方。  
+-   <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOutError>：在注销过程中发生异常时引发。您可以取消注销并防止异常返回给调用方。  
   
 > [!NOTE]
->  注销事件不会引发时通过调用注销在 STS<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
+>  当通过调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法在 STS 上注销时, 不会引发注销事件。  
   
- 有两种方法登录到使用 WSFAM STS。 第一种是通过启用被动重定向通过<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.PassiveRedirectEnabled%2A>属性。 在这种情况下，授权失败请求的资源，而不是返回`401:Access Denied`客户端，WSFAM 响应生成其属性的 WS 联合身份验证登录请求消息并将客户端重定向到 STS 进行检索安全令牌。 第二种方法是显式客户端重定向到 STS 通过调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignIn%2A>从网页或应用程序中的自定义控件的方法。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignIn%2A>方法还使用 WSFAM 属性来构造注册请求。  
+ 可以通过两种方式使用 WSFAM 登录到 STS。 第一种方法是通过<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.PassiveRedirectEnabled%2A>属性启用被动重定向。 在这种情况下, 当请求的资源的授权失败, 而不`401:Access Denied`是将响应返回给客户端时, WSFAM 会基于其属性生成 WS 联合身份验证登录请求消息, 并将客户端重定向到 STS 以检索安全令牌。 第二种方法是通过从应用程序中的网页或自定义<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignIn%2A>控件调用方法, 将客户端显式重定向到 STS。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignIn%2A>方法还使用 WSFAM 的属性来构造登录请求。  
   
- 任何重载<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%2A>方法可用于注销的会话。 这会删除客户端上的会话 cookie。 不发送到 STS 的 Ws-federation 注销消息 ("wsignout1.0")。 在 STS 注销，必须使用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
+ 可以使用任何重载<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%2A>方法从会话中注销。 这会删除客户端上的会话 cookie。 它不会将 WS 联合身份验证注销消息 ("wsignout1.0 1.0") 发送到 STS。 若要在 STS 中注销, 必须使用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
   
- WSFAM 通过使用客户端中删除其会话处理 WS 联合身份验证注销清理请求 ("wsignoutcleanup1.0")。 如果未设置注销清理消息中的 wreply 参数，WSFAM 将返回到发送消息的 STS 的绿色复选标记的图像。 为确认 RP 已完成其注销，STS 可以使用此功能。  
+ WSFAM 通过删除与客户端的会话来处理 WS 联合身份验证注销清理请求 ("wsignoutcleanup1.0 1.0")。 如果未设置注销清除消息中的 wreply 参数, 则 WSFAM 会将绿色复选标记的图像返回到发送该消息的 STS。 STS 可以使用此功能来确认 RP 是否已完成其注销。  
   
- WSFAM 公开其功能-例如，其请求处理管道-通过几种特定于任务的方法。 您可以重写这些方法在派生类中以改变 WSFAM 的行为。  
+ WSFAM 通过多个任务特定的方法公开其功能, 例如, 其请求处理管道。 可以在派生类中重写这些方法, 以更改 WSFAM 的行为。  
   
- 要使用该模块必须添加到管道，如下面的 XML 中所示：  
+ 若要使用该模块, 必须将其添加到管道中, 如下面的 XML 所示:  
   
 ```  
 <configuration>  
@@ -96,7 +96,7 @@
 </configuration>  
 ```  
   
- 配置完成后，<xref:System.IdentityModel.Services.WSFederationAuthenticationModule>处理 HTTP 请求的各个阶段引发事件。 ASP.NET 开发人员可以处理这些事件在 global.asax 文件中。  
+ 配置后, <xref:System.IdentityModel.Services.WSFederationAuthenticationModule>会在处理 HTTP 请求的各个阶段引发事件。 ASP.NET 开发人员可以处理 global.asax 文件中的这些事件。  
   
    
   
@@ -146,9 +146,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Wauth 参数是可选的。 如果<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.AuthenticationType%2A>属性设置为`null`或空字符串，wauth 参数不包含在登录请求。  
+ Wauth 参数是可选的。 `null`如果将<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.AuthenticationType%2A>属性设置为或空字符串, 则登录请求中不包含 wauth 参数。  
   
- 可以通过添加的处理程序替代此设置在每个 HTTP 请求<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件。 该模块将重定向到安全令牌服务 (STS) 使用 WS 联合身份验证登录请求消息之前，引发此事件。 通过指定 STS<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性。  
+ 可以通过为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件添加处理程序, 在每个 HTTP 请求上覆盖此设置。 此事件恰好在模块使用 WS 联合身份验证登录请求消息重定向到 security token service (STS) 之前引发。 STS 由<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性指定。  
   
  ]]></format>
         </remarks>
@@ -175,14 +175,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.AuthorizationFailed>授权失败的 HTTP 请求时引发事件。 在引发<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnEndRequest%2A>通过调用事件处理程序委托<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthorizationFailed%2A>方法。  
+ 当<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.AuthorizationFailed> HTTP 请求的授权失败时, 将引发事件。 它通过调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnEndRequest%2A> <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthorizationFailed%2A>方法从事件处理程序委托中引发。  
   
- 可以设置<xref:System.IdentityModel.Services.AuthorizationFailedEventArgs.RedirectToIdentityProvider%2A?displayProperty=nameWithType>属性控制是否将请求重定向到标识提供程序。 框架初始化此属性设置为`false`如果用户已经过身份验证。 在这种情况下，将属性设置为`true`可能导致循环与 STS。  
+ 可以设置<xref:System.IdentityModel.Services.AuthorizationFailedEventArgs.RedirectToIdentityProvider%2A?displayProperty=nameWithType>属性来控制是否将请求重定向到标识提供者。 如果用户已经过身份验证`false` , 框架会将此属性初始化为。 在这种情况下, 将属性`true`设置为可能会导致与 STS 的循环。  
   
 > [!NOTE]
 >  <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件可用于修改 URL 或取消重定向。  
   
- 若要处理此事件在 ASP.NET 应用程序中的，创建一个名为方法`WSFederationAuthentication_AuthorizationFailed`global.asax 文件中。  
+ 若要在 ASP.NET 应用程序中处理此事件, 请在`WSFederationAuthentication_AuthorizationFailed` global.asax 文件中创建一个名为的方法。  
   
    
   
@@ -204,7 +204,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 由安全令牌服务 (STS) 对登录请求消息的响应情况下，登录响应消息发送到信赖方 (RP)。  
+ 登录响应消息将由 security token service (STS) 发送给信赖方 (RP), 以响应登录请求消息。  
   
  ]]></format>
         </remarks>
@@ -236,9 +236,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从请求处理管道，以确定传入的 HTTP 请求是否包含 WS 联合身份验证登录响应消息的窗体 post 调用此方法。  
+ 此方法从请求处理管道中调用, 以确定传入的 HTTP 请求是否为包含 WS 联合身份验证登录响应消息的窗体 post。  
   
- 它将调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CanReadSignInResponse%28System.Web.HttpRequestBase%2CSystem.Boolean%29?displayProperty=nameWithType>重载，并`onPage`参数集`false`以指示在调用不是处理页面时。  
+ 它调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CanReadSignInResponse%28System.Web.HttpRequestBase%2CSystem.Boolean%29?displayProperty=nameWithType>重载`onPage` , 并将参数设置`false`为, 指示调用在处理页时不产生。  
   
  ]]></format>
         </remarks>
@@ -275,15 +275,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法从在请求处理管道通过调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CanReadSignInResponse%28System.Web.HttpRequestBase%29?displayProperty=nameWithType>重载以确定传入的 HTTP 请求是否为窗体 POST 包含 WS 联合身份验证登录响应消息。  
+ 此方法通过<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CanReadSignInResponse%28System.Web.HttpRequestBase%29?displayProperty=nameWithType>重载从请求处理管道调用, 以确定传入的 HTTP 请求是否为包含 WS 联合身份验证登录响应消息的窗体 POST。  
   
- 默认实现执行下列任务：  
+ 默认实现执行以下操作:  
   
--   如果传入请求是窗体 POST，则会调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.IsSignInResponse%2A>方法来确定窗体 POST 是否包含签名响应。  
+-   如果传入请求是窗体发布, 则会调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.IsSignInResponse%2A>方法来确定窗体发布是否包含登录响应。  
   
--   如果传入的请求不是窗体 POST，并且该请求包含 WS 联合身份验证注销清理请求 （wa 参数为"wsignoutcleanup1.0"），则执行注销清理。 在这种情况下，<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType>调用方法 (参数设置为`true`以指示注销清理) 若要注销的会话。 这还会导致注销要在引发的事件。  
+-   如果传入的请求不是窗体 POST, 并且请求包含 WS-FEDERATION 注销清除请求 (wa 参数是 "wsignoutcleanup1.0 1.0"), 则执行注销清理。 在这种情况下<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType> , 将调用方法 (将参数设置为`true` , 以指示注销清理) 以从会话中注销。 这也会导致引发注销事件。  
   
-     接下来，如果注销清理请求包含 wreply 参数，则客户端定向到返回的 URL<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetSignOutRedirectUrl%2A>方法; 否则为一个绿色复选标记的图像返回给 STS。 此图像的回执可以用作 sts 注销清理请求已收到并成功处理 RP 的一条确认消息。  
+     接下来, 如果注销清理请求包含 wreply 参数, 则客户端将重定向到该<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetSignOutRedirectUrl%2A>方法返回的 URL; 否则, 会将绿色复选标记的图像返回到 STS。 此图像的接收可以由 STS 用于确认是否已接收并成功处理了 RP 的注销清理请求。  
   
  ]]></format>
         </remarks>
@@ -321,29 +321,29 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 创建一个 WS 联合身份验证登录请求，由表示<xref:System.IdentityModel.Services.SignInRequestMessage>对象。 新属性<xref:System.IdentityModel.Services.SignInRequestMessage>对象设置，如下所示：  
+ 创建由<xref:System.IdentityModel.Services.SignInRequestMessage>对象表示的 WS 联合身份验证登录请求。 新<xref:System.IdentityModel.Services.SignInRequestMessage>对象的属性设置如下:  
   
--   <xref:System.IdentityModel.Services.WSFederationMessage.Context%2A>属性 （wctx 参数） 设置为创建的使用方法参数的值。  
+-   <xref:System.IdentityModel.Services.WSFederationMessage.Context%2A>属性 (wctx 参数) 设置为使用方法参数创建的值。  
   
--   <xref:System.IdentityModel.Services.SignInRequestMessage.CurrentTime%2A>属性 （wct 参数） 设置为当前时间。  
+-   <xref:System.IdentityModel.Services.SignInRequestMessage.CurrentTime%2A>属性 (wct 参数) 设置为当前时间。  
   
--   通过使用当前实例的等效属性设置所有其他属性。  
+-   所有其他属性都是使用当前实例的等效属性进行设置的。  
   
- 传递给方法的参数用于创建 wctx 消息参数。 这是以下格式的字符串： `ru=returnUrl&cx=SignInContext&rm=rememberMeSet&id=uniqueId`。  
+ 传递给方法的参数用于创建 wctx 消息参数。 这是具有以下格式的字符串: `ru=returnUrl&cx=SignInContext&rm=rememberMeSet&id=uniqueId`。  
   
--   `ru`值设置为的值`returnUrl`参数中传递给该方法并指定该模块应定向到以下成功进行身份验证的浏览器的 URL。 这是存储在 WSFAM 使用的 wctx 字符串中的唯一值。 模块调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetReturnUrlFromResponse%2A>方法以处理 WS 联合身份验证登录响应时从 wctx 参数提取此值。 不应与指定的 wreply 消息参数混淆<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Reply%2A>属性并提供安全令牌服务 (STS) 应将其响应定向到 rp 的地址。  
+-   此`ru`值设置为传递给方法的`returnUrl`参数的值, 并指定该模块应将浏览器定向到身份验证成功后的 URL。 这是存储在 WSFAM 使用的 wctx 字符串中的唯一值。 模块调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetReturnUrlFromResponse%2A>方法, 以便在处理 ws-federation 登录响应时从 wctx 参数提取此值。 不应将其与<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Reply%2A>属性指定的 wreply message 参数混淆, 后者在 RP 处提供地址, security token service (STS) 应将其响应定向到该地址。  
   
--   `cx`参数设置的值为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignInContext%2A>属性。 此属性被公开的从而使您能够设置应 wctx 字符串; 中存储的任何应用程序定义的上下文但是，WSFAM 不公开一个方法以提取此值在响应中。 如果您的应用程序需要值，则必须提供用于分析 wctx 字符串并处理响应时读取此值的代码。 您可能会实现此目的通过重写<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetReturnUrlFromResponse%2A>方法。  
+-   参数设置为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignInContext%2A>属性的值。 `cx` 公开此属性是为了使你能够设置应用程序定义的任何应存储在 wctx 字符串中的上下文;但是, WSFAM 不公开方法以便在响应中提取此值。 如果应用程序需要该值, 则必须提供代码来分析 wctx 字符串并在处理响应时读取此值。 您可以通过重写<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetReturnUrlFromResponse%2A>方法来实现此目的。  
   
--   既不`rm`值，该值设置为值`rememberMeSet`参数，也不`id`参数，该设置的值为参数`uniqueId`WSFAM 使用参数。 这些可以设置为任何值。  
+-   值 (设置为`rememberMeSet`参数的值) 和`id`参数 (设置为`uniqueId`参数的值) 都不会由 WSFAM 使用。 `rm` 这些值可以设置为任意值。  
   
- <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CreateSignInRequest%2A>方法从调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectToIdentityProvider%2A>方法。  
+ <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CreateSignInRequest%2A> 方法<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectToIdentityProvider%2A>从方法中调用。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException"><see cref="P:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer" /> 属性为 <see langword="null" /> 或空字符串。  
   
-- 或 - 
+或 
 <see cref="P:System.IdentityModel.Services.WSFederationAuthenticationModule.Realm" /> 属性为 <see langword="null" /> 或空字符串。</exception>
         <altmember cref="M:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectToIdentityProvider(System.String,System.String,System.Boolean)" />
       </Docs>
@@ -375,26 +375,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法以将 WS 联合身份验证注销请求消息发送到指定的 STS。 （可选） 可以提供注销请求中的 wreply 参数的值。  
+ 调用此方法可将 WS 联合身份验证注销请求消息发送到指定的 STS。 您可以选择为注销请求中的 wreply 参数提供一个值。  
   
- 该方法将执行以下操作：  
+ 此方法执行以下操作:  
   
 1.  使用指定的参数创建 WS 联合身份验证注销请求消息。  
   
-2.  调用<xref:System.IdentityModel.Services.SessionAuthenticationModule.DeleteSessionTokenCookie%2A?displayProperty=nameWithType>SAM 删除会话 cookie 上的方法。  
+2.  对 SAM 调用方法以删除会话 cookie。 <xref:System.IdentityModel.Services.SessionAuthenticationModule.DeleteSessionTokenCookie%2A?displayProperty=nameWithType>  
   
-3.  重定向到 STS 使用来自第一步的注销请求消息。  
+3.  使用第一步中的注销请求消息重定向到 STS。  
   
- 没有一个注销事件： <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SigningOut>， <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignedOut>，或<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOutError>引发此方法。 若要删除该会话而无需注销请求消息发送到 STS，调用某个重载<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%2A>方法。  
+ 此方法不会引发任何注销事件<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SigningOut>: <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignedOut>、或<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOutError> 。 若要删除会话而不向 STS 发送注销请求消息, 请调用重载<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%2A>的方法之一。  
   
 > [!NOTE]
->  若要通过使用会话令牌执行被动注销，该模块，依赖于存储在一个值<xref:System.IdentityModel.Tokens.SessionSecurityToken.Context%2A?displayProperty=nameWithType>属性登录过程中，有关详细信息，请参阅<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetSessionTokenContext%2A>方法。  
+>  若要使用会话令牌执行被动注销, 该模块依赖于登录期间在<xref:System.IdentityModel.Tokens.SessionSecurityToken.Context%2A?displayProperty=nameWithType>属性中存储的值。有关详细信息, <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetSessionTokenContext%2A>请参阅方法。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="signOutUrl" /> 不是 <see langword="null" /> 并且不是绝对 URI。  
   
-- 或 - 
+或 
  <paramref name="replyUrl" /> 不是 <see langword="null" /> 并且不是绝对 URI。</exception>
         <exception cref="T:System.InvalidOperationException"><paramref name="signOutUrl" /> 为 <see langword="null" />。</exception>
         <altmember cref="M:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut" />
@@ -423,9 +423,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Wfresh 参数是可选的。 如果<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Freshness%2A>属性设置为`null`或空字符串，wfresh 参数不包含在登录请求。  
+ Wfresh 参数是可选的。 `null`如果将<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Freshness%2A>属性设置为或空字符串, 则登录请求中不包含 wfresh 参数。  
   
- 可以通过添加的处理程序替代此设置在每个 HTTP 请求<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件。 该模块将重定向到安全令牌服务 (STS) 使用 WS 联合身份验证登录请求消息之前，引发此事件。 通过指定 STS<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性。  
+ 可以通过为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件添加处理程序, 在每个 HTTP 请求上覆盖此设置。 此事件恰好在模块使用 WS 联合身份验证登录请求消息重定向到 security token service (STS) 之前引发。 STS 由<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性指定。  
   
  ]]></format>
         </remarks>
@@ -461,7 +461,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回在 URL 中： URI 设置为基`issuer`; wa 参数设置为"wsignout1.0"; wreply 参数设置为`signOutReply`; 中指定的参数和`signOutQueryString`会妨碍其他查询字符串参数。  
+ 在返回的 URL 中: 基本 URI 设置为`issuer`; wa 参数设置为 "wsignout1.0 1.0"; wreply 参数设置为`signOutReply`; 中`signOutQueryString`指定的参数作为附加查询字符串参数存在。  
   
  ]]></format>
         </remarks>
@@ -494,9 +494,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 由调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetXmlTokenFromMessage%28System.IdentityModel.Services.SignInResponseMessage%29?displayProperty=nameWithType>从方法内处理管道来解决从安全令牌服务 (STS) 接收的登录响应消息中 wresultptr 的参数中指定的 URL。  
+ 由<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetXmlTokenFromMessage%28System.IdentityModel.Services.SignInResponseMessage%29?displayProperty=nameWithType>方法从处理管道中调用, 以解析从 security token service (STS) 收到的登录响应消息中的 wresultptr 参数中指定的 URL。  
   
- 默认情况下此方法将引发<xref:System.NotSupportedException>。 重写此方法在派生类以支持 wresultptr 参数中。 URL 指向颁发结果，它应该是以下值之一：`<wst:RequestSecurityTokenResponse>`元素中，`<wst:RequestSecurityTokenResponseCollection>`元素、 SOAP 响应或 SOAP`<S:Fault>`元素。  
+ 默认情况下, 此方法<xref:System.NotSupportedException>将引发。 在派生类中重写此方法, 以支持 wresultptr 参数。 URL 指向颁发结果, 该结果应为以下内容之一: `<wst:RequestSecurityTokenResponse>`元素`<wst:RequestSecurityTokenResponseCollection>` 、元素、soap 响应或 soap `<S:Fault>`元素。  
   
  ]]></format>
         </remarks>
@@ -529,11 +529,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从请求处理管道中调用此方法 (<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthenticateRequest%2A>方法) 若要成功登录后，出现在依赖方 (RP) 若要将客户端指向页面的 URL。 这是，通常情况下，向其客户端最初请求访问 RP 资源的 URL。  
+ 此方法从请求处理管道 ( <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthenticateRequest%2A>方法) 中调用, 以获取信赖方 (RP) 上页面的 URL, 以便在成功登录后将客户端引导到。 这通常是客户端最初请求访问的 RP 资源的 URL。  
   
- 默认情况下，WSFAM 保存 wctx 消息参数中的返回 URL 时它将 WS 联合身份验证登录请求发送到安全令牌服务 (STS)。 在实体通过该消息将传递，并且是中的 WS 联合身份验证规范，根据保留的 wctx 参数返回由 STS 发送的 WS 联合身份验证登录响应消息中未更改。  
+ 默认情况下, WSFAM 会在将 WS 联合身份验证登录请求发送到 security token service (STS) 时将返回 URL 保存在 wctx 消息参数内。 根据 WS 联合身份验证规范, 将在消息通过的实体之间保留 wctx 参数, 并在 STS 发送的 WS 联合身份验证登录响应消息中返回未修改的。  
   
- 默认实现从登录响应中的 wctx 参数获取的返回 URL。 WSFAM 使用的 wctx 参数的格式的详细信息，请参阅<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CreateSignInRequest%2A>方法。  
+ 默认实现从登录响应中的 wctx 参数获取返回 URL。 有关 WSFAM 使用的 wctx 参数格式的详细信息, 请参阅<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CreateSignInRequest%2A>方法。  
   
  ]]></format>
         </remarks>
@@ -577,7 +577,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetXmlTokenFromMessage%28System.IdentityModel.Services.SignInResponseMessage%2CSystem.IdentityModel.Services.WSFederationSerializer%29?displayProperty=nameWithType>方法来获取令牌，并使用相应的处理程序中配置的安全令牌处理程序读取。  
+ 默认实现调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetXmlTokenFromMessage%28System.IdentityModel.Services.SignInResponseMessage%2CSystem.IdentityModel.Services.WSFederationSerializer%29?displayProperty=nameWithType>方法以获取令牌, 并使用配置的安全令牌处理程序中的相应处理程序来读取该令牌。  
   
  ]]></format>
         </remarks>
@@ -610,11 +610,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从请求处理管道，以获取为 WS 联合身份验证登录请求消息调用<xref:System.IdentityModel.Tokens.SecurityToken>对象。  
+ 从请求处理管道中调用, 以将 WS 联合身份验证登录请求消息作为<xref:System.IdentityModel.Tokens.SecurityToken>对象来获取。  
   
- 默认实现调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetSignInResponseMessage%2A>方法以获取<xref:System.IdentityModel.Services.SignInResponseMessage>对象并调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetSecurityToken%28System.IdentityModel.Services.SignInResponseMessage%29?displayProperty=nameWithType>重载。  
+ 默认实现将调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetSignInResponseMessage%2A>方法以<xref:System.IdentityModel.Services.SignInResponseMessage>获取<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetSecurityToken%28System.IdentityModel.Services.SignInResponseMessage%29?displayProperty=nameWithType>对象, 然后调用重载。  
   
- 使用派生的类来解释为特定类型的请求。  
+ 使用派生类解释特定类型的请求。  
   
  ]]></format>
         </remarks>
@@ -644,9 +644,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetSessionTokenContext%2A>处理 WS 联合身份验证登录响应消息以获取要在中存储的值时，方法从请求处理管道中调用<xref:System.IdentityModel.Tokens.SessionSecurityToken.Context%2A?displayProperty=nameWithType>会话 cookie 中的属性。  
+ 当处理 ws-federation 登录响应消息时, 将从请求处理管道中调用<xref:System.IdentityModel.Tokens.SessionSecurityToken.Context%2A?displayProperty=nameWithType> 方法,以获取要在会话cookie内的属性中存储的值。<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetSessionTokenContext%2A>  
   
- 可以重写此方法以提供特定于应用程序的值存储在 cookie 中。 WSFAM 不公开任何方法来检索 cookie 中的值。 若要返回的 cookie 读取的值，如果需要在应用程序中，必须提供的逻辑。  
+ 您可以重写此方法以提供应用程序特定的值, 以将其存储在 cookie 中。 WSFAM 不公开任何方法来从 cookie 检索值。 如果需要, 你必须在应用程序中提供逻辑, 以便从 cookie 中读取值。  
   
  ]]></format>
         </remarks>
@@ -680,7 +680,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetSecurityToken%28System.Web.HttpRequestBase%29?displayProperty=nameWithType>请求处理管道，以获取从窗体 POST HTTP 请求中包含的登录响应消息中的方法。  
+ 从请求处理<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetSecurityToken%28System.Web.HttpRequestBase%29?displayProperty=nameWithType>管道中的方法调用, 以从包含在 HTTP 请求中的窗体 POST 中获取登录响应消息。  
   
  ]]></format>
         </remarks>
@@ -714,21 +714,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从中调用此方法<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CanReadSignInResponse%2A>请求处理管道，以确定要处理 WS 联合身份验证注销清理请求后重定向到的 URL 中的方法。 如果消息具有 wreply 参数仅调用 (`signOutMessage`参数具有<xref:System.IdentityModel.Services.SignOutCleanupRequestMessage.Reply%2A>既不是属性`null`也不为空)。  
+ 此方法从请求处理管道<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CanReadSignInResponse%2A>中的方法调用, 以确定在处理 ws-federation 注销清除请求之后要重定向到的 URL。 仅当消息具有 wreply 参数 ( `signOutMessage`参数<xref:System.IdentityModel.Services.SignOutCleanupRequestMessage.Reply%2A>的属性既`null`不是也不为空) 时, 才会调用此方法。  
   
- 默认实现验证消息中包含的回复 URL (<xref:System.IdentityModel.Services.SignOutCleanupRequestMessage.Reply%2A?displayProperty=nameWithType>属性) 针对指定的安全令牌服务 (STS) 的地址<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性。 以下条件必须是有效的回复 url，则返回 true:  
+ 默认实现根据<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性指定的 security token service (STS) 的地址验证<xref:System.IdentityModel.Services.SignOutCleanupRequestMessage.Reply%2A?displayProperty=nameWithType>消息中包含的回复 URL (属性)。 要使回复 URL 有效, 必须满足以下条件:  
   
 1.  回复 URL 是绝对 URL。  
   
-2.  回复 URL 必须与颁发者相同的方案。  
+2.  回复 URL 与颁发者的方案相同。  
   
-3.  回复 URL 必须为颁发者的同一端口。  
+3.  回复 URL 包含与颁发者相同的端口。  
   
-4.  回复 URL 具有颁发者的同一主机或回复 URL 指定的颁发者的子域。  
+4.  回复 URL 与颁发者具有相同的主机, 或者 "答复 URL" 指定颁发者的子域。  
   
- 如果所有这些条件都为 true，则返回回复 URL （答复）否则，通过指定 URL<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>返回属性。  
+ 如果所有这些条件都为 true, 则返回回复 URL (回复);否则, 将返回<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性指定的 URL。  
   
- 重写此方法以提供更多验证答复 url。  
+ 重写此方法以为回复 URL 提供额外的验证。  
   
  ]]></format>
         </remarks>
@@ -771,7 +771,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果在登录响应消息中，没有 wresult 参数<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetReferencedResult%2A>调用方法来获得令牌使用 wresultptr 参数。  
+ 如果登录响应消息中没有 wresult 参数, <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetReferencedResult%2A>则调用方法来尝试使用 wresultptr 参数获取该令牌。  
   
  ]]></format>
         </remarks>
@@ -829,9 +829,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Whr 参数是可选的。 如果<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.HomeRealm%2A>属性设置为`null`或空字符串，whr 参数不包含在登录请求。  
+ 瓦时参数是可选的。 `null`如果将<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.HomeRealm%2A>属性设置为或空字符串, 则会在登录请求中包含瓦时参数。  
   
- 可以通过添加的处理程序替代此设置在每个 HTTP 请求<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件。 该模块将重定向到安全令牌服务 (STS) 使用 WS 联合身份验证登录请求消息之前，引发此事件。 通过指定 STS<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性。  
+ 可以通过为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件添加处理程序, 在每个 HTTP 请求上覆盖此设置。 此事件恰好在模块使用 WS 联合身份验证登录请求消息重定向到 security token service (STS) 之前引发。 STS 由<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性指定。  
   
  ]]></format>
         </remarks>
@@ -862,16 +862,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 添加下表根据 ASP.NET 管道事件的处理程序。  
+ 按照下表为 ASP.NET 管道事件添加处理程序。  
   
-|事件|处理程序|  
+|事件|函数|  
 |-----------|-------------|  
 |<xref:System.Web.HttpApplication.AuthenticateRequest?displayProperty=nameWithType>|<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthenticateRequest%2A>|  
 |<xref:System.Web.HttpApplication.EndRequest?displayProperty=nameWithType>|<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnEndRequest%2A>|  
 |<xref:System.Web.HttpApplication.PostAuthenticateRequest?displayProperty=nameWithType>|<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnPostAuthenticateRequest%2A>|  
   
 > [!NOTE]
->  模块属性，如<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>，从初始化<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.InitializePropertiesFromConfiguration%2A>方法。  
+>  模块属性 (例如<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A> ) <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.InitializePropertiesFromConfiguration%2A>通过方法进行初始化。  
   
  ]]></format>
         </remarks>
@@ -901,9 +901,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用等效的属性初始化模块属性<xref:System.IdentityModel.Services.Configuration.WsFederationConfiguration>由指定的对象<xref:System.IdentityModel.Services.Configuration.FederationConfiguration.WsFederationConfiguration%2A?displayProperty=nameWithType>属性。  
+ 模块属性是使用<xref:System.IdentityModel.Services.Configuration.WsFederationConfiguration> <xref:System.IdentityModel.Services.Configuration.FederationConfiguration.WsFederationConfiguration%2A?displayProperty=nameWithType>属性指定的对象的等效属性进行初始化的。  
   
- 可以通过配置文件中指定设置[ &lt;wsFederation&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/wsfederation.md)元素。  
+ 可以通过[ &lt;wsFederation&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/wsfederation.md)元素指定配置文件中的设置。  
   
  ]]></format>
         </remarks>
@@ -935,11 +935,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从中调用此方法<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CanReadSignInResponse%2A>请求处理管道，以确定传入的 HTTP 请求是否为 Ws-federation 登录响应消息中的方法。  
+ 此方法从请求处理管道<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CanReadSignInResponse%2A>中的方法调用, 以确定传入的 HTTP 请求是否为 ws-federation 登录响应消息。  
   
- 默认实现返回`true`如果 wa 参数是"wsignin1.0"和 wreq 并不能同时设置 wreqptr 参数。  
+ 如果将 wa 参数`true`设置为 "wsignin1.0 1.0", 则默认实现将返回, 且不会同时设置 wreq 和 wreqptr 参数。  
   
- 您可以重写此方法在派生类可以执行其他验证。  
+ 可以在派生类中重写此方法以执行其他验证。  
   
  ]]></format>
         </remarks>
@@ -968,9 +968,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这是必需的属性。 如果启用被动重定向，必须设置它。 它指定应在向其颁发 WS 联合身份验证请求的安全令牌服务 (STS) 的 URL。  
+ 这是必需的属性。 如果启用了被动重定向, 则必须设置该设置。 它指定 WS 联合身份验证请求应颁发到的 security token service (STS) 的 URL。  
   
- 可以通过添加的处理程序替代此设置在每个 HTTP 请求<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件。 该模块将重定向到安全令牌服务 (STS) 使用 WS 联合身份验证登录请求消息之前，引发此事件。 通过指定 STS<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性。  
+ 可以通过为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件添加处理程序, 在每个 HTTP 请求上覆盖此设置。 此事件恰好在模块使用 WS 联合身份验证登录请求消息重定向到 security token service (STS) 之前引发。 STS 由<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性指定。  
   
  ]]></format>
         </remarks>
@@ -1007,30 +1007,30 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthenticateRequest%2A>方法实现 WS-联合身份验证请求处理管道。 将其添加到<xref:System.Web.HttpApplication.AuthenticateRequest?displayProperty=nameWithType>中的事件[!INCLUDE[vstecasp](~/includes/vstecasp-md.md)]按管道<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.InitializeModule%2A>方法。  
+ <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthenticateRequest%2A>方法实现 ws-federation 请求处理管道。 它通过<xref:System.Web.HttpApplication.AuthenticateRequest?displayProperty=nameWithType> [!INCLUDE[vstecasp](~/includes/vstecasp-md.md)] 方法添加到管道<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.InitializeModule%2A>中的事件。  
   
- 该方法执行下列任务：  
+ 方法执行以下操作:  
   
-1.  调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CanReadSignInResponse%28System.Web.HttpRequestBase%29>方法，以确定是否已收到 WS 联合身份验证登录响应消息 ("wsignin1.0")。 如果响应是 WS 联合身份验证注销清理请求 ("wsignoutcleanup1.0")<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CanReadSignInResponse%28System.Web.HttpRequestBase%29>处理消息、 终止请求，并根据请求中的 WS 联合身份验证参数将客户端重定向。 如果消息不是登录响应或注销清理请求，该模块只是返回;否则，它执行以下步骤来处理登录响应。  
+1.  <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CanReadSignInResponse%28System.Web.HttpRequestBase%29>调用方法以确定是否已收到 WS 联合身份验证登录响应消息 ("wsignin1.0 1.0")。 如果响应为 WS 联合身份验证注销清理请求 ("wsignoutcleanup1.0 1.0"), <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CanReadSignInResponse%28System.Web.HttpRequestBase%29>则会处理该消息, 并根据请求中的 ws-federation 参数终止请求并重定向客户端。 如果消息不是登录响应或注销清理请求, 则该模块只返回;否则, 它将执行以下步骤来处理登录响应。  
   
-2.  调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetSecurityToken%28System.Web.HttpRequestBase%29>方法来反序列化<xref:System.IdentityModel.Tokens.SecurityToken>请求中的对象。  
+2.  调用方法来反序列化<xref:System.IdentityModel.Tokens.SecurityToken>请求中的对象。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetSecurityToken%28System.Web.HttpRequestBase%29>  
   
-3.  引发 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SecurityTokenReceived> 事件。 您可以取消进一步处理或修改此事件的处理程序中的接收到的安全令牌。 一个处理程序通常用于修改<xref:System.IdentityModel.Tokens.SecurityToken.ValidFrom%2A?displayProperty=nameWithType>或<xref:System.IdentityModel.Tokens.SecurityToken.ValidTo%2A?displayProperty=nameWithType>属性。  
+3.  引发 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SecurityTokenReceived> 事件。 您可以在此事件的处理程序中取消进一步处理或修改接收的安全令牌。 处理程序通常用于修改<xref:System.IdentityModel.Tokens.SecurityToken.ValidFrom%2A?displayProperty=nameWithType>或<xref:System.IdentityModel.Tokens.SecurityToken.ValidTo%2A?displayProperty=nameWithType>属性。  
   
-4.  验证安全令牌，并创建<xref:System.Security.Claims.ClaimsPrincipal>从安全令牌中声明的对象。  
+4.  验证安全令牌, 并基于安全<xref:System.Security.Claims.ClaimsPrincipal>令牌中的声明创建一个对象。  
   
 5.  引发 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SecurityTokenValidated> 事件。 您可以取消进一步处理或修改此事件的处理程序中的声明主体。  
   
-6.  使用配置的会话身份验证模块 (SAM) 来创建<xref:System.IdentityModel.Tokens.SessionSecurityToken>对象。 (已配置的 SAM 是<xref:System.IdentityModel.Services.SessionAuthenticationModule>返回对象<xref:System.IdentityModel.Services.FederatedAuthentication.SessionAuthenticationModule%2A?displayProperty=nameWithType>属性。)使用在步骤 5 中返回的声明主体创建的会话令牌。 <xref:System.IdentityModel.Tokens.SessionSecurityToken.ValidFrom%2A?displayProperty=nameWithType>和<xref:System.IdentityModel.Tokens.SessionSecurityToken.ValidTo%2A?displayProperty=nameWithType>属性设置通过使用<xref:System.IdentityModel.Tokens.SecurityToken.ValidFrom%2A>并<xref:System.IdentityModel.Tokens.SecurityToken.ValidTo%2A>的属性<xref:System.IdentityModel.Tokens.SecurityToken>步骤 3 中返回，并根据当前时间和令牌生存期由任一指定验证<xref:System.IdentityModel.Tokens.SessionSecurityTokenHandler.DefaultTokenLifetime%2A>或<xref:System.IdentityModel.Tokens.SessionSecurityTokenHandler.TokenLifetime%2A>属性的<xref:System.IdentityModel.Tokens.SessionSecurityTokenHandler>正由 WSFAM 令牌处理程序集合中的对象。 可以通过配置中指定会话标记处理程序上的令牌生存期[ &lt;sessionTokenRequirement&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/sessiontokenrequirement.md)元素。 注意:<xref:System.IdentityModel.Services.CookieHandler.PersistentSessionLifetime%2A>属性配置为不使用 SAM 的 cookie 处理程序。  
+6.  使用配置的会话身份验证模块 (SAM) 来创建<xref:System.IdentityModel.Tokens.SessionSecurityToken>对象。 (配置的 SAM 是<xref:System.IdentityModel.Services.SessionAuthenticationModule> <xref:System.IdentityModel.Services.FederatedAuthentication.SessionAuthenticationModule%2A?displayProperty=nameWithType>由属性返回的对象。)使用步骤5中返回的声明主体创建会话令牌。 <xref:System.IdentityModel.Tokens.SecurityToken> <xref:System.IdentityModel.Tokens.SecurityToken.ValidTo%2A>和属性是通过使用步骤3中返回的的和属性来设置的,并根据当前时间和由<xref:System.IdentityModel.Tokens.SecurityToken.ValidFrom%2A> <xref:System.IdentityModel.Tokens.SessionSecurityToken.ValidTo%2A?displayProperty=nameWithType> <xref:System.IdentityModel.Tokens.SessionSecurityToken.ValidFrom%2A?displayProperty=nameWithType> <xref:System.IdentityModel.Tokens.SessionSecurityTokenHandler.DefaultTokenLifetime%2A>WSFAM 使用的标记处理<xref:System.IdentityModel.Tokens.SessionSecurityTokenHandler>程序集合中的对象的属性。<xref:System.IdentityModel.Tokens.SessionSecurityTokenHandler.TokenLifetime%2A> 会话令牌处理程序的令牌生存期可以通过[ &lt;sessionTokenRequirement&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/sessiontokenrequirement.md)元素在配置中指定。 注意:不使用为 SAM 配置的 cookie 处理程序的属性。<xref:System.IdentityModel.Services.CookieHandler.PersistentSessionLifetime%2A>  
   
-7.  调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SetPrincipalAndWriteSessionToken%2A>与要写入会话 cookie 的会话令牌的方法。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SetPrincipalAndWriteSessionToken%2A>方法将第一个引发<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SessionSecurityTokenCreated>事件。 您可以更改会话令牌的属性或更改是否应将该 cookie 保留在此事件的处理程序。 引发该事件后，该方法然后将使用 SAM 的 cookie。  
+7.  调用具有会话令牌的方法以写入会话cookie。<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SetPrincipalAndWriteSessionToken%2A> <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SetPrincipalAndWriteSessionToken%2A>方法首先<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SessionSecurityTokenCreated>引发事件。 你可以更改会话令牌的属性, 或更改该 cookie 是否应保留在此事件的处理程序中。 引发事件后, 该方法将使用 SAM 写入 cookie。  
   
     > [!NOTE]
-    >  <xref:System.IdentityModel.Tokens.SessionSecurityTokenHandler>中配置设置不用于编写 cookie。  
+    >  配置<xref:System.IdentityModel.Tokens.SessionSecurityTokenHandler>中的集不用于写入 cookie。  
   
-8.  调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSignedIn%2A>方法来引发<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignedIn>事件。  
+8.  调用方法来引发<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignedIn>事件。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSignedIn%2A>  
   
-9. 调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetReturnUrlFromResponse%2A>方法以获取要将客户端重定向到 RP 页。 默认情况下，此方法从登录响应中的 wctx 参数读取返回的 URL。 WSFAM 存储返回的 URL 的方式的详细信息，请参阅<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CreateSignInRequest%2A>方法。  
+9. <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetReturnUrlFromResponse%2A>调用方法以获取要重定向客户端的 RP 页面。 默认情况下, 此方法从登录响应中的 wctx 参数读取返回 URL。 有关 WSFAM 如何存储返回 URL 的详细信息, 请参阅<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CreateSignInRequest%2A>方法。  
   
  ]]></format>
         </remarks>
@@ -1061,9 +1061,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnEndRequest%2A>事件处理程序委托时授权失败。  
+ 如果授权失败<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnEndRequest%2A> , 则从事件处理程序委托调用。  
   
- 初始化<xref:System.IdentityModel.Services.AuthorizationFailedEventArgs.RedirectToIdentityProvider%2A?displayProperty=nameWithType>属性引发之前<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.AuthorizationFailed>事件，以防止循环重定向，如果用户已经过身份验证。 如果用户已通过身份验证，该属性将初始化为`false`以防止将重定向; 否则，它将初始化为`true`。  
+ 如果用户已经过身份验证<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.AuthorizationFailed> , 则在引发事件之前初始化属性,以防循环重定向。<xref:System.IdentityModel.Services.AuthorizationFailedEventArgs.RedirectToIdentityProvider%2A?displayProperty=nameWithType> 如果用户已经过身份验证, 则将属性初始化为`false`以阻止重定向; 否则, 将初始化为`true`。  
   
  ]]></format>
         </remarks>
@@ -1096,7 +1096,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 将忽略该事件，除非<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.PassiveRedirectEnabled%2A>属性是`true`。  
+ 除非<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.PassiveRedirectEnabled%2A>属性为`true`, 否则将忽略此事件。  
   
  ]]></format>
         </remarks>
@@ -1129,7 +1129,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认情况下，这是一个空的处理程序。  
+ 默认情况下, 这是一个空的处理程序。  
   
  ]]></format>
         </remarks>
@@ -1232,7 +1232,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType>方法后删除该会话。  
+ 在删除会话<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType>后立即从方法调用。  
   
  ]]></format>
         </remarks>
@@ -1288,7 +1288,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType>方法之前删除该会话。  
+ 在删除会话<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType>之前从方法调用。  
   
  ]]></format>
         </remarks>
@@ -1320,7 +1320,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType>方法，如果在处理期间发生异常。  
+ 如果在处理<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType>过程中发生异常, 则从方法调用。  
   
  ]]></format>
         </remarks>
@@ -1349,10 +1349,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 未启用此模式下时，该模块不会启动 WS 联合身份验证协议重定向。 如果此属性为`true`，则<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性必须设置为的安全令牌服务 (STS) 调用方应重定向到的 URL。  
+ 如果未启用此模式, 该模块将不会启动 WS-FEDERATION 协议重定向。 如果此属性为`true`, 则<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>必须将属性设置为应将调用方重定向到的安全令牌服务 (STS) 的 URL。  
   
 > [!WARNING]
->  应用程序代码可以通过使用显式发出 WS 联合身份验证登录请求<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignIn%2A>方法，而不考虑值<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.PassiveRedirectEnabled%2A>属性。  
+>  应用程序代码可以使用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignIn%2A>方法显式发出 WS 联合身份验证登录请求, 而不考虑<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.PassiveRedirectEnabled%2A>属性的值。  
   
  ]]></format>
         </remarks>
@@ -1381,7 +1381,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以通过添加的处理程序替代此设置在每个 HTTP 请求<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SessionSecurityTokenCreated>事件。 从请求处理管道处理来自安全令牌服务 (STS) 的 WS 联合身份验证登录响应消息时引发此事件。  
+ 可以通过为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SessionSecurityTokenCreated>事件添加处理程序, 在每个 HTTP 请求上覆盖此设置。 当处理来自 security token service (STS) 的 WS 联合身份验证登录响应消息时, 将从请求处理管道引发此事件。  
   
  ]]></format>
         </remarks>
@@ -1410,9 +1410,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Wp 参数是可选的。 如果<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Policy%2A>属性设置为`null`或空字符串，wp 参数不包含在登录请求。  
+ Wp 参数是可选的。 `null`如果将<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Policy%2A>属性设置为或空字符串, 则登录请求中不包含 wp 参数。  
   
- 可以通过添加的处理程序替代此设置在每个 HTTP 请求<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件。 该模块将重定向到安全令牌服务 (STS) 使用 WS 联合身份验证登录请求消息之前，引发此事件。 通过指定 STS<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性。  
+ 可以通过为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件添加处理程序, 在每个 HTTP 请求上覆盖此设置。 此事件恰好在模块使用 WS 联合身份验证登录请求消息重定向到 security token service (STS) 之前引发。 STS 由<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性指定。  
   
  ]]></format>
         </remarks>
@@ -1440,17 +1440,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这是 WS 联合身份验证登录请求的必需的属性。 如果启用被动重定向，必须设置它。 URI 可标识到 STS RP。 (有关标识为与 RP STS，请参阅<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性)。  
+ 这是 WS 联合身份验证登录请求的必需属性。 如果启用了被动重定向, 则必须设置该设置。 URI 将 RP 标识到 STS。 (若要将 STS 标识到 RP, 请参阅<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性)。  
   
- 此属性的值序列化为 WS 联合身份验证协议中的 wtrealm 查询字符串参数。 它标识对 STS RP。 STS 使用它来决定哪些策略要应用的令牌颁发和令牌颁发后将重定向到用户的位置。 (有关标识为与 RP STS，请参阅<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>。)  
+ 此属性的值将被序列化为 WS 联合身份验证协议中的 wtrealm 查询字符串参数。 它将 RP 标识到 STS。 STS 使用它来确定要为令牌颁发应用的策略, 以及在令牌颁发后要将用户重定向到的位置。 (若要确定 RP 的 STS, 请参阅<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>。)  
   
- 可以通过添加的处理程序替代此设置在每个 HTTP 请求<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件。 该模块将重定向到安全令牌服务 (STS) 使用 WS 联合身份验证登录请求消息之前，引发此事件。 通过指定 STS<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性。  
+ 可以通过为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件添加处理程序, 在每个 HTTP 请求上覆盖此设置。 此事件恰好在模块使用 WS 联合身份验证登录请求消息重定向到 security token service (STS) 之前引发。 STS 由<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性指定。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException">尝试将此属性设置为 <see langword="null" /> 或者空字符串。  
   
-- 或 - 
+或 
 尝试设置这个属性为一个值，该值不是有效的绝对 URI。</exception>
       </Docs>
     </Member>
@@ -1475,24 +1475,24 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您可以访问和修改请求通过 WS 联合身份验证登录<xref:System.IdentityModel.Services.RedirectingToIdentityProviderEventArgs.SignInRequestMessage%2A?displayProperty=nameWithType>属性。 例如，可以修改<xref:System.IdentityModel.Services.FederationMessage.BaseUri%2A>登录消息，若要更改该请求将重定向到标识提供者中的属性。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件可取消事件，可以设置<xref:System.ComponentModel.CancelEventArgs.Cancel%2A>属性设置为`true`取消重定向。  
+ 你可以通过<xref:System.IdentityModel.Services.RedirectingToIdentityProviderEventArgs.SignInRequestMessage%2A?displayProperty=nameWithType>属性访问和修改 WS 联合身份验证登录请求。 例如, 你可以修改登录消息<xref:System.IdentityModel.Services.FederationMessage.BaseUri%2A>中的属性, 以更改将请求重定向到的标识提供者。 事件为可取消的事件, 你可以<xref:System.ComponentModel.CancelEventArgs.Cancel%2A>将属性设置为`true` , 以取消重定向。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>  
   
- 默认情况下，事件从内部<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectToIdentityProvider%2A>方法通过调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnRedirectingToIdentityProvider%2A>方法。  
+ 通过调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectToIdentityProvider%2A> <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnRedirectingToIdentityProvider%2A>方法, 从方法内部引发事件。  
   
- 若要处理此事件在 ASP.NET 应用程序中的，创建一个名为方法`WSFederationAuthentication_RedirectingToIdentityProvider`global.asax 文件中。  
+ 若要在 ASP.NET 应用程序中处理此事件, 请在`WSFederationAuthentication_RedirectingToIdentityProvider` global.asax 文件中创建一个名为的方法。  
   
    
   
 ## Examples  
- 下面的代码演示如何添加的处理程序<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>中的事件`Application_Init`global.asax 文件中的事件。 代码摘自`FederationForWebApps`示例。 有关此示例的详细信息，请参阅[WIF 代码示例索引](~/docs/framework/security/wif-code-sample-index.md)。  
+ 下面的代码演示如何在 global.asax 文件中的<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider> `Application_Init`事件中为事件添加处理程序。 此代码取自`FederationForWebApps`示例。 有关此示例的详细信息, 请参阅[WIF 代码示例索引](~/docs/framework/security/wif-code-sample-index.md)。  
   
   
   
- 下面的代码演示的处理程序<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>中的事件 RP 的 global.asax 文件中。 代码检查是否传入 HTTP 请求包含的 whr 参数，并且，如果是这样，它将此参数设置在 WS 联合身份验证登录请求将发送到 STS。 代码摘自`FederationForWebApps`示例。 有关此示例的详细信息，请参阅[WIF 代码示例索引](~/docs/framework/security/wif-code-sample-index.md)。  
+ 下面的代码演示了 RP 的 global.asa <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>文件中的事件的处理程序。 该代码将检查传入的 HTTP 请求是否包含一个 $ 零参数, 如果它存在, 则将此参数设置为要发送到 STS 的 WS 联合身份验证登录请求。 此代码取自`FederationForWebApps`示例。 有关此示例的详细信息, 请参阅[WIF 代码示例索引](~/docs/framework/security/wif-code-sample-index.md)。  
   
   
   
- 下面的代码演示的处理程序<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件中的的联合身份验证提供程序 STS 在 global.asax 文件中。 代码检查传入的 HTTP 请求是否包含 whr 参数。 如果请求包含的 whr 参数，客户端定向到 IP-STS 进行登录;如果没有，客户端定向到主领域发现页上，选择要登录的 IP STS。 代码摘自`FederationForWebApps`示例。 有关此示例的详细信息，请参阅[WIF 代码示例索引](~/docs/framework/security/wif-code-sample-index.md)。  
+ 下面的代码显示联合身份验证提供<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>程序 STS 的 global.asa 文件中的事件的处理程序。 代码会检查传入的 HTTP 请求是否包含一个里瓦的参数。 如果请求包含瓦时参数, 则会将客户端定向到用于登录的 IP-STS;如果不是, 则会将客户端定向到 "主领域发现" 页, 以选择要登录的 IP-STS。 此代码取自`FederationForWebApps`示例。 有关此示例的详细信息, 请参阅[WIF 代码示例索引](~/docs/framework/security/wif-code-sample-index.md)。  
   
   
   
@@ -1529,17 +1529,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectToIdentityProvider%2A>从中调用方法<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignIn%2A>方法从 web 页显示由信赖方 (RP) 或从发出请求时<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnEndRequest%2A>要对被动重定向到标识提供程序执行的事件处理程序委托授权失败。  
+ 从依赖方 ( <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignIn%2A> <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnEndRequest%2A> RP) 显示的网页或从事件处理程序委托发出请求以在上执行到标识提供程序的被动重定向时, 从方法调用方法<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectToIdentityProvider%2A>授权失败。  
   
- 传递给方法的参数用于创建 wctx 消息参数。 仅重要参数是`returnUrl`参数。 这将指定 RP 应定向到以下成功进行身份验证的浏览器的 URL。 不应与指定的 wreply 消息参数混淆<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Reply%2A>属性并提供安全令牌服务 (STS) 应将其响应定向到 rp 的地址。  
+ 传递给方法的参数用于创建 wctx 消息参数。 唯一的重要参数是`returnUrl`参数。 这将指定 RP 应将浏览器定向到身份验证成功后的 URL。 不应将其与<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Reply%2A>属性指定的 wreply message 参数混淆, 后者在 RP 处提供地址, security token service (STS) 应将其响应定向到该地址。  
   
- 该方法执行下列任务：  
+ 方法执行以下操作:  
   
-1.  调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.VerifyProperties%2A>方法，以确保该模块可以颁发有效的登录请求。  
+1.  <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.VerifyProperties%2A>调用方法以确保可以由模块颁发有效的登录请求。  
   
-2.  调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CreateSignInRequest%2A>方法从模块上配置的属性创建登录请求。  
+2.  <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CreateSignInRequest%2A>调用方法, 以从模块上配置的属性创建登录请求。  
   
-3.  调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnRedirectingToIdentityProvider%2A>方法来引发<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件。 您可以取消重定向或修改此事件的事件处理程序中的登录请求消息。  
+3.  调用方法以引发<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnRedirectingToIdentityProvider%2A> 您可以在此事件的事件处理程序中取消重定向或修改登录请求消息。  
   
  ]]></format>
         </remarks>
@@ -1548,10 +1548,10 @@
 - 或 - 
  <see cref="P:System.IdentityModel.Services.WSFederationAuthenticationModule.Realm" /> 为 <see langword="null" /> 或空字符串。  
   
-- 或 - 
+或 
 <see cref="P:System.Web.HttpContext.Current" /> 属性为 <see langword="null" /> 或为空。  
   
-- 或 - 
+或 
 由 <see cref="P:System.Web.HttpContext.Response" />返回的上下文的 <see cref="P:System.Web.HttpContext.Current" /> 属性为 <see langword="null" /> 或空。</exception>
       </Docs>
     </Member>
@@ -1577,9 +1577,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Wreply 参数是可选的。 如果<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Reply%2A>属性设置为`null`或空字符串，wreply 参数不包含在登录请求。  
+ Wreply 参数是可选的。 `null`如果将<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Reply%2A>属性设置为或空字符串, 则登录请求中不包含 wreply 参数。  
   
- STS 使用的 wreply 参数来决定要在令牌颁发后重定向到用户。 不建议这样做会盲目地使用此地址来将用户重定向，因为这种重定向具有安全漏洞的 STS。 STS （可能通过比较一组预配置的回复地址的目的或通过某些其他方法） 必须验证的答复地址以确保理解广为人知且安全的位置发送答复。  
+ STS 使用 wreply 参数来决定在令牌颁发后将用户重定向到的位置。 不建议 STS 使用此地址重定向用户, 因为这种重定向会出现安全漏洞。 回复地址必须由 STS 验证 (可能通过比较一组预配置的答复地址用于此目的或其他方法), 以确保将答复发送到理解良好的已知和安全位置。  
   
  ]]></format>
         </remarks>
@@ -1608,9 +1608,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Wreq 参数是可选的。 如果<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Request%2A>属性设置为`null`或空字符串，wreq 参数不包含在登录请求。  
+ Wreq 参数是可选的。 `null`如果将<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Request%2A>属性设置为或空字符串, 则登录请求中不包含 wreq 参数。  
   
- 可以通过添加的处理程序替代此设置在每个 HTTP 请求<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件。 该模块将重定向到安全令牌服务 (STS) 使用 WS 联合身份验证登录请求消息之前，引发此事件。 通过指定 STS<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性。  
+ 可以通过为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件添加处理程序, 在每个 HTTP 请求上覆盖此设置。 此事件恰好在模块使用 WS 联合身份验证登录请求消息重定向到 security token service (STS) 之前引发。 STS 由<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性指定。  
   
  ]]></format>
         </remarks>
@@ -1638,9 +1638,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Wreqptr 参数是可选的。 如果<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RequestPtr%2A>属性设置为`null`或空字符串，wreq 参数不包含在登录请求。  
+ Wreqptr 参数是可选的。 `null`如果将<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RequestPtr%2A>属性设置为或空字符串, 则登录请求中不包含 wreq 参数。  
   
- 可以通过添加的处理程序替代此设置在每个 HTTP 请求<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件。 该模块将重定向到安全令牌服务 (STS) 使用 WS 联合身份验证登录请求消息之前，引发此事件。 通过指定 STS<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性。  
+ 可以通过为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件添加处理程序, 在每个 HTTP 请求上覆盖此设置。 此事件恰好在模块使用 WS 联合身份验证登录请求消息重定向到 security token service (STS) 之前引发。 STS 由<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性指定。  
   
  ]]></format>
         </remarks>
@@ -1690,11 +1690,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Wtrealm 参数，它通过设置<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Realm%2A>属性，应使用而不是此参数。  
+ 应使用由<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Realm%2A>属性设置的 wtrealm 参数, 而不是此参数。  
   
- Wres 参数是可选的。 如果<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Resource%2A>属性设置为`null`或空字符串，wres 参数不包含在登录请求。  
+ Wres 参数是可选的。 `null`如果将<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Resource%2A>属性设置为或空字符串, 则登录请求中不包含 wres 参数。  
   
- 可以通过添加的处理程序替代此设置在每个 HTTP 请求<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件。 该模块将重定向到安全令牌服务 (STS) 使用 WS 联合身份验证登录请求消息之前，引发此事件。 通过指定 STS<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性。  
+ 可以通过为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件添加处理程序, 在每个 HTTP 请求上覆盖此设置。 此事件恰好在模块使用 WS 联合身份验证登录请求消息重定向到 security token service (STS) 之前引发。 STS 由<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性指定。  
   
  ]]></format>
         </remarks>
@@ -1721,9 +1721,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您可以添加事件处理程序之前进行修改，该令牌进行验证。 在事件处理程序可以访问通过安全令牌<xref:System.IdentityModel.Services.SecurityTokenReceivedEventArgs.SecurityToken%2A?displayProperty=nameWithType>属性。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SecurityTokenReceived>事件是可取消事件，您可以设置<xref:System.ComponentModel.CancelEventArgs.Cancel%2A>属性设置为`true`终止 WS 联合身份验证登录响应消息的处理的事件处理程序中。  
+ 你可以添加一个事件处理程序, 以便在验证令牌之前修改该令牌。 在事件处理程序中, 可以通过<xref:System.IdentityModel.Services.SecurityTokenReceivedEventArgs.SecurityToken%2A?displayProperty=nameWithType>属性访问安全令牌。 事件是可取消的事件, 你可以在事件<xref:System.ComponentModel.CancelEventArgs.Cancel%2A>处理程序`true`中将属性设置为, 以终止处理 ws-federation 登录响应消息。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SecurityTokenReceived>  
   
- 从引发此事件在<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthenticateRequest%2A>处理从安全令牌服务 (STS) 收到的 WS 联合身份验证登录响应消息 ("wsignin1.0") 时的事件处理程序委托。 它从 wresult 或 wresultptr 参数在登录响应消息中，但之前验证安全令牌反序列化安全令牌已之后引发。  
+ 当处理从 security token service (STS) <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthenticateRequest%2A>收到的 WS 联合身份验证登录响应消息 ("wsignin1.0 1.0") 时, 从事件处理程序委托内部引发此事件。 这是在从 wresult 反序列化安全令牌后, 或在登录响应消息中的 wresultptr 参数之后、但在验证安全令牌之前引发的。  
   
    
   
@@ -1756,9 +1756,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您可以添加一个事件处理程序，以修改处理来自安全令牌服务 (STS) 的 WS 联合身份验证登录响应消息，然后使用它来创建会话令牌时创建的主体。 在事件处理程序中，您可以访问通过主体<xref:System.IdentityModel.Services.SecurityTokenValidatedEventArgs.ClaimsPrincipal%2A>属性。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SecurityTokenValidated>事件是可取消事件，您可以设置<xref:System.ComponentModel.CancelEventArgs.Cancel%2A>属性设置为`true`终止 WS 联合身份验证登录响应消息的处理的事件处理程序中。  
+ 可以添加一个事件处理程序, 以便在处理 ws-federation 登录响应消息时, 从 security token service (STS) 处理 ws-federation 登录响应消息, 然后将其用于创建会话令牌。 在事件处理程序中, 可以通过<xref:System.IdentityModel.Services.SecurityTokenValidatedEventArgs.ClaimsPrincipal%2A>属性访问主体。 事件是可取消的事件, 你可以在事件<xref:System.ComponentModel.CancelEventArgs.Cancel%2A>处理程序`true`中将属性设置为, 以终止处理 ws-federation 登录响应消息。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SecurityTokenValidated>  
   
- 从引发此事件在<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthenticateRequest%2A>处理从安全令牌服务 (STS) 收到的 WS 联合身份验证登录响应消息 ("wsignin1.0") 时的事件处理程序委托。 只需从 wresult 反序列化的安全令牌后，它将引发或经过验证的登录响应消息中 wresultptr 的参数，和会话安全令牌创建。  
+ 当处理从 security token service (STS) <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthenticateRequest%2A>收到的 WS 联合身份验证登录响应消息 ("wsignin1.0 1.0") 时, 从事件处理程序委托内部引发此事件。 仅在从 wresult 反序列化的安全令牌或登录响应消息中的 wresultptr 参数已经过验证, 并且在创建会话安全令牌之前引发。  
   
    
   
@@ -1790,12 +1790,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您可以添加一个事件处理程序，修改会话令牌，然后将它用于设置线程主体并写入会话 cookie。 在事件处理程序中，您可以访问会话令牌通过<xref:System.IdentityModel.Services.SessionSecurityTokenCreatedEventArgs.SessionToken%2A?displayProperty=nameWithType>属性。 您可以指定是否应通过设置写入会话 cookie<xref:System.IdentityModel.Services.SessionSecurityTokenCreatedEventArgs.WriteSessionCookie%2A?displayProperty=nameWithType>属性。  
+ 你可以添加一个事件处理程序来修改会话令牌, 然后将其用于设置线程主体并将其写入会话 cookie。 在事件处理程序中, 可以通过<xref:System.IdentityModel.Services.SessionSecurityTokenCreatedEventArgs.SessionToken%2A?displayProperty=nameWithType>属性访问会话令牌。 可以通过设置<xref:System.IdentityModel.Services.SessionSecurityTokenCreatedEventArgs.WriteSessionCookie%2A?displayProperty=nameWithType>属性来指定是否应写入会话 cookie。  
   
- 从引发此事件在<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthenticateRequest%2A>处理从安全令牌服务 (STS) 收到的 WS 联合身份验证登录响应消息 ("wsignin1.0") 时的事件处理程序委托。 只需从 wresult 反序列化的安全令牌后，它将引发或经过验证的登录响应消息中 wresultptr 的参数，和之前声明主体将设置上<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType>(并在<xref:System.Web.HttpContext.User%2A>属性<xref:System.Web.HttpContext.Current%2A?displayProperty=nameWithType>).  
+ 当处理从 security token service (STS) <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthenticateRequest%2A>收到的 WS 联合身份验证登录响应消息 ("wsignin1.0 1.0") 时, 从事件处理程序委托内部引发此事件。 它恰好在已验证从 wresult 反序列化的安全令牌或登录响应消息中的 wresultptr 参数之后引发, 并在上<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType>设置了声明主体 ( <xref:System.Web.HttpContext.User%2A>在属性<xref:System.Web.HttpContext.Current%2A?displayProperty=nameWithType>).  
   
 > [!IMPORTANT]
->  若要运行会话在引用模式下，Microsoft 建议提供的处理程序<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SessionSecurityTokenCreated?displayProperty=nameWithType>global.asax.cs 文件和设置中的事件<xref:System.IdentityModel.Tokens.SessionSecurityToken.IsReferenceMode%2A?displayProperty=nameWithType>令牌上的属性中传递<xref:System.IdentityModel.Services.SessionSecurityTokenCreatedEventArgs.SessionToken%2A?displayProperty=nameWithType>属性。 这将确保会话令牌引用的每个请求的模式下运行，并且更倾向于只设置<xref:System.IdentityModel.Services.SessionAuthenticationModule.IsReferenceMode%2A?displayProperty=nameWithType>会话身份验证模块上的属性。  
+>  为了在引用模式下操作会话, Microsoft 建议为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SessionSecurityTokenCreated?displayProperty=nameWithType> global.asax.cs 文件中的事件提供处理程序, 并在<xref:System.IdentityModel.Tokens.SessionSecurityToken.IsReferenceMode%2A?displayProperty=nameWithType> <xref:System.IdentityModel.Services.SessionSecurityTokenCreatedEventArgs.SessionToken%2A?displayProperty=nameWithType>属性中传递的标记上设置属性。 这将确保会话令牌在对每个请求的引用模式下运行, 并且优于仅在会话<xref:System.IdentityModel.Services.SessionAuthenticationModule.IsReferenceMode%2A?displayProperty=nameWithType>身份验证模块上设置属性。  
   
    
   
@@ -1833,11 +1833,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从请求处理管道中实现调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthenticateRequest%2A>事件处理程序委托。 此方法将执行以下操作：  
+ 在<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnAuthenticateRequest%2A>事件处理程序委托中实现的请求处理管道中调用。 此方法执行以下操作:  
   
-1.  调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSessionSecurityTokenCreated%2A>方法来引发<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SessionSecurityTokenCreated>事件。 您可以使用此事件，修改会话令牌，然后将它用于设置线程主体并写入会话 cookie 并指定是否应该写入会话 cookie。  
+1.  调用方法以引发<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SessionSecurityTokenCreated>事件。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSessionSecurityTokenCreated%2A> 你可以使用此事件来修改会话令牌, 然后将其用于设置线程主体并写入会话 cookie, 并指定是否应写入会话 cookie。  
   
-2.  调用<xref:System.IdentityModel.Services.SessionAuthenticationModule.AuthenticateSessionSecurityToken%2A>方法上配置的会话身份验证模块 (<xref:System.IdentityModel.Services.SessionAuthenticationModule>) 来设置线程主体并根据需要写入会话 cookie。  
+2.  在配置的会话身份验证模块 (<xref:System.IdentityModel.Services.SessionAuthenticationModule>) 上调用方法,以设置线程主体,还可以选择写入会话cookie。<xref:System.IdentityModel.Services.SessionAuthenticationModule.AuthenticateSessionSecurityToken%2A>  
   
  ]]></format>
         </remarks>
@@ -1866,7 +1866,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果请求被发布到登录页时，页上的控件将引发此事件，而不是此模块。  
+ 如果请求发布到登录页, 则页面上的控件将引发此事件, 而不是此模块。  
   
    
   
@@ -1898,11 +1898,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通过调用将引发此事件<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSignedOut%2A>方法从内部<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType>方法，同时注销会话在信赖方 (RP) 签名。 这样做联合通过注销时不引发该事件<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
+ 在依赖方 (RP) 上从<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSignedOut%2A> <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType>该方法调用方法时, 将通过调用方法引发此事件。 通过<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法执行联合注销时不引发该事件。  
   
- 您可以添加后已删除会话 cookie，应用程序需要执行任何附加处理的事件处理程序。  
+ 你可以添加一个事件处理程序, 以在删除会话 cookie 后执行应用程序所需的任何其他处理。  
   
- 此事件不保证为每个会话的调用。 Cookie 可能会删除在客户端，例如，因此将永远不会引发此事件。  
+ 不保证每个会话都要调用此事件。 例如, 可能会在客户端删除 cookie, 因此永远不会引发此事件。  
   
  ]]></format>
         </remarks>
@@ -1933,7 +1933,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectToIdentityProvider%2A>方法来执行单一登录。  
+ 默认实现将调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectToIdentityProvider%2A>方法来执行登录。  
   
  ]]></format>
         </remarks>
@@ -1961,11 +1961,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CreateSignInRequest%2A>调用方法，将生成签名消息包含具有以下格式的 wctx 参数： `ru=returnUrl&cx=SignInContext&rm=rememberMeSet&id=uniqueId`。 值<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignInContext%2A>存储在`cx`参数。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CreateSignInRequest%2A> 可以在代码中直接调用。 它也称为 WSFAM 执行被动重定向时以及当任一<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignIn%2A>方法或<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectToIdentityProvider%2A>由应用程序代码调用方法。  
+ 调用方法时, 所生成的登录消息将包含具有以下格式的 wctx 参数: `ru=returnUrl&cx=SignInContext&rm=rememberMeSet&id=uniqueId`。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CreateSignInRequest%2A> 的<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignInContext%2A>值存储`cx`在参数中。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CreateSignInRequest%2A>可从代码中直接调用。 它还会在 WSFAM 执行被动重定向时调用, 同时也会在<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignIn%2A>应用程序代码<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectToIdentityProvider%2A>调用方法或方法时调用。  
   
- 尽管 WSFAM 保存<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignInContext%2A>中登录请求消息，如果应用程序处理的响应中使用的值的值，您必须提取从登录响应消息中的 wctx 参数提供的逻辑。  
+ 尽管 WSFAM 将<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignInContext%2A>值保存在登录请求消息中, 但如果你的应用程序在响应处理期间使用该值, 则必须提供从登录响应消息中的 wctx 参数提取的逻辑。  
   
- 有关格式和处理的 wctx 参数的详细信息，请参阅<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CreateSignInRequest%2A>方法。  
+ 有关 wctx 参数的格式和处理的详细信息, 请参阅<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CreateSignInRequest%2A>方法。  
   
  ]]></format>
         </remarks>
@@ -1993,7 +1993,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果请求被发布到登录页时，页上的控件将引发此事件，而不是此模块。  
+ 如果请求发布到登录页, 则页面上的控件将引发此事件, 而不是此模块。  
   
  ]]></format>
         </remarks>
@@ -2020,11 +2020,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通过调用将引发此事件<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSigningOut%2A>方法从内部<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType>方法，同时注销会话在信赖方 (RP) 签名。 这样做联合通过注销时不引发该事件<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
+ 在依赖方 (RP) 上从<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSigningOut%2A> <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType>该方法调用方法时, 将通过调用方法引发此事件。 通过<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法执行联合注销时不引发该事件。  
   
- 您可以添加一个事件处理程序，以执行之前删除会话 cookie 的应用程序需要任何其他处理。 你可以阅读<xref:System.IdentityModel.Services.SigningOutEventArgs.IsIPInitiated*>中事件处理程序，以确定是否注销是接收 WS 联合身份验证注销清理请求消息 ("wsignoutcleanup1.0") 的结果从安全令牌服务 (STS) 或者是否已启动的属性RP。  
+ 您可以添加一个事件处理程序, 以执行您的应用程序在删除会话 cookie 之前所需的任何其他处理。 您可以在事件<xref:System.IdentityModel.Services.SigningOutEventArgs.IsIPInitiated*>处理程序中读取属性, 以确定注销是否是从 security token service (STS) 接收 WS 联合身份验证注销清除请求消息 ("wsignoutcleanup1.0 1.0") 的结果, 或者是否是在RP。  
   
- 此事件不保证为每个会话的调用。 Cookie 可能会删除在客户端，例如，因此将永远不会引发此事件。  
+ 不保证每个会话都要调用此事件。 例如, 可能会在客户端删除 cookie, 因此永远不会引发此事件。  
   
  ]]></format>
         </remarks>
@@ -2047,14 +2047,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置包含要在 WS 联合身份验证登录请求（“wsignin1.0”）中发送的额外参数的查询字符串。</summary>
-        <value>包含采用以下格式的更多的消息参数的 URL 片段： <c>param1 = value1&amp;param2 = value2&amp;paramN = valueN</c>。 默认值为一个空字符串。</value>
+        <value>一个 URL 片段, 其中包含采用以下格式的其他消息参数: <c>param1 = value1&amp;param2 = value2&amp;paramN = valueN</c>。 默认值为一个空字符串。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性可用于发送登录请求中的其他参数。 这是不是参数所指定的 WS 联合身份验证协议之一的特定于应用程序的参数。 要删除请求中的其他参数的属性设置为空字符串。  
+ 您可以使用此属性在登录请求中发送其他参数。 这些是特定于应用程序的参数, 这些参数不是 WS-FEDERATION 协议指定的参数之一。 若要从请求中删除其他参数, 请将属性设置为空字符串。  
   
- 可以通过添加的处理程序替代此设置在每个 HTTP 请求<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件。 该模块将重定向到安全令牌服务 (STS) 使用 WS 联合身份验证登录请求消息之前，引发此事件。 通过指定 STS<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性。  
+ 可以通过为<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.RedirectingToIdentityProvider>事件添加处理程序, 在每个 HTTP 请求上覆盖此设置。 此事件恰好在模块使用 WS 联合身份验证登录请求消息重定向到 security token service (STS) 之前引发。 STS 由<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer%2A>属性指定。  
   
  ]]></format>
         </remarks>
@@ -2074,7 +2074,7 @@
 ## Remarks  
  删除当前会话。  
   
- 不注销请求消息 ("wsignout1.0") 发送到安全令牌服务 (STS)。 注销在 STS 使用 WS 联合身份验证协议，使用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
+ 不会将任何注销请求消息 ("wsignout1.0 1.0") 发送到 security token service (STS)。 若要使用 WS 联合身份验证协议在 STS 上注销, 请使用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
   
  ]]></format>
         </remarks>
@@ -2102,11 +2102,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 删除当前会话，并将浏览器重定向回当前的 HTTP 请求中指定的 URL。  
+ 删除当前会话, 并将浏览器重定向回当前 HTTP 请求中指定的 URL。  
   
- 调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.String%29?displayProperty=nameWithType>方法替换`redirectUrl`参数设置为当前请求的 URL。  
+ 调用方法, 并将`redirectUrl`参数设置为当前请求的 URL。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.String%29?displayProperty=nameWithType>  
   
- 不注销请求消息 ("wsignout1.0") 发送到安全令牌服务 (STS)。 注销在 STS 使用 WS 联合身份验证协议，使用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
+ 不会将任何注销请求消息 ("wsignout1.0 1.0") 发送到 security token service (STS)。 若要使用 WS 联合身份验证协议在 STS 上注销, 请使用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
   
  ]]></format>
         </remarks>
@@ -2137,19 +2137,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法执行删除当前会话并引发适当的注销事件的实际工作。 该方法将执行以下操作：  
+ 此方法执行删除当前会话并引发适当的注销事件的实际工作。 此方法执行以下操作:  
   
-1.  调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSigningOut%2A>方法来引发<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SigningOut>事件。 事件处理程序可以提供任何必要的处理之前删除该会话。 <xref:System.IdentityModel.Services.SigningOutEventArgs.IsIPInitiated%2A?displayProperty=nameWithType>属性设置为根据`isIPRequest`参数。  
+1.  调用方法以引发<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SigningOut>事件。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSigningOut%2A> 在删除会话之前, 事件处理程序可以提供任何必要的处理。 <xref:System.IdentityModel.Services.SigningOutEventArgs.IsIPInitiated%2A?displayProperty=nameWithType> 根据`isIPRequest`参数设置属性。  
   
-2.  调用<xref:System.IdentityModel.Services.SessionAuthenticationModule.DeleteSessionTokenCookie%2A?displayProperty=nameWithType>方法在当前会话身份验证管理器来删除会话 cookie。  
+2.  在当前会话身份验证管理器中调用方法,以删除会话cookie。<xref:System.IdentityModel.Services.SessionAuthenticationModule.DeleteSessionTokenCookie%2A?displayProperty=nameWithType>  
   
-     调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSignedOut%2A>方法来引发<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignedOut>事件。  
+     调用方法以引发<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignedOut>事件。 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSignedOut%2A>  
   
-3.  如果注销的处理过程中发生错误，将调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSignOutError%2A>方法来引发<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOutError>事件。 事件处理程序可以取消处理并防止被返回到调用方的异常 <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%2A>  
+3.  如果在注销处理过程中发生错误, 则调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSignOutError%2A>方法来<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOutError>引发事件。 事件处理程序可以取消处理并防止异常返回到的调用方<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%2A>  
   
- 您可以调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%2A?displayProperty=nameWithType>方法替换`isIPRequest`参数集`false`以注销会话，而无需执行的重定向。 该方法最终调用由所有其他重载<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%2A>方法 (与`isIPRequest`参数设置为`false`) 来执行处理注销。 此方法从调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CanReadSignInResponse%28System.Web.HttpRequestBase%2CSystem.Boolean%29?displayProperty=nameWithType>方法替换`isIPRequest`参数集`true`要注销的会话时它正在处理 WS 联合身份验证注销清理消息 ("wsignoutcleanup1.0")。  
+ 您可以调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%2A?displayProperty=nameWithType>方法, `isIPRequest`并将参数设置`false`为从会话中注销而不执行重定向。 方法最终由其他所有重载<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%2A>方法 ( `isIPRequest`参数设置为`false`) 调用, 以执行注销处理。 方法是从<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.CanReadSignInResponse%28System.Web.HttpRequestBase%2CSystem.Boolean%29?displayProperty=nameWithType>方法`isIPRequest`调用的, 参数设置`true`为在处理 ws-federation 注销清除消息 ("wsignoutcleanup1.0 1.0") 时从会话中注销。  
   
- 不注销请求消息 ("wsignout1.0") 发送到安全令牌服务 (STS)。 注销在 STS 使用 WS 联合身份验证协议，使用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
+ 不会将任何注销请求消息 ("wsignout1.0 1.0") 发送到 security token service (STS)。 若要使用 WS 联合身份验证协议在 STS 上注销, 请使用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
   
  ]]></format>
         </remarks>
@@ -2180,11 +2180,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 删除当前会话，并将浏览器重定向回指定的 URL。  
+ 删除当前会话, 并将浏览器重定向回指定的 URL。  
   
- 调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.String%2CSystem.Boolean%29?displayProperty=nameWithType>方法替换`redirectUrl`参数和与`initiateSignoutCleanup`设置`false`。  
+ 用参数和<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.String%2CSystem.Boolean%29?displayProperty=nameWithType> 集调用`false`方法。 `initiateSignoutCleanup` `redirectUrl`  
   
- 不注销请求消息 ("wsignout1.0") 发送到安全令牌服务 (STS)。 注销在 STS 使用 WS 联合身份验证协议，使用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
+ 不会将任何注销请求消息 ("wsignout1.0 1.0") 发送到 security token service (STS)。 若要使用 WS 联合身份验证协议在 STS 上注销, 请使用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
   
  ]]></format>
         </remarks>
@@ -2218,11 +2218,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 删除当前会话，并将浏览器重定向回指定的 URL。  
+ 删除当前会话, 并将浏览器重定向回指定的 URL。  
   
- 调用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType>方法替换`initiateSignoutCleanup`参数集`false`。  
+ 用参数集<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType> 调用`false`方法。 `initiateSignoutCleanup`  
   
- 不注销请求消息 ("wsignout1.0") 发送到安全令牌服务 (STS)。 注销在 STS 使用 WS 联合身份验证协议，使用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
+ 不会将任何注销请求消息 ("wsignout1.0 1.0") 发送到 security token service (STS)。 若要使用 WS 联合身份验证协议在 STS 上注销, 请使用<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
   
  ]]></format>
         </remarks>
@@ -2251,9 +2251,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通过调用将引发此事件<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSignOutError%2A>方法从内部<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType>方法，同时注销会话在信赖方 (RP) 签名。 这样做联合通过注销时不引发该事件<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法。  
+ 在依赖方 (RP) 上从<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.OnSignOutError%2A> <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOut%28System.Boolean%29?displayProperty=nameWithType>该方法调用方法时, 将通过调用方法引发此事件。 通过<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法执行联合注销时不引发该事件。  
   
- <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOutError>事件是可取消事件。 可以设置<xref:System.ComponentModel.CancelEventArgs.Cancel%2A>以防止从返回到注销的发起程序导致了错误的异常的事件处理程序中的属性。  
+ <xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOutError>事件是可取消事件。 您可以在事件<xref:System.ComponentModel.CancelEventArgs.Cancel%2A>处理程序中设置属性, 以防止导致错误的异常返回到注销的发起方。  
   
  ]]></format>
         </remarks>
@@ -2276,14 +2276,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置询问字符串，该字符串包含 WS 联合身份验证注销请求（“wsignout1.0”）中将被发送的额外参数。</summary>
-        <value>包含采用以下格式的更多的消息参数的 URL 片段： <c>param1 = value1&amp;param2 = value2&amp;paramN = valueN</c>。 默认值为一个空字符串。</value>
+        <value>一个 URL 片段, 其中包含采用以下格式的其他消息参数: <c>param1 = value1&amp;param2 = value2&amp;paramN = valueN</c>。 默认值为一个空字符串。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认情况下，此属性从初始化`signOutQueryString`的属性[ &lt;wsFederation&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/wsfederation.md)配置文件中的元素。 它旨在包含要在 WS 联合身份验证注销请求中发送任何特定于应用程序的参数。 若要删除这些参数，您可以将属性设置为空字符串。  
+ 默认情况下, 此属性是从`signOutQueryString`配置文件中的[ &lt;wsFederation&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/wsfederation.md)元素的属性初始化的。 它旨在包含要在 WS 联合身份验证注销请求中发送的任何特定于应用程序的参数。 若要删除这些参数, 可以将属性设置为空字符串。  
   
- WSFAM 不使用此属性直接调用但是，您可以将其传递给<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetFederationPassiveSignOutUrl%2A>方法来创建完整的 WS 联合身份验证注销 URL，然后由你的代码。  
+ WSFAM 不会直接使用此属性;但是, 你可以将其传递给<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetFederationPassiveSignOutUrl%2A>方法以创建完整的 WS 联合身份验证注销 URL, 你的代码可以使用该 URL。  
   
  ]]></format>
         </remarks>
@@ -2312,11 +2312,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认情况下，此属性从初始化`signOutReply`的属性[ &lt;wsFederation&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/wsfederation.md)配置文件中的元素。 它旨在表示 WS-联合身份验证注销请求中的 wreply 参数。  
+ 默认情况下, 此属性是从`signOutReply`配置文件中的[ &lt;wsFederation&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/wsfederation.md)元素的属性初始化的。 它用于表示 WS 联合身份验证注销请求中的 wreply 参数。  
   
- Wreply 参数是可选的。 如果<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOutReply%2A>属性设置为`null`或注销请求中不包含空字符串，wreply 参数。  
+ Wreply 参数是可选的。 `null`如果将<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.SignOutReply%2A>属性设置为或空字符串, 则在注销请求中不包含 wreply 参数。  
   
- WSFAM 不直接使用此属性。 但是，您可以将其传递给<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>方法时执行 WS 联合身份验证注销你的代码，或者也可以将其传递给<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetFederationPassiveSignOutUrl%2A>方法来创建完整的 WS 联合身份验证注销 URL。  
+ WSFAM 不会直接使用此属性。 但是, 在从代码执行 ws-federation 注销<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.FederatedSignOut%2A>时, 可以将其传递给方法, 也可以将其传递<xref:System.IdentityModel.Services.WSFederationAuthenticationModule.GetFederationPassiveSignOutUrl%2A>给方法以创建完整的 WS 联合身份验证注销 URL。  
   
  ]]></format>
         </remarks>
@@ -2343,13 +2343,13 @@
         <remarks>To be added.</remarks>
         <exception cref="T:System.InvalidOperationException"><see cref="P:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer" /> 为 <see langword="null" /> 或空字符串。  
   
-- 或 - 
+或 
  <see cref="P:System.IdentityModel.Services.WSFederationAuthenticationModule.Realm" /> 为 <see langword="null" /> 或空字符串。  
   
 - 或 - 
  <see cref="P:System.IdentityModel.Services.WSFederationAuthenticationModule.RequireHttps" /> 为 <see langword="true" />，且 <see cref="P:System.IdentityModel.Services.WSFederationAuthenticationModule.Issuer" /> 不兼容 HTTPS。  
   
-- 或 - 
+或 
  <see cref="P:System.IdentityModel.Services.WSFederationAuthenticationModule.RequireHttps" /> 为 <see langword="true" />，且 <see cref="P:System.IdentityModel.Services.WSFederationAuthenticationModule.Realm" /> 不兼容 HTTPS。</exception>
       </Docs>
     </Member>

@@ -1,5 +1,5 @@
 <Type Name="ComponentConverter" FullName="System.ComponentModel.ComponentConverter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="158ef2a38b1d8b4586e353ff42d1704ebf8565e3" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63898047" /></Metadata><TypeSignature Language="C#" Value="public class ComponentConverter : System.ComponentModel.ReferenceConverter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d9ab46d0b1694474ec000aaa6600f5ae29969ff5" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69328764" /></Metadata><TypeSignature Language="C#" Value="public class ComponentConverter : System.ComponentModel.ReferenceConverter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ComponentConverter extends System.ComponentModel.ReferenceConverter" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.ComponentConverter" />
   <TypeSignature Language="VB.NET" Value="Public Class ComponentConverter&#xA;Inherits ReferenceConverter" />
@@ -32,14 +32,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此类实现<xref:System.ComponentModel.TypeConverter.GetPropertiesSupported%2A>并<xref:System.ComponentModel.ComponentConverter.GetProperties%2A>通过返回属性流过<xref:System.ComponentModel.TypeDescriptor.GetProperties%2A>方法的<xref:System.ComponentModel.TypeDescriptor>。  
+ 此类通过<xref:System.ComponentModel.TypeConverter.GetPropertiesSupported%2A>的<xref:System.ComponentModel.ComponentConverter.GetProperties%2A> <xref:System.ComponentModel.TypeDescriptor.GetProperties%2A>方法实现并返回<xref:System.ComponentModel.TypeDescriptor>属性。  
   
- 有关类型转换器的详细信息，请参阅<xref:System.ComponentModel.TypeConverter>基类和[如何：实现类型转换器](https://docs.microsoft.com/previous-versions/visualstudio/visual-studio-2013/ayybcxe5(v=vs.120))。  
+ 有关类型转换器的详细信息, 请参阅<xref:System.ComponentModel.TypeConverter>基类和[如何:实现类型转换器](https://docs.microsoft.com/previous-versions/visualstudio/visual-studio-2013/ayybcxe5(v=vs.120))。  
   
 > [!NOTE]
->  切勿创建 <xref:System.ComponentModel.ComponentConverter> 的实例， 改为调用<xref:System.ComponentModel.TypeDescriptor.GetConverter%2A>方法的<xref:System.ComponentModel.TypeDescriptor>。 有关详细信息，请参阅中的示例<xref:System.ComponentModel.TypeConverter>基类。  
+>  切勿创建 <xref:System.ComponentModel.ComponentConverter> 的实例， 请改为<xref:System.ComponentModel.TypeDescriptor>调用<xref:System.ComponentModel.TypeDescriptor.GetConverter%2A>的方法。 有关详细信息, 请参阅<xref:System.ComponentModel.TypeConverter>基类中的示例。  
   
- 此转换器转换实现的对象<xref:System.ComponentModel.IComponent>，并在属性窗口中显示其属性。  
+ 此转换器转换实现<xref:System.ComponentModel.IComponent>并在属性窗口中显示其属性的对象。  
   
  ]]></format>
     </remarks>
@@ -128,15 +128,15 @@
 ## Remarks  
  `context` 参数可用于提取有关从中调用该转换器的环境的附加信息。 此参数可能为 `null`，因此总是需要检查。 同样，上下文对象的属性可以返回 `null`。  
   
- `attributes`数组将用于筛选数组。 `attributes`可以有多种<xref:System.Type>和<xref:System.Attribute>对象。 筛选由以下规则定义：  
+ `attributes`数组将用于筛选数组。 可以混用<xref:System.Attribute>和对象。 <xref:System.Type> `attributes` 筛选由以下规则定义:  
   
--   一个<xref:System.Type>对象将被视为通配符; 它将匹配具有任何属性<xref:System.Type>的属性集中。  
+-   对象将被视为通配符; 它将匹配其特性集中具有的<xref:System.Type>任何属性。 <xref:System.Type>  
   
--   如果属性不具有<xref:System.Attribute>的同一个类，该属性不会包含在返回的数组。  
+-   如果某个属性不具有<xref:System.Attribute>相同的类, 则该属性将不会包含在返回的数组中。  
   
--   如果属性是实例<xref:System.Attribute>，属性必须是完全匹配，或者它不包含在返回的数组。  
+-   如果该特性是的<xref:System.Attribute>实例, 则该属性必须是完全匹配项, 否则不会包含在返回的数组中。  
   
--   如果<xref:System.Attribute>指定实例和它是默认属性，即使不没有的任何实例将返回的数组中包括它<xref:System.Attribute>属性中。  
+-   如果指定<xref:System.Attribute>了实例并且它是默认属性, 则即使属性中没有的<xref:System.Attribute>实例, 它也将包含在返回的数组中。  
   
  ]]></format>
         </remarks>
