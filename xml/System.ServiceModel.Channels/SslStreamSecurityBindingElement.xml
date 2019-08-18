@@ -1,5 +1,5 @@
 <Type Name="SslStreamSecurityBindingElement" FullName="System.ServiceModel.Channels.SslStreamSecurityBindingElement">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8291187f16159a12adada0f18cb61c197f69d453" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58687890" /></Metadata><TypeSignature Language="C#" Value="public class SslStreamSecurityBindingElement : System.ServiceModel.Channels.BindingElement, System.ServiceModel.Channels.ITransportTokenAssertionProvider, System.ServiceModel.Description.IPolicyExportExtension" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5bd3c226f579d26f2cf27a97cf3113217fc1c3a0" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69154187" /></Metadata><TypeSignature Language="C#" Value="public class SslStreamSecurityBindingElement : System.ServiceModel.Channels.BindingElement, System.ServiceModel.Channels.ITransportTokenAssertionProvider, System.ServiceModel.Description.IPolicyExportExtension" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit SslStreamSecurityBindingElement extends System.ServiceModel.Channels.BindingElement implements class System.ServiceModel.Channels.ITransportTokenAssertionProvider, class System.ServiceModel.Description.IPolicyExportExtension" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Channels.SslStreamSecurityBindingElement" />
   <TypeSignature Language="VB.NET" Value="Public Class SslStreamSecurityBindingElement&#xA;Inherits BindingElement&#xA;Implements IPolicyExportExtension, ITransportTokenAssertionProvider" />
@@ -38,7 +38,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用面向流协议（如 TCP 和命名管道）的传输支持基于流的传输升级。 具体而言，Windows Communication Foundation (WCF) 提供安全升级。 此传输安全的配置由此类和 <xref:System.ServiceModel.Channels.SslStreamSecurityBindingElement> 包装，你可以对它们进行配置并将其添加到自定义绑定。 此外，第三方可以写入其自定义的 `StreamSecurityBindingElement`。 这些绑定元素会扩展为了生成客户端和服务器流升级提供程序而调用的 <xref:System.ServiceModel.Channels.StreamUpgradeBindingElement> 类。  
+ 使用面向流协议（如 TCP 和命名管道）的传输支持基于流的传输升级。 具体而言, Windows Communication Foundation (WCF) 提供安全升级。 此传输安全的配置由此类和 <xref:System.ServiceModel.Channels.SslStreamSecurityBindingElement> 包装，你可以对它们进行配置并将其添加到自定义绑定。 此外，第三方可以写入其自定义的 `StreamSecurityBindingElement`。 这些绑定元素会扩展为了生成客户端和服务器流升级提供程序而调用的 <xref:System.ServiceModel.Channels.StreamUpgradeBindingElement> 类。  
   
  自定义绑定包含以特定顺序排列的绑定元素集合：首先添加表示绑定堆栈顶部的元素，其次是绑定堆栈的第二个元素，依此类推。  
   
@@ -54,11 +54,11 @@
   
 5.  将任何其他自定义绑定元素添加到集合，比如 <xref:System.ServiceModel.Channels.TcpTransportBindingElement>。  
   
- 有三种方案在其中你必须手动导入 WSDL 后在客户端终结点上指定正确的 UPN/SPN 或指定自定义<xref:System.ServiceModel.Security.IdentityVerifier>在客户端上<xref:System.ServiceModel.Channels.SslStreamSecurityBindingElement>。  
+ 有三种情况: 导入 WSDL 后, 必须在客户端终结点上手动指定正确的 UPN/SPN, 或在<xref:System.ServiceModel.Security.IdentityVerifier> <xref:System.ServiceModel.Channels.SslStreamSecurityBindingElement>客户端上指定自定义。  
   
 1.  在 WSDL 中没有发布任何服务标识。 将使用 <xref:System.ServiceModel.Configuration.AuthenticationMode.SspiNegotiatedOverTransport> 和 HTTPS（例如，其 SecurityMode 为 <xref:System.ServiceModel.WSHttpBinding> 的 <xref:System.ServiceModel.SecurityMode.TransportWithMessageCredential>）。 如果该服务不是使用计算机标识运行的，则在导入 WSDL 后，必须在客户端终结点上手动指定正确的 UPN/SPN。  
   
-2.  在 WSDL 中发布了 DNS 服务标识。 将使用 <xref:System.ServiceModel.Configuration.AuthenticationMode.SspiNegotiatedOverTransport> 和 <xref:System.ServiceModel.Channels.SslStreamSecurityBindingElement>（例如，其 SecurityMode 为 <xref:System.ServiceModel.NetTcpBinding> 的 <xref:System.ServiceModel.SecurityMode.TransportWithMessageCredential>）来替代 UPN/SPN。 如果该服务不是使用计算机标识运行的，或者 DNS 标识不是计算机的标识，则在导入 WSDL 后，必须在客户端终结点上手动指定正确的 UPN/SPN。  
+2.  DNS 服务标识在 WSDL 中发布。 将使用 <xref:System.ServiceModel.Configuration.AuthenticationMode.SspiNegotiatedOverTransport> 和 <xref:System.ServiceModel.Channels.SslStreamSecurityBindingElement>（例如，其 SecurityMode 为 <xref:System.ServiceModel.NetTcpBinding> 的 <xref:System.ServiceModel.SecurityMode.TransportWithMessageCredential>）来替代 UPN/SPN。 如果该服务不是使用计算机标识运行的，或者 DNS 标识不是计算机的标识，则在导入 WSDL 后，必须在客户端终结点上手动指定正确的 UPN/SPN。  
   
 3.  在 WSDL 中发布了 DNS 标识。 如果在客户端上重写 <xref:System.ServiceModel.Channels.SslStreamSecurityBindingElement>，必须在客户端的 <xref:System.ServiceModel.Security.IdentityVerifier> 上指定自定义的 <xref:System.ServiceModel.Channels.SslStreamSecurityBindingElement>。  
   
@@ -635,7 +635,7 @@ namespace ServiceNamespace
       </ReturnValue>
       <Docs>
         <summary>获取或设置此绑定的标识验证程序。</summary>
-        <value><see cref="T:System.ServiceModel.Security.IdentityVerifier" /> 对象。</value>
+        <value>一个 <see cref="T:System.ServiceModel.Security.IdentityVerifier" /> 对象。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException">要设置的值为 null。</exception>
       </Docs>
@@ -673,7 +673,7 @@ namespace ServiceNamespace
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指定此绑定是否需要客户端证书。</summary>
-        <value>如果此绑定需要客户端证书，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</value>
+        <value>如果此绑定需要客户端证书，则为<see langword="true" /> ；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -746,7 +746,7 @@ namespace ServiceNamespace
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认值是 Ssl3 &#124; Tls &#124; Tls11 &#124; Tls12。 4.6 之前的 framework 版本仅支持 Ssl3、 Tls。 如果这些信息将不包含，将不可能与早期版本的 framework 的通信。 指定 Tls11 和/或 Tls12 将禁用 Ssl3 的使用情况，即使它包含了。  
+ 默认值为 Ssl3 &#124; Tls &#124; Tls11 &#124; Tls12。 4.6 之前的版本的 framework 只支持 Ssl3 和 Tls。 如果未包括这些版本, 则不可能与早期版本的框架进行通信。 指定 Tls11 和/或 Tls12 将禁用 Ssl3 的使用情况, 即使已包含它也是如此。  
   
    
   
@@ -804,7 +804,7 @@ cf.Credentials.ClientCertificate.SetCertificate(
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法与绑定相关的语句写入特定协定公开的 WSDL 信息，WCF 用于向客户端通信的绑定堆栈中的此自定义绑定元素存在。  
+ 此方法将与绑定相关的语句写入特定协定公开的 WSDL 信息, 并且 WCF 将使用它来与客户端通信, 以便在绑定堆栈中存在此自定义绑定元素。  
   
  此方法接受两个参数：<xref:System.ServiceModel.Description.MetadataExporter> 和 <xref:System.ServiceModel.Description.PolicyConversionContext> 对象。 使用 <xref:System.ServiceModel.Description.PolicyConversionContext.GetBindingAssertions%2A>, <xref:System.ServiceModel.Description.PolicyConversionContext.GetMessageBindingAssertions%2A> 和 <xref:System.ServiceModel.Description.PolicyConversionContext.GetOperationBindingAssertions%2A> 方法以获取从不同范围导出的策略断言的集合。 然后，使用此方法将您自己的策略断言添加到适当的集合中。  
   

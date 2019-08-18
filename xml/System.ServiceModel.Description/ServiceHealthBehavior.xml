@@ -1,5 +1,5 @@
 <Type Name="ServiceHealthBehavior" FullName="System.ServiceModel.Description.ServiceHealthBehavior">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f271c2ffc9f93a8538410d3afa402d68f462fe90" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58704154" /></Metadata><TypeSignature Language="C#" Value="public class ServiceHealthBehavior : System.ServiceModel.Description.ServiceHealthBehaviorBase" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a964e2fd25bfb9ecc66b550f0538d62fefe1d57e" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69151970" /></Metadata><TypeSignature Language="C#" Value="public class ServiceHealthBehavior : System.ServiceModel.Description.ServiceHealthBehaviorBase" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ServiceHealthBehavior extends System.ServiceModel.Description.ServiceHealthBehaviorBase" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Description.ServiceHealthBehavior" />
   <TypeSignature Language="VB.NET" Value="Public Class ServiceHealthBehavior&#xA;Inherits ServiceHealthBehaviorBase" />
@@ -20,23 +20,23 @@
 
 ## Remarks
 
-运行状况终结点用于执行评估的一个组件的运行状况的运行状况检查。 运行状况终结点可以用于：
+运行状况终结点用于执行评估组件的运行状况的运行状况检查。 运行状况终结点可用于:
 
-- 通知的业务流程工具来终止进程，正在故障严重运行状况检查。 
+- 通知业务流程工具终止未通过关键运行状况检查的进程。 
 
-- 充当通过跟踪和提供有关可用性和服务的性能警报来监视工具的早期问题指示器。
+- 通过跟踪和提供有关服务可用性和性能的警报, 作为监视工具的早期问题指示器。
 
-`ServiceHealthBehavior` 是一个 WCF 服务行为，扩大了 IServiceBehavior 也派生自<xref:System.ServiceModel.Description.ServiceHealthBehaviorBase>。  添加`ServiceHealthBehavior`实例向<xref:System.ServiceModel.Description.ServiceDescription.Behaviors?displayProperty=nameWithType>集合启用下列：
+`ServiceHealthBehavior`是一个 WCF 服务行为, 它扩展 IServiceBehavior 并派生<xref:System.ServiceModel.Description.ServiceHealthBehaviorBase>自。  将实例添加<xref:System.ServiceModel.Description.ServiceDescription.Behaviors?displayProperty=nameWithType>到集合会启用以下功能: `ServiceHealthBehavior`
 
--   **发布服务的运行状况：** 特定于服务的详细信息，如服务状态，限制计数，并且可以使用 HTTP/GET 请求与显示容量`?health`查询字符串。 了解并轻松地使其可以访问到显示的信息是至关重要的表现不正常的 WCF 服务进行故障排除时。
+-   **服务运行状况发布:** 可以通过`?health`查询字符串使用 HTTP/GET 请求来显示服务特定的详细信息, 如服务状态、限制计数和容量。 在对错误的 WCF 服务进行故障排除时, 了解并轻松访问显示的信息是极其重要的。
 
--   **返回的 HTTP 响应代码：** 一个可以在查询字符串中指定的 HTTP/GET 运行状况探测请求的 HTTP 状态代码。
+-   **返回 HTTP 响应代码:** 可以在查询字符串中指定 HTTP/GET health 探测请求的 HTTP 状态代码。
 
-运行状况终结点才有意义，它将监视其运行状况的组件的上下文中。 它具有其他含义或用途。 在这种情况下，其运行状况是交互的媒介的组件的运行状况。 客户端*应*假设适用于整个组件运行状况终结点返回的 HTTP 响应代码。 这是与当前基础结构的工具，利用运行状况检查，如负载均衡器、 服务发现和其他所需的行为兼容。
+运行状况终结点仅在其运行状况监视的组件上下文中有意义。 它没有其他意义或用途。 因此, 其运行状况是指组件的运行状况的管道。 客户端*应*假定运行状况终结点返回的 HTTP 响应代码适用于整个组件。 这与使用运行状况检查的当前基础结构工具 (例如负载均衡器、服务发现等) 所期望的行为兼容。
 
 ### <a name="enable-a-health-endpoint"></a>启用运行状况终结点
 
-有两种方法来指定如何公开运行状况终结点和发布 WCF 服务运行状况信息：
+可以通过两种方式来指定如何公开运行状况终结点并发布 WCF 服务运行状况信息:
 
 - 通过使用配置文件。 例如:
 
@@ -50,7 +50,7 @@
    </behaviors>
    ```
 
-- 以编程方式。 下面的代码片段使用C#公开运行状况终结点：
+- 通过. 下面的代码片段使用C#来公开运行状况终结点:
 
     ```csharp
     ServiceHost host = new ServiceHost(typeof(Service1),
@@ -250,17 +250,17 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-此方法由调用<xref:System.ServiceModel.Description.ServiceHealthBehaviorBase>实例，并负责编写到运行状况终结点的响应消息。
+此方法由<xref:System.ServiceModel.Description.ServiceHealthBehaviorBase>实例调用, 负责将响应消息精心用于运行状况终结点。
 
          ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="serviceHost" /> 为 <see langword="null" />。
 
-- 或 -
+或
 
 <paramref name="httpGetRequest" /> 为 <see langword="null" />
 
-- 或 -
+或
 
 <paramref name="queries" /> 为 <see langword="null" />。</exception>
       </Docs>
@@ -282,7 +282,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取指示是否支持 XML 响应消息的值。</summary>
-        <value>在派生类中重写，则此方法始终返回<see langword="true" />。</value>
+        <value>除非在派生类中重写, 否则此方法将始终<see langword="true" />返回。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -317,13 +317,13 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-该方法返回`true`如果字段的值已成功分析通过<xref:System.Boolean.TryParse%2A?displayProperty=nameWithType>方法。
+如果<xref:System.Boolean.TryParse%2A?displayProperty=nameWithType>方法成功`true`分析了字段的值, 则该方法返回。
 
          ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="parameterName" /> 为 <see langword="null" />。
         
-- 或 -
+或
 
 <paramref name="parameter" /> 为 <see langword="null" />。</exception>
       </Docs>
@@ -359,7 +359,7 @@
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="parameterName" /> 为 <see langword="null" />。
         
-- 或 -
+或
 
 <paramref name="parameter" /> 为 <see langword="null" />。</exception>
       </Docs>
