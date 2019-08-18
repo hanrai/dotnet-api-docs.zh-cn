@@ -1,5 +1,5 @@
 <Type Name="StylusPlugIn" FullName="System.Windows.Input.StylusPlugIns.StylusPlugIn">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c698cda709e72ce1b25a20e58df04664349beb73" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64206099" /></Metadata><TypeSignature Language="C#" Value="public abstract class StylusPlugIn" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1f4a89f99a96a6347d9598ea4f817ec5dab26c10" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69173786" /></Metadata><TypeSignature Language="C#" Value="public abstract class StylusPlugIn" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit StylusPlugIn extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class StylusPlugIn" />
@@ -20,9 +20,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>允许您处理<xref:System.Windows.Input.StylusPoint>单独的线程上的对象。 使用单独的线程，这样手写内容仍将呈现为 tablet 笔输入数据即使应用程序执行其他操作。  
+ 允许您在单独的<xref:System.Windows.Input.StylusPoint>线程上操作对象。 <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn> 使用单独的线程, 以便即使应用程序正在执行其他操作, 墨迹仍会呈现为触笔输入数据。  
   
- 若要截获从硬件的触笔接触点，创建继承的类<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>类。  <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>类具有以下方法可以重写操作<xref:System.Windows.Input.StylusPoint>线程池在笔线程上的对象。  
+ 若要截获硬件中的触笔接触点, 请创建一个从<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>类继承的类。  类具有以下方法, 你可以重写这些方法, <xref:System.Windows.Input.StylusPoint>以便在笔线程池中的线程上操作对象。 <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>  
   
 -   <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDown%2A>  
   
@@ -34,19 +34,19 @@
   
 -   <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusLeave%2A>  
   
- 笔输入路由到元素的<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>笔线程上。 因为不能在笔线程上执行准确的命中测试，某些元素可能会偶尔收到适用于其他元素的触笔输入。 如果你需要确保输入已正确路由正在执行的操作之前，订阅并执行中的操作<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDownProcessed%2A>， <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMoveProcessed%2A>，或<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUpProcessed%2A>方法。 在执行准确的命中测试后，主应用程序线程将调用这些方法。 若要订阅对这些方法，调用<xref:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed%2A>在笔线程发生的方法中的方法。 例如，如果您调用<xref:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed%2A>中<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMove%2A>，则<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMoveProcessed%2A>时发生。  
+ 笔的输入将路由到笔线程<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>上的元素。 由于无法在触笔线程上执行准确的命中测试, 某些元素可能偶尔接收到用于其他元素的触笔输入。 如果在执行操作之前需要确保正确路由输入, 请在<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDownProcessed%2A>、 <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMoveProcessed%2A>或<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUpProcessed%2A>方法中订阅并执行该操作。 执行准确的命中测试后, 主应用程序线程会调用这些方法。 若要订阅这些方法, 请在<xref:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed%2A>笔线程上出现的方法中调用方法。 例如, 如果在中<xref:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed%2A> <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMove%2A>调用, 则<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMoveProcessed%2A>会发生。  
   
 > [!NOTE]
->  如果使用<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>内一个控件，应测试插件，并广泛地控制以确保它们不会引发任何意外的异常。  
+>  如果在控件<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>中使用, 则应广泛测试插件和控件以确保它们不会引发任何意外的异常。  
   
 <a name="xamlTextUsage_StylusPlugIn"></a>   
-## <a name="xaml-text-usage"></a>XAML 文本使用情况  
- 在 XAML 中通常不使用此类。  
+## <a name="xaml-text-usage"></a>XAML 文本用法  
+ 此类通常不在 XAML 中使用。  
   
    
   
 ## Examples  
- 下面的示例创建一个自定义<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>约束在控件上的特定区域的墨迹。  
+ 下面的示例创建一个自<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>定义, 它将墨迹约束到控件上的某个区域。  
   
  [!code-csharp[StylusPluginSamples#1](~/samples/snippets/csharp/VS_Snippets_Wpf/StylusPluginSamples/CSharp/FilterPlugin.cs#1)]
  [!code-vb[StylusPluginSamples#1](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StylusPluginSamples/VisualBasic/FilterPlugin.vb#1)]  
@@ -96,7 +96,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.Element%2A>的<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>添加到时<xref:System.Windows.UIElement.StylusPlugIns%2A>集合。  
+ 下面的示例演示<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.Element%2A> <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>将添加到<xref:System.Windows.UIElement.StylusPlugIns%2A>集合的的。  
   
  [!code-csharp[StylusPluginSamples#22](~/samples/snippets/csharp/VS_Snippets_Wpf/StylusPluginSamples/CSharp/CustomDynamicRenderer.cs#22)]
  [!code-vb[StylusPluginSamples#22](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StylusPluginSamples/VisualBasic/CustomDynamicRenderer.vb#22)]  
@@ -128,12 +128,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>缓存来执行其元素的边界进行命中测试。  
+ <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>缓存其元素的边界以执行命中测试。  
   
    
   
 ## Examples  
- 下面的示例演示如何<xref:System.Windows.Input.StylusPlugIns.DynamicRenderer>，后者又继承<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>，使用<xref:System.Windows.Media.ImageBrush>呈现笔划。  此画笔部分绘制指定的图像文件`imageFile`。  
+ 下面的示例演示如何使用<xref:System.Windows.Input.StylusPlugIns.DynamicRenderer>继承自<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>, 如何使用<xref:System.Windows.Media.ImageBrush>呈现笔画。  此画笔部分绘制由`imageFile`指定的图像文件。  
   
  [!code-csharp[StylusPluginSamples#17](~/samples/snippets/csharp/VS_Snippets_Wpf/StylusPluginSamples/CSharp/ImageRenderer.cs#17)]
  [!code-vb[StylusPluginSamples#17](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StylusPluginSamples/VisualBasic/ImageRenderer.vb#17)]  
@@ -167,13 +167,13 @@
 ## Remarks  
   
 <a name="xamlTextUsage_Enabled"></a>   
-## <a name="xaml-text-usage"></a>XAML 文本使用情况  
- 在 XAML 中通常不使用此属性。  
+## <a name="xaml-text-usage"></a>XAML 文本用法  
+ 此属性通常不在 XAML 中使用。  
   
    
   
 ## Examples  
- 以下示例检查的值<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.Enabled%2A>中的属性<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnEnabledChanged%2A>方法。  
+ 下面的示例<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.Enabled%2A> <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnEnabledChanged%2A>在方法中检查属性的值。  
   
  [!code-csharp[StylusPluginSamples#16](~/samples/snippets/csharp/VS_Snippets_Wpf/StylusPluginSamples/CSharp/CustomDynamicRenderer.cs#16)]
  [!code-vb[StylusPluginSamples#16](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StylusPluginSamples/VisualBasic/CustomDynamicRenderer.vb#16)]  
@@ -210,11 +210,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须满足以下条件<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>接受输入：  
+ <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>若要接受输入, 必须满足以下条件:  
   
--   <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>隶属<xref:System.Windows.Input.StylusPlugIns.StylusPlugInCollection>。  
+-   是的成员<xref:System.Windows.Input.StylusPlugIns.StylusPlugInCollection>。 <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>  
   
--   <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.Element%2A>的<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>可见并已启用。  
+-   <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.Element%2A> 的<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>显示和启用。  
   
    
   
@@ -251,7 +251,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.Element%2A>的<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>添加到时<xref:System.Windows.UIElement.StylusPlugIns%2A>集合。  
+ 下面的示例演示<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.Element%2A> <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>将添加到<xref:System.Windows.UIElement.StylusPlugIns%2A>集合的的。  
   
  [!code-csharp[StylusPluginSamples#22](~/samples/snippets/csharp/VS_Snippets_Wpf/StylusPluginSamples/CSharp/CustomDynamicRenderer.cs#22)]
  [!code-vb[StylusPluginSamples#22](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StylusPluginSamples/VisualBasic/CustomDynamicRenderer.vb#22)]  
@@ -283,7 +283,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 以下示例检查的值<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.Enabled%2A>中的属性<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnEnabledChanged%2A>方法。  
+ 下面的示例<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.Enabled%2A> <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnEnabledChanged%2A>在方法中检查属性的值。  
   
  [!code-csharp[StylusPluginSamples#16](~/samples/snippets/csharp/VS_Snippets_Wpf/StylusPluginSamples/CSharp/CustomDynamicRenderer.cs#16)]
  [!code-vb[StylusPluginSamples#16](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StylusPluginSamples/VisualBasic/CustomDynamicRenderer.vb#16)]  
@@ -315,7 +315,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnIsActiveForInputChanged%2A>方法来分配和清除所使用的资源<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>。  
+ 使用方法可分配和清理使用<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>的资源。 <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnIsActiveForInputChanged%2A>  
   
    
   
@@ -376,12 +376,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法在笔线程上发生因此尽量少使用此方法，以免影响性能。  
+ 此方法发生在笔线程上, 因此最大程度地减少了此方法中的工作, 以避免影响性能。  
   
    
   
 ## Examples  
- 下面的示例演示如何重写<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDown%2A>方法。 若要创建<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>，它将手写内容到某一特定区域，请参阅<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>概述。  
+ 下面的示例演示如何重写<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDown%2A>方法。 若要创建<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>将墨迹限制到特定区域的, <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>请参阅概述。  
   
  [!code-csharp[StylusPluginSamples#8](~/samples/snippets/csharp/VS_Snippets_Wpf/StylusPluginSamples/CSharp/FilterPlugin.cs#8)]
  [!code-vb[StylusPluginSamples#8](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StylusPluginSamples/VisualBasic/FilterPlugin.vb#8)]  
@@ -418,12 +418,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要订阅此方法，调用<xref:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed%2A>在<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDown%2A>方法。  
+ 若要订阅此方法, 请<xref:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed%2A> <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDown%2A>在方法中调用。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>，用于检查<xref:System.Windows.Ink.ApplicationGesture.Down>手势。 <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>调用<xref:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed%2A>中<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUp%2A>订阅<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUpProcessed%2A>从应用程序 UI 线程调用的方法。 之间的关系<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDown%2A>并在<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDownProcessed%2A>完全相同。  
+ 下面的示例创建一个<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn> , 用于检查<xref:System.Windows.Ink.ApplicationGesture.Down>手势。 中<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn> 的<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUp%2A>调用<xref:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed%2A>可订阅方法,该方法是从应用程序UI<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUpProcessed%2A>线程调用的。 与之间<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDown%2A>的关系是相同的。<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDownProcessed%2A>  
   
  [!code-csharp[StylusPluginSamples#12](~/samples/snippets/csharp/VS_Snippets_Wpf/StylusPluginSamples/CSharp/RecognizerPlugin.cs#12)]
  [!code-vb[StylusPluginSamples#12](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StylusPluginSamples/VisualBasic/RecognizerPlugin.vb#12)]  
@@ -459,7 +459,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法在笔线程上发生因此尽量少使用此方法，以免影响性能。  
+ 此方法发生在笔线程上, 因此最大程度地减少了此方法中的工作, 以避免影响性能。  
   
  ]]></format>
         </remarks>
@@ -492,12 +492,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法在笔线程上发生因此尽量少使用此方法，以免影响性能。  
+ 此方法发生在笔线程上, 因此最大程度地减少了此方法中的工作, 以避免影响性能。  
   
    
   
 ## Examples  
- 以下示例重置<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>当光标离开元素边界。  
+ <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>当光标离开元素的边界时, 下面的示例将重置。  
   
  [!code-csharp[StylusPluginSamples#20](~/samples/snippets/csharp/VS_Snippets_Wpf/StylusPluginSamples/CSharp/RecognizerPlugin.cs#20)]
  [!code-vb[StylusPluginSamples#20](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StylusPluginSamples/VisualBasic/RecognizerPlugin.vb#20)]  
@@ -533,12 +533,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法在笔线程上发生因此尽量少使用此方法，以免影响性能。  
+ 此方法发生在笔线程上, 因此最大程度地减少了此方法中的工作, 以避免影响性能。  
   
    
   
 ## Examples  
- 下面的示例演示如何重写<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMove%2A>方法。 若要创建<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>，它将手写内容到某一特定区域，请参阅<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>概述。  
+ 下面的示例演示如何重写<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMove%2A>方法。 若要创建<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>将墨迹限制到特定区域的, <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>请参阅概述。  
   
  [!code-csharp[StylusPluginSamples#9](~/samples/snippets/csharp/VS_Snippets_Wpf/StylusPluginSamples/CSharp/FilterPlugin.cs#9)]
  [!code-vb[StylusPluginSamples#9](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StylusPluginSamples/VisualBasic/FilterPlugin.vb#9)]  
@@ -575,12 +575,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要订阅此方法，调用<xref:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed%2A>在<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMove%2A>方法  
+ 若要订阅此方法, 请<xref:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed%2A> <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMove%2A>在方法中调用  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>，用于检查<xref:System.Windows.Ink.ApplicationGesture.Down>手势。 <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>调用<xref:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed%2A>中<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUp%2A>订阅<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUpProcessed%2A>从应用程序 UI 线程调用的方法。 之间的关系<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMove%2A>并在<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMoveProcessed%2A>完全相同。  
+ 下面的示例创建一个<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn> , 用于检查<xref:System.Windows.Ink.ApplicationGesture.Down>手势。 中<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn> 的<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUp%2A>调用<xref:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed%2A>可订阅方法,该方法是从应用程序UI<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUpProcessed%2A>线程调用的。 与之间<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMove%2A>的关系是相同的。<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMoveProcessed%2A>  
   
  [!code-csharp[StylusPluginSamples#12](~/samples/snippets/csharp/VS_Snippets_Wpf/StylusPluginSamples/CSharp/RecognizerPlugin.cs#12)]
  [!code-vb[StylusPluginSamples#12](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StylusPluginSamples/VisualBasic/RecognizerPlugin.vb#12)]  
@@ -614,12 +614,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法在笔线程上发生因此尽量少使用此方法，以免影响性能。  
+ 此方法发生在笔线程上, 因此最大程度地减少了此方法中的工作, 以避免影响性能。  
   
    
   
 ## Examples  
- 下面的示例演示如何重写<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUp%2A>方法。 若要创建<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>，它将手写内容到某一特定区域，请参阅<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>概述。  
+ 下面的示例演示如何重写<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUp%2A>方法。 若要创建<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>将墨迹限制到特定区域的, <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>请参阅概述。  
   
  [!code-csharp[StylusPluginSamples#10](~/samples/snippets/csharp/VS_Snippets_Wpf/StylusPluginSamples/CSharp/FilterPlugin.cs#10)]
  [!code-vb[StylusPluginSamples#10](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StylusPluginSamples/VisualBasic/FilterPlugin.vb#10)]  
@@ -656,12 +656,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要订阅此方法，调用<xref:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed%2A>在<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUp%2A>方法  
+ 若要订阅此方法, 请<xref:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed%2A> <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUp%2A>在方法中调用  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>，用于检查<xref:System.Windows.Ink.ApplicationGesture.Down>手势。 <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>检查在手势<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUpProcessed%2A>从应用程序 UI 线程调用的方法。  
+ 下面的示例创建一个<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn> , 用于检查<xref:System.Windows.Ink.ApplicationGesture.Down>手势。 <xref:System.Windows.Input.StylusPlugIns.StylusPlugIn>检查方法<xref:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUpProcessed%2A>中的笔势, 该方法是从应用程序 UI 线程调用的。  
   
  [!code-csharp[StylusPluginSamples#12](~/samples/snippets/csharp/VS_Snippets_Wpf/StylusPluginSamples/CSharp/RecognizerPlugin.cs#12)]
  [!code-vb[StylusPluginSamples#12](~/samples/snippets/visualbasic/VS_Snippets_Wpf/StylusPluginSamples/VisualBasic/RecognizerPlugin.vb#12)]  

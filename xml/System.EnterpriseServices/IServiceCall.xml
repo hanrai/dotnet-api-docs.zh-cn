@@ -1,5 +1,5 @@
 <Type Name="IServiceCall" FullName="System.EnterpriseServices.IServiceCall">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0fad9fec0dffecf46157961388122b8b25009997" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55336731" /></Metadata><TypeSignature Language="C#" Value="public interface IServiceCall" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="93135d136589b812a9479c207845edb0cf1c46e6" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69246647" /></Metadata><TypeSignature Language="C#" Value="public interface IServiceCall" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IServiceCall" />
   <TypeSignature Language="DocId" Value="T:System.EnterpriseServices.IServiceCall" />
   <TypeSignature Language="VB.NET" Value="Public Interface IServiceCall" />
@@ -26,7 +26,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.EnterpriseServices.IServiceCall>来执行批处理工作，以使用 COM + 服务而无需创建专用于使用这些服务的组件。 脚本环境，如 Internet 信息服务 (IIS) 和 ASP.NET 可以使用此接口可利用 COM + 服务而无需创建 COM + 组件。  
+ 使用<xref:System.EnterpriseServices.IServiceCall>可以执行使用 com + 服务的批处理工作, 而无需专门创建组件来使用这些服务。 脚本环境 (如 Internet Information Services (IIS) 和 ASP.NET) 可以使用此接口来利用 COM + 服务, 无需创建 COM + 组件。  
   
  ]]></format>
     </remarks>
@@ -56,14 +56,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在通过调用创建的活动的上下文和线程单元中运行此方法中运行的批处理工作<xref:System.EnterpriseServices.Activity>。 在此方法中的批处理工作运行通过调用<xref:System.EnterpriseServices.Activity.SynchronousCall%2A?displayProperty=nameWithType>或<xref:System.EnterpriseServices.Activity.AsynchronousCall%2A?displayProperty=nameWithType>。  
+ 在此方法中运行的批处理工作在通过调用<xref:System.EnterpriseServices.Activity>创建的活动的上下文和线程单元中运行。 此方法中的批处理工作通过对<xref:System.EnterpriseServices.Activity.SynchronousCall%2A?displayProperty=nameWithType>或<xref:System.EnterpriseServices.Activity.AsynchronousCall%2A?displayProperty=nameWithType>的调用来运行。  
   
 > [!CAUTION]
->  必须确保此方法是线程安全的情况下通过创建的活动对象<xref:System.EnterpriseServices.Activity>未创建与同步上下文，因为在这种情况下很多调用到<xref:System.EnterpriseServices.IServiceCall.OnCall%2A>可以在同一时间运行。  
+>  如果创建<xref:System.EnterpriseServices.Activity>的活动对象不是使用同步上下文创建的, 则必须确保此方法是线程安全的, 因为在这种情况下, 很多<xref:System.EnterpriseServices.IServiceCall.OnCall%2A>调用都可以同时运行。  
   
- 为了实现从系统的最佳性能，通过活动的上下文配置创建<xref:System.EnterpriseServices.Activity>应执行的批处理工作与匹配<xref:System.EnterpriseServices.IServiceCall.OnCall%2A>方法。 例如，如果中的批处理工作<xref:System.EnterpriseServices.IServiceCall.OnCall%2A>方法使用可入池对象，该活动由创建<xref:System.EnterpriseServices.Activity>应配置为使用多线程的单元 (MTA)。  
+ 若要从系统中获得最佳性能, <xref:System.EnterpriseServices.Activity>应将创建的活动的上下文配置与<xref:System.EnterpriseServices.IServiceCall.OnCall%2A>方法所执行的批处理工作进行匹配。 例如, 如果<xref:System.EnterpriseServices.IServiceCall.OnCall%2A>方法中的批处理工作使用可入池对象, 则<xref:System.EnterpriseServices.Activity>应将创建的活动配置为使用多线程单元 (MTA)。  
   
- 有关可入池的对象的信息，请参阅"要求的可入池的对象"在 MSDN 中的平台 SDK 中的主题。  
+ 有关可入池对象的信息, 请参阅 MSDN 中的平台 SDK 中的 "可入池对象的要求" 主题。  
   
  ]]></format>
         </remarks>

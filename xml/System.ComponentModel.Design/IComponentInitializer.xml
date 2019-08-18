@@ -1,5 +1,5 @@
 <Type Name="IComponentInitializer" FullName="System.ComponentModel.Design.IComponentInitializer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ba8890f5ed397c8545d4d1db1ce41106e36b2082" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63898995" /></Metadata><TypeSignature Language="C#" Value="public interface IComponentInitializer" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bfdd037822502e4415c159d3115eaa446418be7f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69348964" /></Metadata><TypeSignature Language="C#" Value="public interface IComponentInitializer" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IComponentInitializer" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.IComponentInitializer" />
   <TypeSignature Language="VB.NET" Value="Public Interface IComponentInitializer" />
@@ -28,11 +28,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.IComponentInitializer>接口可以由任何设计器中，这是一个组件，它还实现了实现<xref:System.ComponentModel.Design.IDesigner>，它可以接收一组推荐的默认值为正在设计的组件。 <xref:System.ComponentModel.Design.IComponentInitializer> 查询在新组件的创建过程。 推荐的默认值为组件的属性作为名称/值对的字典中传递中。  
+ 接口可以由任何设计器实现, 设计器还实现<xref:System.ComponentModel.Design.IDesigner>了一个组件, 该组件会接收所设计组件的建议默认值集。 <xref:System.ComponentModel.Design.IComponentInitializer> <xref:System.ComponentModel.Design.IComponentInitializer>在创建新组件期间查询。 在字典中以名称/值对的形式传递组件的属性的建议默认值。  
   
- 此设计提供了两个自定义点: 工具箱项本身可以替换或更改，以执行自定义操作，或者可以更改组件的设计器提供自定义操作。 实现设计器<xref:System.ComponentModel.Design.IComponentInitializer>不应依赖于其方法中的任一<xref:System.ComponentModel.Design.IComponentInitializer.InitializeNewComponent%2A>或<xref:System.ComponentModel.Design.IComponentInitializer.InitializeExistingComponent%2A>-被调用，因为工具箱项并非必须调用这些方法。  
+ 此设计提供了两个自定义点: 可以替换或更改工具箱项本身以执行自定义操作, 也可以更改组件的设计器以提供自定义操作。 实现<xref:System.ComponentModel.Design.IComponentInitializer>的设计器不应依赖于它的任何<xref:System.ComponentModel.Design.IComponentInitializer.InitializeNewComponent%2A>方法 (或<xref:System.ComponentModel.Design.IComponentInitializer.InitializeExistingComponent%2A> ), 因为工具箱项不必调用这些方法。  
   
- 有关创建设计组件的概述，请参阅[扩展设计时支持](https://docs.microsoft.com/previous-versions/visualstudio/visual-studio-2010/37899azc(v=vs.100))。  
+ 有关创建设计组件的概述, 请参阅[扩展设计时支持](https://docs.microsoft.com/previous-versions/visualstudio/visual-studio-2010/37899azc(v=vs.100))。  
   
  ]]></format>
     </remarks>
@@ -79,10 +79,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.IComponentInitializer.InitializeExistingComponent%2A>时设计器将会重新初始化现有组件调用方法。 例如，<xref:System.ComponentModel.Design.IComponentInitializer.InitializeExistingComponent%2A>通常称为拖放操作完成后。 `defaultValues`参数是一个包含应应用于关联的组件的属性的默认值的名称/值对的字典。 此字典可能`null`已指定的任何默认值。  
+ 当设计器将重新初始化现有组件时, 将调用方法。<xref:System.ComponentModel.Design.IComponentInitializer.InitializeExistingComponent%2A> 例如, <xref:System.ComponentModel.Design.IComponentInitializer.InitializeExistingComponent%2A>通常在拖放操作后调用。 `defaultValues`参数是一个包含默认值的名称/值对的字典, 这些默认值应应用于关联组件的属性。 如果未指定任何`null`默认值, 则此字典可能是。  
   
 > [!CAUTION]
->  实现此方法时，通常不应修改组件属性中找到这些建议超出`defaultValue`。 现有的组件可能已有由用户或其他设计时代码设置其属性。  
+>  实现此方法时, 通常不应修改中所述`defaultValue`的组件属性。 现有组件可能已由用户或其他设计时代码设置了其属性。  
   
  ]]></format>
         </remarks>
@@ -127,9 +127,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.IComponentInitializer.InitializeNewComponent%2A>后创建一个新的组件调用方法。 它通常由工具箱项本身调用，用于配置该组件的默认值。  
+ 创建<xref:System.ComponentModel.Design.IComponentInitializer.InitializeNewComponent%2A>新的组件后, 将调用方法。 它通常由工具箱项本身调用, 用于配置组件的默认值。  
   
- 此字典可能`null`如果指定没有默认值。 如果字典为`null`，组件的属性应保留为其隐式的默认状态。  
+ 如果未指定默认`null`值, 则此字典可能是。 如果字典为`null`, 则组件属性应保留为其隐式默认状态。  
   
  ]]></format>
         </remarks>

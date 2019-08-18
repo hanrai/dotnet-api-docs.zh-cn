@@ -1,5 +1,5 @@
 <Type Name="LingerOption" FullName="System.Net.Sockets.LingerOption">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d3be57a7c3dc02f48b97bbc0844b2ec708eac020" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58703120" /></Metadata><TypeSignature Language="C#" Value="public class LingerOption" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="cb8ae307f2beeee884316616773a1e30713d0a21" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69072608" /></Metadata><TypeSignature Language="C#" Value="public class LingerOption" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit LingerOption extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Net.Sockets.LingerOption" />
   <TypeSignature Language="VB.NET" Value="Public Class LingerOption" />
@@ -33,14 +33,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可能仍有数据可用的传出的网络缓冲区中后应用程序调用<xref:System.Net.Sockets.Socket>或<xref:System.Net.Sockets.TcpClient>方法。 如果你想要指定的时间<xref:System.Net.Sockets.Socket>将尝试关闭后传输未发送的数据，创建<xref:System.Net.Sockets.LingerOption>与`enable`参数设置为`true`，和`seconds`参数设置为所需的时间量. `seconds`参数用于指示多长时间想<xref:System.Net.Sockets.Socket>将保持连接才会超时。如果不希望<xref:System.Net.Sockets.Socket>保持为任意长度的时间后关闭连接，创建<xref:System.Net.Sockets.LingerOption>实例与`enable`参数设置为`true`和`seconds`参数设置为零。 在这种情况下，<xref:System.Net.Sockets.Socket>将立即关闭，所有未发送的数据都将丢失。 创建后，将传递<xref:System.Net.Sockets.LingerOption>到<xref:System.Net.Sockets.Socket.SetSocketOption%2A?displayProperty=nameWithType>方法。 如果发送和接收的数据与<xref:System.Net.Sockets.TcpClient>，然后设置<xref:System.Net.Sockets.LingerOption>实例中<xref:System.Net.Sockets.TcpClient.LingerState%2A?displayProperty=nameWithType>属性。  
+ 在应用程序调用<xref:System.Net.Sockets.Socket>或<xref:System.Net.Sockets.TcpClient>方法之后, 传出网络缓冲区中可能仍有可用的数据。 如果要<xref:System.Net.Sockets.Socket>指定在关闭后将尝试传输未发送数据的时间量, 请<xref:System.Net.Sockets.LingerOption>创建`enable`参数设置为`true`的, 并`seconds`将参数设置为所需的时间量. 参数用于指示在超时之前要保持连接的<xref:System.Net.Sockets.Socket>时间长度。 `seconds`如果<xref:System.Net.Sockets.Socket>您不希望在关闭后保持连接的时间长度, 请创建一个<xref:System.Net.Sockets.LingerOption>实例`enable` , 并将参数设置为`true` , 并`seconds`将参数设置为零。 在这种情况下<xref:System.Net.Sockets.Socket> , 将立即关闭, 任何未发送的数据都将丢失。 创建后, 将传递<xref:System.Net.Sockets.LingerOption> <xref:System.Net.Sockets.Socket.SetSocketOption%2A?displayProperty=nameWithType>给方法。 如果要使用<xref:System.Net.Sockets.TcpClient>发送和接收数据, 请在<xref:System.Net.Sockets.TcpClient.LingerState%2A?displayProperty=nameWithType>属性中<xref:System.Net.Sockets.LingerOption>设置实例。  
   
- IP 堆栈计算默认 IP 协议的超时期限为使用基于连接的往返行程时间。 在大多数情况下，计算堆栈的超时值是个应用程序定义的更多相关。 这是默认行为<xref:System.Net.Sockets.Socket>时<xref:System.Net.Sockets.Socket.LingerState%2A>属性未设置以及<xref:System.Net.Sockets.TcpClient>时<xref:System.Net.Sockets.TcpClient.LingerState%2A>未设置属性。  
+ IP 堆栈根据连接的往返时间来计算要使用的默认 IP 协议超时期限。 在大多数情况下, 堆栈计算出的超时比应用程序定义的超时更密切。 当未设置属性<xref:System.Net.Sockets.TcpClient>时,这是的默认行为,如果未设置属性,则为。<xref:System.Net.Sockets.TcpClient.LingerState%2A> <xref:System.Net.Sockets.Socket.LingerState%2A> <xref:System.Net.Sockets.Socket>  
   
    
   
 ## Examples  
- 下面的示例设置之前创建<xref:System.Net.Sockets.Socket>逗留一秒后调用<xref:System.Net.Sockets.Socket.Close%2A>方法。  
+ 下面的示例将以前创建<xref:System.Net.Sockets.Socket>的设置为在<xref:System.Net.Sockets.Socket.Close%2A>调用方法后逗留一秒钟。  
   
  [!code-cpp[Classic LingerOption Example#1](~/samples/snippets/cpp/VS_Snippets_Remoting/Classic LingerOption Example/CPP/source.cpp#1)]
  [!code-csharp[Classic LingerOption Example#1](~/samples/snippets/csharp/VS_Snippets_Remoting/Classic LingerOption Example/CS/source.cs#1)]
@@ -88,24 +88,24 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可能仍有数据可用的传出的网络缓冲区中关闭后<xref:System.Net.Sockets.Socket>。 使用`enable`参数来指定您是否想<xref:System.Net.Sockets.Socket>继续传输未发送的数据后调用 close 方法。 使用`seconds`参数来指示希望如何时间<xref:System.Net.Sockets.Socket>尝试传输超时前未发送的数据。如果指定`true`有关`enable`参数，使用 0 表示`seconds`参数，<xref:System.Net.Sockets.Socket>会尝试将数据发送传出的网络缓冲区中没有剩余数据之前。 如果指定`false`有关`enable`参数，<xref:System.Net.Sockets.Socket>将立即关闭，所有未发送的数据都将丢失。  
+ 关闭后, 传出网络缓冲区中可能仍有可用数据<xref:System.Net.Sockets.Socket>。 使用参数指定是否希望在<xref:System.Net.Sockets.Socket>调用 close 方法后继续传输未发送的数据。 `enable` 使用参数来指示希望在超时前尝试传输未<xref:System.Net.Sockets.Socket>发送的数据的时间长度。 `seconds`如果`true` `seconds`为参数指定, 并为参数指定 0, 则在<xref:System.Net.Sockets.Socket>传出网络缓冲区中没有剩余的数据之前, 将尝试发送数据。 `enable` 如果`false` <xref:System.Net.Sockets.Socket>为参数指定, 则将立即关闭, 任何未发送的数据都将丢失。 `enable`  
   
- 下表介绍上行为<xref:System.Net.Sockets.Socket.Close%2A?displayProperty=nameWithType>和<xref:System.Net.Sockets.TcpClient.Close%2A?displayProperty=nameWithType>上的可能值的方法基于`enable`和`seconds`时创建并集中请实例的参数<xref:System.Net.Sockets.Socket.LingerState%2A?displayProperty=nameWithType>或<xref:System.Net.Sockets.TcpClient.LingerState%2A?displayProperty=nameWithType>属性。  
+ 下表描述了在创建 T:System.Net.Sockets.LingerOption 实例<xref:System.Net.Sockets.Socket.Close%2A?displayProperty=nameWithType>并<xref:System.Net.Sockets.TcpClient.Close%2A?displayProperty=nameWithType>在`enable` `seconds` 其中设置了的情况下,根据和参数的可能值对和方法的行为进行了说明:<xref:System.Net.Sockets.Socket.LingerState%2A?displayProperty=nameWithType> 或<xref:System.Net.Sockets.TcpClient.LingerState%2A?displayProperty=nameWithType>属性。  
   
 |`enable`|`seconds`|行为|  
 |--------------|---------------|--------------|  
-|`false` （禁用），默认值|不适用，超时值 （默认值）。|尝试发送挂起数据的面向连接的套接字 (例如 TCP) 直到默认 IP 协议超时过期。|  
-|`true` （已启用）|非零值超时|尝试发送挂起的数据，直到指定的超时时间已到，如果该尝试失败，然后 Winsock 重置连接。|  
-|`true` （已启用）|零个超时时间。|将放弃所有挂起的数据。 对于面向连接的套接字 (例如 TCP)，Winsock 重置连接。|  
+|`false`(禁用), 默认值|超时不适用, (默认值)。|尝试发送面向连接的套接字 (例如 TCP) 的待处理数据, 直到默认 IP 协议超时过期。|  
+|`true`能够|非零超时|尝试发送挂起的数据直到指定的超时过期, 如果尝试失败, Winsock 将重置连接。|  
+|`true`能够|零超时。|丢弃所有挂起的数据。 对于面向连接的套接字 (例如 TCP), Winsock 重置连接。|  
   
- IP 堆栈计算默认 IP 协议的超时期限为使用基于连接的往返行程时间。 在大多数情况下，计算堆栈的超时值是个应用程序定义的更多相关。 这是一个套接字的默认行为时<xref:System.Net.Sockets.Socket.LingerState%2A>未设置属性。  
+ IP 堆栈根据连接的往返时间来计算要使用的默认 IP 协议超时期限。 在大多数情况下, 堆栈计算出的超时比应用程序定义的超时更密切。 当未设置<xref:System.Net.Sockets.Socket.LingerState%2A>属性时, 这是套接字的默认行为。  
   
- 当<xref:System.Net.Sockets.LingerOption.LingerTime%2A>属性存储在<xref:System.Net.Sockets.Socket.LingerState%2A>属性设置为大于默认 IP 协议超时时间，则默认 IP 协议超时时间仍将应用，并替代。  
+ 当<xref:System.Net.Sockets.LingerOption.LingerTime%2A> 属性<xref:System.Net.Sockets.Socket.LingerState%2A>中存储的属性设置为大于默认 ip 协议超时值时, 默认的 ip 协议超时值仍将应用并将替代。  
   
    
   
 ## Examples  
- 下面的示例设置之前创建<xref:System.Net.Sockets.Socket>逗留一秒后调用<xref:System.Net.Sockets.Socket.Close%2A>方法。  
+ 下面的示例将以前创建<xref:System.Net.Sockets.Socket>的设置为在<xref:System.Net.Sockets.Socket.Close%2A>调用方法后逗留一秒钟。  
   
  [!code-cpp[Classic LingerOption Example#1](~/samples/snippets/cpp/VS_Snippets_Remoting/Classic LingerOption Example/CPP/source.cpp#1)]
  [!code-csharp[Classic LingerOption Example#1](~/samples/snippets/csharp/VS_Snippets_Remoting/Classic LingerOption Example/CS/source.cs#1)]
@@ -159,19 +159,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Net.Sockets.LingerOption.Enabled%2A>属性来确定是否<xref:System.Net.Sockets.Socket>关闭之后将逗留。 更改此值设置为`true`或`false`，并将更改传递<xref:System.Net.Sockets.LingerOption>到<xref:System.Net.Sockets.Socket.SetSocketOption%2A>方法或一组<xref:System.Net.Sockets.TcpClient.LingerState%2A>或<xref:System.Net.Sockets.Socket.LingerState%2A>属性，以禁用或启用延迟。  
+ 您可以使用<xref:System.Net.Sockets.LingerOption.Enabled%2A>属性来确定关闭后<xref:System.Net.Sockets.Socket>是否会逗留。 将此值更改`true`为`false`或, 并将<xref:System.Net.Sockets.LingerOption>更改<xref:System.Net.Sockets.Socket.SetSocketOption%2A>传递给方法, 或<xref:System.Net.Sockets.TcpClient.LingerState%2A>设置<xref:System.Net.Sockets.Socket.LingerState%2A>或 property.to 禁用或启用延迟。  
   
- 下表描述了有关可能的值的行为<xref:System.Net.Sockets.LingerOption.Enabled%2A>属性和<xref:System.Net.Sockets.LingerOption.LingerTime%2A>属性中存储<xref:System.Net.Sockets.Socket.LingerState%2A>属性。  
+ 下表介绍<xref:System.Net.Sockets.LingerOption.Enabled%2A>属性的可能值<xref:System.Net.Sockets.LingerOption.LingerTime%2A>和存储在<xref:System.Net.Sockets.Socket.LingerState%2A>属性中的属性的行为。  
   
 |`enable`|`seconds`|行为|  
 |--------------|---------------|--------------|  
-|`false` （禁用），默认值|不适用，超时值 （默认值）。|尝试发送挂起数据的面向连接的套接字 (例如 TCP) 直到默认 IP 协议超时过期。|  
-|`true` （已启用）|非零值超时|尝试发送挂起的数据，直到指定的超时时间已到，如果该尝试失败，然后 Winsock 重置连接。|  
-|`true` （已启用）|零个超时时间。|将放弃所有挂起的数据。 对于面向连接的套接字 (例如 TCP)，Winsock 重置连接。|  
+|`false`(禁用), 默认值|超时不适用, (默认值)。|尝试发送面向连接的套接字 (例如 TCP) 的待处理数据, 直到默认 IP 协议超时过期。|  
+|`true`能够|非零超时|尝试发送挂起的数据直到指定的超时过期, 如果尝试失败, Winsock 将重置连接。|  
+|`true`能够|零超时。|丢弃所有挂起的数据。 对于面向连接的套接字 (例如 TCP), Winsock 重置连接。|  
   
- IP 堆栈计算默认 IP 协议的超时期限为使用基于连接的往返行程时间。 在大多数情况下，计算堆栈的超时值是个应用程序定义的更多相关。 这是一个套接字的默认行为时<xref:System.Net.Sockets.Socket.LingerState%2A>未设置属性。  
+ IP 堆栈根据连接的往返时间来计算要使用的默认 IP 协议超时期限。 在大多数情况下, 堆栈计算出的超时比应用程序定义的超时更密切。 当未设置<xref:System.Net.Sockets.Socket.LingerState%2A>属性时, 这是套接字的默认行为。  
   
- 当<xref:System.Net.Sockets.LingerOption.LingerTime%2A>属性存储在<xref:System.Net.Sockets.Socket.LingerState%2A>属性设置为大于默认 IP 协议超时时间，则默认 IP 协议超时时间仍将应用，并替代。  
+ 当<xref:System.Net.Sockets.LingerOption.LingerTime%2A> 属性<xref:System.Net.Sockets.Socket.LingerState%2A>中存储的属性设置为大于默认 ip 协议超时值时, 默认的 ip 协议超时值仍将应用并将替代。  
   
  ]]></format>
         </remarks>
@@ -221,26 +221,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此值，如果你想要确定如何长时间关闭<xref:System.Net.Sockets.Socket>将尝试传输超时前未发送的数据。此外可以将此值设置到所需的超时时间 （秒）。  
+ 如果要确定已关闭<xref:System.Net.Sockets.Socket>将在超时前尝试传输未发送的数据的时间长度, 请使用此值。你还可以将此值设置为所需的超时期限 (以秒为单位)。  
   
- 如果<xref:System.Net.Sockets.LingerOption.Enabled%2A>属性是`true`，并设置<xref:System.Net.Sockets.LingerOption.LingerTime%2A>为 0，<xref:System.Net.Sockets.Socket>丢弃所有挂起的要在传出的网络缓冲区中发送的数据。 如果更改此值，则必须通过更改<xref:System.Net.Sockets.LingerOption>实例向<xref:System.Net.Sockets.Socket.SetSocketOption%2A>方法或一组<xref:System.Net.Sockets.TcpClient.LingerState%2A>或<xref:System.Net.Sockets.Socket.LingerState%2A>属性。  
+ 如果属性为`true`, 并且将设置<xref:System.Net.Sockets.LingerOption.LingerTime%2A>为 0, 则<xref:System.Net.Sockets.Socket>将丢弃要发送到传出网络缓冲区中的任何挂起的数据。 <xref:System.Net.Sockets.LingerOption.Enabled%2A> 如果更改此值, 则必须将<xref:System.Net.Sockets.LingerOption>更改后的实例传递<xref:System.Net.Sockets.Socket.SetSocketOption%2A>给方法, 或设置<xref:System.Net.Sockets.TcpClient.LingerState%2A>或<xref:System.Net.Sockets.Socket.LingerState%2A>属性。  
   
- 下表描述了有关可能的值的行为<xref:System.Net.Sockets.LingerOption.Enabled%2A>属性和<xref:System.Net.Sockets.LingerOption.LingerTime%2A>属性中存储<xref:System.Net.Sockets.Socket.LingerState%2A>属性。  
+ 下表介绍<xref:System.Net.Sockets.LingerOption.Enabled%2A>属性的可能值<xref:System.Net.Sockets.LingerOption.LingerTime%2A>和存储在<xref:System.Net.Sockets.Socket.LingerState%2A>属性中的属性的行为。  
   
 |`enable`|`seconds`|行为|  
 |--------------|---------------|--------------|  
-|`false` （禁用），默认值|不适用，超时值 （默认值）。|尝试发送挂起数据的面向连接的套接字 (例如 TCP) 直到默认 IP 协议超时过期。|  
-|`true` （已启用）|非零值超时|尝试发送挂起的数据，直到指定的超时时间已到，如果该尝试失败，然后 Winsock 重置连接。|  
-|`true` （已启用）|零个超时时间。|将放弃所有挂起的数据。 对于面向连接的套接字 (例如 TCP)，Winsock 重置连接。|  
+|`false`(禁用), 默认值|超时不适用, (默认值)。|尝试发送面向连接的套接字 (例如 TCP) 的待处理数据, 直到默认 IP 协议超时过期。|  
+|`true`能够|非零超时|尝试发送挂起的数据直到指定的超时过期, 如果尝试失败, Winsock 将重置连接。|  
+|`true`能够|零超时。|丢弃所有挂起的数据。 对于面向连接的套接字 (例如 TCP), Winsock 重置连接。|  
   
- IP 堆栈计算默认 IP 协议的超时期限为使用基于连接的往返行程时间。 在大多数情况下，计算堆栈的超时值是个应用程序定义的更多相关。 这是一个套接字的默认行为时<xref:System.Net.Sockets.Socket.LingerState%2A>未设置属性。  
+ IP 堆栈根据连接的往返时间来计算要使用的默认 IP 协议超时期限。 在大多数情况下, 堆栈计算出的超时比应用程序定义的超时更密切。 当未设置<xref:System.Net.Sockets.Socket.LingerState%2A>属性时, 这是套接字的默认行为。  
   
- 当<xref:System.Net.Sockets.LingerOption.LingerTime%2A>属性存储在<xref:System.Net.Sockets.Socket.LingerState%2A>属性设置为大于默认 IP 协议超时时间，则默认 IP 协议超时时间仍将应用，并替代。  
+ 当<xref:System.Net.Sockets.LingerOption.LingerTime%2A> 属性<xref:System.Net.Sockets.Socket.LingerState%2A>中存储的属性设置为大于默认 ip 协议超时值时, 默认的 ip 协议超时值仍将应用并将替代。  
   
    
   
 ## Examples  
- 以下示例显示此属性的值。  
+ 下面的示例显示此属性的值。  
   
  [!code-cpp[Socket_Socket_Options#2](~/samples/snippets/cpp/VS_Snippets_Remoting/Socket_Socket_Options/CPP/source.cpp#2)]
  [!code-csharp[Socket_Socket_Options#2](~/samples/snippets/csharp/VS_Snippets_Remoting/Socket_Socket_Options/CS/source.cs#2)]
