@@ -1,5 +1,5 @@
 <Type Name="IHelpService" FullName="System.ComponentModel.Design.IHelpService">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b4f4dfd397dc03c42a1559e0f8e02acfa0c67231" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63898910" /></Metadata><TypeSignature Language="C#" Value="public interface IHelpService" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c51819a0320841a2a5e427a796b87b7dfdd9256f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69348764" /></Metadata><TypeSignature Language="C#" Value="public interface IHelpService" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IHelpService" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.IHelpService" />
   <TypeSignature Language="VB.NET" Value="Public Interface IHelpService" />
@@ -29,18 +29,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在设计时环境提供了一个尝试定位相关的帮助主题，当用户按 F1 时要显示的帮助系统。 帮助系统维护一组用于标识相关的主题，如果请求帮助时的当前上下文关键字。 默认情况下，关键字是与所选的类对象和属性的设计时环境中的对象相关联。 组件或属性的默认关键字是其完全限定的类或属性名称。 特定的关键字，还有与特定模式，例如当选择多个对象相关联。 文档提供程序如果自定义的帮助集与在设计时环境集成通过外部帮助提供程序配置，可以将有关特定组件类或属性的主题关联与完全包含的项的关键字限定的类型或成员名称。  
+ 设计时环境提供了一个帮助系统, 该系统尝试查找在用户按 F1 时要显示的相关帮助主题。 帮助系统维护一组当前上下文关键字, 这些关键字用于在请求帮助时标识相关主题。 默认情况下, 关键字与设计时环境中的选定类对象和对象属性相关联。 组件或属性的默认关键字为其完全限定的类或属性名称。 特定关键字还与特定模式关联, 如选择多个对象时。 如果通过为外部帮助提供程序配置自定义帮助集来与设计时环境集成, 则文档提供程序可以将特定组件类或属性的主题与包含该项的完全限定的类型或成员名称。  
   
- <xref:System.ComponentModel.Design.IHelpService>可用于调用具有指定的关键字使用的帮助服务<xref:System.ComponentModel.Design.IHelpService.ShowHelpFromKeyword%2A>方法，或要调用帮助主题，从指定的 URL 使用<xref:System.ComponentModel.Design.IHelpService.ShowHelpFromUrl%2A>方法。  
+ 可用于通过<xref:System.ComponentModel.Design.IHelpService.ShowHelpFromKeyword%2A>使用方法调用具有指定关键字的帮助服务, 或使用<xref:System.ComponentModel.Design.IHelpService.ShowHelpFromUrl%2A>方法从指定的 URL 调用帮助主题。 <xref:System.ComponentModel.Design.IHelpService>  
   
- <xref:System.ComponentModel.Design.IHelpService>还可用来添加或删除在设计时帮助关键字。 选择一个组件，或在时间设置默认上下文关键字组成的完全限定的类型或成员名称所选内容，并删除任何以前选定的关键字的设计时和不再选定的组件的属性。  
+ 还<xref:System.ComponentModel.Design.IHelpService>可用于在设计时添加或删除帮助关键字。 在设计时选择组件或属性将设置一个默认上下文关键字, 该关键字由所选内容的完全限定类型或成员名称组成, 并删除任何先前选定的和不再选择的组件或属性的关键字。  
   
- 帮助系统不会自动删除自定义帮助关键字，因为必须显式删除自定义的关键字，它不再适用时。 你可以监视由定义的事件<xref:System.ComponentModel.Design.ISelectionService>接口，以确定当组件选择发生更改。 基于这些事件，可以选择此项时添加一个组件的帮助上下文属性并在所选内容不能再包括该组件，然后删除帮助上下文特性。  
+ 由于帮助系统不会自动删除自定义帮助关键字, 因此当它不再适用时, 必须显式删除自定义关键字。 你可以监视由<xref:System.ComponentModel.Design.ISelectionService>接口定义的事件, 以确定组件选择何时更改。 根据这些事件, 您可以在组件处于选中状态时为其添加 "帮助" 上下文属性, 然后在所选内容不再包括组件时删除帮助上下文属性。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用设计器<xref:System.ComponentModel.Design.IHelpService>添加和删除所包含控件的帮助上下文特性。 若要使用此示例，将其编译为类库，并添加到控件的实例<xref:System.Windows.Forms.Form>。 在设计视图中，选择组件，并按 f1 即可尝试查找基于当前上下文帮助关键字或关键字的相关帮助主题。 右键单击该组件，并在快捷菜单显示命令，其中包括两个自定义<xref:System.ComponentModel.Design.DesignerVerb>命令命名`Add IHelpService Help Keyword`和`Remove IHelpService Help Keyword`。 这些命令可用于添加或删除的帮助上下文关键字的值"IHelpService"，尝试引发<xref:System.ComponentModel.Design.IHelpService>主题时按 F1。  
+ 下面的示例演示一个设计器, 该<xref:System.ComponentModel.Design.IHelpService>设计器使用为包含的控件添加和移除帮助上下文特性。 若要使用此示例, 请将其编译为类库并向添加控件<xref:System.Windows.Forms.Form>的实例。 在 "设计" 视图中, 选择组件并按 F1 将尝试根据当前帮助上下文关键字或关键字查找相关帮助主题。 右键单击该组件, 快捷菜单将显示命令, 包括两个名<xref:System.ComponentModel.Design.DesignerVerb>为`Add IHelpService Help Keyword`和`Remove IHelpService Help Keyword`的自定义命令。 这些命令可用于添加或删除值为 "IHelpService" 的帮助上下文关键字, 该关键字会在按 F1 时尝试<xref:System.ComponentModel.Design.IHelpService>引发主题。  
   
  [!code-cpp[IHelpServiceExample#1](~/samples/snippets/cpp/VS_Snippets_Winforms/IHelpServiceExample/CPP/source.cpp#1)]
  [!code-csharp[IHelpServiceExample#1](~/samples/snippets/csharp/VS_Snippets_Winforms/IHelpServiceExample/CS/source.cs#1)]
@@ -94,7 +94,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 上下文属性用于提供给用户的上下文相关帮助。 设计器宿主会自动从某些组件和属性的可用帮助属性添加上下文特性。 此方法，可进一步自定义上下文相关帮助。  
+ 上下文特性用于向用户提供区分上下文的帮助。 设计器宿主自动向某些组件和属性上的可用帮助特性添加上下文特性。 此方法可让你进一步自定义上下文相关帮助。  
   
  ]]></format>
         </remarks>
@@ -289,7 +289,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Visual Studio 集成的开发环境的帮助系统显示的主题。  
+ Visual Studio 集成开发环境的帮助系统显示主题。  
   
  ]]></format>
         </remarks>
@@ -333,7 +333,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Visual Studio 集成的开发环境的帮助系统显示的主题。  
+ Visual Studio 集成开发环境的帮助系统显示主题。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="XStreamingElement" FullName="System.Xml.Linq.XStreamingElement">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="753b9830836ee79a60431875849d6698b0ec5337" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58684000" /></Metadata><TypeSignature Language="C#" Value="public class XStreamingElement" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="51dd8522fdff19b0e24200cf0bb610ce293b51b7" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69415578" /></Metadata><TypeSignature Language="C#" Value="public class XStreamingElement" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit XStreamingElement extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Xml.Linq.XStreamingElement" />
   <TypeSignature Language="VB.NET" Value="Public Class XStreamingElement" />
@@ -33,18 +33,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此类允许您创建的 XML 树，支持流输出延迟。 此类用于创建 XML 树中非常类似于创建 XML 树中使用<xref:System.Xml.Linq.XElement>。 但是，没有本质上的区别。 当使用 LINQ 查询来指定内容时使用创建 XML 树<xref:System.Xml.Linq.XElement>、 在构造 XML 树时循环访问查询变量和查询的结果添加到 XML 树。 与此相反，使用 XML 树创建<xref:System.Xml.Linq.XStreamingElement>，而无需循环访问查询变量的引用存储在 XML 树。 仅在序列化时循环访问查询。 这可以保持较小的内存需求量的同时创建更大的 XML 树。  
+ 此类允许您创建支持延迟流输出的 XML 树。 使用此类创建 XML 树的方式与使用<xref:System.Xml.Linq.XElement>创建 xml 树的方式非常类似。 但是, 存在根本的差异。 使用 LINQ 查询在使用<xref:System.Xml.Linq.XElement>创建 xml 树时指定内容时, 将在构造 xml 树时循环访问查询变量, 并将查询的结果添加到 xml 树中。 相反, 使用<xref:System.Xml.Linq.XStreamingElement>创建 xml 树时, 对查询变量的引用将存储在 XML 树中, 而不会进行迭代。 仅在序列化时循环访问查询。 这使您可以创建更大的 XML 树, 同时保持较小的内存需求量。  
   
- 如果您正在传输从输入源，例如文本文件，然后可以读取非常大的文本文件，并保持小内存需求量的同时生成非常大的 XML 文档。  
+ 如果从输入源 (如文本文件) 进行流式处理, 则可以读取非常大的文本文件, 并生成一个非常大的 XML 文档, 同时保持较小的内存需求量。  
   
- 另一种情况是文档的，具有已加载到内存中，一个大型 XML 树，并且你想要创建转换后的版本。 如果您创建新的文档使用<xref:System.Xml.Linq.XElement>，则将在完成转换后的内存中具有两个大型 XML 树。 但是，如果您创建新的 XML 树中使用<xref:System.Xml.Linq.XStreamingElement>，则您的工作集将有效地缩短了一半。  
+ 另一种情况是, 你有一个已加载到内存中的大型 XML 树, 并且你想要创建文档的转换版本。 如果使用<xref:System.Xml.Linq.XElement>创建新的文档, 则在转换完成后, 内存中将有两个大型 XML 树。 但是, 如果使用<xref:System.Xml.Linq.XStreamingElement>创建新的 XML 树, 则可以有效地将工作集缩短一半。  
   
- 请注意，当调试程序，使用<xref:System.Xml.Linq.XStreamingElement>，显示对象的值会导致其<xref:System.Xml.Linq.XStreamingElement.ToString%2A>要在调用方法。 这会导致要进行序列化的 XML。 如果流式处理元素查询的语义，这样可以仅一次传输流元素，这可能导致意外行为，在你的调试体验。  
+ 请注意, 在调试使用<xref:System.Xml.Linq.XStreamingElement>的程序时, 显示对象的值将导致调用其<xref:System.Xml.Linq.XStreamingElement.ToString%2A>方法。 这将导致对 XML 进行序列化。 如果流式处理元素查询的语义使得流式处理元素只能流式传输一次, 则这可能会导致在调试过程中出现意外的行为。  
   
    
   
 ## Examples  
- 下面的示例首先创建一个源 XML 树。 然后，它创建源 XML 树中使用的转换<xref:System.Xml.Linq.XElement>。 此转换在内存中创建新的树。 然后，它创建源 XML 树中使用的转换<xref:System.Xml.Linq.XStreamingElement>。 转换后的树序列化为控制台之前，此转换不会执行查询。 内存使用情况较少。  
+ 下面的示例首先创建一个源 XML 树。 然后, 它使用<xref:System.Xml.Linq.XElement>创建源 XML 树的转换。 此转换在内存中创建一个新树。 然后, 它使用<xref:System.Xml.Linq.XStreamingElement>创建源 XML 树的转换。 在转换后的树序列化为控制台之前, 此转换不会执行查询。 它的内存使用率较低。  
   
 ```csharp  
 XElement srcTree = new XElement("Root",  
@@ -116,7 +116,7 @@ Console.WriteLine(dstTree2)
 </NewRoot>  
 ```  
   
- 处理文本文件的一种方法是编写使用 `yield return` 构造一次流式处理一行文本文件的扩展方法。 然后可以编写以迟缓延迟方式处理文本文件的 LINQ 查询。 如果随后使用<xref:System.Xml.Linq.XStreamingElement>流式处理输出，则可以创建一个转换，转换从文本文件到 XML 的最少量的内存，而不管源文本文件大小。  
+ 处理文本文件的一种方法是编写使用 `yield return` 构造一次流式处理一行文本文件的扩展方法。 然后可以编写以迟缓延迟方式处理文本文件的 LINQ 查询。 如果随后使用<xref:System.Xml.Linq.XStreamingElement>流式处理输出, 则可以创建从文本文件到 XML 的转换, 而不管源文本文件的大小是多少, 都可以使用最少的内存量。  
   
  下面的文本文件 People.txt 是本示例的源文件。  
   
@@ -226,9 +226,9 @@ End Module
   
  某些标准查询运算符（如 <xref:System.Linq.Enumerable.OrderBy%2A>）可以循环访问其源、收集所有数据、对数据排序，最后生成序列中的第一项。 请注意，如果使用可在生成第一项之前具体化源的查询运算符，则不会使应用程序保持小的内存需求量。  
   
- 即使在试图装配包含转换后的文档的 XML 树，你可以使用中，所述的技术，内存使用量可能会非常大。  
+ 即使使用中所述的方法, 如果尝试组装包含转换的文档的 XML 树, 内存使用量可能会太大。  
   
- 以下示例基于[如何：Stream 处理可访问标头信息的 XML 片段](https://msdn.microsoft.com/library/01311522-9d03-4977-8641-2932c6f56092)。  
+ 以下示例基于[如何：使用对标头信息](https://msdn.microsoft.com/library/01311522-9d03-4977-8641-2932c6f56092)的访问流式处理 XML 片段。  
   
  本示例使用 <xref:System.Xml.Linq.XStreamingElement> 的延迟执行功能对输出进行流式处理。  
   
@@ -281,7 +281,7 @@ End Module
 </Root>  
 ```  
   
- 下面的代码包含使用的方法<xref:System.Xml.XmlReader>进行流式处理源 XML。 它使用<xref:System.Xml.Linq.XStreamingElement>新的 XML 进行流式处理。  
+ 下面的代码包含一个方法, 该方法<xref:System.Xml.XmlReader>使用来流式传输源 XML。 它使用<xref:System.Xml.Linq.XStreamingElement>流式传输新的 XML。  
   
 ```csharp  
 static IEnumerable<XElement> StreamCustomerItem(string uri)  
@@ -472,9 +472,9 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 才不循环访问查询<xref:System.Xml.Linq.XStreamingElement>序列化。 这与使用内容查询<xref:System.Xml.Linq.XElement>，在新的构造时，循环访问查询<xref:System.Xml.Linq.XElement>。  
+ 直到序列化之后, 才<xref:System.Xml.Linq.XStreamingElement>会循环访问查询。 这与使用针对的内容<xref:System.Xml.Linq.XElement>的查询 (其中的查询在构造新<xref:System.Xml.Linq.XElement>的时将循环访问) 相反。  
   
- 有关可以传递给此构造函数的有效内容的详细信息，请参阅[有效内容的 XElement 和 XDocument 对象](https://msdn.microsoft.com/library/aee2d319-5c5f-4b99-9bb4-2f58232577ae)。  
+ 有关可传递到此构造函数的有效内容的详细信息, 请参阅[system.xml.linq.xelement> 和 XDocument 对象的有效内容](https://msdn.microsoft.com/library/aee2d319-5c5f-4b99-9bb4-2f58232577ae)。  
   
  ]]></format>
         </remarks>
@@ -517,9 +517,9 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数创建的流式处理的元素没有内容且没有属性。  
+ 此构造函数创建不包含任何内容和属性的流式处理元素。  
   
- 从字符串到隐式转换<xref:System.Xml.Linq.XName>。 此构造函数的典型用法是指定一个字符串而不是创建一个新参数作为<xref:System.Xml.Linq.XName>。  
+ 存在从字符串到<xref:System.Xml.Linq.XName>的隐式转换。 此构造函数的典型用法是将字符串指定为参数, 而不是创建新<xref:System.Xml.Linq.XName>的。  
   
    
   
@@ -615,18 +615,18 @@ Console.WriteLine(dstTree)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数使用指定的内容和特性创建的流元素。  
+ 此构造函数使用指定的内容和特性创建一个流式处理元素。  
   
- 从字符串到隐式转换<xref:System.Xml.Linq.XName>。 此构造函数的典型用法是指定一个字符串而不是创建一个新参数作为<xref:System.Xml.Linq.XName>。  
+ 存在从字符串到<xref:System.Xml.Linq.XName>的隐式转换。 此构造函数的典型用法是将字符串指定为参数, 而不是创建新<xref:System.Xml.Linq.XName>的。  
   
- 才不循环访问查询<xref:System.Xml.Linq.XStreamingElement>序列化。 这与使用内容查询<xref:System.Xml.Linq.XElement>，在新的构造时，循环访问查询<xref:System.Xml.Linq.XElement>。  
+ 直到序列化之后, 才<xref:System.Xml.Linq.XStreamingElement>会循环访问查询。 这与使用针对的内容<xref:System.Xml.Linq.XElement>的查询 (其中的查询在构造新<xref:System.Xml.Linq.XElement>的时将循环访问) 相反。  
   
- 有关可以传递给此构造函数的有效内容的详细信息，请参阅[有效内容的 XElement 和 XDocument 对象](https://msdn.microsoft.com/library/aee2d319-5c5f-4b99-9bb4-2f58232577ae)。  
+ 有关可传递到此构造函数的有效内容的详细信息, 请参阅[system.xml.linq.xelement> 和 XDocument 对象的有效内容](https://msdn.microsoft.com/library/aee2d319-5c5f-4b99-9bb4-2f58232577ae)。  
   
    
   
 ## Examples  
- 此示例使用下面的 XML 文件，名为 Source.xml:  
+ 此示例使用以下名为 Source .xml 的 XML 文件:  
   
 ```xml  
 <?xml version="1.0" encoding="utf-8" ?>   
@@ -697,18 +697,18 @@ Console.WriteLine(dstTree)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数使用指定的内容和特性创建的流元素。  
+ 此构造函数使用指定的内容和特性创建一个流式处理元素。  
   
- 从字符串到隐式转换<xref:System.Xml.Linq.XName>。 此构造函数的典型用法是指定一个字符串而不是创建一个新参数作为<xref:System.Xml.Linq.XName>。  
+ 存在从字符串到<xref:System.Xml.Linq.XName>的隐式转换。 此构造函数的典型用法是将字符串指定为参数, 而不是创建新<xref:System.Xml.Linq.XName>的。  
   
- 才不循环访问查询<xref:System.Xml.Linq.XStreamingElement>序列化。 这与使用内容查询<xref:System.Xml.Linq.XElement>，在新的构造时，循环访问查询<xref:System.Xml.Linq.XElement>。  
+ 直到序列化之后, 才<xref:System.Xml.Linq.XStreamingElement>会循环访问查询。 这与使用针对的内容<xref:System.Xml.Linq.XElement>的查询 (其中的查询在构造新<xref:System.Xml.Linq.XElement>的时将循环访问) 相反。  
   
- 有关可以传递给此函数的有效内容的详细信息，请参阅[有效内容的 XElement 和 XDocument 对象](https://msdn.microsoft.com/library/aee2d319-5c5f-4b99-9bb4-2f58232577ae)。  
+ 有关可传递到此函数的有效内容的详细信息, 请参阅[system.xml.linq.xelement> 和 XDocument 对象的有效内容](https://msdn.microsoft.com/library/aee2d319-5c5f-4b99-9bb4-2f58232577ae)。  
   
    
   
 ## Examples  
- 此示例使用下面的 XML 文件，名为 Source.xml:  
+ 此示例使用以下名为 Source .xml 的 XML 文件:  
   
 ```xml  
 <?xml version="1.0" encoding="utf-8" ?>   
@@ -781,16 +781,16 @@ Console.WriteLine(dstTree)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数添加指定的内容和属性到<xref:System.Xml.Linq.XStreamingElement>。 虽然通常可以构造<xref:System.Xml.Linq.XStreamingElement>在单个语句中，它是有时的详细信息可以方便地以增量方式将内容添加到流元素。  
+ 此构造函数将指定的内容和特性添加<xref:System.Xml.Linq.XStreamingElement>到中。 虽然通常可以<xref:System.Xml.Linq.XStreamingElement>在单个语句中构造, 但有时会更方便地以增量方式向流式处理元素添加内容。  
   
- 才不循环访问查询<xref:System.Xml.Linq.XStreamingElement>序列化。 这与使用内容查询<xref:System.Xml.Linq.XElement>，在新的构造时，循环访问查询<xref:System.Xml.Linq.XElement>。  
+ 直到序列化之后, 才<xref:System.Xml.Linq.XStreamingElement>会循环访问查询。 这与使用针对的内容<xref:System.Xml.Linq.XElement>的查询 (其中的查询在构造新<xref:System.Xml.Linq.XElement>的时将循环访问) 相反。  
   
- 有关可以传递给此函数的有效内容的详细信息，请参阅[有效内容的 XElement 和 XDocument 对象](https://msdn.microsoft.com/library/aee2d319-5c5f-4b99-9bb4-2f58232577ae)。  
+ 有关可传递到此函数的有效内容的详细信息, 请参阅[system.xml.linq.xelement> 和 XDocument 对象的有效内容](https://msdn.microsoft.com/library/aee2d319-5c5f-4b99-9bb4-2f58232577ae)。  
   
    
   
 ## Examples  
- 下面的示例创建一个新<xref:System.Xml.Linq.XStreamingElement>。 然后，它将两个查询添加到流元素。 查询循环访问序列化流的元素之前。  
+ 下面的示例创建一个新<xref:System.Xml.Linq.XStreamingElement>的。 然后, 它将两个查询添加到流式处理元素。 在对流式处理元素进行序列化之前, 不会循环查询。  
   
 ```csharp  
 XElement srcTree = new XElement("Root",  
@@ -911,16 +911,16 @@ Console.WriteLine(dstTree)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数添加指定的内容和属性到<xref:System.Xml.Linq.XStreamingElement>。 虽然通常可以构造<xref:System.Xml.Linq.XStreamingElement>在单个语句中，它是有时的详细信息可以方便地以增量方式将内容添加到流元素。  
+ 此构造函数将指定的内容和特性添加<xref:System.Xml.Linq.XStreamingElement>到中。 虽然通常可以<xref:System.Xml.Linq.XStreamingElement>在单个语句中构造, 但有时会更方便地以增量方式向流式处理元素添加内容。  
   
- 才不循环访问查询<xref:System.Xml.Linq.XStreamingElement>序列化。 这与使用内容查询<xref:System.Xml.Linq.XElement>，在新的构造时，循环访问查询<xref:System.Xml.Linq.XElement>。  
+ 直到序列化之后, 才<xref:System.Xml.Linq.XStreamingElement>会循环访问查询。 这与使用针对的内容<xref:System.Xml.Linq.XElement>的查询 (其中的查询在构造新<xref:System.Xml.Linq.XElement>的时将循环访问) 相反。  
   
- 有关可以传递给此函数的有效内容的详细信息，请参阅[有效内容的 XElement 和 XDocument 对象](https://msdn.microsoft.com/library/aee2d319-5c5f-4b99-9bb4-2f58232577ae)。  
+ 有关可传递到此函数的有效内容的详细信息, 请参阅[system.xml.linq.xelement> 和 XDocument 对象的有效内容](https://msdn.microsoft.com/library/aee2d319-5c5f-4b99-9bb4-2f58232577ae)。  
   
    
   
 ## Examples  
- 下面的示例创建一个新<xref:System.Xml.Linq.XStreamingElement>。 然后，它将两个查询添加到流元素。 查询循环访问序列化流的元素之前。  
+ 下面的示例创建一个新<xref:System.Xml.Linq.XStreamingElement>的。 然后, 它将两个查询添加到流式处理元素。 在对流式处理元素进行序列化之前, 不会循环查询。  
   
 ```csharp  
 XElement srcTree = new XElement("Root",  
@@ -1032,7 +1032,7 @@ Console.WriteLine(dstTree)
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 此示例创建一个新的流式处理元素，然后打印元素的名称。  
+ 此示例创建一个新的流式处理元素, 然后打印该元素的名称。  
   
 ```csharp  
 XElement srcTree = new XElement("Root",  
@@ -1136,11 +1136,11 @@ NewRoot
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 序列化的 XML 会缩进。 将删除所有无用空格，而且将添加的额外空白区域，以便正确缩进 XML。 此方法的行为是将不保留无关紧要的空白。  
+ 将缩进序列化的 XML。 将删除所有无意义的空白, 并会添加额外的空白, 以便正确缩进 XML。 此方法的行为是不会保留无意义的空白。  
   
- 如果你想要控制空白区域，使用的重载<xref:System.Xml.Linq.XStreamingElement.Save%2A>采用<xref:System.Xml.Linq.SaveOptions>作为参数。 使用<xref:System.Xml.Linq.SaveOptions.DisableFormatting>保存未缩进的 XML 选项。 这会导致要完全按 XML 树中表示形式写入所有空白字符的编写器。  
+ 如果要控制空白, 请使用<xref:System.Xml.Linq.XStreamingElement.Save%2A> <xref:System.Xml.Linq.SaveOptions>作为参数的的重载。 <xref:System.Xml.Linq.SaveOptions.DisableFormatting>使用选项保存未缩进的 XML。 这将导致编写器完全按 XML 树中的表示形式写入所有空格。  
   
- 使用<xref:System.Xml.Linq.SaveOptions.OmitDuplicateNamespaces>选项如果想要删除重复的命名空间声明。  
+ 如果<xref:System.Xml.Linq.SaveOptions.OmitDuplicateNamespaces>要删除重复的命名空间声明, 请使用选项。  
   
  ]]></format>
         </remarks>
@@ -1189,14 +1189,14 @@ NewRoot
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 序列化的 XML 会缩进。 将删除所有无用空格，而且将添加的额外空白区域，以便正确缩进 XML。 此方法的行为是 XML 树中的节点将不保留无关紧要的空白。  
+ 将缩进序列化的 XML。 将删除所有无意义的空白, 并会添加额外的空白, 以便正确缩进 XML。 此方法的行为是不会保留 XML 树中无意义的空白节点。  
   
- 如果你想要控制空白区域，使用的重载之一<xref:System.Xml.Linq.XStreamingElement.Save%2A>采用<xref:System.Xml.Linq.SaveOptions>作为参数。 有关详细信息，请参阅[加载或分析 XML 时保留空白](https://msdn.microsoft.com/library/093a7169-a04e-4638-b08c-d1cb98aa650d)并[保留空白区域序列化时](https://msdn.microsoft.com/library/fb146217-0a49-4efc-ac84-7265b91d3939)。  
+ 如果要控制空白, 请使用将<xref:System.Xml.Linq.XStreamingElement.Save%2A> <xref:System.Xml.Linq.SaveOptions>作为参数的重载之一。 有关详细信息, 请参阅在[加载或分析 XML 时保留空白](https://msdn.microsoft.com/library/093a7169-a04e-4638-b08c-d1cb98aa650d), 并[在序列化时保留空白区域](https://msdn.microsoft.com/library/fb146217-0a49-4efc-ac84-7265b91d3939)。  
   
    
   
 ## Examples  
- 以下示例创建一个源 XML 树，然后实例化<xref:System.Xml.Linq.XStreamingElement>在源 XML 树上使用的查询。 然后将写入到流元素<xref:System.IO.StringWriter>。  
+ 下面的示例创建一个源 xml 树, 然后在源<xref:System.Xml.Linq.XStreamingElement> xml 树中使用查询对其进行实例化。 然后, 它将流式处理元素<xref:System.IO.StringWriter>写入。  
   
 ```csharp  
 XElement srcTree = new XElement("Root",  
@@ -1297,14 +1297,14 @@ Console.WriteLine(sb.ToString())
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 序列化的 XML 会缩进。 将删除所有无用空格，而且将添加的额外空白区域，以便正确缩进 XML。 此方法的行为是 XML 树中的节点将不保留无关紧要的空白。  
+ 将缩进序列化的 XML。 将删除所有无意义的空白, 并会添加额外的空白, 以便正确缩进 XML。 此方法的行为是不会保留 XML 树中无意义的空白节点。  
   
- 如果你想要控制空白区域，使用的重载之一<xref:System.Xml.Linq.XStreamingElement.Save%2A>采用<xref:System.Xml.Linq.SaveOptions>作为参数。 有关详细信息，请参阅[加载或分析 XML 时保留空白](https://msdn.microsoft.com/library/093a7169-a04e-4638-b08c-d1cb98aa650d)并[保留空白区域序列化时](https://msdn.microsoft.com/library/fb146217-0a49-4efc-ac84-7265b91d3939)。  
+ 如果要控制空白, 请使用将<xref:System.Xml.Linq.XStreamingElement.Save%2A> <xref:System.Xml.Linq.SaveOptions>作为参数的重载之一。 有关详细信息, 请参阅在[加载或分析 XML 时保留空白](https://msdn.microsoft.com/library/093a7169-a04e-4638-b08c-d1cb98aa650d), 并[在序列化时保留空白区域](https://msdn.microsoft.com/library/fb146217-0a49-4efc-ac84-7265b91d3939)。  
   
    
   
 ## Examples  
- 以下示例创建一个流式处理 XML 树。 然后序列化到文件的流式处理 XML 树。  
+ 下面的示例创建一个流式处理 XML 树。 然后, 它将流式处理 XML 树序列化为文件。  
   
 ```csharp  
 XElement srcTree = new XElement("Root",  
@@ -1400,7 +1400,7 @@ Console.WriteLine(File.ReadAllText("Test.xml"))
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例创建<xref:System.Xml.Linq.XStreamingElement>并将其写入<xref:System.Xml.XmlWriter>。  
+ 下面的示例创建一个<xref:System.Xml.Linq.XStreamingElement>并将其<xref:System.Xml.XmlWriter>写入。  
   
 ```csharp  
 XElement srcTree = new XElement("Root",  
@@ -1501,11 +1501,11 @@ Console.WriteLine(sb.ToString())
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认情况下`options`设置为<xref:System.Xml.Linq.SaveOptions.None>。 此选项将删除所有多余的无意义空白，并添加相应的无意义空白，以便的 XML 格式不正确缩进。  
+ 默认情况下`options` , 设置为<xref:System.Xml.Linq.SaveOptions.None>。 此选项将删除所有无关的无意义空格, 并添加适当的无意义空白, 以便正确缩进 XML。  
   
- 如果你想要保存未缩进的 XML，指定<xref:System.Xml.Linq.SaveOptions.DisableFormatting>标记为可`options`。 这会导致要完全按 XML 树中表示形式写入所有空白字符的编写器。  
+ 如果要保存未缩进的 XML, 请<xref:System.Xml.Linq.SaveOptions.DisableFormatting>指定的`options`标志。 这将导致编写器完全按 XML 树中的表示形式写入所有空格。  
   
- 使用<xref:System.Xml.Linq.SaveOptions.OmitDuplicateNamespaces>选项如果想要删除重复的命名空间声明。  
+ 如果<xref:System.Xml.Linq.SaveOptions.OmitDuplicateNamespaces>要删除重复的命名空间声明, 请使用选项。  
   
  ]]></format>
         </remarks>
@@ -1551,16 +1551,16 @@ Console.WriteLine(sb.ToString())
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你想要保存未缩进的 XML，指定<xref:System.Xml.Linq.SaveOptions.DisableFormatting>标记为可`options`。 这会导致要完全按 XML 树中表示形式写入的所有空白的编写器。  
+ 如果要保存未缩进的 XML, 请<xref:System.Xml.Linq.SaveOptions.DisableFormatting>指定的`options`标志。 这将导致编写器完全按 XML 树中的表示方式写入所有空格。  
   
- 如果你想要保存缩进的 XML，不要指定<xref:System.Xml.Linq.SaveOptions.DisableFormatting>标记为可`options`。 这将删除所有多余的无意义空白，并添加相应的无意义空白，以便的 XML 格式不正确缩进。 这是默认行为和行为的重载<xref:System.Xml.Linq.XElement.Save%2A>方法不采用`options`作为参数。  
+ 如果要保存缩进的 XML, 请勿为<xref:System.Xml.Linq.SaveOptions.DisableFormatting> `options`指定标志。 这将删除所有无关的无意义空格, 并添加适当的无意义空白, 以便正确缩进 XML。 这是默认行为, 以及<xref:System.Xml.Linq.XElement.Save%2A> `options`不作为参数的方法的重载行为。  
   
- 有关详细信息，请参阅[加载或分析 XML 时保留空白](https://msdn.microsoft.com/library/093a7169-a04e-4638-b08c-d1cb98aa650d)并[保留空白区域序列化时](https://msdn.microsoft.com/library/fb146217-0a49-4efc-ac84-7265b91d3939)。  
+ 有关详细信息, 请参阅在[加载或分析 XML 时保留空白](https://msdn.microsoft.com/library/093a7169-a04e-4638-b08c-d1cb98aa650d), 并[在序列化时保留空白区域](https://msdn.microsoft.com/library/fb146217-0a49-4efc-ac84-7265b91d3939)。  
   
    
   
 ## Examples  
- 下面的示例演示此方法的两种用法。 第一次使用保留空白。 第二个序列化<xref:System.Xml.Linq.XStreamingElement>使用格式设置。  
+ 下面的示例演示了此方法的两种用法。 第一次使用将保留空白。 第二个序列化<xref:System.Xml.Linq.XStreamingElement> , 并将设置为格式。  
   
 ```csharp  
 XElement srcTree = new XElement("Root",  
@@ -1666,16 +1666,16 @@ Console.WriteLine(sb.ToString())
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你想要保存未缩进的 XML，指定<xref:System.Xml.Linq.SaveOptions.DisableFormatting>标记为可`options`。 这会导致要完全按 XML 树中表示形式写入的所有空白的编写器。  
+ 如果要保存未缩进的 XML, 请<xref:System.Xml.Linq.SaveOptions.DisableFormatting>指定的`options`标志。 这将导致编写器完全按 XML 树中的表示方式写入所有空格。  
   
- 如果你想要保存缩进的 XML，不要指定<xref:System.Xml.Linq.SaveOptions.DisableFormatting>标记为可`options`。 这将删除所有多余的无意义空白，并添加相应的无意义空白，以便的 XML 格式不正确缩进。 这是默认行为和行为的重载<xref:System.Xml.Linq.XElement.Save%2A>方法不采用`options`作为参数。  
+ 如果要保存缩进的 XML, 请勿为<xref:System.Xml.Linq.SaveOptions.DisableFormatting> `options`指定标志。 这将删除所有无关的无意义空格, 并添加适当的无意义空白, 以便正确缩进 XML。 这是默认行为, 以及<xref:System.Xml.Linq.XElement.Save%2A> `options`不作为参数的方法的重载行为。  
   
- 有关详细信息，请参阅[加载或分析 XML 时保留空白](https://msdn.microsoft.com/library/093a7169-a04e-4638-b08c-d1cb98aa650d)并[保留空白区域序列化时](https://msdn.microsoft.com/library/fb146217-0a49-4efc-ac84-7265b91d3939)。  
+ 有关详细信息, 请参阅在[加载或分析 XML 时保留空白](https://msdn.microsoft.com/library/093a7169-a04e-4638-b08c-d1cb98aa650d), 并[在序列化时保留空白区域](https://msdn.microsoft.com/library/fb146217-0a49-4efc-ac84-7265b91d3939)。  
   
    
   
 ## Examples  
- 下面的示例演示此方法的两种用法。 第一次使用保留空白。 第二个序列化<xref:System.Xml.Linq.XStreamingElement>使用格式设置。  
+ 下面的示例演示了此方法的两种用法。 第一次使用将保留空白。 第二个序列化<xref:System.Xml.Linq.XStreamingElement> , 并将设置为格式。  
   
 ```csharp  
 XElement srcTree = new XElement("Root",  
@@ -1750,7 +1750,7 @@ Console.WriteLine(File.ReadAllText("Test2.xml"))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 请注意，当调试程序，使用<xref:System.Xml.Linq.XStreamingElement>，显示对象的值会导致其<xref:System.Xml.Linq.XStreamingElement.ToString%2A>要在调用方法。 这会导致要进行序列化的 XML。 如果流式处理元素查询的语义，这样可以仅一次传输流元素，这可能导致意外行为，在你的调试体验。  
+ 请注意, 在调试使用<xref:System.Xml.Linq.XStreamingElement>的程序时, 显示对象的值将导致调用其<xref:System.Xml.Linq.XStreamingElement.ToString%2A>方法。 这将导致对 XML 进行序列化。 如果流式处理元素查询的语义使得流式处理元素只能流式传输一次, 则这可能会导致在调试过程中出现意外的行为。  
   
  ]]></format>
         </remarks>
@@ -1799,12 +1799,12 @@ Console.WriteLine(File.ReadAllText("Test2.xml"))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 请注意，当调试程序，使用<xref:System.Xml.Linq.XStreamingElement>，显示对象的值会导致其<xref:System.Xml.Linq.XStreamingElement.ToString%2A>要在调用方法。 这会导致要进行序列化的 XML。 如果流式处理元素查询的语义，这样可以仅一次传输流元素，这可能导致意外行为，在你的调试体验。  
+ 请注意, 在调试使用<xref:System.Xml.Linq.XStreamingElement>的程序时, 显示对象的值将导致调用其<xref:System.Xml.Linq.XStreamingElement.ToString%2A>方法。 这将导致对 XML 进行序列化。 如果流式处理元素查询的语义使得流式处理元素只能流式传输一次, 则这可能会导致在调试过程中出现意外的行为。  
   
    
   
 ## Examples  
- 下面的示例演示的两种用法<xref:System.Xml.Linq.XStreamingElement.ToString%2A>。 第一次使用保留空白。 第二个序列化<xref:System.Xml.Linq.XStreamingElement>使用格式设置。  
+ 下面的示例演示了的<xref:System.Xml.Linq.XStreamingElement.ToString%2A>两种用法。 第一次使用将保留空白。 第二个序列化<xref:System.Xml.Linq.XStreamingElement> , 并将设置为格式。  
   
 ```csharp  
 XElement srcTree = new XElement("Root",  
@@ -1907,12 +1907,12 @@ Console.WriteLine(dstTree.ToString())
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 请注意，当调试程序，使用<xref:System.Xml.Linq.XStreamingElement>，显示对象的值会导致其<xref:System.Xml.Linq.XStreamingElement.ToString%2A>要在调用方法。 这会导致要进行序列化的 XML。 如果流式处理元素查询的语义，这样可以仅一次传输流元素，这可能导致意外行为，在你的调试体验。  
+ 请注意, 在调试使用<xref:System.Xml.Linq.XStreamingElement>的程序时, 显示对象的值将导致调用其<xref:System.Xml.Linq.XStreamingElement.ToString%2A>方法。 这将导致对 XML 进行序列化。 如果流式处理元素查询的语义使得流式处理元素只能流式传输一次, 则这可能会导致在调试过程中出现意外的行为。  
   
    
   
 ## Examples  
- 下面的示例演示的两种用法<xref:System.Xml.Linq.XStreamingElement.ToString%2A>。 第一次使用保留空白。 第二个序列化<xref:System.Xml.Linq.XStreamingElement>使用格式设置。  
+ 下面的示例演示了的<xref:System.Xml.Linq.XStreamingElement.ToString%2A>两种用法。 第一次使用将保留空白。 第二个序列化<xref:System.Xml.Linq.XStreamingElement> , 并将设置为格式。  
   
 ```csharp  
 XElement srcTree = new XElement("Root",  
@@ -2009,7 +2009,7 @@ Console.WriteLine(dstTree.ToString())
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例创建 XML 树中使用<xref:System.Xml.Linq.XStreamingElement>。 然后将写入到流元素<xref:System.Xml.XmlWriter>。  
+ 下面的示例使用<xref:System.Xml.Linq.XStreamingElement>创建一个 XML 树。 然后, 它将流式处理元素<xref:System.Xml.XmlWriter>写入。  
   
 ```csharp  
 XElement srcTree = new XElement("Root",  
