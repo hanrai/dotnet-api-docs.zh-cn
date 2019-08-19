@@ -1,5 +1,5 @@
 <Type Name="IsolatedStorageContainment" FullName="System.Security.Permissions.IsolatedStorageContainment">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="882732e6d909123ce42925ec2942d79021d98707" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56765298" /></Metadata><TypeSignature Language="C#" Value="public enum IsolatedStorageContainment" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7388f89b804c949f73004edbdb7d8214a269ea45" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69081839" /></Metadata><TypeSignature Language="C#" Value="public enum IsolatedStorageContainment" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed IsolatedStorageContainment extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Security.Permissions.IsolatedStorageContainment" />
   <TypeSignature Language="VB.NET" Value="Public Enum IsolatedStorageContainment" />
@@ -35,32 +35,32 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 独立的存储使用证据以确定应用程序或组件使用的唯一的存储区域。 程序集标识唯一地确定由该程序集使用的虚拟文件系统的根目录。 因此，而不是许多应用程序和组件共享公共资源如文件系统或注册表，每个都有其自己文件区域本质上是分配给它。  
+ 独立存储使用证据来确定用于应用程序或组件的唯一存储区域。 程序集的标识唯一确定虚拟文件系统的根, 以供该程序集使用。 因此, 其中每个应用程序和组件共享公共资源 (例如文件系统或注册表), 而每个都有其自己的文件区, 并将其本身分配给它。  
   
- 分配独立的存储时，将使用四个基本隔离作用域：  
+ 分配独立存储时使用四个基本隔离范围:  
   
--   `User` 根据当前用户的代码始终作用域。 不同用户正在运行时，在同一程序集中将收到不同存储区。  
+-   `User`-始终根据当前用户确定代码的作用域。 其他用户运行时, 同一程序集将接收不同的存储区。  
   
--   `Machine` 根据计算机的代码始终作用域。 当同一台计算机上不同用户正在运行时，相同的程序集将收到相同的存储区。  
+-   `Machine`-代码始终根据计算机进行作用域。 同一程序集在由同一台计算机上的不同用户运行时, 将接收相同的存储。  
   
--   `Assembly` -代码由加密型强名称 （例如，Microsoft.Office.* 或 Microsoft.Office.Word） 由发布者 （基于公用密钥），通过 URL (例如， http://www.fourthcoffee.com/process/grind.htm)、 站点，或区域。  
+-   `Assembly`-按发布者 (例如, 按公钥)、按 URL (例如http://www.fourthcoffee.com/process/grind.htm),、按站点或按区域) 对代码进行了加密, 按强名称 (例如, microsoft. * 或 microsoft。  
   
--   `Domain` 的基于证据关联应用程序域标识代码。 Web 应用程序标识是从站点的 URL，或通过 Web 页面的 URL、 站点或区域派生的。 本地代码标识基于应用程序目录路径。  
+-   `Domain`-根据与应用程序域关联的证据标识代码。 Web 应用程序标识派生自网站的 URL, 或由网页的 URL、站点或区域派生。 本地代码标识基于应用程序目录路径。  
   
- 有关 URL、 站点和区域的定义，请参阅<xref:System.Security.Permissions.UrlIdentityPermission>， <xref:System.Security.Permissions.SiteIdentityPermission>，和<xref:System.Security.Permissions.ZoneIdentityPermission>。  
+ 对于 URL、站点和区域的定义, 请参阅<xref:System.Security.Permissions.UrlIdentityPermission>、 <xref:System.Security.Permissions.SiteIdentityPermission>和<xref:System.Security.Permissions.ZoneIdentityPermission>。  
   
- 这些标识组合在一起，在这种情况下标识应用一个接一个直到创建所需的独立的存储。 有效的组合是用户 + 程序集和用户 + 程序集 + 域。 此分组的标识可在许多不同的应用程序。  
+ 这些标识组合在一起, 在这种情况下, 将逐个应用标识, 直到创建了所需的独立存储。 有效分组为 User + Assembly 和 User + Assembly + Domain。 这种标识分组在许多不同的应用程序中非常有用。  
   
- 如果数据存储的域、 用户和程序集，数据是专用的只有代码中，，程序集可以访问的数据。 按其运行的应用程序还隔离数据存储区，以便该程序集不通过公开到其他应用程序的数据表示潜在的安全漏洞。  
+ 如果数据由域、用户和程序集存储, 则数据是专用的, 因为只有该程序集中的代码才能访问数据。 数据存储区也由它在其中运行的应用程序隔离, 因此, 该程序集不会通过向其他应用程序公开数据来表示潜在的泄漏。  
   
- 按程序集和用户隔离可用于跨多个应用程序; 适用的用户数据例如，许可证信息或用户的个人信息 （名称、 身份验证凭据等） 是独立于应用程序。  
+ 按程序集和用户隔离可用于应用于多个应用程序的用户数据;例如, 许可证信息或独立于应用程序的用户个人信息 (名称、身份验证凭据等)。  
   
- <xref:System.Security.Permissions.IsolatedStorageContainment> 公开确定是否允许应用程序使用独立的存储的标志，因此，允许哪些标识组合使用它。 它还确定是否允许应用程序使用 （必须配置 Windows 漫游用户配置文件或文件夹重定向） 的用户可以漫游的位置中存储的信息。  
+ <xref:System.Security.Permissions.IsolatedStorageContainment>公开一些标志, 这些标志确定是否允许应用程序使用独立存储, 如果存在, 则允许使用哪些标识组合。 它还确定是否允许应用程序将信息存储在可与用户漫游的位置中 (必须配置 Windows 漫游用户配置文件或文件夹重定向)。  
   
    
   
 ## Examples  
- 此示例演示如何告知 CLR 在此程序集中的代码需要<xref:System.Security.Permissions.IsolatedStoragePermission>并且还演示如何编写和读取独立存储中。  
+ 此示例演示如何告知 CLR 此程序集中的代码需要<xref:System.Security.Permissions.IsolatedStoragePermission> , 还演示如何在独立存储中进行写入和读取操作。  
   
  [!code-cpp[IsolatedStoragePermissionAttribute#1](~/samples/snippets/cpp/VS_Snippets_CLR/IsolatedStoragePermissionAttribute/cpp/IsolatedStoragePermissionAttribute.cpp#1)]
  [!code-csharp[IsolatedStoragePermissionAttribute#1](~/samples/snippets/csharp/VS_Snippets_CLR/IsolatedStoragePermissionAttribute/CS/IsolatedStoragePermissionAttribute.cs#1)]

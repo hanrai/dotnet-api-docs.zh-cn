@@ -1,5 +1,5 @@
 <Type Name="ISerializable" FullName="System.Runtime.Serialization.ISerializable">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6ab2f630d925cd8460c6398bc881fc6f802d0fe1" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58695302" /></Metadata><TypeSignature Language="C#" Value="public interface ISerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="881dfbfc930238abb1faeec6652b9625fbc2a99a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69087381" /></Metadata><TypeSignature Language="C#" Value="public interface ISerializable" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="VB.NET" Value="Public Interface ISerializable" />
@@ -39,26 +39,26 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可能会进行序列化任何类必须标记有<xref:System.SerializableAttribute>。 如果一个类需要控制其序列化过程，它可以实现<xref:System.Runtime.Serialization.ISerializable>接口。 <xref:System.Runtime.Serialization.Formatter>调用<xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>在序列化时，并填充所提供<xref:System.Runtime.Serialization.SerializationInfo>来表示对象所需的所有数据。 <xref:System.Runtime.Serialization.Formatter>创建<xref:System.Runtime.Serialization.SerializationInfo>与图中的对象的类型。 发送代理本身就可以使用所需要的对象<xref:System.Runtime.Serialization.SerializationInfo.FullTypeName%2A>并<xref:System.Runtime.Serialization.SerializationInfo.AssemblyName%2A>上的方法<xref:System.Runtime.Serialization.SerializationInfo>若要更改所传输的信息。  
+ 任何可能会序列化的类必须用<xref:System.SerializableAttribute>来标记。 如果某个类需要控制其序列化过程, 则它可以实现<xref:System.Runtime.Serialization.ISerializable>接口。 在序列化<xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>时<xref:System.Runtime.Serialization.SerializationInfo>调用, 并用表示对象所需的所有数据填充所提供的。 <xref:System.Runtime.Serialization.Formatter> 使用关系图中对象的类型<xref:System.Runtime.Serialization.Formatter> <xref:System.Runtime.Serialization.SerializationInfo>创建。 需要为自身发送代理的对象可以使用<xref:System.Runtime.Serialization.SerializationInfo.FullTypeName%2A>和<xref:System.Runtime.Serialization.SerializationInfo.AssemblyName%2A>方法<xref:System.Runtime.Serialization.SerializationInfo>来更改传输的信息。  
   
- 在类继承的情况下就可以序列化从一个基类实现，该类派生的类<xref:System.Runtime.Serialization.ISerializable>。 在这种情况下，派生的类应调用基类实现<xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>其实现内部<xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>。 否则，基类中的数据不会序列化。  
+ 对于类继承, 可以序列化派生自实现<xref:System.Runtime.Serialization.ISerializable>的基类的类。 在这种情况下, 派生类应在其<xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A> <xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>实现中调用的基类实现。 否则, 基类中的数据将不会序列化。  
   
- <xref:System.Runtime.Serialization.ISerializable>接口隐含具有签名构造函数的构造函数 (<xref:System.Runtime.Serialization.SerializationInfo>信息，<xref:System.Runtime.Serialization.StreamingContext>上下文)。 在反序列化时，当前的构造函数调用中的数据后才<xref:System.Runtime.Serialization.SerializationInfo>格式化程序反序列化。 一般情况下，如果未密封类，则应保护此构造函数。  
+ 接口表示具有签名构造函数的构造函数 (<xref:System.Runtime.Serialization.SerializationInfo>信息、 <xref:System.Runtime.Serialization.StreamingContext>上下文)。 <xref:System.Runtime.Serialization.ISerializable> 在反序列化时, 仅在格式化程序对中<xref:System.Runtime.Serialization.SerializationInfo>的数据进行反序列化后调用当前构造函数。 通常, 如果类未密封, 应保护此构造函数。  
   
- 不能保证对象被反序列化的顺序。 例如，如果一种类型引用的类型已反，会发生异常。 如果要创建具有此类依赖项的类型，您可以解决此问题通过实现`IDeserializationCallback`接口和`OnDeserialization`方法。  
+ 无法保证反序列化对象的顺序。 例如, 如果一种类型引用尚未反序列化的类型, 则将发生异常。 如果要创建具有此类依赖项的类型, 则可以通过实现`IDeserializationCallback`接口`OnDeserialization`和方法来解决该问题。  
   
- 序列化体系结构处理扩展的对象类型<xref:System.MarshalByRefObject>扩展的类型与相同<xref:System.Object>。 这些类型可以使用标记<xref:System.SerializableAttribute>并实现<xref:System.Runtime.Serialization.ISerializable>接口作为任何其他对象类型。 它们的对象状态将捕获并保存到流上。  
+ 序列化体系结构处理与扩展<xref:System.MarshalByRefObject> <xref:System.Object>的类型相同的对象类型。 这些类型可以用<xref:System.SerializableAttribute>进行标记, 并将<xref:System.Runtime.Serialization.ISerializable>接口实现为任何其他对象类型。 将捕获其对象状态并将其保存到流中。  
   
- 当通过使用这些类型<xref:System.Runtime.Remoting>，远程处理基础结构提供抢先于典型的序列化，而是序列化的代理的代理项<xref:System.MarshalByRefObject>。 代理项是一个帮助程序，知道如何序列化和反序列化特定类型的对象。 在大多数情况下，用户看不到的代理的类型将为<xref:System.Runtime.Remoting.ObjRef>。  
+ 当使用<xref:System.Runtime.Remoting>这些类型时, 远程处理基础结构将提供抢先于典型序列化并改为将代理序列化为的<xref:System.MarshalByRefObject>代理项。 代理项是了解如何序列化和反序列化特定类型的对象的帮助器。 在大多数情况下, 代理对用户不可见的类型<xref:System.Runtime.Remoting.ObjRef>为。  
   
- 作为一种常规设计模式，它是不寻常的类将标有 serializable 属性和扩展<xref:System.MarshalByRefObject>。 开发人员应仔细考虑可能的序列化和远程处理方案时合并这两个特性。 这可能是适用的一个示例是使用<xref:System.IO.MemoryStream>。 虽然类的基类<xref:System.IO.MemoryStream>(<xref:System.IO.Stream>) 从<xref:System.MarshalByRefObject>，则可以捕获的状态<xref:System.IO.MemoryStream>并将其还原随意。 它，因此，可能有意义的此流的状态序列化到数据库并在以后某个时刻还原的时间。 但是，当使用远程处理功能，此类型的对象会通过代理转。  
+ 作为常规设计模式, 类既可以使用可序列化属性进行标记又可以扩展<xref:System.MarshalByRefObject>, 这种情况很常见。 组合这两个特征时, 开发人员应仔细考虑可能的序列化和远程处理方案。 其中可能适用的一个示例是使用<xref:System.IO.MemoryStream>。 当<xref:System.IO.MemoryStream> (<xref:System.IO.Stream>) 的基类从<xref:System.MarshalByRefObject>扩展时, 可以捕获的状态<xref:System.IO.MemoryStream>并将其还原到。 因此, 它可能有意义, 可以将此流的状态序列化为数据库, 并在以后的某个时间点还原。 但是, 当通过远程处理使用时, 将对此类型的对象进行代理。  
   
- 有关扩展的类的序列化的详细信息<xref:System.MarshalByRefObject>，请参阅<xref:System.Runtime.Remoting.Messaging.RemotingSurrogateSelector>。 有关实现详细信息<xref:System.Runtime.Serialization.ISerializable>，请参阅[自定义序列化](~/docs/standard/serialization/custom-serialization.md)。  
+ 有关扩展<xref:System.MarshalByRefObject>的类序列化的详细信息, 请<xref:System.Runtime.Remoting.Messaging.RemotingSurrogateSelector>参阅。 有关实现<xref:System.Runtime.Serialization.ISerializable>的详细信息, 请参阅[自定义序列化](~/docs/standard/serialization/custom-serialization.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何将<xref:System.Runtime.Serialization.ISerializable>接口可定义一个类的自定义序列化行为。  
+ 下面的代码示例演示如何使用<xref:System.Runtime.Serialization.ISerializable>接口为类定义自定义序列化行为。  
   
  [!code-cpp[ISerializable Interface Example#1](~/samples/snippets/cpp/VS_Snippets_Remoting/ISerializable Interface Example/CPP/iobjectreference.cpp#1)]
  [!code-csharp[ISerializable Interface Example#1](~/samples/snippets/csharp/VS_Snippets_Remoting/ISerializable Interface Example/CS/iobjectreference.cs#1)]
@@ -66,7 +66,7 @@
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>实现此接口允许对象在其自己的序列化和反序列化的参与。</para></block>
+    <block subset="none" type="overrides"><para>实现此接口可使对象参与其自己的序列化和反序列化。</para></block>
     <altmember cref="T:System.Runtime.Remoting.Messaging.RemotingSurrogateSelector" />
     <related type="Article" href="~/docs/standard/serialization/xml-and-soap-serialization.md">XML 和 SOAP 序列化</related>
     <related type="Article" href="~/docs/standard/serialization/custom-serialization.md">自定义序列化</related>
@@ -122,17 +122,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 中包含的任何对象<xref:System.Runtime.Serialization.SerializationInfo>会自动跟踪和格式化程序序列化。  
+ 格式化程序会自动跟踪和序列<xref:System.Runtime.Serialization.SerializationInfo>化中包含的所有对象。  
   
- 调用的代码<xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>需要<xref:System.Security.Permissions.SecurityPermission>提供序列化服务。 关联枚举：<xref:System.Security.Permissions.SecurityPermissionFlag.SerializationFormatter?displayProperty=nameWithType>。  
+ 调用<xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>的代码需要提供<xref:System.Security.Permissions.SecurityPermission>序列化服务的。 关联枚举：<xref:System.Security.Permissions.SecurityPermissionFlag.SerializationFormatter?displayProperty=nameWithType>。  
   
 > [!NOTE]
->  不保证，此方法将进行一次每个对象实例序列化期间调用。 因此，应实现该方法，其行为将是无论它调用的次数相同的方式。  
+>  不保证在序列化过程中每个对象实例只调用一次此方法。 因此, 方法应以这样一种方式实现: 无论调用多少次, 方法的行为都是相同的。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>方法以设置序列化对象的替代值。 该代码使用<xref:System.Runtime.Serialization.SerializationInfo.AddValue%2A>方法的<xref:System.Runtime.Serialization.SerializationInfo>类来序列化对象时存储的备用值。 相反，当的构造函数`Person`类被称为反序列化期间，使用检索的替代值<xref:System.Runtime.Serialization.SerializationInfo.GetValue%2A>方法和重新分配到对象的字段。  
+ 下面的示例使用<xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>方法设置序列化对象的替代值。 序列化对象时<xref:System.Runtime.Serialization.SerializationInfo.AddValue%2A> , 代码使用<xref:System.Runtime.Serialization.SerializationInfo>类的方法来存储替换值。 相反, 在反序列化过程`Person`中调用类的构造函数时, 将<xref:System.Runtime.Serialization.SerializationInfo.GetValue%2A>使用方法检索 alternatve 值并将其重新分配给对象的字段。  
   
  [!code-csharp[ISerializable_GetObjectData#0](~/samples/snippets/csharp/VS_Snippets_Remoting/ISerializable_GetObjectData/cs/ISerializable_GetObjectData.cs#0)]
  [!code-vb[ISerializable_GetObjectData#0](~/samples/snippets/visualbasic/VS_Snippets_Remoting/ISerializable_GetObjectData/vb/ISerializable_GetObjectData.vb#0)]  

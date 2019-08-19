@@ -1,5 +1,5 @@
 <Type Name="HttpListenerTimeoutManager" FullName="System.Net.HttpListenerTimeoutManager">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="aa37b287d976d04de058368e564b6e478ee5f990" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58694620" /></Metadata><TypeSignature Language="C#" Value="public class HttpListenerTimeoutManager" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5b326b8ead1d4f9f4acb39798fbfa11596c15b02" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69071629" /></Metadata><TypeSignature Language="C#" Value="public class HttpListenerTimeoutManager" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit HttpListenerTimeoutManager extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Net.HttpListenerTimeoutManager" />
   <TypeSignature Language="VB.NET" Value="Public Class HttpListenerTimeoutManager" />
@@ -30,7 +30,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 超时管理器定义的连接超时限制<xref:System.Net.HttpListener>实例。  
+ 超时管理器定义<xref:System.Net.HttpListener>实例的连接超时限制。  
   
  ]]></format>
     </remarks>
@@ -96,14 +96,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置允许 <see cref="T:System.Net.HttpListener" /> 在保持的连接上侦听完实体正文的时间。</summary>
-        <value>允许的时间<see cref="T:System.Net.HttpListener" />上侦听完实体正文的保持活动状态的连接。</value>
+        <value>允许<see cref="T:System.Net.HttpListener" />在保持活动连接上释放实体正文的时间。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性的默认值为 2 分钟。  
+ 此属性的默认值为2分钟。  
   
- 保持连接时，应用程序已发送请求的响应并在请求之前已完全到达实体正文之后,<xref:System.Net.HttpListener>开始排出实体正文到达另一个可能的其余部分通过管线传输请求从客户端。 如果以释放剩余的实体正文的时间超过允许的段连接超时。  
+ 在保持连接状态的连接上, 在应用发送请求的响应之后、请求实体正文完全到达之前, 会<xref:System.Net.HttpListener>开始排出实体主体的其余部分, 以到达客户端发出的其他可能的流水线请求。 如果剩余的实体正文超出了允许的时间, 则连接将超时。  
   
  ]]></format>
         </remarks>
@@ -147,9 +147,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性的默认值为 2 分钟。  
+ 此属性的默认值为2分钟。  
   
- <xref:System.Net.HttpListener>开启此计时器时请求具有实体主体。 计时器过期最初设置为配置的值。 当<xref:System.Net.HttpListener>收到额外的数据指示在请求时，它将重置计时器，以便让另一个间隔的连接。  
+ 当<xref:System.Net.HttpListener>请求具有实体正文时, 将打开此计时器。 计时器过期时间最初设置为配置的值。 <xref:System.Net.HttpListener>当收到请求的其他数据指示时, 它会重置计时器, 以便为连接指定一个间隔。  
   
  ]]></format>
         </remarks>
@@ -188,16 +188,16 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置允许 <see cref="T:System.Net.HttpListener" /> 分析请求标头的时间。</summary>
-        <value>允许的时间<see cref="T:System.Net.HttpListener" />分析请求标头。</value>
+        <value>允许<see cref="T:System.Net.HttpListener" />用于分析请求标头的时间。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性的默认值为 2 分钟。  
+ 此属性的默认值为2分钟。  
   
- 在连接上的第一个请求路由到后才会执行此超时<xref:System.Net.HttpListener>。  
+ 仅在将连接上的第一个请求路由到<xref:System.Net.HttpListener>之后, 才会强制执行此超时。  
   
- 系统将无法确定的请求队列或直到已分析标头，与关联的请求的 URL 组。 因此，<xref:System.Net.HttpListener>强制实施默认<xref:System.Net.HttpListenerTimeoutManager.HeaderWait%2A>连接上的第一个请求的计时器。 保持活动状态的连接上的后续请求将使用此属性上设置的值。  
+ 在分析标头之前, 系统无法确定与请求关联的请求队列或 URL 组。 因此, <xref:System.Net.HttpListener>会为连接上<xref:System.Net.HttpListenerTimeoutManager.HeaderWait%2A>的第一个请求强制默认计时器。 对 keep-alive 连接的后续请求将使用此属性上设置的值。  
   
  ]]></format>
         </remarks>
@@ -241,11 +241,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性的默认值为 2 分钟。  
+ 此属性的默认值为2分钟。  
   
- 在连接上的第一个请求路由到后才会执行此超时<xref:System.Net.HttpListener>。  
+ 仅在将连接上的第一个请求路由到<xref:System.Net.HttpListener>之后, 才会强制执行此超时。  
   
- 系统将无法确定的请求队列或直到已分析标头，与关联的请求的 URL 组。 因此，<xref:System.Net.HttpListener>强制实施默认<xref:System.Net.HttpListenerTimeoutManager.IdleConnection%2A>连接上的第一个请求的计时器。 保持活动状态的连接上的后续请求将使用此属性上设置的值。  
+ 在分析标头之前, 系统无法确定与请求关联的请求队列或 URL 组。 因此, <xref:System.Net.HttpListener>会为连接上<xref:System.Net.HttpListenerTimeoutManager.IdleConnection%2A>的第一个请求强制默认计时器。 对 keep-alive 连接的后续请求将使用此属性上设置的值。  
   
  ]]></format>
         </remarks>
@@ -289,9 +289,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认响应发送速率为 150 字节数 / 秒。  
+ 默认响应发送速率为每秒150字节。  
   
- 若要禁用此计时器，设置<xref:System.Net.HttpListenerTimeoutManager.MinSendBytesPerSecond%2A>MAXULONG 到。  
+ 若要禁用此计时器, <xref:System.Net.HttpListenerTimeoutManager.MinSendBytesPerSecond%2A>请将设置为 MAXULONG。  
   
  ]]></format>
         </remarks>
@@ -330,12 +330,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置在 <see cref="T:System.Net.HttpListener" /> 选取请求前允许请求在请求队列中停留的时间。</summary>
-        <value>允许请求之前在请求队列中停留的时间<see cref="T:System.Net.HttpListener" />提取该消息。</value>
+        <value>在提取请求之前<see cref="T:System.Net.HttpListener" /> , 允许请求在请求队列中保留的时间。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性的默认值为 2 分钟。  
+ 此属性的默认值为2分钟。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="ClockController" FullName="System.Windows.Media.Animation.ClockController">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a7f5db2fabcb7d8bd16865ae93253c3f12de7ee2" /><Meta Name="ms.sourcegitcommit" Value="9e06b87bcfa4347dbbaaa4b3cc36b43b93b5badb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="11/20/2018" /><Meta Name="ms.locfileid" Value="52209598" /></Metadata><TypeSignature Language="C#" Value="public sealed class ClockController : System.Windows.Threading.DispatcherObject" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0a91fa3fc50a96226811a98aa08d858ffa256d74" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69165611" /></Metadata><TypeSignature Language="C#" Value="public sealed class ClockController : System.Windows.Threading.DispatcherObject" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ClockController extends System.Windows.Threading.DispatcherObject" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Media.Animation.ClockController" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ClockController&#xA;Inherits DispatcherObject" />
@@ -20,7 +20,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Windows.Media.Animation.ClockController>若要以交互方式开始、 暂停、 恢复、 查找、 跳过、 停止和删除<xref:System.Windows.Media.Animation.Clock>。 只能以交互方式可以控制根级别时钟。  
+ 使用以交互方式开始、暂停、恢复、查找、跳过、停止和<xref:System.Windows.Media.Animation.Clock>删除。 <xref:System.Windows.Media.Animation.ClockController> 只能以交互方式控制根级时钟。  
   
  ]]></format>
     </remarks>
@@ -51,11 +51,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将导致目标<xref:System.Windows.Media.Animation.Clock>行为如同其<xref:System.Windows.Media.Animation.Timeline>对象的<xref:System.Windows.Media.Animation.Timeline.BeginTime%2A>已设置为下一步的刻度线的时间。 时间线的实际<xref:System.Windows.Media.Animation.Timeline.BeginTime%2A>忽略 （但不是会更改） 设置。  
+ 此方法导致目标<xref:System.Windows.Media.Animation.Clock>的行为如同其<xref:System.Windows.Media.Animation.Timeline>对象的<xref:System.Windows.Media.Animation.Timeline.BeginTime%2A>设置为下一个计时周期的时间。 将忽略时间线<xref:System.Windows.Media.Animation.Timeline.BeginTime%2A>的实际设置 (但不更改)。  
   
- 此方法将更改目标时钟<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>到<xref:System.Windows.Media.Animation.ClockState.Active>。 <xref:System.Windows.Media.Animation.ClockController.Begin%2A>方法不会恢复暂停的时钟。  
+ 此方法将目标时钟<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>更改为。 <xref:System.Windows.Media.Animation.ClockState.Active> <xref:System.Windows.Media.Animation.ClockController.Begin%2A>方法不恢复暂停的时钟。  
   
- 此方法具有下一次处理一个对勾之前不会影响计时树。 其副作用是，将也不会引发相应事件之前。 调用此方法会触发<xref:System.Windows.Media.Animation.Clock.CurrentStateInvalidated>和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 直到下一次处理计时周期时, 此方法才会对计时树产生任何影响。 副作用是, 在此之前, 也不会引发相应的事件。 调用此方法将<xref:System.Windows.Media.Animation.Clock.CurrentStateInvalidated>触发和<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
  ]]></format>
         </remarks>
@@ -114,11 +114,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以暂停<xref:System.Windows.Media.Animation.Clock>而不考虑其当前状态，然后暂停时钟不会更改其当前状态。 可以暂停时钟时<xref:System.Windows.Media.Animation.ClockState.Active>， <xref:System.Windows.Media.Animation.ClockState.Stopped>，或<xref:System.Windows.Media.Animation.ClockState.Filling>。 取消暂停时钟的唯一方法是使用<xref:System.Windows.Media.Animation.ClockController.Resume%2A>方法。 隐式暂停时钟暂停及其子级。  
+ <xref:System.Windows.Media.Animation.Clock>无论当前状态如何, 都可以暂停, 并且暂停时钟不会更改其当前状态。 可在、 <xref:System.Windows.Media.Animation.ClockState.Active> <xref:System.Windows.Media.Animation.ClockState.Stopped>或<xref:System.Windows.Media.Animation.ClockState.Filling>时暂停时钟。 取消暂停时钟的唯一方法是使用<xref:System.Windows.Media.Animation.ClockController.Resume%2A>方法。 暂停时钟会隐式暂停其子级。  
   
- 目标时钟已暂停时调用此方法不起作用。  
+ 如果目标时钟已暂停, 则调用此方法不起作用。  
   
- 暂停时钟触发器<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 暂停时钟会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
  ]]></format>
         </remarks>
@@ -148,12 +148,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将触发<xref:System.Windows.Media.Animation.Clock.RemoveRequested>事件。  
+ 此方法将<xref:System.Windows.Media.Animation.Clock.RemoveRequested>触发事件。  
   
    
   
 ## Examples  
- 下面的示例演示如何删除和以交互方式控制时钟。  
+ 下面的示例演示如何删除时钟并以交互方式控制时钟。  
   
  [!code-csharp[ClockController_procedural_snip#ClockControllerSeekExample](~/samples/snippets/csharp/VS_Snippets_Wpf/ClockController_procedural_snip/CSharp/SeekAlignedToLastTickExample.cs#clockcontrollerseekexample)]
  [!code-vb[ClockController_procedural_snip#ClockControllerSeekExample](~/samples/snippets/visualbasic/VS_Snippets_Wpf/ClockController_procedural_snip/visualbasic/seekalignedtolasttickexample.vb#clockcontrollerseekexample)]  
@@ -185,9 +185,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以暂停或继续<xref:System.Windows.Media.Animation.Clock>而不考虑其当前状态，并暂停或恢复时钟不会更改其当前状态。 可以暂停时钟时<xref:System.Windows.Media.Animation.ClockState.Active>， <xref:System.Windows.Media.Animation.ClockState.Stopped>，或<xref:System.Windows.Media.Animation.ClockState.Filling>。 若要恢复已暂停的时钟的唯一方法是使用<xref:System.Windows.Media.Animation.ClockController.Resume%2A>方法。 隐式恢复时钟恢复及其子级。 在未暂停时钟上调用此方法不起作用。  
+ <xref:System.Windows.Media.Animation.Clock>无论当前状态如何, 都可以暂停或恢复, 而暂停或继续时钟不会更改其当前状态。 可在、 <xref:System.Windows.Media.Animation.ClockState.Active> <xref:System.Windows.Media.Animation.ClockState.Stopped>或<xref:System.Windows.Media.Animation.ClockState.Filling>时暂停时钟。 恢复暂停时钟的唯一方法是使用<xref:System.Windows.Media.Animation.ClockController.Resume%2A>方法。 恢复时钟将隐式恢复其子级。 在未暂停的时钟上调用此方法不起作用。  
   
- 恢复暂停的时钟将触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 恢复暂停的时钟将<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>触发事件。  
   
  ]]></format>
         </remarks>
@@ -222,18 +222,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 查找操作不会<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>或<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>考虑此时钟的时间线的设置： 时钟将被视为其时间线具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>为 1 且无<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>。  
+ Seek <xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>操作不会将此时钟时间线的或<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>设置视为帐户: 该时钟的时间线的时间<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>为 1, 而<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>不是。  
   
- 此方法将更改的时钟<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>到<xref:System.Windows.Media.Animation.ClockState.Active>。 此方法具有下一次处理一个对勾之前不会影响计时树。 其副作用是，还将不会引发相应事件之前。  
+ 此方法会将时钟<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>更改为。 <xref:System.Windows.Media.Animation.ClockState.Active> 直到下一次处理计时周期时, 此方法才会对计时树产生任何影响。 副作用是, 在此之前, 也不会引发相应的事件。  
   
- 查找情节提要触发器<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Clock.CurrentStateInvalidated>事件。  
+ 查找情节提要会触发<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Clock.CurrentStateInvalidated>事件。  
   
- 如果目标时钟有子级，相应地更新其当前时间。  
+ 如果目标时钟有子级, 则其当前时间将相应更新。  
   
    
   
 ## Examples  
- 下面的示例演示如何查找使用<xref:System.Windows.Media.Animation.ClockController>。  
+ 下面的示例演示如何使用<xref:System.Windows.Media.Animation.ClockController>进行查找。  
   
  [!code-csharp[ClockController_procedural_snip#ClockControllerSeekExample](~/samples/snippets/csharp/VS_Snippets_Wpf/ClockController_procedural_snip/CSharp/SeekAlignedToLastTickExample.cs#clockcontrollerseekexample)]
  [!code-vb[ClockController_procedural_snip#ClockControllerSeekExample](~/samples/snippets/visualbasic/VS_Snippets_Wpf/ClockController_procedural_snip/visualbasic/seekalignedtolasttickexample.vb#clockcontrollerseekexample)]  
@@ -272,20 +272,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 查找操作不会<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>或<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>考虑此时钟的时间线的设置： 时钟将被视为其时间线具有<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>为 1 且无<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>。  
+ Seek <xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>操作不会将此时钟时间线的或<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>设置视为帐户: 该时钟的时间线的时间<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>为 1, 而<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>不是。  
   
- <xref:System.Windows.Media.Animation.ClockController.SeekAlignedToLastTick%2A> 对齐的时钟与最后一个时钟周期的查找时间。 值会立即更新以反映由于更改<xref:System.Windows.Media.Animation.ClockController.SeekAlignedToLastTick%2A>，即使屏幕的屏幕更新之前将反映这些更改。  
+ <xref:System.Windows.Media.Animation.ClockController.SeekAlignedToLastTick%2A>将时钟的 seeked 时间与上一个时钟周期对齐。 值会立即更新以反映所做的更改<xref:System.Windows.Media.Animation.ClockController.SeekAlignedToLastTick%2A>, 即使在屏幕更新之前屏幕将不会反映这些更改。  
   
- 如果目标时钟有子级，相应地更新其当前时间。  
+ 如果目标时钟有子级, 则其当前时间将相应更新。  
   
- 此方法将更改的时钟<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>到<xref:System.Windows.Media.Animation.ClockState.Active>。  
+ 此方法会将时钟<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>更改为。 <xref:System.Windows.Media.Animation.ClockState.Active>  
   
- 查找情节提要触发器<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Clock.CurrentStateInvalidated>事件。  
+ 查找情节提要会触发<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Clock.CurrentStateInvalidated>事件。  
   
    
   
 ## Examples  
- 下面的示例演示<xref:System.Windows.Media.Animation.ClockController.Seek%2A>并<xref:System.Windows.Media.Animation.ClockController.SeekAlignedToLastTick%2A>方法的<xref:System.Windows.Media.Animation.ClockController>。  
+ 下面的示例演示<xref:System.Windows.Media.Animation.ClockController.Seek%2A>了的和<xref:System.Windows.Media.Animation.ClockController.SeekAlignedToLastTick%2A>方法。 <xref:System.Windows.Media.Animation.ClockController>  
   
  [!code-csharp[ClockController_procedural_snip#ClockControllerSeekExample](~/samples/snippets/csharp/VS_Snippets_Wpf/ClockController_procedural_snip/CSharp/SeekAlignedToLastTickExample.cs#clockcontrollerseekexample)]
  [!code-vb[ClockController_procedural_snip#ClockControllerSeekExample](~/samples/snippets/visualbasic/VS_Snippets_Wpf/ClockController_procedural_snip/visualbasic/seekalignedtolasttickexample.vb#clockcontrollerseekexample)]  
@@ -317,13 +317,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将推进目标时钟的当前时间和结束活动期;时钟的行为在此时指定的<xref:System.Windows.Media.Animation.Timeline.FillBehavior%2A>设置为其<xref:System.Windows.Media.Animation.Timeline>。 如果在时间线<xref:System.Windows.Media.Animation.Timeline.FillBehavior%2A>属性设置为<xref:System.Windows.Media.Animation.FillBehavior.HoldEnd>，时钟; 如果填充的属性设置为<xref:System.Windows.Media.Animation.FillBehavior.Stop>，则时钟将停止。  
+ 此方法将目标时钟的当前时间提升到其活动周期的结束时间;此时时钟的行为由<xref:System.Windows.Media.Animation.Timeline.FillBehavior%2A>其<xref:System.Windows.Media.Animation.Timeline>的设置指定。 如果时间线的<xref:System.Windows.Media.Animation.Timeline.FillBehavior%2A>属性设置为<xref:System.Windows.Media.Animation.FillBehavior.HoldEnd>, 则时钟将填充; 如果属性设置为<xref:System.Windows.Media.Animation.FillBehavior.Stop>, 则时钟将停止。  
   
- 此方法有效果仅当目标时钟<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>是<xref:System.Windows.Media.Animation.ClockState.Active>。  
+ 仅当目标时钟的<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>为时<xref:System.Windows.Media.Animation.ClockState.Active>, 此方法才有效。  
   
- 此方法具有下一次处理一个对勾之前不会影响计时树。 其副作用是，还将不会引发相应事件之前。  
+ 直到下一次处理计时周期时, 此方法才会对计时树产生任何影响。 副作用是, 在此之前, 也不会引发相应的事件。  
   
- 情节提要前移至其填充期会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Clock.CurrentStateInvalidated>事件。  
+ 将情节提要前进到其填充期会<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>触发<xref:System.Windows.Media.Animation.Clock.CurrentStateInvalidated>和事件。  
   
  ]]></format>
         </remarks>
@@ -352,11 +352,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置此属性不起作用之前的下一步的刻度线。 如果设置此属性并获取其值之前发生的下一时钟周期，将获取旧值。 在下一时钟周期后，此属性将返回新值。  
+ 设置此属性在下一次计时周期之前不起作用。 如果设置此属性, 然后在下一次计时周期之前获取其值, 则将获取旧值。 此属性将在下一次计时周期后返回新值。  
   
- 设置此属性不会更改基础时间线的值<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>。  
+ 设置此属性不会更改基础时间线的<xref:System.Windows.Media.Animation.Timeline.SpeedRatio%2A>值。  
   
- 设置此属性会触发目标时钟的<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeedInvalidated>事件。  
+ 设置此属性将触发目标时钟的<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeedInvalidated>事件。  
   
  ]]></format>
         </remarks>
@@ -386,13 +386,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将更改目标时钟<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>到<xref:System.Windows.Media.Animation.Clock.Stopped%2A>。  
+ 此方法将目标时钟<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>更改为。 <xref:System.Windows.Media.Animation.Clock.Stopped%2A>  
   
- 一个<xref:System.Windows.Media.Animation.Clock.Stopped%2A>可以通过重新启动时钟<xref:System.Windows.Media.Animation.ClockController.Begin%2A>， <xref:System.Windows.Media.Animation.ClockController.Seek%2A>，或<xref:System.Windows.Media.Animation.ClockController.SeekAlignedToLastTick%2A>方法。  
+ <xref:System.Windows.Media.Animation.Clock.Stopped%2A>使用、或<xref:System.Windows.Media.Animation.ClockController.SeekAlignedToLastTick%2A>方法可以重新启动时钟。 <xref:System.Windows.Media.Animation.ClockController.Seek%2A> <xref:System.Windows.Media.Animation.ClockController.Begin%2A>  
   
- 此方法具有下一次处理一个对勾之前不会影响计时树。 其副作用是，还将不会引发相应事件之前。  
+ 直到下一次处理计时周期时, 此方法才会对计时树产生任何影响。 副作用是, 在此之前, 也不会引发相应的事件。  
   
- 停止时钟将触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>并<xref:System.Windows.Media.Animation.Clock.CurrentStateInvalidated>事件，但不是<xref:System.Windows.Media.Animation.Clock.Completed>事件。  
+ 停止时钟会触发<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>和<xref:System.Windows.Media.Animation.Clock.CurrentStateInvalidated> <xref:System.Windows.Media.Animation.Clock.Completed>事件, 但不会触发事件。  
   
  ]]></format>
         </remarks>

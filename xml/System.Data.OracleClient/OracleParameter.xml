@@ -1,5 +1,5 @@
 <Type Name="OracleParameter" FullName="System.Data.OracleClient.OracleParameter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f2e8e8754cbc6fc3e5bd48d22b913e7942ca7b65" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63891395" /></Metadata><TypeSignature Language="C#" Value="public sealed class OracleParameter : System.Data.Common.DbParameter, ICloneable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="79fbdf3ab0047d0069e63b4834d9a0bbd79104a1" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69371548" /></Metadata><TypeSignature Language="C#" Value="public sealed class OracleParameter : System.Data.Common.DbParameter, ICloneable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit OracleParameter extends System.Data.Common.DbParameter implements class System.Data.IDataParameter, class System.Data.IDbDataParameter, class System.ICloneable" />
   <TypeSignature Language="DocId" Value="T:System.Data.OracleClient.OracleParameter" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class OracleParameter&#xA;Inherits DbParameter&#xA;Implements ICloneable" />
@@ -39,7 +39,7 @@
 ## Remarks  
  参数名称不区分大小写。  
   
- 在查询时使用 Oracle (MSDAORA) 和 ODBC.NET Framework 数据提供程序的 Microsoft OLE DB 访问接口的 Oracle 数据库，使用`LIKE`子句对查询中固定长度的字段的值可能不会返回所有预期的匹配项。 其原因在于当 Oracle 匹配中的固定长度字段的值时`LIKE`子句，它与匹配的字符串，包括任何填充尾随空格的整个长度。 例如，如果表中的 Oracle 数据库包含一个名为"Field1"定义为字段`char(3)`，然后输入值"a"到表中，以下代码行不会返回行。  
+ 使用 Oracle 的 Microsoft OLE DB 提供程序 (MSDAORA) 和 ODBC.NET Framework 数据提供程序查询 Oracle 数据库时, 如果使用`LIKE`子句来查询固定长度字段中的值, 则可能不会返回所有所需的匹配项。 原因在于, 当 Oracle 在`LIKE`子句中匹配固定长度字段的值时, 它会与字符串的整个长度匹配, 其中包括任何空白尾随空格。 例如, 如果 Oracle 数据库中的某个表包含一个名为 "Field1" 的字段 (定义为`char(3)`), 并且您在该表的行中输入值 "a", 则下面的代码不会返回该行。  
   
 ```vb  
 Dim queryString As String = "SELECT * FROM Table1 WHERE Field1 LIKE ?"  
@@ -55,14 +55,14 @@ command.Parameters.Add("@p1", OleDbType.Char, 3).Value = "a";
 OleDbDataReader reader = command.ExecuteReader();  
 ```  
   
- 这是因为 Oracle 将列值存储为"a"(填充"a"使用尾随空格，以达到固定的字段长度 3)，其中 Oracle 不会视为"a"的参数值的匹配项的情况下`LIKE`比较的固定长度的字段。  
+ 这是因为 oracle 将列值存储为 "a" (填充 "a", 尾随空格, 固定字段长度为 3), 在进行固定长度的字段`LIKE`比较时, oracle 不会将其视为 "a" 参数值的匹配项。  
   
- 若要解决此问题，请将百分比 （"%"） 通配符字符追加到参数值 (`"a%"`)，或使用 SQL`=`比较相反。  
+ 若要解决此问题, 请将一个百分比 ("%") 通配符追加到参数值`"a%"`(), 或改为`=`使用 SQL 比较。  
   
    
   
 ## Examples  
- 下面的示例创建的多个实例<xref:System.Data.OracleClient.OracleParameter>通过<xref:System.Data.OracleClient.OracleParameterCollection>内<xref:System.Data.OracleClient.OracleDataAdapter>。 这些参数用于从数据库中选择数据和在其中放置数据<xref:System.Data.DataSet>。 此示例假定<xref:System.Data.DataSet>和一个<xref:System.Data.OracleClient.OracleDataAdapter>已创建使用适当的架构、 命令和连接。  
+ 下面的示例在<xref:System.Data.OracleClient.OracleParameter> <xref:System.Data.OracleClient.OracleParameterCollection>中<xref:System.Data.OracleClient.OracleDataAdapter>通过创建多个的实例。 这些参数用于从数据库中选择数据, 并将数据放入中<xref:System.Data.DataSet>。 此示例假设已使用<xref:System.Data.DataSet>相应的<xref:System.Data.OracleClient.OracleDataAdapter>架构、命令和连接创建了一个和。  
   
  [!code-csharp[Classic WebData OracleParameter#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OracleParameter/CS/source.cs#1)]
  [!code-vb[Classic WebData OracleParameter#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OracleParameter/VB/source.vb#1)]  
@@ -124,7 +124,7 @@ OleDbDataReader reader = command.ExecuteReader();
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>和设置的某些属性。  
+ 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>并设置其一些属性。  
   
  [!code-csharp[Classic WebData OracleParameter.OracleParameter1#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OracleParameter.OracleParameter1/CS/source.cs#1)]
  [!code-vb[Classic WebData OracleParameter.OracleParameter1#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OracleParameter.OracleParameter1/VB/source.vb#1)]  
@@ -160,15 +160,15 @@ OleDbDataReader reader = command.ExecuteReader();
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当指定<xref:System.Object>中`value`参数，<xref:System.Data.DbType>从的 Microsoft.NET Framework 类型推断<xref:System.Object>。  
+ 如果<xref:System.Object> <xref:System.Data.DbType>在参数中指定, 则将从的<xref:System.Object>Microsoft .NET 框架类型推断。 `value`  
   
- 使用此重载时要格外小心<xref:System.Data.OracleClient.OracleParameter>构造函数。 因为此重载接受`value`类型的<xref:System.Object>，必须将转换为整数值<xref:System.Object>键入时的值为零，如下面的 Microsoft Visual C# 示例所示。  
+ 使用<xref:System.Data.OracleClient.OracleParameter>构造函数的此重载时要格外小心。 由于此重载`value`采用类型<xref:System.Object>为的, 因此, 如果值为零, 则<xref:System.Object>必须将整数值转换为类型, 如下C#例所示。  
   
 ```  
 Parameter = new OracleParameter("pname", Convert.ToInt32(0));  
 ```  
   
- 如果不执行此转换，则编译器将假定您尝试调用`OracleParameter`(`string`， `OracleType`) 构造函数重载。  
+ 如果不执行此转换, 编译器将假定您尝试调用`OracleParameter`(`string`, `OracleType`) 构造函数重载。  
   
  ]]></format>
         </remarks>
@@ -201,7 +201,7 @@ Parameter = new OracleParameter("pname", Convert.ToInt32(0));
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>和设置的某些属性。  
+ 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>并设置其一些属性。  
   
  [!code-csharp[Classic WebData OracleParameter.OracleParameter2#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OracleParameter.OracleParameter2/CS/source.cs#1)]
  [!code-vb[Classic WebData OracleParameter.OracleParameter2#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OracleParameter.OracleParameter2/VB/source.vb#1)]  
@@ -240,7 +240,7 @@ Parameter = new OracleParameter("pname", Convert.ToInt32(0));
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>和设置的某些属性。  
+ 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>并设置其一些属性。  
   
  [!code-csharp[Classic WebData OracleParameter.OracleParameter3#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OracleParameter.OracleParameter3/CS/source.cs#1)]
  [!code-vb[Classic WebData OracleParameter.OracleParameter3#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OracleParameter.OracleParameter3/VB/source.vb#1)]  
@@ -327,7 +327,7 @@ Parameter = new OracleParameter("pname", Convert.ToInt32(0));
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>，并显示<xref:System.Data.OracleClient.OracleParameter.ParameterName%2A>。  
+ 下面的示例创建一个<xref:System.Data.OracleClient.OracleParameter> , 并<xref:System.Data.OracleClient.OracleParameter.ParameterName%2A>显示。  
   
  [!code-csharp[Classic WebData OracleParameter.OracleParameter4#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OracleParameter.OracleParameter4/CS/source.cs#1)]
  [!code-vb[Classic WebData OracleParameter.OracleParameter4#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OracleParameter.OracleParameter4/VB/source.vb#1)]  
@@ -375,16 +375,16 @@ Parameter = new OracleParameter("pname", Convert.ToInt32(0));
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.OracleClient.OracleParameter.OracleType%2A>和<xref:System.Data.OracleClient.OracleParameter.DbType%2A>链接。 因此，设置<xref:System.Data.OracleClient.OracleParameter.DbType%2A>更改<xref:System.Data.OracleClient.OracleParameter.OracleType%2A>为支持<xref:System.Data.OracleClient.OracleParameter.OracleType%2A>。  
+ <xref:System.Data.OracleClient.OracleParameter.OracleType%2A> 和<xref:System.Data.OracleClient.OracleParameter.DbType%2A>已链接。 因此, 将<xref:System.Data.OracleClient.OracleParameter.DbType%2A> <xref:System.Data.OracleClient.OracleParameter.OracleType%2A>更改设置为支持<xref:System.Data.OracleClient.OracleParameter.OracleType%2A>。  
   
- <xref:System.Data.OracleClient.OracleParameter.DbType%2A>， <xref:System.Data.OracleClient.OracleParameter.OracleType%2A>，并<xref:System.Data.OracleClient.OracleParameter.Size%2A>参数的属性，可以通过设置推断出<xref:System.Data.OracleClient.OracleParameter.Value%2A>。 因此，不需要指定它们。 但是，它们不会暴露在<xref:System.Data.OracleClient.OracleParameter>属性设置。 例如，如果已推断出参数的大小，<xref:System.Data.OracleClient.OracleParameter.Size%2A>语句执行后，不包含推断的值。 有关`String`数据类型默认值是<xref:System.Data.DbType.AnsiString>。  
+ 可以<xref:System.Data.OracleClient.OracleParameter.DbType%2A>通过<xref:System.Data.OracleClient.OracleParameter.OracleType%2A> <xref:System.Data.OracleClient.OracleParameter.Size%2A>设置来推断参数的、和属性<xref:System.Data.OracleClient.OracleParameter.Value%2A>。 因此, 您不需要指定它们。 但是, 它们不会在属性<xref:System.Data.OracleClient.OracleParameter>设置中公开。 例如, 如果已推断出参数的大小, <xref:System.Data.OracleClient.OracleParameter.Size%2A>则不会在语句执行后包含推断值。 对于`String`数据类型, 默认值<xref:System.Data.DbType.AnsiString>为。  
   
- 有关支持的数据类型的列表，请参阅相应<xref:System.Data.OracleClient.OracleParameter.OracleType%2A>成员。 有关详细信息，请参阅[DataAdapter 参数](~/docs/framework/data/adonet/dataadapter-parameters.md)。  
+ 有关支持的数据类型的列表, 请参阅相应<xref:System.Data.OracleClient.OracleParameter.OracleType%2A>成员。 有关详细信息, 请参阅[DataAdapter 参数](~/docs/framework/data/adonet/dataadapter-parameters.md)。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>和设置的某些属性。  
+ 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>并设置其一些属性。  
   
  [!code-csharp[Classic WebData OracleParameter.DbType#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData OracleParameter.DbType/CS/source.cs#1)]
  [!code-vb[Classic WebData OracleParameter.DbType#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData OracleParameter.DbType/VB/source.vb#1)]  
@@ -430,14 +430,14 @@ Parameter = new OracleParameter("pname", Convert.ToInt32(0));
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Data.ParameterDirection>是输出，而执行的关联<xref:System.Data.OracleClient.OracleCommand>不会返回一个值，<xref:System.Data.OracleClient.OracleParameter>包含 null 值。  
+ 如果是输出, 且关联<xref:System.Data.OracleClient.OracleCommand>的执行不返回值, 则<xref:System.Data.OracleClient.OracleParameter>包含 null 值。 <xref:System.Data.ParameterDirection>  
   
- `Output``InputOut`，并`ReturnValue`参数返回通过调用<xref:System.Data.OracleClient.OracleCommand.ExecuteReader%2A>直到您调用不能访问<xref:System.Data.OracleClient.OracleDataReader.Close%2A>上<xref:System.Data.OracleClient.OracleDataReader>。  
+ `Output`在`InputOut` `ReturnValue` <xref:System.Data.OracleClient.OracleCommand.ExecuteReader%2A>调用之前,<xref:System.Data.OracleClient.OracleDataReader>无法访问通过调用返回的、和参数。 <xref:System.Data.OracleClient.OracleDataReader.Close%2A>  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>和设置的某些属性。  
+ 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>并设置其一些属性。  
   
 ```vb  
 Public Sub CreateOracleDbParameter()  
@@ -503,12 +503,12 @@ public void CreateOracleDbParameter()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 处理 null 值使用<xref:System.DBNull>类。  
+ 使用<xref:System.DBNull>类处理 Null 值。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>和设置的某些属性。  
+ 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>并设置其一些属性。  
   
 ```vb  
 Public Sub CreateOracleParameter()  
@@ -566,14 +566,14 @@ public void CreateOracleParameter()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `Offset`属性用于二进制和字符串数据区块化客户端。 例如，若要在服务器上的列中插入文本的 10 MB，用户可能会执行的 1 MB 数据块的 10 个参数化的插入移动的值`Offset`1 MB 的每次迭代。  
+ `Offset`属性用于二进制和字符串数据的客户端分块。 例如, 若要在服务器上的列中插入10mb 的文本, 则用户可能会执行10个1mb 块的参数化插入, 并将每`Offset`个迭代上的值切换为1mb。  
   
- `Offset` 指定的二进制类型的字节数和的字符串的字符数。 字符串的计数不包括终止字符。  
+ `Offset`指定二进制类型的字节数, 以及字符串的字符数。 字符串的计数不包括终止字符。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>和设置的某些属性。  
+ 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>并设置其一些属性。  
   
 ```vb  
 Public Sub CreateOracleParameter()  
@@ -631,11 +631,11 @@ public void CreateOracleParameter()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.OracleClient.OracleParameter.OracleType%2A>和<xref:System.Data.OracleClient.OracleParameter.DbType%2A>链接。 因此，设置<xref:System.Data.OracleClient.OracleParameter.DbType%2A>更改<xref:System.Data.OracleClient.OracleParameter.OracleType%2A>为支持<xref:System.Data.OracleClient.OracleType>。  
+ <xref:System.Data.OracleClient.OracleParameter.OracleType%2A> 和<xref:System.Data.OracleClient.OracleParameter.DbType%2A>已链接。 因此, 将<xref:System.Data.OracleClient.OracleParameter.DbType%2A> <xref:System.Data.OracleClient.OracleParameter.OracleType%2A>更改设置为支持<xref:System.Data.OracleClient.OracleType>。  
   
- <xref:System.Data.OracleClient.OracleParameter.DbType%2A>， <xref:System.Data.OracleClient.OracleParameter.OracleType%2A>，并<xref:System.Data.OracleClient.OracleParameter.Size%2A>参数的属性，可以通过设置推断出<xref:System.Data.OracleClient.OracleParameter.Value%2A>。 因此，不需要指定它们。 但是，它们不会暴露在<xref:System.Data.OracleClient.OracleParameter>属性设置。 例如，如果已推断出参数的大小，<xref:System.Data.OracleClient.OracleParameter.Size%2A>语句执行后，不包含推断的值。 有关`String`数据类型默认值是<xref:System.Data.OracleClient.OracleType.VarChar>。  
+ 可以<xref:System.Data.OracleClient.OracleParameter.DbType%2A>通过<xref:System.Data.OracleClient.OracleParameter.OracleType%2A> <xref:System.Data.OracleClient.OracleParameter.Size%2A>设置来推断参数的、和属性<xref:System.Data.OracleClient.OracleParameter.Value%2A>。 因此, 您不需要指定它们。 但是, 它们不会在属性<xref:System.Data.OracleClient.OracleParameter>设置中公开。 例如, 如果已推断出参数的大小, <xref:System.Data.OracleClient.OracleParameter.Size%2A>则不会在语句执行后包含推断值。 对于`String`数据类型, 默认值<xref:System.Data.OracleClient.OracleType.VarChar>为。  
   
- 有关支持的数据类型的列表，请参阅相应<xref:System.Data.OracleClient.OracleType>成员。 有关详细信息，请参阅[DataAdapter 参数](~/docs/framework/data/adonet/dataadapter-parameters.md)。  
+ 有关支持的数据类型的列表, 请参阅相应<xref:System.Data.OracleClient.OracleType>成员。 有关详细信息, 请参阅[DataAdapter 参数](~/docs/framework/data/adonet/dataadapter-parameters.md)。  
   
  ]]></format>
         </remarks>
@@ -673,12 +673,12 @@ public void CreateOracleParameter()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 适用于 Oracle 的.NET Framework 数据提供程序不支持用问号 （？） 标记的位置参数。  
+ 用于 Oracle 的 .NET Framework 数据提供程序不支持使用问号 (？) 标记的位置参数。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>和设置的某些属性。  
+ 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>并设置其一些属性。  
   
 ```vb  
 Public Sub CreateOracleDbParameter()  
@@ -746,7 +746,7 @@ public void CreateOracleDbParameter()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置<xref:System.Data.OracleClient.OracleParameter.Precision%2A>或<xref:System.Data.OracleClient.OracleParameter.Scale%2A>属性不起作用。  
+ <xref:System.Data.OracleClient.OracleParameter.Precision%2A>设置或<xref:System.Data.OracleClient.OracleParameter.Scale%2A>属性不起作用。  
   
  ]]></format>
         </remarks>
@@ -775,7 +775,7 @@ public void CreateOracleDbParameter()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 执行命令时包括参数值，代码可以显式设置参数的类型或参数可以推断其类型从其值。 调用此方法会重置参数，以便它可以再次推断出它的类型从传递的参数中的值。 调用此方法对两者的影响<xref:System.Data.Odbc.OdbcParameter.DbType%2A>并<xref:System.Data.OracleClient.OracleParameter.OracleType%2A>的属性<xref:System.Data.OracleClient.OracleParameter>。  
+ 当执行包含参数值的命令时, 代码可以显式设置参数的类型, 或者该参数可以从其值推断其类型。 调用此方法将重置参数, 使其可以再次从参数中传递的值推断其类型。 调用此方法会影响<xref:System.Data.Odbc.OdbcParameter.DbType%2A>的和<xref:System.Data.OracleClient.OracleParameter.OracleType%2A>属性。 <xref:System.Data.OracleClient.OracleParameter>  
   
  ]]></format>
         </remarks>
@@ -807,7 +807,7 @@ public void CreateOracleDbParameter()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 执行命令时包括参数值，代码可以显式设置参数的类型或参数可以推断其类型从其值。 调用此方法会重置参数，以便它可以再次推断出它的类型从传递的参数中的值。 调用此方法对两者的影响<xref:System.Data.Odbc.OdbcParameter.DbType%2A>并<xref:System.Data.OracleClient.OracleParameter.OracleType%2A>的属性<xref:System.Data.OracleClient.OracleParameter>。  
+ 当执行包含参数值的命令时, 代码可以显式设置参数的类型, 或者该参数可以从其值推断其类型。 调用此方法将重置参数, 使其可以再次从参数中传递的值推断其类型。 调用此方法会影响<xref:System.Data.Odbc.OdbcParameter.DbType%2A>的和<xref:System.Data.OracleClient.OracleParameter.OracleType%2A>属性。 <xref:System.Data.OracleClient.OracleParameter>  
   
  ]]></format>
         </remarks>
@@ -857,7 +857,7 @@ public void CreateOracleDbParameter()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置<xref:System.Data.OracleClient.OracleParameter.Precision%2A>或<xref:System.Data.OracleClient.OracleParameter.Scale%2A>属性不起作用。  
+ <xref:System.Data.OracleClient.OracleParameter.Precision%2A>设置或<xref:System.Data.OracleClient.OracleParameter.Scale%2A>属性不起作用。  
   
  ]]></format>
         </remarks>
@@ -895,24 +895,24 @@ public void CreateOracleDbParameter()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置<xref:System.Data.OracleClient.OracleParameter.Size%2A>影响仅输入参数的值。 此属性不影响返回值和输出参数。  
+ 设置<xref:System.Data.OracleClient.OracleParameter.Size%2A>只影响参数的输入值。 此属性不影响返回值和输出参数。  
   
  <xref:System.Data.OracleClient.OracleParameter.Size%2A>属性用于二进制和字符串类型。  
   
- 对于非字符串数据类型和 ANSI 字符串数据，<xref:System.Data.OracleClient.OracleParameter.Size%2A>属性引用的字节数。 对于 Unicode 字符串数据，<xref:System.Data.OracleClient.OracleParameter.Size%2A>指的是字符数。 字符串的计数不包括终止字符。  
+ 对于非字符串数据类型和 ANSI 字符串数据, <xref:System.Data.OracleClient.OracleParameter.Size%2A>属性是指字节数。 对于 Unicode 字符串数据, <xref:System.Data.OracleClient.OracleParameter.Size%2A>是指字符数。 字符串的计数不包括终止字符。  
   
- 对于可变长度数据类型，<xref:System.Data.OracleClient.OracleParameter.Size%2A>描述的最大传输到服务器的数据量。 例如，对于 Unicode 字符串值，<xref:System.Data.OracleClient.OracleParameter.Size%2A>无法用于限制发送到服务器的前 100 个字符的数据量。  
+ 对于可变长度数据类型, <xref:System.Data.OracleClient.OracleParameter.Size%2A>描述要传输到服务器的最大数据量。 例如, 对于 Unicode 字符串值, <xref:System.Data.OracleClient.OracleParameter.Size%2A>可用于将发送到服务器的数据量限制为前100个字符。  
   
- 为双向参数、 输出参数和返回值，必须设置大小的值。 这不是必需的输入参数，如果未显式设置时的值会从指定的参数的实际大小时推断执行参数化的语句。  
+ 对于双向参数、输出参数和返回值, 必须设置大小的值。 这不是输入参数所必需的, 如果未显式设置, 则执行参数化语句时, 的值将从指定参数的实际大小推断。  
   
- <xref:System.Data.OracleClient.OracleParameter.DbType%2A>， <xref:System.Data.OracleClient.OracleParameter.OracleType%2A>，并<xref:System.Data.OracleClient.OracleParameter.Size%2A>参数的属性，可以通过设置推断出<xref:System.Data.OracleClient.OracleParameter.Value%2A>。 因此，不需要指定它们。 但是，它们不会暴露在<xref:System.Data.OracleClient.OracleParameter>属性设置。 例如，如果已推断出参数的大小，<xref:System.Data.OracleClient.OracleParameter.Size%2A>语句执行后，不包含推断的值。  
+ 可以<xref:System.Data.OracleClient.OracleParameter.DbType%2A>通过<xref:System.Data.OracleClient.OracleParameter.OracleType%2A> <xref:System.Data.OracleClient.OracleParameter.Size%2A>设置来推断参数的、和属性<xref:System.Data.OracleClient.OracleParameter.Value%2A>。 因此, 您不需要指定它们。 但是, 它们不会在属性<xref:System.Data.OracleClient.OracleParameter>设置中公开。 例如, 如果已推断出参数的大小, <xref:System.Data.OracleClient.OracleParameter.Size%2A>则不会在语句执行后包含推断值。  
   
- 对于固定长度数据类型的值<xref:System.Data.OracleClient.OracleParameter.Size%2A>将被忽略。 它可以检索用于信息说明，并返回最大传输到服务器参数的值时，提供程序使用的字节数。  
+ 对于固定长度数据类型, <xref:System.Data.OracleClient.OracleParameter.Size%2A>将忽略的值。 可以检索它以提供信息, 并返回将参数值传输到服务器时提供程序使用的最大字节数。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>和设置的某些属性。  
+ 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>并设置其一些属性。  
   
 ```vb  
 Public Sub CreateOracleParameter()  
@@ -969,12 +969,12 @@ public void CreateOracleParameter()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值之间的链接<xref:System.Data.OracleClient.OracleParameter>并<xref:System.Data.DataTable>可能是双向的具体取决于值<xref:System.Data.OracleClient.OracleParameter.Direction%2A>属性。  
+ <xref:System.Data.OracleClient.OracleParameter> <xref:System.Data.OracleClient.OracleParameter.Direction%2A>与的值之间的链接可以是双向的,具体取决于属性的值。<xref:System.Data.DataTable>  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>和设置的某些属性。  
+ 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>并设置其一些属性。  
   
 ```vb  
 Public Sub CreateOracleDbParameter()  
@@ -1019,27 +1019,27 @@ public void CreateOracleDbParameter()
       </ReturnValue>
       <Docs>
         <summary>设置或获取一个值，该值指示源列是否可以为 null。 通过此操作，<see cref="T:System.Data.OracleClient.OracleCommandBuilder" /> 能够为可以为 null 的列正确地生成 Update 语句。</summary>
-        <value><see langword="true" /> 如果源列可以为 null;否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果源列可为 null, 则为;否则为<see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.OracleClient.OracleParameter.SourceColumnNullMapping%2A> 由<xref:System.Data.OracleClient.OracleCommandBuilder>来正确处理为 null 的列时生成更新命令。 通常情况下，使用<xref:System.Data.OracleClient.OracleParameter.SourceColumnNullMapping%2A>继承的开发人员仅限于<xref:System.Data.OracleClient.OracleCommandBuilder>。  
+ <xref:System.Data.OracleClient.OracleParameter.SourceColumnNullMapping%2A>当处理可以为<xref:System.Data.OracleClient.OracleCommandBuilder> null 的列时, 将使用来正确生成更新命令。 通常, 使用<xref:System.Data.OracleClient.OracleParameter.SourceColumnNullMapping%2A>仅限于从<xref:System.Data.OracleClient.OracleCommandBuilder>继承的开发人员。  
   
- <xref:System.Data.Common.DbCommandBuilder> 使用此属性来确定源列是否可以为 null，并将此属性设置为`true`是否可以为 null，和`false`如果不是。 当<xref:System.Data.OracleClient.OracleCommandBuilder>是生成其 Update 语句，它将检查<xref:System.Data.OracleClient.OracleParameter.SourceColumnNullMapping%2A>为每个参数。 如果该属性是`true`，<xref:System.Data.OracleClient.OracleCommandBuilder>生成 WHERE 子句，如下所示 （在此查询表达式中，"FieldName"表示的字段的名称）：  
+ <xref:System.Data.Common.DbCommandBuilder>使用此属性来确定源列是否可以为 null, 如果此属性为 null `true` `false` , 则将其设置为, 如果不是, 则将此属性设置为。 当<xref:System.Data.OracleClient.OracleCommandBuilder>生成其 Update 语句时, 它会检查<xref:System.Data.OracleClient.OracleParameter.SourceColumnNullMapping%2A>每个参数的。 如果属性为`true`, <xref:System.Data.OracleClient.OracleCommandBuilder>则生成一个 WHERE 子句, 如下所示 (在此查询表达式中, "FieldName" 表示字段的名称):  
   
 ```  
 ((@IsNull_FieldName = 1 AND FieldName IS NULL) OR   
   (FieldName = @Original_FieldName))  
 ```  
   
- 如果<xref:System.Data.OracleClient.OracleParameter.SourceColumnNullMapping%2A>为 false，该字段为<xref:System.Data.OracleClient.OracleCommandBuilder>生成以下 WHERE 子句：  
+ 如果<xref:System.Data.OracleClient.OracleParameter.SourceColumnNullMapping%2A>字段为 false, <xref:System.Data.OracleClient.OracleCommandBuilder>则生成以下 WHERE 子句:  
   
 ```  
 FieldName = @OriginalFieldName  
 ```  
   
- 此外，@IsNull_FieldName如果源字段包含 null 值和 0，如果它不包含 1。 此机制可以优化在 Oracle 服务器的性能，并提供的跨多个提供程序的通用代码。  
+ 此外, @IsNull_FieldName如果源字段包含 null, 则包含 1, 如果不包含 null, 则包含0。 此机制允许在 Oracle 服务器中进行性能优化, 并提供适用于跨多个提供程序的通用代码。  
   
  ]]></format>
         </remarks>
@@ -1077,12 +1077,12 @@ FieldName = @OriginalFieldName
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性由<xref:System.Data.OracleClient.OracleDataAdapter.UpdateCommand%2A>期间<xref:System.Data.Common.DbDataAdapter.Update%2A?displayProperty=nameWithType>以确定是否使用参数值的原始或当前值。 这样可以更新主键。 此属性设置为的新版<xref:System.Data.DataRow>由<xref:System.Data.DataRow.Item%2A?displayProperty=nameWithType>属性 (<xref:System.Data.DataRow>索引器)，或<xref:System.Data.DataRow.GetChildRows%2A?displayProperty=nameWithType>方法<xref:System.Data.DataRow>对象。  
+ <xref:System.Data.OracleClient.OracleDataAdapter.UpdateCommand%2A> 在<xref:System.Data.Common.DbDataAdapter.Update%2A?displayProperty=nameWithType>过程中, 将使用此属性来确定是否将原始值或当前值用于某个参数值。 这将允许更新主键。 此属性<xref:System.Data.DataRow>设置为<xref:System.Data.DataRow.Item%2A?displayProperty=nameWithType>属性 (<xref:System.Data.DataRow> 索引器<xref:System.Data.DataRow.GetChildRows%2A?displayProperty=nameWithType> ) 或对象的方法所使用的的版本。<xref:System.Data.DataRow>  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>和设置的某些属性。  
+ 下面的示例创建<xref:System.Data.OracleClient.OracleParameter>并设置其一些属性。  
   
 ```vb  
 Public Sub CreateOracleParameter()  
@@ -1136,7 +1136,7 @@ public void CreateOracleParameter()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.Data.OracleClient.OracleParameter> 实例强制转换为 <xref:System.ICloneable> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.Data.OracleClient.OracleParameter> 实例被强制转换为 <xref:System.ICloneable> 接口时使用。  
   
  ]]></format>
         </remarks>
@@ -1204,19 +1204,19 @@ public void CreateOracleParameter()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 用于输入参数的值绑定到<xref:System.Data.OracleClient.OracleCommand>，发送到服务器。 对于输出参数和返回值参数，该数值将在完成<xref:System.Data.OracleClient.OracleCommand>前后<xref:System.Data.OracleClient.OracleDataReader>已关闭。  
+ 对于输入参数, 值将绑定到<xref:System.Data.OracleClient.OracleCommand>发送到服务器的。 对于输出和返回值参数, 值在完成<xref:System.Data.OracleClient.OracleCommand> <xref:System.Data.OracleClient.OracleDataReader>时设置, 在关闭之后。  
   
- 为输入参数，<xref:System.Data.OracleClient.OracleParameter.Value%2A>可以设置为 Microsoft.NET Framework 数据类型或 Oracle 数据类型的对象 (例如，<xref:System.Data.OracleClient.OracleNumber>或<xref:System.Data.OracleClient.OracleString>)。  
+ 对于输入参数, <xref:System.Data.OracleClient.OracleParameter.Value%2A>可以将设置为 Microsoft .NET 框架数据类型或 Oracle 数据类型 (例如<xref:System.Data.OracleClient.OracleNumber> , 或<xref:System.Data.OracleClient.OracleString>) 的对象。  
   
- 当你向服务器发送 null 参数值时，必须指定 DBNull，不为 null。 在系统中的 null 值是一个没有值的空对象。 DBNull 用于表示 null 值。  
+ 将 null 参数值发送到服务器时, 必须指定 DBNull, 而不是 null。 系统中的 null 值是没有值的空对象。 DBNull 用于表示 null 值。  
   
- 如果应用程序指定的数据库类型，绑定的值转换为该类型时提供程序将数据发送到服务器。 提供程序尝试转换任何类型的值，如果它支持<xref:System.IConvertible>接口。 如果指定的类型不兼容的值，可能会导致转换错误。  
+ 如果应用程序指定了数据库类型, 则当提供程序将数据发送到服务器时, 绑定值将转换为该类型。 如果提供程序支持<xref:System.IConvertible>接口, 则会尝试转换任何类型的值。 如果指定的类型与值不兼容, 则可能会导致转换错误。  
   
- <xref:System.Data.OracleClient.OracleParameter.DbType%2A>， <xref:System.Data.OracleClient.OracleParameter.OracleType%2A>，和<xref:System.Data.OracleClient.OracleParameter.Size%2A>参数的属性，可以通过将值设置推断出。 因此，不需要指定它们。 但是，它们不会暴露在<xref:System.Data.OracleClient.OracleParameter>属性设置。 例如，如果已推断出参数的大小，大小不包含推断的值在语句执行后。  
+ 参数<xref:System.Data.OracleClient.OracleParameter.DbType%2A>的<xref:System.Data.OracleClient.OracleParameter.OracleType%2A>、和<xref:System.Data.OracleClient.OracleParameter.Size%2A>属性可通过设置值进行推断。 因此, 您不需要指定它们。 但是, 它们不会在属性<xref:System.Data.OracleClient.OracleParameter>设置中公开。 例如, 如果已推断出参数的大小, 则在语句执行后大小不包含推断值。  
   
- `InputOutput`， `Output`，并`ReturnValue`<xref:System.Data.ParameterDirection>使用 Value 属性的值将是 Microsoft.NET Framework 数据类型，除非输入的值是 Oracle 数据类型 (例如，<xref:System.Data.OracleClient.OracleNumber>或<xref:System.Data.OracleClient.OracleString>)。 这不会应用于 REF CURSOR，BFILE 或 LOB 数据类型。  
+ 如果`InputOutput` `Output` `ReturnValue` 输入值<xref:System.Data.ParameterDirection>为 Oracle 数据类型 (例如或<xref:System.Data.OracleClient.OracleString>), 则 Value 属性使用的、和值将为 Microsoft .NET Framework 数据类型。 <xref:System.Data.OracleClient.OracleNumber> 这不适用于 REF CURSOR、BFILE 或 LOB 数据类型。  
   
- <xref:System.Data.OracleClient.OracleParameter.Value%2A>属性会被覆盖**更新**方法。  
+ **更新方法**将覆盖<xref:System.Data.OracleClient.OracleParameter.Value%2A>属性。  
   
  ]]></format>
         </remarks>
