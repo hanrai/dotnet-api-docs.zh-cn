@@ -1,5 +1,5 @@
 <Type Name="IConstructionCallMessage" FullName="System.Runtime.Remoting.Activation.IConstructionCallMessage">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="47e0da6a61d5b4c89d86b41107c65048a5a62f65" /><Meta Name="ms.sourcegitcommit" Value="723b8a6d92667ba86fcda96190bad3b4a03283b3" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="11/09/2018" /><Meta Name="ms.locfileid" Value="51316119" /></Metadata><TypeSignature Language="C#" Value="public interface IConstructionCallMessage : System.Runtime.Remoting.Messaging.IMethodCallMessage" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0527b406c1348b61cfe60b878de5c998067ab998" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69268162" /></Metadata><TypeSignature Language="C#" Value="public interface IConstructionCallMessage : System.Runtime.Remoting.Messaging.IMethodCallMessage" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IConstructionCallMessage implements class System.Runtime.Remoting.Messaging.IMessage, class System.Runtime.Remoting.Messaging.IMethodCallMessage, class System.Runtime.Remoting.Messaging.IMethodMessage" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Remoting.Activation.IConstructionCallMessage" />
   <TypeSignature Language="VB.NET" Value="Public Interface IConstructionCallMessage&#xA;Implements IMethodCallMessage" />
@@ -34,7 +34,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当用户创建新的客户端激活对象的实例通过调用`new`或<xref:System.Activator.CreateInstance%2A?displayProperty=nameWithType>和线程返回到用户代码之前<xref:System.Runtime.Remoting.Activation.IConstructionCallMessage>发送到远程应用程序。 构造消息到达远程应用程序，通过远程处理激活器处理 (一个，或一个中指定的默认<xref:System.Runtime.Remoting.Activation.IConstructionCallMessage.Activator%2A>属性)，并创建一个新的对象。 然后，远程处理应用程序返回<xref:System.Runtime.Remoting.Activation.IConstructionReturnMessage>到本地应用程序。 <xref:System.Runtime.Remoting.Activation.IConstructionReturnMessage>包含的一个实例<xref:System.Runtime.Remoting.ObjRef>，哪些程序包的远程对象有关的信息。 远程处理基础结构将转换<xref:System.Runtime.Remoting.ObjRef>到返回到用户代码的远程对象的代理的实例。  
+ 当用户通过调用`new`或<xref:System.Activator.CreateInstance%2A?displayProperty=nameWithType>在线程返回到用户代码之前创建新的客户端激活对象的实例时, <xref:System.Runtime.Remoting.Activation.IConstructionCallMessage>将向远程应用程序发送。 当构造消息到达远程应用程序时, 它由远程处理程序激活器 (默认值或<xref:System.Runtime.Remoting.Activation.IConstructionCallMessage.Activator%2A>属性中指定的消息) 处理, 并创建新的对象。 远程处理应用程序随后将<xref:System.Runtime.Remoting.Activation.IConstructionReturnMessage>返回到本地应用程序。 <xref:System.Runtime.Remoting.Activation.IConstructionReturnMessage>包含的<xref:System.Runtime.Remoting.ObjRef>实例, 该实例对有关远程对象的信息进行打包。 远程处理基础结构将<xref:System.Runtime.Remoting.ObjRef>实例转换为向用户代码返回的远程对象的代理。  
   
  ]]></format>
     </remarks>
@@ -68,7 +68,7 @@
         <value>要激活的远程对象的类型。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.Security.SecurityException">直接调用方没有基础结构权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于操作的基础结构代码。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于处理基础结构代码。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="ActivationTypeName">
@@ -99,7 +99,7 @@
         <value>要激活的远程类型的完整类型名称。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.Security.SecurityException">直接调用方没有基础结构权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于操作的基础结构代码。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于处理基础结构代码。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="Activator">
@@ -135,14 +135,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常排列在层次结构中的激活器链完成激活过程中涉及的各种任务。 如果你想要插入自定义激活器，然后应遍历激活器层次结构，并插入适当的位置激活器。 使用<xref:System.Runtime.Remoting.Activation.IActivator.NextActivator%2A?displayProperty=nameWithType>上要遍历的激活器链的当前属性返回的激活器的属性。  
+ 在层次结构中安排的激活程序链通常会完成激活过程中涉及的各种任务。 如果要插入自定义激活器, 则应该遍历激活器层次结构, 并在适当的位置插入激活器。 使用由当前属性返回的激活器的属性来遍历激活器链。<xref:System.Runtime.Remoting.Activation.IActivator.NextActivator%2A?displayProperty=nameWithType>  
   
- 如果将自己激活器添加到客户端上的消息的激活器链，可能会序列化，如果认为有必要传输到服务器端，激活器。 出于此原因，自定义激活器应该在序列化要求方面相当轻量。  
+ 如果你将自己的激活器添加到客户端上的消息激活器链中, 则可以根据需要对激活器进行序列化并将其传输到服务器端。 出于此原因, 自定义激活程序在序列化要求方面应该非常轻量。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直接调用方没有基础结构权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于操作的基础结构代码。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于处理基础结构代码。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="CallSiteActivationAttributes">
@@ -175,12 +175,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Remoting.Activation.IConstructionCallMessage.CallSiteActivationAttributes%2A>索引器，可指定要在对象激活过程中使用的其他属性。 用户指定<xref:System.Runtime.Remoting.Activation.IConstructionCallMessage.CallSiteActivationAttributes%2A>中`activationAttributes`参数<xref:System.Activator.CreateInstance%2A?displayProperty=nameWithType>。  
+ <xref:System.Runtime.Remoting.Activation.IConstructionCallMessage.CallSiteActivationAttributes%2A>索引器允许您指定要在对象激活过程中使用的其他属性。 用户<xref:System.Runtime.Remoting.Activation.IConstructionCallMessage.CallSiteActivationAttributes%2A>在的`activationAttributes`参数<xref:System.Activator.CreateInstance%2A?displayProperty=nameWithType>中指定。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直接调用方没有基础结构权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于操作的基础结构代码。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于处理基础结构代码。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="ContextProperties">
@@ -213,12 +213,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新对象的上下文通常基于类的元数据属性进行选择。 上下文选择机制是可扩展的通过自定义特性，也称为静态上下文属性，被编译到类元数据。 激活远程对象时<xref:System.Runtime.Remoting.Activation.IConstructionCallMessage.ContextProperties%2A>包含新手按构造调用消息中的各种属性的属性的列表。 这些属性用于创建在其中激活该服务器对象的上下文。  
+ 通常, 会根据类的元数据特性选择一个新的对象的上下文。 上下文选择机制可通过自定义特性 (也称为静态上下文属性, 这些属性被编译为类元数据) 进行扩展。 远程激活对象时, <xref:System.Runtime.Remoting.Activation.IConstructionCallMessage.ContextProperties%2A>包含构造调用消息中的各种属性所提供的属性列表。 这些属性用于创建在其中激活服务器对象的上下文。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直接调用方没有基础结构权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于操作的基础结构代码。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于处理基础结构代码。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
         <altmember cref="T:System.Runtime.Remoting.Contexts.Context" />
       </Docs>
     </Member>

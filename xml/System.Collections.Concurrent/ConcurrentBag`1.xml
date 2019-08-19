@@ -1,5 +1,5 @@
 <Type Name="ConcurrentBag&lt;T&gt;" FullName="System.Collections.Concurrent.ConcurrentBag&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d9e36a928113c2e273ec43b9a01bcbf83e02caac" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63909916" /></Metadata><TypeSignature Language="C#" Value="public class ConcurrentBag&lt;T&gt; : System.Collections.Concurrent.IProducerConsumerCollection&lt;T&gt;, System.Collections.Generic.IEnumerable&lt;T&gt;, System.Collections.Generic.IReadOnlyCollection&lt;T&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ea1fa6a17f580a4ad1c0a0e83bb43ed27336e7c5" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69340768" /></Metadata><TypeSignature Language="C#" Value="public class ConcurrentBag&lt;T&gt; : System.Collections.Concurrent.IProducerConsumerCollection&lt;T&gt;, System.Collections.Generic.IEnumerable&lt;T&gt;, System.Collections.Generic.IReadOnlyCollection&lt;T&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit ConcurrentBag`1&lt;T&gt; extends System.Object implements class System.Collections.Concurrent.IProducerConsumerCollection`1&lt;!T&gt;, class System.Collections.Generic.IEnumerable`1&lt;!T&gt;, class System.Collections.Generic.IReadOnlyCollection`1&lt;!T&gt;, class System.Collections.ICollection, class System.Collections.IEnumerable" />
   <TypeSignature Language="DocId" Value="T:System.Collections.Concurrent.ConcurrentBag`1" />
   <TypeSignature Language="VB.NET" Value="Public Class ConcurrentBag(Of T)&#xA;Implements IEnumerable(Of T), IProducerConsumerCollection(Of T), IReadOnlyCollection(Of T)" />
@@ -65,23 +65,23 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 包可用于存储对象时排序并不重要，并与不同的集，包支持重复项。 <xref:System.Collections.Concurrent.ConcurrentBag%601> 是线程安全包实现，已针对同一个线程将会同时生成和使用包中的存储的数据进行优化。  
+ 当排序并不重要时, 包可用于存储对象, 而与集不同, 包支持重复项。 <xref:System.Collections.Concurrent.ConcurrentBag%601>是一个线程安全包实现, 适用于同一线程将生成和使用存储在包中的数据的情况。  
   
  <xref:System.Collections.Concurrent.ConcurrentBag%601> 接受 `null` 作为引用类型的有效值。  
   
- 有关详细信息，请参阅文章[常见问题：是否所有的新并发集合无锁定？](https://devblogs.microsoft.com/pfxteam/faq-are-all-of-the-new-concurrent-collections-lock-free/)并行编程与.NET 博客中。  
+ 有关详细信息, 请参阅条目[常见问题解答:所有新的并发回收是否均无锁？](https://devblogs.microsoft.com/pfxteam/faq-are-all-of-the-new-concurrent-collections-lock-free/)在与 .net 的并行编程中, 博客。  
   
    
   
 ## Examples  
- 下面的示例演示如何添加和删除项<xref:System.Collections.Concurrent.ConcurrentBag%601>:  
+ 下面的示例演示如何在中<xref:System.Collections.Concurrent.ConcurrentBag%601>添加和移除项:  
   
  [!code-csharp[System.Collections.Concurrent.ConcurrentBag#1](~/samples/snippets/csharp/api/system.collections.concurrent/concurrentbag/concbag.cs)]
  [!code-vb[System.Collections.Concurrent.ConcurrentBag#1](~/samples/snippets/visualbasic/api/system.collections.concurrent/concurrentbag/concbag.vb)]  
   
  ]]></format>
     </remarks>
-    <threadsafe>所有公共和受保护成员<see cref="T:System.Collections.Concurrent.ConcurrentBag`1" />是线程安全的可能从多个线程同时使用。 但是，通过一个接口访问成员<see cref="T:System.Collections.Concurrent.ConcurrentBag`1" />实现，其中包括扩展方法不能保证是线程安全并可能需要由调用方同步。</threadsafe>
+    <threadsafe>的所有公共和受保护<see cref="T:System.Collections.Concurrent.ConcurrentBag`1" />的成员都是线程安全的, 可从多个线程并发使用。 但是, 通过实现的接口之一 (包括扩展<see cref="T:System.Collections.Concurrent.ConcurrentBag`1" />方法) 访问的成员不一定是线程安全的, 并且可能需要由调用方进行同步。</threadsafe>
     <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
   </Docs>
   <Members>
@@ -297,7 +297,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的计数表示的包的内容当前快照。 其他线程可能会添加或删除项，您访问后，立即可以`Count`属性。  
+ 返回的计数表示袋内容的时间快照。 在访问`Count`属性后, 其他线程可能会立即添加或移除项。  
   
  ]]></format>
         </remarks>
@@ -342,7 +342,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 枚举表示的包的内容当前快照。 它不反映对后对集合的任何更新<xref:System.Collections.Concurrent.ConcurrentBag%601.GetEnumerator%2A>调用。 枚举器与读取的同时使用非常安全，并写入包。  
+ 枚举表示包内容的时间的快照。 它不会反映调用后<xref:System.Collections.Concurrent.ConcurrentBag%601.GetEnumerator%2A>对集合的任何更新。 枚举器可以安全地与包的读取和写入操作一起使用。  
   
  ]]></format>
         </remarks>
@@ -498,7 +498,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取一个值，该值指示对 <see cref="T:System.Collections.ICollection" /> 的访问是否与 SyncRoot 保持同步。</summary>
-        <value>始终返回<see langword="false" />以指示不同步的访问。</value>
+        <value>始终返回<see langword="false" /> , 指示未同步访问。</value>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/2e7ca21f-786c-4367-96be-0cf3f3dcc6bd">线程安全集合</related>
       </Docs>
@@ -583,7 +583,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 枚举的项表示的包的内容当前快照。 它不反映对后对集合的任何更新<xref:System.Collections.Concurrent.ConcurrentBag%601.GetEnumerator%2A>调用。  
+ 枚举的项表示包内容的时间点快照。 它不反映调用后<xref:System.Collections.Concurrent.ConcurrentBag%601.GetEnumerator%2A>对集合的任何更新。  
   
  ]]></format>
         </remarks>

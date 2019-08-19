@@ -1,5 +1,5 @@
 <Type Name="JavaScriptTypeResolver" FullName="System.Web.Script.Serialization.JavaScriptTypeResolver">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="961d2c7760f7b2b45b63279f246cc6d644757e32" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64025804" /></Metadata><TypeSignature Language="C#" Value="public abstract class JavaScriptTypeResolver" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4dc31196e934281669ede6b17126f8707740c3e9" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69135856" /></Metadata><TypeSignature Language="C#" Value="public abstract class JavaScriptTypeResolver" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit JavaScriptTypeResolver extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Web.Script.Serialization.JavaScriptTypeResolver" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class JavaScriptTypeResolver" />
@@ -20,17 +20,17 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Script.Serialization.JavaScriptTypeResolver>类提供的服务：  
+ <xref:System.Web.Script.Serialization.JavaScriptTypeResolver>类为提供以下服务:  
   
--   托管类型转换的类型为字符串值通过信息<xref:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveTypeId%2A>方法。  
+-   通过<xref:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveTypeId%2A>方法将托管类型信息转换为字符串值。  
   
--   将字符串值解析为相应托管类型通过<xref:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveType%2A>方法。  
+-   通过<xref:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveType%2A>方法将字符串值解析回适当的托管类型。  
   
- 当<xref:System.Web.Script.Serialization.JavaScriptSerializer>对象序列化自定义类型，它可以选择性地包含在序列化的 JavaScript 对象表示法 (JSON) 字符串中包含的类型信息的值。 在反序列化期间<xref:System.Web.Script.Serialization.JavaScriptSerializer>JSON 字符串转换为键入稍后可以引用此字符串值，以便确定适当管理。  
+ <xref:System.Web.Script.Serialization.JavaScriptSerializer>当对象序列化自定义类型时, 它可以选择性地包括在序列化的 JavaScript 对象表示法 (JSON) 字符串中包含类型信息的值。 在反序列<xref:System.Web.Script.Serialization.JavaScriptSerializer>化过程中, 可以引用此字符串值, 以确定要将 JSON 字符串转换成的适当托管类型。  
   
- 如果你提供到类型冲突解决程序<xref:System.Web.Script.Serialization.JavaScriptSerializer>实例，将使用序列化程序<xref:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveTypeId%2A>和<xref:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveType%2A>方法之间进行映射的托管的类型和字符串值在序列化和反序列化过程中，分别。  
+ 如果向<xref:System.Web.Script.Serialization.JavaScriptSerializer>实例提供类型解析程序, 则序列化程序将<xref:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveTypeId%2A>使用和<xref:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveType%2A>方法在序列化和反序列化过程中的托管类型和字符串值之间进行映射。  
   
- <xref:System.Web.Script.Serialization.JavaScriptTypeResolver>类是基类<xref:System.Web.Script.Serialization.SimpleTypeResolver>类，该类提供将使用托管的类型程序集限定名称的类型冲突解决程序的实现。  
+ 类是<xref:System.Web.Script.Serialization.SimpleTypeResolver>类的基类, 该类提供使用托管类型程序集限定名称的类型解析程序的实现。 <xref:System.Web.Script.Serialization.JavaScriptTypeResolver>  
   
    
   
@@ -42,7 +42,7 @@
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>当您实现的类型冲突解决程序，返回的字符串<see cref="M:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveTypeId(System.Type)" />方法必须映射回相同的托管类型的字符串值传递给<see cref="M:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveType(System.String)" />方法。</para></block>
+    <block subset="none" type="overrides"><para>实现类型解析程序时, 当字符串值传递<see cref="M:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveTypeId(System.Type)" /> <see cref="M:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveType(System.String)" />到方法时, 该方法返回的字符串必须映射回同一托管类型。</para></block>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -95,11 +95,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当类型解析程序关联<xref:System.Web.Script.Serialization.JavaScriptSerializer>实例，序列化程序使用<xref:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveType%2A>方法时它会循环访问 JSON 字符串来确定特定于托管的 JSON 类型将转换为的类型。  
+ 当类型解析程序与<xref:System.Web.Script.Serialization.JavaScriptSerializer>实例关联时, 序列化程序将在循环访问 json 字符串时<xref:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveType%2A>使用方法, 以确定 JSON 类型应转换为的特定托管类型。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>给定的字符串值，必须返回的类型解析程序<see cref="T:System.Type" />对象，表示相应托管类型。</para></block>
+        <block subset="none" type="overrides"><para>给定一个字符串值, 类型解析程序必须返回一个<see cref="T:System.Type" />表示相应托管类型的对象。</para></block>
       </Docs>
     </Member>
     <Member MemberName="ResolveTypeId">
@@ -128,7 +128,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveTypeId%2A>方法返回`null`或<xref:System.String.Empty>，则类型解析程序不支持类型。  
+ 如果该<xref:System.Web.Script.Serialization.JavaScriptTypeResolver.ResolveTypeId%2A>方法`null`返回或<xref:System.String.Empty>, 则类型解析程序不支持该类型。  
   
  ]]></format>
         </remarks>

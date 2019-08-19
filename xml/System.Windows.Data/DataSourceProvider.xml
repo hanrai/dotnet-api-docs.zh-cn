@@ -1,5 +1,5 @@
 <Type Name="DataSourceProvider" FullName="System.Windows.Data.DataSourceProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9b83347626df18eecf95c2dfeddd7ca82f02ae19" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55403343" /></Metadata><TypeSignature Language="C#" Value="public abstract class DataSourceProvider : System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.ISupportInitialize" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="cc5b0f4df6d9932a293afd99119f49fe47a6edb1" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69210701" /></Metadata><TypeSignature Language="C#" Value="public abstract class DataSourceProvider : System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.ISupportInitialize" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DataSourceProvider extends System.Object implements class System.ComponentModel.INotifyPropertyChanged, class System.ComponentModel.ISupportInitialize" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Data.DataSourceProvider" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DataSourceProvider&#xA;Implements INotifyPropertyChanged, ISupportInitialize" />
@@ -27,9 +27,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Data.DataSourceProvider> 是的便利包装现有的数据模型;它不会替换任何数据模型。 数据提供程序不会尝试将数据模型，如 ADO 具有几个属性的单个对象到复杂多样。  
+ <xref:System.Windows.Data.DataSourceProvider>是围绕现有数据模型的便利包装;它不会替换任何数据模型。 数据访问接口不会尝试将数据模型 (例如 ADO) 的复杂性和通用性紧缩为一个具有几个属性的单个对象。  
   
- <xref:System.Windows.Data.DataSourceProvider> 是一个抽象类。 使用的派生类，这些类之一<xref:System.Windows.Data.XmlDataProvider>和<xref:System.Windows.Data.ObjectDataProvider>。 <xref:System.Windows.Data.DataSourceProvider>识别[!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)]线程处理和调度程序模型。 假定在创建时为该线程[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]线程。 事件将从封送工作线程到 UI 线程的应用程序。  
+ <xref:System.Windows.Data.DataSourceProvider> 是一个抽象类。 使用一个派生类, 即<xref:System.Windows.Data.XmlDataProvider>和。 <xref:System.Windows.Data.ObjectDataProvider> <xref:System.Windows.Data.DataSourceProvider> 知道[!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)]线程处理和调度程序模型。 它在创建时将线程假定为[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]线程。 事件将从工作线程封送到应用程序的 UI 线程。  
   
  ]]></format>
     </remarks>
@@ -101,7 +101,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- **实施者说明：** 可以选择以执行查询，在同一线程或后台线程或使用`IsAsynchronous`。 查询完成后，调用<xref:System.Windows.Data.DataSourceProvider.OnQueryFinished%2A>具有更新的公共属性。  
+ **对实现者的说明:** 您可以选择在同一线程上或在后台线程上或使用`IsAsynchronous`执行查询。 查询完成后, 调用<xref:System.Windows.Data.DataSourceProvider.OnQueryFinished%2A>以更新公共属性。  
   
  ]]></format>
         </remarks>
@@ -139,7 +139,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Windows.Data.DataSourceProvider>使用作为绑定源，这是生成的绑定源对象。  
+ <xref:System.Windows.Data.DataSourceProvider>当用作绑定的源时, 这是生成的绑定源对象。  
   
  ]]></format>
         </remarks>
@@ -169,7 +169,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- **实施者说明：** 引发此事件时，便可以在新的数据对象<xref:System.Windows.Data.DataSourceProvider.Data%2A>属性。  
+ **对实现者的说明:** 当新数据对象在属性上变为可用时, <xref:System.Windows.Data.DataSourceProvider.Data%2A>引发此事件。  
   
  ]]></format>
         </remarks>
@@ -199,7 +199,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 典型的用法是创建`using`使用此方法作用域，然后在作用域中进行多个属性更改。 这会延迟自动刷新，直到退出延迟循环。  
+ 典型的用法是使用此方法`using`创建一个范围, 然后在该范围内进行多个属性更改。 这会延迟自动刷新, 直到延迟周期退出。  
   
  ]]></format>
         </remarks>
@@ -228,7 +228,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置要使用的 [!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)] 线程当前的 <see cref="T:System.Windows.Threading.Dispatcher" /> 对象。</summary>
-        <value>当前<see cref="T:System.Windows.Threading.Dispatcher" />对象传递给[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]线程使用。 默认情况下，这是与创建此实例的线程关联的 <see cref="T:System.Windows.Threading.Dispatcher" /> 对象。</value>
+        <value>要使用<see cref="T:System.Windows.Threading.Dispatcher" />的[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]线程的当前对象。 默认情况下，这是与创建此实例的线程关联的 <see cref="T:System.Windows.Threading.Dispatcher" /> 对象。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -312,11 +312,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法通常由绑定引擎依赖数据绑定处于激活状态时调用。 设置<xref:System.Windows.Data.DataSourceProvider.IsInitialLoadEnabled%2A>到`false`来阻止或延迟数据自动加载。  
+ 当依赖数据绑定处于激活状态时, 绑定引擎通常会调用此方法。 设置<xref:System.Windows.Data.DataSourceProvider.IsInitialLoadEnabled%2A> 为`false`以阻止或延迟自动加载数据。  
   
- <xref:System.Windows.Data.DataSourceProvider.InitialLoad%2A>可以多次调用方法。 提供程序将忽略后续调用后正忙于执行初始查询的灵活性。提供程序不会重启已在运行查询时<xref:System.Windows.Data.DataSourceProvider.InitialLoad%2A>再次调用。 当查询成功完成时，任何<xref:System.Windows.Data.DataSourceProvider.InitialLoad%2A>调用仍不会重新查询数据。 <xref:System.Windows.Data.DataSourceProvider.InitialLoad%2A>操作通常是异步的<xref:System.Windows.Data.DataSourceProvider.DataChanged>引发事件时<xref:System.Windows.Data.DataSourceProvider.Data%2A>属性采用新值。  
+ 可以<xref:System.Windows.Data.DataSourceProvider.InitialLoad%2A>多次调用此方法。 访问接口在执行初始查询后将忽略后续调用;当再次调用时<xref:System.Windows.Data.DataSourceProvider.InitialLoad%2A> , 提供程序不会重新启动已运行的查询。 查询成功完成后, 任何<xref:System.Windows.Data.DataSourceProvider.InitialLoad%2A>调用仍不会重新查询数据。 操作<xref:System.Windows.Data.DataSourceProvider.InitialLoad%2A>通常是异步的<xref:System.Windows.Data.DataSourceProvider.DataChanged> , 当<xref:System.Windows.Data.DataSourceProvider.Data%2A>属性假定为新值时, 将引发事件。  
   
- 应用程序调用<xref:System.Windows.Data.DataSourceProvider.Refresh%2A>会导致的数据刷新。  
+ 应用程序调用<xref:System.Windows.Data.DataSourceProvider.Refresh%2A>来刷新数据。  
   
  ]]></format>
         </remarks>
@@ -353,7 +353,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常<xref:System.Windows.Data.DataSourceProvider>运行查询，并设置其<xref:System.Windows.Data.DataSourceProvider.Data%2A>属性首次使用的绑定或<xref:System.Windows.Data.CollectionViewSource>。 你可以忽略此步骤通过设置<xref:System.Windows.Data.DataSourceProvider.IsInitialLoadEnabled%2A>属性设置为`false`。 在这种情况下，应用程序必须显式调用<xref:System.Windows.Data.DataSourceProvider.Refresh%2A>导致提供程序来获取其数据。  
+ 通常, <xref:System.Windows.Data.DataSourceProvider>在第一次使用绑定<xref:System.Windows.Data.DataSourceProvider.Data%2A>或<xref:System.Windows.Data.CollectionViewSource>时将运行其查询并设置其属性。 可以通过将<xref:System.Windows.Data.DataSourceProvider.IsInitialLoadEnabled%2A>属性设置为来`false`忽略此步骤。 在这种情况下, 应用程序必须<xref:System.Windows.Data.DataSourceProvider.Refresh%2A>显式调用, 以使提供程序获取其数据。  
   
  ]]></format>
         </remarks>
@@ -382,7 +382,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- **实施者说明：** 若要获取刷新延迟最佳利用，不要调用<xref:System.Windows.Data.DataSourceProvider.Refresh%2A>时此属性是`true`。  
+ **对实现者的说明:** 若要充分利用刷新延迟, 请不要在此属性为<xref:System.Windows.Data.DataSourceProvider.Refresh%2A> `true`时调用。  
   
  ]]></format>
         </remarks>
@@ -408,7 +408,7 @@
         <Parameter Name="e" Type="System.ComponentModel.PropertyChangedEventArgs" />
       </Parameters>
       <Docs>
-        <param name="e">要引发事件的自变量。</param>
+        <param name="e">要引发事件的参数。</param>
         <summary>通过提供的自变量引发 <see cref="E:System.Windows.Data.DataSourceProvider.PropertyChanged" /> 事件。</summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -453,7 +453,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以从任何线程调用此回调。 此实现将封送回将结果发送到[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]线程设置的任何公共属性以及前引发任何事件。  
+ 可以从任何线程调用此回调。 在设置任何公共属性之前和引发[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]任何事件之前, 此实现将结果封送回给线程。  
   
  ]]></format>
         </remarks>
@@ -491,7 +491,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以从任何线程调用此回调。 此实现将封送回将结果发送到[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]线程设置的任何公共属性以及前引发任何事件。  
+ 可以从任何线程调用此回调。 在设置任何公共属性之前和引发[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]任何事件之前, 此实现将结果封送回给线程。  
   
  ]]></format>
         </remarks>
@@ -545,7 +545,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 刷新操作通常是异步的<xref:System.Windows.Data.DataSourceProvider.DataChanged>引发事件时<xref:System.Windows.Data.DataSourceProvider.Data%2A>属性采用新值。 如果刷新操作失败，<xref:System.Windows.Data.DataSourceProvider.Data%2A>属性设置为`null`;<xref:System.Windows.Data.DataSourceProvider.Error%2A>属性设置与错误异常。 应用程序可以调用<xref:System.Windows.Data.DataSourceProvider.Refresh%2A>仍在进行中上次刷新时。 调用<xref:System.Windows.Data.DataSourceProvider.Refresh%2A>两次引发<xref:System.Windows.Data.DataSourceProvider.DataChanged>事件两次。  
+ 刷新操作通常是异步的, <xref:System.Windows.Data.DataSourceProvider.DataChanged> <xref:System.Windows.Data.DataSourceProvider.Data%2A>当属性假定为新值时, 将引发事件。 如果刷新操作失败, 则<xref:System.Windows.Data.DataSourceProvider.Data%2A>属性设置为`null`; <xref:System.Windows.Data.DataSourceProvider.Error%2A>属性设置为错误异常。 在上一次<xref:System.Windows.Data.DataSourceProvider.Refresh%2A>刷新仍在进行时, 应用程序可以调用。 调用<xref:System.Windows.Data.DataSourceProvider.Refresh%2A>两次将<xref:System.Windows.Data.DataSourceProvider.DataChanged>引发事件两次。  
   
  ]]></format>
         </remarks>
