@@ -1,5 +1,5 @@
 <Type Name="SerializationInfo" FullName="System.Runtime.Serialization.SerializationInfo">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="46f25c0d89d062032ab4746f676a0a8c8f8b6af4" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58746793" /></Metadata><TypeSignature Language="C#" Value="public sealed class SerializationInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1b5a4c3c17f3e1cff52a1b04c3fa54d1c4af16d1" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69265912" /></Metadata><TypeSignature Language="C#" Value="public sealed class SerializationInfo" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SerializationInfo extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Serialization.SerializationInfo" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SerializationInfo" />
@@ -42,16 +42,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此类可供具有自定义序列化行为的对象。 <xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>上的方法<xref:System.Runtime.Serialization.ISerializable>或<xref:System.Runtime.Serialization.ISerializationSurrogate>填充<xref:System.Runtime.Serialization.SerializationInfo>存储的名称、 类型和它要序列化的信息的每个段的值。 在反序列化，相应的函数可以提取此信息。  
+ 此类由具有自定义序列化行为的对象使用。 上的<xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>方法或<xref:System.Runtime.Serialization.ISerializationSurrogate>用要序列<xref:System.Runtime.Serialization.SerializationInfo>化的每条信息的名称、类型和值填充存储区。 <xref:System.Runtime.Serialization.ISerializable> 在反序列化过程中, 适当的函数可以提取此信息。  
   
- 对象添加到<xref:System.Runtime.Serialization.SerializationInfo>存储在序列化时使用<xref:System.Runtime.Serialization.SerializationInfo.AddValue%2A>方法并从提取<xref:System.Runtime.Serialization.SerializationInfo>存储在反序列化使用<xref:System.Runtime.Serialization.SerializationInfo.GetValue%2A>方法。  
+ 使用方法在序列化<xref:System.Runtime.Serialization.SerializationInfo>时<xref:System.Runtime.Serialization.SerializationInfo.AddValue%2A>使用<xref:System.Runtime.Serialization.SerializationInfo>方法将对象添加到存储区, 并在反序列化时<xref:System.Runtime.Serialization.SerializationInfo.GetValue%2A>使用方法从存储区中提取对象。  
   
- 有关自定义序列化的详细信息，请参阅[自定义序列化](~/docs/standard/serialization/custom-serialization.md)。  
+ 有关自定义序列化的详细信息, 请参阅[自定义序列化](~/docs/standard/serialization/custom-serialization.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示了<xref:System.Runtime.Serialization.SerializationInfo>进行自定义序列化和反序列化的各种不同的值。  
+ 下面的代码示例演示了<xref:System.Runtime.Serialization.SerializationInfo>各种值的自定义序列化和反序列化。  
   
  [!code-cpp[ISerializable Interface Example#1](~/samples/snippets/cpp/VS_Snippets_Remoting/ISerializable Interface Example/CPP/iobjectreference.cpp#1)]
  [!code-csharp[ISerializable Interface Example#1](~/samples/snippets/csharp/VS_Snippets_Remoting/ISerializable Interface Example/CS/iobjectreference.cs#1)]
@@ -120,7 +120,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.IFormatterConverter>作为传递`converter`参数将数据从内部表示形式转换为窗体请求的用户。 中的数据的内部表示形式<xref:System.Runtime.Serialization.SerializationInfo>取决于创建它的格式化程序。  
+ 作为参数传递的<xref:System.Runtime.Serialization.IFormatterConverter>将数据从其内部表示形式转换为用户请求的形式。`converter` 中数据的内部表示形式<xref:System.Runtime.Serialization.SerializationInfo>依赖于创建它的格式化程序。  
   
  ]]></format>
         </remarks>
@@ -226,7 +226,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。 例如:  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。 例如:  
   
 ```csharp  
 void ISerializable.GetObject(SerializationInfo info, StreamingContext context)  
@@ -303,7 +303,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
  ]]></format>
         </remarks>
@@ -356,7 +356,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
  ]]></format>
         </remarks>
@@ -409,7 +409,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
  ]]></format>
         </remarks>
@@ -462,7 +462,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
  ]]></format>
         </remarks>
@@ -515,7 +515,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
  ]]></format>
         </remarks>
@@ -568,7 +568,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
  ]]></format>
         </remarks>
@@ -621,7 +621,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
    
   
@@ -681,7 +681,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
  ]]></format>
         </remarks>
@@ -734,9 +734,9 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 中包含的对象`value`参数将序列化为返回的类型`value`。  
+ `value`参数中包含的对象被序列化为`value`返回的类型。  
   
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
  ]]></format>
         </remarks>
@@ -794,7 +794,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
  ]]></format>
         </remarks>
@@ -847,7 +847,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
  ]]></format>
         </remarks>
@@ -905,7 +905,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
  ]]></format>
         </remarks>
@@ -963,12 +963,12 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Runtime.Serialization.SerializationInfo.AddValue%2A>方法以自定义类型的序列化。 该代码将一个字符串和整数添加到的实例<xref:System.Runtime.Serialization.SerializationInfo>类中<xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>方法的<xref:System.Runtime.Serialization.ISerializable>接口。 该代码还使用<xref:System.Runtime.Serialization.SerializationInfo.GetValue%2A>方法来检索值从<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 下面的示例使用<xref:System.Runtime.Serialization.SerializationInfo.AddValue%2A>方法自定义类型的序列化。 此代码将一个字符串和一个整数添加到<xref:System.Runtime.Serialization.SerializationInfo> <xref:System.Runtime.Serialization.ISerializable>接口的<xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>方法中的类的实例。 此代码还使用<xref:System.Runtime.Serialization.SerializationInfo.GetValue%2A>方法<xref:System.Runtime.Serialization.SerializationInfo>从检索值。  
   
  [!code-csharp[ISerializable_GetObjectData#0](~/samples/snippets/csharp/VS_Snippets_Remoting/ISerializable_GetObjectData/cs/ISerializable_GetObjectData.cs#0)]
  [!code-vb[ISerializable_GetObjectData#0](~/samples/snippets/visualbasic/VS_Snippets_Remoting/ISerializable_GetObjectData/vb/ISerializable_GetObjectData.vb#0)]  
@@ -1029,7 +1029,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
  ]]></format>
         </remarks>
@@ -1083,9 +1083,9 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 已分配的类型始终是该对象的类型或其父项之一。  
+ 已分配的类型始终是对象的类型或它的某个父级。  
   
- 如果使用添加的两个值名称仅可由不同的情况下，将引发任何异常，这不是建议的做法。 但是，添加两个值完全相同的名称将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
+ 如果使用仅大小写不同的名称添加了两个值, 则不会引发异常, 这是建议的做法。 但是, 添加具有相同名称的两个值将导致<xref:System.Runtime.Serialization.SerializationException>引发。  
   
  ]]></format>
         </remarks>
@@ -1138,14 +1138,14 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.SerializationInfo.AssemblyName%2A>返回的值相同<xref:System.Reflection.Assembly.FullName%2A>包含类型的程序集的属性。 这是格式化程序序列化此对象的类型信息时所使用的程序集名称。  
+ 与包含类型的程序集的<xref:System.Reflection.Assembly.FullName%2A>属性返回的值相同。 <xref:System.Runtime.Serialization.SerializationInfo.AssemblyName%2A> 这是格式化程序在序列化此对象的类型信息时使用的程序集名称。  
   
- 程序集名称包含程序集、 版本、 区域性和有关对象的一些安全信息的名称。  
+ 程序集名称包含程序集的名称、版本、区域性以及有关对象的某些安全信息。  
   
- 要更改正在序列化 （例如，若要为特定类型发送代理） 的类型的用户将设置此属性的值。  
+ 更改要序列化的类型的用户 (例如, 为特定类型发送代理) 将设置此属性的值。  
   
 > [!CAUTION]
->  反序列化过程中使用此属性，因为未定义此属性的值。  
+>  在反序列化期间不要使用此属性, 因为此属性的值是不确定的。  
   
  ]]></format>
         </remarks>
@@ -1192,12 +1192,12 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.SerializationInfo.FullTypeName%2A>等同于通过调用将返回的内容<xref:System.Type.FullName%2A>上<xref:System.Type>。 这是格式化程序序列化此对象的类型信息时所使用的类型名称。  
+ 与通过<xref:System.Type.FullName%2A>调用上<xref:System.Type>的返回内容相同。 <xref:System.Runtime.Serialization.SerializationInfo.FullTypeName%2A> 这是格式化程序在序列化此对象的类型信息时使用的类型名称。  
   
- 要更改的类型进行序列化 （例如，若要为特定类型发送代理） 的用户会想要设置此属性的值。  
+ 更改要序列化的类型的用户 (例如, 为特定类型发送代理) 将需要设置此属性的值。  
   
 > [!CAUTION]
->  反序列化过程中使用此属性，因为未定义此属性的值。  
+>  在反序列化期间不要使用此属性, 因为此属性的值是不确定的。  
   
  ]]></format>
         </remarks>
@@ -1248,7 +1248,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果的值是一个布尔值，或可以转换为一个，则返回该值;否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果值为布尔值, 或可转换为布尔值, 则返回该值;否则, <xref:System.InvalidCastException>将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
  ]]></format>
         </remarks>
@@ -1301,7 +1301,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果值是一个 8 位无符号的整数，或可以转换为一个，则返回该值;否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果值是一个8位无符号整数, 或可以转换为一个值, 则返回该值;否则, <xref:System.InvalidCastException>将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
  ]]></format>
         </remarks>
@@ -1354,7 +1354,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果值为 Unicode 字符，或可以转换为一个，则返回该值;否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果值是一个 Unicode 字符, 或可以转换为一个 Unicode 字符, 则返回该值;否则, <xref:System.InvalidCastException>将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
  ]]></format>
         </remarks>
@@ -1407,7 +1407,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果值为<xref:System.DateTime>，或者可以转换成<xref:System.DateTime>，该值是返回; 否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果值为<xref:System.DateTime>, 或可以转换<xref:System.DateTime>为, 则<xref:System.InvalidCastException>返回该值; 否则, 将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
  ]]></format>
         </remarks>
@@ -1460,7 +1460,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果值是十进制或可以转换成十进制数字，则返回该值;否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果该值为 decimal 或可转换为十进制, 则返回该值;否则, <xref:System.InvalidCastException>将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
  ]]></format>
         </remarks>
@@ -1513,7 +1513,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果该值是双精度，或可以转换为双精度型，则返回该值;否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果该值为 double, 或可转换为 double, 则返回该值;否则, <xref:System.InvalidCastException>将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
  ]]></format>
         </remarks>
@@ -1563,7 +1563,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 需要在写出到流之前枚举这些值的格式化程序将最常使用此函数。  
+ 此函数通常由在将这些值写入流之前需要枚举这些值的格式化程序使用。  
   
  ]]></format>
         </remarks>
@@ -1613,7 +1613,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果值是一个 16 位有符号的整数，或可以转换为一个，则返回该值;否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果值是一个16位有符号整数, 或可以转换为一个, 则返回该值;否则, <xref:System.InvalidCastException>将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
  ]]></format>
         </remarks>
@@ -1666,7 +1666,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果值是一个 32 位有符号的整数，或可以转换为一个，则返回该值;否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果该值为32位有符号整数, 或可以转换为一个, 则返回该值;否则, <xref:System.InvalidCastException>将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
    
   
@@ -1726,7 +1726,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果值是一个 64 位有符号的整数，或可以转换为一个，则返回该值;否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果该值为64位有符号整数, 或可以转换为一个, 则返回该值;否则, <xref:System.InvalidCastException>将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
  ]]></format>
         </remarks>
@@ -1784,7 +1784,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果值为`Int8`，或者可以转换成`Int8`，该值是返回; 否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果值为`Int8`, 或可以转换`Int8`为, 则<xref:System.InvalidCastException>返回该值; 否则, 将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
  ]]></format>
         </remarks>
@@ -1837,7 +1837,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果值是一个单精度浮点数，或可以转换为一个，则返回该值;否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果该值为单精度浮点数, 或可以转换为一个浮点数字, 则返回该值;否则, <xref:System.InvalidCastException>将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
  ]]></format>
         </remarks>
@@ -1885,12 +1885,12 @@ End Sub
       <Docs>
         <param name="name">与要检索的值关联的名称。</param>
         <summary>从 <see cref="T:System.String" /> 存储中检索一个 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 值。</summary>
-        <returns>与 <paramref name="name" /> 关联的 <see cref="T:System.String" />。</returns>
+        <returns>与 <see cref="T:System.String" /> 关联的 <paramref name="name" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果值为<xref:System.String>，或者可以转换成<xref:System.String>，该值是返回; 否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果值为<xref:System.String>, 或可以转换<xref:System.String>为, 则<xref:System.InvalidCastException>返回该值; 否则, 将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
  ]]></format>
         </remarks>
@@ -1948,7 +1948,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果值是一个 16 位无符号的整数，或可以转换为一个，则返回该值;否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果值为16位无符号整数, 或可以转换为一个值, 则返回该值;否则, <xref:System.InvalidCastException>将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
  ]]></format>
         </remarks>
@@ -2006,7 +2006,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果值是一个 32 位有符号的整数，或可以转换为一个，则返回该值;否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果该值为32位有符号整数, 或可以转换为一个, 则返回该值;否则, <xref:System.InvalidCastException>将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
  ]]></format>
         </remarks>
@@ -2064,7 +2064,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果值是一个 64 位无符号的整数，或可以转换为一个，则返回该值;否则为<xref:System.InvalidCastException>引发。 所有转换都由<xref:System.Runtime.Serialization.IFormatterConverter>与此相关<xref:System.Runtime.Serialization.SerializationInfo>。  
+ 如果该值为64位无符号整数, 或可以转换为一个值, 则返回该值;否则, <xref:System.InvalidCastException>将引发。 所有转换都是通过与<xref:System.Runtime.Serialization.IFormatterConverter>此<xref:System.Runtime.Serialization.SerializationInfo>关联的来完成的。  
   
  ]]></format>
         </remarks>
@@ -2123,14 +2123,14 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果数据存储在<xref:System.Runtime.Serialization.SerializationInfo>是请求的类型 （或其派生类之一），直接返回该值。 否则为<xref:System.Runtime.Serialization.IFormatterConverter.Convert%2A?displayProperty=nameWithType>调用以将其转换为适当的类型。  
+ 如果存储在中<xref:System.Runtime.Serialization.SerializationInfo>的数据是所请求的类型 (或其派生类之一), 则将直接返回该值。 否则, <xref:System.Runtime.Serialization.IFormatterConverter.Convert%2A?displayProperty=nameWithType>将调用来将其转换为适当的类型。  
   
- 返回的值<xref:System.Runtime.Serialization.SerializationInfo.GetValue%2A>中指定的类型，方法可以始终安全地转换`type`参数。  
+ <xref:System.Runtime.Serialization.SerializationInfo.GetValue%2A>方法返回的值始终可以安全地强制转换为`type`参数中指定的类型。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何将<xref:System.Runtime.Serialization.SerializationInfo.GetValue%2A>方法：  
+ 下面的代码示例演示<xref:System.Runtime.Serialization.SerializationInfo.GetValue%2A>方法的用法:  
   
  [!code-cpp[Classic SerializationInfo.GetValue Example#1](~/samples/snippets/cpp/VS_Snippets_Remoting/Classic SerializationInfo.GetValue Example/CPP/source.cpp#1)]
  [!code-csharp[Classic SerializationInfo.GetValue Example#1](~/samples/snippets/csharp/VS_Snippets_Remoting/Classic SerializationInfo.GetValue Example/CS/source.cs#1)]
@@ -2174,7 +2174,7 @@ End Sub
       </ReturnValue>
       <Docs>
         <summary>获取是否已显式设置程序集名称。</summary>
-        <value><see langword="true" /> 如果已显式设置程序集名称;否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果已显式设置程序集名称, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -2209,7 +2209,7 @@ End Sub
       </ReturnValue>
       <Docs>
         <summary>获取是否已显式设置完整类型名称。</summary>
-        <value><see langword="true" /> 如果已显式设置的完整类型名称;否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果已显式设置完整类型名称, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -2336,7 +2336,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.Formatter>负责设置<xref:System.Type>的<xref:System.Runtime.Serialization.SerializationInfo>之前将其传递给实例<xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>。 但是，想要为其对象发送代理用户将需要更改此所表示的类型<xref:System.Runtime.Serialization.SerializationInfo>实例。 使用<xref:System.Runtime.Serialization.SerializationInfo.SetType%2A>方法等效于设置同时<xref:System.Runtime.Serialization.SerializationInfo.FullTypeName%2A>和<xref:System.Runtime.Serialization.SerializationInfo.AssemblyName%2A>。  
+ 负责设置<xref:System.Runtime.Serialization.SerializationInfo>实例的, <xref:System.Type>然后将其传递给<xref:System.Runtime.Serialization.ISerializable.GetObjectData%2A>。 <xref:System.Runtime.Serialization.Formatter> 但是, 想要为其对象发送代理的用户将需要更改此<xref:System.Runtime.Serialization.SerializationInfo>实例所表示的类型。 使用方法等效于<xref:System.Runtime.Serialization.SerializationInfo.FullTypeName%2A>同时设置和<xref:System.Runtime.Serialization.SerializationInfo.AssemblyName%2A>。 <xref:System.Runtime.Serialization.SerializationInfo.SetType%2A>  
   
    
   

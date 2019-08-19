@@ -1,5 +1,5 @@
 <Type Name="HostProtectionException" FullName="System.Security.HostProtectionException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ff5648e1d2aad0d405cd43ac1aec8d1b17f6112b" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57922921" /></Metadata><TypeSignature Language="C#" Value="public class HostProtectionException : SystemException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="00ee9c764a036e415a919c4514e56eef228c5f77" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69161853" /></Metadata><TypeSignature Language="C#" Value="public class HostProtectionException : SystemException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit HostProtectionException extends System.SystemException" />
   <TypeSignature Language="DocId" Value="T:System.Security.HostProtectionException" />
   <TypeSignature Language="VB.NET" Value="Public Class HostProtectionException&#xA;Inherits SystemException" />
@@ -25,10 +25,10 @@
     <Attribute FrameworkAlternate="netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
       <AttributeName>System.Runtime.InteropServices.ComVisible(true)</AttributeName>
     </Attribute>
-    <Attribute FrameworkAlternate="netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0">
+    <Attribute FrameworkAlternate="netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-2.0;netcore-2.1;netcore-2.2">
       <AttributeName>System.Serializable</AttributeName>
     </Attribute>
-    <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0">
+    <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2">
       <AttributeName>System.Runtime.CompilerServices.TypeForwardedFrom("mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089")</AttributeName>
     </Attribute>
   </Attributes>
@@ -38,10 +38,10 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Security.Permissions.HostProtectionAttribute>属性用于确定是否类型或成员可以加载，基于主机的保护首选项时启动公共语言运行时建立。 如果处于活动状态的成员或类型<xref:System.Security.Permissions.HostProtectionAttribute>称为链接要求保护属性时发生。 如果调用方不符合对主机保护需求<xref:System.Security.HostProtectionException>引发。  
+ 基于公共语言运行时启动时所建立的主机保护首选项, 使用特性来确定是否可以加载类型或成员。<xref:System.Security.Permissions.HostProtectionAttribute> 如果调用具有活动<xref:System.Security.Permissions.HostProtectionAttribute>的类型或成员, 则该保护特性会出现链接请求。 如果调用方不满足主机保护的需求, <xref:System.Security.HostProtectionException>则会引发。  
   
 > [!NOTE]
->  一个<xref:System.Security.Permissions.HostProtectionAttribute>不是一个权限，即使它是链接要求的目标也是如此。 因为<xref:System.Security.HostProtectionException>引发的链接要求，所以无法处理它，并因此不能捕获和处理代码中。  
+>  <xref:System.Security.Permissions.HostProtectionAttribute>不是权限, 即使它是链接请求的目标。 由于链接<xref:System.Security.HostProtectionException>请求引发了, 因此无法对其进行处理, 因此不能在代码中对其进行捕获和处理。  
   
  ]]></format>
     </remarks>
@@ -124,7 +124,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 内容`message`参数应是可以理解的用户。 此构造函数的调用方需要确保此字符串已针对当前系统区域性进行了本地化。  
+ `message`参数的内容应为用户所理解。 此构造函数的调用方需要确保此字符串已针对当前系统区域性进行了本地化。  
   
  ]]></format>
         </remarks>
@@ -246,7 +246,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `demandedResources`参数指定导致引发异常的要求的主机保护类别。 例如，假设某个方法具有<xref:System.Security.Permissions.HostProtectionAttribute>属性，用于指示该方法公开共享的状态。 当调用该方法时，<xref:System.Security.Permissions.HostProtectionAttribute>执行链接要求的共享状态。 如果主机将共享的状态设置为禁止类别，然后<xref:System.Security.HostProtectionException>引发`demandedResources`属性值为<xref:System.Security.Permissions.HostProtectionResource.SharedState?displayProperty=nameWithType>。  
+ `demandedResources`参数指定导致引发异常的要求的主机保护类别。 例如, 假设方法具有一个<xref:System.Security.Permissions.HostProtectionAttribute>特性, 该特性指示方法公开共享状态。 调用方法时, <xref:System.Security.Permissions.HostProtectionAttribute>会对共享状态执行链接请求。 如果主机已将共享状态设置为禁止类别, <xref:System.Security.HostProtectionException>则会引发, `demandedResources`其属性值<xref:System.Security.Permissions.HostProtectionResource.SharedState?displayProperty=nameWithType>为。  
   
  ]]></format>
         </remarks>
@@ -282,7 +282,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性返回的要求的主机保护类别导致引发异常。 例如，假设某个方法具有<xref:System.Security.Permissions.HostProtectionAttribute>属性，用于指示该方法公开共享的状态。 当调用该方法时，<xref:System.Security.Permissions.HostProtectionAttribute>执行链接要求的共享状态。 如果主机将共享的状态设置为禁止类别，然后<xref:System.Security.HostProtectionException>引发时，和的值<xref:System.Security.HostProtectionException.DemandedResources%2A>属性是<xref:System.Security.Permissions.HostProtectionResource.SharedState?displayProperty=nameWithType>。  
+ 此属性返回导致引发异常的要求的主机保护类别。 例如, 假设方法具有一个<xref:System.Security.Permissions.HostProtectionAttribute>特性, 该特性指示方法公开共享状态。 调用方法时, <xref:System.Security.Permissions.HostProtectionAttribute>会对共享状态执行链接请求。 如果主机已将共享状态设置为禁止类别, <xref:System.Security.HostProtectionException>则会引发, 并且<xref:System.Security.HostProtectionException.DemandedResources%2A>属性的值为<xref:System.Security.Permissions.HostProtectionResource.SharedState?displayProperty=nameWithType>。  
   
  ]]></format>
         </remarks>
@@ -326,12 +326,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.HostProtectionException.GetObjectData%2A>方法设置<xref:System.Runtime.Serialization.SerializationInfo>用针对于序列化的所有异常对象数据的对象。 在反序列化，该异常并重新构造从<xref:System.Runtime.Serialization.SerializationInfo>通过流传输。  
+ 方法使用针对序列<xref:System.Runtime.Serialization.SerializationInfo>化的所有异常对象数据设置对象。 <xref:System.Security.HostProtectionException.GetObjectData%2A> 在反序列化期间, 将从通过<xref:System.Runtime.Serialization.SerializationInfo>流传输的中重新构造异常。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="info" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
       </Docs>
     </Member>
     <Member MemberName="ProtectedResources">
@@ -364,7 +364,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性标识的主机指定为当前无法访问代码的不完全受信任的主机保护类别。  
+ 此属性标识宿主指定为不能被完全信任的代码访问的主机保护类别。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="ApplicationActivator" FullName="System.Runtime.Hosting.ApplicationActivator">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="195ffd711b22fe15ac6d0cfd77749a1abaf8092a" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64161413" /></Metadata><TypeSignature Language="C#" Value="public class ApplicationActivator" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9663fe80db8e01c1b37c486df84d988524775e9a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69065965" /></Metadata><TypeSignature Language="C#" Value="public class ApplicationActivator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ApplicationActivator extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Hosting.ApplicationActivator" />
   <TypeSignature Language="VB.NET" Value="Public Class ApplicationActivator" />
@@ -26,38 +26,38 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 没有指定的单一实例<xref:System.Runtime.Hosting.ApplicationActivator>中每个类<xref:System.AppDomain>调用路由到的所有激活。 <xref:System.AppDomainManager>为当前<xref:System.AppDomain>可以提供其自己的自定义<xref:System.Runtime.Hosting.ApplicationActivator>实现此目的。 如果自定义<xref:System.Runtime.Hosting.ApplicationActivator>未提供，默认值的实例<xref:System.Runtime.Hosting.ApplicationActivator>创建。  
+ 所有激活调用都路由<xref:System.Runtime.Hosting.ApplicationActivator> <xref:System.AppDomain>到其中的类的单个指定实例。 对于, 当前<xref:System.AppDomain>可以为此目的提供自己的自定义。 <xref:System.Runtime.Hosting.ApplicationActivator> <xref:System.AppDomainManager> 如果未提供<xref:System.Runtime.Hosting.ApplicationActivator>自定义, 则会创建默认<xref:System.Runtime.Hosting.ApplicationActivator>的实例。  
   
- 以下步骤介绍了默认的行为<xref:System.Runtime.Hosting.ApplicationActivator.CreateInstance%2A>方法实现：  
+ 以下步骤描述了默认<xref:System.Runtime.Hosting.ApplicationActivator.CreateInstance%2A>方法实现的行为:  
   
-1.  检查是否<xref:System.ActivationContext>的外接程序是已激活的匹配项<xref:System.ActivationContext>的当前应用程序域。 如果不是，继续到步骤 2。 否则为执行的程序集，并返回结果包装在对象句柄。  
+1.  检查要激活<xref:System.ActivationContext>的外接程序的是否<xref:System.ActivationContext>与当前域的匹配; 如果不是, 则继续执行步骤2。 否则, 执行程序集并返回包装在对象句柄中的结果。  
   
-2.  在新外接程序激活<xref:System.AppDomain>。 执行以下步骤来初始化新<xref:System.AppDomain>使用<xref:System.Runtime.Hosting.ActivationArguments>外接程序。  
+2.  在新<xref:System.AppDomain>的中激活外接程序。 执行以下步骤以使用外接程序的<xref:System.AppDomain> <xref:System.Runtime.Hosting.ActivationArguments>初始化新的。  
   
-    1.  创建一个新<xref:System.AppDomainSetup>对象使用<xref:System.Runtime.Hosting.ActivationArguments>对象，其中包含外接程序的激活上下文。  
+    1.  使用包含外<xref:System.AppDomainSetup>接程序激活上下文的对象创建一个新的对象。<xref:System.Runtime.Hosting.ActivationArguments>  
   
-    2.  调用<xref:System.Runtime.Hosting.ApplicationActivator.CreateInstanceHelper%2A>方法来创建新的域使用<xref:System.AppDomainSetup>对象。  
+    2.  调用方法以<xref:System.AppDomainSetup>使用对象创建新域。 <xref:System.Runtime.Hosting.ApplicationActivator.CreateInstanceHelper%2A>  
   
-    3.  <xref:System.Runtime.Hosting.ApplicationActivator.CreateInstanceHelper%2A>方法调用<xref:System.Security.HostSecurityManager.DetermineApplicationTrust%2A?displayProperty=nameWithType>方法获取<xref:System.Security.Policy.ApplicationTrust>外接程序的对象。 如果<xref:System.Security.Policy.ApplicationTrust.IsApplicationTrustedToRun%2A>属性返回`true`外, 接程序执行。 如果不是，<xref:System.Runtime.Hosting.ApplicationActivator.CreateInstanceHelper%2A>引发<xref:System.Security.Policy.PolicyException>，该值指示无法获取执行权限。  
+    3.  方法调用方法获取<xref:System.Security.Policy.ApplicationTrust>外接程序的对象。 <xref:System.Security.HostSecurityManager.DetermineApplicationTrust%2A?displayProperty=nameWithType> <xref:System.Runtime.Hosting.ApplicationActivator.CreateInstanceHelper%2A> 如果属性返回`true`, 则执行外接程序。 <xref:System.Security.Policy.ApplicationTrust.IsApplicationTrustedToRun%2A> 如果不是<xref:System.Runtime.Hosting.ApplicationActivator.CreateInstanceHelper%2A> , 则<xref:System.Security.Policy.PolicyException>引发, 指示无法获取执行权限。  
   
-    4.  如果外接程序可为运行，则新信任<xref:System.AppDomain>创建并配置为<xref:System.ActivationContext>的外接程序和外接程序加载并执行。  
+    4.  如果外接程序受信任, 可以运行, 则将<xref:System.AppDomain> <xref:System.ActivationContext>为外接程序创建和配置一个新的, 并加载并执行外接程序。  
   
-    5.  返回的结果的外接程序激活，包装在对象句柄。  
+    5.  将返回外接程序的激活结果, 并将其包装在对象句柄中。  
   
- 自定义激活器可以定制外接程序为一组特定的情况下的激活。 例如，自定义激活器无法找到现有<xref:System.AppDomain>激活该外接程序而不是每次创建新的域。  
+ 自定义激活器可以将外接程序的激活定制为特定的一组环境。 例如, 自定义激活器可以找到一个现有<xref:System.AppDomain>的来激活此外接程序, 而不是每次都创建一个新域。  
   
- 以下步骤介绍了自定义的行为<xref:System.Runtime.Hosting.ApplicationActivator>外接程序中的现有激活<xref:System.AppDomain>:  
+ 以下步骤描述了在现有<xref:System.Runtime.Hosting.ApplicationActivator> <xref:System.AppDomain>中激活外接程序的自定义的行为:  
   
-1.  自定义激活器找到的域具有相同<xref:System.ActivationContext>作为正在激活的外接程序。  
+1.  自定义激活器将查找与正在激活的<xref:System.ActivationContext>外接程序相同的域。  
   
-2.  如果<xref:System.ActivationContext>永远不会出现之前在过程中，自定义激活器创建一个新<xref:System.AppDomain>此<xref:System.ActivationContext>通过调用<xref:System.AppDomain.CreateDomain%2A>直接方法或委托此活动<xref:System.Runtime.Hosting.ApplicationActivator.CreateInstanceHelper%2A>基类中。  
+2.  <xref:System.ActivationContext> <xref:System.AppDomain> <xref:System.Runtime.Hosting.ApplicationActivator.CreateInstanceHelper%2A> <xref:System.AppDomain.CreateDomain%2A>如果之前从未见过, 自定义激活器会通过直接调用方法为此创建新的, 或者将此活动委托给基类中的。 <xref:System.ActivationContext>  
   
-3.  如果没有现有的域具有相同<xref:System.ActivationContext>，然后激活器可以委派<xref:System.Runtime.Hosting.ApplicationActivator.CreateInstance%2A>方法调用<xref:System.Runtime.Hosting.ApplicationActivator>目标域中。 请注意，这将是跨域调用<xref:System.Runtime.Hosting.ApplicationActivator>驻留在目标中<xref:System.AppDomain>。  
+3.  如果存在具有相同<xref:System.ActivationContext>的现有域, 则激活器可以将<xref:System.Runtime.Hosting.ApplicationActivator.CreateInstance%2A>方法调用委托给目标域中<xref:System.Runtime.Hosting.ApplicationActivator>的。 请注意, 这将是对<xref:System.Runtime.Hosting.ApplicationActivator>位于目标<xref:System.AppDomain>中的的跨域调用。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何获取<xref:System.Runtime.Hosting.ApplicationActivator>从当前对象<xref:System.AppDomain.DomainManager%2A>基于清单的应用程序。  
+ 下面的代码示例演示如何从基于清单<xref:System.Runtime.Hosting.ApplicationActivator>的应用程序的<xref:System.AppDomain.DomainManager%2A>当前获取对象。  
   
  [!code-csharp[System.Runtime.Hosting.ApplicationActivator#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Runtime.Hosting.ApplicationActivator/cs/program.cs#1)]
  [!code-vb[System.Runtime.Hosting.ApplicationActivator#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Runtime.Hosting.ApplicationActivator/vb/program.vb#1)]  
@@ -122,7 +122,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法适用于应用程序的基于清单的激活。  
+ 此方法用于基于清单的应用程序激活。  
   
  ]]></format>
         </remarks>
@@ -163,7 +163,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法适用于应用程序的基于清单的激活。 激活数据包含的信息，例如 URL 的查询字符串部分。  
+ 此方法用于基于清单的应用程序激活。 激活数据包含 URL 的查询字符串部分等信息。  
   
  ]]></format>
         </remarks>
@@ -203,7 +203,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法适用于应用程序的基于清单的激活。  
+ 此方法用于基于清单的应用程序激活。  
   
  ]]></format>
         </remarks>

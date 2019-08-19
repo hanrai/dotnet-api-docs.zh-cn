@@ -1,5 +1,5 @@
 <Type Name="DependencyPropertyChangedEventArgs" FullName="System.Windows.DependencyPropertyChangedEventArgs">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="437f11be4b842cf6fe5f1e6049b75308904d041d" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64187368" /></Metadata><TypeSignature Language="C#" Value="public struct DependencyPropertyChangedEventArgs" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5a33524a4df14c324a5fcdb2b10f7383c87f24c3" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69445060" /></Metadata><TypeSignature Language="C#" Value="public struct DependencyPropertyChangedEventArgs" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit DependencyPropertyChangedEventArgs extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Windows.DependencyPropertyChangedEventArgs" />
   <TypeSignature Language="VB.NET" Value="Public Structure DependencyPropertyChangedEventArgs" />
@@ -20,14 +20,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用的事件<xref:System.Windows.DependencyPropertyChangedEventArgs>的事件数据类和<xref:System.Windows.DependencyPropertyChangedEventHandler>方法实现处理程序，通常遵循命名模式`Is*Changed`，并通常作为[!INCLUDE[TLA#tla_clr](~/includes/tlasharptla-clr-md.md)]没有事件<xref:System.Windows.RoutedEvent>（它们不是路由的事件） 的支持。 某些类处理"处理"，否则方法未公开，例如报告属性更改，通过状态更改事件<xref:System.Windows.Controls.Primitives.ButtonBase.OnIsPressedChanged%2A?displayProperty=nameWithType>，还使用<xref:System.Windows.DependencyPropertyChangedEventArgs>的事件数据类。  
+ 使用事件数据的<xref:System.Windows.DependencyPropertyChangedEventArgs>类的事件和处理程序的<xref:System.Windows.DependencyPropertyChangedEventHandler>方法实现通常遵循命名模式`Is*Changed`, 并且通常作为[!INCLUDE[TLA#tla_clr](~/includes/tlasharptla-clr-md.md)]事件实现, 而不会<xref:System.Windows.RoutedEvent>支持 (它们不是路由事件)。 某些类处理方法, 这些方法 "处理" 其他不公开的事件 (这些事件通过属性更改报告状态<xref:System.Windows.Controls.Primitives.ButtonBase.OnIsPressedChanged%2A?displayProperty=nameWithType>更改, 如) <xref:System.Windows.DependencyPropertyChangedEventArgs>也将类用于事件数据。  
   
- 为方案<xref:System.Windows.PropertyChangedCallback>是使用来自属性系统计算的属性的报告旧的和新值的参数。 处理新旧值的回调可以选择根据这些值，如选择不响应被认为是无意义的值发生更改的特殊处理。  
+ 的方案<xref:System.Windows.PropertyChangedCallback>是使用自变量报告属性系统计算属性中的旧值和新值。 处理旧值和新值的回调可能会根据这些值选择特殊处理, 例如选择不响应被视为不重要的值更改。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Windows.DependencyPropertyChangedEventArgs>类的上下文中<xref:System.Windows.PropertyChangedCallback>还定义了事件的自定义类的特定属性。 回调采用结果的旧和新值的属性系统中传达的信息<xref:System.Windows.DependencyPropertyChangedEventArgs>，并会重新打包到一个不同的事件参数类这些<xref:System.Windows.RoutedPropertyChangedEventArgs%601>。 新的自变量然后作为数据用于定义和自定义类引发的一个"ValueChanged"事件。  
+ 下面的示例在的<xref:System.Windows.DependencyPropertyChangedEventArgs>上下文<xref:System.Windows.PropertyChangedCallback>中对也定义事件的自定义类的特定属性使用类。 回调从属性系统<xref:System.Windows.DependencyPropertyChangedEventArgs>中获取旧值和新值的结果, 并将这些值重新打包到不同的事件参数类<xref:System.Windows.RoutedPropertyChangedEventArgs%601>中。 然后, 新参数将用作定义的 "ValueChanged" 事件的数据, 并由自定义类引发。  
   
  [!code-csharp[CustomControlNumericUpDownOneProject#DependencyPropertyChangedEventArgs](~/samples/snippets/csharp/VS_Snippets_Wpf/CustomControlNumericUpDownOneProject/CSharp/NumericUpDown.cs#dependencypropertychangedeventargs)]
  [!code-vb[CustomControlNumericUpDownOneProject#DependencyPropertyChangedEventArgs](~/samples/snippets/visualbasic/VS_Snippets_Wpf/CustomControlNumericUpDownOneProject/visualbasic/numericupdown.vb#dependencypropertychangedeventargs)]  
@@ -64,7 +64,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 报告依赖关系属性更改的自定义事件的实施者应使用此构造函数时引发该事件将填充与更改的详细信息的事件数据。  
+ 报告依赖属性更改的自定义事件的实现程序应使用此构造函数, 以便在引发事件时, 使用更改的细节填充事件数据。  
   
  ]]></format>
         </remarks>
@@ -106,7 +106,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此实现依赖于的所有属性，包括内部属性的值等效性。  
+ 此实现依赖于所有属性 (包括内部属性) 的值等效性。  
   
  ]]></format>
         </remarks>
@@ -139,7 +139,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此实现依赖于的所有属性，包括内部属性的值等效性。  
+ 此实现依赖于所有属性 (包括内部属性) 的值等效性。  
   
  ]]></format>
         </remarks>
@@ -191,12 +191,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 提供的值的类型应始终为强制转换成所报告的依赖项属性的类型。  
+ 提供的值的类型应始终与所报告的依赖属性的类型可转换。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Windows.DependencyPropertyChangedEventArgs>类的上下文中<xref:System.Windows.PropertyChangedCallback>还定义了事件的自定义类的特定属性。 回调采用结果的旧和新值的属性系统中传达的信息<xref:System.Windows.DependencyPropertyChangedEventArgs>，并会重新打包到一个不同的事件参数类这些<xref:System.Windows.RoutedPropertyChangedEventArgs%601>。 新的自变量然后作为数据用于定义和自定义类引发的一个"ValueChanged"事件。  
+ 下面的示例在的<xref:System.Windows.DependencyPropertyChangedEventArgs>上下文<xref:System.Windows.PropertyChangedCallback>中对也定义事件的自定义类的特定属性使用类。 回调从属性系统<xref:System.Windows.DependencyPropertyChangedEventArgs>中获取旧值和新值的结果, 并将这些值重新打包到不同的事件参数类<xref:System.Windows.RoutedPropertyChangedEventArgs%601>中。 然后, 新参数将用作定义的 "ValueChanged" 事件的数据, 并由自定义类引发。  
   
  [!code-csharp[CustomControlNumericUpDownOneProject#DependencyPropertyChangedEventArgs](~/samples/snippets/csharp/VS_Snippets_Wpf/CustomControlNumericUpDownOneProject/CSharp/NumericUpDown.cs#dependencypropertychangedeventargs)]
  [!code-vb[CustomControlNumericUpDownOneProject#DependencyPropertyChangedEventArgs](~/samples/snippets/visualbasic/VS_Snippets_Wpf/CustomControlNumericUpDownOneProject/visualbasic/numericupdown.vb#dependencypropertychangedeventargs)]  
@@ -228,12 +228,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 提供的值的类型应始终为强制转换成所报告的依赖项属性的类型。  
+ 提供的值的类型应始终与所报告的依赖属性的类型可转换。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Windows.DependencyPropertyChangedEventArgs>类的上下文中<xref:System.Windows.PropertyChangedCallback>还定义了事件的自定义类的特定属性。 回调采用结果的旧和新值的属性系统中传达的信息<xref:System.Windows.DependencyPropertyChangedEventArgs>，并会重新打包到一个不同的事件参数类这些<xref:System.Windows.RoutedPropertyChangedEventArgs%601>。 新的自变量然后作为数据用于定义和自定义类引发的一个"ValueChanged"事件。  
+ 下面的示例在的<xref:System.Windows.DependencyPropertyChangedEventArgs>上下文<xref:System.Windows.PropertyChangedCallback>中对也定义事件的自定义类的特定属性使用类。 回调从属性系统<xref:System.Windows.DependencyPropertyChangedEventArgs>中获取旧值和新值的结果, 并将这些值重新打包到不同的事件参数类<xref:System.Windows.RoutedPropertyChangedEventArgs%601>中。 然后, 新参数将用作定义的 "ValueChanged" 事件的数据, 并由自定义类引发。  
   
  [!code-csharp[CustomControlNumericUpDownOneProject#DependencyPropertyChangedEventArgs](~/samples/snippets/csharp/VS_Snippets_Wpf/CustomControlNumericUpDownOneProject/CSharp/NumericUpDown.cs#dependencypropertychangedeventargs)]
  [!code-vb[CustomControlNumericUpDownOneProject#DependencyPropertyChangedEventArgs](~/samples/snippets/visualbasic/VS_Snippets_Wpf/CustomControlNumericUpDownOneProject/visualbasic/numericupdown.vb#dependencypropertychangedeventargs)]  
@@ -271,7 +271,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 该实现使用与相同的逻辑<xref:System.Windows.DependencyPropertyChangedEventArgs.Equals%2A>。  
+ 实现使用与相同的逻辑<xref:System.Windows.DependencyPropertyChangedEventArgs.Equals%2A>。  
   
  ]]></format>
         </remarks>
@@ -306,7 +306,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 实现将返回与相同的逻辑求反<xref:System.Windows.DependencyPropertyChangedEventArgs.Equals%2A>。  
+ 实现返回与相同的逻辑<xref:System.Windows.DependencyPropertyChangedEventArgs.Equals%2A>的求反。  
   
  ]]></format>
         </remarks>
@@ -340,7 +340,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性是适用于一种常见内使用<xref:System.Windows.PropertyChangedCallback>的已注册多个属性，并需要消除歧义的属性更改调用回调。 <xref:System.Windows.DependencyPropertyChangedEventArgs.Property%2A> 不是通常适用于引发事件，因为通常会有属性和事件之间存在 1:1 对应关系属性更改该报表。 已引发的事件本身就是更改的属性的指示。  
+ 如果在为多个属性注册的公共<xref:System.Windows.PropertyChangedCallback>中使用此属性, 则此属性是相关的, 需要消除调用回调的属性更改的歧义。 <xref:System.Windows.DependencyPropertyChangedEventArgs.Property%2A>通常不与引发事件相关, 因为在属性与报告属性更改的事件之间通常存在1:1 的对应关系。 引发的事件本身就是指示哪个属性发生了更改。  
   
  ]]></format>
         </remarks>

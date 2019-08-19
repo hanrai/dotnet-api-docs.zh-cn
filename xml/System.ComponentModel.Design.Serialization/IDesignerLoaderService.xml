@@ -1,5 +1,5 @@
 <Type Name="IDesignerLoaderService" FullName="System.ComponentModel.Design.Serialization.IDesignerLoaderService">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="fec085c20104231eb2ef57a4ab1990c8b0a52caa" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63903595" /></Metadata><TypeSignature Language="C#" Value="public interface IDesignerLoaderService" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f4438738ad95585cb9d89ec4584de592177ebe65" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69350194" /></Metadata><TypeSignature Language="C#" Value="public interface IDesignerLoaderService" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDesignerLoaderService" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.Serialization.IDesignerLoaderService" />
   <TypeSignature Language="VB.NET" Value="Public Interface IDesignerLoaderService" />
@@ -29,9 +29,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.ComponentModel.Design.Serialization.DesignerLoader>可以实现此接口可管理涉及外部组件的设计器加载。 此接口还允许外部组件通过调用启动的设计图面上重新加载<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.Reload%2A>。 设计器加载程序不需要实现此接口，如果不需要异步加载支持。  
+ <xref:System.ComponentModel.Design.Serialization.DesignerLoader>可以实现此接口来管理涉及外部组件的设计器加载。 此接口还允许外部组件通过调用<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.Reload%2A>来启动设计图面的重载。 如果设计器加载程序不需要支持异步加载, 则设计器加载程序不必实现此接口。  
   
- 设计器加载使用的自定义实现<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService>中不同的方式可能会发生。 在加载过程中涉及有时外部组件。 为了方便加载具有外部依赖项，设计器加载程序服务接口提供了一种机制，确定何时加载完毕，允许加载以指示它已完成的每个部分。 <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService>通常用于确定加载时计数器跟踪剩余的加载依赖项的数量进行测试已完成。 加载的每个部分完成后，<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>调用时，服务递减和计数器。 若要设置的依赖加载进程，请调用<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>一次针对调用每个加载过程<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>时其加载已完成。 最后的加载完成时，服务调用<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderHost.EndLoad%2A>上加载程序宿主。  
+ 使用的<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService>自定义实现的设计器加载可通过多种方式进行。 有时, 在加载过程中涉及外部组件。 为了便于使用外部依赖项加载, 设计器加载程序服务接口提供了一种机制, 该机制确定加载完成的时间, 并允许加载的每个部分指示其已完成。 <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService>通常通过测试一个用于跟踪剩余加载依赖关系数的计数器来确定加载完成的时间。 当负载的每个部分完成时<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A> , 将调用, 并且服务会递减计数器。 若要设置依赖加载进程的数目, 请<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>对每个加载完成时调用<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>的加载进程调用一次。 完成最后一次加载后, 服务会在<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderHost.EndLoad%2A>加载器主机上调用。  
   
  ]]></format>
     </remarks>
@@ -72,7 +72,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>参与加载过程的每个外部对象的一次。 <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A> 加载进程的工作都完成时调用。  
+ 为<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>参与加载过程的每个外部对象调用一次。 <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>加载过程工作完成后, 调用。  
   
  ]]></format>
         </remarks>
@@ -118,9 +118,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法以指示已完成依赖加载操作。 调用<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>个已注册的调用的每个进程一次<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>，已完成的。  
+ 调用此方法以通知依赖加载操作已完成。 对于<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>通过调用<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>注册的每个进程, 调用一次, 该进程已完成。  
   
- 如果依赖加载成功，调用方集`successful`参数`true`，并将传递空集合或`null`到`errorCollection`参数。 如果依赖加载遇到错误，调用方将设置`successful`参数`false`，并将传递一系列指示到失败的原因的异常`errorCollection`参数。  
+ 如果依赖加载成功, `successful`则调用方将参数设置为`true` , 并向`errorCollection`参数传递空集合`null`或。 如果依赖加载遇到错误, 则调用方将`successful`参数设置为`false` , 并将指示失败原因或`errorCollection`原因的异常集合传递给参数。  
   
  ]]></format>
         </remarks>
@@ -162,9 +162,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 任何对象可以调用此方法来请求的加载程序重新加载设计文档。 如果加载程序支持重新加载并执行重新加载，设计器加载程序可以返回`true`。 否则，它将返回`false`，指示将不会发生重新加载。 调用方不能依赖于立即; 发生重新加载设计器加载程序可以计划这段时间，或它可以尝试重新加载在一次。  
+ 任何对象都可以调用此方法来请求加载程序重新加载设计文档。 如果加载程序支持重新加载并符合重载, 则设计器加载程序可以`true`返回。 否则, 它将`false`返回, 这表示不会发生重新加载。 调用方不能直接依赖于重新加载发生的情况;设计器加载程序可以将其安排在其他时间进行, 也可以尝试一次重新加载。  
   
- 如果无法重新加载设计器，调用方可以向用户显示一条消息。  
+ 如果无法重新加载设计器, 则调用方可以向用户显示一条消息。  
   
  ]]></format>
         </remarks>
