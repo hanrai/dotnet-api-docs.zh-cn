@@ -1,5 +1,5 @@
 <Type Name="IKeyboardInputSink" FullName="System.Windows.Interop.IKeyboardInputSink">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="47f5caa5a67f5edacbabd48e1bc12a6c6c192a30" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55348730" /></Metadata><TypeSignature Language="C#" Value="public interface IKeyboardInputSink" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bbebaa1ead845294617136125cc87c2b38c32199" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69168236" /></Metadata><TypeSignature Language="C#" Value="public interface IKeyboardInputSink" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IKeyboardInputSink" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Interop.IKeyboardInputSink" />
   <TypeSignature Language="VB.NET" Value="Public Interface IKeyboardInputSink" />
@@ -17,13 +17,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 键盘接收器处理的整体键盘输入模型的特定子集中[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]和[!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)]，并使某些键盘输入进行处理和不具有当前的键盘焦点是定向到 Hwnd。  
+ 键盘接收器处理[!INCLUDE[TLA#tla_win32](~/includes/tlasharptla-win32-md.md)]和[!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)]的总体键盘输入模型的特定子集的输入, 并允许处理某些键盘输入, 并将其定向到除当前键盘焦点以外的 hwnd。  
   
- 如果你的组件包含其他组件，并且维护 tab 键顺序，您的组件还必须实现<xref:System.Windows.Interop.IKeyboardInputSite>并跟踪哪些组件具有焦点。  
+ 如果你的组件包含其他组件, 并且保持一个 tab 键顺序, 则你的<xref:System.Windows.Interop.IKeyboardInputSite>组件还必须实现并跟踪哪个组件具有焦点。  
   
- 有关专门为实施该输入体系结构的讨论[!INCLUDE[TLA#tla_winforms](~/includes/tlasharptla-winforms-md.md)]互操作性，请参阅[Windows 窗体和 WPF 互操作性输入体系结构](~/docs/framework/wpf/advanced/windows-forms-and-wpf-interoperability-input-architecture.md)。  
+ 有关专门为[!INCLUDE[TLA#tla_winforms](~/includes/tlasharptla-winforms-md.md)]互操作实现的输入体系结构的讨论, 请参阅[Windows 窗体和 WPF 互操作性输入体系结构](~/docs/framework/wpf/advanced/windows-forms-and-wpf-interoperability-input-architecture.md)。  
   
- <xref:System.Windows.Interop.HwndSource> 并<xref:System.Windows.Interop.HwndHost>每个实现<xref:System.Windows.Interop.IKeyboardInputSink>接口，通过显式接口定义。 显式定义提供默认行为，如有必要通过也可以访问<xref:System.Windows.Interop.IKeyboardInputSink>接口的强制转换<xref:System.Windows.Interop.HwndSource>或<xref:System.Windows.Interop.HwndHost>。  
+ <xref:System.Windows.Interop.HwndSource>每个通过显式<xref:System.Windows.Interop.IKeyboardInputSink>接口定义实现接口。 <xref:System.Windows.Interop.HwndHost> 显式定义提供默认行为, 也可以在必要时通过<xref:System.Windows.Interop.IKeyboardInputSink> <xref:System.Windows.Interop.HwndSource>或<xref:System.Windows.Interop.HwndHost>的接口强制转换来访问。  
   
  ]]></format>
     </remarks>
@@ -56,7 +56,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法是必需的要转发<xref:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator%2A>对具有焦点的子组件中的调用<xref:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator%2A>实现。 调用<xref:System.Windows.Interop.IKeyboardInputSink.HasFocusWithin%2A>直到达到特定的焦点和转发的级别以递归方式<xref:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator%2A>存在。  
+ 此方法对于从<xref:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator%2A> <xref:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator%2A>实现中将对子组件的调用转发到具有焦点的子组件是必需的。 以<xref:System.Windows.Interop.IKeyboardInputSink.HasFocusWithin%2A>递归方式调用, 直到达到特定焦点的级别并<xref:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator%2A>将其转发到该处。  
   
  ]]></format>
         </remarks>
@@ -78,7 +78,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
           <AttributeName>set: System.Security.SecurityCritical</AttributeName>
         </Attribute>
       </Attributes>
@@ -92,7 +92,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 最初，此属性应设置为`null`。 将接收器添加到其组件列表的任何容器将设置<xref:System.Windows.Interop.IKeyboardInputSink.KeyboardInputSite%2A>之前调用任何其他方法，并且它可以在此之后设置多个时间。 应将属性设置为`null`再次之前可供使用。  
+ 此属性最初应设置为`null`。 任何其他方法被调用之前, 将接收器添加到其<xref:System.Windows.Interop.IKeyboardInputSink.KeyboardInputSite%2A>组件列表中的所有容器都将设置, 并且可在该方法之后多次设置。 应在处置之前将属性`null`设置为。  
   
  ]]></format>
         </remarks>
@@ -114,7 +114,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
           <AttributeName>System.Security.SecurityCritical</AttributeName>
         </Attribute>
       </Attributes>
@@ -134,11 +134,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- [!INCLUDE[TLA#tla_win](~/includes/tlasharptla-win-md.md)]消息必须 WM_CHAR、 WM_SYSCHAR、 WM_DEADCHAR 和 WM_SYSDEADCHAR。  
+ [!INCLUDE[TLA#tla_win](~/includes/tlasharptla-win-md.md)]消息必须是 WM_CHAR、WM_SYSCHAR、WM_DEADCHAR 或 WM_SYSDEADCHAR。  
   
- 如果该组件已包含其他组件，必须实现通过调用每个包含组件的传入消息<xref:System.Windows.Interop.IKeyboardInputSink.OnMnemonic%2A>方法。  
+ 如果组件包含组件, 则必须通过调用每个包含组件的<xref:System.Windows.Interop.IKeyboardInputSink.OnMnemonic%2A>方法在实现中传递消息。  
   
- 返回的接口`true`从<xref:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator%2A>将不会调用<xref:System.Windows.Interop.IKeyboardInputSink.OnMnemonic%2A>。 实现可以选择执行所有处理中的特定组合键<xref:System.Windows.Interop.IKeyboardInputSink.TranslateChar%2A>并跳过<xref:System.Windows.Interop.IKeyboardInputSink.OnMnemonic%2A>。  
+ <xref:System.Windows.Interop.IKeyboardInputSink.OnMnemonic%2A>从`true` 返回的接口将<xref:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator%2A>不会调用。 实现可以选择在中执行所有特定的<xref:System.Windows.Interop.IKeyboardInputSink.TranslateChar%2A>组合键处理并绕过。 <xref:System.Windows.Interop.IKeyboardInputSink.OnMnemonic%2A>  
   
  ]]></format>
         </remarks>
@@ -160,7 +160,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
           <AttributeName>System.Security.SecurityCritical</AttributeName>
         </Attribute>
       </Attributes>
@@ -178,7 +178,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应维护内部站点集合和使用此方法来添加新的接收器，并返回新的站点与子组件的组件。 您只需维护的网站集，因为可以从网站获取接收器。  
+ 具有子组件的组件应维护站点的内部集合, 并使用此方法添加新接收器并返回新站点。 你只需维护网站集, 因为可以从站点获取接收器。  
   
  ]]></format>
         </remarks>
@@ -211,7 +211,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Input.FocusNavigationDirection.First> 并<xref:System.Windows.Input.FocusNavigationDirection.Last>是应传递给此方法中的仅相关值<xref:System.Windows.Input.TraversalRequest>。  
+ <xref:System.Windows.Input.FocusNavigationDirection.First>和<xref:System.Windows.Input.FocusNavigationDirection.Last> 是<xref:System.Windows.Input.TraversalRequest>在中应传递到此方法的唯一相关值。  
   
  ]]></format>
         </remarks>
@@ -231,7 +231,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
           <AttributeName>System.Security.SecurityCritical</AttributeName>
         </Attribute>
       </Attributes>
@@ -253,11 +253,11 @@
 ## Remarks  
  消息必须是 WM_KEYDOWN 或 WM_SYSKEYDOWN。  
   
- 如果组件是无法处理输入的转换，有可能包含转换的子组件，则通常会调用<xref:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator%2A>上返回结果之前将保留的当前焦点的子组件的方法。  
+ 如果组件无法处理输入翻译并且具有可能具有翻译的子组件, 则它通常会在返回结果<xref:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator%2A>之前, 对保持当前焦点的子组件调用方法。  
   
- 如果无法立即处理该消息，您可以重新将其调度它内<xref:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator%2A>实现中如果有必要，，然后返回`false`。  
+ 如果无法立即处理该消息, 则可以在必要时从<xref:System.Windows.Interop.IKeyboardInputSink.TranslateAccelerator%2A>实现中重新调度该消息, 然后返回。 `false`  
   
- 转换加速键的一个主要方案是处理 VK_TAB keydown 消息并确定是否设置中的组件，若要调用的焦点<xref:System.Windows.Interop.IKeyboardInputSink.TabInto%2A>到子组件时，或调用<xref:System.Windows.Interop.IKeyboardInputSite.OnNoMoreTabStops%2A>父站点上因为 tab 键序列已达到的开头或结尾的边界。 某些组件可能选择不处理 tab 键以这种方式。  
+ 转换快捷键的主要方案是处理 VK_TAB keydown 消息, 并确定是将焦点设置在组件内、调用<xref:System.Windows.Interop.IKeyboardInputSink.TabInto%2A>子组件还是<xref:System.Windows.Interop.IKeyboardInputSite.OnNoMoreTabStops%2A>调用父站点, 因为 TAB 序列已达到开始或结束边界。 某些组件可能会选择不以这种方式处理 tab 键。  
   
  ]]></format>
         </remarks>
@@ -278,7 +278,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
           <AttributeName>System.Security.SecurityCritical</AttributeName>
         </Attribute>
       </Attributes>
@@ -298,7 +298,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果实现此方法以返回`true`，输入体系结构将不会调用<xref:System.Windows.Interop.IKeyboardInputSink.OnMnemonic%2A>密钥，该消息。  
+ 如果实现此方法以返回`true`, 则输入体系结构将不会调用<xref:System.Windows.Interop.IKeyboardInputSink.OnMnemonic%2A>该密钥消息。  
   
  ]]></format>
         </remarks>

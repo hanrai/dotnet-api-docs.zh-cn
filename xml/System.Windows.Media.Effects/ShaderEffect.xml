@@ -1,5 +1,5 @@
 <Type Name="ShaderEffect" FullName="System.Windows.Media.Effects.ShaderEffect">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6e56e17a4be59e38901f9a9c8ec0a1d057d18b02" /><Meta Name="ms.sourcegitcommit" Value="42a3c35677e9d87eeb503607ae50c9d39827d414" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="12/17/2018" /><Meta Name="ms.locfileid" Value="53477201" /></Metadata><TypeSignature Language="C#" Value="public abstract class ShaderEffect : System.Windows.Media.Effects.Effect" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4f4e511f7b5bbda791d5be6590bf019f2c160b65" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69448340" /></Metadata><TypeSignature Language="C#" Value="public abstract class ShaderEffect : System.Windows.Media.Effects.Effect" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract ShaderEffect extends System.Windows.Media.Effects.Effect" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Media.Effects.ShaderEffect" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ShaderEffect&#xA;Inherits Effect" />
@@ -20,55 +20,55 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 派生自<xref:System.Windows.Media.Effects.ShaderEffect>类，以实现自定义效果基于单个像素着色器。  
+ 从<xref:System.Windows.Media.Effects.ShaderEffect>类派生以实现基于单个像素着色器的自定义效果。  
   
- 以下步骤说明如何创建自定义效果。  
+ 以下步骤演示如何创建自定义效果。  
   
-1.  负载<xref:System.Windows.Media.Effects.PixelShader>从预编译的高级别着色语言 (HLSL) 字节码。  
+1.  <xref:System.Windows.Media.Effects.PixelShader>从预编译的高级着色语言 (HLSL) 字节码加载。  
   
-2.  定义依赖属性表示参数的效果和<xref:System.Windows.Media.Brush>-基于图面上的输入。 使用其中一个<xref:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty%2A>重载，可将关联与这些输入在 HLSL 字节码中注册所引用的数字。  
+2.  定义表示效果的参数和基于的<xref:System.Windows.Media.Brush>图面输入的依赖项属性。 使用其中一个<xref:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty%2A>重载将这些输入与 HLSL 字节码中引用的寄存器号关联。  
   
- 取样器数被限制为 4。  
+ 采样器数限制为4。  
   
- 使用 PS 3.0 着色器时，以下限制适用。  
+ 使用 PS 3.0 着色器时, 以下限制适用。  
   
--   PS 3.0 着色器分配时，采样器的数量增加到 8。 将分配其他着色器以启用注册 8 个取样器之前的 PS 3.0 着色器。  
+-   分配 PS 3.0 着色器后, 取样器数将增加到8。 将 PS 3.0 着色器分配到其他着色器之前, 以允许注册8个取样器。  
   
--   使用完整的着色器常量寄存器限制为 224 的浮点数。 有关详细信息，请参阅[ps_3_0](https://go.microsoft.com/fwlink/?LinkId=166292)。  
+-   使用完整的着色器常量寄存器限制 (224)。 有关详细信息, 请参阅[ps_3_0](https://go.microsoft.com/fwlink/?LinkId=166292)。  
   
--   在 PS 3.0 着色器中支持以下数据类型。 如果使用这些较低的着色器版本中，将引发异常。  
+-   仅 PS 3.0 着色器支持以下数据类型。 如果在较低的着色器版本中使用了异常, 则会引发异常。  
   
-    -   `int` 和类型转换为`int`: `uint`， `byte`， `sbyte`， `long`， `ulong`， `short`， `ushort`， `char`  
+    -   `int`和类型可转换为`int`: `uint` `byte` `sbyte` 、、、`long`、 `ulong` 、、、`ushort` `short``char`  
   
     -   `bool`  
   
--   如果不提供硬件支持 PS 3.0 的计算机上加载有效的 PS 3.0 着色器，将忽略着色器。 如果着色器是无效的不引发异常。  
+-   如果在不支持 PS 3.0 硬件的计算机上加载有效 PS 3.0 着色器, 则将忽略着色器。 如果着色器无效, 则不会引发异常。  
   
--   如果计算机具有多个视频卡，由最低的视频卡定义行为。 例如，如果计算机具有两个视频卡，其中一个支持 PS 3.0，并且其中一个却没有，则行为是相同像计算机不支持 PS 3.0。  
+-   如果计算机有多个视频卡, 则该行为由功能最少的视频卡定义。 例如, 如果计算机有两个视频卡, 其中一个卡支持 PS 3.0, 其中一个不支持 PS, 则行为与计算机不支持 PS 3.0 时相同。  
   
--   如果计算机支持呈现 PS 3.0 中的硬件，但分配无效的 PS 3.0 着色器，<xref:System.Windows.Media.Effects.PixelShader.InvalidPixelShaderEncountered>引发事件。 无效的 PS 3.0 着色器的一个示例是一个编译`ps_3_sw`标志。 <xref:System.Windows.Media.Effects.ShaderEffect>类接受仅 PS 3.0 着色器编译的`ps_3_0`标志传递到 fxc.exe。 有关详细信息，请参阅[效果编译器工具](https://go.microsoft.com/fwlink/?LinkId=166293)。  
+-   如果计算机支持在硬件中呈现 PS 3.0, 但分配了无效的 ps 3.0 着色器, <xref:System.Windows.Media.Effects.PixelShader.InvalidPixelShaderEncountered>则会引发事件。 无效 PS 3.0 着色器的一个示例是用`ps_3_sw`标志编译的着色器。 类只接受用传递到 fxc.exe 的`ps_3_0`标记编译的 PS 3.0 着色器。 <xref:System.Windows.Media.Effects.ShaderEffect> 有关详细信息, 请参阅[效果-编译器工具](https://go.microsoft.com/fwlink/?LinkId=166293)。  
   
 > [!NOTE]
->  PS 着色器 2.0 运行时在软件中呈现。 但是，即使系统的硬件支持 PS 3.0，则 PS 3.0 着色器期间不运行软件呈现。  
+>  在软件中呈现时, PS 2.0 着色器将运行。 但是, 即使系统的硬件支持 PS 3.0, PS 3.0 着色器也不会在软件呈现期间运行。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何从派生<xref:System.Windows.Media.Effects.ShaderEffect>类。  
+ 下面的代码示例演示如何从<xref:System.Windows.Media.Effects.ShaderEffect>类派生。  
   
  [!code-csharp[System.Windows.Media.Effects.ShaderEffect#1](~/samples/snippets/csharp/VS_Snippets_Wpf/System.Windows.Media.Effects.ShaderEffect/CS/ThresholdEffect.cs#1)]  
   
- 下面的代码示例显示了对应于上一个着色器<xref:System.Windows.Media.Effects.ShaderEffect>类。  
+ 下面的代码示例演示与前面<xref:System.Windows.Media.Effects.ShaderEffect>的类相对应的着色器。  
   
  [!code-csharp[System.Windows.Media.Effects.ShaderEffect#10](~/samples/snippets/csharp/VS_Snippets_Wpf/System.Windows.Media.Effects.ShaderEffect/CS/Threshold.fx#10)]  
   
- 以下 XAML 演示如何使用自定义着色器效果。  
+ 下面的 XAML 演示如何使用自定义着色器效果。  
   
  [!code-xaml[System.Windows.Media.Effects.ShaderEffect#1000](~/samples/snippets/csharp/VS_Snippets_Wpf/System.Windows.Media.Effects.ShaderEffect/CS/Window1.xaml#1000)]  
   
  ]]></format>
     </remarks>
-    <permission cref="T:System.Security.Permissions.UIPermission">对用户界面资源的完全访问权限。 关联的枚举： <see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
+    <permission cref="T:System.Security.Permissions.UIPermission">对 UI 资源的完全访问权限。 关联的枚举:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
     <altmember cref="T:System.Windows.Media.Effects.Effect" />
     <altmember cref="T:System.Windows.Media.Effects.PixelShader" />
   </Docs>
@@ -115,7 +115,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Media.Effects.ShaderEffect.Clone%2A>方法可用于生成的可修改副本冻结<xref:System.Windows.Freezable>对象。 为方便起见，此方法将隐藏继承<xref:System.Windows.Freezable.Clone%2A>方法以提供强类型化的实现。  
+ 方法可用于生成冻结<xref:System.Windows.Freezable>对象的可修改副本。 <xref:System.Windows.Media.Effects.ShaderEffect.Clone%2A> 为方便起见, 此方法隐藏了<xref:System.Windows.Freezable.Clone%2A>继承方法以提供强类型实现。  
   
  ]]></format>
         </remarks>
@@ -172,9 +172,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于生成的可修改副本冻结<xref:System.Windows.Freezable>对象 (或任何<xref:System.Windows.Freezable>对象)。 为方便起见，此方法隐藏继承的版本使用的强类型实现。  
+ 此方法用于生成冻结<xref:System.Windows.Freezable>对象 (或任何<xref:System.Windows.Freezable>对象) 的可修改副本。 为方便起见, 此方法使用强类型实现隐藏了继承的版本。  
   
- 有关详情，请参阅<xref:System.Windows.Freezable.CloneCurrentValue%2A?displayProperty=nameWithType>。  
+ 有关详细信息，请参阅 <xref:System.Windows.Freezable.CloneCurrentValue%2A?displayProperty=nameWithType>。  
   
  ]]></format>
         </remarks>
@@ -252,7 +252,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex%2A>属性来指定包含偏导数的纹理的着色器寄存器坐标对屏幕空间。 例如，如果<xref:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex%2A>设置为 4，使用着色器寄存器 c4。 寄存器 c4 包含四个浮点型字段。 以下高级别着色语言 (HLSL) 代码演示如何使用此注册。 `nextPixelUV`值向右表示下一个像素。  
+ <xref:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex%2A>使用属性可以指定包含纹理坐标相对于屏幕空间的偏导数的着色器寄存器。 例如, 如果<xref:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex%2A>设置为 4, 则使用着色器注册 c4。 Register c4 包含四个 float 字段。 以下高级着色语言 (HLSL) 代码显示了如何使用此寄存器。 `nextPixelUV`该值表示右侧的下一个像素。  
   
 ```  
 float4 ddxUvDdyUv : register(c4);  
@@ -265,21 +265,21 @@ nextPixelUV.v = ddxUvDdyUv.y + v;
 tex2D(sampler, nextPixelUV);  
 ```  
   
- 下表显示了如何注册为指定<xref:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex%2A>进行填充。  
+ 下表显示如何填充为指定的<xref:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex%2A> 。  
   
-|注册常量|派生的值|  
+|Register 常量|导数值|  
 |-----------------------|----------------------|  
-|x 组件|ddx （u)|  
+|x 组件|ddx (u)|  
 |y 组件|ddx(v)|  
-|z 分量|ddy(u)|  
-|w 分量|ddy(v)|  
+|z 组件|ddy (u)|  
+|w 组件|ddy (v)|  
   
- 纹理坐标表示为`(u, v)`。 `ddx(u)` 是的纹理坐标分量的常量偏导数`u`对屏幕空间 x 坐标。 `ddy(u)` 是的纹理坐标的偏导数`u`对屏幕空间 y 坐标。 同样，`ddx(v)`并`ddy(v)`是相应的屏幕空间派生类，用于纹理坐标分量`v`。  
+ 纹理坐标表示为`(u, v)`。 `ddx(u)`是纹理坐标组件`u`相对于屏幕空间 x 坐标的常量部分导数。 `ddy(u)`是纹理坐标`u`相对于屏幕空间 y 坐标的部分导数。 同样, `ddx(v)`和`ddy(v)`是纹理坐标组件`v`的相应屏幕空间派生。  
   
 > [!NOTE]
->  HLSL 具有的 ddx 和 ddy 的说明来计算这些值，但这些说明不是所有 PixelShader 2.0 硬件上可用。  
+>  HLSL 具有用于计算这些值的 ddx 和 ddy 说明, 但这些说明在所有 PixelShader 2.0 硬件上都不可用。  
   
- 您可能会按以下方式将这些常量。 如果你单步执行 1 像素到直接在屏幕空间 （在 x 方向），然后`ddx(u)`是指，`u`纹理空间中的更改和`ddx(v)`量的`v`纹理空间中的更改。 如果影响为轴对齐呈现时，然后`ddx(v)`为 0。 呈现时，然后如果旋转效果`ddx(v)`不为零。  
+ 您可以按以下方式考虑这些常量。 如果在屏幕空间 (x 方向) 上向右第1个`ddx(u)`像素的步骤, 则为纹理空间中的`u`更改量, `v`并且`ddx(v)`为纹理空间中的变化量。 如果效果在呈现时为轴对齐, 则`ddx(v)`为0。 如果效果在呈现时旋转, `ddx(v)`则为非零值。  
   
  ]]></format>
         </remarks>
@@ -309,7 +309,7 @@ tex2D(sampler, nextPixelUV);
       </Parameters>
       <Docs>
         <param name="sourceFreezable">要复制的实例。</param>
-        <summary>让该实例成为指定的 <see cref="T:System.Windows.Freezable" /> 的冻结克隆，前者使用基（非动画的）属性值。</summary>
+        <summary>使用基（未经过动画处理的）属性值使该实例成为指定的 <see cref="T:System.Windows.Freezable" /> 的冻结复本。</summary>
         <remarks>To be added.</remarks>
         <altmember cref="M:System.Windows.Freezable.GetAsFrozenCore(System.Windows.Freezable)" />
       </Docs>
@@ -335,7 +335,7 @@ tex2D(sampler, nextPixelUV);
       </Parameters>
       <Docs>
         <param name="sourceFreezable">要复制和冻结的 <see cref="T:System.Windows.Freezable" />。</param>
-        <summary>使当前实例成为指定 <see cref="T:System.Windows.Freezable" /> 的冻结克隆。 如果对象具有动画依赖属性，则复制其当前的动画值。</summary>
+        <summary>使当前实例成为指定的 <see cref="T:System.Windows.Freezable" /> 的冻结复本。 如果对象具有经过动画处理的依赖项对象，则复制这些属性当前经过动画处理的值。</summary>
         <remarks>To be added.</remarks>
         <altmember cref="M:System.Windows.Freezable.GetCurrentValueAsFrozenCore(System.Windows.Freezable)" />
       </Docs>
@@ -462,7 +462,7 @@ tex2D(sampler, nextPixelUV);
 |||  
 |-|-|  
 |标识符字段|<xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderProperty>|  
-|元数据属性设置为 `true`|无|  
+|元数据属性设置为`true`|None|  
   
  ]]></format>
         </remarks>
@@ -497,7 +497,7 @@ tex2D(sampler, nextPixelUV);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderConstantCallback%2A>方法注册一个着色器常量的依赖项属性时。 <xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderConstantCallback%2A>方法构造<xref:System.Windows.PropertyChangedCallback>委托，调用时，创建依赖项属性和指定的着色器常量寄存器之间的关联`floatRegisterIndex`。  
+ 在为<xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderConstantCallback%2A>着色器常数注册依赖属性时, 请使用方法。 方法构造一个<xref:System.Windows.PropertyChangedCallback>委托, 在调用它时, 将在依赖项属性与指定的`floatRegisterIndex`着色器常数寄存器之间创建关联。 <xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderConstantCallback%2A>  
   
  ]]></format>
         </remarks>
@@ -571,7 +571,7 @@ tex2D(sampler, nextPixelUV);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback%2A>方法注册时<xref:System.Windows.Media.Brush>-依赖项属性值的着色器采样器。 <xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback%2A>方法构造<xref:System.Windows.PropertyChangedCallback>委托，调用时，创建依赖项属性和指定的着色器采样器寄存器之间的关联`samplerRegisterIndex`。  
+ 在为<xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback%2A>着色器采样器<xref:System.Windows.Media.Brush>注册值依赖属性时, 请使用方法。 方法构造一个<xref:System.Windows.PropertyChangedCallback>委托, 该委托在调用时创建由`samplerRegisterIndex`指定的依赖项属性与着色器的采样器寄存器之间的关联。 <xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback%2A>  
   
  ]]></format>
         </remarks>
@@ -607,7 +607,7 @@ tex2D(sampler, nextPixelUV);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty%2A>方法注册时<xref:System.Windows.Media.Brush>-依赖项属性值的着色器采样器。 <xref:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty%2A>方法构造<xref:System.Windows.PropertyChangedCallback>委托，调用时，创建依赖项属性和指定的着色器采样器寄存器之间的关联`samplerRegisterIndex`。  
+ 在为<xref:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty%2A>着色器采样器<xref:System.Windows.Media.Brush>注册值依赖属性时, 请使用方法。 方法构造一个<xref:System.Windows.PropertyChangedCallback>委托, 该委托在调用时创建由`samplerRegisterIndex`指定的依赖项属性与着色器的采样器寄存器之间的关联。 <xref:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty%2A>  
   
  ]]></format>
         </remarks>
