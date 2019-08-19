@@ -1,5 +1,5 @@
 <Type Name="UriParser" FullName="System.UriParser">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b3b0624a7478758b82017dd2e13b3e8b475d3468" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58683614" /></Metadata><TypeSignature Language="C#" Value="public abstract class UriParser" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9501ef9d6e4a698df6181bbd2252385391dc9bf5" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69418678" /></Metadata><TypeSignature Language="C#" Value="public abstract class UriParser" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract UriParser extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.UriParser" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class UriParser" />
@@ -31,9 +31,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- UriParser 类，可创建新的 URI 方案的分析器。 您可以在其无法全部展示，编写这些分析器或分析器可以派生自已知方案 （HTTP、 FTP 和基于网络协议的其他方案）。 如果你想要创建全新的分析器，继承自<xref:System.GenericUriParser>。 如果你想要创建扩展的已知的 URI 方案的分析器，继承自<xref:System.FtpStyleUriParser>， <xref:System.HttpStyleUriParser>， <xref:System.FileStyleUriParser>， <xref:System.GopherStyleUriParser>，或<xref:System.LdapStyleUriParser>。  
+ UriParser 类使你能够为新的 URI 方案创建分析器。 可以完整编写这些分析器, 也可以从已知的方案 (HTTP、FTP 和基于网络协议的其他方案) 派生分析程序。 如果要创建全新的分析器, 请从<xref:System.GenericUriParser>继承。 如果要创建扩展已知 URI 方案的分析器, 请从<xref:System.FtpStyleUriParser> <xref:System.FileStyleUriParser>、 <xref:System.HttpStyleUriParser>、、 <xref:System.GopherStyleUriParser>或<xref:System.LdapStyleUriParser>继承。  
   
- Microsoft 强烈建议使用与.NET 一起提供的分析器。 构建您自己的分析程序会增加应用程序的复杂性和以及附带的分析器将不会执行。  
+ Microsoft 强烈建议使用随 .NET 提供的分析器。 构建自己的分析器会增加应用程序的复杂性, 并且不会执行以及附带的分析器。  
   
  ]]></format>
     </remarks>
@@ -114,9 +114,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.UriParser.GetComponents%2A>方法以确定其值的各个部分的 URI，如<xref:System.UriComponents.Scheme>， <xref:System.UriComponents.Host>，或<xref:System.UriComponents.Port>。  
+ 使用方法可确定 URI 的各个部分的值, 例如<xref:System.UriComponents.Scheme>、 <xref:System.UriComponents.Host>或<xref:System.UriComponents.Port>。 <xref:System.UriParser.GetComponents%2A>  
   
- 组件是它们在 URI 中显示的顺序返回。 例如，如果<xref:System.UriComponents.Scheme>指定，则它显示在最前面。  
+ 组件按照其在 URI 中出现的顺序返回。 例如, 如果<xref:System.UriComponents.Scheme>指定了, 则它将首先出现。  
   
  ]]></format>
         </remarks>
@@ -125,7 +125,7 @@
 - 或 - 
  <paramref name="uriComponents" /> 不是有效 <see cref="T:System.UriComponents" /> 值的组合。</exception>
         <exception cref="T:System.InvalidOperationException"><paramref name="uri" /> 需要用户驱动的语法分析 
-- 或 - 
+或 
  <paramref name="uri" /> 不是绝对 URI。 相对 URI 不能和此方法一起使用。</exception>
         <altmember cref="T:System.UriComponents" />
         <altmember cref="F:System.UriComponents.Host" />
@@ -173,7 +173,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.UriParser.InitializeAndValidate%2A>方法每次调用<xref:System.Uri>实例化。  
+ 每次实例化时都将调用方法。<xref:System.UriParser.InitializeAndValidate%2A> <xref:System.Uri>  
   
  ]]></format>
         </remarks>
@@ -294,15 +294,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.UriParser.IsWellFormedOriginalString%2A>方法将返回 false，如果：  
+ 如果<xref:System.UriParser.IsWellFormedOriginalString%2A>以下情况, 该方法将返回 false:  
   
--   根据 RFC 2396 未正确转义字符串。  
+-   对于每个 RFC 2396, 字符串未正确地进行转义。  
   
--   该字符串表示引用的隐式文件 URI 的绝对 URI。  
+-   字符串表示引用隐式文件 URI 的绝对 URI。  
   
--   该字符串表示缺少的路径组件之前以正斜杠的绝对 URI。  
+-   字符串表示在路径组件之前缺少正斜杠的绝对 URI。  
   
--   该字符串包含非转义反斜杠，即使将被视为正斜杠。  
+-   字符串包含未转义的反斜杠, 即使它们将被视为正斜杠。  
   
  ]]></format>
         </remarks>
@@ -343,7 +343,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现将返回相同<xref:System.UriParser>实例。 可能需要重写此方法并返回不同<xref:System.UriParser>如果运行在多线程环境中每次调用。  
+ 默认实现返回同一个<xref:System.UriParser>实例。 如果在多线程环境中操作, 则可能需要<xref:System.UriParser>重写此方法, 并为每个调用返回不同的。  
   
  ]]></format>
         </remarks>
@@ -427,12 +427,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`defaultPort`参数设置为-1，<xref:System.UriParser.Register%2A>方法注册的端口号没有默认值。  
+ 如果将<xref:System.UriParser.Register%2A>参数设置为-1, 则该方法将不会为端口号注册默认值。 `defaultPort`  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="uriParser" /> 参数为 null 
-- 或 - 
+或 
  <paramref name="schemeName" /> 参数为 null。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="schemeName" /> 参数无效 
 - 或 - 
@@ -481,15 +481,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Uri> 构造函数和<xref:System.Uri.TryCreate%2A?displayProperty=nameWithType>使用<xref:System.UriParser.Resolve%2A>构造从 URI`baseUri`和`relativeUri`。  
+ <xref:System.Uri>构造函数<xref:System.Uri.TryCreate%2A?displayProperty=nameWithType>并<xref:System.UriParser.Resolve%2A>用于从`baseUri`和`relativeUri`构造 URI。  
   
- 如果分析会发生错误，则返回的字符串，用于解析相对<xref:System.Uri>为 null。  
+ 如果发生分析错误, 则解析的相对<xref:System.Uri>返回的字符串为 null。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException"><paramref name="baseUri" /> 参数不是绝对 <see cref="T:System.Uri" />  
   
-- 或 - 
+或 
  <paramref name="baseUri" /> 参数需要用户驱动的分析。</exception>
       </Docs>
     </Member>

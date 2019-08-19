@@ -1,5 +1,5 @@
 <Type Name="WSFederationMessage" FullName="System.IdentityModel.Services.WSFederationMessage">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d0cff372661ba6bea853d763d5c7bb7cfff4361d" /><Meta Name="ms.sourcegitcommit" Value="adc8598fd19d91438cacaa8fa7ce613e28c8218e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="12/11/2018" /><Meta Name="ms.locfileid" Value="53224444" /></Metadata><TypeSignature Language="C#" Value="public abstract class WSFederationMessage : System.IdentityModel.Services.FederationMessage" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ad2f10261bb653a574f0148e54e1655b3793d487" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69282347" /></Metadata><TypeSignature Language="C#" Value="public abstract class WSFederationMessage : System.IdentityModel.Services.FederationMessage" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit WSFederationMessage extends System.IdentityModel.Services.FederationMessage" />
   <TypeSignature Language="DocId" Value="T:System.IdentityModel.Services.WSFederationMessage" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class WSFederationMessage&#xA;Inherits FederationMessage" />
@@ -19,11 +19,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IdentityModel.Services.WSFederationMessage>类表示 WS-联合身份验证请求或 WS 联合身份验证响应。 表示特定的 WS 联合身份验证消息的更多专用的类派生自<xref:System.IdentityModel.Services.WSFederationMessage>; 例如，<xref:System.IdentityModel.Services.SignInRequestMessage>类，该类表示 WS-联合身份验证登录请求消息。  
+ <xref:System.IdentityModel.Services.WSFederationMessage>类表示 ws 联合身份验证请求或 ws 联合身份验证响应。 表示特定 ws 联合身份验证消息的更专业化类派生<xref:System.IdentityModel.Services.WSFederationMessage>自; 例如<xref:System.IdentityModel.Services.SignInRequestMessage> , 类, 该类表示 ws-federation 登录请求消息。  
   
- <xref:System.IdentityModel.Services.WSFederationMessage>类公开可用于设置或访问单独的消息参数的多个属性。 这些参数还可以设置或通过访问<xref:System.IdentityModel.Services.FederationMessage.Parameters%2A>字典。 例如，你可以读取中消息的 wencoding 参数或者<xref:System.IdentityModel.Services.WSFederationMessage.Encoding%2A>属性或通过指定"wencoding"作为的关键<xref:System.IdentityModel.Services.FederationMessage.Parameters%2A>字典。  
+ <xref:System.IdentityModel.Services.WSFederationMessage>类公开几个可用于设置或访问单个消息参数的属性。 还可以通过<xref:System.IdentityModel.Services.FederationMessage.Parameters%2A>字典设置或访问这些参数。 例如, 可以通过属性或通过将<xref:System.IdentityModel.Services.WSFederationMessage.Encoding%2A> "wencoding" 指定为<xref:System.IdentityModel.Services.FederationMessage.Parameters%2A>字典的键来读取消息中的 wencoding 参数。  
   
- <xref:System.IdentityModel.Services.WSFederationMessage>包含可调用以创建从相应的 WS 联合身份验证消息的静态方法： 包含查询字符串的 URL; 基 URL 和 WS 联合身份验证参数名称和值; 或窗体的集合数据发布 HTTP 请求中。  
+ <xref:System.IdentityModel.Services.WSFederationMessage>包含一些静态方法, 您可以调用这些方法来创建相应的 WS 联合身份验证消息: 包含查询字符串的 url、基 URL 以及 WS 联合身份验证参数名称和值的集合, 或在 HTTP 请求中窗体发布数据。  
   
  [!INCLUDE[wif_wsfed_ref](~/includes/wif-wsfed-ref-md.md)]  
   
@@ -79,7 +79,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Wa 参数指定要执行的操作。 例如，对于登录方案<xref:System.IdentityModel.Services.WSFederationMessage.Action%2A>属性设置为"wsignin1.0"和注销的方案，该属性设置为"wsignout1.0"。 Wa 参数是必需的因此无法将此属性设置为`null`或空字符串。  
+ Wa 参数指定要执行的操作。 例如, 对于登录方案<xref:System.IdentityModel.Services.WSFederationMessage.Action%2A> , 属性设置为 "wsignin1.0 1.0", 对于注销方案, 属性设置为 "wsignout1.0 1.0"。 Wa 参数是必需的, 因此此属性不能设置为`null`或空字符串。  
   
  ]]></format>
         </remarks>
@@ -108,10 +108,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定必须返回与颁发的令牌中，如果在请求中传递的上下文值。 值是不透明的也就是说，其语义已知只能由发起方的消息 （通常依赖方的 RP）;它不会解释该消息或任何中介的接收方。 Wctx 参数是可选的。 设置<xref:System.IdentityModel.Services.WSFederationMessage.Context%2A>属性设置为`null`或空字符串来移除该消息的 wctx 参数。  
+ 如果在请求中传递了所颁发的令牌, 则指定必须返回的上下文值。 此值是不透明的, 也就是说, 它的语义只由消息的发起方识别 (通常是信赖方-RP);消息或任何中介的接收方不会对其进行解释。 Wctx 参数是可选的。 将属性设置为`null`或空字符串, 以便从消息中删除 wctx 参数。 <xref:System.IdentityModel.Services.WSFederationMessage.Context%2A>  
   
 > [!IMPORTANT]
->  如果你的应用程序收到的 wctx 参数集使用 WS 联合身份验证消息时，应确保相同的值是在向发件人，任何响应中返回或转发如果该消息将传递给另一方。  
+>  如果你的应用程序接收到带有 wctx 参数集的 WS 联合身份验证消息, 则应确保在发送方的任何响应中返回相同的值, 或者在将消息传递给另一方时转发该消息。  
   
  ]]></format>
         </remarks>
@@ -143,9 +143,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果可以创建一条消息，该方法返回的相应实现<xref:System.IdentityModel.Services.WSFederationMessage>根据发布; 例如，在窗体中提交的 wa 参数，如果 wa 参数是"wsignout1.0"则<xref:System.IdentityModel.Services.SignOutRequestMessage>返回对象。  
+ 如果可以创建消息, 则方法将根据在窗体 post 中<xref:System.IdentityModel.Services.WSFederationMessage>提交的 wa 参数返回适当的实现; 例如, 如果 wa 参数是 "wsignout1.0 1.0", 则返回一个<xref:System.IdentityModel.Services.SignOutRequestMessage>对象。  
   
- 获取基 URL 和客户端请求中提交的窗体变量集合，并调用<xref:System.IdentityModel.Services.WSFederationMessage.CreateFromNameValueCollection%2A>方法。  
+ 获取由客户端从请求提交并调用<xref:System.IdentityModel.Services.WSFederationMessage.CreateFromNameValueCollection%2A>方法的窗体变量的基 URL 和集合。  
   
  ]]></format>
         </remarks>
@@ -181,22 +181,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 参数集合必须包含 wa 参数，指定要执行的操作的条目。 如果 wa 条目不是已识别的操作，将引发异常。 参数集合应包含相应的消息 wa 参数集合中指定的类型参数。 该方法将返回的相应实现<xref:System.IdentityModel.Services.WSFederationMessage>基于 wa 参数。 下表列出了<xref:System.IdentityModel.Services.WSFederationMessage>实现返回的各种参数组合。  
+ 参数集合必须包含 wa 参数的条目, 该参数指定要执行的操作。 如果 wa 条目不是已识别的操作, 则会引发异常。 参数集合应包含集合中 wa 参数指定的消息种类的相应参数。 方法将基于 wa 参数返回相应的<xref:System.IdentityModel.Services.WSFederationMessage>实现。 下表列出<xref:System.IdentityModel.Services.WSFederationMessage>了为各种参数组合返回的实现。  
   
-|返回类型|指定的 wa 查询参数|注释|  
+|返回类型|wa 指定的查询参数|注释|  
 |-------------------|----------------------------------|--------------|  
-|<xref:System.IdentityModel.Services.AttributeRequestMessage>|wattr1.0|--|  
+|<xref:System.IdentityModel.Services.AttributeRequestMessage>|wattr 1。0|--|  
 |<xref:System.IdentityModel.Services.PseudonymRequestMessage>|wpseudo1.0|--|  
-|<xref:System.IdentityModel.Services.SignInRequestMessage>|wsignin1.0|`collection` 必须包含 wtrealm 或 wreply 参数。 如果`collection`包含 wresult 或 wresultptr 参数，将登录响应消息返回 （请参阅下一步的行）。|  
-|<xref:System.IdentityModel.Services.SignInResponseMessage>|wsignin1.0|如果`collection`包含 wresult 或 wresultptr 参数。 只有一个可能会出现。 如果两者都存在，将引发异常。|  
-|<xref:System.IdentityModel.Services.SignOutRequestMessage>|wsignout1.0|--|  
-|<xref:System.IdentityModel.Services.SignOutCleanupRequestMessage>|wsignoutcleanup1.0|--|  
+|<xref:System.IdentityModel.Services.SignInRequestMessage>|wsignin1.0 1。0|`collection`必须包含 wtrealm 或 wreply 参数。 如果`collection`包含 wresult 或 wresultptr 参数, 则返回一个登录响应消息 (请参阅下一行)。|  
+|<xref:System.IdentityModel.Services.SignInResponseMessage>|wsignin1.0 1。0|如果包含`collection` wresult 或 wresultptr 参数, 则返回。 只能存在一个。 如果两者都存在, 则会引发异常。|  
+|<xref:System.IdentityModel.Services.SignOutRequestMessage>|wsignout1.0 1。0|--|  
+|<xref:System.IdentityModel.Services.SignOutCleanupRequestMessage>|wsignoutcleanup1.0 1。0|--|  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="baseUrl" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="collection" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.IdentityModel.Services.WSFederationMessageException">wa 参数在参数集合中不可被识别。</exception>
         <exception cref="T:System.ArgumentException">登录响应消息在参数集合中同时具有 wresult 和 wresultptr 参数。 （合法的登录答案信息的 wa 参数与“wsignin1.0”等效，wsiesult 与 wresultptr 参数也等效，但这两组等效参数不可同时发生。）</exception>
@@ -228,11 +228,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回相应的实现<xref:System.IdentityModel.Services.WSFederationMessage>基于 wa 参数在查询字符串; 例如，如果 wa 参数为"wsignout1.0"则<xref:System.IdentityModel.Services.SignOutRequestMessage>返回对象。  
+ 根据查询字符串中的<xref:System.IdentityModel.Services.WSFederationMessage> wa 参数返回适当的实现; 例如, 如果 wa 参数是 "wsignout1.0 1.0", 则返回一个<xref:System.IdentityModel.Services.SignOutRequestMessage>对象。  
   
- 具体取决于组合和查询字符串中存在的参数的值可能会引发其他异常。  
+ 根据查询字符串中存在的参数的组合和值, 可能会引发其他异常。  
   
- 调用<xref:System.IdentityModel.Services.WSFederationMessage.TryCreateFromUri%2A>方法。  
+ <xref:System.IdentityModel.Services.WSFederationMessage.TryCreateFromUri%2A>调用方法。  
   
  ]]></format>
         </remarks>
@@ -264,7 +264,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定消息中嵌入的任何 XML 使用的编码样式。 Wencoding 参数是可选的。 设置<xref:System.IdentityModel.Services.WSFederationMessage.Encoding%2A>属性设置为`null`或空字符串来移除该消息的 wencoding 参数。  
+ 指定要用于消息中嵌入的任何 XML 的编码样式。 Wencoding 参数是可选的。 将属性设置为`null`或空字符串, 以便从消息中删除 wencoding 参数。 <xref:System.IdentityModel.Services.WSFederationMessage.Encoding%2A>  
   
  ]]></format>
         </remarks>
@@ -298,9 +298,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果可以创建一条消息，该方法返回的相应实现<xref:System.IdentityModel.Services.WSFederationMessage>基于 wa 参数在查询字符串; 例如，如果 wa 参数为"wsignout1.0"则<xref:System.IdentityModel.Services.SignOutRequestMessage>返回对象。  
+ 如果可以创建消息, 则该方法将根据查询字符串中的<xref:System.IdentityModel.Services.WSFederationMessage> wa 参数返回适当的实现; 例如, 如果 wa 参数是 "wsignout1.0 1.0", 则返回一个<xref:System.IdentityModel.Services.SignOutRequestMessage>对象。  
   
- 调用<xref:System.IdentityModel.Services.WSFederationMessage.CreateFromNameValueCollection%2A>方法。  
+ <xref:System.IdentityModel.Services.WSFederationMessage.CreateFromNameValueCollection%2A>调用方法。  
   
  ]]></format>
         </remarks>

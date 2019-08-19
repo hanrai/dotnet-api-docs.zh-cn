@@ -1,5 +1,5 @@
 <Type Name="NetCodeGroup" FullName="System.Security.Policy.NetCodeGroup">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ca0ce8da4d574b318dd7315c7303498d9b632aab" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56791376" /></Metadata><TypeSignature Language="C#" Value="public sealed class NetCodeGroup : System.Security.Policy.CodeGroup" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b1fbaf25fda7f26c1371a8e71838b5048406cb2d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69163028" /></Metadata><TypeSignature Language="C#" Value="public sealed class NetCodeGroup : System.Security.Policy.CodeGroup" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit NetCodeGroup extends System.Security.Policy.CodeGroup" />
   <TypeSignature Language="DocId" Value="T:System.Security.Policy.NetCodeGroup" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class NetCodeGroup&#xA;Inherits CodeGroup" />
@@ -36,27 +36,27 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 代码组是构建基块的代码访问安全性策略。 每个策略级别包含可以有一个或多个子代码组的根代码组。 每个子代码组可以具有其自己的子代码组;此行为将扩展到任意数量的级别，从而形成一个树。 每个代码组有成员条件，它确定给定的程序集所属的组中，基于该程序集的证据。 只有代码组的成员身份条件与匹配给定的程序集，以及它们的子代码组，将应用代码访问安全性策略。  
+ 代码组是代码访问安全策略的构建基块。 每个策略级别都包含一个可以具有一个或多个子代码组的根代码组。 每个子代码组都可以有自己的子代码组;此行为将扩展为任意数目的级别, 从而形成一个树。 每个代码组都有一个成员条件, 该条件确定给定程序集是否属于组, 这取决于该程序集的证据。 只有其成员条件与给定程序集匹配的代码组及其子代码组会应用代码访问安全策略。  
   
- <xref:System.Security.Policy.NetCodeGroup> 合并语义相同<xref:System.Security.Policy.UnionCodeGroup>; 程序集的并集形成<xref:System.Security.Policy.PolicyStatement>对象的所有匹配的子代码组和<xref:System.Security.Policy.PolicyStatement>它生成从输入<xref:System.Security.Policy.Url>证据。 但是，<xref:System.Security.Policy.NetCodeGroup>包含动态计算的权限返回<xref:System.Net.WebPermission>授予连接到从中运行该代码; 该站点的访问权限<xref:System.Security.Policy.UnionCodeGroup>只是返回一个静态的权限集。  
+ <xref:System.Security.Policy.NetCodeGroup>具有与相同<xref:System.Security.Policy.UnionCodeGroup>的合并语义; 它构成了所有匹配的子代码组的<xref:System.Security.Policy.PolicyStatement>对象的联合, 并构成了<xref:System.Security.Policy.PolicyStatement>从输入<xref:System.Security.Policy.Url>证据生成的所有匹配子代码组。 但会<xref:System.Security.Policy.NetCodeGroup>返回一个权限, 该权限包含<xref:System.Net.WebPermission>动态计算的, 该权限授予对运行代码的站点的连接访问权限;<xref:System.Security.Policy.UnionCodeGroup>只返回静态权限集。  
   
- 当<xref:System.Security.Policy.NetCodeGroup>是创建的它包含下表中所示的默认连接访问规则。  
+ <xref:System.Security.Policy.NetCodeGroup>创建后, 它将包含下表中所示的默认连接访问规则。  
   
 |URI 方案|规则|  
 |----------------|----------|  
-|文件|无法连接到源服务器访问。|  
-|http|使用源服务器端口允许 HTTP 和 HTTPS 访问。|  
-|https|使用源服务器端口允许 HTTPS 访问。|  
+|文件|不允许对源服务器进行连接访问。|  
+|http|使用源端口允许 HTTP 和 HTTPS 访问。|  
+|https|使用源端口允许 HTTPS 访问。|  
   
- 您可以控制的方案和允许代码通过将传递回其源站点的连接时要使用的端口<xref:System.Security.Policy.CodeConnectAccess>使用相应的对象<xref:System.Security.Policy.CodeConnectAccess.Scheme%2A>并<xref:System.Security.Policy.CodeConnectAccess.Port%2A>属性值复制到<xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A>方法。 可以创建应用时的原始方案证据中不存在或无法识别指定的连接访问规则<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>("") 作为方案。 此外可以创建应用时没有连接访问规则具有匹配的方案通过指定的连接访问规则<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>("*") 作为方案。  
+ <xref:System.Security.Policy.CodeConnectAccess>通过将具有适当<xref:System.Security.Policy.CodeConnectAccess.Scheme%2A> <xref:System.Security.Policy.CodeConnectAccess.Port%2A>和属性值的对象传递给方法,可以控制在连接回其源站点时允许使用代码的方案和端口。<xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A> 你可以创建一个连接访问规则, 该规则在源方案不存在于证据中时应用, 或者通过将 ( <xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme> "") 指定为方案来识别。 通过指定<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme> ("*") 作为方案, 你还可以创建一个在没有具有匹配方案的连接访问规则时应用的连接访问规则。  
   
 > [!NOTE]
->  如果代码未提交的 URI 方案作为证据，回复到源站点使用任何一种方案允许访问。  
+>  如果代码未提交 URI 方案作为证据, 则允许使用任意方案向源站点进行访问。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何创建<xref:System.Security.Policy.NetCodeGroup>并添加<xref:System.Security.Policy.CodeConnectAccess>下载使用 HTTP 方案的代码的对象。  
+ 下面的代码示例演示如何为<xref:System.Security.Policy.NetCodeGroup>使用 HTTP <xref:System.Security.Policy.CodeConnectAccess>方案下载的代码创建和添加对象。  
   
  [!code-cpp[NclCodeGroup#3](~/samples/snippets/cpp/VS_Snippets_Remoting/NclCodeGroup/cpp/sample.cpp#3)]
  [!code-csharp[NclCodeGroup#3](~/samples/snippets/csharp/VS_Snippets_Remoting/NclCodeGroup/CS/sample.cs#3)]  
@@ -96,18 +96,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Security.Policy.NetCodeGroup>是创建的它包含下表中所示的默认连接访问规则。  
+ <xref:System.Security.Policy.NetCodeGroup>创建后, 它将包含下表中所示的默认连接访问规则。  
   
 |方案|规则|  
 |------------|----------|  
-|文件|无法连接到源服务器访问。|  
-|http|使用源服务器端口允许 HTTP 和 HTTPS 访问。|  
-|https|使用源服务器端口允许 HTTPS 访问。|  
+|文件|不允许对源服务器进行连接访问。|  
+|http|使用源端口允许 HTTP 和 HTTPS 访问。|  
+|https|使用源端口允许 HTTPS 访问。|  
   
    
   
 ## Examples  
- 下面的代码示例演示如何创建<xref:System.Security.Policy.NetCodeGroup>并添加<xref:System.Security.Policy.CodeConnectAccess>下载使用 HTTP 方案的代码的对象。  
+ 下面的代码示例演示如何为<xref:System.Security.Policy.NetCodeGroup>使用 HTTP <xref:System.Security.Policy.CodeConnectAccess>方案下载的代码创建和添加对象。  
   
  [!code-cpp[NclCodeGroup#3](~/samples/snippets/cpp/VS_Snippets_Remoting/NclCodeGroup/cpp/sample.cpp#3)]
  [!code-csharp[NclCodeGroup#3](~/samples/snippets/csharp/VS_Snippets_Remoting/NclCodeGroup/CS/sample.cs#3)]  
@@ -147,11 +147,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用时<xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A>方法中，指定方案和关联<xref:System.Security.Policy.CodeConnectAccess>对象。 任何<xref:System.Security.Policy.CodeConnectAccess>对象添加到<xref:System.Security.Policy.NetCodeGroup>使用<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>作为来源时代码的原始方案中不存在其证据，或者不识别的方案应用方案<xref:System.Security.Policy.NetCodeGroup>对象。  
+ 调用<xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A>方法时, 指定方案和关联<xref:System.Security.Policy.CodeConnectAccess>的对象。 使用<xref:System.Security.Policy.CodeConnectAccess> <xref:System.Security.Policy.NetCodeGroup> <xref:System.Security.Policy.NetCodeGroup>作为源方案添加到的任何对象都将在代码的原始方案不存在于其证据中时应用, 或者不是由对象识别的方案。 <xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>  
   
- 若要指定<xref:System.Security.Policy.CodeConnectAccess>对象使用的代码的原始方案中不匹配的原始方案添加到当前组中包含的方案时<xref:System.Security.Policy.NetCodeGroup>对象，请使用<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>值。  
+ 若要指定<xref:System.Security.Policy.CodeConnectAccess>在代码的原始方案与添加到当前<xref:System.Security.Policy.NetCodeGroup>对象的源方案集内包含的任何方案都不匹配时要使用的对象, 请使用<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>值。  
   
- 值<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>字段为空字符串 ("")。  
+ 该<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>字段的值为空字符串 ("")。  
   
  ]]></format>
         </remarks>
@@ -192,12 +192,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以添加多个<xref:System.Security.Policy.CodeConnectAccess>对象的相同`origin scheme`。 如果`origin scheme`已有一个或多个关联<xref:System.Security.Policy.CodeConnectAccess>对象，指定`null`为`connectAccess`不起作用。 如果没有关联的原始方案<xref:System.Security.Policy.CodeConnectAccess>对象，指定`null`有关`connectAccess`阻止使用与匹配的原始方案的代码`originScheme`访问其源服务器。  
+ 可以为同一`origin scheme`添加<xref:System.Security.Policy.CodeConnectAccess>多个对象。 如果已`origin scheme`有一个或多个关联<xref:System.Security.Policy.CodeConnectAccess>的对象, `null`则`connectAccess`为指定将不起作用。 如果<xref:System.Security.Policy.CodeConnectAccess>源方案没有关联的对象, 则为指定`null`以`connectAccess`防止代码的原始方案与访问其源服务器的匹配。 `originScheme`  
   
    
   
 ## Examples  
- 下面的代码示例演示如何创建和添加<xref:System.Security.Policy.CodeConnectAccess>对象添加到<xref:System.Security.Policy.NetCodeGroup>。  
+ 下面的代码示例演示如何创建对象<xref:System.Security.Policy.CodeConnectAccess>并将其<xref:System.Security.Policy.NetCodeGroup>添加到中。  
   
  [!code-cpp[NclCodeGroup#3](~/samples/snippets/cpp/VS_Snippets_Remoting/NclCodeGroup/cpp/sample.cpp#3)]
  [!code-csharp[NclCodeGroup#3](~/samples/snippets/csharp/VS_Snippets_Remoting/NclCodeGroup/CS/sample.cs#3)]  
@@ -240,13 +240,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用时<xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A>方法中，指定方案和关联<xref:System.Security.Policy.CodeConnectAccess>对象。 可以使用的值<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>字段来指定<xref:System.Security.Policy.CodeConnectAccess>对象，应该用于未显式包含的原始方案添加到当前组的任何方案<xref:System.Security.Policy.NetCodeGroup>对象。  
+ 调用<xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A>方法时, 指定方案和关联<xref:System.Security.Policy.CodeConnectAccess>的对象。 您可以使用<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>字段的值来<xref:System.Security.Policy.CodeConnectAccess>指定应用于未显式包含在添加到当前<xref:System.Security.Policy.NetCodeGroup>对象的源方案集内的任何方案的对象。  
   
- <xref:System.Security.Policy.CodeConnectAccess>用指定的对象<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>如果代码的原始方案不匹配任何添加到当前的原始方案集中包含的方案，则仅使用字段<xref:System.Security.Policy.NetCodeGroup>对象。  
+ 仅当代码的原始<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>方案与添加到当前<xref:System.Security.Policy.NetCodeGroup>对象的源方案集内包含的任何方案都不匹配时, 才使用通过字段指定的对象。<xref:System.Security.Policy.CodeConnectAccess>  
   
- 若要指定<xref:System.Security.Policy.CodeConnectAccess>对象在代码的原始方案在其证据中不可用或无法识别时应用使用<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>值。  
+ 若要指定<xref:System.Security.Policy.CodeConnectAccess>在代码的原始方案在其证据中不可用或无法识别时要应用的对象, 请<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>使用值。  
   
- 值<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>字段是"*"。  
+ 该<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>字段的值为 "*"。  
   
  ]]></format>
         </remarks>
@@ -324,7 +324,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法生成的代码组，这意味着还生成的代码组所包含的所有对象的副本的深层副本。  
+ 此方法会创建代码组的深层副本, 这意味着还会生成代码组包含的所有对象的副本。  
   
  ]]></format>
         </remarks>
@@ -403,13 +403,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 以下数据用于确定是否相等的两个<xref:System.Security.Policy.NetCodeGroup>对象：  
+ 以下数据用于确定两个<xref:System.Security.Policy.NetCodeGroup>对象的相等性:  
   
--   <xref:System.Security.Policy.CodeGroup.Name%2A>和<xref:System.Security.Policy.CodeGroup.Description%2A>属性。  
+-   <xref:System.Security.Policy.CodeGroup.Name%2A> 和<xref:System.Security.Policy.CodeGroup.Description%2A>属性。  
   
 -   <xref:System.Security.Policy.CodeGroup.MembershipCondition%2A> 属性。  
   
--   原始方案和关联集<xref:System.Security.Policy.CodeConnectAccess>对象。  
+-   源方案和关联<xref:System.Security.Policy.CodeConnectAccess>的对象的集合。  
   
  ]]></format>
         </remarks>
@@ -446,12 +446,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在每个字典条目中，<xref:System.Collections.DictionaryEntry.Key%2A>属性值是原始方案中，并<xref:System.Collections.DictionaryEntry.Value%2A>属性值是数组关联<xref:System.Security.Policy.CodeConnectAccess>对象。 如果没有关联<xref:System.Security.Policy.CodeConnectAccess>对象，<xref:System.Collections.DictionaryEntry.Value%2A?displayProperty=nameWithType>返回一个空数组。  
+ 在每个字典条目中<xref:System.Collections.DictionaryEntry.Key%2A> , 属性值为原始方案, <xref:System.Collections.DictionaryEntry.Value%2A>属性值为关联<xref:System.Security.Policy.CodeConnectAccess>对象的数组。 如果没有关联<xref:System.Security.Policy.CodeConnectAccess>的对象, <xref:System.Collections.DictionaryEntry.Value%2A?displayProperty=nameWithType>则返回一个空数组。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何显示的连接访问规则<xref:System.Security.Policy.NetCodeGroup>对象。  
+ 下面的代码示例演示如何显示<xref:System.Security.Policy.NetCodeGroup>对象的连接访问规则。  
   
  [!code-cpp[NclCodeGroup#8](~/samples/snippets/cpp/VS_Snippets_Remoting/NclCodeGroup/cpp/sample.cpp#8)]
  [!code-csharp[NclCodeGroup#8](~/samples/snippets/csharp/VS_Snippets_Remoting/NclCodeGroup/CS/sample.cs#8)]  
@@ -625,20 +625,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法用于删除系统提供的默认连接访问规则。  
+ 使用此方法可删除系统提供的默认连接访问规则。  
   
- 下表中显示的默认规则。  
+ 下表显示了默认规则。  
   
 |方案|规则|  
 |------------|----------|  
-|文件|无法连接到源服务器访问。|  
-|http|使用源服务器端口允许 HTTP 和 HTTPS 访问。|  
-|https|使用源服务器端口允许 HTTPS 访问。|  
+|文件|不允许对源服务器进行连接访问。|  
+|http|使用源端口允许 HTTP 和 HTTPS 访问。|  
+|https|使用源端口允许 HTTPS 访问。|  
   
    
   
 ## Examples  
- 下面的代码示例演示如何调用此方法删除默认的代码访问连接规则。  
+ 下面的代码示例演示如何调用此方法以删除默认代码访问连接规则。  
   
  [!code-cpp[NclCodeGroup#3](~/samples/snippets/cpp/VS_Snippets_Remoting/NclCodeGroup/cpp/sample.cpp#3)]
  [!code-csharp[NclCodeGroup#3](~/samples/snippets/csharp/VS_Snippets_Remoting/NclCodeGroup/CS/sample.cs#3)]  
@@ -686,11 +686,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将给定的加载程序集的证据，通过先检查针对指定的证据的成员资格条件评估代码组。 如果没有匹配项，则此方法返回的代码组，其中包括评估的子代码组的策略语句。  
+ 对于要加载的程序集, 此方法通过首先检查针对指定证据的成员资格条件来计算代码组。 如果存在匹配项, 则此方法返回代码组的策略声明, 包括子代码组的计算。  
   
- 此方法的操作是按如下所示：  
+ 此方法的操作如下所示:  
   
- 如果成员资格条件与指定的证据不匹配，则返回`null`; 否则为设置要返回 (P) 的权限集等于代码组的策略语句并继续。 对于每个子代码组，解析代码组具有相同的证据;如果结果不为`null`，返回该策略语句。 如果没有子代码组匹配，则返回 P （父级的策略语句）。  
+ 如果成员条件与指定的证据不匹配, 则返回`null`; 否则, 将返回与代码组的策略语句相等的权限集 (P), 然后继续。 对于每个子代码组, 请解析具有相同证据的代码组;如果结果不`null`为, 则返回该策略语句。 如果没有匹配的子代码组, 则返回 P (父级的策略声明)。  
   
  ]]></format>
         </remarks>
@@ -737,7 +737,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法将给定的加载程序集的证据，通过先检查针对指定的证据的成员资格条件评估代码组。 如果没有匹配项，则此方法返回的根代码组。 返回的代码组可能包含子代码组，这反过来，可能还有子代码组，因此返回值反映了所提供的证据匹配的代码组的完整集合。  
+ 对于要加载的程序集, 此方法通过首先检查针对指定证据的成员资格条件来计算代码组。 如果有匹配项, 则此方法返回一个根代码组。 返回的代码组可能包含子代码组, 这些子代码组也可能具有子代码组, 因此返回值反映了由提供的证据匹配的一组完整的代码组。  
   
  ]]></format>
         </remarks>

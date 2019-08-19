@@ -1,5 +1,5 @@
 <Type Name="Delegate" FullName="System.Delegate">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5da8a5d903502aaa8f36abfbc0a12b2e72e9ec73" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58749867" /></Metadata><TypeSignature Language="C#" Value="public abstract class Delegate : ICloneable, System.Runtime.Serialization.ISerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="49bd802fa8ffc3122beb07d490740f9cf8d7af4c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69406630" /></Metadata><TypeSignature Language="C#" Value="public abstract class Delegate : ICloneable, System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi abstract serializable beforefieldinit Delegate extends System.Object implements class System.ICloneable, class System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.Delegate" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class Delegate&#xA;Implements ICloneable, ISerializable" />
@@ -54,58 +54,58 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Delegate>类是委托类型的基类。 但是，只有系统和编译器可以派生自显式<xref:System.Delegate>类或从<xref:System.MulticastDelegate>类。 此外，还不允许从委托类型派生新类型。 <xref:System.Delegate>类不被视为是委托类型; 它是用于委托类型派生一个类。  
+ <xref:System.Delegate>类是委托类型的基类。 但是, 只有系统和编译器才能显式从<xref:System.Delegate>类或<xref:System.MulticastDelegate>类派生。 也不允许从委托类型派生新类型。 <xref:System.Delegate>类不被视为委托类型; 它是用于派生委托类型的类。  
   
- 大多数语言实现`delegate`关键字，并为这些语言的编译器可派生自<xref:System.MulticastDelegate>类; 因此，用户应使用`delegate`语言提供的关键字。  
-  
-> [!NOTE]
->  公共语言运行时提供`Invoke`对于每个委托类型，具有相同的签名与委托的方法。 您不需要显式调用此方法，从 C#、 Visual Basic 或 Visual c + +，因为编译器会自动调用。 `Invoke`方法可在[反射](~/docs/framework/reflection-and-codedom/reflection.md)时想要查找的委托类型签名。  
-  
- 公共语言运行时提供每个委托类型与`BeginInvoke`和`EndInvoke`方法，以便能够异步调用的委托。 有关这些方法的详细信息，请参阅[Calling Synchronous Methods Asynchronously](~/docs/standard/asynchronous-programming-patterns/calling-synchronous-methods-asynchronously.md)。  
-  
- 委托类型的声明建立指定的一个或多个方法签名的协定。 委托是所引用的委托类型的实例：  
-  
--   类型和可分配给该类型的目标对象的实例方法。  
-  
--   具有隐藏的类型的实例方法`this`参数在形参表中公开。 委托被称为是一个委托，它打开的实例。  
-  
--   一种静态方法。  
-  
--   静态方法，并且可分配给该方法的第一个参数的目标对象。 委托被称为封闭式其第一个参数。  
-  
- 有关绑定的委托的详细信息，请参阅<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.Reflection.MethodInfo%2CSystem.Boolean%29>方法重载。  
+ 大多数语言都实现`delegate`关键字, 这些语言的编译器可以<xref:System.MulticastDelegate>从类派生; 因此, 用户应使用语言提供的`delegate`关键字。  
   
 > [!NOTE]
->  在.NET framework 1.0 和 1.1 中，委托可以表示一种方法，仅当该方法的签名与委托类型指定的签名完全匹配。 因此，仅第一个和第三个项目符号前面的列表中都受支持，并且第一项要求的类型完全匹配项。  
+>  公共语言运行时为每`Invoke`个委托类型提供了一个方法, 其签名与委托的签名相同。 不必从C#、Visual Basic 或视觉对象C++显式调用此方法, 因为编译器会自动调用此方法。 当`Invoke`您想要查找委托类型的签名时, 方法在[反射](~/docs/framework/reflection-and-codedom/reflection.md)中很有用。  
   
- 委托时委托表示实例方法通过其第一个参数 （最常见的情况） 关闭时，将对方法的入口点的引用和对一个名为目标，这是赋给定义的类型的类型的对象的引用存储方法。 当委托表示打开的实例方法时，它存储到该方法的入口点的引用。 委托签名必须包括隐藏`this`参数在其形参表; 在这种情况下，委托不具有对目标对象的引用和调用委托时，必须提供目标对象。  
+ 公共语言运行时为每个委托类型`BeginInvoke`提供`EndInvoke`和方法, 以启用委托的异步调用。 有关这些方法的详细信息, 请参阅[异步调用同步方法](~/docs/standard/asynchronous-programming-patterns/calling-synchronous-methods-asynchronously.md)。  
   
- 当委托表示静态方法时，该委托存储到该方法的入口点的引用。 当委托表示静态方法通过其第一个参数已关闭时，委托将存储对方法的入口点的引用和对可分配给该方法的第一个参数的类型的目标对象的引用。 当调用委托时，静态方法的第一个参数接收目标对象。  
+ 委托类型的声明建立一个协定, 该协定指定一个或多个方法的签名。 委托是引用了的委托类型的实例:  
   
- 委托的调用列表是列表的一个有序中的每个元素调用一个委托所表示的方法的委托。 调用列表可以包含重复的方法。 在调用过程的调用列表中出现的顺序调用的方法。 尝试调用其调用列表; 中的每个方法的委托对于每个时间它们会显示在调用列表后，会调用重复项。 委托是固定不变;创建后，委托的调用列表将不会更改。  
+-   类型的实例方法和可分配给该类型的目标对象。  
   
- 委托被引用的多路广播，或可组合，因为委托可以调用一个或多个方法，并且可以用在组合操作。  
+-   类型的实例方法, 其中的隐藏`this`参数在形参表中公开。 委托称为开放实例委托。  
   
- 合并操作，如<xref:System.Delegate.Combine%2A>和<xref:System.Delegate.Remove%2A>，不会更改现有委托。 相反，此类操作返回包含结果的操作，一个不变的委托，一个新委托或`null`。 合并操作将返回`null`时操作的结果是不引用至少一种方法的委托。 合并操作，返回未更改的委托时请求的操作不起作用。  
+-   静态方法。  
+  
+-   一个静态方法和一个目标对象, 可分配给该方法的第一个参数。 委托被认为是在其第一个参数上关闭。  
+  
+ 有关委托绑定的详细信息, 请参阅<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.Reflection.MethodInfo%2CSystem.Boolean%29>方法重载。  
   
 > [!NOTE]
->  托管语言使用<xref:System.Delegate.Combine%2A>和<xref:System.Delegate.Remove%2A>方法来实现委托操作。 示例包括`AddHandler`和`RemoveHandler`在 Visual Basic 中的语句和上的 + = 和-= 运算符委托在 C# 中的类型。  
+>  在 .NET Framework 版本1.0 和1.1 中, 委托只能表示方法的签名与委托类型指定的签名完全匹配。 因此, 只支持前面列表中的第一个和第三个项目符号, 而第一个项目符号需要完全类型匹配。  
   
- 从开始[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]，泛型委托类型可以具有 variant 类型参数。 逆变类型参数可以用作参数类型的委托，协变类型参数可以用作返回类型。 此功能允许泛型委托类型相同的泛型类型定义，如中所述为赋值兼容其类型参数是引用类型具有继承关系，如果从[协方差和逆变](~/docs/standard/generics/covariance-and-contravariance.md)。  
+ 当某个委托表示在其第一个参数 (最常见的情况) 关闭的实例方法时, 该委托将存储对该方法的入口点的引用以及对该对象的引用 (称为目标), 该类型可分配给定义了付款方式. 当委托表示开放式实例方法时, 它存储对该方法的入口点的引用。 委托签名必须在其形参表`this`中包含 hidden 参数; 在这种情况下, 该委托不具有对目标对象的引用, 并且在调用委托时必须提供目标对象。  
+  
+ 如果委托表示静态方法, 则委托存储对方法的入口点的引用。 如果委托表示在其第一个参数上关闭的静态方法, 则该委托存储对方法的入口点的引用, 并存储对可分配给该方法的第一个参数类型的目标对象的引用。 调用委托时, 静态方法的第一个参数将接收目标对象。  
+  
+ 委托的调用列表是一组有序委托, 其中列表的每个元素都只调用由委托表示的方法之一。 调用列表可以包含重复的方法。 在调用期间, 将按照调用列表中出现的顺序调用方法。 委托尝试调用其调用列表中的每个方法;对于每次出现在调用列表中的重复项, 都会调用一次。 委托是不可变的;一旦创建, 委托的调用列表将不会更改。  
+  
+ 委托称为多播, 或者是可组合的, 因为委托可以调用一个或多个方法, 并且可以在组合操作中使用。  
+  
+ 组合操作 (如<xref:System.Delegate.Combine%2A>和<xref:System.Delegate.Remove%2A>) 不会改变现有委托。 相反, 此类操作返回一个新委托, 其中包含操作的结果、未更改的委托或`null`。 当操作的结果`null`是一个委托, 该委托未引用至少一个方法时, 组合操作返回。 当请求的操作不起作用时, 组合操作返回未更改的委托。  
   
 > [!NOTE]
->  赋值兼容的泛型委托的变体由于并不一定是可组合。 若要可组合，类型必须完全匹配。 例如，假设一个名为`Derived`派生的类名为`Base`。 类型的委托`Action<Base>`(`Action(Of Base)`在 Visual Basic 中) 可以分配给类型的变量的`Action<Derived>`，但不能组合两个委托，因为类型不完全匹配。  
+>  托管语言使用<xref:System.Delegate.Combine%2A>和<xref:System.Delegate.Remove%2A>方法来实现委托操作。 示例包括中`AddHandler`的`RemoveHandler`和语句 Visual Basic 和中C#的委托类型上的 + = 和-= 运算符。  
   
- 如果调用的方法引发异常，该方法停止执行、 异常传递回委托，调用方和剩余方法的调用列表中不会调用。 在调用方中捕获该异常不会更改此行为。  
+ 从开始, 泛型委托类型可以具有变体类型参数。 [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)] 逆变类型参数可用作委托的参数类型, 协变类型参数可用作返回类型。 此功能允许从同一泛型类型定义构造的泛型委托类型成为赋值兼容的泛型委托类型 (如果其类型参数是具有继承关系的引用类型), 如[协变和逆变中所述](~/docs/standard/generics/covariance-and-contravariance.md).  
   
- 当由委托调用的方法的签名包括返回值时，委托的调用列表中返回的最后一个元素的返回值。 如果签名包括按引用传递的参数，参数的最终值将按顺序执行并更新参数的值的调用列表中每个方法的结果。  
+> [!NOTE]
+>  与赋值兼容的泛型委托不一定是可组合的。 要使其可组合, 类型必须完全匹配。 例如, 假设名`Derived`为的类派生自名`Base`为的类。 可以将类型`Action<Base>` (`Action(Of Base)`在 Visual Basic 中) 的委托分配给类型`Action<Derived>`的变量, 但不能组合这两个委托, 因为这些类型不完全匹配。  
   
- 最接近的 C 中是委托的函数指针。 委托可以表示的静态方法或实例方法。 当委托表示实例方法时，该委托存储不仅对方法的入口点，而且还对类实例的引用。 函数与指针不同，委托是面向对象和类型安全的。  
+ 如果调用的方法引发异常, 则方法将停止执行, 异常将被传递回委托的调用方, 并且不会调用调用列表中的其余方法。 捕获调用方中的异常不会改变此行为。  
+  
+ 当委托调用的方法的签名包含返回值时, 该委托将返回调用列表中最后一个元素的返回值。 如果签名包含通过引用传递的参数, 则参数的最终值将是按顺序执行的调用列表中的每个方法的结果, 并且更新参数的值。  
+  
+ 最接近 C 的委托的等效项是函数指针。 委托可以表示静态方法或实例方法。 如果委托表示实例方法, 则委托不仅存储对方法入口点的引用, 还存储对类实例的引用。 与函数指针不同, 委托是面向对象的和类型安全的。  
   
    
   
 ## Examples  
- 下面的示例演示如何定义一个名为的委托`myMethodDelegate`。 实例方法和嵌套的静态方法来创建此委托的实例`mySampleClass`类。 实例方法的委托需要的实例`mySampleClass`。 `mySampleClass`实例保存在名为`mySC`。  
+ 下面的示例演示如何定义名为`myMethodDelegate`的委托。 此委托的实例是为实例方法和嵌套`mySampleClass`类的静态方法创建的。 实例方法的委托需要的`mySampleClass`实例。 实例保存在一个名为`mySC`的变量中。 `mySampleClass`  
   
  [!code-cpp[Classic Delegate Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Delegate Example/CPP/source.cpp#1)]
  [!code-csharp[Classic Delegate Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Delegate Example/CS/source.cs#1)]
@@ -173,18 +173,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不能在应用程序代码中使用此构造函数。 若要通过指定实例方法的名称创建一个委托，使用的重载<xref:System.Delegate.CreateDelegate%2A>指定方法名称和目标对象的方法。 例如，<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.String%29>方法重载创建具有指定名称的实例方法的委托。  
+ 不能在应用程序代码中使用此构造函数。 若要通过指定实例方法的名称来创建委托, 请使用<xref:System.Delegate.CreateDelegate%2A>方法的重载, 该重载指定方法名称和目标对象。 例如, <xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.String%29>方法重载为具有指定名称的实例方法创建委托。  
   
- 此构造函数实例只方法创建委托。 另一实例方法是与类; 的实例相关联的方法静态方法是与类本身相关联的方法。  
+ 此构造函数仅创建实例方法的委托。 实例方法是与类的实例关联的方法;静态方法是与类自身相关联的方法。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="target" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException">绑定到目标方法时出错。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="T:System.Object" />
         <altmember cref="T:System.String" />
       </Docs>
@@ -231,21 +231,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不能在应用程序代码中使用此构造函数。 若要指定静态方法的名称创建一个委托，使用的重载<xref:System.Delegate.CreateDelegate%2A>指定方法名称，但未指定目标对象的方法。 例如，<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Type%2CSystem.String%29>方法重载创建具有指定名称的方法的静态委托。  
+ 不能在应用程序代码中使用此构造函数。 若要通过指定静态方法的名称来创建委托, 请使用<xref:System.Delegate.CreateDelegate%2A>方法的重载, 该重载指定方法名称, 但不指定目标对象。 例如, <xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Type%2CSystem.String%29>方法重载为具有指定名称的方法创建静态委托。  
   
- 此构造函数创建只为静态方法的委托。 另一实例方法是与类; 的实例相关联的方法静态方法是与类本身相关联的方法。  
+ 此构造函数只为静态方法创建委托。 实例方法是与类的实例关联的方法;静态方法是与类自身相关联的方法。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="target" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="target" /> 不是 <see langword="RuntimeType" />。 请参阅[反射中的运行时类型](https://msdn.microsoft.com/library/c1439fb5-cf76-475d-a9d2-fe64ba858858)。  
   
-- 或 - 
+或 
  <paramref name="target" /> 表示开放式泛型类型。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="T:System.Type" />
         <altmember cref="T:System.String" />
       </Docs>
@@ -294,13 +294,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 克隆具有相同<xref:System.Type>，与原始委托的目标、 方法和调用列表。  
+ 克隆与原始委托具有<xref:System.Type>相同的目标、方法和调用列表。  
   
- 浅表副本创建与原始对象相同的类型的新实例，然后将复制的原始对象的非静态字段。 如果此字段为值类型，则执行字段的按位复制。 如果此字段为引用类型，则复制引用，但被引用的对象;因此，在原始对象的引用和克隆中的引用点对同一对象。 与此相反，对象的深层副本会复制所有内容直接或间接引用的对象中的字段。  
+ 浅表复制创建与原始对象具有相同类型的新实例, 然后复制原始对象的非静态字段。 如果该字段是值类型, 则执行字段的逐位副本。 如果该字段是引用类型, 则会复制引用, 但不会复制引用的对象;因此, 原始对象中的引用和克隆点中对同一对象的引用。 相反, 对象的深层副本会复制对象中的字段直接或间接引用的所有内容。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
       </Docs>
     </Member>
     <MemberGroup MemberName="Combine">
@@ -370,19 +370,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`delegates`数组包含的条目`null`，这些条目将被忽略。  
+ 如果数组包含的条目为`null`, 则忽略这些条目。 `delegates`  
   
- 调用列表可以包含重复项;它是指同一对象上的相同方法的条目。  
+ 调用列表可以包含重复项;也就是说, 引用相同对象上的同一方法的条目。  
   
 > [!NOTE]
->  赋值兼容的泛型委托的变体由于并不一定是可组合。 若要可组合，类型必须完全匹配。 例如，假设一个名为`Derived`派生的类名为`Base`。 类型的委托`Action<Base>`(`Action(Of Base)`在 Visual Basic 中) 可以分配给类型的变量`Action<Derived>`，如中所述[协变和逆变](~/docs/standard/generics/covariance-and-contravariance.md)，但不能组合两个委托，因为此操作类型不完全匹配。  
+>  与赋值兼容的泛型委托不一定是可组合的。 要使其可组合, 类型必须完全匹配。 例如, 假设名`Derived`为的类派生自名`Base`为的类。 如`Action<Base>` [协变和逆变](~/docs/standard/generics/covariance-and-contravariance.md)中所述, 可以将类型的委托 (`Action(Of Base)`在`Action<Derived>`Visual Basic 中) 分配给类型的变量, 但这两个委托无法组合, 因为这些类型不完全匹配。  
   
- <xref:System.Delegate.Combine%2A> 可用于创建调用多个方法的时间事件发生的事件处理程序。  
+ <xref:System.Delegate.Combine%2A>适用于创建每次发生事件时调用多个方法的事件处理程序。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException">不是所有 <paramref name="delegates" /> 中的非 null 项都是同一委托类型的实例。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="T:System.MulticastDelegate" />
         <altmember cref="M:System.Delegate.CombineImpl(System.Delegate)" />
       </Docs>
@@ -440,17 +440,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用列表可以包含重复项;它是指同一对象上的相同方法的条目。  
+ 调用列表可以包含重复项;也就是说, 引用相同对象上的同一方法的条目。  
   
 > [!NOTE]
->  赋值兼容的泛型委托的变体由于并不一定是可组合。 若要可组合，类型必须完全匹配。 例如，假设一个名为`Derived`派生的类名为`Base`。 类型的委托`Action<Base>`(`Action(Of Base)`在 Visual Basic 中) 可以分配给类型的变量`Action<Derived>`，如中所述[协变和逆变](~/docs/standard/generics/covariance-and-contravariance.md)，但不能组合两个委托，因为此操作类型不完全匹配。  
+>  与赋值兼容的泛型委托不一定是可组合的。 要使其可组合, 类型必须完全匹配。 例如, 假设名`Derived`为的类派生自名`Base`为的类。 如`Action<Base>` [协变和逆变](~/docs/standard/generics/covariance-and-contravariance.md)中所述, 可以将类型的委托 (`Action(Of Base)`在`Action<Derived>`Visual Basic 中) 分配给类型的变量, 但这两个委托无法组合, 因为这些类型不完全匹配。  
   
- <xref:System.Delegate.Combine%2A> 可用于创建调用多个方法的时间事件发生的事件处理程序。  
+ <xref:System.Delegate.Combine%2A>适用于创建每次发生事件时调用多个方法的事件处理程序。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="a" /> 和 <paramref name="b" /> 均不为 <see langword="null" />，且 <paramref name="a" /> 和 <paramref name="b" /> 不是相同委托类型的实例。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="T:System.MulticastDelegate" />
         <altmember cref="M:System.Delegate.CombineImpl(System.Delegate)" />
       </Docs>
@@ -494,16 +494,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法仅适用于当前委托是多路广播 （可组合）。  
+ 仅当当前委托是多路广播 (可组合) 时, 此方法才适用。  
   
- 当前实现只需引发<xref:System.MulticastNotSupportedException>。  
+ 当前实现只引发一个<xref:System.MulticastNotSupportedException>。  
   
- 调用列表可以包含重复项;它是指同一对象上的相同方法的条目。  
+ 调用列表可以包含重复项;也就是说, 引用相同对象上的同一方法的条目。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.MulticastNotSupportedException">始终引发。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="M:System.Delegate.Combine(System.Delegate,System.Delegate)" />
       </Docs>
     </Member>
@@ -557,65 +557,65 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在.NET Framework 1.0 和 1.1 版中，此方法的重载创建只为静态方法的委托。 在.NET Framework 2.0 版中，此方法的重载还可以创建打开实例方法的委托;即，显式提供的隐藏第一个参数的委托实例方法。 有关的详细说明，请参阅更多常规<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.Reflection.MethodInfo%29>方法重载，它允许您创建的打开或关闭实例或静态方法的委托的所有组合并根据需要指定第一个参数。  
+ 在 .NET Framework 版本1.0 和1.1 中, 此方法重载仅为静态方法创建委托。 在 .NET Framework 版本2.0 中, 此方法重载还可以创建开放式实例方法委托;也就是说, 显式提供实例方法的隐藏第一个参数的委托。 有关详细说明, 请参阅更通用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.Reflection.MethodInfo%29>的方法重载, 该重载允许您为实例或静态方法创建开放或关闭委托的所有组合, 还可以选择指定第一个参数。  
   
 > [!NOTE]
->  此方法应使用重载时委托未关闭通过其第一个参数，因为它在这种情况下是某种程度上更快。  
+>  如果委托未通过其第一个参数关闭, 则应使用此方法重载, 因为在这种情况下, 该委托的速度稍快。  
   
- 此方法的重载是等效于调用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%2CSystem.Boolean%29>方法重载并指定`true`为`throwOnBindFailure`。  
+ 此方法重载等效于调用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%2CSystem.Boolean%29>方法重载, 并为`throwOnBindFailure`指定`true` 。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，可以使用此方法访问非公共方法，如果授予调用方<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType>标记线程和非公共方法的授予集限制到调用方的授予集或子集其中。 (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> , 此方法可用于访问非公共方法, 前提是已使用标志授予调用方, 而非公共方法的授予集限制为调用方的授予集或子集[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]缺少. (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
 >   
 >  若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
 ## <a name="compatible-parameter-types-and-return-type"></a>兼容的参数类型和返回类型  
- 在.NET Framework 2.0 版中，参数类型和使用此方法的重载创建委托的返回类型必须是与参数类型和委托表示; 方法的返回类型兼容类型不需要完全匹配。 这表示在.NET Framework 版本 1.0 和 1.1 中，类型必须完全匹配的绑定行为是放宽了。  
+ 在 .NET Framework 版本2.0 中, 使用此方法重载创建的委托的参数类型和返回类型必须与委托表示的方法的参数类型和返回类型兼容;类型不必完全匹配。 这表示 .NET Framework 版本1.0 和1.1 中绑定行为的 relaxation, 其中类型必须完全匹配。  
   
  如果委托参数的类型的限制性强于方法参数的类型，则该委托的参数与该方法的相应参数兼容，因为这可保证传递给委托的参数可以安全地传递给方法。  
   
  同样，如果方法的返回类型的限制性强于委托的返回类型，则该委托的返回类型与该方法的返回类型兼容，因为这可保证方法的返回值可以安全地强制转换为委托的返回类型。  
   
- 例如，一个委托，其类型的参数<xref:System.Collections.Hashtable>和返回类型为<xref:System.Object>可以表示具有类型的参数的方法<xref:System.Object>以及一个返回值类型的<xref:System.Collections.Hashtable>。  
+ 例如, 具有<xref:System.Collections.Hashtable>类型为的参数和返回类型的<xref:System.Object>委托可以表示具有类型<xref:System.Object>的参数和类型<xref:System.Collections.Hashtable>的返回值的方法。  
   
    
   
 ## Examples  
- 本部分包含两个代码示例。 第一个示例演示两种类型的委托可以使用此方法的重载来创建： 打开通过实例方法，并通过静态方法。  
+ 本部分包含两个代码示例。 第一个示例演示可使用此方法重载创建的两种委托: 通过实例方法打开并通过静态方法打开。  
   
- 第二个代码示例演示了兼容的参数类型和返回类型。  
+ 第二个代码示例演示兼容的参数类型和返回类型。  
   
- **示例 1**  
+ **示例1**  
   
- 下面的代码示例演示了可以使用此重载创建委托的两种方法<xref:System.Delegate.CreateDelegate%2A>方法。  
+ 下面的代码示例演示了使用此<xref:System.Delegate.CreateDelegate%2A>方法重载可以创建委托的两种方法。  
   
 > [!NOTE]
->  有两个重载<xref:System.Delegate.CreateDelegate%2A>方法指定<xref:System.Reflection.MethodInfo>，但不是第一个参数; 它们的功能相同，只一个允许您指定是否引发失败时要将绑定，而是其他总是引发。 此代码示例使用两个重载。  
+>  <xref:System.Delegate.CreateDelegate%2A>方法有两个重载, 它<xref:System.Reflection.MethodInfo>指定但不指定第一个参数; 其功能是相同的, 但前者允许您指定是否要在绑定失败时引发, 另一个始终引发。 此代码示例使用两个重载。  
   
- 此示例声明一个类`C`静态方法一起`M2`和实例方法`M1`，和两个委托类型：`D1`的实例`C`和一个字符串，和`D2`采用一个字符串。  
+ 该示例使用静态方法`C` `M2` 、实例方法`M1`和`C`两个委托类型来声明类: `D1`使用实例和字符串, 并`D2`使用字符串。  
   
- 名为第二个类`Example`包含创建委托的代码。  
+ 名为`Example`的第二个类包含创建委托的代码。  
   
--   类型的委托`D1`，表示打开的实例方法，为实例方法创建`M1`。 当调用委托时，必须传递实例。  
+-   为实例方法`M1`创建`D1`表示开放式实例方法的类型为的委托。 调用委托时, 必须传递一个实例。  
   
--   类型的委托`D2`，表示打开的静态方法，为静态方法创建`M2`。  
+-   为静态方法`M2`创建`D2`一个表示 open 静态方法的类型的委托。  
   
  [!code-csharp[Delegate.CreateDelegateTOM#1](~/samples/snippets/csharp/VS_Snippets_CLR/Delegate.CreateDelegateTOM/cs/openClosedOver.cs#1)]
  [!code-vb[Delegate.CreateDelegateTOM#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/Delegate.CreateDelegateTOM/VB/openClosedOver.vb#1)]  
   
- **示例 2**  
+ **示例2**  
   
- 下面的代码示例演示了兼容性的参数类型和返回类型。  
+ 下面的代码示例演示参数类型和返回类型的兼容性。  
   
- 代码示例定义名为的基类`Base`和一个名为类`Derived`派生`Base`。 派生的类具有`static`(`Shared`在 Visual Basic 中) 名为方法`MyMethod`类型的一个参数与`Base`和返回类型为`Derived`。 代码示例还定义名为的委托`Example`它具有一个参数的类型`Derived`和返回类型为`Base`。  
+ 此代码示例定义一个名为`Base`的基类和一个名为`Derived`的类`Base`, 该类派生自。 派生类具有一个名`static` `MyMethod`为`Shared`的 (在 Visual Basic) 方法, 该方法具有`Base`一个类型为的`Derived`参数和一个返回类型。 此代码示例还定义了一个名`Example`为的委托, 该委托`Derived`具有一个类型为的`Base`参数和一个返回类型。  
   
- 代码示例演示委托名为`Example`可以用来表示该方法`MyMethod`。 该方法可以绑定到委托，因为：  
+ 此代码示例演示了可用于表示`Example`方法`MyMethod`的名为的委托。 方法可以绑定到委托, 原因如下:  
   
--   委托的参数类型 (`Derived`) 的参数类型比的限制性更强`MyMethod`(`Base`)，以便它始终是安全传递到委托的自变量`MyMethod`。  
+-   委托 (`Derived`) 的参数类型比`MyMethod` (`Base`) 的参数类型具有更强的限制, 因此, 将委托的参数传递给`MyMethod`是始终安全的。  
   
--   返回类型`MyMethod`(`Derived`) 是限制性强于委托的参数类型 (`Base`)，以便它始终是安全的委托的返回类型的方法的返回类型转换。  
+-   `MyMethod` (`Base`) 的返回类型的限制性强于委托的参数类型 (), 因此, 将方法的返回类型强制转换为委托的返回类型始终是安全的。`Derived`  
   
- 代码示例会生成任何输出。  
+ 此代码示例不生成输出。  
   
  [!code-cpp[Delegate.CreateDelegate_RelaxedFit#1](~/samples/snippets/cpp/VS_Snippets_CLR/Delegate.CreateDelegate_RelaxedFit/cpp/source.cpp#1)]
  [!code-csharp[Delegate.CreateDelegate_RelaxedFit#1](~/samples/snippets/csharp/VS_Snippets_CLR/Delegate.CreateDelegate_RelaxedFit/cs/source.cs#1)]
@@ -625,24 +625,24 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="type" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> 不继承 <see cref="T:System.MulticastDelegate" />。  
   
-- 或 - 
+或 
  <paramref name="type" /> 不是 <see langword="RuntimeType" />。 请参阅[反射中的运行时类型](https://msdn.microsoft.com/library/c1439fb5-cf76-475d-a9d2-fe64ba858858)。  
   
 - 或 - 
  <paramref name="method" /> 不是一种静态方法，并且 .NET Framework 版本为 1.0 或 1.1。  
   
-- 或 - 
+或 
  无法绑定 <paramref name="method" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 不是 <see langword="RuntimeMethodInfo" />。 请参阅[反射中的运行时类型](https://msdn.microsoft.com/library/c1439fb5-cf76-475d-a9d2-fe64ba858858)。</exception>
         <exception cref="T:System.MissingMethodException">找不到 <paramref name="type" /> 的 <see langword="Invoke" /> 方法。</exception>
         <exception cref="T:System.MethodAccessException">调用方没有访问 <paramref name="method" /> 所必需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Type" />
         <altmember cref="T:System.MulticastDelegate" />
         <altmember cref="T:System.Security.Permissions.ReflectionPermission" />
@@ -690,130 +690,130 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法重载是等效于调用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.Reflection.MethodInfo%2CSystem.Boolean%29>方法重载并指定`true`为`throwOnBindFailure`。 这两个重载提供最灵活的方式来创建委托。 若要创建委托的静态或实例方法，并可以选择指定的第一个参数，可以使用它们。  
+ 调用此方法重载等效于调用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.Reflection.MethodInfo%2CSystem.Boolean%29>方法重载并为`throwOnBindFailure`指定`true` 。 这两个重载提供最灵活的方法来创建委托。 您可以使用它们为静态方法或实例方法创建委托, 还可以选择指定第一个参数。  
   
 > [!NOTE]
->  如果未提供第一个参数，使用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%29>方法重载，以更好的性能。  
+>  如果不提供第一个参数, 请使用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%29>方法重载以获得更好的性能。  
   
- 委托类型和方法必须具有兼容返回类型。 返回类型，即`method`必须是可赋值的返回类型为`type`。  
+ 委托类型和方法必须具有兼容的返回类型。 也就是说, 的`method`返回类型必须可分配给的返回`type`类型。  
   
- 如果`firstArgument`是提供，将它传递到`method`每次调用委托时;`firstArgument`称为绑定到委托，委托是说要关闭通过其第一个参数。 如果`method`是`static`(`Shared`在 Visual Basic 中)，则参数调用委托时提供的列表包括除第一个; 以外的所有参数，如果`method`然后是实例方法，`firstArgument`传递到隐藏的实例参数 (由`this`在 C# 中，或由`Me`在 Visual Basic 中)。  
+ 如果`firstArgument`提供了, 则每次调用`method`委托时将传递到该委托;`firstArgument`被称为绑定到委托, 并且委托被称为通过其第一个参数关闭。 如果`method`为`static` ( `method` `firstArgument`在 Visual Basic), 则调用委托时提供的自变量列表包含除第一个以外的所有参数; 如果为实例方法, 则将传递给隐藏的实例`Shared`参数 (由`this`中C#的表示, `Me`在 Visual Basic 中由表示)。  
   
- 如果`firstArgument`提供，则第一个参数`method`必须是引用类型，和`firstArgument`必须与该类型兼容。  
+ 如果`firstArgument`提供了, 则的`method`第一个参数必须是引用类型, 并且`firstArgument`必须与该类型兼容。  
   
 > [!IMPORTANT]
->  如果`method`是`static`(`Shared`在 Visual Basic 中) 且其第一个参数的类型<xref:System.Object>或<xref:System.ValueType>，然后`firstArgument`可以是值类型。 在这种情况下`firstArgument`自动装箱。 自动装箱不会发生的任何其他参数，因为它将在 C# 或 Visual Basic 函数中调用。  
+>  如果`method`为`firstArgument` <xref:System.ValueType> <xref:System.Object> (在 Visual Basic 中), 并且其第一个参数的类型为或, 则可以是值类型。`Shared` `static` 在这种`firstArgument`情况下, 会自动装箱。 对于任何其他参数, 都不会出现自动装箱, 这与在C#或 Visual Basic 函数调用中一样。  
   
- 如果`firstArgument`为 null 引用和`method`是实例方法，结果取决于委托类型的签名`type`和`method`:  
+ 如果`firstArgument`是 null 引用并且`method`是实例方法, 则结果取决于委托类型`type`和的`method`签名:  
   
--   如果签名`type`显式包含的隐藏第一个参数`method`，则委托被称为来表示打开的实例方法。 当调用委托时，参数列表中的第一个参数传递到隐藏的实例参数`method`。  
+-   如果的`type`签名显式包含隐藏的`method`第一个参数, 则称委托表示一个开放式实例方法。 调用委托时, 将参数列表中的第一个自变量传递给的隐藏实例参数`method`。  
   
--   如果签名的`method`和`type`匹配 （也就是说，所有参数类型都是兼容），则委托称为关闭通过空引用。 调用委托就像不是特别有用的办法就的 null 实例上调用实例方法。  
+-   如果`method` 和`type`匹配的签名 (即所有参数类型都兼容), 则将委托称为空引用。 调用委托类似于在 null 实例上调用实例方法, 这并不是特别有用的操作。  
   
- 如果`firstArgument`为 null 引用和`method`是静态的结果依赖于委托类型的签名`type`和`method`:  
+ 如果`firstArgument`是 null 引用并且`method`是静态的, 则结果取决于委托类型`type`和的`method`签名:  
   
--   如果签名`method`和`type`匹配 （也就是说，所有参数类型都是兼容），则委托被称为来表示开放的静态方法。 这是最常见的情况对静态方法。 在这种情况下，通过获取性能稍好<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%29>方法重载。  
+-   如果`method` 和`type`匹配的签名 (即, 所有参数类型都兼容), 则委托称为表示开放式静态方法。 这是静态方法最常见的情况。 在这种情况下, 可以使用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%29>方法重载获得略微更好的性能。  
   
--   如果签名`type`开头的第二个参数`method`和参数类型的其余部分是兼容的设备，然后委托被称为封闭式 null 引用。 调用委托时，将为 null 引用传递到的第一个参数`method`。  
+-   如果的签名`type`以的第二个`method`参数开始, 而其余的参数类型是兼容的, 则认为该委托是通过空引用关闭的。 调用委托时, 空引用将传递给的第一个参数`method`。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，可以使用此方法访问非公共方法，如果授予调用方<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType>标记线程和非公共方法的授予集限制到调用方的授予集或子集其中。 (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> , 此方法可用于访问非公共方法, 前提是已使用标志授予调用方, 而非公共方法的授予集限制为调用方的授予集或子集[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]缺少. (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
 >   
 >  若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
 ## <a name="compatible-parameter-types-and-return-type"></a>兼容的参数类型和返回类型  
- 参数类型和委托的返回类型必须与参数类型和委托表示; 方法的返回类型兼容类型不需要完全匹配。  
+ 委托的参数类型和返回类型必须与委托表示的方法的参数类型和返回类型兼容;类型不必完全匹配。  
   
 > [!NOTE]
->  在.NET Framework 1.0 和 1.1 版中，类型必须完全匹配。  
+>  在 .NET Framework 版本1.0 和1.1 中, 类型必须完全匹配。  
   
  如果委托参数的类型的限制性强于方法参数的类型，则该委托的参数与该方法的相应参数兼容，因为这可保证传递给委托的参数可以安全地传递给方法。  
   
  同样，如果方法的返回类型的限制性强于委托的返回类型，则该委托的返回类型与该方法的返回类型兼容，因为这可保证方法的返回值可以安全地强制转换为委托的返回类型。  
   
- 例如，一个委托，其类型的参数<xref:System.Collections.Hashtable>和返回类型为<xref:System.Object>可以表示具有类型的参数的方法<xref:System.Object>以及一个返回值类型的<xref:System.Collections.Hashtable>。  
+ 例如, 具有<xref:System.Collections.Hashtable>类型为的参数和返回类型的<xref:System.Object>委托可以表示具有类型<xref:System.Object>的参数和类型<xref:System.Collections.Hashtable>的返回值的方法。  
   
-## <a name="determining-the-methods-a-delegate-can-represent"></a>确定方法委托可以表示  
- 另一个有用方法看作的灵活性方面的此重载的<xref:System.Delegate.CreateDelegate%2A>是任何给定的委托可以表示四个不同的方法签名和方法的类型 （静态和实例） 的组合。 委托类型，请考虑`D`带有一个自变量类型的`C`。 以下介绍的方法`D`可以表示，因为它必须匹配在所有情况下忽略的返回类型：  
+## <a name="determining-the-methods-a-delegate-can-represent"></a>确定委托可以表示的方法  
+ 考虑此重载<xref:System.Delegate.CreateDelegate%2A>提供的灵活性的另一种有用方法是, 任何给定的委托都可以表示方法签名和方法类型 (静态与实例) 的四种不同组合。 请考虑一个具有`D`类型`C`为的参数的委托类型。 下面描述了方法可以`D`表示的方法, 忽略返回类型, 因为它在所有情况下都必须匹配:  
   
--   `D` 可以表示有且只有一个参数类型的任何实例方法`C`，无论实例方法属于哪种类型。 当<xref:System.Delegate.CreateDelegate%2A>调用时，`firstArgument`是类型的实例`method`属于，和结果委托所说，通过该实例关闭。 (一般而言，`D`如果还可以通过 null 引用封闭`firstArgument`为 null 引用。)  
+-   `D`可以表示任何具有一个类型`C`为的参数的任何实例方法, 而不考虑该实例方法所属的类型。 当<xref:System.Delegate.CreateDelegate%2A>调用时, `firstArgument`是该类型`method`的一个实例, 而所生成的委托则被称为关闭该实例。 (完全, `D`如果`firstArgument`为空引用, 还可以通过空引用关闭。)  
   
--   `D` 可以表示的实例方法`C`不带任何参数。 当<xref:System.Delegate.CreateDelegate%2A>调用时，`firstArgument`为 null 引用。 结果委托表示打开的实例方法，并且的实例`C`必须提供每次调用它时。  
+-   `D`可以表示没有参数的实例`C`方法。 调用<xref:System.Delegate.CreateDelegate%2A>时, `firstArgument`为空引用。 生成的委托表示开放式实例方法, `C`必须在每次调用时提供实例。  
   
--   `D` 可以表示采用一种参数类型的静态方法`C`，和方法可以属于任何类型。 当<xref:System.Delegate.CreateDelegate%2A>调用时，`firstArgument`为 null 引用。 结果委托表示开放的静态方法，并且的实例`C`必须提供每次调用它时。  
+-   `D`可以表示静态方法, 该方法采用一个类型`C`的参数, 该方法可以属于任何类型。 调用<xref:System.Delegate.CreateDelegate%2A>时, `firstArgument`为空引用。 生成的委托表示开放式静态方法, `C`必须在每次调用时提供实例。  
   
--   `D` 可以表示所属类型的静态方法`F`并且有两个参数，类型为`F`并键入`C`。 当<xref:System.Delegate.CreateDelegate%2A>调用时，`firstArgument`的一个实例`F`。 生成委托表示静态方法，通过该实例的关闭`F`。 请注意，在这种情况其中`F`和`C`属于同一类型、 静态方法有两个参数为该类型。 (在这种情况下，`D`如果通过 null 引用封闭`firstArgument`为 null 引用。)  
+-   `D`可以表示属于类型`F`且具有两个类型`F`为的参数和类型`C`的静态方法。 当<xref:System.Delegate.CreateDelegate%2A>调用时, `firstArgument`是的`F`实例。 生成的委托表示在该实例`F`上关闭的静态方法。 请注意, 在`F`和`C`的类型相同的情况下, 静态方法具有该类型的两个参数。 (在这种情况`D`下, 如果`firstArgument`为 null 引用, 则会通过空引用关闭。)  
   
    
   
 ## Examples  
- 本部分包含三个代码示例。 第一个示例演示了四种类型的可创建的委托： 关闭通过实例方法，通过实例方法，打开的静态方法，通过打开和关闭通过静态方法。  
+ 本部分包含三个代码示例。 第一个示例演示了可创建的四种委托: 通过实例方法关闭、在实例方法上打开、通过静态方法打开和通过静态方法关闭。  
   
- 第二个代码示例演示了兼容的参数类型和返回类型。  
+ 第二个代码示例演示兼容的参数类型和返回类型。  
   
- 第三个代码示例定义一个委托类型，并演示可以表示委托类型的所有方法。  
+ 第三个代码示例定义了一个委托类型, 并显示委托类型可以表示的所有方法。  
   
- **示例 1**  
+ **示例1**  
   
- 下面的代码示例演示了可以使用此重载创建委托的四个方法<xref:System.Delegate.CreateDelegate%2A>方法。  
+ 下面的代码示例演示了使用此<xref:System.Delegate.CreateDelegate%2A>方法重载可以创建委托的四种方法。  
   
 > [!NOTE]
->  有两个重载<xref:System.Delegate.CreateDelegate%2A>指定的方法`firstArgument`和一个<xref:System.Reflection.MethodInfo>; 它们的功能相同，只一个允许您指定是否引发失败时要将绑定，而是其他总是引发。 此代码示例使用两个重载。  
+>  <xref:System.Delegate.CreateDelegate%2A>方法有两个重载, 它指定`firstArgument`和 a <xref:System.Reflection.MethodInfo>; 其功能相同, 不同之处在于, 它允许您指定是否要在绑定失败时引发, 另一个始终引发。 此代码示例使用两个重载。  
   
- 此示例声明一个类`C`使用静态方法`M2`和实例方法`M1`，和三个委托类型：`D1`的实例`C`和一个字符串，`D2`采用一个字符串，并`D3`没有参数。  
+ 该示例使用静态方法`C` `M2` 、实例方法`M1`和`C`三个委托类型来声明类: `D1`采用的实例和字符串, `D2`采用字符串, `D3`没有参数。  
   
- 名为第二个类`Example`包含创建委托的代码。  
+ 名为`Example`的第二个类包含创建委托的代码。  
   
--   类型的委托`D2`、 已关闭的实例`C`，为实例方法创建`M1`。 使用不同的字符串，显示的绑定的实例调用`C`始终使用。  
+-   为实例方法`D2` `C`创建了一个类型的委托,该委托在的`M1`实例上关闭。 它使用不同的字符串调用, 以表示始终使用的绑定实例`C` 。  
   
--   类型的委托`D1`，表示打开的实例方法，为实例方法创建`M1`。 当调用委托时，必须传递实例。  
+-   为实例方法`M1`创建`D1`表示开放式实例方法的类型为的委托。 调用委托时, 必须传递一个实例。  
   
--   类型的委托`D2`，表示打开的静态方法，为静态方法创建`M2`。  
+-   为静态方法`M2`创建`D2`一个表示 open 静态方法的类型的委托。  
   
--   最后，类型的委托`D3`、 已关闭的字符串上，为静态方法创建`M2`。 调用方法以显示其使用的绑定的字符串。  
+-   最后, 为静态方法`D3` `M2`创建一个在字符串上关闭的类型的委托。 调用方法以显示它使用绑定的字符串。  
   
  [!code-csharp[Delegate.CreateDelegateTOM#1](~/samples/snippets/csharp/VS_Snippets_CLR/Delegate.CreateDelegateTOM/cs/openClosedOver.cs#1)]
  [!code-vb[Delegate.CreateDelegateTOM#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/Delegate.CreateDelegateTOM/VB/openClosedOver.vb#1)]  
   
- **示例 2**  
+ **示例2**  
   
- 下面的代码示例演示了兼容性的参数类型和返回类型。  
+ 下面的代码示例演示参数类型和返回类型的兼容性。  
   
 > [!NOTE]
->  此代码示例使用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%29>方法重载。 使用其他重载采用<xref:System.Reflection.MethodInfo>类似。  
+>  此代码示例使用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%29>方法重载。 使用采用<xref:System.Reflection.MethodInfo>的其他重载类似。  
   
- 代码示例定义名为的基类`Base`和一个名为类`Derived`派生`Base`。 派生的类具有`static`(`Shared`在 Visual Basic 中) 名为方法`MyMethod`类型的一个参数与`Base`和返回类型为`Derived`。 代码示例还定义名为的委托`Example`它具有一个参数的类型`Derived`和返回类型为`Base`。  
+ 此代码示例定义一个名为`Base`的基类和一个名为`Derived`的类`Base`, 该类派生自。 派生类具有一个名`static` `MyMethod`为`Shared`的 (在 Visual Basic) 方法, 该方法具有`Base`一个类型为的`Derived`参数和一个返回类型。 此代码示例还定义了一个名`Example`为的委托, 该委托`Derived`具有一个类型为的`Base`参数和一个返回类型。  
   
- 代码示例演示委托名为`Example`可以用来表示该方法`MyMethod`。 该方法可以绑定到委托，因为：  
+ 此代码示例演示了可用于表示`Example`方法`MyMethod`的名为的委托。 方法可以绑定到委托, 原因如下:  
   
--   委托的参数类型 (`Derived`) 的参数类型比的限制性更强`MyMethod`(`Base`)，以便它始终是安全传递到委托的自变量`MyMethod`。  
+-   委托 (`Derived`) 的参数类型比`MyMethod` (`Base`) 的参数类型具有更强的限制, 因此, 将委托的参数传递给`MyMethod`是始终安全的。  
   
--   返回类型`MyMethod`(`Derived`) 是限制性强于委托的参数类型 (`Base`)，以便它始终是安全的委托的返回类型的方法的返回类型转换。  
+-   `MyMethod` (`Base`) 的返回类型的限制性强于委托的参数类型 (), 因此, 将方法的返回类型强制转换为委托的返回类型始终是安全的。`Derived`  
   
- 代码示例会生成任何输出。  
+ 此代码示例不生成输出。  
   
  [!code-cpp[Delegate.CreateDelegate_RelaxedFit#1](~/samples/snippets/cpp/VS_Snippets_CLR/Delegate.CreateDelegate_RelaxedFit/cpp/source.cpp#1)]
  [!code-csharp[Delegate.CreateDelegate_RelaxedFit#1](~/samples/snippets/csharp/VS_Snippets_CLR/Delegate.CreateDelegate_RelaxedFit/cs/source.cs#1)]
  [!code-vb[Delegate.CreateDelegate_RelaxedFit#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/Delegate.CreateDelegate_RelaxedFit/vb/source.vb#1)]  
   
- **示例 3**  
+ **示例3**  
   
- 下面的代码示例显示了所有方法的单个的委托类型可以表示使用<xref:System.Delegate.CreateDelegate%2A>方法来创建委托。  
+ 下面的代码示例演示一个委托类型可以表示的所有方法, 并使用<xref:System.Delegate.CreateDelegate%2A>方法来创建委托。  
   
 > [!NOTE]
->  有两个重载<xref:System.Delegate.CreateDelegate%2A>指定的方法`firstArgument`和一个<xref:System.Reflection.MethodInfo>; 它们的功能相同，只一个允许您指定是否引发失败时要将绑定，而是其他总是引发。 此代码示例使用两个重载。  
+>  <xref:System.Delegate.CreateDelegate%2A>方法有两个重载, 它指定`firstArgument`和 a <xref:System.Reflection.MethodInfo>; 其功能相同, 不同之处在于, 它允许您指定是否要在绑定失败时引发, 另一个始终引发。 此代码示例使用两个重载。  
   
- 代码示例定义两个类：`C`并`F`，和委托类型`D`带有一个自变量类型的`C`。 类具有匹配的静态和实例方法`M1`， `M3`，并`M4`，和类`C`还具有实例方法`M2`不带任何参数。  
+ 此代码示例定义了两个`C`类`F`: 和, 以及一个`D`类型`C`为的参数的委托类型。 类具有匹配的静态和实例方法`M1`、 `M3`和`M4`, 并且类`C`还具有一个不带参数`M2`的实例方法。  
   
- 名为第三个类`Example`包含创建委托的代码。  
+ 第三个名`Example`为的类包含创建委托的代码。  
   
--   委托实例创建方法`M1`类型的`C`并键入`F`; 每个已关闭对相应类型的实例。 方法`M1`类型的`C`显示`ID`属性的绑定实例和自变量。  
+-   为类型`M1` `C`和类型`F`的实例方法创建委托; 每个委托都在各自类型的实例上关闭。 `ID`类型`M1` 为的方法显示绑定实例和`C`参数的属性。  
   
--   方法创建委托`M2`类型的`C`。 这是一个开放的实例的委托，委托自变量表示实例方法的隐藏第一个参数。 该方法具有任何其他参数。 调用，就好像静态方法。  
+-   为类型`M2` `C`的方法创建委托。 这是一个打开的实例委托, 其中委托的参数表示实例方法上隐藏的第一个参数。 方法没有其他参数。 它被称为静态方法。  
   
--   为静态方法创建委托`M3`类型的`C`并键入`F`; 这些是打开的静态委托。  
+-   为类型`M3` `C`和类型`F`的静态方法创建委托; 这些是开放式静态委托。  
   
--   最后，为静态方法创建委托`M4`类型的`C`并键入`F`; 每个方法具有作为其第一个参数的声明类型和提供的类型的实例，因此委托关闭通过其第一个参数. 方法`M4`类型的`C`显示`ID`属性的绑定实例和自变量。  
+-   最后, 为类型`M4` `C`和类型`F`的静态方法创建委托; 每个方法都将声明类型作为其第一个参数, 并提供类型的实例, 因此这些委托在其第一个参数上关闭. `ID`类型`M4` 为的方法显示绑定实例和`C`参数的属性。  
   
  [!code-csharp[Delegate.CreateDelegateTOM_2#1](~/samples/snippets/csharp/VS_Snippets_CLR/Delegate.CreateDelegateTOM_2/cs/source.cs#1)]
  [!code-vb[Delegate.CreateDelegateTOM_2#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/Delegate.CreateDelegateTOM_2/vb/source.vb#1)]  
@@ -826,17 +826,17 @@
  <paramref name="method" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> 不继承 <see cref="T:System.MulticastDelegate" />。  
   
-- 或 - 
+或 
  <paramref name="type" /> 不是 <see langword="RuntimeType" />。 请参阅[反射中的运行时类型](https://msdn.microsoft.com/library/c1439fb5-cf76-475d-a9d2-fe64ba858858)。  
   
-- 或 - 
+或 
  无法绑定 <paramref name="method" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 不是 <see langword="RuntimeMethodInfo" />。 请参阅[反射中的运行时类型](https://msdn.microsoft.com/library/c1439fb5-cf76-475d-a9d2-fe64ba858858)。</exception>
         <exception cref="T:System.MissingMethodException">找不到 <paramref name="type" /> 的 <see langword="Invoke" /> 方法。</exception>
         <exception cref="T:System.MethodAccessException">调用方没有访问 <paramref name="method" /> 所必需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Type" />
         <altmember cref="T:System.MulticastDelegate" />
         <altmember cref="T:System.Security.Permissions.ReflectionPermission" />
@@ -885,12 +885,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法创建委托实例仅方法。 另一实例方法是与类; 的实例相关联的方法静态方法是与类本身相关联的方法。  
+ 此方法只为实例方法创建委托。 实例方法是与类的实例关联的方法;静态方法是与类自身相关联的方法。  
   
- 此方法的重载是等效于调用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.String%2CSystem.Boolean%2CSystem.Boolean%29>方法重载，指定`false`有关`ignoreCase`并`true`为`throwOnBindFailure`。  
+ 此方法重载等效于调用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.String%2CSystem.Boolean%2CSystem.Boolean%29>方法重载, `ignoreCase`并为指定`false`和`true` `throwOnBindFailure`。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，可以使用此方法访问非公共方法，如果授予调用方<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType>标记线程和非公共方法的授予集限制到调用方的授予集或子集其中。 (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> , 此方法可用于访问非公共方法, 前提是已使用标志授予调用方, 而非公共方法的授予集限制为调用方的授予集或子集[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]缺少. (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
 >   
 >  若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
@@ -898,24 +898,24 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="type" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="target" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> 不继承 <see cref="T:System.MulticastDelegate" />。  
   
 - 或 - 
  <paramref name="type" /> 不是 <see langword="RuntimeType" />。 请参阅[反射中的运行时类型](https://msdn.microsoft.com/library/c1439fb5-cf76-475d-a9d2-fe64ba858858)。  
   
-- 或 - 
+或 
  <paramref name="method" /> 不是实例方法。  
   
-- 或 - 
+或 
  无法绑定 <paramref name="method" />，例如因为找不到它。</exception>
         <exception cref="T:System.MissingMethodException">找不到 <paramref name="type" /> 的 <see langword="Invoke" /> 方法。</exception>
         <exception cref="T:System.MethodAccessException">调用方没有访问 <paramref name="method" /> 所必需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Type" />
         <altmember cref="T:System.MulticastDelegate" />
         <altmember cref="T:System.Security.Permissions.ReflectionPermission" />
@@ -968,69 +968,69 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法的重载可以创建开放的静态方法的委托，并打开实例方法委托-即，公开隐藏的实例方法的第一个参数的委托。 有关的详细说明，请参阅更多常规<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.Reflection.MethodInfo%2CSystem.Boolean%29>方法重载，它允许你创建的打开或关闭委托的所有组合实例或静态方法。  
+ 此方法重载可以创建开放式静态方法委托和开放式实例方法委托, 即公开实例方法的隐藏第一个参数的委托。 有关详细说明, 请参阅更通用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.Reflection.MethodInfo%2CSystem.Boolean%29>的方法重载, 该重载允许您为实例或静态方法创建开放式或封闭式委托的所有组合。  
   
 > [!NOTE]
->  此方法应使用重载时委托未关闭通过其第一个参数，因为它在这种情况下是某种程度上更快。  
+>  如果委托未通过其第一个参数关闭, 则应使用此方法重载, 因为在这种情况下, 该委托的速度稍快。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，可以使用此方法访问非公共方法，如果授予调用方<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType>标记线程和非公共方法的授予集限制到调用方的授予集或子集其中。 (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> , 此方法可用于访问非公共方法, 前提是已使用标志授予调用方, 而非公共方法的授予集限制为调用方的授予集或子集[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]缺少. (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
 >   
 >  若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
 ## <a name="compatible-parameter-types-and-return-type"></a>兼容的参数类型和返回类型  
- 参数类型和委托的返回类型必须与参数类型和委托表示; 方法的返回类型兼容类型不需要完全匹配。  
+ 委托的参数类型和返回类型必须与委托表示的方法的参数类型和返回类型兼容;类型不必完全匹配。  
   
 > [!NOTE]
->  在.NET Framework 1.0 和 1.1 版中，类型必须完全匹配。  
+>  在 .NET Framework 版本1.0 和1.1 中, 类型必须完全匹配。  
   
  如果委托参数的类型的限制性强于方法参数的类型，则该委托的参数与该方法的相应参数兼容，因为这可保证传递给委托的参数可以安全地传递给方法。  
   
  同样，如果方法的返回类型的限制性强于委托的返回类型，则该委托的返回类型与该方法的返回类型兼容，因为这可保证方法的返回值可以安全地强制转换为委托的返回类型。  
   
- 例如，一个委托，其类型的参数<xref:System.Collections.Hashtable>和返回类型为<xref:System.Object>可以表示具有类型的参数的方法<xref:System.Object>以及一个返回值类型的<xref:System.Collections.Hashtable>。  
+ 例如, 具有<xref:System.Collections.Hashtable>类型为的参数和返回类型的<xref:System.Object>委托可以表示具有类型<xref:System.Object>的参数和类型<xref:System.Collections.Hashtable>的返回值的方法。  
   
    
   
 ## Examples  
- 本部分包含两个代码示例。 第一个示例演示两种类型的委托可以使用此方法的重载来创建： 打开通过实例方法，并通过静态方法。  
+ 本部分包含两个代码示例。 第一个示例演示可使用此方法重载创建的两种委托: 通过实例方法打开并通过静态方法打开。  
   
- 第二个代码示例演示了兼容的参数类型和返回类型。  
+ 第二个代码示例演示兼容的参数类型和返回类型。  
   
- **示例 1**  
+ **示例1**  
   
- 下面的代码示例演示了可以使用此重载创建委托的两种方法<xref:System.Delegate.CreateDelegate%2A>方法。  
+ 下面的代码示例演示了使用此<xref:System.Delegate.CreateDelegate%2A>方法重载可以创建委托的两种方法。  
   
 > [!NOTE]
->  有两个重载<xref:System.Delegate.CreateDelegate%2A>方法指定<xref:System.Reflection.MethodInfo>，但不是第一个参数; 它们的功能相同，只一个允许您指定是否引发失败时要将绑定，而是其他总是引发。 此代码示例使用两个重载。  
+>  <xref:System.Delegate.CreateDelegate%2A>方法有两个重载, 它<xref:System.Reflection.MethodInfo>指定但不指定第一个参数; 其功能是相同的, 但前者允许您指定是否要在绑定失败时引发, 另一个始终引发。 此代码示例使用两个重载。  
   
- 此示例声明一个类`C`静态方法一起`M2`和实例方法`M1`，和两个委托类型：`D1`的实例`C`和一个字符串，和`D2`采用一个字符串。  
+ 该示例使用静态方法`C` `M2` 、实例方法`M1`和`C`两个委托类型来声明类: `D1`使用实例和字符串, 并`D2`使用字符串。  
   
- 名为第二个类`Example`包含创建委托的代码。  
+ 名为`Example`的第二个类包含创建委托的代码。  
   
--   类型的委托`D1`，表示打开的实例方法，为实例方法创建`M1`。 当调用委托时，必须传递实例。  
+-   为实例方法`M1`创建`D1`表示开放式实例方法的类型为的委托。 调用委托时, 必须传递一个实例。  
   
--   类型的委托`D2`，表示打开的静态方法，为静态方法创建`M2`。  
+-   为静态方法`M2`创建`D2`一个表示 open 静态方法的类型的委托。  
   
  [!code-csharp[Delegate.CreateDelegateTOM#1](~/samples/snippets/csharp/VS_Snippets_CLR/Delegate.CreateDelegateTOM/cs/openClosedOver.cs#1)]
  [!code-vb[Delegate.CreateDelegateTOM#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/Delegate.CreateDelegateTOM/VB/openClosedOver.vb#1)]  
   
- **示例 2**  
+ **示例2**  
   
- 下面的代码示例演示了兼容性的参数类型和返回类型。  
+ 下面的代码示例演示参数类型和返回类型的兼容性。  
   
 > [!NOTE]
->  此代码示例使用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%29>方法重载。 使用其他重载采用<xref:System.Reflection.MethodInfo>类似。  
+>  此代码示例使用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%29>方法重载。 使用采用<xref:System.Reflection.MethodInfo>的其他重载类似。  
   
- 代码示例定义名为的基类`Base`和一个名为类`Derived`派生`Base`。 派生的类具有`static`(`Shared`在 Visual Basic 中) 名为方法`MyMethod`类型的一个参数与`Base`和返回类型为`Derived`。 代码示例还定义名为的委托`Example`它具有一个参数的类型`Derived`和返回类型为`Base`。  
+ 此代码示例定义一个名为`Base`的基类和一个名为`Derived`的类`Base`, 该类派生自。 派生类具有一个名`static` `MyMethod`为`Shared`的 (在 Visual Basic) 方法, 该方法具有`Base`一个类型为的`Derived`参数和一个返回类型。 此代码示例还定义了一个名`Example`为的委托, 该委托`Derived`具有一个类型为的`Base`参数和一个返回类型。  
   
- 代码示例演示委托名为`Example`可以用来表示该方法`MyMethod`。 该方法可以绑定到委托，因为：  
+ 此代码示例演示了可用于表示`Example`方法`MyMethod`的名为的委托。 方法可以绑定到委托, 原因如下:  
   
--   委托的参数类型 (`Derived`) 的参数类型比的限制性更强`MyMethod`(`Base`)，以便它始终是安全传递到委托的自变量`MyMethod`。  
+-   委托 (`Derived`) 的参数类型比`MyMethod` (`Base`) 的参数类型具有更强的限制, 因此, 将委托的参数传递给`MyMethod`是始终安全的。  
   
--   返回类型`MyMethod`(`Derived`) 是限制性强于委托的参数类型 (`Base`)，以便它始终是安全的委托的返回类型的方法的返回类型转换。  
+-   `MyMethod` (`Base`) 的返回类型的限制性强于委托的参数类型 (), 因此, 将方法的返回类型强制转换为委托的返回类型始终是安全的。`Derived`  
   
- 代码示例会生成任何输出。  
+ 此代码示例不生成输出。  
   
  [!code-cpp[Delegate.CreateDelegate_RelaxedFit#1](~/samples/snippets/cpp/VS_Snippets_CLR/Delegate.CreateDelegate_RelaxedFit/cpp/source.cpp#1)]
  [!code-csharp[Delegate.CreateDelegate_RelaxedFit#1](~/samples/snippets/csharp/VS_Snippets_CLR/Delegate.CreateDelegate_RelaxedFit/cs/source.cs#1)]
@@ -1040,21 +1040,21 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="type" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> 不继承 <see cref="T:System.MulticastDelegate" />。  
   
 - 或 - 
  <paramref name="type" /> 不是 <see langword="RuntimeType" />。 请参阅[反射中的运行时类型](https://msdn.microsoft.com/library/c1439fb5-cf76-475d-a9d2-fe64ba858858)。  
   
-- 或 - 
+或 
  无法绑定 <paramref name="method" />，且 <paramref name="throwOnBindFailure" /> 为 <see langword="true" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 不是 <see langword="RuntimeMethodInfo" />。 请参阅[反射中的运行时类型](https://msdn.microsoft.com/library/c1439fb5-cf76-475d-a9d2-fe64ba858858)。</exception>
         <exception cref="T:System.MissingMethodException">找不到 <paramref name="type" /> 的 <see langword="Invoke" /> 方法。</exception>
         <exception cref="T:System.MethodAccessException">调用方没有访问 <paramref name="method" /> 所必需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Type" />
         <altmember cref="T:System.MulticastDelegate" />
         <altmember cref="T:System.Security.Permissions.ReflectionPermission" />
@@ -1103,12 +1103,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法创建委托只为静态方法。 另一实例方法是与类; 的实例相关联的方法静态方法是与类本身相关联的方法。  
+ 此方法仅为静态方法创建委托。 实例方法是与类的实例关联的方法;静态方法是与类自身相关联的方法。  
   
- 此方法的重载是等效于调用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Type%2CSystem.String%2CSystem.Boolean%2CSystem.Boolean%29>方法重载，指定`false`有关`ignoreCase`并`true`为`throwOnBindFailure`。  
+ 此方法重载等效于调用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Type%2CSystem.String%2CSystem.Boolean%2CSystem.Boolean%29>方法重载, `ignoreCase`并为指定`false`和`true` `throwOnBindFailure`。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，可以使用此方法访问非公共方法，如果授予调用方<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType>标记线程和非公共方法的授予集限制到调用方的授予集或子集其中。 (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> , 此方法可用于访问非公共方法, 前提是已使用标志授予调用方, 而非公共方法的授予集限制为调用方的授予集或子集[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]缺少. (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
 >   
 >  若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
@@ -1116,20 +1116,20 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="type" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="target" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> 不继承 <see cref="T:System.MulticastDelegate" />。  
   
-- 或 - 
+或 
  <paramref name="type" /> 不是 <see langword="RuntimeType" />。 请参阅[反射中的运行时类型](https://msdn.microsoft.com/library/c1439fb5-cf76-475d-a9d2-fe64ba858858)。  
   
 - 或 - 
  <paramref name="target" /> 不是 <see langword="RuntimeType" />。  
   
-- 或 - 
+或 
  <paramref name="target" /> 为开放式泛型类型。 也就是说，其 <see cref="P:System.Type.ContainsGenericParameters" /> 属性为 <see langword="true" />。  
   
 - 或 - 
@@ -1139,7 +1139,7 @@
  无法绑定 <paramref name="method" />，例如因为找不到它，并且 <paramref name="throwOnBindFailure" /> 为 <see langword="true" />。</exception>
         <exception cref="T:System.MissingMethodException">找不到 <paramref name="type" /> 的 <see langword="Invoke" /> 方法。</exception>
         <exception cref="T:System.MethodAccessException">调用方没有访问 <paramref name="method" /> 所必需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Type" />
         <altmember cref="T:System.MulticastDelegate" />
         <altmember cref="T:System.Security.Permissions.ReflectionPermission" />
@@ -1194,130 +1194,130 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法的重载和<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.Reflection.MethodInfo%29>方法重载，它总是引发绑定失败，提供最灵活的方式来创建委托。 可以使用它们来创建委托的静态或实例方法，无论第一个参数。  
+ 此方法重载和<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.Reflection.MethodInfo%29>方法重载 (始终在绑定失败时引发) 提供了最灵活的方法来创建委托。 可以使用这些方法为静态方法或实例方法创建委托, 无论是使用第一个参数还是不使用第一个参数。  
   
 > [!NOTE]
->  如果未提供第一个参数，使用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%2CSystem.Boolean%29>方法重载，以更好的性能。  
+>  如果不提供第一个参数, 请使用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%2CSystem.Boolean%29>方法重载以获得更好的性能。  
   
- 委托类型和方法必须具有兼容返回类型。 返回类型，即`method`必须是可赋值的返回类型为`type`。  
+ 委托类型和方法必须具有兼容的返回类型。 也就是说, 的`method`返回类型必须可分配给的返回`type`类型。  
   
- 如果`firstArgument`是提供，将它传递到`method`每次调用委托时;`firstArgument`称为绑定到委托，委托是说要关闭通过其第一个参数。 如果`method`是`static`(`Shared`在 Visual Basic 中)，则参数调用委托时提供的列表包括除第一个; 以外的所有参数，如果`method`然后是实例方法，`firstArgument`传递到隐藏的实例参数 (由`this`在 C# 中，或由`Me`在 Visual Basic 中)。  
+ 如果`firstArgument`提供了, 则每次调用`method`委托时将传递到该委托;`firstArgument`被称为绑定到委托, 并且委托被称为通过其第一个参数关闭。 如果`method`为`static` ( `method` `firstArgument`在 Visual Basic), 则调用委托时提供的自变量列表包含除第一个以外的所有参数; 如果为实例方法, 则将传递给隐藏的实例`Shared`参数 (由`this`中C#的表示, `Me`在 Visual Basic 中由表示)。  
   
- 如果`firstArgument`提供，则第一个参数`method`必须是引用类型，和`firstArgument`必须与该类型兼容。  
+ 如果`firstArgument`提供了, 则的`method`第一个参数必须是引用类型, 并且`firstArgument`必须与该类型兼容。  
   
 > [!IMPORTANT]
->  如果`method`是`static`(`Shared`在 Visual Basic 中) 且其第一个参数的类型<xref:System.Object>或<xref:System.ValueType>，然后`firstArgument`可以是值类型。 在这种情况下`firstArgument`自动装箱。 自动装箱不会发生的任何其他参数，因为它将在 C# 或 Visual Basic 函数中调用。  
+>  如果`method`为`firstArgument` <xref:System.ValueType> <xref:System.Object> (在 Visual Basic 中), 并且其第一个参数的类型为或, 则可以是值类型。`Shared` `static` 在这种`firstArgument`情况下, 会自动装箱。 对于任何其他参数, 都不会出现自动装箱, 这与在C#或 Visual Basic 函数调用中一样。  
   
- 如果`firstArgument`为 null 引用和`method`是实例方法，结果取决于委托类型的签名`type`和`method`:  
+ 如果`firstArgument`是 null 引用并且`method`是实例方法, 则结果取决于委托类型`type`和的`method`签名:  
   
--   如果签名`type`显式包含的隐藏第一个参数`method`，则委托被称为来表示打开的实例方法。 当调用委托时，参数列表中的第一个参数传递到隐藏的实例参数`method`。  
+-   如果的`type`签名显式包含隐藏的`method`第一个参数, 则称委托表示一个开放式实例方法。 调用委托时, 将参数列表中的第一个自变量传递给的隐藏实例参数`method`。  
   
--   如果签名的`method`和`type`匹配 （也就是说，所有参数类型都是兼容），则委托称为关闭通过空引用。 调用委托就像不是特别有用的办法就的 null 实例上调用实例方法。  
+-   如果`method` 和`type`匹配的签名 (即所有参数类型都兼容), 则将委托称为空引用。 调用委托类似于在 null 实例上调用实例方法, 这并不是特别有用的操作。  
   
- 如果`firstArgument`为 null 引用和`method`是静态的结果依赖于委托类型的签名`type`和`method`:  
+ 如果`firstArgument`是 null 引用并且`method`是静态的, 则结果取决于委托类型`type`和的`method`签名:  
   
--   如果签名`method`和`type`匹配 （也就是说，所有参数类型都是兼容），则委托被称为来表示开放的静态方法。 这是最常见的情况对静态方法。 在这种情况下，通过获取性能稍好<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%2CSystem.Boolean%29>方法重载。  
+-   如果`method` 和`type`匹配的签名 (即, 所有参数类型都兼容), 则委托称为表示开放式静态方法。 这是静态方法最常见的情况。 在这种情况下, 可以使用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%2CSystem.Boolean%29>方法重载获得略微更好的性能。  
   
--   如果签名`type`开头的第二个参数`method`和参数类型的其余部分是兼容的设备，然后委托被称为封闭式 null 引用。 调用委托时，将为 null 引用传递到的第一个参数`method`。  
+-   如果的签名`type`以的第二个`method`参数开始, 而其余的参数类型是兼容的, 则认为该委托是通过空引用关闭的。 调用委托时, 空引用将传递给的第一个参数`method`。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，可以使用此方法访问非公共方法，如果授予调用方<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType>标记线程和非公共方法的授予集限制到调用方的授予集或子集其中。 (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> , 此方法可用于访问非公共方法, 前提是已使用标志授予调用方, 而非公共方法的授予集限制为调用方的授予集或子集[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]缺少. (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
 >   
 >  若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
 ## <a name="compatible-parameter-types-and-return-type"></a>兼容的参数类型和返回类型  
- 参数类型和委托的返回类型必须与参数类型和委托表示; 方法的返回类型兼容类型不需要完全匹配。  
+ 委托的参数类型和返回类型必须与委托表示的方法的参数类型和返回类型兼容;类型不必完全匹配。  
   
 > [!NOTE]
->  .NET Framework 1.0 和 1.1 版中的类型必须完全匹配。  
+>  在 .NET Framework 版本1.0 和1.1 中, 类型必须完全匹配。  
   
  如果委托参数的类型的限制性强于方法参数的类型，则该委托的参数与该方法的相应参数兼容，因为这可保证传递给委托的参数可以安全地传递给方法。  
   
  同样，如果方法的返回类型的限制性强于委托的返回类型，则该委托的返回类型与该方法的返回类型兼容，因为这可保证方法的返回值可以安全地强制转换为委托的返回类型。  
   
- 例如，一个委托，其类型的参数<xref:System.Collections.Hashtable>和返回类型为<xref:System.Object>可以表示具有类型的参数的方法<xref:System.Object>以及一个返回值类型的<xref:System.Collections.Hashtable>。  
+ 例如, 具有<xref:System.Collections.Hashtable>类型为的参数和返回类型的<xref:System.Object>委托可以表示具有类型<xref:System.Object>的参数和类型<xref:System.Collections.Hashtable>的返回值的方法。  
   
-## <a name="determining-the-methods-a-delegate-can-represent"></a>确定方法委托可以表示  
- 另一个有用方法看作的灵活性方面的此重载的<xref:System.Delegate.CreateDelegate%2A>是任何给定的委托可以表示四个不同的方法签名和方法的类型 （静态和实例） 的组合。 委托类型，请考虑`D`带有一个自变量类型的`C`。 以下介绍的方法`D`可以表示，因为它必须匹配在所有情况下忽略的返回类型：  
+## <a name="determining-the-methods-a-delegate-can-represent"></a>确定委托可以表示的方法  
+ 考虑此重载<xref:System.Delegate.CreateDelegate%2A>提供的灵活性的另一种有用方法是, 任何给定的委托都可以表示方法签名和方法类型 (静态与实例) 的四种不同组合。 请考虑一个具有`D`类型`C`为的参数的委托类型。 下面描述了方法可以`D`表示的方法, 忽略返回类型, 因为它在所有情况下都必须匹配:  
   
--   `D` 可以表示有且只有一个参数类型的任何实例方法`C`，无论实例方法属于哪种类型。 当<xref:System.Delegate.CreateDelegate%2A>调用时，`firstArgument`是类型的实例`method`属于，和结果委托所说，通过该实例关闭。 (一般而言，`D`如果还可以通过 null 引用封闭`firstArgument`是`null`。)  
+-   `D`可以表示任何具有一个类型`C`为的参数的任何实例方法, 而不考虑该实例方法所属的类型。 当<xref:System.Delegate.CreateDelegate%2A>调用时, `firstArgument`是该类型`method`的一个实例, 而所生成的委托则被称为关闭该实例。 (完全, `D`如果`firstArgument`为`null`, 还可以通过空引用关闭。)  
   
--   `D` 可以表示的实例方法`C`不带任何参数。 当<xref:System.Delegate.CreateDelegate%2A>调用时，`firstArgument`为 null 引用。 结果委托表示打开的实例方法，并且的实例`C`必须提供每次调用它时。  
+-   `D`可以表示没有参数的实例`C`方法。 调用<xref:System.Delegate.CreateDelegate%2A>时, `firstArgument`为空引用。 生成的委托表示开放式实例方法, `C`必须在每次调用时提供实例。  
   
--   `D` 可以表示采用一种参数类型的静态方法`C`，和方法可以属于任何类型。 当<xref:System.Delegate.CreateDelegate%2A>调用时，`firstArgument`为 null 引用。 结果委托表示开放的静态方法，并且的实例`C`必须提供每次调用它时。  
+-   `D`可以表示静态方法, 该方法采用一个类型`C`的参数, 该方法可以属于任何类型。 调用<xref:System.Delegate.CreateDelegate%2A>时, `firstArgument`为空引用。 生成的委托表示开放式静态方法, `C`必须在每次调用时提供实例。  
   
--   `D` 可以表示所属类型的静态方法`F`并且有两个参数，类型为`F`并键入`C`。 当<xref:System.Delegate.CreateDelegate%2A>调用时，`firstArgument`的一个实例`F`。 生成委托表示静态方法，通过该实例的关闭`F`。 请注意，在这种情况其中`F`和`C`属于同一类型、 静态方法有两个参数为该类型。 (在这种情况下，`D`如果通过 null 引用封闭`firstArgument`是`null`。)  
+-   `D`可以表示属于类型`F`且具有两个类型`F`为的参数和类型`C`的静态方法。 当<xref:System.Delegate.CreateDelegate%2A>调用时, `firstArgument`是的`F`实例。 生成的委托表示在该实例`F`上关闭的静态方法。 请注意, 在`F`和`C`的类型相同的情况下, 静态方法具有该类型的两个参数。 (在这种情况`D`下, 如果`firstArgument`为`null`, 则通过空引用关闭。)  
   
    
   
 ## Examples  
- 本部分包含三个代码示例。 第一个示例演示了四种类型的可创建的委托： 关闭通过实例方法，通过实例方法，打开的静态方法，通过打开和关闭通过静态方法。  
+ 本部分包含三个代码示例。 第一个示例演示了可创建的四种委托: 通过实例方法关闭、在实例方法上打开、通过静态方法打开和通过静态方法关闭。  
   
- 第二个代码示例演示了兼容的参数类型和返回类型。  
+ 第二个代码示例演示兼容的参数类型和返回类型。  
   
- 第三个代码示例定义一个委托类型，并演示可以表示委托类型的所有方法。  
+ 第三个代码示例定义了一个委托类型, 并显示委托类型可以表示的所有方法。  
   
- **示例 1**  
+ **示例1**  
   
- 下面的代码示例演示了可以使用此重载创建委托的四个方法<xref:System.Delegate.CreateDelegate%2A>方法。  
+ 下面的代码示例演示了使用此<xref:System.Delegate.CreateDelegate%2A>方法重载可以创建委托的四种方法。  
   
 > [!NOTE]
->  有两个重载<xref:System.Delegate.CreateDelegate%2A>指定的方法`firstArgument`和一个<xref:System.Reflection.MethodInfo>; 它们的功能相同，只一个允许您指定是否引发失败时要将绑定，而是其他总是引发。 此代码示例使用两个重载。  
+>  <xref:System.Delegate.CreateDelegate%2A>方法有两个重载, 它指定`firstArgument`和 a <xref:System.Reflection.MethodInfo>; 其功能相同, 不同之处在于, 它允许您指定是否要在绑定失败时引发, 另一个始终引发。 此代码示例使用两个重载。  
   
- 此示例声明一个类`C`使用静态方法`M2`和实例方法`M1`，和三个委托类型：`D1`的实例`C`和一个字符串，`D2`采用一个字符串，并`D3`没有参数。  
+ 该示例使用静态方法`C` `M2` 、实例方法`M1`和`C`三个委托类型来声明类: `D1`采用的实例和字符串, `D2`采用字符串, `D3`没有参数。  
   
- 名为第二个类`Example`包含创建委托的代码。  
+ 名为`Example`的第二个类包含创建委托的代码。  
   
--   类型的委托`D2`、 已关闭的实例`C`，为实例方法创建`M1`。 使用不同的字符串，显示的绑定的实例调用`C`始终使用。  
+-   为实例方法`D2` `C`创建了一个类型的委托,该委托在的`M1`实例上关闭。 它使用不同的字符串调用, 以表示始终使用的绑定实例`C` 。  
   
--   类型的委托`D1`，表示打开的实例方法，为实例方法创建`M1`。 当调用委托时，必须传递实例。  
+-   为实例方法`M1`创建`D1`表示开放式实例方法的类型为的委托。 调用委托时, 必须传递一个实例。  
   
--   类型的委托`D2`，表示打开的静态方法，为静态方法创建`M2`。  
+-   为静态方法`M2`创建`D2`一个表示 open 静态方法的类型的委托。  
   
--   最后，类型的委托`D3`、 已关闭的字符串上，为静态方法创建`M2`。 调用方法以显示其使用的绑定的字符串。  
+-   最后, 为静态方法`D3` `M2`创建一个在字符串上关闭的类型的委托。 调用方法以显示它使用绑定的字符串。  
   
  [!code-csharp[Delegate.CreateDelegateTOM#1](~/samples/snippets/csharp/VS_Snippets_CLR/Delegate.CreateDelegateTOM/cs/openClosedOver.cs#1)]
  [!code-vb[Delegate.CreateDelegateTOM#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/Delegate.CreateDelegateTOM/VB/openClosedOver.vb#1)]  
   
- **示例 2**  
+ **示例2**  
   
- 下面的代码示例演示了兼容性的参数类型和返回类型。  
+ 下面的代码示例演示参数类型和返回类型的兼容性。  
   
 > [!NOTE]
->  此代码示例使用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%29>方法重载。 使用其他重载采用<xref:System.Reflection.MethodInfo>类似。  
+>  此代码示例使用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Reflection.MethodInfo%29>方法重载。 使用采用<xref:System.Reflection.MethodInfo>的其他重载类似。  
   
- 代码示例定义名为的基类`Base`和一个名为类`Derived`派生`Base`。 派生的类具有`static`(`Shared`在 Visual Basic 中) 名为方法`MyMethod`类型的一个参数与`Base`和返回类型为`Derived`。 代码示例还定义名为的委托`Example`它具有一个参数的类型`Derived`和返回类型为`Base`。  
+ 此代码示例定义一个名为`Base`的基类和一个名为`Derived`的类`Base`, 该类派生自。 派生类具有一个名`static` `MyMethod`为`Shared`的 (在 Visual Basic) 方法, 该方法具有`Base`一个类型为的`Derived`参数和一个返回类型。 此代码示例还定义了一个名`Example`为的委托, 该委托`Derived`具有一个类型为的`Base`参数和一个返回类型。  
   
- 代码示例演示委托名为`Example`可以用来表示该方法`MyMethod`。 该方法可以绑定到委托，因为：  
+ 此代码示例演示了可用于表示`Example`方法`MyMethod`的名为的委托。 方法可以绑定到委托, 原因如下:  
   
--   委托的参数类型 (`Derived`) 的参数类型比的限制性更强`MyMethod`(`Base`)，以便它始终是安全传递到委托的自变量`MyMethod`。  
+-   委托 (`Derived`) 的参数类型比`MyMethod` (`Base`) 的参数类型具有更强的限制, 因此, 将委托的参数传递给`MyMethod`是始终安全的。  
   
--   返回类型`MyMethod`(`Derived`) 是限制性强于委托的参数类型 (`Base`)，以便它始终是安全的委托的返回类型的方法的返回类型转换。  
+-   `MyMethod` (`Base`) 的返回类型的限制性强于委托的参数类型 (), 因此, 将方法的返回类型强制转换为委托的返回类型始终是安全的。`Derived`  
   
- 代码示例会生成任何输出。  
+ 此代码示例不生成输出。  
   
  [!code-cpp[Delegate.CreateDelegate_RelaxedFit#1](~/samples/snippets/cpp/VS_Snippets_CLR/Delegate.CreateDelegate_RelaxedFit/cpp/source.cpp#1)]
  [!code-csharp[Delegate.CreateDelegate_RelaxedFit#1](~/samples/snippets/csharp/VS_Snippets_CLR/Delegate.CreateDelegate_RelaxedFit/cs/source.cs#1)]
  [!code-vb[Delegate.CreateDelegate_RelaxedFit#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/Delegate.CreateDelegate_RelaxedFit/vb/source.vb#1)]  
   
- **示例 3**  
+ **示例3**  
   
- 下面的代码示例显示了一个委托类型可以表示的所有方法。  
+ 下面的代码示例演示一个委托类型可以表示的所有方法。  
   
 > [!NOTE]
->  有两个重载<xref:System.Delegate.CreateDelegate%2A>指定的方法`firstArgument`和一个<xref:System.Reflection.MethodInfo>; 它们的功能相同，只一个允许您指定是否引发失败时要将绑定，而是其他总是引发。 此代码示例使用两个重载。  
+>  <xref:System.Delegate.CreateDelegate%2A>方法有两个重载, 它指定`firstArgument`和 a <xref:System.Reflection.MethodInfo>; 其功能相同, 不同之处在于, 它允许您指定是否要在绑定失败时引发, 另一个始终引发。 此代码示例使用两个重载。  
   
- 代码示例定义两个类：`C`并`F`，和委托类型`D`带有一个自变量类型的`C`。 类具有匹配的静态和实例方法`M1`， `M3`，并`M4`，和类`C`还具有实例方法`M2`不带任何参数。  
+ 此代码示例定义了两个`C`类`F`: 和, 以及一个`D`类型`C`为的参数的委托类型。 类具有匹配的静态和实例方法`M1`、 `M3`和`M4`, 并且类`C`还具有一个不带参数`M2`的实例方法。  
   
- 名为第三个类`Example`包含创建委托的代码。  
+ 第三个名`Example`为的类包含创建委托的代码。  
   
--   委托实例创建方法`M1`类型的`C`并键入`F`; 每个已关闭对相应类型的实例。 方法`M1`类型的`C`显示`ID`属性的绑定实例和自变量。  
+-   为类型`M1` `C`和类型`F`的实例方法创建委托; 每个委托都在各自类型的实例上关闭。 `ID`类型`M1` 为的方法显示绑定实例和`C`参数的属性。  
   
--   方法创建委托`M2`类型的`C`。 这是一个开放的实例的委托，委托自变量表示实例方法的隐藏第一个参数。 该方法具有任何其他参数。  
+-   为类型`M2` `C`的方法创建委托。 这是一个打开的实例委托, 其中委托的参数表示实例方法上隐藏的第一个参数。 方法没有其他参数。  
   
--   为静态方法创建委托`M3`类型的`C`并键入`F`; 这些是打开的静态委托。  
+-   为类型`M3` `C`和类型`F`的静态方法创建委托; 这些是开放式静态委托。  
   
--   最后，为静态方法创建委托`M4`类型的`C`并键入`F`; 每个方法具有作为其第一个参数的声明类型和提供的类型的实例，因此委托关闭通过其第一个参数. 方法`M4`类型的`C`显示`ID`属性的绑定实例和自变量。  
+-   最后, 为类型`M4` `C`和类型`F`的静态方法创建委托; 每个方法都将声明类型作为其第一个参数, 并提供类型的实例, 因此这些委托在其第一个参数上关闭. `ID`类型`M4` 为的方法显示绑定实例和`C`参数的属性。  
   
  [!code-csharp[Delegate.CreateDelegateTOM_2#1](~/samples/snippets/csharp/VS_Snippets_CLR/Delegate.CreateDelegateTOM_2/cs/source.cs#1)]
  [!code-vb[Delegate.CreateDelegateTOM_2#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/Delegate.CreateDelegateTOM_2/vb/source.vb#1)]  
@@ -1326,21 +1326,21 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="type" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> 不继承 <see cref="T:System.MulticastDelegate" />。  
   
 - 或 - 
  <paramref name="type" /> 不是 <see langword="RuntimeType" />。 请参阅[反射中的运行时类型](https://msdn.microsoft.com/library/c1439fb5-cf76-475d-a9d2-fe64ba858858)。  
   
-- 或 - 
+或 
  无法绑定 <paramref name="method" />，且 <paramref name="throwOnBindFailure" /> 为 <see langword="true" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 不是 <see langword="RuntimeMethodInfo" />。 请参阅[反射中的运行时类型](https://msdn.microsoft.com/library/c1439fb5-cf76-475d-a9d2-fe64ba858858)。</exception>
         <exception cref="T:System.MissingMethodException">找不到 <paramref name="type" /> 的 <see langword="Invoke" /> 方法。</exception>
         <exception cref="T:System.MethodAccessException">调用方没有访问 <paramref name="method" /> 所必需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Type" />
         <altmember cref="T:System.MulticastDelegate" />
         <altmember cref="T:System.Security.Permissions.ReflectionPermission" />
@@ -1391,12 +1391,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法创建委托实例仅方法。 另一实例方法是与类; 的实例相关联的方法静态方法是与类本身相关联的方法。  
+ 此方法只为实例方法创建委托。 实例方法是与类的实例关联的方法;静态方法是与类自身相关联的方法。  
   
- 此方法的重载是等效于调用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.String%2CSystem.Boolean%2CSystem.Boolean%29>方法重载，指定`true`为`throwOnBindFailure`。  
+ 此方法重载等效于调用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.String%2CSystem.Boolean%2CSystem.Boolean%29>方法重载, 并为`throwOnBindFailure`指定`true` 。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，可以使用此方法访问非公共方法，如果授予调用方<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType>标记线程和非公共方法的授予集限制到调用方的授予集或子集其中。 (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> , 此方法可用于访问非公共方法, 前提是已使用标志授予调用方, 而非公共方法的授予集限制为调用方的授予集或子集[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]缺少. (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
 >   
 >  若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
@@ -1404,24 +1404,24 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="type" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="target" /> 为 <see langword="null" />。  
   
 - 或 - 
  <paramref name="method" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> 不继承 <see cref="T:System.MulticastDelegate" />。  
   
-- 或 - 
+或 
  <paramref name="type" /> 不是 <see langword="RuntimeType" />。 请参阅[反射中的运行时类型](https://msdn.microsoft.com/library/c1439fb5-cf76-475d-a9d2-fe64ba858858)。  
   
-- 或 - 
+或 
  <paramref name="method" /> 不是实例方法。  
   
-- 或 - 
+或 
  无法绑定 <paramref name="method" />，例如因为找不到它。</exception>
         <exception cref="T:System.MissingMethodException">找不到 <paramref name="type" /> 的 <see langword="Invoke" /> 方法。</exception>
         <exception cref="T:System.MethodAccessException">调用方没有访问 <paramref name="method" /> 所必需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Type" />
         <altmember cref="T:System.MulticastDelegate" />
         <altmember cref="T:System.Security.Permissions.ReflectionPermission" />
@@ -1471,12 +1471,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法创建委托只为静态方法。 另一实例方法是与类; 的实例相关联的方法静态方法是与类本身相关联的方法。  
+ 此方法仅为静态方法创建委托。 实例方法是与类的实例关联的方法;静态方法是与类自身相关联的方法。  
   
- 此方法的重载是等效于调用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Type%2CSystem.String%2CSystem.Boolean%2CSystem.Boolean%29>方法重载，指定`true`为`throwOnBindFailure`。  
+ 此方法重载等效于调用<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Type%2CSystem.String%2CSystem.Boolean%2CSystem.Boolean%29>方法重载, 并为`throwOnBindFailure`指定`true` 。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，可以使用此方法访问非公共方法，如果授予调用方<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType>标记线程和非公共方法的授予集限制到调用方的授予集或子集其中。 (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> , 此方法可用于访问非公共方法, 前提是已使用标志授予调用方, 而非公共方法的授予集限制为调用方的授予集或子集[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]缺少. (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
 >   
 >  若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
@@ -1484,7 +1484,7 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="type" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="target" /> 为 <see langword="null" />。  
   
 - 或 - 
@@ -1497,17 +1497,17 @@
 - 或 - 
  <paramref name="target" /> 不是 <see langword="RuntimeType" />。  
   
-- 或 - 
+或 
  <paramref name="target" /> 为开放式泛型类型。 也就是说，其 <see cref="P:System.Type.ContainsGenericParameters" /> 属性为 <see langword="true" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 不是 <see langword="static" /> 方法（在 Visual Basic 中为 <see langword="Shared" /> 方法）。  
   
 - 或 - 
  无法绑定 <paramref name="method" />，例如因为找不到它。</exception>
         <exception cref="T:System.MissingMethodException">找不到 <paramref name="type" /> 的 <see langword="Invoke" /> 方法。</exception>
         <exception cref="T:System.MethodAccessException">调用方没有访问 <paramref name="method" /> 所必需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Type" />
         <altmember cref="T:System.MulticastDelegate" />
         <altmember cref="T:System.Security.Permissions.ReflectionPermission" />
@@ -1564,10 +1564,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法创建委托实例仅方法。 另一实例方法是与类; 的实例相关联的方法静态方法是与类本身相关联的方法。  
+ 此方法只为实例方法创建委托。 实例方法是与类的实例关联的方法;静态方法是与类自身相关联的方法。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，可以使用此方法访问非公共方法，如果授予调用方<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType>标记线程和非公共方法的授予集限制到调用方的授予集或子集其中。 (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> , 此方法可用于访问非公共方法, 前提是已使用标志授予调用方, 而非公共方法的授予集限制为调用方的授予集或子集[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]缺少. (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
 >   
 >  若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
@@ -1575,24 +1575,24 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="type" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="target" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> 不继承 <see cref="T:System.MulticastDelegate" />。  
   
-- 或 - 
+或 
  <paramref name="type" /> 不是 <see langword="RuntimeType" />。 请参阅[反射中的运行时类型](https://msdn.microsoft.com/library/c1439fb5-cf76-475d-a9d2-fe64ba858858)。  
   
-- 或 - 
+或 
  <paramref name="method" /> 不是实例方法。  
   
-- 或 - 
+或 
  无法绑定 <paramref name="method" />，例如因为找不到它，并且 <paramref name="throwOnBindFailure" /> 为 <see langword="true" />。</exception>
         <exception cref="T:System.MissingMethodException">找不到 <paramref name="type" /> 的 <see langword="Invoke" /> 方法。</exception>
         <exception cref="T:System.MethodAccessException">调用方没有访问 <paramref name="method" /> 所必需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Type" />
         <altmember cref="T:System.MulticastDelegate" />
         <altmember cref="T:System.Security.Permissions.ReflectionPermission" />
@@ -1649,10 +1649,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法创建委托只为静态方法。 另一实例方法是与类; 的实例相关联的方法静态方法是与类本身相关联的方法。  
+ 此方法仅为静态方法创建委托。 实例方法是与类的实例关联的方法;静态方法是与类自身相关联的方法。  
   
 > [!NOTE]
->  从开始[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]，可以使用此方法访问非公共方法，如果授予调用方<xref:System.Security.Permissions.ReflectionPermission>与<xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType>标记线程和非公共方法的授予集限制到调用方的授予集或子集其中。 (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
+>  从开始<xref:System.Security.Permissions.ReflectionPermission> <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> , 此方法可用于访问非公共方法, 前提是已使用标志授予调用方, 而非公共方法的授予集限制为调用方的授予集或子集[!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]缺少. (请参阅[反射的安全注意事项](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)。)  
 >   
 >  若要使用此功能，应用程序应为 [!INCLUDE[net_v35_long](~/includes/net-v35-long-md.md)] 或更高版本。  
   
@@ -1660,14 +1660,14 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="type" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="target" /> 为 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> 不继承 <see cref="T:System.MulticastDelegate" />。  
   
-- 或 - 
+或 
  <paramref name="type" /> 不是 <see langword="RuntimeType" />。 请参阅[反射中的运行时类型](https://msdn.microsoft.com/library/c1439fb5-cf76-475d-a9d2-fe64ba858858)。  
   
 - 或 - 
@@ -1676,14 +1676,14 @@
 - 或 - 
  <paramref name="target" /> 为开放式泛型类型。 也就是说，其 <see cref="P:System.Type.ContainsGenericParameters" /> 属性为 <see langword="true" />。  
   
-- 或 - 
+或 
  <paramref name="method" /> 不是 <see langword="static" /> 方法（在 Visual Basic 中为 <see langword="Shared" /> 方法）。  
   
 - 或 - 
  无法绑定 <paramref name="method" />，例如因为找不到它，并且 <paramref name="throwOnBindFailure" /> 为 <see langword="true" />。</exception>
         <exception cref="T:System.MissingMethodException">找不到 <paramref name="type" /> 的 <see langword="Invoke" /> 方法。</exception>
         <exception cref="T:System.MethodAccessException">调用方没有访问 <paramref name="method" /> 所必需的权限。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联枚举：<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" />。</permission>
         <altmember cref="T:System.Type" />
         <altmember cref="T:System.MulticastDelegate" />
         <altmember cref="T:System.Security.Permissions.ReflectionPermission" />
@@ -1758,9 +1758,9 @@
         <exception cref="T:System.ArgumentException">对对象或类调用委托所表示的方法，但该对象或类不支持这种方法。</exception>
         <exception cref="T:System.Reflection.TargetInvocationException">委托所表示的方法是实例方法，目标对象为 <see langword="null" />。  
   
-- 或 - 
+或 
 封装的方法之一引发异常。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="M:System.Delegate.DynamicInvokeImpl(System.Object[])" />
         <altmember cref="T:System.Object" />
       </Docs>
@@ -1804,7 +1804,7 @@
       <Docs>
         <param name="args">作为参数传递给当前委托所表示的方法的对象数组。  
   
-- 或 - 
+或 
  如果当前委托所表示的方法不需要参数，则为 <see langword="null" />。</param>
         <summary>动态调用（后期绑定）由当前委托所表示的方法。</summary>
         <returns>委托所表示的方法返回的对象。</returns>
@@ -1818,14 +1818,14 @@
         </remarks>
         <exception cref="T:System.MemberAccessException">调用方不能访问由委托表示的方法（例如，在方法为私有方法的情况下）。  
   
-- 或 - 
+或 
 <paramref name="args" /> 中列出的参数的数目、顺序或类型无效。</exception>
         <exception cref="T:System.ArgumentException">对对象或类调用委托所表示的方法，但该对象或类不支持这种方法。</exception>
         <exception cref="T:System.Reflection.TargetInvocationException">委托所表示的方法是实例方法，目标对象为 <see langword="null" />。  
   
-- 或 - 
+或 
 封装的方法之一引发异常。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="M:System.Delegate.DynamicInvoke(System.Object[])" />
         <altmember cref="T:System.Object" />
       </Docs>
@@ -1878,25 +1878,25 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果两个委托不属于同一类型，它们不被视为相等。  
+ 如果两个委托的类型不同, 则不会将它们视为相等。  
   
 > [!IMPORTANT]
->  在.NET Framework 1.0 和 1.1 版中，两个委托已视为好像它们的目标、 方法和调用列表等于，即使委托是不同类型的相等。  
+>  在 .NET Framework 版本1.0 和1.1 中, 如果两个委托的目标、方法和调用列表相等, 即使这些委托属于不同类型, 也被视为相等。  
   
- 这些方法和目标进行比较的相等性，如下所示：  
+ 比较方法和目标的相等性, 如下所示:  
   
--   如果所比较的两个方法都是静态并且同一类上的相同方法，这些方法被视为相等，这些目标也被视为相等。  
+-   如果所比较的两个方法都是静态的, 并且在同一类上是相同的方法, 则这些方法被视为相等, 并且目标也被视为相等。  
   
--   如果要比较的两种方法是实例方法，并且同一对象上的相同方法，这些方法被视为相等，这些目标也被视为相等。  
+-   如果所比较的两个方法是实例方法, 并且在同一对象上是相同的方法, 则这些方法被视为相等, 并且目标也被视为相等。  
   
--   否则为方法不被视为相等，并且目标也不被视为相等。  
+-   否则, 这些方法不会被视为相等, 也不会将目标视为相等。  
   
- 两个调用列表将被视为相同，仅当它们具有相同的顺序，从两个列表的相应元素表示相同的方法和目标。  
+ 仅当两个调用列表具有相同的顺序, 并且两个列表中的相应元素表示相同的方法和目标时, 两个调用列表才被视为相同。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.MemberAccessException">调用方不能访问由委托表示的方法（例如，在方法为私有方法的情况下）。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="T:System.Object" />
       </Docs>
     </Member>
@@ -1940,11 +1940,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 两个原因必须不保留此方法的返回值。 首先，可能会更改类的哈希函数生成更好的分布，使旧的哈希函数中的所有值都无用。 其次，此类的默认实现不保证不同实例将返回相同的值。  
+ 由于两个原因, 此方法的返回值不能持久保存。 首先, 可能会改变类的哈希函数, 以生成更好的分布, 从而使旧哈希函数中的所有值都无用。 其次, 此类的默认实现不保证不同的实例将返回相同的值。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="M:System.Object.GetHashCode" />
       </Docs>
     </Member>
@@ -1988,21 +1988,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 数组中的每个委托表示一个方法。  
+ 数组中的每个委托只表示一个方法。  
   
- 数组中的委托的顺序是在其中为当前委托调用那些委托所表示的方法的相同顺序。  
+ 数组中的委托顺序与当前委托调用这些委托所表示的方法的顺序相同。  
   
    
   
 ## Examples  
- 下面的示例将三种方法分配给委托。 然后，它调用<xref:System.Delegate.GetInvocationList%2A>方法获取的总计数以相反顺序执行委托并执行其名称不包括子字符串的方法分配给该委托的方法的"文件"。  
+ 下面的示例将三个方法分配给一个委托。 然后, 它会<xref:System.Delegate.GetInvocationList%2A>调用方法来获取分配给该委托的方法的总计数, 并按相反顺序执行这些委托, 并执行其名称不包括子字符串 "File" 的方法。  
   
  [!code-csharp[System.Delegate.GetInvocationList#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/System.Delegate.GetInvocationList/cs/GetInvocationList1.cs#1)]
  [!code-vb[System.Delegate.GetInvocationList#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/System.Delegate.GetInvocationList/vb/GetInvocationList1.vb#1)]  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
       </Docs>
     </Member>
     <Member MemberName="GetMethodImpl">
@@ -2046,12 +2046,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法仅适用于当前委托表示静态方法。  
+ 仅当当前委托表示静态方法时, 此方法才适用。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.MemberAccessException">调用方不能访问由委托表示的方法（例如，在方法为私有方法的情况下）。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
         <altmember cref="P:System.Delegate.Method" />
       </Docs>
@@ -2102,7 +2102,7 @@
         <summary>不支持。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotSupportedException">不支持此方法。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
         <altmember cref="T:System.Runtime.Serialization.ISerializable" />
         <altmember cref="T:System.Runtime.Serialization.SerializationInfo" />
         <altmember cref="T:System.Runtime.Serialization.StreamingContext" />
@@ -2146,7 +2146,7 @@
         <value>描述委托所表示的方法的 <see cref="T:System.Reflection.MethodInfo" />。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.MemberAccessException">调用方不能访问由委托表示的方法（例如，在方法为私有方法的情况下）。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
         <altmember cref="M:System.Delegate.GetMethodImpl" />
       </Docs>
@@ -2201,26 +2201,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 具有相同的目标、 方法和调用列表的相同类型的两个委托被视为相等。  
+ 同一类型的两个具有相同的目标、方法和调用列表的委托被视为相等。  
   
- 如果两个委托不属于同一类型，它们不被视为相等。  
+ 如果两个委托的类型不同, 则不会将它们视为相等。  
   
 > [!IMPORTANT]
->  在.NET Framework 1.0 和 1.1 版中，两个委托已视为好像它们的目标、 方法和调用列表等于，即使委托是不同类型的相等。  
+>  在 .NET Framework 版本1.0 和1.1 中, 如果两个委托的目标、方法和调用列表相等, 即使这些委托属于不同类型, 也被视为相等。  
   
- 这些方法和目标进行比较的相等性，如下所示：  
+ 比较方法和目标的相等性, 如下所示:  
   
--   如果所比较的两个方法都是静态并且同一类上的相同方法，这些方法被视为相等，这些目标也被视为相等。  
+-   如果所比较的两个方法都是静态的, 并且在同一类上是相同的方法, 则这些方法被视为相等, 并且目标也被视为相等。  
   
--   如果要比较的两种方法是实例方法，并且同一对象上的相同方法，这些方法被视为相等，这些目标也被视为相等。  
+-   如果所比较的两个方法是实例方法, 并且在同一对象上是相同的方法, 则这些方法被视为相等, 并且目标也被视为相等。  
   
--   否则为方法不被视为相等，并且目标也不被视为相等。  
+-   否则, 这些方法不会被视为相等, 也不会将目标视为相等。  
   
- 如果它们具有相同的顺序，从两个列表的相应元素表示相同的方法和目标，两个调用列表将被视为相同。  
+ 如果两个调用列表具有相同的顺序, 并且两个列表中的相应元素表示相同的方法和目标, 则两个调用列表将视为相同。  
   
- 此运算符的等效方法是 <xref:System.Delegate.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
+ 此运算符的等效方法是<xref:System.Delegate.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="M:System.Delegate.Equals(System.Object)" />
       </Docs>
     </Member>
@@ -2269,26 +2269,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 两个委托被视为不相等如果它们都是不同类型，或具有不同的方法、 不同的目标或不同的调用列表。  
+ 如果两个委托的类型不同, 或者具有不同的方法、不同的目标或不同的调用列表, 则这两个委托被视为不相等。  
   
- 如果两个委托不属于同一类型，它们不被视为相等。  
+ 如果两个委托的类型不同, 则不会将它们视为相等。  
   
 > [!IMPORTANT]
->  在.NET Framework 1.0 和 1.1 版中，两个委托被视为好像它们的目标、 方法和调用列表等于，即使委托是不同类型的相等。  
+>  在 .NET Framework 版本1.0 和1.1 中, 如果两个委托的目标、方法和调用列表相等 (即使这些委托属于不同类型), 则将它们视为相等。  
   
- 这些方法和目标进行比较的相等性，如下所示：  
+ 比较方法和目标的相等性, 如下所示:  
   
--   如果所比较的两个方法都是静态并且同一类上的相同方法，这些方法被视为相等，这些目标也被视为相等。  
+-   如果所比较的两个方法都是静态的, 并且在同一类上是相同的方法, 则这些方法被视为相等, 并且目标也被视为相等。  
   
--   如果要比较的两种方法是实例方法，并且同一对象上的相同方法，这些方法被视为相等，这些目标也被视为相等。  
+-   如果所比较的两个方法是实例方法, 并且在同一对象上是相同的方法, 则这些方法被视为相等, 并且目标也被视为相等。  
   
--   否则为方法不被视为相等，并且目标也不被视为相等。  
+-   否则, 这些方法不会被视为相等, 也不会将目标视为相等。  
   
- 两个调用列表不相等，如果它们具有不同的大小，如果它们的顺序不同，或者从一个列表中至少一个元素表示的方法或不同于由其他列表中的对应元素的目标。  
+ 如果两个调用列表具有不同的大小 (如果它们的排序方式不同), 或者一个列表中至少有一个元素表示一个方法或目标, 而该方法或目标不同于另一个列表中其对应元素所表示的方法或目标, 则两个调用列表不相等。  
   
- 此运算符的等效方法是 <xref:System.Delegate.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
+ 此运算符的等效方法是<xref:System.Delegate.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="M:System.Delegate.Equals(System.Object)" />
       </Docs>
     </Member>
@@ -2342,13 +2342,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果的调用列表`value`匹配一组相邻的调用列表中的元素`source`，然后调用列表`value`说过的调用列表中出现`source`。 如果调用列表`value`的调用列表中出现多次`source`，删除最后一个匹配项。  
+ 如果的`value`调用列表与的调用`source`列表中的一组连续元素相匹配, 则在的调用`source`列表`value`中将出现的调用列表。 如果的调用列表`value`在的调用`source`列表中出现多次, 则将删除最后一个匹配项。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.MemberAccessException">调用方不能访问由委托表示的方法（例如，在方法为私有方法的情况下）。</exception>
         <exception cref="T:System.ArgumentException">委托类型不匹配。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="M:System.Delegate.RemoveAll(System.Delegate,System.Delegate)" />
         <altmember cref="M:System.Delegate.RemoveImpl(System.Delegate)" />
         <altmember cref="M:System.Delegate.Equals(System.Object)" />
@@ -2399,13 +2399,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果的调用列表`value`匹配一组相邻的调用列表中的元素`source`，然后调用列表`value`说过的调用列表中出现`source`。 如果调用列表`value`的调用列表中出现多次`source`，删除所有匹配项。  
+ 如果的`value`调用列表与的调用`source`列表中的一组连续元素相匹配, 则在的调用`source`列表`value`中将出现的调用列表。 如果的调用列表`value`在的调用`source`列表中出现多次, 则将删除所有匹配项。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.MemberAccessException">调用方不能访问由委托表示的方法（例如，在方法为私有方法的情况下）。</exception>
         <exception cref="T:System.ArgumentException">委托类型不匹配。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="M:System.Delegate.Remove(System.Delegate,System.Delegate)" />
         <altmember cref="M:System.Delegate.RemoveImpl(System.Delegate)" />
         <altmember cref="M:System.Delegate.Equals(System.Object)" />
@@ -2450,12 +2450,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果调用列表`value`匹配一组相邻的当前委托的调用列表，然后调用列表中的元素`value`说发生在当前委托的调用列表中。 如果调用列表的`value`出现不止一次当前委托的调用列表中删除最后一个匹配项。  
+ 如果的`value`调用列表与当前委托的调用列表中的一组连续元素相匹配, 则在当前委托的`value`调用列表中, 就会出现调用列表。 如果的调用列表`value`在当前委托的调用列表中出现多次, 则将删除最后一个匹配项。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.MemberAccessException">调用方不能访问由委托表示的方法（例如，在方法为私有方法的情况下）。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="M:System.Delegate.Remove(System.Delegate,System.Delegate)" />
         <altmember cref="M:System.Delegate.Equals(System.Object)" />
       </Docs>
@@ -2499,13 +2499,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 另一实例方法是与类; 的实例相关联的方法静态方法是与类本身相关联的方法。  
+ 实例方法是与类的实例关联的方法;静态方法是与类自身相关联的方法。  
   
- 如果该委托调用一个或多个实例方法，此属性将返回目标的最后一个实例方法的调用列表中。  
+ 如果委托调用一个或多个实例方法, 此属性将返回调用列表中最后一个实例方法的目标。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
       </Docs>
     </Member>
   </Members>

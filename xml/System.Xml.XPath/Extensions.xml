@@ -1,5 +1,5 @@
 <Type Name="Extensions" FullName="System.Xml.XPath.Extensions">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="3cc6f2259b9da9c248623cb246908a8e8b20779c" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58732262" /></Metadata><TypeSignature Language="C#" Value="public static class Extensions" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="dee2ade6a9a75ddb77cfd1a182292812f070994a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69424047" /></Metadata><TypeSignature Language="C#" Value="public static class Extensions" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit Extensions extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Xml.XPath.Extensions" />
   <TypeSignature Language="VB.NET" Value="Public Module Extensions" />
@@ -32,11 +32,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 没有使用这些方法的一些性能损失。 使用[!INCLUDE[sqltecxlinq](~/includes/sqltecxlinq-md.md)]性能更好的查询。  
+ 使用这些方法会降低性能。 使用[!INCLUDE[sqltecxlinq](~/includes/sqltecxlinq-md.md)]查询会获得更好的性能。  
   
- 尽管 XML XPath 语言 1.0 建议中未指定顺序返回的集合，此扩展方法将返回按文档顺序排列的节点。  
+ 虽然未在 XML XPath 语言1.0 建议中指定返回集合的顺序, 但此扩展方法以文档顺序返回节点。  
   
- 请注意，即使使用反向轴，如按文档顺序返回节点`preceding-sibling`或`ancestor-or-self`。  
+ 请注意, 即使使用反向轴 (如`preceding-sibling`或`ancestor-or-self`), 也会以文档顺序返回节点。  
   
  ]]></format>
     </remarks>
@@ -53,17 +53,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不能通过编辑 XML 树<xref:System.Xml.XPath.XPathNavigator>此方法返回。 <xref:System.Xml.XPath.XPathNavigator.CanEdit%2A> 属性返回 `false`。  
+ 不能使用<xref:System.Xml.XPath.XPathNavigator>此方法返回的来编辑 XML 树。 <xref:System.Xml.XPath.XPathNavigator.CanEdit%2A> 属性返回 `false`。  
   
- 无法创建<xref:System.Xml.XPath.XPathNavigator>为<xref:System.Xml.Linq.XDocumentType>节点。 在 XPath 数据模型未参与文档类型。  
+ 不能<xref:System.Xml.XPath.XPathNavigator> <xref:System.Xml.Linq.XDocumentType>为节点创建。 文档类型不参与 XPath 数据模型。  
   
- Namespace 声明报告从左到右。 与此相反，对于<xref:System.Xml.XmlDocument>命名空间报告从右到左。 这是因为命名空间声明 XPath 数据模型中不按顺序排列的符合标准行为。  
+ 命名空间声明按从左到右的报告。 相反, 对于<xref:System.Xml.XmlDocument>命名空间, 从右到左进行报告。 这是一致的行为, 因为在 XPath 数据模型中没有对命名空间声明进行排序。  
   
- 该方法<xref:System.Xml.XPath.XPathNavigator.MoveToId%2A>不支持此方法返回的导航器。  
+ 此方法<xref:System.Xml.XPath.XPathNavigator.MoveToId%2A>返回的导航器不支持此方法。  
   
- 此方法可用于执行 XSLT 转换。 你可以创建 XML 树，创建<xref:System.Xml.XPath.XPathNavigator>从 XML 树中，创建一个新文档，并创建<xref:System.Xml.XmlWriter>，以写入新文档。 然后，您可以调用 XSLT 转换，并可以将 <xref:System.Xml.XPath.XPathNavigator> 和 <xref:System.Xml.XmlWriter> 传递到转换中。 在转换成功完成后，使用转换的结果，填充新的 XML 树。  
+ 可以使用此方法执行 XSLT 转换。 您可以创建一个 xml 树, 从 XML <xref:System.Xml.XPath.XPathNavigator>树创建一个, 创建一个新文档, 然后创建一个<xref:System.Xml.XmlWriter>将写入到新文档中的。 然后，您可以调用 XSLT 转换，并可以将 <xref:System.Xml.XPath.XPathNavigator> 和 <xref:System.Xml.XmlWriter> 传递到转换中。 在转换成功完成后，使用转换的结果，填充新的 XML 树。  
   
- 若要执行 XSLT 转换，可以使用任一<xref:System.Xml.XmlReader>或<xref:System.Xml.XPath.XPathNavigator>。 两种方法具有不同的性能特征。 使用时更快地执行某些转换<xref:System.Xml.XmlReader>，和其他人时，将执行更快地使用<xref:System.Xml.XPath.XPathNavigator>。 如果性能是一个问题，我们建议您尝试使用每种方法来确定将您的环境中更好地执行。  
+ 若要执行 XSLT 转换, 可以使用<xref:System.Xml.XmlReader> <xref:System.Xml.XPath.XPathNavigator>或。 这两种方法具有不同的性能特征。 当使用<xref:System.Xml.XmlReader>时, 某些转换的执行速度更快, 而另一些转换在<xref:System.Xml.XPath.XPathNavigator>使用时的执行速度更快。 如果需要考虑性能问题, 我们建议您试验每种方法, 以确定哪种方法在您的情况下性能更佳。  
   
 ```csharp  
   
@@ -188,17 +188,17 @@ Console.WriteLine(newTree)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不能通过编辑 XML 树<xref:System.Xml.XPath.XPathNavigator>此方法返回。 <xref:System.Xml.XPath.XPathNavigator.CanEdit%2A> 属性返回 `false`。  
+ 不能使用<xref:System.Xml.XPath.XPathNavigator>此方法返回的来编辑 XML 树。 <xref:System.Xml.XPath.XPathNavigator.CanEdit%2A> 属性返回 `false`。  
   
- 无法创建<xref:System.Xml.XPath.XPathNavigator>为<xref:System.Xml.Linq.XDocumentType>节点。 在 XPath 数据模型未参与文档类型。  
+ 不能<xref:System.Xml.XPath.XPathNavigator> <xref:System.Xml.Linq.XDocumentType>为节点创建。 文档类型不参与 XPath 数据模型。  
   
- Namespace 声明报告从左到右。 与此相反，对于<xref:System.Xml.XmlDocument>命名空间报告从右到左。 这是因为命名空间声明 XPath 数据模型中不按顺序排列的符合标准行为。  
+ 命名空间声明按从左到右的报告。 相反, 对于<xref:System.Xml.XmlDocument>命名空间, 从右到左进行报告。 这是一致的行为, 因为在 XPath 数据模型中没有对命名空间声明进行排序。  
   
- 该方法<xref:System.Xml.XPath.XPathNavigator.MoveToId%2A>不支持此方法返回的导航器。  
+ 此方法<xref:System.Xml.XPath.XPathNavigator.MoveToId%2A>返回的导航器不支持此方法。  
   
- 此方法可用于执行 XSLT 转换。 你可以创建 XML 树，创建<xref:System.Xml.XPath.XPathNavigator>从 XML 树中，创建一个新文档，并创建<xref:System.Xml.XmlWriter>，以写入新文档。 然后，可以调用 XSLT 转换，传入<xref:System.Xml.XPath.XPathNavigator>和<xref:System.Xml.XmlWriter>的转换。 在转换成功完成后，使用转换的结果，填充新的 XML 树。  
+ 可以使用此方法执行 XSLT 转换。 您可以创建一个 xml 树, 从 XML <xref:System.Xml.XPath.XPathNavigator>树创建一个, 创建一个新文档, 然后创建一个<xref:System.Xml.XmlWriter>将写入到新文档中的。 然后, 可以调用 XSLT 转换, <xref:System.Xml.XPath.XPathNavigator>并将和<xref:System.Xml.XmlWriter>传递到转换。 在转换成功完成后，使用转换的结果，填充新的 XML 树。  
   
- 若要执行 XSLT 转换，可以使用任一<xref:System.Xml.XmlReader>或<xref:System.Xml.XPath.XPathNavigator>。 两种方法具有不同的性能特征。 使用时更快地执行某些转换<xref:System.Xml.XmlReader>，和其他人时，将执行更快地使用<xref:System.Xml.XPath.XPathNavigator>。 如果性能是一个问题，我们建议您尝试使用每种方法来确定将您的环境中更好地执行。  
+ 若要执行 XSLT 转换, 可以使用<xref:System.Xml.XmlReader> <xref:System.Xml.XPath.XPathNavigator>或。 这两种方法具有不同的性能特征。 当使用<xref:System.Xml.XmlReader>时, 某些转换的执行速度更快, 而另一些转换在<xref:System.Xml.XPath.XPathNavigator>使用时的执行速度更快。 如果需要考虑性能问题, 我们建议您试验每种方法, 以确定哪种方法在您的情况下性能更佳。  
   
    
   
@@ -326,15 +326,15 @@ Console.WriteLine(newTree)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不能编辑 XML 树中使用<xref:System.Xml.XPath.XPathNavigator>此方法返回。 <xref:System.Xml.XPath.XPathNavigator.CanEdit%2A> 属性返回 `false`。  
+ 不能使用<xref:System.Xml.XPath.XPathNavigator>此方法返回的来编辑 XML 树。 <xref:System.Xml.XPath.XPathNavigator.CanEdit%2A> 属性返回 `false`。  
   
- 无法创建<xref:System.Xml.XPath.XPathNavigator>为<xref:System.Xml.Linq.XDocumentType>节点。 在 XPath 数据模型未参与文档类型。  
+ 不能<xref:System.Xml.XPath.XPathNavigator> <xref:System.Xml.Linq.XDocumentType>为节点创建。 文档类型不参与 XPath 数据模型。  
   
- Namespace 声明报告从左到右。 与此相反，对于<xref:System.Xml.XmlDocument>命名空间报告从右到左。 这是因为命名空间声明 XPath 数据模型中不按顺序排列的符合标准行为。  
+ 命名空间声明按从左到右的报告。 相反, 对于<xref:System.Xml.XmlDocument>命名空间, 从右到左进行报告。 这是一致的行为, 因为在 XPath 数据模型中没有对命名空间声明进行排序。  
   
- 该方法<xref:System.Xml.XPath.XPathNavigator.MoveToId%2A>不支持此方法返回的导航器。  
+ 此方法<xref:System.Xml.XPath.XPathNavigator.MoveToId%2A>返回的导航器不支持此方法。  
   
- 如果您使用<xref:System.Xml.XmlNameTable>使用此方法以创建<xref:System.Xml.XPath.XPathNavigator>，计算 XPath 表达式时，会获得更好的性能。  
+ 如果你将<xref:System.Xml.XmlNameTable>与此方法一起使用来创建<xref:System.Xml.XPath.XPathNavigator>, 则在评估 XPath 表达式时, 你将获得更好的性能。  
   
  ]]></format>
         </remarks>
@@ -351,9 +351,9 @@ Console.WriteLine(newTree)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 尽管 XML XPath 语言 1.0 建议中未指定顺序返回的集合，此扩展方法将返回按文档顺序排列的节点。  
+ 虽然未在 XML XPath 语言1.0 建议中指定返回集合的顺序, 但此扩展方法以文档顺序返回节点。  
   
- 请注意，即使使用反向轴，如按文档顺序返回节点`preceding-sibling`或`ancestor-or-self`。  
+ 请注意, 即使使用反向轴 (如`preceding-sibling`或`ancestor-or-self`), 也会以文档顺序返回节点。  
   
  ]]></format>
         </remarks>
@@ -405,16 +405,16 @@ Console.WriteLine(newTree)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果集合是一个枚举的元素或属性，则可以使用`Cast`运算符来获取一系列<xref:System.Xml.Linq.XElement>或<xref:System.Xml.Linq.XAttribute>。  
+ 如果集合是元素或属性的枚举, 则可以使用`Cast`运算符来获取<xref:System.Xml.Linq.XElement>或<xref:System.Xml.Linq.XAttribute>的集合。  
   
- 尽管 XML XPath 语言 1.0 建议中未指定顺序返回的集合，此扩展方法将返回按文档顺序排列的节点。  
+ 虽然未在 XML XPath 语言1.0 建议中指定返回集合的顺序, 但此扩展方法以文档顺序返回节点。  
   
- 请注意，即使使用反向轴，如按文档顺序返回节点`preceding-sibling`或`ancestor-or-self`。  
+ 请注意, 即使使用反向轴 (如`preceding-sibling`或`ancestor-or-self`), 也会以文档顺序返回节点。  
   
    
   
 ## Examples  
- 下面的示例创建一个小型 XML 树具有属性，然后使用<xref:System.Xml.XPath.Extensions.XPathEvaluate%2A>方法来检索该属性。  
+ 下面的示例创建一个包含特性的小型 XML 树, 然后使用<xref:System.Xml.XPath.Extensions.XPathEvaluate%2A>方法检索特性。  
   
 ```csharp  
   
@@ -486,16 +486,16 @@ a="value"
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法可用于计算包含命名空间前缀的 XPath 表达式。  
+ 您可以使用此方法来计算包含命名空间前缀的 XPath 表达式。  
   
- 尽管 XML XPath 语言 1.0 建议中未指定顺序返回的集合，此扩展方法将返回按文档顺序排列的节点。  
+ 虽然未在 XML XPath 语言1.0 建议中指定返回集合的顺序, 但此扩展方法以文档顺序返回节点。  
   
- 请注意，即使使用反向轴，如按文档顺序返回节点`preceding-sibling`或`ancestor-or-self`。  
+ 请注意, 即使使用反向轴 (如`preceding-sibling`或`ancestor-or-self`), 也会以文档顺序返回节点。  
   
    
   
 ## Examples  
- 以下示例创建一个包含命名空间的 XML 树。 它使用 <xref:System.Xml.XmlReader> 来读取 XML 文档。 然后获取 <xref:System.Xml.XmlNameTable> 中的 <xref:System.Xml.XmlReader> 和 <xref:System.Xml.XmlNamespaceManager> 中的 <xref:System.Xml.XmlNameTable>。 它使用<xref:System.Xml.XmlNamespaceManager>时选择元素。  
+ 下面的示例创建一个包含命名空间的 XML 树。 它使用 <xref:System.Xml.XmlReader> 来读取 XML 文档。 然后获取 <xref:System.Xml.XmlNameTable> 中的 <xref:System.Xml.XmlReader> 和 <xref:System.Xml.XmlNamespaceManager> 中的 <xref:System.Xml.XmlNameTable>。 它<xref:System.Xml.XmlNamespaceManager>在选择元素时使用。  
   
 ```csharp  
   
@@ -596,7 +596,7 @@ aw:Att="attdata"
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 以下示例创建一个小型 XML 树，并使用<xref:System.Xml.XPath.Extensions.XPathSelectElement%2A>选择单个元素。  
+ 下面的示例创建一个小型 XML 树, 并<xref:System.Xml.XPath.Extensions.XPathSelectElement%2A>使用来选择单个元素。  
   
 ```csharp  
   
@@ -680,12 +680,12 @@ Console.WriteLine(el)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法可用于计算包含命名空间前缀的 XPath 表达式。  
+ 您可以使用此方法来计算包含命名空间前缀的 XPath 表达式。  
   
    
   
 ## Examples  
- 以下示例创建一个包含命名空间的 XML 树。 它使用 <xref:System.Xml.XmlReader> 来读取 XML 文档。 然后获取 <xref:System.Xml.XmlNameTable> 中的 <xref:System.Xml.XmlReader> 和 <xref:System.Xml.XmlNamespaceManager> 中的 <xref:System.Xml.XmlNameTable>。 它使用<xref:System.Xml.XmlNamespaceManager>时选择元素。  
+ 下面的示例创建一个包含命名空间的 XML 树。 它使用 <xref:System.Xml.XmlReader> 来读取 XML 文档。 然后获取 <xref:System.Xml.XmlNameTable> 中的 <xref:System.Xml.XmlReader> 和 <xref:System.Xml.XmlNamespaceManager> 中的 <xref:System.Xml.XmlNameTable>。 它<xref:System.Xml.XmlNamespaceManager>在选择元素时使用。  
   
 ```csharp  
   
@@ -739,9 +739,9 @@ Console.WriteLine(child1)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 尽管 XML XPath 语言 1.0 建议中未指定顺序返回的集合，此扩展方法将返回按文档顺序排列的节点。  
+ 虽然未在 XML XPath 语言1.0 建议中指定返回集合的顺序, 但此扩展方法以文档顺序返回节点。  
   
- 请注意，即使使用反向轴，如按文档顺序返回节点`preceding-sibling`或`ancestor-or-self`。  
+ 请注意, 即使使用反向轴 (如`preceding-sibling`或`ancestor-or-self`), 也会以文档顺序返回节点。  
   
  ]]></format>
         </remarks>
@@ -793,9 +793,9 @@ Console.WriteLine(child1)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 尽管 XML XPath 语言 1.0 建议中未指定顺序返回的集合，此扩展方法将返回按文档顺序排列的节点。  
+ 虽然未在 XML XPath 语言1.0 建议中指定返回集合的顺序, 但此扩展方法以文档顺序返回节点。  
   
- 请注意，即使使用反向轴，如按文档顺序返回节点`preceding-sibling`或`ancestor-or-self`。  
+ 请注意, 即使使用反向轴 (如`preceding-sibling`或`ancestor-or-self`), 也会以文档顺序返回节点。  
   
    
   
@@ -889,16 +889,16 @@ Next
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法可用于计算包含命名空间前缀的 XPath 表达式。  
+ 您可以使用此方法来计算包含命名空间前缀的 XPath 表达式。  
   
- 尽管 XML XPath 语言 1.0 建议中未指定顺序返回的集合，此扩展方法将返回按文档顺序排列的节点。  
+ 虽然未在 XML XPath 语言1.0 建议中指定返回集合的顺序, 但此扩展方法以文档顺序返回节点。  
   
- 请注意，即使使用反向轴，如按文档顺序返回节点`preceding-sibling`或`ancestor-or-self`。  
+ 请注意, 即使使用反向轴 (如`preceding-sibling`或`ancestor-or-self`), 也会以文档顺序返回节点。  
   
    
   
 ## Examples  
- 此示例创建一个包含命名空间的 XML 树。 它使用 <xref:System.Xml.XmlReader> 来读取 XML 文档。 然后获取 <xref:System.Xml.XmlNameTable> 中的 <xref:System.Xml.XmlReader> 和 <xref:System.Xml.XmlNamespaceManager> 中的 <xref:System.Xml.XmlNameTable>。 它使用<xref:System.Xml.XmlNamespaceManager>时选择的元素的列表。  
+ 此示例将创建一个包含命名空间的 XML 树。 它使用 <xref:System.Xml.XmlReader> 来读取 XML 文档。 然后获取 <xref:System.Xml.XmlNameTable> 中的 <xref:System.Xml.XmlReader> 和 <xref:System.Xml.XmlNamespaceManager> 中的 <xref:System.Xml.XmlNameTable>。 它在选择<xref:System.Xml.XmlNamespaceManager>元素列表时使用。  
   
 ```csharp  
   

@@ -1,5 +1,5 @@
 <Type Name="MemoryFailPoint" FullName="System.Runtime.MemoryFailPoint">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0a9c2330efff55bad4b528703d46cb25d46c27bf" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58714173" /></Metadata><TypeSignature Language="C#" Value="public sealed class MemoryFailPoint : System.Runtime.ConstrainedExecution.CriticalFinalizerObject, IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="3b11c2bd29525f877cab2d7c61c490166f17c7eb" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69086712" /></Metadata><TypeSignature Language="C#" Value="public sealed class MemoryFailPoint : System.Runtime.ConstrainedExecution.CriticalFinalizerObject, IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit MemoryFailPoint extends System.Runtime.ConstrainedExecution.CriticalFinalizerObject implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.MemoryFailPoint" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class MemoryFailPoint&#xA;Inherits CriticalFinalizerObject&#xA;Implements IDisposable" />
@@ -39,31 +39,31 @@
 > [!NOTE]
 >  此类用于高级开发。  
   
- 创建实例的<xref:System.Runtime.MemoryFailPoint>类创建内存入口。 启动一个需要大量内存的活动之前，内存入口检查有足够的资源。 在检查失败会导致<xref:System.InsufficientMemoryException>所引发异常。 此异常可防止从正在启动的操作，并减少因发生故障的可能性缺少资源。 利用此，您会降低性能，以避免<xref:System.OutOfMemoryException>异常并在代码中的任意位置中的异常处理不当，可能会导致任何状态损坏。  
+ 创建<xref:System.Runtime.MemoryFailPoint>类的实例将创建内存入口。 内存入口在启动需要大量内存的活动之前检查是否有足够的资源。 如果检查失败, 将导致<xref:System.InsufficientMemoryException>引发异常。 此例外会阻止操作启动, 并降低因资源不足而失败的可能性。 这使您可以降低性能以避免<xref:System.OutOfMemoryException>异常, 并避免在代码中的任意位置不正确地处理异常导致的任何状态损坏。  
   
 > [!IMPORTANT]
->  此类型实现<xref:System.IDisposable>接口。 在使用完类型后，您应直接或间接释放类型。 若要直接释放类型，调用其<xref:System.IDisposable.Dispose%2A>中的方法`try` / `catch`块。 若要间接释放类型，请使用 `using`（在 C# 中）或 `Using`（在 Visual Basic 中）等语言构造。 有关详细信息，请参阅中的"使用对象实现 IDisposable"一节<xref:System.IDisposable>接口主题。  
+>  此类型实现 <xref:System.IDisposable> 接口。 在使用完类型后，您应直接或间接释放类型。 若要直接释放类型，请在 `try`/`catch` 块中调用其 <xref:System.IDisposable.Dispose%2A> 方法。 若要间接释放类型，请使用 `using`（在 C# 中）或 `Using`（在 Visual Basic 中）等语言构造。 有关详细信息，请参阅 <xref:System.IDisposable> 接口主题中的“使用实现 IDisposable 的对象”一节。  
   
- 通过引发<xref:System.InsufficientMemoryException>异常，应用程序可以区分操作将不能完成的评估和部分已完成的操作可能已破坏应用程序状态。 这允许应用程序在保守式升级策略，这可能需要卸载当前的频率减少<xref:System.AppDomain>或回收进程。  
+ 通过引发<xref:System.InsufficientMemoryException>异常, 应用程序可以区分某个操作将无法完成的估计值和可能已损坏应用程序状态的部分完成操作。 这使应用程序可以降低悲观升级策略的频率, 这可能需要卸载当前<xref:System.AppDomain>的或回收该过程。  
   
- <xref:System.Runtime.MemoryFailPoint> 检查是否有足够的内存和连续虚拟地址空间均位于所有垃圾回收堆，并且还可能增加交换文件的大小。  <xref:System.Runtime.MemoryFailPoint> 使始终应使用的入口，但调用方的生存期内长期内存可用性的任何保证<xref:System.Runtime.MemoryFailPoint.Dispose%2A>方法，以确保与关联的资源<xref:System.Runtime.MemoryFailPoint>发布。  
+ <xref:System.Runtime.MemoryFailPoint>检查所有垃圾回收堆中是否有足够的内存和连续的虚拟地址空间, 并且可能会增加交换文件的大小。  <xref:System.Runtime.MemoryFailPoint>不保证在入口生存期内内存的长期可用性, 但调用方应始终使用<xref:System.Runtime.MemoryFailPoint.Dispose%2A>方法来确保释放与<xref:System.Runtime.MemoryFailPoint>关联的资源。  
   
- 若要使用的内存入口，必须创建<xref:System.Runtime.MemoryFailPoint>对象，并指定兆字节 (MB) 的内存数量的下一步操作应使用。 如果没有足够内存可用，<xref:System.InsufficientMemoryException>引发异常。  
+ 若要使用内存入口, 必须创建<xref:System.Runtime.MemoryFailPoint>对象并指定下一操作应使用的内存量 (mb)。 如果没有足够的内存可用, <xref:System.InsufficientMemoryException>则会引发异常。  
   
- 构造函数的参数必须为正整数。 负值引发<xref:System.ArgumentOutOfRangeException>异常。  
+ 构造函数的参数必须是一个正整数。 负值会引发<xref:System.ArgumentOutOfRangeException>异常。  
   
- <xref:System.Runtime.MemoryFailPoint> 在 16 MB 的粒度进行操作。 任何小于 16 MB 的值作为 16 MB，处理和其他值被视为下一个最大 16 MB 的倍数。  
+ <xref:System.Runtime.MemoryFailPoint>以 16 MB 的粒度运行。 小于 16 MB 的任何值将被视为 16 MB, 其他值将被视为 16 MB 的下一个最大值。  
   
    
   
 ## Examples  
- <xref:System.Runtime.MemoryFailPoint> 使应用程序变慢本身以避免耗尽内存损坏的方式。  它应词法范围内使用。  下面的示例将启动线程来处理工作队列中的项。  每个线程启动之前，请使用检查可用的内存资源<xref:System.Runtime.MemoryFailPoint>。  如果引发异常，main 方法等待，直到有可用的内存启动下一个线程之前。  
+ <xref:System.Runtime.MemoryFailPoint>使应用程序能够缓慢地运行, 以避免因损坏而导致内存不足。  它应在词法范围内使用。  下面的示例启动线程以处理工作队列中的项。  在启动每个线程之前, 将使用<xref:System.Runtime.MemoryFailPoint>检查可用内存资源。  如果引发了异常, 则在启动下一个线程之前, main 方法会一直等待, 直到有可用的内存。  
   
  [!code-csharp[MemoryFailPoint#1](~/samples/snippets/csharp/VS_Snippets_CLR/MemoryFailPoint/CS/program.cs#1)]  
   
  ]]></format>
     </remarks>
-    <permission cref="T:System.Security.Permissions.SecurityPermission">用于调用非托管的代码。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />。 安全操作： <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" /></permission>
+    <permission cref="T:System.Security.Permissions.SecurityPermission">用于调用非托管代码。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />。 安全操作:<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" /></permission>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -105,12 +105,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以根据经验确定你的应用程序用来处理工作项的内存量。  若要估算你的应用程序需要处理请求的内存量，请考虑使用<xref:System.GC.GetTotalMemory%2A?displayProperty=nameWithType>方法，以确定量的内存可用之前和之后调用的方法处理工作项。 请参阅<xref:System.Runtime.MemoryFailPoint>类的代码示例，动态确定的值为`sizeInMegabytes`参数。  
+ 应用程序处理工作项所用的内存量可以确定凭经验。  若要估计应用程序处理请求所需的内存量, 请考虑使用<xref:System.GC.GetTotalMemory%2A?displayProperty=nameWithType>方法来确定调用处理工作项的方法之前和之后可用的内存量。 有关动态确定`sizeInMegabytes`参数值的代码示例, 请参阅类。<xref:System.Runtime.MemoryFailPoint>  
   
    
   
 ## Examples  
- 下面的示例演示如何确定某个方法要求在执行时的内存量。 此代码示例是为提供一个更大示例的一部分<xref:System.Runtime.MemoryFailPoint>类。  
+ 下面的示例演示如何在执行时确定方法所需的内存量。 此代码示例是为<xref:System.Runtime.MemoryFailPoint>类提供的更大示例的一部分。  
   
  [!code-csharp[MemoryFailPoint#2](~/samples/snippets/csharp/VS_Snippets_CLR/MemoryFailPoint/CS/program.cs#2)]  
   
@@ -118,7 +118,7 @@
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException">指定的内存大小为负数。</exception>
         <exception cref="T:System.InsufficientMemoryException">没有足够的内存来开始执行由门保护的代码。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
       </Docs>
     </Member>
     <Member MemberName="Dispose">
@@ -163,7 +163,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在完成使用 <xref:System.Runtime.MemoryFailPoint.Dispose%2A> 后，应调用 <xref:System.Runtime.MemoryFailPoint>。 <xref:System.Runtime.MemoryFailPoint.Dispose%2A> 方法使 <xref:System.Runtime.MemoryFailPoint> 处于不可用状态。 在调用<xref:System.Runtime.MemoryFailPoint>，必须释放对所有引用<xref:System.Runtime.MemoryFailPoint>这样垃圾回收器才能收回内存的<xref:System.Runtime.MemoryFailPoint>占用。 有关详细信息，请参阅[清理了非托管资源](~/docs/standard/garbage-collection/unmanaged.md)并[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
+ 在完成使用 <xref:System.Runtime.MemoryFailPoint.Dispose%2A> 后，应调用 <xref:System.Runtime.MemoryFailPoint>。 <xref:System.Runtime.MemoryFailPoint.Dispose%2A> 方法使 <xref:System.Runtime.MemoryFailPoint> 处于不可用状态。 调用<xref:System.Runtime.MemoryFailPoint>后, 必须释放对的<xref:System.Runtime.MemoryFailPoint>所有引用, 以便垃圾回收器能够<xref:System.Runtime.MemoryFailPoint>回收占用的内存。 有关详细信息, 请参阅[清理非托管资源](~/docs/standard/garbage-collection/unmanaged.md)和[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
   
 > [!NOTE]
 >  每次释放对 <xref:System.Runtime.MemoryFailPoint.Dispose%2A> 的最后一个引用前，均应调用 <xref:System.Runtime.MemoryFailPoint>。 否则，在垃圾回收器调用 <xref:System.Runtime.MemoryFailPoint> 对象的 `Finalize` 方法之前，该对象正在使用的资源不会被释放。  
@@ -209,7 +209,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 垃圾回收器调用<xref:System.Runtime.MemoryFailPoint.Finalize%2A>方法时当前对象是即将完成。  
+ 当当前对象准备好<xref:System.Runtime.MemoryFailPoint.Finalize%2A>完成时, 垃圾回收器将调用方法。  
   
  ]]></format>
         </remarks>
