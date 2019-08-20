@@ -1,5 +1,5 @@
 <Type Name="CustomAttributeNamedArgument" FullName="System.Reflection.CustomAttributeNamedArgument">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7e909b5565d107fb681080c2cc3dd491882d2f28" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67249000" /></Metadata><TypeSignature Language="C#" Value="public struct CustomAttributeNamedArgument" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b4224f7c28bf8fcbbf63cbd71a124a0aa37f4e95" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69067821" /></Metadata><TypeSignature Language="C#" Value="public struct CustomAttributeNamedArgument" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi serializable sealed beforefieldinit CustomAttributeNamedArgument extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.CustomAttributeNamedArgument" />
   <TypeSignature Language="VB.NET" Value="Public Structure CustomAttributeNamedArgument" />
@@ -48,23 +48,23 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 正在检查仅反射上下文中的代码无法执行，因此并不总是可以通过创建实例它们，然后检查其属性、 使用等方法检查自定义特性<xref:System.Attribute.GetCustomAttributes%2A?displayProperty=nameWithType>， <xref:System.Reflection.MemberInfo.GetCustomAttributes%2A?displayProperty=nameWithType>，等等. 如果该属性类型本身的代码加载到仅反射上下文，无法执行。  
+ 不能执行在仅反射上下文中检查的代码, 因此, 不一定总是可以通过创建自定义属性的实例, 然后使用<xref:System.Attribute.GetCustomAttributes%2A?displayProperty=nameWithType>、 <xref:System.Reflection.MemberInfo.GetCustomAttributes%2A?displayProperty=nameWithType>等方法来检查它们的属性, 来检查它们的属性. 如果属性类型本身的代码加载到仅反射上下文中, 则无法执行该代码。  
   
- <xref:System.Reflection.CustomAttributeNamedArgument>结构由<xref:System.Reflection.CustomAttributeData>类，以提供对为实例指定的自定义属性，而无需执行的自定义特性类型的相应属性的代码的命名参数的访问。 <xref:System.Reflection.CustomAttributeNamedArgument.TypedValue%2A>属性返回<xref:System.Reflection.CustomAttributeTypedArgument>结构，其中包含的类型和命名自变量的值。  
+ 类使用<xref:System.Reflection.CustomAttributeData>结构来提供对为自定义特性实例指定的命名参数的访问, 而不执行自定义特性类型的相应属性的代码。 <xref:System.Reflection.CustomAttributeNamedArgument> 属性返回一个<xref:System.Reflection.CustomAttributeTypedArgument>结构, 该结构包含命名参数的类型和值。 <xref:System.Reflection.CustomAttributeNamedArgument.TypedValue%2A>  
   
 > [!IMPORTANT]
->  命名参数还是位置，您必须访问其类型和值使用<xref:System.Reflection.CustomAttributeTypedArgument>结构。  
+>  无论参数是命名参数还是位置参数, 都必须使用<xref:System.Reflection.CustomAttributeTypedArgument>结构访问其类型和值。  
   
- 若要创建的实例<xref:System.Reflection.CustomAttributeData>类中，使用`static`<xref:System.Reflection.CustomAttributeData.GetCustomAttributes%2A>工厂方法。  
+ 若要创建<xref:System.Reflection.CustomAttributeData>类的实例, 请`static` <xref:System.Reflection.CustomAttributeData.GetCustomAttributes%2A>使用工厂方法。  
   
    
   
 ## Examples  
- 下面的示例定义具有四个构造函数和四个属性的自定义属性。 两个属性是只读的并使用位置参数的构造函数的设置。 其他两个属性是读/写，并可以仅通过使用命名参数进行设置。 一个位置属性是一个字符串、 数组和一个命名的属性是一个整数数组。  
+ 下面的示例定义了一个具有四个构造函数和四个属性的自定义特性。 两个属性是只读的, 并且是通过使用构造函数的位置参数设置的。 其他两个属性是可读/写的, 只能通过使用命名参数来设置。 一个位置属性是字符串数组, 一个命名的属性是一个整数数组。  
   
- 该特性可应用于程序集、在该程序集中声明的类型、该类型的方法以及该方法的参数。 这种情况下使用不同的构造函数。 执行时，该程序集本身加载到仅反射上下文，并显示有关已应用到它及类型和它包含的成员的自定义特性的信息。  
+ 该特性可应用于程序集、在该程序集中声明的类型、该类型的方法以及该方法的参数。 在这些情况下使用不同的构造函数。 当执行时, 该程序集会将其自身加载到仅反射上下文中, 并显示有关已应用于该属性的自定义特性的信息以及它所包含的类型和成员的信息。  
   
- 应用于类型的属性说明数组属性，使用位置和命名参数。  
+ 应用于该类型的特性演示数组属性, 同时包含位置参数和命名参数。  
   
  [!code-cpp[CustomAttributeData#1](~/samples/snippets/cpp/VS_Snippets_CLR/CustomAttributeData/CPP/source.cpp#1)]
  [!code-csharp[CustomAttributeData#1](~/samples/snippets/csharp/VS_Snippets_CLR/CustomAttributeData/CS/source.cs#1)]
@@ -124,7 +124,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数仅供使用的继承者<xref:System.Reflection.CustomAttributeNamedArgument>类。 它不是在应用程序代码中使用。  
+ 此构造函数供<xref:System.Reflection.CustomAttributeNamedArgument>类的继承者使用。 它不应在应用程序代码中使用。  
   
  ]]></format>
         </remarks>
@@ -169,7 +169,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数仅供使用的继承者<xref:System.Reflection.CustomAttributeNamedArgument>类。 它不是在应用程序代码中使用。  
+ 此构造函数供<xref:System.Reflection.CustomAttributeNamedArgument>类的继承者使用。 它不应在应用程序代码中使用。  
   
  ]]></format>
         </remarks>
@@ -330,7 +330,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在大多数情况下，该成员是属性。  
+ 在大多数情况下, 成员是一个属性。  
   
  ]]></format>
         </remarks>
@@ -415,7 +415,7 @@
         <summary>测试两个 <see cref="T:System.Reflection.CustomAttributeNamedArgument" /> 结构是否相等。</summary>
         <returns>如果两个 <see cref="T:System.Reflection.CustomAttributeNamedArgument" /> 结构相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[此运算符的等效方法是<xref:System.Reflection.CustomAttributeNamedArgument.Equals%2A?displayProperty=nameWithType>。]]></format>
+          <format type="text/markdown"><![CDATA[此运算符的等效方法为<xref:System.Reflection.CustomAttributeNamedArgument.Equals%2A?displayProperty=nameWithType>。]]></format>
         </remarks>
       </Docs>
     </Member>
@@ -460,7 +460,7 @@
         <summary>测试两个 <see cref="T:System.Reflection.CustomAttributeNamedArgument" /> 结构是否不同。</summary>
         <returns>如果两个 <see cref="T:System.Reflection.CustomAttributeNamedArgument" /> 结构不同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[此运算符的等效方法是<xref:System.Reflection.CustomAttributeNamedArgument.Equals%2A?displayProperty=nameWithType>。]]></format>
+          <format type="text/markdown"><![CDATA[此运算符的等效方法为<xref:System.Reflection.CustomAttributeNamedArgument.Equals%2A?displayProperty=nameWithType>。]]></format>
         </remarks>
       </Docs>
     </Member>
@@ -542,18 +542,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Reflection.CustomAttributeNamedArgument>结构仅包含有关如何设置参数值的信息。 此属性用于获取<xref:System.Reflection.CustomAttributeTypedArgument>结构，其中包含的类型和值。  
+ 该<xref:System.Reflection.CustomAttributeNamedArgument>结构只包含有关如何设置参数值的信息。 使用此属性可获取<xref:System.Reflection.CustomAttributeTypedArgument>包含类型和值的结构。  
   
    
   
 ## Examples  
- 下面的代码示例定义了四个构造函数和四个属性的自定义属性。 两个属性是只读的并使用位置参数的构造函数的设置。 其他两个属性是读/写，并可以仅通过使用命名参数进行设置。 一个位置属性是一个字符串、 数组和一个命名的属性是一个整数数组。  
+ 下面的代码示例定义了一个具有四个构造函数和四个属性的自定义特性。 两个属性是只读的, 并且是通过使用构造函数的位置参数设置的。 其他两个属性是可读/写的, 只能通过使用命名参数来设置。 一个位置属性是字符串数组, 一个命名的属性是一个整数数组。  
   
- 该特性可应用于程序集、在该程序集中声明的类型、该类型的方法以及该方法的参数。 这种情况下使用不同的构造函数。 执行时，该程序集本身加载到仅反射上下文，并显示自定义属性。  
+ 该特性可应用于程序集、在该程序集中声明的类型、该类型的方法以及该方法的参数。 在这些情况下使用不同的构造函数。 执行时, 该程序集会将其自身加载到仅反射上下文中, 并显示自定义属性。  
   
- 应用于类型的属性说明数组属性，使用位置和命名参数。  
+ 应用于该类型的特性演示数组属性, 同时包含位置参数和命名参数。  
   
- <xref:System.Reflection.CustomAttributeNamedArgument.TypedValue%2A>中使用属性`ShowAttributeData`显示自定义属性数据时，若要获取的类型和值的方法指定的特性。  
+ 属性用于显示自定义属性`ShowAttributeData`数据的方法中, 用于获取命名属性的类型和值。 <xref:System.Reflection.CustomAttributeNamedArgument.TypedValue%2A>  
   
  [!code-cpp[CustomAttributeData#1](~/samples/snippets/cpp/VS_Snippets_CLR/CustomAttributeData/CPP/source.cpp#1)]
  [!code-csharp[CustomAttributeData#1](~/samples/snippets/csharp/VS_Snippets_CLR/CustomAttributeData/CS/source.cs#1)]

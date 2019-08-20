@@ -1,5 +1,5 @@
 <Type Name="SubsetMatchingMode" FullName="System.Speech.Recognition.SubsetMatchingMode">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e8c41a4e84219ee4a81194fd55080dc64a837fc5" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64095310" /></Metadata><TypeSignature Language="C#" Value="public enum SubsetMatchingMode" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="77ff1445d351335cb43b3c135e8b391ce233294c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69100945" /></Metadata><TypeSignature Language="C#" Value="public enum SubsetMatchingMode" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed SubsetMatchingMode extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Speech.Recognition.SubsetMatchingMode" />
   <TypeSignature Language="VB.NET" Value="Public Enum SubsetMatchingMode" />
@@ -19,94 +19,94 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您可以在 System.Speech，构造成功识别短语，即使其内容的一个子集的音频输入中找到的语法。  
+ 在系统中, 可以构造一个成功识别某个短语的语法, 即使在音频输入中仅找到其内容的一个子集。  
   
- 默认情况下，识别引擎要求整个短语的完全匹配项。 识别引擎还可以匹配根据定义的参数部分短语<xref:System.Speech.Recognition.SubsetMatchingMode>用作参数的成员<xref:System.Speech.Recognition.GrammarBuilder.%23ctor%2A>或<xref:System.Speech.Recognition.SrgsGrammar.SrgsSubset.%23ctor%2A>构造函数，或<xref:System.Speech.Recognition.GrammarBuilder.Append%2A>方法。  
+ 默认情况下, 识别引擎要求与整个短语完全匹配。 识别引擎<xref:System.Speech.Recognition.SubsetMatchingMode>还可以根据用作<xref:System.Speech.Recognition.GrammarBuilder.%23ctor%2A>或<xref:System.Speech.Recognition.SrgsGrammar.SrgsSubset.%23ctor%2A>构造函数的参数或方法的<xref:System.Speech.Recognition.GrammarBuilder.Append%2A>成员定义的参数匹配部分短语。  
   
- 以下展示了如何每个的<xref:System.Speech.Recognition.SubsetMatchingMode>成员影响在包含该短语的语法中使用"car 的平面的船舶卡车"时识别。  
+ 下面说明了每个<xref:System.Speech.Recognition.SubsetMatchingMode>成员在包含短语 "汽车卡车 a 船 a 船" 的语法中使用时如何影响识别。  
   
  **OrderedSubset**  
   
- 此模式将指示的短语子集将用于成功识别整个短语，如果满足以下条件：  
+ 此模式表明, 如果满足以下条件, 则将使用短语的子集来成功识别整个短语:  
   
--   音频输入中识别的短语中的一个或多个单词。  
+-   在音频输入中识别该短语中的一个或多个词。  
   
--   这些已识别单词的相对顺序是短语相同。  
+-   这些被识别的单词的相对顺序与短语中的相对顺序相同。  
   
--   匹配的单词可能包含仅介词和文章。  
+-   匹配的单词可能仅由介词和文章构成。  
   
- 将短语添加到使用 OrderedSubset 语法"一辆汽车的平面的船舶卡车"模式下生成上识别以下结果：  
+ 使用 OrderedSubset 模式向语法添加短语 "汽车汽车卡车 a 船 a 船", 将在识别时生成以下结果:  
   
-|**输入的短语**|**结果**|  
+|**输入短语**|**结果**|  
 |----------------------|----------------|  
-|"汽车的平面的船舶卡车"|识别整个短语"一个平面的船舶卡车的 car"。|  
-|"汽车的小船卡车"|识别整个短语"一个平面的船舶卡车的 car"。|  
-|"一辆汽车的平面"|识别整个短语"一个平面的船舶卡车的 car"。 已识别的子集不需要为一系列的原始字符串。|  
-|"汽车的平面的卡车船"|识别不成功。 单词是无序。|  
-|""|识别整个短语"一个平面的船舶卡车的 car"。 用于识别使用介词和文章。|  
+|"汽车卡车成为飞机的船"|识别整个短语 "汽车卡车成为飞机的船"。|  
+|"汽车卡车成为船形"|识别整个短语 "汽车卡车成为飞机的船"。|  
+|"该平面的汽车"|识别整个短语 "汽车卡车成为飞机的船"。 可识别的子集不需要是原始字符串的序列。|  
+|"汽车船成为飞机|识别不成功。 字词顺序不对。|  
+|"a"|识别整个短语 "汽车卡车成为飞机的船"。 介词和文章用于识别。|  
   
  **OrderedSubsetContentRequired**  
   
- 此模式将指示的短语子集将用于成功识别整个短语，如果满足以下条件：  
+ 此模式表明, 如果满足以下条件, 则将使用短语的子集来成功识别整个短语:  
   
--   短语中的一个或多个单词被识别的音频输入中和  
+-   在音频输入中识别该短语中的一个或多个词, 并  
   
--   这些已识别单词的相对顺序是短语相同。  
+-   这些被识别的单词的相对顺序与短语中的相对顺序相同。  
   
--   匹配的单词不能包含仅介词和文章。  
+-   匹配的单词不能仅包含介词和文章。  
   
- 将短语添加到使用 OrderedSubsetContentRequired 语法"一辆汽车的平面的船舶卡车"模式下生成上识别以下结果：  
+ 使用 OrderedSubsetContentRequired 模式向语法添加短语 "汽车汽车卡车 a 船 a 船", 将在识别时生成以下结果:  
   
-|**输入的短语**|**结果**|  
+|**输入短语**|**结果**|  
 |----------------------|----------------|  
-|"汽车的平面的船舶卡车"|识别整个短语"一个平面的船舶卡车的 car"。|  
-|"汽车的小船卡车"|识别整个短语"一个平面的船舶卡车的 car"。|  
-|"一辆汽车的平面"|识别整个短语"一个平面的船舶卡车的 car"。 已识别的子集不需要为一系列的原始字符串。|  
-|"汽车的平面的卡车船"|识别不成功。 单词是无序。|  
-|""|识别不成功。  语音输入必须包含文章和介词以外的单词。|  
+|"汽车卡车成为飞机的船"|识别整个短语 "汽车卡车成为飞机的船"。|  
+|"汽车卡车成为船形"|识别整个短语 "汽车卡车成为飞机的船"。|  
+|"该平面的汽车"|识别整个短语 "汽车卡车成为飞机的船"。 可识别的子集不需要是原始字符串的序列。|  
+|"汽车船成为飞机|识别不成功。 字词顺序不对。|  
+|"a"|识别不成功。  语音输入必须包含项目和介词以外的单词。|  
   
- **子序列：**  
+ **子序列**  
   
- 此模式将指示的短语子集将用于成功识别整个短语，如果满足以下条件：  
+ 此模式表明, 如果满足以下条件, 则将使用短语的子集来成功识别整个短语:  
   
--   短语中的一个或多个单词的音频输入中被识别为一系列短语，并  
+-   该短语中的一个或多个词在音频输入中被识别为一系列短语,  
   
--   这些已识别单词的相对顺序是短语相同。  
+-   这些被识别的单词的相对顺序与短语中的相对顺序相同。  
   
--   匹配的单词可能包含仅介词和文章。  
+-   匹配的单词可能仅由介词和文章构成。  
   
- 将短语"car 的平面的船舶卡车"添加到使用子序列模式的语法生成在识别以下结果：  
+ 使用子序列模式向语法添加短语 "汽车汽车卡车 a 船 a 船", 将在识别时生成以下结果:  
   
-|**输入的短语**|**结果**|  
+|**输入短语**|**结果**|  
 |----------------------|----------------|  
-|"汽车的平面的船舶卡车"|识别整个短语"一个平面的船舶卡车的 car"。|  
-|"汽车的小船卡车"|识别整个短语"一个平面的船舶卡车的 car"。|  
-|"一辆汽车的平面"|识别不成功。 已识别的子集必须是原始字符串的序列。|  
-|"汽车的平面的卡车船"|识别不成功。 单词是无序。|  
-|""|识别整个短语"一个平面的船舶卡车的 car"。 用于识别使用介词和文章。|  
+|"汽车卡车成为飞机的船"|识别整个短语 "汽车卡车成为飞机的船"。|  
+|"汽车卡车成为船形"|识别整个短语 "汽车卡车成为飞机的船"。|  
+|"该平面的汽车"|识别不成功。 已识别子集必须是原始字符串的序列。|  
+|"汽车船成为飞机|识别不成功。 字词顺序不对。|  
+|"a"|识别整个短语 "汽车卡车成为飞机的船"。 介词和文章用于识别。|  
   
  **SubsequenceContentRequired**  
   
- 此模式将指示的短语子集将用于成功识别整个短语，如果满足以下条件：  
+ 此模式表明, 如果满足以下条件, 则将使用短语的子集来成功识别整个短语:  
   
--   匹配字符串中的一个或多个单词的音频输入中被识别为一系列短语。  
+-   匹配字符串中的一个或多个词在音频输入中被识别为一系列短语。  
   
--   匹配的单词不能包含仅介词和文章。  
+-   匹配的单词不能仅包含介词和文章。  
   
- 将短语添加到使用 SubsequenceContentRequired 语法"一辆汽车的平面的船舶卡车"模式下生成上识别以下结果：  
+ 使用 SubsequenceContentRequired 模式向语法添加短语 "汽车汽车卡车 a 船 a 船", 将在识别时生成以下结果:  
   
-|**输入的短语**|**结果**|  
+|**输入短语**|**结果**|  
 |----------------------|----------------|  
-|"汽车的平面的船舶卡车"|识别整个短语"一个平面的船舶卡车的 car"。|  
-|"汽车的小船卡车"|识别整个短语"一个平面的船舶卡车的 car"。|  
-|"一辆汽车的平面"|识别不成功。 已识别的子集必须是原始字符串的序列。|  
-|"汽车的平面的卡车船"|识别不成功。 单词是无序。|  
-|""|识别不成功。 语音输入必须包含文章和介词以外的单词。|  
+|"汽车卡车成为飞机的船"|识别整个短语 "汽车卡车成为飞机的船"。|  
+|"汽车卡车成为船形"|识别整个短语 "汽车卡车成为飞机的船"。|  
+|"该平面的汽车"|识别不成功。 已识别子集必须是原始字符串的序列。|  
+|"汽车船成为飞机|识别不成功。 字词顺序不对。|  
+|"a"|识别不成功。 语音输入必须包含项目和介词以外的单词。|  
   
    
   
 ## Examples  
- 下面是用于生成四个测试例程<xref:System.Speech.Recognition.Grammar>对象，对每个使用相同的短语， `SubsetMatchingModes`。 这些<xref:System.Speech.Recognition.Grammar>对象然后可以进行测试。  
+ 下面是一个测试例程, 它为<xref:System.Speech.Recognition.Grammar>每个`SubsetMatchingModes`使用相同的短语生成四个对象。 然后<xref:System.Speech.Recognition.Grammar> , 可以对这些对象进行测试。  
   
 ```  
 private void CreateSubsetMatchTest()   

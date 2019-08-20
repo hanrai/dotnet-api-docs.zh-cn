@@ -1,5 +1,5 @@
 <Type Name="NamedPipeServerStream" FullName="System.IO.Pipes.NamedPipeServerStream">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="94f8192c842f2f70729cdaab1f54470312bceede" /><Meta Name="ms.sourcegitcommit" Value="efa3ad59f4ee23bbc2824414ef546bbf142c360e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/02/2019" /><Meta Name="ms.locfileid" Value="67506426" /></Metadata><TypeSignature Language="C#" Value="public sealed class NamedPipeServerStream : System.IO.Pipes.PipeStream" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="608d4a9ff96d12e6b294c505f14725c233089c34" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69244358" /></Metadata><TypeSignature Language="C#" Value="public sealed class NamedPipeServerStream : System.IO.Pipes.PipeStream" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit NamedPipeServerStream extends System.IO.Pipes.PipeStream" />
   <TypeSignature Language="DocId" Value="T:System.IO.Pipes.NamedPipeServerStream" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class NamedPipeServerStream&#xA;Inherits PipeStream" />
@@ -32,14 +32,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 命名的管道提供单向或双工管道的管道服务器与一个或多个管道客户端之间的通信。 本地或网络，可以进行进程间通信使用命名的管道。 可由多个共享单个管道名称<xref:System.IO.Pipes.NamedPipeClientStream>对象。  
+ Named pipes 提供单向或双工管道, 用于在管道服务器与一个或多个管道客户端之间进行通信。 命名管道可用于在本地或通过网络进行进程间通信。 单个管道名称可由多个<xref:System.IO.Pipes.NamedPipeClientStream>对象共享。  
   
- 任何进程可以充当命名的管道服务器和/或客户端。  
+ 任何进程都可以充当命名管道服务器或客户端, 也可以同时充当这两者。  
   
 ## Examples  
- 下面的示例演示一种方法将字符串从父进程发送到同一计算机上使用命名管道的子进程。 此示例将创建<xref:System.IO.Pipes.NamedPipeServerStream>对象中父进程<xref:System.IO.Pipes.PipeDirection>的值<xref:System.IO.Pipes.PipeDirection.Out>。 然后等待服务器<xref:System.IO.Pipes.NamedPipeClientStream>中用于连接到它的子进程的对象。 在此示例中，这两个进程都位于同一台计算机上并<xref:System.IO.Pipes.NamedPipeClientStream>对象具有<xref:System.IO.Pipes.PipeDirection>的值<xref:System.IO.Pipes.PipeDirection.In>。 接下来，父进程将用户提供的字符串发送给子进程。 该字符串显示到控制台。  
+ 下面的示例演示了使用命名管道将字符串从父进程发送到同一计算机上的子进程的方法。 此示例在<xref:System.IO.Pipes.PipeDirection>具有<xref:System.IO.Pipes.NamedPipeServerStream>值的<xref:System.IO.Pipes.PipeDirection.Out>父进程中创建对象。 服务器随后将等待<xref:System.IO.Pipes.NamedPipeClientStream>子进程中的对象连接到该对象。 在此示例中, 两个进程都在同一台计算机<xref:System.IO.Pipes.NamedPipeClientStream>上, 并且<xref:System.IO.Pipes.PipeDirection>对象的<xref:System.IO.Pipes.PipeDirection.In>值为。 接下来，父进程将用户提供的字符串发送给子进程。 此字符串将显示在控制台中。  
   
- 此示例适用于服务器过程中，使用<xref:System.IO.Pipes.NamedPipeServerStream>类。 有关完整的代码示例，包括代码管道客户端和服务器，请参阅[如何：使用命名管道进行网络进程间通信](~/docs/standard/io/how-to-use-named-pipes-for-network-interprocess-communication.md)。  
+ 此示例适用于使用<xref:System.IO.Pipes.NamedPipeServerStream>类的服务器进程。 有关完整的代码示例 (包括管道客户端和服务器的代码), 请参阅[如何:使用命名管道进行网络进程间通信](~/docs/standard/io/how-to-use-named-pipes-for-network-interprocess-communication.md)。  
   
  [!code-csharp[System.IO.Pipes.NamedPipeServerStream_Sample1#01](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Pipes.NamedPipeServerStream_Sample1/cs/Program.cs#01)]
  [!code-vb[System.IO.Pipes.NamedPipeServerStream_Sample1#01](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IO.Pipes.NamedPipeServerStream_Sample1/vb/program.vb#01)]  
@@ -101,19 +101,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数创建<xref:System.IO.Pipes.NamedPipeServerStream>对象，它具有以下特征：  
+ 此构造函数将<xref:System.IO.Pipes.NamedPipeServerStream>创建一个具有以下特征的对象:  
   
--   默认管道方向为<xref:System.IO.Pipes.PipeDirection.InOut>。  
+-   的<xref:System.IO.Pipes.PipeDirection.InOut>默认管道方向。  
   
--   服务器实例共享相同名称的最大数目设置为 1。  
+-   共享同一名称的服务器实例的最大数目设置为1。  
   
 -   <xref:System.IO.Pipes.PipeTransmissionMode.Byte> 的 <xref:System.IO.Pipes.PipeTransmissionMode> 值。  
   
 -   <xref:System.IO.Pipes.PipeOptions.None> 的 <xref:System.IO.Pipes.PipeOptions> 值。  
   
--   默认输入和输出缓冲区大小。  
+-   默认的输入和输出缓冲区大小。  
   
--   没有管道安全性。  
+-   无管道安全。  
   
 -   <xref:System.IO.HandleInheritability.None> 的 <xref:System.IO.HandleInheritability> 值。  
   
@@ -127,7 +127,7 @@
         <exception cref="T:System.NotSupportedException"><paramref name="pipeName" /> 包含一个冒号 (":")。</exception>
         <exception cref="T:System.PlatformNotSupportedException">操作系统是不受支持的 Windows Millennium Edition、Windows 98 或 Windows 95。</exception>
         <exception cref="T:System.IO.IOException">已超出服务器实例的最大数量。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -175,15 +175,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数创建<xref:System.IO.Pipes.NamedPipeServerStream>对象，它具有以下特征：  
+ 此构造函数将<xref:System.IO.Pipes.NamedPipeServerStream>创建一个具有以下特征的对象:  
   
 -   <xref:System.IO.Pipes.PipeTransmissionMode.Byte> 的 <xref:System.IO.Pipes.PipeTransmissionMode> 值。  
   
 -   <xref:System.IO.Pipes.PipeOptions.None> 的 <xref:System.IO.Pipes.PipeOptions> 值。  
   
--   默认输入和输出缓冲区大小。  
+-   默认的输入和输出缓冲区大小。  
   
--   没有管道安全性。  
+-   无管道安全。  
   
 -   <xref:System.IO.HandleInheritability.None> 的 <xref:System.IO.HandleInheritability> 值。  
   
@@ -192,7 +192,7 @@
    
   
 ## Examples  
- 下面的示例演示如何将字符串从父进程发送到子进程，使用命名管道的方法。 此示例将创建<xref:System.IO.Pipes.NamedPipeServerStream>父进程中的对象。 <xref:System.IO.Pipes.NamedPipeServerStream>对象具有<xref:System.IO.Pipes.PipeDirection>的值<xref:System.IO.Pipes.PipeDirection.Out>，然后进行阻止，直到<xref:System.IO.Pipes.NamedPipeClientStream>对象建立到当前的连接<xref:System.IO.Pipes.NamedPipeServerStream>对象。  
+ 下面的示例演示了使用命名管道将字符串从父进程发送到子进程的方法。 此示例在父<xref:System.IO.Pipes.NamedPipeServerStream>进程中创建对象。 <xref:System.IO.Pipes.NamedPipeClientStream> <xref:System.IO.Pipes.NamedPipeServerStream>对象的值为<xref:System.IO.Pipes.PipeDirection.Out>, 然后在对象与当前对象建立连接之前被阻止。 <xref:System.IO.Pipes.PipeDirection> <xref:System.IO.Pipes.NamedPipeServerStream>  
   
  [!code-csharp[System.IO.Pipes.NamedPipeServerStream_Sample1#01](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Pipes.NamedPipeServerStream_Sample1/cs/Program.cs#01)]
  [!code-vb[System.IO.Pipes.NamedPipeServerStream_Sample1#01](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IO.Pipes.NamedPipeServerStream_Sample1/vb/program.vb#01)]  
@@ -208,7 +208,7 @@
         <exception cref="T:System.NotSupportedException"><paramref name="pipeName" /> 包含一个冒号 (":")。</exception>
         <exception cref="T:System.PlatformNotSupportedException">操作系统是不受支持的 Windows Millennium Edition、Windows 98 或 Windows 95。</exception>
         <exception cref="T:System.IO.IOException">已超出服务器实例的最大数量。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -258,17 +258,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数创建<xref:System.IO.Pipes.NamedPipeServerStream>对象，它具有以下特征：  
+ 此构造函数将<xref:System.IO.Pipes.NamedPipeServerStream>创建一个具有以下特征的对象:  
   
--   默认值为 1 共享相同名称的服务器实例的最大数目。  
+-   对于共享同一名称的服务器实例的最大数目, 默认值为1。  
   
--   默认值<xref:System.IO.Pipes.PipeTransmissionMode>的值<xref:System.IO.Pipes.PipeTransmissionMode.Byte>。  
+-   默认<xref:System.IO.Pipes.PipeTransmissionMode>值为<xref:System.IO.Pipes.PipeTransmissionMode.Byte>。  
   
 -   <xref:System.IO.Pipes.PipeOptions.None> 的 <xref:System.IO.Pipes.PipeOptions> 值。  
   
--   默认输入和输出缓冲区大小。  
+-   默认的输入和输出缓冲区大小。  
   
--   没有管道安全性。  
+-   无管道安全。  
   
 -   <xref:System.IO.HandleInheritability.None> 的 <xref:System.IO.HandleInheritability> 值。  
   
@@ -280,23 +280,23 @@
         <exception cref="T:System.ArgumentException"><paramref name="pipeName" /> 是一个长度为零的字符串。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="pipeName" /> 设置为“匿名”。  
   
-或 
+- 或 - 
  <paramref name="direction" /> 不是有效的 <see cref="T:System.IO.Pipes.PipeDirection" /> 值。  
   
-- 或 - 
+或 
 需要非负数。  
   
-或 
- <paramref name="maxNumberofServerInstances" /> 小于 -1 或大于 254（-1 指示 <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" />） 
 - 或 - 
+ <paramref name="maxNumberofServerInstances" /> 小于 -1 或大于 254（-1 指示 <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" />） 
+或 
  需要 <see cref="F:System.IO.HandleInheritability.None" /> 或 <see cref="F:System.IO.HandleInheritability.Inheritable" />。  
   
-或 
+- 或 - 
 访问权限仅限于 <see cref="F:System.IO.Pipes.PipeAccessRights.ChangePermissions" />、<see cref="F:System.IO.Pipes.PipeAccessRights.TakeOwnership" /> 和 <see cref="F:System.IO.Pipes.PipeAccessRights.AccessSystemSecurity" /> 标志。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="pipeName" /> 包含一个冒号 (":")。</exception>
         <exception cref="T:System.PlatformNotSupportedException">操作系统是不受支持的 Windows Millennium Edition、Windows 98 或 Windows 95。</exception>
         <exception cref="T:System.IO.IOException">已超出服务器实例的最大数量。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -349,9 +349,9 @@
         <exception cref="T:System.ArgumentException"><paramref name="safePipeHandle" /> 是无效的句柄。</exception>
         <exception cref="T:System.IO.IOException"><paramref name="safePipeHandle" /> 不是有效的管道句柄。  
   
-或 
+- 或 - 
 已超出服务器实例的最大数量。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -403,13 +403,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数创建<xref:System.IO.Pipes.NamedPipeServerStream>对象，它具有以下特征：  
+ 此构造函数将<xref:System.IO.Pipes.NamedPipeServerStream>创建一个具有以下特征的对象:  
   
--   默认值<xref:System.IO.Pipes.PipeOptions>的值<xref:System.IO.Pipes.PipeOptions.None>。  
+-   默认<xref:System.IO.Pipes.PipeOptions>值为<xref:System.IO.Pipes.PipeOptions.None>。  
   
--   默认输入和输出缓冲区大小。  
+-   默认的输入和输出缓冲区大小。  
   
--   没有管道安全性。  
+-   无管道安全。  
   
 -   <xref:System.IO.HandleInheritability.None> 的 <xref:System.IO.HandleInheritability> 值。  
   
@@ -429,7 +429,7 @@
         <exception cref="T:System.NotSupportedException"><paramref name="pipeName" /> 包含一个冒号 (":")。</exception>
         <exception cref="T:System.PlatformNotSupportedException">操作系统是不受支持的 Windows Millennium Edition、Windows 98 或 Windows 95。</exception>
         <exception cref="T:System.IO.IOException">已超出服务器实例的最大数量。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -483,11 +483,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数创建<xref:System.IO.Pipes.NamedPipeServerStream>对象，它具有以下特征：  
+ 此构造函数将<xref:System.IO.Pipes.NamedPipeServerStream>创建一个具有以下特征的对象:  
   
--   默认输入和输出缓冲区大小。  
+-   默认的输入和输出缓冲区大小。  
   
--   没有管道安全性。  
+-   无管道安全。  
   
 -   <xref:System.IO.HandleInheritability.None> 的 <xref:System.IO.HandleInheritability> 值。  
   
@@ -502,14 +502,14 @@
 或 
  <paramref name="direction" /> 不是有效的 <see cref="T:System.IO.Pipes.PipeDirection" /> 值。  
   
-或 
+- 或 - 
  <paramref name="maxNumberofServerInstances" /> 小于 -1 或大于 254（-1 指示 <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" />） 
 或 
  <paramref name="options" /> 不是有效的 <see cref="T:System.IO.Pipes.PipeOptions" /> 值。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="pipeName" /> 包含一个冒号 (":")。</exception>
         <exception cref="T:System.PlatformNotSupportedException">操作系统是不受支持的 Windows Millennium Edition、Windows 98 或 Windows 95。</exception>
         <exception cref="T:System.IO.IOException">已超出服务器实例的最大数量。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -567,11 +567,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数创建<xref:System.IO.Pipes.NamedPipeServerStream>对象，它具有以下特征：  
+ 此构造函数将<xref:System.IO.Pipes.NamedPipeServerStream>创建一个具有以下特征的对象:  
   
--   没有其他管道安全性。  
+-   无额外的管道安全性。  
   
--   默认值<xref:System.IO.HandleInheritability>的值<xref:System.IO.HandleInheritability.None>。  
+-   默认<xref:System.IO.HandleInheritability>值为<xref:System.IO.HandleInheritability.None>。  
   
 -   未指定其他<xref:System.IO.Pipes.PipeAccessRights>。  
   
@@ -594,7 +594,7 @@
         <exception cref="T:System.NotSupportedException"><paramref name="pipeName" /> 包含一个冒号 (":")。</exception>
         <exception cref="T:System.PlatformNotSupportedException">操作系统是不受支持的 Windows Millennium Edition、Windows 98 或 Windows 95。</exception>
         <exception cref="T:System.IO.IOException">已超出服务器实例的最大数量。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -648,9 +648,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数创建<xref:System.IO.Pipes.NamedPipeServerStream>对象，它具有以下特征：  
+ 此构造函数将<xref:System.IO.Pipes.NamedPipeServerStream>创建一个具有以下特征的对象:  
   
--   默认值<xref:System.IO.HandleInheritability>的值<xref:System.IO.HandleInheritability.None>。  
+-   默认<xref:System.IO.HandleInheritability>值为<xref:System.IO.HandleInheritability.None>。  
   
 -   未指定其他<xref:System.IO.Pipes.PipeAccessRights>。  
   
@@ -665,7 +665,7 @@
   
 或 
  <paramref name="maxNumberofServerInstances" /> 小于 -1 或大于 254（-1 指示 <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" />） 
-- 或 - 
+或 
  <paramref name="options" /> 不是有效的 <see cref="T:System.IO.Pipes.PipeOptions" /> 值。  
   
 或 
@@ -673,7 +673,7 @@
         <exception cref="T:System.NotSupportedException"><paramref name="pipeName" /> 包含一个冒号 (":")。</exception>
         <exception cref="T:System.PlatformNotSupportedException">操作系统是不受支持的 Windows Millennium Edition、Windows 98 或 Windows 95。</exception>
         <exception cref="T:System.IO.IOException">已超出服务器实例的最大数量。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -729,7 +729,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数创建<xref:System.IO.Pipes.NamedPipeServerStream>对象，它不具有指定的附加<xref:System.IO.Pipes.PipeAccessRights>。  
+ 此构造函数创建<xref:System.IO.Pipes.NamedPipeServerStream>一个没有指定的附加<xref:System.IO.Pipes.PipeAccessRights>的对象。  
   
  ]]></format>
         </remarks>
@@ -737,23 +737,23 @@
         <exception cref="T:System.ArgumentException"><paramref name="pipeName" /> 是一个长度为零的字符串。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="pipeName" /> 设置为“匿名”。  
   
-或 
+- 或 - 
  <paramref name="direction" /> 不是有效的 <see cref="T:System.IO.Pipes.PipeDirection" /> 值。  
   
 - 或 - 
  <paramref name="maxNumberofServerInstances" /> 小于 -1 或大于 254（-1 指示 <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" />） 
-- 或 - 
+或 
  <paramref name="options" /> 不是有效的 <see cref="T:System.IO.Pipes.PipeOptions" /> 值。  
   
 或 
  <paramref name="inBufferSize" /> 为负数。  
   
-- 或 - 
+或 
  <paramref name="inheritability" /> 不是有效的 <see cref="T:System.IO.HandleInheritability" /> 值。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="pipeName" /> 包含一个冒号 (":")。</exception>
         <exception cref="T:System.PlatformNotSupportedException">操作系统是不受支持的 Windows Millennium Edition、Windows 98 或 Windows 95。</exception>
         <exception cref="T:System.IO.IOException">已超出服务器实例的最大数量。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -815,12 +815,12 @@
 或 
  <paramref name="direction" /> 不是有效的 <see cref="T:System.IO.Pipes.PipeDirection" /> 值。  
   
-- 或 - 
+或 
  <paramref name="maxNumberofServerInstances" /> 小于 -1 或大于 254（-1 指示 <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" />） 
 或 
  <paramref name="options" /> 不是有效的 <see cref="T:System.IO.Pipes.PipeOptions" /> 值。  
   
-或 
+- 或 - 
  <paramref name="inBufferSize" /> 为负数。  
   
 或 
@@ -831,7 +831,7 @@
         <exception cref="T:System.NotSupportedException"><paramref name="pipeName" /> 包含一个冒号 (":")。</exception>
         <exception cref="T:System.PlatformNotSupportedException">操作系统是不受支持的 Windows Millennium Edition、Windows 98 或 Windows 95。</exception>
         <exception cref="T:System.IO.IOException">已超出服务器实例的最大数量。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.Demand">表示完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
       </Docs>
     </Member>
     <Member MemberName="BeginWaitForConnection">
@@ -879,9 +879,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这是异步等效项<xref:System.IO.Pipes.NamedPipeServerStream.WaitForConnection%2A>。  
+ 这是的异步等效项<xref:System.IO.Pipes.NamedPipeServerStream.WaitForConnection%2A>。  
   
- <xref:System.IO.Pipes.NamedPipeServerStream.EndWaitForConnection%2A> 必须为每个调用一次调用<xref:System.IO.Pipes.NamedPipeServerStream.BeginWaitForConnection%2A>。  
+ <xref:System.IO.Pipes.NamedPipeServerStream.EndWaitForConnection%2A>对于每个调用<xref:System.IO.Pipes.NamedPipeServerStream.BeginWaitForConnection%2A>, 必须只调用一次。  
   
  ]]></format>
         </remarks>
@@ -938,7 +938,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.IO.Pipes.NamedPipeServerStream.Disconnect%2A>方法会阻塞，直到所有已发送的字符都已读取，除非将管道的传输模式设置为<xref:System.IO.Pipes.PipeTransmissionMode.Message>中创建的构造函数设置缓冲区大小和<xref:System.IO.Pipes.NamedPipeServerStream>对象。 在这种情况下，将接收不是所有的消息。 调用<xref:System.IO.Pipes.PipeStream.WaitForPipeDrain%2A>会导致服务器进行阻止，直到从管道读取所有数据。  
+ 调用方法将被阻止, 直到读取所有发送的字符, 除非管道的传输模式设置为<xref:System.IO.Pipes.PipeTransmissionMode.Message> , 并且在创建该<xref:System.IO.Pipes.NamedPipeServerStream>对象的构造函数中设置了缓冲区大小。 <xref:System.IO.Pipes.NamedPipeServerStream.Disconnect%2A> 在这种情况下, 不会接收到所有消息。 调用<xref:System.IO.Pipes.PipeStream.WaitForPipeDrain%2A>会导致服务器一直阻止到从管道中读取所有数据。  
   
  ]]></format>
         </remarks>
@@ -996,7 +996,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IO.Pipes.NamedPipeServerStream.EndWaitForConnection%2A> 必须为每个调用一次调用<xref:System.IO.Pipes.NamedPipeServerStream.BeginWaitForConnection%2A>。  
+ <xref:System.IO.Pipes.NamedPipeServerStream.EndWaitForConnection%2A>对于每个调用<xref:System.IO.Pipes.NamedPipeServerStream.BeginWaitForConnection%2A>, 必须只调用一次。  
   
  ]]></format>
         </remarks>
@@ -1083,12 +1083,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IO.Pipes.NamedPipeServerStream.GetImpersonationUserName%2A>方法将返回`null`如果客户端但尚未写入管道，或连接的客户端未与连接<xref:System.Security.Principal.TokenImpersonationLevel>的<xref:System.Security.Principal.TokenImpersonationLevel.Impersonation>。  
+ 如果<xref:System.IO.Pipes.NamedPipeServerStream.GetImpersonationUserName%2A>客户端`null`尚未写入管道, 或连接的客户端未连接<xref:System.Security.Principal.TokenImpersonationLevel>的<xref:System.Security.Principal.TokenImpersonationLevel.Impersonation>, 则方法将返回。  
   
    
   
 ## Examples  
- 下面的示例演示一个方法来创建多个同时进行的客户端请求，可响应的管道服务器和客户端模拟的方法。 此示例将创建<xref:System.IO.Pipes.NamedPipeServerStream>对象中父进程，然后创建多个线程等待<xref:System.IO.Pipes.NamedPipeClientStream>要连接的对象。 客户端连接后，它会提供到服务器的文件名称，该文件的内容是读取和发送回客户端。 因为<xref:System.IO.Pipes.NamedPipeServerStream>模拟客户端打开文件时，客户端可以请求只有文件其具有足够的权限打开。  
+ 下面的示例演示了一个方法, 该方法用于创建可响应多个并发客户端请求的管道服务器, 以及用于客户端模拟的方法。 此示例在父<xref:System.IO.Pipes.NamedPipeServerStream>进程中创建一个对象, 该对象随后会创建多个<xref:System.IO.Pipes.NamedPipeClientStream>等待对象连接的线程。 客户端在连接后, 将向服务器提供文件名, 并读取该文件的内容并将其发送回客户端。 由于在<xref:System.IO.Pipes.NamedPipeServerStream>打开文件时模拟客户端, 因此客户端只能请求具有足够权限打开的文件。  
   
  [!code-cpp[System.IO.Pipes.NamedPipeServerStream_ImpersonationSample1#01](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.Pipes.NamedPipeServerStream_ImpersonationSample1/cpp/program.cpp#01)]
  [!code-csharp[System.IO.Pipes.NamedPipeServerStream_ImpersonationSample1#01](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Pipes.NamedPipeServerStream_ImpersonationSample1/cs/Program.cs#01)]
@@ -1111,7 +1111,7 @@
  - 或 -  
   
  客户端用户名的长度超过了 19 个字符。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermissionFlag">它能够操作主体对象。 安全操作： <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermissionFlag">用于操作主体对象。 安全操作: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" /></permission>
       </Docs>
     </Member>
     <Member MemberName="MaxAllowedServerInstances">
@@ -1148,7 +1148,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances>创建时<xref:System.IO.Pipes.NamedPipeServerStream>对象来设置的系统资源允许的服务器实例的最大数目。  
+ <xref:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances> 创建对象时使用来设置系统资源允许的服务器实例<xref:System.IO.Pipes.NamedPipeServerStream>的最大数量。  
   
  ]]></format>
         </remarks>
@@ -1196,12 +1196,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 连接客户端的权限应用于远程服务器。 例如，如果连接的客户端尝试请求服务器上的文件的内容时，客户端可以请求具有足够的权限打开的文件。  
+ 连接客户端的权限将应用到远程服务器。 例如, 如果连接客户端尝试请求服务器上的文件的内容, 则客户端只会请求具有足够权限打开的文件。  
   
    
   
 ## Examples  
- 下面的示例演示一个方法来创建多个同时进行的客户端请求，可响应的管道服务器和客户端模拟的方法。 此示例将创建<xref:System.IO.Pipes.NamedPipeServerStream>对象中父进程，然后创建多个线程等待<xref:System.IO.Pipes.NamedPipeClientStream>要连接的对象。 客户端连接后，它会提供到服务器的文件名称，该文件的内容是读取和发送回客户端。 因为<xref:System.IO.Pipes.NamedPipeServerStream>模拟客户端打开文件时，客户端可以请求只有文件其具有足够的权限打开。  
+ 下面的示例演示了一个方法, 该方法用于创建可响应多个并发客户端请求的管道服务器, 以及用于客户端模拟的方法。 此示例在父<xref:System.IO.Pipes.NamedPipeServerStream>进程中创建一个对象, 该对象随后会创建多个<xref:System.IO.Pipes.NamedPipeClientStream>等待对象连接的线程。 客户端在连接后, 将向服务器提供文件名, 并读取该文件的内容并将其发送回客户端。 由于在<xref:System.IO.Pipes.NamedPipeServerStream>打开文件时模拟客户端, 因此客户端只能请求具有足够权限打开的文件。  
   
  [!code-cpp[System.IO.Pipes.NamedPipeServerStream_ImpersonationSample1#01](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.Pipes.NamedPipeServerStream_ImpersonationSample1/cpp/program.cpp#01)]
  [!code-csharp[System.IO.Pipes.NamedPipeServerStream_ImpersonationSample1#01](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Pipes.NamedPipeServerStream_ImpersonationSample1/cs/Program.cs#01)]
@@ -1215,7 +1215,7 @@
   
  连接的管道已断开。  
   
- 或  
+ - 或 -  
   
  尚未设置管道句柄。</exception>
         <exception cref="T:System.ObjectDisposedException">管道已关闭。</exception>
@@ -1224,7 +1224,7 @@
  或  
   
  出现 I/O 错误。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermissionFlag">它能够操作主体对象。 安全操作： <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermissionFlag">用于操作主体对象。 安全操作: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" /></permission>
       </Docs>
     </Member>
     <Member MemberName="WaitForConnection">
@@ -1267,12 +1267,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法会导致<xref:System.IO.Pipes.NamedPipeServerStream>对象进行阻止，直到客户端连接。  
+ 调用此方法会导致<xref:System.IO.Pipes.NamedPipeServerStream>对象被阻止, 直到客户端连接。  
   
    
   
 ## Examples  
- 下面的示例演示如何将字符串从父进程发送到子进程，使用命名管道的方法。 此示例将创建<xref:System.IO.Pipes.NamedPipeServerStream>父进程中的对象。 此对象是否有<xref:System.IO.Pipes.PipeDirection>的值<xref:System.IO.Pipes.PipeDirection.Out>，然后进行阻止，直到<xref:System.IO.Pipes.NamedPipeClientStream>对象建立与<xref:System.IO.Pipes.NamedPipeServerStream>对象。 此示例摘自一个更大的示例为提供<xref:System.IO.Pipes.NamedPipeServerStream>和<xref:System.IO.Pipes.NamedPipeClientStream>类。  
+ 下面的示例演示了使用命名管道将字符串从父进程发送到子进程的方法。 此示例在父<xref:System.IO.Pipes.NamedPipeServerStream>进程中创建对象。 此对象<xref:System.IO.Pipes.PipeDirection>的<xref:System.IO.Pipes.PipeDirection.Out>值为, 然后将一直阻止到<xref:System.IO.Pipes.NamedPipeClientStream>对象与该<xref:System.IO.Pipes.NamedPipeServerStream>对象建立连接为止。 此示例是为<xref:System.IO.Pipes.NamedPipeServerStream>和<xref:System.IO.Pipes.NamedPipeClientStream>类提供的更大示例的一部分。  
   
  [!code-csharp[System.IO.Pipes.NamedPipeServerStream_Sample1#01](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.Pipes.NamedPipeServerStream_Sample1/cs/Program.cs#01)]
  [!code-vb[System.IO.Pipes.NamedPipeServerStream_Sample1#01](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IO.Pipes.NamedPipeServerStream_Sample1/vb/program.vb#01)]  
@@ -1333,7 +1333,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 因为它是异步的此方法将立即返回，但在连接过程完成时，客户端调用<xref:System.IO.Pipes.NamedPipeClientStream.Connect%2A>或<xref:System.IO.Pipes.NamedPipeClientStream.ConnectAsync%2A>。  
+ 由于此方法是异步的, 因此此方法会立即返回, 但当客户端调用<xref:System.IO.Pipes.NamedPipeClientStream.Connect%2A>或<xref:System.IO.Pipes.NamedPipeClientStream.ConnectAsync%2A>时, 将完成连接过程。  
   
  ]]></format>
         </remarks>
@@ -1376,9 +1376,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 因为它是异步的此方法将立即返回，但在连接过程完成时，客户端调用<xref:System.IO.Pipes.NamedPipeClientStream.Connect%2A>或<xref:System.IO.Pipes.NamedPipeClientStream.ConnectAsync%2A>。  
+ 由于此方法是异步的, 因此此方法会立即返回, 但当客户端调用<xref:System.IO.Pipes.NamedPipeClientStream.Connect%2A>或<xref:System.IO.Pipes.NamedPipeClientStream.ConnectAsync%2A>时, 将完成连接过程。  
   
- 取消请求使用取消标记才起作用<xref:System.IO.Pipes.NamedPipeServerStream>对象创建管道选项值为<xref:System.IO.Pipes.PipeOptions.Asynchronous?displayProperty=nameWithType>或者如果取消发生之前<xref:System.IO.Pipes.NamedPipeServerStream.WaitForConnectionAsync%2A>调用方法。  
+ 使用取消标记的取消请求仅在<xref:System.IO.Pipes.NamedPipeServerStream>创建对象时使用管道选项<xref:System.IO.Pipes.PipeOptions.Asynchronous?displayProperty=nameWithType>值或如果在调用<xref:System.IO.Pipes.NamedPipeServerStream.WaitForConnectionAsync%2A>方法之前发生, 则有效。  
   
  ]]></format>
         </remarks>

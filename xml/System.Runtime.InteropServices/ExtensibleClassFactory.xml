@@ -1,5 +1,5 @@
 <Type Name="ExtensibleClassFactory" FullName="System.Runtime.InteropServices.ExtensibleClassFactory">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c19e9b8869d9e1e23c9e71dec7657d7ba070d7b7" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64114724" /></Metadata><TypeSignature Language="C#" Value="public sealed class ExtensibleClassFactory" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="675047477e44908948d7adf8b77eed0360351b55" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69064292" /></Metadata><TypeSignature Language="C#" Value="public sealed class ExtensibleClassFactory" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ExtensibleClassFactory extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.ExtensibleClassFactory" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ExtensibleClassFactory" />
@@ -27,12 +27,12 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `ExtensibleClassFactory`允许用户指定`delegate`提供基础的 COM 对象的实例的运行时可调用包装 (RCW) 的构造期间调用。 实际上，回调充当包装 RCW 的 COM 对象的类工厂。 不执行回调，公共语言运行时创建的基础 COM 对象通过调用`CoCreateInstance`。 此回调提供了与 COM 名字对象或通过提供单一实例对象，如激活基础对象的替代方法。 <xref:System.Runtime.InteropServices.ExtensibleClassFactory.RegisterObjectCreationCallback%2A>必须调用方法`static`扩展 RCW 类的初始值设定项。 只有一个对象创建回调允许每个对象类型。 当激活可扩展 RCW 时，注册回调。 当需要创建基础 COM 对象时，被调用回调来提供对对象的引用。 回调必须返回`IUnknown`基对象的接口指针。  
+ 允许用户指定在构造运行时可调用包装 (RCW) 的过程中调用的,该包装器提供基础COM对象的实例。`delegate` `ExtensibleClassFactory` 实际上, 回调作为 RCW 包装的 COM 对象的类工厂。 在没有回调的情况下, 公共语言运行时通过调用`CoCreateInstance`创建基础 COM 对象。 此回调提供了一种激活基础对象 (如使用 COM 名字对象或提供单一实例对象) 的替代方法。 此<xref:System.Runtime.InteropServices.ExtensibleClassFactory.RegisterObjectCreationCallback%2A>方法必须`static`在扩展 RCW 的类的初始化表达式中调用。 每个对象类型只允许一个对象创建回调。 激活可扩展的 RCW 后, 将注册回调。 需要创建基础 COM 对象时, 调用回调以提供对对象的引用。 回调必须返回`IUnknown`基对象的接口指针。  
   
    
   
 ## Examples  
- 注册`delegate`，将从非托管类型的托管类型的实例需要分配聚合的非托管的对象时调用。 这`delegate`预期分配和聚合的非托管的对象，并且调用来代替`CoCreateInstance`。 此例程必须调用的上下文中`static`初始值设定项将为其进行回调的类。  
+ 注册每当从非托管类型扩展的托管类型的实例需要分配聚合的非托管对象时,都会调用。`delegate` 这`delegate`应该会分配和聚合非托管对象, 并调用来代替`CoCreateInstance`。 必须在要对其进行回调的类的`static`初始值设定项的上下文中调用此例程。  
   
  [!code-cpp[Classic ExtensibleClassFactory Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic ExtensibleClassFactory Example/CPP/source.cpp#1)]
  [!code-csharp[Classic ExtensibleClassFactory Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic ExtensibleClassFactory Example/CS/source.cs#1)]
@@ -75,9 +75,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这`delegate`分配和聚合的非托管的对象并调用来代替`CoCreateInstance`。 这`delegate`必须注册的上下文中`static`类初始值设定项将为其进行回调。  
+ 这`delegate`将分配并聚合非托管对象, 并调用来`CoCreateInstance`代替。 必须`delegate`在要对其进行回调的`static`类初始值设定项的上下文中注册此项。  
   
- 层次结构中的只有一个类应注册`delegate`回调。  
+ 层次结构中只有一个类应注册`delegate`回调。  
   
  ]]></format>
         </remarks>
