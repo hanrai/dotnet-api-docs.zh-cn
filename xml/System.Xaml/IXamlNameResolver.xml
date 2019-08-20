@@ -1,5 +1,5 @@
 <Type Name="IXamlNameResolver" FullName="System.Xaml.IXamlNameResolver">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="314f8938eb885657afa66593d61c25f5593412a0" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64288347" /></Metadata><TypeSignature Language="C#" Value="public interface IXamlNameResolver" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d67e5a9c4f9c2ce02dc2b22b5eaba13b6e960c70" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69427528" /></Metadata><TypeSignature Language="C#" Value="public interface IXamlNameResolver" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IXamlNameResolver" />
   <TypeSignature Language="DocId" Value="T:System.Xaml.IXamlNameResolver" />
   <TypeSignature Language="VB.NET" Value="Public Interface IXamlNameResolver" />
@@ -16,14 +16,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此接口不适合外部实现的典型 XAML 方案，因为它是一项服务。 此服务，标记扩展和类型转换器将 XAML 名称解析为其他对象相同的 XAML 源中进行时仍在 XAML 节点表示形式。 该服务可用于解析依赖于 XAML 名称到周围的 XAML 生产的非线性访问任何机制的前向引用。 有关详细信息，请参阅[Type Converters and Markup Extensions for XAML](~/docs/framework/xaml-services/type-converters-and-markup-extensions-for-xaml.md)。  
+ 此接口不用于典型 XAML 方案的外部实现, 因为它是一种服务。 此服务允许标记扩展和类型转换器将 XAML 名称解析为同一 XAML 源中的其他对象, 同时它们仍处于 XAML 节点表示形式中。 对于依赖于 XAML 名称的任何机制, 可使用该服务来解析对环绕 XAML 生产的非线性访问。 有关详细信息, 请参阅[XAML 的类型转换器和标记扩展](~/docs/framework/xaml-services/type-converters-and-markup-extensions-for-xaml.md)。  
   
- 类型转换器和标记扩展可以查询<xref:System.Xaml.IXamlNameResolver>作为 XAML 对象编写器调用值转换行为时，XAML 对象编写器提供的服务上下文上的服务。 有关详细信息，请参阅[Type Converters and Markup Extensions for XAML](~/docs/framework/xaml-services/type-converters-and-markup-extensions-for-xaml.md)并[Service Contexts Available to 类型转换器和标记扩展](~/docs/framework/xaml-services/service-contexts-available-to-type-converters-and-markup-extensions.md)。  
+ 当 xaml 对象编写器调用值转换<xref:System.Xaml.IXamlNameResolver>行为时, 类型转换器和标记扩展可以在 xaml 对象编写器提供的服务上下文上查询为服务。 有关详细信息, 请参阅[可用于类型转换器和标记扩展](~/docs/framework/xaml-services/service-contexts-available-to-type-converters-and-markup-extensions.md)[的 XAML 的类型转换器和标记扩展](~/docs/framework/xaml-services/type-converters-and-markup-extensions-for-xaml.md)。  
   
- 此服务公开一个 API，可以延迟名称解析。 由服务实现的隐喻是应存储和用于创建链接地址信息令牌不能针对部分的名称-对象图的第一轮中解析的名称。 中的默认行为，在第二个阶段的另一个解决方法尝试提交所有此类名称。 在第二步，整个名称对象图完成，且链接地址信息的所有令牌都都能够解析。  
+ 此服务公开一个可延迟名称解析的 API。 服务实现的比喻是, 应存储并使用在第一次传递时无法在部分名称对象图中解析的名称。 在默认行为中, 将在第二次传递时提交其他解析尝试的所有此类名称。 在第二次传递中, 整体名称对象图已完成, 所有修复标记都可以解析。  
   
 > [!NOTE]
->  即使它们所允许的特定实现，在 XAML 中的前向引用不可避免地会对性能产生影响。 避免在生产质量 XAML 的最佳做法，只要有可能的前向引用。  
+>  即使特定的实现允许使用这些方法, XAML 中的正向引用必然会产生性能后果。 作为生产质量的 XAML 的最佳实践, 请尽可能避免使用向前引用。  
   
  ]]></format>
     </remarks>
@@ -88,9 +88,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 现有的内部服务提供程序，可用在标记扩展的架构上下文和类型转换器可以实现此服务;但是，它们返回仅现有 XAML 编写器工作默认 XAML 架构上下文可以处理的内部类型。  
+ 在标记扩展和类型转换器的架构上下文中可用的现有内部服务提供程序可以实现此服务;但是, 它们返回的内部类型仅适用于默认 XAML 架构上下文中运行的现有 XAML 编写器。  
   
- 解析所有前向引用的名称时，调用用户代码以重新分析每个列表中的名称。  
+ 当所有正向引用名称都可解析时, 将调用用户代码来重新分析列表中的每个名称。  
   
  ]]></format>
         </remarks>
@@ -124,9 +124,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 现有的内部服务提供程序，可用在标记扩展的架构上下文和类型转换器实现此服务;但是，它们返回仅可由工作默认 XAML 架构上下文的现有 XAML 编写器处理的内部类型。  
+ 在标记扩展和类型转换器的架构上下文中可用的现有内部服务提供程序实现此服务;但是, 它们返回的内部类型只能由在默认 XAML 架构上下文中工作的现有 XAML 编写器处理。  
   
- 如果`canAssignDirectly`是`false`，当所有前向引用的名称都是可解析，用户代码调用以重新分析每个列表中的名称。  
+ 如果`canAssignDirectly` 为`false`, 则在所有前向引用的名称都可解析时, 将调用用户代码来重新分析列表中的每个名称。  
   
  ]]></format>
         </remarks>
@@ -154,7 +154,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性返回`false`时<xref:System.Xaml.IXamlNameResolver.GetFixupToken%2A>不会返回一个令牌，因为<xref:System.Xaml.Schema.XamlValueConverter%601>所涉及的现有令牌上的第二个过程。  
+ 当未`false` 返回令牌<xref:System.Xaml.IXamlNameResolver.GetFixupToken%2A>时, 此属性返回,因为在第二次传递中涉及到现有令牌。<xref:System.Xaml.Schema.XamlValueConverter%601>  
   
  ]]></format>
         </remarks>
@@ -215,7 +215,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果返回值为`null`，可能存在的前向引用。 想要支持前向引用的实现可以使用`FixupToken`通过模式<xref:System.Xaml.IXamlNameResolver.GetFixupToken%2A>和<xref:System.Xaml.IXamlNameResolver.IsFixupTokenAvailable%2A>Api。  
+ 如果值返回为`null`, 则可能存在前向引用。 要支持正向引用的实现可以`FixupToken` <xref:System.Xaml.IXamlNameResolver.GetFixupToken%2A>通过和<xref:System.Xaml.IXamlNameResolver.IsFixupTokenAvailable%2A> api 使用模式。  
   
  ]]></format>
         </remarks>

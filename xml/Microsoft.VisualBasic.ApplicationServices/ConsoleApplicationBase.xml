@@ -1,5 +1,5 @@
 <Type Name="ConsoleApplicationBase" FullName="Microsoft.VisualBasic.ApplicationServices.ConsoleApplicationBase">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5f7b46978510e9095a8aad1d1ba6c62489c36747" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67238534" /></Metadata><TypeSignature Language="C#" Value="public class ConsoleApplicationBase : Microsoft.VisualBasic.ApplicationServices.ApplicationBase" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="91077060ac5b6b497a0855a858dfd06545e60cb0" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69303976" /></Metadata><TypeSignature Language="C#" Value="public class ConsoleApplicationBase : Microsoft.VisualBasic.ApplicationServices.ApplicationBase" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi ConsoleApplicationBase extends Microsoft.VisualBasic.ApplicationServices.ApplicationBase" />
   <TypeSignature Language="DocId" Value="T:Microsoft.VisualBasic.ApplicationServices.ConsoleApplicationBase" />
   <TypeSignature Language="VB.NET" Value="Public Class ConsoleApplicationBase&#xA;Inherits ApplicationBase" />
@@ -24,7 +24,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 公开的属性`My.Application`对象仅与当前应用程序或 DLL 相关联的返回数据。 无法使用 `My.Application` 更改任何系统级信息。  
+ `My.Application`对象公开的属性返回仅与当前应用程序或 DLL 关联的数据。 无法使用 `My.Application` 更改任何系统级信息。  
   
  `My.Application` 对象由以下类组成：  
   
@@ -37,7 +37,7 @@
    
   
 ## Examples  
- 此示例使用`My.Application.CommandLineArgs`属性可以检查应用程序的命令行参数。 如果参数找到以开始`/input=`，则显示该自变量的其余部分。  
+ 此示例使用`My.Application.CommandLineArgs`属性来检查应用程序的命令行参数。 如果找到以开头`/input=`的参数, 则会显示该参数的其余部分。  
   
  [!code-vb[VbVbalrMyApplication#3](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrMyApplication/VB/Form1.vb#3)]  
   
@@ -103,23 +103,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `My.Application.CommandLineArgs`属性提供给不 ClickOnce 部署的应用程序的当前应用程序的命令行参数的只读访问权限。  
+ `My.Application.CommandLineArgs`属性为非 ClickOnce 部署的应用程序提供对当前应用程序的命令行参数的只读访问。  
   
- 对于单实例应用程序，`My.Application.CommandLineArgs`属性返回应用程序的第一个实例的命令行参数。 若要访问的后续尝试启动单实例应用程序自变量，你必须处理<xref:Microsoft.VisualBasic.ApplicationServices.WindowsFormsApplicationBase.StartupNextInstance>事件并检查<xref:Microsoft.VisualBasic.ApplicationServices.StartupEventArgs.CommandLine%2A>属性的<xref:Microsoft.VisualBasic.ApplicationServices.StartupEventArgs>参数。  
-  
-> [!NOTE]
->  `My.Application.CommandLineArgs`属性将返回仅的命令行参数。 这是不同的行为<xref:System.Environment.CommandLine%2A>属性，它返回除了参数之外的应用程序名称。  
+ 对于单实例应用程序, 该`My.Application.CommandLineArgs`属性返回应用程序的第一个实例的命令行参数。 若要访问后续尝试启动单实例应用程序的自变量, 必须处理该<xref:Microsoft.VisualBasic.ApplicationServices.WindowsFormsApplicationBase.StartupNextInstance>事件, 并<xref:Microsoft.VisualBasic.ApplicationServices.StartupEventArgs.CommandLine%2A>检查<xref:Microsoft.VisualBasic.ApplicationServices.StartupEventArgs>参数的属性。  
   
 > [!NOTE]
->  在已部署的 ClickOnce 应用程序，使用<xref:System.Deployment.Application.ApplicationDeployment.ActivationUri%2A>属性的`My.Application.Deployment`对象获取的命令行参数。 有关更多信息，请参见<xref:Microsoft.VisualBasic.ApplicationServices.ConsoleApplicationBase.Deployment%2A>。  
+>  `My.Application.CommandLineArgs`属性只返回命令行参数。 这与<xref:System.Environment.CommandLine%2A>属性的行为不同, 后者除了参数外, 还会返回应用程序名称。  
   
- 下表列出了所涉及的任务的示例`My.Application.CommandLineArgs`属性。  
+> [!NOTE]
+>  在已部署 ClickOnce 的应用程序中, 使用<xref:System.Deployment.Application.ApplicationDeployment.ActivationUri%2A> `My.Application.Deployment`对象的属性来获取命令行参数。 有关详细信息，请参阅 <xref:Microsoft.VisualBasic.ApplicationServices.ConsoleApplicationBase.Deployment%2A>。  
+  
+ 下表列出了涉及`My.Application.CommandLineArgs`属性的任务的示例。  
   
 |功能|查看|  
 |-|-|  
 |检查后续尝试启动单实例应用程序的命令行参数|<xref:Microsoft.VisualBasic.ApplicationServices.WindowsFormsApplicationBase.StartupNextInstance>|  
   
-## <a name="availability-by-project-type"></a>项目类型的可用性  
+## <a name="availability-by-project-type"></a>按项目类型的可用性  
   
 |项目类型|可用|  
 |-|-|  
@@ -134,14 +134,14 @@
    
   
 ## Examples  
- 此示例使用`My.Application.CommandLineArgs`属性可以检查应用程序的命令行参数。 如果参数找到以开始`/input=`，则显示该自变量的其余部分。  
+ 此示例使用`My.Application.CommandLineArgs`属性来检查应用程序的命令行参数。 如果找到以开头`/input=`的参数, 则会显示该参数的其余部分。  
   
  [!code-vb[VbVbalrMyApplication#3](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrMyApplication/VB/Form1.vb#3)]  
   
  ]]></format>
         </remarks>
         <altCompliant cref="P:System.Environment.CommandLine" />
-        <permission cref="T:System.Security.Permissions.EnvironmentPermission">控制访问的 PATH 环境变量的能力。 关联枚举：<see cref="F:System.Security.Permissions.EnvironmentPermissionAccess.Read" />。</permission>
+        <permission cref="T:System.Security.Permissions.EnvironmentPermission">控制访问 PATH 环境变量的能力。 关联枚举：<see cref="F:System.Security.Permissions.EnvironmentPermissionAccess.Read" />。</permission>
         <altmember cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />
         <altmember cref="E:Microsoft.VisualBasic.ApplicationServices.WindowsFormsApplicationBase.StartupNextInstance" />
         <altmember cref="T:Microsoft.VisualBasic.ApplicationServices.StartupEventArgs" />
@@ -170,18 +170,18 @@
       </ReturnValue>
       <Docs>
         <summary>获取当前应用程序的 ClickOnce 部署对象，该对象为以编程方式更新当前部署提供支持，并支持文件的即需下载。</summary>
-        <value><see cref="T:System.Deployment.Application.ApplicationDeployment" />应用程序的 ClickOnce 部署的对象。</value>
+        <value>应用<see cref="T:System.Deployment.Application.ApplicationDeployment" />程序的 ClickOnce 部署的对象。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `My.Application.Deployment`属性返回应用程序的 ClickOnce<xref:System.Deployment.Application.ApplicationDeployment>对象。 <xref:System.Deployment.Application.ApplicationDeployment>对象提供支持以编程方式更新当前部署以及对按需下载文件的支持。 ClickOnce 应用程序以及如何将其部署的详细信息，请参阅[ClickOnce 安全和部署](/visualstudio/deployment/clickonce-security-and-deployment)并[发布 ClickOnce 应用程序](/visualstudio/deployment/publishing-clickonce-applications)。  
+ 属性返回应用程序的 ClickOnce <xref:System.Deployment.Application.ApplicationDeployment>对象。 `My.Application.Deployment` <xref:System.Deployment.Application.ApplicationDeployment>对象支持以编程方式更新当前部署, 并支持文件的按需下载。 有关 ClickOnce 应用程序及其部署方法的详细信息, 请参阅[Clickonce 安全和部署](/visualstudio/deployment/clickonce-security-and-deployment)和[发布 clickonce 应用程序](/visualstudio/deployment/publishing-clickonce-applications)。  
   
- 确认<xref:Microsoft.VisualBasic.ApplicationServices.ConsoleApplicationBase.IsNetworkDeployed%2A>属性是`True`在访问之前`My.Application.Deployment`属性。 否则，如果未使用 ClickOnce 部署应用程序，读取`My.Application.Deployment`属性都会导致<xref:System.Deployment.Application.InvalidDeploymentException>异常。 有关部署 ClickOnce 应用程序的详细信息，请参阅[如何：使用发布向导发布 ClickOnce 应用程序](/visualstudio/deployment/how-to-publish-a-clickonce-application-using-the-publish-wizard)。  
+ 在访问<xref:Microsoft.VisualBasic.ApplicationServices.ConsoleApplicationBase.IsNetworkDeployed%2A> `True` 属性之前,请确认`My.Application.Deployment`该属性为。 否则, 如果未使用 ClickOnce 部署应用程序, 则读取`My.Application.Deployment`属性将导致<xref:System.Deployment.Application.InvalidDeploymentException>异常。 有关部署 ClickOnce 应用程序的详细信息, 请[参阅如何:使用发布向导发布 ClickOnce 应用程序](/visualstudio/deployment/how-to-publish-a-clickonce-application-using-the-publish-wizard)。  
   
- 有关使用的详细信息`My.Application.Deployment`属性，请参阅[Visual Basic 应用程序模型概述](~/docs/visual-basic/developing-apps/development-with-my/overview-of-the-visual-basic-application-model.md)。  
+ 有关使用`My.Application.Deployment`属性的详细信息, 请参阅[Visual Basic 应用程序模型的概述](~/docs/visual-basic/developing-apps/development-with-my/overview-of-the-visual-basic-application-model.md)。  
   
-## <a name="availability-by-project-type"></a>项目类型的可用性  
+## <a name="availability-by-project-type"></a>按项目类型的可用性  
   
 |项目类型|可用|  
 |-|-|  
@@ -196,11 +196,11 @@
    
   
 ## Examples  
- 此示例中下载并安装后检查应用程序，通过网络部署更新。 <xref:System.Deployment.Application.ApplicationDeployment.Update%2A>方法不会更新该应用程序，除非它已过期。 该应用程序重新启动才能使用更新。  
+ 此示例在检查应用程序是否已进行网络部署之后, 下载并安装此更新。 除非<xref:System.Deployment.Application.ApplicationDeployment.Update%2A>应用程序已过期, 否则该方法不会更新该应用程序。 应用程序必须重新启动才能使用更新。  
   
  [!code-vb[VbVbalrMyApplication#4](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrMyApplication/VB/Form1.vb#4)]  
   
- 可以使用更新仅应用程序的 ClickOnce 部署`My.Application.Deployment`对象。 有关部署 ClickOnce 应用程序的详细信息，请参阅[如何：使用发布向导发布 ClickOnce 应用程序](/visualstudio/deployment/how-to-publish-a-clickonce-application-using-the-publish-wizard)。  
+ 只可以使用`My.Application.Deployment`对象更新使用 ClickOnce 部署的应用程序。 有关部署 ClickOnce 应用程序的详细信息, 请[参阅如何:使用发布向导发布 ClickOnce 应用程序](/visualstudio/deployment/how-to-publish-a-clickonce-application-using-the-publish-wizard)。  
   
  ]]></format>
         </remarks>
@@ -248,7 +248,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法可以设置使用的命令行参数的内部值<xref:Microsoft.VisualBasic.ApplicationServices.ConsoleApplicationBase>类。 此属性确定何种<xref:Microsoft.VisualBasic.ApplicationServices.ConsoleApplicationBase.CommandLineArgs%2A>属性返回。 如果未设置此属性，或将此属性设置为`Nothing`，则<xref:Microsoft.VisualBasic.ApplicationServices.ConsoleApplicationBase.CommandLineArgs%2A>属性获取的命令行参数从<xref:System.Environment.CommandLine%2A>属性。  
+ 此方法允许您设置由<xref:Microsoft.VisualBasic.ApplicationServices.ConsoleApplicationBase>类使用的命令行参数的内部值。 此属性确定属性返回<xref:Microsoft.VisualBasic.ApplicationServices.ConsoleApplicationBase.CommandLineArgs%2A>的内容。 如果未设置此属性, 或将此属性设置为`Nothing` <xref:Microsoft.VisualBasic.ApplicationServices.ConsoleApplicationBase.CommandLineArgs%2A> , 则属性将从<xref:System.Environment.CommandLine%2A>属性中获取命令行参数。  
   
  ]]></format>
         </remarks>
@@ -281,15 +281,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `My.Application.IsNetworkDeployed`属性指示是否已从网络使用 ClickOnce 部署应用程序。 ClickOnce 应用程序的详细信息，请参阅[ClickOnce 安全和部署](/visualstudio/deployment/clickonce-security-and-deployment)。  
+ `My.Application.IsNetworkDeployed`属性指示应用程序是否是使用 ClickOnce 从网络部署的。 有关 ClickOnce 应用程序的详细信息, 请参阅[Clickonce 安全和部署](/visualstudio/deployment/clickonce-security-and-deployment)。  
   
- 您应确认，此属性是`True`在访问之前<xref:Microsoft.VisualBasic.ApplicationServices.ConsoleApplicationBase.Deployment%2A>属性。 否则，如果未从网络使用 ClickOnce 部署应用程序，读取`My.Application.Deployment`属性都会导致<xref:System.Deployment.Application.InvalidDeploymentException>异常。  
+ `True` 在<xref:Microsoft.VisualBasic.ApplicationServices.ConsoleApplicationBase.Deployment%2A>访问属性之前, 应确认此属性是。 否则, 如果应用程序不是使用 ClickOnce 从网络部署的, 则读取`My.Application.Deployment`属性将导致<xref:System.Deployment.Application.InvalidDeploymentException>异常。  
   
- 有关配置 ClickOnce 的详细信息，请参阅[发布 ClickOnce 应用程序](/visualstudio/deployment/publishing-clickonce-applications)。 有关部署 ClickOnce 应用程序的详细信息，请参阅[如何：使用发布向导发布 ClickOnce 应用程序](/visualstudio/deployment/how-to-publish-a-clickonce-application-using-the-publish-wizard)。  
+ 有关配置 ClickOnce 的详细信息, 请参阅[发布 Clickonce 应用程序](/visualstudio/deployment/publishing-clickonce-applications)。 有关部署 ClickOnce 应用程序的详细信息, 请[参阅如何:使用发布向导发布 ClickOnce 应用程序](/visualstudio/deployment/how-to-publish-a-clickonce-application-using-the-publish-wizard)。  
   
- 有关使用的详细信息`My.Application.IsNetworkDeployed`属性，请参阅[Visual Basic 应用程序模型概述](~/docs/visual-basic/developing-apps/development-with-my/overview-of-the-visual-basic-application-model.md)。  
+ 有关使用`My.Application.IsNetworkDeployed`属性的详细信息, 请参阅[Visual Basic 应用程序模型的概述](~/docs/visual-basic/developing-apps/development-with-my/overview-of-the-visual-basic-application-model.md)。  
   
-## <a name="availability-by-project-type"></a>项目类型的可用性  
+## <a name="availability-by-project-type"></a>按项目类型的可用性  
   
 |项目类型|可用|  
 |-|-|  
@@ -304,11 +304,11 @@
    
   
 ## Examples  
- 此示例中下载并安装更新后检查从网络中部署应用程序。 <xref:System.Deployment.Application.ApplicationDeployment.Update%2A>方法不会更新该应用程序，除非它已过期。 该应用程序重新启动才能使用更新。  
+ 此示例在检查从网络部署的应用程序之后, 下载并安装该更新。 除非<xref:System.Deployment.Application.ApplicationDeployment.Update%2A>应用程序已过期, 否则该方法不会更新该应用程序。 应用程序必须重新启动才能使用更新。  
   
  [!code-vb[VbVbalrMyApplication#4](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrMyApplication/VB/Form1.vb#4)]  
   
- 可以使用更新仅应用程序的 ClickOnce 部署`My.Application.Deployment`对象。 有关部署 ClickOnce 应用程序的详细信息，请参阅[如何：使用发布向导发布 ClickOnce 应用程序](/visualstudio/deployment/how-to-publish-a-clickonce-application-using-the-publish-wizard)。  
+ 只能使用`My.Application.Deployment`对象更新 ClickOnce 部署的应用程序。 有关部署 ClickOnce 应用程序的详细信息, 请[参阅如何:使用发布向导发布 ClickOnce 应用程序](/visualstudio/deployment/how-to-publish-a-clickonce-application-using-the-publish-wizard)。  
   
  ]]></format>
         </remarks>

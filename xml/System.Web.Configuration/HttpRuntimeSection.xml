@@ -1,5 +1,5 @@
 <Type Name="HttpRuntimeSection" FullName="System.Web.Configuration.HttpRuntimeSection">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="930bbbc07c42102c46e2fccb8c54edaed517b318" /><Meta Name="ms.sourcegitcommit" Value="10aa513a7461eb2abbf8d1e35d2a045d4e5a9be7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/09/2019" /><Meta Name="ms.locfileid" Value="67664707" /></Metadata><TypeSignature Language="C#" Value="public sealed class HttpRuntimeSection : System.Configuration.ConfigurationSection" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c1d3954bdfde810dbd38694b821c19dc155316f5" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69141336" /></Metadata><TypeSignature Language="C#" Value="public sealed class HttpRuntimeSection : System.Configuration.ConfigurationSection" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed HttpRuntimeSection extends System.Configuration.ConfigurationSection" />
   <TypeSignature Language="DocId" Value="T:System.Web.Configuration.HttpRuntimeSection" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class HttpRuntimeSection&#xA;Inherits ConfigurationSection" />
@@ -15,26 +15,26 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>Configures the ASP.NET HTTP runtime. This class cannot be inherited.</summary>
+    <summary>配置 ASP.NET HTTP 运行时。 此类不能被继承。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Configuration.HttpRuntimeSection>使您可以处理这些参数会影响 ASP.NET 运行时的行为。  
+ <xref:System.Web.Configuration.HttpRuntimeSection>允许处理那些影响 ASP.NET 运行时行为的参数。  
   
- 它是指由指示配置文件中的节点`<httpRuntime>`元素，可以在配置层次结构中任何级别上使用。  
+ 它引用配置文件中由`<httpRuntime>`元素指示的节点, 并且可在配置层次结构中的任何级别使用。  
   
- <xref:System.Web.Configuration.HttpRuntimeSection>部分包含管理以下指令：  
+ <xref:System.Web.Configuration.HttpRuntimeSection>部分包含管理以下各项的指令:  
   
--   请求执行超时值。  
+-   请求执行超时。  
   
--   线程调度应用程序级别的指令。  
+-   用于在应用程序级别进行线程调度的指令。  
   
--   管理应用程序队列限制的指令。  
+-   控制应用程序队列限制的指令。  
   
 -   请求长度。  
   
- 当在单个进程中运行多个应用程序，您应锁定此节，以便应用程序不能将其相对优先级提升至另一个。  
+ 在单个进程中运行多个应用程序时, 应锁定此部分, 使应用程序不能将其相对优先级提升到另一个进程。  
   
  ]]></format>
     </remarks>
@@ -54,7 +54,7 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>Initializes a new instance of the <see cref="T:System.Web.Configuration.HttpRuntimeSection" /> class using default settings.</summary>
+        <summary>使用默认设置初始化 <see cref="T:System.Web.Configuration.HttpRuntimeSection" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -90,7 +90,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets a value that indicates whether <see cref="M:System.Web.HttpApplication.RegisterModule(System.Type)" /> method calls are allowed. The default is <see langword="true" />.</summary>
+        <summary>获取或设置一个值，该值指示是否允许 <see cref="M:System.Web.HttpApplication.RegisterModule(System.Type)" /> 方法调用。 默认值为 <see langword="true" />。</summary>
         <value>如果允许 <see cref="M:System.Web.HttpApplication.RegisterModule(System.Type)" /> 方法调用，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -117,7 +117,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets a value that indicates whether application apartment threading is enabled.</summary>
+        <summary>获取或设置一个值，该值指示是否启用了应用程序单元线程处理。</summary>
         <value>如果已启用应用程序单元线程处理，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -154,16 +154,16 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets a value that indicates the maximum number of requests that ASP.NET queues for the application.</summary>
+        <summary>获取或设置一个值，该值指示 ASP.NET 为应用程序排入队列的最大请求数。</summary>
         <value>队列中允许的最大请求数。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ASP.NET 请求排队，当没有足够的可用线程来处理它们。  
+ 如果没有足够的可用线程来处理这些请求, ASP.NET 将请求队列。  
   
 > [!NOTE]
->  当已排队的请求数超过了此设置指定的限制，将拒绝传入的请求，并"503-服务器太忙"错误。  
+>  当排队的请求数超过此设置施加的限制时, 将拒绝传入的请求并出现 "503-服务器太忙" 错误。  
   
    
   
@@ -198,13 +198,13 @@
         <ReturnType>System.Web.Configuration.AsyncPreloadModeFlags</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the mode of the request entity that is asynchronously preloaded.</summary>
+        <summary>获取或设置异步预加载的请求实体的模式。</summary>
         <value>请求实体的模式。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性必须设置之前<xref:System.Web.RequestNotification.ExecuteRequestHandler>ASP.NET 管道中设置。  
+ 在 ASP.NET 管道中设置之前<xref:System.Web.RequestNotification.ExecuteRequestHandler> , 必须设置此属性。  
   
  ]]></format>
         </remarks>
@@ -231,7 +231,7 @@
         <ReturnType>System.TimeSpan</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the amount of time that a regular expression is allowed in order to perform a match.</summary>
+        <summary>获取或设置允许正则表达式执行匹配的时间。</summary>
         <value>允许正则表达式匹配的时间。</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -261,16 +261,16 @@
         <ReturnType>System.TimeSpan</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the change notification delay.</summary>
+        <summary>获取或设置更改通知的延迟时间。</summary>
         <value>以秒为单位的时间，指定更改通知的延迟时间。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您可以解决某些防病毒应用程序，由时将信息写回扫描的文件中，通过设置引起的问题<xref:System.Web.Configuration.HttpRuntimeSection.DelayNotificationTimeout%2A>属性。  
+ 通过设置<xref:System.Web.Configuration.HttpRuntimeSection.DelayNotificationTimeout%2A>属性, 可以解决某些防病毒应用程序将信息写回扫描文件时导致的问题。  
   
 > [!NOTE]
->  出现问题的原因引起的防病毒扫描的文件更改不能从用户所做的可分辨。 最终结果是应用程序正在扫描的文件的重新启动。  
+>  之所以出现此问题, 是因为防病毒扫描导致的文件更改无法与用户所进行的更改区分开来。 最终的结果是重新启动正在扫描其文件的应用程序。  
   
    
   
@@ -306,13 +306,13 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets a value that indicates whether the application domain is enabled.</summary>
+        <summary>获取或设置一个值，该值指示是否启用了应用程序域。</summary>
         <value>如果已启用该应用程序域，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此设置会影响应用程序域或域的当前节点级别和更低版本。  
+ 此设置会影响当前节点级别和下面的应用程序域。  
   
    
   
@@ -349,25 +349,25 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets a value that indicates whether the header checking is enabled.</summary>
+        <summary>获取或设置一个值，该值指示是否启用了标头检查。</summary>
         <value>如果已启用该标头检查，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性的目的是启用的回车符和换行字符编码`\r`和`\n`，响应标头中。  
+ 此属性的目的是对在响应标头中找到的回车符和换行符`\r` ( `\n`和) 启用编码。  
   
- 出站响应标头，由代码 0x1F 和下面进行编码的字符以及字符 0x7F （删除字符）。 唯一的例外是字符 0x09 （制表符） 是未修改。  
+ 在出站响应标头中, 将对由代码0x1F 和更低表示的字符进行编码, 还会对字符 0x7F (删除字符) 进行编码。 唯一的例外情况是不修改字符 0x09 (制表符)。  
   
- 此编码可帮助避免注入攻击利用回显标头中包含不受信任的数据的应用程序。  
+ 这种编码有助于避免注入攻击, 攻击者利用该应用程序回显了标头中包含的不受信任的数据。  
   
 > [!NOTE]
->  此属性不适用于状态线本身 （状态代码和状态说明），但应适用于其他标头。 尽管[ &lt;httpRuntime&gt; ](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/e1f13641(v=vs.100))可在任何级别设置，此属性在计算机和应用程序级别才适用。  
+>  此属性不适用于状态行本身 (状态代码和状态说明), 但也适用于其他标头。 尽管可以在任何级别设置[ &lt;httpRuntime&gt; ](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/e1f13641(v=vs.100)) , 但此属性仅适用于计算机级别和应用程序级别。  
   
- 当此属性是`true`，这是默认设置，`\r`或`\n`响应标头中的字符编码为`%0d`和`%0a`。 这就违背了标头注入攻击，从而使相同的标题行的插入材料部分。 这可能会破坏响应，但不是应打开对客户端的攻击媒介。 回显不受信任的数据永远不会在任何情况下，一个好主意不过是。  
+ 如果此属性为`true`(默认值), 则将`\r`在响应标头中找到的或`\n`字符编码`%0d`为`%0a`和。 这会使插入的材料部分成为同一标题行, 从而使标头注入式攻击无法实现。 这可能会导致响应中断, 但不应针对客户端打开攻击向量。 但在任何情况下, 回显不受信任的数据都不是一个好主意。  
   
 > [!IMPORTANT]
->  HTTP 标头继续符依赖于跨越多个行的标头，并且需要它们中的新行。 如果您需要使用标头继续符，则需要设置<xref:System.Web.Configuration.HttpRuntimeSection.EnableHeaderChecking%2A>属性设置为`false`。 由于没有性能影响查看标头，如果您确信已经执行了适当的检查，则关闭此功能可以提高应用程序的性能。 禁用此功能之前，请确保您已在此区域中采取正确的预防措施。  
+>  HTTP 标头延续依赖于跨越多行的标头, 并在其中需要新行。 如果需要使用标头延续, 则需要将<xref:System.Web.Configuration.HttpRuntimeSection.EnableHeaderChecking%2A>属性设置为。 `false` 由于查看标头会影响性能, 因此, 如果您确信已经执行了正确的检查, 则关闭此功能可以提高应用程序的性能。 在禁用此功能之前, 请确保已在此区域获得正确的预防措施。  
   
    
   
@@ -404,24 +404,24 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets a value that indicates whether output caching is enabled.</summary>
+        <summary>获取或设置一个值，该值指示是否启用了输出缓存。</summary>
         <value>如果已启用输出缓存，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要缓存响应，需要满足以下条件：  
+ 为了缓存响应, 需要满足以下条件:  
   
--   必须通过页面指令或缓存 API 显式启用缓存。  
+-   缓存必须由页面指令或缓存 API 显式启用。  
   
--   缓存必须具有过期策略，以便让内核知道何时放弃它。  
+-   缓存必须具有过期策略, 以便内核知道何时丢弃该策略。  
   
--   缓存不能有任何标头变量或参数。  
+-   缓存不能包含任何变量标头或参数。  
   
--   请求必须不需要任何身份验证。  
+-   请求不得要求任何身份验证。  
   
 > [!NOTE]
->  仅当安装 Internet 信息服务 (IIS) 6.0 或更高版本时，此属性是相关。  
+>  仅当安装了 Internet Information Services (IIS) 版本6.0 或更高版本时, 此属性才适用。  
   
    
   
@@ -459,13 +459,13 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets a value that indicates whether ASP.NET should output a version header.</summary>
+        <summary>获取或设置一个值，该值指示 ASP.NET 是否应输出版本标头。</summary>
         <value>如果启用版本标头的输出，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Visual Studio 使用此属性以确定哪个版本的 ASP.NET 中使用。 它不是必需的生产站点，可禁用。  
+ Visual Studio 使用此属性来确定正在使用的 ASP.NET 版本。 它不是生产站点所必需的, 并且可以禁用。  
   
    
   
@@ -504,15 +504,15 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the name of a custom type that can be used to handle HTML and URL encoding.</summary>
+        <summary>获取或设置可用于处理 HTML 和 URL 编码的自定义类型的名称。</summary>
         <value>可用于处理 HTML 和 URL 编码的类型的名称。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ASP.NET 使用<xref:System.Web.Util.HttpEncoder>与 HTML 和 URL 编码任务的默认处理程序的类型。  
+ ASP.NET 使用<xref:System.Web.Util.HttpEncoder>类型作为 HTML 和 URL 编码任务的默认处理程序。  
   
- 若要自定义编码行为，可以创建继承的类<xref:System.Web.Util.HttpEncoder>类型。 在应用程序配置文件中，然后设置<xref:System.Web.Configuration.HttpRuntimeSection.EncoderType%2A>属性的`httpRuntime`到自定义类型的完全限定的字符串名称的元素。 有关详细信息，请参阅[httpRuntime 元素 （ASP.NET 设置架构）](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)。  
+ 若要自定义编码行为, 可以创建一个继承自该<xref:System.Web.Util.HttpEncoder>类型的类。 在应用程序的配置文件中, 将<xref:System.Web.Configuration.HttpRuntimeSection.EncoderType%2A> `httpRuntime`元素的属性设置为自定义类型的完全限定字符串名称。 有关详细信息, 请参阅[HttpRuntime 元素 (ASP.NET Settings Schema)](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)。  
   
  ]]></format>
         </remarks>
@@ -546,15 +546,15 @@
         <ReturnType>System.TimeSpan</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the allowed execution time for the request.</summary>
+        <summary>获取或设置请求的允许执行时间。</summary>
         <value>一个 <see cref="T:System.TimeSpan" /> 值，指示请求的允许执行时间。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Configuration.HttpRuntimeSection.ExecutionTimeout%2A>属性指示的最大允许请求执行 ASP.NET 自动关闭前的秒数。 默认值为 110 秒。 此超时仅适用于调试属性中`<compilation>`元素设置为`false`。  
+ <xref:System.Web.Configuration.HttpRuntimeSection.ExecutionTimeout%2A>属性指示 ASP.NET 自动关闭前允许执行请求的最大秒数。 默认值为110秒。 仅当`<compilation>`元素中的 debug 特性设置为`false`时, 此超时才适用。  
   
- 如果超时过期被引发异常。 可以在应用程序文件夹中的事件日志中记录的相关的信息。 为此，可启用应用程序运行状况监视在`<healthMonitoring>`配置元素。  
+ 如果超时过期, 则会引发异常。 您可以在事件日志的应用程序文件夹中记录相关信息。 为此, 请在`<healthMonitoring>`配置元素中启用应用程序运行状况监视。  
   
    
   
@@ -566,7 +566,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Web.HttpException">The request execution time exceeded the limit set by the execution time-out.</exception>
+        <exception cref="T:System.Web.HttpException">请求执行时间超过了执行超时值设置的限制值。</exception>
       </Docs>
     </Member>
     <Member MemberName="FcnMode">
@@ -590,7 +590,7 @@
         <ReturnType>System.Web.Configuration.FcnMode</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets an enumeration value specifying the file change notifications mode.</summary>
+        <summary>获取或设置指定文件更改通知模式的枚举值。</summary>
         <value>一个 <see cref="T:System.Web.Configuration.FcnMode" /> 枚举值。</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -619,21 +619,21 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the maximum possible length, in number of characters, of a query string in an HTTP request.</summary>
+        <summary>获取或设置 HTTP 请求中查询字符串的最大可能长度，以字符数表示。</summary>
         <value>查询字符串的最大长度，以字符数表示。 默认值为 2048。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Web.Configuration.HttpRuntimeSection.MaxQueryStringLength%2A>属性可以是任何整数，零或更高版本。 如果查询字符串的长度超出了大小限制，ASP.NET 将返回`HTTP 400`（错误请求） 状态代码。  
+ <xref:System.Web.Configuration.HttpRuntimeSection.MaxQueryStringLength%2A>属性的值可以是零或更大的任何整数。 如果查询字符串的长度超出了大小限制, 则 ASP.NET 将`HTTP 400`返回 (错误请求) 状态代码。  
   
 > [!NOTE]
->  使用极小的值可以使 Web 站点不可用。  
+>  极小的值可能会使网站无法使用。  
   
- 您可以在配置文件中设置此值，通过设置`maxQueryStringLength`属性的`httpRuntime`元素。 有关详细信息，请参阅[httpRuntime 元素 （ASP.NET 设置架构）](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)。  
+ 通过设置`maxQueryStringLength` `httpRuntime`元素的属性, 可以在配置文件中设置此值。 有关详细信息, 请参阅[HttpRuntime 元素 (ASP.NET Settings Schema)](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)。  
   
 > [!NOTE]
->  还有一种 IIS 设置，控制查询字符串的长度。 请参阅`maxQueryString`中的属性[请求限制\<requestLimits >](http://www.iis.net/ConfigReference/system.webServer/security/requestFiltering/requestLimits)。  
+>  还有一个控制查询字符串长度的 IIS 设置。 请参阅`maxQueryString`请求中的属性[ \<限制 requestLimits >](http://www.iis.net/ConfigReference/system.webServer/security/requestFiltering/requestLimits)。  
   
  ]]></format>
         </remarks>
@@ -664,15 +664,15 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the maximum request size.</summary>
+        <summary>获取或设置请求的最大大小。</summary>
         <value>请求的最大大小（以千字节为单位）。 默认大小为 4096 KB (4 MB)。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Configuration.HttpRuntimeSection.MaxRequestLength%2A>属性指定的输入流缓冲阈值的限制。 例如，此限制可用于防止拒绝服务攻击导致发送到服务器的大型文件的用户。  
+ <xref:System.Web.Configuration.HttpRuntimeSection.MaxRequestLength%2A>属性指定输入流的缓冲阈值的限制。 例如, 此限制可用于防止拒绝服务攻击, 这些攻击由向服务器发送大型文件的用户造成。  
   
- 分配给此属性的值应大于或等于值分配给<xref:System.Web.Configuration.HttpRuntimeSection.RequestLengthDiskThreshold%2A>属性。  
+ 分配给此属性的值应大于或等于赋<xref:System.Web.Configuration.HttpRuntimeSection.RequestLengthDiskThreshold%2A>给属性的值。  
   
    
   
@@ -684,7 +684,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Configuration.ConfigurationErrorsException">The selected value is less than <see cref="P:System.Web.Configuration.HttpRuntimeSection.RequestLengthDiskThreshold" />.</exception>
+        <exception cref="T:System.Configuration.ConfigurationErrorsException">选定值小于 <see cref="P:System.Web.Configuration.HttpRuntimeSection.RequestLengthDiskThreshold" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="MaxUrlLength">
@@ -711,20 +711,20 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the maximum possible length, in number of characters, of the URL in an HTTP request.</summary>
+        <summary>获取或设置 HTTP 请求中 URL 的最大可能长度，以字符数表示。</summary>
         <value>URL 的长度，以字符数表示。 默认值为 260。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Web.Configuration.HttpRuntimeSection.MaxUrlLength%2A>属性可以是任何整数，零或更高版本。  
+ <xref:System.Web.Configuration.HttpRuntimeSection.MaxUrlLength%2A>属性的值可以是零或更大的任何整数。  
   
 > [!NOTE]
->  使用极小的值可以使 Web 站点不可用。  
+>  极小的值可能会使网站无法使用。  
   
- 如果请求 URL 的长度 (即值的<xref:System.Web.HttpRequest.Path%2A>属性) 超出了配置的大小限制，ASP.NET 将返回 HTTP 400 （错误请求） 状态代码  
+ 如果请求 URL 的长度 (即<xref:System.Web.HttpRequest.Path%2A>属性的值) 超过配置的大小限制, 则 ASP.NET 将返回 HTTP 400 (错误请求) 状态代码  
   
- 您可以在配置文件中设置此值，通过设置<xref:System.Web.Configuration.HttpRuntimeSection.MaxUrlLength%2A>属性的`httpRuntime`元素。 有关详细信息，请参阅[httpRuntime 元素 （ASP.NET 设置架构）](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)。  
+ 通过设置<xref:System.Web.Configuration.HttpRuntimeSection.MaxUrlLength%2A> `httpRuntime`元素的属性, 可以在配置文件中设置此值。 有关详细信息, 请参阅[HttpRuntime 元素 (ASP.NET Settings Schema)](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)。  
   
  ]]></format>
         </remarks>
@@ -755,16 +755,16 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the time interval between the first change notification and the time at which the application domain is restarted.</summary>
+        <summary>获取或设置从第一次更改通知到应用程序域重新启动之间的时间间隔。</summary>
         <value>从第一次更改通知到应用程序域重新启动之间的最大时间间隔（以秒为单位）。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 建议的值为<xref:System.Web.Configuration.HttpRuntimeSection.MaxWaitChangeNotification%2A>属性将超过要在部署过程中完成复制的时间长度。  
+ 此<xref:System.Web.Configuration.HttpRuntimeSection.MaxWaitChangeNotification%2A>属性的建议值将超过部署过程中完成复制的时间长度。  
   
 > [!NOTE]
->  如果复制和部署进程后立即查看它，则可能会显示缓存内容。 这是典型行为。 在您指定的等待期限过后，所做的更改才会生效。  
+>  如果在复制和部署过程后立即查看内容, 内容可能会被缓存。 这是典型行为。 所做的更改会在你指定的等待时间已过。  
   
    
   
@@ -804,16 +804,16 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the minimum number of threads that must be free before a request for resources in this configuration scope can be serviced.</summary>
-        <value>在此配置范围中的请求得到服务之前，公共语言运行时 (CLR) 线程池中的最小自由线程数。 默认值是<c>8</c>。</value>
+        <summary>获取或设置在能够为此配置范围中的资源请求提供服务之前必须存在的最小自由线程数。</summary>
+        <value>在此配置范围中的请求得到服务之前，公共语言运行时 (CLR) 线程池中的最小自由线程数。 默认值为<c>8</c>。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Configuration.HttpRuntimeSection.MinFreeThreads%2A>属性定义的最小可用线程来执行的请求数。 如果足够数量的线程不可用，请求将保持排队状态，并将继续定期检查线程的可用性，直到所需的数量的线程都存在。 默认值为 `8`。  
+ <xref:System.Web.Configuration.HttpRuntimeSection.MinFreeThreads%2A>属性定义用于执行请求的最小自由线程数。 如果线程数不足, 请求将保持排队状态, 并且对线程可用性进行定期检查将继续, 直到存在所需的线程量。 默认值为 `8`。  
   
 > [!NOTE]
->  ASP.NET 保留了多个免费对于需要其他线程完成其处理的请求。  
+>  ASP.NET 使此多个线程可用于需要额外线程才能完成其处理的请求。  
   
    
   
@@ -854,13 +854,13 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the minimum number of free threads required to service a local request.</summary>
+        <summary>获取或设置为本地请求提供服务所需要的最小自由线程数。</summary>
         <value>分配给本地请求的最小自由线程数。 默认值为 4。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Configuration.HttpRuntimeSection.MinLocalRequestFreeThreads%2A>属性定义 ASP.NET 保持用于执行新的本地请求的自由线程数。 其目的是避免可能的死锁，由于递归重入 Web 服务器。  
+ <xref:System.Web.Configuration.HttpRuntimeSection.MinLocalRequestFreeThreads%2A>属性定义 ASP.NET 为允许执行新的本地请求而保留的可用线程数。 目的是避免在将递归重入到 Web 服务器时出现可能的死锁。  
   
    
   
@@ -924,15 +924,15 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets a value that indicates whether the URL in an HTTP request is required to be a valid Windows file path.</summary>
+        <summary>获取或设置一个值，该值指示 HTTP 请求中的 URL 是否必须为有效的 Windows 文件路径。</summary>
         <value>如果该 URL 不必符合 Windows 路径规则，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Configuration.HttpRuntimeSection.RelaxedUrlToFileSystemMapping%2A>属性确定如何将验证传入的 HTTP 请求中的 URL。 如果此属性为`false`，使用相同的规则，确定 Windows 文件系统路径是否有效 URL 进行验证。  
+ <xref:System.Web.Configuration.HttpRuntimeSection.RelaxedUrlToFileSystemMapping%2A>属性确定传入 HTTP 请求中的 URL 的验证方式。 如果此属性为`false`, 则使用与确定 Windows 文件系统路径是否有效的相同规则来验证 URL。  
   
- 您可以在配置文件中设置此值，通过设置<xref:System.Web.Configuration.HttpRuntimeSection.RelaxedUrlToFileSystemMapping%2A>属性的`httpRuntime`元素。 有关详细信息，请参阅[httpRuntime 元素 （ASP.NET 设置架构）](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)。  
+ 通过设置<xref:System.Web.Configuration.HttpRuntimeSection.RelaxedUrlToFileSystemMapping%2A> `httpRuntime`元素的属性, 可以在配置文件中设置此值。 有关详细信息, 请参阅[HttpRuntime 元素 (ASP.NET Settings Schema)](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)。  
   
  ]]></format>
         </remarks>
@@ -963,13 +963,13 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the input-stream buffering threshold.</summary>
+        <summary>获取或设置输入流缓冲阈值。</summary>
         <value>指示输入流缓冲阈值的字节数。 默认值为 80 千字节。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Configuration.HttpRuntimeSection.RequestLengthDiskThreshold%2A>属性指定输入流缓冲阈值限制中的字节数。 其值不应超过<xref:System.Web.Configuration.HttpRuntimeSection.MaxRequestLength%2A>属性值。 请求实体超过此阈值后，它是以透明方式缓冲到磁盘上。  
+ <xref:System.Web.Configuration.HttpRuntimeSection.RequestLengthDiskThreshold%2A>属性指定输入流缓冲阈值限制 (以字节数为单位)。 它的值不应超过<xref:System.Web.Configuration.HttpRuntimeSection.MaxRequestLength%2A>属性值。 请求实体超过此阈值后, 它将以透明方式缓冲到磁盘上。  
   
    
   
@@ -981,7 +981,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Configuration.ConfigurationErrorsException">The selected value is greater than <see cref="P:System.Web.Configuration.HttpRuntimeSection.MaxRequestLength" />.</exception>
+        <exception cref="T:System.Configuration.ConfigurationErrorsException">选定值大于 <see cref="P:System.Web.Configuration.HttpRuntimeSection.MaxRequestLength" />。</exception>
       </Docs>
     </Member>
     <Member MemberName="RequestPathInvalidCharacters">
@@ -1005,14 +1005,14 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets a list of characters that are specified as invalid in a path that is part of an HTTP request.</summary>
+        <summary>获取或设置一个字符列表，这些字符在 HTTP 请求包含的路径中指定为无效字符。</summary>
         <value>一个以逗号分隔的无效字符列表。 以下列表包含默认的无效字符集： 
  <c>&lt;,&gt;,*,%,&amp;,:,\\</c></value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要配置文件中设置此值，可以将分配到字符的以逗号分隔字符串`requestPathInvalidCharacters`属性的`httpRuntime`元素。 有关详细信息，请参阅[httpRuntime 元素 （ASP.NET 设置架构）](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)。  
+ 若要在配置文件中设置此值, 可以将逗号分隔的字符串分配给`requestPathInvalidCharacters` `httpRuntime`元素的特性。 有关详细信息, 请参阅[HttpRuntime 元素 (ASP.NET Settings Schema)](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)。  
   
  ]]></format>
         </remarks>
@@ -1042,29 +1042,29 @@
         <ReturnType>System.Version</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets a version number that indicates which ASP.NET version-specific approach to validation will be used.</summary>
-        <value>一个值，指示将使用哪种 ASP.NET 版本特定的验证方法。 默认值是<c>4.5</c>。</value>
+        <summary>获取或设置一个版本号，该版本号指示将使用哪种 ASP.NET 版本特定的验证方法。</summary>
+        <value>一个值，指示将使用哪种 ASP.NET 版本特定的验证方法。 默认值为<c>4.5</c>。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Configuration.HttpRuntimeSection.RequestValidationMode%2A>属性指定将使用哪种 ASP.NET 的验证方法。 这可以是 ASP.NET 的版本早于版本 4 中或使用中的版本中使用的算法[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]。 属性可以设置为以下值：  
+ <xref:System.Web.Configuration.HttpRuntimeSection.RequestValidationMode%2A>属性指定将使用哪种 ASP.NET 方法进行验证。 这可以是在版本4之前的 ASP.NET 中使用的算法, 也可以是在中[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]使用的版本。 属性可以设置为以下值:  
   
--   `4.5 (the default).` 在此模式下，延迟加载值，也就是说，它们并不读取，直到被请求。  
+-   `4.5 (the default).`在此模式下, 将延迟加载值, 也就是说, 在请求它们之前将不会读取这些值。  
   
--   `4.0` <xref:System.Web.HttpRequest>对象在内部设置一个标志，指示访问任何 HTTP 请求数据时应触发请求验证。 这可确保之前数据，例如 cookie 未触发请求验证，并在请求过程中访问的 Url。 请求验证设置的`<pages>`元素 （如果有的话） 配置文件中或[@ Page](https://msdn.microsoft.com/library/f06cf9e5-22bb-461d-8b8f-549e53ff40a4)单个页面中的指令将被忽略。  
+-   `4.0`<xref:System.Web.HttpRequest>对象在内部设置一个标志, 该标志指示只要访问任何 HTTP 请求数据, 就应触发请求验证。 这可以保证在请求过程中访问 cookie 和 Url 等数据之前触发请求验证。 配置文件中的`<pages>`元素 (如果有) 或单个页中[@ Page](https://msdn.microsoft.com/library/f06cf9e5-22bb-461d-8b8f-549e53ff40a4)指令的请求验证设置将被忽略。  
   
--   `2.0`。 仅对于页面，不适用于所有 HTTP 请求启用请求验证。 此外，请求的验证设置`<pages>`元素 （如果有的话） 配置文件中或[@ Page](https://msdn.microsoft.com/library/f06cf9e5-22bb-461d-8b8f-549e53ff40a4)单个页面中的指令用于确定哪一页请求验证。  
+-   `2.0`。 仅对页面 (而不是对所有 HTTP 请求) 启用请求验证。 此外, 配置文件中的`<pages>`元素 (如果有) 或单个页中[@ Page](https://msdn.microsoft.com/library/f06cf9e5-22bb-461d-8b8f-549e53ff40a4)指令的请求验证设置用于确定要验证的页面请求。  
 
--   `0.0`。 请求验证已禁用应用程序。 `0.0` 仅识别 ASP.NET 4.6 及更高版本。
+-   `0.0`。 已为应用程序禁用请求验证。 `0.0`仅在 ASP.NET 4.6 和更高版本中识别。
   
- 不验证分配给此属性的值以匹配特定版本的 ASP.NET。 
+ 你分配给此属性的值未经过验证, 无法匹配 ASP.NET 的特定版本。 
 
- 在 ASP.NET 4.5 和更早版本的任何数字值小于比`4.0`(例如， `3.7`， `2.9`，或`2.0`) 被解释为`2.0`。 任何数字大于`4.5`被解释为`4.5`。  
+ 在 ASP.NET 4.5 和更早版本中, 小于`4.0` ( `3.7`例如`2.9`,、或`2.0`) 的任何数值将被解释`2.0`为。 任何大于`4.5`的数字将被解释`4.5`为。  
 
- 在 ASP.NET 4.6 及更高版本值大于任何数值`0.0`和小于`4.0`(例如， `3.7`， `2.9`，或`1.0`) 被解释为`2.0`。 任何数字大于`4.5`被解释为 `4.5`
+ 在 ASP.NET 4.6 和更高版本中, 大于`0.0`和`4.0`小于`2.9`(例如`3.7`,、或`1.0`) 的任何数值将被解释为`2.0`。 任何大于`4.5`的数字将被解释为`4.5`
   
- 若要配置文件中设置此值，可以将值赋给`requestValidationMode`属性的`httpRuntime`元素。 有关详细信息，请参阅[httpRuntime 元素 （ASP.NET 设置架构）](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)。  
+ 若要在配置文件中设置此值, 可以为`requestValidationMode` `httpRuntime`元素的属性指定一个值。 有关详细信息, 请参阅[HttpRuntime 元素 (ASP.NET Settings Schema)](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)。  
   
  ]]></format>
         </remarks>
@@ -1094,13 +1094,13 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the name of a type that is used to validate HTTP requests.</summary>
+        <summary>获取或设置用于验证 HTTP 请求的类型的名称。</summary>
         <value>处理请求验证任务的类型的名称。 默认值为 ASP.NET 用于验证的 <see cref="T:System.Web.Util.RequestValidator" /> 类型的完全限定名称。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要自定义 ASP.NET 请求验证行为，可以创建继承的类<xref:System.Web.Util.RequestValidator>类型。 在应用程序配置文件中，然后设置`requestValidationType`属性的`httpRuntime`到自定义类型的完全限定的字符串名称的元素。 有关详细信息，请参阅[httpRuntime 元素 （ASP.NET 设置架构）](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)。  
+ 若要自定义 ASP.NET 请求验证行为, 可以创建一个继承自该<xref:System.Web.Util.RequestValidator>类型的类。 在应用程序的配置文件中, 将`requestValidationType` `httpRuntime`元素的属性设置为自定义类型的完全限定字符串名称。 有关详细信息, 请参阅[HttpRuntime 元素 (ASP.NET Settings Schema)](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)。  
   
  ]]></format>
         </remarks>
@@ -1128,15 +1128,15 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets a value that indicates whether the file name must be a fully qualified physical file path.</summary>
+        <summary>获取或设置一个值，该值指示文件名是否必须为完全限定的物理文件路径。</summary>
         <value>如果文件名必须为完全限定的物理文件路径，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Configuration.HttpRuntimeSection.RequireRootedSaveAsPath%2A>属性指定是否的文件的名称参数`SaveAs`方法必须是根的路径。 ASP.NET 进程必须有权在指定位置中创建文件。  
+ 属性指定`SaveAs`方法的文件名参数是否必须是根路径。 <xref:System.Web.Configuration.HttpRuntimeSection.RequireRootedSaveAsPath%2A> ASP.NET 进程必须有权在指定位置创建文件。  
   
- 有关详细信息，请参阅中定义的方法保存<xref:System.Configuration.Configuration>类。  
+ 有关详细信息, 请参阅<xref:System.Configuration.Configuration>类中定义的保存方法。  
   
    
   
@@ -1172,15 +1172,15 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets a value that indicates whether the <c>cache-control:private</c> header is sent as part of the HTTP response.</summary>
-        <value><see langword="true" /> 如果<c>缓存的控件： 私有</c>标头，则发送; 否则为<see langword="false" />。 默认值为 <see langword="false" />。</value>
+        <summary>获取或设置一个值，该值指示 <c>cache-control:private</c> 标头是否作为 HTTP 响应的一部分来发送。</summary>
+        <value><see langword="true" />如果要发送<c>缓存控制: 专用</c>标头, 则为;否则为<see langword="false" />。 默认值为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpResponse>类将检查两<xref:System.Web.Configuration.HttpRuntimeSection.SendCacheControlHeader%2A?displayProperty=nameWithType>属性和<xref:System.Web.Configuration.OutputCacheSection.SendCacheControlHeader%2A?displayProperty=nameWithType>属性来确定是否发送`cache-control:private`中 HTTP 响应标头。 如果这两个属性设置为`false`，将不会发送标头。 如果缓存控制标头设置为`private`，则客户端不会缓存中的共享缓存的响应。  
+ 该类同时检查<xref:System.Web.Configuration.OutputCacheSection.SendCacheControlHeader%2A?displayProperty=nameWithType>属性和属性, 以确定是否发送 HTTP 响应中的`cache-control:private`标头。 <xref:System.Web.Configuration.HttpRuntimeSection.SendCacheControlHeader%2A?displayProperty=nameWithType> <xref:System.Web.HttpResponse> 如果任一属性设置为`false`, 则不会发送标头。 当缓存控制标头设置为`private`时, 客户端将不会缓存共享缓存中的响应。  
   
- 为支持<xref:System.Web.Configuration.HttpRuntimeSection.SendCacheControlHeader%2A>中的属性<xref:System.Web.Configuration.HttpRuntimeSection>类提供与旧版应用程序的兼容性的; 此属性是.NET Framework 2.0 版中已过时。 有关更多信息，请参见 <xref:System.Web.Configuration.OutputCacheSection> 类。  
+ 提供对<xref:System.Web.Configuration.HttpRuntimeSection>类<xref:System.Web.Configuration.HttpRuntimeSection.SendCacheControlHeader%2A>中的属性的支持, 以便与旧应用程序兼容; 在 .NET Framework 版本2.0 中, 此属性已过时。 有关更多信息，请参见 <xref:System.Web.Configuration.OutputCacheSection> 类。  
   
  ]]></format>
         </remarks>
@@ -1232,13 +1232,13 @@
         <ReturnType>System.TimeSpan</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the length of time the application is allowed to idle before it is terminated.</summary>
+        <summary>获取或设置应用程序终止前允许的空闲时间长度。</summary>
         <value>一个 <see cref="T:System.TimeSpan" /> 值，指示应用程序在终止前允许的空闲时间长度。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Configuration.HttpRuntimeSection.ShutdownTimeout%2A>属性指示应用程序将正常关闭之前的时间量。 默认值为 90 秒。  
+ <xref:System.Web.Configuration.HttpRuntimeSection.ShutdownTimeout%2A>属性指示应用程序正常关闭之前的时间量。 默认值为90秒。  
   
    
   
@@ -1273,7 +1273,7 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the target .NET framework.</summary>
+        <summary>获取或设置目标 .NET framework。</summary>
         <value>目标 .NET framework。</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1300,16 +1300,16 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets a value that indicates whether the client-side redirects are fully qualified.</summary>
+        <summary>获取或设置一个值，该值指示是否完全限定客户端重定向。</summary>
         <value>如果完全限定客户端重定向，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Configuration.HttpRuntimeSection.UseFullyQualifiedRedirectUrl%2A>属性指示客户端的重定向是否是完全限定名称 (在窗体`http://server/path`) 或是否相对重定向而是发送到客户端。  
+ 属性指示客户端重定向是完全限定 (以形式`http://server/path`) 还是发送到客户端。 <xref:System.Web.Configuration.HttpRuntimeSection.UseFullyQualifiedRedirectUrl%2A>  
   
 > [!NOTE]
->  某些浏览器可能会出现问题时此值是无 cookie 会话中加载页面`false`。  
+>  如果此值为, 则`false`某些浏览器在无 cookie 会话中加载页面时可能会遇到问题。  
   
    
   
@@ -1348,16 +1348,16 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>Gets or sets the waiting time before the next change notification.</summary>
+        <summary>获取或设置下一次更改通知前的等待时间。</summary>
         <value>下一次触发应用程序域重新启动的更改通知前的等待时间（以秒为单位）。 默认值为 0。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 建议的值为<xref:System.Web.Configuration.HttpRuntimeSection.WaitChangeNotification%2A>将超过要在部署过程中完成复制的时间长度。  
+ 的建议值<xref:System.Web.Configuration.HttpRuntimeSection.WaitChangeNotification%2A>将超过部署过程中完成复制的时间长度。  
   
 > [!NOTE]
->  如果在复制后立即查看和部署过程，则可能会显示缓存内容。 这是典型行为。 在您指定的等待期限过后，所做的更改才会生效。  
+>  如果在复制和部署过程后立即查看内容, 内容可能会被缓存。 这是典型行为。 所做的更改会在你指定的等待时间已过。  
   
    
   
