@@ -1,5 +1,5 @@
 <Type Name="DynamicControl" FullName="System.Web.DynamicData.DynamicControl">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="bc3651b3c6be85a8af25ef6e3bdf561c02fe807b" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55410389" /></Metadata><TypeSignature Language="C#" Value="public class DynamicControl : System.Web.UI.Control, System.Web.DynamicData.IFieldFormattingOptions, System.Web.DynamicData.IFieldTemplateHost, System.Web.UI.IAttributeAccessor" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="618a4a97112a8569110f6843c9c1c95a52d81f4b" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69055412" /></Metadata><TypeSignature Language="C#" Value="public class DynamicControl : System.Web.UI.Control, System.Web.DynamicData.IFieldFormattingOptions, System.Web.DynamicData.IFieldTemplateHost, System.Web.UI.IAttributeAccessor" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DynamicControl extends System.Web.UI.Control implements class System.Web.DynamicData.IFieldFormattingOptions, class System.Web.DynamicData.IFieldTemplateHost, class System.Web.UI.IAttributeAccessor" />
   <TypeSignature Language="DocId" Value="T:System.Web.DynamicData.DynamicControl" />
   <TypeSignature Language="VB.NET" Value="Public Class DynamicControl&#xA;Inherits Control&#xA;Implements IAttributeAccessor, IFieldFormattingOptions, IFieldTemplateHost" />
@@ -46,30 +46,30 @@
   
 <a name="introduction"></a>   
 ## <a name="introduction"></a>介绍  
- <xref:System.Web.DynamicData.DynamicControl>控件由模板化的数据绑定控件，如<xref:System.Web.UI.WebControls.FormView>或<xref:System.Web.UI.WebControls.ListView>，以显示自定义页中使用 ASP.NET 动态数据功能的数据字段。 此外可以使用<xref:System.Web.DynamicData.DynamicControl>控制<xref:System.Web.UI.WebControls.TemplateField>字段<xref:System.Web.UI.WebControls.GridView>或<xref:System.Web.UI.WebControls.DetailsView>控件。  
+ 模板化数据绑定控件 ( <xref:System.Web.UI.WebControls.FormView>如或<xref:System.Web.UI.WebControls.ListView>) 使用控件来显示在自定义页中使用ASP.NET动态数据功能的数据字段。<xref:System.Web.DynamicData.DynamicControl> 您<xref:System.Web.DynamicData.DynamicControl>还可以<xref:System.Web.UI.WebControls.TemplateField>在<xref:System.Web.UI.WebControls.GridView>或<xref:System.Web.UI.WebControls.DetailsView>控件的字段中使用控件。  
   
- <xref:System.Web.DynamicData.DynamicControl>控件提供的功能，是类似于<xref:System.Web.DynamicData.DynamicField>字段。 但是，因为<xref:System.Web.DynamicData.DynamicControl>控件仅用于在模板内，它可以更灵活地控制数据因为您可以添加其他 HTML 元素周围字段的显示方式。 当你使用<xref:System.Web.DynamicData.DynamicControl>控件，可以充分利用以下动态数据功能：  
+ 控件提供类似<xref:System.Web.DynamicData.DynamicField>于字段的功能。 <xref:System.Web.DynamicData.DynamicControl> 但是, 因为<xref:System.Web.DynamicData.DynamicControl>控件仅用于模板内, 所以它使您可以更灵活地控制数据的显示方式, 因为您可以在该字段周围添加其他 HTML 元素。 使用<xref:System.Web.DynamicData.DynamicControl>控件时, 可以利用以下动态数据功能:  
   
--   自动使用字段模板呈现的字段的适当控制，根据数据类型。 可以为整个应用程序全局修改的字段模板。  
+-   根据数据类型, 使用字段模板自动呈现字段的适当控件。 可针对整个应用程序全局修改字段模板。  
   
--   提供基于数据库架构的内置数据验证。 此外可以通过自定义数据模型添加验证类型。  
+-   基于数据库架构提供内置数据验证。 您还可以通过自定义数据模型来添加验证类型。  
   
--   通过使用数据模型中的属性或通过使用自定义的各个字段的数据呈现<xref:System.Web.DynamicData.DynamicField.UIHint%2A>属性。  
+-   通过使用数据模型中的属性或使用<xref:System.Web.DynamicData.DynamicField.UIHint%2A>属性, 自定义单个字段的数据呈现。  
   
- 若要指定要在中显示的字段<xref:System.Web.DynamicData.DynamicControl>控件，将设置<xref:System.Web.DynamicData.DynamicControl.DataField%2A>属性设置为字段名称。 通过设置应用于字段值的自定义格式设置字符串<xref:System.Web.DynamicData.DynamicControl.DataFormatString%2A>属性。 默认情况下，格式设置字符串被应用于字段值中，仅当数据绑定控件处于只读模式下时。 若要将格式设置字符串应用于值显示的数据绑定控件处于编辑模式时，设置<xref:System.Web.DynamicData.DynamicControl.ApplyFormatInEditMode%2A>属性设置为`true`。 如果字段值是`null`，可以通过设置显示的自定义标题<xref:System.Web.DynamicData.DynamicControl.NullDisplayText%2A>属性。 <xref:System.Web.DynamicData.DynamicControl>控件还会自动转换为空字符串 ("") 通过设置字段值与 null 值<xref:System.Web.DynamicData.DynamicControl.ConvertEmptyStringToNull%2A>属性设置为`true`。  
+ 若要指定要在<xref:System.Web.DynamicData.DynamicControl>控件中显示的字段, 请<xref:System.Web.DynamicData.DynamicControl.DataField%2A>将属性设置为字段名称。 可以通过设置<xref:System.Web.DynamicData.DynamicControl.DataFormatString%2A>属性, 将自定义格式设置字符串应用于字段值。 默认情况下, 仅当数据绑定控件处于只读模式时, 才将格式设置字符串应用于字段值。 若要将格式设置字符串应用于数据绑定控件处于编辑模式时显示的值, 请将<xref:System.Web.DynamicData.DynamicControl.ApplyFormatInEditMode%2A>属性设置`true`为。 如果字段值为`null`, 则可以通过<xref:System.Web.DynamicData.DynamicControl.NullDisplayText%2A>设置属性来显示自定义标题。 通过<xref:System.Web.DynamicData.DynamicControl> `true`将属性设置为, 该控件还可以自动将空字符串 ("") 字段值转换为 null 值。 <xref:System.Web.DynamicData.DynamicControl.ConvertEmptyStringToNull%2A>  
   
- <xref:System.Web.DynamicData.DynamicControl>控件支持不同的显示模式。 若要指定要在其中显示模式<xref:System.Web.DynamicData.DynamicControl>控件，将设置<xref:System.Web.DynamicData.DynamicControl.Mode%2A>属性。 下表显示了不同的模式。  
+ 该<xref:System.Web.DynamicData.DynamicControl>控件支持不同的显示模式。 若要指定<xref:System.Web.DynamicData.DynamicControl>控件的显示模式, 请<xref:System.Web.DynamicData.DynamicControl.Mode%2A>设置属性。 下表显示了不同的模式。  
   
  <xref:System.Web.UI.WebControls.DataBoundControlMode.ReadOnly>  
- 用于显示模式。 这可以防止用户修改记录或数据字段的值。 可在任何模板。  
+ 用于显示模式。 这可防止用户修改记录或数据字段的值。 它可以在任何模板中使用。  
   
  <xref:System.Web.UI.WebControls.DataBoundControlMode.Edit>  
- 为编辑模式。 这样用户就可以更新现有记录的值。 在编辑模板中使用 (通常命名为`EditItemTemplate`)。  
+ 对于编辑模式。 这使用户可以更新现有记录的值。 它用于编辑模板 (通常名为`EditItemTemplate`)。  
   
  <xref:System.Web.UI.WebControls.DataBoundControlMode.Insert>  
- 对于插入模式。 这样用户就可以输入一条新记录的值。 插入模板中使用 (通常命名为`InsertItemTemplate`)。  
+ 对于插入模式。 这使用户可以为新记录输入值。 它用于插入模板 (通常名为`InsertItemTemplate`)。  
   
- 您可以隐藏<xref:System.Web.DynamicData.DynamicControl>通过设置数据绑定控件中的控件<xref:System.Web.UI.Control.Visible%2A>属性设置为`false`。  
+ 可以通过<xref:System.Web.DynamicData.DynamicControl> <xref:System.Web.UI.Control.Visible%2A>将属性设置为来`false`隐藏数据绑定控件中的控件。  
   
 <a name="declarative_syntax"></a>   
 ## <a name="declarative-syntax"></a>声明性语法  
@@ -103,9 +103,9 @@
    
   
 ## Examples  
- 此功能的运行时代码示例，请参阅：[运行](https://go.microsoft.com/fwlink/?LinkId=120736&sref=System.Web.DynamicData.DynamicControl)。  
+ 请参阅此功能的运行时代码示例:[运行](https://go.microsoft.com/fwlink/?LinkId=120736&sref=System.Web.DynamicData.DynamicControl)。  
   
- 下面的示例演示如何使用<xref:System.Web.DynamicData.DynamicControl>控件中<xref:System.Web.UI.WebControls.ListView>控件以显示、 插入、 删除和编辑数据库表中的值。 务必要注意，若要使工作，该插入操作<xref:System.Data.Linq.Mapping.ColumnAttribute.IsDbGenerated%2A>的属性`rowguid`并`ModifiedDate`列设置为`true`。  
+ 下面的示例演示如何使用<xref:System.Web.DynamicData.DynamicControl> <xref:System.Web.UI.WebControls.ListView>控件中的控件来显示、插入、删除和编辑数据库表中的值。 请务必注意, 若要使插入操作正常运行<xref:System.Data.Linq.Mapping.ColumnAttribute.IsDbGenerated%2A> , 则`rowguid`和`ModifiedDate`列的属性将设置为`true`。  
   
  [!code-aspx-csharp[System.Web.DynamicData.DynamicControl#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.DynamicData.DynamicControl/CS/Default.aspx#1)]
  [!code-aspx-vb[System.Web.DynamicData.DynamicControl#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.DynamicData.DynamicControl/VB/Default.aspx#1)]  
@@ -207,10 +207,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.DynamicData.DynamicControl>控件具有不同的显示模式，允许用户读取、 编辑或插入一个字段。 默认情况下，通过将指定格式设置字符串<xref:System.Web.DynamicData.DynamicControl.DataFormatString%2A>属性应用于字段值时，才<xref:System.Web.DynamicData.DynamicControl>控件是否处于只读模式。 若要将格式设置字符串应用于值显示的数据绑定控件处于编辑模式时，设置<xref:System.Web.DynamicData.DynamicControl.ApplyFormatInEditMode%2A>属性设置为`true`。  
+ <xref:System.Web.DynamicData.DynamicControl>控件具有不同的显示模式, 使用户能够读取、编辑或插入字段。 默认情况下, 仅<xref:System.Web.DynamicData.DynamicControl.DataFormatString%2A> <xref:System.Web.DynamicData.DynamicControl>当控件处于只读模式时, 属性指定的格式设置字符串才应用于字段值。 若要将格式设置字符串应用于数据绑定控件处于编辑模式时显示的值, 请将<xref:System.Web.DynamicData.DynamicControl.ApplyFormatInEditMode%2A>属性设置`true`为。  
   
 > [!NOTE]
->  <xref:System.Web.DynamicData.DynamicControl>控件不会自动删除格式设置的数据源中更新字段时。 如果不希望的格式存储的值的一部分，你需要删除格式设置以编程方式。  
+>  当<xref:System.Web.DynamicData.DynamicControl>数据源中的字段被更新时, 控件不会自动删除该格式。 如果不希望格式设置为存储的值的一部分, 则需要以编程方式删除格式设置。  
   
  ]]></format>
         </remarks>
@@ -249,7 +249,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Web.DynamicData.DynamicControl.Column%2A>属性来获取有关特定列的元数据信息。 <xref:System.Web.DynamicData.DynamicControl.Column%2A>属性自动设置<xref:System.Web.DynamicData.DynamicControl>控制基于为提供的字段名称<xref:System.Web.DynamicData.DynamicControl.DataField%2A>属性。  
+ 您可以使用<xref:System.Web.DynamicData.DynamicControl.Column%2A>属性来获取有关特定列的元数据信息。 此<xref:System.Web.DynamicData.DynamicControl.Column%2A>属性由<xref:System.Web.DynamicData.DynamicControl>控件根据为<xref:System.Web.DynamicData.DynamicControl.DataField%2A>属性提供的字段名称自动设置。  
   
  ]]></format>
         </remarks>
@@ -288,11 +288,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Parameter>数据源控件的对象还具有一个名为属性<xref:System.Web.UI.WebControls.Parameter.ConvertEmptyStringToNull%2A?displayProperty=nameWithType>。 此属性执行相同的功能。 请确保正确设置这两个属性。  
+ 数据源控件的<xref:System.Web.UI.WebControls.Parameter.ConvertEmptyStringToNull%2A?displayProperty=nameWithType>对象还具有一个名为的属性。<xref:System.Web.UI.WebControls.Parameter> 此属性执行相同的功能。 请确保这两个属性都已正确设置。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/5436e8f6-171a-4361-a9a3-cec826a08c91">处理 Null 数据库值使用数据源控件</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/5436e8f6-171a-4361-a9a3-cec826a08c91">使用数据源控件处理 Null 数据库值</related>
       </Docs>
     </Member>
     <Member MemberName="CssClass">
@@ -359,16 +359,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.DynamicData.DynamicControl.DataField%2A>属性来指定要绑定到的数据字段<xref:System.Web.DynamicData.DynamicControl>控件。 数据字段可以是列名称的或对于外键列，关系名称。  
+ 使用属性指定要绑定<xref:System.Web.DynamicData.DynamicControl>到控件的数据字段。 <xref:System.Web.DynamicData.DynamicControl.DataField%2A> 数据字段可以是列名称, 也可以是用于外键列的关系名称。  
   
- 默认情况下，指定的数据字段显示通过<xref:System.Web.DynamicData.DynamicControl>控制使用字段数据类型与关联的字段模板。 你可以通过设置呈现的数据字段的字段模板<xref:System.Web.DynamicData.DynamicControl.UIHint%2A>属性。 此外可以设置显示的文本格式设置<xref:System.Web.DynamicData.DynamicControl.DataFormatString%2A>属性。  
+ 默认情况下, <xref:System.Web.DynamicData.DynamicControl>控件使用与字段数据类型关联的字段模板来显示指定的数据字段。 通过设置<xref:System.Web.DynamicData.DynamicControl.UIHint%2A>属性, 可以更改为数据字段呈现的字段模板。 还可以通过设置<xref:System.Web.DynamicData.DynamicControl.DataFormatString%2A>属性来设置显示的文本的格式。  
   
- **请注意**如果你想要更改的显示和行为的数据字段的全局范围内，必须将特性应用到数据模型而不是此设置中的特定实例<xref:System.Web.DynamicData.DynamicControl>控件。 有关详细信息，请参阅[ASP.NET 动态数据](https://msdn.microsoft.com/library/78c7fcd7-5f38-46a0-a4bc-48eff3c8a512)。  
+ **注意**如果要全局更改数据字段的显示和行为, 则必须将属性应用于数据模型, 而不是在<xref:System.Web.DynamicData.DynamicControl>控件的特定实例中对其进行设置。 有关详细信息, 请参阅[ASP.NET 动态数据](https://msdn.microsoft.com/library/78c7fcd7-5f38-46a0-a4bc-48eff3c8a512)。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.Web.DynamicData.DynamicControl.DataField%2A>属性来指定要在中显示的字段<xref:System.Web.DynamicData.DynamicControl>控件。  
+ 下面的示例演示如何使用<xref:System.Web.DynamicData.DynamicControl.DataField%2A>属性指定要<xref:System.Web.DynamicData.DynamicControl>在控件中显示的字段。  
   
  [!code-aspx-csharp[System.Web.DynamicData.DynamicControl.DataField#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.DynamicData.DynamicControl.DataField/CS/Default.aspx#1)]
  [!code-aspx-vb[System.Web.DynamicData.DynamicControl.DataField#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.DynamicData.DynamicControl.DataField/VB/Default.aspx#1)]  
@@ -411,11 +411,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.DynamicData.DynamicControl.DataFormatString%2A>属性可指定在显示的值的自定义显示格式<xref:System.Web.DynamicData.DynamicControl>控件。 如果<xref:System.Web.DynamicData.DynamicControl.DataFormatString%2A>属性未设置，而无需任何特殊格式显示的字段值。  
+ 使用属性为<xref:System.Web.DynamicData.DynamicControl>控件中显示的值指定自定义的显示格式。 <xref:System.Web.DynamicData.DynamicControl.DataFormatString%2A> 如果未<xref:System.Web.DynamicData.DynamicControl.DataFormatString%2A>设置该属性, 则显示字段值而不进行任何特殊格式设置。  
   
- 默认情况下，格式设置字符串应用于字段值时，才<xref:System.Web.DynamicData.DynamicControl.Mode%2A>属性设置为<xref:System.Web.UI.WebControls.DataBoundControlMode.ReadOnly>。 若要将格式设置字符串应用于字段值在编辑模式下，设置<xref:System.Web.DynamicData.DynamicControl.ApplyFormatInEditMode%2A>属性设置为`true`。  
+ 默认情况下, 仅当<xref:System.Web.DynamicData.DynamicControl.Mode%2A>属性设置为<xref:System.Web.UI.WebControls.DataBoundControlMode.ReadOnly>时, 才将格式设置字符串应用于字段值。 若要在编辑模式下将格式设置字符串应用于字段值, 请<xref:System.Web.DynamicData.DynamicControl.ApplyFormatInEditMode%2A>将属性`true`设置为。  
   
- 使用指定的显示格式<xref:System.Web.DynamicData.DynamicControl.DataFormatString%2A>属性是特定于此实例的<xref:System.Web.DynamicData.DynamicControl>控件。 您还可以更改数据字段的显示格式在整个应用程序通过应用<xref:System.ComponentModel.DataAnnotations.DisplayFormatAttribute>到你的数据模型和设置<xref:System.ComponentModel.DataAnnotations.DisplayFormatAttribute.DataFormatString%2A?displayProperty=nameWithType>命名构造函数中的参数。 有关详细信息，请参阅[ASP.NET 动态数据](https://msdn.microsoft.com/library/78c7fcd7-5f38-46a0-a4bc-48eff3c8a512)。  
+ 使用<xref:System.Web.DynamicData.DynamicControl.DataFormatString%2A>属性指定的显示格式特定于<xref:System.Web.DynamicData.DynamicControl>控件的此实例。 您还可以通过将应用<xref:System.ComponentModel.DataAnnotations.DisplayFormatAttribute>于数据模型并在构造函数中<xref:System.ComponentModel.DataAnnotations.DisplayFormatAttribute.DataFormatString%2A?displayProperty=nameWithType>设置命名参数, 来更改整个应用程序中的数据字段的显示格式。 有关详细信息, 请参阅[ASP.NET 动态数据](https://msdn.microsoft.com/library/78c7fcd7-5f38-46a0-a4bc-48eff3c8a512)。  
   
  ]]></format>
         </remarks>
@@ -486,7 +486,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果属性集合是`null`，此方法返回一个空字符串。  
+ 如果特性集合为`null`, 则此方法返回一个空字符串。  
   
  ]]></format>
         </remarks>
@@ -524,10 +524,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.DynamicData.DynamicControl.HtmlEncode%2A>要指定字段值是否经过 HTML 编码为其各自的字符串表示形式显示这些属性。  
+ <xref:System.Web.DynamicData.DynamicControl.HtmlEncode%2A>使用属性来指定在显示字段值之前, 这些字段值是否经过 HTML 编码。  
   
 > [!NOTE]
->  HTML 编码的字段值有助于防止跨站点脚本攻击和恶意内容显示。 只要有可能，应启用此属性。 有关详细信息，请参阅[脚本侵入概述](https://msdn.microsoft.com/library/772c7312-211a-4eb3-8d6e-eec0aa1dcc07)。  
+>  HTML 编码字段值有助于防止显示跨站点脚本攻击和恶意内容。 应尽可能启用此属性。 有关详细信息，请参阅[脚本侵入概述](https://msdn.microsoft.com/library/772c7312-211a-4eb3-8d6e-eec0aa1dcc07)。  
   
  ]]></format>
         </remarks>
@@ -564,13 +564,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.DynamicData.DynamicControl.Mode%2A>属性来指定要用于显示的呈现模式<xref:System.Web.DynamicData.DynamicControl>控件。 下表显示了不同的模式。  
+ 使用属性指定要用于<xref:System.Web.DynamicData.DynamicControl>显示控件的呈现模式。 <xref:System.Web.DynamicData.DynamicControl.Mode%2A> 下表显示了不同的模式。  
   
-|模式|描述|  
+|模式|说明|  
 |----------|-----------------|  
-|<xref:System.Web.UI.WebControls.DataBoundControlMode.ReadOnly>|用于显示模式。 这可以防止用户修改记录或数据字段的值。 可在任何模板。 这是默认值。|  
-|<xref:System.Web.UI.WebControls.DataBoundControlMode.Edit>|为编辑模式。 这样用户就可以更新现有记录的值。 在使用`EditItemTemplate`模板。|  
-|<xref:System.Web.UI.WebControls.DataBoundControlMode.Insert>|对于插入模式。 这样用户就可以输入一条新记录的值。 在使用`InsertItemTemplate`模板。|  
+|<xref:System.Web.UI.WebControls.DataBoundControlMode.ReadOnly>|用于显示模式。 这可防止用户修改记录或数据字段的值。 它可以在任何模板中使用。 这是默认值。|  
+|<xref:System.Web.UI.WebControls.DataBoundControlMode.Edit>|对于编辑模式。 这使用户可以更新现有记录的值。 它在`EditItemTemplate`模板中使用。|  
+|<xref:System.Web.UI.WebControls.DataBoundControlMode.Insert>|对于插入模式。 这使用户可以为新记录输入值。 它在`InsertItemTemplate`模板中使用。|  
   
  ]]></format>
         </remarks>
@@ -607,7 +607,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有时字段值存储为 null 的数据源中。 可以指定要显示的情况下设置具有 null 值的字段的自定义标题<xref:System.Web.DynamicData.DynamicControl.NullDisplayText%2A>属性。 如果未设置此属性，null 字段值显示为空字符串 ("")。  
+ 有时, 字段值在数据源中存储为 null。 通过设置<xref:System.Web.DynamicData.DynamicControl.NullDisplayText%2A>属性, 可以为具有 null 值的字段指定要显示的自定义标题。 如果未设置此属性, 则 null 字段值显示为空字符串 ("")。  
   
  ]]></format>
         </remarks>
@@ -642,14 +642,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.DynamicData.DynamicControl.OnInit%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">未设置 <see cref="P:System.Web.DynamicData.DynamicControl.DataField" /> 属性。</exception>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.DynamicData.DynamicControl.OnInit(System.EventArgs)" />在派生类中，请务必调用基类的<see cref="M:System.Web.DynamicData.DynamicControl.OnInit(System.EventArgs)" />方法，以便已注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在<see cref="M:System.Web.DynamicData.DynamicControl.OnInit(System.EventArgs)" />派生类中重写时, 请确保调用基类的<see cref="M:System.Web.DynamicData.DynamicControl.OnInit(System.EventArgs)" />方法, 以便注册的委托接收事件。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Render">
@@ -678,7 +678,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.DynamicData.DynamicControl.Render%2A>方法主要由控件开发人员用来扩展<xref:System.Web.DynamicData.DynamicControl>控件。  
+ 方法主要由控件开发人员用来<xref:System.Web.DynamicData.DynamicControl>扩展控件。 <xref:System.Web.DynamicData.DynamicControl.Render%2A>  
   
  ]]></format>
         </remarks>
@@ -767,7 +767,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.DynamicData.DynamicControl.Table%2A>属性来访问有关包含的数据绑定控件与相关联的表的元数据信息<xref:System.Web.DynamicData.DynamicControl>控件。  
+ 使用属性可访问与<xref:System.Web.DynamicData.DynamicControl>包含控件的数据绑定控件关联的表的元数据信息。 <xref:System.Web.DynamicData.DynamicControl.Table%2A>  
   
  ]]></format>
         </remarks>
@@ -806,18 +806,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.DynamicData.DynamicControl.UIHint%2A>属性来指定要用于显示数据字段的 UI 的字段模板。 默认情况下的字段模板为用户控件，其名称包含后缀来标识用于编辑操作和插入操作的字段模板。 后缀分别为 （_e） 和 （_i）。 当将值设置为<xref:System.Web.DynamicData.DynamicControl.UIHint%2A>属性，则设置不带后缀的名称。 动态数据将通过计算标识为正确的模式<xref:System.Web.DynamicData.DynamicControl.Mode%2A>属性值，并且将呈现正确的字段模板。  
+ 使用 " <xref:System.Web.DynamicData.DynamicControl.UIHint%2A>属性" 指定用于显示数据字段的 UI 的字段模板。 默认情况下, 字段模板是用户控件, 它们的名称包含一个后缀, 用于标识用于编辑操作和插入操作的字段模板。 后缀分别为 "_insert" 和 ""。 将值设置为<xref:System.Web.DynamicData.DynamicControl.UIHint%2A>属性时, 请设置不带后缀的名称。 动态数据将通过评估<xref:System.Web.DynamicData.DynamicControl.Mode%2A>属性值标识正确的模式, 并将呈现正确的字段模板。  
   
- 如果<xref:System.Web.DynamicData.DynamicControl.UIHint%2A>属性未设置时，默认情况下动态数据将呈现基于字段类型的字段模板。 有关详细信息，请参阅[ASP.NET 动态数据基架](https://msdn.microsoft.com/library/e0166a58-9178-4660-81a6-175994b11b12)。  
+ 如果未<xref:System.Web.DynamicData.DynamicControl.UIHint%2A>设置该属性, 则默认情况下动态数据将基于字段类型呈现字段模板。 有关详细信息, 请参阅[ASP.NET 动态数据基架](https://msdn.microsoft.com/library/e0166a58-9178-4660-81a6-175994b11b12)。  
   
- 使用指定的字段模板<xref:System.Web.DynamicData.DynamicControl.UIHint%2A>属性是特定于此实例的<xref:System.Web.DynamicData.DynamicControl>控件。 你可以通过应用在整个应用程序使用的数据字段的字段模板<xref:System.ComponentModel.DataAnnotations.UIHintAttribute>对数据模型。 设置<xref:System.Web.DynamicData.DynamicControl.UIHint%2A>属性将替代应用于数据模型的元数据。 有关元数据特性的详细信息，请参阅[ASP.NET 动态数据](https://msdn.microsoft.com/library/78c7fcd7-5f38-46a0-a4bc-48eff3c8a512)。  
+ 使用<xref:System.Web.DynamicData.DynamicControl.UIHint%2A>属性指定的字段模板特定于该<xref:System.Web.DynamicData.DynamicControl>控件的实例。 您还可以通过将应用<xref:System.ComponentModel.DataAnnotations.UIHintAttribute>于数据模型来更改数据字段在整个应用程序中使用的字段模板。 <xref:System.Web.DynamicData.DynamicControl.UIHint%2A>设置属性将重写应用于数据模型的元数据。 有关元数据属性的详细信息, 请参阅[ASP.NET 动态数据](https://msdn.microsoft.com/library/78c7fcd7-5f38-46a0-a4bc-48eff3c8a512)。  
   
    
   
 ## Examples  
- 此功能的运行时代码示例，请参阅：[运行](https://go.microsoft.com/fwlink/?LinkId=120736&sref=System.Web.DynamicData.DynamicControl.UIHint)。  
+ 请参阅此功能的运行时代码示例:[运行](https://go.microsoft.com/fwlink/?LinkId=120736&sref=System.Web.DynamicData.DynamicControl.UIHint)。  
   
- 下面的示例演示如何指定要使用不同的字段模板来呈现其内容的数据字段。 第二个示例显示了由指定的自定义字段模板<xref:System.Web.DynamicData.DynamicControl.UIHint%2A>属性。  
+ 下面的示例演示如何指定数据字段, 以使用不同的字段模板来呈现其内容。 第二个示例显示由<xref:System.Web.DynamicData.DynamicControl.UIHint%2A>属性指定的自定义字段模板。  
   
  [!code-aspx-csharp[System.Web.DynamicData.DynamicControl.UIHint#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.DynamicData.DynamicControl.UIHint/CS/Default.aspx#1)]
  [!code-aspx-vb[System.Web.DynamicData.DynamicControl.UIHint#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.DynamicData.DynamicControl.UIHint/VB/Default.aspx#1)]  
@@ -866,7 +866,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 验证组可以分配给特定类别的页面上的验证控件。 每个验证组从其他页上的验证组可以独立进行验证。 使用<xref:System.Web.DynamicData.DynamicControl.ValidationGroup%2A>属性指定的验证组的名称为其<xref:System.Web.DynamicData.DynamicControl>控件页面回发到服务器时导致验证。  
+ 使用验证组可以将页上的验证控件分配给特定类别。 每个验证组可以独立于页面上的其他验证组进行验证。 使用属性指定当页面回发到服务器时, <xref:System.Web.DynamicData.DynamicControl>控件引发验证的验证组的名称。 <xref:System.Web.DynamicData.DynamicControl.ValidationGroup%2A>  
   
  ]]></format>
         </remarks>

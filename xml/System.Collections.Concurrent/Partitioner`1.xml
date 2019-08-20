@@ -1,5 +1,5 @@
 <Type Name="Partitioner&lt;TSource&gt;" FullName="System.Collections.Concurrent.Partitioner&lt;TSource&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6e0b7e72bef542c547a62cb3c0963ac8ca0b06d2" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63908869" /></Metadata><TypeSignature Language="C#" Value="public abstract class Partitioner&lt;TSource&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8d3d14c1b4a7f24cc79d4571f023b51d53e67d0e" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69340615" /></Metadata><TypeSignature Language="C#" Value="public abstract class Partitioner&lt;TSource&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit Partitioner`1&lt;TSource&gt; extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Collections.Concurrent.Partitioner`1" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class Partitioner(Of TSource)" />
@@ -40,14 +40,14 @@
    
   
 ## Examples  
- 下面的示例演示如何实现一次返回单个元素的分区程序：  
+ 下面的示例演示如何实现一次返回单个元素的分区程序:  
   
  [!code-csharp[System.Collections.Concurrent.Partitioner#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.collections.concurrent.partitioner/cs/partitioner.cs#1)]
  [!code-vb[System.Collections.Concurrent.Partitioner#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.collections.concurrent.partitioner/vb/partitioner.vb#1)]  
   
  ]]></format>
     </remarks>
-    <threadsafe>上的静态方法<see cref="T:System.Collections.Concurrent.Partitioner`1" />是线程安全的可能从多个线程同时使用。 但是，在使用创建的分区程序时，基础数据源不应修改，无论从正在使用分区程序的同一线程还是在单独的线程。</threadsafe>
+    <threadsafe>上<see cref="T:System.Collections.Concurrent.Partitioner`1" />的静态方法都是线程安全的, 并且可以同时从多个线程使用。 但是, 当创建的分区程序正在使用时, 不应修改基础数据源, 无论是使用分区程序的同一线程还是单独的线程。</threadsafe>
     <altmember cref="T:System.Collections.Concurrent.OrderablePartitioner`1" />
     <altmember cref="T:System.Collections.Concurrent.Partitioner" />
   </Docs>
@@ -119,9 +119,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的对象实现<xref:System.Collections.Generic.IEnumerable%601?displayProperty=nameWithType>接口。 调用<xref:System.Collections.Generic.IEnumerable%601.GetEnumerator%2A>对象上创建序列的另一个分区。  
+ 返回的对象实现<xref:System.Collections.Generic.IEnumerable%601?displayProperty=nameWithType>接口。 对<xref:System.Collections.Generic.IEnumerable%601.GetEnumerator%2A>对象调用会在序列上创建另一个分区。  
   
- <xref:System.Collections.Concurrent.Partitioner%601.GetDynamicPartitions%2A>则仅支持方法<xref:System.Collections.Concurrent.Partitioner%601.SupportsDynamicPartitions%2A>属性是否返回 true。 有关详细信息，请参阅 [PLINQ 和 TPL 的自定义分区程序](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)。  
+ <xref:System.Collections.Concurrent.Partitioner%601.GetDynamicPartitions%2A> 仅<xref:System.Collections.Concurrent.Partitioner%601.SupportsDynamicPartitions%2A>当属性返回 true 时, 才支持方法。 有关详细信息，请参阅 [PLINQ 和 TPL 的自定义分区程序](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)。  
   
  ]]></format>
         </remarks>
@@ -169,7 +169,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 实现此方法的类应返回完全中指定的分区数`partitionCount`。 如果分区不包含任何元素，则返回空枚举器而不是 null (在 Visual Basic 中为 Nothing)。 有关详细信息，请参阅 [PLINQ 和 TPL 的自定义分区程序](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)。  
+ 实现此方法的类应恰好返回中`partitionCount`指定的分区数。 如果分区不包含任何元素, 则返回空枚举器而非 null (在 Visual Basic 中为 Nothing)。 有关详细信息，请参阅 [PLINQ 和 TPL 的自定义分区程序](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)。  
   
  ]]></format>
         </remarks>
@@ -207,12 +207,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取是否可以动态创建附加分区。</summary>
-        <value><see langword="true" /> 如果<see cref="T:System.Collections.Concurrent.Partitioner`1" />在请求; 可以动态创建分区<see langword="false" />如果<see cref="T:System.Collections.Concurrent.Partitioner`1" />可以仅以静态方式分配分区。</value>
+        <value><see langword="true" /><see cref="T:System.Collections.Concurrent.Partitioner`1" />如果可以在请求时动态创建分区, 则为;如果只能静态分配分区, 则为<see cref="T:System.Collections.Concurrent.Partitioner`1" />。 <see langword="false" /></value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果派生的类没有重写并实现<xref:System.Collections.Concurrent.Partitioner%601.GetDynamicPartitions%2A>，<xref:System.Collections.Concurrent.Partitioner%601.SupportsDynamicPartitions%2A>应返回 false。 值<xref:System.Collections.Concurrent.Partitioner%601.SupportsDynamicPartitions%2A>应与此实例的生存期内不会有所不同。 有关详细信息，请参阅 [PLINQ 和 TPL 的自定义分区程序](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)。  
+ 如果派生类不重写和实现<xref:System.Collections.Concurrent.Partitioner%601.GetDynamicPartitions%2A>, <xref:System.Collections.Concurrent.Partitioner%601.SupportsDynamicPartitions%2A>应返回 false。 的值<xref:System.Collections.Concurrent.Partitioner%601.SupportsDynamicPartitions%2A>不应在此实例的生存期内发生变化。 有关详细信息，请参阅 [PLINQ 和 TPL 的自定义分区程序](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="HostProtectionAttribute" FullName="System.Security.Permissions.HostProtectionAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="1ee0b762688a2f7098adaf30c648210c5861c348" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67246730" /></Metadata><TypeSignature Language="C#" Value="public sealed class HostProtectionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="2b113c0305d0ef702855dbe33b725c371518e3ca" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69081865" /></Metadata><TypeSignature Language="C#" Value="public sealed class HostProtectionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit HostProtectionAttribute extends System.Security.Permissions.CodeAccessSecurityAttribute" />
   <TypeSignature Language="DocId" Value="T:System.Security.Permissions.HostProtectionAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class HostProtectionAttribute&#xA;Inherits CodeAccessSecurityAttribute" />
@@ -41,7 +41,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性仅影响非托管应用程序承载公共语言运行时且实现主机保护，例如 SQL Server。 如果代码在客户端应用程序中运行或在非主机保护的服务器上运行，此特性则会“蒸发”；由于它不会被检测到，因此不会被应用。 应用后，安全性操作会导致基于类或方法公开的主机资源而创建链接要求。  
+ 此属性仅影响托管公共语言运行时并实现主机保护的非托管应用程序, 如 SQL Server。 如果代码在客户端应用程序中运行或在非主机保护的服务器上运行，此特性则会“蒸发”；由于它不会被检测到，因此不会被应用。 应用后，安全性操作会导致基于类或方法公开的主机资源而创建链接要求。  
   
 > [!IMPORTANT]
 >  此特性的目的在于强制执行特定于主机的编程模型准则，而非安全行为。  虽然链接要求是用于检查是否符合编程模型要求，但 <xref:System.Security.Permissions.HostProtectionAttribute> 不是安全权限。  
@@ -60,12 +60,12 @@
 >  如果要创建由可能在主机保护的环境中执行的应用程序调用的类库，则应该将此特性应用于公开 <xref:System.Security.Permissions.HostProtectionResource> 资源类别的成员。 具有此特性的 .NET Framework 类库成员会导致仅对直接调用方进行检查。  你的库成员也必须使用同一方法对其直接调用方进行检查。  
   
 > [!NOTE]
->  不要使用[Ngen.exe （本机映像生成器）](~/docs/framework/tools/ngen-exe-native-image-generator.md)若要创建受保护的程序集的本机映像<xref:System.Security.Permissions.HostProtectionAttribute>。 在完全信任环境中，图像始终处于加载状态，而不考虑到<xref:System.Security.Permissions.HostProtectionAttribute>，并在部分信任环境中不加载图像。  
+>  不要使用[ngen.exe (本机映像生成器)](~/docs/framework/tools/ngen-exe-native-image-generator.md)来创建受保护<xref:System.Security.Permissions.HostProtectionAttribute>的程序集的本机映像。 在完全信任的环境中, 始终加载映像, 而不考虑<xref:System.Security.Permissions.HostProtectionAttribute>, 在部分信任的环境中, 不加载映像。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.HostProtectionAttribute>具有各种属性<xref:System.Security.Permissions.HostProtectionResource>值。  
+ 下面的代码示例演示如何使用<xref:System.Security.Permissions.HostProtectionAttribute>具有<xref:System.Security.Permissions.HostProtectionResource>各种值的属性。  
   
  [!code-cpp[System.Security.Permissions.HostProtectionAttribute.1.1#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CPP/hostprotectionattribute.cpp#1)]
  [!code-csharp[System.Security.Permissions.HostProtectionAttribute.1.1#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CS/hostprotectionattribute.cs#1)]
@@ -118,7 +118,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数创建<xref:System.Security.Permissions.HostProtectionAttribute>所有的布尔属性设置为`false`。  
+ 此构造函数将<xref:System.Security.Permissions.HostProtectionAttribute>创建一个, 并将所有`false`布尔值属性都设置为。  
   
  ]]></format>
         </remarks>
@@ -154,7 +154,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不应使用此构造函数。 它旨在用于基础结构。  
+ 不应使用此构造函数。 它用于基础结构使用。  
   
  ]]></format>
         </remarks>
@@ -192,9 +192,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 永远不会由应用程序代码，应仅由安全系统中，调用此方法。  
+ 此方法应仅由安全系统调用, 而不是由应用程序代码调用。  
   
- 在编译时，属性将安全声明转换为元数据中的序列化形式。 从对应于此方法返回的属性的权限创建元数据中的声明性安全数据。  
+ 在编译时, 特性将安全声明转换为元数据中的序列化格式。 元数据中的声明性安全数据是从与此方法返回的特性对应的权限创建的。  
   
  ]]></format>
         </remarks>
@@ -230,12 +230,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 公开外部进程管理的代码可以创建或销毁其他进程。  
+ 公开外部进程管理的代码可能会创建或销毁其他进程。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.HostProtectionAttribute>属性与<xref:System.Security.Permissions.HostProtectionAttribute.ExternalProcessMgmt%2A>属性。 此示例摘自一个更大的示例为提供<xref:System.Security.Permissions.HostProtectionAttribute>类。  
+ 下面的代码示例演示如何将<xref:System.Security.Permissions.HostProtectionAttribute>属性<xref:System.Security.Permissions.HostProtectionAttribute.ExternalProcessMgmt%2A>与属性结合使用。 此示例是为<xref:System.Security.Permissions.HostProtectionAttribute>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.HostProtectionAttribute.1.1#5](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CPP/hostprotectionattribute.cpp#5)]
  [!code-csharp[System.Security.Permissions.HostProtectionAttribute.1.1#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CS/hostprotectionattribute.cs#5)]
@@ -276,12 +276,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 公开外部线程处理的代码会创建或操作不是自己，它可能对宿主有害的线程。  
+ 公开外部线程的代码会创建或操作其自己的线程, 这可能会对主机造成危害。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.HostProtectionAttribute>属性与<xref:System.Security.Permissions.HostProtectionAttribute.ExternalThreading%2A>属性。 此示例摘自一个更大的示例为提供<xref:System.Security.Permissions.HostProtectionAttribute>类。  
+ 下面的代码示例演示如何将<xref:System.Security.Permissions.HostProtectionAttribute>属性<xref:System.Security.Permissions.HostProtectionAttribute.ExternalThreading%2A>与属性结合使用。 此示例是为<xref:System.Security.Permissions.HostProtectionAttribute>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.HostProtectionAttribute.1.1#6](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CPP/hostprotectionattribute.cpp#6)]
  [!code-csharp[System.Security.Permissions.HostProtectionAttribute.1.1#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CS/hostprotectionattribute.cs#6)]
@@ -322,7 +322,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果未保护的安全句柄或某些其他方式来确保资源的释放，则代码上终止时，可能会导致资源泄漏。  
+ 如果未受安全句柄或其他确保资源释放的方法保护, 代码可能会导致终止时资源泄漏。  
   
  ]]></format>
         </remarks>
@@ -359,12 +359,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Permissions.HostProtectionResource>标志指定可能对宿主有害的资源公开的方法或类。  
+ <xref:System.Security.Permissions.HostProtectionResource>标志指定由方法或类公开的、可能对主机造成危害的资源。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.HostProtectionAttribute>属性与<xref:System.Security.Permissions.HostProtectionAttribute.Resources%2A>属性。 此示例摘自一个更大的示例为提供<xref:System.Security.Permissions.HostProtectionAttribute>类。  
+ 下面的代码示例演示如何将<xref:System.Security.Permissions.HostProtectionAttribute>属性<xref:System.Security.Permissions.HostProtectionAttribute.Resources%2A>与属性结合使用。 此示例是为<xref:System.Security.Permissions.HostProtectionAttribute>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.HostProtectionAttribute.1.1#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CPP/hostprotectionattribute.cpp#2)]
  [!code-csharp[System.Security.Permissions.HostProtectionAttribute.1.1#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CS/hostprotectionattribute.cs#2)]
@@ -415,7 +415,7 @@
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.HostProtectionAttribute>属性与<xref:System.Security.Permissions.HostProtectionAttribute.SecurityInfrastructure%2A>属性。 此示例摘自一个更大的示例为提供<xref:System.Security.Permissions.HostProtectionAttribute>类。  
+ 下面的代码示例演示如何将<xref:System.Security.Permissions.HostProtectionAttribute>属性<xref:System.Security.Permissions.HostProtectionAttribute.SecurityInfrastructure%2A>与属性结合使用。 此示例是为<xref:System.Security.Permissions.HostProtectionAttribute>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.HostProtectionAttribute.1.1#4](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CPP/hostprotectionattribute.cpp#4)]
  [!code-csharp[System.Security.Permissions.HostProtectionAttribute.1.1#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CS/hostprotectionattribute.cs#4)]
@@ -456,12 +456,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 自影响的进程管理代码可能会退出当前进程，终止服务器。  
+ 自影响过程管理代码可能会退出当前进程, 并终止服务器。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.HostProtectionAttribute>属性与<xref:System.Security.Permissions.HostProtectionAttribute.SelfAffectingProcessMgmt%2A>属性。 此示例摘自一个更大的示例为提供<xref:System.Security.Permissions.HostProtectionAttribute>类。  
+ 下面的代码示例演示如何将<xref:System.Security.Permissions.HostProtectionAttribute>属性<xref:System.Security.Permissions.HostProtectionAttribute.SelfAffectingProcessMgmt%2A>与属性结合使用。 此示例是为<xref:System.Security.Permissions.HostProtectionAttribute>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.HostProtectionAttribute.1.1#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CPP/hostprotectionattribute.cpp#2)]
  [!code-csharp[System.Security.Permissions.HostProtectionAttribute.1.1#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CS/hostprotectionattribute.cs#2)]
@@ -502,12 +502,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 自影响的线程处理操作线程只会影响用户代码的方式。  
+ 自影响的线程处理操作的方式只会影响用户代码。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.HostProtectionAttribute>属性与<xref:System.Security.Permissions.HostProtectionAttribute.SelfAffectingThreading%2A>属性。 此示例摘自一个更大的示例为提供<xref:System.Security.Permissions.HostProtectionAttribute>类。  
+ 下面的代码示例演示如何将<xref:System.Security.Permissions.HostProtectionAttribute>属性<xref:System.Security.Permissions.HostProtectionAttribute.SelfAffectingThreading%2A>与属性结合使用。 此示例是为<xref:System.Security.Permissions.HostProtectionAttribute>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.HostProtectionAttribute.1.1#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CPP/hostprotectionattribute.cpp#3)]
  [!code-csharp[System.Security.Permissions.HostProtectionAttribute.1.1#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CS/hostprotectionattribute.cs#3)]
@@ -548,12 +548,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Security.Permissions.HostProtectionAttribute.SharedState%2A>是`true`，它指示将公开一种状态，可能会在线程之间共享。  
+ 当<xref:System.Security.Permissions.HostProtectionAttribute.SharedState%2A> 为`true`时, 它指示公开了可能在线程之间共享的状态。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.HostProtectionAttribute>属性与<xref:System.Security.Permissions.HostProtectionAttribute.SharedState%2A>属性。 此示例摘自一个更大的示例为提供<xref:System.Security.Permissions.HostProtectionAttribute>类。  
+ 下面的代码示例演示如何将<xref:System.Security.Permissions.HostProtectionAttribute>属性<xref:System.Security.Permissions.HostProtectionAttribute.SharedState%2A>与属性结合使用。 此示例是为<xref:System.Security.Permissions.HostProtectionAttribute>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.HostProtectionAttribute.1.1#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CPP/hostprotectionattribute.cpp#3)]
  [!code-csharp[System.Security.Permissions.HostProtectionAttribute.1.1#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CS/hostprotectionattribute.cs#3)]
@@ -594,7 +594,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.HostProtectionAttribute>属性与<xref:System.Security.Permissions.HostProtectionAttribute.Synchronization%2A>属性。 此示例摘自一个更大的示例为提供<xref:System.Security.Permissions.HostProtectionAttribute>类。  
+ 下面的代码示例演示如何将<xref:System.Security.Permissions.HostProtectionAttribute>属性<xref:System.Security.Permissions.HostProtectionAttribute.Synchronization%2A>与属性结合使用。 此示例是为<xref:System.Security.Permissions.HostProtectionAttribute>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.HostProtectionAttribute.1.1#6](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CPP/hostprotectionattribute.cpp#6)]
  [!code-csharp[System.Security.Permissions.HostProtectionAttribute.1.1#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CS/hostprotectionattribute.cs#6)]
@@ -635,7 +635,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Security.Permissions.HostProtectionAttribute>属性与<xref:System.Security.Permissions.HostProtectionAttribute.UI%2A>属性。 此示例摘自一个更大的示例为提供<xref:System.Security.Permissions.HostProtectionAttribute>类。  
+ 下面的代码示例演示如何将<xref:System.Security.Permissions.HostProtectionAttribute>属性<xref:System.Security.Permissions.HostProtectionAttribute.UI%2A>与属性结合使用。 此示例是为<xref:System.Security.Permissions.HostProtectionAttribute>类提供的更大示例的一部分。  
   
  [!code-cpp[System.Security.Permissions.HostProtectionAttribute.1.1#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CPP/hostprotectionattribute.cpp#3)]
  [!code-csharp[System.Security.Permissions.HostProtectionAttribute.1.1#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.HostProtectionAttribute.1.1/CS/hostprotectionattribute.cs#3)]
