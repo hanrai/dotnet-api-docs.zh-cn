@@ -1,5 +1,5 @@
 <Type Name="StructureChangedEventArgs" FullName="System.Windows.Automation.StructureChangedEventArgs">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="75e578899fd896fb4f772a098d91a5d3ebfb525c" /><Meta Name="ms.sourcegitcommit" Value="16d2d159872fd213cae4b8f371d7ae9c8b027c89" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="11/17/2018" /><Meta Name="ms.locfileid" Value="51897244" /></Metadata><TypeSignature Language="C#" Value="public sealed class StructureChangedEventArgs : System.Windows.Automation.AutomationEventArgs" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4b200136baab8b8c8ba34186cb185682e2aab030" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69222629" /></Metadata><TypeSignature Language="C#" Value="public sealed class StructureChangedEventArgs : System.Windows.Automation.AutomationEventArgs" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit StructureChangedEventArgs extends System.Windows.Automation.AutomationEventArgs" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Automation.StructureChangedEventArgs" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class StructureChangedEventArgs&#xA;Inherits AutomationEventArgs" />
@@ -48,24 +48,24 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以在返回的值的`structureChangeType`依赖于 UI 自动化提供程序实现。 例如，当项添加到或删除从[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]列表框中，如果提供程序不能确定添加或删除的项目数，它可能指定<xref:System.Windows.Automation.StructureChangeType.ChildrenInvalidated>而不<xref:System.Windows.Automation.StructureChangeType.ChildAdded>或<xref:System.Windows.Automation.StructureChangeType.ChildRemoved>。  
+ 可在中`structureChangeType`返回的值取决于 UI 自动化提供程序的实现。 例如, 在[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]列表框中添加或删除项时, 如果提供程序无法确定添加或移除的项的数目, 则可以指定, 而<xref:System.Windows.Automation.StructureChangeType.ChildAdded>不能指定<xref:System.Windows.Automation.StructureChangeType.ChildrenInvalidated>或<xref:System.Windows.Automation.StructureChangeType.ChildRemoved>。  
   
- 下表描述的信息，在接收到事件<xref:System.Windows.Automation.StructureChangedEventHandler>不同的结构更改。  
+ 下表描述了<xref:System.Windows.Automation.StructureChangedEventHandler>针对不同结构更改接收的事件中的信息。  
   
 |`structureChangeType`|事件源|`runtimeId`|  
 |---------------------------|------------------|-----------------|  
 |<xref:System.Windows.Automation.StructureChangeType.ChildAdded>|已添加的子级。|已添加的子级。|  
-|<xref:System.Windows.Automation.StructureChangeType.ChildRemoved>|已删除的子级的父级。|已删除的子级。|  
-|<xref:System.Windows.Automation.StructureChangeType.ChildrenBulkAdded>|已添加子级的父级。|已添加子级的父级。|  
-|<xref:System.Windows.Automation.StructureChangeType.ChildrenBulkRemoved>|已删除的子级的父级。|已删除的子级的父级。|  
-|<xref:System.Windows.Automation.StructureChangeType.ChildrenInvalidated>|失效的子级的父级。|失效的子级的父级|  
+|<xref:System.Windows.Automation.StructureChangeType.ChildRemoved>|已移除的子级的父级。|已删除的子级。|  
+|<xref:System.Windows.Automation.StructureChangeType.ChildrenBulkAdded>|添加的子级的父级。|添加的子级的父级。|  
+|<xref:System.Windows.Automation.StructureChangeType.ChildrenBulkRemoved>|已移除的子级的父级。|已移除的子级的父级。|  
+|<xref:System.Windows.Automation.StructureChangeType.ChildrenInvalidated>|已失效的子级的父级。|已失效的子级的父级|  
   
- 自定义控件可能不能提供有意义的值在`runtimeId`。 有关详情，请参阅<xref:System.Windows.Automation.Provider.AutomationInteropProvider.RaiseStructureChangedEvent%2A>。  
+ 自定义控件可能无法在中`runtimeId`提供有意义的值。 有关详细信息，请参阅 <xref:System.Windows.Automation.Provider.AutomationInteropProvider.RaiseStructureChangedEvent%2A>。  
   
    
   
 ## Examples  
- 下面的示例显示如何构造和引发事件时，添加子级或从自定义列表框中删除。  
+ 下面的示例演示如何在自定义列表框中添加或删除子级时构造和引发事件。  
   
  [!code-csharp[FragmentProvider#101](~/samples/snippets/csharp/VS_Snippets_Wpf/FragmentProvider/CSharp/ListFragment.cs#101)]
  [!code-vb[FragmentProvider#101](~/samples/snippets/visualbasic/VS_Snippets_Wpf/FragmentProvider/VisualBasic/ListFragment.vb#101)]  
@@ -99,7 +99,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回值可能是父的子级的已添加或删除，或在多个子级的情况下的标识符被添加、 移除或失效标识符。 有关详情，请参阅<xref:System.Windows.Automation.StructureChangedEventArgs.%23ctor%2A>。  
+ 返回值可以是已添加或已删除的子对象的标识符, 或者如果要添加、删除或无效, 则为父的标识符。 有关详细信息，请参阅 <xref:System.Windows.Automation.StructureChangedEventArgs.%23ctor%2A>。  
   
  自定义控件可能无法提供有效的运行时标识符。  
   

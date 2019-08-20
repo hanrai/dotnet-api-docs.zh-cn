@@ -1,5 +1,5 @@
 <Type Name="IBinarySerialize" FullName="Microsoft.SqlServer.Server.IBinarySerialize">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0328f2b4183c8d17f811a579d33cf2ee708180df" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56770850" /></Metadata><TypeSignature Language="C#" Value="public interface IBinarySerialize" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ef8c011695a45cf43197dda699d3ad988ba9a430" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69303758" /></Metadata><TypeSignature Language="C#" Value="public interface IBinarySerialize" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IBinarySerialize" />
   <TypeSignature Language="DocId" Value="T:Microsoft.SqlServer.Server.IBinarySerialize" />
   <TypeSignature Language="VB.NET" Value="Public Interface IBinarySerialize" />
@@ -24,11 +24,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 用户定义类型 (Udt) 和用户定义聚合所需定义存储格式，可以是<xref:Microsoft.SqlServer.Server.Format>。`Native` 或<xref:Microsoft.SqlServer.Server.Format>.`UserDefined`。  
+ 需要用户定义的类型 (Udt) 和用户定义的聚合来定义存储格式, 可以是<xref:Microsoft.SqlServer.Server.Format>。`Native` 或<xref:Microsoft.SqlServer.Server.Format>。`UserDefined`  
   
- <xref:Microsoft.SqlServer.Server.Format>.`Native` 允许 SQL Server 处理的序列化和反序列化自动，但该格式具有限制，它可以处理的类型的类型。 <xref:Microsoft.SqlServer.Server.Format>.`UserDefined` 允许用户定义类型和聚合以处理其自己的序列化。 用户定义类型和聚合必须标记有<xref:Microsoft.SqlServer.Server.Format>。`UserDefined` 在中`SqlUserDefinedType`或`SqlUserDefinedAggregate`属性，并且必须实现<xref:Microsoft.SqlServer.Server.IBinarySerialize>接口。  
+ <xref:Microsoft.SqlServer.Server.Format>.`Native` 允许 SQL Server 自动处理序列化和反序列化, 但格式对其可以处理的类型类型有限制。 <xref:Microsoft.SqlServer.Server.Format>.`UserDefined` 允许用户定义类型和聚合处理其自己的序列化。 用户定义类型和聚合必须标记<xref:Microsoft.SqlServer.Server.Format>为。`UserDefined` `SqlUserDefinedType`在或`SqlUserDefinedAggregate`特性中<xref:Microsoft.SqlServer.Server.IBinarySerialize> , 和必须实现接口。  
   
- 请注意，即使使用自定义序列化，每个实例的总大小必须在允许的限制，当前 8000 个字节的最大。  
+ 请注意, 即使使用自定义序列化, 每个实例的总大小必须小于允许的最大限制, 当前为8000字节。  
   
  ]]></format>
     </remarks>
@@ -67,12 +67,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A>方法必须重新构建您的对象使用的信息由编写<xref:Microsoft.SqlServer.Server.IBinarySerialize.Write%2A>方法。  
+ 方法必须使用<xref:Microsoft.SqlServer.Server.IBinarySerialize.Write%2A>方法编写的信息重建您的对象。 <xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A>  
   
    
   
 ## Examples  
- 下面的示例演示如何实现<xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A>方法的 UDT，它使用<xref:System.IO.BinaryReader>进行反序列化以前保留的 UDT。 此示例假定 UDT 具有两个数据属性：`StringValue`和`DoubleValue`。  
+ 下面的示例演示了 UDT 的<xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A>方法的实现, 该方法<xref:System.IO.BinaryReader>使用来反序列化以前保存的 UDT。 此示例假设 UDT 具有两个数据属性: `StringValue`和。 `DoubleValue`  
   
  [!code-csharp[DataWorks IBinarySerialize Samples#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks IBinarySerialize Samples/CS/source.cs#1)]
  [!code-vb[DataWorks IBinarySerialize Samples#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks IBinarySerialize Samples/VB/source.vb#1)]  
@@ -114,12 +114,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 足够的信息写入二进制流，以允许<xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A>方法来重建 UDT 或用户定义聚合。  
+ 将足够多的信息写入二进制流, 以<xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A>允许方法重建 UDT 或用户定义的聚合。  
   
    
   
 ## Examples  
- 下面的示例演示如何实现<xref:Microsoft.SqlServer.Server.IBinarySerialize.Write%2A>方法的 UDT，它使用<xref:System.IO.BinaryWriter>要序列化中的用户定义的二进制格式的 UDT。 Null 字符填充的目的是确保，字符串值完全分开的双精度值，以便一个 UDT 进行比较的另一个 TRANSACT-SQL 代码中，字符串字节进行比较字符串字节和双字节进行比较为双精度值字节数。  
+ 下面的示例演示<xref:Microsoft.SqlServer.Server.IBinarySerialize.Write%2A> <xref:System.IO.BinaryWriter>如何实现 udt 的方法, 该方法使用来序列化用户定义的二进制格式的 UDT。 Null 字符填充的目的是确保字符串值与 double 值完全分离, 因此, 在 Transact-sql 代码中将一个 UDT 与另一个 UDT 进行比较, 将字符串字节与字符串字节进行比较, 将双字节与双字节进行比较字节.  
   
  [!code-csharp[DataWorks IBinarySerialize Samples#2](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks IBinarySerialize Samples/CS/source.cs#2)]
  [!code-vb[DataWorks IBinarySerialize Samples#2](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks IBinarySerialize Samples/VB/source.vb#2)]  

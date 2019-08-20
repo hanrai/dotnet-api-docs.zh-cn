@@ -1,5 +1,5 @@
 <Type Name="XmlSchemaElement" FullName="System.Xml.Schema.XmlSchemaElement">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="433caeb20dca312a3704524aae02f908f1f4af7f" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58740762" /></Metadata><TypeSignature Language="C#" Value="public class XmlSchemaElement : System.Xml.Schema.XmlSchemaParticle" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0f2014271442e08b19369fac0c3f49a3d3bbde88" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69415129" /></Metadata><TypeSignature Language="C#" Value="public class XmlSchemaElement : System.Xml.Schema.XmlSchemaParticle" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit XmlSchemaElement extends System.Xml.Schema.XmlSchemaParticle" />
   <TypeSignature Language="DocId" Value="T:System.Xml.Schema.XmlSchemaElement" />
   <TypeSignature Language="VB.NET" Value="Public Class XmlSchemaElement&#xA;Inherits XmlSchemaParticle" />
@@ -34,9 +34,9 @@
 ## Remarks  
   
 > [!IMPORTANT]
-> - 不要使用来自未知或不受信任的源或位置的架构。 执行此操作将影响你的代码的安全性。
-> - XML 架构 （包括内联架构） 是本质上是容易受到拒绝服务攻击;不接受不受信任的方案中。
-> - 架构验证错误消息和异常可能会公开的内容模型的架构文件的 URI 路径的敏感信息。 请注意不公开此信息向不受信任调用方。
+> - 不要使用来自未知或不受信任的源或位置的架构。 这样做会破坏代码的安全性。
+> - XML 架构 (包括内联架构) 本质上容易受到拒绝服务攻击;不要在不受信任的情况下接受它们。
+> - 架构验证错误消息和异常可能会向架构文件公开有关内容模型或 URI 路径的敏感信息。 请注意不要向不受信任的调用方公开此信息。
   
    
   
@@ -134,18 +134,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性可以包含以下值：  
+ 此属性可以包含以下值:  
   
-|Enum|描述|  
+|Enum|说明|  
 |----------|-----------------|  
-|`None`|使用定义的派生限制`BlockDefault`架构，如果它存在的属性。|  
-|`Empty`|有此元素的替换不受限制。|  
-|`Substitution`|此元素不能被替换为通过替换派生类型。|  
-|`Extension`|此元素不能被替换为通过扩展派生类型。|  
-|`Restriction`|此元素不能被替换为通过限制派生类型。|  
-|`All`|`#all`。 此元素不能被替换为任何类型而不考虑派生方法。|  
+|`None`|使用架构的`BlockDefault`属性定义的派生限制 (如果存在)。|  
+|`Empty`|对此元素的替换没有限制。|  
+|`Substitution`|此元素不能替换为通过替换派生的类型。|  
+|`Extension`|此元素不能替换为通过扩展派生的类型。|  
+|`Restriction`|此元素不能由限制派生的类型替换。|  
+|`All`|`#all`。 无论使用何种派生方法, 都无法将此元素替换为任何类型。|  
   
- 此属性不会阻止派生，但可防止派生替换实例中的类型。 不支持 list 和 union 值`block`属性。  
+ 此属性不会阻止派生, 但会阻止派生替换实例中的类型。 `block`属性不支持 List 和 union 值。  
   
  ]]></format>
         </remarks>
@@ -194,17 +194,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 该值指示在实例文档中使用 `xsi:type` 时如何强制类型。 例如，如果限制了该值，则可以使用的特定定义的类型，不是类型派生通过限制从特定的已定义类型。  
+ 该值指示在实例文档中使用 `xsi:type` 时如何强制类型。 例如, 如果值受到限制, 则只能使用特定的已定义类型, 而不能使用特定定义类型的限制派生的类型。  
   
- 此属性可以包含下表中显示的值。 默认值为 `None`。 此属性上不允许列表和联合派生方法。  
+ 此属性可包含下表中显示的值。 默认值为 `None`。 此属性不允许使用 List 和 union 派生方法。  
   
-|Enum|描述|  
+|Enum|说明|  
 |----------|-----------------|  
-|`Empty`|有此元素的替换不受限制。|  
-|`Substitution`|此元素不能被替换为通过替换派生类型。|  
-|`Extension`|此元素不能被替换为通过扩展派生类型。|  
-|`Restriction`|此元素不能被替换为通过限制派生类型。|  
-|`All`|`#all`。 此元素不能被替换为任何类型而不考虑派生方法。|  
+|`Empty`|对此元素的替换没有限制。|  
+|`Substitution`|此元素不能替换为通过替换派生的类型。|  
+|`Extension`|此元素不能替换为通过扩展派生的类型。|  
+|`Restriction`|此元素不能由限制派生的类型替换。|  
+|`All`|`#all`。 无论使用何种派生方法, 都无法将此元素替换为任何类型。|  
   
  ]]></format>
         </remarks>
@@ -256,7 +256,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回在元素上的约束的集合。 可以是任意`XmlSchemaKey`， `XmlSchemaKeyref`，或`XmlSchemaUnique`。  
+ 返回元素上的约束的集合。 可以是、 `XmlSchemaKeyref`或`XmlSchemaKey` `XmlSchemaUnique`中的任何一个。  
   
  ]]></format>
         </remarks>
@@ -359,7 +359,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性是架构验证后信息集属性。  
+ 此属性是一个后架构验证信息集属性。  
   
  ]]></format>
         </remarks>
@@ -411,12 +411,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 该对象可以是<xref:System.Xml.Schema.XmlSchemaDatatype>如果元素具有内置的 XML 架构类型或<xref:System.Xml.Schema.XmlSchemaSimpleType>如果元素具有的用户定义的类型。  
+ 如果元素具有内置<xref:System.Xml.Schema.XmlSchemaDatatype>的 XML 架构类型, 或者<xref:System.Xml.Schema.XmlSchemaSimpleType>如果元素具有用户定义的类型, 则对象可以为。  
   
- 此属性是架构验证后信息集属性。  
+ 此属性是一个后架构验证信息集属性。  
   
 > [!IMPORTANT]
->  <xref:System.Xml.Schema.XmlSchemaElement.ElementType%2A>属性在.NET Framework 2.0 版中已过时，已被替换为<xref:System.Xml.Schema.XmlSchemaElement.ElementSchemaType%2A>属性。  
+>  此属性在 .NET Framework 的2.0 版本中已过时, 并且已被<xref:System.Xml.Schema.XmlSchemaElement.ElementSchemaType%2A>属性替换。 <xref:System.Xml.Schema.XmlSchemaElement.ElementType%2A>  
   
  ]]></format>
         </remarks>
@@ -473,15 +473,15 @@
 ## Remarks  
  此属性可以包含下表中显示的值。  
   
-|Enum|描述|  
+|Enum|说明|  
 |----------|-----------------|  
-|`None`|使用定义的派生限制`FinalDefault`架构，如果它存在的属性。|  
-|`Empty`|有此元素的派生没有限制。|  
+|`None`|使用架构的`FinalDefault`属性定义的派生限制 (如果存在)。|  
+|`Empty`|此元素的派生没有限制。|  
 |`Extension`|此元素不能通过扩展派生。|  
-|`Restriction`|此元素不能由限制派生。|  
-|`All`|`#all`。 此元素不能通过任何派生方法派生。|  
+|`Restriction`|此元素不能通过限制派生。|  
+|`All`|`#all`。 此元素不能由任何派生方法派生。|  
   
- 另请参阅 <xref:System.Xml.Schema.XmlSchemaElement>。 `Substitution``List`，和`Union`派生方法不允许用于此属性。  
+ 另请参阅 <xref:System.Xml.Schema.XmlSchemaElement>。 `Substitution`此`List`属性不`Union`允许使用、和派生方法。  
   
  ]]></format>
         </remarks>
@@ -530,16 +530,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此值指示如何的类型是受限类型扩展通过限制时。 此属性可以包含以下值。  
+ 此值指示在通过限制扩展类型时, 如何限制类型。 此属性可以包含以下值。  
   
-|Enum|描述|  
+|Enum|说明|  
 |----------|-----------------|  
-|`Empty`|有此元素的派生没有限制。|  
+|`Empty`|此元素的派生没有限制。|  
 |`Extension`|此元素不能通过扩展派生。|  
-|`Restriction`|此元素不能由限制派生。|  
-|`All`|`#all`。 此元素不能通过任何派生方法派生。|  
+|`Restriction`|此元素不能通过限制派生。|  
+|`All`|`#all`。 此元素不能由任何派生方法派生。|  
   
- 替换、 列表和联合派生方法不允许用于此属性。  
+ 此属性不允许使用置换、List 和 Union 派生方法。  
   
  ]]></format>
         </remarks>
@@ -649,14 +649,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认值为的值`elementFormDefault`属性`schema`元素包含的元素。 默认值为 `Unqualified`。  
+ 默认值是包含元素的`elementFormDefault` `schema`元素的属性值。 默认值为 `Unqualified`。  
   
-|Enum|描述|  
+|Enum|说明|  
 |----------|-----------------|  
-|`Qualified`|必须用命名空间前缀限定元素。|  
-|`Unqualified`|元素不需要用命名空间前缀限定。|  
+|`Qualified`|元素必须用命名空间前缀限定。|  
+|`Unqualified`|不需要用命名空间前缀限定元素。|  
   
- 无法设置值，如果包含元素是`schema`元素。  
+ 如果包含元素是`schema`元素, 则不能设置值。  
   
  ]]></format>
         </remarks>
@@ -808,7 +808,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- World Wide Web 联合会 (W3C) XML 命名空间规范中定义，该名称必须是 NCName （无冒号名称）。 `Name` 和`RefName`特性是互相排斥。  
+ 名称必须是万维网联合会 (W3C) XML 命名空间规范中定义的 NCName (无冒号名称)。 `Name`和`RefName`特性是互相排斥的。  
   
  ]]></format>
         </remarks>
@@ -857,7 +857,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xml.Schema.XmlSchemaElement.QualifiedName%2A> 是的名称，`ref`属性引用。 限定的名称包含的元素的 NCName。 例如，元素名称 ="NCName"和前缀用来描述`targetNamespace`的架构。 此属性包含的编译后值`QualifiedName`属性。  
+ <xref:System.Xml.Schema.XmlSchemaElement.QualifiedName%2A>`ref`属性引用的名称。 限定名由元素的 NCName 组成。 例如, 元素名称 = "NCName", 以及用于描述`targetNamespace`该架构的的前缀。 此属性保存`QualifiedName`属性的编译后值。  
   
  ]]></format>
         </remarks>
@@ -906,9 +906,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `RefName`必须是 QName。 `RefName`可以包含命名空间前缀。 如果`RefName`属性是存在，所有`complexType`， `simpleType`， `key`， `keyref`， `unique`， `nillable`， `default`， `fixed`， `form`， `block`，和`type`必须是不存在。 如果`RefName`存在，则`minOccurs`， `maxOccurs`，和`id`允许。 若要声明使用现有元素定义的元素，请使用`RefName`属性指定现有元素定义。  
+ `RefName`必须是 QName。 `RefName`可以包含命名空间前缀。 如果`RefName`特性存在, 则所有`complexType` `simpleType` `key` 、`keyref` 、、`unique`、、、、、、和。 `nillable` `default` `fixed` `form` `block` `type`必须不存在。 如果`RefName`存在`minOccurs` `id` , 则允许、和。 `maxOccurs` 若要使用现有元素定义声明元素, 请使用`RefName`属性指定现有的元素定义。  
   
- 无法设置值，如果包含元素是`schema`元素。  
+ 如果包含元素是`schema`元素, 则不能设置值。  
   
  ]]></format>
         </remarks>
@@ -963,7 +963,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要使用的现有声明一个元素`simpleType`或`complexType`定义，但使用`SchemaType`属性指定现有的类型。 如果`RefName`属性，则`complexType`， `simpleType`， `key`， `keyref`，并且`unique`元素和`nillable`， `default`， `fixed`， `form`， `block`，和`SchemaType`属性不能同时存在。  
+ 若要使用现有`simpleType`或`complexType`定义声明元素, 请使用`SchemaType`属性指定现有类型。 如果`RefName`特性`keyref`存在`complexType` `nillable` ,`form`则为、、 `unique` 、和`default`元素, 以及、 、`fixed`、 、`block`和。 `key` `simpleType` `SchemaType`特性不能存在。  
   
  ]]></format>
         </remarks>
@@ -1056,7 +1056,7 @@
 ## Remarks  
  该元素必须具有相同的类型或从指定元素类型派生的类型。 该值必须是 QName。  
   
- 无法设置值，如果包含元素是`schema`元素。  
+ 如果包含元素是`schema`元素, 则不能设置值。  
   
  ]]></format>
         </remarks>
