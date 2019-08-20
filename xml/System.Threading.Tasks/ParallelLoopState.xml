@@ -1,5 +1,5 @@
 <Type Name="ParallelLoopState" FullName="System.Threading.Tasks.ParallelLoopState">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9f0237c0ab6a5df247c24cc0cab4d856a2a5ef27" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58690530" /></Metadata><TypeSignature Language="C#" Value="public class ParallelLoopState" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ff2f2535885d0110dfb688ef430d745c05b838fe" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69099138" /></Metadata><TypeSignature Language="C#" Value="public class ParallelLoopState" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ParallelLoopState extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Tasks.ParallelLoopState" />
   <TypeSignature Language="VB.NET" Value="Public Class ParallelLoopState" />
@@ -35,35 +35,35 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 请注意，不能实例化此类的实例。 自动生成由编译器作为自变量对的调用中<xref:System.Threading.Tasks.Parallel.For%2A?displayProperty=nameWithType>或<xref:System.Threading.Tasks.Parallel.ForEach%2A?displayProperty=nameWithType>方法。 说明如示例所示。  
+ 请注意, 不能实例化此类的实例。 它在<xref:System.Threading.Tasks.Parallel.For%2A?displayProperty=nameWithType>或<xref:System.Threading.Tasks.Parallel.ForEach%2A?displayProperty=nameWithType>方法调用中由编译器自动生成为参数。 说明如示例所示。  
   
- 构造，例如`for`并`foreach`（在 C# 中) 和`For`和`For Each`（在 Visual Basic 中) 执行按顺序从最低到最高或从一组中的第一个对象的最后一个。 与此相反，<xref:System.Threading.Tasks.Parallel.For%2A?displayProperty=nameWithType>和<xref:System.Threading.Tasks.Parallel.ForEach%2A?displayProperty=nameWithType>方法不这样做。 单个迭代的循环并行运行，因为它们可以开始和结束按任何顺序。 <xref:System.Threading.Tasks.ParallelLoopState>类允许在单个迭代的并行循环与另一个进行交互。 <xref:System.Threading.Tasks.ParallelLoopState>类可以为：  
+ 构造, 如`for`和`foreach` (在C#中) `For`和`For Each`和 (在 Visual Basic 中) 按顺序从最小索引到最高的索引执行, 或从集合中的第一个对象按顺序执行。 相反, <xref:System.Threading.Tasks.Parallel.For%2A?displayProperty=nameWithType>和<xref:System.Threading.Tasks.Parallel.ForEach%2A?displayProperty=nameWithType>方法不会。 由于循环的单个迭代是并行运行的, 因此它们可以按任意顺序开始和结束。 <xref:System.Threading.Tasks.ParallelLoopState>类允许并行循环的各个迭代彼此交互。 通过<xref:System.Threading.Tasks.ParallelLoopState>类, 可以执行以下操作:  
   
--   退出当前迭代并防止任何其他迭代通过调用启动<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法。 这不会影响已经开始计划执行的迭代。  
+-   退出当前迭代, 并通过调用<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法防止任何其他迭代开始。 这不会影响已开始执行的迭代。  
   
--   阻止与索引大于当前索引的任何迭代通过调用执行<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法。 这不会影响已经开始计划执行的迭代。  
+-   通过调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法, 阻止索引大于当前索引的任何迭代执行。 这不会影响已开始执行的迭代。  
   
--   确定是否发生了异常的任何循环迭代中检索的值来<xref:System.Threading.Tasks.ParallelLoopState.IsExceptional%2A>属性。  
+-   通过检索<xref:System.Threading.Tasks.ParallelLoopState.IsExceptional%2A>属性的值来确定是否已在任何循环迭代中发生了异常。  
   
--   确定是否已调用循环的任何迭代<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法检索的值来<xref:System.Threading.Tasks.ParallelLoopState.IsStopped%2A>属性。 您可以使用此属性返回从之前对的调用启动循环的迭代<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法但仍在执行。  
+-   通过检索<xref:System.Threading.Tasks.ParallelLoopState.IsStopped%2A>属性的值来确定循环的任何<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>迭代是否已调用方法。 您可以使用此属性从在调用<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法之前启动但仍在执行的循环迭代中返回。  
   
--   确定是否已调用循环的任何迭代<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>或<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法或检索的值来引发了异常<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>属性。  
+-   通过<xref:System.Threading.Tasks.ParallelLoopState.Break%2A> <xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>检索属性的值,确定循环的任何迭代是否已调用或方法或引发了异常。<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>  
   
--   从其索引大于的迭代中中断调用通过检索的值的索引的长时间运行迭代中退出<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性。  
+-   退出长时间运行的迭代, 该迭代的索引大于通过检索<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性的值而调用 Break 的迭代的索引。  
   
    
   
 ## Examples  
- 下面的示例以并行方式执行最多 100 个循环迭代。 从 1 到 1000 毫秒的随机间隔暂停每次迭代。 随机生成的值确定哪次循环迭代上<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>调用方法。 如示例所示，前者的索引大于任何迭代中的输出<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性值开始后调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法。  
+ 下面的示例并行执行最多100迭代的循环。 每个迭代都将暂停1到1000毫秒的随机间隔。 随机生成的值确定调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法的循环迭代。 如示例的输出所示, 在调用<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A> <xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法后, 索引大于属性值的任何迭代都不会开始。  
   
  [!code-csharp[System.Threading.Tasks.ParallelLoopState#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.parallelloopstate/cs/break1.cs#2)]
  [!code-vb[System.Threading.Tasks.ParallelLoopState#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.parallelloopstate/vb/break1.vb#2)]  
   
- 因为迭代循环的执行时仍可能<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法调用时，每次迭代都会调用<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>属性来检查是否已调用另一个迭代<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法。 如果属性值为`true`，在迭代检查的值<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性以及它是否大于当前迭代索引值，将立即返回。  
+ 由于调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法时循环的迭代仍可能会执行, 因此每次迭代都会<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>调用属性来检查<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>其他迭代是否已调用方法。 如果属性值为`true`, 则迭代会检查<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性的值, 如果该值大于当前迭代的索引值, 则会立即返回。  
   
  ]]></format>
     </remarks>
-    <threadsafe>一个<see cref="T:System.Threading.Tasks.ParallelLoopState" />实例应该只在向其提供实例的循环主体中使用。  不安全地使用提供<see cref="T:System.Threading.Tasks.ParallelLoopState" />实例相关联的循环后结束，也不是显式将其提交给其他线程安全的有随时访问这些线程。  其他<see cref="T:System.Threading.Tasks.ParallelLoopState" />实例将提供给在循环中涉及的每个线程。</threadsafe>
+    <threadsafe><see cref="T:System.Threading.Tasks.ParallelLoopState" />实例仅在为其提供实例的循环主体中使用。  在关联的循环结束后使用提供<see cref="T:System.Threading.Tasks.ParallelLoopState" />的实例是不安全的, 也不安全地将其显式传递给其他线程, 并使这些线程随时访问。  将为<see cref="T:System.Threading.Tasks.ParallelLoopState" />循环中涉及的每个线程提供不同的实例。</threadsafe>
     <related type="Article" href="~/docs/standard/parallel-programming/data-parallelism-task-parallel-library.md">数据并行（任务并行库）</related>
   </Docs>
   <Members>
@@ -100,27 +100,27 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Tasks.ParallelLoopState.Break%2A> 指示应运行当前迭代后的没有迭代。 它有效地取消循环的任何其他迭代。 但是，它不会停止已经开始计划执行的任何迭代。 例如，如果<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>从 100 循环访问从 0 到 1,000 个所有迭代小于 100 应仍继续运行，但为 1000，尚未启动不是从 101 到迭代执行并行循环迭代调用。  
+ <xref:System.Threading.Tasks.ParallelLoopState.Break%2A>指示应运行当前迭代之后的任何迭代。 它可以有效地取消循环的任何其他迭代。 但是, 它不会停止已经开始执行的任何迭代。 例如, 如果<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>是从从0到1000的并行循环的第100迭代调用的, 则所有小于100的迭代仍应运行, 但不会执行从101到1000的迭代。  
   
- 对于可能已执行的长时间运行迭代<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>设置<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性设置为当前迭代的索引，如果当前索引的当前值少于<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>。 若要停止其索引大于从竞争执行的最低中断迭代的迭代，应执行以下操作：  
+ 对于可能已在执行的长时间运行的迭代<xref:System.Threading.Tasks.ParallelLoopState.Break%2A> , 如果<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>当前索引小于的当前值<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>, 则将属性设置为当前迭代的索引。 若要停止其索引大于从争用执行的最低中断迭代的迭代, 应执行以下操作:  
   
-1.  检查是否<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>属性是`true`。  
+1.  检查<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>属性是否为`true`。  
   
-2.  如果其索引大于退出迭代<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性值。  
+2.  如果其索引大于<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性值, 则从迭代退出。  
   
  说明如示例所示。  
   
- <xref:System.Threading.Tasks.ParallelLoopState.Break%2A> 通常使用在其中进行排序是数据源中存在的基于搜索算法。  
+ <xref:System.Threading.Tasks.ParallelLoopState.Break%2A>通常在基于搜索的算法中采用, 其中排序在数据源中存在。  
   
    
   
 ## Examples  
- 下面的示例以并行方式执行最多 100 个循环迭代。 从 1 到 1000 毫秒的随机间隔暂停每次迭代。 随机生成的值确定哪次循环迭代上<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>调用方法。 如示例所示，前者的索引大于任何迭代中的输出<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性值开始后调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法。  
+ 下面的示例并行执行最多100迭代的循环。 每个迭代都将暂停1到1000毫秒的随机间隔。 随机生成的值确定调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法的循环迭代。 如示例的输出所示, 在调用<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A> <xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法后, 索引大于属性值的任何迭代都不会开始。  
   
  [!code-csharp[System.Threading.Tasks.ParallelLoopState#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.parallelloopstate/cs/break1.cs#2)]
  [!code-vb[System.Threading.Tasks.ParallelLoopState#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.parallelloopstate/vb/break1.vb#2)]  
   
- 因为迭代循环的执行时仍可能<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法调用时，每次迭代都会调用<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>属性来检查是否已调用另一个迭代<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法。 如果属性值为`true`，在迭代检查的值<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性以及它是否大于当前迭代索引值，将立即返回。  
+ 由于调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法时循环的迭代仍可能会执行, 因此每次迭代都会<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>调用属性来检查<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>其他迭代是否已调用方法。 如果属性值为`true`, 则迭代会检查<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性的值, 如果该值大于当前迭代的索引值, 则会立即返回。  
   
  ]]></format>
         </remarks>
@@ -196,12 +196,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对于长时间运行循环的迭代，可以检索的值<xref:System.Threading.Tasks.ParallelLoopState.IsStopped%2A>属性来确定是否循环的任何迭代的开始执行之前调用<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>仍在执行方法。 然后可以使用的值<xref:System.Threading.Tasks.ParallelLoopState.IsStopped%2A>属性，以确定它们应立即返回还是正常执行。  
+ 对于循环的长时间运行迭代, 您可以检索<xref:System.Threading.Tasks.ParallelLoopState.IsStopped%2A>属性的值, 以确定在调用<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法之前开始执行的循环的任何迭代是否仍在执行。 然后, 可以使用<xref:System.Threading.Tasks.ParallelLoopState.IsStopped%2A>属性的值来确定是否应立即返回或正常执行。  
   
    
   
 ## Examples  
- 下面的示例以并行方式执行最多 10,000 个循环迭代。 从 1 到 1000 毫秒的随机间隔暂停每次迭代。 随机生成的值确定哪次循环迭代上<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>调用方法。 因为迭代循环的执行时仍可能<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>调用方法时，lambda 表达式调用<xref:System.Threading.Tasks.ParallelLoopState.IsStopped%2A>方法来检查是否已调用另一个迭代<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法。 如果它返回`true`，迭代将立即返回。  
+ 下面的示例并行执行最多10000迭代的循环。 每个迭代都将暂停1到1000毫秒的随机间隔。 随机生成的值确定调用<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法的循环迭代。 由于调用<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法时循环的迭代仍可能会执行, 因此 lambda 表达式会<xref:System.Threading.Tasks.ParallelLoopState.IsStopped%2A>调用方法来检查<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>其他迭代是否已调用方法。 如果它返回`true`, 则迭代立即返回。  
   
  [!code-csharp[System.Threading.Tasks.ParallelLoopState#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.parallelloopstate/cs/stop1.cs#1)]
  [!code-vb[System.Threading.Tasks.ParallelLoopState#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.parallelloopstate/vb/stop1.vb#1)]  
@@ -244,25 +244,25 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可能的并行循环来调用多个迭代<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法。 如果是这样，此值是调用一次迭代的最小索引<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>。 如果任何迭代循环不调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>，此属性返回`null`。 请注意属性值不受对调用<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法。  
+ 并行循环的多个迭代可以调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法。 如果是这样, 则此值是调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>的迭代的最小索引。 如果没有调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>循环的迭代, 此属性将返回`null`。 请注意, 对<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法的调用不会影响属性值。  
   
- 在中调用的迭代之后的所有迭代的长时间运行迭代<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法不需要运行，<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性用来终止迭代开始执行之前调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法。 若要停止其索引大于从竞争执行的最低中断迭代的迭代，应执行以下操作：  
+ 在长时间运行的迭代中, 如果调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法的迭代之后的所有迭代都不需要运行, 则<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>使用属性来终止在调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法之前开始执行的迭代。 若要停止其索引大于从争用执行的最低中断迭代的迭代, 应执行以下操作:  
   
-1.  检查是否<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>属性是`true`。  
+1.  检查<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>属性是否为`true`。  
   
-2.  如果其索引大于退出迭代<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性值。  
+2.  如果其索引大于<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性值, 则从迭代退出。  
   
  说明如示例所示。  
   
    
   
 ## Examples  
- 下面的示例以并行方式执行最多 100 个循环迭代。 从 1 到 1000 毫秒的随机间隔暂停每次迭代。 随机生成的值确定哪次循环迭代上<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>调用方法。 这可以防止的迭代其索引大于<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性值从开始到调用后<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法，但它不会影响已经开始计划执行的任何迭代。 若要防止这些无法完成，每次迭代都会调用<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>方法来检查是否已调用另一个迭代<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法。 因此，在迭代检查的值，如果<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性以及它是否大于当前迭代索引值，将立即返回。  
+ 下面的示例并行执行最多100迭代的循环。 每个迭代都将暂停1到1000毫秒的随机间隔。 随机生成的值确定调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法的循环迭代。 这会阻止其索引大于<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性值的迭代在调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法后开始, 但它不会影响已开始执行的任何迭代。 若要防止这些工作完成, 每次迭代<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>都会调用方法来检查其他迭代是否已<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>调用方法。 如果是这样, 则迭代检查<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性的值, 如果该值大于当前迭代的索引值, 则立即返回。  
   
  [!code-csharp[System.Threading.Tasks.ParallelLoopState#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.parallelloopstate/cs/break1.cs#2)]
  [!code-vb[System.Threading.Tasks.ParallelLoopState#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.parallelloopstate/vb/break1.vb#2)]  
   
- 注意，因为<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>值的值超出范围并行循环之外，必须将其分配给一个变量，如果您想要保留其值会显示该循环之外。  
+ 请注意, 由于<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>值超出并行循环的范围, 因此, 如果要保留其值, 则必须将其分配给在循环外部可见的变量。  
   
  ]]></format>
         </remarks>
@@ -304,22 +304,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>属性设置为`true`在任一以下条件：  
+ 在<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>下列任一情况下`true` , 属性将设置为:  
   
--   迭代的循环调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>或<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>。  
+-   循环的迭代调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>或。 <xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>  
   
--   循环的迭代将引发异常。  
+-   循环迭代引发异常。  
   
--   循环将被取消。  
+-   循环已取消。  
   
- 当此属性是`true`，则<xref:System.Threading.Tasks.Parallel>类将主动尝试禁止其他迭代循环的开始执行。 但是，可能无法阻止其他迭代启动的情况。  
+ 如果此属性为`true`, 则<xref:System.Threading.Tasks.Parallel>类将主动尝试禁止从开始执行循环的其他迭代。 但是, 在某些情况下, 它无法阻止启动其他迭代。  
   
- 它也可能长时间运行迭代已经开始执行这种情况。 在这种情况下，迭代可能显式检查<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>如果该属性返回的属性和终止执行`true`。  
+ 这也可能是长时间运行的迭代已开始执行。 在这种情况下, 如果属性返回<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A> `true`, 则迭代可能会显式检查属性并停止执行。  
   
    
   
 ## Examples  
- 下面的示例以并行方式执行最多 100 个循环迭代。 从 1 到 1000 毫秒的随机间隔暂停每次迭代。 随机生成的值确定哪次循环迭代上<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>调用方法。 这可以防止的迭代其索引大于<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性值从开始到调用后<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法，但它不会影响已经开始计划执行的任何迭代。 若要防止这些无法完成，每次迭代都会调用<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>方法来检查是否已调用另一个迭代<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法。 因此，在迭代检查的值，如果<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性以及它是否大于当前迭代索引值，将立即返回。  
+ 下面的示例并行执行最多100迭代的循环。 每个迭代都将暂停1到1000毫秒的随机间隔。 随机生成的值确定调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法的循环迭代。 这会阻止其索引大于<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性值的迭代在调用<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>方法后开始, 但它不会影响已开始执行的任何迭代。 若要防止这些工作完成, 每次迭代<xref:System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration%2A>都会调用方法来检查其他迭代是否已<xref:System.Threading.Tasks.ParallelLoopState.Break%2A>调用方法。 如果是这样, 则迭代检查<xref:System.Threading.Tasks.ParallelLoopState.LowestBreakIteration%2A>属性的值, 如果该值大于当前迭代的索引值, 则立即返回。  
   
  [!code-csharp[System.Threading.Tasks.ParallelLoopState#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.parallelloopstate/cs/break1.cs#2)]
  [!code-vb[System.Threading.Tasks.ParallelLoopState#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.parallelloopstate/vb/break1.vb#2)]  
@@ -365,21 +365,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法指示不需要运行尚未启动循环的任何迭代。 它有效地取消循环的任何其他迭代。 但是，它不会停止已经开始计划执行的任何迭代。  
+ <xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>调用方法指示尚未开始的循环的任何迭代都无需运行。 它可以有效地取消循环的任何其他迭代。 但是, 它不会停止已经开始执行的任何迭代。  
   
- 调用<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法使<xref:System.Threading.Tasks.ParallelLoopState.IsStopped%2A>属性以返回`true`仍在执行循环的任何迭代。 这是特别有用，对于长时间运行迭代，可以检查<xref:System.Threading.Tasks.ParallelLoopState.IsStopped%2A>属性并退出尽早如果其值为`true`。  
+ 调用方法会导致此<xref:System.Threading.Tasks.ParallelLoopState.IsStopped%2A>属性返回`true`到仍在执行的循环的任何迭代。 <xref:System.Threading.Tasks.ParallelLoopState.Stop%2A> 这对于长时间运行的迭代特别有用, 它可以检查<xref:System.Threading.Tasks.ParallelLoopState.IsStopped%2A>属性并在其值为时`true`提前退出。  
   
- <xref:System.Threading.Tasks.ParallelLoopState.Stop%2A> 通常采用基于搜索的算法，其中一个结果后找到为没有其他迭代需要执行。  
+ <xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>通常在基于搜索的算法中使用, 在找到结果后, 不需要执行其他迭代。  
   
    
   
 ## Examples  
- 下面的示例以并行方式执行最多 10,000 个循环迭代。 从 1 到 1000 毫秒的随机间隔暂停每次迭代。 随机生成的值确定哪次循环迭代上<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>调用方法。 如示例输出所示，在调用后执行任何迭代<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法。  
+ 下面的示例并行执行最多10000迭代的循环。 每个迭代都将暂停1到1000毫秒的随机间隔。 随机生成的值确定调用<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法的循环迭代。 如示例的输出所示, 在调用<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法后不会执行任何迭代。  
   
  [!code-csharp[System.Threading.Tasks.ParallelLoopState#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.parallelloopstate/cs/stop1.cs#1)]
  [!code-vb[System.Threading.Tasks.ParallelLoopState#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.parallelloopstate/vb/stop1.vb#1)]  
   
- 因为迭代循环的执行时仍可能<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法调用时，每次迭代都会调用<xref:System.Threading.Tasks.ParallelLoopState.IsStopped%2A>方法来检查是否已调用另一个迭代<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法。 如果它返回`true`，迭代将立即返回。  
+ 由于调用<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>方法时循环的迭代仍可能会执行, 因此, 每次迭代都会<xref:System.Threading.Tasks.ParallelLoopState.IsStopped%2A>调用方法来检查<xref:System.Threading.Tasks.ParallelLoopState.Stop%2A>其他迭代是否已调用方法。 如果它返回`true`, 则迭代立即返回。  
   
  ]]></format>
         </remarks>

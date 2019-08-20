@@ -1,5 +1,5 @@
 <Type Name="IRemoteArgumentEnumeratorContract" FullName="System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4c986d03d5152e8d079f4c5c7ec6d3aa619f45f1" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63915729" /></Metadata><TypeSignature Language="C#" Value="public interface IRemoteArgumentEnumeratorContract : System.AddIn.Contract.IContract" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="760216bfa77d592e95a2a9b22e90c0a13fbf1099" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69342990" /></Metadata><TypeSignature Language="C#" Value="public interface IRemoteArgumentEnumeratorContract : System.AddIn.Contract.IContract" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IRemoteArgumentEnumeratorContract implements class System.AddIn.Contract.IContract" />
   <TypeSignature Language="DocId" Value="T:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract" />
   <TypeSignature Language="VB.NET" Value="Public Interface IRemoteArgumentEnumeratorContract&#xA;Implements IContract" />
@@ -23,11 +23,11 @@
 ## Remarks  
  枚举器可用于读取集合中的数据，但不能用于修改基础集合。  
   
- 最初，枚举数定位在集合中第一个元素的前面。 在此位置上，返回值的<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>是不确定的。 因此，您必须调用<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>将枚举数前移到集合之前调用的第一个元素<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>。  
+ 最初，枚举数定位在集合中第一个元素的前面。 在此位置, 的返回值是<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>不确定的。 因此, 在调用<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A> <xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>之前, 必须调用以将枚举数前移到集合的第一个元素。  
   
- 在调用 <xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A> 之前，<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A> 返回相同的对象。 <xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A> 设置返回值<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>到下一个元素。  
+ 在调用 <xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A> 之前，<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A> 返回相同的对象。 <xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>将的<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>返回值设置为下一个元素。  
   
- 如果<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>越过集合，枚举器的末尾放置在集合中的最后一个元素的后面和<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>返回`false`。 当枚举数位于此位置上，对后续调用<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>还返回`false`。 如果最后一次调用到<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>返回`false`，返回值的<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>是不确定的。  
+ 如果<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>越过集合的末尾, 则枚举器将定位在集合中最后一个元素之后, 并<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>返回`false`。 当枚举器位于此位置时, 对<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>的后续调用也将返回。 `false` 如果最后一次调用<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>返回`false`, 则的返回值<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>是不确定的。  
   
  只要集合保持不变，枚举数就保持有效。 如果对集合进行更改（如添加、修改或删除元素），则枚举数将失效且不可恢复，而且其行为是不确定的。  
   
@@ -59,15 +59,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回值<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>任何以下情况下未定义：  
+ 在下列任一情况<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>下, 的返回值未定义:  
   
--   枚举数位于集合中的第一个元素之前创建枚举器后立即或<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.Reset%2A>调用。 <xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A> 必须调用以枚举器前进到集合之前调用的第一个元素<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>。  
+-   枚举器位于集合中第一个元素之前, 紧跟在创建或<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.Reset%2A>调用枚举器后。 <xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>在调用<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>之前, 必须调用以将枚举数前移到集合的第一个元素。  
   
--   上次调用<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>返回`false`，指示集合的末尾。  
+-   对<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A> 返回`false`的最后一个调用, 指示集合的末尾。  
   
--   枚举器无效，由于在集合中，如添加、 修改或删除元素所做的更改。  
+-   由于对集合所做的更改 (如添加、修改或删除元素), 枚举器无效。  
   
- 在调用 <xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A> 之前，<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A> 返回相同的对象。 <xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A> 设置返回值<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>到下一个元素。  
+ 在调用 <xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A> 之前，<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A> 返回相同的对象。 <xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>将的<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>返回值设置为下一个元素。  
   
  ]]></format>
         </remarks>
@@ -97,11 +97,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 创建一个枚举器或<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.Reset%2A>方法调用时，枚举数位于集合中的第一个元素之前。 首次调用<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>方法将枚举器移动到集合的第一个元素。  
+ 在创建枚举器之后或在调用<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.Reset%2A>方法之后, 枚举数将定位到集合的第一个元素之前。 第一次调用<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>方法时, 会将枚举数移到集合的第一个元素。  
   
- 如果<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>越过集合，枚举器的末尾放置在集合中的最后一个元素的后面和<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>返回`false`。 当枚举数位于此位置上，对后续调用<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>也会返回`false`直到<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.Reset%2A>调用。  
+ 如果<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>越过集合的末尾, 则枚举器将定位在集合中最后一个元素之后, 并<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>返回`false`。 当枚举器位于此位置时, 对<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>的后续调用也将返回`false` , 直到<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.Reset%2A>调用。  
   
- 只要集合保持不变，枚举数就保持有效。 如果进行了更改到集合中，例如添加、 修改或删除元素，该枚举数将失效且不可恢复，并且下次调用<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>或<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.Reset%2A>引发<xref:System.InvalidOperationException>。  
+ 只要集合保持不变，枚举数就保持有效。 如果对集合所做的更改 (如添加、修改或删除元素), 则枚举器将失效且不可恢复, 并且对<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>或<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.Reset%2A>的下<xref:System.InvalidOperationException>一个调用将引发。  
   
  ]]></format>
         </remarks>
@@ -131,9 +131,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用后<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.Reset%2A>，值<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>是不确定的。 调用<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>方法将枚举数移到集合的第一个元素。  
+ 调用<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.Reset%2A>后, 的<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.GetCurrent%2A>值是不确定的。 <xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>调用方法以将枚举数移到集合的第一个元素。  
   
- 只要集合保持不变，枚举数就保持有效。 如果进行了更改到集合中，例如添加、 修改或删除元素，该枚举数将失效且不可恢复，并且下次调用<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>或<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.Reset%2A>引发<xref:System.InvalidOperationException>。  
+ 只要集合保持不变，枚举数就保持有效。 如果对集合所做的更改 (如添加、修改或删除元素), 则枚举器将失效且不可恢复, 并且对<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.MoveNext%2A>或<xref:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract.Reset%2A>的下<xref:System.InvalidOperationException>一个调用将引发。  
   
  ]]></format>
         </remarks>

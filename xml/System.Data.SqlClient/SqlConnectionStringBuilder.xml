@@ -1,5 +1,5 @@
 <Type Name="SqlConnectionStringBuilder" FullName="System.Data.SqlClient.SqlConnectionStringBuilder">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="20268dfabf4b549491168fa6dff2882ab5d2420c" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57914683" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlConnectionStringBuilder : System.Data.Common.DbConnectionStringBuilder" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d1b1879d71d0f208cdffce0d057e1d296bd0d382" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69369172" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlConnectionStringBuilder : System.Data.Common.DbConnectionStringBuilder" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed SqlConnectionStringBuilder extends System.Data.Common.DbConnectionStringBuilder" />
   <TypeSignature Language="DocId" Value="T:System.Data.SqlClient.SqlConnectionStringBuilder" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SqlConnectionStringBuilder&#xA;Inherits DbConnectionStringBuilder" />
@@ -45,9 +45,9 @@
   
  <xref:System.Data.SqlClient.SqlConnectionStringBuilder> 对键/值对的有效性进行检查。 因此，您不能使用该类创建无效的连接字符串；尝试添加无效对将引发异常。 该类保持一个固定的同义词集合，可以将同义词转换为相应的已知键名。  
   
- 例如，使用**项**属性来检索一个值，可以指定包含所需的密钥的任何同义词的字符串。 例如，您可以指定"Network Address"、"addr"或任何其他可接受的同义词，连接字符串中为此键时使用任何成员都需要一个字符串，包含键名称，如**项**属性或<xref:System.Data.SqlClient.SqlConnectionStringBuilder.Remove%2A>方法。 有关可接受同义词的完整列表，请参见 <xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A> 属性。  
+ 例如, 使用**Item**属性检索值时, 可以指定一个字符串, 该字符串包含所需的键的任何同义词。 例如, 当你使用需要包含密钥名称的字符串的任何成员 (例如**Item**属性或<xref:System.Data.SqlClient.SqlConnectionStringBuilder.Remove%2A>方法) 时, 可以在连接字符串中为此键指定 "网络地址"、"地址" 或任何其他可接受的同义词。 有关可接受同义词的完整列表，请参见 <xref:System.Data.SqlClient.SqlConnection.ConnectionString%2A> 属性。  
   
- **项**属性处理尝试插入恶意项。 例如，下面的代码使用默认 Item 属性（在 C# 中为索引器）正确转义嵌套的键/值对：  
+ **Item**属性处理尝试插入恶意条目。 例如，下面的代码使用默认 Item 属性（在 C# 中为索引器）正确转义嵌套的键/值对：  
   
 ```vb  
 Dim builder As New System.Data.SqlClient.SqlConnectionStringBuilder  
@@ -77,7 +77,7 @@ Integrated Security=True
    
   
 ## Examples  
- 以下控制台应用程序生成的 SQL Server 数据库的连接字符串。 该代码使用 <xref:System.Data.SqlClient.SqlConnectionStringBuilder> 类创建连接字符串，然后将 <xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> 实例的 <xref:System.Data.SqlClient.SqlConnectionStringBuilder> 属性传递到连接类的构造函数。 该示例还分析了现有连接字符串，并演示了各种操作连接字符串的内容的方法。  
+ 下面的控制台应用程序将生成 SQL Server 数据库的连接字符串。 该代码使用 <xref:System.Data.SqlClient.SqlConnectionStringBuilder> 类创建连接字符串，然后将 <xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> 实例的 <xref:System.Data.SqlClient.SqlConnectionStringBuilder> 属性传递到连接类的构造函数。 该示例还分析了现有连接字符串，并演示了各种操作连接字符串的内容的方法。  
   
 > [!NOTE]
 >  该示例包括一个密码以演示 <xref:System.Data.SqlClient.SqlConnectionStringBuilder> 如何使用连接字符串。 在您的应用程序中，建议使用 Windows 身份验证。 如果必须使用密码，请不要在您的应用程序中包括硬编码的密码。  
@@ -170,7 +170,7 @@ Integrated Security=True
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlConnectionStringBuilder> 类提供键/值对的固定内部集合。 即使您只提供构造函数中可能的连接字符串值的一个小子集，该对象也会始终提供每个键/值对的默认值。 当`ConnectionString`检索对象的属性，该字符串包含仅在其中值不是默认值的项的键/值对。  
+ <xref:System.Data.SqlClient.SqlConnectionStringBuilder> 类提供键/值对的固定内部集合。 即使您只提供构造函数中可能的连接字符串值的一个小子集，该对象也会始终提供每个键/值对的默认值。 检索对象`ConnectionString`的属性时, 字符串仅包含值不是项的默认值的键/值对。  
   
    
   
@@ -413,14 +413,14 @@ Modified: Data Source=(local);Initial Catalog=AdventureWorks;Integrated Security
 ## Remarks  
  此属性与连接字符串内的“AttachDBFilename”、“extended properties”和“initial file name”键相对应。  
   
- `AttachDBFilename` 仅支持的扩展名为.mdf 的主数据文件。  
+ `AttachDBFilename`只有具有 .mdf 扩展名的主数据文件才支持。  
   
  如果日志文件和数据文件存在于同一个目录中，并且在附加主数据文件时使用“database”关键字，则将生成错误。 在这种情况下，请移除日志文件。 附加数据库后，将基于物理路径自动生成一个新日志文件。  
   
    
   
 ## Examples  
- 下面的示例创建一个新<xref:System.Data.SqlClient.SqlConnectionStringBuilder>实例，并设置`AttachDBFilename`属性，以便指定附加的数据文件的名称。  
+ 下面的示例创建一个新<xref:System.Data.SqlClient.SqlConnectionStringBuilder>的实例, 并`AttachDBFilename`设置属性以指定附加数据文件的名称。  
   
  [!code-csharp[DataWorks SqlConnectionStringBuilder.AttachDBFilename#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlConnectionStringBuilder.AttachDBFilename/CS/source.cs#1)]
  [!code-vb[DataWorks SqlConnectionStringBuilder.AttachDBFilename#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlConnectionStringBuilder.AttachDBFilename/VB/source.vb#1)]  
@@ -728,7 +728,7 @@ Modified: Data Source=(local);Initial Catalog=AdventureWorks;Integrated Security
 ## Remarks  
  此属性与连接字符串内的“Connect Timeout”、“connection timeout”和“timeout”键相对应。  
   
- 打开连接到 Azure SQL 数据库时，设置连接超时为 30 秒。  
+ 打开到 Azure SQL 数据库的连接时, 将连接超时值设置为30秒。  
   
    
   
@@ -789,7 +789,7 @@ Modified: Data Source=(local);Initial Catalog=AdventureWorks;Integrated Security
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnectionStringBuilder>实例，设置的某些属性，然后再尝试确定是否存在各种键在该对象中通过调用**ContainsKey**方法。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnectionStringBuilder>实例, 设置其一些属性, 然后尝试通过调用**ContainsKey**方法来确定对象中是否存在不同的键。  
   
  [!code-csharp[DataWorks SqlConnectionStringBuilder.ContainsKey#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlConnectionStringBuilder.ContainsKey/CS/source.cs#1)]
  [!code-vb[DataWorks SqlConnectionStringBuilder.ContainsKey#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlConnectionStringBuilder.ContainsKey/VB/source.vb#1)]  
@@ -849,7 +849,7 @@ False
  此属性与连接字符串内的“Context Connection”键相对应。  
   
 > [!NOTE]
->  <xref:System.Data.SqlClient.SqlConnection.DataSource%2A>属性返回`null`如果的连接字符串为<xref:System.Data.SqlClient.SqlConnection>是"上下文连接 = true"。  
+>  如果<xref:System.Data.SqlClient.SqlConnection.DataSource%2A> `null`的连接<xref:System.Data.SqlClient.SqlConnection>字符串为 "context connection = true", 则属性返回。  
   
  ]]></format>
         </remarks>
@@ -957,7 +957,7 @@ False
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性与连接字符串内的“Data Source”、“server”、“address”、“addr”和“network address”键相对应。 无论其中这些值中提供了提供的连接字符串，连接字符串创建的`SqlConnectionStringBuilder`将使用已知的"Data Source"键。  
+ 此属性与连接字符串内的“Data Source”、“server”、“address”、“addr”和“network address”键相对应。 无论在提供的连接字符串中提供了哪些值, 由`SqlConnectionStringBuilder`创建的连接字符串将使用众所周知的 "数据源" 键。  
   
    
   
@@ -1646,7 +1646,7 @@ False
       <Docs>
         <summary>如果为 true，则应用程序可以维护多个活动结果集 (MARS)。 如果为 false，则应用程序必须先处理或取消某一批中的所有结果集，才可以在该连接上执行任何其他批次。  
   
-有关详细信息，请参阅[多个活动结果集 (MARS)](https://msdn.microsoft.com//library/cfa084cz.aspx)。</summary>
+有关详细信息，请参阅 [多个活动结果集 (MARS)](https://msdn.microsoft.com//library/cfa084cz.aspx)。</summary>
         <value>为 <see cref="P:System.Data.SqlClient.SqlConnectionStringBuilder.MultipleActiveResultSets" /> 属性的值，或者，如果未提供任何值，则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1657,7 +1657,7 @@ False
    
   
 ## Examples  
- 下面的示例显式禁用多个活动结果集功能。  
+ 下面的示例显式禁用多个活动的结果集功能。  
   
  [!code-csharp[DataWorks SqlConnectionStringBuilder.MARS#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlConnectionStringBuilder.MARS/CS/source.cs#1)]
  [!code-vb[DataWorks SqlConnectionStringBuilder.MARS#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlConnectionStringBuilder.MARS/VB/source.vb#1)]  
@@ -1861,7 +1861,7 @@ False
 ## Remarks  
  此属性与连接字符串内的“Password”和“pwd”键相对应。  
   
- 如果<xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password%2A>尚未设置和检索值，则返回值为<xref:System.String.Empty>。 若要重置连接字符串的密码，将 null 传递给项属性。  
+ 如果<xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password%2A>尚未设置, 则返回值为<xref:System.String.Empty>。 若要重置连接字符串的密码, 请将 null 传递给 Item 属性。  
   
    
   
@@ -1965,9 +1965,9 @@ False
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当启用连接池并出现超时错误或其他登录错误、 将引发异常和后续连接尝试将失败的下一步的五秒钟，"阻塞期"。 如果应用程序尝试在阻塞期内进行连接，则将再次引发第一个异常。 阻塞期结束后的后续失败将导致新的阻塞期的两次，只要前一阻塞期，最多一分钟。  
+ 当启用连接池并发生超时错误或其他登录错误时, 将引发异常, 后续5秒后, 后续连接尝试将失败, 即 "阻止时间"。 如果应用程序尝试在阻塞期内进行连接，则将再次引发第一个异常。 阻塞期结束后的后续失败将导致新的阻塞期, 该时间是上一个阻塞期的两倍, 最多可达一分钟。  
   
- 尝试连接到 Azure SQL 数据库可能因暂时性错误，它通常会在几秒内恢复。 但是，与连接池阻塞期行为，您可能不能以广泛段内访问您的数据库，即使数据库不可用。 这是需要快速呈现的应用尤其存在问题。 **PoolBlockingPeriod**使您能够选择最适合您的应用程序的阻塞期。 请参阅<xref:System.Data.SqlClient.PoolBlockingPeriod>可用设置的枚举。  
+ 尝试连接到 Azure SQL 数据库可能会失败, 并出现暂时性错误, 这些错误通常会在几秒钟内恢复。 但是, 如果使用连接池阻止时间段行为, 则即使数据库可用, 你也可能无法访问数据库。 对于需要快速呈现的应用程序, 这尤其有问题。 **System.data.sqlclient.sqlconnectionstringbuilder.poolblockingperiod**使你能够选择最适合你的应用的阻塞期。 有关可用设置, 请参阅枚举。<xref:System.Data.SqlClient.PoolBlockingPeriod>  
   
  ]]></format>
         </remarks>
@@ -2065,7 +2065,7 @@ False
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 因为**删除**方法返回一个值，指示它是否成功，它不需要尝试删除从键/值对之前查找键<xref:System.Data.SqlClient.SqlConnectionStringBuilder>实例。 由于 <xref:System.Data.SqlClient.SqlConnectionStringBuilder> 保持固定大小的键/值对集合，因此调用 <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Remove%2A> 方法只会将键/值对的值重置回其默认值。  
+ 由于**Remove**方法返回一个指示其成功的值, 因此在尝试从<xref:System.Data.SqlClient.SqlConnectionStringBuilder>实例中删除键/值对之前, 不需要查找键。 由于 <xref:System.Data.SqlClient.SqlConnectionStringBuilder> 保持固定大小的键/值对集合，因此调用 <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Remove%2A> 方法只会将键/值对的值重置回其默认值。  
   
  由于 <xref:System.Data.SqlClient.SqlConnectionStringBuilder> 所支持的键集合是固定的，因此该集合中的每一项都具有已知的默认值。 下表列出了这些键，以及首次初始化 <xref:System.Data.SqlClient.SqlConnectionStringBuilder> 时或调用 <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Remove%2A> 方法后每个键的值。  
   
@@ -2266,10 +2266,10 @@ Database = AdventureWorks
   
  下表列出了 <xref:System.Data.SqlClient.SqlConnectionStringBuilder.TransactionBinding%2A> 属性的可能值：  
   
-|值|描述|  
+|值|说明|  
 |-----------|-----------------|  
 |Implicit Unbind|默认值。 事务结束时，使连接与事务分离。 分离后，在自动模式下对连接执行其他请求。 在事务处于活动状态的情况下，执行请求时不会检查 <xref:System.Transactions.Transaction.Current%2A> 属性。 事务结束后，会在自动提交模式下执行其他请求。|  
-|Explicit Unbind|原因连接一直附加到事务直到关闭的连接，或者直到<xref:System.Data.SqlClient.SqlConnection.EnlistTransaction%2A>使用调用`null`(`Nothing`在 Visual Basic 中) 值。 如果 <xref:System.InvalidOperationException> 不是登记事务或者登记事务未处于活动状态，则将引发 <xref:System.Transactions.Transaction.Current%2A>。 此行为强制实施 <xref:System.Transactions.TransactionScope> 支持所需的严格范围限定规则。|  
+|Explicit Unbind|导致连接保持附加到事务, 直到连接关闭或<xref:System.Data.SqlClient.SqlConnection.EnlistTransaction%2A> `null`通过 (`Nothing`在 Visual Basic) 值中调用。 如果 <xref:System.InvalidOperationException> 不是登记事务或者登记事务未处于活动状态，则将引发 <xref:System.Transactions.Transaction.Current%2A>。 此行为强制实施 <xref:System.Transactions.TransactionScope> 支持所需的严格范围限定规则。|  
   
  ]]></format>
         </remarks>
@@ -2312,19 +2312,19 @@ Database = AdventureWorks
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`MultiSubnetFailover`键设置为`true`，`TransparentNetworkIPResolution`将被忽略。  
+ 如果该键设置为`true`, `TransparentNetworkIPResolution`则将被忽略。 `MultiSubnetFailover`  
   
- 如果`Failover Partner`项设置，`TransparentNetworkIPResolution`将被忽略。  
+ 如果设置`Failover Partner`了密钥, `TransparentNetworkIPResolution`则将忽略。  
   
- 此键的值必须是`true`， `false`， `yes`，或`no`。  
+ 此项的值`true`必须是`yes`、 `false`、或`no`。  
   
- 值为`yes`是处理相同的值作为`true`。  
+ 的值`yes`与的`true`值相同。  
   
- 值为`no`是处理相同的值作为`false`。  
+ 的值`no`与的`false`值相同。  
   
- 此注册表项默认`false`时：  
+ 此项的默认`false`值为:  
   
--   连接到 Azure SQL 数据库数据源的结尾：  
+-   连接到 Azure SQL 数据库, 其中的数据源结尾为:  
   
     -   .database.chinacloudapi.cn  
   
@@ -2334,9 +2334,9 @@ Database = AdventureWorks
   
     -   .database.windows.net  
   
--   `Authentication` Active Directory 密码或 Active Directory 集成  
+-   `Authentication`为 "Active Directory Password" 或 "Active Directory 集成"  
   
- 否则，它默认为`true`。  
+ 否则, 默认为`true`。  
   
  ]]></format>
         </remarks>
@@ -2386,9 +2386,9 @@ Database = AdventureWorks
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当 `TrustServerCertificate` 设置为 `true` 时，传输层将使用 SSL 来加密通道并跳过证书链以验证信任。 如果`TrustServerCertificate`设置为`true`并启用加密，将使用指定的服务器上的加密级别即使`Encrypt`设置为`false`。 否则连接将会失败。  
+ 当 `TrustServerCertificate` 设置为 `true` 时，传输层将使用 SSL 来加密通道并跳过证书链以验证信任。 如果`TrustServerCertificate`设置为`true`并且启用了加密, 则`Encrypt`将使用服务器上指定的加密级别, 即使将设置为`false`也是如此。 否则连接将会失败。  
   
- 有关详细信息，请参阅[加密层次结构](/sql/relational-databases/security/encryption/encryption-hierarchy)并[使用未经验证的加密](/sql/relational-databases/native-client/features/using-encryption-without-validation)。
+ 有关详细信息, 请参阅[加密层次结构](/sql/relational-databases/security/encryption/encryption-hierarchy)和[使用不带验证的加密](/sql/relational-databases/native-client/features/using-encryption-without-validation)。
   
  ]]></format>
         </remarks>
@@ -2438,12 +2438,12 @@ Database = AdventureWorks
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlConnectionStringBuilder.TryGetValue%2A> 方法允许开发人员安全地从 <xref:System.Data.SqlClient.SqlConnectionStringBuilder> 中检索值，而无需验证提供的键名是否为有效的键名。 因为**TryGetValue**不会引发异常时调用它，传入不存在的键，不需要检索其值之前查找键。  调用**TryGetValue**不存在的键会将值为 null (`Nothing`在 Visual Basic 中) 中`value`参数。  
+ <xref:System.Data.SqlClient.SqlConnectionStringBuilder.TryGetValue%2A> 方法允许开发人员安全地从 <xref:System.Data.SqlClient.SqlConnectionStringBuilder> 中检索值，而无需验证提供的键名是否为有效的键名。 由于**TryGetValue**在调用它时不会引发异常, 因此传入不存在的键时, 无需在检索其值之前查找密钥。  如果使用不存在的键调用**TryGetValue** , 则会将`Nothing`值 null (在`value` Visual Basic 中) 放入参数中。  
   
    
   
 ## Examples  
- 下面的示例演示的行为**TryGetValue**方法。  
+ 下面的示例演示**TryGetValue**方法的行为。  
   
  [!code-csharp[DataWorks SqlConnectionStringBuilder.TryGetValue#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlConnectionStringBuilder.TryGetValue/CS/source.cs#1)]
  [!code-vb[DataWorks SqlConnectionStringBuilder.TryGetValue#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlConnectionStringBuilder.TryGetValue/VB/source.vb#1)]  
@@ -2505,7 +2505,7 @@ Unable to retrieve value for null key.
         <summary>获取或设置一个字符串值，该值指示应用程序所需的类型系统。</summary>
         <value>下表列出了 <see cref="P:System.Data.SqlClient.SqlConnectionStringBuilder.TypeSystemVersion" /> 属性的可能值： 
  <list type="table"><listheader><term> 值 
- </term><description> 描述 
+ </term><description> 说明 
  </description></listheader><item><term> SQL Server 2005 
  </term><description> 使用 SQL Server 2005 类型系统。 未对当前版本的 ADO.NET 执行转换。  
   
@@ -2520,7 +2520,7 @@ Unable to retrieve value for null key.
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `TypeSystemVersion`属性可用于指定下级版本的 SQL Server 针对该版本编写的应用程序。 这样可避免较新版本的 SQL Server 中不兼容类型出现可能的问题，这些问题可能会导致应用程序运行中断。  
+ `TypeSystemVersion`属性可用于为针对该版本编写的应用程序指定 SQL Server 的下级版本。 这样可避免较新版本的 SQL Server 中不兼容类型出现可能的问题，这些问题可能会导致应用程序运行中断。  
   
  ]]></format>
         </remarks>
@@ -2628,7 +2628,7 @@ Unable to retrieve value for null key.
  此属性与连接字符串内的“User Instance”键相对应。  
   
 > [!NOTE]
->  仅使用 SQL Server Express Edition 提供了此功能。 用户实例的详细信息，请参阅[SQL Server Express 用户实例](~/docs/framework/data/adonet/sql/sql-server-express-user-instances.md)。
+>  此功能仅在 SQL Server Express 版本中可用。 有关用户实例的详细信息, 请参阅[SQL Server Express 用户实例](~/docs/framework/data/adonet/sql/sql-server-express-user-instances.md)。
   
  ]]></format>
         </remarks>

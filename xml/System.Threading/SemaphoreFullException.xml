@@ -1,5 +1,5 @@
 <Type Name="SemaphoreFullException" FullName="System.Threading.SemaphoreFullException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0acad46a86392f5e6216c3984272f2ac2ffc578c" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58740839" /></Metadata><TypeSignature Language="C#" Value="public class SemaphoreFullException : SystemException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a4ee137778fd3192d90daf4ea50a86a2e417380e" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69098798" /></Metadata><TypeSignature Language="C#" Value="public class SemaphoreFullException : SystemException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit SemaphoreFullException extends System.SystemException" />
   <TypeSignature Language="DocId" Value="T:System.Threading.SemaphoreFullException" />
   <TypeSignature Language="VB.NET" Value="Public Class SemaphoreFullException&#xA;Inherits SystemException" />
@@ -48,19 +48,19 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 上一个信号量计数将减少每次一个线程进入信号量，并递增时线程释放信号量。 当计数为零时，后续请求阻止，直到其他线程释放信号量。 如果所有线程都已都释放信号量，计数是最大值时指定创建信号量。 如果编程错误导致线程调用<xref:System.Threading.Semaphore.Release%2A?displayProperty=nameWithType>方法在此情况下，<xref:System.Threading.SemaphoreFullException>引发。  
+ 每次线程进入信号量时, 信号量的计数都将减少, 并在线程释放信号量时递增。 如果计数为零, 则后续请求会阻塞, 直到其他线程释放信号量。 当所有线程都已释放信号量后, 计数将达到创建信号量时指定的最大值。 如果编程错误导致线程在此时调用<xref:System.Threading.Semaphore.Release%2A?displayProperty=nameWithType>方法<xref:System.Threading.SemaphoreFullException> , 将引发。  
   
 > [!NOTE]
->  <xref:System.Threading.Semaphore>类不会强制线程标识在调用<xref:System.Threading.WaitHandle.WaitOne%2A?displayProperty=nameWithType>和<xref:System.Threading.Semaphore.Release%2A?displayProperty=nameWithType>方法。 不是必需的线程调用<xref:System.Threading.WaitHandle.WaitOne%2A>调用<xref:System.Threading.Semaphore.Release%2A>。  
+>  类不对<xref:System.Threading.WaitHandle.WaitOne%2A?displayProperty=nameWithType> 和<xref:System.Threading.Semaphore.Release%2A?displayProperty=nameWithType>方法的调用强制执行线程标识。 <xref:System.Threading.Semaphore> 调用的同一线程<xref:System.Threading.WaitHandle.WaitOne%2A>不需要调用。 <xref:System.Threading.Semaphore.Release%2A>  
   
- <xref:System.Threading.SemaphoreFullException> 并不一定表示发生了异常的代码的问题。 请参考以下方案：线程 A 和线程 B 输入的最大计数为两个信号量。 线程 B 中的编程错误后，即可调用<xref:System.Threading.Semaphore.Release%2A>两次，以便在信号量计数已满。 因此，当线程 A 最终调用<xref:System.Threading.Semaphore.Release%2A>、<xref:System.Threading.SemaphoreFullException>引发。  
+ <xref:System.Threading.SemaphoreFullException>不一定表示发生异常的代码有问题。 请参考以下方案：线程 A 和线程 B 输入的信号量的最大计数为2。 线程 B 中的编程错误导致其调用<xref:System.Threading.Semaphore.Release%2A>了两次, 以便信号量上的计数已满。 因此, 当线程 a 最终调用<xref:System.Threading.Semaphore.Release%2A>时<xref:System.Threading.SemaphoreFullException> , 将引发。  
   
  有关 <xref:System.Threading.SemaphoreFullException> 类的实例的初始属性值列表，请参见 <xref:System.Threading.SemaphoreFullException.%23ctor> 构造函数。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何在一个线程中的编程错误可能会导致<xref:System.Threading.SemaphoreFullException>另一线程中：两个线程进入信号量。 第一个线程仍在执行其任务时两次，第二个线程释放信号量。 当第一个线程完成并释放信号量时，信号量计数已满并且引发异常。  
+ 下面的代码示例演示一个线程中的编程错误如何<xref:System.Threading.SemaphoreFullException>在另一个线程中导致:两个线程输入一个信号量。 第二个线程两次释放信号量, 而第一个线程仍在执行其任务。 当第一个线程完成并释放信号量后, 信号量计数已满, 并引发异常。  
   
  [!code-cpp[System.Threading.SemaphoreFullException#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.SemaphoreFullException/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.SemaphoreFullException#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.SemaphoreFullException/CS/source.cs#1)]
@@ -118,7 +118,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数初始化<xref:System.Exception.Message%2A>为系统提供的描述错误，例如"添加给定的计数为信号量将导致其超出其最大计数。"的消息的新实例的属性 此消息将当前系统区域性考虑在内。  
+ 此构造函数将<xref:System.Exception.Message%2A>新实例的属性初始化为系统提供的描述错误的消息, 如 "将给定计数添加到信号量会使其超出其最大计数"。 此消息将当前系统区域性考虑在内。  
   
  下表显示 <xref:System.Threading.SemaphoreFullException> 类的实例的初始属性值。  
   
@@ -172,9 +172,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 内容`message`文本字符串，用于通知用户有关的异常。 此构造函数的调用方需要确保此字符串已针对当前系统区域性进行了本地化。  
+ 的内容`message`是用于向用户通知异常的文本字符串。 此构造函数的调用方需要确保此字符串已针对当前系统区域性进行了本地化。  
   
- 下表显示的实例的初始属性值<xref:System.Threading.SemaphoreFullException>类使用此构造函数进行初始化。  
+ 下表显示使用此构造函数初始化的<xref:System.Threading.SemaphoreFullException>类的实例的初始属性值。  
   
 |Property|值|  
 |--------------|-----------|  
