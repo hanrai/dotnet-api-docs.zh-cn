@@ -1,5 +1,5 @@
 <Type Name="DbParameter" FullName="System.Data.Common.DbParameter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="22b3deee30d15eced5874c9adb6de2ad29d642b4" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58714584" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbParameter : MarshalByRefObject, System.Data.IDbDataParameter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="6a56a653ffdd42040f874c0da6a3d45e81693671" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69376844" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbParameter : MarshalByRefObject, System.Data.IDbDataParameter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DbParameter extends System.MarshalByRefObject implements class System.Data.IDataParameter, class System.Data.IDbDataParameter" />
   <TypeSignature Language="DocId" Value="T:System.Data.Common.DbParameter" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DbParameter&#xA;Inherits MarshalByRefObject&#xA;Implements IDbDataParameter" />
@@ -173,9 +173,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Data.ParameterDirection>是输出，而执行的关联<xref:System.Data.Common.DbCommand>不会返回一个值，<xref:System.Data.Common.DbParameter>包含 null 值。  
+ 如果是输出, 且关联<xref:System.Data.Common.DbCommand>的执行不返回值, 则<xref:System.Data.Common.DbParameter>包含 null 值。 <xref:System.Data.ParameterDirection>  
   
- `Output``InputOut`，并`ReturnValue`参数返回通过调用<xref:System.Data.Common.DbCommand.ExecuteReader%2A>直到您调用不能访问<xref:System.Data.Common.DbDataReader.Close%2A>或<xref:System.Data.Common.DbDataReader.Dispose%2A>上<xref:System.Data.Common.DbDataReader>。  
+ `Output`在`InputOut`调用`ReturnValue` <xref:System.Data.Common.DbCommand.ExecuteReader%2A> 或上的<xref:System.Data.Common.DbDataReader>时, 无法访问通过调用返回的、和参数。 <xref:System.Data.Common.DbDataReader.Dispose%2A> <xref:System.Data.Common.DbDataReader.Close%2A>  
   
  ]]></format>
         </remarks>
@@ -225,12 +225,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指示参数是否接受 null 值。</summary>
-        <value>如果接受 null 值，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</value>
+        <value>如果接受 null 值，则为<see langword="true" /> ；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 处理 null 值使用<xref:System.DBNull>类。  
+ 使用<xref:System.DBNull>类处理 Null 值。  
   
  ]]></format>
         </remarks>
@@ -437,19 +437,19 @@
 ## Remarks  
  <xref:System.Data.Common.DbParameter.Size%2A>属性用于二进制和字符串类型。  
   
- 对于非字符串数据类型和 ANSI 字符串数据，<xref:System.Data.Common.DbParameter.Size%2A>属性引用的字节数。 对于 Unicode 字符串数据，<xref:System.Data.Common.DbParameter.Size%2A>指的是字符数。 字符串的计数不包括终止字符。  
+ 对于非字符串数据类型和 ANSI 字符串数据, <xref:System.Data.Common.DbParameter.Size%2A>属性是指字节数。 对于 Unicode 字符串数据, <xref:System.Data.Common.DbParameter.Size%2A>是指字符数。 字符串的计数不包括终止字符。  
   
- 对于可变长度数据类型，<xref:System.Data.Common.DbParameter.Size%2A>描述的最大传输到服务器的数据量。 例如，对于 Unicode 字符串值，<xref:System.Data.Common.DbParameter.Size%2A>无法用于限制发送到服务器的前 100 个字符的数据量。  
+ 对于可变长度数据类型, <xref:System.Data.Common.DbParameter.Size%2A>描述要传输到服务器的最大数据量。 例如, 对于 Unicode 字符串值, <xref:System.Data.Common.DbParameter.Size%2A>可用于将发送到服务器的数据量限制为前100个字符。  
   
- 必须为双向参数、 输出参数和返回值，设置的值<xref:System.Data.Common.DbParameter.Size%2A>。 这不是必需的输入参数，并执行参数化的语句时如果未显式设置，则该值推断从指定的参数的实际大小。  
+ 对于双向参数、输出参数和返回值, 必须设置的值<xref:System.Data.Common.DbParameter.Size%2A>。 这不是输入参数所必需的, 如果未显式设置此值, 则在执行参数化语句时, 将从指定参数的实际大小推断出该值。  
   
- <xref:System.Data.Common.DbParameter.DbType%2A>并<xref:System.Data.Common.DbParameter.Size%2A>参数的属性，可以通过设置推断出<xref:System.Data.Common.DbParameter.Value%2A>。 因此，不需要指定它们。 但是，它们不会暴露在<xref:System.Data.Common.DbParameter>属性设置。 例如，如果已推断出参数的大小，<xref:System.Data.Common.DbParameter.Size%2A>语句执行后，不包含推断的值。  
+ 可以<xref:System.Data.Common.DbParameter.DbType%2A>通过<xref:System.Data.Common.DbParameter.Size%2A> 设置<xref:System.Data.Common.DbParameter.Value%2A>来推断参数的和属性。 因此, 您不需要指定它们。 但是, 它们不会在属性<xref:System.Data.Common.DbParameter>设置中公开。 例如, 如果已推断出参数的大小, <xref:System.Data.Common.DbParameter.Size%2A>则不会在语句执行后包含推断值。  
   
- 对于固定长度数据类型的值<xref:System.Data.Common.DbParameter.Size%2A>将被忽略。 它可以检索用于信息说明，并返回最大传输到服务器参数的值时，提供程序使用的字节数。  
+ 对于固定长度数据类型, <xref:System.Data.Common.DbParameter.Size%2A>将忽略的值。 可以检索它以提供信息, 并返回将参数值传输到服务器时提供程序使用的最大字节数。  
   
- 如果为提供的值的大小<xref:System.Data.Common.DbParameter>超过了指定<xref:System.Data.Common.DbParameter.Size%2A>，则<xref:System.Data.Common.DbParameter.Value%2A>的<xref:System.Data.Common.DbParameter>将包含指定的值，截断的大小为<xref:System.Data.Common.DbParameter>。  
+ <xref:System.Data.Common.DbParameter>如果为提供的值的大小超过指定<xref:System.Data.Common.DbParameter.Value%2A> <xref:System.Data.Common.DbParameter.Size%2A>的, <xref:System.Data.Common.DbParameter>则的将<xref:System.Data.Common.DbParameter>包含指定的值, 并将其截断为的大小。  
   
- 类型参数`DbType`。`String`，值<xref:System.Data.Common.DbParameter.Size%2A>是以 Unicode 字符为单位的长度。 类型参数`DbType`。`Xml`，<xref:System.Data.Common.DbParameter.Size%2A>将被忽略。  
+ 对于类型`DbType` <xref:System.Data.Common.DbParameter.Size%2A>为的参数, 的值的长度为 Unicode 字符。`String` 对于类型`DbType` <xref:System.Data.Common.DbParameter.Size%2A>为的参数, 将忽略。`Xml`  
   
  ]]></format>
         </remarks>
@@ -500,9 +500,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Data.Common.DbParameter.SourceColumn%2A>设置为非空字符串，参数的值从与列中检索的任何<xref:System.Data.Common.DbParameter.SourceColumn%2A>名称。 如果<xref:System.Data.Common.DbParameter.Direction%2A>设置为`Input`，获取的值是<xref:System.Data.DataSet>。 如果<xref:System.Data.Common.DbParameter.Direction%2A>设置为`Output`，从数据源中获取的值。 一个<xref:System.Data.Common.DbParameter.Direction%2A>的`InputOutput`是这两者的组合。  
+ 如果<xref:System.Data.Common.DbParameter.SourceColumn%2A>将设置为空字符串以外的任何值, 则会从<xref:System.Data.Common.DbParameter.SourceColumn%2A>名称为的列中检索参数的值。 如果<xref:System.Data.Common.DbParameter.Direction%2A>设置为`Input`, 则从中获取<xref:System.Data.DataSet>值。 如果<xref:System.Data.Common.DbParameter.Direction%2A>设置为`Output`, 则从数据源中获取值。 <xref:System.Data.Common.DbParameter.Direction%2A> 的`InputOutput`是两者的组合。  
   
- 有关如何使用详细信息<xref:System.Data.Common.DbParameter.SourceColumn%2A>属性，请参阅[DataAdapter 参数](~/docs/framework/data/adonet/dataadapter-parameters.md)并[使用 Dataadapter 更新数据源](~/docs/framework/data/adonet/updating-data-sources-with-dataadapters.md)。  
+ 有关如何使用<xref:System.Data.Common.DbParameter.SourceColumn%2A>属性的详细信息, 请参阅[DataAdapter 参数](~/docs/framework/data/adonet/dataadapter-parameters.md)和[使用 dataadapter 更新数据源](~/docs/framework/data/adonet/updating-data-sources-with-dataadapters.md)。  
   
  ]]></format>
         </remarks>
@@ -550,28 +550,28 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>设置或获取一个值，该值指示源列是否可以为 null。 通过此操作，<see cref="T:System.Data.Common.DbCommandBuilder" /> 能够为可以为 null 的列正确地生成 Update 语句。</summary>
+        <summary>设置或获取一个值，该值指示源列是否可以为 null。 通过此操作， <see cref="T:System.Data.Common.DbCommandBuilder" /> 能够为可以为 null 的列正确地生成 Update 语句。</summary>
         <value>如果源列可以为 null，则为 <see langword="true" />；如果不可以为 null，则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Common.DbParameter.SourceColumnNullMapping%2A> 由<xref:System.Data.Common.DbCommandBuilder>来正确处理为 null 的列时生成更新命令。 通常情况下，使用<xref:System.Data.Common.DbParameter.SourceColumnNullMapping%2A>继承的开发人员仅限于<xref:System.Data.Common.DbCommandBuilder>。  
+ <xref:System.Data.Common.DbParameter.SourceColumnNullMapping%2A>当处理可以为<xref:System.Data.Common.DbCommandBuilder> null 的列时, 将使用来正确生成更新命令。 通常, 使用<xref:System.Data.Common.DbParameter.SourceColumnNullMapping%2A>仅限于从<xref:System.Data.Common.DbCommandBuilder>继承的开发人员。  
   
- <xref:System.Data.Common.DbCommandBuilder> 使用此属性来确定源列是否可以为 null，并将此属性设置为`true`是否可以为 null，和`false`如果不是。 当<xref:System.Data.Common.DbCommandBuilder>是生成其 Update 语句，它将检查<xref:System.Data.Common.DbParameter.SourceColumnNullMapping%2A>为每个参数。 如果该属性是`true`，<xref:System.Data.Common.DbCommandBuilder>生成 WHERE 子句，如下所示 （在此查询表达式中，"FieldName"表示的字段的名称）：  
+ <xref:System.Data.Common.DbCommandBuilder>使用此属性来确定源列是否可以为 null, 如果此属性为 null `true` `false` , 则将其设置为, 如果不是, 则将此属性设置为。 当<xref:System.Data.Common.DbCommandBuilder>生成其 Update 语句时, 它会检查<xref:System.Data.Common.DbParameter.SourceColumnNullMapping%2A>每个参数的。 如果属性为`true`, <xref:System.Data.Common.DbCommandBuilder>则生成一个 WHERE 子句, 如下所示 (在此查询表达式中, "FieldName" 表示字段的名称):  
   
 ```  
 ((@IsNull_FieldName = 1 AND FieldName IS NULL) OR   
   (FieldName = @Original_FieldName))  
 ```  
   
- 如果<xref:System.Data.Common.DbParameter.SourceColumnNullMapping%2A>字段是`false`，<xref:System.Data.Common.DbCommandBuilder>生成以下 WHERE 子句：  
+ 如果<xref:System.Data.Common.DbParameter.SourceColumnNullMapping%2A>字段为`false` ,<xref:System.Data.Common.DbCommandBuilder>则将生成以下 WHERE 子句:  
   
 ```  
 FieldName = @OriginalFieldName  
 ```  
   
- 此外，@IsNull_FieldName如果源字段包含 null 值和 0，如果它不包含 1。 此机制可以优化 SQL Server 中的性能，并提供的跨多个提供程序的通用代码。  
+ 此外, @IsNull_FieldName如果源字段包含 null, 则包含 1, 如果不包含 null, 则包含0。 此机制允许在 SQL Server 中进行性能优化, 并提供适用于跨多个提供程序的通用代码。  
   
  ]]></format>
         </remarks>
@@ -620,7 +620,7 @@ FieldName = @OriginalFieldName
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通过使用<xref:System.Data.Common.DbDataAdapter.UpdateCommand%2A>期间<xref:System.Data.Common.DbDataAdapter.Update%2A>运算来确定是否将参数值设置为`Current`或`Original`。 这样可以更新主键。 此属性设置为的新版<xref:System.Data.DataRow>由`DataRow.Item`属性，或<xref:System.Data.DataRow.GetChildRows%2A>方法的<xref:System.Data.DataRow>对象。  
+ 在操作过程中由<xref:System.Data.Common.DbDataAdapter.UpdateCommand%2A>用来确定参数值是否设置为`Current`或`Original`。 <xref:System.Data.Common.DbDataAdapter.Update%2A> 这将允许更新主键。 <xref:System.Data.DataRow>此属性设置为`DataRow.Item`属性使用的的版本, <xref:System.Data.DataRow>或<xref:System.Data.DataRow.GetChildRows%2A>对象的方法。  
   
  ]]></format>
         </remarks>
@@ -696,9 +696,9 @@ FieldName = @OriginalFieldName
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.Data.Common.DbParameter> 实例强制转换为 <xref:System.Data.IDbDataParameter> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.Data.Common.DbParameter> 实例被强制转换为 <xref:System.Data.IDbDataParameter> 接口时使用。  
   
- 有关详情，请参阅<xref:System.Data.IDbDataParameter.Precision%2A?displayProperty=nameWithType>。  
+ 有关详细信息，请参阅 <xref:System.Data.IDbDataParameter.Precision%2A?displayProperty=nameWithType>。  
   
  ]]></format>
         </remarks>
@@ -743,9 +743,9 @@ FieldName = @OriginalFieldName
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.Data.Common.DbParameter> 实例强制转换为 <xref:System.Data.IDbDataParameter> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.Data.Common.DbParameter> 实例被强制转换为 <xref:System.Data.IDbDataParameter> 接口时使用。  
   
- 有关详情，请参阅<xref:System.Data.IDbDataParameter.Scale%2A>。  
+ 有关详细信息，请参阅 <xref:System.Data.IDbDataParameter.Scale%2A>。  
   
  ]]></format>
         </remarks>
@@ -799,15 +799,15 @@ FieldName = @OriginalFieldName
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 用于输入参数的值绑定到<xref:System.Data.Common.DbCommand>，发送到服务器。 对于输出参数和返回值参数，该数值将在完成<xref:System.Data.Common.DbCommand>前后<xref:System.Data.Common.DbDataReader>已关闭。  
+ 对于输入参数, 值将绑定到<xref:System.Data.Common.DbCommand>发送到服务器的。 对于输出和返回值参数, 值在完成<xref:System.Data.Common.DbCommand> <xref:System.Data.Common.DbDataReader>时设置, 在关闭后设置。  
   
- 当你向服务器发送 null 参数值时，则必须指定<xref:System.DBNull>，而不是 null。 系统中的 null 值是一个不具有任何值的空对象。 <xref:System.DBNull> 用于表示 null 值。  
+ 将 null 参数值发送到服务器时, 必须指定<xref:System.DBNull>, 而不是 null。 系统中的 null 值是一个不具有任何值的空对象。 <xref:System.DBNull> 用于表示 null 值。  
   
- 如果应用程序指定的数据库类型，绑定的值转换为该类型时提供程序将数据发送到服务器。 提供程序尝试转换任何类型的值，如果它支持<xref:System.IConvertible>接口。 如果指定的类型不兼容的值，可能会导致转换错误。  
+ 如果应用程序指定了数据库类型, 则当提供程序将数据发送到服务器时, 绑定值将转换为该类型。 如果提供程序支持<xref:System.IConvertible>接口, 则会尝试转换任何类型的值。 如果指定的类型与值不兼容, 则可能会导致转换错误。  
   
- <xref:System.Data.Common.DbParameter.DbType%2A>属性可以推断出的值设置。  
+ 可以通过设置值来推断属性。<xref:System.Data.Common.DbParameter.DbType%2A>  
   
- <xref:System.Data.Common.DbParameter.Value%2A>属性会被覆盖`DbDataAdapter.Update`。  
+ <xref:System.Data.Common.DbParameter.Value%2A>属性被`DbDataAdapter.Update`覆盖。  
   
  ]]></format>
         </remarks>

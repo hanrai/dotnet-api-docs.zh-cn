@@ -1,5 +1,5 @@
 <Type Name="Dispatcher" FullName="System.Windows.Threading.Dispatcher">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="18dc89f39ea48d18d1f39bfc56029ea7661b1625" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57911572" /></Metadata><TypeSignature Language="C#" Value="public sealed class Dispatcher" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ab9a64e8091e1a2ec87eca8cf5d6ecdc6e07ca7c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69435405" /></Metadata><TypeSignature Language="C#" Value="public sealed class Dispatcher" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed Dispatcher extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Threading.Dispatcher" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Dispatcher" />
@@ -20,42 +20,42 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Threading.Dispatcher>维护按优先顺序排列的特定线程的工作项队列。  
+ <xref:System.Windows.Threading.Dispatcher>维护特定线程的工作项的优先顺序队列。  
   
- 当<xref:System.Windows.Threading.Dispatcher>创建上一个线程，它将成为唯一<xref:System.Windows.Threading.Dispatcher>，您可能与线程关联即使<xref:System.Windows.Threading.Dispatcher>关闭的情况下。  
+ 在线程上创建时, 即使<xref:System.Windows.Threading.Dispatcher>关闭, 它也将变为可与线程关联的唯一<xref:System.Windows.Threading.Dispatcher>。 <xref:System.Windows.Threading.Dispatcher>  
   
- 如果尝试获取<xref:System.Windows.Threading.Dispatcher.CurrentDispatcher%2A>当前线程和一个<xref:System.Windows.Threading.Dispatcher>不是与该线程关联<xref:System.Windows.Threading.Dispatcher>将创建。 一个<xref:System.Windows.Threading.Dispatcher>在创建时还创建<xref:System.Windows.Threading.DispatcherObject>。 如果您创建<xref:System.Windows.Threading.Dispatcher>上后台线程，请确保在退出该线程之前关闭调度程序。  
+ 如果尝试获取当前线程的<xref:System.Windows.Threading.Dispatcher.CurrentDispatcher%2A> , <xref:System.Windows.Threading.Dispatcher>并且没有与线程关联, 则将创建一个<xref:System.Windows.Threading.Dispatcher> 。 当<xref:System.Windows.Threading.Dispatcher> 你<xref:System.Windows.Threading.DispatcherObject>创建时, 还会创建一个。 如果<xref:System.Windows.Threading.Dispatcher>在后台线程上创建, 请确保在退出该线程前关闭调度程序。  
   
- 如果<xref:System.Windows.Threading.Dispatcher>关闭的情况下，无法重启。  
+ <xref:System.Windows.Threading.Dispatcher>如果关闭, 则无法重启它。  
   
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]、 一个<xref:System.Windows.Threading.DispatcherObject>只能由访问<xref:System.Windows.Threading.Dispatcher>与其相关联。  例如，在后台线程不能更新的内容<xref:System.Windows.Controls.Button>相关联<xref:System.Windows.Threading.Dispatcher>上[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]线程。  为了使后台线程来访问<xref:System.Windows.Controls.ContentControl.Content%2A>的属性<xref:System.Windows.Controls.Button>，在后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与关联[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]线程。  这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。 <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。  该操作将添加到的队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中<xref:System.Windows.Threading.DispatcherObject> ,<xref:System.Windows.Threading.Dispatcher>只能由与相关联的来访问。  例如, 后台线程无法<xref:System.Windows.Controls.Button> <xref:System.Windows.Threading.Dispatcher>在[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]线程上更新与关联的的内容。  为了让后台线程<xref:System.Windows.Controls.ContentControl.Content%2A>访问的<xref:System.Windows.Controls.Button>属性, 后台线程必须将工作委托[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]给与线程关联的<xref:System.Windows.Threading.Dispatcher> 。  这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。 <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。  操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的队列中。  
   
- 如果<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>上调用<xref:System.Windows.Threading.Dispatcher>的已关闭的情况下，返回的 status 属性<xref:System.Windows.Threading.DispatcherOperation>设置为<xref:System.Windows.Threading.DispatcherOperationStatus.Aborted>。  
+ 如果<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> <xref:System.Windows.Threading.DispatcherOperation>对已关闭的调用, 则返回的状态属性设置为<xref:System.Windows.Threading.DispatcherOperationStatus.Aborted>。 <xref:System.Windows.Threading.Dispatcher>  
   
- 上的方法的所有<xref:System.Windows.Threading.Dispatcher>，除<xref:System.Windows.Threading.Dispatcher.DisableProcessing%2A>，是自由线程。  
+ 除之外<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.Dispatcher.DisableProcessing%2A>的所有方法均为自由线程。  
   
- 从派生的对象<xref:System.Windows.Threading.DispatcherObject>具有线程关联。  
+ 派生自<xref:System.Windows.Threading.DispatcherObject>的对象具有线程关联。  
   
- 从派生的对象<xref:System.Windows.Freezable>是自由线程时被冻结。  有关详细信息，请参阅 [Freezable 对象概述](~/docs/framework/wpf/advanced/freezable-objects-overview.md)。  
+ 从<xref:System.Windows.Freezable>派生的对象在被冻结时是自由线程的。  有关详细信息，请参阅 [Freezable 对象概述](~/docs/framework/wpf/advanced/freezable-objects-overview.md)。  
   
    
   
 ## Examples  
- 下面的示例显示如何将放置到上的一个操作<xref:System.Windows.Threading.Dispatcher>。  此示例的完整源代码，请参阅[单线程应用程序使用长时间运行计算示例](https://go.microsoft.com/fwlink/?LinkID=160038)。  
+ 下面的示例演示如何在<xref:System.Windows.Threading.Dispatcher>上放置操作。  有关此示例的完整源代码, 请参阅[具有长时间运行计算的单线程应用程序示例](https://go.microsoft.com/fwlink/?LinkID=160038)。  
   
- 首先，创建委托接受任何参数。  
+ 首先, 创建了不接受任何参数的委托。  
   
  [!code-csharp[ThreadingPrimeNumbers#ThreadingPrimeNumberInit](~/samples/snippets/csharp/VS_Snippets_Wpf/ThreadingPrimeNumbers/CSharp/Window1.xaml.cs#threadingprimenumberinit)] 
  [!code-vb[ThreadingPrimeNumbers#ThreadingPrimeNumberInit](~/samples/snippets/visualbasic/VS_Snippets_Wpf/ThreadingPrimeNumbers/visualbasic/mainwindow.xaml.vb#threadingprimenumberinit)]   
   
- 下一步，<xref:System.Windows.Threading.Dispatcher.BeginInvoke%28System.Windows.Threading.DispatcherPriority%2CSystem.Delegate%29>调用。  此调用<xref:System.Windows.Threading.Dispatcher.BeginInvoke%28System.Windows.Threading.DispatcherPriority%2CSystem.Delegate%29>采用两个参数： 的优先级设置为<xref:System.Windows.Threading.DispatcherPriority.Normal?displayProperty=nameWithType>，和回调，通过该委托的实例传入`NextPrimeDelegate`。  
+ 接下来<xref:System.Windows.Threading.Dispatcher.BeginInvoke%28System.Windows.Threading.DispatcherPriority%2CSystem.Delegate%29> , 调用。  此调用<xref:System.Windows.Threading.Dispatcher.BeginInvoke%28System.Windows.Threading.DispatcherPriority%2CSystem.Delegate%29>使用两个参数: 设置为<xref:System.Windows.Threading.DispatcherPriority.Normal?displayProperty=nameWithType>的优先级, 以及通过委托`NextPrimeDelegate`的实例传入的回调。  
   
  [!code-csharp[ThreadingPrimeNumbers#ThreadingPrimeNumberBeginInvoke](~/samples/snippets/csharp/VS_Snippets_Wpf/ThreadingPrimeNumbers/CSharp/Window1.xaml.cs#threadingprimenumberbegininvoke)] 
  [!code-vb[ThreadingPrimeNumbers#ThreadingPrimeNumberBeginInvoke](~/samples/snippets/visualbasic/VS_Snippets_Wpf/ThreadingPrimeNumbers/visualbasic/mainwindow.xaml.vb#threadingprimenumberbegininvoke)]   
   
  ]]></format>
     </remarks>
-    <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkID=160038">具有长时间运行计算示例单线程应用程序</related>
+    <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkID=160038">具有长时间运行计算的单线程应用程序示例</related>
   </Docs>
   <Members>
     <MemberGroup MemberName="BeginInvoke">
@@ -69,25 +69,25 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。  例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。  为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。  这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。  该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。  例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。  为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher>  这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。  操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> 是异步的;因此，控件立即返回到调用对象后调用它。  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的;因此, 控件在调用后立即返回到调用对象。  
   
- <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> 返回<xref:System.Windows.Threading.DispatcherOperation>可用于的委托时委托是在事件队列交互的对象。  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>返回一个<xref:System.Windows.Threading.DispatcherOperation>对象, 该对象可用于在委托位于事件队列中时与委托交互。  
   
- <xref:System.Windows.Threading.DispatcherOperation>返回对象<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>可以采用几种方法与指定的委托，如交互：  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>返回的<xref:System.Windows.Threading.DispatcherOperation>对象可通过多种方式用于与指定的委托交互, 例如:  
   
--   更改<xref:System.Windows.Threading.DispatcherPriority>委托的因为它处于挂起状态执行事件队列中。  
+-   <xref:System.Windows.Threading.DispatcherPriority>更改委托的, 因为它在事件队列中挂起执行。  
   
 -   从事件队列中删除委托。  
   
--   等待要返回的委托。  
+-   正在等待委托返回。  
   
--   获取值，则在委托返回后它会执行。  
+-   获取委托在执行后返回的值。  
   
- 如果多个<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>调用都是在同一个<xref:System.Windows.Threading.DispatcherPriority>，他们将进行了调用的顺序执行。  
+ 如果在<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>同一<xref:System.Windows.Threading.DispatcherPriority>位置进行多个调用, 则它们将按调用的顺序执行。  
   
- 如果<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>上调用<xref:System.Windows.Threading.Dispatcher>的已关闭的情况下，返回的 status 属性<xref:System.Windows.Threading.DispatcherOperation>设置为<xref:System.Windows.Threading.DispatcherOperationStatus.Aborted>。  
+ 如果<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> <xref:System.Windows.Threading.DispatcherOperation>对已关闭的调用, 则返回的状态属性设置为<xref:System.Windows.Threading.DispatcherOperationStatus.Aborted>。 <xref:System.Windows.Threading.Dispatcher>  
   
  ]]></format>
         </remarks>
@@ -118,7 +118,7 @@
         <Parameter Name="method" Type="System.Delegate" />
         <Parameter Name="args" Type="System.Object[]">
           <Attributes>
-            <Attribute FrameworkAlternate="netframework-3.0">
+            <Attribute FrameworkAlternate="netcore-3.0">
               <AttributeName>System.ParamArray</AttributeName>
             </Attribute>
           </Attributes>
@@ -133,21 +133,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Threading.DispatcherOperation>返回对象<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>可以采用几种方法与指定的委托，如交互：  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>返回的<xref:System.Windows.Threading.DispatcherOperation>对象可通过多种方式用于与指定的委托交互, 例如:  
   
--   更改<xref:System.Windows.Threading.DispatcherPriority>委托的因为它处于挂起状态执行事件队列中。  
+-   <xref:System.Windows.Threading.DispatcherPriority>更改委托的, 因为它在事件队列中挂起执行。  
   
 -   从事件队列中删除委托。  
   
--   等待要返回的委托。  
+-   正在等待委托返回。  
   
--   获取值，则在委托返回后它会执行。  
+-   获取委托在执行后返回的值。  
   
- <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> 是异步的;因此，控件立即返回到调用对象后调用它。  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的;因此, 控件在调用后立即返回到调用对象。  
   
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。 例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。 为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。 这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。 <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。 该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。 例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。 为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher> 这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。 <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。 操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- 如果<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>上调用<xref:System.Windows.Threading.Dispatcher>的已关闭的情况下，返回的 status 属性<xref:System.Windows.Threading.DispatcherOperation>设置为<xref:System.Windows.Threading.DispatcherOperationStatus.Aborted>。  
+ 如果<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> <xref:System.Windows.Threading.DispatcherOperation>对已关闭的调用, 则返回的状态属性设置为<xref:System.Windows.Threading.DispatcherOperationStatus.Aborted>。 <xref:System.Windows.Threading.Dispatcher>  
   
  ]]></format>
         </remarks>
@@ -193,37 +193,37 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果多个<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>调用都是在同一个<xref:System.Windows.Threading.DispatcherPriority>，他们将进行了调用的顺序执行。  
+ 如果在<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>同一<xref:System.Windows.Threading.DispatcherPriority>位置进行多个调用, 则它们将按调用的顺序执行。  
   
- <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> 返回<xref:System.Windows.Threading.DispatcherOperation>可用于的委托时委托是在事件队列交互的对象。  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>返回一个<xref:System.Windows.Threading.DispatcherOperation>对象, 该对象可用于在委托位于事件队列中时与委托交互。  
   
- <xref:System.Windows.Threading.DispatcherOperation>返回对象<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>可以采用几种方法与指定的委托，如交互：  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>返回的<xref:System.Windows.Threading.DispatcherOperation>对象可通过多种方式用于与指定的委托交互, 例如:  
   
--   更改<xref:System.Windows.Threading.DispatcherPriority>委托的因为它处于挂起状态执行事件队列中。  
+-   <xref:System.Windows.Threading.DispatcherPriority>更改委托的, 因为它在事件队列中挂起执行。  
   
 -   从事件队列中删除委托。  
   
--   等待要返回的委托。  
+-   正在等待委托返回。  
   
--   获取值，则在委托返回后它会执行。  
+-   获取委托在执行后返回的值。  
   
- <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> 是异步的;因此，控件立即返回到调用对象后调用它。  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的;因此, 控件在调用后立即返回到调用对象。  
   
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。  例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。  为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。  这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。  该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。  例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。  为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher>  这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。  操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- 如果<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>上调用<xref:System.Windows.Threading.Dispatcher>的已关闭的情况下，返回的 status 属性<xref:System.Windows.Threading.DispatcherOperation>设置为<xref:System.Windows.Threading.DispatcherOperationStatus.Aborted>。  
+ 如果<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> <xref:System.Windows.Threading.DispatcherOperation>对已关闭的调用, 则返回的状态属性设置为<xref:System.Windows.Threading.DispatcherOperationStatus.Aborted>。 <xref:System.Windows.Threading.Dispatcher>  
   
    
   
 ## Examples  
- 下面的示例显示如何将放置到上的一个操作<xref:System.Windows.Threading.Dispatcher>。  此示例的完整源代码，请参阅[单线程应用程序使用长时间运行计算示例](https://go.microsoft.com/fwlink/?LinkID=160038)。  
+ 下面的示例演示如何在<xref:System.Windows.Threading.Dispatcher>上放置操作。  有关此示例的完整源代码, 请参阅[具有长时间运行计算的单线程应用程序示例](https://go.microsoft.com/fwlink/?LinkID=160038)。  
   
- 首先，创建委托接受任何参数。  
+ 首先, 创建了不接受任何参数的委托。  
   
  [!code-csharp[ThreadingPrimeNumbers#ThreadingPrimeNumberInit](~/samples/snippets/csharp/VS_Snippets_Wpf/ThreadingPrimeNumbers/CSharp/Window1.xaml.cs#threadingprimenumberinit)] 
  [!code-vb[ThreadingPrimeNumbers#ThreadingPrimeNumberInit](~/samples/snippets/visualbasic/VS_Snippets_Wpf/ThreadingPrimeNumbers/visualbasic/mainwindow.xaml.vb#threadingprimenumberinit)]   
   
- 下一步，<xref:System.Windows.Threading.Dispatcher.BeginInvoke%28System.Windows.Threading.DispatcherPriority%2CSystem.Delegate%29>调用。  因为每个<xref:System.Windows.Threading.DispatcherObject>具有一个属性，它将返回<xref:System.Windows.Threading.Dispatcher>是与所需<xref:System.Windows.Threading.Dispatcher>通过查询获取<xref:System.Windows.Threading.DispatcherObject>，在这种情况下<xref:System.Windows.Controls.Button>名为`startStopButton`。   在调用<xref:System.Windows.Threading.Dispatcher.BeginInvoke%28System.Windows.Threading.DispatcherPriority%2CSystem.Delegate%29>采用两个参数： 的优先级设置为<xref:System.Windows.Threading.DispatcherPriority.Normal?displayProperty=nameWithType>，和回调，通过该委托的实例传入`NextPrimeDelegate`。  
+ 接下来<xref:System.Windows.Threading.Dispatcher.BeginInvoke%28System.Windows.Threading.DispatcherPriority%2CSystem.Delegate%29> , 调用。  由于每<xref:System.Windows.Threading.DispatcherObject>个都有一个属性, <xref:System.Windows.Threading.Dispatcher>该属性返回与之关联的<xref:System.Windows.Threading.Dispatcher> , 因此, 所需<xref:System.Windows.Threading.DispatcherObject>的通过查询来获得<xref:System.Windows.Controls.Button> , `startStopButton`在此示例中为一个名为的。   调用<xref:System.Windows.Threading.Dispatcher.BeginInvoke%28System.Windows.Threading.DispatcherPriority%2CSystem.Delegate%29>将使用两个参数: 设置为<xref:System.Windows.Threading.DispatcherPriority.Normal?displayProperty=nameWithType>的优先级, 以及通过委托`NextPrimeDelegate`的实例传入的回调。  
   
  [!code-csharp[ThreadingPrimeNumbers#ThreadingPrimeNumberBeginInvoke](~/samples/snippets/csharp/VS_Snippets_Wpf/ThreadingPrimeNumbers/CSharp/Window1.xaml.cs#threadingprimenumberbegininvoke)] 
  [!code-vb[ThreadingPrimeNumbers#ThreadingPrimeNumberBeginInvoke](~/samples/snippets/visualbasic/VS_Snippets_Wpf/ThreadingPrimeNumbers/visualbasic/mainwindow.xaml.vb#threadingprimenumberbegininvoke)]   
@@ -232,7 +232,7 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="method" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><paramref name="priority" /> 不是有效的 <see cref="T:System.Windows.Threading.DispatcherPriority" />。</exception>
-        <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkID=160038">具有长时间运行计算示例单线程应用程序</related>
+        <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkID=160038">具有长时间运行计算的单线程应用程序示例</related>
       </Docs>
     </Member>
     <Member MemberName="BeginInvoke">
@@ -261,7 +261,7 @@
         <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" />
         <Parameter Name="args" Type="System.Object[]">
           <Attributes>
-            <Attribute FrameworkAlternate="netframework-3.0">
+            <Attribute FrameworkAlternate="netcore-3.0">
               <AttributeName>System.ParamArray</AttributeName>
             </Attribute>
           </Attributes>
@@ -277,21 +277,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Threading.DispatcherOperation>返回对象<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>可以采用几种方法与指定的委托，如交互：  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>返回的<xref:System.Windows.Threading.DispatcherOperation>对象可通过多种方式用于与指定的委托交互, 例如:  
   
--   更改<xref:System.Windows.Threading.DispatcherPriority>委托的因为它处于挂起状态执行事件队列中。  
+-   <xref:System.Windows.Threading.DispatcherPriority>更改委托的, 因为它在事件队列中挂起执行。  
   
 -   从事件队列中删除委托。  
   
--   等待要返回的委托。  
+-   正在等待委托返回。  
   
--   获取值，则在委托返回后它会执行。  
+-   获取委托在执行后返回的值。  
   
- <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> 是异步的;因此，控件立即返回到调用对象后调用它。  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的;因此, 控件在调用后立即返回到调用对象。  
   
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。 例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。 为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。 这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。 <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。 该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。 例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。 为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher> 这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。 <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。 操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- 如果<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>上调用<xref:System.Windows.Threading.Dispatcher>的已关闭的情况下，返回的 status 属性<xref:System.Windows.Threading.DispatcherOperation>设置为<xref:System.Windows.Threading.DispatcherOperationStatus.Aborted>。  
+ 如果<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> <xref:System.Windows.Threading.DispatcherOperation>对已关闭的调用, 则返回的状态属性设置为<xref:System.Windows.Threading.DispatcherOperationStatus.Aborted>。 <xref:System.Windows.Threading.Dispatcher>  
   
  ]]></format>
         </remarks>
@@ -339,39 +339,39 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `Arg` 可以是`null`如果不需要任何参数。  
+ `Arg`如果不`null`需要参数, 则可以为。  
   
- <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> 返回<xref:System.Windows.Threading.DispatcherOperation>可用于的委托时委托是在事件队列交互的对象。  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>返回一个<xref:System.Windows.Threading.DispatcherOperation>对象, 该对象可用于在委托位于事件队列中时与委托交互。  
   
- <xref:System.Windows.Threading.DispatcherOperation>返回对象<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>可以采用几种方法与指定的委托，如交互：  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>返回的<xref:System.Windows.Threading.DispatcherOperation>对象可通过多种方式用于与指定的委托交互, 例如:  
   
--   更改<xref:System.Windows.Threading.DispatcherPriority>委托的因为它处于挂起状态执行事件队列中。  
+-   <xref:System.Windows.Threading.DispatcherPriority>更改委托的, 因为它在事件队列中挂起执行。  
   
 -   从事件队列中删除委托。  
   
--   等待要返回的委托。  
+-   正在等待委托返回。  
   
--   获取值，则在委托返回后它会执行。  
+-   获取委托在执行后返回的值。  
   
- <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> 是异步的;因此，控件立即返回到调用对象后调用它。  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的;因此, 控件在调用后立即返回到调用对象。  
   
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。  例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。  为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。  这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。  该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。  例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。  为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher>  这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。  操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- 如果多个<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>调用都是在同一个<xref:System.Windows.Threading.DispatcherPriority>，他们将进行了调用的顺序执行。  
+ 如果在<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>同一<xref:System.Windows.Threading.DispatcherPriority>位置进行多个调用, 则它们将按调用的顺序执行。  
   
- 如果<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>上调用<xref:System.Windows.Threading.Dispatcher>的已关闭的情况下，返回的 status 属性<xref:System.Windows.Threading.DispatcherOperation>设置为<xref:System.Windows.Threading.DispatcherOperationStatus.Aborted>。  
+ 如果<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> <xref:System.Windows.Threading.DispatcherOperation>对已关闭的调用, 则返回的状态属性设置为<xref:System.Windows.Threading.DispatcherOperationStatus.Aborted>。 <xref:System.Windows.Threading.Dispatcher>  
   
    
   
 ## Examples  
- 下面的示例显示如何将放置到上的一个操作<xref:System.Windows.Threading.Dispatcher>。  
+ 下面的示例演示如何在<xref:System.Windows.Threading.Dispatcher>上放置操作。  
   
- 首先，创建委托接受一个参数，在本例中为字符串。  
+ 首先, 创建一个接受一个参数 (在本例中为字符串) 的委托。  
   
  [!code-csharp[ThreadingWeatherForecast#ThreadingWeatherDelegates](~/samples/snippets/csharp/VS_Snippets_Wpf/ThreadingWeatherForecast/CSharp/Window1.xaml.cs#threadingweatherdelegates)]
  [!code-vb[ThreadingWeatherForecast#ThreadingWeatherDelegates](~/samples/snippets/visualbasic/VS_Snippets_Wpf/ThreadingWeatherForecast/visualbasic/window1.xaml.vb#threadingweatherdelegates)]  
   
- 下一步，<xref:System.Windows.Threading.Dispatcher.BeginInvoke%28System.Windows.Threading.DispatcherPriority%2CSystem.Delegate%2CSystem.Object%29>调用。  因为每个<xref:System.Windows.Threading.DispatcherObject>具有一个属性，它将返回<xref:System.Windows.Threading.Dispatcher>是与所需<xref:System.Windows.Threading.Dispatcher>通过查询获取<xref:System.Windows.Threading.DispatcherObject>，在这种情况下<xref:System.Windows.Controls.Grid>名为`tomorrowsWeather`。 对调用<xref:System.Windows.Threading.Dispatcher.BeginInvoke%28System.Windows.Threading.DispatcherPriority%2CSystem.Delegate%2CSystem.Object%29>采用三个参数： 的优先级设置为<xref:System.Windows.Threading.DispatcherPriority.Normal?displayProperty=nameWithType>; 回调，通过该委托的实例传入`OneArgDelegate`; 和一个名为字符串`weather`，这是回调的参数。  
+ 接下来<xref:System.Windows.Threading.Dispatcher.BeginInvoke%28System.Windows.Threading.DispatcherPriority%2CSystem.Delegate%2CSystem.Object%29> , 调用。  由于每<xref:System.Windows.Threading.DispatcherObject>个都有一个属性, <xref:System.Windows.Threading.Dispatcher>该属性返回与之关联的<xref:System.Windows.Threading.Dispatcher> , 因此, 所需<xref:System.Windows.Threading.DispatcherObject>的通过查询来获得<xref:System.Windows.Controls.Grid> , `tomorrowsWeather`在此示例中为一个名为的。 对的调用<xref:System.Windows.Threading.Dispatcher.BeginInvoke%28System.Windows.Threading.DispatcherPriority%2CSystem.Delegate%2CSystem.Object%29>采用三个参数: 优先级设置为<xref:System.Windows.Threading.DispatcherPriority.Normal?displayProperty=nameWithType>; 通过委托`OneArgDelegate`的实例传入的回调; 以及一个名`weather`为的字符串, 它是回调的参数。  
   
  [!code-csharp[threadingweatherforecast#ThreadingWeatherDispatcherOneArge](~/samples/snippets/csharp/VS_Snippets_Wpf/ThreadingWeatherForecast/CSharp/Window1.xaml.cs#threadingweatherdispatcheronearge)]
  [!code-vb[threadingweatherforecast#ThreadingWeatherDispatcherOneArge](~/samples/snippets/visualbasic/VS_Snippets_Wpf/ThreadingWeatherForecast/visualbasic/window1.xaml.vb#threadingweatherdispatcheronearge)]  
@@ -380,7 +380,7 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="method" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><paramref name="priority" /> 不是有效的 <see cref="T:System.Windows.Threading.DispatcherPriority" />。</exception>
-        <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkID=160038">具有长时间运行计算示例单线程应用程序</related>
+        <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkID=160038">具有长时间运行计算的单线程应用程序示例</related>
       </Docs>
     </Member>
     <Member MemberName="BeginInvoke">
@@ -413,7 +413,7 @@
         <Parameter Name="arg" Type="System.Object" />
         <Parameter Name="args" Type="System.Object[]">
           <Attributes>
-            <Attribute FrameworkAlternate="netframework-3.0">
+            <Attribute FrameworkAlternate="netcore-3.0">
               <AttributeName>System.ParamArray</AttributeName>
             </Attribute>
           </Attributes>
@@ -430,33 +430,33 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `arg`参数可以是`null`如果不需要任何参数。  
+ 如果`arg`不需要任何`null`参数, 则该参数可以为。  
   
- <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> 返回<xref:System.Windows.Threading.DispatcherOperation>可用于的委托时委托是在事件队列交互的对象。  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>返回一个<xref:System.Windows.Threading.DispatcherOperation>对象, 该对象可用于在委托位于事件队列中时与委托交互。  
   
- <xref:System.Windows.Threading.DispatcherOperation>返回对象<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>可以采用几种方法与指定的委托，如交互：  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>返回的<xref:System.Windows.Threading.DispatcherOperation>对象可通过多种方式用于与指定的委托交互, 例如:  
   
--   更改<xref:System.Windows.Threading.DispatcherPriority>委托的因为它处于挂起状态执行事件队列中。  
+-   <xref:System.Windows.Threading.DispatcherPriority>更改委托的, 因为它在事件队列中挂起执行。  
   
 -   从事件队列中删除委托。  
   
--   等待要返回的委托。  
+-   正在等待委托返回。  
   
--   获取值，则在委托返回后它会执行。  
+-   获取委托在执行后返回的值。  
   
- <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> 是异步的;因此，控件立即返回到调用对象后调用它。  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的;因此, 控件在调用后立即返回到调用对象。  
   
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。  例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。  为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。  这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。  该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。  例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。  为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher>  这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。  操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- 如果多个<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>调用都是在同一个<xref:System.Windows.Threading.DispatcherPriority>，他们将进行了调用的顺序执行。  
+ 如果在<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>同一<xref:System.Windows.Threading.DispatcherPriority>位置进行多个调用, 则它们将按调用的顺序执行。  
   
- 如果<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>上调用<xref:System.Windows.Threading.Dispatcher>的已关闭的情况下，返回的 status 属性<xref:System.Windows.Threading.DispatcherOperation>设置为<xref:System.Windows.Threading.DispatcherOperationStatus.Aborted>。  
+ 如果<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> <xref:System.Windows.Threading.DispatcherOperation>对已关闭的调用, 则返回的状态属性设置为<xref:System.Windows.Threading.DispatcherOperationStatus.Aborted>。 <xref:System.Windows.Threading.Dispatcher>  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="method" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><see cref="T:System.Windows.Threading.DispatcherPriority" /> 不是有效的优先级。</exception>
-        <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkID=160038">具有长时间运行计算示例单线程应用程序</related>
+        <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkID=160038">具有长时间运行计算的单线程应用程序示例</related>
       </Docs>
     </Member>
     <Member MemberName="BeginInvokeShutdown">
@@ -473,7 +473,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
           <AttributeName>System.Security.SecurityCritical</AttributeName>
         </Attribute>
       </Attributes>
@@ -490,19 +490,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Threading.Dispatcher.BeginInvokeShutdown%2A> 请求不受限制的 UI 权限。  
+ <xref:System.Windows.Threading.Dispatcher.BeginInvokeShutdown%2A>要求无限制的 UI 权限。  
   
- 当<xref:System.Windows.Threading.Dispatcher>若要关闭的情况下，将启动<xref:System.Windows.Threading.Dispatcher.ShutdownStarted>引发事件和<xref:System.Windows.Threading.Dispatcher.HasShutdownStarted%2A>设置为`true`。  
+ 当开始关闭时<xref:System.Windows.Threading.Dispatcher.ShutdownStarted> , 将引发事件, 并<xref:System.Windows.Threading.Dispatcher.HasShutdownStarted%2A>将设置为`true`。 <xref:System.Windows.Threading.Dispatcher>  
   
- <xref:System.Windows.Threading.Dispatcher>不会关闭完全展开事件队列之前。  
+ 在<xref:System.Windows.Threading.Dispatcher>事件队列展开之前, 不会完全关闭。  
   
- 当调度程序完成后关闭，请<xref:System.Windows.Threading.Dispatcher.ShutdownFinished>引发事件和<xref:System.Windows.Threading.Dispatcher.HasShutdownFinished%2A>属性设置为`true`。  
+ 当调度程序完成关闭时, <xref:System.Windows.Threading.Dispatcher.ShutdownFinished>将引发事件, <xref:System.Windows.Threading.Dispatcher.HasShutdownFinished%2A>并将属性设置为`true`。  
   
- 关闭流程开始之后，所有挂起的工作队列中的项而被中止。  
+ 关闭进程开始后, 将中止队列中所有挂起的工作项。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">有关关闭调度程序。  关联的枚举：  <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">用于关闭调度程序。  关联的枚举:<see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
       </Docs>
     </Member>
     <Member MemberName="CheckAccess">
@@ -534,16 +534,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 仅<xref:System.Windows.Threading.Dispatcher>的<xref:System.Windows.Threading.DispatcherObject>创建在可访问对象。  使用<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>用于从不同的线程访问对象。  
+ <xref:System.Windows.Threading.Dispatcher> 只有在上创建<xref:System.Windows.Threading.DispatcherObject>的可以访问对象。  使用<xref:System.Windows.Threading.Dispatcher.Invoke%2A> 或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>从其他线程访问对象。  
   
- <xref:System.Windows.Threading.Dispatcher.CheckAccess%2A> 可以从任何线程调用。  
+ <xref:System.Windows.Threading.Dispatcher.CheckAccess%2A>可以从任何线程调用。  
   
- 之间的差异<xref:System.Windows.Threading.Dispatcher.CheckAccess%2A>并<xref:System.Windows.Threading.Dispatcher.VerifyAccess%2A>是<xref:System.Windows.Threading.Dispatcher.CheckAccess%2A>返回一个布尔值，该值指示调用线程是否有权访问<xref:System.Windows.Threading.Dispatcher>和<xref:System.Windows.Threading.Dispatcher.VerifyAccess%2A>将引发异常。  
+ 与<xref:System.Windows.Threading.Dispatcher.CheckAccess%2A> <xref:System.Windows.Threading.Dispatcher.CheckAccess%2A> <xref:System.Windows.Threading.Dispatcher>之间的差异将返回一个布尔值, 该值指示调用线程是否有权访问<xref:System.Windows.Threading.Dispatcher.VerifyAccess%2A>并引发异常。 <xref:System.Windows.Threading.Dispatcher.VerifyAccess%2A>  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Windows.Threading.Dispatcher.CheckAccess%2A>来确定线程是否有权访问<xref:System.Windows.Controls.Button>。  <xref:System.Windows.Threading.Dispatcher.CheckAccess%2A>方法<xref:System.Windows.Threading.Dispatcher>与关联<xref:System.Windows.Controls.Button>调用以验证是否可以访问该线程。  如果调用线程可以访问<xref:System.Windows.Threading.Dispatcher>，则<xref:System.Windows.Controls.Button>访问的成员更新<xref:System.Windows.Controls.Button>; 否则为一个委托，它接受<xref:System.Windows.Controls.Button>作为参数，放置到<xref:System.Windows.Threading.Dispatcher>。  <xref:System.Windows.Threading.Dispatcher>会将更新的工作委托<xref:System.Windows.Controls.Button>。  
+ 下面的示例使用<xref:System.Windows.Threading.Dispatcher.CheckAccess%2A>来确定线程是否有权访问。 <xref:System.Windows.Controls.Button>  调用与<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.Dispatcher.CheckAccess%2A> 关联的的方法来验证对<xref:System.Windows.Controls.Button>线程的访问。  如果调用<xref:System.Windows.Threading.Dispatcher>线程具有对的访问权限<xref:System.Windows.Controls.Button> , 则将通过<xref:System.Windows.Controls.Button>访问的成员进行更新; <xref:System.Windows.Controls.Button>否则, 会将接受作为参数的委托置于上<xref:System.Windows.Threading.Dispatcher>。  将委托更新的工作<xref:System.Windows.Controls.Button> <xref:System.Windows.Threading.Dispatcher> 。  
   
  [!code-csharp[DispatcherAccessSample#DispatcherAccessCheckAccess](~/samples/snippets/csharp/VS_Snippets_Wpf/DispatcherAccessSample/CSharp/Window1.xaml.cs#dispatcheraccesscheckaccess)]
  [!code-vb[DispatcherAccessSample#DispatcherAccessCheckAccess](~/samples/snippets/visualbasic/VS_Snippets_Wpf/DispatcherAccessSample/visualbasic/window1.xaml.vb#dispatcheraccesscheckaccess)]  
@@ -576,7 +576,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Windows.Threading.Dispatcher>不是与当前线程相关联的新<xref:System.Windows.Threading.Dispatcher>将创建。  这不同于使用 <xref:System.Windows.Threading.Dispatcher.FromThread%2A> 方法的情况。  <xref:System.Windows.Threading.Dispatcher.FromThread%2A> 将返回`null`是否不存在与指定的线程关联的调度程序。  
+ 如果与当前线程不关联, 则将创建一个新<xref:System.Windows.Threading.Dispatcher>的。 <xref:System.Windows.Threading.Dispatcher>  这不同于使用 <xref:System.Windows.Threading.Dispatcher.FromThread%2A> 方法的情况。  <xref:System.Windows.Threading.Dispatcher.FromThread%2A>如果没有`null`与指定线程关联的调度程序, 将返回。  
   
  ]]></format>
         </remarks>
@@ -606,24 +606,24 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 禁用调度程序处理是一种高级的方法，用于排除不相关的重新进入的可能性。  
+ 禁用调度程序处理是一种用于消除不相关的重入机会的高级方法。  
   
- 禁用处理的影响是，如下所示：  
+ 禁用处理的影响如下:  
   
--   CLR 锁不会在内部发送的信息。  
+-   CLR 锁不会在内部抽取消息。  
   
--   <xref:System.Windows.Threading.DispatcherFrame> 不允许对象推送。  
+-   <xref:System.Windows.Threading.DispatcherFrame>不允许推送对象。  
   
 -   不允许消息处理。  
   
- <xref:System.Windows.Threading.DispatcherProcessingDisabled>结构的<xref:System.Windows.Threading.Dispatcher.DisableProcessing%2A>返回被调用时可用于重新启用调度程序处理。  调用<xref:System.Windows.Threading.DispatcherProcessingDisabled.Dispose%2A>上<xref:System.Windows.Threading.DispatcherProcessingDisabled>结构将重新启用处理。  
+ 调用<xref:System.Windows.Threading.DispatcherProcessingDisabled>时返回<xref:System.Windows.Threading.Dispatcher.DisableProcessing%2A>的结构可用于重新启用调度程序处理。  对<xref:System.Windows.Threading.DispatcherProcessingDisabled.Dispose%2A>结构调用<xref:System.Windows.Threading.DispatcherProcessingDisabled>将重新启用处理。  
   
- <xref:System.Windows.Threading.Dispatcher.DisableProcessing%2A> 仅在线程上调用<xref:System.Windows.Threading.Dispatcher>与相关联。  
+ <xref:System.Windows.Threading.Dispatcher.DisableProcessing%2A>只能在与关联的线程<xref:System.Windows.Threading.Dispatcher>上调用。  
   
    
   
 ## Examples  
- 下面的示例演示如何禁用调度程序处理和重新启用调度程序处理。  <xref:System.Windows.Threading.Dispatcher.DisableProcessing%2A> 在中称为**使用**语句。  <xref:System.Windows.Threading.Dispatcher.DisableProcessing%2A> 返回<xref:System.Windows.Threading.DispatcherProcessingDisabled>结构，它用于与对象被释放**使用**块结束。  当<xref:System.Windows.Threading.DispatcherProcessingDisabled.Dispose%2A>上调用<xref:System.Windows.Threading.DispatcherProcessingDisabled>结构，重新启用，调度程序处理。  
+ 下面的示例演示如何禁用调度程序处理并重新启用调度程序处理。  <xref:System.Windows.Threading.Dispatcher.DisableProcessing%2A>在**using**语句中调用。  <xref:System.Windows.Threading.Dispatcher.DisableProcessing%2A>返回一个<xref:System.Windows.Threading.DispatcherProcessingDisabled>结构, 该结构用作在**使用**块完成时要释放的对象。  在<xref:System.Windows.Threading.DispatcherProcessingDisabled.Dispose%2A> 结构<xref:System.Windows.Threading.DispatcherProcessingDisabled>上调用时, 将重新启用调度程序处理。  
   
  [!code-csharp[DispatcherSnippets#DispatcherDisableProcessing](~/samples/snippets/csharp/VS_Snippets_Wpf/DispatcherSnippets/CSharp/Window1.xaml.cs#dispatcherdisableprocessing)]
  [!code-vb[DispatcherSnippets#DispatcherDisableProcessing](~/samples/snippets/visualbasic/VS_Snippets_Wpf/DispatcherSnippets/visualbasic/window1.xaml.vb#dispatcherdisableprocessing)]  
@@ -646,7 +646,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
           <AttributeName>System.Security.SecurityCritical</AttributeName>
         </Attribute>
       </Attributes>
@@ -657,7 +657,7 @@
       <Docs>
         <summary>请求退出所有帧，包括嵌套的帧。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">用于调用此方法。 关联的枚举：  <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">用于调用此方法。 关联的枚举:<see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
         <altmember cref="M:System.Windows.Threading.Dispatcher.PushFrame(System.Windows.Threading.DispatcherFrame)" />
         <altmember cref="T:System.Windows.Threading.DispatcherFrame" />
       </Docs>
@@ -688,9 +688,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果没有可用于指定线程的调度程序`null`将返回。  
+ 如果调度程序不可用于指定的线程, `null`则将返回。  
   
- <xref:System.Windows.Threading.Dispatcher.FromThread%2A> 不会创建<xref:System.Windows.Threading.Dispatcher>没有在线程上<xref:System.Windows.Threading.Dispatcher>。   一个新<xref:System.Windows.Threading.Dispatcher>尚不包含在线程上创建<xref:System.Windows.Threading.Dispatcher>时尝试获取<xref:System.Windows.Threading.Dispatcher>使用<xref:System.Windows.Threading.Dispatcher.CurrentDispatcher%2A>属性。  
+ <xref:System.Windows.Threading.Dispatcher.FromThread%2A>不会<xref:System.Windows.Threading.Dispatcher>在不具有的<xref:System.Windows.Threading.Dispatcher>线程上创建。   尝试使用<xref:System.Windows.Threading.Dispatcher> 属性<xref:System.Windows.Threading.Dispatcher.CurrentDispatcher%2A> <xref:System.Windows.Threading.Dispatcher> 获取<xref:System.Windows.Threading.Dispatcher>时, 将在尚未具有的线程上创建新的。  
   
  ]]></format>
         </remarks>
@@ -724,13 +724,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Windows.Threading.Dispatcher>若要关闭的情况下，将启动<xref:System.Windows.Threading.Dispatcher.ShutdownStarted>引发事件和<xref:System.Windows.Threading.Dispatcher.HasShutdownStarted%2A>设置为`true`。  
+ 当开始关闭时<xref:System.Windows.Threading.Dispatcher.ShutdownStarted> , 将引发事件, 并<xref:System.Windows.Threading.Dispatcher.HasShutdownStarted%2A>将设置为`true`。 <xref:System.Windows.Threading.Dispatcher>  
   
- <xref:System.Windows.Threading.Dispatcher>事件队列展开之前完全没有关闭。  
+ 在<xref:System.Windows.Threading.Dispatcher>事件队列展开之前, 不会完全关闭。  
   
- 当调度程序完成后关闭，请<xref:System.Windows.Threading.Dispatcher.ShutdownFinished>引发事件和<xref:System.Windows.Threading.Dispatcher.HasShutdownFinished%2A>属性设置为`true`。  
+ 当调度程序完成关闭时, <xref:System.Windows.Threading.Dispatcher.ShutdownFinished>将引发事件, <xref:System.Windows.Threading.Dispatcher.HasShutdownFinished%2A>并将属性设置为`true`。  
   
- 关闭流程开始之后，所有挂起的工作队列中的项而被中止。  
+ 关闭进程开始后, 将中止队列中所有挂起的工作项。  
   
  ]]></format>
         </remarks>
@@ -764,13 +764,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Windows.Threading.Dispatcher>若要关闭的情况下，将启动<xref:System.Windows.Threading.Dispatcher.ShutdownStarted>引发事件和<xref:System.Windows.Threading.Dispatcher.HasShutdownStarted%2A>设置为`true`。  
+ 当开始关闭时<xref:System.Windows.Threading.Dispatcher.ShutdownStarted> , 将引发事件, 并<xref:System.Windows.Threading.Dispatcher.HasShutdownStarted%2A>将设置为`true`。 <xref:System.Windows.Threading.Dispatcher>  
   
- <xref:System.Windows.Threading.Dispatcher>不会关闭完全展开事件队列之前。  
+ 在<xref:System.Windows.Threading.Dispatcher>事件队列展开之前, 不会完全关闭。  
   
- 当调度程序完成后关闭，请<xref:System.Windows.Threading.Dispatcher.ShutdownFinished>引发事件和<xref:System.Windows.Threading.Dispatcher.HasShutdownFinished%2A>属性设置为`true`。  
+ 当调度程序完成关闭时, <xref:System.Windows.Threading.Dispatcher.ShutdownFinished>将引发事件, <xref:System.Windows.Threading.Dispatcher.HasShutdownFinished%2A>并将属性设置为`true`。  
   
- 关闭流程开始之后，所有挂起的工作队列中的项而被中止。  
+ 关闭进程开始后, 将中止队列中所有挂起的工作项。  
   
  ]]></format>
         </remarks>
@@ -790,7 +790,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
           <AttributeName>get: System.Security.SecurityCritical</AttributeName>
         </Attribute>
         <Attribute>
@@ -807,11 +807,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Threading.DispatcherHooks>类提供有关的附加事件信息<xref:System.Windows.Threading.Dispatcher>，例如何时<xref:System.Windows.Threading.Dispatcher>处于非活动状态或完成操作后。  
+ 类提供有关的<xref:System.Windows.Threading.Dispatcher>其他事件信息<xref:System.Windows.Threading.Dispatcher> , 例如当处于非活动状态或操作成功时。 <xref:System.Windows.Threading.DispatcherHooks>  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">用于获取此属性。  关联的枚举：  <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">获取此属性的。  关联的枚举:<see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
       </Docs>
     </Member>
     <MemberGroup MemberName="Invoke">
@@ -825,14 +825,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。  例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。  为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。  这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。  该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。  例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。  为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher>  这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。  操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是一项同步操作;因此，控件不会返回对调用对象直到回调返回后。  
+ <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步操作;因此, 在回调返回后, 控件才会返回到调用对象。  
   
    
   
 ## Examples  
- 以下示例将放到上的一个委托<xref:System.Windows.Threading.Dispatcher>处<xref:System.Windows.Threading.DispatcherPriority.Normal>使用<xref:System.Windows.Threading.Dispatcher.Invoke%2A>。  
+ 下面的示例使用<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.Dispatcher.Invoke%2A>将委托放到中<xref:System.Windows.Threading.DispatcherPriority.Normal>的。  
   
  [!code-csharp[invalidaterequerywithsystemtimer#SystemTimerDispatcherInvoke](~/samples/snippets/csharp/VS_Snippets_Wpf/InvalidateRequeryWithSystemTimer/CSharp/Window1.xaml.cs#systemtimerdispatcherinvoke)]
  [!code-vb[invalidaterequerywithsystemtimer#SystemTimerDispatcherInvoke](~/samples/snippets/visualbasic/VS_Snippets_Wpf/InvalidateRequeryWithSystemTimer/visualbasic/window1.xaml.vb#systemtimerdispatcherinvoke)]  
@@ -857,7 +857,7 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="callback" Type="System.Action" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="callback" Type="System.Action" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="callback">要通过调度程序调用的委托。</param>
@@ -881,8 +881,8 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="callback" Type="System.Action" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="callback" Type="System.Action" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="callback">要通过调度程序调用的委托。</param>
@@ -911,7 +911,7 @@
         <Parameter Name="method" Type="System.Delegate" />
         <Parameter Name="args" Type="System.Object[]">
           <Attributes>
-            <Attribute FrameworkAlternate="netframework-3.0">
+            <Attribute FrameworkAlternate="netcore-3.0">
               <AttributeName>System.ParamArray</AttributeName>
             </Attribute>
           </Attributes>
@@ -926,9 +926,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。 例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。 为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。 这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。 <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。 该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。 例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。 为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher> 这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。 <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。 操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是一项同步操作;因此，控件不会返回对调用对象直到回调返回后。  
+ <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步操作;因此, 在回调返回后, 控件才会返回到调用对象。  
   
  ]]></format>
         </remarks>
@@ -971,14 +971,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。  例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。  为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。  这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。  该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。  例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。  为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher>  这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。  操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是一项同步操作;因此，控件不会返回对调用对象直到回调返回后。  
+ <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步操作;因此, 在回调返回后, 控件才会返回到调用对象。  
   
    
   
 ## Examples  
- 以下示例将放到上的一个委托<xref:System.Windows.Threading.Dispatcher>处<xref:System.Windows.Threading.DispatcherPriority.Normal>使用<xref:System.Windows.Threading.Dispatcher.Invoke%2A>。  
+ 下面的示例使用<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.Dispatcher.Invoke%2A>将委托放到中<xref:System.Windows.Threading.DispatcherPriority.Normal>的。  
   
  [!code-csharp[invalidaterequerywithsystemtimer#SystemTimerDispatcherInvoke](~/samples/snippets/csharp/VS_Snippets_Wpf/InvalidateRequeryWithSystemTimer/CSharp/Window1.xaml.cs#systemtimerdispatcherinvoke)]
  [!code-vb[invalidaterequerywithsystemtimer#SystemTimerDispatcherInvoke](~/samples/snippets/visualbasic/VS_Snippets_Wpf/InvalidateRequeryWithSystemTimer/visualbasic/window1.xaml.vb#systemtimerdispatcherinvoke)]  
@@ -1005,9 +1005,9 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="callback" Type="System.Action" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="callback" Type="System.Action" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="callback">要通过调度程序调用的委托。</param>
@@ -1043,7 +1043,7 @@
         <Parameter Name="timeout" Type="System.TimeSpan" />
         <Parameter Name="args" Type="System.Object[]">
           <Attributes>
-            <Attribute FrameworkAlternate="netframework-3.0">
+            <Attribute FrameworkAlternate="netcore-3.0">
               <AttributeName>System.ParamArray</AttributeName>
             </Attribute>
           </Attributes>
@@ -1059,9 +1059,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。 例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。 为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。 这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。 <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。 该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。 例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。 为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher> 这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。 <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。 操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是一项同步操作;因此，控件不会返回对调用对象直到回调返回后。  
+ <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步操作;因此, 在回调返回后, 控件才会返回到调用对象。  
   
  ]]></format>
         </remarks>
@@ -1088,7 +1088,7 @@
         <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" />
         <Parameter Name="args" Type="System.Object[]">
           <Attributes>
-            <Attribute FrameworkAlternate="netframework-3.0">
+            <Attribute FrameworkAlternate="netcore-3.0">
               <AttributeName>System.ParamArray</AttributeName>
             </Attribute>
           </Attributes>
@@ -1104,9 +1104,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。 例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。 为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。 这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。 <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。 该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。 例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。 为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher> 这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。 <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。 操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是一项同步操作;因此，控件不会返回对调用对象直到回调返回后。  
+ <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步操作;因此, 在回调返回后, 控件才会返回到调用对象。  
   
  ]]></format>
         </remarks>
@@ -1151,11 +1151,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `Arg` 可以是`null`如果不需要参数  
+ `Arg`如果不`null`需要参数, 则可以为  
   
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。  例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。  为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。  这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。  该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。  例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。  为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher>  这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。  操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是一项同步操作;因此，控件不会返回对调用对象直到回调返回后。  
+ <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步操作;因此, 在回调返回后, 控件才会返回到调用对象。  
   
  ]]></format>
         </remarks>
@@ -1206,9 +1206,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。  例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。  为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。  这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。  该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。  例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。  为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher>  这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。  操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是一项同步操作;因此，控件不会返回对调用对象直到回调返回后。  
+ <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步操作;因此, 在回调返回后, 控件才会返回到调用对象。  
   
  ]]></format>
         </remarks>
@@ -1234,10 +1234,10 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="callback" Type="System.Action" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="timeout" Type="System.TimeSpan" Index="3" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="callback" Type="System.Action" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="timeout" Type="System.TimeSpan" Index="3" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="callback">要通过调度程序调用的委托。</param>
@@ -1275,7 +1275,7 @@
         <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" />
         <Parameter Name="args" Type="System.Object[]">
           <Attributes>
-            <Attribute FrameworkAlternate="netframework-3.0">
+            <Attribute FrameworkAlternate="netcore-3.0">
               <AttributeName>System.ParamArray</AttributeName>
             </Attribute>
           </Attributes>
@@ -1292,9 +1292,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。 例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。 为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。 这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。 <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。 该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。 例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。 为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher> 这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。 <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。 操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是一项同步操作;因此，控件不会返回对调用对象直到回调返回后。  
+ <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步操作;因此, 在回调返回后, 控件才会返回到调用对象。  
   
  ]]></format>
         </remarks>
@@ -1330,7 +1330,7 @@
         <Parameter Name="arg" Type="System.Object" />
         <Parameter Name="args" Type="System.Object[]">
           <Attributes>
-            <Attribute FrameworkAlternate="netframework-3.0">
+            <Attribute FrameworkAlternate="netcore-3.0">
               <AttributeName>System.ParamArray</AttributeName>
             </Attribute>
           </Attributes>
@@ -1347,11 +1347,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `Arg` 可以是`null`如果不需要参数  
+ `Arg`如果不`null`需要参数, 则可以为  
   
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。  例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。  为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。  这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。  该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。  例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。  为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher>  这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。  操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是一项同步操作;因此，控件不会返回对调用对象直到回调返回后。  
+ <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步操作;因此, 在回调返回后, 控件才会返回到调用对象。  
   
  ]]></format>
         </remarks>
@@ -1404,11 +1404,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `Arg` 可以是`null`如果不需要参数  
+ `Arg`如果不`null`需要参数, 则可以为  
   
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。  例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。  为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。  这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。  该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。  例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。  为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher>  这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。  操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是一项同步操作;因此，控件不会返回对调用对象直到回调返回后。  
+ <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步操作;因此, 在回调返回后, 控件才会返回到调用对象。  
   
  ]]></format>
         </remarks>
@@ -1448,7 +1448,7 @@
         <Parameter Name="arg" Type="System.Object" />
         <Parameter Name="args" Type="System.Object[]">
           <Attributes>
-            <Attribute FrameworkAlternate="netframework-3.0">
+            <Attribute FrameworkAlternate="netcore-3.0">
               <AttributeName>System.ParamArray</AttributeName>
             </Attribute>
           </Attributes>
@@ -1466,11 +1466,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `Arg` 可以是`null`如果不需要参数。  
+ `Arg`如果不`null`需要参数, 则可以为。  
   
- 在中[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]，只有创建的线程<xref:System.Windows.Threading.DispatcherObject>才能访问该对象。  例如，从主 UI 线程运行的后台线程不能更新的内容<xref:System.Windows.Controls.Button>UI 线程上创建。  为了使后台线程将访问的内容属性的<xref:System.Windows.Controls.Button>，后台线程必须将工作委托给<xref:System.Windows.Threading.Dispatcher>与 UI 线程关联。  这通过使用实现<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是同步和<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是异步的。  该操作将添加到的事件队列<xref:System.Windows.Threading.Dispatcher>在指定<xref:System.Windows.Threading.DispatcherPriority>。  
+ 在[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]中, 只有创建的<xref:System.Windows.Threading.DispatcherObject>线程才能访问该对象。  例如, 从主 ui 线程旋转的后台线程无法更新在 ui 线程上创建的的内容<xref:System.Windows.Controls.Button> 。  为了让后台线程访问的<xref:System.Windows.Controls.Button>内容属性, 后台线程必须将工作委托给与 UI 线程关联的。 <xref:System.Windows.Threading.Dispatcher>  这可以<xref:System.Windows.Threading.Dispatcher.Invoke%2A>通过使用或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>来完成。  <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步的<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A> , 并且是异步的。  操作将添加到指定<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>的的事件队列中。  
   
- <xref:System.Windows.Threading.Dispatcher.Invoke%2A> 是一项同步操作;因此，控件不会返回对调用对象直到回调返回后。  
+ <xref:System.Windows.Threading.Dispatcher.Invoke%2A>是同步操作;因此, 在回调返回后, 控件才会返回到调用对象。  
   
  ]]></format>
         </remarks>
@@ -1498,7 +1498,7 @@
         <TypeParameter Name="TResult" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="callback" Type="System.Func&lt;TResult&gt;" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="callback" Type="System.Func&lt;TResult&gt;" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <typeparam name="TResult">指定委托的返回值类型。</typeparam>
@@ -1534,8 +1534,8 @@
         <TypeParameter Name="TResult" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="callback" Type="System.Func&lt;TResult&gt;" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="callback" Type="System.Func&lt;TResult&gt;" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <typeparam name="TResult">指定委托的返回值类型。</typeparam>
@@ -1571,9 +1571,9 @@
         <TypeParameter Name="TResult" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="callback" Type="System.Func&lt;TResult&gt;" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="callback" Type="System.Func&lt;TResult&gt;" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <typeparam name="TResult">指定委托的返回值类型。</typeparam>
@@ -1615,10 +1615,10 @@
         <TypeParameter Name="TResult" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="callback" Type="System.Func&lt;TResult&gt;" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="timeout" Type="System.TimeSpan" Index="3" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="callback" Type="System.Func&lt;TResult&gt;" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="timeout" Type="System.TimeSpan" Index="3" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <typeparam name="TResult">指定委托的返回值类型。</typeparam>
@@ -1663,7 +1663,7 @@
         <ReturnType>System.Windows.Threading.DispatcherOperation</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="callback" Type="System.Action" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="callback" Type="System.Action" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="callback">要通过调度程序调用的委托。</param>
@@ -1688,8 +1688,8 @@
         <ReturnType>System.Windows.Threading.DispatcherOperation</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="callback" Type="System.Action" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="callback" Type="System.Action" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="callback">要通过调度程序调用的委托。</param>
@@ -1719,9 +1719,9 @@
         <ReturnType>System.Windows.Threading.DispatcherOperation</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="callback" Type="System.Action" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="callback" Type="System.Action" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="callback">要通过调度程序调用的委托。</param>
@@ -1751,7 +1751,7 @@
         <TypeParameter Name="TResult" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="callback" Type="System.Func&lt;TResult&gt;" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="callback" Type="System.Func&lt;TResult&gt;" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <typeparam name="TResult">指定委托的返回值类型。</typeparam>
@@ -1780,8 +1780,8 @@
         <TypeParameter Name="TResult" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="callback" Type="System.Func&lt;TResult&gt;" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="callback" Type="System.Func&lt;TResult&gt;" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <typeparam name="TResult">指定委托的返回值类型。</typeparam>
@@ -1815,9 +1815,9 @@
         <TypeParameter Name="TResult" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="callback" Type="System.Func&lt;TResult&gt;" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="callback" Type="System.Func&lt;TResult&gt;" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="2" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <typeparam name="TResult">指定委托的返回值类型。</typeparam>
@@ -1843,7 +1843,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
           <AttributeName>System.Security.SecurityCritical</AttributeName>
         </Attribute>
       </Attributes>
@@ -1857,19 +1857,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Threading.Dispatcher.InvokeShutdown%2A> 请求不受限制的 UI 权限。  
+ <xref:System.Windows.Threading.Dispatcher.InvokeShutdown%2A>要求无限制的 UI 权限。  
   
- 当<xref:System.Windows.Threading.Dispatcher>若要关闭的情况下，将启动<xref:System.Windows.Threading.Dispatcher.ShutdownStarted>引发事件和<xref:System.Windows.Threading.Dispatcher.HasShutdownStarted%2A>设置为`true`。  
+ 当开始关闭时<xref:System.Windows.Threading.Dispatcher.ShutdownStarted> , 将引发事件, 并<xref:System.Windows.Threading.Dispatcher.HasShutdownStarted%2A>将设置为`true`。 <xref:System.Windows.Threading.Dispatcher>  
   
- <xref:System.Windows.Threading.Dispatcher>不会关闭完全展开事件队列之前。  
+ 在<xref:System.Windows.Threading.Dispatcher>事件队列展开之前, 不会完全关闭。  
   
- 当调度程序完成后关闭，请<xref:System.Windows.Threading.Dispatcher.ShutdownFinished>引发事件和<xref:System.Windows.Threading.Dispatcher.HasShutdownFinished%2A>属性设置为`true`。  
+ 当调度程序完成关闭时, <xref:System.Windows.Threading.Dispatcher.ShutdownFinished>将引发事件, <xref:System.Windows.Threading.Dispatcher.HasShutdownFinished%2A>并将属性设置为`true`。  
   
- 关闭流程开始之后，所有挂起的工作队列中的项而被中止。  
+ 关闭进程开始后, 将中止队列中所有挂起的工作项。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">有关关闭调度程序。  关联的枚举：  <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">用于关闭调度程序。  关联的枚举:<see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
       </Docs>
     </Member>
     <Member MemberName="PushFrame">
@@ -1886,7 +1886,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
           <AttributeName>System.Security.SecurityCritical</AttributeName>
         </Attribute>
       </Attributes>
@@ -1903,18 +1903,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Windows.Threading.DispatcherFrame>表示处理挂起的工作项的循环。  
+ <xref:System.Windows.Threading.DispatcherFrame>表示处理挂起工作项的循环。  
   
- 调度程序处理循环中的工作项队列。  循环称为帧。  初始循环通常通过调用来启动应用程序<xref:System.Windows.Threading.Dispatcher.Run%2A>。  
+ 调度程序在循环中处理工作项队列。  循环称为 "帧"。  初始循环通常由应用程序通过调用<xref:System.Windows.Threading.Dispatcher.Run%2A>来启动。  
   
- <xref:System.Windows.Threading.Dispatcher.PushFrame%2A> 将进入一个循环由参数表示`frame`。  在循环中，每次迭代<xref:System.Windows.Threading.Dispatcher>将检查<xref:System.Windows.Threading.DispatcherFrame.Continue%2A>属性上的<xref:System.Windows.Threading.DispatcherFrame>类，以确定是否应继续循环，或者如果它应该停止。  
+ <xref:System.Windows.Threading.Dispatcher.PushFrame%2A>输入由参数`frame`表示的循环。  循环的每次迭代时, <xref:System.Windows.Threading.Dispatcher>将<xref:System.Windows.Threading.DispatcherFrame.Continue%2A>检查<xref:System.Windows.Threading.DispatcherFrame>类的属性以确定循环应继续还是应停止。  
   
- <xref:System.Windows.Threading.DispatcherFrame> 允许<xref:System.Windows.Threading.DispatcherFrame.Continue%2A>属性显式设置，并且它遵循<xref:System.Windows.Threading.Dispatcher.HasShutdownStarted%2A>属性上的<xref:System.Windows.Threading.Dispatcher>。  这意味着当<xref:System.Windows.Threading.Dispatcher>开始，若要关闭的情况下，使用默认的帧<xref:System.Windows.Threading.DispatcherFrame>实现将退出，这样所有嵌套的帧以退出。  
+ <xref:System.Windows.Threading.DispatcherFrame>允许显式设置<xref:System.Windows.Threading.Dispatcher.HasShutdownStarted%2A> <xref:System.Windows.Threading.Dispatcher>属性, 并且该属性遵循中<xref:System.Windows.Threading.DispatcherFrame.Continue%2A>的属性。  这意味着当<xref:System.Windows.Threading.Dispatcher>开始关闭时, 使用默认<xref:System.Windows.Threading.DispatcherFrame>实现的帧将退出, 这将使所有嵌套帧退出。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用<xref:System.Windows.Threading.DispatcherFrame>来获取类似结果作为[!INCLUDE[TLA#tla_winforms](~/includes/tlasharptla-winforms-md.md)]<xref:System.Windows.Forms.Application.DoEvents%2A>方法。  
+ 下面的示例演示如何使用<xref:System.Windows.Threading.DispatcherFrame>来实现与<xref:System.Windows.Forms.Application.DoEvents%2A>方法类似的结果[!INCLUDE[TLA#tla_winforms](~/includes/tlasharptla-winforms-md.md)] 。  
   
  [!code-csharp[dispatchersnippets#DispatcherDispatcherFrameDoEvents](~/samples/snippets/csharp/VS_Snippets_Wpf/DispatcherSnippets/CSharp/Window1.xaml.cs#dispatcherdispatcherframedoevents)]
  [!code-vb[dispatchersnippets#DispatcherDispatcherFrameDoEvents](~/samples/snippets/visualbasic/VS_Snippets_Wpf/DispatcherSnippets/visualbasic/window1.xaml.vb#dispatcherdispatcherframedoevents)]  
@@ -1927,9 +1927,9 @@
 - 或 - 
  <paramref name="frame" /> 在不同的 <see cref="T:System.Windows.Threading.Dispatcher" /> 中运行。  
   
-- 或 - 
+或 
 已禁用对调度程序的处理。</exception>
-        <permission cref="T:System.Security.Permissions.UIPermission">用于推送执行帧。  关联的枚举：  <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">用于推送执行帧。  关联的枚举:<see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
         <altmember cref="M:System.Windows.Threading.Dispatcher.ExitAllFrames" />
       </Docs>
     </Member>
@@ -1947,7 +1947,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
           <AttributeName>System.Security.SecurityCritical</AttributeName>
         </Attribute>
       </Attributes>
@@ -1961,9 +1961,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Threading.Dispatcher>处理循环中的事件队列。  循环称为帧。  初始循环通常通过调用来启动应用程序<xref:System.Windows.Threading.Dispatcher.Run%2A>。  
+ 在循环中处理事件队列。 <xref:System.Windows.Threading.Dispatcher>  循环称为 "帧"。  初始循环通常由应用程序通过调用<xref:System.Windows.Threading.Dispatcher.Run%2A>来启动。  
   
- 主执行帧将继续执行，直至<xref:System.Windows.Threading.Dispatcher>已关闭。  
+ 主执行帧将继续运行, 直到<xref:System.Windows.Threading.Dispatcher>关闭。  
   
  ]]></format>
         </remarks>
@@ -1991,13 +1991,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 时的关闭进程<xref:System.Windows.Threading.Dispatcher>启动时，<xref:System.Windows.Threading.Dispatcher.ShutdownStarted>引发事件并<xref:System.Windows.Threading.Dispatcher.HasShutdownStarted%2A>设置为`true`。  
+ 启动的关闭<xref:System.Windows.Threading.Dispatcher>过程后<xref:System.Windows.Threading.Dispatcher.ShutdownStarted> , 将引发事件, 并<xref:System.Windows.Threading.Dispatcher.HasShutdownStarted%2A>将设置为`true`。  
   
- <xref:System.Windows.Threading.Dispatcher>事件队列展开之前完全没有关闭。  
+ 在<xref:System.Windows.Threading.Dispatcher>事件队列展开之前, 不会完全关闭。  
   
- 当调度程序完成后关闭，请<xref:System.Windows.Threading.Dispatcher.ShutdownFinished>引发事件和<xref:System.Windows.Threading.Dispatcher.HasShutdownFinished%2A>属性设置为`true`。  
+ 当调度程序完成关闭时, <xref:System.Windows.Threading.Dispatcher.ShutdownFinished>将引发事件, <xref:System.Windows.Threading.Dispatcher.HasShutdownFinished%2A>并将属性设置为`true`。  
   
- 关闭流程开始之后，所有挂起的工作队列中的项而被中止。  
+ 关闭进程开始后, 将中止队列中所有挂起的工作项。  
   
  ]]></format>
         </remarks>
@@ -2029,13 +2029,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 时的关闭进程<xref:System.Windows.Threading.Dispatcher>启动时，<xref:System.Windows.Threading.Dispatcher.ShutdownStarted>引发事件并<xref:System.Windows.Threading.Dispatcher.HasShutdownStarted%2A>设置为`true`。  
+ 启动的关闭<xref:System.Windows.Threading.Dispatcher>过程后<xref:System.Windows.Threading.Dispatcher.ShutdownStarted> , 将引发事件, 并<xref:System.Windows.Threading.Dispatcher.HasShutdownStarted%2A>将设置为`true`。  
   
- <xref:System.Windows.Threading.Dispatcher>事件队列展开之前完全没有关闭。  
+ 在<xref:System.Windows.Threading.Dispatcher>事件队列展开之前, 不会完全关闭。  
   
- 当调度程序完成后关闭，请<xref:System.Windows.Threading.Dispatcher.ShutdownFinished>引发事件和<xref:System.Windows.Threading.Dispatcher.HasShutdownFinished%2A>属性设置为`true`。  
+ 当调度程序完成关闭时, <xref:System.Windows.Threading.Dispatcher.ShutdownFinished>将引发事件, <xref:System.Windows.Threading.Dispatcher.HasShutdownFinished%2A>并将属性设置为`true`。  
   
- 关闭流程开始之后，所有挂起的工作队列中的项而被中止。  
+ 关闭进程开始后, 将中止队列中所有挂起的工作项。  
   
  ]]></format>
         </remarks>
@@ -2094,13 +2094,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通过委托的执行期间引发的异常时，将引发此事件<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>是未捕获。  
+ 如果未捕获到委托<xref:System.Windows.Threading.Dispatcher.Invoke%2A> <xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>执行过程中引发的异常, 则会引发此事件。  
   
- 一个处理程序可以将标记该异常为已处理，这会阻止的内部异常处理程序被调用。  
+ 处理程序可以将异常标记为已处理, 这将阻止调用内部异常处理程序。  
   
- 此事件的事件处理程序必须谨慎来避免创建辅助异常并发现出现任何的编写。 建议以避免分配内存或执行的任何资源密集型操作的处理程序中。  
+ 必须谨慎编写此事件的事件处理程序, 以避免创建辅助异常并捕获发生的任何异常。 建议避免在处理程序中分配内存或执行任何资源密集型操作。  
   
- <xref:System.Windows.Threading.Dispatcher.UnhandledExceptionFilter>事件提供了一种不会引发<xref:System.Windows.Threading.Dispatcher.UnhandledException>事件。  <xref:System.Windows.Threading.Dispatcher.UnhandledExceptionFilter>首先，引发事件; 如果<xref:System.Windows.Threading.DispatcherUnhandledExceptionFilterEventArgs.RequestCatch%2A>上<xref:System.Windows.Threading.DispatcherUnhandledExceptionFilterEventArgs>设置为`false`，则<xref:System.Windows.Threading.Dispatcher.UnhandledException>不会引发事件。  
+ 事件提供了不<xref:System.Windows.Threading.Dispatcher.UnhandledException>引发事件的方法。 <xref:System.Windows.Threading.Dispatcher.UnhandledExceptionFilter>  <xref:System.Windows.Threading.DispatcherUnhandledExceptionFilterEventArgs> `false` <xref:System.Windows.Threading.Dispatcher.UnhandledException>首先引发<xref:System.Windows.Threading.DispatcherUnhandledExceptionFilterEventArgs.RequestCatch%2A>事件, 如果上的设置为, 则不会引发事件。 <xref:System.Windows.Threading.Dispatcher.UnhandledExceptionFilter>  
   
  ]]></format>
         </remarks>
@@ -2122,10 +2122,10 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute>
+        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
           <AttributeName>add: System.Security.SecurityCritical</AttributeName>
         </Attribute>
-        <Attribute>
+        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
           <AttributeName>remove: System.Security.SecurityCritical</AttributeName>
         </Attribute>
       </Attributes>
@@ -2138,17 +2138,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通过委托的执行期间引发的异常的筛选器阶段引发此事件<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>且未能捕获。  
+ 此事件在筛选阶段中引发, 该异常在通过<xref:System.Windows.Threading.Dispatcher.Invoke%2A>或<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>的委托执行过程中引发的异常被捕获。  
   
- 不在此点 （首次异常） 展开调用堆栈。  
+ 此时不展开调用堆栈 (第一次出现异常)。  
   
- 此事件的事件处理程序必须谨慎来避免创建辅助异常并发现出现任何的编写。  建议以避免分配内存或执行的任何资源密集型操作的处理程序中。  
+ 必须谨慎编写此事件的事件处理程序, 以避免创建辅助异常并捕获发生的任何异常。  建议避免在处理程序中分配内存或执行任何资源密集型操作。  
   
- <xref:System.Windows.Threading.Dispatcher.UnhandledExceptionFilter>事件提供了一种不会引发<xref:System.Windows.Threading.Dispatcher.UnhandledException>事件。  <xref:System.Windows.Threading.Dispatcher.UnhandledExceptionFilter>首先，引发事件; 如果<xref:System.Windows.Threading.DispatcherUnhandledExceptionFilterEventArgs.RequestCatch%2A>上<xref:System.Windows.Threading.DispatcherUnhandledExceptionFilterEventArgs>设置为`false`，则<xref:System.Windows.Threading.Dispatcher.UnhandledException>不会引发事件。  
+ 事件提供了不<xref:System.Windows.Threading.Dispatcher.UnhandledException>引发事件的方法。 <xref:System.Windows.Threading.Dispatcher.UnhandledExceptionFilter>  <xref:System.Windows.Threading.DispatcherUnhandledExceptionFilterEventArgs> `false` <xref:System.Windows.Threading.Dispatcher.UnhandledException>首先引发<xref:System.Windows.Threading.DispatcherUnhandledExceptionFilterEventArgs.RequestCatch%2A>事件, 如果上的设置为, 则不会引发事件。 <xref:System.Windows.Threading.Dispatcher.UnhandledExceptionFilter>  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.UIPermission">用于添加或删除此事件的处理程序。  关联的枚举：  <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">用于添加或删除此事件的处理程序。  关联的枚举:<see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
         <altmember cref="T:System.Windows.Threading.DispatcherUnhandledExceptionFilterEventHandler" />
         <altmember cref="T:System.Windows.Threading.DispatcherUnhandledExceptionFilterEventArgs" />
       </Docs>
@@ -2209,20 +2209,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 只有线程<xref:System.Windows.Threading.Dispatcher>创建在可访问<xref:System.Windows.Threading.Dispatcher>。  
+ 只有在上创建<xref:System.Windows.Threading.Dispatcher>的线程可以<xref:System.Windows.Threading.Dispatcher>访问。  
   
- 此方法是公共的则因此，任何线程可以检查以查看是否有权访问<xref:System.Windows.Threading.Dispatcher>。  
+ 此方法是公共的;因此, 任何线程都可以检查它是否有权访问<xref:System.Windows.Threading.Dispatcher>。  
   
- 之间的差异<xref:System.Windows.Threading.Dispatcher.CheckAccess%2A>并<xref:System.Windows.Threading.Dispatcher.VerifyAccess%2A>是<xref:System.Windows.Threading.Dispatcher.CheckAccess%2A>返回一个布尔值，如果调用线程不具有访问<xref:System.Windows.Threading.Dispatcher>和<xref:System.Windows.Threading.Dispatcher.VerifyAccess%2A>将引发异常。  
+ <xref:System.Windows.Threading.Dispatcher.VerifyAccess%2A> <xref:System.Windows.Threading.Dispatcher.CheckAccess%2A>如果调用线程无权访问<xref:System.Windows.Threading.Dispatcher.VerifyAccess%2A> , 则和将返回一个布尔值, 并引发异常。 <xref:System.Windows.Threading.Dispatcher.CheckAccess%2A> <xref:System.Windows.Threading.Dispatcher>  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Windows.Threading.Dispatcher.VerifyAccess%2A>来确定线程是否具有访问该线程的<xref:System.Windows.Controls.Button>上创建。  该方法采用一个对象作为参数，将其强制转换为<xref:System.Windows.Controls.Button>。  <xref:System.Windows.Threading.Dispatcher.VerifyAccess%2A>方法<xref:System.Windows.Threading.Dispatcher>的<xref:System.Windows.Controls.Button>调用以验证是否可以访问该线程。  
+ 下面的示例使用<xref:System.Windows.Threading.Dispatcher.VerifyAccess%2A>来确定线程是否有权访问在上创建的线程<xref:System.Windows.Controls.Button> 。  方法采用对象作为参数, 该参数强制转换为<xref:System.Windows.Controls.Button>。  调用的的<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.Dispatcher.VerifyAccess%2A> 方法<xref:System.Windows.Controls.Button>来验证对线程的访问。  
   
- 如果调用线程可以访问<xref:System.Windows.Threading.Dispatcher>，则<xref:System.Windows.Controls.Button>只需访问的成员更新<xref:System.Windows.Controls.Button>。  
+ 如果调用线程具有对的<xref:System.Windows.Threading.Dispatcher>访问权限<xref:System.Windows.Controls.Button> , 则只需<xref:System.Windows.Controls.Button>访问的成员即可更新。  
   
- 如果调用线程不具有访问权限，<xref:System.InvalidOperationException>引发。  此示例中捕获异常并推送一个委托，它接受<xref:System.Windows.Controls.Button>作为参数，拖到<xref:System.Windows.Threading.Dispatcher>的<xref:System.Windows.Controls.Button>。  这<xref:System.Windows.Threading.Dispatcher>将执行更新的工作<xref:System.Windows.Controls.Button>。  
+ 如果调用线程没有访问权限, <xref:System.InvalidOperationException>则会引发。  此示例捕获异常并将接受<xref:System.Windows.Controls.Button>作为参数的委托推送<xref:System.Windows.Threading.Dispatcher>到<xref:System.Windows.Controls.Button>的。  这<xref:System.Windows.Threading.Dispatcher>将执行<xref:System.Windows.Controls.Button>更新操作。  
   
  [!code-csharp[DispatcherAccessSample#DispatcherAccessVerifyAccess](~/samples/snippets/csharp/VS_Snippets_Wpf/DispatcherAccessSample/CSharp/Window1.xaml.cs#dispatcheraccessverifyaccess)]
  [!code-vb[DispatcherAccessSample#DispatcherAccessVerifyAccess](~/samples/snippets/visualbasic/VS_Snippets_Wpf/DispatcherAccessSample/visualbasic/window1.xaml.vb#dispatcheraccessverifyaccess)]  
@@ -2265,9 +2265,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法提供了一种方法可暂时释放给当前计划程序执行控制，以便它可以执行其他工作，就像处理其他事件。 使用`await`，或`Await`在 Visual Basic 中，运算符的返回值将控制返回给当前计划程序。 使用此方法，如果想要使您的应用程序有机会处理事件，而你应用的运行状况很多在 UI 线程上工作。 例如，您可以更新控件的运行时间较长循环中使用此方法。  
+ 此方法提供了一种方法, 用于将执行控制临时发布到当前调度程序, 以便它可以执行其他工作, 如处理其他事件。 使用、或`Await`在 Visual Basic 中, 对返回值使用运算符, 以将控制权返回给当前调度程序。 `await` 如果希望应用程序在 UI 线程上执行大量工作时能够处理事件, 则可使用此方法。 例如, 可以在更新控件的长时间运行的循环中使用此方法。  
   
- 此方法相当于调用<xref:System.Windows.Threading.Dispatcher.Yield%28System.Windows.Threading.DispatcherPriority%29>方法并传入<xref:System.Windows.Threading.DispatcherPriority.Background?displayProperty=nameWithType>。  
+ 此方法等效于调用<xref:System.Windows.Threading.Dispatcher.Yield%28System.Windows.Threading.DispatcherPriority%29>方法并<xref:System.Windows.Threading.DispatcherPriority.Background?displayProperty=nameWithType>传入。  
   
  ]]></format>
         </remarks>
@@ -2289,7 +2289,7 @@
         <ReturnType>System.Windows.Threading.DispatcherPriorityAwaitable</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="priority" Type="System.Windows.Threading.DispatcherPriority" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="priority">安排延续的优先级别。</param>
@@ -2299,7 +2299,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法提供了一种方法可暂时释放给当前计划程序执行控制，以便它可以执行其他工作，就像处理其他事件。 使用`await`，或`Await`在 Visual Basic 中，运算符的返回值将控制返回给当前计划程序。 使用此方法，如果想要使您的应用程序有机会处理事件，而你应用的运行状况很多在 UI 线程上工作。 例如，您可以更新控件的运行时间较长循环中使用此方法。  
+ 此方法提供了一种方法, 用于将执行控制临时发布到当前调度程序, 以便它可以执行其他工作, 如处理其他事件。 使用、或`Await`在 Visual Basic 中, 对返回值使用运算符, 以将控制权返回给当前调度程序。 `await` 如果希望应用程序在 UI 线程上执行大量工作时能够处理事件, 则可使用此方法。 例如, 可以在更新控件的长时间运行的循环中使用此方法。  
   
  ]]></format>
         </remarks>

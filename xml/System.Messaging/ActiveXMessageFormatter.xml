@@ -1,5 +1,5 @@
 <Type Name="ActiveXMessageFormatter" FullName="System.Messaging.ActiveXMessageFormatter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="728278d4003b29b63c3bf1a601347657ad8adec0" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64012735" /></Metadata><TypeSignature Language="C#" Value="public class ActiveXMessageFormatter : ICloneable, System.Messaging.IMessageFormatter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7f04357c6e48afbb6e4a1a2529f7135892ad4e2a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69382811" /></Metadata><TypeSignature Language="C#" Value="public class ActiveXMessageFormatter : ICloneable, System.Messaging.IMessageFormatter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ActiveXMessageFormatter extends System.Object implements class System.ICloneable, class System.Messaging.IMessageFormatter" />
   <TypeSignature Language="DocId" Value="T:System.Messaging.ActiveXMessageFormatter" />
   <TypeSignature Language="VB.NET" Value="Public Class ActiveXMessageFormatter&#xA;Implements ICloneable, IMessageFormatter" />
@@ -28,13 +28,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Messaging.ActiveXMessageFormatter>适用于使用消息队列的 COM 组件，允许互操作性与使用 MSMQ COM 控件的应用程序发送消息。  
+ <xref:System.Messaging.ActiveXMessageFormatter>与使用消息队列 com 组件发送的消息兼容, 允许与使用 MSMQ COM 控件的应用程序进行互操作。  
   
- <xref:System.Messaging.ActiveXMessageFormatter>大多数基元，以及实现的对象可以序列化`IPersistStream`OLE 接口。 它可以反序列化一组相同的基元，但需要更多工作，反序列化实现的 COM 对象 （例如，使用 Visual Basic 6.0 创建的对象） 时`IPersistStream`。 要反序列化的对象必须是在内存中的第一个将对象导入.NET Framework 应用程序。  
+ 可以序列化大多数基元以及`IPersistStream`实现 OLE 接口的对象。 <xref:System.Messaging.ActiveXMessageFormatter> 它可以反序列化同一组基元, 但当反序列化 COM 对象 (例如使用 Visual Basic 6.0 创建的对象, 该对象使用实现`IPersistStream`的对象) 时需要进一步的工作。 要反序列化的对象必须在内存中, 方法是先将对象导入 .NET Framework 应用程序。  
   
- 当应用程序发送一条消息到队列中的一个实例<xref:System.Messaging.MessageQueue>类中，格式化程序对象序列化为流，并将其插入到消息正文。 从队列使用读取时<xref:System.Messaging.MessageQueue>，格式化程序反序列化到消息数据<xref:System.Messaging.Message.Body%2A>属性的<xref:System.Messaging.Message>。  
+ 当应用程序使用<xref:System.Messaging.MessageQueue>类的实例将消息发送到队列时, 格式化程序将对象序列化为流并将其插入消息正文。 当使用<xref:System.Messaging.MessageQueue>从队列进行读取时, 格式化程序将消息数据<xref:System.Messaging.Message.Body%2A>反序列化为的属性<xref:System.Messaging.Message>。  
   
- ActiveX 序列化是非常简洁，从而使用<xref:System.Messaging.ActiveXMessageFormatter>和 MSMQ COM 控制序列化的非常快方法。  
+ ActiveX 序列化非常简洁, 这使得使用<xref:System.Messaging.ActiveXMessageFormatter>和 MSMQ COM 控件成为一种非常快速的序列化方法。  
   
  ]]></format>
     </remarks>
@@ -89,7 +89,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Messaging.ActiveXMessageFormatter.CanRead%2A> 返回`false`如果消息正文不是消息队列 ActiveX 控件可以反序列化的基元，或如果它未实现`IPersistStream`接口。  
+ <xref:System.Messaging.ActiveXMessageFormatter.CanRead%2A>如果`false`消息消息不是消息队列 ActiveX 控件可以反序列化的基元或未`IPersistStream`实现接口, 则返回。  
   
  ]]></format>
         </remarks>
@@ -124,7 +124,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法由<xref:System.Messaging.MessageQueue>类使用，以便在同一时间接收多个消息 （例如，如果应用程序以异步方式接收）。 通常不需要在应用程序代码中调用此方法。  
+ <xref:System.Messaging.MessageQueue>该类使用此方法来同时接收多个消息 (例如, 如果应用程序是异步接收的)。 通常不需要在应用程序代码中调用此方法。  
   
  ]]></format>
         </remarks>
@@ -187,12 +187,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果消息的正文表示基元类型，该消息的<xref:System.Messaging.Message.BodyType%2A>属性必须是下表中的托管类型之一。  
+ 如果消息的正文表示基元类型, 则消息的<xref:System.Messaging.Message.BodyType%2A>属性必须是下表中的一种托管类型。  
   
 |BodyType 值|托管类型|  
 |--------------------|------------------|  
-|VT_LPSTR|<xref:System.Char> 数组 （反序列化使用 ASCII 编码）|  
-|VT_BSTR, VT_LPWSTR|<xref:System.String> （反序列化使用 Unicode 编码）|  
+|VT_LPSTR|<xref:System.Char>数组 (使用 ASCII 编码进行反序列化)|  
+|VT_BSTR, VT_LPWSTR|<xref:System.String>(使用 Unicode 编码进行反序列化)|  
 |VT_VECTOR &#124; VT_UI1|<xref:System.Byte> 数组|  
 |VT_BOOL|<xref:System.Boolean>|  
 |VT_CLSID|<xref:System.Guid>|  
@@ -251,7 +251,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 下表显示了托管类型之间的关系和<xref:System.Messaging.Message.BodyType%2A>属性。 序列化的对象必须是其中一种托管类型或必须实现 OLE`IPersistStream`接口。  
+ 下表显示了托管类型与<xref:System.Messaging.Message.BodyType%2A>属性之间的关系。 序列化的对象必须是这些托管类型之一, 或者必须实现 OLE `IPersistStream`接口。  
   
 |BodyType 值|托管类型|  
 |--------------------|------------------|  
@@ -272,7 +272,7 @@
 |VT_R4|<xref:System.Single>|  
 |VT_R8|<xref:System.Double>|  
 |VT_NULL|`null`|  
-|VT_STREAMED_OBJECT|`IPersistStream` (OLE) <xref:System.Object>|  
+|VT_STREAMED_OBJECT|`IPersistStream`OLE<xref:System.Object>|  
   
  ]]></format>
         </remarks>

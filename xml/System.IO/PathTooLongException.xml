@@ -1,5 +1,5 @@
 <Type Name="PathTooLongException" FullName="System.IO.PathTooLongException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6f4ece75298e9e45934f527574849c73011e262c" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58742942" /></Metadata><TypeSignature Language="C#" Value="public class PathTooLongException : System.IO.IOException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5e077595cc43780fffa16d75ed25505e3b07b5df" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69243139" /></Metadata><TypeSignature Language="C#" Value="public class PathTooLongException : System.IO.IOException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit PathTooLongException extends System.IO.IOException" />
   <TypeSignature Language="DocId" Value="T:System.IO.PathTooLongException" />
   <TypeSignature Language="VB.NET" Value="Public Class PathTooLongException&#xA;Inherits IOException" />
@@ -42,26 +42,26 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你的代码不具有<xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A?displayProperty=nameWithType>权限，该错误消息的此异常可能包含唯一文件或目录名称，而不是完整路径。  
+ 如果你的代码<xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A?displayProperty=nameWithType>没有权限, 则此异常的错误消息可能只包含文件或目录名称, 而不是完整路径。  
   
- 在之前的.NET Framework 版本下运行的应用程序中[!INCLUDE[net_v462](~/includes/net-v462-md.md)]，完整路径长度不得超过 260 个字符，以保持与 Windows 操作系统兼容。 任何超过 260 个字符的路径就会自动引发<xref:System.IO.PathTooLongException>。 有关此限制的详细信息，请参阅文章[.NET 中的长路径](https://go.microsoft.com/fwlink/?LinkID=163666)BCL 团队博客中。  
+ 在之前[!INCLUDE[net_v462](~/includes/net-v462-md.md)]的 .NET Framework 版本下运行的应用程序中, 完整路径不得超过260个字符, 以便保持与 Windows 操作系统的兼容性。 超过260个字符的任何路径都将<xref:System.IO.PathTooLongException>自动引发。 有关此限制的详细信息, 请参阅 BCL 团队博客中的 .NET 中的条目[长路径](https://go.microsoft.com/fwlink/?LinkID=163666)。  
   
 > [!NOTE]
->  此异常未包含在[.NET for Windows Store 应用](https://go.microsoft.com/fwlink/?LinkID=247912)或[可移植类库](~/docs/standard/cross-platform/cross-platform-development-with-the-portable-class-library.md)，但它将引发的某些成员。 若要在这种情况下捕获的异常，编写`catch`语句处理<xref:System.IO.IOException>相反。  
+>  [Windows 应用商店应用](https://go.microsoft.com/fwlink/?LinkID=247912)或[可移植类库](~/docs/standard/cross-platform/cross-platform-development-with-the-portable-class-library.md)中未包含此异常, 但它由某些成员引发。 若要在这种情况下捕获异常, `catch`请编写一个<xref:System.IO.IOException>句柄来处理。  
   
- 下运行的应用程序起[!INCLUDE[net_v462](~/includes/net-v462-md.md)]，.NET Framework 支持长路径超过 260 (或`MAX_PATH`) 字符。  用的情况<xref:System.IO.PathTooLongException>引发异常取决于.NET Framework 版本的应用面向：  
+ 从在下[!INCLUDE[net_v462](~/includes/net-v462-md.md)]运行的应用开始, .NET Framework 支持超过 260 (或`MAX_PATH`) 个字符的长路径。  引发<xref:System.IO.PathTooLongException>异常的条件取决于应用所面向 .NET Framework 的版本:  
   
- **面向应用[!INCLUDE[net_v462](~/includes/net-v462-md.md)]及更高版本**  
- 默认情况下支持长路径。 运行时会引发<xref:System.IO.PathTooLongException>在以下情况下：  
+ **面向及更高[!INCLUDE[net_v462](~/includes/net-v462-md.md)]版本的应用**  
+ 默认情况下支持长路径。 <xref:System.IO.PathTooLongException>在以下情况下, 运行时将引发:  
   
 -   操作系统返回 `COR_E_PATHTOOLONG` 或其等同项。  
   
--   路径长度超过了<xref:System.Int16.MaxValue?displayProperty=nameWithType>(32,767) 个字符。  
+-   路径的长度超过<xref:System.Int16.MaxValue?displayProperty=nameWithType> (32767) 个字符。  
   
- **面向应用[!INCLUDE[net_v461](~/includes/net-v461-md.md)]及更早版本**  
- 默认情况下，禁用长路径并且会保留旧行为。 运行时会引发<xref:System.IO.PathTooLongException>只要路径超出 260 个字符。  
+ **面向和更早[!INCLUDE[net_v461](~/includes/net-v461-md.md)]版本的应用程序**  
+ 默认情况下, 长路径处于禁用状态, 并且保持旧行为。 <xref:System.IO.PathTooLongException>只要路径超过260个字符, 运行时就会引发。  
   
- 如果这是不可取，面向[!INCLUDE[net_v461](~/includes/net-v461-md.md)]和更早，但在运行[!INCLUDE[net_v462](~/includes/net-v462-md.md)]可以通过将以下设置中的启用长路径支持[\<运行时 >](~/docs/framework/configure-apps/file-schema/runtime/runtime-element.md)的应用程序的元素配置文件：  
+ 如果不需要这样做, 则面向[!INCLUDE[net_v461](~/includes/net-v461-md.md)]和更早版本但在下运行的[!INCLUDE[net_v462](~/includes/net-v462-md.md)]应用程序可以通过在应用程序配置文件的[ \<运行时 >](~/docs/framework/configure-apps/file-schema/runtime/runtime-element.md)元素中包含以下设置来实现长路径支持:  
   
 ```xml  
   
@@ -71,7 +71,7 @@
   
 ```  
   
- <xref:System.IO.PathTooLongException> 使用 HRESULT `COR_E_PATHTOOLONG`，其中包含 0x800700CE 的值。  
+ <xref:System.IO.PathTooLongException>使用具有值`COR_E_PATHTOOLONG`0x800700CE 的 HRESULT。  
   
  ]]></format>
     </remarks>
@@ -126,7 +126,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数初始化<xref:System.Exception.Message%2A>为系统提供的描述错误，例如"提供的路径过长。"的消息的新实例的属性 此消息将当前系统区域性考虑在内。  
+ 此构造函数将<xref:System.Exception.Message%2A>新实例的属性初始化为系统提供的描述错误的消息, 如 "提供的路径太长"。 此消息将当前系统区域性考虑在内。  
   
  ]]></format>
         </remarks>
@@ -172,7 +172,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数初始化<xref:System.Exception.Message%2A>属性的新实例使用`message`。  
+ 此构造函数使用<xref:System.Exception.Message%2A> `message`初始化新实例的属性。  
   
  ]]></format>
         </remarks>
@@ -273,7 +273,7 @@
 |<xref:System.Exception.InnerException%2A>|内部异常引用。|  
 |<xref:System.Exception.Message%2A>|错误消息字符串。|  
   
- 内部异常的详细信息，请参阅<xref:System.Exception.InnerException%2A>。  
+ 有关内部异常的详细信息, 请<xref:System.Exception.InnerException%2A>参阅。  
   
  ]]></format>
         </remarks>

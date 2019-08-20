@@ -1,5 +1,5 @@
 <Type Name="IEqualityComparer&lt;T&gt;" FullName="System.Collections.Generic.IEqualityComparer&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="3e7072613516433c6ad7b3214207cd25563d0e8a" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63908548" /></Metadata><TypeSignature Language="C#" Value="public interface IEqualityComparer&lt;in T&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="78f5f880c2576871a23da87bc920a24623252c3e" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69335050" /></Metadata><TypeSignature Language="C#" Value="public interface IEqualityComparer&lt;in T&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IEqualityComparer`1&lt;- T&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Collections.Generic.IEqualityComparer`1" />
   <TypeSignature Language="VB.NET" Value="Public Interface IEqualityComparer(Of In T)" />
@@ -40,18 +40,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此接口允许对集合的自定义的相等比较实现。 也就是说，可以创建自己的类型的相等性的定义`T`，并指定与接受的集合类型使用此定义<xref:System.Collections.Generic.IEqualityComparer%601>泛型接口。 在.NET Framework 中，构造函数的<xref:System.Collections.Generic.Dictionary%602>接受此接口的泛型集合类型。  
+ 此接口允许实现集合的自定义相等性比较。 也就是说, 您可以为类型`T`创建您自己的相等定义, 并指定此定义与<xref:System.Collections.Generic.IEqualityComparer%601>接受泛型接口的集合类型一起使用。 在 .NET Framework 中, <xref:System.Collections.Generic.Dictionary%602>泛型集合类型的构造函数接受此接口。  
   
- 此接口的默认实现提供通过<xref:System.Collections.Generic.EqualityComparer%601.Default%2A>属性的<xref:System.Collections.Generic.EqualityComparer%601>泛型类。 <xref:System.StringComparer>类实现<xref:System.Collections.Generic.IEqualityComparer%601>类型的<xref:System.String>。  
+ 此接口的默认实现由<xref:System.Collections.Generic.EqualityComparer%601.Default%2A> <xref:System.Collections.Generic.EqualityComparer%601>泛型类的属性提供。 <xref:System.StringComparer>类实现<xref:System.Collections.Generic.IEqualityComparer%601>类型。 <xref:System.String>  
   
- 此接口仅支持相等性比较。 提供自定义的排序和顺序的比较<xref:System.Collections.Generic.IComparer%601>泛型接口。  
+ 此接口仅支持相等比较。 排序和排序比较的自定义是由<xref:System.Collections.Generic.IComparer%601>泛型接口提供的。  
   
- 我们建议从派生<xref:System.Collections.Generic.EqualityComparer%601>类而不是实现<xref:System.Collections.Generic.IEqualityComparer%601>接口，因为<xref:System.Collections.Generic.EqualityComparer%601>类是用于相等性测试<xref:System.IEquatable%601.Equals%2A?displayProperty=nameWithType>方法而不是<xref:System.Object.Equals%2A?displayProperty=nameWithType>方法。 这是与一致`Contains`， `IndexOf`， `LastIndexOf`，和`Remove`方法的<xref:System.Collections.Generic.Dictionary%602>类和其他泛型集合。  
+ 建议<xref:System.Collections.Generic.EqualityComparer%601>从类派生, 而不是<xref:System.Collections.Generic.IEqualityComparer%601>实现接口, 因为<xref:System.Collections.Generic.EqualityComparer%601>该类使用<xref:System.IEquatable%601.Equals%2A?displayProperty=nameWithType>方法而不是<xref:System.Object.Equals%2A?displayProperty=nameWithType>方法来测试相等性。 `Contains`这与`LastIndexOf` `IndexOf`类的、、和`Remove`方法以及其他泛型集合一致。 <xref:System.Collections.Generic.Dictionary%602>  
   
    
   
 ## Examples  
- 下面的示例添加自定义`Box`字典集合的对象。 `Box`对象是否视作相等，如果其维度相同。  
+ 下面的示例将自`Box`定义对象添加到字典集合。 如果`Box`对象的维度相同, 则将它们视为相等。  
   
  [!code-csharp[System.Collections.Generic.IEqualityComparer#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.collections.generic.iequalitycomparer/cs/program.cs#1)]
  [!code-vb[System.Collections.Generic.IEqualityComparer#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.collections.generic.iequalitycomparer/vb/program.vb#1)]  
@@ -108,13 +108,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 实现此方法以提供类型的自定义的相等性比较`T`。  
+ 实现此方法可以为类型`T`提供自定义相等性比较。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>确保，如果需要实现<see cref="M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)" />方法将返回<see langword="true" />两个对象<paramref name="x" />并<paramref name="y" />，然后返回的值<see cref="M:System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)" />方法<paramref name="x" />必须等于的返回值<paramref name="y" />.  
+        <block subset="none" type="overrides"><para><see cref="M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)" />实现需要确保如果方法为两个对象<paramref name="x" /> <paramref name="y" /> <see cref="M:System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)" />和<see langword="true" />返回, 则的方法<paramref name="x" />返回的值必须等于为返回的值<paramref name="y" />.  
   
-<see cref="M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)" />方法是自反、 对称，和传递性。 也就是说，它返回<see langword="true" />如果用于将对象与重试。<see langword="true" />两个对象<paramref name="x" />和<paramref name="y" />若是<see langword="true" />有关<paramref name="y" />和<paramref name="x" />; 和<see langword="true" />两个对象<paramref name="x" />和<paramref name="z" />它是否<see langword="true" />为<paramref name="x" />并<paramref name="y" />以及<see langword="true" />有关<paramref name="y" />和<paramref name="z" />。</para></block>
+<see cref="M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)" />方法为自反、对称和可传递。 也就是说, 如果用于将<see langword="true" />对象与其自身进行比较, 则返回; 否则返回。<see langword="true" /> <paramref name="y" /> <see langword="true" /> <paramref name="z" /> 对于两<see langword="true" />个<paramref name="x" />对象<paramref name="y" /> , 如果它适用于和<paramref name="x" />, 则为; <paramref name="x" />对于两个对象, 则为; 对于, 则为<see langword="true" /> 和<paramref name="x" />和也适用<see langword="true" />于和<paramref name="y" /> 。 <paramref name="z" /> <paramref name="y" /></para></block>
       </Docs>
     </Member>
     <Member MemberName="GetHashCode">
@@ -159,12 +159,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 实现此方法以提供类型的自定义的哈希代码`T`，对应于由提供的自定义的相等性比较<xref:System.Collections.Generic.IEqualityComparer%601.Equals%2A>方法。  
+ 实现此方法可以为类型`T`提供自定义的哈希代码, 这对应于<xref:System.Collections.Generic.IEqualityComparer%601.Equals%2A>方法提供的自定义相等性比较。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="obj" /> 的类型为引用类型，<paramref name="obj" /> 为 <see langword="null" />。</exception>
-        <block subset="none" type="overrides"><para>确保，如果需要实现<see cref="M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)" />方法将返回<see langword="true" />两个对象<paramref name="x" />并<paramref name="y" />，然后返回的值<see cref="M:System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)" />方法<paramref name="x" />必须等于的返回值<paramref name="y" />.</para></block>
+        <block subset="none" type="overrides"><para><see cref="M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)" />实现需要确保如果方法为两个对象<paramref name="x" /> <paramref name="y" /> <see cref="M:System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)" />和<see langword="true" />返回, 则的方法<paramref name="x" />返回的值必须等于为返回的值<paramref name="y" />.</para></block>
         <altmember cref="M:System.Object.GetHashCode" />
         <altmember cref="T:System.Collections.IHashCodeProvider" />
       </Docs>

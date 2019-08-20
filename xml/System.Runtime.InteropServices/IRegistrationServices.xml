@@ -1,5 +1,5 @@
 <Type Name="IRegistrationServices" FullName="System.Runtime.InteropServices.IRegistrationServices">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ba7ce2f03f84bb321aa221f5ac6b075c5d8aa7f0" /><Meta Name="ms.sourcegitcommit" Value="9e06b87bcfa4347dbbaaa4b3cc36b43b93b5badb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="11/20/2018" /><Meta Name="ms.locfileid" Value="52205455" /></Metadata><TypeSignature Language="C#" Value="public interface IRegistrationServices" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e3576256e7f75ed37cc8e5697314a0834e9a2d06" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69269982" /></Metadata><TypeSignature Language="C#" Value="public interface IRegistrationServices" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IRegistrationServices" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.IRegistrationServices" />
   <TypeSignature Language="VB.NET" Value="Public Interface IRegistrationServices" />
@@ -27,7 +27,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当在一个程序集的对象正在使用的 COM 客户端时，需要注册。  
+ 当 COM 客户端使用程序集中的对象时, 需要注册。  
   
  ]]></format>
     </remarks>
@@ -88,7 +88,7 @@
         <summary>检索指定类型的 COM ProgID。</summary>
         <returns>指定类型的 ProgID。</returns>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
       </Docs>
     </Member>
     <Member MemberName="GetRegistrableTypesInAssembly">
@@ -121,7 +121,7 @@
         <summary>在通过调用 <see cref="M:System.Runtime.InteropServices.IRegistrationServices.RegisterAssembly(System.Reflection.Assembly,System.Runtime.InteropServices.AssemblyRegistrationFlags)" /> 注册的程序集中检索类的列表。</summary>
         <returns><see cref="T:System.Type" /> 数组，它包含 <paramref name="assembly" /> 中的类的列表。</returns>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
       </Docs>
     </Member>
     <Member MemberName="RegisterAssembly">
@@ -159,7 +159,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `RegisterAssembly` 中指定的程序集添加相应的注册表项的类型。 此方法还会调用程序集中找到的任何注册函数。  
+ `RegisterAssembly`为指定程序集中的类型添加相应的注册表项。 此方法还调用在程序集中找到的任何注册函数。  
   
  使用<xref:System.Reflection.Assembly.Load%2A?displayProperty=nameWithType>获取程序集。  
   
@@ -168,7 +168,7 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="assembly" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.InvalidOperationException"><paramref name="assembly" /> 的全名为 <see langword="null" />。  
   
-或 
+- 或 - 
 使用 <see cref="T:System.Runtime.InteropServices.ComRegisterFunctionAttribute" /> 标记的方法不是 <see langword="static" /> 方法。  
   
 或 
@@ -176,7 +176,7 @@
   
 或 
 用 <see cref="T:System.Runtime.InteropServices.ComRegisterFunctionAttribute" /> 标记的方法的签名无效。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
       </Docs>
     </Member>
     <Member MemberName="RegisterTypeForComClients">
@@ -213,11 +213,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法相当于调用`CoRegisterClassObject`中 com。  
+ 此方法等效于在 COM `CoRegisterClassObject`中调用。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
       </Docs>
     </Member>
     <Member MemberName="TypeRepresentsComType">
@@ -277,7 +277,7 @@
         <summary>确定指定的类型是否需要注册。</summary>
         <returns>如果该类型必须注册以供从 COM 使用，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
       </Docs>
     </Member>
     <Member MemberName="UnregisterAssembly">
@@ -313,7 +313,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `UnregisterAssembly` 删除类型的注册表项中指定的程序集之前由添加<xref:System.Runtime.InteropServices.IRegistrationServices.RegisterAssembly%2A>。 此方法还会调用程序集中找到的任何注销函数。  
+ `UnregisterAssembly`删除之前由<xref:System.Runtime.InteropServices.IRegistrationServices.RegisterAssembly%2A>添加的指定程序集中的类型的注册表项。 此方法还调用在程序集中找到的任何注销函数。  
   
  ]]></format>
         </remarks>
@@ -323,12 +323,12 @@
 或 
 使用 <see cref="T:System.Runtime.InteropServices.ComUnregisterFunctionAttribute" /> 标记的方法不是 <see langword="static" /> 方法。  
   
-或 
+- 或 - 
 在层次结构的给定级别有多个用 <see cref="T:System.Runtime.InteropServices.ComUnregisterFunctionAttribute" /> 标记的方法。  
   
-或 
+- 或 - 
 用 <see cref="T:System.Runtime.InteropServices.ComUnregisterFunctionAttribute" /> 标记的方法的签名无效。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
       </Docs>
     </Member>
   </Members>
