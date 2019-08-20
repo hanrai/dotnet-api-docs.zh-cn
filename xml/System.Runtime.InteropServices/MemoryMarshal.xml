@@ -1,5 +1,5 @@
 <Type Name="MemoryMarshal" FullName="System.Runtime.InteropServices.MemoryMarshal">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="10291d94526466a6a071d4ad6764465616a0532c" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68542988" /></Metadata><TypeSignature Language="C#" Value="public static class MemoryMarshal" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="061fde1ad6b10337c3320608dcc3a5dd94f4c8dc" /><Meta Name="ms.sourcegitcommit" Value="cb4d218ffd5a459a5f921fe1d945c682d1e09aca" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/16/2019" /><Meta Name="ms.locfileid" Value="69540062" /></Metadata><TypeSignature Language="C#" Value="public static class MemoryMarshal" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit MemoryMarshal extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.MemoryMarshal" />
   <TypeSignature Language="VB.NET" Value="Public Class MemoryMarshal" />
@@ -380,7 +380,11 @@
 
 `TFrom` 和`TTo`都不能包含指针或引用。 `TFrom`在`TTo`运行时将检查和以保留类型安全。  
 
-转换发生在未检查的上下文中。 如果的范围`TTo`小于的`TFrom`范围, 可能会发生数据丢失。 例如`TFrom` , 如果<xref:System.Int32>为<xref:System.Int64>, 则`ReadOnlySpan<Int32>`其中一个值为 0x100001111110F0F, `TTo`为, 结果值为11110F0F。
+如果这两种类型的大小不同, 则强制转换合并或拆分值, 这会导致更改的长度。
+
+`TFrom`例如, 如果为<xref:System.Int64>, 则`ReadOnlySpan<Int64>`包含单个值 0x0100001111110F0F, 而`TTo` <xref:System.Int32>结果`ReadOnlySpan<Int32>`将包含两个值。 值为0x11110F0F 和 0x01000011, 如 x86。 在大字节序体系结构上, 两个值的顺序反向, 即 0x01000011, 后跟0x11110F0F。
+
+作为另一个示例, `TFrom`如果<xref:System.Int32>为, `ReadOnlySpan<Int32>`则包含值1、2和 3, 并且`TTo`为<xref:System.Int64>, 结果`ReadOnlySpan<Int64>`包含单个值:0x0000000200000001 是一种小字节序体系结构, 0x0000000100000002 是一种大字节序体系结构。
 
 此方法仅在支持未对齐的内存访问的平台上或通过其他方法对齐内存块时受支持。
 
@@ -423,7 +427,7 @@
         <param name="start">开始内存块的 <paramref name="array" /> 的索引。</param>
         <param name="length">要包括在内存块中的项数。</param>
         <summary>从 <paramref name="start" /> 索引开始并包含 <paramref name="length" /> 项，在预固定目标数组的一部分之上创建新的内存缓冲区。</summary>
-        <returns><paramref name="array" /> 的指定元素之上的内存块。 如果 <paramref name="array" /> 是 <see langword="null" />，或者如果 <paramref name="start" /> 和 <paramref name="length" /> 为 0，则此方法将返回 <see cref="System.Memory`1.Length" /> 为零的 <see cref="T:System.Memory`1" /> 实例。</returns>
+        <returns><paramref name="array" /> 的指定元素之上的内存块。 如果 <paramref name="array" /> 是 <see langword="null" />，或者如果 <paramref name="start" /> 和 <paramref name="length" /> 为 0，则此方法将返回 <see cref="P:System.Memory`1.Length" /> 为零的 <see cref="T:System.Memory`1" /> 实例。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   

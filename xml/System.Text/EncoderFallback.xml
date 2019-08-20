@@ -1,5 +1,5 @@
 <Type Name="EncoderFallback" FullName="System.Text.EncoderFallback">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d3210b00d0c4bf4cc264c98a97fc960e96d0eaca" /><Meta Name="ms.sourcegitcommit" Value="c0c07dbd19cd7017243f9ac36915755f79bc8da6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="11/27/2018" /><Meta Name="ms.locfileid" Value="52379110" /></Metadata><TypeSignature Language="C#" Value="public abstract class EncoderFallback" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e694bb6e74b76274afe163c73b121890a2814dca" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69230592" /></Metadata><TypeSignature Language="C#" Value="public abstract class EncoderFallback" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract serializable beforefieldinit EncoderFallback extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Text.EncoderFallback" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class EncoderFallback" />
@@ -18,6 +18,7 @@
   <AssemblyInfo>
     <AssemblyName>netstandard</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System.Runtime</AssemblyName>
@@ -39,27 +40,27 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 编码将 Unicode 字符映射到编码的字节序列。 由派生自的类型特定的编码表示<xref:System.Text.Encoding>类。 具体而言，编码为字节序列通过调用的编码类型<xref:System.Text.Encoding.GetBytes%2A?displayProperty=nameWithType>方法，并对字节序列解码为字符数组或字符串通过调用<xref:System.Text.Encoding.GetChars%2A?displayProperty=nameWithType>或<xref:System.Text.Encoding.GetString%2A?displayProperty=nameWithType>方法。  
+ 编码将 Unicode 字符映射到编码的字节序列。 特定的编码由派生自<xref:System.Text.Encoding>类的类型表示。 具体而言, 通过调用编码类型的<xref:System.Text.Encoding.GetBytes%2A?displayProperty=nameWithType>方法将字符编码为字节序列, 并通过<xref:System.Text.Encoding.GetChars%2A?displayProperty=nameWithType>调用或<xref:System.Text.Encoding.GetString%2A?displayProperty=nameWithType>方法将字节序列解码为字符数组或字符串。  
   
- 如果输入的字符无法表示进行编码，编码操作可能会失败。 例如，<xref:System.Text.ASCIIEncoding>对象不能进行编码的 Unicode 代码点值超出了范围 u+0000 到 U + 007F 的字符。  
+ 如果输入字符无法由编码表示, 则编码操作可能会失败。 例如, <xref:System.Text.ASCIIEncoding>对象无法对其 Unicode 码位值不在 u + 0000 到 u + 007F 范围内的字符进行编码。  
   
- 不能执行的编码转换，.NET Framework 提供了一种称为回退的失败处理机制。 你的应用程序可以使用预定义的.NET Framework 编码器回退，或者它可以创建自定义编码器回退派生自<xref:System.Text.EncoderFallback>和<xref:System.Text.EncoderFallbackBuffer>类。  
+ 当无法执行编码转换时, .NET Framework 提供称为 "回退" 的失败处理机制。 应用程序可以使用预定义的 .NET Framework 编码器回退, 也可以创建派生自和<xref:System.Text.EncoderFallback> <xref:System.Text.EncoderFallbackBuffer>类的自定义编码器回退。  
   
- <xref:System.Text.EncoderFallback> 和<xref:System.Text.EncoderFallbackBuffer>基类的所有编码在.NET Framework 中的回退处理程序。 它们支持以下三种类型的处理机制的回退：  
+ <xref:System.Text.EncoderFallback>和<xref:System.Text.EncoderFallbackBuffer>是 .NET Framework 中所有编码回退处理程序的基类。 它们支持以下三种类型的回退处理机制:  
   
--   最佳的回退，将不能进行编码的有效 Unicode 字符映射到近似等效值。 例如，最佳回退处理程序为<xref:System.Text.ASCIIEncoding>类可能会映射到 AE （u+0041 + U + 0045） 的存储 (U + 00 C 6)。 最佳回退处理程序可能还会实现音译有一个字母 （如西里尔文） 到另一个 （如 Latin 或罗马字母）。 .NET Framework 不提供任何公共最佳回退实现。  
+-   最佳回退, 可映射无法编码为近似等效项的有效 Unicode 字符。 例如, <xref:System.Text.ASCIIEncoding>类的最佳回退处理程序可能将Æ (u + 00C6) 映射到 AE (u + 0041 + U + 0045)。 还可以实现最佳回退处理程序, 以将一种字母表 (如西里尔文) 直译另一种 (例如, 拉丁语或罗马)。 .NET Framework 不提供任何公共最佳回退实现。  
   
--   不能使用预定义的字符串编码的替换回退，它取代了每个字符。 .NET Framework 提供了预定义的替换回退处理程序。 <xref:System.Text.EncoderReplacementFallback>类替换为问号字符无法解码的每个字节序列 ("？"，或 U + 003F) 或替换字符 (U + FFFD)。 可以通过在调用中指定替代来自定义替换字符串<xref:System.Text.EncoderReplacementFallback.%23ctor%28System.String%29?displayProperty=nameWithType>构造函数。 替代字符串，将发出之后，将继续编码操作，将转换输入的其余部分。  
+-   替换回退: 替换不能用预定义字符串编码的每个字符。 .NET Framework 提供预定义的替换回退处理程序。 <xref:System.Text.EncoderReplacementFallback>类将每个无法解码的字节序列替换为问号字符 ("？" 或 u + 003F) 或替换字符 (u + FFFD)。 您可以通过在对<xref:System.Text.EncoderReplacementFallback.%23ctor%28System.String%29?displayProperty=nameWithType>构造函数的调用中指定替换来自定义替换字符串。 发出替换字符串后, 编码操作继续转换输入的其余部分。  
   
--   不能对字符进行编码时将引发异常的异常回退。 .NET Framework 提供了一个预定义的异常回退处理程序。 <xref:System.Text.EncoderExceptionFallback>类将引发<xref:System.Text.EncoderFallbackException>时遇到无效的字符，和编码操作终止。  
+-   异常回退, 当无法对字符进行编码时, 将引发异常。 .NET Framework 提供预定义的异常回退处理程序。 当遇到无效的字符, 并且编码操作终止时, 类将<xref:System.Text.EncoderExceptionFallback>引发。 <xref:System.Text.EncoderFallbackException>  
   
- 如果您选择实现自定义解决方案，必须重写的以下抽象成员<xref:System.Text.EncoderFallback>类：  
+ 如果选择实现自定义解决方案, 则必须重写<xref:System.Text.EncoderFallback>类的以下抽象成员:  
   
--   <xref:System.Text.EncoderFallback.CreateFallbackBuffer%2A>方法，它返回派生自的类实例<xref:System.Text.EncoderFallbackBuffer>。 具体取决于你正在开发的回退处理程序的类型<xref:System.Text.EncoderFallbackBuffer>实现负责执行映射或更换过程中，或引发异常。  
+-   方法, 它返回派生自<xref:System.Text.EncoderFallbackBuffer>的类实例。 <xref:System.Text.EncoderFallback.CreateFallbackBuffer%2A> 根据要开发的回退处理程序的类型, <xref:System.Text.EncoderFallbackBuffer>实现负责执行映射或替换, 或引发异常。  
   
--   <xref:System.Text.EncoderFallback.MaxCharCount%2A>属性，它返回的最大回退实现可以返回的字符数。 对于异常回退处理程序，其值应为零。  
+-   <xref:System.Text.EncoderFallback.MaxCharCount%2A>属性, 该属性返回回退实现可返回的最大字符数。 对于异常回退处理程序, 其值应为零。  
   
- 有关编码、 解码和回退策略的详细信息，请参阅[.NET Framework 中的字符编码](~/docs/standard/base-types/character-encoding.md)。  
+ 有关编码、解码和回退策略的详细信息, 请参阅[.NET Framework 中的字符编码](~/docs/standard/base-types/character-encoding.md)。  
   
  ]]></format>
     </remarks>
@@ -67,7 +68,7 @@
     <altmember cref="T:System.Text.EncoderReplacementFallback" />
     <altmember cref="T:System.Text.EncoderExceptionFallback" />
     <related type="Article" href="~/docs/standard/base-types/character-encoding.md">.NET Framework 中的字符编码</related>
-    <related type="ExternalDocumentation" href="https://code.msdn.microsoft.com/Cyrillic-to-Roman-f7e88b29">示例： 西里尔文 Roman 音译实用程序</related>
+    <related type="ExternalDocumentation" href="https://code.msdn.microsoft.com/Cyrillic-to-Roman-f7e88b29">示例:西里尔文到罗马音译实用工具</related>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -90,6 +91,7 @@
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
@@ -123,6 +125,7 @@
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
@@ -140,9 +143,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法返回一个对象派生自<xref:System.Text.EncoderFallbackBuffer>，它负责执行回退操作。 例如，预定义的<xref:System.Text.EncoderFallback>.NET Framework 中的实现<xref:System.Text.EncoderReplacementFallback.CreateFallbackBuffer%2A?displayProperty=nameWithType>方法将返回<xref:System.Text.EncoderReplacementFallbackBuffer>对象，和<xref:System.Text.EncoderExceptionFallback.CreateFallbackBuffer%2A?displayProperty=nameWithType>方法将返回<xref:System.Text.EncoderExceptionFallbackBuffer>对象。  
+ 此方法返回派生自<xref:System.Text.EncoderFallbackBuffer>的对象, 该对象负责执行回退操作。 例如, 在 .NET Framework 中预<xref:System.Text.EncoderFallback>定义的实现, 该<xref:System.Text.EncoderReplacementFallback.CreateFallbackBuffer%2A?displayProperty=nameWithType>方法返回一个<xref:System.Text.EncoderReplacementFallbackBuffer>对象, 该<xref:System.Text.EncoderExceptionFallback.CreateFallbackBuffer%2A?displayProperty=nameWithType>方法返回一个<xref:System.Text.EncoderExceptionFallbackBuffer>对象。  
   
- <xref:System.Text.EncoderFallback.CreateFallbackBuffer%2A>遇到它不能进行编码的第一个字符时，编码器调用的方法。 <xref:System.Text.EncoderFallbackBuffer>此方法返回的对象提供回退实现，并负责返回替换无法编码的字符的字节数组。  
+ 当遇到无法进行编码的第一个字符时, 编码器将调用方法。<xref:System.Text.EncoderFallback.CreateFallbackBuffer%2A> 此方法返回的对象提供回退实现,负责返回替换无法编码的字符的字节数组。<xref:System.Text.EncoderFallbackBuffer>  
   
  ]]></format>
         </remarks>
@@ -171,6 +174,7 @@
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
@@ -207,6 +211,7 @@
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
@@ -223,7 +228,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对于异常回退处理程序，此属性应返回零。  
+ 对于异常回退处理程序, 此属性应返回零。  
   
  ]]></format>
         </remarks>
@@ -250,6 +255,7 @@
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>

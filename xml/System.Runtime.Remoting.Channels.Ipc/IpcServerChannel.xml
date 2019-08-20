@@ -1,5 +1,5 @@
 <Type Name="IpcServerChannel" FullName="System.Runtime.Remoting.Channels.Ipc.IpcServerChannel">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8ca4c24205897d3ecdc7d14f48acb5bc14ac3899" /><Meta Name="ms.sourcegitcommit" Value="42a3c35677e9d87eeb503607ae50c9d39827d414" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="12/17/2018" /><Meta Name="ms.locfileid" Value="53457883" /></Metadata><TypeSignature Language="C#" Value="public class IpcServerChannel : System.Runtime.Remoting.Channels.IChannelReceiver, System.Runtime.Remoting.Channels.ISecurableChannel" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="78601bd8d978469f39246cec43f2c96950da83da" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69062432" /></Metadata><TypeSignature Language="C#" Value="public class IpcServerChannel : System.Runtime.Remoting.Channels.IChannelReceiver, System.Runtime.Remoting.Channels.ISecurableChannel" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit IpcServerChannel extends System.Object implements class System.Runtime.Remoting.Channels.IChannel, class System.Runtime.Remoting.Channels.IChannelReceiver, class System.Runtime.Remoting.Channels.ISecurableChannel" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" />
   <TypeSignature Language="VB.NET" Value="Public Class IpcServerChannel&#xA;Implements IChannelReceiver, ISecurableChannel" />
@@ -33,33 +33,33 @@
 
 [!INCLUDE [untrusted-data-class-note](~/includes/untrusted-data-class-note.md)]
 
- .NET Framework 远程处理基础结构使用的通道来传输远程调用。 当客户端调用远程对象时，该调用被序列化为一条消息是由客户端通道发送和接收的服务器信道。 接收消息后，它是反序列化和处理。 任何返回的值是由服务器信道传输和接收客户端通道。  
+ 通道由 .NET Framework 远程处理基础结构用于传输远程调用。 当客户端调用远程对象时, 调用将被序列化为客户端通道发送并由服务器通道接收的消息。 收到消息后, 将对其进行反序列化和处理。 任何返回值由服务器通道传输并由客户端通道接收。  
   
- <xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>类在同一计算机上的应用程序域之间使用 Windows 进程间通信 (IPC) 系统传输消息。 在同一台计算机上的应用程序域之间进行通信，IPC 信道时，TCP 或 HTTP 通道比快得多。  
+ <xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>类使用 Windows 进程间通信 (IPC) 系统在同一台计算机上的应用程序域之间传输消息。 在同一台计算机上的应用程序域之间通信时, IPC 信道比 TCP 或 HTTP 通道快得多。  
   
- 若要在服务器端执行其他处理的消息，指定的一个实现<xref:System.Runtime.Remoting.Channels.IServerChannelSinkProvider>处理的所有消息通过接口<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>传递实例。  
+ 若要在服务器端执行额外的消息处理, 请指定一个<xref:System.Runtime.Remoting.Channels.IServerChannelSinkProvider>接口的实现, 通过该接口, 通过该接口来传递该<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>实例处理的所有消息。  
   
- <xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>实例接受二进制或 SOAP 格式序列化的消息。  
+ <xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>实例接受以二进制或 SOAP 格式序列化的消息。  
   
- 一个<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>对象具有关联的配置属性，可以在设置配置文件中运行时 (通过调用静态<xref:System.Runtime.Remoting.RemotingConfiguration.Configure%2A?displayProperty=nameWithType>方法) 或以编程方式 (通过传递<xref:System.Collections.IDictionary>集合<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.%23ctor%2A>构造函数）。 有关这些配置属性的列表，请参阅的文档<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.%23ctor%2A>构造函数。  
+ 对象具有关联的配置属性, 这些属性可在运行时在配置文件中设置 (通过调用静态<xref:System.Runtime.Remoting.RemotingConfiguration.Configure%2A?displayProperty=nameWithType>方法) 或<xref:System.Collections.IDictionary>以编程方式 (通过将集合<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.%23ctor%2A>传递到<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>构造函数)。 有关这些配置属性的列表, 请参阅<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.%23ctor%2A>构造函数的文档。  
   
 > [!CAUTION]
->  设置时`exclusiveAddressUse`属性设置为`false`中`properties`参数，多个<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>对象可注册为相同的命名管道。 在这种情况下请求可以转到任何注册的信道。 此设置被视为仅当还使用 alc 时，才安全。  
+>  在`exclusiveAddressUse` 参数`properties`中将属性`false`设置为时, 可以<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>为同一个命名管道注册多个对象。 在这种情况下, 请求可以到达注册的任何通道。 仅当同时使用 ALCs 时, 才会将此设置视为安全设置。  
   
    
   
 ## Examples  
- 下面的代码示例演示了如何使用<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>类。  
+ 下面的代码示例演示如何使用<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>类。  
   
  [!code-cpp[Remoting_Ipc#10](~/samples/snippets/cpp/VS_Snippets_Remoting/Remoting_Ipc/CPP/server.cpp#10)]
  [!code-csharp[Remoting_Ipc#10](~/samples/snippets/csharp/VS_Snippets_Remoting/Remoting_Ipc/CS/server.cs#10)]  
   
- 前面的代码中用于公开以下远程对象。  
+ 前面的代码用于公开以下远程对象。  
   
  [!code-cpp[Remoting_Ipc#0](~/samples/snippets/cpp/VS_Snippets_Remoting/Remoting_Ipc/CPP/counter.cpp#0)]
  [!code-csharp[Remoting_Ipc#0](~/samples/snippets/csharp/VS_Snippets_Remoting/Remoting_Ipc/CS/counter.cs#0)]  
   
- 远程使用此对象的客户端的示例，请参阅<xref:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel>。  
+ 有关远程使用此对象的客户端的示例, 请<xref:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel>参阅。  
   
  ]]></format>
     </remarks>
@@ -131,12 +131,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关通道配置属性的详细信息，请参阅[通道和格式化程序配置属性](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/kw7c6kwc(v=vs.100))。  
+ 有关通道配置属性的详细信息, 请参阅[通道和格式化程序配置属性](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/kw7c6kwc(v=vs.100))。  
   
- 如果不需要接收器功能，设置`sinkProvider`参数`null`。  
+ 如果不需要接收器功能, 请将`sinkProvider`参数设置为。 `null`  
   
 > [!CAUTION]
->  设置时`exclusiveAddressUse`属性设置为`false`中`properties`参数，多个<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>对象可注册为相同的命名管道。 在这种情况下请求可以转到任何注册的信道。 此设置被视为仅当还使用 alc 时，才安全。  
+>  在`exclusiveAddressUse` 参数`properties`中将属性`false`设置为时, 可以<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>为同一个命名管道注册多个对象。 在这种情况下, 请求可以到达注册的任何通道。 仅当同时使用 ALCs 时, 才会将此设置视为安全设置。  
   
    
   
@@ -176,7 +176,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数设置<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.ChannelName%2A>属性使用`name`参数。 如果你想要注册多个通道，每个通道必须具有唯一的名称。  
+ 此构造函数`name`使用<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.ChannelName%2A>参数设置属性。 如果要注册多个通道, 则每个通道都必须具有唯一的名称。  
   
    
   
@@ -217,12 +217,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关通道配置属性的详细信息，请参阅[通道和格式化程序配置属性](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/kw7c6kwc(v=vs.100))。  
+ 有关通道配置属性的详细信息, 请参阅[通道和格式化程序配置属性](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/kw7c6kwc(v=vs.100))。  
   
- 如果不需要接收器功能，设置`sinkProvider`参数`null`。 如果不需要的安全描述符，设置`securityDescriptor`参数`null`。  
+ 如果不需要接收器功能, 请将`sinkProvider`参数设置为。 `null` 如果不需要安全描述符, 请将`securityDescriptor`参数设置为。 `null`  
   
 > [!CAUTION]
->  设置时`exclusiveAddressUse`属性设置为`false`中`properties`参数，多个<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>对象可注册为相同的命名管道。 在这种情况下请求可以转到任何注册的信道。 此设置被视为仅当还使用 alc 时，才安全。  
+>  在`exclusiveAddressUse` 参数`properties`中将属性`false`设置为时, 可以<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>为同一个命名管道注册多个对象。 在这种情况下, 请求可以到达注册的任何通道。 仅当同时使用 ALCs 时, 才会将此设置视为安全设置。  
   
  ]]></format>
         </remarks>
@@ -256,9 +256,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数设置<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.ChannelName%2A>属性使用`name`参数。 如果你想要注册多个通道，每个通道必须具有唯一的名称。  
+ 此构造函数`name`使用<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.ChannelName%2A>参数设置属性。 如果要注册多个通道, 则每个通道都必须具有唯一的名称。  
   
- 如果不需要接收器功能，设置`sinkProvider`参数`null`。  
+ 如果不需要接收器功能, 请将`sinkProvider`参数设置为。 `null`  
   
    
   
@@ -298,7 +298,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 尽管实例的形式返回<xref:System.Object?displayProperty=nameWithType>类，此属性的值可以转换为的实例<xref:System.Runtime.Remoting.Channels.ChannelDataStore>描述的通道<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>对象要侦听。  
+ 虽然作为<xref:System.Object?displayProperty=nameWithType>类的实例返回, 但可以将此属性的值强制转换为说明<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel>对象所侦听<xref:System.Runtime.Remoting.Channels.ChannelDataStore>的通道的实例。  
   
    
   
@@ -338,7 +338,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 每个已注册的信道都有唯一的名称。 该名称用于在调用时检索特定的信道<xref:System.Runtime.Remoting.Channels.ChannelServices.GetChannel%2A>方法。 默认名称为"ipc server"。  
+ 每个已注册的通道都具有唯一的名称。 此名称用于在调用<xref:System.Runtime.Remoting.Channels.ChannelServices.GetChannel%2A>方法时检索特定通道。 默认名称为 "ipc 服务器"。  
   
    
   
@@ -378,7 +378,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 优先级控制在所用的通道中数据的显示中顺序<xref:System.Runtime.Remoting.ObjRef>实例; 出现之前较低优先级通道的更高优先级通道。 客户端尝试连接到服务器的渠道中列出的顺序在<xref:System.Runtime.Remoting.ObjRef>实例。 默认优先级为 20;允许使用负的优先级。  
+ 优先级控制通道数据在<xref:System.Runtime.Remoting.ObjRef>实例中的显示顺序; 较高优先级的通道显示在低优先级通道之前。 客户端会按照<xref:System.Runtime.Remoting.ObjRef>实例中列出的顺序尝试连接到服务器通道。 默认优先级为 20;允许负的优先级。  
   
    
   
@@ -416,12 +416,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 客户端使用的通道 URI 指定的远程服务器信道。  
+ 客户端使用通道 URI 来指定远程服务器通道。  
   
    
   
 ## Examples  
- 下面的代码示例演示了如何使用<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.GetChannelUri%2A>方法。  
+ 下面的代码示例演示如何使用<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.GetChannelUri%2A>方法。  
   
  [!code-cpp[Remoting_Ipc#12](~/samples/snippets/cpp/VS_Snippets_Remoting/Remoting_Ipc/CPP/server.cpp#12)]
  [!code-csharp[Remoting_Ipc#12](~/samples/snippets/csharp/VS_Snippets_Remoting/Remoting_Ipc/CS/server.cs#12)]  
@@ -460,7 +460,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法由<xref:System.Runtime.Remoting.Channels.ChannelServices.GetUrlsForObject%2A?displayProperty=nameWithType>方法。  
+ 此方法由<xref:System.Runtime.Remoting.Channels.ChannelServices.GetUrlsForObject%2A?displayProperty=nameWithType>方法使用。  
   
    
   
@@ -531,7 +531,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对象的 URI 是用于唯一地标识特定对象实例的值。  
+ 对象的 URI 是唯一标识特定对象实例的值。  
   
    
   
@@ -574,11 +574,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不需要调用此方法以开始侦听新初始化通道。  
+ 无需调用此方法即可开始在新初始化的通道上进行侦听。  
   
- 使用此方法可重新开始侦听通道后<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.StopListening%2A>调用方法以停止侦听通道上。  
+ 使用此方法可以在调用<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.StopListening%2A>方法停止侦听通道之后, 重新启动在通道上进行侦听。  
   
- 数据对象可以用于将特定的初始化状态传递到通道。 如果不想要将某一特定状态传递到通道，则传递`null`作为`data`参数值。  
+ 数据对象可用于向通道传递特定的初始化状态。 如果你不希望将特定状态传递到通道, 请将`null` `data`作为参数值传递。  
   
  ]]></format>
         </remarks>
@@ -614,9 +614,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此方法可停止侦听通道上。 若要重新开始侦听，请使用<xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.StartListening%2A>方法。  
+ 使用此方法停止在通道上进行侦听。 若要重新启动侦听, <xref:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.StartListening%2A>请使用方法。  
   
- 数据对象可以用于将特定的初始化状态传递到通道。 如果不想要将某一特定状态传递到通道，则传递`null`作为`data`参数值。  
+ 数据对象可用于向通道传递特定的初始化状态。 如果你不希望将特定状态传递到通道, 请将`null` `data`作为参数值传递。  
   
  ]]></format>
         </remarks>

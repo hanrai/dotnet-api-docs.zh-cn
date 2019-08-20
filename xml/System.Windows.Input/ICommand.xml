@@ -1,5 +1,5 @@
 <Type Name="ICommand" FullName="System.Windows.Input.ICommand">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8dde7b97da4c87bdc5fab856e163ae58241529ec" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58702317" /></Metadata><TypeSignature Language="C#" Value="public interface ICommand" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="914509cdd6dc311257f257a95145cd897d9eeb02" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69172871" /></Metadata><TypeSignature Language="C#" Value="public interface ICommand" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ICommand" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Input.ICommand" />
   <TypeSignature Language="VB.NET" Value="Public Interface ICommand" />
@@ -54,22 +54,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Input.RoutedCommand> 并<xref:System.Windows.Input.RoutedUICommand>的两个实现<xref:System.Windows.Input.ICommand>接口中[!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)]。  
+ <xref:System.Windows.Input.RoutedCommand>和<xref:System.Windows.Input.RoutedUICommand>是<xref:System.Windows.Input.ICommand> 中[!INCLUDE[TLA#tla_winclient](~/includes/tlasharptla-winclient-md.md)]接口的两种实现。  
   
-## <a name="icommand-in-windows-runtime-apps"></a>在 Windows 中的 ICommand 运行时应用  
- <xref:System.Windows.Input.ICommand>接口是.NET for Windows Runtime 应用程序中编写的命令的代码协定。 这些命令为 UI 元素，例如 Windows 运行时 XAML 提供的命令行为`Button`特别`AppBarButton`。 如果你定义的 Windows 运行时应用的命令将基本上会使用用于定义.NET 应用的命令的相同技术。 通过定义实现的类中实现命令<xref:System.Windows.Input.ICommand>，并专门实现<xref:System.Windows.Input.ICommand.Execute%2A>方法。  
+## <a name="icommand-in-windows-runtime-apps"></a>Windows 运行时应用中的 ICommand  
+ <xref:System.Windows.Input.ICommand>接口是用 .net 编写的用于 Windows 运行时应用程序的命令的代码协定。 这些命令提供 UI 元素 (例如 Windows 运行时 XAML `Button`和`AppBarButton`) 的命令行为。 如果要为 Windows 运行时应用定义命令, 你将使用用于为 .NET 应用定义命令的相同技术。 通过定义实现<xref:System.Windows.Input.ICommand>并专门<xref:System.Windows.Input.ICommand.Execute%2A>实现方法的类来实现该命令。  
   
- XAML 的 Windows 运行时不支持 x`:Static`，因此，请勿尝试使用`x:Static`如果该命令用于从 Windows 运行时 XAML 标记扩展。 此外，Windows 运行时没有任何预定义的命令库，因此如下所示的 XAML 语法实际上并不适用的情况下，要在其中实现接口并定义适用于 Windows 运行时使用的命令。  
+ Windows 运行时的 xaml 不支持 x`:Static`, 因此, 如果使用 Windows 运行时 XAML 中的命令, 则不要尝试`x:Static`使用标记扩展。 此外, Windows 运行时没有任何预定义的命令库, 因此此处显示的 XAML 语法实际上不适用于实现接口的情况, 并为 Windows 运行时使用定义命令。  
   
 <a name="xamlTextUsage_ICommand"></a>   
 ## <a name="xaml-attribute-usage"></a>XAML 属性用法  
  \<*object property*="*predefinedCommandName*"/>  
   
-- 或 -
+或
   
  \<*object property*="*predefinedCommandName.predefinedCommandName*"/>  
   
-- 或 -
+或
   
  \<*object property*="{ *customClassName.customCommandName*}"/>  
   
@@ -82,7 +82,7 @@
  预定义的命令之一。  
   
  *customClassName*  
- 一个包含自定义命令的自定义类。 通常需要自定义类`xlmns`前缀映射; 请参阅[XAML 命名空间和 WPF XAML 的 Namespace 映射](~/docs/framework/wpf/advanced/xaml-namespaces-and-namespace-mapping-for-wpf-xaml.md)。  
+ 一个包含自定义命令的自定义类。 自定义类通常需要`xlmns`前缀映射; 请参阅[WPF xaml 的 XAML 命名空间和命名空间映射](~/docs/framework/wpf/advanced/xaml-namespaces-and-namespace-mapping-for-wpf-xaml.md)。  
   
  *customCommandName*  
  自定义命令。  
@@ -138,7 +138,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常情况下，命令源调用<xref:System.Windows.Input.ICommand.CanExecute%2A>方法时<xref:System.Windows.Input.ICommand.CanExecuteChanged>引发事件。  
+ 通常, 命令源会<xref:System.Windows.Input.ICommand.CanExecute%2A> <xref:System.Windows.Input.ICommand.CanExecuteChanged>在引发事件时调用方法。  
   
  ]]></format>
         </remarks>
@@ -189,9 +189,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常情况下，命令源调用<xref:System.Windows.Input.ICommand.CanExecute%2A>命令时将发生此事件。  
+ 通常, 当发生此事件<xref:System.Windows.Input.ICommand.CanExecute%2A>时, 命令源对该命令调用。  
   
- 通常情况下，如果命令无法执行，命令源禁用其自身。  
+ 通常, 如果命令无法执行, 命令源将禁用自身。  
   
  ]]></format>
         </remarks>

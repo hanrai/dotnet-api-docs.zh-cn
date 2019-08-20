@@ -1,5 +1,5 @@
 <Type Name="IUpdatable" FullName="System.Data.Services.IUpdatable">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e9619179307c12a5382ba1e2111757b02850fd40" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63890664" /></Metadata><TypeSignature Language="C#" Value="public interface IUpdatable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b1b767b754137ad976c89e9c1503f5260af3252b" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69123959" /></Metadata><TypeSignature Language="C#" Value="public interface IUpdatable" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IUpdatable" />
   <TypeSignature Language="DocId" Value="T:System.Data.Services.IUpdatable" />
   <TypeSignature Language="VB.NET" Value="Public Interface IUpdatable" />
@@ -17,13 +17,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Services.IUpdatable>接口是独立的资源。 返回表示资源的对象的方法可以返回任何内容。  
+ <xref:System.Data.Services.IUpdatable>接口与资源无关。 返回表示资源的对象的方法可以返回任何内容。  
   
- 返回的对象是一个表示资源的不透明对象。 若要使用该引用可读取或更新一个值，同一个不透明对象被传递回<xref:System.Data.Services.IUpdatable>。  
+ 返回的对象是表示资源的不透明对象。 若要使用引用来读取或更新值, 则会将相同的不透明对象传递<xref:System.Data.Services.IUpdatable>回。  
   
- 实现<xref:System.Data.Services.IUpdatable>必须跟踪对象，它表示此不透明对象之间的映射。 当序列化资源和所需的正确类型的公共语言运行时 (CLR) 实例，则在 ResolveResource 方法<xref:System.Data.Services.IUpdatable>调用时所使用的不透明对象。  
+ 的<xref:System.Data.Services.IUpdatable>实现必须跟踪此不透明对象与它所表示的对象之间的映射。 如果对资源进行序列化并且需要正确类型的公共语言运行时 (CLR) 实例, 则使用不透明对象<xref:System.Data.Services.IUpdatable>调用上的 ResolveResource 方法。  
   
- 若要序列化对象，调用<xref:System.Data.Services.IUpdatable.ResolveResource%2A>方法<xref:System.Data.Services.IUpdatable>。  
+ 若要序列化对象, 请<xref:System.Data.Services.IUpdatable.ResolveResource%2A>对<xref:System.Data.Services.IUpdatable>调用方法。  
   
  ]]></format>
     </remarks>
@@ -109,9 +109,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Services.IUpdatable.CreateResource%2A> 调用以插入新的资源的 HTTP POST 方法。 第一个参数指向资源所属的容器和第二个参数是需要创建的资源类型的命名空间限定名称。  
+ <xref:System.Data.Services.IUpdatable.CreateResource%2A>调用以通过 HTTP POST 方法插入新资源。 第一个参数指向资源所属的容器, 第二个参数是需要创建的资源类型的命名空间限定名称。  
   
- 使用继承时，第二个参数是最有用。 返回类型不需要的资源的实际 CLR 实例。 它可以是任何内容，例如，cookie 实现需要的。  
+ 使用继承时, 第二个参数最有用。 返回类型不需要是资源的实际 CLR 实例。 它可以是实现所需的任何内容 (例如, cookie)。  
   
  ]]></format>
         </remarks>
@@ -143,7 +143,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `targetResource`是返回的不透明对象<xref:System.Data.Services.IUpdatable.GetResource%2A>或<xref:System.Data.Services.IUpdatable.CreateResource%2A>。  
+ `targetResource` 是<xref:System.Data.Services.IUpdatable.GetResource%2A>或返回<xref:System.Data.Services.IUpdatable.CreateResource%2A>的不透明对象。  
   
  ]]></format>
         </remarks>
@@ -206,7 +206,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法称为标量属性或复杂属性。 对于标量属性，返回的对象应该是实际值。  
+ 为标量属性或复杂属性调用此方法。 对于标量属性, 返回的对象应该是实际值。  
   
  ]]></format>
         </remarks>
@@ -242,7 +242,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从标识的目标对象上的导航属性集合中移除指定的资源。 此操作将删除绑定的关系的两个资源对象之间的关系。  
+ 从目标对象上的导航属性所标识的集合中删除指定的资源。 此操作删除由关系绑定的两个资源对象之间的关系。  
   
  ]]></format>
         </remarks>
@@ -301,9 +301,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法来解决返回的不透明对象<xref:System.Data.Services.IUpdatable.CreateResource%2A>或<xref:System.Data.Services.IUpdatable.GetResource%2A>到 CLR 实例的 API。 这通常称为后<xref:System.Data.Services.IUpdatable.SaveChanges%2A>要序列化的资源的 POST 方法。  
+ 调用此方法可将<xref:System.Data.Services.IUpdatable.CreateResource%2A>或<xref:System.Data.Services.IUpdatable.GetResource%2A> API 返回的不透明对象解析到 CLR 实例中。 通常, 在对 POST <xref:System.Data.Services.IUpdatable.SaveChanges%2A>方法的资源进行序列化后调用此方法。  
   
- 如果有使用公共语言运行时 (CLR) 资源实例调用更新侦听器，还将调用此方法。 如果访问接口支持乐观并发和资源类型已由定义并发标记，可以使用它<xref:System.Data.Services.ETagAttribute>基于 CLR 的提供程序中。  
+ 如果有在公共语言运行时 (CLR) 资源实例中调用的更新侦听器, 也会调用此方法。 如果提供程序支持乐观并发, 且资源类型<xref:System.Data.Services.ETagAttribute>在基于 CLR 的提供程序中定义了并发标记, 则可以使用此方法。  
   
  ]]></format>
         </remarks>
@@ -332,7 +332,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Services.IUpdatable>实现必须跟踪所有更改直至<xref:System.Data.Services.IUpdatable.SaveChanges%2A>称为，然后保存所有更改<xref:System.Data.Services.IUpdatable.SaveChanges%2A>调用。 <xref:System.Data.Services.IUpdatable>实现应保存的所有更改或拒绝所有所做的更改在一起。  
+ 在调用之前<xref:System.Data.Services.IUpdatable.SaveChanges%2A> , <xref:System.Data.Services.IUpdatable.SaveChanges%2A>实现必须跟踪所有更改, 并在调用时保存所有更改。 <xref:System.Data.Services.IUpdatable> 此<xref:System.Data.Services.IUpdatable>实现应保存所有更改或同时拒绝所有更改。  
   
  ]]></format>
         </remarks>

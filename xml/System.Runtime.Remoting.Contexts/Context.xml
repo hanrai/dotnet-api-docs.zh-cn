@@ -1,5 +1,5 @@
 <Type Name="Context" FullName="System.Runtime.Remoting.Contexts.Context">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ae610652e6c0d0cab5d0915365ebe191760bbf86" /><Meta Name="ms.sourcegitcommit" Value="800d45fb80a298c4bde743e8a40af69755fc850f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/24/2019" /><Meta Name="ms.locfileid" Value="54895365" /></Metadata><TypeSignature Language="C#" Value="public class Context" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="14a755b2bfb2a5a715db68e13dc9316d8d4650f6" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69267370" /></Metadata><TypeSignature Language="C#" Value="public class Context" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi beforefieldinit Context extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Remoting.Contexts.Context" />
   <TypeSignature Language="VB.NET" Value="Public Class Context" />
@@ -27,13 +27,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 上下文是定义一个环境，用于为驻留在对象的属性有序的序列。 获取被配置为要求某些自动服务，如同步、 事务、 在实时激活、 安全性和等等的对象的激活过程中创建上下文。 多个对象可以存留在一个上下文内。  
+ 上下文是一系列有序属性, 这些属性定义了其中驻留的对象的环境。 上下文在对象的激活过程中创建, 这些对象配置为需要某些自动服务, 例如同步、事务、实时激活、安全等。 多个对象可以存留在一个上下文内。  
   
- 类的实例用来标记<xref:System.Runtime.Remoting.Contexts.ContextAttribute>类，该类提供了使用规则。 每当实例化一个新的对象时，.NET Framework 找到一个兼容或创建的新实例<xref:System.Runtime.Remoting.Contexts.Context>对象类。 后一个对象放置到上下文中，将一直留在其生命周期。 可以绑定到上下文的类称为上下文绑定类。 从另一个上下文访问时，会通过使用代理直接引用此类类。 从一个上下文中的对象对另一个上下文中的对象的任何调用将经过上下文代理，并受组合的上下文属性强制执行策略。  
+ 类使用<xref:System.Runtime.Remoting.Contexts.ContextAttribute>类的实例进行标记, 该类提供使用规则。 每次实例化新的对象时, .NET Framework 会找到兼容的或为对象创建<xref:System.Runtime.Remoting.Contexts.Context>类的新实例。 将对象放置在上下文中后, 它将一直保留在其中。 可以绑定到上下文的类称为上下文绑定类。 从另一个上下文访问此类类时, 将使用代理直接引用此类类。 从一个上下文中的对象到另一个上下文中对象的任何调用都将通过上下文代理, 并受组合上下文属性强制执行的策略的影响。  
   
- 新对象的上下文通常基于类的元数据属性进行选择。 此机制是可通过自定义属性扩展。 这些被称为静态上下文属性，将编译到类元数据。 动态上下文属性 （也称为配置属性） 可以应用，并可以由管理员配置。  
+ 通常, 会根据类上的元数据属性选择新的对象的上下文。 此机制可通过自定义属性进行扩展。 这称为静态上下文属性, 这些属性编译为类元数据。 动态上下文属性 (也称为配置属性) 可以由管理员应用和配置。  
   
- 有关上下文的详细信息，请参阅[边界：进程和应用程序域](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/kt21t9h7(v=vs.100))。  
+ 有关上下文的详细信息, 请[参阅边界:进程和应用程序](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/kt21t9h7(v=vs.100))域。  
   
  ]]></format>
     </remarks>
@@ -97,7 +97,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 该数据槽分配所有上下文中。  
+ 在所有上下文上都分配了槽。  
   
  ]]></format>
         </remarks>
@@ -138,7 +138,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 该数据槽分配所有上下文中。 命名的数据槽是公共的可以通过任何人进行操作。  
+ 在所有上下文上都分配了槽。 命名的数据槽是公共的, 可供任何人操作。  
   
  ]]></format>
         </remarks>
@@ -235,7 +235,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 为其上下文未显式设置的应用程序域中每个线程将被视为默认上下文中运行。  
+ 未显式设置上下文的应用程序域中的每个线程都被视为在默认上下文中运行。  
   
  ]]></format>
         </remarks>
@@ -275,7 +275,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以通过调用完成回调<xref:System.Runtime.Remoting.Contexts.Context.DoCallBack%2A>方法对其通过传入委托。 该委托用于请求回调。 必须是委托<xref:System.Runtime.Remoting.Contexts.CrossContextDelegate>类类型。  
+ 通过传入委托, 可以通过对其<xref:System.Runtime.Remoting.Contexts.Context.DoCallBack%2A>调用方法来完成回调。 委托用于请求回调。 委托必须是<xref:System.Runtime.Remoting.Contexts.CrossContextDelegate>类类型。  
   
  ]]></format>
         </remarks>
@@ -312,7 +312,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 用于默认上下文的后备对象清理在关闭期间向下的<xref:System.AppDomain>类。  
+ 对于默认上下文, 在关闭<xref:System.AppDomain>类的过程中将清除后备对象。  
   
  ]]></format>
         </remarks>
@@ -352,7 +352,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 命名的数据槽是公共的可以通过任何人进行操作。  
+ 命名的数据槽是公共的, 可供任何人操作。  
   
  ]]></format>
         </remarks>
@@ -389,7 +389,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 上下文已被冻结后，不能添加上下文属性。  
+ 上下文冻结后, 无法添加上下文属性。  
   
  ]]></format>
         </remarks>
@@ -465,7 +465,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果不使用的名称，将分配新的槽。 命名的数据槽是公共的可以通过任何人进行操作。  
+ 如果未使用该名称, 则会分配新的槽。 命名的数据槽是公共的, 可供任何人操作。  
   
  ]]></format>
         </remarks>
@@ -544,19 +544,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 基于`obj`并`ctx`，`prop`要求参与接收器放在路径中的远程处理调用的某个位置。 如果注册了多个属性，将可以调用之间进行切换以任意顺序调用它们的接收器。  
+ `obj`根据和`ctx`,要求提供一个接收器,将其放置在远程调用路径中的某个位置。`prop` 如果注册了多个属性, 则将按任意顺序调用其接收器, 以便在调用之间进行更改。  
   
- 如果`obj`不是`null`，然后如果它是一个代理，代理服务器上执行的所有调用都会被都截获和。 否则为如果`obj`是真实的对象，该对象上的所有调用都会被都截获。 `ctx`参数必须是`null`。  
+ 如果`obj` 不`null`是, 则在代理上进行的所有调用都将被截取。 否则, 如果`obj`是实际对象, 则会截获对该对象的所有调用。 参数必须是`null`。 `ctx`  
   
- 如果`ctx`不是`null`，`obj`必须是`null`和进入和离开上下文的所有调用都会被都截获。  
+ 如果`ctx`不`null`为`null` ,`obj`则必须为, 并且所有进入和退出上下文的调用都将被截取。  
   
- 如果这两个`ctx`并`obj`是`null`，进入和离开所有上下文的所有调用都会被都截获。  
+ `ctx`如果和`obj`都是`null`, 则会截获进入和退出所有上下文的所有调用。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException">要么 <paramref name="prop" /> 或其名称为 <see langword="null" />，要么它不是动态的（不实现 <see cref="T:System.Runtime.Remoting.Contexts.IDynamicProperty" />）。</exception>
         <exception cref="T:System.ArgumentException">对象和上下文都已指定（<paramref name="obj" /> 和 <paramref name="ctx" /> 都不为 <see langword="null" />）。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于将代码插入到 CLR 基础结构。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于将代码插入到 CLR 基础结构中。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" />。</permission>
         <forInternalUseOnly />
       </Docs>
     </Member>
@@ -700,7 +700,7 @@
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> 参数为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException">对象和上下文都已指定（<paramref name="obj" /> 和 <paramref name="ctx" /> 都不为 <see langword="null" />）。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于将代码插入到 CLR 基础结构。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于将代码插入到 CLR 基础结构中。 关联枚举：<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" />。</permission>
         <forInternalUseOnly />
       </Docs>
     </Member>

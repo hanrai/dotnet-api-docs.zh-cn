@@ -1,5 +1,5 @@
 <Type Name="WmiConfigurationAttribute" FullName="System.Management.Instrumentation.WmiConfigurationAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9d0f019b5b3031ce35b08b4ebefbd6258d1095bc" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58704212" /></Metadata><TypeSignature Language="C#" Value="public sealed class WmiConfigurationAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4cec51003cf6f15ecbc333d6cf7b105efffc50b1" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69277042" /></Metadata><TypeSignature Language="C#" Value="public sealed class WmiConfigurationAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit WmiConfigurationAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Management.Instrumentation.WmiConfigurationAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class WmiConfigurationAttribute&#xA;Inherits Attribute" />
@@ -27,16 +27,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 下表列出并说明它允许控制哪些方面的提供程序配置此属性接受的参数。  
+ 下表列出了此特性接受的参数, 以及允许您控制的提供程序配置的各个方面。  
   
-|参数|配置|  
+|参数|Fsocs|  
 |---------------|----------------|  
-|<xref:System.Management.Instrumentation.WmiConfigurationAttribute.Scope>|在其中您的提供程序公开类的命名空间。|  
-|<xref:System.Management.Instrumentation.WmiConfigurationAttribute.NamespaceSecurity>|的对使用的命名空间安全性 (DACL)。|  
-|<xref:System.Management.Instrumentation.WmiConfigurationAttribute.HostingModel>|的提供程序将使用托管模型。|  
-|<xref:System.Management.Instrumentation.WmiConfigurationAttribute.IdentifyLevel>|的提供程序模拟模式。|  
-|<xref:System.Management.Instrumentation.WmiConfigurationAttribute.HostingGroup>|提供者所属的承载组。 此参数仅适用于进程内提供程序。|  
-|<xref:System.Management.Instrumentation.WmiConfigurationAttribute.SecurityRestriction>|WMI 提供程序安全性 (DACL)。|  
+|<xref:System.Management.Instrumentation.WmiConfigurationAttribute.Scope>|提供程序用于公开类的命名空间。|  
+|<xref:System.Management.Instrumentation.WmiConfigurationAttribute.NamespaceSecurity>|-使用的命名空间上的安全性 (DACL)。|  
+|<xref:System.Management.Instrumentation.WmiConfigurationAttribute.HostingModel>|-提供程序将使用的承载模型。|  
+|<xref:System.Management.Instrumentation.WmiConfigurationAttribute.IdentifyLevel>|-提供程序的模拟模式。|  
+|<xref:System.Management.Instrumentation.WmiConfigurationAttribute.HostingGroup>|提供程序所属的宿主组。 此参数仅适用于进程内提供程序。|  
+|<xref:System.Management.Instrumentation.WmiConfigurationAttribute.SecurityRestriction>|WMI 提供程序上的安全性 (DACL)。|  
   
    
   
@@ -82,7 +82,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- WMI 提供程序必须公开在命名空间及其类。 这是原因构造函数需要作为参数的作用域。  
+ WMI 提供程序必须在命名空间中公开其类。 这就是构造函数需要将作用域作为参数的原因。  
   
  ]]></format>
         </remarks>
@@ -119,14 +119,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 托管组仅适用于进程内承载的提供程序。 有关分离式提供程序忽略的值。  
+ 宿主组仅适用于在进程内托管的提供程序。 分离的提供程序将忽略该值。  
   
- 承载组是一组过程中提供的所有已分配相同的主机组名称。 托管的组名称是一个字符串，定义要为提供程序进行逻辑分组。 中的相同的承载组相同的安全上下文下运行的进程内提供程序的所有托管 Wmiprvse.exe 过程的单个实例中。 因此，共享相同的主机组和安全上下文的提供程序共享相同的服务主机进程。  
+ 宿主组是一组进程内提供程序, 它们均分配有相同的主机组名称。 宿主组名称是一个字符串, 你可以定义该字符串来对提供程序进行逻辑分组。 在同一安全上下文中运行的同一托管组中的所有进程内提供程序都托管在 Wmiprvse 进程的单个实例中。 因此, 共享相同托管组和安全上下文的提供程序共享同一个服务主机进程。  
   
    
   
 ## Examples  
- 在以下示例中，<xref:System.Management.Instrumentation.WmiConfigurationAttribute>用于指示程序集包含在还承载任何 Wmiprvse.exe 进程的实例中实现在 NetworkService 安全上下文下运行，承载的进程内提供程序此外在 NetworkService 安全上下文中运行其他的进程内提供相同的主机组中。  
+ 在下面的示例中, <xref:System.Management.Instrumentation.WmiConfigurationAttribute>用来指示它所包含的程序集实现在 NetworkService 安全上下文下运行的进程内提供程序, 并将其托管在同时承载任何 Wmiprvse 进程的同样运行于 NetworkService 安全上下文中的相同托管组中的其他进程内提供程序。  
   
 ```  
 [assembly: WmiConfiguration("root\\NVPair", HostingModel = ManagementHostingModel.NetworkService), HostingGroup = "MyProviders"]  
@@ -167,20 +167,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序或由 WMI 服务，可以承载 WMI 提供程序。 WMI 提供程序的应用程序承载称为分离式提供程序。 托管的 WMI 服务则称为进程内提供程序。 托管的模型值可确定这两个承载模型以及在进程内提供程序，该提供程序运行的帐户 （安全上下文中） 的情况下。 有关 HostingModel 的可能值的更多详细信息，请参阅<xref:System.Management.Instrumentation.ManagementHostingModel>。  
+ WMI 提供程序可以由应用程序或 WMI 服务托管。 应用程序托管的 WMI 提供程序称为分离的提供程序。 WMI 服务托管的提供程序称为进程内提供程序。 宿主模型值确定宿主模型和 (对于进程内提供程序), 后者用于运行提供程序的帐户 (安全上下文)。 有关 HostingModel 的可能值的更多详细信息, <xref:System.Management.Instrumentation.ManagementHostingModel>请参阅。  
   
- 若要了解有关承载模型的详细信息，请参阅[提供程序承载和安全性](https://go.microsoft.com/fwlink/?LinkId=100075)在 MSDN 上的 WMI SDK 中的主题。  
+ 若要了解有关托管模型的详细信息, 请参阅 MSDN 上的 WMI SDK 中的[提供程序托管和安全](https://go.microsoft.com/fwlink/?LinkId=100075)主题。  
   
    
   
 ## Examples  
- 在以下示例中，<xref:System.Management.Instrumentation.WmiConfigurationAttribute>用于指示该列包含在此程序集实现通过 root\NVPair 命名空间公开的提供程序。 因为托管模型不是<xref:System.Management.Instrumentation.ManagementHostingModel.Decoupled>，它是进程内提供程序。 值<xref:System.Management.Instrumentation.ManagementHostingModel.NetworkService>指示 NetworkService 安全上下文下运行的进程内提供程序。  
+ 在下面的示例中, <xref:System.Management.Instrumentation.WmiConfigurationAttribute>用于指示包含它的程序集实现通过 root\NVPair 命名空间公开的提供程序。 因为托管模型不<xref:System.Management.Instrumentation.ManagementHostingModel.Decoupled>是, 所以它是一个进程内提供程序。 值<xref:System.Management.Instrumentation.ManagementHostingModel.NetworkService>指示进程内提供程序在 NetworkService 安全上下文下运行。  
   
 ```  
 [assembly: WmiConfiguration("root\\NVPair", HostingModel = ManagementHostingModel.NetworkService)]  
 ```  
   
- 在下一步的示例中，<xref:System.Management.Instrumentation.WmiConfigurationAttribute>用于指示该列包含在此程序集实现通过 root\NVPair 命名空间公开的提供程序。 值<xref:System.Management.Instrumentation.ManagementHostingModel.Decoupled>指示它是分离式提供程序。  
+ 在下一个示例中, <xref:System.Management.Instrumentation.WmiConfigurationAttribute>用来指示它所包含的程序集实现通过 root\NVPair 命名空间公开的提供程序。 值<xref:System.Management.Instrumentation.ManagementHostingModel.Decoupled>指示它是一个分离的提供程序。  
   
 ```  
 [assembly: WmiConfiguration("root\\NVPair", HostingModel = ManagementHostingModel.Decoupled)]  
@@ -221,12 +221,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关详细信息，请参阅在线上的 MSDN library 中的"提供程序承载和安全性"主题[ http://www.msdn.com ](https://www.msdn.com/)。  
+ 有关详细信息, 请参阅上[http://www.msdn.com](https://www.msdn.com/)MSDN library 中的 "提供程序托管和安全" 主题。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用 IdentifyLevel 参数以指示提供程序可以模拟其调用方。  
+ 下面的示例演示如何使用 IdentifyLevel 参数指示提供程序可以模拟其调用方。  
   
 ```  
 [assembly: WmiConfiguration("root/MyProv", HostingModel = ManagementHostingModel.Decoupled, IdentifyLevel = true]  
@@ -267,12 +267,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关如何表示安全描述符的 SDDL 格式的详细信息，请参阅[安全描述符字符串格式](https://go.microsoft.com/fwlink/?LinkId=100763)MSDN library 中的主题。  
+ 有关如何以 SDDL 格式表示安全描述符的详细信息, 请参阅 MSDN 库中的[安全描述符字符串格式](https://go.microsoft.com/fwlink/?LinkId=100763)主题。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用 NamespaceSecurity 参数在此程序集中实现的提供程序用于公开 WMI 类的根/SDTest 命名空间上设置的安全描述符。  
+ 下面的示例演示如何使用 NamespaceSecurity 参数设置根/SDTest 命名空间上的安全描述符, 其中在此程序集中实现的提供程序公开 WMI 类。  
   
 ```  
 [assembly: WmiConfiguration("root/SDTest", HostingModel = ManagementHostingModel.Decoupled, IdentifyLevel = false, NamespaceSecurity = "O:BAG:BAD:(A;CI;0x60003;;;WD)")]  
@@ -310,7 +310,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- WMI 命名空间是 WMI 存储库中的类别。 通常使用 root/cimv2 命名空间包含描述通用信息模型，版本 2 由桌面管理任务组 (DMTF) 联合会定义的类。 您应只公开了该命名空间中的提供程序，如果您基于标准的 CIM 模型扩展。 否则，应创建相应的命名空间，并使之对用户明确他们可能要查找的命名空间中的 WMI 类的类型。  
+ WMI 命名空间是 WMI 存储库中的一个类别。 常用的根/cimv2 命名空间包含描述由桌面管理任务组 (DMTF) 联合会定义的通用信息模型, 版本2的类。 如果在标准 CIM 模型上进行扩展, 则只应在该命名空间中公开提供程序。 否则, 应创建相应的命名空间, 以使用户清楚地了解他们可以在命名空间中找到的 WMI 类的类型。  
   
  ]]></format>
         </remarks>
