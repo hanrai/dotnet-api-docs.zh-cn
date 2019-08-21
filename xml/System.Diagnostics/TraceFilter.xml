@@ -1,5 +1,5 @@
 <Type Name="TraceFilter" FullName="System.Diagnostics.TraceFilter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a85ce6746df275187269ff2c648a78241426979c" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58737775" /></Metadata><TypeSignature Language="C#" Value="public abstract class TraceFilter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5888bf7681cd6d6b4f34e2052e251616ff240f27" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69075408" /></Metadata><TypeSignature Language="C#" Value="public abstract class TraceFilter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit TraceFilter extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.TraceFilter" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class TraceFilter" />
@@ -32,9 +32,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 跟踪侦听器将使用跟踪筛选器提供一层额外的筛选所没有提供的跟踪开关。 跟踪侦听器的跟踪筛选器可在该侦听器的<xref:System.Diagnostics.TraceListener.Filter%2A>属性。 跟踪开关确定是否要发送到跟踪侦听器。 跟踪筛选器，以确定在跟踪为写入到关联的输出介质中的单个跟踪侦听器。 例如，由每个跟踪筛选器，跟踪可能会写入到控制台中按<xref:System.Diagnostics.ConsoleTraceListener>，但不是记录到事件日志的<xref:System.Diagnostics.EventLogTraceListener>。  
+ 跟踪侦听器可以使用跟踪筛选器来提供除跟踪开关提供的额外筛选层。 跟踪侦听器的跟踪筛选器可在侦听器的<xref:System.Diagnostics.TraceListener.Filter%2A>属性中找到。 跟踪开关确定是否要将跟踪发送到跟踪侦听器。 跟踪筛选器允许各个跟踪侦听器确定是否将跟踪写入关联的输出介质。 例如, 根据每个跟踪筛选器的确定, 跟踪可能由<xref:System.Diagnostics.ConsoleTraceListener>写入控制台, 而不是<xref:System.Diagnostics.EventLogTraceListener>由写入事件日志。  
   
- 筛选器继承自<xref:System.Diagnostics.TraceFilter>类可以由继承的跟踪侦听器<xref:System.Diagnostics.TraceListener>类来执行筛选所跟踪的事件。 <xref:System.Diagnostics.TraceFilter> 包含一个方法， <xref:System.Diagnostics.TraceFilter.ShouldTrace%2A>，它采用的事件数据并返回一个标志，指示是否应跟踪的事件。  
+ 继承自类的筛选器可由继承<xref:System.Diagnostics.TraceListener>自类的跟踪侦听器用于执行正在跟踪的事件筛选。 <xref:System.Diagnostics.TraceFilter> <xref:System.Diagnostics.TraceFilter>包含一个方法, <xref:System.Diagnostics.TraceFilter.ShouldTrace%2A>该方法采用事件数据并返回一个指示是否应跟踪事件的标志。  
   
  ]]></format>
     </remarks>
@@ -128,7 +128,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示如何重写<xref:System.Diagnostics.TraceFilter.ShouldTrace%2A>方法，以指示跟踪应时发生的事件的跟踪事件类型是否等于<xref:System.Diagnostics.TraceEventType.Error?displayProperty=nameWithType>。  
+ 下面的代码示例演示如何重写<xref:System.Diagnostics.TraceFilter.ShouldTrace%2A>方法, 以指示当事件的跟踪事件类型<xref:System.Diagnostics.TraceEventType.Error?displayProperty=nameWithType>等于时应进行跟踪。  
   
  [!code-cpp[System.Diagnostics.TraceFilter#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.diagnostics.tracefilter/cpp/source.cpp#2)]
  [!code-csharp[System.Diagnostics.TraceFilter#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.diagnostics.tracefilter/cs/source.cs#2)]
@@ -136,18 +136,18 @@
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>此方法的实现应返回<see langword="true" />如果应跟踪由传递的参数指定的事件。 否则，该方法应该返回<see langword="false" />。 例如，允许使用唯一的错误事件来通过传递到侦听器的筛选器应检查<paramref name="eventType" />参数和返回<see langword="true" />如果在跟踪事件类型级别设置为<see cref="F:System.Diagnostics.TraceEventType.Error" />或更高版本; 否则为它应返回<see langword="false" />。  
+        <block subset="none" type="overrides"><para>如果应跟踪传递的参数<see langword="true" />指定的事件, 则此方法的实现应返回。 否则, 该方法应<see langword="false" />返回。 例如, 如果跟踪事件类型级别设置为或更高, 则仅允许将错误事件<paramref name="eventType" />传递到侦听器的筛选器应检查参数, 并在<see cref="F:System.Diagnostics.TraceEventType.Error" />跟踪事件类型级别设置为或更<see langword="false" />高级别时返回<see langword="true" /> ; 否则返回。  
   
-方法的实现应准备好处理<see langword="null" />中的以下参数： <paramref name="args" />， <paramref name="data1" />， <paramref name="data" />， <paramref name="formatOrMessage" />，并<paramref name="cache" />。 如果参数值<see langword="null" />，该参数不是事件的一部分。 例如，如果<paramref name="args" />参数是<see langword="null" />，这意味着事件不具有任何参数。 如果<paramref name="data" />参数是<see langword="null" />，则会出现一个或没有数据对象。 如果没有一个数据对象，它将位于<paramref name="data1" />参数。 单个数据对象和数据对象的数组之间的区别的原因是为了性能。 没有理由创建一个对象数组，如果只跟踪一个对象，如通常是这种情况。 如果<paramref name="data" />参数不是<see langword="null" />，则<paramref name="data1" />参数也不能<see langword="null" />。  
+方法的实现应准备<see langword="null" />好处理以下参数: <paramref name="args" />、 <paramref name="data1" />、 <paramref name="data" />、 <paramref name="formatOrMessage" />和<paramref name="cache" />。 如果参数值为<see langword="null" />, 则参数不是事件的一部分。 例如, 如果<paramref name="args" />参数为<see langword="null" />, 则表示该事件没有任何参数。 如果参数为<see langword="null" />, 则有一个或两个数据对象。 <paramref name="data" /> 如果有一个数据对象, 将在<paramref name="data1" />参数中找到该对象。 单个数据对象和数据对象数组之间区分的原因是为了提高性能。 如果只跟踪一个对象 (通常是这样), 则没有理由创建对象数组。 如果参数不<see langword="null" />为, 则<paramref name="data1" />参数也不能为<see langword="null" />。 <paramref name="data" />  
   
-它可保证<paramref name="source" />参数不是<see langword="null" />并且不为空字符串 ("")。  
+确保<paramref name="source" />该参数不<see langword="null" />为, 并且不是空字符串 ("")。  
   
-方法的实现可以根据需要引发以下异常： 
--   <see cref="T:System.ArgumentNullException" /> 如果<paramref name="source" />是<see langword="null" />。  
+方法的实现可选择性地引发以下异常: 
+-   <see cref="T:System.ArgumentNullException" />如果<paramref name="source" />为<see langword="null" />。  
   
--   <see cref="T:System.ArgumentException" /> 如果<paramref name="eventType" />不是一个<see cref="T:System.Diagnostics.TraceEventType" />值。  
+-   <see cref="T:System.ArgumentException" />如果<paramref name="eventType" />不是<see cref="T:System.Diagnostics.TraceEventType" />值之一。  
   
--与该方法的实现不相关的异常。 例如， <see cref="T:System.Threading.ThreadAbortException" />。</para></block>
+-异常与方法的实现无关。 例如, <see cref="T:System.Threading.ThreadAbortException" />。</para></block>
       </Docs>
     </Member>
   </Members>

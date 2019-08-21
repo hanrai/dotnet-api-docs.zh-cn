@@ -1,5 +1,5 @@
 <Type Name="IAuthenticationModule" FullName="System.Net.IAuthenticationModule">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a55dbee1b84ce34d61399fdb845b2dcd9a304130" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58690540" /></Metadata><TypeSignature Language="C#" Value="public interface IAuthenticationModule" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="442e56ad276135ca3e3ae18c44891b67b49dd9ba" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69111627" /></Metadata><TypeSignature Language="C#" Value="public interface IAuthenticationModule" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IAuthenticationModule" />
   <TypeSignature Language="DocId" Value="T:System.Net.IAuthenticationModule" />
   <TypeSignature Language="VB.NET" Value="Public Interface IAuthenticationModule" />
@@ -29,16 +29,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.IAuthenticationModule>接口定义的属性和自定义身份验证模块必须使用的方法。  
+ <xref:System.Net.IAuthenticationModule>接口定义自定义身份验证模块必须使用的属性和方法。  
   
- 身份验证模块进行适当的身份验证质询响应的服务器的整个身份验证过程。 此过程可能会包含请求的资源服务器，以及正确地请求身份验证的 uri 所需的任何其他活动从单独的身份验证服务器。  
+ 身份验证模块使用服务器执行整个身份验证过程, 并根据需要响应身份验证质询。 此过程可能包含与资源服务器分离的身份验证服务器的请求, 以及正确验证对 URI 的请求所需的任何其他活动。  
   
- 自定义身份验证模块应实现<xref:System.Net.IAuthenticationModule>接口，然后使用注册<xref:System.Net.AuthenticationManager.Register%2A?displayProperty=nameWithType>方法。 身份验证模块还会读取配置文件在程序初始化时注册。  
+ 自定义身份验证模块应<xref:System.Net.IAuthenticationModule>实现接口, 然后向<xref:System.Net.AuthenticationManager.Register%2A?displayProperty=nameWithType>方法注册。 身份验证模块也是通过读取配置文件在程序初始化时注册的。  
   
    
   
 ## Examples  
- 下面的示例通过实现来创建自定义身份验证类<xref:System.Net.IAuthenticationModule>接口。 有关完整示例，请参阅<xref:System.Net.AuthenticationManager>类。  
+ 下面的示例通过实现<xref:System.Net.IAuthenticationModule>接口创建自定义身份验证类。 有关完整的示例, 请参阅<xref:System.Net.AuthenticationManager>类。  
   
  [!code-cpp[System.Net.Authentication#6](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.Authentication/CPP/custombasicauthentication.cpp#6)]
  [!code-csharp[System.Net.Authentication#6](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.Authentication/CS/custombasicauthentication.cs#6)]
@@ -92,12 +92,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.IAuthenticationModule.Authenticate%2A>方法执行与服务器身份验证过程，并返回<xref:System.Net.Authorization>实例向<xref:System.Net.AuthenticationManager>。  
+ 方法使用服务器执行身份验证过程, 并将<xref:System.Net.Authorization>实例返回到<xref:System.Net.AuthenticationManager>。 <xref:System.Net.IAuthenticationModule.Authenticate%2A>  
   
    
   
 ## Examples  
- 下面的示例显示如何使用 <xref:System.Net.IAuthenticationModule.Authenticate%2A> 方法。 有关完整示例，请参阅<xref:System.Net.AuthenticationManager>类。  
+ 下面的示例显示如何使用 <xref:System.Net.IAuthenticationModule.Authenticate%2A> 方法。 有关完整的示例, 请参阅<xref:System.Net.AuthenticationManager>类。  
   
  [!code-cpp[System.Net.Authentication#3](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.Authentication/CPP/custombasicauthentication.cpp#3)]
  [!code-csharp[System.Net.Authentication#3](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.Authentication/CS/custombasicauthentication.cs#3)]
@@ -105,7 +105,7 @@
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para><see cref="T:System.Net.AuthenticationManager" />调用<see cref="M:System.Net.IAuthenticationModule.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials)" />上注册的身份验证模块，以确定哪些模块处理这一难题的方法。 如果身份验证模块无法处理这方面的挑战<see cref="M:System.Net.IAuthenticationModule.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials)" />方法必须返回<see langword="null" />。 如果身份验证模块进行身份验证过程时遇到错误<see cref="M:System.Net.IAuthenticationModule.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials)" />必须引发异常。</para></block>
+        <block subset="none" type="overrides"><para>在<see cref="T:System.Net.AuthenticationManager" />注册的<see cref="M:System.Net.IAuthenticationModule.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials)" />身份验证模块上调用方法, 以确定处理质询的模块。 如果身份验证模块无法处理质询, 则该<see cref="M:System.Net.IAuthenticationModule.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials)" />方法必须返回<see langword="null" />。 如果身份验证模块在执行身份验证过程中遇到错误, <see cref="M:System.Net.IAuthenticationModule.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials)" />则必须引发异常。</para></block>
       </Docs>
     </Member>
     <Member MemberName="AuthenticationType">
@@ -143,12 +143,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.IAuthenticationModule.AuthenticationType%2A>属性标识此身份验证模块实现的身份验证类型。 <xref:System.Net.IAuthenticationModule.AuthenticationType%2A>属性可供<xref:System.Net.AuthenticationManager.Register%2A?displayProperty=nameWithType>方法以确定是否已注册的身份验证模块，以及通过<xref:System.Net.AuthenticationManager.Unregister%2A?displayProperty=nameWithType>方法中删除注册的身份验证模块。  
+ <xref:System.Net.IAuthenticationModule.AuthenticationType%2A>属性标识此身份验证模块实现的身份验证类型。 方法使用<xref:System.Net.AuthenticationManager.Register%2A?displayProperty=nameWithType>属性来确定是否已<xref:System.Net.AuthenticationManager.Unregister%2A?displayProperty=nameWithType>注册身份验证模块, 并通过方法来删除已注册的身份验证模块。 <xref:System.Net.IAuthenticationModule.AuthenticationType%2A>  
   
    
   
 ## Examples  
- 下面的示例演示如何使用 <xref:System.Net.IAuthenticationModule.AuthenticationType%2A> 属性。 有关完整示例，请参阅<xref:System.Net.AuthenticationManager>类。  
+ 下面的示例演示如何使用 <xref:System.Net.IAuthenticationModule.AuthenticationType%2A> 属性。 有关完整的示例, 请参阅<xref:System.Net.AuthenticationManager>类。  
   
  [!code-cpp[System.Net.Authentication#7](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.Authentication/CPP/custombasicauthentication.cpp#7)]
  [!code-csharp[System.Net.Authentication#7](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.Authentication/CS/custombasicauthentication.cs#7)]
@@ -193,12 +193,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.IAuthenticationModule.CanPreAuthenticate%2A>属性设置为`true`以指示身份验证模块可以响应使用有效<xref:System.Net.Authorization>实例时<xref:System.Net.IAuthenticationModule.PreAuthenticate%2A>调用方法。  
+ 将属性设置为`true` , 以指示在调用<xref:System.Net.IAuthenticationModule.PreAuthenticate%2A>方法时身份验证模块可以使用<xref:System.Net.Authorization>有效的实例进行响应。 <xref:System.Net.IAuthenticationModule.CanPreAuthenticate%2A>  
   
    
   
 ## Examples  
- 下面的示例演示如何使用 <xref:System.Net.IAuthenticationModule.CanPreAuthenticate%2A> 属性。 有关完整示例，请参阅<xref:System.Net.AuthenticationManager>类。  
+ 下面的示例演示如何使用 <xref:System.Net.IAuthenticationModule.CanPreAuthenticate%2A> 属性。 有关完整的示例, 请参阅<xref:System.Net.AuthenticationManager>类。  
   
  [!code-cpp[System.Net.Authentication#7](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.Authentication/CPP/custombasicauthentication.cpp#7)]
  [!code-csharp[System.Net.Authentication#7](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.Authentication/CS/custombasicauthentication.cs#7)]
@@ -206,7 +206,7 @@
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>这通常是一个固定的值;身份验证模块可以进行预身份验证，或者它不能。</para></block>
+        <block subset="none" type="overrides"><para>这通常是固定值;身份验证模块可以预身份验证或不能。</para></block>
       </Docs>
     </Member>
     <Member MemberName="PreAuthenticate">
@@ -250,12 +250,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Net.IAuthenticationModule.CanPreAuthenticate%2A>属性是`true`，则<xref:System.Net.IAuthenticationModule.PreAuthenticate%2A>方法将返回的实例<xref:System.Net.Authorization>类包含的身份验证消息。  
+ 当属性为`true`时, <xref:System.Net.IAuthenticationModule.PreAuthenticate%2A>方法将返回包含身份验证消息的<xref:System.Net.Authorization>类的实例。 <xref:System.Net.IAuthenticationModule.CanPreAuthenticate%2A>  
   
    
   
 ## Examples  
- 下面的示例显示如何使用 <xref:System.Net.IAuthenticationModule.PreAuthenticate%2A> 方法。 有关完整示例，请参阅<xref:System.Net.AuthenticationManager>类。  
+ 下面的示例显示如何使用 <xref:System.Net.IAuthenticationModule.PreAuthenticate%2A> 方法。 有关完整的示例, 请参阅<xref:System.Net.AuthenticationManager>类。  
   
  [!code-cpp[System.Net.Authentication#4](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.Authentication/CPP/custombasicauthentication.cpp#4)]
  [!code-csharp[System.Net.Authentication#4](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.Authentication/CS/custombasicauthentication.cs#4)]

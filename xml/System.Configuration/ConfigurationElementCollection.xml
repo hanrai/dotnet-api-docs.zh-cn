@@ -1,5 +1,5 @@
 <Type Name="ConfigurationElementCollection" FullName="System.Configuration.ConfigurationElementCollection">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="46586eba3d8e8522e882370459b4d4ddf13b2340" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56767963" /></Metadata><TypeSignature Language="C#" Value="public abstract class ConfigurationElementCollection : System.Configuration.ConfigurationElement, System.Collections.ICollection" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="29dc1285edb5b63574332db8ed2c1eecb0e0bcc5" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69129839" /></Metadata><TypeSignature Language="C#" Value="public abstract class ConfigurationElementCollection : System.Configuration.ConfigurationElement, System.Collections.ICollection" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ConfigurationElementCollection extends System.Configuration.ConfigurationElement implements class System.Collections.ICollection, class System.Collections.IEnumerable" />
   <TypeSignature Language="DocId" Value="T:System.Configuration.ConfigurationElementCollection" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ConfigurationElementCollection&#xA;Inherits ConfigurationElement&#xA;Implements ICollection" />
@@ -41,26 +41,26 @@
  <xref:System.Configuration.ConfigurationElementCollection>表示配置文件中的元素的集合。  
   
 > [!NOTE]
->  配置文件中的某个元素引用一个基本的 XML 元素或部分。 如果有，一个简单的元素是具有相关属性的 XML 标记。 简单元素构成了一个部分。 复杂的部分可以包含一个或多个简单的元素、 一系列元素，以及其他部分。  
+>  配置文件中的元素引用基本 XML 元素或节。 简单元素是具有相关属性的 XML 标记 (如果有)。 简单元素构成一个部分。 复杂节可以包含一个或多个简单元素、元素集合以及其他部分。  
   
- 您使用<xref:System.Configuration.ConfigurationElementCollection>若要运行了一系列<xref:System.Configuration.ConfigurationElement>对象。 实现此类来添加自定义集合<xref:System.Configuration.ConfigurationElement>元素与<xref:System.Configuration.ConfigurationSection>。  
+ 您可以使用<xref:System.Configuration.ConfigurationElementCollection>来处理对象的<xref:System.Configuration.ConfigurationElement>集合。 实现此类可将自定义<xref:System.Configuration.ConfigurationElement>元素的集合添加<xref:System.Configuration.ConfigurationSection>到。  
   
    
   
 ## Examples  
  下面的示例演示如何使用<xref:System.Configuration.ConfigurationElementCollection>。  
   
- 第一个示例由三个类组成： `UrlsSection`，`UrlsCollection`和`UrlConfigElement`。`UrlsSection`类使用<xref:System.Configuration.ConfigurationCollectionAttribute>来定义自定义配置节。 本部分包含 URL 集合 (由定义`UrlsCollection`类) 的 URL 元素 (由定义`UrlConfigElement`类)。  
+ 第一个示例包含三个类: `UrlsSection`、 `UrlsCollection`和`UrlConfigElement`。`UrlsSection` 类<xref:System.Configuration.ConfigurationCollectionAttribute>使用来定义自定义配置节。 此部分包含 url 元素 (由类定义) `UrlsCollection`的 url 集合 ( `UrlConfigElement`由类定义)。  
   
  [!code-csharp[System.Configuration.ConfigurationElementCollection#1](~/samples/snippets/csharp/VS_Snippets_WebNet/system.configuration.configurationelementcollection/cs/customcollectionsection.cs#1)]
  [!code-vb[System.Configuration.ConfigurationElementCollection#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/system.configuration.configurationelementcollection/vb/customcollectionsection.vb#1)]  
   
- 此第二个代码示例使用前面指定的类。 您将合并这两个示例控制台应用程序项目中。  
+ 此第二个代码示例使用前面指定的类。 在控制台应用程序项目中将这两个示例组合在一起。  
   
  [!code-csharp[System.Configuration.ConfigurationElementCollection#31](~/samples/snippets/csharp/VS_Snippets_WebNet/system.configuration.configurationelementcollection/cs/usingconfigurationcollectionelement.cs#31)]
  [!code-vb[System.Configuration.ConfigurationElementCollection#31](~/samples/snippets/visualbasic/VS_Snippets_WebNet/system.configuration.configurationelementcollection/vb/usingconfigurationcollectionelement.vb#31)]  
   
- 运行控制台应用程序的实例时`UrlsSection`创建类并在应用程序配置文件中生成以下配置元素：  
+ 运行控制台应用程序时, 会创建`UrlsSection`类的一个实例, 并在应用程序配置文件中生成以下配置元素:  
   
 ```xml  
 <configuration>  
@@ -78,11 +78,11 @@
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>可以使用编程方式或声明性的 （特性化） 编码模型来创建自定义配置元素。  
+    <block subset="none" type="overrides"><para>可以使用编程方式或声明性 (特性化) 编码模型创建自定义配置元素。  
   
-编程模型要求为每个元素的属性创建属性来获取和设置其值，并添加到的基础的内部属性包<see cref="T:System.Configuration.ConfigurationElement" />基类。  
+编程模型要求为每个元素特性创建一个属性以获取并设置其值, 并将其添加到基础<see cref="T:System.Configuration.ConfigurationElement" />基类的内部属性包。  
   
-声明性模型，也称为特性化模型，可以通过使用属性并将其配置与属性定义元素属性。 这些属性指示 ASP.NET 配置系统有关的属性类型及其默认值。 ASP.NET 可以使用反射来获取此信息创建的元素属性的对象并执行所需的初始化。</para></block>
+声明性模型 (也称为特性化模型) 允许您通过使用属性并使用特性配置元素特性来定义元素特性。 这些属性指示 ASP.NET 配置系统有关属性类型及其默认值的信息。 ASP.NET 可以使用反射来获取此信息, 然后创建元素属性对象并执行所需的初始化。</para></block>
     <altmember cref="T:System.Configuration.ElementInformation" />
     <altmember cref="T:System.Configuration.ConfigurationElement" />
     <altmember cref="T:System.Configuration.ConfigurationElementCollectionType" />
@@ -125,7 +125,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 创建的新实例<xref:System.Configuration.ConfigurationElementCollection>应用程序需要创建自定义<xref:System.Configuration.ConfigurationElementCollection>。  
+ 当应用程序需要创建自定义<xref:System.Configuration.ConfigurationElementCollection> <xref:System.Configuration.ConfigurationElementCollection>时, 创建的新实例。  
   
  ]]></format>
         </remarks>
@@ -160,7 +160,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Collections.IComparer>用于设置要使用的比较器。 例如，不区分大小写的比较器可用于使密钥不区分大小写。  
+ <xref:System.Collections.IComparer>用于设置要使用的比较器。 例如, 可以使用不区分大小写的比较器使密钥区分大小写。  
   
  ]]></format>
         </remarks>
@@ -207,7 +207,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Configuration.ConfigurationElementCollection.BaseAdd%2A>方法将添加一个新<xref:System.Configuration.ConfigurationElement>到集合。 在派生类中重写，如果添加元素时，所需自定义行为。  
+ 使用方法将新<xref:System.Configuration.ConfigurationElement>添加到集合中。 <xref:System.Configuration.ConfigurationElementCollection.BaseAdd%2A> 如果在添加元素时需要自定义行为, 则在派生类中重写。  
   
  添加元素时，只有键相同而值不同的元素才被视为重复元素。 键和值都相同的元素将被接受并且不给出提示，原因是这些元素不会相互竞争。 但是，无法添加键相同而值不同的元素，因为无法从逻辑上确定哪个竞争值有效。  
   
@@ -247,14 +247,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Configuration.ConfigurationElementCollection.BaseAdd%2A>方法将添加一个新<xref:System.Configuration.ConfigurationElement>到集合。 如果重写其派生类中的元素添加时，所需自定义行为。  
+ 使用方法将新<xref:System.Configuration.ConfigurationElement>添加到集合中。 <xref:System.Configuration.ConfigurationElementCollection.BaseAdd%2A> 如果在添加元素时需要自定义行为, 请在派生类中重写它。  
   
  添加元素时，只有键相同而值不同的元素才被视为重复元素。 键和值都相同的元素将被接受并且不给出提示，原因是这些元素不会相互竞争。 但是，无法添加键相同而值不同的元素，因为无法从逻辑上确定哪个竞争值有效。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何重写<xref:System.Configuration.ConfigurationElementCollection.BaseAdd%2A>方法以及如何调用从`Add`方法。  
+ 下面的代码示例演示如何重写<xref:System.Configuration.ConfigurationElementCollection.BaseAdd%2A>方法以及如何`Add`从方法中调用它。  
   
  [!code-csharp[System.Configuration.ConfigurationElementCollection#2](~/samples/snippets/csharp/VS_Snippets_WebNet/system.configuration.configurationelementcollection/cs/customcollectionsection.cs#2)]
  [!code-vb[System.Configuration.ConfigurationElementCollection#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/system.configuration.configurationelementcollection/vb/customcollectionsection.vb#2)]  
@@ -297,9 +297,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用可选参数`throwIfExists`引发<xref:System.Exception>异常如果指定<xref:System.Configuration.ConfigurationElement>中已存在对象<xref:System.Configuration.ConfigurationElementCollection>集合。  
+ `throwIfExists`如果指定<xref:System.Exception> <xref:System.Configuration.ConfigurationElementCollection>的对象已存在于集合中,则使用可选参数引发异常。<xref:System.Configuration.ConfigurationElement>  
   
- 只有键相同而值会不同，元素才被视为重复。 键和值都相同的元素将被接受并且不给出提示，原因是这些元素不会相互竞争。 但是，无法添加键相同而值不同的元素，因为无法从逻辑上确定哪个竞争值有效。  
+ 仅当键相同但值不同时, 元素才被视为重复元素。 键和值都相同的元素将被接受并且不给出提示，原因是这些元素不会相互竞争。 但是，无法添加键相同而值不同的元素，因为无法从逻辑上确定哪个竞争值有效。  
   
  ]]></format>
         </remarks>
@@ -340,7 +340,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用`index`参数，将添加<xref:System.Configuration.ConfigurationElement>对象传递给<xref:System.Configuration.ConfigurationElementCollection>中特定索引位置。  
+ 使用参数将对象添加到中的<xref:System.Configuration.ConfigurationElementCollection>特定索引位置。 <xref:System.Configuration.ConfigurationElement> `index`  
   
  ]]></format>
         </remarks>
@@ -375,7 +375,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Configuration.ConfigurationElementCollection.BaseClear%2A>方法调用时，会删除所有<xref:System.Configuration.ConfigurationElement>集合中的对象。 它还将插入`clear`指令插入配置文件。  
+ 调用方法时, 它将从集合中<xref:System.Configuration.ConfigurationElement>移除所有对象。 <xref:System.Configuration.ConfigurationElementCollection.BaseClear%2A> 它还会将`clear`指令插入到配置文件中。  
   
    
   
@@ -389,8 +389,9 @@
         </remarks>
         <exception cref="T:System.Configuration.ConfigurationErrorsException">配置是只读的。  
   
-- 或 - 
-集合项已在更高级别的配置中锁定。</exception>
+或
+  
+ 集合项已在更高级别的配置中锁定。</exception>
       </Docs>
     </Member>
     <MemberGroup MemberName="BaseGet">
@@ -481,7 +482,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Configuration.ConfigurationElementCollection.BaseGet%2A>方法将返回`null`是否存在任何<xref:System.Configuration.ConfigurationElement>与集合中指定的键的对象。  
+ 如果<xref:System.Configuration.ConfigurationElementCollection.BaseGet%2A>集合中`null`不存在<xref:System.Configuration.ConfigurationElement>具有指定键的对象, 则该方法返回。  
   
    
   
@@ -665,7 +666,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Configuration.ConfigurationElementCollection.BaseRemove%2A>方法插入`<remove>`指令的配置文件插入<xref:System.Configuration.ConfigurationElement>与指定的键。  
+ 方法将`<remove>`指令插入具有指定键的的<xref:System.Configuration.ConfigurationElement>配置文件中。 <xref:System.Configuration.ConfigurationElementCollection.BaseRemove%2A>  
   
    
   
@@ -712,7 +713,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Configuration.ConfigurationElementCollection.BaseRemoveAt%2A>方法插入`<remove>`指令插入指定的索引位置处的元素的配置文件。  
+ 方法将`<remove>`指令插入到指定索引位置处的元素的配置文件中。 <xref:System.Configuration.ConfigurationElementCollection.BaseRemoveAt%2A>  
   
  ]]></format>
         </remarks>
@@ -721,16 +722,16 @@
 - 或 - 
  <paramref name="index" /> 小于 <see langword="0" /> 或大于集合中的 <see cref="T:System.Configuration.ConfigurationElement" /> 对象数。  
   
-- 或 - 
+或 
 <see cref="T:System.Configuration.ConfigurationElement" /> 对象已移除。  
   
-- 或 - 
+或 
 <see cref="T:System.Configuration.ConfigurationElement" /> 对象的值已在更高级别锁定。  
   
 - 或 - 
 <see cref="T:System.Configuration.ConfigurationElement" /> 对象被继承。  
   
-- 或 - 
+或 
 <see cref="T:System.Configuration.ConfigurationElement" /> 对象的 <see cref="P:System.Configuration.ConfigurationProperty.Type" /> 的值不是 <see cref="F:System.Configuration.ConfigurationElementCollectionType.AddRemoveClearMap" /> 或 <see cref="F:System.Configuration.ConfigurationElementCollectionType.AddRemoveClearMapAlternate" />。</exception>
       </Docs>
     </Member>
@@ -792,7 +793,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 类型为<xref:System.Configuration.ConfigurationElementCollectionType.BasicMap>或<xref:System.Configuration.ConfigurationElementCollectionType.AddRemoveClearMap>字段。 有关详情，请参阅<xref:System.Configuration.ConfigurationElementCollectionType>。  
+ 类型为<xref:System.Configuration.ConfigurationElementCollectionType.BasicMap> <xref:System.Configuration.ConfigurationElementCollectionType.AddRemoveClearMap>或字段。 有关详细信息，请参阅 <xref:System.Configuration.ConfigurationElementCollectionType>。  
   
    
   
@@ -881,7 +882,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 重写<xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A>方法来创建自定义<xref:System.Configuration.ConfigurationElement>特定类型的对象。 从配置文件中，加载集合时<xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A>调用来创建各个元素。 <xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A> 必须在派生类中重写<xref:System.Configuration.ConfigurationElementCollection>类。  
+ 重写<xref:System.Configuration.ConfigurationElement>方法以创建特定类型的自定义对象。 <xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A> 从配置文件加载集合时, <xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A>将调用来创建单个元素。 <xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A>必须在派生自<xref:System.Configuration.ConfigurationElementCollection>类的类中重写。  
   
  ]]></format>
         </remarks>
@@ -917,7 +918,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 重写<xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A>方法来创建自定义<xref:System.Configuration.ConfigurationElement>特定类型的对象。 从配置文件中，加载集合时<xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A>调用来创建各个元素。 <xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A> 必须在派生类中重写<xref:System.Configuration.ConfigurationElementCollection>类。  
+ 重写<xref:System.Configuration.ConfigurationElement>方法以创建特定类型的自定义对象。 <xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A> 从配置文件加载集合时, <xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A>将调用来创建单个元素。 <xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A>必须在派生自<xref:System.Configuration.ConfigurationElementCollection>类的类中重写。  
   
    
   
@@ -964,14 +965,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 重写<xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A>方法来创建自定义<xref:System.Configuration.ConfigurationElement>特定类型的对象。 从配置文件中，加载集合时<xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A>调用来创建各个元素。 <xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A> 必须在派生类中重写<xref:System.Configuration.ConfigurationElementCollection>类。  
+ 重写<xref:System.Configuration.ConfigurationElement>方法以创建特定类型的自定义对象。 <xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A> 从配置文件加载集合时, <xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A>将调用来创建单个元素。 <xref:System.Configuration.ConfigurationElementCollection.CreateNewElement%2A>必须在派生自<xref:System.Configuration.ConfigurationElementCollection>类的类中重写。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>如果创建自定义<see cref="T:System.Configuration.ConfigurationElementCollection" />集合，其中包含异类<see cref="T:System.Configuration.ConfigurationElement" />类型，必须执行以下步骤： 
--替代<see cref="M:System.Configuration.ConfigurationElementCollection.GetElementKey(System.Configuration.ConfigurationElement)" />方法。  
+        <block subset="none" type="overrides"><para>如果创建包含异类<see cref="T:System.Configuration.ConfigurationElementCollection" /> <see cref="T:System.Configuration.ConfigurationElement" />类型的自定义集合, 则必须执行以下步骤: 
+-重写<see cref="M:System.Configuration.ConfigurationElementCollection.GetElementKey(System.Configuration.ConfigurationElement)" />方法。  
   
--确保该<see cref="M:System.Configuration.ConfigurationElementCollection.GetElementKey(System.Configuration.ConfigurationElement)" />方法返回一个字符串，标识通过调用创建的元素类型<see cref="M:System.Configuration.ConfigurationElementCollection.CreateNewElement(System.String)" />方法。</para></block>
+-请确保该<see cref="M:System.Configuration.ConfigurationElementCollection.GetElementKey(System.Configuration.ConfigurationElement)" />方法返回一个字符串, 该字符串标识您通过<see cref="M:System.Configuration.ConfigurationElementCollection.CreateNewElement(System.String)" />调用方法创建的元素的类型。</para></block>
       </Docs>
     </Member>
     <Member MemberName="ElementName">
@@ -1003,7 +1004,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 重写<xref:System.Configuration.ConfigurationElementCollection.ElementName%2A>属性来命名自定义<xref:System.Configuration.ConfigurationElementCollection>。  
+ 重写<xref:System.Configuration.ConfigurationElementCollection>属性以命名自定义。 <xref:System.Configuration.ConfigurationElementCollection.ElementName%2A>  
   
  ]]></format>
         </remarks>
@@ -1038,7 +1039,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置<xref:System.Configuration.ConfigurationElementCollection.EmitClear%2A>属性设置为`true`导致`<clear>`指令集合进行序列化时要写入到配置文件。  
+ 如果将`true` `<clear>`属性设置为, 则会导致在序列化集合时将指令写入配置文件。 <xref:System.Configuration.ConfigurationElementCollection.EmitClear%2A>  
   
  ]]></format>
         </remarks>
@@ -1252,7 +1253,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 查询<xref:System.Configuration.ConfigurationElementCollection.IsElementRemovable%2A>之前删除集合的元素。  
+ 删除<xref:System.Configuration.ConfigurationElementCollection.IsElementRemovable%2A>集合元素之前的查询。  
   
  ]]></format>
         </remarks>
@@ -1288,7 +1289,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Configuration.ConfigurationElement.IsModified%2A>方法的任何<xref:System.Configuration.ConfigurationElement>中包含<xref:System.Configuration.ConfigurationElementCollection>返回`true`，则<xref:System.Configuration.ConfigurationElementCollection.IsModified%2A>整个集合的方法将返回`true`也。  
+ <xref:System.Configuration.ConfigurationElement> `true` <xref:System.Configuration.ConfigurationElementCollection.IsModified%2A>如果返回中`true`包含的任何方法,则整个集合的方法也会返回。<xref:System.Configuration.ConfigurationElement.IsModified%2A> <xref:System.Configuration.ConfigurationElementCollection>  
   
  ]]></format>
         </remarks>
@@ -1324,7 +1325,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 系统定义不能修改的配置元素。 调用此方法以确定是否可以修改元素。  
+ 系统定义无法修改的配置元素。 调用此方法以确定是否可以修改元素。  
   
  ]]></format>
         </remarks>
@@ -1396,9 +1397,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Configuration.ConfigurationElementCollection.OnDeserializeUnrecognizedElement%2A>从配置文件中读取一个无法识别的配置元素时调用。  
+ <xref:System.Configuration.ConfigurationElementCollection.OnDeserializeUnrecognizedElement%2A>从配置文件中读取无法识别的配置元素时调用。  
   
- 重写此方法以提供对配置文件中无法识别的配置元素的自定义处理。 默认返回值， `false`，导致配置系统引发异常。  
+ 重写此方法以提供对配置文件中无法识别的配置元素的自定义处理。 默认返回值`false`导致配置系统引发异常。  
   
  ]]></format>
         </remarks>
@@ -1467,7 +1468,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认行为<xref:System.Configuration.ConfigurationElementCollection.Reset%2A>方法是清除修改后的任何元素<xref:System.Configuration.ConfigurationElementCollection>对象包含并且将值设置为已修改的元素指定由其父配置文件。 如果中的任何元素<xref:System.Configuration.ConfigurationElementCollection>子元素，<xref:System.Configuration.ConfigurationElementCollection.Reset%2A>也被称为对这些子元素。  
+ <xref:System.Configuration.ConfigurationElementCollection.Reset%2A>方法的默认行为是清除对象包含的任何已修改的<xref:System.Configuration.ConfigurationElementCollection>元素, 并将修改后的元素设置为其父配置文件指定的值。 如果中的<xref:System.Configuration.ConfigurationElementCollection>任何元素包含子元素, <xref:System.Configuration.ConfigurationElementCollection.Reset%2A>则也会对这些子元素调用。  
   
  ]]></format>
         </remarks>
@@ -1502,7 +1503,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Configuration.ConfigurationElementCollection.ResetModified%2A>方法确定更新的配置时，此集合中的元素是否写入到配置文件。  
+ <xref:System.Configuration.ConfigurationElementCollection.ResetModified%2A>方法确定在更新配置时是否将此集合的元素写入配置文件。  
   
  ]]></format>
         </remarks>
@@ -1543,7 +1544,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Configuration.ConfigurationElementCollection.SerializeElement%2A>方法将集合中包含的配置元素和其所包含任何嵌套的元素的内容写入到配置文件。 重写<xref:System.Configuration.ConfigurationElementCollection.SerializeElement%2A>若要提供自定义编写出的集合内容和嵌套的元素的过程。  
+ <xref:System.Configuration.ConfigurationElementCollection.SerializeElement%2A>方法将集合中包含的配置元素的内容和它们所包含的所有嵌套元素写入配置文件。 重<xref:System.Configuration.ConfigurationElementCollection.SerializeElement%2A>写以提供集合内容和嵌套元素外的自定义写入过程。  
   
  ]]></format>
         </remarks>
@@ -1579,7 +1580,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法在内部用于设置保留不能修改这些系统的配置元素。 若要确定哪些元素是可修改，请调用<xref:System.Configuration.ConfigurationElementCollection.IsReadOnly%2A>方法。  
+ 此方法在内部使用, 用于搁置那些不能修改的系统配置元素。 若要确定哪些元素是可修改的<xref:System.Configuration.ConfigurationElementCollection.IsReadOnly%2A> , 请调用方法。  
   
  ]]></format>
         </remarks>
@@ -1680,9 +1681,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果当添加重复的元素时，引发异常<xref:System.Configuration.ConfigurationElementCollection.CollectionType%2A>元素的值是<xref:System.Configuration.ConfigurationElementCollectionType.AddRemoveClearMap>或<xref:System.Configuration.ConfigurationElementCollectionType.AddRemoveClearMapAlternate>。  
+ 添加重复元素时, 如果<xref:System.Configuration.ConfigurationElementCollection.CollectionType%2A>元素的值<xref:System.Configuration.ConfigurationElementCollectionType.AddRemoveClearMap>为或<xref:System.Configuration.ConfigurationElementCollectionType.AddRemoveClearMapAlternate>, 则会引发异常。  
   
- 请注意，使用相同的密钥和值的元素不被视为重复项，以静默方式接受。 使用相同的密钥，但不同的值的唯一元素将被视为重复项。 有关详细信息，请参阅备注部分<xref:System.Configuration.ConfigurationElementCollection.BaseAdd%2A>方法。  
+ 请注意, 具有相同键和值的元素不会被视为重复元素, 而是以无提示方式接受。 只有键相同但值不同的元素才被视为重复元素。 有关详细信息, 请参阅<xref:System.Configuration.ConfigurationElementCollection.BaseAdd%2A>方法的 "备注" 部分。  
   
  ]]></format>
         </remarks>
@@ -1699,8 +1700,8 @@
       <MemberSignature Language="C++ CLI" Value="protected public:&#xA; override void Unmerge(System::Configuration::ConfigurationElement ^ sourceElement, System::Configuration::ConfigurationElement ^ parentElement, System::Configuration::ConfigurationSaveMode updateMode);" FrameworkAlternate="xamarinmac-3.0" />
       <MemberSignature Language="DocId" Value="M:System.Configuration.ConfigurationElementCollection.Unmerge(System.Configuration.ConfigurationElement,System.Configuration.ConfigurationElement,System.Configuration.ConfigurationSaveMode)" FrameworkAlternate="xamarinmac-3.0" />
       <MemberSignature Language="F#" Value="override this.Unmerge : System.Configuration.ConfigurationElement * System.Configuration.ConfigurationElement * System.Configuration.ConfigurationSaveMode -&gt; unit" Usage="configurationElementCollection.Unmerge (sourceElement, parentElement, updateMode)" FrameworkAlternate="xamarinmac-3.0" />
-      <MemberSignature Language="DocId" Value="M:System.Configuration.ConfigurationElementCollection.Unmerge(System.Configuration.ConfigurationElement,System.Configuration.ConfigurationElement,System.Configuration.ConfigurationSaveMode)" FrameworkAlternate="xamarinmac-3.0" />
-      <MemberSignature Language="F#" Value="override this.Unmerge : System.Configuration.ConfigurationElement * System.Configuration.ConfigurationElement * System.Configuration.ConfigurationSaveMode -&gt; unit" Usage="configurationElementCollection.Unmerge (sourceElement, parentElement, updateMode)" FrameworkAlternate="xamarinmac-3.0" />
+      <MemberSignature Language="DocId" Value="M:System.Configuration.ConfigurationElementCollection.Unmerge(System.Configuration.ConfigurationElement,System.Configuration.ConfigurationElement,System.Configuration.ConfigurationSaveMode)" FrameworkAlternate="xamarinmac-3.0;netcore-3.0" />
+      <MemberSignature Language="F#" Value="override this.Unmerge : System.Configuration.ConfigurationElement * System.Configuration.ConfigurationElement * System.Configuration.ConfigurationSaveMode -&gt; unit" Usage="configurationElementCollection.Unmerge (sourceElement, parentElement, updateMode)" FrameworkAlternate="xamarinmac-3.0;netcore-3.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Configuration.ConfigurationManager</AssemblyName>

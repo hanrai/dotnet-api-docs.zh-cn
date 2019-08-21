@@ -1,5 +1,5 @@
 <Type Name="IServerChannelSinkProvider" FullName="System.Runtime.Remoting.Channels.IServerChannelSinkProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0ee1304d7b4c9e2330cbea5071d6ec8d6cb6b8bf" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64113401" /></Metadata><TypeSignature Language="C#" Value="public interface IServerChannelSinkProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="6ffef116f799bfa0c249d00f72b776b7ba87f596" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69061974" /></Metadata><TypeSignature Language="C#" Value="public interface IServerChannelSinkProvider" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IServerChannelSinkProvider" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Remoting.Channels.IServerChannelSinkProvider" />
   <TypeSignature Language="VB.NET" Value="Public Interface IServerChannelSinkProvider" />
@@ -24,23 +24,23 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 信道接收器已连接到服务器信道的实现通过<xref:System.Runtime.Remoting.Channels.IServerChannelSinkProvider>接口。 所有远程处理服务器通道提供构造函数采用<xref:System.Runtime.Remoting.Channels.IServerChannelSinkProvider>作为参数。  
+ 通道接收器通过<xref:System.Runtime.Remoting.Channels.IServerChannelSinkProvider>接口的实现连接到服务器通道。 所有远程处理服务器通道均提供采用<xref:System.Runtime.Remoting.Channels.IServerChannelSinkProvider>作为参数的构造函数。  
   
- 信道接收器提供程序存储在一个链中，用户负责所有的信道接收器提供程序一起传递外部信道构造函数之前。 <xref:System.Runtime.Remoting.Channels.IServerChannelSinkProvider> 提供了一个名为属性<xref:System.Runtime.Remoting.Channels.IServerChannelSinkProvider.Next%2A>实现此目的。  
+ 信道接收器提供程序存储在链中, 用户负责将所有通道接收器提供程序链接在一起, 然后将外部通道传递给通道构造函数。 <xref:System.Runtime.Remoting.Channels.IServerChannelSinkProvider>为此目的提供<xref:System.Runtime.Remoting.Channels.IServerChannelSinkProvider.Next%2A>一个名为的属性。  
   
- 当在配置文件中指定多个信道接收器提供程序时，远程处理基础结构将这些链接起来的配置文件中找到的顺序。 在同一时间作为通道，期间创建信道接收器提供程序<xref:System.Runtime.Remoting.RemotingConfiguration.Configure%2A?displayProperty=nameWithType>调用。  
+ 当在配置文件中指定多个信道接收器提供程序时, 远程处理基础结构将按照它们在配置文件中的找到顺序将它们链接在一起。 信道接收器提供程序在<xref:System.Runtime.Remoting.RemotingConfiguration.Configure%2A?displayProperty=nameWithType>调用期间与通道同时创建。  
   
- 之后<xref:System.Runtime.Remoting.Messaging.IMethodCallMessage>生成时，.NET Framework 中搜索的注册信道，若要查找一台能够处理在调用列表。 一旦找到适当的信道，从通道检索的信道接收器和<xref:System.Runtime.Remoting.Messaging.IMethodCallMessage>转发到接收器以便进行处理。  
+ <xref:System.Runtime.Remoting.Messaging.IMethodCallMessage>生成后, .NET Framework 搜索已注册通道的列表, 查找可处理调用的通道。 找到适当的通道后, 将从通道检索通道接收器, 并<xref:System.Runtime.Remoting.Messaging.IMethodCallMessage>将转发到接收器进行处理。  
   
    
   
 ## Examples  
- 下面的代码示例说明了此接口的实现。  
+ 下面的代码示例演示了此接口的实现。  
   
  [!code-cpp[Remoting_Sinks#70](~/samples/snippets/cpp/VS_Snippets_Remoting/Remoting_Sinks/CPP/serversink.cpp#70)]
  [!code-csharp[Remoting_Sinks#70](~/samples/snippets/csharp/VS_Snippets_Remoting/Remoting_Sinks/CS/serversink.cs#70)]  
   
- 请参阅<xref:System.Runtime.Remoting.Channels.IServerChannelSink>接口的相应服务器接收器实现的示例文档。  
+ 有关相应的服务器接收器实现的示例, 请参阅接口文档。<xref:System.Runtime.Remoting.Channels.IServerChannelSink>  
   
  ]]></format>
     </remarks>
@@ -87,7 +87,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直接调用方没有基础结构权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于操作的基础结构代码。 要求值： <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;权限值： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于处理基础结构代码。 要求值: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;权限值:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="GetChannelData">
@@ -130,7 +130,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直接调用方没有基础结构权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于操作的基础结构代码。 要求值： <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;权限值： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于处理基础结构代码。 要求值: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;权限值:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="Next">
@@ -173,7 +173,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直接调用方没有基础结构权限。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于操作的基础结构代码。 要求值： <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;权限值： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于处理基础结构代码。 要求值: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;权限值:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
   </Members>

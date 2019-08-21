@@ -1,5 +1,5 @@
 <Type Name="IObjectReference" FullName="System.Runtime.Serialization.IObjectReference">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="15a572ce6bbd23462a8f69dedc62f0a26c7b6cbd" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58743533" /></Metadata><TypeSignature Language="C#" Value="public interface IObjectReference" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="74bd210c6351b3af37461586750f2df84e536d7a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69087388" /></Metadata><TypeSignature Language="C#" Value="public interface IObjectReference" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IObjectReference" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Serialization.IObjectReference" />
   <TypeSignature Language="VB.NET" Value="Public Interface IObjectReference" />
@@ -40,7 +40,7 @@
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>对当前对象完全还原之前，无法识别的不同对象的引用的对象上实现此接口。 在修正阶段的任何对象实现<see cref="T:System.Runtime.Serialization.IObjectReference" />为其实际的查询对象并将该对象插入到关系图。 链接地址信息是指完成的引用对象反序列化过程尚未完成的过程。</para></block>
+    <block subset="none" type="overrides"><para>在引用其他对象的对象上实现此接口, 直到当前的对象完全还原后, 才能对其进行解析。 在修正阶段, 将查询实现<see cref="T:System.Runtime.Serialization.IObjectReference" />的任何对象以获得其真实对象, 并将该对象插入到图形中。 修正是指在对象反序列化过程中尚未完成引用的过程。</para></block>
   </Docs>
   <Members>
     <Member MemberName="GetRealObject">
@@ -87,11 +87,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法可在远程处理的情况下您可以序列化代理创建者对象，而不是实际对象。 当代理创建者对象进行反序列化时，反序列化调用其<xref:System.Runtime.Serialization.IObjectReference.GetRealObject%2A>方法。 此时，代理创建者对象创建引用回原始的实际对象，可能在远程计算机上的代理对象的新实例。 最后，代理创建者对象是丢弃和更高版本被垃圾回收。  
+ 此方法在远程处理情况下非常有用, 在这种情况下, 您可以序列化代理创建者对象, 而不是实际的对象。 反序列化代理创建者对象时, 反序列化<xref:System.Runtime.Serialization.IObjectReference.GetRealObject%2A>会调用其方法。 此时, 代理创建者对象会创建一个代理对象的新实例, 该实例引用回原始实际对象 (可能位于远程计算机上)。 最后, 代理创建者对象将被丢弃并在以后通过垃圾回收进行回收。  
   
- 例如，考虑如何<xref:System.Type>对象进行序列化。 而不是从将数据传输<xref:System.Type>对象时，系统将传输具有类型对象和在其中找到一个对象，实现中的程序集的信息的名称的持有者对象<xref:System.Runtime.Serialization.IObjectReference>。 可用的类型名称和程序集名称时，反序列化基础结构将调用<xref:System.Runtime.Serialization.IObjectReference.GetRealObject%2A>已传输的持有者对象。 此持有者返回<xref:System.Type>插入到关系图的对象。  
+ 例如, 请考虑对象<xref:System.Type>的序列化方式。 系统不会传输<xref:System.Type>对象中的数据, 而是使用类型对象的名称以及在实现<xref:System.Runtime.Serialization.IObjectReference>的对象中找到的程序集的信息来传输持有者对象。 当类型名称和程序集名称都可用时, 反序列化基础<xref:System.Runtime.Serialization.IObjectReference.GetRealObject%2A>结构将对已传输的持有者对象进行调用。 此持有者返回<xref:System.Type>插入到关系图中的对象。  
   
- 此方法受<xref:System.Security.Permissions.SecurityAction.LinkDemand?displayProperty=nameWithType>有关<xref:System.Security.Permissions.SecurityPermission>与<xref:System.Security.Permissions.SecurityPermissionFlag.SerializationFormatter?displayProperty=nameWithType>指定。  
+ <xref:System.Security.Permissions.SecurityAction.LinkDemand?displayProperty=nameWithType>对于具有指定<xref:System.Security.Permissions.SecurityPermissionFlag.SerializationFormatter?displayProperty=nameWithType>的的, 此方法由的进行保护。 <xref:System.Security.Permissions.SecurityPermission>  
   
    
   

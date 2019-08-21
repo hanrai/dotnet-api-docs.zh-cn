@@ -1,5 +1,5 @@
 <Type Name="Clock" FullName="System.Windows.Media.Animation.Clock">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e66f738243341b972df8bd312909009691b91c73" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58719242" /></Metadata><TypeSignature Language="C#" Value="public class Clock : System.Windows.Threading.DispatcherObject" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e80d3b2ed065032c63a97c07659d4cae66335fcc" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69165603" /></Metadata><TypeSignature Language="C#" Value="public class Clock : System.Windows.Threading.DispatcherObject" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Clock extends System.Windows.Threading.DispatcherObject" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Media.Animation.Clock" />
   <TypeSignature Language="VB.NET" Value="Public Class Clock&#xA;Inherits DispatcherObject" />
@@ -20,22 +20,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Windows.Media.Animation.Timeline>，其本身而言，实际上没有任何除了描述时间段。 时间线的<xref:System.Windows.Media.Animation.Clock>对象执行实际工作： 它保留为时间线计时相关运行时状态。  
+ 本身并不实际执行任何操作,而不是描述段时间。<xref:System.Windows.Media.Animation.Timeline> 它是执行实际工作<xref:System.Windows.Media.Animation.Clock>的时间线对象: 它为时间线维护与计时相关的运行时状态。  
   
- 在大多数情况下，创建时钟会自动为时间线。 当您使用进行动画处理<xref:System.Windows.Media.Animation.Storyboard>或<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%2A>方法中，自动为时间线和动画创建时钟并应用于其目标属性。 相关示例，请参阅[如何：使用演示图板对属性进行动画处理](~/docs/framework/wpf/graphics-multimedia/how-to-animate-a-property-by-using-a-storyboard.md)和[如何：不使用情节提要对属性进行动画处理](~/docs/framework/wpf/graphics-multimedia/how-to-animate-a-property-without-using-a-storyboard.md)。  
+ 在大多数情况下, 时钟会自动为时间线创建。 <xref:System.Windows.Media.Animation.Storyboard> 使用<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%2A>或方法对进行动画处理时, 会自动为时间线和动画创建时钟, 并将其应用于其目标属性。 相关示例，请参阅[如何：使用情节提要](~/docs/framework/wpf/graphics-multimedia/how-to-animate-a-property-by-using-a-storyboard.md)对属性进行动画处理[, 以及如何:在不使用情节提要](~/docs/framework/wpf/graphics-multimedia/how-to-animate-a-property-without-using-a-storyboard.md)的情况下对属性进行动画处理。  
   
- 此外可以创建<xref:System.Windows.Media.Animation.Clock>通过使用显式<xref:System.Windows.Media.Animation.Timeline.CreateClock%2A>方法。 需要进行大量性能的情况下，例如对大量类似对象进行动画处理管理你自己<xref:System.Windows.Media.Animation.Clock>使用可以提供性能优势。  
+ 你还可以<xref:System.Windows.Media.Animation.Timeline.CreateClock%2A>使用方法<xref:System.Windows.Media.Animation.Clock>显式创建。 在性能密集型方案 (如对大量类似对象进行动画处理) 中, 管理自己<xref:System.Windows.Media.Animation.Clock>的使用可以提供性能优势。  
   
- 在匹配的结构的树中排列时钟<xref:System.Windows.Media.Animation.Timeline>从中创建树对象。 此类一个计时树的根时钟可以以交互方式操作 （暂停、 恢复、 已停止，等等） 通过检索其<xref:System.Windows.Media.Animation.Clock.Controller%2A>。 不能直接控制非根时钟。  
+ 时钟安排在与从中创建它们的<xref:System.Windows.Media.Animation.Timeline>对象树的结构相匹配的树中。 此类计时树的根时钟可以通过检索其<xref:System.Windows.Media.Animation.Clock.Controller%2A>来以交互方式 (暂停、恢复、停止等) 进行操作。 非根时钟无法直接控制。  
   
- 一旦创建，就不能修改时钟 （但可以对其进行处理）。  
+ 创建后, 无法修改时钟 (但可以对其进行操作)。  
   
-## <a name="using-a-timeline-as-a-timer"></a>作为计时器使用时间线  
- 与之关联的事件处理程序时，才会前进时间线的时钟或 (对于<xref:System.Windows.Media.Animation.AnimationClock>对象) 是与属性关联。 对于此原因 （以及其他），建议不要使用<xref:System.Windows.Media.Animation.Timeline>作为计时器。  
+## <a name="using-a-timeline-as-a-timer"></a>使用时间线作为计时器  
+ 仅当存在与其相关联的事件处理程序时, 或 (在<xref:System.Windows.Media.Animation.AnimationClock>对象的情况下) 与属性相关联的事件处理程序时, 时间线的时钟才会进行。 出于此原因 (以及其他), 不建议使用<xref:System.Windows.Media.Animation.Timeline>作为计时器。  
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>派生的类应实现<see cref="M:System.Windows.Media.Animation.Clock.GetCurrentTimeCore" />如果用户想要修改此时钟的时间的流动方式。 派生的类可用于时钟重复、 跳过、 查找、 开始、 暂停、 继续时，或通过重写停止时执行其他工作<see cref="M:System.Windows.Media.Animation.Clock.DiscontinuousTimeMovement" />， <see cref="M:System.Windows.Media.Animation.Clock.SpeedChanged" />，和<see cref="M:System.Windows.Media.Animation.Clock.Stopped" />方法。</para></block>
+    <block subset="none" type="overrides"><para>如果派生类要<see cref="M:System.Windows.Media.Animation.Clock.GetCurrentTimeCore" />修改此时钟的时间流, 则应实现。 派生类可以通过重写<see cref="M:System.Windows.Media.Animation.Clock.DiscontinuousTimeMovement" />、 <see cref="M:System.Windows.Media.Animation.Clock.SpeedChanged" />和<see cref="M:System.Windows.Media.Animation.Clock.Stopped" />方法, 在时钟重复、跳过、查找、启动、暂停、恢复或停止时执行额外的工作。</para></block>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -81,9 +81,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果此时钟为时钟树的根时钟，播放完后到达其活动持续时间 （其中包括重复） 结束且其所有子项都达到其活动持续时间结束。 如果此时钟为子时钟，则是被视为完全完成播放时达到它所属时钟树的根时钟的结束其活动持续时间和所有子时钟已完成播放。  
+ 如果此时钟为时钟树的根时钟, 则它在到达其活动持续时间 (包括重复) 结束后已完成播放, 其所有子项已到达其活动持续时间的终点。 如果此时钟为子时钟, 则当其所属的时钟树的根时钟到达其活动持续时间的终点并且其所有子时钟已完成播放时, 将被视为已完全完成播放。  
   
- 正在停止时钟不会触发它的完成的事件，但提前到其填充期。  
+ 停止时钟不会触发其已完成的事件, 而是将其前进到填充期。  
   
  ]]></format>
         </remarks>
@@ -112,7 +112,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以以交互方式控制仅根时钟。  
+ 只能以交互方式控制根时钟。  
   
  ]]></format>
         </remarks>
@@ -175,9 +175,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 暂停、 恢复、 反转、 加速、 减速、 查找、 停止或更改时钟的交互速度使用<xref:System.Windows.Media.Animation.ClockController>触发此事件。  
+ 使用<xref:System.Windows.Media.Animation.ClockController>触发此事件, 暂停、继续、反转、加速、减速、查找、停止或更改时钟的交互速度。  
   
- 虽然此事件发生时<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeed%2A>属性变为无效，并不一定意味着更改的属性。  
+ 尽管此事件在<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeed%2A>属性变为无效时发生, 但并不一定表示属性已更改。  
   
  ]]></format>
         </remarks>
@@ -238,11 +238,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 时钟的第一次迭代的值为 1。  
+ 时钟的第一个迭代的值为1。  
   
- 如果此时钟的时间线具有<xref:System.Windows.Media.Animation.Timeline.AutoReverse%2A>设置的`true`、 完整的迭代包含正向和反向迭代，而不仅仅是其中一个段。  
+ 如果此时钟的时间线<xref:System.Windows.Media.Animation.Timeline.AutoReverse%2A>的设置为`true`, 则完整迭代包含正向反向对, 而不只是这些段中的一个。  
   
- 而不考虑其当前迭代中，定位时钟都会将其当前迭代为 1。 重新启动时钟也为 1 返回其当前迭代。  
+ 无论其当前迭代如何, 查找时钟都会将其当前迭代返回1。 重新启动时钟还会将其当前迭代返回1。  
   
  ]]></format>
         </remarks>
@@ -277,12 +277,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性的值指示<xref:System.Windows.Media.Animation.Clock.CurrentTime%2A>通过规范化<xref:System.Windows.Media.Animation.Timeline.Duration%2A>此时钟的<xref:System.Windows.Media.Animation.Clock.Timeline%2A>。  
+ 此属性的值指示<xref:System.Windows.Media.Animation.Clock.CurrentTime%2A>此时钟的<xref:System.Windows.Media.Animation.Clock.Timeline%2A>的规范化<xref:System.Windows.Media.Animation.Timeline.Duration%2A> 。  
   
- 是一个时钟<xref:System.Windows.Media.Animation.ClockState.Filling>具有<xref:System.Windows.Media.Animation.Clock.CurrentProgress%2A>为 1.0。  
+ 的时钟的类型<xref:System.Windows.Media.Animation.ClockState.Filling> <xref:System.Windows.Media.Animation.Clock.CurrentProgress%2A>为1.0。  
   
-## <a name="using-a-timeline-as-a-timer"></a>作为计时器使用时间线  
- 与之关联的事件处理程序时，才会前进时间线的时钟或 (对于<xref:System.Windows.Media.Animation.AnimationClock>对象) 是与属性关联。 对于此原因 （以及其他），建议不要使用<xref:System.Windows.Media.Animation.Timeline>作为计时器。  
+## <a name="using-a-timeline-as-a-timer"></a>使用时间线作为计时器  
+ 仅当存在与其相关联的事件处理程序时, 或 (在<xref:System.Windows.Media.Animation.AnimationClock>对象的情况下) 与属性相关联的事件处理程序时, 时间线的时钟才会进行。 出于此原因 (以及其他), 不建议使用<xref:System.Windows.Media.Animation.Timeline>作为计时器。  
   
  ]]></format>
         </remarks>
@@ -316,9 +316,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 请注意，时钟<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>属性不会告诉你它是否已暂停。 若要确定是否已暂停时钟，请使用<xref:System.Windows.Media.Animation.Clock.IsPaused%2A>属性。  
+ 请注意, 时钟<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>的属性不会告诉您它是否已暂停。 若要确定时钟是否暂停, 请使用<xref:System.Windows.Media.Animation.Clock.IsPaused%2A>属性。  
   
- <xref:System.Windows.Media.Animation.Clock.CurrentStateInvalidated>每当此属性的值更改时发生。  
+ 每当<xref:System.Windows.Media.Animation.Clock.CurrentStateInvalidated>此属性的值发生更改时, 就会发生。  
   
  ]]></format>
         </remarks>
@@ -353,11 +353,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>事件时想要被通知在时钟开始时，如果停止或填充。 <xref:System.Object>的参数<xref:System.EventHandler>事件处理程序是<xref:System.Windows.Media.Animation.Clock>其状态已失效。  
+ 如果要在时钟开始、停止或填充时收到通知, 请使用事件。<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated> 事件处理程序的<xref:System.Object>参数<xref:System.Windows.Media.Animation.Clock>是其状态无效的。 <xref:System.EventHandler>  
   
- 暂停<xref:System.Windows.Media.Animation.Clock>不会更改其<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>。 若要在一个时钟变为暂停时收到通知，请使用<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
+ 暂停不会更改其<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>。 <xref:System.Windows.Media.Animation.Clock> 若要在时钟暂停时得到通知, 请使用<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>事件。  
   
- 虽然此事件发生时<xref:System.Windows.Media.Animation.ClockState>变为无效，并不一定意味着<xref:System.Windows.Media.Animation.ClockState>更改：<xref:System.Windows.Media.Animation.Clock>从用于切换<xref:System.Windows.Media.Animation.ClockState.Active>到<xref:System.Windows.Media.Animation.ClockState.Filling>，然后返回<xref:System.Windows.Media.Animation.ClockState.Active>在同一个计时周期将导致此事件激发，但其<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>属性实际上不会更改。  
+ 尽管<xref:System.Windows.Media.Animation.ClockState>在变为无效时发生此事件, 但这并不一定<xref:System.Windows.Media.Animation.ClockState>意味着已更改<xref:System.Windows.Media.Animation.Clock> : <xref:System.Windows.Media.Animation.ClockState.Active>从相同的<xref:System.Windows.Media.Animation.ClockState.Filling>时钟切换到然后<xref:System.Windows.Media.Animation.ClockState.Active>再返回到的将导致此事件将触发, 但其<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>属性不会实际更改。  
   
  ]]></format>
         </remarks>
@@ -395,8 +395,8 @@
   
 ## Remarks  
   
-## <a name="using-a-timeline-as-a-timer"></a>作为计时器使用时间线  
- 与之关联的事件处理程序时，才会前进时间线的时钟或 (对于<xref:System.Windows.Media.Animation.AnimationClock>对象) 是与属性关联。 对于此原因 （以及其他），建议不要使用<xref:System.Windows.Media.Animation.Timeline>作为计时器。  
+## <a name="using-a-timeline-as-a-timer"></a>使用时间线作为计时器  
+ 仅当存在与其相关联的事件处理程序时, 或 (在<xref:System.Windows.Media.Animation.AnimationClock>对象的情况下) 与属性相关联的事件处理程序时, 时间线的时钟才会进行。 出于此原因 (以及其他), 不建议使用<xref:System.Windows.Media.Animation.Timeline>作为计时器。  
   
  ]]></format>
         </remarks>
@@ -425,7 +425,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 时钟的<xref:System.Windows.Media.Animation.Clock.CurrentTime%2A>变为无效时钟前进。 以下交互式操作也会触发 CurrentTimeInvalidated 事件： <xref:System.Windows.Media.Animation.ClockController.Begin%2A>， <xref:System.Windows.Media.Animation.ClockController.SkipToFill%2A>， <xref:System.Windows.Media.Animation.ClockController.Seek%2A>， <xref:System.Windows.Media.Animation.ClockController.SeekAlignedToLastTick%2A>，和<xref:System.Windows.Media.Animation.ClockController.Stop%2A>。  
+ 当时钟进行<xref:System.Windows.Media.Animation.Clock.CurrentTime%2A>时, 时钟将变为无效。 以下交互式操作还会触发 CurrentTimeInvalidated 事件: <xref:System.Windows.Media.Animation.ClockController.Begin%2A>、 <xref:System.Windows.Media.Animation.ClockController.SkipToFill%2A>、 <xref:System.Windows.Media.Animation.ClockController.Seek%2A>、 <xref:System.Windows.Media.Animation.ClockController.SeekAlignedToLastTick%2A>和<xref:System.Windows.Media.Animation.ClockController.Stop%2A>。  
   
  ]]></format>
         </remarks>
@@ -477,7 +477,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 媒体使用正在播放<xref:System.Windows.Media.MediaTimeline>内<xref:System.Windows.Media.Animation.Storyboard>是创建的示例<xref:System.Windows.Media.Animation.Clock>会具有外部时间源 （例如视频剪辑） 可能需要与其他时间线内同步<xref:System.Windows.Media.Animation.Storyboard>。 有关更多信息，请参见<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>。  
+ 使用<xref:System.Windows.Media.MediaTimeline> <xref:System.Windows.Media.Animation.Clock> <xref:System.Windows.Media.Animation.Storyboard>在中播放的媒体就是创建一个具有外部时间源(例如视频剪辑)的示例,可能需要与内的其他时间线同步。<xref:System.Windows.Media.Animation.Storyboard> 有关更多信息，请参见<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>。  
   
  ]]></format>
         </remarks>
@@ -507,11 +507,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 实现中使用此方法<xref:System.Windows.Media.Animation.Clock.CurrentTime%2A>方法并不应在代码中直接调用。  
+ 此方法在<xref:System.Windows.Media.Animation.Clock.CurrentTime%2A>方法的实现中使用, 不应在代码中直接调用。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>如果用户想要修改它们如何确定当前时间，派生的类应重写此方法。</para></block>
+        <block subset="none" type="overrides"><para>如果派生类要修改其确定当前时间的方式, 则应重写此方法。</para></block>
         <altmember cref="P:System.Windows.Media.Animation.Clock.CurrentTime" />
       </Docs>
     </Member>
@@ -593,7 +593,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 自然持续时间有关的详细信息，请参阅<xref:System.Windows.Media.Animation.Timeline.GetNaturalDuration%2A?displayProperty=nameWithType>方法。  
+ 有关自然持续时间的详细信息, 请<xref:System.Windows.Media.Animation.Timeline.GetNaturalDuration%2A?displayProperty=nameWithType>参阅方法。  
   
  ]]></format>
         </remarks>
@@ -715,7 +715,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 修改在时钟<xref:System.Windows.Media.MediaTimeline>不会更新时钟; 必须创建新的时钟从修改后<xref:System.Windows.Media.Animation.Timeline>。  
+ 修改时钟<xref:System.Windows.Media.MediaTimeline>不会更新时钟; 必须从修改后<xref:System.Windows.Media.Animation.Timeline>创建新时钟。  
   
  ]]></format>
         </remarks>
