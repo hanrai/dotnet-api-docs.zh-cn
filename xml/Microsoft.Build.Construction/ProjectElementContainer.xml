@@ -1,5 +1,5 @@
 <Type Name="ProjectElementContainer" FullName="Microsoft.Build.Construction.ProjectElementContainer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ed7e5a4042d99601e8c969f4f21d30cf3085ec7f" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63866729" /></Metadata><TypeSignature Language="C#" Value="public abstract class ProjectElementContainer : Microsoft.Build.Construction.ProjectElement" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="6a53db5668a61597a3f0324088be22af342c1815" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69259719" /></Metadata><TypeSignature Language="C#" Value="public abstract class ProjectElementContainer : Microsoft.Build.Construction.ProjectElement" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ProjectElementContainer extends Microsoft.Build.Construction.ProjectElement" />
   <TypeSignature Language="DocId" Value="T:Microsoft.Build.Construction.ProjectElementContainer" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ProjectElementContainer&#xA;Inherits ProjectElement" />
@@ -40,12 +40,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取可枚举所有子元素的递归的深度优先的枚举器。</summary>
-        <value>递归深度优先的枚举器所有子元素。</value>
+        <value>对所有子元素的递归深度优先的枚举器。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 递归是可能的因为项目元素容器可能包含自身的子项目元素容器。  
+ 递归是可能的, 因为项目元素容器可以包含自身为项目元素容器的子级。  
   
  ]]></format>
         </remarks>
@@ -76,7 +76,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果此项目容器没有父级，或者引发异常`child`元素已经有父级，或者如果`child`元素已由不同<xref:Microsoft.Build.Construction.ProjectRootElement>。  
+ 如果此项目容器不是父级的, 或者如果`child`该元素已是父级的, 或者如果该`child`元素是通过其他<xref:Microsoft.Build.Construction.ProjectRootElement>方式创建的, 则会引发异常。  
   
  ]]></format>
         </remarks>
@@ -130,7 +130,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取所有子元素（从最后一个子级开始）。</summary>
-        <value>所有子元素，从最后一个子级开始。</value>
+        <value>所有子元素 (从最后一个子级开始)。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -191,12 +191,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取第一个子元素。</summary>
-        <value>第一个子元素，或<see langword="null" />如果子元素不存在。</value>
+        <value>第一个子元素; <see langword="null" />如果不存在子元素, 则为。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:Microsoft.Build.Construction.ProjectElementContainer.PrependChild%2A>来初始化此属性。  
+ 使用<xref:Microsoft.Build.Construction.ProjectElementContainer.PrependChild%2A>初始化此属性。  
   
  ]]></format>
         </remarks>
@@ -229,9 +229,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`reference`元素为 null，此方法等效于<xref:Microsoft.Build.Construction.ProjectElementContainer.PrependChild%2A>。  
+ 如果元素为空, 则此方法等效于<xref:Microsoft.Build.Construction.ProjectElementContainer.PrependChild%2A>。 `reference`  
   
- 此项目容器没有父级，则将引发异常`child`元素已经有父级，或者如果`child`元素创建由不同<xref:Microsoft.Build.Construction.ProjectRootElement>，或者如果`reference`元素不是此项目容器的子级.  
+ 如果此项目容器不是父级的`child` , 或者如果该元素已是父`child`元素, 或者如果该元素是由`reference`其他<xref:Microsoft.Build.Construction.ProjectRootElement>创建的, 或者如果该元素不是此项目容器的子级, 则引发异常。  
   
  ]]></format>
         </remarks>
@@ -264,9 +264,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`reference`元素为 null，此方法等效于<xref:Microsoft.Build.Construction.ProjectElementContainer.AppendChild%2A>。  
+ 如果元素为空, 则此方法等效于<xref:Microsoft.Build.Construction.ProjectElementContainer.AppendChild%2A>。 `reference`  
   
- 此项目容器没有父级，则将引发异常`child`元素已经有父级，或者如果`child`元素创建由不同<xref:Microsoft.Build.Construction.ProjectRootElement>，或者如果`reference`元素不是此项目容器的子级.  
+ 如果此项目容器不是父级的`child` , 或者如果该元素已是父`child`元素, 或者如果该元素是由`reference`其他<xref:Microsoft.Build.Construction.ProjectRootElement>创建的, 或者如果该元素不是此项目容器的子级, 则引发异常。  
   
  ]]></format>
         </remarks>
@@ -300,12 +300,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取最后一个子元素。</summary>
-        <value>最后一个子元素，或<see langword="null" />如果子元素不存在。</value>
+        <value>最后一个子元素; <see langword="null" />如果不存在子元素, 则为。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:Microsoft.Build.Construction.ProjectElementContainer.AppendChild%2A>来初始化此属性。  
+ 使用<xref:Microsoft.Build.Construction.ProjectElementContainer.AppendChild%2A>初始化此属性。  
   
  ]]></format>
         </remarks>
@@ -336,7 +336,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果此项目容器没有父级，或者引发异常`child`元素已经有父级，或者如果`child`元素已由不同<xref:Microsoft.Build.Construction.ProjectRootElement>。  
+ 如果此项目容器不是父级的, 或者如果`child`该元素已是父级的, 或者如果该`child`元素是通过其他<xref:Microsoft.Build.Construction.ProjectRootElement>方式创建的, 则会引发异常。  
   
  ]]></format>
         </remarks>
@@ -364,7 +364,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 它可以安全地在枚举过程中修改这种方式中的子级。  
+ 在枚举过程中以这种方式修改子级是安全的。  
   
  ]]></format>
         </remarks>
@@ -395,7 +395,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果此项目容器没有当前父级的子元素，则引发异常。 它可以安全地在枚举过程中删除子这种方式。  
+ 如果子元素当前不是此项目容器的父级, 则会引发异常。 在枚举过程中, 可以安全地删除子元素。  
   
  ]]></format>
         </remarks>
