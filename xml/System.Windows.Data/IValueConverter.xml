@@ -1,5 +1,5 @@
 <Type Name="IValueConverter" FullName="System.Windows.Data.IValueConverter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a3a80ee4053b6d52893ac9aba38f68f18f5601cc" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64275965" /></Metadata><TypeSignature Language="C#" Value="public interface IValueConverter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b4e592de2b89799c714eaa4e508752006822856e" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69210527" /></Metadata><TypeSignature Language="C#" Value="public interface IValueConverter" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IValueConverter" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Data.IValueConverter" />
   <TypeSignature Language="VB.NET" Value="Public Interface IValueConverter" />
@@ -17,11 +17,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果你想要将值转换器与绑定相关联，创建一个类实现<xref:System.Windows.Data.IValueConverter>接口并实现<xref:System.Windows.Data.IValueConverter.Convert%2A>和<xref:System.Windows.Data.IValueConverter.ConvertBack%2A>方法。 转换器可以将数据从一种类型更改为另一个，将基于区域性信息的数据转换为或修改其他表示方面。 一些典型转换器方案的示例，请参阅"数据转换"中[数据绑定概述](~/docs/framework/wpf/data/data-binding-overview.md)。  
+ 如果要将值转换器与绑定相关联, 请创建一个实现<xref:System.Windows.Data.IValueConverter>接口的类, 然后<xref:System.Windows.Data.IValueConverter.Convert%2A>实现和<xref:System.Windows.Data.IValueConverter.ConvertBack%2A>方法。 转换器可将数据从一种类型更改为另一种类型, 根据区域性信息转换数据, 或修改演示的其他方面。 有关一些典型转换器方案的示例, 请参阅[数据绑定概述](~/docs/framework/wpf/data/data-binding-overview.md)中的 "数据转换"。  
   
- 值转换器是识别区域性的。 同时<xref:System.Windows.Data.IValueConverter.Convert%2A>并<xref:System.Windows.Data.IValueConverter.ConvertBack%2A>方法具有`culture`参数，用于指示的区域性信息。 如果区域性信息相关的转换，则可以忽略该参数在自定义转换器。  
+ 值转换器识别区域性。 和方法都有一个`culture`指示区域性信息的参数。 <xref:System.Windows.Data.IValueConverter.ConvertBack%2A> <xref:System.Windows.Data.IValueConverter.Convert%2A> 如果区域性信息与转换无关, 则可在自定义转换器中忽略该参数。  
   
- <xref:System.Windows.Data.IValueConverter.Convert%2A>并<xref:System.Windows.Data.IValueConverter.ConvertBack%2A>方法还具有名为的参数`parameter`，以便可以使用不同的参数使用转换器的同一个实例。 例如，您可以编写生成基于你使用的输入参数的数据的不同格式的格式设置转换器。 可以使用<xref:System.Windows.Data.Binding.ConverterParameter%2A>的<xref:System.Windows.Data.Binding>类将参数传递到参数作为<xref:System.Windows.Data.IValueConverter.Convert%2A>和<xref:System.Windows.Data.IValueConverter.ConvertBack%2A>方法。  
+ 和方法也有一个名`parameter`为的参数, 以便你可以使用具有不同参数的转换器的同一实例。 <xref:System.Windows.Data.IValueConverter.ConvertBack%2A> <xref:System.Windows.Data.IValueConverter.Convert%2A> 例如, 你可以编写一个格式转换器, 该转换器根据你使用的输入参数生成不同的数据格式。 您<xref:System.Windows.Data.Binding.ConverterParameter%2A>可以使用<xref:System.Windows.Data.Binding>类的来将参数<xref:System.Windows.Data.IValueConverter.Convert%2A>作为参数传递到和<xref:System.Windows.Data.IValueConverter.ConvertBack%2A>方法。  
   
  ]]></format>
     </remarks>
@@ -62,13 +62,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 数据绑定引擎调用此方法时将传播到绑定目标绑定源之间的值。  
+ 数据绑定引擎在将值从绑定源传播到绑定目标时会调用此方法。  
   
- 数据绑定引擎不会捕获由用户提供的转换器引发的异常。 引发的任何异常<xref:System.Windows.Data.IValueConverter.Convert%2A>方法或由方法引发的任何未捕获的异常的<xref:System.Windows.Data.IValueConverter.Convert%2A>方法调用将被视为运行时错误。 通过返回处理预期的问题<xref:System.Windows.DependencyProperty.UnsetValue?displayProperty=nameWithType>。  
+ 数据绑定引擎不会捕获由用户提供的转换器引发的异常。 <xref:System.Windows.Data.IValueConverter.Convert%2A>方法所引发的任何异常, 或<xref:System.Windows.Data.IValueConverter.Convert%2A>方法调用的方法所引发的任何未捕获异常均被视为运行时错误。 通过返回<xref:System.Windows.DependencyProperty.UnsetValue?displayProperty=nameWithType>来处理预期问题。  
   
- 返回值<xref:System.Windows.DependencyProperty.UnsetValue?displayProperty=nameWithType>指示转换器没有生成任何值，并且该绑定使用<xref:System.Windows.Data.BindingBase.FallbackValue%2A>(如果可用） 的默认值改为或。  
+ 的返回值<xref:System.Windows.DependencyProperty.UnsetValue?displayProperty=nameWithType>指示转换器没有生成值, 并且绑定将<xref:System.Windows.Data.BindingBase.FallbackValue%2A>使用 (如果可用) 或默认值。  
   
- 返回值<xref:System.Windows.Data.Binding.DoNothing?displayProperty=nameWithType>指示绑定不会传输该值，或不使用<xref:System.Windows.Data.BindingBase.FallbackValue%2A>或默认值。  
+ 返回值<xref:System.Windows.Data.Binding.DoNothing?displayProperty=nameWithType>指示绑定不传输值或<xref:System.Windows.Data.BindingBase.FallbackValue%2A>使用或默认值。  
   
  ]]></format>
         </remarks>
@@ -107,15 +107,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 数据绑定引擎将传播到绑定源的值从绑定目标时会调用此方法。  
+ 数据绑定引擎在将值从绑定目标传播到绑定源时调用此方法。  
   
- 此方法的实现必须是函数的反函数<xref:System.Windows.Data.IValueConverter.Convert%2A>方法。  
+ 此方法的实现必须是<xref:System.Windows.Data.IValueConverter.Convert%2A>方法的反向实现。  
   
- 数据绑定引擎不会捕获由用户提供的转换器引发的异常。 引发的任何异常<xref:System.Windows.Data.IValueConverter.ConvertBack%2A>方法或由方法引发的任何未捕获的异常的<xref:System.Windows.Data.IValueConverter.ConvertBack%2A>方法调用将被视为运行时错误。 通过返回处理预期的问题<xref:System.Windows.DependencyProperty>。<xref:System.Windows.DependencyProperty.UnsetValue>。  
+ 数据绑定引擎不会捕获由用户提供的转换器引发的异常。 <xref:System.Windows.Data.IValueConverter.ConvertBack%2A>方法所引发的任何异常, 或<xref:System.Windows.Data.IValueConverter.ConvertBack%2A>方法调用的方法所引发的任何未捕获异常均被视为运行时错误。 通过返回<xref:System.Windows.DependencyProperty><xref:System.Windows.DependencyProperty.UnsetValue>来处理预期问题。  
   
- 返回值<xref:System.Windows.DependencyProperty.UnsetValue?displayProperty=nameWithType>指示转换器没有生成任何值，并且该绑定使用<xref:System.Windows.Data.BindingBase.FallbackValue%2A>(如果可用） 的默认值改为或。  
+ 的返回值<xref:System.Windows.DependencyProperty.UnsetValue?displayProperty=nameWithType>指示转换器没有生成值, 并且绑定将<xref:System.Windows.Data.BindingBase.FallbackValue%2A>使用 (如果可用) 或默认值。  
   
- 返回值<xref:System.Windows.Data.Binding.DoNothing?displayProperty=nameWithType>指示绑定不会传输该值，或不使用<xref:System.Windows.Data.BindingBase.FallbackValue%2A>或默认值。  
+ 返回值<xref:System.Windows.Data.Binding.DoNothing?displayProperty=nameWithType>指示绑定不传输值或<xref:System.Windows.Data.BindingBase.FallbackValue%2A>使用或默认值。  
   
  ]]></format>
         </remarks>
