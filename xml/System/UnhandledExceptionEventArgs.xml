@@ -1,5 +1,5 @@
 <Type Name="UnhandledExceptionEventArgs" FullName="System.UnhandledExceptionEventArgs">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8fc60b199f531fc970edef178ddd9326fb4cf03d" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58680622" /></Metadata><TypeSignature Language="C#" Value="public class UnhandledExceptionEventArgs : EventArgs" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9844a7a4b862eea91fa4b9b8f7427a473fa6d0b5" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69404541" /></Metadata><TypeSignature Language="C#" Value="public class UnhandledExceptionEventArgs : EventArgs" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit UnhandledExceptionEventArgs extends System.EventArgs" />
   <TypeSignature Language="DocId" Value="T:System.UnhandledExceptionEventArgs" />
   <TypeSignature Language="VB.NET" Value="Public Class UnhandledExceptionEventArgs&#xA;Inherits EventArgs" />
@@ -40,9 +40,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.UnhandledExceptionEventArgs> 提供对异常对象和一个标志，指示是否正在终止，公共语言运行时访问。 <xref:System.UnhandledExceptionEventArgs>是其中一个参数传递到<xref:System.UnhandledExceptionEventHandler>为<xref:System.AppDomain.UnhandledException?displayProperty=nameWithType>事件。  
+ <xref:System.UnhandledExceptionEventArgs>提供对异常对象的访问, 以及指示公共语言运行时是否正在终止的标志。 是为事件传入<xref:System.UnhandledExceptionEventHandler>的参数之一。 <xref:System.AppDomain.UnhandledException?displayProperty=nameWithType> <xref:System.UnhandledExceptionEventArgs>  
   
- 有关事件处理程序委托的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关事件处理程序委托的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  ]]></format>
     </remarks>
@@ -81,7 +81,7 @@
       </Parameters>
       <Docs>
         <param name="exception">未处理的异常。</param>
-        <param name="isTerminating">如果运行库即将终止，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+        <param name="isTerminating">如果运行库即将终止，则为<see langword="true" /> ；否则为 <see langword="false" />。</param>
         <summary>使用异常对象和公共语言运行时终止标志初始化 <see cref="T:System.UnhandledExceptionEventArgs" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -126,16 +126,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性返回类型的对象<xref:System.Object>而不是一个派生自<xref:System.Exception>。 尽管公共语言规范要求所有的异常类型派生自<xref:System.Exception>，它是用于与对象不是派生自引发异常的方法可能<xref:System.Exception>。 您可以执行以下操作来处理此异常：  
+ 此属性返回类型<xref:System.Object>的对象, 而不是派生自<xref:System.Exception>的对象。 尽管公共语言规范要求所有异常类型都派生自<xref:System.Exception>, 但方法可能会引发异常, 其中的对象不是从派生的。 <xref:System.Exception> 可以执行以下操作来处理此异常:  
   
--   将应用<xref:System.Runtime.CompilerServices.RuntimeCompatibilityAttribute>属性与<xref:System.Runtime.CompilerServices.RuntimeCompatibilityAttribute.WrapNonExceptionThrows%2A?displayProperty=nameWithType>的值`true`到包含的事件处理程序的程序集。 此包装所有异常不是派生自<xref:System.Exception>类中<xref:System.Runtime.CompilerServices.RuntimeWrappedException>对象。 然后，可以安全地强制转换 （在 C#) 或将此属性设置为返回的对象转换 （在 Visual Basic)<xref:System.Exception>对象，并检索原始异常对象从<xref:System.Runtime.CompilerServices.RuntimeWrappedException.WrappedException%2A?displayProperty=nameWithType>属性。 请注意某些编译器，例如 C# 和 Visual Basic 编译器会自动应用此特性。  
+-   将值为的<xref:System.Runtime.CompilerServices.RuntimeCompatibilityAttribute> <xref:System.Runtime.CompilerServices.RuntimeCompatibilityAttribute.WrapNonExceptionThrows%2A?displayProperty=nameWithType> `true`特性应用于包含事件处理程序的程序集。 这会包装不是<xref:System.Exception> <xref:System.Runtime.CompilerServices.RuntimeWrappedException>从对象中的类派生的所有异常。 然后, 你可以安全地将C#此属性返回的对象强制转换 (在中) 或转换 (Visual Basic <xref:System.Exception> ) 到对象, 然后从<xref:System.Runtime.CompilerServices.RuntimeWrappedException.WrappedException%2A?displayProperty=nameWithType>属性中检索原始 exception 对象。 请注意, 某些编译器 (如C#和 Visual Basic 编译器) 会自动应用此特性。  
   
--   为此属性返回的对象强制转换<xref:System.Exception>对象。  
+-   将此属性返回的对象强制转换为<xref:System.Exception>对象。  
   
    
   
 ## Examples  
- 下面的示例演示<xref:System.AppDomain.UnhandledException>事件。 它定义了一个事件处理程序`MyHandler`，每当在默认应用程序域中引发未经处理的异常时调用。 然后，它会引发两种例外情况。 第一个由**try/catch**块。 第二个是未经处理并调用`MyHandle`例程之前在应用程序终止。  
+ 下面的示例演示了<xref:System.AppDomain.UnhandledException>该事件。 它定义了一个事件处理`MyHandler`程序, 该事件处理程序在默认应用程序域中引发未经处理的异常时调用。 然后, 它将引发两个异常。 第一个由**try/catch**块处理。 第二个未处理并在`MyHandle`应用程序终止前调用例程。  
   
  [!code-cpp[AppDomain_UnhandledException#1](~/samples/snippets/cpp/VS_Snippets_CLR/AppDomain_UnhandledException/CPP/unhandledexception.cpp#1)]
  [!code-csharp[AppDomain_UnhandledException#1](~/samples/snippets/csharp/VS_Snippets_CLR/AppDomain_UnhandledException/CS/unhandledexception.cs#1)]
@@ -182,15 +182,15 @@
       </ReturnValue>
       <Docs>
         <summary>指示公共语言运行时是否即将终止。</summary>
-        <value>如果运行库即将终止，则为 <see langword="true" />；否则为 <see langword="false" />。</value>
+        <value>如果运行库即将终止，则为<see langword="true" /> ；否则为 <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 从.NET Framework 2.0 版开始，此属性返回`true`对于大多数未经处理的异常，除非应用程序兼容性标志用于恢复为 1.0 和 1.1 版的行为。 原因是，允许最线程，包括线程池线程中未经处理的异常正常继续，这通常会导致应用程序终止。 有关详细信息，包括一系列情况下在其中运行时不会终止，请参阅[托管线程异常](~/docs/standard/threading/exceptions-in-managed-threads.md)。  
+ 从 .NET Framework 版本2.0 开始, 除非使用应用程序`true`兼容性标志恢复为版本1.0 和1.1 的行为, 否则, 此属性将为大多数未经处理的异常返回。 原因在于, 线程中大多数未经处理的异常 (包括线程池线程) 都可以正常继续, 这通常会导致应用程序终止。 有关详细信息, 包括运行时未终止的事例的列表, 请参阅[托管线程中的异常](~/docs/standard/threading/exceptions-in-managed-threads.md)。  
   
 ## <a name="version-information"></a>版本信息  
- 以下内容适用于.NET framework 1.0 和 1.1 版：此属性返回`true`异常时接收到在中，但未由应用程序的主线程。 此属性也会返回`true`如果非托管的线程正在执行托管的代码，并且收到未处理的异常。 最后，此属性返回`false`线程池线程和托管的应用程序，因为 1.0 和 1.1 版中捕获此类线程中未经处理的异常，并忽略它们创建的线程。  
+ 以下内容适用于 .NET Framework 版本1.0 和 1.1:当在应用`true`程序的主线程中收到但未处理异常时, 此属性返回。 如果非托管线程`true`正在执行托管代码, 并收到未经处理的异常, 则此属性也会返回。 最后, 此属性将`false`为应用程序创建的线程池线程和托管线程返回, 因为版本1.0 和1.1 将捕获此类线程中未经处理的异常并将其忽略。  
   
  ]]></format>
         </remarks>

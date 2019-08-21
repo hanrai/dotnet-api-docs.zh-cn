@@ -1,5 +1,5 @@
 <Type Name="Utf8JsonReader" FullName="System.Text.Json.Utf8JsonReader">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9335bbc6d8a5b27d85e15b762d495bf88fbe1915" /><Meta Name="ms.sourcegitcommit" Value="08fc3691deb7adaf0dfd751b9d9d0b23a3d3a7b8" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/09/2019" /><Meta Name="ms.locfileid" Value="68901534" /></Metadata><TypeSignature Language="C#" Value="public struct Utf8JsonReader" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="6a451999ec7e4d837eb22652c047781c5decd940" /><Meta Name="ms.sourcegitcommit" Value="cb4d218ffd5a459a5f921fe1d945c682d1e09aca" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/16/2019" /><Meta Name="ms.locfileid" Value="69540532" /></Metadata><TypeSignature Language="C#" Value="public struct Utf8JsonReader" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit Utf8JsonReader extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Text.Json.Utf8JsonReader" />
   <TypeSignature Language="VB.NET" Value="Public Structure Utf8JsonReader" />
@@ -295,7 +295,7 @@
         <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
         <exception cref="T:System.FormatException">JSON 令牌值的数字格式不正确（例如，它包含小数值或使用科学记数法编写）。
           
-或
+- 或 -
 
 JSON 令牌值表示小于 <see cref="F:System.Byte.MinValue" /> 或大于 <see cref="F:System.Byte.MaxValue" /> 的数字。</exception>
       </Docs>
@@ -544,7 +544,7 @@ JSON 令牌值表示小于 <see cref="F:System.Int16.MinValue" /> 或大于 <see
         <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
         <exception cref="T:System.FormatException">JSON 令牌值的数值格式不正确。 例如，它包含小数或采用科学记数法编写。
             
-或
+- 或 -
 
 JSON 令牌值表示小于 <see cref="F:System.Int32.MinValue" /> 或大于 <see cref="F:System.Int32.MaxValue" /> 的数字。</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
@@ -615,7 +615,7 @@ JSON 令牌值表示小于 <see cref="F:System.Int64.MinValue" /> 或大于 <see
         <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
         <exception cref="T:System.FormatException">JSON 令牌值的数字格式不正确（例如，它包含小数值或使用科学记数法编写）。
           
-或
+- 或 -
 
 JSON 令牌值表示小于 <see cref="F:System.SByte.MinValue" /> 或大于 <see cref="F:System.SByte.MaxValue" /> 的数字。</exception>
       </Docs>
@@ -709,7 +709,7 @@ JSON 字符串包含无效的 UTF-8 字节或无效的 UTF-16 替代项。</exce
         <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
         <exception cref="T:System.FormatException">JSON 令牌值的数字格式不正确（例如，它包含小数值或使用科学记数法编写）。
           
-- 或 -
+或
 
 JSON 令牌值表示小于 <see cref="F:System.UInt16.MinValue" /> 或大于 <see cref="F:System.UInt16.MaxValue" /> 的数字。</exception>
       </Docs>
@@ -1523,17 +1523,17 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
     <MemberGroup MemberName="ValueTextEquals">
       <Docs>
         <summary>比较指定文本与源中未转义的 JSON 令牌值，返回指示其是否匹配的值。</summary>
-        <remarks>  
+        <remarks>
           <format type="text/markdown"><![CDATA[  
 
 ## Remarks
 
-如果查找文本无效 utf-8 文本, 该方法将返回`false` , 因为 JSON 有效负载中不能有无效的 utf-8。
+如果查找文本是无效的 utf-8 文本, 则该方法将返回`false` , 因为 JSON 有效负载中不能有无效的 utf-8。
 
-如果需要, 请先在源中将 json 标记值与查找文本取消转义中的 JSON 值进行比较。 查找文本匹配原样, 无需任何修改。
+在源中的 JSON 标记值和查找文本的比较是在需要时通过首先取消转义源中的 JSON 值来完成的。 查找文本匹配原样, 无需任何修改。
 
          ]]></format>
-         </remarks>
+        </remarks>
       </Docs>
     </MemberGroup>
     <Member MemberName="ValueTextEquals">
@@ -1557,8 +1557,18 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
       <Docs>
         <param name="utf8Text">要进行比较的 UTF-8 编码文本。</param>
         <summary>比较只读字节范围中 UTF-8 编码文本与源中未转义的 JSON 令牌值，返回指示其是否匹配的值。</summary>
-        <returns>如果源中的 JSON 令牌值与 UTF-8 编码查找文本匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
-        <remarks>To be added.</remarks>
+        <returns>如果源中的 JSON 令牌值与 UTF-8 编码查找文本匹配，则 <see langword="true" />；否则 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+如果查找文本无效 utf-8 文本, 该方法将返回`false` , 因为 JSON 有效负载中不能有无效的 utf-8。
+              
+在源中的 JSON 标记值和查找文本的比较是在需要时通过首先取消转义源中的 JSON 值来完成的。 查找文本将按原样匹配, 而不会对其进行任何修改。
+              
+          ]]></format>
+        </remarks>
         <exception cref="T:System.InvalidOperationException">不是字符串的 JSON 令牌（即不是 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。</exception>
       </Docs>
     </Member>
@@ -1583,8 +1593,18 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
       <Docs>
         <param name="text">要进行比较的 UTF-8 编码文本。</param>
         <summary>比较只读字符范围中 UTF-8 编码文本与源中未转义的 JSON 令牌值，返回指示其是否匹配的值。</summary>
-        <returns>如果源中的 JSON 令牌值与 UTF-8 编码查找文本匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
-        <remarks>To be added.</remarks>
+        <returns>如果源中的 JSON 令牌值与 UTF-8 编码查找文本匹配，则 <see langword="true" />；否则 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+如果查找文本无效或不完整的 utf-16 文本 (即不成对的代理项), 则方法将返回`false` , 因为 JSON 有效负载中不能有无效的 utf-16。
+              
+在源中的 JSON 标记值和查找文本的比较是在需要时通过首先取消转义源中的 JSON 值来完成的。 查找文本将按原样匹配, 而不会对其进行任何修改。
+              
+          ]]></format>
+        </remarks>
         <exception cref="T:System.InvalidOperationException">不是字符串的 JSON 令牌（即不是 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。</exception>
       </Docs>
     </Member>
@@ -1609,8 +1629,18 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
       <Docs>
         <param name="text">要针对其进行比较的文本。</param>
         <summary>比较字符范围中文本与源中未转义的 JSON 令牌值，返回指示其是否匹配的值。</summary>
-        <returns>如果源中的 JSON 令牌值与查找文本匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
-        <remarks>To be added.</remarks>
+        <returns>如果源中的 JSON 令牌值与查找文本匹配，则 <see langword="true" />；否则 <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+如果查找文本无效 utf-8 文本, 该方法将返回`false` , 因为 JSON 有效负载中不能有无效的 utf-8。
+              
+在源中的 JSON 标记值和查找文本的比较是在需要时通过首先取消转义源中的 JSON 值来完成的。 查找文本将按原样匹配, 而不会对其进行任何修改。
+              
+          ]]></format>
+        </remarks>
         <exception cref="T:System.InvalidOperationException">不是字符串的 JSON 令牌（即不是 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。</exception>
       </Docs>
     </Member>

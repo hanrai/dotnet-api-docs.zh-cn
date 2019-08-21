@@ -1,5 +1,5 @@
 <Type Name="IntPtr" FullName="System.IntPtr">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b49e67428e595a3230c51a21cacdc51bf87ea270" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58742220" /></Metadata><TypeSignature Language="C#" Value="public struct IntPtr : System.Runtime.Serialization.ISerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="212eb3aa24787a74132507f27a422867b6e77504" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69405803" /></Metadata><TypeSignature Language="C#" Value="public struct IntPtr : System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi serializable sealed beforefieldinit native int extends System.ValueType implements class System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.IntPtr" />
   <TypeSignature Language="VB.NET" Value="Public Structure IntPtr&#xA;Implements ISerializable" />
@@ -51,38 +51,38 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IntPtr>类型旨在作为其大小是特定于平台的一个整数。 也就是说，此类型的实例预期可在 32 位硬件和操作系统，32 位和 64 位硬件和操作系统上的 64 位。  
+ <xref:System.IntPtr>类型设计为一个整数, 其大小是特定于平台的。 也就是说, 此类型的实例应该是32位硬件和操作系统上的32位, 以及64位硬件和操作系统上的64位。  
   
- <xref:System.IntPtr>类型使用的语言支持指针，并作为一种常见方式引用语言的支持和不支持指针之间的数据。  
+ <xref:System.IntPtr>类型可以由支持指针的语言使用, 也可以作为在执行和不支持指针的语言之间引用数据的一种常用方式。  
   
- <xref:System.IntPtr> 此外可以使用对象来保存句柄。 例如，实例的<xref:System.IntPtr>中广泛使用<xref:System.IO.FileStream?displayProperty=nameWithType>类来保存的文件句柄。  
+ <xref:System.IntPtr>对象也可以用来容纳句柄。 例如, 在<xref:System.IO.FileStream?displayProperty=nameWithType>类中<xref:System.IntPtr>广泛使用的实例, 以保存文件句柄。  
   
- <xref:System.IntPtr>类型是符合 CLS 时<xref:System.UIntPtr>类型不是。 仅<xref:System.IntPtr>公共语言运行时中使用类型。 <xref:System.UIntPtr>提供类型主要是为了保持与体系结构对称性<xref:System.IntPtr>类型。  
+ 类型符合 CLS, <xref:System.UIntPtr>而类型则为。 <xref:System.IntPtr> 仅在公共语言运行时中使用类型。<xref:System.IntPtr> 提供<xref:System.UIntPtr>此类型主要是为了维护<xref:System.IntPtr>类型的体系结构对称。  
   
- 此类型实现<xref:System.Runtime.Serialization.ISerializable>接口。  
+ 此类型实现 <xref:System.Runtime.Serialization.ISerializable> 接口。  
   
    
   
 ## Examples  
- 以下示例使用托管的指针进行反向数组中的字符。 它可以初始化后<xref:System.String>对象，并获取其长度，它执行以下操作：  
+ 下面的示例使用托管指针来反转数组中的字符。 初始化<xref:System.String>对象并获取其长度后, 它将执行以下操作:  
   
-1.  调用<xref:System.Runtime.InteropServices.Marshal.StringToHGlobalAnsi%2A?displayProperty=nameWithType>方法将复制到非托管内存中作为 ANSI （单字节） 字符的 Unicode 字符串。 该方法将返回<xref:System.IntPtr>指向非托管字符串的开头的对象。 Visual Basic 示例直接调用使用 this 指针在 c + + 和 C# 示例中，它被转换为指向一个字节的指针。  
+1.  <xref:System.Runtime.InteropServices.Marshal.StringToHGlobalAnsi%2A?displayProperty=nameWithType>调用方法将 Unicode 字符串作为 ANSI (单字节) 字符复制到非托管内存。 方法返回<xref:System.IntPtr>指向非托管字符串的开头的对象。 Visual Basic 示例直接使用此指针;在C++和C#示例中, 它将转换为指向字节的指针。  
   
-2.  调用<xref:System.Runtime.InteropServices.Marshal.AllocHGlobal%2A?displayProperty=nameWithType>方法来分配非托管的字符串占用相同的字节数。 该方法将返回<xref:System.IntPtr>指向非托管内存块的开头的对象。 Visual Basic 示例直接调用使用 this 指针在 c + + 和 C# 示例中，它被转换为指向一个字节的指针。  
+2.  <xref:System.Runtime.InteropServices.Marshal.AllocHGlobal%2A?displayProperty=nameWithType>调用方法以分配与非托管字符串占用的字节数相同的字节数。 方法返回一个<xref:System.IntPtr>对象, 该对象指向非托管内存块的开头。 Visual Basic 示例直接使用此指针;在C++和C#示例中, 它将转换为指向字节的指针。  
   
-3.  Visual Basic 示例定义一个变量，名为`offset`，它等于 ANSI 字符串的长度。 它用于确定偏移量到非托管 ANSI 字符串中的下一步规章复制到其中的内存。 由于其起始值是字符串的长度，复制操作将复制字符从字符串的开头到末尾的内存块。  
+3.  Visual Basic 示例定义一个名`offset`为的变量, 该变量等于 ANSI 字符串的长度。 它用于确定要将 ANSI 字符串中的下一个章程复制到的非托管内存中的偏移量。 因为其起始值是字符串的长度, 所以复制操作会将字符从字符串的开头复制到内存块的末尾。  
   
-     C# 和 c + + 示例调用<xref:System.IntPtr.ToPointer%2A>方法获取的非托管的指针到起始地址的字符串和非托管的内存块的并且也将添加一个小于 ANSI 字符串的起始地址的字符串的长度。 因为非托管的字符串指针现在指向字符串的末尾，复制操作会将复制的字符从字符串的末尾到的内存块的开头。  
+     C# C++ 和<xref:System.IntPtr.ToPointer%2A>示例调用方法以获取指向字符串的起始地址和非托管内存块的非托管指针, 并将该字符串的长度小于该字符串的长度添加到 ANSI 字符串的起始地址。 由于非托管字符串指针现在指向字符串的末尾, 因此复制操作会将字符串末尾的字符复制到内存块的开头。  
   
-4.  使用循环将每个字符从字符串复制到非托管内存块。  
+4.  使用循环将字符串中的每个字符复制到非托管内存块。  
   
-     Visual Basic 示例调用<xref:System.Runtime.InteropServices.Marshal.ReadByte%28System.IntPtr%2CSystem.Int32%29?displayProperty=nameWithType>方法的 ANSI 字符串从托管指针指定偏移量处读取的字节 （或单字节字符）。 偏移量递增的循环每次迭代。 然后，它调用<xref:System.Runtime.InteropServices.Marshal.WriteByte%28System.IntPtr%2CSystem.Int32%2CSystem.Byte%29?displayProperty=nameWithType>方法将字节写入的内存地址由托管加上的内存块的起始地址`offset`。 它然后递减`offset`。  
+     Visual Basic 的示例调用<xref:System.Runtime.InteropServices.Marshal.ReadByte%28System.IntPtr%2CSystem.Int32%29?displayProperty=nameWithType>方法, 以从托管指针到 ANSI 字符串的指定偏移量读取字节 (或单字节字符)。 偏移量随循环的每次迭代而递增。 然后, 它调用<xref:System.Runtime.InteropServices.Marshal.WriteByte%28System.IntPtr%2CSystem.Int32%2CSystem.Byte%29?displayProperty=nameWithType>方法, 将字节写入到由非托管`offset`内存块的起始地址定义的内存地址。 然后, 它`offset`会递减。  
   
-     C# 和 c + + 示例执行复制操作，然后递减到非托管 ANSI 字符串中的下一个位置的地址的指针和增加到非托管块中的下一步地址指针。  
+     C#和C++示例执行复制操作, 然后将指针减小到非托管 ANSI 字符串中的下一个位置的地址, 并将指针递增到非托管块中的下一个地址。  
   
-5.  所有示例中都调用<xref:System.Runtime.InteropServices.Marshal.PtrToStringAnsi%2A?displayProperty=nameWithType>将包含为托管 Unicode 复制的 ANSI 字符串的非托管的内存块<xref:System.String>对象。  
+5.  所有示例都调用<xref:System.Runtime.InteropServices.Marshal.PtrToStringAnsi%2A?displayProperty=nameWithType>来将包含复制的 ANSI 字符串的非托管内存块转换为托管<xref:System.String>的 Unicode 对象。  
   
-6.  在显示的原始和反向字符串之后, 所有示例都调用<xref:System.Runtime.InteropServices.Marshal.FreeHGlobal%2A>方法来释放非托管的 ANSI 字符串和非托管的内存块分配的内存。  
+6.  在显示原始和反向字符串后, 所有示例都调用<xref:System.Runtime.InteropServices.Marshal.FreeHGlobal%2A>方法, 以释放为非托管 ANSI 字符串和非托管内存块分配的内存。  
   
  [!code-cpp[System.IntPtr#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.intptr/cpp/topointer.cpp#1)]
  [!code-csharp[System.IntPtr#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.intptr/cs/topointer.cs#1)]
@@ -206,7 +206,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果仅引发异常的值`value`需要比当前平台所支持的更多位数。  
+ 仅当的`value`值需要比当前平台支持的更多位时, 才会引发异常。  
   
  ]]></format>
         </remarks>
@@ -259,7 +259,7 @@
         <param name="value">指向未指定类型的指针。</param>
         <summary>使用指定的指向未指定类型的指针初始化 <see cref="T:System.IntPtr" /> 的新实例。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
         <altmember cref="T:System.Void" />
       </Docs>
     </Member>
@@ -317,14 +317,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IntPtr.Add%2A>方法不会引发异常，如果结果太大，无法表示为指定的平台上的指针。 相反，在未检查的上下文中执行加法运算。  
+ 如果<xref:System.IntPtr.Add%2A>结果太大而无法表示为指定平台上的指针, 则此方法不会引发异常。 相反, 在未检查的上下文中执行加法运算。  
   
- 不支持运算符重载或自定义运算符的语言可以使用此方法将某一偏移量添加到指针的值。  
+ 不支持运算符重载或自定义运算符的语言可以使用此方法将偏移量添加到指针的值。  
   
    
   
 ## Examples  
- 下面的示例实例化<xref:System.IntPtr>对象，它指向一个 10 个元素的数组，开头，然后调用<xref:System.IntPtr.Add%2A>方法来循环访问数组中的元素。  
+ 下面的示例实例化<xref:System.IntPtr>一个指向十元素数组开头的对象, 然后<xref:System.IntPtr.Add%2A>调用方法来循环访问数组中的元素。  
   
  [!code-csharp[System.IntPtr.Add#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.intptr.add/cs/add1.cs#1)]
  [!code-vb[System.IntPtr.Add#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.intptr.add/vb/add1.vb#1)]  
@@ -482,16 +482,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IntPtr.op_Addition%2A>方法定义的加法运算<xref:System.IntPtr>对象。 这样，如下所示的代码。  
+ 方法定义<xref:System.IntPtr>对象的加法运算。 <xref:System.IntPtr.op_Addition%2A> 它可以实现如下所示的代码。  
   
  [!code-csharp[System.IntPtr.op_Addition#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.intptr.op_addition/cs/addition1.cs#1)]
  [!code-vb[System.IntPtr.op_Addition#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.intptr.op_addition/vb/addition1.vb#1)]  
   
- 不支持自定义的运算符的语言可以调用<xref:System.IntPtr.Add%2A>方法相反。  
+ 不支持自定义运算符的语言可以改为<xref:System.IntPtr.Add%2A>调用方法。  
   
- 加法运算不会引发异常，如果结果太大，无法表示为指定的平台上的指针。 相反，它是在未检查的上下文中执行。  
+ 如果结果太大而无法表示为指定平台上的指针, 则加法运算不会引发异常。 相反, 它是在未检查的上下文中执行的。  
   
- 此运算符的等效方法是 <xref:System.IntPtr.Add%28System.IntPtr%2CSystem.Int32%29?displayProperty=nameWithType>]]></format>
+ 此运算符的等效方法是<xref:System.IntPtr.Add%28System.IntPtr%2CSystem.Int32%29?displayProperty=nameWithType>]]></format>
         </remarks>
         <altmember cref="M:System.IntPtr.Add(System.IntPtr,System.Int32)" />
       </Docs>
@@ -549,7 +549,7 @@
         <summary>确定 <see cref="T:System.IntPtr" /> 的两个指定的实例是否相等。</summary>
         <returns>如果 <paramref name="value1" /> 等于 <paramref name="value2" />，则为 <see langword="true" />否则为 <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[此运算符的等效方法是 <xref:System.IntPtr.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
+          <format type="text/markdown"><![CDATA[此运算符的等效方法是<xref:System.IntPtr.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
         </remarks>
       </Docs>
     </Member>
@@ -720,7 +720,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果仅引发异常的值`value`需要比当前平台所支持的更多位数。
+ 仅当的`value`值需要比当前平台支持的更多位时, 才会引发异常。
  ]]></format>
         </remarks>
         <exception cref="T:System.OverflowException">在 64 位平台上，<paramref name="value" /> 的值太大，无法表示为一个 32 位有符号整数。</exception>
@@ -888,7 +888,7 @@
 此 API 不兼容 CLS。</summary>
         <returns>初始化为 <see cref="T:System.IntPtr" /> 的 <paramref name="value" /> 新实例。</returns>
         <remarks></remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
         <altmember cref="Overload:System.IntPtr.#ctor" />
       </Docs>
     </Member>
@@ -945,7 +945,7 @@
         <summary>确定 <see cref="T:System.IntPtr" /> 的两个指定的实例是否不等。</summary>
         <returns>如果 <paramref name="value1" /> 不等于 <paramref name="value2" />，则为 <see langword="true" />否则为 <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[此运算符的等效方法是 <xref:System.IntPtr.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
+          <format type="text/markdown"><![CDATA[此运算符的等效方法是<xref:System.IntPtr.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
         </remarks>
       </Docs>
     </Member>
@@ -1003,16 +1003,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IntPtr.op_Subtraction%2A>方法定义为该减法运算<xref:System.IntPtr>对象。 这样，如下所示的代码。  
+ <xref:System.IntPtr.op_Subtraction%2A>方法为<xref:System.IntPtr>对象定义减法运算。 它可以实现如下所示的代码。  
   
  [!code-csharp[System.IntPtr.op_Addition#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.intptr.op_addition/cs/op_subtraction1.cs#2)]
  [!code-vb[System.IntPtr.op_Addition#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.intptr.op_addition/vb/op_subtraction1.vb#2)]  
   
- 不支持自定义的运算符的语言可以调用<xref:System.IntPtr.Subtract%2A>方法相反。  
+ 不支持自定义运算符的语言可以改为<xref:System.IntPtr.Subtract%2A>调用方法。  
   
- 如果结果太小，无法表示为指定的平台上的指针，该减法运算不会引发异常。 相反，它是在未检查的上下文中执行。  
+ 如果结果太小, 无法表示为指定平台上的指针, 则该减法运算不会引发异常。 相反, 它是在未检查的上下文中执行的。  
   
- 此运算符的等效方法是 <xref:System.IntPtr.Subtract%28System.IntPtr%2CSystem.Int32%29?displayProperty=nameWithType>]]></format>
+ 此运算符的等效方法是<xref:System.IntPtr.Subtract%28System.IntPtr%2CSystem.Int32%29?displayProperty=nameWithType>]]></format>
         </remarks>
         <altmember cref="M:System.IntPtr.Subtract(System.IntPtr,System.Int32)" />
       </Docs>
@@ -1117,14 +1117,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IntPtr.Subtract%2A>方法不会引发异常，如果结果太小，无法表示为指定的平台上的指针。 相反，在未检查的上下文中执行减法运算。  
+ 如果<xref:System.IntPtr.Subtract%2A>结果太小, 无法表示为指定平台上的指针, 则此方法不会引发异常。 相反, 在未检查的上下文中执行减法运算。  
   
- 不支持运算符重载或自定义运算符的语言可以使用此方法要减去一个偏移量的指针的值。  
+ 不支持运算符重载或自定义运算符的语言可以使用此方法从指针的值中减去偏移量。  
   
    
   
 ## Examples  
- 下面的示例实例化<xref:System.IntPtr>对象，它指向一个 10 个元素的数组，末尾，然后调用<xref:System.IntPtr.Subtract%2A>方法以相反顺序循环访问数组中的元素。  
+ 下面的示例实例化<xref:System.IntPtr>一个指向十元素数组末尾的对象, 然后<xref:System.IntPtr.Subtract%2A>调用方法以按相反的顺序循环访问数组中的元素。  
   
  [!code-csharp[System.IntPtr.Subtract#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.intptr.subtract/cs/subtract1.cs#1)]
  [!code-vb[System.IntPtr.Subtract#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.intptr.subtract/vb/subtract1.vb#1)]  
@@ -1216,12 +1216,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法填充`info`参数的当前值与<xref:System.IntPtr>对象。  
+ 此方法用当前`info` <xref:System.IntPtr>对象的值填充参数。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="info" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
       </Docs>
     </Member>
     <Member MemberName="ToInt32">
@@ -1378,19 +1378,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 以下示例使用托管的指针进行反向数组中的字符。 它可以初始化后<xref:System.String>对象，并获取其长度，它执行以下操作：  
+ 下面的示例使用托管指针来反转数组中的字符。 初始化<xref:System.String>对象并获取其长度后, 它将执行以下操作:  
   
--   调用<xref:System.Runtime.InteropServices.Marshal.StringToHGlobalAnsi%2A?displayProperty=nameWithType>方法来将 Unicode 字符串作为 ANSI （单字节） 字符复制到非托管内存。 该方法将返回<xref:System.IntPtr>指向非托管字符串的开头的对象。  
+-   <xref:System.Runtime.InteropServices.Marshal.StringToHGlobalAnsi%2A?displayProperty=nameWithType>调用方法将 Unicode 字符串作为 ANSI (单字节) 字符复制到非托管内存。 方法返回<xref:System.IntPtr>指向非托管字符串的开头的对象。  
   
--   调用<xref:System.Runtime.InteropServices.Marshal.AllocHGlobal%2A?displayProperty=nameWithType>方法来分配非托管的字符串占用相同的字节数。 该方法将返回<xref:System.IntPtr>指向非托管内存块的开头的对象。  
+-   <xref:System.Runtime.InteropServices.Marshal.AllocHGlobal%2A?displayProperty=nameWithType>调用方法以分配与非托管字符串占用的字节数相同的字节数。 方法返回一个<xref:System.IntPtr>对象, 该对象指向非托管内存块的开头。  
   
--   调用<xref:System.IntPtr.ToPointer%2A>方法以获取到的字符串和非托管的内存块的起始地址的非托管的指针，并将添加一个小于 ANSI 字符串的起始地址的字符串的长度。 因为非托管的字符串指针现在指向字符串的末尾，复制操作会将复制的字符从字符串的末尾到的内存块的开头。  
+-   <xref:System.IntPtr.ToPointer%2A>调用方法以获取指向字符串的起始地址和非托管内存块的非托管指针, 并将该字符串的长度小于该字符串的长度添加到 ANSI 字符串的起始地址。 由于非托管字符串指针现在指向字符串的末尾, 因此复制操作会将字符串末尾的字符复制到内存块的开头。  
   
--   使用循环将每个字符从字符串复制到非托管内存块。 操作完成后每个副本，它递减到非托管 ANSI 字符串中的下一个位置的地址的指针，并增加到非托管块中的下一步地址的指针。  
+-   使用循环将字符串中的每个字符复制到非托管内存块。 在每个复制操作完成后, 它会将指针递减到非托管 ANSI 字符串中的下一个位置的地址, 并使指针递增到非托管块中的下一个地址。  
   
--   调用<xref:System.Runtime.InteropServices.Marshal.PtrToStringAnsi%2A?displayProperty=nameWithType>将包含为托管 Unicode 复制的 ANSI 字符串的非托管的内存块<xref:System.String>对象。  
+-   调用以将包含复制的 ANSI 字符串的非托管内存块转换为托管的<xref:System.String> Unicode 对象。 <xref:System.Runtime.InteropServices.Marshal.PtrToStringAnsi%2A?displayProperty=nameWithType>  
   
--   在显示的原始和反向字符串之后, 调用<xref:System.Runtime.InteropServices.Marshal.FreeHGlobal%2A?displayProperty=nameWithType>方法来释放非托管的 ANSI 字符串和非托管的内存块分配的内存。  
+-   在显示原始和反向字符串后, 调用<xref:System.Runtime.InteropServices.Marshal.FreeHGlobal%2A?displayProperty=nameWithType>方法来释放为非托管 ANSI 字符串和非托管内存块分配的内存。  
   
  [!code-cpp[System.IntPtr.ToPointer#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/System.IntPtr.ToPointer/cpp/topointer.cpp#1)]
  [!code-csharp[System.IntPtr.ToPointer#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/System.IntPtr.ToPointer/cs/topointer.cs#1)]  
@@ -1457,7 +1457,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果的值<xref:System.IntPtr.Size%2A>属性的此实例为 4，则此方法等同于<xref:System.Int32.ToString%2A?displayProperty=nameWithType>; 否则为此方法等效于<xref:System.Int64.ToString%2A?displayProperty=nameWithType>。  
+ 如果此实例的<xref:System.IntPtr.Size%2A>属性值为 4, 则此方法<xref:System.Int32.ToString%2A?displayProperty=nameWithType>等效于; 否则, <xref:System.Int64.ToString%2A?displayProperty=nameWithType>此方法等效于。  
   
  ]]></format>
         </remarks>
@@ -1510,9 +1510,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`format`参数是`null`或空字符串 ("")，返回值进行格式设置的常规格式说明符 ("G")。 有关数字格式说明符的详细信息，请参阅[标准数字格式字符串](~/docs/standard/base-types/standard-numeric-format-strings.md)主题。  
+ 如果参数为`null`或空字符串 (""), 则返回值使用常规格式说明符 ("G") 进行格式设置。 `format` 有关数字格式说明符的详细信息, 请参阅[标准数字格式字符串](~/docs/standard/base-types/standard-numeric-format-strings.md)主题。  
   
- 使用固定区域性进行格式化的返回值。  
+ 使用固定区域性设置返回值的格式。  
   
  ]]></format>
         </remarks>
@@ -1560,19 +1560,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此字段的值不是等效于`null`。 使用此字段可有效地确定实例是否<xref:System.IntPtr>已设置为非零值。  
+ 此字段的值与不等效`null`。 使用此字段有效地确定的<xref:System.IntPtr>实例是否已设置为非零值。  
   
- 例如，假定该变量中，ip，是的一个实例<xref:System.IntPtr>。 您可以确定是否它已设置由构造函数，例如返回的值进行比较，来:" `if ip != new IntPtr(0)...` "。 但是，调用构造函数以获取未初始化的指针是效率低下。 最好是代码" `if ip != IntPtr.Zero...` "，或" `if !IntPtr.Zero.Equals(ip)...` "。  
+ 例如, 假设变量 ip 是的<xref:System.IntPtr>实例。 您可以通过将它与构造函数返回的值进行比较来确定是否已设置该设置, 例如: `if ip != new IntPtr(0)...` ""。 但是, 调用构造函数以获取未初始化的指针是低效的。 更好的做法是编写 " `if ip != IntPtr.Zero...` " 或 " `if !IntPtr.Zero.Equals(ip)...` "。  
   
- 当从托管代码调用 Windows API，您可以传递<xref:System.IntPtr.Zero?displayProperty=nameWithType>而不是`null`参数应为一个指针，或者如果或`null`。 例如，以下调用 Windows`CreateFile`函数提供，数量<xref:System.IntPtr.Zero?displayProperty=nameWithType>有关`pSecurityAttributes`和`hTemplateFile`参数值。  
+ 从托管代码调用 Windows API 时, <xref:System.IntPtr.Zero?displayProperty=nameWithType> `null`如果参数应为指针或`null`, 则可以传递而不是。 例如, `CreateFile`以下对 Windows 函数的调用将提供<xref:System.IntPtr.Zero?displayProperty=nameWithType> `pSecurityAttributes`和`hTemplateFile`参数值。  
   
  [!code-csharp[System.IntPtr.Zero#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.intptr.zero/cs/zero4.cs#2)]
  [!code-vb[System.IntPtr.Zero#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.intptr.zero/vb/zero4.vb#2)]  
   
 > [!NOTE]
->  尽管<xref:System.IntPtr.Zero>等效于`null`针对具有参数或返回值可以是任一指针的 Windows API 函数或`null`，<xref:System.IntPtr.Zero>并不等同于`null`。 传递`null`到`IntPtr.Zero.Equals`方法始终返回`false`。  
+>  虽然<xref:System.IntPtr.Zero> `null` <xref:System.IntPtr.Zero> `null`等效于具有参数的 Windows API 函数或可以是指针或的返回值, 但与不等效。 `null` 传递`null`给方法`IntPtr.Zero.Equals`的总是返回`false`。  
   
- 你还可以测试`null`返回任一指针的 Windows API 函数调用的返回值或`null`通过比较具有的返回的值<xref:System.IntPtr.Zero?displayProperty=nameWithType>。 例如，在调用`GetWindow`函数在下面的示例尝试检索不存在窗口的句柄。 如果它已从非托管代码中调用，该函数将返回`null`，但从托管代码调用它时，它会返回<xref:System.IntPtr.Zero?displayProperty=nameWithType>。  
+ 你还可以通过将返回`null`的值与<xref:System.IntPtr.Zero?displayProperty=nameWithType>进行比较来从返回指针或的`null` Windows API 函数调用中测试返回值。 例如, 在以下示例中调用`GetWindow`函数会尝试检索不存在的窗口的句柄。 如果它是从非托管代码调用的, 则函数`null`将返回, 但从托管代码调用该函数时, <xref:System.IntPtr.Zero?displayProperty=nameWithType>它将返回。  
   
  [!code-csharp[System.IntPtr.Zero#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.intptr.zero/cs/zero2.cs#1)]
  [!code-vb[System.IntPtr.Zero#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.intptr.zero/vb/zero2.vb#1)]  

@@ -1,5 +1,5 @@
 <Type Name="Buffer" FullName="System.Buffer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="87d007ef348e9fc4853f6ca544e52f31d87b2883" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58713321" /></Metadata><TypeSignature Language="C#" Value="public static class Buffer" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="98e975feab1531ad9d651ea1b804d3d7f23b003d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69406975" /></Metadata><TypeSignature Language="C#" Value="public static class Buffer" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit Buffer extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Buffer" />
   <TypeSignature Language="VB.NET" Value="Public Class Buffer" />
@@ -41,11 +41,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Buffer> 仅影响基元类型; 的数组此类不适用于对象。 每个基元类型会被视为一系列字节而不考虑任何行为或基元类型与关联的限制。  
+ <xref:System.Buffer>仅影响基元类型的数组;此类不适用于对象。 每个基元类型都被视为一系列字节, 而不考虑与基元类型关联的任何行为或限制。  
   
- <xref:System.Buffer> 提供方法将字节从基元类型的一个数组复制到另一个数组的基元类型，从数组获得一个字节、 设置数组中的一个字节和获取数组的长度。 此类提供更好的性能操作基元类型中的类似方法比<xref:System.Array?displayProperty=nameWithType>类。  
+ <xref:System.Buffer>提供将字节从一个基元类型数组复制到另一个基元类型数组的方法, 从数组中获取一个字节, 在数组中设置一个字节, 并获取数组的长度。 此类提供更好的性能, 用于处理<xref:System.Array?displayProperty=nameWithType>类中类似方法之外的基元类型。  
   
- <xref:System.Buffer> 适用于以下基元类型： <xref:System.Boolean>， <xref:System.Char>， <xref:System.SByte>， <xref:System.Byte>， <xref:System.Int16>， <xref:System.UInt16>， <xref:System.Int32>， <xref:System.UInt32>， <xref:System.Int64>， <xref:System.UInt64>， <xref:System.IntPtr>，<xref:System.UIntPtr>， <xref:System.Single>，和<xref:System.Double>。  
+ <xref:System.Buffer><xref:System.Boolean>适用于以下基元类型:、 <xref:System.UInt16> 、、、<xref:System.UInt64>、 <xref:System.Int16> <xref:System.Byte> <xref:System.Char> <xref:System.SByte> 、<xref:System.UInt32>、、、、 <xref:System.Int32> <xref:System.Int64> <xref:System.IntPtr>、 <xref:System.UIntPtr>、 <xref:System.Single>和。<xref:System.Double>  
   
    
   
@@ -115,17 +115,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法复制`count`个字节从`src`，起点`srcOffset`到`dst`，起点`dstOffset`。 这两`srcOffset`和`dstOffset`都从零开始; 即，每个缓冲区中的第一个字节位于位置 0、 不位置 1。  
+ 此方法将`count`从开始`src`, 从`srcOffset` `dst`开始复制个字节。 `dstOffset` `srcOffset` 和`dstOffset`都是从零开始的; 也就是说, 每个缓冲区中的第一个字节位于位置 0, 而不是位置1。  
   
- <xref:System.Buffer.BlockCopy%2A>方法访问中的字节`src`参数数组到内存中使用的偏移量、 不编程构造，如索引或上限和下限数组界限。 例如，如果你的应用程序的编程语言中声明<xref:System.Int32>数组从零开始的下限，为-50，并将传递的数组和偏移量为 5 到<xref:System.Buffer.BlockCopy%2A>方法，该方法将访问的第一个数组元素是第二个数组索引-49 处的元素。 此外，第一次访问的数组元素-49 哪个字节取决于正在执行你的应用程序的计算机的字节顺序。  
+ 方法使用偏移量访问`src`参数数组中的字节, 而不是编程构造 (如索引或数组上限和下限数组界限)。 <xref:System.Buffer.BlockCopy%2A> 例如, 如果您的应用程序的编程语言中声明<xref:System.Int32>的数组的50下限为从零开始, 然后将该数组和偏移量5传递<xref:System.Buffer.BlockCopy%2A>给方法, 则该方法将访问的第一个数组元素是第二个数组的元素, 该元素的索引为-49。 此外, 首先访问数组元素49的哪个字节取决于正在执行应用程序的计算机的字节排序。  
   
- 顾名思义，<xref:System.Buffer.BlockCopy%2A>方法将字节块复制为一个整体，而不是一次复制一个字节。 因此，如果`src`并`dst`引用同一数组和范围内的`srcOffset`  +  `count` -1 与从范围重叠`dstOffset`  +  `count` -1，重叠的值它们被复制到目标前，不会覆盖字节。 在下面的示例中，名为的数组中的 0-16 字节的值`arr`会复制到字节 12 日至 28 日。 尽管有重叠的范围，还是成功复制的源字节值。  
+ 顾名思义, <xref:System.Buffer.BlockCopy%2A>方法会将字节块作为一个整体复制, 而不是一次复制一个字节。 因此, 如果`src`和`dst`引用相同的数组 +  `count` `srcOffset`  +  `dstOffset` , 并且-1 范围内的范围与-1 重叠, 则重叠的值`count`将字节复制到目标之前, 不会覆盖这些字节。 在下面的示例中, 名`arr`为的数组中字节0-16 的值将复制到字节12-28。 尽管存在重叠的范围, 但源字节的值已成功复制。  
   
  [!code-cpp[System.Buffer.BlockCopy#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Buffer.BlockCopy/CPP/overlap1.cpp#3)]
  [!code-csharp[System.Buffer.BlockCopy#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Buffer.BlockCopy/CS/overlap1.cs#3)]
  [!code-vb[System.Buffer.BlockCopy#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Buffer.BlockCopy/VB/overlap1.vb#3)]  
   
- 在下面的示例中，名为的数组中的字节 12 日至 28 日的值`arr`复制到字节 0-16。 同样，尽管有重叠的范围，还是成功复制的源字节的值。  
+ 在下面的示例中, 名`arr`为的数组中字节12-28 的值将复制到字节0-16。 同样, 无论重叠范围如何, 都可以成功复制源字节的值。  
   
  [!code-cpp[System.Buffer.BlockCopy#4](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Buffer.BlockCopy/CPP/overlap1.cpp#4)]
  [!code-csharp[System.Buffer.BlockCopy#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Buffer.BlockCopy/CS/overlap1.cs#4)]
@@ -134,7 +134,7 @@
    
   
 ## Examples  
- 下面的示例通过使用复制的数组的区域<xref:System.Buffer.BlockCopy%2A>方法。 每个<xref:System.Buffer.BlockCopy%2A>操作，它列出的源和目标数组，这两个数组值，可作为一个字节序列。 该示例演示如何使用时考虑系统的字节顺序的重要性<xref:System.Buffer.BlockCopy%2A>方法：由于 Windows 系统是小字节序，基元数据类型的值较低序位字节前加上更高序位字节。  
+ 下面的示例使用<xref:System.Buffer.BlockCopy%2A>方法复制数组的区域。 对于每<xref:System.Buffer.BlockCopy%2A>个操作, 它将源数组和目标数组同时作为值数组和字节序列列出。 该示例说明了在使用<xref:System.Buffer.BlockCopy%2A>方法时考虑系统的字节序的重要性:由于 Windows 系统不是字节序, 因此基元数据类型的值的低序位字节优先于高阶字节。  
   
  [!code-cpp[System.Buffer.BlockCopy#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Buffer.BlockCopy/CPP/bcopy.cpp#2)]
  [!code-csharp[System.Buffer.BlockCopy#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Buffer.BlockCopy/CS/bcopy.cs#2)]
@@ -148,7 +148,7 @@
 - 或 - 
 <paramref name="src" /> 中的字节数小于 <paramref name="srcOffset" /> 加上<paramref name="count" /> 之和。  
   
-- 或 - 
+或 
 <paramref name="dst" /> 中的字节数小于 <paramref name="dstOffset" /> 加上<paramref name="count" /> 之和。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="srcOffset" />、<paramref name="dstOffset" /> 或 <paramref name="count" /> 小于 0。</exception>
       </Docs>
@@ -200,7 +200,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示如何使用`ByteLength`方法以返回数组中的字节数。  
+ 下面的代码示例演示如何使用`ByteLength`方法返回数组中的字节数。  
   
  [!code-cpp[System.Buffer.Bytes#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Buffer.Bytes/CPP/bytelength.cpp#1)]
  [!code-csharp[System.Buffer.Bytes#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Buffer.Bytes/CS/bytelength.cs#1)]
@@ -262,12 +262,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `GetByte`方法获取特定的字节从数组。 数组必须是基元数组。  
+ `GetByte`方法从数组中获取特定字节。 数组必须是基元数组。  
   
    
   
 ## Examples  
- 下面的代码示例显示在中使用数组的指定位置的字节值`GetByte`方法。  
+ 下面的代码示例使用`GetByte`方法在数组中的指定位置显示字节值。  
   
  [!code-cpp[System.Buffer.Bytes#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Buffer.Bytes/CPP/getbyte.cpp#3)]
  [!code-csharp[System.Buffer.Bytes#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Buffer.Bytes/CS/getbyte.cs#3)]
@@ -340,12 +340,12 @@
         <param name="sourceBytesToCopy">要复制的字节数。</param>
         <summary>将指定为长整型值的一些字节从内存中的一个地址复制到另一个地址。  
   
-此 API 不兼容 CLS。</summary>
+ 此 API 不兼容 CLS。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法复制`sourceBytesToCopy`从所指定的地址字节`source`到由指定的地址`destination`。 如果缓冲区重叠和之间的差异`destination`减`source`是小于`sourceBytesToCopy`，源块按相反的顺序复制到目标块。  
+ 此方法将`sourceBytesToCopy`字节从`source`指定的地址复制`destination`到指定的地址。 如果缓冲区重叠, 并且减号`destination` `source`之间的差异小于`sourceBytesToCopy`, 则源块将按相反的顺序复制到目标块。  
   
  ]]></format>
         </remarks>
@@ -400,12 +400,12 @@
         <param name="sourceBytesToCopy">要复制的字节数。</param>
         <summary>将指定为无符号长整型值的一些字节从内存中的一个地址复制到另一个地址。  
   
-此 API 不兼容 CLS。</summary>
+ 此 API 不兼容 CLS。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法复制`sourceBytesToCopy`从所指定的地址字节`source`到由指定的地址`destination`。 如果缓冲区重叠和之间的差异`destination`减`source`是小于`sourceBytesToCopy`，源块按相反的顺序复制到目标块。  
+ 此方法将`sourceBytesToCopy`字节从`source`指定的地址复制`destination`到指定的地址。 如果缓冲区重叠, 并且减号`destination` `source`之间的差异小于`sourceBytesToCopy`, 则源块将按相反的顺序复制到目标块。  
   
  ]]></format>
         </remarks>
@@ -462,12 +462,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `array` 必须是基元数组。  
+ `array`必须是基元数组。  
   
    
   
 ## Examples  
- 下面的代码示例将值分配给使用数组中的特定位置处的字节`SetByte`方法。  
+ 下面的代码示例使用`SetByte`方法将值分配给数组中特定位置处的字节。  
   
  [!code-cpp[System.Buffer.Bytes#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Buffer.Bytes/CPP/setbyte.cpp#2)]
  [!code-csharp[System.Buffer.Bytes#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Buffer.Bytes/CS/setbyte.cs#2)]

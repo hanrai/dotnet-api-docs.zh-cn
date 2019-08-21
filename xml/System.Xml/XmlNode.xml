@@ -1,5 +1,5 @@
 <Type Name="XmlNode" FullName="System.Xml.XmlNode">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="fe9786283f2d51e932cc975b5f7754e6b968b95c" /><Meta Name="ms.sourcegitcommit" Value="10aa513a7461eb2abbf8d1e35d2a045d4e5a9be7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/09/2019" /><Meta Name="ms.locfileid" Value="67665609" /></Metadata><TypeSignature Language="C#" Value="public abstract class XmlNode : ICloneable, System.Collections.IEnumerable, System.Xml.XPath.IXPathNavigable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="884cdf3e12bc95b75f3971782a41587a34550515" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69439619" /></Metadata><TypeSignature Language="C#" Value="public abstract class XmlNode : ICloneable, System.Collections.IEnumerable, System.Xml.XPath.IXPathNavigable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit XmlNode extends System.Object implements class System.Collections.IEnumerable, class System.ICloneable, class System.Xml.XPath.IXPathNavigable" />
   <TypeSignature Language="DocId" Value="T:System.Xml.XmlNode" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class XmlNode&#xA;Implements ICloneable, IEnumerable, IXPathNavigable" />
@@ -52,10 +52,10 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此类实现 W3C 文档对象模型 (DOM) 级别 1 核心和核心 DOM 级别 2。 DOM 是 XML 文档的内存中（缓存）树表示形式。 `XmlNode` 类的基类中的.NET 实现的 dom。 它支持 XPath 的选择，并提供编辑功能。 <xref:System.Xml.XmlDocument>类用于扩展`XmlNode`和表示 XML 文档。 可以使用`XmlDocument`来加载和保存 XML 数据。 它还包括用于创建节点的方法。 请参阅[XML 文档对象模型 (DOM)](~/docs/standard/data/xml/xml-document-object-model-dom.md)有关详细信息。  
+ 此类实现 W3C 文档对象模型 (DOM) 级别1核心和核心 DOM 级别2。 DOM 是 XML 文档的内存中（缓存）树表示形式。 `XmlNode`是 DOM 的 .NET 实现中的基类。 它支持 XPath 选择并提供编辑功能。 <xref:System.Xml.XmlDocument>类扩展`XmlNode`并表示 XML 文档。 可以使用`XmlDocument`加载和保存 XML 数据。 它还包括用于节点创建的方法。 有关详细信息, 请参阅[XML 文档对象模型 (DOM)](~/docs/standard/data/xml/xml-document-object-model-dom.md) 。  
   
 > [!IMPORTANT]
->  由于使用而引发的异常<xref:System.Xml.XmlNode>类，如<xref:System.Xml.XmlException>类可能包含不应在不受信任的方案中公开的敏感信息。 应正确处理异常，以便在不受信任的情况下不公开此敏感信息。  
+>  由于使用<xref:System.Xml.XmlNode>类而引发的异常, 例如<xref:System.Xml.XmlException>类可能包含不应在不受信任的方案中公开的敏感信息。 应正确处理异常, 以便不受信任的情况下不公开此敏感信息。  
   
  ]]></format>
     </remarks>
@@ -107,14 +107,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`newChild`是已在树中，它是从其原始位置中删除并添加到它的目标位置。 有关插入节点的详细信息，请参阅[将节点插入 XML 文档](~/docs/standard/data/xml/inserting-nodes-into-an-xml-document.md)。  
+ `newChild`如果已在树中, 则会将其从其原始位置删除并添加到其目标位置。 有关插入节点的详细信息, 请参阅[将节点插入 XML 文档](~/docs/standard/data/xml/inserting-nodes-into-an-xml-document.md)。  
   
- 如果插入的节点创建另一个文档中，可以使用<xref:System.Xml.XmlDocument.ImportNode%2A?displayProperty=nameWithType>将节点导入到当前文档。 然后，导入的节点可以插入到当前文档中。  
+ 如果要插入的节点是从其他文档创建的, 则可以<xref:System.Xml.XmlDocument.ImportNode%2A?displayProperty=nameWithType>使用将节点导入到当前文档。 然后, 可以将导入的节点插入到当前文档中。  
   
    
   
 ## Examples  
- 下面的示例将新节点添加到 XML 文档。  
+ 下面的示例将一个新节点添加到 XML 文档中。  
   
  [!code-cpp[Classic WebData XmlNode.AppendChild Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.AppendChild Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.AppendChild Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.AppendChild Example/CS/source.cs#1)]
@@ -138,7 +138,7 @@ Display the modified XML...
         <exception cref="T:System.ArgumentException"><paramref name="newChild" /> 是从不同于创建此节点的文档创建的。  
   
 该节点是只读的。</exception>
-        <block subset="none" type="overrides"><para>重写时<see langword="AppendChild" />在派生类中，要正确，在引发事件的顺序必须调用<see langword="AppendChild" />基类的方法。</para></block>
+        <block subset="none" type="overrides"><para>当在<see langword="AppendChild" />派生类中重写时, 为了正确引发事件, 必须<see langword="AppendChild" />调用基类的方法。</para></block>
         <altmember cref="M:System.Xml.XmlDocument.ImportNode(System.Xml.XmlNode,System.Boolean)" />
         <related type="Article" href="https://msdn.microsoft.com/library/891e54f5-54f6-4bb4-b624-9d1b6a1f1216">将节点插入 XML 文档中</related>
       </Docs>
@@ -185,7 +185,7 @@ Display the modified XML...
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例将新属性添加到 XML 文档。  
+ 下面的示例将新特性添加到 XML 文档中。  
   
  [!code-cpp[Classic WebData XmlNode.GetNamespaceOfPrefix Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.GetNamespaceOfPrefix Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.GetNamespaceOfPrefix Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.GetNamespaceOfPrefix Example/CS/source.cs#1)]
@@ -235,9 +235,9 @@ Display the modified XML...
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 联网的 XML 文档的聚合使用各种 W3C 标准包含机制的数据块组成，因此包含来自不同位置的节点。 `BaseURI`告诉您这些节点来自何处。  
+ 联网的 XML 文档包含使用各种 W3C 标准包含机制聚合的数据块, 因此包含来自不同位置的节点。 会`BaseURI`告诉你这些节点的来源。  
   
- 此属性的值取决于节点类型。 例如，文档节点返回的位置<xref:System.Xml.XmlDocument>对象。 这是外部的 EntityReference 节点的子节点的节点返回实体本身的位置。 例如，考虑下面的 XML 文档：  
+ 此属性的值根据节点类型的不同而异。 例如, 文档节点返回<xref:System.Xml.XmlDocument>对象的位置。 作为外部 EntityReference 节点的子节点的节点返回实体本身的位置。 例如, 请看下面的 XML 文档:  
   
 ```xml  
 <!DOCTYPE item [  
@@ -246,9 +246,9 @@ Display the modified XML...
 <item num='123'>&xyz;</item>  
 ```  
   
- 其中的外部实体`a/b.xml`包含的 XML 文本： `<test>123</test>`。  
+ 其中, 外部实体`a/b.xml`包含 XML 文本:。 `<test>123</test>`  
   
- 如果从加载该文档`http://server/mydata.xml`，`BaseURI`返回以下：  
+ 如果从`http://server/mydata.xml`加载文档, `BaseURI`则返回以下内容:  
   
 |NodeType|name|BaseURI|  
 |--------------|----------|-------------|  
@@ -261,16 +261,16 @@ Display the modified XML...
 |元素|测试|`http://server/a/b.xml`|  
 |Text|#text|`http://server/a/b.xml`|  
   
- `BaseURI` 查找实体引用边界，因此如果实体被展开此信息不会保留，此属性返回的位置`XmlDocument`在所有情况下的对象。  
+ `BaseURI`查找实体引用边界, 因此, 如果扩展实体, 则不会保留此信息, 并且此属性将返回`XmlDocument`对象在所有情况下的位置。  
   
- 作为第二个示例中，给定以下 XML 文档：  
+ 作为第二个示例, 提供了以下 XML 文档:  
   
 ```xml  
 <!DOCTYPE Mydata SYSTEM "http://localhost/doctype.dtd">  
 <baa>&xyz;</baa>  
 ```  
   
- 其中的 DTD 文件包含如下内容：  
+ 其中 DTD 文件包含以下内容:  
   
 ```  
 <!ENTITY xyz <E1>My Data</E1>  
@@ -278,19 +278,19 @@ Display the modified XML...
 <!ATTLIST baa attr1 "woof">  
 ```  
   
- 如果 XML 文档加载从http://localhost/mydata.xml，`BaseURI`返回以下内容，每个节点：  
+ 如果从http://localhost/mydata.xml加载 XML 文档, `BaseURI`则将为每个节点返回以下内容:  
   
 |NodeType|name|BaseURI|  
 |--------------|----------|-------------|  
 |Document|#document|http://localhost/mydata.xml|  
-|DocumentType|Mydata|http://localhost/mydata.xml<br /><br /> <xref:System.Xml.XmlDocumentType.SystemId%2A?displayProperty=nameWithType>或<xref:System.Xml.XmlDocumentType.PublicId%2A?displayProperty=nameWithType>属性可以用于标识的 DTD 文件已加载的位置。|  
-|元素|baa，这是|http://localhost/mydata.xml|  
+|DocumentType|Mydata|http://localhost/mydata.xml<br /><br /> <xref:System.Xml.XmlDocumentType.SystemId%2A?displayProperty=nameWithType> 或<xref:System.Xml.XmlDocumentType.PublicId%2A?displayProperty=nameWithType>属性可用于标识从中加载 DTD 文件的位置。|  
+|元素|baa|http://localhost/mydata.xml|  
 |实体|xyz|http://localhost/doctype.dtd|  
 |EntityReference|xyz|http://localhost/mydata.xml|  
 |特性|woof|http://localhost/mydata.xml|  
   
 > [!NOTE]
->  默认属性的基本 URI 是元素的其所属的基 URI 相同。  
+>  默认属性的基本 URI 与它们所属的元素的基 URI 相同。  
   
  此属性是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
@@ -340,12 +340,12 @@ Display the modified XML...
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 子节点的信息，请参阅[W3C DOM (Core) 级别 1 规范](https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html)  
+ 有关子节点的信息, 请参阅[W3C DOM (内核) 级别1规范](https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html)  
   
    
   
 ## Examples  
- 以下示例显示根元素的所有子的节点。  
+ 下面的示例显示 root 元素的所有子节点。  
   
  [!code-cpp[Classic WebData XmlNode.HasChildNodes Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.HasChildNodes Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.HasChildNodes Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.HasChildNodes Example/CS/source.cs#1)]
@@ -399,37 +399,37 @@ Display the modified XML...
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 克隆<xref:System.Xml.XmlElement>复制所有属性和它们的值，包括生成的 XML 处理器来表示默认特性的特性。 此方法以递归方式克隆节点和其下的子树。  
+ 克隆将<xref:System.Xml.XmlElement>复制所有属性及其值, 包括由 XML 处理器生成的用于表示默认属性的属性。 此方法以递归方式克隆节点及其下的子树。  
   
- `Clone` 等效于调用`CloneNode(true)`。  
+ `Clone`等效于调用`CloneNode(true)`。  
   
- 下表描述每个特定行为<xref:System.Xml.XmlNodeType>。  
+ 下表描述了每个<xref:System.Xml.XmlNodeType>的特定行为。  
   
 |XmlNodeType|克隆|  
 |-----------------|-----------|  
-|特性|克隆包含子节点的属性节点。|  
-|CData|克隆 CData 节点，包括其数据内容。|  
-|注释|克隆注释节点，包括其文本内容。|  
-|Document|克隆该文档节点，包括任何子节点。|  
-|DocumentFragment|复制文档片段节点，包括任何子节点。|  
+|特性|克隆特性节点, 包括子节点。|  
+|CData|克隆 CData 节点, 包括其数据内容。|  
+|注释|克隆注释节点, 包括其文本内容。|  
+|Document|克隆文档节点, 包括任何子节点。|  
+|DocumentFragment|克隆文档片段节点, 包括任何子节点。|  
 |DocumentType|克隆文档类型节点。|  
-|元素|克隆的元素节点、 其属性和任何子节点。|  
+|元素|克隆元素节点、其属性和任何子节点。|  
 |实体|无法克隆 Entity 节点。|  
-|EntityReference|克隆的实体引用节点。 不包括替换文本。|  
+|EntityReference|克隆实体引用节点。 不包括替换文本。|  
 |Notation|表示法节点无法克隆。|  
-|ProcessingInstruction|复制处理指令节点，包括其目标和数据。|  
-|SignificantWhitespace|克隆有意义的空白节点，包括其数据值。|  
-|Text|克隆该文本节点，包括其数据值。|  
-|Whitespace|克隆的空白节点，包括其数据值。|  
-|XmlDeclaration|克隆 XmlDeclaration 节点，包括其数据值。|  
+|ProcessingInstruction|克隆处理指令节点, 包括其目标和数据。|  
+|SignificantWhitespace|克隆有效的空白节点, 包括其数据值。|  
+|Text|克隆文本节点, 包括其数据值。|  
+|Whitespace|克隆空白节点, 包括其数据值。|  
+|XmlDeclaration|克隆 XmlDeclaration 节点, 包括其数据值。|  
 |所有其他节点类型。|无法克隆这些节点类型。|  
   
- 此方法是 Microsoft 扩展到文档对象模型 (DOM)。  
+ 此方法是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
    
   
 ## Examples  
- 下面的示例克隆的 XML 文档的根节点。  
+ 下面的示例克隆 XML 文档的根节点。  
   
  [!code-cpp[Classic WebData XmlNode.Clone Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.Clone Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.Clone Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.Clone Example/CS/source.cs#1)]
@@ -484,33 +484,33 @@ Display the modified XML...
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法可作为节点的复制构造函数。 重复节点有没有父级 (<xref:System.Xml.XmlNode.ParentNode%2A>返回`null`)。  
+ 此方法用作节点的复制构造函数。 重复的节点没有父级 (<xref:System.Xml.XmlNode.ParentNode%2A>返回`null`)。  
   
- 下表描述每个特定行为<xref:System.Xml.XmlNodeType>。  
+ 下表描述了每个<xref:System.Xml.XmlNodeType>的特定行为。  
   
-|XmlNodeType|CloneNode(true)|CloneNode(false)|  
+|XmlNodeType|用 clonenode (true)|CloneNode(false)|  
 |-----------------|-----------------------|------------------------|  
-|特性|克隆包含子节点的属性节点。|克隆包含子节点的属性节点。|  
-|CData|克隆 CData 节点，包括其数据内容。|克隆 CData 节点，包括其数据内容。|  
-|注释|克隆注释节点，包括其文本内容。|克隆注释节点，包括其文本内容。|  
-|Document|克隆该文档节点，包括任何子节点。|克隆文档节点。|  
-|DocumentFragment|复制文档片段节点，包括任何子节点。|复制文档片段节点。|  
+|特性|克隆特性节点, 包括子节点。|克隆特性节点, 包括子节点。|  
+|CData|克隆 CData 节点, 包括其数据内容。|克隆 CData 节点, 包括其数据内容。|  
+|注释|克隆注释节点, 包括其文本内容。|克隆注释节点, 包括其文本内容。|  
+|Document|克隆文档节点, 包括任何子节点。|克隆文档节点。|  
+|DocumentFragment|克隆文档片段节点, 包括任何子节点。|克隆文档片段节点。|  
 |DocumentType|克隆文档类型节点。|克隆文档类型节点。|  
-|元素|克隆的元素节点、 其属性和任何子节点。|克隆的元素节点和其属性，包括任何默认属性。|  
+|元素|克隆元素节点、其属性和任何子节点。|克隆元素节点及其属性, 包括任何默认属性。|  
 |实体|无法克隆 Entity 节点。|无法克隆 Entity 节点。|  
-|EntityReference|克隆的实体引用节点。 不包括替换文本。|克隆的实体引用节点。 不包括替换文本。|  
+|EntityReference|克隆实体引用节点。 不包括替换文本。|克隆实体引用节点。 不包括替换文本。|  
 |Notation|表示法节点无法克隆。|表示法节点无法克隆。|  
-|ProcessingInstruction|复制处理指令节点，包括其目标和数据。|复制处理指令节点，包括其目标和数据。|  
-|SignificantWhitespace|克隆有意义的空白节点，包括其数据值。|克隆有意义的空白节点，包括其数据值。|  
-|Text|克隆该文本节点，包括其数据值。|克隆该文本节点，包括其数据值。|  
-|Whitespace|克隆的空白节点，包括其数据值。|克隆的空白节点，包括其数据值。|  
-|XmlDeclaration|克隆 XmlDeclaration 节点，包括其数据值。|克隆 XmlDeclaration 节点，包括其数据值。|  
+|ProcessingInstruction|克隆处理指令节点, 包括其目标和数据。|克隆处理指令节点, 包括其目标和数据。|  
+|SignificantWhitespace|克隆有效的空白节点, 包括其数据值。|克隆有效的空白节点, 包括其数据值。|  
+|Text|克隆文本节点, 包括其数据值。|克隆文本节点, 包括其数据值。|  
+|Whitespace|克隆空白节点, 包括其数据值。|克隆空白节点, 包括其数据值。|  
+|XmlDeclaration|克隆 XmlDeclaration 节点, 包括其数据值。|克隆 XmlDeclaration 节点, 包括其数据值。|  
 |所有其他节点类型。|无法克隆这些节点类型。|无法克隆这些节点类型。|  
   
    
   
 ## Examples  
- 下面的示例显示的深度和浅表克隆之间的差异。  
+ 下面的示例显示了深层和浅层克隆之间的差异。  
   
  [!code-cpp[Classic WebData XmlNode.CloneNode Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.CloneNode Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.CloneNode Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.CloneNode Example/CS/source.cs#1)]
@@ -563,14 +563,14 @@ Display the modified XML...
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `XPathNavigator`提供对数据的只读的、 随机访问。 因为它已优化的 XSLT 转换，它提供性能优势时用作一种输出机制到<xref:System.Xml.Xsl.XslTransform.Transform%2A?displayProperty=nameWithType>方法。  
+ 提供`XPathNavigator`对数据的只读随机访问。 由于它已针对 XSLT 转换进行了优化, 因此它可在用作<xref:System.Xml.Xsl.XslTransform.Transform%2A?displayProperty=nameWithType>方法的输入机制时提供性能优势。  
   
- 此方法是 Microsoft 扩展到文档对象模型 (DOM)。  
+ 此方法是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
    
   
 ## Examples  
- 下面的示例加载并执行 XSLT 转换之前编辑 XML 文档。  
+ 下面的示例在执行 XSLT 转换之前加载并编辑 XML 文档。  
   
  [!code-cpp[XslTransform.Transform2#1](~/samples/snippets/cpp/VS_Snippets_Data/XslTransform.Transform2/CPP/trans_snip.cpp#1)]
  [!code-csharp[XslTransform.Transform2#1](~/samples/snippets/csharp/VS_Snippets_Data/XslTransform.Transform2/CS/trans_snip.cs#1)]
@@ -626,12 +626,12 @@ Display the modified XML...
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 子节点的信息，请参阅[W3C DOM (Core) 级别 1 规范](https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html)  
+ 有关子节点的信息, 请参阅[W3C DOM (内核) 级别1规范](https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html)  
   
    
   
 ## Examples  
- 以下示例显示的标题元素。  
+ 下面的示例显示 title 元素。  
   
  [!code-cpp[Classic WebData XmlNode.FirstChild Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.FirstChild Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.FirstChild Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.FirstChild Example/CS/source.cs#1)]
@@ -685,20 +685,20 @@ Display the modified XML...
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 支持的"for each"样式迭代中的节点`XmlNode`。  
+ 为中`XmlNode`的节点上的 "for each" 样式迭代提供支持。  
   
- 此方法是 Microsoft 扩展到文档对象模型 (DOM)。  
+ 此方法是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
    
   
 ## Examples  
- 下面的示例显示在 XML 文档中的所有书籍。  
+ 下面的示例显示 XML 文档中的所有书籍。  
   
  [!code-cpp[Classic WebData XmlNode.GetEnumerator Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.GetEnumerator Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.GetEnumerator Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.GetEnumerator Example/CS/source.cs#1)]
  [!code-vb[Classic WebData XmlNode.GetEnumerator Example#1](~/samples/snippets/visualbasic/VS_Snippets_Data/Classic WebData XmlNode.GetEnumerator Example/VB/source.vb#1)]  
   
- 该示例使用该文件，`books.xml`作为输入。  
+ 该示例使用文件`books.xml`作为输入。  
   
  [!code-xml[Classic WebData XmlNode.GetEnumerator Example#2](~/samples/snippets/xml/VS_Snippets_Data/Classic WebData XmlNode.GetEnumerator Example/XML/source.xml#2)]  
   
@@ -750,12 +750,12 @@ Display the modified XML...
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法是 Microsoft 扩展到文档对象模型 (DOM)。  
+ 此方法是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
    
   
 ## Examples  
- 下面的示例将新属性添加到 XML 文档。  
+ 下面的示例将新特性添加到 XML 文档中。  
   
  [!code-cpp[Classic WebData XmlNode.GetNamespaceOfPrefix Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.GetNamespaceOfPrefix Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.GetNamespaceOfPrefix Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.GetNamespaceOfPrefix Example/CS/source.cs#1)]
@@ -809,12 +809,12 @@ Display the modified XML...
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法是 Microsoft 扩展到文档对象模型 (DOM)。  
+ 此方法是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
    
   
 ## Examples  
- 下面的示例将新元素添加到 XML 文档。  
+ 下面的示例将一个新元素添加到 XML 文档中。  
   
  [!code-cpp[Classic WebData XmlNode.GetPrefixOfNamespace Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.GetPrefixOfNamespace Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.GetPrefixOfNamespace Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.GetPrefixOfNamespace Example/CS/source.cs#1)]
@@ -864,12 +864,12 @@ Display the modified XML...
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 子节点的信息，请参阅[W3C DOM (Core) 级别 1 规范](https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html)  
+ 有关子节点的信息, 请参阅[W3C DOM (内核) 级别1规范](https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html)  
   
    
   
 ## Examples  
- 以下示例显示根元素的所有子的节点。  
+ 下面的示例显示 root 元素的所有子节点。  
   
  [!code-cpp[Classic WebData XmlNode.HasChildNodes Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.HasChildNodes Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.HasChildNodes Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.HasChildNodes Example/CS/source.cs#1)]
@@ -919,16 +919,16 @@ Display the modified XML...
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置此属性将所有子节点都替换给定字符串的已分析内容。  
+ 设置此属性会将所有子节点替换为给定字符串的已分析内容。  
   
- 对于叶节点，`InnerText`返回的内容与相同<xref:System.Xml.XmlNode.Value%2A>属性。  
+ 对于叶节点, `InnerText`返回与<xref:System.Xml.XmlNode.Value%2A>属性相同的内容。  
   
  此属性是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
    
   
 ## Examples  
- 下面的示例比较`InnerText`和<xref:System.Xml.XmlNode.InnerXml%2A>属性。  
+ 下面的示例对和`InnerText` <xref:System.Xml.XmlNode.InnerXml%2A>属性进行了比较。  
   
  [!code-cpp[Classic WebData XmlNode.InnerText Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.InnerText Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.InnerText Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.InnerText Example/CS/source.cs#1)]
@@ -994,17 +994,17 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 尝试从一个节点的子节点不能设置此属性，例如文本节点，将引发异常。 否则，设置`InnerXml`的子节点，节点，替换给定字符串的已分析内容。 分析在当前命名空间上下文中完成。  
+ 如果尝试从不具有子节点的节点 (例如文本节点) 设置此属性, 则会引发异常。 否则, 设置`InnerXml`会将节点的子节点替换为给定字符串的已分析内容。 分析在当前命名空间上下文中完成。  
   
  此属性是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
 > [!NOTE]
->  `InnerXml` 不是有效的方法，若要修改 dom。 替换复杂的节点时，则可能存在性能问题。 构建节点并使用如下所示方法效率更高`InsertBefore`， `InsertAfter`， `AppendChild`，和`RemoveChild`修改 Xml 文档。  
+>  `InnerXml`不是修改 DOM 的有效方法。 替换复杂节点时可能存在性能问题。 构造节点并`InsertBefore`使用、 `InsertAfter`、 `AppendChild`和`RemoveChild`等方法修改 Xml 文档更为有效。  
   
    
   
 ## Examples  
- 下面的示例比较<xref:System.Xml.XmlNode.InnerText%2A>和`InnerXml`属性。  
+ 下面的示例对和<xref:System.Xml.XmlNode.InnerText%2A> `InnerXml`属性进行了比较。  
   
  [!code-cpp[Classic WebData XmlNode.InnerText Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.InnerText Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.InnerText Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.InnerText Example/CS/source.cs#1)]
@@ -1062,16 +1062,16 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`refChild`是`null`，插入`newChild`的子节点列表的开头。 中的所有内容`newChild`，按相同顺序之后插入`refChild`。 如果`newChild`是已在树中，它是从其原始位置中删除并添加到它的目标位置。 有关插入节点的详细信息，请参阅[将节点插入 XML 文档](~/docs/standard/data/xml/inserting-nodes-into-an-xml-document.md)。  
+ 如果`refChild` `newChild`为`null`, 则在子节点列表的开头处插入。 的`newChild`所有内容都以相同的顺序`refChild`插入。 `newChild`如果已在树中, 则会将其从其原始位置删除并添加到其目标位置。 有关插入节点的详细信息, 请参阅[将节点插入 XML 文档](~/docs/standard/data/xml/inserting-nodes-into-an-xml-document.md)。  
   
- 如果插入的节点创建另一个文档中，可以使用<xref:System.Xml.XmlDocument.ImportNode%2A?displayProperty=nameWithType>将节点导入到当前文档。 然后，导入的节点可以插入到当前文档中。  
+ 如果要插入的节点是从其他文档创建的, 则可以<xref:System.Xml.XmlDocument.ImportNode%2A?displayProperty=nameWithType>使用将节点导入到当前文档。 然后, 可以将导入的节点插入到当前文档中。  
   
- 此方法是 Microsoft 扩展到文档对象模型 (DOM)。  
+ 此方法是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
    
   
 ## Examples  
- 下面的示例将新节点添加到 XML 文档。  
+ 下面的示例将一个新节点添加到 XML 文档中。  
   
  [!code-cpp[Classic WebData XmlNode.InsertAfter Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.InsertAfter Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.InsertAfter Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.InsertAfter Example/CS/source.cs#1)]
@@ -1087,7 +1087,7 @@ d.</elem>
 <paramref name="refChild" /> 不是此节点的子级。  
   
 该节点是只读的。</exception>
-        <block subset="none" type="overrides"><para>重写时<see langword="InsertAfter" />在派生类中，要正确，在引发事件的顺序必须调用<see langword="InsertAfter" />基类的方法。</para></block>
+        <block subset="none" type="overrides"><para>当在<see langword="InsertAfter" />派生类中重写时, 为了正确引发事件, 必须<see langword="InsertAfter" />调用基类的方法。</para></block>
         <altmember cref="M:System.Xml.XmlDocument.ImportNode(System.Xml.XmlNode,System.Boolean)" />
         <related type="Article" href="https://msdn.microsoft.com/library/891e54f5-54f6-4bb4-b624-9d1b6a1f1216">将节点插入 XML 文档中</related>
       </Docs>
@@ -1138,14 +1138,14 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`refChild`是`null`，插入`newChild`的子节点列表的末尾。 中的所有内容`newChild`插入时，相同顺序之前`refChild`。 如果`newChild`是已在树中，它是从其原始位置中删除并添加到它的目标位置。 有关插入节点的详细信息，请参阅[将节点插入 XML 文档](~/docs/standard/data/xml/inserting-nodes-into-an-xml-document.md)。  
+ 如果`refChild` `newChild`为`null`, 则在子节点列表的末尾插入。 的`newChild`所有内容都以相同的顺序`refChild`插入。 `newChild`如果已在树中, 则会将其从其原始位置删除并添加到其目标位置。 有关插入节点的详细信息, 请参阅[将节点插入 XML 文档](~/docs/standard/data/xml/inserting-nodes-into-an-xml-document.md)。  
   
- 如果插入的节点创建另一个文档中，可以使用<xref:System.Xml.XmlDocument.ImportNode%2A?displayProperty=nameWithType>将节点导入到当前文档。 然后，导入的节点可以插入到当前文档中。  
+ 如果要插入的节点是从其他文档创建的, 则可以<xref:System.Xml.XmlDocument.ImportNode%2A?displayProperty=nameWithType>使用将节点导入到当前文档。 然后, 可以将导入的节点插入到当前文档中。  
   
    
   
 ## Examples  
- 下面的示例将新节点添加到 XML 文档。  
+ 下面的示例将一个新节点添加到 XML 文档中。  
   
  [!code-cpp[Classic WebData XmlNode.InsertBefore Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.InsertBefore Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.InsertBefore Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.InsertBefore Example/CS/source.cs#1)]
@@ -1161,7 +1161,7 @@ d.</elem>
 <paramref name="refChild" /> 不是此节点的子级。  
   
 该节点是只读的。</exception>
-        <block subset="none" type="overrides"><para>重写时<see langword="InsertBefore" />在派生类中，要正确，在引发事件的顺序必须调用<see langword="InsertBefore" />基类的方法。</para></block>
+        <block subset="none" type="overrides"><para>当在<see langword="InsertBefore" />派生类中重写时, 为了正确引发事件, 必须<see langword="InsertBefore" />调用基类的方法。</para></block>
         <altmember cref="M:System.Xml.XmlDocument.ImportNode(System.Xml.XmlNode,System.Boolean)" />
         <related type="Article" href="https://msdn.microsoft.com/library/891e54f5-54f6-4bb4-b624-9d1b6a1f1216">将节点插入 XML 文档中</related>
       </Docs>
@@ -1206,12 +1206,12 @@ d.</elem>
       </ReturnValue>
       <Docs>
         <summary>获取指示节点是否只读的值。</summary>
-        <value><see langword="true" /> 如果节点是只读的;否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果节点是只读的, 则为;否则为<see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 只读节点是一个不能更改其属性、 属性或子节点。 可以从树中删除只读节点并插入其他位置。 例如，实体节点始终是将只读的。  
+ 只读节点是指无法更改其属性、特性或子节点的节点。 可以从树中删除只读节点并将其插入到其他位置。 例如, 实体节点始终为只读。  
   
  此属性是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
@@ -1277,7 +1277,7 @@ d.</elem>
    
   
 ## Examples  
- 以下示例显示的标题元素。  
+ 下面的示例显示 title 元素。  
   
  [!code-cpp[Classic WebData XmlNode.this Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.this Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.this Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.this Example/CS/source.cs#1)]
@@ -1328,7 +1328,7 @@ d.</elem>
         <param name="localname">元素的本地名称。</param>
         <param name="ns">元素的命名空间 URI。</param>
         <summary>获取具有指定 <see cref="P:System.Xml.XmlNode.LocalName" /> 和 <see cref="P:System.Xml.XmlNode.NamespaceURI" /> 的第一个子元素。</summary>
-        <value>具有匹配的 <paramref name="localname" /> 和 <paramref name="ns" /> 的第一个 <see cref="T:System.Xml.XmlElement" />。 . 如果没有匹配项，则它返回空引用（在 Visual Basic 中为 <see langword="Nothing" />）。</value>
+        <value>具有匹配的 <paramref name="localname" /> 和 <paramref name="ns" /> 的第一个 <see cref="T:System.Xml.XmlElement" />。 。 如果没有匹配项，则它返回空引用（在 Visual Basic 中为 <see langword="Nothing" />）。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1384,7 +1384,7 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 以下示例显示的价格元素。  
+ 下面的示例显示 price 元素。  
   
  [!code-cpp[Classic WebData XmlNode.LastChild Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.LastChild Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.LastChild Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.LastChild Example/CS/source.cs#1)]
@@ -1429,7 +1429,7 @@ d.</elem>
       </ReturnValue>
       <Docs>
         <summary>当在派生类中被重写时，获取节点的本地名称。</summary>
-        <value>移除了前缀的节点的名称。 例如，<see langword="LocalName" />是该元素的相关书籍&lt;bk:book&gt;。  
+        <value>移除了前缀的节点的名称。 例如, 对于<see langword="LocalName" />元素&lt;bk: book&gt;, 是 book。  
   
 返回的名称取决于节点的 <see cref="P:System.Xml.XmlNode.NodeType" />： 
  <list type="table"><listheader><term> 类型 
@@ -1476,7 +1476,7 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果节点没有前缀，LocalName 等同于<xref:System.Xml.XmlNode.Name%2A>。  
+ 如果该节点没有前缀, 则 LocalName 与相同<xref:System.Xml.XmlNode.Name%2A>。  
   
  ]]></format>
         </remarks>
@@ -1608,9 +1608,9 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这是在创建时指定 URI 的命名空间。 例如，`NamespaceURI`是元素的 urn： 示例\<bk:book xmlns:bk ="urn： 示例">  
+ 这是在创建时指定的命名空间 URI。 例如, `NamespaceURI`为 urn: 元素\<bk 的示例: book xmlns: bk = "urn: samples" >  
   
- 从附加到的元素，属性不会继承其命名空间。 如果属性未显式指定命名空间，它只需具备没有命名空间。  
+ 特性不会从其附加到的元素继承其命名空间。 如果没有为属性显式给定命名空间, 则它只是没有命名空间。  
   
  ]]></format>
         </remarks>
@@ -1656,7 +1656,7 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例显示在 XML 文档中的所有书籍。  
+ 下面的示例显示 XML 文档中的所有书籍。  
   
  [!code-cpp[Classic WebData XmlNode.NextSibling Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.NextSibling Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.NextSibling Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.NextSibling Example/CS/source.cs#1)]
@@ -1706,7 +1706,7 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性永远不会返回`XmlNodeType`EndElement，EndEntity 或 None。  
+ 此属性绝不会返回`XmlNodeType` EndElement、EndEntity 或 None。  
   
  ]]></format>
         </remarks>
@@ -1752,7 +1752,7 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用此方法以确保 DOM 文档视图的相同像它已保存并重新加载，并使用依赖于特定文档树状结构的操作 （如 XPointer 查找） 时才有用。  
+ 此方法可用于确保文档的 DOM 视图与已保存并重新加载的视图相同, 并且在使用依赖于特定文档树结构的操作 (如 XPointer 查找) 时非常有用。  
   
  ]]></format>
         </remarks>
@@ -1807,7 +1807,7 @@ d.</elem>
    
   
 ## Examples  
- 下面的示例比较的输出<xref:System.Xml.XmlNode.InnerXml%2A>和`OuterXml`属性。  
+ 下面的示例比较和<xref:System.Xml.XmlNode.InnerXml%2A> `OuterXml`属性的输出。  
   
  [!code-cpp[Classic WebData XmlNode.OuterXml Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.OuterXml Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.OuterXml Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.OuterXml Example/CS/source.cs#1)]
@@ -1859,12 +1859,12 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在将节点添加到当前节点，使用<xref:System.Xml.XmlDocument>返回的<xref:System.Xml.XmlNode.OwnerDocument%2A>属性创建的节点。  
+ 将节点添加到当前节点时, 请使用<xref:System.Xml.XmlDocument> <xref:System.Xml.XmlNode.OwnerDocument%2A>属性返回的来创建节点。  
   
    
   
 ## Examples  
- 请参阅<xref:System.Xml.XmlElement.OwnerDocument%2A>（中的 XmlElement 类） 使用此属性的示例。  
+ 有关<xref:System.Xml.XmlElement.OwnerDocument%2A>使用此属性的示例, 请参阅 (在 XmlElement 类中)。  
   
  ]]></format>
         </remarks>
@@ -1938,7 +1938,7 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 父和子节点的信息，请参阅[W3C DOM (Core) 级别 1 规范](https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html)  
+ 有关父节点和子节点的信息, 请参阅[W3C DOM (内核) 级别1规范](https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html)  
   
  ]]></format>
         </remarks>
@@ -1984,12 +1984,12 @@ d.</elem>
       </ReturnValue>
       <Docs>
         <summary>获取或设置该节点的命名空间前缀。</summary>
-        <value>该节点的命名空间前缀。 例如，<see langword="Prefix" />元素是 bk &lt;bk:book&gt;。 如果没有前缀，则该属性返回 String.Empty。</value>
+        <value>该节点的命名空间前缀。 例如, <see langword="Prefix" />对于元素&lt;bk: book&gt;为 bk。 如果没有前缀，则该属性返回 String.Empty。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置此属性允许时，会更改为<xref:System.Xml.XmlNode.Name%2A>属性，该元素和属性节点上保留的限定的名属性。 不能有前缀 （例如文本、 注释、 EntityReference、 CDATA、 ProcessingInstruction、 文档和 DocumentFragment） 的节点类型上设置此属性不起作用。 更改的属性具有默认值已知的前缀，does 不具有默认值的新特性和执行原始前缀出现，这是因为命名空间 URI 和本地名称不会更改。  
+ 如果允许, 则设置此属性会更改<xref:System.Xml.XmlNode.Name%2A>属性, 该属性保存元素和属性节点上的限定名称。 在不能有前缀的节点类型 (如 Text、Comment、EntityReference、CDATA、ProcessingInstruction、Document 和 DocumentFragment) 上设置此属性不起作用。 如果更改已知的属性的前缀具有默认值, 则不会使用默认值生成新的属性, 并且会出现原始前缀, 因为命名空间 URI 和本地名称不会更改。  
   
  ]]></format>
         </remarks>
@@ -2003,7 +2003,7 @@ d.</elem>
  该节点是一个属性，指定的前缀为“xmlns”，且该节点的 namespaceURI 与“http://www.w3.org/2000/xmlns/”不同。  
   
  该节点是一个特性，而该节点的 qualifiedName 是“xmlns”。</exception>
-        <block subset="none" type="overrides"><para>重写时<see langword="Prefix" />不能在派生类中，设置此属性。</para></block>
+        <block subset="none" type="overrides"><para>当在<see langword="Prefix" />派生类中重写时, 不能设置此属性。</para></block>
       </Docs>
     </Member>
     <Member MemberName="PrependChild">
@@ -2050,16 +2050,16 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`newChild`是已在树中，它是从其原始位置中删除并添加到它的目标位置。 有关插入节点的详细信息，请参阅[将节点插入 XML 文档](~/docs/standard/data/xml/inserting-nodes-into-an-xml-document.md)。  
+ `newChild`如果已在树中, 则会将其从其原始位置删除并添加到其目标位置。 有关插入节点的详细信息, 请参阅[将节点插入 XML 文档](~/docs/standard/data/xml/inserting-nodes-into-an-xml-document.md)。  
   
- 如果插入的节点创建另一个文档中，可以使用<xref:System.Xml.XmlDocument.ImportNode%2A?displayProperty=nameWithType>将节点导入到当前文档。 然后，导入的节点可以插入到当前文档中。  
+ 如果要插入的节点是从其他文档创建的, 则可以<xref:System.Xml.XmlDocument.ImportNode%2A?displayProperty=nameWithType>使用将节点导入到当前文档。 然后, 可以将导入的节点插入到当前文档中。  
   
- 此方法是 Microsoft 扩展到文档对象模型 (DOM)。  
+ 此方法是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
    
   
 ## Examples  
- 下面的示例将新节点添加到 XML 文档。  
+ 下面的示例将一个新节点添加到 XML 文档中。  
   
  [!code-cpp[Classic WebData XmlNode.PrependChild Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.PrependChild Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.PrependChild Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.PrependChild Example/CS/source.cs#1)]
@@ -2073,7 +2073,7 @@ d.</elem>
         <exception cref="T:System.ArgumentException"><paramref name="newChild" /> 是从不同于创建此节点的文档创建的。  
   
 该节点是只读的。</exception>
-        <block subset="none" type="overrides"><para>重写时<see langword="PrependChild" />在派生类中，要正确，在引发事件的顺序必须调用<see langword="PrependChild" />基类的方法。</para></block>
+        <block subset="none" type="overrides"><para>当在<see langword="PrependChild" />派生类中重写时, 为了正确引发事件, 必须<see langword="PrependChild" />调用基类的方法。</para></block>
         <altmember cref="M:System.Xml.XmlDocument.ImportNode(System.Xml.XmlNode,System.Boolean)" />
         <related type="Article" href="https://msdn.microsoft.com/library/891e54f5-54f6-4bb4-b624-9d1b6a1f1216">将节点插入 XML 文档中</related>
       </Docs>
@@ -2118,7 +2118,7 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例显示在 XML 文档中的所有书籍。  
+ 下面的示例显示 XML 文档中的所有书籍。  
   
  [!code-cpp[Classic WebData XmlNode.PreviousSibling Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.PreviousSibling Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.PreviousSibling Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.PreviousSibling Example/CS/source.cs#1)]
@@ -2166,7 +2166,7 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性具有更快的性能比<xref:System.Xml.XmlNode.PreviousSibling%2A>属性，但您可以使用它只用于获取类型的节点<xref:System.Xml.XmlNodeType.Text>。 若要获取任何其他类型的节点在该节点之前，请使用<xref:System.Xml.XmlNode.PreviousSibling%2A>属性。  
+ 此属性的性能比<xref:System.Xml.XmlNode.PreviousSibling%2A>属性更快, 但您只能使用它来获取类型<xref:System.Xml.XmlNodeType.Text>的节点。 若要获取此节点之前的任何其他类型的节点, 请<xref:System.Xml.XmlNode.PreviousSibling%2A>使用属性。  
   
  ]]></format>
         </remarks>
@@ -2217,14 +2217,14 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果已知已删除的特性具有默认值，则立即出现一个特性，它包含的默认值并且如果适用，对应的命名空间 URI、 本地名称和前缀。  
+ 如果已知已删除的属性具有默认值, 则会立即出现一个属性, 其中包含默认值和相应的命名空间 URI、本地名称和前缀 (如果适用)。  
   
- 此方法是 Microsoft 扩展到文档对象模型 (DOM)。  
+ 此方法是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
    
   
 ## Examples  
- 下面的示例从根节点删除所有子节点和属性节点。  
+ 下面的示例从根节点中删除所有子节点和属性节点。  
   
  [!code-cpp[Classic WebData XmlNode.RemoveAll Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.RemoveAll Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.RemoveAll Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.RemoveAll Example/CS/source.cs#1)]
@@ -2232,7 +2232,7 @@ d.</elem>
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see langword="RemoveAll" />在派生类中，要正确，在引发事件的顺序必须调用<see langword="RemoveAll" />基类的方法。</para></block>
+        <block subset="none" type="overrides"><para>当在<see langword="RemoveAll" />派生类中重写时, 为了正确引发事件, 必须<see langword="RemoveAll" />调用基类的方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="RemoveChild">
@@ -2288,7 +2288,7 @@ d.</elem>
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="oldChild" /> 不是此节点的子级。 或者此节点是只读的。</exception>
-        <block subset="none" type="overrides"><para>重写时<see langword="RemoveChild" />在派生类中，要正确，在引发事件的顺序必须调用<see langword="RemoveChild" />基类的方法。</para></block>
+        <block subset="none" type="overrides"><para>当在<see langword="RemoveChild" />派生类中重写时, 为了正确引发事件, 必须<see langword="RemoveChild" />调用基类的方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="ReplaceChild">
@@ -2337,14 +2337,14 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`newChild`是已在树中，则将先删除。  
+ `newChild`如果已在树中, 则先将其删除。  
   
- 如果`newChild`创建从另一个文档，可以使用<xref:System.Xml.XmlDocument.ImportNode%2A?displayProperty=nameWithType>将节点导入到当前文档。 然后可将导入的节点传递到`ReplaceChild`方法。  
+ 如果是`newChild`从另一个文档创建的, 则可以<xref:System.Xml.XmlDocument.ImportNode%2A?displayProperty=nameWithType>使用将节点导入到当前文档。 然后, 可以将导入的节点传递`ReplaceChild`给方法。  
   
    
   
 ## Examples  
- 下面的示例将 XML 文档中的标题元素。  
+ 下面的示例将替换 XML 文档中的 title 元素。  
   
  [!code-cpp[Classic WebData XmlNode.ReplaceChild Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.ReplaceChild Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.ReplaceChild Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.ReplaceChild Example/CS/source.cs#1)]
@@ -2360,7 +2360,7 @@ d.</elem>
 该节点是只读的。  
   
 <paramref name="oldChild" /> 不是此节点的子级。</exception>
-        <block subset="none" type="overrides"><para>重写时<see langword="ReplaceChild" />在派生类中，要正确，在引发事件的顺序必须调用<see langword="ReplaceChild" />基类的方法。</para></block>
+        <block subset="none" type="overrides"><para>当在<see langword="ReplaceChild" />派生类中重写时, 为了正确引发事件, 必须<see langword="ReplaceChild" />调用基类的方法。</para></block>
         <altmember cref="M:System.Xml.XmlDocument.ImportNode(System.Xml.XmlNode,System.Boolean)" />
       </Docs>
     </Member>
@@ -2406,7 +2406,7 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xml.XmlNode.SchemaInfo%2A>时验证此节点设置属性。  
+ 当<xref:System.Xml.XmlNode.SchemaInfo%2A>验证此节点时, 将设置属性。  
   
  ]]></format>
         </remarks>
@@ -2424,16 +2424,16 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- XPath 表达式可以包含命名空间。 使用 `XmlNamespaceManager` 支持命名空间解析。 如果 XPath 表达式包含前缀，前缀和命名空间 URI 对必须添加到`XmlNamespaceManager`。  
+ XPath 表达式可以包含命名空间。 使用 `XmlNamespaceManager` 支持命名空间解析。 如果 XPath 表达式包含前缀, 则必须将前缀和命名空间 URI 对添加到`XmlNamespaceManager`中。  
   
 > [!NOTE]
->  如果 XPath 表达式不包含前缀，则假定命名空间 URI 为空命名空间。 如果 XML 包含默认命名空间，则仍必须添加前缀和命名空间 URI 为`XmlNamespaceManager`; 否则为不会选择任何节点。  
+>  如果 XPath 表达式不包含前缀, 则假定命名空间 URI 为空命名空间。 如果 XML 包含默认命名空间, 仍必须将前缀和命名空间 URI 添加到`XmlNamespaceManager`; 否则, 将不会选择任何节点。  
   
- 有关详细信息，请参阅[使用 XPath 导航选择节点](~/docs/standard/data/xml/select-nodes-using-xpath-navigation.md)。 有关代码示例，从上一节中重载列表中选择重载。  
+ 有关详细信息, 请参阅[使用 XPath 导航选择节点](~/docs/standard/data/xml/select-nodes-using-xpath-navigation.md)。 有关代码示例, 请从上一节的重载列表中选择重载。  
   
  ]]></format>
         </remarks>
-        <related type="ExternalDocumentation" href="https://msdn.microsoft.com/magazine/cc188773.aspx">XPath 选择和自定义函数，和的详细信息</related>
+        <related type="ExternalDocumentation" href="https://msdn.microsoft.com/magazine/cc188773.aspx">XPath 选择和自定义函数等</related>
         <related type="ExternalDocumentation" href="https://www.w3.org/TR/1999/REC-xpath-19991116/">W3C XPath 1.0 建议</related>
       </Docs>
     </MemberGroup>
@@ -2479,15 +2479,15 @@ d.</elem>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果 XPath 表达式需要命名空间解析，则必须使用`SelectNodes`重载此方法采用<xref:System.Xml.XmlNamespaceManager>作为其参数。 `XmlNamespaceManager`用于解析命名空间。  
+ 如果 XPath 表达式需要命名空间解析, 则必须使用`SelectNodes`重载, 该重载<xref:System.Xml.XmlNamespaceManager>采用作为其参数。 `XmlNamespaceManager`用于解析命名空间。  
   
 > [!NOTE]
->  如果 XPath 表达式不包含前缀，则假定命名空间 URI 为空命名空间。 如果 XML 包含默认命名空间，则仍必须使用`XmlNamespaceManager`并向其添加前缀和命名空间 URI; 否则，将不会选择任何节点。 有关详细信息，请参阅[使用 XPath 导航选择节点](~/docs/standard/data/xml/select-nodes-using-xpath-navigation.md)。  
+>  如果 XPath 表达式不包含前缀, 则假定命名空间 URI 为空命名空间。 如果 XML 包含默认命名空间, 则仍必须使用`XmlNamespaceManager`并向其添加前缀和命名空间 URI; 否则, 将不会选择任何节点。 有关详细信息, 请参阅[使用 XPath 导航选择节点](~/docs/standard/data/xml/select-nodes-using-xpath-navigation.md)。  
   
 > [!NOTE]
->  一个常见的问题时制定的 XPath 表达式是如何在表达式中包含一个单引号 （'） 或双引号 （"）。 如果你必须搜索包括单引号的值，必须将字符串括在双引号内。 如果需要搜索包括双引号的值，必须将字符串括在单引号中。  
+>  在构建 XPath 表达式时, 一个常见问题是如何在表达式中包含单引号 (') 或双引号 (")。 如果必须搜索包含单引号的值, 则必须用双引号将字符串引起来。 如果需要搜索包含双引号的值, 则必须用单引号将字符串括起来。  
   
- 例如，假设有以下 XML:  
+ 例如, 假设您具有以下 XML:  
   
 ```xml  
 <bookstore>  
@@ -2497,20 +2497,20 @@ d.</elem>
 </bookstore>  
 ```  
   
- 下面的 Visual Basic 代码选择一个包含单引号的元素：  
+ 以下 Visual Basic 代码选择包含单引号的元素:  
   
 ```csharp  
 nodeList = root.SelectNodes("//book[contains(title,""'Emma'"")]")  
 ```  
   
- 此方法是 Microsoft 扩展到文档对象模型 (DOM)。  
+ 此方法是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
- <xref:System.Xml.XmlNodeList>基础文档保持不变时此方法返回的对象才有效。 如果基础文档更改，可能返回意外的结果 （引发任何异常）。  
+ 此方法返回的对象将在基础文档保持不变时有效。<xref:System.Xml.XmlNodeList> 如果基础文档发生更改, 则可能会返回意外结果 (不会引发异常)。  
   
    
   
 ## Examples  
- 下面的示例选择所有书籍的作者姓氏其中是 Austen，，然后将更改的那些书籍价格。  
+ 以下示例选择作者姓氏为 Austen 的所有书籍, 然后更改这些书籍的价格。  
   
  [!code-cpp[Classic WebData XmlNode.SelectNodes Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.SelectNodes Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.SelectNodes Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.SelectNodes Example/CS/source.cs#1)]
@@ -2524,7 +2524,7 @@ nodeList = root.SelectNodes("//book[contains(title,""'Emma'"")]")
         </remarks>
         <exception cref="T:System.Xml.XPath.XPathException">XPath 表达式包含前缀。 请参见 [XPath 示例](https://msdn.microsoft.com/library/1431789e-c545-4765-8c09-3057e07d3041)。</exception>
         <altmember cref="M:System.Xml.XmlNode.SelectSingleNode(System.String)" />
-        <related type="ExternalDocumentation" href="https://msdn.microsoft.com/magazine/cc188773.aspx">XPath 选择和自定义函数，和的详细信息</related>
+        <related type="ExternalDocumentation" href="https://msdn.microsoft.com/magazine/cc188773.aspx">XPath 选择和自定义函数等</related>
         <related type="ExternalDocumentation" href="https://www.w3.org/TR/1999/REC-xpath-19991116/">W3C XPath 1.0 建议</related>
       </Docs>
     </Member>
@@ -2572,12 +2572,12 @@ nodeList = root.SelectNodes("//book[contains(title,""'Emma'"")]")
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- XPath 表达式可以包含命名空间。 使用 `XmlNamespaceManager` 支持命名空间解析。 如果 XPath 表达式包含前缀，前缀和命名空间 URI 对必须添加到`XmlNamespaceManager`。  
+ XPath 表达式可以包含命名空间。 使用 `XmlNamespaceManager` 支持命名空间解析。 如果 XPath 表达式包含前缀, 则必须将前缀和命名空间 URI 对添加到`XmlNamespaceManager`中。  
   
 > [!NOTE]
->  如果 XPath 表达式不包含前缀，则假定命名空间 URI 为空命名空间。 如果 XML 包含默认命名空间，则仍必须添加前缀和命名空间 URI 为`XmlNamespaceManager`; 否则为不会选择任何节点。 有关详细信息，请参阅[使用 XPath 导航选择节点](~/docs/standard/data/xml/select-nodes-using-xpath-navigation.md)。  
+>  如果 XPath 表达式不包含前缀, 则假定命名空间 URI 为空命名空间。 如果 XML 包含默认命名空间, 仍必须将前缀和命名空间 URI 添加到`XmlNamespaceManager`; 否则, 将不会选择任何节点。 有关详细信息, 请参阅[使用 XPath 导航选择节点](~/docs/standard/data/xml/select-nodes-using-xpath-navigation.md)。  
   
- 例如，如果你有以下 XML:  
+ 例如, 如果你有以下 XML:  
   
 ```xml  
 <bookstore xmlns="http://www.lucernepublishing.com">  
@@ -2587,7 +2587,7 @@ nodeList = root.SelectNodes("//book[contains(title,""'Emma'"")]")
 </bookstore>  
 ```  
   
- 下面的 C# 代码选择所有书节点：  
+ 以下C#代码选择所有书籍节点:  
   
 ```csharp  
 XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);  
@@ -2596,9 +2596,9 @@ XmlNodeList nodelist = doc.SelectNodes("//ab:book", nsmgr);
 ```  
   
 > [!NOTE]
->  一个常见的问题时制定的 XPath 表达式是如何在表达式中包含一个单引号 （'） 或双引号 （"）。 如果你必须搜索包括单引号的值，必须将字符串括在双引号内。 如果需要搜索包括双引号的值，必须将字符串括在单引号中。  
+>  在构建 XPath 表达式时, 一个常见问题是如何在表达式中包含单引号 (') 或双引号 (")。 如果必须搜索包含单引号的值, 则必须用双引号将字符串引起来。 如果需要搜索包含双引号的值, 则必须用单引号将字符串括起来。  
   
- 例如，假设有以下 XML:  
+ 例如, 假设您具有以下 XML:  
   
 ```xml  
 <bookstore xmlns="http://www.lucernepublishing.com">  
@@ -2608,7 +2608,7 @@ XmlNodeList nodelist = doc.SelectNodes("//ab:book", nsmgr);
 </bookstore>  
 ```  
   
- 下面的 Visual Basic 代码选择一个包含单引号的元素：  
+ 以下 Visual Basic 代码选择包含单引号的元素:  
   
 ```vb  
 Dim nsmgr As XmlNamespaceManager = New XmlNamespaceManager(doc.NameTable)  
@@ -2616,27 +2616,27 @@ nsmgr.AddNamespace("ab", "http://www.lucernepublishing.com")
 nodeList = root.SelectNodes("//ab:book[contains(ab:title,""'Emma'"")]", nsmgr)  
 ```  
   
- 此方法是 Microsoft 扩展到文档对象模型 (DOM)。  
+ 此方法是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
- <xref:System.Xml.XmlNodeList>基础文档保持不变时此方法返回的对象才有效。 如果基础文档更改，可能返回意外的结果 （引发任何异常）。  
+ 此方法返回的对象将在基础文档保持不变时有效。<xref:System.Xml.XmlNodeList> 如果基础文档发生更改, 则可能会返回意外结果 (不会引发异常)。  
   
    
   
 ## Examples  
- 以下示例显示的每个 ISBN 属性的值。 此示例使用<xref:System.Xml.XmlElement>对象，该类继承自<xref:System.Xml.XmlNode>类。  
+ 下面的示例显示了每个 ISBN 特性的值。 此示例使用<xref:System.Xml.XmlElement> <xref:System.Xml.XmlNode>从类继承的对象。  
   
  [!code-cpp[XmlNode.SelectNodes1#1](~/samples/snippets/cpp/VS_Snippets_Data/XmlNode.SelectNodes1/CPP/selectnodes1.cpp#1)]
  [!code-csharp[XmlNode.SelectNodes1#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlNode.SelectNodes1/CS/selectnodes1.cs#1)]
  [!code-vb[XmlNode.SelectNodes1#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlNode.SelectNodes1/VB/selectnodes1.vb#1)]  
   
- 该示例使用该文件，`booksort.xml`作为输入。  
+ 该示例使用文件`booksort.xml`作为输入。  
   
  [!code-xml[Classic WebData XmlNode.SelectNodes Example#2](~/samples/snippets/xml/VS_Snippets_Data/Classic WebData XmlNode.SelectNodes Example/XML/source.xml#2)]  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Xml.XPath.XPathException">XPath 表达式包含 <see langword="XmlNamespaceManager" /> 中没有定义的前缀。</exception>
-        <related type="ExternalDocumentation" href="https://msdn.microsoft.com/magazine/cc188773.aspx">XPath 选择和自定义函数，和的详细信息</related>
+        <related type="ExternalDocumentation" href="https://msdn.microsoft.com/magazine/cc188773.aspx">XPath 选择和自定义函数等</related>
         <related type="ExternalDocumentation" href="https://www.w3.org/TR/1999/REC-xpath-19991116/">W3C XPath 1.0 建议</related>
       </Docs>
     </Member>
@@ -2652,27 +2652,27 @@ nodeList = root.SelectNodes("//ab:book[contains(ab:title,""'Emma'"")]", nsmgr)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- XPath 表达式可以包含命名空间。 使用 `XmlNamespaceManager` 支持命名空间解析。 如果 XPath 表达式包含前缀，前缀和命名空间 URI 对必须添加到`XmlNamespaceManager`。  
+ XPath 表达式可以包含命名空间。 使用 `XmlNamespaceManager` 支持命名空间解析。 如果 XPath 表达式包含前缀, 则必须将前缀和命名空间 URI 对添加到`XmlNamespaceManager`中。  
   
 > [!NOTE]
->  如果 XPath 表达式不包含前缀，则假定命名空间 URI 为空命名空间。 如果 XML 包含默认命名空间，则仍必须添加前缀和命名空间 URI 为`XmlNamespaceManager`; 否则为不会选择任何节点。 有关详细信息，请参阅[使用 XPath 导航选择节点](~/docs/standard/data/xml/select-nodes-using-xpath-navigation.md)。  
+>  如果 XPath 表达式不包含前缀, 则假定命名空间 URI 为空命名空间。 如果 XML 包含默认命名空间, 仍必须将前缀和命名空间 URI 添加到`XmlNamespaceManager`; 否则, 将不会选择任何节点。 有关详细信息, 请参阅[使用 XPath 导航选择节点](~/docs/standard/data/xml/select-nodes-using-xpath-navigation.md)。  
   
    
   
 ## Examples  
- 以下示例返回具有匹配的作者名称的第一书籍。 `XmlNamespaceManager` 解析 XPath 表达式中的默认命名空间。  
+ 下面的示例返回具有匹配的作者姓名的第一本书。 `XmlNamespaceManager` 解析 XPath 表达式中的默认命名空间。  
   
  [!code-cpp[XmlNode.SelectSingleNode2#1](~/samples/snippets/cpp/VS_Snippets_Data/XmlNode.SelectSingleNode2/CPP/XmlNode.SelectSingleNode2.cpp#1)]
  [!code-csharp[XmlNode.SelectSingleNode2#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlNode.SelectSingleNode2/CS/selectsingnode2.cs#1)]
  [!code-vb[XmlNode.SelectSingleNode2#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlNode.SelectSingleNode2/VB/selectsingnode2.vb#1)]  
   
- 该示例使用该文件，`newbooks.xml`作为输入。  
+ 该示例使用文件`newbooks.xml`作为输入。  
   
  [!code-xml[XmlNode.SelectSingleNode2#2](~/samples/snippets/xml/VS_Snippets_Data/XmlNode.SelectSingleNode2/XML/newbooks.xml#2)]  
   
  ]]></format>
         </remarks>
-        <related type="ExternalDocumentation" href="https://msdn.microsoft.com/magazine/cc188773.aspx">XPath 选择和自定义函数，和的详细信息</related>
+        <related type="ExternalDocumentation" href="https://msdn.microsoft.com/magazine/cc188773.aspx">XPath 选择和自定义函数等</related>
         <related type="ExternalDocumentation" href="https://www.w3.org/TR/1999/REC-xpath-19991116/">W3C XPath 1.0 建议</related>
       </Docs>
     </MemberGroup>
@@ -2718,15 +2718,15 @@ nodeList = root.SelectNodes("//ab:book[contains(ab:title,""'Emma'"")]", nsmgr)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果 XPath 表达式需要命名空间解析，则必须使用`SelectSingleNode`重载此方法采用<xref:System.Xml.XmlNamespaceManager>作为其参数。 `XmlNamespaceManager`用于解析命名空间。  
+ 如果 XPath 表达式需要命名空间解析, 则必须使用`SelectSingleNode`重载, 该重载<xref:System.Xml.XmlNamespaceManager>采用作为其参数。 `XmlNamespaceManager`用于解析命名空间。  
   
 > [!NOTE]
->  如果 XPath 表达式不包含前缀，则假定命名空间 URI 为空命名空间。 如果 XML 包含默认命名空间，则仍必须使用`XmlNamespaceManager`并向其添加前缀和命名空间 URI; 否则，将不会将所选的节点。 有关详细信息，请参阅[使用 XPath 导航选择节点](~/docs/standard/data/xml/select-nodes-using-xpath-navigation.md)。  
+>  如果 XPath 表达式不包含前缀, 则假定命名空间 URI 为空命名空间。 如果 XML 包含默认命名空间, 则仍需使用`XmlNamespaceManager` , 并向其添加前缀和命名空间 URI; 否则, 将不会获得所选节点。 有关详细信息, 请参阅[使用 XPath 导航选择节点](~/docs/standard/data/xml/select-nodes-using-xpath-navigation.md)。  
   
 > [!NOTE]
->  一个常见的问题时制定的 XPath 表达式是如何在表达式中包含一个单引号 （'） 或双引号 （"）。 如果你必须搜索包括单引号的值，必须将字符串括在双引号内。 如果需要搜索包括双引号的值，必须将字符串括在单引号中。  
+>  在构建 XPath 表达式时, 一个常见问题是如何在表达式中包含单引号 (') 或双引号 (")。 如果必须搜索包含单引号的值, 则必须用双引号将字符串引起来。 如果需要搜索包含双引号的值, 则必须用单引号将字符串括起来。  
   
- 例如，假设有以下 XML:  
+ 例如, 假设您具有以下 XML:  
   
 ```xml  
 <bookstore>  
@@ -2736,24 +2736,24 @@ nodeList = root.SelectNodes("//ab:book[contains(ab:title,""'Emma'"")]", nsmgr)
 </bookstore>  
 ```  
   
- 下面的 Visual Basic 代码选择一个包含单引号的元素：  
+ 以下 Visual Basic 代码选择包含单引号的元素:  
   
 ```  
 book = root.SelectSingleNode("descendant::book[title=""'Emma'""]")  
 ```  
   
- 此方法是 Microsoft 扩展到文档对象模型 (DOM)。  
+ 此方法是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
    
   
 ## Examples  
- 下面的示例更改第一个 Jane Austen 本书的价格。  
+ 下面的示例更改了第一个 Jane Austen 书籍的价格。  
   
  [!code-cpp[Classic WebData XmlNode.SelectSingleNode Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.SelectSingleNode Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.SelectSingleNode Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.SelectSingleNode Example/CS/source.cs#1)]
  [!code-vb[Classic WebData XmlNode.SelectSingleNode Example#1](~/samples/snippets/visualbasic/VS_Snippets_Data/Classic WebData XmlNode.SelectSingleNode Example/VB/source.vb#1)]  
   
- 该示例使用该文件，`booksort.xml`作为输入。  
+ 该示例使用文件`booksort.xml`作为输入。  
   
  [!code-xml[Classic WebData XmlNode.SelectSingleNode Example#2](~/samples/snippets/xml/VS_Snippets_Data/Classic WebData XmlNode.SelectSingleNode Example/XML/source.xml#2)]  
   
@@ -2761,7 +2761,7 @@ book = root.SelectSingleNode("descendant::book[title=""'Emma'""]")
         </remarks>
         <exception cref="T:System.Xml.XPath.XPathException">XPath 表达式包含前缀。</exception>
         <altmember cref="M:System.Xml.XmlNode.SelectNodes(System.String)" />
-        <related type="ExternalDocumentation" href="https://msdn.microsoft.com/magazine/cc188773.aspx">XPath 选择和自定义函数，和的详细信息</related>
+        <related type="ExternalDocumentation" href="https://msdn.microsoft.com/magazine/cc188773.aspx">XPath 选择和自定义函数等</related>
         <related type="ExternalDocumentation" href="https://www.w3.org/TR/1999/REC-xpath-19991116/">W3C XPath 1.0 建议</related>
       </Docs>
     </Member>
@@ -2809,12 +2809,12 @@ book = root.SelectSingleNode("descendant::book[title=""'Emma'""]")
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- XPath 表达式可以包含命名空间。 使用 `XmlNamespaceManager` 支持命名空间解析。 如果 XPath 表达式包含前缀，前缀和命名空间 URI 对必须添加到`XmlNamespaceManager`。  
+ XPath 表达式可以包含命名空间。 使用 `XmlNamespaceManager` 支持命名空间解析。 如果 XPath 表达式包含前缀, 则必须将前缀和命名空间 URI 对添加到`XmlNamespaceManager`中。  
   
 > [!NOTE]
->  如果 XPath 表达式不包含前缀，则假定命名空间 URI 为空命名空间。 如果 XML 包含默认命名空间，则仍必须添加前缀和命名空间 URI 为`XmlNamespaceManager`; 否则为则不会获得所选节点。 有关详细信息，请参阅[使用 XPath 导航选择节点](~/docs/standard/data/xml/select-nodes-using-xpath-navigation.md)。  
+>  如果 XPath 表达式不包含前缀, 则假定命名空间 URI 为空命名空间。 如果 XML 包含默认命名空间, 仍必须将前缀和命名空间 URI 添加到`XmlNamespaceManager`; 否则, 将不会选择节点。 有关详细信息, 请参阅[使用 XPath 导航选择节点](~/docs/standard/data/xml/select-nodes-using-xpath-navigation.md)。  
   
- 例如，如果你有以下 XML:  
+ 例如, 如果你有以下 XML:  
   
 ```xml  
 <bookstore xmlns="http://www.lucernepublishing.com">  
@@ -2824,7 +2824,7 @@ book = root.SelectSingleNode("descendant::book[title=""'Emma'""]")
 </bookstore>  
 ```  
   
- 下面的 C# 代码选择第一个 book 节点：  
+ 以下C#代码选择第一个 "书籍" 节点:  
   
 ```csharp  
 XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);  
@@ -2833,9 +2833,9 @@ XmlNode book = doc.SelectSingleNode("//ab:book", nsmgr);
 ```  
   
 > [!NOTE]
->  一个常见的问题时制定的 XPath 表达式是如何在表达式中包含一个单引号 （'） 或双引号 （"）。 如果你必须搜索包括单引号的值，必须将字符串括在双引号内。 如果需要搜索包括双引号的值，必须将字符串括在单引号中。  
+>  在构建 XPath 表达式时, 一个常见问题是如何在表达式中包含单引号 (') 或双引号 (")。 如果必须搜索包含单引号的值, 则必须用双引号将字符串引起来。 如果需要搜索包含双引号的值, 则必须用单引号将字符串括起来。  
   
- 例如，假设有以下 XML:  
+ 例如, 假设您具有以下 XML:  
   
 ```xml  
 <bookstore xmlns="http://www.lucernepublishing.com">  
@@ -2845,7 +2845,7 @@ XmlNode book = doc.SelectSingleNode("//ab:book", nsmgr);
 </bookstore>  
 ```  
   
- 下面的 Visual Basic 代码选择一个包含单引号的元素：  
+ 以下 Visual Basic 代码选择包含单引号的元素:  
   
 ```vb  
 Dim nsmgr As XmlNamespaceManager = New XmlNamespaceManager(doc.NameTable)  
@@ -2853,25 +2853,25 @@ nsmgr.AddNamespace("ab", "http://www.lucernepublishing.com")
 book = root.SelectSingleNode("descendant::ab:book[ab:title=""'Emma'""]", nsmgr)  
 ```  
   
- 此方法是 Microsoft 扩展到文档对象模型 (DOM)。  
+ 此方法是文档对象模型 (DOM) 的 Microsoft 扩展。  
   
    
   
 ## Examples  
- 下面的示例选择匹配的 ISBN 值对书籍。  
+ 下面的示例选择具有匹配的 ISBN 值的书籍。  
   
  [!code-cpp[XmlNode.SelectSingleNode1#1](~/samples/snippets/cpp/VS_Snippets_Data/XmlNode.SelectSingleNode1/CPP/selectsingnode.cpp#1)]
  [!code-csharp[XmlNode.SelectSingleNode1#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlNode.SelectSingleNode1/CS/selectsingnode.cs#1)]
  [!code-vb[XmlNode.SelectSingleNode1#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlNode.SelectSingleNode1/VB/selectsingnode.vb#1)]  
   
- 该示例使用该文件，`booksort.xml`作为输入。  
+ 该示例使用文件`booksort.xml`作为输入。  
   
  [!code-xml[Classic WebData XmlNode.SelectNodes Example#2](~/samples/snippets/xml/VS_Snippets_Data/Classic WebData XmlNode.SelectNodes Example/XML/source.xml#2)]  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Xml.XPath.XPathException">XPath 表达式包含 <see langword="XmlNamespaceManager" /> 中没有定义的前缀。</exception>
-        <related type="ExternalDocumentation" href="https://msdn.microsoft.com/magazine/cc188773.aspx">XPath 选择和自定义函数，和的详细信息</related>
+        <related type="ExternalDocumentation" href="https://msdn.microsoft.com/magazine/cc188773.aspx">XPath 选择和自定义函数等</related>
         <related type="ExternalDocumentation" href="https://www.w3.org/TR/1999/REC-xpath-19991116/">W3C XPath 1.0 建议</related>
       </Docs>
     </Member>
@@ -3110,14 +3110,14 @@ book = root.SelectSingleNode("descendant::ab:book[ab:title=""'Emma'""]", nsmgr)
  </term><description> 空格字符。 空白可由一个或多个空格字符、回车符、换行符或制表符组成。  
   
  </description></item><item><term> XmlDeclaration 
- </term><description> 声明的内容 (即之间的所有内容&lt;？ xml 和？&gt;)。  
+ </term><description> 声明的内容 (即,？ xml 和？ &lt;&gt;) 之间的所有内容。  
   
  </description></item></list></value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例将新属性添加到的 XML 文档和集<xref:System.Xml.XmlNode.Value%2A>新特性的属性。  
+ 下面的示例将一个新特性添加到 XML 文档, 并设置<xref:System.Xml.XmlNode.Value%2A>新特性的属性。  
   
  [!code-cpp[Classic WebData XmlNode.GetNamespaceOfPrefix Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.GetNamespaceOfPrefix Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.GetNamespaceOfPrefix Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.GetNamespaceOfPrefix Example/CS/source.cs#1)]
@@ -3172,12 +3172,12 @@ book = root.SelectSingleNode("descendant::ab:book[ab:title=""'Emma'""]", nsmgr)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法是 Microsoft 扩展到文档对象模型 (DOM)。 它是功能上等效于<xref:System.Xml.XmlNode.InnerXml%2A>属性。  
+ 此方法是文档对象模型 (DOM) 的 Microsoft 扩展。 它在功能上等效<xref:System.Xml.XmlNode.InnerXml%2A>于属性。  
   
    
   
 ## Examples  
- 下面的示例显示到控制台根节点的内容。  
+ 下面的示例在控制台中显示根节点的内容。  
   
  [!code-cpp[Classic WebData XmlNode.WriteContentTo Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.WriteContentTo Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.WriteContentTo Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.WriteContentTo Example/CS/source.cs#1)]
@@ -3231,12 +3231,12 @@ book = root.SelectSingleNode("descendant::ab:book[ab:title=""'Emma'""]", nsmgr)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法是 Microsoft 扩展到文档对象模型 (DOM)。 它是功能上等效于<xref:System.Xml.XmlNode.OuterXml%2A>属性。  
+ 此方法是文档对象模型 (DOM) 的 Microsoft 扩展。 它在功能上等效<xref:System.Xml.XmlNode.OuterXml%2A>于属性。  
   
    
   
 ## Examples  
- 下面的示例显示到控制台根节点。  
+ 下面的示例在控制台中显示根节点。  
   
  [!code-cpp[Classic WebData XmlNode.WriteTo Example#1](~/samples/snippets/cpp/VS_Snippets_Data/Classic WebData XmlNode.WriteTo Example/CPP/source.cpp#1)]
  [!code-csharp[Classic WebData XmlNode.WriteTo Example#1](~/samples/snippets/csharp/VS_Snippets_Data/Classic WebData XmlNode.WriteTo Example/CS/source.cs#1)]

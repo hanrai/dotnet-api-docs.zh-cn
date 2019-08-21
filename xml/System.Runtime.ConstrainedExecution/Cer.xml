@@ -1,5 +1,5 @@
 <Type Name="Cer" FullName="System.Runtime.ConstrainedExecution.Cer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="1eb1ed20f5e5985c10eeb6e49f20c175f5b80e35" /><Meta Name="ms.sourcegitcommit" Value="feb111e137a41d186aef01d83f04819d820520eb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/21/2019" /><Meta Name="ms.locfileid" Value="67307772" /></Metadata><TypeSignature Language="C#" Value="public enum Cer" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="6eb633b5ec8a93bc899f6f1ead2c11a318c0571a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69272913" /></Metadata><TypeSignature Language="C#" Value="public enum Cer" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed Cer extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.ConstrainedExecution.Cer" />
   <TypeSignature Language="VB.NET" Value="Public Enum Cer" />
@@ -36,23 +36,23 @@
   
 ## Remarks
  
-<xref:System.Runtime.ConstrainedExecution.Cer>枚举指定的方法、 类型或受约束的执行区域 (CER) 中的程序集的行为。 使用以下任意三个可用值以指示该实体将会成功，并不知道是 CER，或可能 （肯定会） 可以报告成功或失败。  
+<xref:System.Runtime.ConstrainedExecution.Cer>枚举指定在受约束的执行区域 (CER) 中的方法、类型或程序集的行为。 使用三个可用值中的一个来指示实体将成功、不知道 CER 或可能 (当然) 能够报告成功或失败。  
   
-Cer 保证将执行的代码区域不间断地即使引发异步如中止的线程的内存不足异常或堆栈溢出异常。  
+CER 提供保证, 即使在发生异步异常 (如中止的线程内存不足异常或引发堆栈溢出) 时, 代码区域也不会中断执行。  
   
-但是，`Cer.None`枚举值指示方法、 类型或程序集没有 CER 的概念。 它不利用 CER 保证。 这意味着：
+但是, `Cer.None`枚举值指示方法、类型或程序集没有 CER 的概念。 它不利用 CER 保证。 这意味着：
 
-- 遇到异常情况时此方法可能会失败。  
+- 在遇到异常情况时, 方法可能会失败。  
   
-- 该方法可能会也可能不失败的报告 （它是不确定）。  
+- 此方法可能会报告失败, 也可能不会报告它失败 (这是不确定性的)。  
   
-- 该方法不是编写 Cer 记住 （这是最可能的方案）。  
+- 此方法在编写时不考虑 Cer (这是最可能的方案)。  
   
-如果方法、 类型或程序集未被显式标记为成功的它将隐式标记为`Cer.None`。  
+如果方法、类型或程序集没有显式标记为成功, 则它将隐式标记为`Cer.None`。  
 
 ## Examples
 
-下面的代码示例演示如何将<xref:System.Runtime.ConstrainedExecution.Cer>枚举指定一种方法的受约束的执行区域时。 此代码示例是为提供一个更大示例的一部分<xref:System.Runtime.ConstrainedExecution.ReliabilityContractAttribute.%23ctor%2A>构造函数。  
+下面的代码示例演示了如何在为<xref:System.Runtime.ConstrainedExecution.Cer>方法指定受约束的执行区域时使用枚举。 此代码示例是为<xref:System.Runtime.ConstrainedExecution.ReliabilityContractAttribute.%23ctor%2A>构造函数提供的更大示例的一部分。  
   
 [!code-csharp[System.Runtime.ConstrainedExecution#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Runtime.ConstrainedExecution/cs/program.cs#3)]
 [!code-vb[System.Runtime.ConstrainedExecution#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Runtime.ConstrainedExecution/vb/program.vb#3)]  

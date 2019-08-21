@@ -1,5 +1,5 @@
 <Type Name="XmlChoiceIdentifierAttribute" FullName="System.Xml.Serialization.XmlChoiceIdentifierAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="1c274f19f41604a53cf7388bcf1f6b0323799bf4" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67245395" /></Metadata><TypeSignature Language="C#" Value="public class XmlChoiceIdentifierAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ec8db61e1a53c0ec0e41a056372fd3521a88f75d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69440761" /></Metadata><TypeSignature Language="C#" Value="public class XmlChoiceIdentifierAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit XmlChoiceIdentifierAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Xml.Serialization.XmlChoiceIdentifierAttribute" />
   <TypeSignature Language="VB.NET" Value="Public Class XmlChoiceIdentifierAttribute&#xA;Inherits Attribute" />
@@ -47,7 +47,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- XML 架构元素定义名为`xsi:choice`用于定义可以包含在实例中的只有一个子级的复杂元素 (maxoccurs = 1)。 该子级可以是几种类型之一，它可以具有多个名称之一。 每个名称与相关联的特定类型;但是，多个名称可以与相同的类型相关联。 因此，此类元素的实例是不明确的。 例如，考虑以下架构片断，用于定义此类不明确的元素，名为`MyChoice`。  
+ 名`xsi:choice`为的 XML 架构元素定义用于定义一个复杂元素, 该元素在实例中只能包含一个子元素 (maxoccurs = 1)。 该子元素可以是几种类型之一, 并且可以有多个名称之一。 每个名称与特定类型相关联;但是, 多个名称可以与相同类型相关联。 因此, 此类元素的实例是 indistinct 的。 例如, 请考虑下面的架构片段, 它定义了一个名为`MyChoice`的 indistinct 元素。  
   
 ```  
 <xsd:complexType name="MyChoice">  
@@ -60,7 +60,7 @@
 </xsd:complexType>  
 ```  
   
- <xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute> ，可将一个特殊的枚举值分配给成员的每个实例。 您必须创建枚举自己也可以由生成[XML 架构定义工具 (Xsd.exe)](~/docs/standard/serialization/xml-schema-definition-tool-xsd-exe.md)。 下面的 C# 代码演示如何<xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute>应用于`Item`字段中;<xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute.MemberName%2A>属性标识包含更多用于检测所选枚举的字段。  
+ <xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute>允许您为成员的每个实例分配特殊的枚举值。 您必须自行创建枚举, 或者可以通过[XML 架构定义工具 (xsd.exe)](~/docs/standard/serialization/xml-schema-definition-tool-xsd-exe.md)生成它。 下面C#的代码演示如何<xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute>将应用于`Item`字段; <xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute.MemberName%2A>属性标识包含用于检测选择的枚举的字段。  
   
 ```  
 public class Choices{  
@@ -81,7 +81,7 @@ public enum ItemChoiceType{
 }  
 ```  
   
- 在此代码后，可以序列化并进行反序列化此类设置`ItemType`字段为合适的枚举。 例如，若要序列化`Choice`类，C# 代码如下所示。  
+ 当该代码准备就绪时, 可以通过将`ItemType`字段设置为相应的枚举来序列化和反序列化此类。 例如, 若要序列化`Choice`类, C#代码如下所示。  
   
 ```  
 Choices mc = new Choices();  
@@ -89,7 +89,7 @@ mc.MyChoice = "Item Choice One";
 mc.ItemType = ItemChoiceType.ChoiceOne;  
 ```  
   
- 当反序列化，C# 代码如下所示：  
+ 反序列化时C# , 代码如下所示:  
   
 ```  
 MyChoice mc = (MyChoice) myXmlSerializer.Deserialize(myReader);  
@@ -107,7 +107,7 @@ if(mc.ItemType != null)
  }  
 ```  
   
- 第二个方案时<xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute>使用。 在以下架构中，该成员是返回的项的数组的字段 (maxOccurs ="unbounded")。 该数组可以包含对象的第一个选项 ("D-a-t-a")，和的第二个选项 ("MoreData")。  
+ 使用时, 还有第二种<xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute>情况。 在下面的架构中, 成员是返回项 (maxOccurs = "未绑定") 的数组的字段。 该数组可以包含首选项 ("MoreData") 和第二个选项 ("") 的对象。  
   
 ```  
 <xsd:complexType name="MyChoice">  
@@ -120,7 +120,7 @@ if(mc.ItemType != null)
 </xsd:complexType>  
 ```  
   
- 然后，生成的类使用字段来返回项的数组。 在数组中，一个对应的每个项`ItemChoiceType`枚举还必须能够找到。 返回的数组中包含的匹配枚举`ItemsElementName`字段。  
+ 然后, 生成的类使用字段返回项的数组。 对于数组中的每个项, 还`ItemChoiceType`必须找到相应的枚举。 匹配枚举包含在由`ItemsElementName`字段返回的数组中。  
   
 ```  
 public class MyChoice {  
@@ -140,12 +140,12 @@ public enum ItemsChoiceType {
 }  
 ```  
   
- 当反序列化一个对象，包括可用的选项，使用控制结构 (例如，如果...然后...else 结构) 来确定如何反序列化特定值。 在控制结构中，检查枚举值，并反序列化值将相应地。  
+ 反序列化包含一系列选项的对象时, 请使用控件结构 (如 if .。。then .。。else 结构) 来确定如何对特定值进行反序列化。 在控件结构中, 检查枚举值并相应地反序列化值。  
   
    
   
 ## Examples  
- 下面的示例将名为的类序列化为`Choices`，其中包含两个字段`MyChoice`和`ManyChoices`。 <xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute>应用于指定的每个字段 (通过<xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute.MemberName%2A>属性) 来获取或设置一个枚举，检测到的成员值的另一个类成员。 `MyChoice`字段可以在中找到相应的枚举成员设置为单个值，`EnumType`字段。 `ManyChoices`字段会返回一个对象数组。 `ChoiceArray`字段会返回一个枚举值数组。 每个数组成员`ManyChoices`字段中，返回的数组中找到相应成员`ChoiceArray`字段。  
+ 下面的示例序列化一个名`Choices`为的类, 其中`MyChoice`包括`ManyChoices`两个字段: 和。 应用于指定 ( <xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute.MemberName%2A>通过属性) 的每个字段, 该类成员用于获取或设置检测成员值的枚举。 <xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute> 可以将`EnumType`字段设置为单个值, 并在字段中找到相应的枚举成员。 `MyChoice` 该`ManyChoices`字段返回对象的数组。 该`ChoiceArray`字段返回枚举值的数组。 对于`ManyChoices`字段中的每个数组成员, 都在`ChoiceArray`由字段返回的数组中找到相应的成员。  
   
  [!code-cpp[XmlChoiceIdentifierAttribute Example#1](~/samples/snippets/cpp/VS_Snippets_Remoting/XmlChoiceIdentifierAttribute Example/CPP/choice.cpp#1)]
  [!code-csharp[XmlChoiceIdentifierAttribute Example#1](~/samples/snippets/csharp/VS_Snippets_Remoting/XmlChoiceIdentifierAttribute Example/CS/choice.cs#1)]
@@ -211,7 +211,7 @@ public enum ItemsChoiceType {
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例将名为的类序列化为`Choices`，其中包含两个字段`MyChoice`和`ManyChoices`。 <xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute>应用于指定的每个字段 (通过<xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute.MemberName%2A>属性) 来获取或设置一个枚举，检测到的成员值的另一个类成员。 `MyChoice`字段可以在中找到相应的枚举成员设置为单个值，`EnumType`字段。 `ManyChoices`字段会返回一个对象数组。 `ChoiceArray`字段会返回一个枚举值数组。 每个数组成员`ManyChoices`字段中，返回的数组中找到相应成员`ChoiceArray`字段。  
+ 下面的示例序列化一个名`Choices`为的类, 其中`MyChoice`包括`ManyChoices`两个字段: 和。 应用于指定 ( <xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute.MemberName%2A>通过属性) 的每个字段, 该类成员用于获取或设置检测成员值的枚举。 <xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute> 可以将`EnumType`字段设置为单个值, 并在字段中找到相应的枚举成员。 `MyChoice` 该`ManyChoices`字段返回对象的数组。 该`ChoiceArray`字段返回枚举值的数组。 对于`ManyChoices`字段中的每个数组成员, 都在`ChoiceArray`由字段返回的数组中找到相应的成员。  
   
  [!code-cpp[XmlChoiceIdentifierAttribute Example#1](~/samples/snippets/cpp/VS_Snippets_Remoting/XmlChoiceIdentifierAttribute Example/CPP/choice.cpp#1)]
  [!code-csharp[XmlChoiceIdentifierAttribute Example#1](~/samples/snippets/csharp/VS_Snippets_Remoting/XmlChoiceIdentifierAttribute Example/CS/choice.cs#1)]
@@ -308,12 +308,12 @@ public enum ItemsChoiceType {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 至少一个成员必须存在于名为中的字段所返回的枚举<xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute.MemberName%2A>值。 默认情况下，该枚举的名称采用的字段名称的<xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute>应用于。  
+ <xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute.MemberName%2A>值中名为的字段所返回的枚举中必须至少有一个成员。 默认情况下, 该枚举名称采用应用于的<xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute>字段的名称。  
   
    
   
 ## Examples  
- 下面的示例将名为的类序列化为`Choices`，其中包含两个字段`MyChoice`和`ManyChoices`。 <xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute>应用于指定的每个字段 (通过<xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute.MemberName%2A>属性) 来获取或设置一个枚举，检测到的成员值的另一个类成员。 `MyChoice`字段可以在中找到相应的枚举成员设置为单个值，`EnumType`字段。 `ManyChoices`字段会返回一个对象数组。 `ChoiceArray`字段会返回一个枚举值数组。 每个数组成员`ManyChoices`字段中，返回的数组中找到相应成员`ChoiceArray`字段。  
+ 下面的示例序列化一个名`Choices`为的类, 其中`MyChoice`包括`ManyChoices`两个字段: 和。 应用于指定 ( <xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute.MemberName%2A>通过属性) 的每个字段, 该类成员用于获取或设置检测成员值的枚举。 <xref:System.Xml.Serialization.XmlChoiceIdentifierAttribute> 可以将`EnumType`字段设置为单个值, 并在字段中找到相应的枚举成员。 `MyChoice` 该`ManyChoices`字段返回对象的数组。 该`ChoiceArray`字段返回枚举值的数组。 对于`ManyChoices`字段中的每个数组成员, 都在`ChoiceArray`由字段返回的数组中找到相应的成员。  
   
  [!code-cpp[XmlChoiceIdentifierAttribute Example#1](~/samples/snippets/cpp/VS_Snippets_Remoting/XmlChoiceIdentifierAttribute Example/CPP/choice.cpp#1)]
  [!code-csharp[XmlChoiceIdentifierAttribute Example#1](~/samples/snippets/csharp/VS_Snippets_Remoting/XmlChoiceIdentifierAttribute Example/CS/choice.cs#1)]

@@ -1,5 +1,5 @@
 <Type Name="StreamContent" FullName="System.Net.Http.StreamContent">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="697b722c86e4749cd4a10a55a7f3920abbdf287d" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58681040" /></Metadata><TypeSignature Language="C#" Value="public class StreamContent : System.Net.Http.HttpContent" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="12f5b58e94622d12c337e0032ec9a8595b70bb03" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69114729" /></Metadata><TypeSignature Language="C#" Value="public class StreamContent : System.Net.Http.HttpContent" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit StreamContent extends System.Net.Http.HttpContent" />
   <TypeSignature Language="DocId" Value="T:System.Net.Http.StreamContent" />
   <TypeSignature Language="VB.NET" Value="Public Class StreamContent&#xA;Inherits HttpContent" />
@@ -64,7 +64,7 @@
         <Parameter Name="content" Type="System.IO.Stream" />
       </Parameters>
       <Docs>
-        <param name="content">用于初始化 <see cref="T:System.Net.Http.StreamContent" /> 的内容。</param>
+        <param name="content">用于初始化 <see cref="T:System.Net.Http.StreamContent" />的内容。</param>
         <summary>创建 <see cref="T:System.Net.Http.StreamContent" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
       </Docs>
@@ -135,9 +135,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成的所有内容都已写入内存流。  
+ 此操作不会阻止。 将所有<xref:System.Threading.Tasks.Task%601>内容写入内存流后, 返回的对象将会完成。  
   
- <xref:System.Net.Http.StreamContent.CreateContentReadStreamAsync%2A>方法缓冲到内存流的内容。 如果没有更好的方法来检索的内容以流的形式，派生的类可以重写此行为。 例如，一个字节数组或一个字符串，可以使用更高效的方法方法，例如 wrapping 只读的<xref:System.IO.MemoryStream>字节或字符串周围。)  
+ <xref:System.Net.Http.StreamContent.CreateContentReadStreamAsync%2A>方法将内容缓冲到内存流。 如果有更好的方法将内容检索为流, 派生类可以重写此行为。 例如, 字节数组或字符串可以使用更高效的方法, 例如在字节或字符串<xref:System.IO.MemoryStream>周围环绕只读。)  
   
  ]]></format>
         </remarks>
@@ -177,7 +177,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法由公共`Dispose()`方法和<xref:System.Object.Finalize%2A>方法。 `Dispose()` 调用受保护`Dispose(Boolean)`方法替换`disposing`参数设置为`true`。 <xref:System.Object.Finalize%2A> 调用`Dispose`与`disposing`设置为`false`。当`disposing`参数是`true`，此方法释放任何托管对象所持有的所有资源，此<xref:System.Net.Http.StreamContent>的引用。 此方法调用每个引用对象的 `Dispose()` 方法。  
+ 此方法由公共`Dispose()`方法<xref:System.Object.Finalize%2A>和方法调用。 `Dispose()`调用受保护`Dispose(Boolean)`的方法, `disposing`并将参数`true`设置为。 <xref:System.Object.Finalize%2A>在`Dispose` 设置`disposing` 为`false`的情况调用。当参数为`true`时, 此方法释放该<xref:System.Net.Http.StreamContent>引用的任何托管对象所持有的所有资源。 `disposing` 此方法调用每个引用对象的 `Dispose()` 方法。  
   
  ]]></format>
         </remarks>
@@ -219,7 +219,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task>对象后的所有内容已序列化到的目标流将完成。  
+ 此操作不会阻止。 所有内容<xref:System.Threading.Tasks.Task>都序列化为目标流后, 返回的对象将会完成。  
   
  ]]></format>
         </remarks>
@@ -260,7 +260,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Http.StreamContent.TryComputeLength%2A>方法使 HTTP 流内容能够计算内容的长度。 这是适用于内容类型能够轻松地计算出的内容长度。 如果计算的内容长度不能或者成本高昂 （且需要系统的数据进行缓冲整个内容序列化将可能产生巨额开销或需要分配大量内存的系统位置），此方法可以返回`false`。 如果此方法返回`false`，这意味着的所需 chunked 的传输或发送到服务器之前，必须获取缓冲内容。  
+ <xref:System.Net.Http.StreamContent.TryComputeLength%2A>方法使 HTTP 流内容能够计算内容长度。 这对于能够轻松计算内容长度的内容类型很有用。 如果无法或昂贵地计算内容长度 (要求系统缓冲序列化会消耗大量内存或需要系统分配大量内存的完整内容), 则此方法可能返回`false`。 如果此方法返回`false`, 则表示需要分块传输, 或者必须在将内容发送到服务器之前缓冲内容。  
   
  ]]></format>
         </remarks>
