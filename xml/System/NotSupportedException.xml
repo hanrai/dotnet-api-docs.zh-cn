@@ -1,5 +1,5 @@
 <Type Name="NotSupportedException" FullName="System.NotSupportedException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ccebf1b171e38b9ea4d36b81e4644674a78065de" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58684012" /></Metadata><TypeSignature Language="C#" Value="public class NotSupportedException : SystemException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d0a6e7feeda7bd8a9b5471f8eda1da177b3907a2" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69405514" /></Metadata><TypeSignature Language="C#" Value="public class NotSupportedException : SystemException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit NotSupportedException extends System.SystemException" />
   <TypeSignature Language="DocId" Value="T:System.NotSupportedException" />
   <TypeSignature Language="VB.NET" Value="Public Class NotSupportedException&#xA;Inherits SystemException" />
@@ -45,69 +45,69 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.NotSupportedException> 指示没有实现存在为调用的方法或属性。  
+ <xref:System.NotSupportedException>指示调用的方法或属性不存在实现。  
   
- <xref:System.NotSupportedException> 使用 HRESULT COR_E_NOTSUPPORTED，其值 0x80131515。  
+ <xref:System.NotSupportedException>使用 COR_E_NOTSUPPORTED 值为0x80131515 的 HRESULT。  
   
  有关实例的初始属性值的列表<xref:System.NotSupportedException>，请参阅<xref:System.NotSupportedException.%23ctor%2A>构造函数。  
   
 ## <a name="throwing-a-notsupportedexception-exception"></a>引发 NotSupportedException 异常  
- 你可以考虑引发<xref:System.NotSupportedException>在以下情况下的异常：  
+ 在以下情况下, <xref:System.NotSupportedException>你可能会考虑引发异常:  
   
--   要实现一个通用接口，并且有些方法有没有有意义的实现。 例如，如果要创建的日期和时间类型的实现<xref:System.IConvertible>接口，将引发<xref:System.NotSupportedException>的大部分转换异常。  
+-   您正在实现一个通用接口, 并且这些方法的数量没有有意义的实现。 例如, 如果您创建的是实现<xref:System.IConvertible>接口的日期和时间类型, 则对于大多数转换, 将<xref:System.NotSupportedException>引发异常。  
   
--   已继承自一个抽象类，需要重写的方法数。 但是，你仅做好准备以提供这些子集的实现。 对于你决定不实现方法，您可以选择引发<xref:System.NotSupportedException>。  
+-   你已继承自抽象类, 该抽象类需要重写若干方法。 但是, 你只是为这些的子集提供了一个实现。 对于您决定不实现的方法, 您可以选择引发<xref:System.NotSupportedException>。  
   
--   你正在定义有条件地启用操作的状态的通用类型。 例如，您的类型可以是只读或读写。 在这种情况下：  
+-   您正在定义一个通用类型, 该类型具有可有条件地启用操作的状态。 例如, 您的类型可以是只读的, 也可以是读写的。 在这种情况下:  
   
-    -   如果对象是只读的尝试将值分配给属性的修改实例状态实例或调用方法应引发<xref:System.NotSupportedException>异常。  
+    -   如果对象为只读, 则尝试将值分配给实例的属性或修改实例状态的调用方法应引发<xref:System.NotSupportedException>异常。  
   
-    -   应实现该属性返回<xref:System.Boolean>值，该值指示是否提供了特定功能。 例如，可以是只读或读写的类型，您可以实现`IsReadOnly`属性，用于指示组的读写方法是否可用或不可用。  
+    -   应该实现一个属性, 该属性可<xref:System.Boolean>返回一个指示特定功能是否可用的值。 例如, 对于可为只读或读写的类型, 您可以实现一个`IsReadOnly`属性, 该属性指示读写方法集是否可用或不可用。  
   
 ## <a name="handling-a-notsupportedexception-exception"></a>处理 NotSupportedException 异常  
- <xref:System.NotSupportedException>异常指出某个方法具有没有实现，并且，您不应调用它。  不应处理异常。 相反，应执行的操作取决于异常的原因： 实现是完全不存在，还是该成员的调用不一致、 目的在于对象 (如调用<xref:System.IO.FileStream.Write%2A?displayProperty=nameWithType>方法的只读<xref:System.IO.FileStream>对象.  
+ <xref:System.NotSupportedException>异常指示方法没有实现, 并且不应调用它。  不应处理异常。 相反, 您应该执行的操作取决于引发异常的原因: 是完全不存在实现, 还是成员调用与对象的用途不一致 (例如对只读<xref:System.IO.FileStream.Write%2A?displayProperty=nameWithType> <xref:System.IO.FileStream>对象调用方法.  
   
- **尚未提供实现，因为不能有意义的方式执行该操作。**  
- 这是常见异常在提供的抽象基类或实现的方法实现一个通用接口的对象上调用方法时，该方法具有没有有意义的实现。  
+ **尚未提供实现, 因为无法以有意义的方式执行该操作。**  
+ 当你在为抽象基类的方法提供实现的对象上调用方法时, 这是一个常见的异常, 或者是实现通用接口的方法, 并且该方法没有有意义的实现。  
   
- 例如，<xref:System.Convert>类实现<xref:System.IConvertible>接口，这意味着它必须包括将每个基元类型转换为其他每个基元类型的方法。 许多这些转换，但是，不能。 因此，调用<xref:System.Convert.ToBoolean%28System.DateTime%29?displayProperty=nameWithType>方法，例如，将引发<xref:System.NotSupportedException>异常没有之间的转换可能因为<xref:System.DateTime>和一个<xref:System.Boolean>值  
+ 例如, <xref:System.Convert>类<xref:System.IConvertible>实现接口, 这意味着它必须包含方法以将每个基元类型转换为其他每个基元类型。 但是, 其中许多转换都是无法实现的。 因此, 对<xref:System.Convert.ToBoolean%28System.DateTime%29?displayProperty=nameWithType>方法的调用将<xref:System.NotSupportedException>引发异常, 因为在和<xref:System.Boolean>值之间没有可能的<xref:System.DateTime>转换  
   
- 若要消除此异常，应消除方法调用。  
+ 若要消除此异常, 应消除方法调用。  
   
- **方法调用不支持给定对象的状态。**  
- 您试图调用的成员对象的状态由于它的功能将不可用。 您可以消除此异常中有以下三种：  
+ **如果对象的状态为, 则不支持方法调用。**  
+ 你正在尝试调用其功能因对象状态不可用的成员。 可以通过以下三种方式之一消除异常:  
   
--   提前知道对象的状态，但已调用不受支持的方法或属性。 在这种情况下，该成员的调用是一个错误，并可以消除这个问题。  
+-   你事先知道对象的状态, 但你调用了不受支持的方法或属性。 在这种情况下, 成员调用是一个错误, 您可以将其删除。  
   
--   （通常是因为你的代码还实例化它） 事先知道对象的状态，但该对象是配置错误。 下面的示例说明了此问题。 它将创建一个只读的<xref:System.IO.FileStream>对象，然后尝试对其进行写入。  
+-   你事先知道对象的状态 (通常是因为代码已对其进行实例化), 但对象配置不好。 下面的示例说明了此问题。 它将创建一个只读<xref:System.IO.FileStream>对象, 然后尝试写入该对象。  
   
      [!code-csharp[System.NotSupportedException#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/System.NotSupportedException/cs/BadState1.cs#1)]
      [!code-vb[System.NotSupportedException#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/System.NotSupportedException/vb/BadState1.vb#1)]  
   
-     您可以消除实例化的对象支持的功能，你想通过确保异常。 下面的示例解决的只读的问题<xref:System.IO.FileStream>对象提供的正确参数<xref:System.IO.FileStream.%23ctor%28System.String%2CSystem.IO.FileMode%2CSystem.IO.FileAccess%29?displayProperty=nameWithType>构造函数。  
+     可以通过确保实例化对象支持所要的功能来消除异常。 下面的示例通过<xref:System.IO.FileStream> <xref:System.IO.FileStream.%23ctor%28System.String%2CSystem.IO.FileMode%2CSystem.IO.FileAccess%29?displayProperty=nameWithType>向构造函数提供正确的参数来解决只读对象的问题。  
   
--   你在事先不知道对象的状态和对象不支持某一特定操作。 在大多数情况下，该对象应包括的属性或方法，指示它是否支持一组特定的操作。 可以通过检查对象的值和调用该成员，仅当相应消除异常。  
+-   您不会提前知道对象的状态, 并且对象不支持特定操作。 在大多数情况下, 对象应包含一个属性或方法, 指示它是否支持一组特定操作。 您可以通过检查对象的值并仅在适当的情况调用成员来消除异常。  
   
-     下面的示例定义`DetectEncoding`方法将引发<xref:System.NotSupportedException>它会尝试从一开始不支持读取访问的流读取时出现异常。  
+     下面的示例定义了`DetectEncoding`一个方法, 该<xref:System.NotSupportedException>方法在尝试读取不支持读取访问权限的流的开头时引发异常。  
   
      [!code-csharp[System.NotSupportedException#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/System.NotSupportedException/cs/TestProp1.cs#3)]
      [!code-vb[System.NotSupportedException#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/System.NotSupportedException/vb/TestProp1.vb#3)]  
   
-     您可以通过检查的值来消除异常<xref:System.IO.FileStream.CanRead%2A?displayProperty=nameWithType>属性和退出该方法，如果流是只读的。  
+     如果流是只读的, 则可以通过检查<xref:System.IO.FileStream.CanRead%2A?displayProperty=nameWithType>属性的值并退出方法来消除异常。  
   
      [!code-csharp[System.NotSupportedException#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/System.NotSupportedException/cs/TestProp2.cs#4)]
      [!code-vb[System.NotSupportedException#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/System.NotSupportedException/vb/TestProp2.vb#4)]  
   
-## <a name="related-exception-types"></a>相关的异常类型  
- <xref:System.NotSupportedException>与两个其他异常类型; 密切相关异常  
+## <a name="related-exception-types"></a>相关异常类型  
+ <xref:System.NotSupportedException>异常与另外两种异常类型密切相关;  
   
  <xref:System.NotImplementedException>。  
- 当一种方法可实现，但不是，将引发此异常是因为将在更高版本中实现该成员、 成员不是适用于特定的平台，或该成员所属的抽象类和派生的类必须提供一条即时消息plementation。  
+ 如果方法可以实现但不是, 则会引发此异常, 这可能是因为成员将在更高版本中实现, 成员在特定平台上不可用, 或者成员属于抽象类, 派生类必须提供 implementation.  
   
  <xref:System.InvalidOperationException>  
- 在方案中它通常是有时对象来执行请求的操作，有可能引发此异常，并且对象状态确定是否可以执行该操作。  
+ 在通常情况下, 对象可能会执行请求的操作, 并且对象状态确定是否可以执行该操作时, 将引发此异常。  
   
-## <a name="net-compact-framework-notes"></a>.NET Framework 精简版说明  
+## <a name="net-compact-framework-notes"></a>.NET Compact Framework 说明  
  当使用 [!INCLUDE[Compact](~/includes/compact-md.md)] 并对本机函数使用 P/Invoke 时，如果出现以下情况，则会引发此异常：  
   
 -   托管代码中的声明不正确。  
@@ -116,13 +116,13 @@
   
 -   DLL 名称在导出时难以分辨。  
   
- 如果<xref:System.NotSupportedException.%23ctor%2A>引发异常时，检查：  
+ 如果引发<xref:System.NotSupportedException.%23ctor%2A>了异常, 请检查:  
   
 -   任何违反 [!INCLUDE[Compact](~/includes/compact-md.md)] P/Invoke 限制的行为。  
   
 -   任何需要预分配内存的参数。 如果存在这种情况，应传递对现有变量的引用。  
   
--   导出的函数的名称正确。 这可以通过验证[DumpBin.exe](https://msdn.microsoft.com/library/c1h23y6c.aspx)。  
+-   导出的函数的名称正确。 这可以通过[DumpBin](https://msdn.microsoft.com/library/c1h23y6c.aspx)进行验证。  
   
 -   您没有尝试传递过多的参数。  
   

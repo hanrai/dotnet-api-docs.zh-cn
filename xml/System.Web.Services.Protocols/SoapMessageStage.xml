@@ -1,5 +1,5 @@
 <Type Name="SoapMessageStage" FullName="System.Web.Services.Protocols.SoapMessageStage">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="007edd2a7a94426b901a0ebd1e104f1685ac347d" /><Meta Name="ms.sourcegitcommit" Value="9170ef1c277dbe29b425d453dc133624b156d393" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="07/01/2019" /><Meta Name="ms.locfileid" Value="67488018" /></Metadata><TypeSignature Language="C#" Value="public enum SoapMessageStage" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bf2d23a823c71b22565e5a7ae0daec484126f927" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69257374" /></Metadata><TypeSignature Language="C#" Value="public enum SoapMessageStage" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed SoapMessageStage extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Web.Services.Protocols.SoapMessageStage" />
   <TypeSignature Language="VB.NET" Value="Public Enum SoapMessageStage" />
@@ -22,20 +22,20 @@
   
 ## Remarks
 
-ASP.NET 提供了可扩展性机制，用于调用 Web 服务使用 SOAP。 可扩展性机制围绕<xref:System.Web.Services.Protocols.SoapExtension>，可以检查或修改在客户端或服务器上处理的消息中的特定阶段的一条消息。 此枚举指定的处理阶段<xref:System.Web.Services.Protocols.SoapMessage>。
+ASP.NET 提供使用 SOAP 调用 Web 服务的扩展性机制。 扩展性机制围绕<xref:System.Web.Services.Protocols.SoapExtension> , 可以在客户端或服务器上的消息处理中的特定阶段检查或修改消息。 此枚举指定的处理阶段<xref:System.Web.Services.Protocols.SoapMessage>。
 
-下表显示在 SOAP 客户端和服务器处理期间发生的每个阶段时。
+下表显示了在 SOAP 客户端和服务器处理期间每个阶段发生的时间。
 
-|`SoapMessageStage`|期间<xref:System.Web.Services.Protocols.SoapClientMessage>处理|期间<xref:System.Web.Services.Protocols.SoapServerMessage>处理|
+|`SoapMessageStage`|处理<xref:System.Web.Services.Protocols.SoapClientMessage>过程中|处理<xref:System.Web.Services.Protocols.SoapServerMessage>过程中|
 |---|---|---|
-|`AfterDeserialize`|之后包含来自 XML Web 服务方法调用的响应的 SOAP 消息反序列化到对象，但在客户端接收的反序列化的结果之前发生。|包含表示 XML Web 服务方法调用的 SOAP 消息的网络请求反序列化为一个对象，但在该方法之前调用对象，表示 XML Web 服务方法之后发生。|
-|`AfterSerialize`|客户端调用 XML Web 服务方法和参数序列化为 XML，但在 SOAP 之前包含该 XML 消息通过网络发送后发生。|XML Web 服务方法返回，并且任何返回值序列化为 XML，但在包含该 XML 的 SOAP 消息之前通过网络发送之后发生。|
-|`BeforeDeserialize`|已收到来自 XML Web 服务方法调用的网络响应，但之前包含 SOAP 响应消息反序列化为一个对象后发生。|由 Web 服务器，但在 SOAP 消息被反序列化为一个对象之前收到包含 XML Web 服务方法调用的 SOAP 消息的网络请求之后发生。| 
-|`BeforeSerialize`|客户端调用 XML Web 服务方法之后, 但在正在序列化的调用之前发生。|调用 XML Web 服务方法返回时，但之前的返回值进行序列化并通过网络发送回客户端之后发生。|
+|`AfterDeserialize`|在包含来自 XML Web service 方法调用的响应的 SOAP 消息反序列化为对象, 但在客户端收到反序列化的结果之前发生。|在包含表示 XML Web service 方法调用的 SOAP 消息的网络请求反序列化为对象之后发生, 但在调用表示 XML Web service 方法的对象上的方法之前发生。|
+|`AfterSerialize`|在客户端调用 XML Web service 方法并将参数序列化为 XML 之后但在包含 XML 的 SOAP 消息通过网络发送之前发生。|在 XML Web service 方法返回后发生, 并且所有返回值都序列化为 XML, 但在包含 XML 的 SOAP 消息通过网络发送之前。|
+|`BeforeDeserialize`|在收到来自 XML Web service 方法调用的网络响应之后、包含 SOAP 消息的响应被反序列化为对象之后发生。|当 Web 服务器收到包含 XML Web service 方法调用的 SOAP 消息的网络请求, 但在将 SOAP 消息反序列化为对象之前发生。| 
+|`BeforeSerialize`|在客户端调用 XML Web service 方法之后但在序列化调用之前发生。|在对 XML Web service 方法的调用返回之后、但在返回值被序列化并通过网络发送回客户端之前发生。|
 
 ## Examples  
 
-下面的示例是可实现的 SOAP 扩展的片段<xref:System.Web.Services.Protocols.SoapExtension.ProcessMessage%2A>方法。 内<xref:System.Web.Services.Protocols.SoapExtension.ProcessMessage%2A>方法中，处理<xref:System.Web.Services.Protocols.SoapMessage>处理特定于<xref:System.Web.Services.Protocols.SoapMessageStage>。  
+下面的示例是 SOAP 扩展的片段, 它实现<xref:System.Web.Services.Protocols.SoapExtension.ProcessMessage%2A>方法。 在方法中, 处理<xref:System.Web.Services.Protocols.SoapMessage>是特定于的<xref:System.Web.Services.Protocols.SoapMessageStage>。 <xref:System.Web.Services.Protocols.SoapExtension.ProcessMessage%2A>  
   
  [!code-cpp[SoapMessageState#1](~/samples/snippets/cpp/VS_Snippets_Remoting/SoapMessageState/CPP/SoapMessageState.cpp#1)]
  [!code-csharp[SoapMessageState#1](~/samples/snippets/csharp/VS_Snippets_Remoting/SoapMessageState/CS/soapmessagestate.cs#1)]

@@ -1,5 +1,5 @@
 <Type Name="ToolStripOverflowButton" FullName="System.Windows.Forms.ToolStripOverflowButton">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="daf114aa2ed5dfe8b0c94ba48260723966cf9242" /><Meta Name="ms.sourcegitcommit" Value="f9e71795ba0f9c2dfaa74bec233343ed0f3ffd99" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/15/2019" /><Meta Name="ms.locfileid" Value="57923337" /></Metadata><TypeSignature Language="C#" Value="public class ToolStripOverflowButton : System.Windows.Forms.ToolStripDropDownButton" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="cb848e1dc33410d29300d5e0ab559970a1a35e9e" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69176880" /></Metadata><TypeSignature Language="C#" Value="public class ToolStripOverflowButton : System.Windows.Forms.ToolStripDropDownButton" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ToolStripOverflowButton extends System.Windows.Forms.ToolStripDropDownButton" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Forms.ToolStripOverflowButton" />
   <TypeSignature Language="VB.NET" Value="Public Class ToolStripOverflowButton&#xA;Inherits ToolStripDropDownButton" />
@@ -25,7 +25,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果可以在窗体上显示更多的溢出项，请使用[ToolStrip 项集合编辑器](https://msdn.microsoft.com/library/e681f3ab-94ba-4b2b-ac64-1dfad46caa25)来管理这种情况。  
+ 如果溢出项超出了窗体上可显示的数目, 请使用[ToolStrip 项集合编辑器](https://msdn.microsoft.com/library/e681f3ab-94ba-4b2b-ac64-1dfad46caa25)来管理这种情况。  
   
  ]]></format>
     </remarks>
@@ -58,14 +58,14 @@
  如果不显式调用 <xref:System.Windows.Forms.ToolStripOverflowButton.CreateAccessibilityInstance%2A> 方法，则在引用 <xref:System.Windows.Forms.Control.AccessibilityObject%2A> 属性时将会调用此方法。  
   
 > [!NOTE]
->  获取或设置<xref:System.Windows.Forms.Control.AccessibilityObject%2A>属性，必须添加对的引用`Accessibility`随一起安装的程序集[!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)]。  
+>  若要获取或设置<xref:System.Windows.Forms.Control.AccessibilityObject%2A>属性, 必须添加`Accessibility`对随[!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)]安装的程序集的引用。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何创建一个具有辅助功能的图表控件，并使用<xref:System.Windows.Forms.AccessibleObject>和<xref:System.Windows.Forms.Control.ControlAccessibleObject>类，以公开访问的信息。 控件绘制图例以及两条曲线。 `ChartControlAccessibleObject`类，该类派生自`ControlAccessibleObject`，在使用<xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>方法以提供自定义访问图表控件的信息。 因为不是实际图表图例<xref:System.Windows.Forms.Control>-基于控制，但改为绘制由图表控件，它不提供任何内置的可访问信息。 因此，`ChartControlAccessibleObject`类将重写<xref:System.Windows.Forms.AccessibleObject.GetChild%2A>方法以返回`CurveLegendAccessibleObject`，它表示每个部分的图例可访问信息。 当辅助功能的应用程序使用该控件时，该控件可以提供所需的可访问信息。  
+ 下面的代码示例演示如何创建可访问感知的图表控件, <xref:System.Windows.Forms.AccessibleObject>并使用和<xref:System.Windows.Forms.Control.ControlAccessibleObject>类公开可访问的信息。 控件将两条曲线与图例一起绘制。 <xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>从`ChartControlAccessibleObject` 派生的类在方法中用于为图表控件提供自定义的可访问信息。`ControlAccessibleObject` 因为图表图例不是实际<xref:System.Windows.Forms.Control>的控件, 而是由图表控件绘制的, 所以它不是任何内置的可访问信息。 因此, `ChartControlAccessibleObject`类`CurveLegendAccessibleObject`会<xref:System.Windows.Forms.AccessibleObject.GetChild%2A>重写方法以返回, 该方法表示图例的每个部分的可访问信息。 当可访问感知的应用程序使用此控件时, 控件可以提供必需的可访问信息。  
   
- 此代码片段演示如何重写<xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>方法。 请参阅<xref:System.Windows.Forms.AccessibleObject>完整的代码示例的类概述。  
+ 此代码摘录演示了如何<xref:System.Windows.Forms.Control.CreateAccessibilityInstance%2A>重写方法。 有关完整的代码示例, 请参阅类概述。<xref:System.Windows.Forms.AccessibleObject>  
   
  [!code-cpp[System.Windows.Forms.AccessibleObject#2](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Windows.Forms.AccessibleObject/CPP/chartcontrol.cpp#2)]
  [!code-csharp[System.Windows.Forms.AccessibleObject#2](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Windows.Forms.AccessibleObject/CS/chartcontrol.cs#2)]
@@ -153,13 +153,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法只能由公共<xref:System.ComponentModel.Component.Dispose%2A>和<xref:System.ComponentModel.Component.Finalize%2A>方法; 这些方法不直接调用此方法。 实现 dispose 模式时<xref:System.Boolean>参数的<xref:System.Windows.Forms.ToolStripOverflowButton.Dispose%2A>应按如下所示使用方法：  
+ 此方法只能由公共<xref:System.ComponentModel.Component.Dispose%2A>方法和<xref:System.ComponentModel.Component.Finalize%2A>方法调用; 不要直接调用此方法。 实现 dispose 模式时, 应使用<xref:System.Boolean> <xref:System.Windows.Forms.ToolStripOverflowButton.Dispose%2A>方法的参数, 如下所示:  
   
--   <xref:System.ComponentModel.Component.Dispose>当前对象的方法应调用<xref:System.Windows.Forms.ToolStripOverflowButton.Dispose%2A>与<xref:System.Boolean>参数设置为`true`释放托管和非托管资源。  
+-   当前对象的<xref:System.Windows.Forms.ToolStripOverflowButton.Dispose%2A> <xref:System.Boolean>方法应在参数设置为`true`的情况调用, 以释放托管资源和非托管资源。 <xref:System.ComponentModel.Component.Dispose>  
   
--   <xref:System.ComponentModel.Component.Finalize%2A>当前对象的方法应调用<xref:System.Windows.Forms.ToolStripOverflowButton.Dispose%2A>与<xref:System.Boolean>参数设置为`false`仅释放非托管的资源。  
+-   当前对象的<xref:System.Windows.Forms.ToolStripOverflowButton.Dispose%2A> <xref:System.Boolean>方法应在参数设置为`false`的情况调用, 以仅释放非托管资源。 <xref:System.ComponentModel.Component.Finalize%2A>  
   
- 有关详细信息，请参阅[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
+ 有关详细信息, 请参阅[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
   
  ]]></format>
         </remarks>
@@ -239,7 +239,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Windows.Forms.ToolStripOverflowButton.OnPaint%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
