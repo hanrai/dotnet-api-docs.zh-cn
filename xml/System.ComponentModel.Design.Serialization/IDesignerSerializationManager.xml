@@ -1,5 +1,5 @@
 <Type Name="IDesignerSerializationManager" FullName="System.ComponentModel.Design.Serialization.IDesignerSerializationManager">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="75b6edbd5948705f247f71c9dfc01b0aeddc3edf" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63903696" /></Metadata><TypeSignature Language="C#" Value="public interface IDesignerSerializationManager : IServiceProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0990189131b4a8327f8969b14f8778dfa0e1c7c3" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69331044" /></Metadata><TypeSignature Language="C#" Value="public interface IDesignerSerializationManager : IServiceProvider" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDesignerSerializationManager implements class System.IServiceProvider" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />
   <TypeSignature Language="VB.NET" Value="Public Interface IDesignerSerializationManager&#xA;Implements IServiceProvider" />
@@ -33,7 +33,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设计器可以利用<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager>访问服务可用于管理设计时序列化进程。 例如，实现设计器序列化管理器的类可以使用此接口来创建对象、 查找类型、 标识对象和自定义特定类型的序列化。  
+ 设计器可以使用<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager>来访问可用于管理设计时序列化进程的服务。 例如, 实现设计器序列化管理器的类可以使用此接口来创建对象、查找类型、标识对象并自定义特定类型的序列化。  
   
    
   
@@ -128,7 +128,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此存储区域到序列化程序提供的对象上下文信息的通信。 正在序列化的对象的上下文信息可以存储和访问通过此<xref:System.ComponentModel.Design.Serialization.ContextStack>。  
+ 此存储区域提供对象上下文信息到序列化程序的通信。 可以通过此<xref:System.ComponentModel.Design.Serialization.ContextStack>存储和访问有关要序列化的对象的上下文信息。  
   
  ]]></format>
         </remarks>
@@ -178,7 +178,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对象实现<xref:System.ComponentModel.IComponent>如果添加到设计时容器`addToContainer`参数是`true`。  
+ 如果参数为<xref:System.ComponentModel.IComponent> ,`true`则实现的对象将添加到设计时容器中。 `addToContainer`  
   
  ]]></format>
         </remarks>
@@ -223,7 +223,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 要检索的对象的名称必须通过调用之前设置<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.CreateInstance%2A>。  
+ 要检索的对象的名称必须已通过以前对的调用<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.CreateInstance%2A>进行了设置。  
   
  ]]></format>
         </remarks>
@@ -380,11 +380,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性可包含空集合。 序列化程序也不应假定存在这样的属性。 在派生的类或实现<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager>定义此处公开的属性集。  
+ 此属性可包含空集合。 序列化程序不应假定存在此类属性。 的<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager>派生类或实现定义了此处公开的属性集。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>可以通过用户代码填充此属性。 它可能足以调用<see cref="M:System.ComponentModel.TypeDescriptor.GetProperties(System.Type)" />的<see cref="T:System.ComponentModel.TypeDescriptor" />来填充此集合。 如果不存在任何自定义属性，序列化管理器必须返回一个空集合。</para></block>
+        <block subset="none" type="overrides"><para>用户代码可以填充此属性。 可能足以调用<see cref="M:System.ComponentModel.TypeDescriptor.GetProperties(System.Type)" /> <see cref="T:System.ComponentModel.TypeDescriptor" />来填充此集合。 如果不存在任何自定义属性, 则序列化管理器必须返回一个空集合。</para></block>
       </Docs>
     </Member>
     <Member MemberName="RemoveSerializationProvider">
@@ -462,10 +462,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 序列化管理器是否支持多个错误记录在其实现<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.ReportError%2A>，它可以存储将来的报表位置中一次显示所有遇到的错误的错误的信息对象。 如果此方法将存储在多个错误，可以在调用此方法后继续序列化。 如果此方法不支持日志记录多个错误，此方法应引发异常，这将中止序列化。  
+ 如果序列化管理器支持在其实现<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.ReportError%2A>中记录多个错误, 则可以将错误信息对象存储在以后显示的报表中, 该报表中可以同时显示所有错误。 如果此方法存储多个错误, 则序列化可在调用此方法后继续。 如果此方法不支持记录多个错误, 则此方法应引发异常, 该异常会中止序列化。  
   
 > [!NOTE]
->  序列化管理器应永远不会引发异常的序列化期间遇到的错误。 它应引发反序列化期间的异常。 否则，用户会变得混淆，因为保存文档应永远不会失败。  
+>  序列化管理器不应为在序列化过程中遇到的错误引发异常。 它应仅在反序列化过程中引发异常。 否则, 用户会感到困惑, 因为保存文档永远不会失败。  
   
  ]]></format>
         </remarks>
@@ -547,9 +547,9 @@
 ## Remarks  
  在序列化或反序列化完成时引发该事件。  
   
- 通常情况下，序列化代码被编写为发出序列化数据，并且通常不要求与状态相关的检查和处理。 如果有必要在整个序列化过程中保留状态数据，则可以通过序列化程序设置并访问这些数据，序列化程序可侦听 <xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SerializationComplete> 事件，并在序列化之后清除这些数据。 因为序列化期间，可以重复使用序列化程序和剩余的状态数据或打开的流可能不正确，可能必须序列化之后还原正确的状态。  
+ 通常情况下，序列化代码被编写为发出序列化数据，并且通常不要求与状态相关的检查和处理。 如果有必要在整个序列化过程中保留状态数据，则可以通过序列化程序设置并访问这些数据，序列化程序可侦听 <xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SerializationComplete> 事件，并在序列化之后清除这些数据。 序列化后还原正确的状态可能很重要, 因为序列化程序可以在序列化过程中重复使用, 并且遗留的状态数据或打开的流可能不正确。  
   
- 例如，如果序列化程序需要写入到另一个文件，如资源文件是低效的设计完成后关闭该文件的序列化程序。 序列化对象图通常需要多个序列化程序。 将打开和关闭次数多的资源文件。 相反，资源文件可以序列化结束时通过关闭侦听到的对象<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SerializationComplete>事件。  
+ 例如, 如果序列化程序需要写入另一个文件 (如资源文件), 则将序列化程序设计为在完成后关闭文件是低效的。 序列化对象图通常需要多个序列化程序。 资源文件将被打开并关闭多次。 而是可以在序列化结束时, 通过侦听<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SerializationComplete>事件的对象关闭资源文件。  
   
  ]]></format>
         </remarks>
@@ -595,7 +595,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 需要创建和然后命名对象的实例而无需使用时，此方法很有用<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.CreateInstance%2A>。 如果试图重命名现有对象或者试图为新对象指定一个已被使用的名称，则将引发异常。  
+ 如果需要在不使用<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.CreateInstance%2A>的情况下创建和命名对象实例, 则此方法很有用。 如果试图重命名现有对象或者试图为新对象指定一个已被使用的名称，则将引发异常。  
   
  ]]></format>
         </remarks>

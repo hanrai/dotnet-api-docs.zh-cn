@@ -1,5 +1,5 @@
 <Type Name="IBufferWriter&lt;T&gt;" FullName="System.Buffers.IBufferWriter&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="359ec089f0197c9d6a7bff0677844323bd2fbddd" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63913633" /></Metadata><TypeSignature Language="C#" Value="public interface IBufferWriter&lt;T&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d652e388e680187d6b3ba95ec73275e726e0cc2d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69342431" /></Metadata><TypeSignature Language="C#" Value="public interface IBufferWriter&lt;T&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IBufferWriter`1&lt;T&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Buffers.IBufferWriter`1" />
   <TypeSignature Language="VB.NET" Value="Public Interface IBufferWriter(Of T)" />
@@ -20,7 +20,7 @@
   </TypeParameters>
   <Interfaces />
   <Docs>
-    <typeparam name="T">中的项的类型<see cref="T:System.Buffers.IBufferWriter`1" />。</typeparam>
+    <typeparam name="T">中项的类型<see cref="T:System.Buffers.IBufferWriter`1" />。</typeparam>
     <summary>表示可以向其中写入 <typeparamref name="T" /> 数据的输出接收器。</summary>
     <remarks>To be added.</remarks>
   </Docs>
@@ -52,7 +52,7 @@
       <Docs>
         <param name="count">写入 <see cref="T:System.Span`1" /> 或 <see cref="T:System.Memory`1" /> 的数据项数量。</param>
         <summary>通知 <see cref="T:System.Buffers.IBufferWriter`1" />，已向输出 <see cref="T:System.Span`1" /> 或 <see cref="T:System.Memory`1" /> 写入 <paramref name="count" /> 数据项。</summary>
-        <remarks>你必须在调用预付款以继续编写更多的数据; 后请求新的缓冲区无法写入以前获取的缓冲区。</remarks>
+        <remarks>在提前调用以继续写入更多数据时, 必须请求一个新的缓冲区;不能写入先前获得的缓冲区。</remarks>
       </Docs>
     </Member>
     <Member MemberName="GetMemory">
@@ -85,9 +85,9 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-没有连续调用将返回同一缓冲区或相同大小的缓冲区能保证。
+不保证连续调用将返回相同的缓冲区或相同大小的缓冲区。
 
-这必须永远不会返回<xref:System.Span%601.Empty?displayProperty=nameWithType>，但它可以引发如果请求的缓冲区大小不可用。
+这绝不能返回<xref:System.Span%601.Empty?displayProperty=nameWithType>, 但如果请求的缓冲区大小不可用, 则可能会引发此异常。
 
 必须在调用 `Advance` 之后请求新的缓冲区，才能继续写入更多数据；无法写入到之前获取的缓冲区。
 
@@ -126,9 +126,9 @@
         <remarks>
           <format type="text/markdown"><![CDATA[
   
-没有连续调用将返回同一缓冲区或相同大小的缓冲区能保证。
+不保证连续调用将返回相同的缓冲区或相同大小的缓冲区。
 
-此方法必须永远不会返回<xref:System.Span%601.Empty?displayProperty=nameWithType>，但它可以引发如果请求的缓冲区大小不可用。
+此方法决不能返回<xref:System.Span%601.Empty?displayProperty=nameWithType>, 但如果请求的缓冲区大小不可用, 则可能会引发此方法。
 
 必须在调用 `Advance` 之后请求新的缓冲区，才能继续写入更多数据；无法写入到之前获取的缓冲区。
          ]]></format>

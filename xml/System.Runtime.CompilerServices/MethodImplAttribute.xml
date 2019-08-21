@@ -1,5 +1,5 @@
 <Type Name="MethodImplAttribute" FullName="System.Runtime.CompilerServices.MethodImplAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="83707287a033632eb693d511cbec53ff8529de8f" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58731938" /></Metadata><TypeSignature Language="C#" Value="public sealed class MethodImplAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="85dd80192abe3e0819860f3b43d82f5b07613680" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69273760" /></Metadata><TypeSignature Language="C#" Value="public sealed class MethodImplAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit MethodImplAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.CompilerServices.MethodImplAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class MethodImplAttribute&#xA;Inherits Attribute" />
@@ -49,17 +49,17 @@
 ## Remarks  
  可以将此特性应用于方法或构造函数。  
   
- 此属性允许您自定义的方法或构造函数通过提供应用的配置<xref:System.Runtime.CompilerServices.MethodImplOptions>给其类构造函数的值。 成员<xref:System.Runtime.CompilerServices.MethodImplOptions>枚举对应于位域`CorMethodImpl`元数据表。 这意味着，属性的信息不能检索在运行时通过调用<xref:System.Reflection.MemberInfo.GetCustomAttributes%2A?displayProperty=nameWithType>方法; 相反，通过调用检索`MethodInfo.GetMethodImplementationFlags`或`ConstructorInfo.GetMethodImplementationFlags`方法。  
+ 此特性使你可以通过向其类构造函数提供<xref:System.Runtime.CompilerServices.MethodImplOptions>值来自定义它所应用于的方法或构造函数的配置。 <xref:System.Runtime.CompilerServices.MethodImplOptions>枚举的成员对应于`CorMethodImpl`元数据表中的位域。 这意味着, 无法在运行时通过调用<xref:System.Reflection.MemberInfo.GetCustomAttributes%2A?displayProperty=nameWithType>方法来检索有关属性的信息; 而是通过调用`MethodInfo.GetMethodImplementationFlags`或`ConstructorInfo.GetMethodImplementationFlags`方法来检索。  
   
    
   
 ## Examples  
- 下面的示例应用<xref:System.Runtime.CompilerServices.MethodImplAttribute>到`GetCalendarName`方法，以确保它不是内联在运行时由实时 (JIT) 编译器。  
+ 下面的示例将应用<xref:System.Runtime.CompilerServices.MethodImplAttribute> `GetCalendarName`到方法, 以确保它不会在运行时由实时 (JIT) 编译器内联。  
   
  [!code-csharp[System.Runtime.CompilerServices.MethodImplAttribute#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.runtime.compilerservices.methodimplattribute/cs/methodimplattribute1.cs#1)]
  [!code-vb[System.Runtime.CompilerServices.MethodImplAttribute#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.runtime.compilerservices.methodimplattribute/vb/methodimplattribute1.vb#1)]  
   
- 下面的示例然后调用`MethodInfo.GetMethodImplementationFlags`方法，以确定哪些标志设置为`GetCalendarName`方法。 它还演示了此信息不会检索由<xref:System.Reflection.MemberInfo.GetCustomAttributes%2A?displayProperty=nameWithType>方法。  
+ 然后, 下面的示例调用`MethodInfo.GetMethodImplementationFlags`方法以确定`GetCalendarName`为方法设置了哪些标志。 它还演示了<xref:System.Reflection.MemberInfo.GetCustomAttributes%2A?displayProperty=nameWithType>方法不会检索此信息。  
   
  [!code-csharp[System.Runtime.CompilerServices.MethodImplAttribute#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.runtime.compilerservices.methodimplattribute/cs/getmethodimplattribute1.cs#2)]
  [!code-vb[System.Runtime.CompilerServices.MethodImplAttribute#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.runtime.compilerservices.methodimplattribute/vb/getmethodimplattribute1.vb#2)]  
@@ -181,7 +181,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数设置`CorMethodImpl`位元数据表中的字段。 可以通过调用在运行时检索这些标志的值`MethodInfo.GetMethodImplementationFlags`或`ConstructorInfo.GetMethodImplementationFlags`方法。  
+ 此构造函数设置`CorMethodImpl`元数据表中的位域。 可以在运行时通过调用`MethodInfo.GetMethodImplementationFlags`或`ConstructorInfo.GetMethodImplementationFlags`方法来检索这些标志的值。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="IMemoryOwner&lt;T&gt;" FullName="System.Buffers.IMemoryOwner&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c65114bc31d595b318fd8b25e11e92583234d593" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63913644" /></Metadata><TypeSignature Language="C#" Value="public interface IMemoryOwner&lt;T&gt; : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f62bb14ced0459c31e83f6244e48dc89a2305565" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69342331" /></Metadata><TypeSignature Language="C#" Value="public interface IMemoryOwner&lt;T&gt; : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IMemoryOwner`1&lt;T&gt; implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Buffers.IMemoryOwner`1" />
   <TypeSignature Language="VB.NET" Value="Public Interface IMemoryOwner(Of T)&#xA;Implements IDisposable" />
@@ -25,22 +25,22 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <typeparam name="T">要在内存中存储的元素类型。</typeparam>
+    <typeparam name="T">要存储在内存中的元素的类型。</typeparam>
     <summary>标识负责适当地释放基础内存的内存块所有者。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
 
-`IMemoryOwner<T>`接口用于定义所有者来负责的生存期管理的<xref:System.Memory%601>缓冲区。 实例`IMemoryOwner<T>`接口将返回由<xref:System.Buffers.MemoryPool%601.Rent%2A?displayProperty=nameWithType>方法。 
+接口用于定义负责<xref:System.Memory%601>缓冲区生存期管理的所有者。 `IMemoryOwner<T>` `IMemoryOwner<T>`接口的实例<xref:System.Buffers.MemoryPool%601.Rent%2A?displayProperty=nameWithType>由方法返回。 
 
-缓冲区可以有多个使用者，而它可以在任何给定时间只能有单个所有者。 所有者可以：
+虽然一个缓冲区可以有多个使用者, 但在任何给定时间只能有一个所有者。 所有者可以:
 
-- 直接或通过调用工厂方法创建缓冲区。
+- 直接或通过调用工厂方法来创建缓冲区。
 
-- 所有权转移给另一个使用者。 在这种情况下，以前的所有者不应再使用缓冲区。
+- 将所有权转移到另一个使用者。 在这种情况下, 前一个所有者不应再使用该缓冲区。
 
-- 不再使用时，请销毁缓冲区。
+- 当缓冲区不再使用时将其销毁。
 
-因为`IMemoryOwner<T>`对象将实现<xref:System.IDisposable>接口，应调用其<xref:System.IDisposable.Dispose%2A>方法只在不再需要的内存缓冲区，并已销毁它。 您应该*不*释放`IMemoryOwner<T>`对象对其内存的引用时可用。 这意味着，在其中的类型`IMemoryOwner<T>`声明不应具有<xref:System.Object.Finalize%2A>方法。
+由于对象实现接口, 因此, 只有在不再需要<xref:System.IDisposable.Dispose%2A>内存缓冲区并销毁它后, 才应调用其方法。 <xref:System.IDisposable> `IMemoryOwner<T>` 当`IMemoryOwner<T>`对象的内存可用时,*不*应释放对象。 这意味着声明的类型`IMemoryOwner<T>`不应<xref:System.Object.Finalize%2A>具有方法。
 
    ]]></format>
     </remarks>
