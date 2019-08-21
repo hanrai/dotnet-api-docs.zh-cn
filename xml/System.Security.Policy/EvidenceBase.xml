@@ -1,5 +1,5 @@
 <Type Name="EvidenceBase" FullName="System.Security.Policy.EvidenceBase">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7144b47173e5eec12841a5a140283c35b7ccbcf2" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56761957" /></Metadata><TypeSignature Language="C#" Value="public abstract class EvidenceBase" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bf5d75307db62d10c71ec27abd54a424b42a6b4a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69163160" /></Metadata><TypeSignature Language="C#" Value="public abstract class EvidenceBase" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract serializable beforefieldinit EvidenceBase extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Security.Policy.EvidenceBase" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class EvidenceBase" />
@@ -34,13 +34,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 之前[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]，几乎所有对象都用作证据对象，如果希望将它应用作为证据的托管代码。 例如，某些.NET Framework 代码识别<xref:System.Uri?displayProperty=nameWithType>作为证据的对象。 公共语言运行时 (CLR) 将证据对象视为<xref:System.Object?displayProperty=nameWithType>引用，并且未对其应用任何类型的安全。  
+ 在[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]之前, 如果托管代码要将其应用为证据, 几乎任何对象都可以用作证据对象。 例如, 某些 .NET Framework 代码被识别<xref:System.Uri?displayProperty=nameWithType>为证据的对象。 公共语言运行时 (CLR) 将证据对象<xref:System.Object?displayProperty=nameWithType>视为引用, 但没有将任何类型安全应用于它们。  
   
- 由于没有在其类型可以使用作为证据对象的隐式限制，这会显示问题。 具体而言，任何作为证据的对象必须是可序列化，并且不能`null`。 如果不满足这些要求，CLR 将已执行所需的这些假设一个操作时引发了异常。  
+ 这会出现一个问题, 因为存在对哪些类型可用作证据对象的隐式限制。 具体而言, 用作证据的任何对象都必须是可序列化的`null`, 并且不能为。 如果未满足这些要求, 则只要执行了要求其中一个假设的操作, CLR 就会引发异常。  
   
- <xref:System.Security.Policy.EvidenceBase>中引入了类，该类的所有证据对象必须都派生自，[!INCLUDE[net_v40_short](~/includes/net-v40-short-md.md)]启用约束可用作证据的对象的类型并提供的功能添加到所有证据的新功能和要求对象。 <xref:System.Security.Policy.EvidenceBase>类确保证据对象是可序列化时实例化。 此外，它使新的证据要求创建通过将新的默认实现添加到类的基类。  
+ 中引入了所有证据对象均必须派生自的<xref:System.Security.Policy.EvidenceBase>类,以启用可用作证据的对象类型的约束并提供向所有证据添加新功能[!INCLUDE[net_v40_short](~/includes/net-v40-short-md.md)]和要求的功能对象. <xref:System.Security.Policy.EvidenceBase>类可确保在实例化时证据对象可序列化。 此外, 它还可以通过向基类添加新的默认实现来创建新的证据要求。  
   
- 由 CLR，因为在进行了更新证据对象的所有类型[!INCLUDE[net_v40_short](~/includes/net-v40-short-md.md)]为派生<xref:System.Security.Policy.EvidenceBase>。  
+ CLR 用作证据对象的所有类型都已在中[!INCLUDE[net_v40_short](~/includes/net-v40-short-md.md)]更新, 以派生自。 <xref:System.Security.Policy.EvidenceBase>  
   
  ]]></format>
     </remarks>
@@ -71,7 +71,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 要用作证据的所有对象必须都可序列化。 必须将标记为可序列化，任何派生的类型，因为可序列化属性不会传播到派生类。  
+ 要用作证据的所有对象必须是可序列化的。 您必须将任何派生类型标记为可序列化, 因为 serializable 特性不会传播到派生类。  
   
  ]]></format>
         </remarks>
@@ -113,7 +113,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 重复的副本是在集合中包括所有证据对象的完整副本。  
+ 重复复制是一个完整的副本, 其中包含集合中的所有证据对象。  
   
  ]]></format>
         </remarks>

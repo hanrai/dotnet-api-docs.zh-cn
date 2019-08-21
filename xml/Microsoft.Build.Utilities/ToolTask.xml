@@ -1,5 +1,5 @@
 <Type Name="ToolTask" FullName="Microsoft.Build.Utilities.ToolTask">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f5ec29399f16b5795acd11cdc25e7862919a9699" /><Meta Name="ms.sourcegitcommit" Value="4ee26ac79338b0bf99fa1e0913e8a06b21994d8e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/26/2019" /><Meta Name="ms.locfileid" Value="58460105" /></Metadata><TypeSignature Language="C#" Value="public abstract class ToolTask : Microsoft.Build.Utilities.Task, Microsoft.Build.Framework.ICancelableTask" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9a2d5eef006b42d1ecc9ac3a6d01dc66db65050f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69298387" /></Metadata><TypeSignature Language="C#" Value="public abstract class ToolTask : Microsoft.Build.Utilities.Task, Microsoft.Build.Framework.ICancelableTask" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ToolTask extends Microsoft.Build.Utilities.Task implements class Microsoft.Build.Framework.ICancelableTask, class Microsoft.Build.Framework.ITask" />
   <TypeSignature Language="DocId" Value="T:Microsoft.Build.Utilities.ToolTask" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ToolTask&#xA;Inherits Task&#xA;Implements ICancelableTask" />
@@ -34,12 +34,12 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此抽象类提供的方法和属性的包装命令行工具的任务的默认实现。  
+ 此抽象类为包装命令行工具的任务的方法和属性提供了默认实现。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:Microsoft.Build.Utilities.ToolTask>运行一次[Ilasm.exe （IL 汇编程序）](~/docs/framework/tools/ilasm-exe-il-assembler.md)。 <xref:Microsoft.Build.Utilities.CommandLineBuilder>， <xref:Microsoft.Build.Utilities.ToolLocationHelper>，和<xref:Microsoft.Build.Utilities.TaskLoggingHelper>类用于生成所需运行任务的信息。  
+ 下面的示例创建一个<xref:Microsoft.Build.Utilities.ToolTask>运行[Ilasm (IL 汇编程序)](~/docs/framework/tools/ilasm-exe-il-assembler.md)的。 <xref:Microsoft.Build.Utilities.CommandLineBuilder>、和类<xref:Microsoft.Build.Utilities.TaskLoggingHelper>用于生成运行任务所需的信息。 <xref:Microsoft.Build.Utilities.ToolLocationHelper>  
   
  [!code-csharp[msbuild_ToolTask#1](~/samples/snippets/csharp/VS_Snippets_Misc/msbuild_ToolTask/CS/ILAsm.cs#1)]
  [!code-vb[msbuild_ToolTask#1](~/samples/snippets/visualbasic/VS_Snippets_Misc/msbuild_ToolTask/VB/ILAsm.vb#1)]  
@@ -229,7 +229,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果出于任何原因失败的删除操作 （例如，如果文件被锁定的防病毒软件），则此方法记录一条警告，而不是引发异常，这会导致生成失败。  
+ 如果删除操作由于任何原因 (例如, 如果文件被防病毒软件锁定) 而失败, 则此方法将记录警告, 而不是引发异常, 这会导致生成失败。  
   
  ]]></format>
         </remarks>
@@ -260,12 +260,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置指示是否关闭命令行回显的值。</summary>
-        <value><see langword="true" /> 如果命令行回显已关闭;否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果命令行回显已关闭, 则为;否则为<see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- MSBuild 将关闭命令行回显通过 cmd.exe 命令行上传递 /Q。  
+ MSBuild 通过将/Q 传递到 cmd.exe 命令行来关闭命令行回显。  
   
  ]]></format>
         </remarks>
@@ -301,12 +301,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取一组环境变量名称-值对。 可在自定义任务类（从 ToolTask 派生）中重写以返回一组新的或更改的环境变量，从而创建关联工具的执行上下文。</summary>
-        <value>一组环境变量。 每个字典键是要重写，环境变量的名称，而字典值是要为该环境变量设置的值。 EnvironmentOverride 的默认实现返回<see langword="null" />。</value>
+        <value>一组环境变量。 每个字典键均为要重写的环境变量的名称, 而字典值是要为该环境变量设置的值。 EnvironmentOverride 的默认实现返回<see langword="null" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ExecuteTool 方法将这些环境变量传递给该工具在其中执行的过程的 StartInfo。 EnvironmentOverride 字典中不包含任何环境变量都继承自 ExecuteTool 方法在其中执行的过程。  
+ ExecuteTool 方法将这些环境变量传递给执行该工具的进程的 StartInfo。 不包含在 EnvironmentOverride 字典中的任何环境变量都是从执行 ExecuteTool 方法的进程继承而来的。  
   
    
   
@@ -371,7 +371,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此而不 EnvironmentOverride 时 StringDictionary，这不能设置从 MSBuild 项目。  
+ 使用它 (而不是 EnvironmentOverride), 因为它采用了 StringDictionary, 而不能从 MSBuild 项目中进行设置。  
   
  ]]></format>
         </remarks>
@@ -515,12 +515,12 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法之后调用<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A>和<xref:Microsoft.Build.Utilities.ToolTask.SkipTaskExecution%2A>。  
+ 此方法在和<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A> <xref:Microsoft.Build.Utilities.ToolTask.SkipTaskExecution%2A>后调用。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:Microsoft.Build.Utilities.ToolTask>运行一次[Ilasm.exe （IL 汇编程序）](~/docs/framework/tools/ilasm-exe-il-assembler.md)。 <xref:Microsoft.Build.Utilities.CommandLineBuilder>， <xref:Microsoft.Build.Utilities.ToolLocationHelper>，和<xref:Microsoft.Build.Utilities.TaskLoggingHelper>类用于生成所需运行任务的信息。  
+ 下面的示例创建一个<xref:Microsoft.Build.Utilities.ToolTask>运行[Ilasm (IL 汇编程序)](~/docs/framework/tools/ilasm-exe-il-assembler.md)的。 <xref:Microsoft.Build.Utilities.CommandLineBuilder>、和类<xref:Microsoft.Build.Utilities.TaskLoggingHelper>用于生成运行任务所需的信息。 <xref:Microsoft.Build.Utilities.ToolLocationHelper>  
   
  [!code-csharp[msbuild_ToolTask#1](~/samples/snippets/csharp/VS_Snippets_Misc/msbuild_ToolTask/CS/ILAsm.cs#1)]
  [!code-vb[msbuild_ToolTask#1](~/samples/snippets/visualbasic/VS_Snippets_Misc/msbuild_ToolTask/VB/ILAsm.vb#1)]  
@@ -560,12 +560,12 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法返回的值<xref:Microsoft.Build.Utilities.ToolTask.ToolName%2A>如果该工具位于系统路径中的属性。  
+ 如果该工具位于系统路径中<xref:Microsoft.Build.Utilities.ToolTask.ToolName%2A> , 此方法将返回属性的值。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:Microsoft.Build.Utilities.ToolTask>运行一次[Ilasm.exe （IL 汇编程序）](~/docs/framework/tools/ilasm-exe-il-assembler.md)。 <xref:Microsoft.Build.Utilities.CommandLineBuilder>， <xref:Microsoft.Build.Utilities.ToolLocationHelper>，和<xref:Microsoft.Build.Utilities.TaskLoggingHelper>类用于生成所需运行任务的信息。  
+ 下面的示例创建一个<xref:Microsoft.Build.Utilities.ToolTask>运行[Ilasm (IL 汇编程序)](~/docs/framework/tools/ilasm-exe-il-assembler.md)的。 <xref:Microsoft.Build.Utilities.CommandLineBuilder>、和类<xref:Microsoft.Build.Utilities.TaskLoggingHelper>用于生成运行任务所需的信息。 <xref:Microsoft.Build.Utilities.ToolLocationHelper>  
   
  [!code-csharp[msbuild_ToolTask#1](~/samples/snippets/csharp/VS_Snippets_Misc/msbuild_ToolTask/CS/ILAsm.cs#1)]
  [!code-vb[msbuild_ToolTask#1](~/samples/snippets/visualbasic/VS_Snippets_Misc/msbuild_ToolTask/VB/ILAsm.vb#1)]  
@@ -605,7 +605,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法之后调用<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A>和<xref:Microsoft.Build.Utilities.ToolTask.SkipTaskExecution%2A>。  
+ 此方法在和<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A> <xref:Microsoft.Build.Utilities.ToolTask.SkipTaskExecution%2A>后调用。  
   
  ]]></format>
         </remarks>
@@ -674,9 +674,9 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 只有当调用此方法<xref:Microsoft.Build.Utilities.ToolTask.GenerateResponseFileCommands%2A>返回一个非空字符串值。  
+ 仅当<xref:Microsoft.Build.Utilities.ToolTask.GenerateResponseFileCommands%2A>返回非空字符串值时, 才会调用此方法。  
   
- 此方法之后调用<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A>，<xref:Microsoft.Build.Utilities.ToolTask.SkipTaskExecution%2A>和<xref:Microsoft.Build.Utilities.ToolTask.GenerateResponseFileCommands%2A>。  
+ 此方法在<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A> <xref:Microsoft.Build.Utilities.ToolTask.SkipTaskExecution%2A>和<xref:Microsoft.Build.Utilities.ToolTask.GenerateResponseFileCommands%2A>后调用。  
   
  ]]></format>
         </remarks>
@@ -713,7 +713,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这是一种方法，而不是属性，以便派生的类 （如 Exec) 可以选择公开一个公共的 WorkingDirectory 属性，并可能会造成混淆，使其具有两个属性。  
+ 这是一个方法, 而不是一个属性, 因此派生类 (如 Exec) 可以选择公开一个公共 WorkingDirectory 属性, 这会使具有两个属性的混乱。  
   
  ]]></format>
         </remarks>
@@ -750,7 +750,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 仅当可执行文件返回非零退出代码，调用此方法。  
+ 仅当可执行文件返回非零退出代码时, 才调用此方法。  
   
  此方法的返回值用作任务的返回值。  
   
@@ -971,7 +971,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 编码是<xref:System.Text.Encoding.UTF8%2A>默认情况下。  
+ 默认情况下<xref:System.Text.Encoding.UTF8%2A> , 编码为。  
   
  ]]></format>
         </remarks>
@@ -1033,7 +1033,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法之后调用<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A>。  
+ 此方法在之后<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A>调用。  
   
  ]]></format>
         </remarks>
@@ -1069,7 +1069,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认情况下，基于控制台的输出使用当前系统 OEM 代码页。 请注意，我们不应使用-通过将 Console.OutputEncoding 此处由于我们运行的进程实际上没有太大关系与我们的控制台窗口 （也还-通过将 Console.OutputEncoding 不会返回的 OEM 代码页，如果运行的应用程序承载 MSBuild 不是一个控制台应用程序）。  
+ 默认情况下, 基于控制台的输出使用当前系统 OEM 代码页。 请注意, 我们不应在此处使用 OutputEncoding, 因为我们运行的进程与控制台窗口 (和 Console) 实际上并无太大的用处。如果承载 MSBuild 的正在运行的应用程序不是控制台, 则 OutputEncoding 不会返回 OEM 代码页应用程序)。  
   
  ]]></format>
         </remarks>
@@ -1130,7 +1130,7 @@ abstract class CustomToolTask : ToolTask
       </ReturnValue>
       <Docs>
         <summary>获取记录标准错误消息的实际重要性。</summary>
-        <value>将标准错误记录消息的实际重要性。</value>
+        <value>记录标准错误消息的实际重要性。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1193,7 +1193,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认情况下，基于控制台的输出使用当前系统 OEM 代码页。 请注意，我们不应使用-通过将 Console.OutputEncoding 此处由于我们运行的进程实际上没有太大关系与我们的控制台窗口 （也还-通过将 Console.OutputEncoding 不会返回的 OEM 代码页，如果运行的应用程序承载 MSBuild 不是一个控制台应用程序）。  
+ 默认情况下, 基于控制台的输出使用当前系统 OEM 代码页。 请注意, 我们不应在此处使用 OutputEncoding, 因为我们运行的进程与控制台窗口 (和 Console) 实际上并无太大的用处。如果承载 MSBuild 的正在运行的应用程序不是控制台, 则 OutputEncoding 不会返回 OEM 代码页应用程序)。  
   
  ]]></format>
         </remarks>
@@ -1254,7 +1254,7 @@ abstract class CustomToolTask : ToolTask
       </ReturnValue>
       <Docs>
         <summary>获取记录标准输出消息的实际重要性。</summary>
-        <value>将在其中记录标准输出消息的实际重要性。</value>
+        <value>记录标准输出消息的实际重要性。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1439,7 +1439,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例创建<xref:Microsoft.Build.Utilities.ToolTask>运行一次[Ilasm.exe （IL 汇编程序）](~/docs/framework/tools/ilasm-exe-il-assembler.md)。 <xref:Microsoft.Build.Utilities.CommandLineBuilder>， <xref:Microsoft.Build.Utilities.ToolLocationHelper>，和<xref:Microsoft.Build.Utilities.TaskLoggingHelper>类用于生成所需运行任务的信息。  
+ 下面的示例创建一个<xref:Microsoft.Build.Utilities.ToolTask>运行[Ilasm (IL 汇编程序)](~/docs/framework/tools/ilasm-exe-il-assembler.md)的。 <xref:Microsoft.Build.Utilities.CommandLineBuilder>、和类<xref:Microsoft.Build.Utilities.TaskLoggingHelper>用于生成运行任务所需的信息。 <xref:Microsoft.Build.Utilities.ToolLocationHelper>  
   
  [!code-csharp[msbuild_ToolTask#1](~/samples/snippets/csharp/VS_Snippets_Misc/msbuild_ToolTask/CS/ILAsm.cs#1)]
  [!code-vb[msbuild_ToolTask#1](~/samples/snippets/visualbasic/VS_Snippets_Misc/msbuild_ToolTask/VB/ILAsm.vb#1)]  
@@ -1510,7 +1510,7 @@ abstract class CustomToolTask : ToolTask
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指定工具任务是否将为命令行创建一个批处理文件并使用命令处理器执行该文件，而不是直接执行该命令。</summary>
-        <value><see langword="true" /> 如果工具任务将创建一个用于命令行批处理文件并执行，使用命令处理器;<see langword="false" />如果工具任务将直接执行命令。</value>
+        <value><see langword="true" />如果工具任务将为命令行创建一个批处理文件并使用命令处理器执行该文件, 则为; 否则为。<see langword="false" />如果工具任务将直接执行命令, 则为。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1569,7 +1569,7 @@ abstract class CustomToolTask : ToolTask
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指示在工具执行期间任务是否将生成节点。</summary>
-        <value><see langword="true" /> 如果该任务将在工具执行; 过程中产生该节点，否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果任务将在工具执行过程中产生节点, 则为;否则为<see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

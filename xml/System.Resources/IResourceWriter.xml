@@ -1,5 +1,5 @@
 <Type Name="IResourceWriter" FullName="System.Resources.IResourceWriter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4d9b11d0f18a79c4bdc2a8fde998a48f54e534b8" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58734004" /></Metadata><TypeSignature Language="C#" Value="public interface IResourceWriter : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="de744a0aebcabd9d21475adf51cd7a37b0346606" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69276032" /></Metadata><TypeSignature Language="C#" Value="public interface IResourceWriter : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IResourceWriter implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Resources.IResourceWriter" />
   <TypeSignature Language="VB.NET" Value="Public Interface IResourceWriter&#xA;Implements IDisposable" />
@@ -38,7 +38,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 资源编写器用于将资源写入到特定的文件格式中的文件。 如果你想要控制在其中写入一个资源文件 （例如，若要将资源存储在内容.txt、.resx 或二进制.resources 文件之外） 的方式，实现此接口。 否则，请使用默认值<xref:System.Resources.ResourceWriter>类，该类将资源写入到二进制.resources 文件，或<xref:System.Resources.ResXResourceWriter>类，该类将资源写入到 XML 资源 (.resx) 文件。  
+ 资源编写器用于将资源写入特定文件格式的文件。 如果要控制写入资源文件的方式 (例如, 将资源存储为 .txt、.resx 或二进制 .resources 文件以外的内容), 请实现此接口。 否则, 请使用默认<xref:System.Resources.ResourceWriter>类, 该默认类将资源写入二进制 .resources 文件<xref:System.Resources.ResXResourceWriter>或类, 后者将资源写入 XML 资源 (.resx) 文件。  
   
  ]]></format>
     </remarks>
@@ -96,7 +96,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 以前不会编写资源<xref:System.Resources.IResourceWriter.Generate%2A>调用方法。  
+ 在调用<xref:System.Resources.IResourceWriter.Generate%2A>方法之前, 不会写入资源。  
   
  ]]></format>
         </remarks>
@@ -143,10 +143,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会将资源写直到<xref:System.Resources.IResourceWriter.Generate%2A>调用方法。  
+ 在调用<xref:System.Resources.IResourceWriter.Generate%2A>方法之前, 不会写入资源。  
   
 > [!NOTE]
->  `value` 可能必须可序列化，因此可能需要提供类型转换器，具体取决于使用资源编写器。  
+>  `value`可能必须是可序列化的, 因此你可能必须提供类型转换器, 具体取决于所使用的资源编写器。  
   
  ]]></format>
         </remarks>
@@ -193,7 +193,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会将资源写直到<xref:System.Resources.IResourceWriter.Generate%2A>调用方法。  
+ 在调用<xref:System.Resources.IResourceWriter.Generate%2A>方法之前, 不会写入资源。  
   
  ]]></format>
         </remarks>
@@ -235,7 +235,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果有必要，请<xref:System.Resources.IResourceWriter.Close%2A>将调用<xref:System.Resources.IResourceWriter.Generate%2A>方法才会关闭输出到基础文件或流的资源。  
+ 如有必要<xref:System.Resources.IResourceWriter.Close%2A> , 将<xref:System.Resources.IResourceWriter.Generate%2A>调用方法, 将资源输出到基础文件或流, 然后再将其关闭。  
   
  ]]></format>
         </remarks>
@@ -276,7 +276,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Resources.IResourceWriter.Generate%2A> 不会关闭输出流的输出文件。 相反，请考虑调用<xref:System.Resources.IResourceWriter.Close%2A>方法。 <xref:System.Resources.IResourceWriter.Generate%2A> 如果想要创建一个资源文件，但不想要关闭输出流，则非常有用。 <xref:System.Resources.IResourceWriter.Generate%2A> 可以一次调用。 调用后<xref:System.Resources.IResourceWriter.Generate%2A>，则所有<xref:System.Resources.IResourceWriter>以外的其他方法<xref:System.Resources.IResourceWriter.Close%2A>将引发异常。  
+ <xref:System.Resources.IResourceWriter.Generate%2A>不会关闭输出文件或输出流。 请考虑调用<xref:System.Resources.IResourceWriter.Close%2A>方法。 <xref:System.Resources.IResourceWriter.Generate%2A>如果要创建资源文件, 但不希望关闭输出流, 则会很有用。 <xref:System.Resources.IResourceWriter.Generate%2A>只能调用一次。 调用<xref:System.Resources.IResourceWriter.Generate%2A>后, 除之外<xref:System.Resources.IResourceWriter> <xref:System.Resources.IResourceWriter.Close%2A>的所有方法都会引发异常。  
   
  ]]></format>
         </remarks>

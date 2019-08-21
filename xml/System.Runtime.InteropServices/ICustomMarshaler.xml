@@ -1,5 +1,5 @@
 <Type Name="ICustomMarshaler" FullName="System.Runtime.InteropServices.ICustomMarshaler">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="03ef26878dc74066eb80a36c6aa1a51c27cec8e3" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58711411" /></Metadata><TypeSignature Language="C#" Value="public interface ICustomMarshaler" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="13c83388836e7692ce136d212905f87ecc88668b" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69064111" /></Metadata><TypeSignature Language="C#" Value="public interface ICustomMarshaler" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ICustomMarshaler" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.ICustomMarshaler" />
   <TypeSignature Language="VB.NET" Value="Public Interface ICustomMarshaler" />
@@ -34,29 +34,29 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 封送处理程序提供的旧功能和新的接口之间的桥梁。 自定义封送处理提供以下优势：  
+ 封送拆收器在新旧接口的功能之间提供桥梁。 自定义封送具有以下优势:  
   
--   这样，客户端应用程序已设计为使用旧接口也适用于实现的新接口的服务器。  
+-   它使设计为使用旧接口的客户端应用程序也可以使用实现新接口的服务器。  
   
--   这样，客户端应用程序构建为的新界面可用于实现旧接口的服务器。  
+-   它允许生成的客户端应用程序使用新接口来处理实现旧接口的服务器。  
   
- 如果您有一个接口，这就带来了不同的封送处理行为或以其他方式公开到组件对象模型 (COM)，您可以设计而不是使用互操作封送处理程序自定义封送处理程序。 通过使用自定义封送处理程序，可以尽量减少新.NET Framework 组件和现有 COM 组件之间的区别。  
+ 如果某个接口引入了不同的封送行为, 或以不同方式向组件对象模型 (COM) 公开的接口, 则可以设计自定义封送拆收器而不是使用互操作封送拆收器。 通过使用自定义封送拆收器, 你可以最大程度地减少新 .NET Framework 组件和现有 COM 组件之间的差异。  
   
- 例如，假设您正在开发名为的托管的界面`INew`。 当此接口通过标准的 COM 可调用包装 (CCW) 公开到 COM 时，它与托管接口具有相同的方法，并使用互操作封送处理程序中内置的封送处理规则。 现在，假设已知的 COM 接口调用`IOld`已经提供了相同的功能`INew`接口。 可以通过自定义封送处理程序，提供的非托管的实现`IOld`，只需将调用委托给的托管实现`INew`接口。 因此，自定义封送处理程序的托管和非托管接口之间起到桥梁作用。  
+ 例如, 假设您正在开发一个名`INew`为的托管接口。 如果通过标准 COM 可调用包装器 (CCW) 向 COM 公开此接口, 则它具有与托管接口相同的方法, 并使用互操作封送拆收器中内置的封送规则。 现在假设所谓`IOld`的已知 COM 接口已提供与`INew`接口相同的功能。 通过设计自定义封送拆收器, 你可以提供`IOld`的非托管实现, 它只是将调用委托`INew`给接口的托管实现。 因此, 自定义封送拆收器充当托管和非托管接口之间的桥梁。  
   
 > [!NOTE]
->  当从托管代码调用到非托管代码仅支持调度的接口上时，不会调用自定义封。  
+>  从托管代码调用到仅调度接口上的非托管代码时, 不会调用自定义封送拆收器。  
   
 ## <a name="defining-the-marshaling-type"></a>定义封送处理类型  
- 您可以构建自定义封送处理程序之前，必须定义将被封送托管和非托管接口。 通常，这些接口执行相同的功能，但以不同的方式公开给托管和非托管对象。  
+ 在可以生成自定义封送拆收器之前, 必须定义将被封送的托管和非托管接口。 这些接口通常执行相同的功能, 但以不同方式向托管和非托管对象公开。  
   
- 托管的编译器会生成元数据，从托管的接口，生成的接口看上去像任何其他托管接口。 下面的示例演示一个典型的接口。  
+ 托管编译器从元数据生成托管接口, 生成的接口看起来像其他任何托管接口。 下面的示例演示一个典型接口。  
   
  [!code-cpp[System.Runtime.InteropServices.ICustomMarshaler#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.runtime.interopservices.icustommarshaler/cpp/source.cpp#1)]
  [!code-csharp[System.Runtime.InteropServices.ICustomMarshaler#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.runtime.interopservices.icustommarshaler/cs/source.cs#1)]
  [!code-vb[System.Runtime.InteropServices.ICustomMarshaler#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.runtime.interopservices.icustommarshaler/vb/source.vb#1)]  
   
- 定义在接口定义语言 (IDL) 的非托管的类型，并使用 Microsoft 接口定义语言 (MIDL) 编译器进行编译。 Library 语句中定义该接口，并将其分配具有通用唯一标识符 (UUID) 属性的接口 ID，如以下示例所示。  
+ 可以在接口定义语言 (IDL) 中定义非托管类型, 并将其与 Microsoft 接口定义语言 (MIDL) 编译器一起编译。 在 library 语句中定义接口, 并为其分配一个具有通用唯一标识符 (UUID) 特性的接口 ID, 如下面的示例所示。  
   
 ```  
  [uuid(9B2BAADA-0705-11D3-A0CD-00C04FA35826)]  
@@ -67,50 +67,50 @@ library OldLib {
 }  
 ```  
   
- MIDL 编译器会生成多个输出文件。 如果在 Old.idl 定义接口，则定义的输出文件 Old_i.c`const`变量具有接口标识符 (IID) 的接口，如以下示例所示。  
+ MIDL 编译器将生成多个输出文件。 如果在旧 .idl 中定义了接口, 则输出文件 Old_i 将使用接口的接口`const`标识符 (IID) 定义一个变量, 如下例所示。  
   
 ```  
 const IID IID_IOld = {0x9B2BAADD,0x0705,0x11D3,{0xA0,0xCD,0x00,0xC0,0x4F,0xA3,0x58,0x26}};  
 ```  
   
- Old.h 文件也会由 MIDL 生成。 它包含可以在 c + + 源代码中包含的接口的 c + + 定义。  
+ 旧 .h 文件也由 MIDL 生成。 它包含可C++在C++源代码中包含的接口的定义。  
   
 ## <a name="implementing-the-icustommarshaler-interface"></a>实现 ICustomMarshaler 接口  
- 在自定义封送处理程序必须实现<xref:System.Runtime.InteropServices.ICustomMarshaler>接口，以提供给运行时相应的包装。  
+ 自定义封送拆收<xref:System.Runtime.InteropServices.ICustomMarshaler>器必须实现接口, 才能向运行时提供适当的包装。  
   
- 下面的 C# 代码显示所有自定义封必须实现的基接口。  
+ 下面C#的代码显示必须由所有自定义封送拆收器实现的基接口。  
   
  [!code-cpp[System.Runtime.InteropServices.ICustomMarshaler#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.runtime.interopservices.icustommarshaler/cpp/source.cpp#2)]
  [!code-csharp[System.Runtime.InteropServices.ICustomMarshaler#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.runtime.interopservices.icustommarshaler/cs/source.cs#2)]
  [!code-vb[System.Runtime.InteropServices.ICustomMarshaler#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.runtime.interopservices.icustommarshaler/vb/source.vb#2)]  
   
- <xref:System.Runtime.InteropServices.ICustomMarshaler>接口包含提供转换支持、 清理支持和有关的数据要封送处理信息的方法。  
+ <xref:System.Runtime.InteropServices.ICustomMarshaler>接口包括提供转换支持、清除支持和有关要封送的数据的信息的方法。  
   
-|操作类型|ICustomMarshaler 方法|描述|  
+|操作的类型|ICustomMarshaler 方法|说明|  
 |-----------------------|-----------------------------|-----------------|  
-|转换 （从本机到托管代码）|<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalNativeToManaged%2A>|将指向本机数据的封送到托管对象。 此方法返回可封送作为参数传递的非托管的接口的自定义运行时可调用包装 (RCW)。 封送处理程序应返回该类型的自定义 rcw 实例。|  
-|转换 （从托管到本机代码）|<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalManagedToNative%2A>|将托管的对象封送到本机数据的指针。 此方法返回的自定义 COM 可调用包装 (CCW) 可封送托管的接口，作为参数传递。 封送处理程序应返回该类型的自定义的 CCW 的实例。|  
-|清理 （的本机代码）|<xref:System.Runtime.InteropServices.ICustomMarshaler.CleanUpNativeData%2A>|使封送处理程序以进行本机数据 (CCW) 返回的清除<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalManagedToNative%2A>方法。|  
-|清理 （托管代码）|<xref:System.Runtime.InteropServices.ICustomMarshaler.CleanUpManagedData%2A>|使封送处理程序以清理托管数据 (RCW) 返回的<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalNativeToManaged%2A>方法。|  
-|（有关本机代码） 的信息|<xref:System.Runtime.InteropServices.ICustomMarshaler.GetNativeDataSize%2A>|返回要封送处理的非托管数据的大小。|  
+|转换 (从本机到托管代码)|<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalNativeToManaged%2A>|将指向本机数据的指针封送到托管对象。 此方法返回一个自定义运行时可调用包装 (RCW), 该包装器可以封送作为参数传递的非托管接口。 封送拆收器应为该类型返回自定义 RCW 的实例。|  
+|转换 (从托管代码到本机代码)|<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalManagedToNative%2A>|将托管对象封送到指向本机数据的指针。 此方法返回一个自定义 COM 可调用包装器 (CCW), 它可以封送作为参数传递的托管接口。 封送拆收器应返回该类型的自定义 CCW 的实例。|  
+|清理 (本机代码)|<xref:System.Runtime.InteropServices.ICustomMarshaler.CleanUpNativeData%2A>|允许封送拆收器清理由<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalManagedToNative%2A>方法返回的本机数据 (CCW)。|  
+|清除 (托管代码)|<xref:System.Runtime.InteropServices.ICustomMarshaler.CleanUpManagedData%2A>|允许封送拆收器清理由<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalNativeToManaged%2A>方法返回的托管数据 (RCW)。|  
+|信息 (关于本机代码)|<xref:System.Runtime.InteropServices.ICustomMarshaler.GetNativeDataSize%2A>|返回要封送处理的非托管数据的大小。|  
   
 ### <a name="conversion"></a>转换  
  <xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalNativeToManaged%2A?displayProperty=nameWithType>  
   
- 将指向本机数据的封送到托管对象。 此方法返回可封送作为参数传递的非托管的接口的自定义运行时可调用包装 (RCW)。 封送处理程序应返回该类型的自定义 rcw 实例。  
+ 将指向本机数据的指针封送到托管对象。 此方法返回一个自定义运行时可调用包装 (RCW), 该包装器可以封送作为参数传递的非托管接口。 封送拆收器应为该类型返回自定义 RCW 的实例。  
   
  <xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalManagedToNative%2A?displayProperty=nameWithType>  
   
- 将托管的对象封送到本机数据的指针。 此方法返回的自定义 COM 可调用包装 (CCW) 可封送托管的接口，作为参数传递。 封送处理程序应返回该类型的自定义的 CCW 的实例。  
+ 将托管对象封送到指向本机数据的指针。 此方法返回一个自定义 COM 可调用包装器 (CCW), 它可以封送作为参数传递的托管接口。 封送拆收器应返回该类型的自定义 CCW 的实例。  
   
 ### <a name="cleanup"></a>清理  
  <xref:System.Runtime.InteropServices.ICustomMarshaler.CleanUpNativeData%2A?displayProperty=nameWithType>  
   
- 使封送处理程序以进行本机数据 (CCW) 返回的清除<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalManagedToNative%2A>方法。  
+ 允许封送拆收器清理由<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalManagedToNative%2A>方法返回的本机数据 (CCW)。  
   
  <xref:System.Runtime.InteropServices.ICustomMarshaler.CleanUpManagedData%2A?displayProperty=nameWithType>  
   
- 使封送处理程序以清理托管数据 (RCW) 返回的<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalNativeToManaged%2A>方法。  
+ 允许封送拆收器清理由<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalNativeToManaged%2A>方法返回的托管数据 (RCW)。  
   
 ### <a name="size-information"></a>大小信息  
  <xref:System.Runtime.InteropServices.ICustomMarshaler.GetNativeDataSize%2A?displayProperty=nameWithType>  
@@ -118,36 +118,36 @@ const IID IID_IOld = {0x9B2BAADD,0x0705,0x11D3,{0xA0,0xCD,0x00,0xC0,0x4F,0xA3,0x
  返回要封送处理的非托管数据的大小。  
   
 ## <a name="implementing-the-getinstance-method"></a>实现 GetInstance 方法  
- 除了实现<xref:System.Runtime.InteropServices.ICustomMarshaler>接口，必须实现自定义封`static`方法调用`GetInstance`接受<xref:System.String>作为参数和返回类型为<xref:System.Runtime.InteropServices.ICustomMarshaler>。 这`static`方法由公共语言运行时的 COM 互操作层，若要实例化自定义封送处理程序的实例。 传递给字符串`GetInstance`是该方法可用于自定义返回自定义封送处理程序的 cookie。  
+ 除了<xref:System.Runtime.InteropServices.ICustomMarshaler>实现接口外, 自定义封送拆收器`static`还必须`GetInstance`实现一个名<xref:System.String>为的方法, 该方法接受作为参数<xref:System.Runtime.InteropServices.ICustomMarshaler>并且具有返回类型。 此`static`方法由公共语言运行时的 COM 互操作层调用, 以实例化自定义封送拆收器的实例。 传递给`GetInstance`的字符串是一个 cookie, 该方法可用于自定义返回的自定义封送拆收器。  
   
 ```  
 static ICustomMarshaler *GetInstance(String *pstrCookie);  
 ```  
   
 ## <a name="applying-marshalasattribute"></a>应用 MarshalAsAttribute  
- 若要使用自定义封送处理程序，必须应用<xref:System.Runtime.InteropServices.MarshalAsAttribute>属性的参数或被封送处理的字段。  
+ 若要使用自定义封送拆收器<xref:System.Runtime.InteropServices.MarshalAsAttribute> , 必须将特性应用于要封送的参数或字段。  
   
- 你还必须传递<xref:System.Runtime.InteropServices.UnmanagedType.CustomMarshaler?displayProperty=nameWithType>枚举值<xref:System.Runtime.InteropServices.MarshalAsAttribute>构造函数。 此外，还必须指定<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>字段的命名参数，则以下项之一：  
+ 还必须将<xref:System.Runtime.InteropServices.UnmanagedType.CustomMarshaler?displayProperty=nameWithType>枚举值传递<xref:System.Runtime.InteropServices.MarshalAsAttribute>到构造函数。 此外, 还必须指定<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>包含以下命名参数之一的字段:  
   
--   <xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType> （必需）：自定义封送处理程序程序集限定名称。 该名称应包含的命名空间和类的自定义封送处理程序。 如果在中使用的程序集中未定义自定义封送处理程序，必须指定在其中定义的程序集的名称。  
+-   <xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>(必需):自定义封送拆收器的程序集限定名称。 名称应包括自定义封送拆收器的命名空间和类。 如果未在中使用自定义封送拆收器, 则必须指定定义它的程序集的名称。  
   
     > [!NOTE]
-    >  可以使用<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalTypeRef>字段，而不是<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>字段。 <xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalTypeRef> 采用更方便地指定的类型。  
+    >  您可以使用<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalTypeRef>字段而不是<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>字段。 <xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalTypeRef>采用更易于指定的类型。  
   
--   <xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalCookie> （可选）：一个传递给自定义封送处理程序的 cookie。 可以使用 cookie 向封送处理程序提供的其他信息。 例如，如果同一封送处理程序用于提供多个包装，cookie 标识特定的包装器。 将 cookie 传递给`GetInstance`封送处理程序方法。  
+-   <xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalCookie>(可选):传递给自定义封送拆收器的 cookie。 可以使用 cookie 向封送拆收器提供附加信息。 例如, 如果使用相同的封送拆收器来提供多个包装, cookie 会标识特定包装。 Cookie 传递给`GetInstance`封送拆收器的方法。  
   
- <xref:System.Runtime.InteropServices.MarshalAsAttribute>属性标识自定义封送处理程序，使其可以激活适当的包装。 公共语言运行时的互操作服务然后会检查该属性，并创建要封送处理的参数 （参数或字段） 需求的自定义封送处理程序第一次。  
+ <xref:System.Runtime.InteropServices.MarshalAsAttribute>属性标识自定义封送拆收器, 使其可以激活适当的包装。 然后, 公共语言运行时的互操作服务将检查属性, 并在第一次需要封送参数 (参数或字段) 时创建自定义封送拆收器。  
   
- 然后，运行时调用<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalNativeToManaged%2A>和<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalManagedToNative%2A>上激活正确的包装器来处理在调用自定义封送处理程序的方法。  
+ 然后, 运行时调用<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalNativeToManaged%2A>自<xref:System.Runtime.InteropServices.ICustomMarshaler.MarshalManagedToNative%2A>定义封送拆收器上的和方法, 以激活正确的包装程序来处理调用。  
   
-## <a name="using-a-custom-marshaler"></a>使用自定义封送处理程序  
- 自定义封送处理程序完成后，您可以将其用作自定义包装程序特定的类型。 下面的示例演示的定义`IUserData`托管的接口：  
+## <a name="using-a-custom-marshaler"></a>使用自定义封送拆收器  
+ 自定义封送拆收器完成后, 可以将其用作特定类型的自定义包装器。 下面的示例演示了`IUserData`托管接口的定义:  
   
  [!code-cpp[System.Runtime.InteropServices.ICustomMarshaler#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.runtime.interopservices.icustommarshaler/cpp/source.cpp#3)]
  [!code-csharp[System.Runtime.InteropServices.ICustomMarshaler#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.runtime.interopservices.icustommarshaler/cs/source.cs#3)]
  [!code-vb[System.Runtime.InteropServices.ICustomMarshaler#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.runtime.interopservices.icustommarshaler/vb/source.vb#3)]  
   
- 在以下示例中，`IUserData`接口使用`NewOldMarshaler`自定义封送处理程序，使非托管客户端应用程序传递`IOld`接口`DoSomeStuff`方法。 托管的说明`DoSomeStuff`方法采用`INew`接口，而在前面的示例所示的非托管的版本`DoSomeStuff`采用`IOld`接口指针，如下面的示例中所示。  
+ 在下面的示例中, `IUserData`接口`NewOldMarshaler`使用自定义封送拆收器来使非托管`IOld`客户端应用`DoSomeStuff`程序将接口传递到方法。 如前面的示例所`DoSomeStuff`示, 方法`INew`的托管说明采用接口, `DoSomeStuff`而`IOld`非托管版本采用接口指针, 如以下示例中所示。  
   
 ```  
 [uuid(9B2BAADA-0705-11D3-A0CD-00C04FA35826)]  
@@ -158,7 +158,7 @@ library UserLib {
 }  
 ```  
   
- 通过将导出的托管的定义生成的类型库`IUserData`而不是标准定义此示例中所示的非托管定义。 <xref:System.Runtime.InteropServices.MarshalAsAttribute>特性应用于`INew`参数中的托管定义`DoSomeStuff`方法指示该参数使用了自定义封送处理程序，如以下示例所示。  
+ 通过导出的托管定义`IUserData`生成的类型库将生成在此示例中显示的非托管定义, 而不是标准定义。 应用于该`INew` 方法`DoSomeStuff`的托管定义中的参数的特性指示该参数使用自定义封送拆收器,如下面的示例所示。<xref:System.Runtime.InteropServices.MarshalAsAttribute>  
   
  [!code-cpp[System.Runtime.InteropServices.ICustomMarshaler#4](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.runtime.interopservices.icustommarshaler/cpp/source.cpp#4)]
  [!code-csharp[System.Runtime.InteropServices.ICustomMarshaler#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.runtime.interopservices.icustommarshaler/cs/source.cs#4)]
@@ -168,9 +168,9 @@ library UserLib {
  [!code-csharp[System.Runtime.InteropServices.ICustomMarshaler#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.runtime.interopservices.icustommarshaler/cs/source.cs#5)]
  [!code-vb[System.Runtime.InteropServices.ICustomMarshaler#5](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.runtime.interopservices.icustommarshaler/vb/source.vb#5)]  
   
- 在上一示例中，第一个参数提供给<xref:System.Runtime.InteropServices.MarshalAsAttribute>属性是<xref:System.Runtime.InteropServices.UnmanagedType.CustomMarshaler?displayProperty=nameWithType>枚举值`UnmanagedType.CustomMarshaler`。  
+ 在前面的示例中, 提供给<xref:System.Runtime.InteropServices.MarshalAsAttribute>特性的第一个参数<xref:System.Runtime.InteropServices.UnmanagedType.CustomMarshaler?displayProperty=nameWithType>是枚举值`UnmanagedType.CustomMarshaler`。  
   
- 第二个参数是<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>字段中，它提供的自定义封送处理程序的程序集限定名称。 此名称包含命名空间和类的自定义封送处理程序 (`MarshalType="MyCompany.NewOldMarshaler"`)。  
+ 第二个参数是<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>字段, 它提供自定义封送拆收器的程序集限定名称。 此名称包含自定义封送拆收器 (`MarshalType="MyCompany.NewOldMarshaler"`) 的命名空间和类。  
   
  ]]></format>
     </remarks>
