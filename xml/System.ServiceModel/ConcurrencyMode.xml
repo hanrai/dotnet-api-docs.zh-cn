@@ -1,5 +1,5 @@
 <Type Name="ConcurrencyMode" FullName="System.ServiceModel.ConcurrencyMode">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="fe756765593e1dcdb7c997005b1f83edb4d26063" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64151502" /></Metadata><TypeSignature Language="C#" Value="public enum ConcurrencyMode" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="cca9d43f5d75d4ca5e1b48f649086195ff3502e1" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69103050" /></Metadata><TypeSignature Language="C#" Value="public enum ConcurrencyMode" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed ConcurrencyMode extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.ConcurrencyMode" />
   <TypeSignature Language="VB.NET" Value="Public Enum ConcurrencyMode" />
@@ -22,18 +22,18 @@
 ## Remarks  
  <xref:System.ServiceModel.ConcurrencyMode> 与 <xref:System.ServiceModel.ServiceBehaviorAttribute.ConcurrencyMode%2A> 属性一起使用，可指定服务类是支持单线程还是多线程操作模式。 单线程操作可以是可重入操作，也可以是不可重入操作。  
   
- 下表显示了当 Windows Communication Foundation (WCF) 允许了一个操作，以调用时另一个正在进行，具体取决于<xref:System.ServiceModel.ConcurrencyMode>。  
+ 下表显示 Windows Communication Foundation (WCF) 允许在另一个操作正在进行时调用操作的时间, 具体取决于<xref:System.ServiceModel.ConcurrencyMode>。  
   
 |ConcurrencyMode 值|是否允许调用新操作？|  
 |---------------------------|-------------------------------------|  
 |Single|从不。|  
-|可重入|仅在调用其他服务或回调时。|  
-|多种|总是。|  
+|是非|仅在调用其他服务或回调时。|  
+|多页|始终。|  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用单个、 可重入和多个之间的差别。 此示例不编译而无需真正实现后，但确实展示了线程处理保证，WCF 使，这意味着对操作代码的类型。  
+ 下面的代码示例演示使用单个、可重入和多个之间的不同。 此示例在没有真正实现的情况下进行编译, 但它演示了 WCF 所做的线程保证种类, 以及这对操作代码的意义。  
   
  [!code-csharp[C_BestPractices-Concurrency#1](~/samples/snippets/csharp/VS_Snippets_CFX/c_bestpractices-concurrency/cs/reentrantandmultiple.cs#1)]  
   
@@ -82,7 +82,7 @@
       </ReturnValue>
       <MemberValue>1</MemberValue>
       <Docs>
-        <summary>服务实例是单线程的，且接受可重入调用。 可重入服务接受在调用其他服务的同时进行调用；因此在调出之前，您需要负责让对象的状态一致，而在调出之后，必须确认本地操作数据有效。 请注意，只有通过 WCF 通道调用其他服务，才能解锁服务实例。 在此情况下，已调用的服务可以通过回调重入第一个服务。 如果第一个服务不可重入，则该调用顺序会导致死锁。 有关详细信息，请参阅<see cref="P:System.ServiceModel.ServiceBehaviorAttribute.ConcurrencyMode" />。</summary>
+        <summary>服务实例是单线程的，且接受可重入调用。 可重入服务接受在调用其他服务的同时进行调用；因此在调出之前，您需要负责让对象的状态一致，而在调出之后，必须确认本地操作数据有效。 请注意，只有通过 WCF 通道调用其他服务，才能解锁服务实例。 在此情况下，已调用的服务可以通过回调重入第一个服务。 如果第一个服务不可重入，则该调用顺序会导致死锁。 有关详细信息，请参阅 <see cref="P:System.ServiceModel.ServiceBehaviorAttribute.ConcurrencyMode" />。</summary>
       </Docs>
     </Member>
     <Member MemberName="Single">

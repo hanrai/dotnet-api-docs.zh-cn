@@ -1,5 +1,5 @@
 <Type Name="ConfigurationBasedIssuerNameRegistry" FullName="System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d1018d8ad9aa3fc69b5fdddf6250cd51a5dd2239" /><Meta Name="ms.sourcegitcommit" Value="16d2d159872fd213cae4b8f371d7ae9c8b027c89" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="11/17/2018" /><Meta Name="ms.locfileid" Value="51915899" /></Metadata><TypeSignature Language="C#" Value="public class ConfigurationBasedIssuerNameRegistry : System.IdentityModel.Tokens.IssuerNameRegistry" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4632e9f81f1c918bdc57d5652c29602793df435a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69281943" /></Metadata><TypeSignature Language="C#" Value="public class ConfigurationBasedIssuerNameRegistry : System.IdentityModel.Tokens.IssuerNameRegistry" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ConfigurationBasedIssuerNameRegistry extends System.IdentityModel.Tokens.IssuerNameRegistry" />
   <TypeSignature Language="DocId" Value="T:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry" />
   <TypeSignature Language="VB.NET" Value="Public Class ConfigurationBasedIssuerNameRegistry&#xA;Inherits IssuerNameRegistry" />
@@ -19,16 +19,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry>类维护的受信任颁发者的字典，通过将每个受信任的颁发者的证书映射到引用该颁发者的名称。 使用 ASN.1 编码指纹的形式指定证书。 颁发者名称可以是任意字符串，只要它是唯一的应用程序的作用域内。 可以通过访问此字典<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry.ConfiguredTrustedIssuers%2A>属性。 类只能解析 X.509 证书。  
+ <xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry>类通过将每个受信任颁发者的证书映射到引用该颁发者的名称来维护可信颁发者的字典。 证书使用指纹的 "已使用" 的 "ASN" 编码形式指定。 颁发者名称可以是任何字符串, 只要它在应用程序的作用域内是唯一的。 此字典可通过<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry.ConfiguredTrustedIssuers%2A>属性访问。 类只能解析 x.509 证书。  
   
- 将条目下的添加配置文件中指定的受信任颁发者映射[ &lt;trustedIssuers&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/trustedissuers.md)元素。 `<trustedIssuers>`元素是子元素的[ &lt;issuerNameRegistry&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/issuernameregistry.md)并且它是有效时<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry>中指定类`type`该元素的属性。 有关详细信息，请参阅中的这些元素的每个文档[WIF 配置架构](https://msdn.microsoft.com/library/4d4f6d76-49a5-4bad-b345-097b2e2844e9)。 有关颁发者名称注册表的详细信息，请参阅<xref:System.IdentityModel.Tokens.IssuerNameRegistry>类。  
+ 受信任的颁发者的映射在配置文件中指定, 方法是在[ &lt;s&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/trustedissuers.md)元素下添加条目。 元素是<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry> `type` [ &lt;issuerNameRegistry元素&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/issuernameregistry.md)的子元素, 在该元素的属性中指定了类时, 该元素是有效的。 `<trustedIssuers>` 有关详细信息, 请参阅[WIF 配置架构](https://msdn.microsoft.com/library/4d4f6d76-49a5-4bad-b345-097b2e2844e9)中每个元素的文档。 有关颁发者名称注册表的详细信息, 请<xref:System.IdentityModel.Tokens.IssuerNameRegistry>参阅类。  
   
- 可以从派生<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry>来实现你自己配置根据颁发者名称注册表。 重写的方法将取决于您的实现。 例如，您可以重写<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry.LoadCustomConfiguration%2A>方法从自定义配置架构加载配置。  
+ 你可以从<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry>派生, 以实现你自己的基于配置的颁发者名称注册表。 要重写的方法将取决于您的实现。 例如, 可以重写<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry.LoadCustomConfiguration%2A>方法以从自定义配置架构加载配置。  
   
    
   
 ## Examples  
- 以下 XML 显示了配置<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry>添加集合的安全令牌处理程序。 `<trustedIssuers>`元素的行为类似于传统的.NET 配置集合，从而允许`<add>`，`<delete>`和`<clear>`元素作为子元素。  
+ 下面的 XML 显示为安全标记<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry>处理程序集合添加的的配置。 元素`<trustedIssuers>`的行为类似于经典 .net 配置集合, `<add>`允许`<delete>`和`<clear>`元素作为子元素。  
   
 ```  
 <system.identityModel>  
@@ -94,7 +94,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以调用此方法可添加到颁发者<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry.ConfiguredTrustedIssuers%2A>字典。 在派生类中，可以调用此方法从<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry.LoadCustomConfiguration%2A>方法将颁发者添加到字典。  
+ 可以调用此方法将颁发者添加到<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry.ConfiguredTrustedIssuers%2A>字典中。 在派生类中, 可以从<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry.LoadCustomConfiguration%2A>方法中调用此方法, 以将颁发者添加到字典中。  
   
  ]]></format>
         </remarks>
@@ -127,7 +127,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 字典的关键是指纹的证书的 ASN.1 编码形式的受信任颁发者，值为颁发者名称。 字典包含已在配置中指定的颁发者和已添加了任何其他颁发者<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry.AddTrustedIssuer%2A>方法。  
+ 字典的键是受信任颁发者证书的指纹的 ASN 编码形式, 值为颁发者名称。 字典包含在配置中指定的颁发者, 以及使用<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry.AddTrustedIssuer%2A>方法添加的任何其他颁发者。  
   
  ]]></format>
         </remarks>
@@ -158,7 +158,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现搜索<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry.ConfiguredTrustedIssuers%2A>字典中指定的 X.509 证书的指纹`securityToken`。 如果找到的项，则返回的颁发者名称否则为`null`返回。 如果`securityToken`不能从<xref:System.IdentityModel.Tokens.X509SecurityToken>，`null`返回。  
+ 默认实现在<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry.ConfiguredTrustedIssuers%2A>字典中`securityToken`搜索指定的 x.509 证书的指纹。 如果找到项, 则返回颁发者名称;否则, `null`将返回。 如果`securityToken`不可从中<xref:System.IdentityModel.Tokens.X509SecurityToken>赋值, `null`则返回。  
   
  ]]></format>
         </remarks>
@@ -190,9 +190,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry.LoadCustomConfiguration%2A>配置基础结构调用方法。 调用此方法时，`nodelist`将包含的顶级子元素[ &lt;issuerNameRegistry&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/issuernameregistry.md)配置文件中的元素。 其中每项功能可能反过来，还包含属性或子元素，具体取决于为您派生的类定义的配置架构。  
+ 此<xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry.LoadCustomConfiguration%2A>方法由配置基础结构调用。 调用此方法时, `nodelist`将包含配置文件中的[ &lt;issuerNameRegistry&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/issuernameregistry.md)元素的顶级子元素。 其中每个反过来可能包含特性或子元素, 具体取决于为派生类定义的配置架构。  
   
- 由配置基础结构调用此方法。 默认实现将从配置加载[ &lt;trustedIssuers&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/trustedissuers.md)元素 (下配置[ &lt;issuerNameRegistry&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/issuernameregistry.md)元素)。 您可以重写此方法在派生类中你自己自定义配置元素提供支持。  
+ 此方法由配置基础结构调用。 默认实现从[ &lt;s&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/trustedissuers.md)元素 (在[ &lt;issuerNameRegistry&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/issuernameregistry.md)元素下配置) 加载配置。 您可以重写此方法, 以在派生类中为您自己的自定义配置元素提供支持。  
   
  ]]></format>
         </remarks>

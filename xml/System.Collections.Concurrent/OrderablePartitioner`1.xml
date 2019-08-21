@@ -1,5 +1,5 @@
 <Type Name="OrderablePartitioner&lt;TSource&gt;" FullName="System.Collections.Concurrent.OrderablePartitioner&lt;TSource&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4295a3693c36941120b6d7f8ca16a522af93939a" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63908906" /></Metadata><TypeSignature Language="C#" Value="public abstract class OrderablePartitioner&lt;TSource&gt; : System.Collections.Concurrent.Partitioner&lt;TSource&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="77c1a068739a2583efc6a074f3fac42fb6deea13" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69335114" /></Metadata><TypeSignature Language="C#" Value="public abstract class OrderablePartitioner&lt;TSource&gt; : System.Collections.Concurrent.Partitioner&lt;TSource&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit OrderablePartitioner`1&lt;TSource&gt; extends System.Collections.Concurrent.Partitioner`1&lt;!TSource&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Collections.Concurrent.OrderablePartitioner`1" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class OrderablePartitioner(Of TSource)&#xA;Inherits Partitioner(Of TSource)" />
@@ -38,19 +38,19 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在派生类的实现都负责将元素排成键 / 值对中的任何方式适合。 有关详细信息，请参阅 [PLINQ 和 TPL 的自定义分区程序](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)。  
+ 派生类的实现负责以任何适当的方式为元素排序到键值对。 有关详细信息，请参阅 [PLINQ 和 TPL 的自定义分区程序](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)。  
   
    
   
 ## Examples  
- 下面的示例演示如何实现一次返回一个元素的可排序分区程序：  
+ 下面的示例演示如何实现一次返回一个元素的可排序分区程序:  
   
  [!code-csharp[System.Collections.Concurrent.OrderablePartitioner#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.collections.concurrent.orderablepartitioner/cs/orderablepartitioner.cs#1)]
  [!code-vb[System.Collections.Concurrent.OrderablePartitioner#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.collections.concurrent.orderablepartitioner/vb/orderablepartitioner.vb#1)]  
   
  ]]></format>
     </remarks>
-    <threadsafe>所有公共成员<see cref="T:System.Collections.Concurrent.OrderablePartitioner`1" />是线程安全的可能从多个线程同时调用。</threadsafe>
+    <threadsafe>的所有公共成员<see cref="T:System.Collections.Concurrent.OrderablePartitioner`1" />都是线程安全的, 并且可以同时从多个线程调用。</threadsafe>
     <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">如何：加快小型循环体的速度</related>
     <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">如何：实现动态分区</related>
   </Docs>
@@ -99,7 +99,7 @@
         </remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/96153688-9a01-47c4-8430-909cee9a2887">PLINQ 和 TPL 的自定义分区程序</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">如何：加快小型循环体的速度</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">如何：实现静态分区数与分区程序</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">如何：实现具有静态分区数的分区程序</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">如何：实现动态分区</related>
       </Docs>
     </Member>
@@ -138,11 +138,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的对象实现<xref:System.Collections.Generic.IEnumerable%601?displayProperty=nameWithType>接口。 调用<xref:System.Collections.Generic.IEnumerable%601.GetEnumerator%2A>对象上创建序列的另一个分区。  
+ 返回的对象实现<xref:System.Collections.Generic.IEnumerable%601?displayProperty=nameWithType>接口。 对<xref:System.Collections.Generic.IEnumerable%601.GetEnumerator%2A>对象调用会在序列上创建另一个分区。  
   
- 默认实现提供相同的行为<xref:System.Collections.Concurrent.OrderablePartitioner%601.GetOrderableDynamicPartitions%2A>只不过返回的分区集不提供的元素的键。  
+ 默认实现提供与相同的行为<xref:System.Collections.Concurrent.OrderablePartitioner%601.GetOrderableDynamicPartitions%2A> , 只不过返回的分区集不提供元素的键。  
   
- <xref:System.Collections.Concurrent.OrderablePartitioner%601.GetDynamicPartitions%2A>则仅支持方法<xref:System.Collections.Concurrent.Partitioner%601.SupportsDynamicPartitions%2A>属性是否返回 true。  
+ <xref:System.Collections.Concurrent.OrderablePartitioner%601.GetDynamicPartitions%2A> 仅<xref:System.Collections.Concurrent.Partitioner%601.SupportsDynamicPartitions%2A>当属性返回 true 时, 才支持方法。  
   
  有关详细信息，请参阅 [PLINQ 和 TPL 的自定义分区程序](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)。  
   
@@ -151,7 +151,7 @@
         <exception cref="T:System.NotSupportedException">该基类不支持动态分区。 它必须在派生类中实现。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/96153688-9a01-47c4-8430-909cee9a2887">PLINQ 和 TPL 的自定义分区程序</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">如何：加快小型循环体的速度</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">如何：实现静态分区数与分区程序</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">如何：实现具有静态分区数的分区程序</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">如何：实现动态分区</related>
       </Docs>
     </Member>
@@ -190,11 +190,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的对象实现<xref:System.Collections.Generic.IEnumerable%601?displayProperty=nameWithType>接口。 调用<xref:System.Collections.Generic.IEnumerable%601.GetEnumerator%2A>对象上创建序列的另一个分区。  
+ 返回的对象实现<xref:System.Collections.Generic.IEnumerable%601?displayProperty=nameWithType>接口。 对<xref:System.Collections.Generic.IEnumerable%601.GetEnumerator%2A>对象调用会在序列上创建另一个分区。  
   
- 每个分区通过键-值对表示为一个枚举器。 对中的值是元素本身，并且该密钥是一个整数，它确定此元素与其他元素的相对顺序。  
+ 每个分区都表示为键/值对的枚举器。 对中的值是元素本身, 键是一个整数, 它确定此元素相对于其他元素的相对顺序。  
   
- <xref:System.Collections.Concurrent.OrderablePartitioner%601.GetOrderableDynamicPartitions%2A>则仅支持方法<xref:System.Collections.Concurrent.Partitioner%601.SupportsDynamicPartitions%2A>属性是否返回 true。  
+ <xref:System.Collections.Concurrent.OrderablePartitioner%601.GetOrderableDynamicPartitions%2A> 仅<xref:System.Collections.Concurrent.Partitioner%601.SupportsDynamicPartitions%2A>当属性返回 true 时, 才支持方法。  
   
  有关详细信息，请参阅 [PLINQ 和 TPL 的自定义分区程序](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)。  
   
@@ -203,7 +203,7 @@
         <exception cref="T:System.NotSupportedException">此分区程序不支持动态分区。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/96153688-9a01-47c4-8430-909cee9a2887">PLINQ 和 TPL 的自定义分区程序</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">如何：加快小型循环体的速度</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">如何：实现静态分区数与分区程序</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">如何：实现具有静态分区数的分区程序</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">如何：实现动态分区</related>
       </Docs>
     </Member>
@@ -245,9 +245,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 每个分区通过键-值对表示为一个枚举器。  
+ 每个分区都表示为键/值对的枚举器。  
   
- 对的值是元素本身，并且该密钥是一个整数，它确定此元素与数据源中的其他元素的相对顺序。  
+ 该对的值是元素本身, 键是一个整数, 它确定此元素相对于数据源中的其他元素的相对顺序。  
   
  有关详细信息，请参阅 [PLINQ 和 TPL 的自定义分区程序](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)。  
   
@@ -255,7 +255,7 @@
         </remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/96153688-9a01-47c4-8430-909cee9a2887">PLINQ 和 TPL 的自定义分区程序</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">如何：加快小型循环体的速度</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">如何：实现静态分区数与分区程序</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">如何：实现具有静态分区数的分区程序</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">如何：实现动态分区</related>
       </Docs>
     </Member>
@@ -297,7 +297,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认实现提供相同的行为<xref:System.Collections.Concurrent.OrderablePartitioner%601.GetOrderablePartitions%2A>只不过返回的分区集不提供的元素的键。  
+ 默认实现提供与相同的行为<xref:System.Collections.Concurrent.OrderablePartitioner%601.GetOrderablePartitions%2A> , 只不过返回的分区集不提供元素的键。  
   
  有关详细信息，请参阅 [PLINQ 和 TPL 的自定义分区程序](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)。  
   
@@ -305,7 +305,7 @@
         </remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/96153688-9a01-47c4-8430-909cee9a2887">PLINQ 和 TPL 的自定义分区程序</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">如何：加快小型循环体的速度</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">如何：实现静态分区数与分区程序</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">如何：实现具有静态分区数的分区程序</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">如何：实现动态分区</related>
       </Docs>
     </Member>
@@ -338,12 +338,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取是否规范化顺序键。</summary>
-        <value><see langword="true" /> 如果规范化键;，否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果密钥已规范化, 则为;否则为<see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Collections.Concurrent.OrderablePartitioner%601.KeysNormalized%2A>返回 true，则所有顺序键都均在范围 [0.. numberOfElements-1] 中的不同整数。 如果该属性返回 false，顺序键仍必须是非重复，但仅考虑其相对顺序，不其绝对值。  
+ 如果<xref:System.Collections.Concurrent.OrderablePartitioner%601.KeysNormalized%2A>返回 true, 则所有顺序键都是 [0。 numberOfElements-1] 中的不同整数。 如果该属性返回 false, 则顺序键仍必须是唯一的, 但仅考虑其相对顺序, 而不考虑其绝对值。  
   
  有关详细信息，请参阅 [PLINQ 和 TPL 的自定义分区程序](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)。  
   
@@ -380,12 +380,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取前一分区中的元素是否始终排在后一分区中的元素之前。</summary>
-        <value><see langword="true" /> 如果前一分区中的元素始终排在后一分区中; 中的元素之前否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果前面分区中的元素始终位于后面分区的元素之前, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Collections.Concurrent.OrderablePartitioner%601.KeysOrderedAcrossPartitions%2A>返回 true，则分区 0 中的每个元素具有较小的顺序键比分区 1，分区 1 中的每个元素中的任何元素具有较小的顺序键比分区 2，依此类推中的任何元素。  
+ 如果<xref:System.Collections.Concurrent.OrderablePartitioner%601.KeysOrderedAcrossPartitions%2A>返回 true, 则分区0中的每个元素的顺序键比分区1中的任何元素小, 分区1中的每个元素的顺序键比分区2中的任何元素更小, 依此类推。  
   
  有关详细信息，请参阅 [PLINQ 和 TPL 的自定义分区程序](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)。  
   
@@ -393,7 +393,7 @@
         </remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/96153688-9a01-47c4-8430-909cee9a2887">PLINQ 和 TPL 的自定义分区程序</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">如何：加快小型循环体的速度</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">如何：实现静态分区数与分区程序</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">如何：实现具有静态分区数的分区程序</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">如何：实现动态分区</related>
       </Docs>
     </Member>
@@ -426,7 +426,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取是否按键增加的顺序生成每个分区中的元素。</summary>
-        <value><see langword="true" /> 如果增加密钥; 的顺序生成每个分区中的元素否则为<see langword="false" />。</value>
+        <value><see langword="true" />如果按递增键的顺序生成每个分区中的元素, 则为; 否则为。否则为<see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -437,7 +437,7 @@
         </remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/96153688-9a01-47c4-8430-909cee9a2887">PLINQ 和 TPL 的自定义分区程序</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">如何：加快小型循环体的速度</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">如何：实现静态分区数与分区程序</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">如何：实现具有静态分区数的分区程序</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">如何：实现动态分区</related>
       </Docs>
     </Member>

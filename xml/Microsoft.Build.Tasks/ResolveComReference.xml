@@ -1,5 +1,5 @@
 <Type Name="ResolveComReference" FullName="Microsoft.Build.Tasks.ResolveComReference">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6205108470bde8f1802540889863fb7ccdb81db7" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55369712" /></Metadata><TypeSignature Language="C#" Value="public sealed class ResolveComReference : Microsoft.Build.Tasks.AppDomainIsolatedTaskExtension" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bb37749cd3ec68e8c4888bba61b64942ce8622b4" /><Meta Name="ms.sourcegitcommit" Value="81833381d2d0b5a8c55f71b43f00769fd38298af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/17/2019" /><Meta Name="ms.locfileid" Value="69570340" /></Metadata><TypeSignature Language="C#" Value="public sealed class ResolveComReference : Microsoft.Build.Tasks.AppDomainIsolatedTaskExtension" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ResolveComReference extends Microsoft.Build.Tasks.AppDomainIsolatedTaskExtension" />
   <TypeSignature Language="DocId" Value="T:Microsoft.Build.Tasks.ResolveComReference" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ResolveComReference&#xA;Inherits AppDomainIsolatedTaskExtension" />
@@ -13,17 +13,26 @@
     <AssemblyName>Microsoft.Build.Tasks</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <AssemblyInfo>
+    <AssemblyName>Microsoft.Build.Tasks.v3.5</AssemblyName>
+    <AssemblyVersion>3.5.0.0</AssemblyVersion>
+  </AssemblyInfo>
   <Base>
     <BaseTypeName>Microsoft.Build.Tasks.AppDomainIsolatedTaskExtension</BaseTypeName>
   </Base>
   <Interfaces />
+  <Attributes>
+    <Attribute FrameworkAlternate="netframework-3.5">
+      <AttributeName>Microsoft.Build.Framework.RequiredRuntime("v2.0")</AttributeName>
+    </Attribute>
+  </Attributes>
   <Docs>
     <summary>实现 <c>ResolveComReference</c> 任务。 使用项目文件中的 <c>ResolveComReference</c> 元素创建和执行此任务。 相关用法和参数信息，请参阅 [ResolveComReference 任务](https://msdn.microsoft.com/library/c9bf5fcf-6453-40ea-b50f-a212adc3e9b5)。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在 64 位计算机上，Framework64 /\<版本 > / msbuild 无法解析为 32 位组件注册 COM 对象。 例如，如果您使用 regsvr32 注册 COM 对象，然后尝试生成项目面向 x86 平台，具有 Framework64 /\<版本 > / msbuild，生成是无法解析的 COM 对象。 如果您改为使用框架构建 /\<版本 > / msbuild，生成是能够解析的 COM 对象。  
+ 在64位计算机上, Framework64/\<version >/msbuild 无法解析注册为32位组件的 COM 对象。 例如, 如果向 regsvr32 注册 COM 对象, 然后尝试生成一个面向 x86 平台的项目, 该项目具有 Framework64/\<version >/msbuild, 则生成将无法解析 COM 对象。 如果生成的是 Framework/\<版本 >/msbuild, 则生成能够解析 COM 对象。  
   
  ]]></format>
     </remarks>
@@ -44,6 +53,10 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.Build.Tasks</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Build.Tasks.v3.5</AssemblyName>
+        <AssemblyVersion>3.5.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -68,6 +81,10 @@
         <AssemblyName>Microsoft.Build.Tasks</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Build.Tasks.v3.5</AssemblyName>
+        <AssemblyVersion>3.5.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
           <AttributeName>get: System.Runtime.TargetedPatchingOptOut("Performance critical to inline this type of method across NGen image boundaries")</AttributeName>
@@ -81,7 +98,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个布尔值，该值指定 <c>ResolveComReference</c> 任务是在程序集中放置公钥 (<see langword="true" />)，还是对程序集进行完全签名 (<see langword="false" />)。</summary>
-        <value><see langword="true" /> 如果<c>ResolveComReference</c>任务会将公钥放置在程序集;<see langword="false" />如果<c>ResolveComReference</c>完全任务程序集进行签名。</value>
+        <value><see langword="true" />如果<c>ResolveComReference</c>任务将公钥置于程序集中, 则为; 否则为。如果 ResolveComReference 任务对程序集进行完全签名, 则为。 <c></c> <see langword="false" /></value>
         <remarks>To be added.</remarks>
         <forInternalUseOnly />
       </Docs>
@@ -111,7 +128,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置除了（或者有选择地重写）常规的环境块之外，应传递到生成的 tlbimp.exe 和 aximp.exe 的环境变量名称-值对的数组。</summary>
-        <value>环境变量的名称-值对的数组。</value>
+        <value>环境变量的名称/值对的数组。</value>
         <remarks>To be added.</remarks>
         <forInternalUseOnly />
       </Docs>
@@ -132,13 +149,17 @@
         <AssemblyName>Microsoft.Build.Tasks</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Build.Tasks.v3.5</AssemblyName>
+        <AssemblyVersion>3.5.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
         <summary>执行 <c>ResolveComReference</c> 任务。</summary>
-        <returns>如果任务成功执行，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+        <returns>如果成功地执行了任务，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <forInternalUseOnly />
       </Docs>
@@ -219,6 +240,10 @@
         <AssemblyName>Microsoft.Build.Tasks</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Build.Tasks.v3.5</AssemblyName>
+        <AssemblyVersion>3.5.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
           <AttributeName>get: System.Runtime.TargetedPatchingOptOut("Performance critical to inline this type of method across NGen image boundaries")</AttributeName>
@@ -252,6 +277,10 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.Build.Tasks</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Build.Tasks.v3.5</AssemblyName>
+        <AssemblyVersion>3.5.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -287,6 +316,10 @@
         <AssemblyName>Microsoft.Build.Tasks</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Build.Tasks.v3.5</AssemblyName>
+        <AssemblyVersion>3.5.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
           <AttributeName>get: System.Runtime.TargetedPatchingOptOut("Performance critical to inline this type of method across NGen image boundaries")</AttributeName>
@@ -321,6 +354,10 @@
         <AssemblyName>Microsoft.Build.Tasks</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Build.Tasks.v3.5</AssemblyName>
+        <AssemblyVersion>3.5.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
           <AttributeName>get: System.Runtime.TargetedPatchingOptOut("Performance critical to inline this type of method across NGen image boundaries")</AttributeName>
@@ -354,6 +391,10 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.Build.Tasks</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Build.Tasks.v3.5</AssemblyName>
+        <AssemblyVersion>3.5.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute>
@@ -391,6 +432,10 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.Build.Tasks</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Build.Tasks.v3.5</AssemblyName>
+        <AssemblyVersion>3.5.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute>
@@ -460,7 +505,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指示是否记录消息或警告。</summary>
-        <value><see langword="true" /> 如果不记录消息和警告;否则为<see langword="false" />。 默认值为 <see langword="false" />。</value>
+        <value><see langword="true" />如果未记录消息和警告, 则为;否则为<see langword="false" />。 默认值为 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
         <forInternalUseOnly />
       </Docs>
@@ -480,6 +525,10 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.Build.Tasks</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Build.Tasks.v3.5</AssemblyName>
+        <AssemblyVersion>3.5.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -551,7 +600,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置转换之后传递到 tlbimp.exe/计算机标志的首选目标处理器架构名称，例如 x86、ia64、amd64 或 msil。</summary>
-        <value>首选的目标处理器体系结构的名称。</value>
+        <value>首选目标处理器体系结构的名称。</value>
         <remarks>To be added.</remarks>
         <forInternalUseOnly />
       </Docs>
@@ -572,6 +621,10 @@
         <AssemblyName>Microsoft.Build.Tasks</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Build.Tasks.v3.5</AssemblyName>
+        <AssemblyVersion>3.5.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
           <AttributeName>get: System.Runtime.TargetedPatchingOptOut("Performance critical to inline this type of method across NGen image boundaries")</AttributeName>
@@ -590,7 +643,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性可能包含项元数据。 详细信息，请参阅"TypeLibFiles 项元数据"部分中[ResolveComReference 任务](https://msdn.microsoft.com/library/c9bf5fcf-6453-40ea-b50f-a212adc3e9b5)。  
+ 此属性可能包含项元数据。 有关详细信息, 请参阅[ResolveComReference 任务](https://msdn.microsoft.com/library/c9bf5fcf-6453-40ea-b50f-a212adc3e9b5)中的 "TypeLibFiles 项元数据" 部分。  
   
  ]]></format>
         </remarks>
@@ -613,6 +666,10 @@
         <AssemblyName>Microsoft.Build.Tasks</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Build.Tasks.v3.5</AssemblyName>
+        <AssemblyVersion>3.5.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
           <AttributeName>get: System.Runtime.TargetedPatchingOptOut("Performance critical to inline this type of method across NGen image boundaries")</AttributeName>
@@ -631,7 +688,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性可能包含项元数据。 详细信息，请参阅"TypeLibFiles 项元数据"部分中[ResolveComReference 任务](https://msdn.microsoft.com/library/c9bf5fcf-6453-40ea-b50f-a212adc3e9b5)。  
+ 此属性可能包含项元数据。 有关详细信息, 请参阅[ResolveComReference 任务](https://msdn.microsoft.com/library/c9bf5fcf-6453-40ea-b50f-a212adc3e9b5)中的 "TypeLibFiles 项元数据" 部分。  
   
  ]]></format>
         </remarks>
@@ -653,6 +710,10 @@
       <AssemblyInfo>
         <AssemblyName>Microsoft.Build.Tasks</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>Microsoft.Build.Tasks.v3.5</AssemblyName>
+        <AssemblyVersion>3.5.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">

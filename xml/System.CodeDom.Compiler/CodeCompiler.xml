@@ -1,5 +1,5 @@
 <Type Name="CodeCompiler" FullName="System.CodeDom.Compiler.CodeCompiler">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="3179e580d92eceadd01fd20b1697120155aaeace" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63913142" /></Metadata><TypeSignature Language="C#" Value="public abstract class CodeCompiler : System.CodeDom.Compiler.CodeGenerator, System.CodeDom.Compiler.ICodeCompiler" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bad66cc145f71ae2596838028b0803fe82d364fb" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69342181" /></Metadata><TypeSignature Language="C#" Value="public abstract class CodeCompiler : System.CodeDom.Compiler.CodeGenerator, System.CodeDom.Compiler.ICodeCompiler" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit CodeCompiler extends System.CodeDom.Compiler.CodeGenerator implements class System.CodeDom.Compiler.ICodeCompiler" />
   <TypeSignature Language="DocId" Value="T:System.CodeDom.Compiler.CodeCompiler" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class CodeCompiler&#xA;Inherits CodeGenerator&#xA;Implements ICodeCompiler" />
@@ -31,15 +31,15 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.CodeDom.Compiler.CodeCompiler> 是有用的实用程序基类的代码生成器，以便提供编译函数的代码从派生类。  
+ <xref:System.CodeDom.Compiler.CodeCompiler>是一个有用的实用工具基类, 可供代码生成器从中派生, 以便提供代码编译函数。  
   
 > [!NOTE]
->  此类包含一个链接要求和继承要求在类级别应用于所有成员。 一个<xref:System.Security.SecurityException>直接调用方或派生的类没有完全信任权限时引发。 有关安全要求的详细信息，请参阅[链接需求](~/docs/framework/misc/link-demands.md)并[继承需求](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/x4yx82e6(v=vs.100))。  
+>  此类包含应用于所有成员的类级别的链接要求和继承要求。 当直接调用方或派生类不具有完全信任权限时,将引发。<xref:System.Security.SecurityException> 有关安全要求的详细信息, 请参阅[链接要求](~/docs/framework/misc/link-demands.md)和[继承要求](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/x4yx82e6(v=vs.100))。  
   
  ]]></format>
     </remarks>
-    <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">对于直接调用方的完全信任。 部分受信任的代码不能使用此类。</permission>
-    <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">继承者完全信任。 不能由部分受信任代码继承此类。</permission>
+    <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">完全信任直接调用方。 此类不能由部分信任的代码使用。</permission>
+    <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">完全信任继承者。 此类不能由部分信任的代码继承。</permission>
     <altmember cref="T:System.CodeDom.Compiler.ICodeCompiler" />
     <altmember cref="T:System.CodeDom.Compiler.CompilerParameters" />
     <altmember cref="T:System.CodeDom.Compiler.CompilerResults" />
@@ -73,7 +73,7 @@
       <Docs>
         <summary>初始化 <see cref="T:System.CodeDom.Compiler.CodeCompiler" /> 类的新实例。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">对于直接调用方的完全信任。 部分受信任的代码不能使用此类。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">完全信任直接调用方。 此类不能由部分信任的代码使用。</permission>
       </Docs>
     </Member>
     <Member MemberName="CmdArgsFromParameters">
@@ -140,7 +140,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性指示可执行文件调用编译器的名称。  
+ 此属性指示要调用的编译器可执行文件的名称。  
   
  ]]></format>
         </remarks>
@@ -216,7 +216,7 @@
         <returns>编译的结果。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="options" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">编译。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于编译。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="T:System.CodeDom.Compiler.CompilerParameters" />
         <altmember cref="T:System.CodeDom.CodeCompileUnit" />
         <altmember cref="T:System.CodeDom.Compiler.CompilerResults" />
@@ -259,7 +259,7 @@
   
 或 
  <paramref name="ea" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">编译。 关联的枚举是 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于编译。 关联的枚举为<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="T:System.CodeDom.Compiler.CompilerParameters" />
         <altmember cref="T:System.CodeDom.CodeCompileUnit" />
         <altmember cref="T:System.CodeDom.Compiler.CompilerResults" />
@@ -302,7 +302,7 @@
   
 或 
  <paramref name="fileName" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">编译。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于编译。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="T:System.CodeDom.Compiler.CompilerParameters" />
         <altmember cref="T:System.CodeDom.Compiler.CompilerResults" />
       </Docs>
@@ -342,9 +342,9 @@
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="options" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="fileNames" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">编译。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于编译。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="T:System.CodeDom.Compiler.CompilerParameters" />
         <altmember cref="T:System.CodeDom.Compiler.CompilerResults" />
       </Docs>
@@ -383,7 +383,7 @@
         <returns>编译的结果。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="options" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">编译。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于编译。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="T:System.CodeDom.Compiler.CompilerParameters" />
         <altmember cref="T:System.CodeDom.Compiler.CompilerResults" />
       </Docs>
@@ -423,9 +423,9 @@
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="options" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="sources" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">编译。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于编译。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="T:System.CodeDom.Compiler.CompilerParameters" />
         <altmember cref="T:System.CodeDom.Compiler.CompilerResults" />
       </Docs>
@@ -503,7 +503,7 @@
         <summary>联接指定的字符串数组。</summary>
         <returns>串联字符串。</returns>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">对于直接调用方的完全信任。 此成员不能由部分信任的代码使用。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">完全信任直接调用方。 此成员不能由部分信任的代码使用。</permission>
       </Docs>
     </Member>
     <Member MemberName="ProcessCompilerOutputLine">
@@ -579,12 +579,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.CodeDom.Compiler.CodeCompiler> 实例强制转换为 <xref:System.CodeDom.Compiler.ICodeCompiler> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.CodeDom.Compiler.CodeCompiler> 实例被强制转换为 <xref:System.CodeDom.Compiler.ICodeCompiler> 接口时使用。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="options" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">编译。 关联的枚举是 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于编译。 关联的枚举为<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
     <Member MemberName="System.CodeDom.Compiler.ICodeCompiler.CompileAssemblyFromDomBatch">
@@ -625,11 +625,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.CodeDom.Compiler.CodeCompiler> 实例强制转换为 <xref:System.CodeDom.Compiler.ICodeCompiler> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.CodeDom.Compiler.CodeCompiler> 实例被强制转换为 <xref:System.CodeDom.Compiler.ICodeCompiler> 接口时使用。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">编译。 关联的枚举是 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于编译。 关联的枚举为<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
     <Member MemberName="System.CodeDom.Compiler.ICodeCompiler.CompileAssemblyFromFile">
@@ -670,12 +670,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.CodeDom.Compiler.CodeCompiler> 实例强制转换为 <xref:System.CodeDom.Compiler.ICodeCompiler> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.CodeDom.Compiler.CodeCompiler> 实例被强制转换为 <xref:System.CodeDom.Compiler.ICodeCompiler> 接口时使用。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="options" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">编译。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于编译。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
     <Member MemberName="System.CodeDom.Compiler.ICodeCompiler.CompileAssemblyFromFileBatch">
@@ -716,11 +716,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.CodeDom.Compiler.CodeCompiler> 实例强制转换为 <xref:System.CodeDom.Compiler.ICodeCompiler> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.CodeDom.Compiler.CodeCompiler> 实例被强制转换为 <xref:System.CodeDom.Compiler.ICodeCompiler> 接口时使用。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">编译。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于编译。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
     <Member MemberName="System.CodeDom.Compiler.ICodeCompiler.CompileAssemblyFromSource">
@@ -761,12 +761,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.CodeDom.Compiler.CodeCompiler> 实例强制转换为 <xref:System.CodeDom.Compiler.ICodeCompiler> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.CodeDom.Compiler.CodeCompiler> 实例被强制转换为 <xref:System.CodeDom.Compiler.ICodeCompiler> 接口时使用。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="options" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">编译。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于编译。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
     <Member MemberName="System.CodeDom.Compiler.ICodeCompiler.CompileAssemblyFromSourceBatch">
@@ -807,12 +807,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.CodeDom.Compiler.CodeCompiler> 实例强制转换为 <xref:System.CodeDom.Compiler.ICodeCompiler> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.CodeDom.Compiler.CodeCompiler> 实例被强制转换为 <xref:System.CodeDom.Compiler.ICodeCompiler> 接口时使用。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="options" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">编译。 关联的枚举： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于编译。 关联的枚举:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
       </Docs>
     </Member>
   </Members>
