@@ -1,5 +1,5 @@
 <Type Name="DisplayColumnAttribute" FullName="System.ComponentModel.DataAnnotations.DisplayColumnAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8afb7e10ddd9ccec4b04de1aa63c3b1ee66db99e" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63904638" /></Metadata><TypeSignature Language="C#" Value="public class DisplayColumnAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0a9d36b8d9d28bd9bbf82084fd25eeacc1785a67" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69351054" /></Metadata><TypeSignature Language="C#" Value="public class DisplayColumnAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DisplayColumnAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.DataAnnotations.DisplayColumnAttribute" />
   <TypeSignature Language="VB.NET" Value="Public Class DisplayColumnAttribute&#xA;Inherits Attribute" />
@@ -10,6 +10,7 @@
     <AssemblyVersion>4.0.10.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
+    <AssemblyVersion>4.3.0.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System.ComponentModel.DataAnnotations</AssemblyName>
@@ -22,8 +23,11 @@
   </Base>
   <Interfaces />
   <Attributes>
-    <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;dotnet-uwp-10.0;netcore-3.0">
+    <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;dotnet-uwp-10.0">
       <AttributeName>System.AttributeUsage(System.AttributeTargets.Class, AllowMultiple=false, Inherited=true)</AttributeName>
+    </Attribute>
+    <Attribute FrameworkAlternate="netcore-3.0">
+      <AttributeName>System.AttributeUsage</AttributeName>
     </Attribute>
   </Attributes>
   <Docs>
@@ -32,42 +36,42 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当表中的列包含外键时，动态数据推断出该列从被引用表的显示值。 默认情况下，使用类型为字符串 （或文本） 所引用的表的第一列。 <xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute>属性，您可以更改此默认行为，并指定要用作外键字段列不同的父表的列。  
+ 当表中的某列包含外键时, 动态数据将从所引用的表中推断该列的显示值。 默认情况下, 将使用所引用表的第一列, 其类型为字符串 (或文本)。 使用<xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute>特性可以更改此默认行为, 并指定要用作外键字段的列的其他父表列。  
   
- 当应用此特性时，必须遵守以下使用限制：  
+ 应用此特性时, 必须遵循以下使用限制:  
   
--   该属性只能应用于类。  
+-   特性只能应用于类。  
   
--   该属性可以由派生类继承。  
+-   派生类可以继承此特性。  
   
--   该特性可以应用只进行一次。  
+-   特性只能应用一次。  
   
 
  ## Examples  
- 下面的示例演示如何使用 <xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute> 特性。 该示例执行以下任务：  
+ 下面的示例演示如何使用 <xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute> 特性。 该示例执行以下任务:  
   
--   实现元数据的分部类 Address 和 Customer 表，这是 CustomerAddress 表的父表。  
+-   实现 Address 和 Customer 表的元数据分部类, 这些表是 CustomerAddress 表的父表。  
   
--   适用<xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute>属性为`Address`元数据分部类，以指定以下内容：  
+-   <xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute>将特性`Address`应用于元数据分部类, 以指定以下各项:  
   
-    -   地址表 （父表） 中的城市列显示为 CustomerAddress 子表中的外键列。  
+    -   Address 表 (父表) 中的 City 列显示为 CustomerAddress 子表中的外键列。  
   
-    -   地址表 （父表） 中的邮政编码列用于排序的地址选择框中的 CustomerAddress 子表。  
+    -   Address 表 (父表) 中的 "邮政编码" 列用于对 CustomerAddress 子表中的地址选择框进行排序。  
   
-    -   排序顺序设置为升序。  
+    -   排序顺序设置为 "升序"。  
   
- 该示例应用<xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute>属性为`Customer`元数据部分类，以指定的 LastName 列中显示为 CustomerAddress 表的外键列。  
+ 该示例将<xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute>特性`Customer`应用于 metadata 分部类, 以指定显示为 CustomerAddress 表的外键列的 LastName 列。  
   
  [!code-csharp[System.ComponentModel.DataAnnotations.DisplayColumnAttribute#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.ComponentModel.DataAnnotations.DisplayColumnAttribute/CS/Address.cs#1)]
  [!code-vb[System.ComponentModel.DataAnnotations.DisplayColumnAttribute#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.ComponentModel.DataAnnotations.DisplayColumnAttribute/VB/Address.vb#1)]  
   
- 要编译该示例，您需要以下各项：  
+ 若要编译该示例, 需要以下各项:  
   
 -   任何版本的 Visual Studio 2010 或更高版本。
   
--   AdventureWorksLT 示例数据库。 有关如何下载和安装 SQL Server 示例数据库的信息，请参阅[Microsoft SQL Server 产品示例：数据库](https://github.com/Microsoft/sql-server-samples/releases)GitHub 上。 请确保安装正确版本的正在运行的 SQL Server 版本的示例数据库。  
+-   AdventureWorksLT 示例数据库。 有关如何下载和安装 SQL Server 示例数据库的信息, 请参阅[Microsoft SQL Server 产品示例:GitHub](https://github.com/Microsoft/sql-server-samples/releases)上的数据库。 请确保为运行的 SQL Server 版本安装了正确版本的示例数据库。  
   
--   动态数据驱动网站。 这使您可以创建数据库的数据上下文，并创建包含要自定义的数据字段的类。 有关更多信息，请参见`Walkthrough: Creating a New Dynamic Data Web Site using Scaffolding`。  
+-   动态数据驱动的网站。 这使您可以为数据库创建数据上下文, 并创建包含要自定义的数据字段的类。 有关详细信息，请参阅 `Walkthrough: Creating a New Dynamic Data Web Site using Scaffolding`。  
 
  ]]></format>
     </remarks>
@@ -96,6 +100,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.3.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.ComponentModel.DataAnnotations</AssemblyName>
@@ -118,7 +123,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示如何定义要在为子表作为外键列上显示的父列。  
+ 下面的示例演示如何定义父列以在子表的页中显示为外键列。  
   
  [!code-csharp[System.ComponentModel.DataAnnotations.DisplayColumnAttribute#3](~/samples/snippets/csharp/VS_Snippets_WebNet/System.ComponentModel.DataAnnotations.DisplayColumnAttribute/CS/Address.cs#3)]
  [!code-vb[System.ComponentModel.DataAnnotations.DisplayColumnAttribute#3](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.ComponentModel.DataAnnotations.DisplayColumnAttribute/VB/Address.vb#3)]  
@@ -140,6 +145,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.3.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.ComponentModel.DataAnnotations</AssemblyName>
@@ -164,7 +170,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认情况下，在指定的列`sortColumn`将按升序排序。  
+ 默认情况下, 中`sortColumn`指定的列将按升序排序。  
   
  ]]></format>
         </remarks>
@@ -183,6 +189,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.3.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.ComponentModel.DataAnnotations</AssemblyName>
@@ -204,7 +211,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示如何定义要在为子表作为外键列上显示的父列。 它将父表的列进行排序，并还会设置排序顺序。  
+ 下面的示例演示如何定义父列以在子表的页中显示为外键列。 它设置用于排序的父表列, 还设置排序顺序。  
   
  [!code-csharp[System.ComponentModel.DataAnnotations.DisplayColumnAttribute#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.ComponentModel.DataAnnotations.DisplayColumnAttribute/CS/Address.cs#2)]
  [!code-vb[System.ComponentModel.DataAnnotations.DisplayColumnAttribute#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.ComponentModel.DataAnnotations.DisplayColumnAttribute/VB/Address.vb#2)]  
@@ -226,6 +233,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.3.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.ComponentModel.DataAnnotations</AssemblyName>
@@ -260,6 +268,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.3.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.ComponentModel.DataAnnotations</AssemblyName>
@@ -294,6 +303,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.3.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.ComponentModel.DataAnnotations</AssemblyName>

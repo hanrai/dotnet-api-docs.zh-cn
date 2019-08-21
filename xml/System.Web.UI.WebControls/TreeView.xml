@@ -1,5 +1,5 @@
 <Type Name="TreeView" FullName="System.Web.UI.WebControls.TreeView">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a500ff6280b97ac00b91885a7a20e8a7233ff58d" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55349341" /></Metadata><TypeSignature Language="C#" Value="public class TreeView : System.Web.UI.WebControls.HierarchicalDataBoundControl, System.Web.UI.ICallbackEventHandler, System.Web.UI.IPostBackDataHandler, System.Web.UI.IPostBackEventHandler" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="644e5019335145296b521d6d60c4b71866ee67be" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69410800" /></Metadata><TypeSignature Language="C#" Value="public class TreeView : System.Web.UI.WebControls.HierarchicalDataBoundControl, System.Web.UI.ICallbackEventHandler, System.Web.UI.IPostBackDataHandler, System.Web.UI.IPostBackEventHandler" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit TreeView extends System.Web.UI.WebControls.HierarchicalDataBoundControl implements class System.Web.UI.ICallbackEventHandler, class System.Web.UI.IPostBackDataHandler, class System.Web.UI.IPostBackEventHandler" />
   <TypeSignature Language="DocId" Value="T:System.Web.UI.WebControls.TreeView" />
   <TypeSignature Language="VB.NET" Value="Public Class TreeView&#xA;Inherits HierarchicalDataBoundControl&#xA;Implements ICallbackEventHandler, IPostBackDataHandler, IPostBackEventHandler" />
@@ -51,7 +51,7 @@
   
 -   [介绍](#introduction)  
   
--   [节点](#nodes)  
+-   [结点](#nodes)  
   
 -   [静态数据](#static_data)  
   
@@ -71,119 +71,119 @@
   
 <a name="introduction"></a>   
 ## <a name="introduction"></a>介绍  
- <xref:System.Web.UI.WebControls.TreeView>控制用于在树结构中显示分层数据，例如目录或文件目录的表和支持以下功能：  
+ <xref:System.Web.UI.WebControls.TreeView>控件用于在树结构中显示分层数据, 例如目录或文件目录, 并支持以下功能:  
   
--   数据绑定，使要绑定到 XML 中，表格，或关系数据的控件节点。  
+-   允许控件的节点绑定到 XML、表格或关系数据的数据绑定。  
   
--   站点通过与集成导航<xref:System.Web.UI.WebControls.SiteMapDataSource>控件。  
+-   通过与<xref:System.Web.UI.WebControls.SiteMapDataSource>控件集成的站点导航。  
   
--   节点可以显示为纯文本或超链接的文本。  
+-   可以显示为纯文本或超链接的节点文本。  
   
--   以编程方式访问<xref:System.Web.UI.WebControls.TreeView>对象模型，以便创建树、 填充节点、 等动态设置属性。  
+-   以编程方式访问<xref:System.Web.UI.WebControls.TreeView>对象模型, 以动态方式创建树、填充节点、设置属性等。  
   
--   客户端节点 （在支持的浏览器） 的填充。  
+-   客户端节点填充 (在支持的浏览器上)。  
   
--   能够显示每个节点旁的复选框。  
+-   能够在每个节点旁边显示复选框。  
   
--   通过主题、 用户定义的可自定义外观的图像和样式。  
+-   通过主题、用户定义图像和样式自定义外观。  
   
     > [!NOTE]
-    >  <xref:System.Web.UI.WebControls.TreeView>控件旨在在内部使用<xref:System.Web.UI.UpdatePanel>控制时，才<xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>设置为`true`。 <xref:System.Web.UI.UpdatePanel> 控制用于更新选定的区域，而不是使用回发中更新整个页面的页面。 有关详细信息，请参阅[UpdatePanel 控件概述](https://msdn.microsoft.com/library/29a2265d-9674-4c19-b70e-e5560ee9689a)并[部分页呈现概述](https://msdn.microsoft.com/library/5c12736d-d9e9-464a-9388-3fe0f9f49e49)。  
+    >  控件设计为仅在设置为`true`时<xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>在<xref:System.Web.UI.UpdatePanel>控件内使用。 <xref:System.Web.UI.WebControls.TreeView> <xref:System.Web.UI.UpdatePanel>控件用于更新页面的选定区域, 而不是使用回发来更新整个页面。 有关详细信息, 请参阅[UpdatePanel 控件概述](https://msdn.microsoft.com/library/29a2265d-9674-4c19-b70e-e5560ee9689a)和[部分页呈现概述](https://msdn.microsoft.com/library/5c12736d-d9e9-464a-9388-3fe0f9f49e49)。  
   
 <a name="nodes"></a>   
 ## <a name="nodes"></a>节点  
- <xref:System.Web.UI.WebControls.TreeView>控件由节点构成。 在树中每个条目都叫做一个节点，并且由<xref:System.Web.UI.WebControls.TreeNode>对象。 节点类型定义，如下所示：  
+ <xref:System.Web.UI.WebControls.TreeView>控件由节点组成。 树中的每个条目称为节点, 由<xref:System.Web.UI.WebControls.TreeNode>对象表示。 节点类型定义如下:  
   
 -   包含其他节点的节点称为*父节点*。  
   
--   包含在另一个节点的节点都称为*子节点*。  
+-   其他节点包含的节点称为*子节点*。  
   
--   没有任何子级的节点称为*叶节点*。  
+-   没有子项的节点称为*叶节点*。  
   
--   不包含的任何其他节点，但所有其他节点的上级的节点是否*根节点*。  
+-   不是由任何其他节点包含的节点, 而是其他所有节点的上级节点。   
   
- 父级和子级，但根，父级，可以是节点和叶节点是互相排斥。 一个节点为根、 子或叶节点决定的节点的多个视觉和行为属性。  
+ 节点可以是父节点和子节点, 但根节点、父节点和叶节点都是互斥的。 节点的多个视觉和行为属性由节点是根节点、子节点还是叶节点确定。  
   
- 虽然典型树结构只包含一个根节点，但<xref:System.Web.UI.WebControls.TreeView>让您可以将多个根节点添加到树状结构。 当你想要显示项列表而不会显示一个根节点，如下所示的产品类别列表时，这很有用。  
+ 尽管典型树结构只有一个根节点, 但该<xref:System.Web.UI.WebControls.TreeView>控件允许您将多个根节点添加到树结构。 如果希望在不显示单个根节点的情况下显示项列表, 则这非常有用, 如在产品类别列表中。  
   
- 每个节点都<xref:System.Web.UI.WebControls.TreeNode.Text%2A>属性和一个<xref:System.Web.UI.WebControls.TreeNode.Value%2A>属性。 值<xref:System.Web.UI.WebControls.TreeNode.Text%2A>属性显示在<xref:System.Web.UI.WebControls.TreeView>，而<xref:System.Web.UI.WebControls.TreeNode.Value%2A>属性用来存储有关该节点，例如传递到与节点关联的回发事件的数据的任何其他数据。  
+ 每个节点都<xref:System.Web.UI.WebControls.TreeNode.Text%2A>有一个属性<xref:System.Web.UI.WebControls.TreeNode.Value%2A>和一个属性。 <xref:System.Web.UI.WebControls.TreeNode.Text%2A>属性的值<xref:System.Web.UI.WebControls.TreeView>在中显示, 而<xref:System.Web.UI.WebControls.TreeNode.Value%2A>属性用于存储关于节点的任何其他数据, 如传递到与节点相关联的回发事件的数据。  
   
- 节点可以是在两种模式之一中： 选择模式和导航模式。 默认情况下，一个节点处于选择模式。 若要将节点放入导航模式，设置<xref:System.Web.UI.WebControls.TreeNode.NavigateUrl%2A>到不是空字符串值的节点的属性 ("")。 若要使一个节点处于选择模式，设置<xref:System.Web.UI.WebControls.TreeNode.NavigateUrl%2A>属性的节点为空字符串 ("")。  
+ 节点可以是以下两种模式之一: 选择模式和导航模式。 默认情况下, 节点处于选择模式。 若要使节点进入导航模式, 请将<xref:System.Web.UI.WebControls.TreeNode.NavigateUrl%2A>节点的属性设置为空字符串 ("") 以外的值。 若要将节点置于选择模式, 请将<xref:System.Web.UI.WebControls.TreeNode.NavigateUrl%2A>节点的属性设置为空字符串 ("")。  
   
 > [!NOTE]
->  某些 Internet 浏览器具有一个限制，即会影响性能的<xref:System.Web.UI.WebControls.TreeView>控件。 例如，Microsoft Internet Explorer 6.0 有发 2067年字符的 URL 字符限制。 如果某个节点的 URL 中的字符数大于该数字，展开该节点将失败，并且不会引发异常。  
+>  某些 Internet 浏览器有可能会影响<xref:System.Web.UI.WebControls.TreeView>控件性能的限制。 例如, Microsoft Internet Explorer 6.0 的 URL 字符限制为2067个字符。 如果节点 URL 中的字符数大于该数量, 则展开该节点将失败, 并且不会引发异常。  
   
 <a name="static_data"></a>   
 ## <a name="static-data"></a>静态数据  
- 最简单的数据模型的<xref:System.Web.UI.WebControls.TreeView>控件是静态的数据。 若要显示静态数据使用声明性语法，请首先打开和关闭`<Nodes>`标记的开始和结束标记之间<xref:System.Web.UI.WebControls.TreeView>控件。 接下来，创建嵌套的树结构`<asp:TreeNode>`元素的开始和结束之间`<Nodes>`标记。 每个`<asp:TreeNode>`元素表示的节点在树中，并将映射到<xref:System.Web.UI.WebControls.TreeNode>对象。 通过设置的属性可设置每个节点的属性及其`<asp:TreeNode>`元素。 若要创建子节点，嵌套其他`<asp:TreeNode>`元素的开始和结束之间`<asp:TreeNode>`的父节点的标记。  
+ <xref:System.Web.UI.WebControls.TreeView>控件的最简单数据模型为静态数据。 若要使用声明性语法显示静态数据, 请先在`<Nodes>` <xref:System.Web.UI.WebControls.TreeView>控件的开始和结束标记之间嵌套开始和结束标记。 接下来, 通过在开始和结束`<asp:TreeNode>` `<Nodes>`标记之间嵌套元素来创建树结构。 每`<asp:TreeNode>`个元素都表示树中的一个节点并映射<xref:System.Web.UI.WebControls.TreeNode>到一个对象。 可以通过设置每个节点的`<asp:TreeNode>`元素的属性来设置这些属性。 若要创建子节点, 请`<asp:TreeNode>`在父节点的开始标记`<asp:TreeNode>`和结束标记之间嵌套其他元素。  
   
 <a name="binding_to_data"></a>   
 ## <a name="binding-to-data"></a>绑定到数据  
- <xref:System.Web.UI.WebControls.TreeView>控件还可以绑定到数据。 可以使用两种方法之一将绑定<xref:System.Web.UI.WebControls.TreeView>到适当的数据源类型的控件：  
+ 还可以将控件绑定到数据。 <xref:System.Web.UI.WebControls.TreeView> 您可以使用两种方法中的任意一<xref:System.Web.UI.WebControls.TreeView>种将控件绑定到相应的数据源类型:  
   
--   <xref:System.Web.UI.WebControls.TreeView>控件可以使用任何实现的数据源控件<xref:System.Web.UI.IHierarchicalDataSource>接口，如<xref:System.Web.UI.WebControls.XmlDataSource>控件或<xref:System.Web.UI.WebControls.SiteMapDataSource>控件。 若要将绑定到数据源控件，设置<xref:System.Web.UI.WebControls.DataBoundControl.DataSourceID%2A>的属性<xref:System.Web.UI.WebControls.TreeView>控制对<xref:System.Web.UI.Control.ID%2A>数据源控件的值。 <xref:System.Web.UI.WebControls.TreeView>控件自动绑定到指定的数据源控件。 这是要将绑定到数据的首选的方法。  
+-   控件可以使用任何<xref:System.Web.UI.IHierarchicalDataSource>实现<xref:System.Web.UI.WebControls.XmlDataSource>接口的数据源控件, 如控件或<xref:System.Web.UI.WebControls.SiteMapDataSource>控件。 <xref:System.Web.UI.WebControls.TreeView> 若要绑定到数据源控件, 请将<xref:System.Web.UI.WebControls.DataBoundControl.DataSourceID%2A> <xref:System.Web.UI.WebControls.TreeView>控件的属性设置为数据<xref:System.Web.UI.Control.ID%2A>源控件的值。 <xref:System.Web.UI.WebControls.TreeView>控件将自动绑定到指定的数据源控件。 这是绑定到数据的首选方法。  
   
--   <xref:System.Web.UI.WebControls.TreeView>控件还可以绑定到<xref:System.Xml.XmlDocument>对象或<xref:System.Data.DataSet>具有关系对象。 若要将绑定到这些数据源之一，将设置<xref:System.Web.UI.WebControls.BaseDataBoundControl.DataSource%2A>的属性<xref:System.Web.UI.WebControls.TreeView>控制到数据源，然后调用<xref:System.Web.UI.WebControls.BaseDataBoundControl.DataBind%2A>方法。  
+-   控件还可以绑定<xref:System.Xml.XmlDocument>到对象或<xref:System.Data.DataSet>具有关系的对象。 <xref:System.Web.UI.WebControls.TreeView> 若要绑定到其中一个数据源, 请将<xref:System.Web.UI.WebControls.BaseDataBoundControl.DataSource%2A> <xref:System.Web.UI.WebControls.TreeView>控件的属性设置为数据源<xref:System.Web.UI.WebControls.BaseDataBoundControl.DataBind%2A> , 然后调用方法。  
   
- 当绑定到数据源，其中每个数据项都包含多个属性 （如具有多个特性的 XML 元素） 节点显示返回的值`ToString`数据项，默认情况下的方法。 对于 XML 元素，该节点显示显示在树的基础结构，但其他方面不是非常有用的元素名称。 您可以通过指定树节点绑定使用绑定到特定数据项属性节点<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合。 <xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合包含`TreeNodeBinding`对象以定义数据项和它所绑定到的节点之间的关系。 可以指定用于绑定和数据的项属性，以在节点中显示的条件。 树节点绑定的详细信息，请参阅<xref:System.Web.UI.WebControls.TreeNodeBinding>。  
+ 绑定到数据源 (其中每个数据项都包含多个属性) 时, 默认情况下, 节点将显示数据项的`ToString`方法返回的值。 对于 XML 元素, 该节点将显示元素名称, 该名称显示树的基础结构, 但在其他情况下不起作用。 您可以通过使用<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合指定树节点绑定, 将节点绑定到特定数据项属性。 <xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合包含`TreeNodeBinding`的对象定义数据项和它所绑定到的节点之间的关系。 您可以指定要在节点中显示的绑定条件和数据项属性。 有关树节点绑定的详细信息, 请<xref:System.Web.UI.WebControls.TreeNodeBinding>参阅。  
   
 > [!IMPORTANT]
->  恶意用户可以创建一个回调请求并获取数据的节点<xref:System.Web.UI.WebControls.TreeView>页面开发人员不显示控件。 因此，必须由数据源实现数据的安全性。 不要使用<xref:System.Web.UI.WebControls.TreeView.MaxDataBindDepth%2A>属性隐藏数据。  
+>  恶意用户可以创建回调请求并获取页面开发人员未显示的<xref:System.Web.UI.WebControls.TreeView>控件节点的数据。 因此, 数据的安全必须由数据源实现。 不要使用<xref:System.Web.UI.WebControls.TreeView.MaxDataBindDepth%2A>属性来隐藏数据。  
   
 <a name="dynamic_node_population"></a>   
 ## <a name="dynamic-node-population"></a>动态节点填充  
- 有时，它并不可行以静态方式定义的树状结构，因为数据源返回过多数据或要显示的数据取决于在运行时获取的信息。 正因为如此，<xref:System.Web.UI.WebControls.TreeView>控件支持动态节点填充。 当<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`，在运行时节点展开时，会填充该节点。 若要动态填充节点，必须定义包含用于填充的节点的逻辑的事件处理方法<xref:System.Web.UI.WebControls.TreeView.TreeNodePopulate>事件。  
+ 有时, 静态定义树结构是不切实际的, 因为数据源返回太多数据, 或是因为要显示的数据取决于您在运行时获取的信息。 因此, <xref:System.Web.UI.WebControls.TreeView>控件支持动态节点填充。 如果将<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`, 则在展开节点时, 将在运行时填充该节点。 若要动态填充节点, 必须定义一个事件处理方法, 其中包含用于填充<xref:System.Web.UI.WebControls.TreeView.TreeNodePopulate>事件节点的逻辑。  
   
- 支持回调脚本的浏览器还可以利用客户端的节点填充。 （这包括 Internet Explorer 5.5 和更高版本以及某些其他浏览器。）客户端的节点填充，<xref:System.Web.UI.WebControls.TreeView>控件来填充用户展开节点，而无需往返到服务器时使用客户端脚本的节点。 客户端的节点填充的详细信息，请参阅<xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A>。  
+ 支持回调脚本的浏览器还可利用客户端节点填充。 (这包括 Internet Explorer 5.5 和更高版本以及其他一些浏览器。)客户端节点填充使<xref:System.Web.UI.WebControls.TreeView>控件能够在用户展开节点时使用客户端脚本填充节点, 而无需往返服务器。 有关客户端节点填充的详细信息, 请参阅<xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A>。  
   
 <a name="customizing_the_user_interface"></a>   
 ## <a name="customizing-the-user-interface"></a>自定义用户界面  
- 有许多方法可以自定义外观<xref:System.Web.UI.WebControls.TreeView>控件。 首先，您可以为每个节点类型指定不同的样式 （如字体大小和颜色）。  
+ 可以通过多种方式自定义<xref:System.Web.UI.WebControls.TreeView>控件的外观。 首先, 您可以为每个节点类型指定不同的样式 (如字体大小和颜色)。  
   
- 如果您使用级联样式表 (CSS) 自定义控件的外观，使用内联样式或单独的 CSS 文件，但不可同时使用两者。 使用内联样式和单独的 CSS 文件可能会导致意外的结果。 使用与控件的样式表的详细信息，请参阅[Web 服务器控件和 CSS 样式](https://msdn.microsoft.com/library/782c2db6-fc9b-4243-8df9-a8ffe2f4cc42)。  
+ 如果使用级联样式表 (CSS) 来自定义控件的外观, 则可以使用内联样式或单独的 CSS 文件, 但不能同时使用两者。 同时使用内联样式和单独的 CSS 文件可能导致意外的结果。 有关将样式表用于控件的详细信息, 请参阅[Web 服务器控件和 CSS 样式](https://msdn.microsoft.com/library/782c2db6-fc9b-4243-8df9-a8ffe2f4cc42)。  
   
  下表列出了可用的节点样式。  
   
-|节点的样式属性|描述|  
+|节点样式属性|说明|  
 |-------------------------|-----------------|  
-|<xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>|在鼠标指针置于其上时的节点的样式设置。|  
+|<xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>|当鼠标指针位于节点上时该节点的样式设置。|  
 |<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>|叶节点的样式设置。|  
 |<xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>|节点的默认样式设置。|  
 |<xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>|父节点的样式设置。|  
 |<xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A>|根节点的样式设置。|  
 |<xref:System.Web.UI.WebControls.TreeView.SelectedNodeStyle%2A>|所选节点的样式设置。|  
   
- 此外可以通过使用控制树中特定深度的节点的样式<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>集合。 集合中的第一个样式对应于在第一个级别在树中节点的样式。 集合中的第二个样式对应于树中，依次类推中第二个级别的节点的样式。 这是最常用于生成表的内容样式导航菜单其中某一深度的节点应具有相同的外观，而不考虑是否具有子节点。  
+ 你还可以使用<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>集合来控制树中特定深度的节点的样式。 集合中的第一种样式对应于树中第一级节点的样式。 集合中的第二个样式与树中第二级节点上的节点样式相对应, 依此类推。 这通常用于生成目录样式的导航菜单, 其中, 特定深度的节点应具有相同的外观, 而不考虑它们是否具有子节点。  
   
 > [!NOTE]
->  如果样式定义的某些深度级别使用<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>集合，因此样式重写任何根、 父项或在该深度的节点的叶节点样式设置。  
+>  如果使用<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>集合为某个深度级别定义了样式, 则该样式会重写该深度节点的任何根节点、父节点或叶节点样式设置。  
   
- 若要更改控件外观的另一种方法是自定义中显示的图像的<xref:System.Web.UI.WebControls.TreeView>控件。 可以通过设置以下表中所示的属性来指定您自己自定义控件的不同部分的图像集。  
+ 更改控件外观的另一种方法是自定义<xref:System.Web.UI.WebControls.TreeView>控件中显示的图像。 您可以通过设置下表中显示的属性, 为控件的不同部分指定您自己的自定义图像集。  
   
-|映像属性|描述|  
+|Image 属性|说明|  
 |--------------------|-----------------|  
-|<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>|可折叠节点的指示符显示的图像 URL。 此映像通常是一个减号 （-）。|  
-|<xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>|用于可展开节点指示符显示的图像 URL。 此映像通常是加号 （+）。|  
-|<xref:System.Web.UI.WebControls.TreeView.LineImagesFolder%2A>|包含用于连接到子节点的父节点的线条图像的文件夹 URL。 <xref:System.Web.UI.WebControls.TreeView.ShowLines%2A>属性也必须设置为`true`产生任何影响此属性。|  
-|<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>|用于不可展开节点指示符显示的图像 URL。|  
+|<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>|可折叠节点的指示符所显示图像的 URL。 此图像通常为减号 (-)。|  
+|<xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>|可展开节点的指示符所显示图像的 URL。 此图像通常为加号 (+)。|  
+|<xref:System.Web.UI.WebControls.TreeView.LineImagesFolder%2A>|包含用于将父节点连接到子节点的线条图像的文件夹的 URL。 还必须将`true`属性设置为, 此属性才会生效。 <xref:System.Web.UI.WebControls.TreeView.ShowLines%2A>|  
+|<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>|为不可展开节点指示符显示的图像的 URL。|  
   
 > [!NOTE]
->  不需要自定义映像的每个属性。 如果未显式设置 image 属性，则使用内置的默认图像。  
+>  不需要自定义每个图像属性。 如果未显式设置 image 属性, 则使用内置的默认映像。  
   
- <xref:System.Web.UI.WebControls.TreeView>控件还可以显示的节点旁边的复选框。 当<xref:System.Web.UI.WebControls.TreeView.ShowCheckBoxes%2A>属性设置为值`TreeNodeTypes.None`，指定的节点类型旁边显示复选框。  
+ <xref:System.Web.UI.WebControls.TreeView>控件还允许您在节点旁边显示复选框。 如果将`TreeNodeTypes.None`属性设置为以外的值, 则复选框将显示在指定节点类型的旁边。 <xref:System.Web.UI.WebControls.TreeView.ShowCheckBoxes%2A>  
   
 > [!NOTE]
->  <xref:System.Web.UI.WebControls.TreeView.ShowCheckBoxes%2A>属性可以设置的按位组合为<xref:System.Web.UI.WebControls.TreeNodeTypes>枚举成员值。  
+>  属性可以设置为<xref:System.Web.UI.WebControls.TreeNodeTypes>枚举成员值的按位组合。 <xref:System.Web.UI.WebControls.TreeView.ShowCheckBoxes%2A>  
   
- 该页发送到服务器，每次<xref:System.Web.UI.WebControls.TreeView.CheckedNodes%2A>集合会自动填充的所选的节点。 在显示的复选框后，可以使用<xref:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged>事件的复选框状态发生更改的各次发送到服务器时运行自定义的例程。  
+ 每次将页面发送到服务器时, <xref:System.Web.UI.WebControls.TreeView.CheckedNodes%2A>将自动填充所选节点的集合。 显示复选框时, 可以使用<xref:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged>事件来运行自定义例程, 只要复选框的状态在向服务器的各次发送之间发生更改。  
   
 <a name="events"></a>   
 ## <a name="events"></a>事件  
- <xref:System.Web.UI.WebControls.TreeView>控件提供了几个事件，可以对其进行编程。 这样，您可以运行自定义的例程，每当发生的事件。 下表列出了支持的事件<xref:System.Web.UI.WebControls.TreeView>控件。  
+ <xref:System.Web.UI.WebControls.TreeView>控件提供了几个可对其进行编程的事件。 这使您可以在每次发生事件时运行自定义例程。 下表列出了<xref:System.Web.UI.WebControls.TreeView>控件支持的事件。  
   
-|事件|描述|  
+|事件|说明|  
 |-----------|-----------------|  
-|<xref:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged>|发生时的复选框<xref:System.Web.UI.WebControls.TreeView>控件更改状态的各次发送到服务器。|  
+|<xref:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged>|当<xref:System.Web.UI.WebControls.TreeView>控件的复选框在向服务器的各次发送过程间更改状态时发生。|  
 |<xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged>|在 <xref:System.Web.UI.WebControls.TreeView> 控件中选定某个节点时发生。|  
 |<xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded>|在 <xref:System.Web.UI.WebControls.TreeView> 控件中展开某个节点时发生。|  
 |<xref:System.Web.UI.WebControls.TreeView.TreeNodeCollapsed>|在 <xref:System.Web.UI.WebControls.TreeView> 控件中折叠某个节点时发生。|  
@@ -192,11 +192,11 @@
   
 <a name="scrolling"></a>   
 ## <a name="scrolling"></a>滚动  
- <xref:System.Web.UI.WebControls.TreeView>控件不具有内置的滚动。 若要添加滚动，请将置于<xref:System.Web.UI.WebControls.TreeView>控制<xref:System.Web.UI.WebControls.Panel>控件，并添加到滚动条<xref:System.Web.UI.WebControls.Panel>控件。 有关详细信息，请参阅[面板中 Web 服务器控件概述](https://msdn.microsoft.com/library/127b61ed-87f2-46f4-92a3-785166e7245b)。  
+ <xref:System.Web.UI.WebControls.TreeView>控件没有内置滚动。 若要添加滚动, 请<xref:System.Web.UI.WebControls.TreeView>将控件放置<xref:System.Web.UI.WebControls.Panel>在控件中<xref:System.Web.UI.WebControls.Panel> , 并向控件添加滚动条。 有关详细信息, 请参阅[面板 Web 服务器控件概述](https://msdn.microsoft.com/library/127b61ed-87f2-46f4-92a3-785166e7245b)。  
   
 <a name="accessibility"></a>   
 ## <a name="accessibility"></a>可访问性  
- 默认情况下，此控件呈现的标记可能符合辅助功能标准。 有关此控件的辅助功能支持的详细信息，请参阅[ASP.NET 控件和可访问性](https://msdn.microsoft.com/library/847a37e3-ce20-41da-b0d3-7dfb0fdae9a0)。  
+ 默认情况下, 为此控件呈现的标记可能不符合辅助功能标准。 有关此控件的辅助功能支持的详细信息, 请参阅[ASP.NET 控件和辅助功能](https://msdn.microsoft.com/library/847a37e3-ce20-41da-b0d3-7dfb0fdae9a0)。  
   
 <a name="declarative_syntax"></a>   
 ## <a name="declarative-syntax"></a>声明性语法  
@@ -471,38 +471,38 @@
    
   
 ## Examples  
- 本部分包含七个代码示例：  
+ 本部分包含七个代码示例:  
   
--   第一个代码示例演示如何设置第二个代码示例的帧。  
+-   第一个代码示例演示如何为第二个代码示例设置帧。  
   
--   第二个代码示例演示如何使用声明性语法来显示中的静态数据<xref:System.Web.UI.WebControls.TreeView>控件。  
+-   第二个代码示例演示如何使用声明性语法在<xref:System.Web.UI.WebControls.TreeView>控件中显示静态数据。  
   
--   第三个代码示例演示如何将绑定<xref:System.Web.UI.WebControls.TreeView>到 XML 数据源的控件。  
+-   第三个代码示例演示如何将<xref:System.Web.UI.WebControls.TreeView>控件绑定到 XML 数据源。  
   
--   第四个代码示例的第三个代码示例提供示例 XML 数据。  
+-   第四个代码示例提供了第三个代码示例的示例 XML 数据。  
   
--   第五个代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView>通过将其绑定到的站点导航控件<xref:System.Web.UI.WebControls.SiteMapDataSource>控件。  
+-   第五个代码示例演示如何通过将<xref:System.Web.UI.WebControls.TreeView>控件绑定<xref:System.Web.UI.WebControls.SiteMapDataSource>到控件来使用控件进行站点导航。  
   
--   第六个代码示例提供示例站点地图数据的第五个代码示例。  
+-   第六个代码示例提供了第五个代码示例的示例站点地图数据。  
   
--   第七个代码示例演示如何填充中的节点<xref:System.Web.UI.WebControls.TreeView>从客户端的控件。  
+-   第七个代码示例演示如何从客户端填充<xref:System.Web.UI.WebControls.TreeView>控件中的节点。  
   
- 下面的代码示例演示如何设置下面的代码示例的帧。  
+ 下面的代码示例演示如何为以下代码示例设置帧。  
   
  [!code-aspx-csharp[TreeViewFrameSet#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewFrameSet/CS/framecs.aspx#1)]
  [!code-aspx-vb[TreeViewFrameSet#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewFrameSet/VB/framevb.aspx#1)]  
   
- 下面的代码示例演示如何使用声明性语法来显示中的静态数据<xref:System.Web.UI.WebControls.TreeView>控件。 此示例中前面的示例中的框架集用于显示内容的表。  
+ 下面的代码示例演示如何使用声明性语法在<xref:System.Web.UI.WebControls.TreeView>控件中显示静态数据。 此示例在前面示例的帧集中用于显示目录。  
   
  [!code-aspx-csharp[TreeViewFrameExample#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewFrameExample/CS/treeviewframecs.aspx#1)]
  [!code-aspx-vb[TreeViewFrameExample#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewFrameExample/VB/treeviewframevb.aspx#1)]  
   
- 下面的代码示例演示如何将绑定<xref:System.Web.UI.WebControls.TreeView>到 XML 数据源的控件。 此示例中正常工作，必须将复制此代码示例中，到名为 Book.xml 后提供的示例 XML 数据。  
+ 下面的代码示例演示如何将<xref:System.Web.UI.WebControls.TreeView>控件绑定到 XML 数据源。 若要使此示例正常工作, 必须将示例 XML 数据 (在此代码示例之后提供) 复制到名为 books.xml 的文件中。  
   
  [!code-aspx-csharp[TreeViewXml#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewXml/CS/treeviewxmlcs.aspx#1)]
  [!code-aspx-vb[TreeViewXml#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewXml/VB/treeviewxmlvb.aspx#1)]  
   
- 下面的代码示例为前面的示例提供示例 XML 数据。  
+ 下面的代码示例提供了前面示例的示例 XML 数据。  
   
 ```  
 <Book Title="Book Title">  
@@ -519,12 +519,12 @@
 </Book>  
 ```  
   
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView>通过将其绑定到的站点导航控件<xref:System.Web.UI.WebControls.SiteMapDataSource>控件。 此示例中正常工作，必须将复制此代码示例中，为一个名为 Web.sitemap 文件后提供的示例站点映射数据。  
+ 下面的代码示例演示如何通过将<xref:System.Web.UI.WebControls.TreeView>控件绑定<xref:System.Web.UI.WebControls.SiteMapDataSource>到控件来使用控件进行站点导航。 若要使此示例正常工作, 您必须将示例站点地图数据 (在此代码示例之后提供) 复制到名为 "web.sitemap" 的文件中。  
   
  [!code-aspx-csharp[TreeViewAutoGenerateBindings#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewAutoGenerateBindings/CS/treeviewautogeneratebindingscs.aspx#1)]
  [!code-aspx-vb[TreeViewAutoGenerateBindings#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewAutoGenerateBindings/VB/treeviewautogeneratebindingsvb.aspx#1)]  
   
- 下面的代码示例为前面的代码示例提供示例站点地图数据。  
+ 下面的代码示例提供了前面的代码示例的示例站点地图数据。  
   
 ```  
 <siteMap>  
@@ -537,7 +537,7 @@
 </siteMap>  
 ```  
   
- 下面的代码示例演示如何填充中的节点<xref:System.Web.UI.WebControls.TreeView>从客户端的控件。 启用客户端的节点填充后，会自动填充节点，在客户端，而无需回发到服务器上。  
+ 下面的代码示例演示如何从客户端填充<xref:System.Web.UI.WebControls.TreeView>控件中的节点。 启用客户端节点填充后, 节点会在客户端上动态填充, 而无需回发到服务器。  
   
  [!code-aspx-csharp[TreeViewPopulateNodesFromClient#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewPopulateNodesFromClient/CS/treeviewpopulatenodesfromclientcs.aspx#1)]
  [!code-aspx-vb[TreeViewPopulateNodesFromClient#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewPopulateNodesFromClient/VB/treeviewpopulatenodesfromclientvb.aspx#1)]  
@@ -561,7 +561,7 @@
     <altmember cref="E:System.Web.UI.WebControls.TreeView.TreeNodeCollapsed" />
     <altmember cref="E:System.Web.UI.WebControls.TreeView.TreeNodePopulate" />
     <altmember cref="E:System.Web.UI.WebControls.TreeView.TreeNodeDataBound" />
-    <related type="Article" href="https://msdn.microsoft.com/library/6b85a558-1df8-44cf-bea6-62e61bcc8d20">ASP.NET 站点地图</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/6b85a558-1df8-44cf-bea6-62e61bcc8d20">ASP.NET 网站地图</related>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -588,19 +588,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.%23ctor%2A>构造函数来创建和初始化的新实例<xref:System.Web.UI.WebControls.TreeView>类。 若要添加<xref:System.Web.UI.WebControls.TreeView>动态控制转移到一个页面，创建一个新<xref:System.Web.UI.WebControls.TreeView>对象和设置其属性，然后将其添加到<xref:System.Web.UI.Control.Controls%2A?displayProperty=nameWithType>集合的容器控件，如<xref:System.Web.UI.WebControls.PlaceHolder>控件。  
+ 使用构造函数来创建和初始化<xref:System.Web.UI.WebControls.TreeView>类的新实例。 <xref:System.Web.UI.WebControls.TreeView.%23ctor%2A> 若要动态<xref:System.Web.UI.WebControls.TreeView>将控件添加到页面, 请创建新<xref:System.Web.UI.WebControls.TreeView>的对象, 设置其属性, <xref:System.Web.UI.Control.Controls%2A?displayProperty=nameWithType>然后将其添加到容器控件 (如<xref:System.Web.UI.WebControls.PlaceHolder>控件) 的集合。  
   
    
   
 ## Examples  
- 本部分包含两个代码示例。 第一个代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.%23ctor%2A>构造函数，以添加<xref:System.Web.UI.WebControls.TreeView>动态控制转移到一个页面。 第二个代码示例在第一个代码示例提供示例 XML 数据。  
+ 本部分包含两个代码示例。 第一个代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.%23ctor%2A>构造函数动态<xref:System.Web.UI.WebControls.TreeView>将控件添加到页面。 第二个代码示例提供了第一个代码示例的示例 XML 数据。  
   
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.%23ctor%2A>构造函数，以添加<xref:System.Web.UI.WebControls.TreeView>动态控制转移到一个页面。 此示例中正常工作，必须将复制此代码示例中，到名为 Book.xml 后提供的示例 XML 数据。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.%23ctor%2A>构造函数动态<xref:System.Web.UI.WebControls.TreeView>将控件添加到页面。 若要使此示例正常工作, 必须将在此代码示例之后提供的示例 XML 数据复制到名为 books.xml 的文件中。  
   
  [!code-aspx-csharp[TreeViewCtor#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewCtor/CS/treeviewctorcs.aspx#1)]
  [!code-aspx-vb[TreeViewCtor#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewCtor/VB/treeviewctorvb.aspx#1)]  
   
- 下面的代码示例为前面的示例提供示例 XML 数据。  
+ 下面的代码示例提供了前面示例的示例 XML 数据。  
   
 ```  
 <Book Title="Book Title">  
@@ -649,7 +649,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.AddAttributesToRender%2A>方法主要由控件开发人员。  
+ <xref:System.Web.UI.WebControls.TreeView.AddAttributesToRender%2A>方法主要由控件开发人员使用。  
   
  ]]></format>
         </remarks>
@@ -684,29 +684,29 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 树节点绑定定义数据项和它所绑定到的节点之间的关系。 绑定到其中的每个数据项都包含多个属性 （如具有多个特性的 XML 元素） 的数据源时<xref:System.Web.UI.WebControls.TreeView>控件需要知道要向其绑定的数据项目属性<xref:System.Web.UI.WebControls.TreeNode>属性。 如果<xref:System.Web.UI.WebControls.TreeView.AutoGenerateDataBindings%2A>属性设置为`true`，则<xref:System.Web.UI.WebControls.TreeView>控件自动生成默认设置树节点绑定<xref:System.Web.UI.WebControls.TreeNode.Text%2A>属性<xref:System.Web.UI.WebControls.TreeNode>与绑定到的值相关联的对象返回的`ToString`的数据项的方法。  
+ 树节点绑定定义数据项和它所绑定到的节点之间的关系。 绑定到数据源 (其中每个数据项都包含多个属性, 如具有多个属性的 XML 元素) 时<xref:System.Web.UI.WebControls.TreeView> , 控件需要知道要绑定到哪个<xref:System.Web.UI.WebControls.TreeNode>属性的数据项属性。 <xref:System.Web.UI.WebControls.TreeView> <xref:System.Web.UI.WebControls.TreeNode.Text%2A> <xref:System.Web.UI.WebControls.TreeNode>如果将`true`属性设置为, 则控件会自动生成默认树节点绑定, 将与绑定关联的对象的属性设置为<xref:System.Web.UI.WebControls.TreeView.AutoGenerateDataBindings%2A>由数据项的`ToString`方法返回。  
   
 > [!NOTE]
->  不会自动生成的树节点绑定添加到<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合。  
+>  自动生成的树节点绑定不会添加到<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合中。  
   
- 在 XML 元素，返回的值的情况下`ToString`方法是显示基础结构的 XML 文件中，但除此之外并不非常有用的元素名称。 若要创建更有用的树，必须定义自己的树节点绑定通过填充<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合。  
+ 对于 xml 元素, 该`ToString`方法返回的值是元素名称, 该名称显示 XML 文件的基础结构, 但在其他情况下并不十分有用。 若要创建更有用的树, 必须通过填充<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合来定义自己的树节点绑定。  
   
 > [!NOTE]
->  如果定义了<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合，<xref:System.Web.UI.WebControls.TreeView>控件而不是自动生成的树节点绑定中使用这些值。  
+>  如果定义<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合, 则控件将<xref:System.Web.UI.WebControls.TreeView>使用这些值, 而不是自动生成的树节点绑定。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 本部分包含两个代码示例。 第一个代码示例演示如何通过设置来禁用自动生成树节点绑定<xref:System.Web.UI.WebControls.TreeView.AutoGenerateDataBindings%2A>属性设置为`false`。 第二个代码示例提供示例站点地图数据的第一个代码示例。  
+ 本部分包含两个代码示例。 第一个代码示例演示如何通过将<xref:System.Web.UI.WebControls.TreeView.AutoGenerateDataBindings%2A>属性设置为`false`来禁用自动树节点绑定生成。 第二个代码示例提供了第一个代码示例的示例站点地图数据。  
   
- 下面的代码示例演示如何通过设置来禁用自动生成树节点绑定<xref:System.Web.UI.WebControls.TreeView.AutoGenerateDataBindings%2A>属性设置为`false`。 一个<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>然后定义集合来建立此关系中的数据项之间<xref:System.Web.UI.WebControls.SiteMapDataSource>控件和的节点<xref:System.Web.UI.WebControls.TreeView>控件。 此示例中正常工作，必须将复制此代码示例中，为一个名为 Web.sitemap 文件后提供的示例站点映射数据。  
+ 下面的代码示例演示如何通过将<xref:System.Web.UI.WebControls.TreeView.AutoGenerateDataBindings%2A>属性设置为`false`来禁用自动树节点绑定生成。 然后<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>定义一个集合, 以在<xref:System.Web.UI.WebControls.SiteMapDataSource>控件中的数据项<xref:System.Web.UI.WebControls.TreeView>与控件的节点之间建立关系。 若要使此示例正常工作, 您必须将示例站点地图数据 (在此代码示例之后提供) 复制到名为 "web.sitemap" 的文件中。  
   
  [!code-aspx-csharp[TreeViewAutoGenerateBindings#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewAutoGenerateBindings/CS/treeviewautogeneratebindingscs.aspx#1)]
  [!code-aspx-vb[TreeViewAutoGenerateBindings#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewAutoGenerateBindings/VB/treeviewautogeneratebindingsvb.aspx#1)]  
   
- 下面的代码示例提供示例站点地图数据的前面的示例。  
+ 下面的代码示例提供了前面示例的示例站点地图数据。  
   
 ```  
 <siteMap>  
@@ -757,17 +757,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当复选框显示在<xref:System.Web.UI.WebControls.TreeView>控件 (通过设置<xref:System.Web.UI.WebControls.TreeView.ShowCheckBoxes%2A>属性的值以外的其他`TreeNodeType.None`)，使用<xref:System.Web.UI.WebControls.TreeView.CheckedNodes%2A>属性来确定哪些节点显示所选的复选框。 此集合通常用于循环访问树中已选中的复选框的所有节点。  
+ 当<xref:System.Web.UI.WebControls.TreeView>控件中显示复选框时 (通过<xref:System.Web.UI.WebControls.TreeView.ShowCheckBoxes%2A>将属性设置`TreeNodeType.None`为以外的值), 请使用<xref:System.Web.UI.WebControls.TreeView.CheckedNodes%2A>属性来确定哪些节点显示选中的复选框。 此集合通常用于循环访问树中选中了复选框的所有节点。  
   
- <xref:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged>引发事件时的复选框<xref:System.Web.UI.WebControls.TreeView>控件更改状态的各次发送到服务器。 这使您可以提供执行自定义的例程，如更新数据库或显示的内容，每次此事件发生时的事件处理方法。  
+ 当控件的复选框在向服务器的各次发送过程间更改状态时, 将引发事件。<xref:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged> <xref:System.Web.UI.WebControls.TreeView> 这使你可以提供一种事件处理方法, 该方法可在每次发生此事件时执行自定义例程, 如更新数据库或显示的内容。  
   
 > [!NOTE]
->  <xref:System.Web.UI.WebControls.TreeView.CheckedNodes%2A>使用树状结构的深度优先遍历填充集合： 填充下一个父节点之前，处理每个父节点及其子节点下。  
+>  使用树结构的深度优先遍历来填充集合:在填充下一个父节点之前,每个父节点都向下处理到其子节点。<xref:System.Web.UI.WebControls.TreeView.CheckedNodes%2A>  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.CheckedNodes%2A>属性来确定哪些节点已选中的复选框<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.CheckedNodes%2A>属性来确定<xref:System.Web.UI.WebControls.TreeView>控件中哪些节点具有选定的复选框。  
   
  [!code-aspx-csharp[TreeViewShowCheckBoxes#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewShowCheckBoxes/CS/treeviewshowcheckboxescs.aspx#1)]
  [!code-aspx-vb[TreeViewShowCheckBoxes#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewShowCheckBoxes/VB/treeviewshowcheckboxesvb.aspx#1)]  
@@ -802,12 +802,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.CollapseAll%2A>方法提供了方便地关闭在树中的每个节点。  
+ <xref:System.Web.UI.WebControls.TreeView.CollapseAll%2A>方法提供了一种简便的方法来关闭树中的每个节点。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.CollapseAll%2A>方法可折叠中的所有节点<xref:System.Web.UI.WebControls.TreeView>控件在同一时间。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.CollapseAll%2A>方法同时折叠<xref:System.Web.UI.WebControls.TreeView>控件中的所有节点。  
   
  [!code-aspx-csharp[TreeViewExpandAll#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewExpandAll/CS/treeviewexpandallcs.aspx#1)]
  [!code-aspx-vb[TreeViewExpandAll#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewExpandAll/VB/treeviewexpandallvb.aspx#1)]  
@@ -845,16 +845,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.CollapseImageToolTip%2A>属性来指定可折叠的图像的工具提示。 您指定的文本提供了辅助技术设备可用于使控件更易于访问的映像的说明。  
+ <xref:System.Web.UI.WebControls.TreeView.CollapseImageToolTip%2A>使用属性为可折叠图像指定工具提示。 指定的文本为辅助技术设备提供了可用于使控件更易于访问的图像说明。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
- 此属性的值设置时，可以自动保存到资源文件使用设计器工具。 有关详细信息，请参阅<xref:System.ComponentModel.LocalizableAttribute>并[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
+ 设置此属性后, 可以使用设计器工具自动将此属性的值保存到资源文件中。 有关详细信息, 请<xref:System.ComponentModel.LocalizableAttribute>参阅和[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.CollapseImageToolTip%2A>属性指定为可折叠节点的指示符显示的图像的工具提示。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.CollapseImageToolTip%2A>属性为可折叠节点的指示符显示的图像指定工具提示。  
   
  [!code-aspx-csharp[TreeViewCustomImage#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewCustomImage/CS/treeviewcustomimagecs.aspx#1)]
  [!code-aspx-vb[TreeViewCustomImage#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewCustomImage/VB/treeviewcustomimagevb.aspx#1)]  
@@ -904,21 +904,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性来指定自定义映像的可折叠节点指示符。 此映像可折叠的节点旁边显示，通常是负号 （-）。  
+ <xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>使用属性为可折叠节点的指示符指定自定义图像。 此图像显示在可以折叠的节点旁边, 通常为减号 (-)。  
   
- 当<xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A>属性设置为`true`，则<xref:System.Web.UI.WebControls.TreeView>控件将显示一个加号 （+） 或减号 （-） 或节点以指示节点是否是可扩展、 可折叠的还是非可展开分别旁边占位符图像。 可以指定由第一个设置自定义映像<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性设置为`TreeViewImageSet.Custom`，然后再设置<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>， <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>，和<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性设置为自定义映像的 Url。 如果没有指定任何图像，则使用默认映像。 若要隐藏展开节点指示符，请设置<xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A>属性设置为`false`。  
+ 当属性设置为`true`时, <xref:System.Web.UI.WebControls.TreeView>控件将在节点旁显示加号 (+) 或减号 (-) 或占位符图像, 以指示节点是可展开、可折叠还是不可展开。 <xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A> <xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>通过首先将属性设置为<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A> `TreeViewImageSet.Custom`, 然后将、 <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>和<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性设置为自定义图像的 url, 可以指定自定义映像。 如果未指定任何图像, 则使用默认图像。 若要隐藏展开节点指示符, 请<xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A>将属性`false`设置为。  
   
 > [!NOTE]
->  若要确保节点中正确地对齐<xref:System.Web.UI.WebControls.TreeView>控件使用的自定义映像时，请确保由指定的所有映像<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>， <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>，和<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性具有相同的尺寸。  
+>  若要确保在使用自定义图像<xref:System.Web.UI.WebControls.TreeView>时节点正确地在控件中对齐, 请确保<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>、 <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>和<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性指定的所有图像具有相同的尺寸。  
   
- 在自定义映像用作可折叠节点指示符时，还应考虑设置<xref:System.Web.UI.WebControls.TreeView.CollapseImageToolTip%2A>属性来指定图像的工具提示。  
+ 使用自定义图像作为可折叠节点的指示符时, 还应考虑将<xref:System.Web.UI.WebControls.TreeView.CollapseImageToolTip%2A>属性设置为为图像指定工具提示。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性来指定自定义映像的可折叠节点指示符。 对于代码示例来显示和要在控件中显示的图像中，您必须提供你自己的映像并<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性必须设置为`TreeNodeImageSet.Custom`。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性为可折叠节点的指示符指定自定义图像。 要使代码示例显示和图像显示在控件中, 必须提供自己的图像, 并且<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性必须设置为。 `TreeNodeImageSet.Custom`  
   
  [!code-aspx-csharp[TreeViewCustomImage#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewCustomImage/CS/treeviewcustomimagecs.aspx#1)]
  [!code-aspx-vb[TreeViewCustomImage#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewCustomImage/VB/treeviewcustomimagevb.aspx#1)]  
@@ -957,7 +957,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView>控件不支持嵌入的子控件。 此方法已被重写以防止添加子控件，并始终返回<xref:System.Web.UI.EmptyControlCollection?displayProperty=nameWithType>对象。  
+ <xref:System.Web.UI.WebControls.TreeView>控件不支持嵌入子控件。 此方法已重写, 以防止添加子控件并始终返回<xref:System.Web.UI.EmptyControlCollection?displayProperty=nameWithType>对象。  
   
  ]]></format>
         </remarks>
@@ -988,9 +988,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.CreateNode%2A>方法是返回的新实例的帮助器方法<xref:System.Web.UI.WebControls.TreeNode>类。  
+ 方法是一个帮助器方法, 它返回<xref:System.Web.UI.WebControls.TreeNode>类的新实例。 <xref:System.Web.UI.WebControls.TreeView.CreateNode%2A>  
   
- <xref:System.Web.UI.WebControls.TreeView.CreateNode%2A>方法主要由控件开发人员。 控制想要扩展的开发人员<xref:System.Web.UI.WebControls.TreeView>类来扩展<xref:System.Web.UI.WebControls.TreeNode>类应重写此方法以返回派生的对象<xref:System.Web.UI.WebControls.TreeNode>。 若要扩展的常见原因<xref:System.Web.UI.WebControls.TreeNode>类是重写<xref:System.Web.UI.WebControls.TreeNode.RenderPreText%2A>和<xref:System.Web.UI.WebControls.TreeNode.RenderPostText%2A>方法。  
+ <xref:System.Web.UI.WebControls.TreeView.CreateNode%2A>方法主要由控件开发人员使用。 要通过<xref:System.Web.UI.WebControls.TreeView> <xref:System.Web.UI.WebControls.TreeNode>扩展类扩展类的控件开发人员应重写此方法以返回从派生的<xref:System.Web.UI.WebControls.TreeNode>对象。 扩展<xref:System.Web.UI.WebControls.TreeNode>类的一个常见原因是<xref:System.Web.UI.WebControls.TreeNode.RenderPreText%2A>重写和<xref:System.Web.UI.WebControls.TreeNode.RenderPostText%2A>方法。  
   
  ]]></format>
         </remarks>
@@ -1019,7 +1019,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 数据绑定控件应重写<xref:System.Web.UI.WebControls.TreeView.PerformDataBinding%2A>方法而不是<xref:System.Web.UI.WebControls.TreeView.DataBind%2A>方法。  
+ 数据绑定控件应重写<xref:System.Web.UI.WebControls.TreeView.PerformDataBinding%2A>方法, 而不<xref:System.Web.UI.WebControls.TreeView.DataBind%2A>是方法。  
   
  ]]></format>
         </remarks>
@@ -1066,39 +1066,39 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合包含<xref:System.Web.UI.WebControls.TreeNodeBinding>对象以定义数据项和它所绑定到的节点之间的关系。 当绑定到数据源，其中每个数据项都包含多个属性 （如具有多个特性的 XML 元素） 节点显示返回的值`ToString`数据项，默认情况下的方法。 对于 XML 元素，该节点显示显示基础结构的树中，但除此之外并不非常有用的元素名称。 可以通过指定树节点绑定来绑定到特定数据项属性节点。  
+ <xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合包含<xref:System.Web.UI.WebControls.TreeNodeBinding>的对象定义数据项和它所绑定到的节点之间的关系。 绑定到数据源 (其中每个数据项都包含多个属性) 时, 默认情况下, 节点将显示数据项的`ToString`方法返回的值。 对于 XML 元素, 该节点将显示元素名称, 该名称显示树的基础结构, 但在其他情况下不起作用。 可以通过指定树节点绑定将节点绑定到特定数据项属性。  
   
- 在定义数据项和节点之间的关系时，必须指定要绑定到的属性的绑定和值为这两个条件<xref:System.Web.UI.WebControls.TreeNode>对象。 该条件指示应在何时数据项绑定到的节点。 可以使用节点深度、 数据成员，或同时指定条件。 节点深度指定获取绑定的节点级别。 例如，如果指定的节点深度为 0，在级别 0 的树状结构中的所有节点都使用都绑定树节点绑定。 数据成员在基础数据源中，可以指定数据项的类型，但可以表示不同的信息，具体取决于数据源。 例如，一个 XML 元素的数据成员指定元素的名称。  
+ 定义数据项与节点之间的关系时, 必须同时指定绑定条件和要绑定到<xref:System.Web.UI.WebControls.TreeNode>对象属性的值。 条件指示数据项应绑定到节点的时间。 可以通过节点深度、数据成员或同时指定这两者。 节点深度指定要绑定的节点级别。 例如, 如果将节点深度指定为 0, 则将使用树节点绑定来绑定树结构中处于级别0的所有节点。 数据成员指定基础数据源中数据项的类型, 但可以根据数据源表示不同的信息。 例如, XML 元素的数据成员指定元素的名称。  
   
- 如果多个<xref:System.Web.UI.WebControls.TreeNodeBinding>对象定义相互冲突的<xref:System.Web.UI.WebControls.TreeView>控件应用树节点绑定的优先顺序如下：  
+ 如果定义<xref:System.Web.UI.WebControls.TreeNodeBinding>了多个相互冲突的对象, 则该<xref:System.Web.UI.WebControls.TreeView>控件将按以下优先级顺序应用树节点绑定:  
   
-1.  <xref:System.Web.UI.WebControls.TreeNodeBinding>定义深度和数据成员的对象。  
+1.  定义深度和数据成员的对象。<xref:System.Web.UI.WebControls.TreeNodeBinding>  
   
-2.  <xref:System.Web.UI.WebControls.TreeNodeBinding>只定义深度的对象。  
+2.  仅定义深度的对象。<xref:System.Web.UI.WebControls.TreeNodeBinding>  
   
-3.  <xref:System.Web.UI.WebControls.TreeNodeBinding>只定义数据成员的对象。  
+3.  仅定义数据成员的对象。<xref:System.Web.UI.WebControls.TreeNodeBinding>  
   
-4.  <xref:System.Web.UI.WebControls.TreeNodeBinding>定义深度既不数据成员的对象。  
+4.  同时定义深度和数据成员的对象。<xref:System.Web.UI.WebControls.TreeNodeBinding>  
   
- 如果多个绑定指定了符合相同的优先级条件，则应用集合中的第一个绑定。  
+ 如果指定了多个符合相同优先级条件的绑定, 则会应用集合中的第一个绑定。  
   
- 建立绑定条件后，就可以绑定的属性<xref:System.Web.UI.WebControls.TreeNode>可以绑定到值的对象。 你可以将绑定到某个属性或字段的数据项目，或显示静态值。 有关绑定的属性的详细信息<xref:System.Web.UI.WebControls.TreeNode>对象复制到一个值，请参阅<xref:System.Web.UI.WebControls.TreeNodeBinding>。  
+ 建立绑定条件后, 可以绑定可以绑定到值的<xref:System.Web.UI.WebControls.TreeNode>对象的属性。 可以绑定到数据项的属性或字段或显示静态值。 有关将<xref:System.Web.UI.WebControls.TreeNode>对象属性绑定到值的详细信息, 请参阅<xref:System.Web.UI.WebControls.TreeNodeBinding>。  
   
- 尽管<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>可以以编程方式填充集合，但它通常以声明方式设置。 若要指定树节点绑定，请首先打开和关闭`<DataBindings>`标记的开始和结束标记之间<xref:System.Web.UI.WebControls.TreeView>控件。 接下来，将放置`<asp:TreeNodeBinding>`元素的开始和结束之间`<DataBindings>`标记每个树节点绑定您想要指定。  
+ 尽管可以<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>通过编程方式填充该集合, 但通常以声明方式进行设置。 若要指定树节点绑定, 首先在`<DataBindings>` <xref:System.Web.UI.WebControls.TreeView>控件的开始和结束标记之间嵌套开始和结束标记。 接下来, `<asp:TreeNodeBinding>`在要指定的每个`<DataBindings>`树节点绑定的开始标记和结束标记之间放置元素。  
   
- 通过设置创建数据绑定是<xref:System.Web.UI.WebControls.TreeView.AutoGenerateDataBindings%2A>的属性<xref:System.Web.UI.WebControls.TreeView>控制对`true`，创建绑定都<xref:System.Web.UI.WebControls.TreeNodeBinding.PopulateOnDemand%2A>属性设置为`true`。 以声明方式创建的数据绑定<xref:System.Web.UI.WebControls.TreeNodeBinding.PopulateOnDemand%2A>属性设置为`false`。 使用声明性语法可以控制各个数据绑定的行为。  
+ <xref:System.Web.UI.WebControls.TreeView.AutoGenerateDataBindings%2A>如果通过将<xref:System.Web.UI.WebControls.TreeView>控件的属性设置为来`true`创建数据绑定<xref:System.Web.UI.WebControls.TreeNodeBinding.PopulateOnDemand%2A> , 则创建的绑定的属性设置为`true`。 以声明方式创建的数据绑定的<xref:System.Web.UI.WebControls.TreeNodeBinding.PopulateOnDemand%2A>属性设置为`false`。 使用声明性语法允许您控制单个数据绑定的行为。  
   
    
   
 ## Examples  
- 本部分包含两个代码示例。 第一个代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合来定义数据项和它所绑定到的节点之间的关系。 第二个代码示例在第一个代码示例提供示例 XML 数据。  
+ 本部分包含两个代码示例。 第一个代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合来定义数据项和它所绑定到的节点之间的关系。 第二个代码示例提供了第一个代码示例的示例 XML 数据。  
   
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合来定义数据项和它所绑定到的节点之间的关系。 此示例中正常工作，必须将复制此代码示例中，到名为 Book.xml 后提供的示例 XML 数据。 此示例仅指定<xref:System.Web.UI.WebControls.TreeNodeBinding.DataMember%2A>绑定的属性。 无法通过还指定添加略微的性能增益<xref:System.Web.UI.WebControls.TreeNodeBinding.Depth%2A>属性。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.DataBindings%2A>集合来定义数据项和它所绑定到的节点之间的关系。 若要使此示例正常工作, 必须将示例 XML 数据 (在此代码示例之后提供) 复制到名为 books.xml 的文件中。 此示例仅<xref:System.Web.UI.WebControls.TreeNodeBinding.DataMember%2A>指定绑定的属性。 还可以通过指定<xref:System.Web.UI.WebControls.TreeNodeBinding.Depth%2A>属性来添加略微提高性能。  
   
  [!code-aspx-csharp[TreeViewXml#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewXml/CS/treeviewxmlcs.aspx#1)]
  [!code-aspx-vb[TreeViewXml#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewXml/VB/treeviewxmlvb.aspx#1)]  
   
- 下面的代码示例为前面的示例提供示例 XML 数据。  
+ 下面的代码示例提供了前面示例的示例 XML 数据。  
   
 ```  
 <Book Title="Book Title">  
@@ -1152,28 +1152,28 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>属性指定是否<xref:System.Web.UI.WebControls.TreeView>控件呈现兼容的浏览器以处理展开和折叠事件上的客户端脚本。 当此属性设置为`true`，兼容的浏览器执行的代码以展开和折叠节点在客户端上。 必须为客户端脚本，以便用于提前已知的树节点数据。 使用客户端脚本可防止 post 回服务器每次一个节点是展开还是折叠。  
+ 使用属性指定<xref:System.Web.UI.WebControls.TreeView>控件是否在兼容的浏览器上呈现客户端脚本来处理展开和折叠事件。 <xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A> 如果将此属性设置为`true`, 则兼容的浏览器将执行代码来展开和折叠客户端上的节点。 若要运行客户端脚本, 必须提前知道树节点数据。 使用客户端脚本可防止每次展开或折叠节点时都回发到服务器。  
   
- 节点时事先不知道的树节点数据，可以从客户端，如果填充`PopulateNodesFromClient`属性也设置为`true`。 在此方案中，您还必须提供的事件处理方法<xref:System.Web.UI.WebControls.TreeView.TreeNodePopulate>事件以填充节点。 客户端的节点填充的详细信息，请参阅<xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A>。  
+ 如果事先不知道树节点数据, 则可以从客户端填充节点 (如果`PopulateNodesFromClient`还将属性设置为`true`)。 在这种情况下, 您还必须为<xref:System.Web.UI.WebControls.TreeView.TreeNodePopulate>事件提供事件处理方法来填充节点。 有关客户端节点填充的详细信息, 请参阅<xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A>。  
   
 > [!NOTE]
->  如果<xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>属性设置为`false`，则<xref:System.Web.UI.WebControls.TreeView>控件回发到服务器每次一个节点是展开还是折叠。  
+>  如果将`false`属性设置为, 则在<xref:System.Web.UI.WebControls.TreeView>每次展开或折叠某个节点时, 控件都将回发到服务器。 <xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
- 无法通过主题或样式表主题设置此属性。 有关详细信息，请参阅<xref:System.Web.UI.ThemeableAttribute>并[ASP.NET 主题和外观](https://msdn.microsoft.com/library/5df3ebbd-d46c-4502-9406-02f9df4ef2c3)。  
+ 无法通过主题或样式表主题设置此属性。 有关详细信息, 请<xref:System.Web.UI.ThemeableAttribute>参阅和[ASP.NET 主题和外观](https://msdn.microsoft.com/library/5df3ebbd-d46c-4502-9406-02f9df4ef2c3)。  
   
    
   
 ## Examples  
- 本部分包含两个代码示例。 第一个代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>属性呈现用于展开和折叠节点在兼容浏览器上的客户端脚本。 第二个代码示例在第一个代码示例提供示例 XML 数据。  
+ 本部分包含两个代码示例。 第一个代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>属性来呈现客户端脚本, 该脚本用于在兼容的浏览器上展开和折叠节点。 第二个代码示例提供了第一个代码示例的示例 XML 数据。  
   
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>属性呈现用于展开和折叠节点在兼容浏览器上的客户端脚本。 请注意，需要向服务器发送可展开和折叠节点时<xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>属性设置为`false`。 此示例中正常工作，必须将复制此代码示例中，到名为 Book.xml 后提供的示例 XML 数据。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>属性来呈现客户端脚本, 该脚本用于在兼容的浏览器上展开和折叠节点。 请注意, 当<xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>属性设置为`false`时, 需要向服务器发送一条内容来展开和折叠节点。 若要使此示例正常工作, 必须将示例 XML 数据 (在此代码示例之后提供) 复制到名为 books.xml 的文件中。  
   
  [!code-aspx-csharp[TreeViewEnableClientScript#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewEnableClientScript/CS/treeviewenableclientscriptcs.aspx#1)]
  [!code-aspx-vb[TreeViewEnableClientScript#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewEnableClientScript/VB/treeviewenableclientscriptvb.aspx#1)]  
   
- 下面的代码示例为前面的代码示例提供示例 XML 数据。  
+ 下面的代码示例提供了前面的代码示例的示例 XML 数据。  
   
 ```  
 <Book Title="Book Title">  
@@ -1219,12 +1219,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.ExpandAll%2A>方法提供了方便地打开树中的每个节点。  
+ <xref:System.Web.UI.WebControls.TreeView.ExpandAll%2A>方法提供了一种简便的方法来打开树中的每个节点。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ExpandAll%2A>方法可展开中的所有节点<xref:System.Web.UI.WebControls.TreeView>控件在同一时间。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ExpandAll%2A>方法同时展开<xref:System.Web.UI.WebControls.TreeView>控件中的所有节点。  
   
  [!code-aspx-csharp[TreeViewExpandAll#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewExpandAll/CS/treeviewexpandallcs.aspx#1)]
  [!code-aspx-vb[TreeViewExpandAll#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewExpandAll/VB/treeviewexpandallvb.aspx#1)]  
@@ -1265,7 +1265,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.ExpandDepth%2A>属性控制的呈现<xref:System.Web.UI.WebControls.TreeView>控制显示的第一个时间。 在后续回发，这些节点保留其当前展开的状态。  
+ 使用属性可控制<xref:System.Web.UI.WebControls.TreeView>控件第一次显示时的呈现。 <xref:System.Web.UI.WebControls.TreeView.ExpandDepth%2A> 在后续回发中, 节点将保留其当前的展开状态。  
   
  ]]></format>
         </remarks>
@@ -1302,16 +1302,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.ExpandImageToolTip%2A>属性来指定图像的工具提示。 您指定的文本提供了辅助技术设备可用于使控件更易于访问的映像的说明。  
+ 使用 " <xref:System.Web.UI.WebControls.TreeView.ExpandImageToolTip%2A>属性" 指定图像的工具提示。 指定的文本为辅助技术设备提供了可用于使控件更易于访问的图像说明。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
- 此属性的值设置时，可以自动保存到资源文件使用设计器工具。 有关详细信息，请参阅<xref:System.ComponentModel.LocalizableAttribute>并[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
+ 设置此属性后, 可以使用设计器工具自动将此属性的值保存到资源文件中。 有关详细信息, 请<xref:System.ComponentModel.LocalizableAttribute>参阅和[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ExpandImageToolTip%2A>属性指定的可展开节点指示符显示的图像的工具提示。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ExpandImageToolTip%2A>属性为可展开节点的指示符显示的图像指定工具提示。  
   
  [!code-aspx-csharp[TreeViewCustomImage#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewCustomImage/CS/treeviewcustomimagecs.aspx#1)]
  [!code-aspx-vb[TreeViewCustomImage#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewCustomImage/VB/treeviewcustomimagevb.aspx#1)]  
@@ -1361,23 +1361,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>属性来指定自定义映像的可展开节点指示符。 此映像可展开的节点旁边显示，通常是加号 （+）。  
+ <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>使用属性为可展开节点的指示符指定自定义图像。 此图像显示在可扩展节点旁边, 通常为加号 (+)。  
   
- 当<xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A>属性设置为`true`，则<xref:System.Web.UI.WebControls.TreeView>控件将显示一个加号 （+） 或减号 （-） 或节点以指示节点是否是可扩展、 可折叠的还是非可展开分别旁边占位符图像。 可以指定由第一个设置自定义映像<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性设置为`TreeViewImageSet.Custom`，然后再设置<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>， <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>，和<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性设置为自定义映像的 Url。 如果没有指定任何图像，则使用默认映像。 若要隐藏展开节点指示符，请设置<xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A>属性设置为`false`。  
+ 当属性设置为`true`时, <xref:System.Web.UI.WebControls.TreeView>控件将在节点旁显示加号 (+) 或减号 (-) 或占位符图像, 以指示节点是可展开、可折叠还是不可展开。 <xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A> <xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>通过首先将属性设置为<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A> `TreeViewImageSet.Custom`, 然后将、 <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>和<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性设置为自定义图像的 url, 可以指定自定义映像。 如果未指定任何图像, 则使用默认图像。 若要隐藏展开节点指示符, 请<xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A>将属性`false`设置为。  
   
 > [!NOTE]
->  若要确保节点中正确地对齐<xref:System.Web.UI.WebControls.TreeView>控件使用的自定义映像时，请确保由指定的所有映像<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>， <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>，和<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性具有相同的尺寸。  
+>  若要确保在使用自定义图像<xref:System.Web.UI.WebControls.TreeView>时节点正确地在控件中对齐, 请确保<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>、 <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>和<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性指定的所有图像具有相同的尺寸。  
   
- 若要正确显示自定义映像，您可能需要设置<xref:System.Web.UI.WebControls.TreeView.ShowLines%2A>到`false`。  
+ 若要正确显示自定义图像, 可能需要将设置<xref:System.Web.UI.WebControls.TreeView.ShowLines%2A>为`false`。  
   
- 在自定义映像用作可展开节点指示符时，还应考虑设置<xref:System.Web.UI.WebControls.TreeView.ExpandImageToolTip%2A>属性来指定图像的工具提示。  
+ 使用自定义图像作为可展开节点的指示符时, 还应考虑将<xref:System.Web.UI.WebControls.TreeView.ExpandImageToolTip%2A>属性设置为为图像指定工具提示。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>属性来指定自定义映像的可展开节点指示符。 对于代码示例来显示和要在控件中显示的图像中，您必须提供你自己的映像并<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性必须设置为`TreeNodeImageSet.Custom`。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>属性为可展开节点的指示符指定自定义图像。 要使代码示例显示和图像显示在控件中, 必须提供自己的图像, 并且<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性必须设置为。 `TreeNodeImageSet.Custom`  
   
  [!code-aspx-csharp[TreeViewCustomImage#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewCustomImage/CS/treeviewcustomimagecs.aspx#1)]
  [!code-aspx-vb[TreeViewCustomImage#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewCustomImage/VB/treeviewcustomimagevb.aspx#1)]  
@@ -1419,12 +1419,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.FindNode%2A>方法以获取从节点<xref:System.Web.UI.WebControls.TreeView>控件中指定的值路径处。 值路径包含的节点值，它构成从根节点到当前节点的路径分隔符分隔的列表。 每个节点存储在中的值路径<xref:System.Web.UI.WebControls.TreeNode.ValuePath%2A>属性。 <xref:System.Web.UI.WebControls.TreeView.PathSeparator%2A>属性指定用于分隔节点值的分隔符字符。  
+ 使用方法可<xref:System.Web.UI.WebControls.TreeView>从控件中的指定值路径获取节点。 <xref:System.Web.UI.WebControls.TreeView.FindNode%2A> 值路径包含以分隔符分隔的节点值列表, 这些值构成从根节点到当前节点的路径。 每个节点将<xref:System.Web.UI.WebControls.TreeNode.ValuePath%2A>其值路径存储在属性中。 <xref:System.Web.UI.WebControls.TreeView.PathSeparator%2A>属性指定用于分隔节点值的分隔符字符。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.FindNode%2A>方法来检索节点从<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.FindNode%2A>方法<xref:System.Web.UI.WebControls.TreeView>从控件中检索节点。  
   
 > [!IMPORTANT]
 >  此示例具有一个接受用户输入的文本框，这是一个潜在的安全威胁。 默认情况下，ASP.NET 网页验证用户输入是否不包含脚本或 HTML 元素。 有关详细信息，请参阅[脚本侵入概述](https://msdn.microsoft.com/library/772c7312-211a-4eb3-8d6e-eec0aa1dcc07)。  
@@ -1466,7 +1466,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView>控件实现<xref:System.Web.UI.ICallbackEventHandler>接口并使用<xref:System.Web.UI.WebControls.TreeView.RaisePostBackEvent%2A>来检索数据和<xref:System.Web.UI.WebControls.TreeView.GetCallbackResult%2A>方法将检索到的数据返回到控件。  
+ 控件实现接口, 并使用<xref:System.Web.UI.WebControls.TreeView.RaisePostBackEvent%2A>来检索数据, 并<xref:System.Web.UI.WebControls.TreeView.GetCallbackResult%2A>使用方法将检索到的数据返回到控件。 <xref:System.Web.UI.ICallbackEventHandler> <xref:System.Web.UI.WebControls.TreeView>  
   
  ]]></format>
         </remarks>
@@ -1509,32 +1509,32 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>属性来控制节点的外观，当鼠标指针悬停。 此属性是只读的;但是，可以设置的属性<xref:System.Web.UI.WebControls.TreeNodeStyle>它将返回的对象。 可以在窗体中以声明方式设置属性`Property-Subproperty`，其中`Subproperty`是属性的<xref:System.Web.UI.WebControls.TreeNodeStyle>对象 (例如， `HoverNodeStyle-ForeColor`)。 属性也可以设置以编程方式在窗体`Property.Subproperty`(例如， `HoverNodeStyle.ForeColor`)。 仅在支持脚本的客户端上支持此功能。  
+ 当鼠标指针位于节点上时, 使用属性控制该节点的外观。<xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A> 此属性是只读的;但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.TreeNodeStyle>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.TreeNodeStyle>是对象的一个属性 (例如`HoverNodeStyle-ForeColor`)。 还可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `HoverNodeStyle.ForeColor`例如)。 仅支持脚本的客户端支持此功能。  
   
 > [!NOTE]
->  若要使用<xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>属性，必须包含`<head>`具有元素`runat="server"`属性。  
+>  若要使用<xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>属性, 必须`<head>`包含具有`runat="server"`属性的元素。  
   
- 常用设置通常包括自定义背景色、 前景色、 字体属性和节点间距。 按以下顺序应用样式属性：  
+ 常见设置通常包括自定义背景色、前景颜色、字体属性和节点间距。 样式属性的应用顺序如下:  
   
 1.  <xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>。  
   
-2.  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A><xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>，或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>，具体取决于节点类型。 如果<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>定义的集合，就会应用在此期间，重写的其他节点的样式属性。  
+2.  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A>、 <xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>, 具体取决于节点类型。 如果定义<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>了集合, 则此时将应用该集合, 并重写其他节点样式属性。  
   
 3.  <xref:System.Web.UI.WebControls.TreeView.SelectedNodeStyle%2A>。  
   
 4.  <xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>。  
   
 > [!NOTE]
->  样式设置<xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>属性重写中的任何相应节点样式设置<xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>， <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A>， <xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>， <xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>，或<xref:System.Web.UI.WebControls.TreeView.SelectedNodeStyle%2A>属性。  
+>  <xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>属性的样式设置会重写<xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>、 <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A> <xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A> <xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>、、或<xref:System.Web.UI.WebControls.TreeView.SelectedNodeStyle%2A>属性中的任何相应的节点样式设置。  
   
- <xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>属性不呈现的节点及其<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>属性设置为`TreeNodeSelectAction.None`。  
+ `TreeNodeSelectAction.None`对于<xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>其<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>属性设置为的节点, 不呈现属性。  
   
- 与不同<xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>并<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>的属性<xref:System.Web.UI.WebControls.TreeNodeStyle>对象，<xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>属性是<xref:System.Web.UI.WebControls.Style>对象。  
+ <xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>与<xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A> <xref:System.Web.UI.WebControls.Style>和属性 ( <xref:System.Web.UI.WebControls.TreeNodeStyle>即对象) 不同, 属性是一个对象。 <xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>属性来控制节点的外观，当鼠标指针悬停。 对于此示例正常工作，必须包括`<head>`具有元素`runat="server"`属性。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>属性来控制当鼠标指针位于节点上时该节点的外观。 要使此示例正常运行, 必须包含一个`<head>` `runat="server"`具有属性的元素。  
   
  [!code-aspx-csharp[TreeViewHoverNodeStyle#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewHoverNodeStyle/CS/treeviewhovernodestylecs.aspx#1)]
  [!code-aspx-vb[TreeViewHoverNodeStyle#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewHoverNodeStyle/VB/treeviewhovernodestylevb.aspx#1)]  
@@ -1578,47 +1578,47 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性指定的一组图像用于<xref:System.Web.UI.WebControls.TreeView>控件。 您可以选择一组预定义的映像要提供的标准外观的控件或定义你自己的自定义组。  
+ 使用 " <xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性" 指定用于<xref:System.Web.UI.WebControls.TreeView>控件的图像组。 你可以选择一组预定义的映像, 以使该控件具有标准外观, 或定义你自己的自定义集。  
   
 > [!NOTE]
->  <xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性不会影响节点的任何样式设置。 设置适当的样式属性，如<xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>属性，如果你想要添加自定义颜色和间距。  
+>  <xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性不影响节点的任何样式设置。 如果要添加自定义颜色和间距, <xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>请设置相应的样式属性 (如属性)。  
   
- 下表列出了有效的值为<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性。  
+ 下表列出了<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性的有效值。  
   
-|图像集|描述|  
+|图像集|说明|  
 |---------------|-----------------|  
-|`TreeViewImageSet.Arrows`|使用箭头图像的预定义的映像组。|  
-|`TreeViewImageSet.BulletedList`|使用菱形项目符号图像的预定义的映像组。|  
-|`TreeViewImageSet.BulletedList2`|使用方形项目符号图像的预定义的映像组。|  
+|`TreeViewImageSet.Arrows`|使用箭头图像的预定义图像集。|  
+|`TreeViewImageSet.BulletedList`|使用菱形项目符号图像的预定义图像集。|  
+|`TreeViewImageSet.BulletedList2`|使用正方形形项目符号图像的预定义图像集。|  
 |`TreeViewImageSet.BulletedList3`|预定义的、分节的菱形项目符号图像集。|  
 |`TreeViewImageSet.BulletedList4`|预定义的、大小随级别不同而变化的、分节的备用菱形项目符号图像集。|  
-|`TreeViewImageSet.Contacts`|使用 MSN Messenger 映像的预定义的映像组。|  
+|`TreeViewImageSet.Contacts`|使用 MSN Messenger 映像的预定义映像集。|  
 |`TreeViewImageSet.Custom`|用户定义的图像集。|  
-|`TreeViewImageSet.Events`|使用事件日志样式的图像的预定义的映像组。|  
-|`TreeViewImageSet.Faq`|使用 FAQ 样式的图像的预定义的映像组。|  
-|`TreeViewImageSet.Inbox`|使用电子邮件样式的图像的预定义的映像组。|  
-|`TreeViewImageSet.News`|使用新闻组样式的图像的预定义的映像组。|  
-|`TreeViewImageSet.Simple`|使用简单形状轮廓的预定义的映像组。|  
-|`TreeViewImageSet.Simple2`|使用简单实心的形状的预定义的映像组。|  
-|`TreeViewImageSet.Msdn`|使用 MSDN 映像的预定义的映像组。|  
-|`TreeViewImageSet.WindowsHelp`|使用 Microsoft Windows 帮助映像的预定义的映像组。|  
-|`TreeViewImageSet.XPFileExplorer`|使用 Microsoft Windows XP 中可用的 Windows 资源管理器中映像的预定义的映像组。|  
+|`TreeViewImageSet.Events`|使用事件日志样式的图像的预定义图像集。|  
+|`TreeViewImageSet.Faq`|使用 FAQ 样式的图像的预定义图像集。|  
+|`TreeViewImageSet.Inbox`|使用电子邮件样式的图像的预定义图像集。|  
+|`TreeViewImageSet.News`|使用新闻组样式的图像的预定义图像集。|  
+|`TreeViewImageSet.Simple`|使用简单形状轮廓的预定义图像集。|  
+|`TreeViewImageSet.Simple2`|使用简单填充形状的预定义图像集。|  
+|`TreeViewImageSet.Msdn`|使用 MSDN 映像的预定义映像集。|  
+|`TreeViewImageSet.WindowsHelp`|使用 Microsoft Windows 帮助图像的预定义映像集。|  
+|`TreeViewImageSet.XPFileExplorer`|使用在 Microsoft Windows XP 中可用的 Windows 资源管理器映像的预定义映像集。|  
   
- 时定义自定义映像，应为每个以下表中的属性来指定图像。 否则，使用该属性的默认图像。  
+ 定义一组自定义图像时, 应该为下表中的每个属性指定一个映像。 否则, 将使用该属性的默认图像。  
   
-|Property|描述|  
+|Property|说明|  
 |--------------|-----------------|  
-|<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>|可折叠节点的指示符的自定义图像 URL。|  
-|<xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>|可展开节点指示符的自定义图像 URL。|  
-|<xref:System.Web.UI.WebControls.TreeView.LineImagesFolder%2A>|指向包含连接节点的行的自定义映像的文件夹的 URL。|  
-|<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>|非可展开节点指示符的自定义图像 URL。|  
+|<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>|可折叠节点的指示符的自定义图像的 URL。|  
+|<xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>|可展开节点的指示符的自定义图像的 URL。|  
+|<xref:System.Web.UI.WebControls.TreeView.LineImagesFolder%2A>|包含连接节点的线条的自定义图像的文件夹的 URL。|  
+|<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>|不可展开节点指示符的自定义图像的 URL。|  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性来显示的 Windows 资源管理器中的图像集<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性在<xref:System.Web.UI.WebControls.TreeView>控件中显示 Windows 资源管理器的图像集。  
   
  [!code-aspx-csharp[TreeViewImageSet#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewImageSet/CS/treeviewimagesetcs.aspx#1)]
  [!code-aspx-vb[TreeViewImageSet#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewImageSet/VB/treeviewimagesetvb.aspx#1)]  
@@ -1671,22 +1671,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>属性来控制中的叶节点的外观<xref:System.Web.UI.WebControls.TreeView>控件。 此属性是只读的;但是，可以设置的属性<xref:System.Web.UI.WebControls.TreeNodeStyle>对象返回。 可以在窗体中以声明方式设置属性`Property-Subproperty`，其中`Subproperty`是属性的<xref:System.Web.UI.WebControls.TreeNodeStyle>对象 (例如， `LeafNodeStyle-ForeColor`)。 属性也可以设置以编程方式在窗体`Property.Subproperty`(例如， `LeafNodeStyle.ForeColor`)。 常用设置通常包括自定义背景色、 前景色、 字体属性和节点间距。 按以下优先级顺序应用样式属性：  
+ 使用属性可控制<xref:System.Web.UI.WebControls.TreeView>控件中叶节点的外观。 <xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A> 此属性是只读的;但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.TreeNodeStyle>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.TreeNodeStyle>是对象的一个属性 (例如`LeafNodeStyle-ForeColor`)。 还可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `LeafNodeStyle.ForeColor`例如)。 常见设置通常包括自定义背景色、前景颜色、字体属性和节点间距。 样式属性按以下优先级顺序应用:  
   
 1.  <xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>。  
   
-2.  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A><xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>，或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>，具体取决于节点类型。 如果<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>定义的集合，就会应用在此期间，重写的其他节点的样式属性。  
+2.  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A>、 <xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>, 具体取决于节点类型。 如果定义<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>了集合, 则此时将应用该集合, 并重写其他节点样式属性。  
   
 3.  <xref:System.Web.UI.WebControls.TreeView.SelectedNodeStyle%2A>。  
   
 4.  <xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>。  
   
- 如果您需要生成表的内容样式导航菜单，其中某一级别的节点应具有相同的外观，而不考虑是否具有子节点，则可以考虑使用<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>而不是设置单个属性样式属性。  
+ 如果需要生成目录样式的导航菜单, 其中某个级别的节点应具有相同的外观, 无论它们是否具有子节点, 都可以考虑使用<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>属性, 而不是设置单个样式属性。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>属性来控制中的叶节点的外观<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>属性来控制<xref:System.Web.UI.WebControls.TreeView>控件中叶节点的外观。  
   
  [!code-aspx-csharp[TreeViewLeafNodeStyle#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewLeafNodeStyle/CS/treeviewleafnodestylecs.aspx#1)]
  [!code-aspx-vb[TreeViewLeafNodeStyle#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewLeafNodeStyle/VB/treeviewleafnodestylevb.aspx#1)]  
@@ -1738,13 +1738,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>作为单独的样式属性的替代方法的集合 (如<xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>属性) 来控制树中各个级别上的节点的样式。 集合中的第一个样式对应于树的第一个级别中的节点的样式。 集合中的第二个样式对应于树中，依次类推的第二个级别中的节点的样式。 此属性通常用于确定生成表的内容样式导航菜单其中某一级别的节点应具有相同的外观，而不考虑是否具有子节点。  
+ 使用集合作为各个样式属性 (如<xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>属性) 的替代方法, 以控制树的各个级别上的节点样式。 <xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A> 集合中的第一种样式对应于树的第一个级别中的节点样式。 集合中的第二个样式对应于树第二级的节点样式, 依此类推。 此属性最常用于生成目录样式的导航菜单, 其中某个级别的节点应具有相同的外观, 而不考虑它们是否具有子节点。  
   
- 按以下顺序应用样式属性：  
+ 样式属性的应用顺序如下:  
   
 1.  <xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>。  
   
-2.  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A><xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>，或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>，具体取决于节点类型。 如果<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>定义的集合，就会应用在此期间，重写的其他节点的样式属性。  
+2.  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A>、 <xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>, 具体取决于节点类型。 如果定义<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>了集合, 则此时将应用该集合, 并重写其他节点样式属性。  
   
 3.  <xref:System.Web.UI.WebControls.TreeView.SelectedNodeStyle%2A>。  
   
@@ -1753,7 +1753,7 @@
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>属性创建导航菜单。 控件始终是完全展开，展开节点指示符和隐藏的图像。 此外，<xref:System.Web.UI.WebControls.TreeNodeStyle.ChildNodesPadding%2A>属性用于控制节点级别的间距。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>属性创建导航菜单。 控件始终完全展开, 并隐藏展开节点指示符和图像。 此外, 该<xref:System.Web.UI.WebControls.TreeNodeStyle.ChildNodesPadding%2A>属性用于控制节点级别的间距。  
   
  [!code-aspx-csharp[TreeViewLevelStyles#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewLevelStyles/CS/treeviewlevelstylescs.aspx#1)]
  [!code-aspx-vb[TreeViewLevelStyles#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewLevelStyles/VB/treeviewlevelstylesvb.aspx#1)]  
@@ -1799,40 +1799,40 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView>控件可以显示连接到父节点的子节点的行时<xref:System.Web.UI.WebControls.TreeView.ShowLines%2A>属性设置为`true`。 当显示行时，使用<xref:System.Web.UI.WebControls.TreeView.LineImagesFolder%2A>属性以指定包含要使用的线条的预呈现图像集的 Web 访问文件夹。 下表描述了使用的映像<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 当属性设置为<xref:System.Web.UI.WebControls.TreeView> `true`时, 控件可以显示将子节点连接到父节点的行。 <xref:System.Web.UI.WebControls.TreeView.ShowLines%2A> 显示行时, 使用<xref:System.Web.UI.WebControls.TreeView.LineImagesFolder%2A>属性指定一个 Web 可访问的文件夹, 其中包含用于线条的一组预呈现图像。 下表描述了<xref:System.Web.UI.WebControls.TreeView>控件使用的图像。  
   
-|图像|描述|  
+|图像|说明|  
 |-----------|-----------------|  
-|Dash.gif|当没有树状结构中的只有一个根节点和根节点的根节点旁边显示的线条图像是叶节点。|  
-|Dashminus.gif|减号 （-） 以指示已展开的根节点的树状结构中只有一个根节点时，根节点旁显示的图像。|  
-|Dashplus.gif|以指示已折叠的根节点的树状结构中只有一个根节点时显示的根节点旁边的加号 （+） 图像。|  
-|I.gif|显示连接相邻的节点的线条图像。|  
-|L.gif|显示的线条图像接下来的最后一个节点在分支中一个叶节点时。|  
-|Lminus.gif|显示的线条图像接下来的最后一个节点以指示该节点展开分支中。|  
-|Lplus.gif|显示的线条图像接下来的最后一个节点中的分支，以指示节点处于折叠状态。|  
-|Minus.gif|已展开显示包含多个根节点，以指示节点的树状结构中的第一个根节点旁边的减号 （-） 图像。 此映像不包含额外的行，并仅一次折叠的根节点后显示。 在首次加载页面时显示 Rminus.gif 图像。|  
-|Noexpand.gif|叶节点旁显示的空白分隔条图像。 此映像允许文本垂直排列。|  
-|Plus.gif|显示包含多个根节点，以指示节点的树状结构中的第一个根节点旁边的加号 （+） 图像处于折叠状态。 此映像不包含额外的行和根节点扩展一次后才显示。 在首次加载页面时显示 Rplus.gif 图像。|  
-|R.gif|包含多个根节点，以指示该节点是一个叶节点的树状结构中的第一个根节点旁边显示的线条图像。|  
-|Rminus.gif|已展开显示包含多个根节点，以指示节点的树状结构中的第一个根节点旁边的减号 （-） 图像。 此映像包含额外的行，仅当首次加载页面时显示。 在根之后显示 Minus.gif 映像后，已折叠节点。|  
-|Rplus.gif|显示包含多个根节点，以指示节点的树状结构中的第一个根节点旁边的加号 （+） 图像处于折叠状态。 此映像包含额外的行，仅当首次加载页面时显示。 在根之后显示 Plus.gif 映像后，已扩展节点。|  
-|T.gif|显示中间 （在 t 交集） 的树状结构的节点旁边以指示该节点是一个叶的线条图像。|  
-|Tminus.gif|减号 （-） 图像 （在 t 交集） 的树状结构的中间节点旁边显示，以指示该节点已展开。|  
-|Tplus.gif|显示中间 （在 t 交集） 的树状结构的节点旁边以指示节点处于折叠状态的加号 （+） 图像。|  
+|Dash.gif|当树结构中只有一个根节点并且根节点为叶节点时, 将在根节点旁边显示一个线条图像。|  
+|Dashminus.gif|当树结构中只有一个根节点时, 显示在根节点旁边的减号 (-) 图像, 以指示扩展根节点。|  
+|Dashplus.gif|当树结构中只有一个根节点时, 将在根节点旁显示加号 (+) 图像, 以指示根节点已折叠。|  
+|I.gif|显示用于连接相邻节点的线条图像。|  
+|L.gif|当节点为叶节点时, 该节点的最后一个节点旁显示的线条图像。|  
+|Lminus.gif|在分支中的最后一个节点旁显示的线条图像, 用于指示该节点已展开。|  
+|Lplus.gif|在分支中的最后一个节点旁显示的线条图像, 用于指示该节点处于折叠状态。|  
+|Minus.gif|显示在包含多个根节点 (包含多个根节点以指示节点已展开) 的树结构中第一个根节点旁边的减号 (-) 图像。 此图像不包含额外的行, 并且仅在根节点折叠一次后显示。 第一次加载页面时, 将显示 Rminus 图像。|  
+|Noexpand.gif|显示在叶节点旁边的空白空白图像。 此图像允许文本垂直对齐。|  
+|外加 .gif|显示在包含多个根节点的树结构中第一个根节点旁边的加号 (+) 图像, 以指示该节点处于折叠状态。 此图像不包含额外的行, 并且仅在根节点展开一次后显示。 第一次加载页面时, 将显示 Rplus 图像。|  
+|R.gif|在包含多个根节点的树结构中的第一个根节点旁显示的线条图像, 用于指示该节点是一个叶节点。|  
+|Rminus.gif|显示在包含多个根节点 (包含多个根节点以指示节点已展开) 的树结构中第一个根节点旁边的减号 (-) 图像。 此图像包含额外的行, 并且仅在第一次加载页面时才显示。 根节点经过折叠后, 将显示减号图像。|  
+|Rplus.gif|显示在包含多个根节点的树结构中第一个根节点旁边的加号 (+) 图像, 以指示该节点处于折叠状态。 此图像包含额外的行, 并且仅在第一次加载页面时才显示。 根节点展开一次后, 将显示该图像的加号。|  
+|T.gif|在树结构中间显示的一个线条图像 (在 t 交叉处), 指示该节点为叶节点。|  
+|Tminus.gif|在树结构中间显示的节点旁边的减号 (-) 图像 (在 t 交叉处), 指示节点已展开。|  
+|Tplus.gif|在树结构中间显示的节点旁边的加号 (+) 图像 (在 t 交叉处), 指示节点已折叠。|  
   
 > [!NOTE]
->  如果<xref:System.Web.UI.WebControls.TreeView.LineImagesFolder%2A>未设置属性，<xref:System.Web.UI.WebControls.TreeView>控件将使用内置的默认图像 （20 x 20 像素为单位）。  
+>  如果未<xref:System.Web.UI.WebControls.TreeView.LineImagesFolder%2A>设置该属性, 则该<xref:System.Web.UI.WebControls.TreeView>控件将使用内置的默认图像 (20 x 20 个像素)。  
   
- 某些可视化设计器，如 Microsoft Visual Studio 提供工具来生成的线条图像。  
+ 某些可视化设计器 (如 Microsoft Visual Studio) 提供了用于生成行图像的工具。  
   
- 运行的时不能翻转从右到左显示的自定义映像。 若要支持从左到右和从右到左的网页，必须创建两个方向上的图像集。  
+ 对于从右到左的显示, 运行时间不会反转自定义图像。 若要同时支持从左到右和从右到左的网页, 必须为这两个方向创建图像集。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.LineImagesFolder%2A>属性来指定要在中显示的线条图像所属文件夹<xref:System.Web.UI.WebControls.TreeView>控件。 若要使用此示例中，使用行设计器工具预先创建一组行图像。 将它们放在名为目录中的示例应用程序 LineImages 文件夹中。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.LineImagesFolder%2A>属性指定包含要<xref:System.Web.UI.WebControls.TreeView>在控件中显示的行图像的文件夹。 若要使用此示例, 请事先使用线条设计器工具创建一组线条图像。 将其放在示例应用程序的目录中名为 LineImages 的文件夹中。  
   
  [!code-aspx-csharp[TreeViewLineImagesFolderUrl#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewLineImagesFolderUrl/CS/treeviewlineimagesfolderurlcs.aspx#1)]
  [!code-aspx-vb[TreeViewLineImagesFolderUrl#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewLineImagesFolderUrl/VB/treeviewlineimagesfolderurlvb.aspx#1)]  
@@ -1879,7 +1879,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ASP.NET 页框架跟踪返回的所有服务器控件`true`从<xref:System.Web.UI.WebControls.TreeView.LoadPostData%2A>方法调用中，并调用<xref:System.Web.UI.WebControls.TreeView.RaisePostDataChangedEvent%2A>这些控件上的方法。  
+ ASP.NET 页框架跟踪`true` <xref:System.Web.UI.WebControls.TreeView.LoadPostData%2A>从方法调用返回的所有服务器控件<xref:System.Web.UI.WebControls.TreeView.RaisePostDataChangedEvent%2A> , 然后在这些控件上调用方法。  
   
  ]]></format>
         </remarks>
@@ -1939,24 +1939,24 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 绑定时<xref:System.Web.UI.WebControls.TreeView>控件与数据源，使用<xref:System.Web.UI.WebControls.TreeView.MaxDataBindDepth%2A>属性可限制要绑定到控件的树级别数。 例如，此属性设置为`2`绑定只有根节点和到的根节点下的任何节点<xref:System.Web.UI.WebControls.TreeView>控件。 数据源中的所有剩余节点将被忽略。  
+ 将<xref:System.Web.UI.WebControls.TreeView>控件绑定到数据源时, 请<xref:System.Web.UI.WebControls.TreeView.MaxDataBindDepth%2A>使用属性限制要绑定到控件的树级别数。 例如, 将此属性设置为`2`仅将根节点和根节点下的任何节点绑定<xref:System.Web.UI.WebControls.TreeView>到控件。 数据源中的所有剩余节点均被忽略。  
   
 > [!IMPORTANT]
->  恶意用户可以创建一个回调请求并获取数据的节点<xref:System.Web.UI.WebControls.TreeView>页面开发人员不显示控件。 因此，必须由数据源实现数据的安全性。 不要使用<xref:System.Web.UI.WebControls.TreeView.MaxDataBindDepth%2A>属性隐藏数据。  
+>  恶意用户可以创建回调请求并获取页面开发人员未显示的<xref:System.Web.UI.WebControls.TreeView>控件节点的数据。 因此, 数据的安全必须由数据源实现。 不要使用<xref:System.Web.UI.WebControls.TreeView.MaxDataBindDepth%2A>属性来隐藏数据。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 本部分包含两个代码示例。 第一个代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.MaxDataBindDepth%2A>属性将仅前两个节点级别 （深度 0 和 1） 绑定到<xref:System.Web.UI.WebControls.TreeView>控件。 第二个代码示例在第一个代码示例提供示例 XML 数据。  
+ 本部分包含两个代码示例。 第一个代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.MaxDataBindDepth%2A>属性来仅将前两个节点级别 (深度0和 1) 绑定<xref:System.Web.UI.WebControls.TreeView>到控件。 第二个代码示例提供了第一个代码示例的示例 XML 数据。  
   
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.MaxDataBindDepth%2A>属性将仅前两个节点级别 （深度 0 和 1） 绑定到<xref:System.Web.UI.WebControls.TreeView>控件。 数据源中的所有节点级别将被都忽略。 此示例中正常工作，必须将复制此代码示例中，到名为 Book.xml 后提供的示例 XML 数据。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.MaxDataBindDepth%2A>属性来仅将前两个节点级别 (深度0和 1) 绑定<xref:System.Web.UI.WebControls.TreeView>到控件。 数据源中的所有节点级别都将被忽略。 若要使此示例正常工作, 必须将示例 XML 数据 (在此代码示例之后提供) 复制到名为 books.xml 的文件中。  
   
  [!code-aspx-csharp[TreeViewMaxDataBindDepth#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewMaxDataBindDepth/CS/treeviewmaxdatabinddepthcs.aspx#1)]
  [!code-aspx-vb[TreeViewMaxDataBindDepth#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewMaxDataBindDepth/VB/treeviewmaxdatabinddepthvb.aspx#1)]  
   
- 下面的代码示例为前面的代码示例提供示例 XML 数据。  
+ 下面的代码示例提供了前面的代码示例的示例 XML 数据。  
   
 ```  
 <Book Title="Book Title">  
@@ -2007,17 +2007,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.NodeIndent%2A>属性控制的一个子节点的左边的缘和其父节点的左边的缘之间的间距大小。  
+ <xref:System.Web.UI.WebControls.TreeView.NodeIndent%2A>使用属性可控制子节点的左边缘与其父节点的左边缘之间的间距量。  
   
 > [!NOTE]
->  <xref:System.Web.UI.WebControls.TreeView.NodeIndent%2A>属性会影响每个中的子节点<xref:System.Web.UI.WebControls.TreeView>控件。 不能单独控制每个节点的缩进量。  
+>  属性会影响<xref:System.Web.UI.WebControls.TreeView>控件中的每个子节点。 <xref:System.Web.UI.WebControls.TreeView.NodeIndent%2A> 不能单独控制每个节点的缩进量。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.NodeIndent%2A>属性来控制子节点的缩进值。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.NodeIndent%2A>属性控制子节点的缩进。  
   
  [!code-aspx-csharp[TreeViewNodeIndent#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewNodeIndent/CS/treeviewnodeindentcs.aspx#1)]
  [!code-aspx-vb[TreeViewNodeIndent#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewNodeIndent/VB/treeviewnodeindentvb.aspx#1)]  
@@ -2074,14 +2074,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.Nodes%2A>属性来获取<xref:System.Web.UI.WebControls.TreeNodeCollection>对象，其中包含在树中的所有根节点。 若要快速循环访问所有根节点，或访问树中的特定根节点通常使用此集合。  
+ 使用属性可获取一个<xref:System.Web.UI.WebControls.TreeNodeCollection>对象, 该对象包含树中的所有根节点。 <xref:System.Web.UI.WebControls.TreeView.Nodes%2A> 此集合通常用于快速循环访问所有根节点, 或访问树中的特定根节点。  
   
 > [!NOTE]
->  典型的树结构只包含一个根节点;但是，可以添加到多个根节点<xref:System.Web.UI.WebControls.TreeView>控件。  
+>  典型树结构只有一个根节点;但是, 您可以将多个根节点添加<xref:System.Web.UI.WebControls.TreeView>到控件中。  
   
- <xref:System.Web.UI.WebControls.TreeView.Nodes%2A>还可以使用属性来以编程方式管理在树的根节点。 可以添加、 插入、 删除和检索<xref:System.Web.UI.WebControls.TreeNode>集合中的对象。 对集合的任何更新会自动反映在<xref:System.Web.UI.WebControls.TreeView>往返到服务器下一步后的控件。  
+ <xref:System.Web.UI.WebControls.TreeView.Nodes%2A>属性还可用于以编程方式管理树中的根节点。 可以添加、插入、删除和检索<xref:System.Web.UI.WebControls.TreeNode>集合中的对象。 在下一次往返服务器后, 该集合<xref:System.Web.UI.WebControls.TreeView>中的任何更新都会自动反映在控件中。  
   
- 若要访问根节点的子节点，请使用<xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>节点的属性。 使用<xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>的每个后续的父级别节点，节点级别下导航属性。  
+ 若要访问根节点的子节点, 请使用<xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>节点的属性。 使用每个后续父级别节点的属性来向下导航节点级别。<xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>  
   
    
   
@@ -2135,25 +2135,25 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>属性来控制中的节点的默认外观<xref:System.Web.UI.WebControls.TreeView>控件。 此属性是只读的;但是，可以设置的属性<xref:System.Web.UI.WebControls.TreeNodeStyle>对象返回。 可以在窗体中以声明方式设置属性`Property-Subproperty`，其中`Subproperty`是属性的<xref:System.Web.UI.WebControls.TreeNodeStyle>对象 (例如， `NodeStyle-ForeColor`)。 属性也可以设置以编程方式在窗体`Property.Subproperty`(例如， `NodeStyle.ForeColor`)。 常用设置通常包括自定义背景色、 前景色、 字体属性和节点间距。 按以下优先级顺序应用样式属性：  
+ 使用属性可控制<xref:System.Web.UI.WebControls.TreeView>控件中节点的默认外观。 <xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A> 此属性是只读的;但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.TreeNodeStyle>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.TreeNodeStyle>是对象的一个属性 (例如`NodeStyle-ForeColor`)。 还可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `NodeStyle.ForeColor`例如)。 常见设置通常包括自定义背景色、前景颜色、字体属性和节点间距。 样式属性按以下优先级顺序应用:  
   
 1.  <xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>。  
   
-2.  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A><xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>，或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>，具体取决于节点类型。 如果<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>定义的集合，就会应用在此期间，重写的其他节点的样式属性。  
+2.  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A>、 <xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>, 具体取决于节点类型。 如果定义<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>了集合, 则此时将应用该集合, 并重写其他节点样式属性。  
   
 3.  <xref:System.Web.UI.WebControls.TreeView.SelectedNodeStyle%2A>。  
   
 4.  <xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>。  
   
 > [!NOTE]
->  中的相应节点样式设置<xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A>， <xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>，或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>属性重写的样式设置<xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>属性。  
+>  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A> <xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A> 、或<xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>属性中的相应节点样式设置会重写<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>属性的样式设置。  
   
- 如果您需要生成表的内容样式导航菜单，其中某一级别的节点应具有相同的外观，而不考虑是否具有子节点，则可以考虑使用<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>而不是设置单个属性样式属性。  
+ 如果需要生成目录样式的导航菜单, 其中某个级别的节点应具有相同的外观, 无论它们是否具有子节点, 都可以考虑使用<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>属性, 而不是设置单个样式属性。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>属性来控制中的节点的外观<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>属性来控制<xref:System.Web.UI.WebControls.TreeView>控件中节点的外观。  
   
  [!code-aspx-csharp[TreeViewNodeStyle#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewNodeStyle/CS/treeviewnodestylecs.aspx#1)]
  [!code-aspx-vb[TreeViewNodeStyle#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewNodeStyle/VB/treeviewnodestylevb.aspx#1)]  
@@ -2196,14 +2196,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.NodeWrap%2A>属性来指定当空间不足时，每个节点中显示的文本是否换行。  
+ <xref:System.Web.UI.WebControls.TreeView.NodeWrap%2A>使用属性可指定在每个节点的空间不足时是否换行中显示的文本。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.NodeWrap%2A>属性的文本换行<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.NodeWrap%2A>属性来包装<xref:System.Web.UI.WebControls.TreeView>控件的文本。  
   
  [!code-aspx-csharp[TreeViewNodeWrap#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewNodeWrap/CS/treeviewnodewrapcs.aspx#1)]
  [!code-aspx-vb[TreeViewNodeWrap#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewNodeWrap/VB/treeviewnodewrapvb.aspx#1)]  
@@ -2251,19 +2251,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>属性来指定自定义映像的非可展开节点指示符。 非可展开节点指示符映像 （或垫片） 旁边将显示叶节点 （代替可展开和折叠节点指示符） 对齐具有父或根节点的叶节点。  
+ <xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>使用属性为不可展开的节点指示符指定自定义图像。 "叶节点" (用于替代可展开和可折叠节点的指示符) 旁将显示非可展开节点的指示符图像 (或空白), 以使叶节点与父节点或根节点对齐。  
   
- 当<xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A>属性设置为`true`，则<xref:System.Web.UI.WebControls.TreeView>控件将显示一个加号 （+） 或减号 （-） 或节点以指示节点是否是可扩展、 可折叠的还是非可展开分别旁边占位符图像。 可以指定由第一个设置自定义映像<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性设置为`TreeViewImageSet.Custom`，然后再设置<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>， <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>，和<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性设置为自定义映像的 Url。 如果没有指定任何图像，则使用默认映像。 若要隐藏展开节点指示符，请设置<xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A>属性设置为`false`。  
+ 当属性设置为`true`时, <xref:System.Web.UI.WebControls.TreeView>控件将在节点旁显示加号 (+) 或减号 (-) 或占位符图像, 以指示节点是可展开、可折叠还是不可展开。 <xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A> <xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>通过首先将属性设置为<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A> `TreeViewImageSet.Custom`, 然后将、 <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>和<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性设置为自定义图像的 url, 可以指定自定义映像。 如果未指定任何图像, 则使用默认图像。 若要隐藏展开节点指示符, 请<xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A>将属性`false`设置为。  
   
 > [!NOTE]
->  若要确保节点中正确地对齐<xref:System.Web.UI.WebControls.TreeView>控件使用的自定义映像时，请确保由指定的所有映像<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>， <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>，和<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性具有相同的尺寸。  
+>  若要确保在使用自定义图像<xref:System.Web.UI.WebControls.TreeView>时节点正确地在控件中对齐, 请确保<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>、 <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>和<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性指定的所有图像具有相同的尺寸。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>属性来指定自定义映像的非可展开节点指示符。 对于代码示例来显示和要在控件中显示的图像中，您必须提供你自己的映像并<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性必须设置为`TreeNodeImageSet.Custom`。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>属性为不可展开节点的指示符指定自定义图像。 要使代码示例显示和图像显示在控件中, 必须提供自己的图像, 并且<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性必须设置为。 `TreeNodeImageSet.Custom`  
   
  [!code-aspx-csharp[TreeViewCustomImage#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewCustomImage/CS/treeviewcustomimagecs.aspx#1)]
  [!code-aspx-vb[TreeViewCustomImage#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewCustomImage/VB/treeviewcustomimagevb.aspx#1)]  
@@ -2303,15 +2303,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.OnInit%2A>调用方法<xref:System.Web.UI.WebControls.TreeView>控制引发<xref:System.Web.UI.Control.Init>事件。 它通常由控件开发人员在扩展<xref:System.Web.UI.WebControls.TreeView>类。  
+ 此<xref:System.Web.UI.WebControls.TreeView.OnInit%2A>方法<xref:System.Web.UI.Control.Init>由控件调用以引发事件。 <xref:System.Web.UI.WebControls.TreeView> 在扩展<xref:System.Web.UI.WebControls.TreeView>类时, 控件开发人员通常会使用此方法。  
   
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.UI.WebControls.TreeView.OnInit%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.UI.WebControls.TreeView.OnInit(System.EventArgs)" />方法在派生类中，则一定要调用<see cref="M:System.Web.UI.WebControls.TreeView.OnInit(System.EventArgs)" />方法的基类以便注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在派生<see cref="M:System.Web.UI.WebControls.TreeView.OnInit(System.EventArgs)" />类中重写方法时, 请确保<see cref="M:System.Web.UI.WebControls.TreeView.OnInit(System.EventArgs)" />调用基类的方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="E:System.Web.UI.Control.Init" />
       </Docs>
     </Member>
@@ -2341,15 +2341,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.OnPreRender%2A>方法被重写以注册回发。 如果启用了客户端脚本，它还将呈现的必要的脚本和隐藏的字段。  
+ 重<xref:System.Web.UI.WebControls.TreeView.OnPreRender%2A>写方法以注册回发。 如果启用了客户端脚本, 它还会呈现必要的脚本和隐藏字段。  
   
- 引发事件时，将通过委托调用事件处理程序。 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.UI.WebControls.TreeView.OnPreRender%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.UI.WebControls.TreeView.OnPreRender(System.EventArgs)" />方法在派生类中，则一定要调用<see cref="M:System.Web.UI.WebControls.TreeView.OnPreRender(System.EventArgs)" />方法的基类以便注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在派生<see cref="M:System.Web.UI.WebControls.TreeView.OnPreRender(System.EventArgs)" />类中重写方法时, 请确保<see cref="M:System.Web.UI.WebControls.TreeView.OnPreRender(System.EventArgs)" />调用基类的方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="E:System.Web.UI.Control.PreRender" />
       </Docs>
     </Member>
@@ -2379,20 +2379,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged>中选择一个节点时引发事件<xref:System.Web.UI.WebControls.TreeView>控件。 这使您可以提供执行自定义的例程，例如，更新所显示的内容，每次此事件发生时的事件处理方法。  
+ 在控件中选择节点时, <xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged>将引发事件。 <xref:System.Web.UI.WebControls.TreeView> 这使你可以提供一种事件处理方法, 该方法可在每次发生此事件时执行自定义例程, 如更新显示的内容。  
   
- 可以选择性地设置<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>节点来指定当选择该节点时引发的事件的属性。  
+ 您可以选择设置<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>节点的属性, 以指定在选择节点时引发的事件。  
   
 > [!NOTE]
->  <xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>不呈现的节点及其<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>属性设置为`TreeNodeSelectAction.None`。  
+>  如果节点`TreeNodeSelectAction.None`的属性设置为, 则不会呈现。 <xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A> <xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>  
   
- 引发事件时，将通过委托调用事件处理程序。 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.UI.WebControls.TreeView.OnSelectedNodeChanged%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.UI.WebControls.TreeView.OnSelectedNodeChanged(System.EventArgs)" />方法在派生类中，则一定要调用<see cref="M:System.Web.UI.WebControls.TreeView.OnSelectedNodeChanged(System.EventArgs)" />方法的基类以便注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在派生<see cref="M:System.Web.UI.WebControls.TreeView.OnSelectedNodeChanged(System.EventArgs)" />类中重写方法时, 请确保<see cref="M:System.Web.UI.WebControls.TreeView.OnSelectedNodeChanged(System.EventArgs)" />调用基类的方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="E:System.Web.UI.WebControls.TreeView.SelectedNodeChanged" />
       </Docs>
     </Member>
@@ -2422,15 +2422,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged>中的复选框时将引发事件<xref:System.Web.UI.WebControls.TreeView>控件更改状态的各次发送到服务器。 这使您可以提供执行自定义的例程，如更新数据库或显示的内容，每次此事件发生时的事件处理方法。  
+ 当控件<xref:System.Web.UI.WebControls.TreeView>中的复选框在向服务器的各次发送过程间更改状态时, 将引发<xref:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged>事件。 这使你可以提供一种事件处理方法, 该方法可在每次发生此事件时执行自定义例程, 如更新数据库或显示的内容。  
   
- 引发事件时，将通过委托调用事件处理程序。 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.UI.WebControls.TreeView.OnTreeNodeCheckChanged%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeCheckChanged(System.Web.UI.WebControls.TreeNodeEventArgs)" />在派生类中，请务必调用<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeCheckChanged(System.Web.UI.WebControls.TreeNodeEventArgs)" />方法的基类以便注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeCheckChanged(System.Web.UI.WebControls.TreeNodeEventArgs)" />在派生类中重写时, 请确保为基类<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeCheckChanged(System.Web.UI.WebControls.TreeNodeEventArgs)" />调用方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="E:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged" />
       </Docs>
     </Member>
@@ -2460,15 +2460,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.TreeNodeCollapsed>节点中处于折叠状态时引发事件<xref:System.Web.UI.WebControls.TreeView>控件。 这使您可以提供每次此事件发生时执行自定义的例程的事件处理方法。  
+ 节点在控件中处于折叠状态时引发事件。<xref:System.Web.UI.WebControls.TreeView.TreeNodeCollapsed> <xref:System.Web.UI.WebControls.TreeView> 这使你可以提供一种事件处理方法, 该方法可在每次发生此事件时执行自定义例程。  
   
- 引发事件时，将通过委托调用事件处理程序。 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.UI.WebControls.TreeView.OnTreeNodeCollapsed%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeCollapsed(System.Web.UI.WebControls.TreeNodeEventArgs)" />方法在派生类中，则一定要调用<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeCollapsed(System.Web.UI.WebControls.TreeNodeEventArgs)" />方法的基类以便注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在派生<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeCollapsed(System.Web.UI.WebControls.TreeNodeEventArgs)" />类中重写方法时, 请确保<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeCollapsed(System.Web.UI.WebControls.TreeNodeEventArgs)" />调用基类的方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="E:System.Web.UI.WebControls.TreeView.TreeNodeCollapsed" />
       </Docs>
     </Member>
@@ -2498,15 +2498,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.TreeNodeDataBound>数据项绑定到中的一个节点时引发事件<xref:System.Web.UI.WebControls.TreeView>控件。 这使您可以提供每次此事件发生时执行自定义的例程的事件处理方法。  
+ 当<xref:System.Web.UI.WebControls.TreeView.TreeNodeDataBound>数据项绑定到<xref:System.Web.UI.WebControls.TreeView>控件中的节点时, 将引发事件。 这使你可以提供一种事件处理方法, 该方法可在每次发生此事件时执行自定义例程。  
   
- 引发事件时，将通过委托调用事件处理程序。 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.UI.WebControls.TreeView.OnTreeNodeDataBound%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeDataBound(System.Web.UI.WebControls.TreeNodeEventArgs)" />方法在派生类中，则一定要调用<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeDataBound(System.Web.UI.WebControls.TreeNodeEventArgs)" />方法的基类以便注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在派生<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeDataBound(System.Web.UI.WebControls.TreeNodeEventArgs)" />类中重写方法时, 请确保<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeDataBound(System.Web.UI.WebControls.TreeNodeEventArgs)" />调用基类的方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="E:System.Web.UI.WebControls.TreeView.TreeNodeDataBound" />
       </Docs>
     </Member>
@@ -2536,18 +2536,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded>中展开某个节点时将引发事件<xref:System.Web.UI.WebControls.TreeView>控件。 这使您可以提供每次此事件发生时执行自定义的例程的事件处理方法。  
+ 在<xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded> 控件<xref:System.Web.UI.WebControls.TreeView>中展开节点时, 将引发事件。 这使你可以提供一种事件处理方法, 该方法可在每次发生此事件时执行自定义例程。  
   
 > [!NOTE]
->  如果<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>节点的属性设置为<xref:System.Web.UI.WebControls.TreeNodeSelectAction.Expand>或<xref:System.Web.UI.WebControls.TreeNodeSelectAction.SelectExpand>，则<xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded>中单击该节点时，也会引发事件<xref:System.Web.UI.WebControls.TreeView>控件。  
+>  如果将<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>节点的属性设置为<xref:System.Web.UI.WebControls.TreeNodeSelectAction.Expand>或<xref:System.Web.UI.WebControls.TreeNodeSelectAction.SelectExpand>, 则当在<xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded> <xref:System.Web.UI.WebControls.TreeView>控件中单击该节点时, 也会引发该事件。  
   
- 引发事件时，将通过委托调用事件处理程序。 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.UI.WebControls.TreeView.OnTreeNodeExpanded%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeExpanded(System.Web.UI.WebControls.TreeNodeEventArgs)" />方法在派生类中，则一定要调用<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeExpanded(System.Web.UI.WebControls.TreeNodeEventArgs)" />方法的基类以便注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在派生<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeExpanded(System.Web.UI.WebControls.TreeNodeEventArgs)" />类中重写方法时, 请确保<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodeExpanded(System.Web.UI.WebControls.TreeNodeEventArgs)" />调用基类的方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="E:System.Web.UI.WebControls.TreeView.TreeNodeExpanded" />
         <altmember cref="P:System.Web.UI.WebControls.TreeNode.SelectAction" />
       </Docs>
@@ -2578,22 +2578,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有时，它并不可行静态预定义的树结构，由于数据大小或依赖于用户输入的自定义内容。 正因为如此，<xref:System.Web.UI.WebControls.TreeView>控件支持动态节点填充。 当<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`，在运行时节点展开时，会填充该节点。  
+ 有时, 由于数据大小或自定义内容依赖于用户输入而导致静态预定义树结构是不切实际的。 因此, <xref:System.Web.UI.WebControls.TreeView>控件支持动态节点填充。 如果将<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`, 则在展开节点时, 将在运行时填充该节点。  
   
- 若要动态填充节点，请首先设置<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>到的节点属性`true`。 接下来，定义的事件处理方法<xref:System.Web.UI.WebControls.TreeView.TreeNodePopulate>以编程方式填充节点的事件。 典型的事件处理方法从数据源中检索节点数据、 将数据保存到的节点结构，以及然后将添加到的节点结构<xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>填充节点的集合。 通过添加创建的节点结构<xref:System.Web.UI.WebControls.TreeNode>对象添加到<xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>父节点的集合。  
+ 若要动态填充节点, 请首先将<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`。 接下来, 为<xref:System.Web.UI.WebControls.TreeView.TreeNodePopulate>以编程方式填充节点的事件定义事件处理方法。 典型的事件处理方法从数据源中检索节点数据, 将这些数据放入节点结构, 然后将节点结构添加到<xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>要填充的节点的集合中。 通过向父节点的<xref:System.Web.UI.WebControls.TreeNode> <xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>集合添加对象来创建节点结构。  
   
 > [!NOTE]
->  当<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`，必须动态填充节点。 不能以声明方式嵌套; 其下方的另一个节点否则，在页上，将会出错。  
+>  如果将<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`, 则必须动态填充节点。 不能以声明方式在其下嵌套另一个节点;否则, 将在页面上出现错误。  
   
- 支持的浏览器 (Microsoft Internet Explorer 4.0 兼容浏览器及更高版本) 还可以充分利用客户端的节点填充。 如果启用，这将允许<xref:System.Web.UI.WebControls.TreeView>控件来动态填充客户端上的节点，展开该节点时，这会阻止需要回发到服务器。 客户端的节点填充的详细信息，请参阅<xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A>。  
+ 支持的浏览器 (Microsoft Internet Explorer 4.0 兼容的浏览器和更高版本) 也可利用客户端节点填充。 启用此<xref:System.Web.UI.WebControls.TreeView>功能后, 控件可以在展开该节点时, 动态填充客户端上的节点, 这会阻止需要回发到服务器。 有关客户端节点填充的详细信息, 请参阅<xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A>。  
   
- 引发事件时，将通过委托调用事件处理程序。 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.UI.WebControls.TreeView.OnTreeNodePopulate%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodePopulate(System.Web.UI.WebControls.TreeNodeEventArgs)" />方法在派生类中，则一定要调用<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodePopulate(System.Web.UI.WebControls.TreeNodeEventArgs)" />方法的基类以便注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在派生<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodePopulate(System.Web.UI.WebControls.TreeNodeEventArgs)" />类中重写方法时, 请确保<see cref="M:System.Web.UI.WebControls.TreeView.OnTreeNodePopulate(System.Web.UI.WebControls.TreeNodeEventArgs)" />调用基类的方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="E:System.Web.UI.WebControls.TreeView.TreeNodePopulate" />
         <altmember cref="P:System.Web.UI.WebControls.TreeNode.PopulateOnDemand" />
         <altmember cref="P:System.Web.UI.WebControls.TreeView.EnableClientScript" />
@@ -2636,22 +2636,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>属性来控制中的父节点的外观<xref:System.Web.UI.WebControls.TreeView>控件。 此属性是只读的;但是，可以设置的属性<xref:System.Web.UI.WebControls.TreeNodeStyle>对象返回。 可以在窗体中以声明方式设置属性`Property-Subproperty`，其中`Subproperty`是属性的<xref:System.Web.UI.WebControls.TreeNodeStyle>对象 (例如， `ParentNodeStyle-ForeColor`)。 属性也可以设置以编程方式在窗体`Property.Subproperty`(例如， `ParentNodeStyle.ForeColor`)。 常用设置通常包括自定义背景色、 前景色、 字体属性和节点间距。 按以下优先级顺序应用样式属性：  
+ 使用属性可控制<xref:System.Web.UI.WebControls.TreeView>控件中父节点的外观。 <xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A> 此属性是只读的;但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.TreeNodeStyle>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.TreeNodeStyle>是对象的一个属性 (例如`ParentNodeStyle-ForeColor`)。 还可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `ParentNodeStyle.ForeColor`例如)。 常见设置通常包括自定义背景色、前景颜色、字体属性和节点间距。 样式属性按以下优先级顺序应用:  
   
 1.  <xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>。  
   
-2.  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A><xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>，或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>，具体取决于节点类型。 如果<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>定义的集合，就会应用在此期间，重写的其他节点的样式属性。  
+2.  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A>、 <xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>, 具体取决于节点类型。 如果定义<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>了集合, 则此时将应用该集合, 并重写其他节点样式属性。  
   
 3.  <xref:System.Web.UI.WebControls.TreeView.SelectedNodeStyle%2A>。  
   
 4.  <xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>。  
   
- 如果您需要生成表的内容样式导航菜单，其中某一级别的节点应具有相同的外观，而不考虑是否具有子节点，则可以考虑使用<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>而不是设置单个属性样式属性。  
+ 如果需要生成目录样式的导航菜单, 其中某个级别的节点应具有相同的外观, 无论它们是否具有子节点, 都可以考虑使用<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>属性, 而不是设置单个样式属性。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>属性来控制中的父节点的外观<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>属性控制<xref:System.Web.UI.WebControls.TreeView>控件中父节点的外观。  
   
  [!code-aspx-csharp[TreeViewParentNodeStyle#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewParentNodeStyle/CS/treeviewparentnodestylecs.aspx#1)]
  [!code-aspx-vb[TreeViewParentNodeStyle#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewParentNodeStyle/VB/treeviewparentnodestylevb.aspx#1)]  
@@ -2694,16 +2694,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeNode.ValuePath%2A>属性包含的节点值，它构成从根节点到当前节点的路径分隔符分隔的列表。 使用<xref:System.Web.UI.WebControls.TreeView.PathSeparator%2A>属性指定的分隔符字符用于分隔节点值。 分析各个值的列表时，通常使用此值。  
+ <xref:System.Web.UI.WebControls.TreeNode.ValuePath%2A>属性包含以分隔符分隔的节点值列表, 这些值构成从根节点到当前节点的路径。 <xref:System.Web.UI.WebControls.TreeView.PathSeparator%2A>使用属性指定分隔节点值时所用的分隔符字符。 此值通常在分析各个值的列表时使用。  
   
- 具体取决于在显示的文本<xref:System.Web.UI.WebControls.TreeView>控件中，分隔符字符可能需要更改，以防止任何冲突。 例如，如果将为逗号分隔符字符，显示的文本不能包含任何逗号;否则为<xref:System.Web.UI.WebControls.TreeNode.ValuePath%2A>属性不能准确地分析。  
+ 根据<xref:System.Web.UI.WebControls.TreeView>控件中显示的文本, 分隔符字符可能需要更改以防止任何冲突。 例如, 如果将分隔符字符设置为逗号, 则显示的文本不应包含任何逗号;否则, <xref:System.Web.UI.WebControls.TreeNode.ValuePath%2A>属性无法准确分析。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.PathSeparator%2A>属性指定的分隔符字符<xref:System.Web.UI.WebControls.TreeNode.ValuePath%2A>节点的属性。 然后使用此值以分析<xref:System.Web.UI.WebControls.TreeNode.ValuePath%2A>，各个值的属性。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.PathSeparator%2A>属性来指定节点的<xref:System.Web.UI.WebControls.TreeNode.ValuePath%2A>属性的分隔符字符。 此值随后用于分析<xref:System.Web.UI.WebControls.TreeNode.ValuePath%2A>各个值的属性。  
   
  [!code-aspx-csharp[TreeViewPathSeparator2#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewPathSeparator2/CS/treeviewpathseparatorcs.aspx#1)]
  [!code-aspx-vb[TreeViewPathSeparator2#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewPathSeparator2/VB/treeviewpathseparatorvb.aspx#1)]  
@@ -2736,11 +2736,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.PerformDataBinding%2A>方法是通过调用一个帮助器方法<xref:System.Web.UI.WebControls.TreeView>控件绑定到控件的指定的数据源。  
+ 方法是一个帮助器方法, 该方法<xref:System.Web.UI.WebControls.TreeView>由控件调用以将指定的数据源绑定到控件。 <xref:System.Web.UI.WebControls.TreeView.PerformDataBinding%2A>  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>因为<see cref="M:System.Web.UI.WebControls.BaseDataBoundControl.DataBind" />方法密封的则应重写<see cref="M:System.Web.UI.WebControls.TreeView.PerformDataBinding" />方法时，如果您需要在绑定数据时执行的任何其他任务。</para></block>
+        <block subset="none" type="overrides"><para>由于方法<see cref="M:System.Web.UI.WebControls.BaseDataBoundControl.DataBind" />是密封的, 因此, 如果在<see cref="M:System.Web.UI.WebControls.TreeView.PerformDataBinding" />绑定数据时需要执行任何其他任务, 则应重写方法。</para></block>
       </Docs>
     </Member>
     <Member MemberName="PopulateNodesFromClient">
@@ -2771,27 +2771,27 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有时，它并不可行静态预定义的树结构，由于数据大小或依赖于用户输入的自定义内容。 正因为如此，<xref:System.Web.UI.WebControls.TreeView>控件支持动态节点填充。 当<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`，在运行时节点展开时，会填充该节点。  
+ 有时, 由于数据大小或自定义内容依赖于用户输入而导致静态预定义树结构是不切实际的。 因此, <xref:System.Web.UI.WebControls.TreeView>控件支持动态节点填充。 如果将<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`, 则在展开节点时, 将在运行时填充该节点。  
   
- 除了填充时按需节点，则可以填充直接在支持的客户端浏览器上的节点。 当<xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A>属性设置为`true`，从客户端填充树节点中，而不需要回发到服务器调用服务。 否则为<xref:System.Web.UI.WebControls.TreeView>控件回发到服务器以填充节点。  
-  
-> [!NOTE]
->  <xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>属性也必须设置为`true`以便<xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A>属性设置为`true`。  
-  
- 若要填充的节点上的客户端，请首先设置<xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A>属性设置为`true`，然后设置<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>到的节点属性`true`。 接下来，定义的事件处理方法<xref:System.Web.UI.WebControls.TreeView.TreeNodePopulate>以编程方式填充节点的事件。 典型的事件处理方法从数据源中检索节点数据、 将数据保存到的节点结构，以及然后将添加到的节点结构<xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>填充节点的集合。 可通过添加创建的节点结构<xref:System.Web.UI.WebControls.TreeNode>对象添加到<xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>父节点的集合。  
+ 除了按需填充节点以外, 还可以直接在受支持的客户端浏览器上填充节点。 当属性设置为`true`时, 将从客户端调用服务以填充树节点, 这样就无需回发到服务器。 <xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A> 否则, <xref:System.Web.UI.WebControls.TreeView>控件回发到服务器来填充节点。  
   
 > [!NOTE]
->  当<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`，必须动态填充节点。 不能以声明方式嵌套; 其下方的另一个节点否则，在页上，将会出错。  
+>  还必须将`true` <xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A> `true`属性设置为, 才能将属性设置为。 <xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>  
+  
+ 若要在客户端上填充节点, 请先<xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A>将属性`true`设置为, 然后<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>将节点的属性设置`true`为。 接下来, 为<xref:System.Web.UI.WebControls.TreeView.TreeNodePopulate>以编程方式填充节点的事件定义事件处理方法。 典型的事件处理方法从数据源中检索节点数据, 将这些数据放入节点结构, 然后将节点结构添加到<xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>要填充的节点的集合中。 您可以通过向父节点的<xref:System.Web.UI.WebControls.TreeNode> <xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>集合添加对象来创建节点结构。  
   
 > [!NOTE]
->  在支持回调脚本的浏览器中支持客户端的节点填充功能。 若要检查浏览器是否支持回调脚本访问，请使用<xref:System.Web.Configuration.HttpCapabilitiesBase.SupportsCallback%2A>属性的<xref:System.Web.HttpBrowserCapabilities>类。 您可以访问的实例<xref:System.Web.HttpBrowserCapabilities>通过将当前请求的类<xref:System.Web.HttpRequest.Browser%2A>属性的<xref:System.Web.HttpRequest>类。  
+>  如果将<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`, 则必须动态填充节点。 不能以声明方式在其下嵌套另一个节点;否则, 将在页面上出现错误。  
   
- 此属性的值存储在视图状态。  
+> [!NOTE]
+>  支持回调脚本的浏览器支持客户端节点填充功能。 若要检查浏览器是否支持回调脚本访问, 请<xref:System.Web.Configuration.HttpCapabilitiesBase.SupportsCallback%2A>使用<xref:System.Web.HttpBrowserCapabilities>类的属性。 可以<xref:System.Web.HttpBrowserCapabilities> <xref:System.Web.HttpRequest>通过类的属性访问当前请求的类的实例。 <xref:System.Web.HttpRequest.Browser%2A>  
+  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A>属性来启用客户端中的节点填充<xref:System.Web.UI.WebControls.TreeView>控件。 请注意，启用客户端的节点填充后，会自动填充节点在客户端，而无需回发到服务器上。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A>属性来启用<xref:System.Web.UI.WebControls.TreeView>控件中节点的客户端填充。 请注意, 启用客户端节点填充后, 节点会在客户端上动态填充, 而无需回发到服务器。  
   
  [!code-aspx-csharp[TreeViewPopulateNodesFromClient#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewPopulateNodesFromClient/CS/treeviewpopulatenodesfromclientcs.aspx#1)]
  [!code-aspx-vb[TreeViewPopulateNodesFromClient#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewPopulateNodesFromClient/VB/treeviewpopulatenodesfromclientvb.aspx#1)]  
@@ -2868,9 +2868,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 页的值传递`eventArgument`参数<xref:System.Web.UI.WebControls.TreeView.RaisePostBackEvent%2A>实现控件的方法<xref:System.Web.UI.IPostBackEventHandler?displayProperty=nameWithType>接口。 这<xref:System.Web.UI.WebControls.TreeView>控件还会呈现导致回发事件发生的 HTML 元素。 如果该控件呈现回发到服务器的客户端脚本，传递从脚本参数`eventArgument`参数。 如果回发事件由一个简单的提交到服务器，`eventArgument`参数是`null`。  
+ 该页将`eventArgument`参数值传递<xref:System.Web.UI.WebControls.TreeView.RaisePostBackEvent%2A>给实现<xref:System.Web.UI.IPostBackEventHandler?displayProperty=nameWithType>接口的控件的方法。 此<xref:System.Web.UI.WebControls.TreeView>控件还呈现导致回发事件发生的 HTML 元素。 如果控件呈现客户端脚本以回发到服务器, 则会在`eventArgument`参数中传递脚本中的参数。 如果回发事件是由简单的服务器提交引起的, 则`eventArgument`参数为。 `null`  
   
- <xref:System.Web.UI.WebControls.TreeView.RaisePostBackEvent%2A>方法提供了许多事件由 HTML 和 Web 服务器控件实现的功能。  
+ <xref:System.Web.UI.WebControls.TreeView.RaisePostBackEvent%2A>方法为 HTML 和 Web 服务器控件实现的多个事件提供了功能。  
   
  ]]></format>
         </remarks>
@@ -2903,7 +2903,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 更改事件<xref:System.Web.UI.WebControls.TreeView>控制引发从<xref:System.Web.UI.WebControls.TreeView.RaisePostDataChangedEvent%2A>方法。  
+ <xref:System.Web.UI.WebControls.TreeView>控件的更改事件是<xref:System.Web.UI.WebControls.TreeView.RaisePostDataChangedEvent%2A>从方法引发的。  
   
  ]]></format>
         </remarks>
@@ -2936,7 +2936,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.RenderBeginTag%2A>方法主要由控件开发人员。  
+ <xref:System.Web.UI.WebControls.TreeView.RenderBeginTag%2A>方法主要由控件开发人员使用。  
   
  ]]></format>
         </remarks>
@@ -2964,13 +2964,13 @@
         <Parameter Name="writer" Type="System.Web.UI.HtmlTextWriter" />
       </Parameters>
       <Docs>
-        <param name="writer"><see cref="T:System.Web.UI.HtmlTextWriter" />，表示用于向网页写入内容的输出流。</param>
+        <param name="writer"><see cref="T:System.Web.UI.HtmlTextWriter" /> 表示用于向网页写入内容的输出流。</param>
         <summary>呈现 <see cref="T:System.Web.UI.WebControls.TreeView" /> 控件中的节点。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.RenderContents%2A>方法以呈现中的节点<xref:System.Web.UI.WebControls.TreeView>到客户端的控件。  
+ 使用方法可向客户端呈现<xref:System.Web.UI.WebControls.TreeView>控件中的节点。 <xref:System.Web.UI.WebControls.TreeView.RenderContents%2A>  
   
  ]]></format>
         </remarks>
@@ -3003,7 +3003,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.RenderEndTag%2A>方法主要由控件开发人员。  
+ <xref:System.Web.UI.WebControls.TreeView.RenderEndTag%2A>方法主要由控件开发人员使用。  
   
  ]]></format>
         </remarks>
@@ -3048,22 +3048,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A>属性来控制中的根节点的外观<xref:System.Web.UI.WebControls.TreeView>控件。 此属性是只读的;但是，可以设置的属性<xref:System.Web.UI.WebControls.TreeNodeStyle>对象返回。 可以在窗体中以声明方式设置属性`Property-Subproperty`，其中`Subproperty`是属性的<xref:System.Web.UI.WebControls.TreeNodeStyle>对象 (例如， `RootNodeStyle-ForeColor`)。 属性也可以设置以编程方式在窗体`Property.Subproperty`(例如， `RootNodeStyle.ForeColor`)。 常用设置通常包括自定义背景色、 前景色、 字体属性和节点间距。 按以下优先级顺序应用样式属性：  
+ 使用属性可控制<xref:System.Web.UI.WebControls.TreeView>控件中根节点的外观。 <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A> 此属性是只读的;但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.TreeNodeStyle>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.TreeNodeStyle>是对象的一个属性 (例如`RootNodeStyle-ForeColor`)。 还可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `RootNodeStyle.ForeColor`例如)。 常见设置通常包括自定义背景色、前景颜色、字体属性和节点间距。 样式属性按以下优先级顺序应用:  
   
 1.  <xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>。  
   
-2.  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A><xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>，或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>，具体取决于节点类型。 如果<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>定义的集合，就会应用在此期间，重写的其他节点的样式属性。  
+2.  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A>、 <xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>, 具体取决于节点类型。 如果定义<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>了集合, 则此时将应用该集合, 并重写其他节点样式属性。  
   
 3.  <xref:System.Web.UI.WebControls.TreeView.SelectedNodeStyle%2A>  
   
 4.  <xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>。  
   
- 如果您需要生成表的内容样式导航菜单，其中某一级别的节点应具有相同的外观，而不考虑是否具有子节点，则可以考虑使用<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>而不是设置单个属性样式属性。  
+ 如果需要生成目录样式的导航菜单, 其中某个级别的节点应具有相同的外观, 无论它们是否具有子节点, 都可以考虑使用<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>属性, 而不是设置单个样式属性。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A>属性来控制中的根节点的外观<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A>属性来控制<xref:System.Web.UI.WebControls.TreeView>控件中根节点的外观。  
   
  [!code-aspx-csharp[TreeViewRootNodeStyle#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewRootNodeStyle/CS/treeviewrootnodestylecs.aspx#1)]
  [!code-aspx-vb[TreeViewRootNodeStyle#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewRootNodeStyle/VB/treeviewrootnodestylevb.aspx#1)]  
@@ -3135,29 +3135,29 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 中的节点的文本<xref:System.Web.UI.WebControls.TreeView>控件可以在两种模式之一中： 选择模式和导航模式。 默认情况下，一个节点处于选择模式。 若要将节点放入导航模式，设置<xref:System.Web.UI.WebControls.TreeNode.NavigateUrl%2A>到不是空字符串值的节点的属性 ("")。 若要使一个节点处于选择模式，设置<xref:System.Web.UI.WebControls.TreeNode.NavigateUrl%2A>属性的节点为空字符串 ("")。  
+ <xref:System.Web.UI.WebControls.TreeView>控件中节点的文本可以是以下两种模式之一: 选择模式和导航模式。 默认情况下, 节点处于选择模式。 若要使节点进入导航模式, 请将<xref:System.Web.UI.WebControls.TreeNode.NavigateUrl%2A>节点的属性设置为空字符串 ("") 以外的值。 若要将节点置于选择模式, 请将<xref:System.Web.UI.WebControls.TreeNode.NavigateUrl%2A>节点的属性设置为空字符串 ("")。  
   
- 节点在选择模式下时，用户可以选择通过单击该节点中的文本节点。 使用<xref:System.Web.UI.WebControls.TreeView.SelectedNode%2A>属性来确定哪个节点中选择<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 当节点处于选择模式时, 用户可以通过单击节点中的文本来选择节点。 使用属性可确定在控件中选择的节点。 <xref:System.Web.UI.WebControls.TreeView> <xref:System.Web.UI.WebControls.TreeView.SelectedNode%2A>  
   
 > [!NOTE]
->  不能为一个节点时选择<xref:System.Web.UI.WebControls.TreeView>控件显示的超链接。 当显示超链接时，<xref:System.Web.UI.WebControls.TreeView.SelectedNode%2A>属性始终返回`null`。  
+>  当<xref:System.Web.UI.WebControls.TreeView>控件显示超链接时, 不能选择节点。 显示超链接时, <xref:System.Web.UI.WebControls.TreeView.SelectedNode%2A>属性始终返回。 `null`  
   
- 当用户选择中的其他节点<xref:System.Web.UI.WebControls.TreeView>通过单击新的节点中的文本控件<xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged>引发事件时，默认情况下。 可以通过设置指定不同事件<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>属性的属性。 下表列出了可用的选项。  
+ 当用户通过单击新节点中的文本<xref:System.Web.UI.WebControls.TreeView>在控件中选择另一个节点时, 默认情况<xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged>下会引发该事件。 可以通过设置<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>属性的属性来指定其他事件。 下表列出了可用的选项。  
   
-|选择操作|描述|  
+|选择操作|说明|  
 |----------------------|-----------------|  
-|<xref:System.Web.UI.WebControls.TreeNodeSelectAction.Expand>|切换节点的展开和折叠状态。 将引发<xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded>或<xref:System.Web.UI.WebControls.TreeView.TreeNodeCollapsed>作为相应事件。|  
+|<xref:System.Web.UI.WebControls.TreeNodeSelectAction.Expand>|在展开和折叠之间切换节点。 适当地引发<xref:System.Web.UI.WebControls.TreeView.TreeNodeCollapsed>或事件 <xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded> 。|  
 |<xref:System.Web.UI.WebControls.TreeNodeSelectAction.None>|在选定节点时不引发任何事件。|  
 |<xref:System.Web.UI.WebControls.TreeNodeSelectAction.Select>|在选定节点时引发 <xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged> 事件。|  
-|<xref:System.Web.UI.WebControls.TreeNodeSelectAction.SelectExpand>|在选定节点时引发 <xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged> 和 <xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded> 两个事件。 仅展开节点，永远不会折叠。|  
+|<xref:System.Web.UI.WebControls.TreeNodeSelectAction.SelectExpand>|在选定节点时引发 <xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged> 和 <xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded> 两个事件。 节点只展开, 从不折叠。|  
   
 > [!NOTE]
->  <xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>不呈现的节点及其<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>属性设置为`TreeNodeSelectAction.None`。  
+>  如果节点`TreeNodeSelectAction.None`的属性设置为, 则不会呈现。 <xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A> <xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.SelectedNode%2A>属性来确定的值中的选定节点<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.SelectedNode%2A>属性来确定<xref:System.Web.UI.WebControls.TreeView>控件中选定节点的值。  
   
  [!code-aspx-csharp[TreeViewSelectedNodeStyle#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewSelectedNodeStyle/CS/treeviewselectednodestylecs.aspx#1)]
  [!code-aspx-vb[TreeViewSelectedNodeStyle#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewSelectedNodeStyle/VB/treeviewselectednodestylevb.aspx#1)]  
@@ -3194,28 +3194,28 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged>中选择一个节点时引发事件<xref:System.Web.UI.WebControls.TreeView>控件。 这使您可以提供执行自定义的例程，例如，更新所显示的内容，每次此事件发生时的事件处理方法。  
+ 在控件中选择节点时, <xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged>将引发事件。 <xref:System.Web.UI.WebControls.TreeView> 这使你可以提供一种事件处理方法, 该方法可在每次发生此事件时执行自定义例程, 如更新显示的内容。  
   
- 可以选择性地设置<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>节点指定时选择该节点时引发的事件的属性。 下表列出了可用的选项。  
+ 您可以选择设置节点<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>的属性, 以指定在选择节点时引发的事件。 下表列出了可用的选项。  
   
-|选择操作|描述|  
+|选择操作|说明|  
 |----------------------|-----------------|  
-|<xref:System.Web.UI.WebControls.TreeNodeSelectAction.Expand>|切换节点的展开和折叠状态。 将引发<xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded>或<xref:System.Web.UI.WebControls.TreeView.TreeNodeCollapsed>作为相应事件。|  
+|<xref:System.Web.UI.WebControls.TreeNodeSelectAction.Expand>|在展开和折叠之间切换节点。 适当地引发<xref:System.Web.UI.WebControls.TreeView.TreeNodeCollapsed>或事件 <xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded> 。|  
 |<xref:System.Web.UI.WebControls.TreeNodeSelectAction.None>|在选定节点时不引发任何事件。|  
 |<xref:System.Web.UI.WebControls.TreeNodeSelectAction.Select>|在选定节点时引发 <xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged> 事件。|  
-|<xref:System.Web.UI.WebControls.TreeNodeSelectAction.SelectExpand>|在选定节点时引发 <xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged> 和 <xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded> 两个事件。 仅展开节点，永远不会折叠。|  
+|<xref:System.Web.UI.WebControls.TreeNodeSelectAction.SelectExpand>|在选定节点时引发 <xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged> 和 <xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded> 两个事件。 节点只展开, 从不折叠。|  
   
 > [!NOTE]
->  <xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A>不呈现的节点及其<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>属性设置为`TreeNodeSelectAction.None`。  
+>  如果节点`TreeNodeSelectAction.None`的属性设置为, 则不会呈现。 <xref:System.Web.UI.WebControls.TreeView.HoverNodeStyle%2A> <xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>  
   
- <xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged>返回在用户单击一个节点时，仅在触发事件。 如果不激发事件<xref:System.Web.UI.WebControls.TreeView.SelectedNode%2A>以编程方式更改属性。  
+ 仅当用户单击节点时在回发时才会触发事件。<xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged> 如果以编程方式更改<xref:System.Web.UI.WebControls.TreeView.SelectedNode%2A>属性, 则不会触发事件。  
   
- 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged>事件以更新<xref:System.Web.UI.WebControls.Label>控件中选择节点时<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 下面的代码示例演示如何在<xref:System.Web.UI.WebControls.TreeView.SelectedNodeChanged> <xref:System.Web.UI.WebControls.TreeView>控件中选择节点时, <xref:System.Web.UI.WebControls.Label>使用事件更新控件。  
   
  [!code-aspx-csharp[TreeViewSelectedNodeStyle#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewSelectedNodeStyle/CS/treeviewselectednodestylecs.aspx#1)]
  [!code-aspx-vb[TreeViewSelectedNodeStyle#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewSelectedNodeStyle/VB/treeviewselectednodestylevb.aspx#1)]  
@@ -3262,11 +3262,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.SelectedNodeStyle%2A>属性来控制在所选节点的外观<xref:System.Web.UI.WebControls.TreeView>控件。 此属性是只读的;但是，可以设置的属性<xref:System.Web.UI.WebControls.TreeNodeStyle>对象返回。 可以在窗体中以声明方式设置属性`Property-Subproperty`，其中`Subproperty`是属性的<xref:System.Web.UI.WebControls.TreeNodeStyle>对象 (例如， `SelectedNodeStyle-ForeColor`)。 属性也可以设置以编程方式在窗体`Property.Subproperty`(例如， `SelectedNodeStyle.ForeColor`)。 常用设置通常包括自定义背景色、 前景色、 字体属性和节点间距。 按以下优先级顺序应用样式属性：  
+ 使用属性可控制<xref:System.Web.UI.WebControls.TreeView>控件中选定节点的外观。 <xref:System.Web.UI.WebControls.TreeView.SelectedNodeStyle%2A> 此属性是只读的;但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.TreeNodeStyle>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.TreeNodeStyle>是对象的一个属性 (例如`SelectedNodeStyle-ForeColor`)。 还可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `SelectedNodeStyle.ForeColor`例如)。 常见设置通常包括自定义背景色、前景颜色、字体属性和节点间距。 样式属性按以下优先级顺序应用:  
   
 1.  <xref:System.Web.UI.WebControls.TreeView.NodeStyle%2A>。  
   
-2.  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A><xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>，或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>，具体取决于节点类型。 如果<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>定义的集合，就会应用在此期间，重写的其他节点的样式属性。  
+2.  <xref:System.Web.UI.WebControls.TreeView.RootNodeStyle%2A>、 <xref:System.Web.UI.WebControls.TreeView.ParentNodeStyle%2A>或<xref:System.Web.UI.WebControls.TreeView.LeafNodeStyle%2A>, 具体取决于节点类型。 如果定义<xref:System.Web.UI.WebControls.TreeView.LevelStyles%2A>了集合, 则此时将应用该集合, 并重写其他节点样式属性。  
   
 3.  <xref:System.Web.UI.WebControls.TreeView.SelectedNodeStyle%2A>。  
   
@@ -3275,7 +3275,7 @@
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.SelectedNodeStyle%2A>属性来控制在所选节点的外观<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.SelectedNodeStyle%2A>属性控制<xref:System.Web.UI.WebControls.TreeView>控件中选定节点的外观。  
   
  [!code-aspx-csharp[TreeViewSelectedNodeStyle#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewSelectedNodeStyle/CS/treeviewselectednodestylecs.aspx#1)]
  [!code-aspx-vb[TreeViewSelectedNodeStyle#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewSelectedNodeStyle/VB/treeviewselectednodestylevb.aspx#1)]  
@@ -3324,7 +3324,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.SelectedValue%2A>属性提供了方便地确定所选节点的值。 此属性只是返回的值<xref:System.Web.UI.WebControls.TreeNode.Value%2A>的属性<xref:System.Web.UI.WebControls.TreeNode>由所引用的对象<xref:System.Web.UI.WebControls.TreeView.SelectedNode%2A>属性。 如果没有节点中当前选定<xref:System.Web.UI.WebControls.TreeView>控制，空字符串 ("") 返回。  
+ <xref:System.Web.UI.WebControls.TreeView.SelectedValue%2A>属性提供了一种方便的方法来确定所选节点的值。 此属性只返回<xref:System.Web.UI.WebControls.TreeNode.Value%2A> <xref:System.Web.UI.WebControls.TreeView.SelectedNode%2A>属性所引用的<xref:System.Web.UI.WebControls.TreeNode>对象的属性值。 如果<xref:System.Web.UI.WebControls.TreeView>控件中当前未选定任何节点, 则返回空字符串 ("")。  
   
  ]]></format>
         </remarks>
@@ -3359,11 +3359,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.SetNodeDataBound%2A>方法，以指示是否指定<xref:System.Web.UI.WebControls.TreeNode>是数据绑定。  
+ 使用方法来指示指定<xref:System.Web.UI.WebControls.TreeNode>的是否是数据绑定的。 <xref:System.Web.UI.WebControls.TreeView.SetNodeDataBound%2A>  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para><see cref="M:System.Web.UI.WebControls.TreeView.SetNodeDataBound(System.Web.UI.WebControls.TreeNode,System.Boolean)" />提供方法以允许控件派生自<see cref="T:System.Web.UI.WebControls.TreeView" />控件设置<see cref="P:System.Web.UI.WebControls.TreeNode.DataBound" />节点上的属性。</para></block>
+        <block subset="none" type="overrides"><para>提供方法是为了允许<see cref="T:System.Web.UI.WebControls.TreeView" />从控件派生的控件在节点上设置<see cref="P:System.Web.UI.WebControls.TreeNode.DataBound" />属性。 <see cref="M:System.Web.UI.WebControls.TreeView.SetNodeDataBound(System.Web.UI.WebControls.TreeNode,System.Boolean)" /></para></block>
         <altmember cref="M:System.Web.UI.WebControls.TreeView.SetNodeDataItem(System.Web.UI.WebControls.TreeNode,System.Object)" />
         <altmember cref="M:System.Web.UI.WebControls.TreeView.SetNodeDataPath(System.Web.UI.WebControls.TreeNode,System.String)" />
       </Docs>
@@ -3396,7 +3396,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.SetNodeDataItem%2A>方法，以指定指定的数据项目<xref:System.Web.UI.WebControls.TreeNode>控件。  
+ 使用方法指定指定<xref:System.Web.UI.WebControls.TreeNode>控件的数据项。 <xref:System.Web.UI.WebControls.TreeView.SetNodeDataItem%2A>  
   
  ]]></format>
         </remarks>
@@ -3432,7 +3432,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.SetNodeDataPath%2A>方法设置为指定的数据路径<xref:System.Web.UI.WebControls.TreeNode>控件。  
+ 使用方法设置指定<xref:System.Web.UI.WebControls.TreeNode>控件的数据路径。 <xref:System.Web.UI.WebControls.TreeView.SetNodeDataPath%2A>  
   
  ]]></format>
         </remarks>
@@ -3468,31 +3468,31 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 提供在多节点选择支持<xref:System.Web.UI.WebControls.TreeView>控件，可以显示此图像可查看某个节点旁边的复选框。 使用<xref:System.Web.UI.WebControls.TreeView.ShowCheckBoxes%2A>属性来指定哪些节点类型将显示一个复选框。 例如，如果此属性设置为`TreeNodeType.Parent`，复选框均显示在树中每个父节点。 下表列出了此属性的有效值。  
+ 若要在<xref:System.Web.UI.WebControls.TreeView>控件中提供多节点选择支持, 可以在节点的图像旁显示复选框。 <xref:System.Web.UI.WebControls.TreeView.ShowCheckBoxes%2A>使用属性可指定哪些节点类型将显示复选框。 例如, 如果将此属性设置为`TreeNodeType.Parent`, 则将为树中的每个父节点显示复选框。 下表列出了此属性的有效值。  
   
-|节点类型|描述|  
+|节点类型|说明|  
 |---------------|-----------------|  
 |`TreeNodeType.All`|为所有节点显示复选框。|  
-|`TreeNodeType.Leaf`|对于所有叶节点显示复选框。|  
+|`TreeNodeType.Leaf`|为所有叶节点显示复选框。|  
 |`TreeNodeType.None`|不显示复选框。|  
-|`TreeNodeType.Parent`|显示所有父节点的复选框。|  
+|`TreeNodeType.Parent`|为所有父节点显示复选框。|  
 |`TreeNodeType.Root`|为所有根节点显示复选框。|  
   
- 用于枚举类型<xref:System.Web.UI.WebControls.TreeView.ShowCheckBoxes%2A>属性是标志枚举，以便您可以通过按位运算组合值。 例如，若要显示的父节点和叶节点的复选框，请使用按位 OR 运算符合并`TreeNodeType.Parent`和`TreeNodeType.Leaf`值。  
+ 用于<xref:System.Web.UI.WebControls.TreeView.ShowCheckBoxes%2A>属性的枚举类型是一个标志枚举, 它允许您通过按位运算组合值。 例如, 若要显示父节点和叶节点的复选框, 请使用按位 "或" 运算符`TreeNodeType.Parent`合并`TreeNodeType.Leaf`和值。  
   
- 若要确定哪些节点具有其复选框选择，循环访问的节点<xref:System.Web.UI.WebControls.TreeView.CheckedNodes%2A>集合。  
+ 若要确定哪些节点选中了复选框, 请循环访问<xref:System.Web.UI.WebControls.TreeView.CheckedNodes%2A>集合的节点。  
   
 > [!NOTE]
->  您可以重写<xref:System.Web.UI.WebControls.TreeView.ShowCheckBoxes%2A>设置的设置<xref:System.Web.UI.WebControls.TreeNode.ShowCheckBox%2A>每个节点的属性。  
+>  可以通过设置每<xref:System.Web.UI.WebControls.TreeView.ShowCheckBoxes%2A>个节点的<xref:System.Web.UI.WebControls.TreeNode.ShowCheckBox%2A>属性来重写该设置。  
   
- 如果你需要提供仅单选支持，请考虑使用<xref:System.Web.UI.WebControls.TreeView.SelectedNode%2A>属性。  
+ 如果只需要提供单项选择支持, 请考虑使用<xref:System.Web.UI.WebControls.TreeView.SelectedNode%2A>属性。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ShowCheckBoxes%2A>属性来显示和隐藏的不同节点类型对应的复选框。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ShowCheckBoxes%2A>属性来显示和隐藏不同节点类型的复选框。  
   
  [!code-aspx-csharp[TreeViewShowCheckBoxes#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewShowCheckBoxes/CS/treeviewshowcheckboxescs.aspx#1)]
  [!code-aspx-vb[TreeViewShowCheckBoxes#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewShowCheckBoxes/VB/treeviewshowcheckboxesvb.aspx#1)]  
@@ -3532,16 +3532,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 展开节点指示符用于显示一个节点是展开、 折叠的还是非可展开。 使用<xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A>属性指定是否在显示展开节点指示符<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 展开节点指示符用于显示节点是展开、折叠还是不可展开。 使用属性来指定展开节点指示符是否显示<xref:System.Web.UI.WebControls.TreeView>在控件中。 <xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A>  
   
- 当<xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A>属性设置为`true`，则<xref:System.Web.UI.WebControls.TreeView>控件将显示一个加号 （+） 或减号 （-） 或节点以指示节点是否是可扩展、 可折叠的还是非可展开分别旁边占位符图像。 可以指定由第一个设置自定义映像<xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>属性设置为`TreeViewImageSet.Custom`，然后再设置<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A>， <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>，和<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性设置为自定义映像的 Url。 如果没有指定任何图像，则使用默认映像。  
+ 当属性设置为`true`时, <xref:System.Web.UI.WebControls.TreeView>控件将在节点旁显示加号 (+) 或减号 (-) 或占位符图像, 以指示节点是可展开、可折叠还是不可展开。 <xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A> <xref:System.Web.UI.WebControls.TreeView.ImageSet%2A>通过首先将属性设置为<xref:System.Web.UI.WebControls.TreeView.NoExpandImageUrl%2A> `TreeViewImageSet.Custom`, 然后将、 <xref:System.Web.UI.WebControls.TreeView.ExpandImageUrl%2A>和<xref:System.Web.UI.WebControls.TreeView.CollapseImageUrl%2A>属性设置为自定义图像的 url, 可以指定自定义映像。 如果未指定任何图像, 则使用默认图像。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A>属性来显示和隐藏扩展节点图标。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ShowExpandCollapse%2A>属性来显示和隐藏展开节点图标。  
   
  [!code-aspx-csharp[TreeViewShowExpandCollapse#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewShowExpandCollapse/CS/treeviewshowexpandcollapsecs.aspx#1)]
  [!code-aspx-vb[TreeViewShowExpandCollapse#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewShowExpandCollapse/VB/treeviewshowexpandcollapsevb.aspx#1)]  
@@ -3581,17 +3581,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.ShowLines%2A>属性以指定是否显示要连接到父节点的子节点的行。 当此属性设置为`true`，则<xref:System.Web.UI.WebControls.TreeView>控件中搜索指定的 Web 访问文件夹<xref:System.Web.UI.WebControls.TreeView.LineImagesFolder%2A>的线条图像的属性。  
+ <xref:System.Web.UI.WebControls.TreeView.ShowLines%2A>使用属性来指定是否显示将子节点连接到父节点的行。 当此属性设置为`true`时<xref:System.Web.UI.WebControls.TreeView> , 控件将搜索由行图像的<xref:System.Web.UI.WebControls.TreeView.LineImagesFolder%2A>属性指定的可通过 Web 访问的文件夹。  
   
 > [!NOTE]
->  如果<xref:System.Web.UI.WebControls.TreeView.LineImagesFolder%2A>未设置属性，<xref:System.Web.UI.WebControls.TreeView>控件将使用内置的默认图像 （20 x 20 像素为单位）。  
+>  如果未<xref:System.Web.UI.WebControls.TreeView.LineImagesFolder%2A>设置该属性, 则该<xref:System.Web.UI.WebControls.TreeView>控件将使用内置的默认图像 (20 x 20 个像素)。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ShowLines%2A>属性来显示连接中的节点的线条<xref:System.Web.UI.WebControls.TreeView>控件。 请务必使用行设计器工具来创建一组行图像并将其放在名为目录中的示例应用程序 LineImages 文件夹中。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.ShowLines%2A>属性<xref:System.Web.UI.WebControls.TreeView>在控件中显示连接节点的线。 请确保使用线条设计器工具创建一组线条图像, 并将其放置在示例应用程序的目录中名为 LineImages 的文件夹中。  
   
  [!code-aspx-csharp[TreeViewLineImagesFolderUrl#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewLineImagesFolderUrl/CS/treeviewlineimagesfolderurlcs.aspx#1)]
  [!code-aspx-vb[TreeViewLineImagesFolderUrl#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewLineImagesFolderUrl/VB/treeviewlineimagesfolderurlvb.aspx#1)]  
@@ -3629,15 +3629,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.SkipLinkText%2A>属性是一个属性，可以设置以使网页更多或更少可访问。 屏幕阅读器跳过从高声阅读的内容的用户的机制可以提供包含重复的内容的网页。  
+ <xref:System.Web.UI.WebControls.TreeView.SkipLinkText%2A>属性是一个属性, 你可以将其设置为使网页更易于访问。 包含重复内容的网页可以为屏幕阅读器用户提供一种机制来跳过读取内容的机制。  
   
- <xref:System.Web.UI.WebControls.TreeView>控件提供了<xref:System.Web.UI.WebControls.TreeView.SkipLinkText%2A>作为整个控件由屏幕阅读器跳过一种方法的属性。 如果<xref:System.Web.UI.WebControls.TreeView.SkipLinkText%2A>属性设置，则呈现时不可见图像的替换文字，为用户提供选项以跳转到该控件的结尾。 屏幕阅读器读取的替换文字，而图像占用只有一个像素的空间。 对页面的呈现像素精确的控制，将设置<xref:System.Web.UI.WebControls.TreeView.SkipLinkText%2A>属性为空字符串 ("")，并提供您自己的机制来跳过该树。  
+ <xref:System.Web.UI.WebControls.TreeView> 控件<xref:System.Web.UI.WebControls.TreeView.SkipLinkText%2A>提供属性作为一种方法, 让屏幕阅读器跳过整个控件。 如果设置<xref:System.Web.UI.WebControls.TreeView.SkipLinkText%2A>了属性, 则会呈现一个带有替换文本的不可见图像, 从而向用户提供跳转到控件末尾的选项。 屏幕阅读器会大声朗读备用文本, 而图像只占用一个像素空间。 若要对页面的呈现进行像素精确的控制, 请将<xref:System.Web.UI.WebControls.TreeView.SkipLinkText%2A>属性设置为空字符串 (""), 并提供您自己的用于跳过树的机制。  
   
- <xref:System.Web.UI.WebControls.TreeView.SkipLinkText%2A>默认情况下，这使得屏幕阅读器跳过控件属性设置为空字符串。  
+ 默认<xref:System.Web.UI.WebControls.TreeView.SkipLinkText%2A>情况下, 此属性设置为空字符串, 这使得屏幕阅读器不会跳过控件。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
- 此属性的值设置时，可以自动保存到资源文件使用设计器工具。 有关详细信息，请参阅<xref:System.ComponentModel.LocalizableAttribute>并[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
+ 设置此属性后, 可以使用设计器工具自动将此属性的值保存到资源文件中。 有关详细信息, 请<xref:System.ComponentModel.LocalizableAttribute>参阅和[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
   
  ]]></format>
         </remarks>
@@ -3675,7 +3675,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView>控件实现<xref:System.Web.UI.ICallbackEventHandler>接口并使用<xref:System.Web.UI.WebControls.TreeView.RaisePostBackEvent%2A>来检索数据和<xref:System.Web.UI.WebControls.TreeView.GetCallbackResult%2A>方法将检索到的数据返回到控件。  
+ 控件实现接口, 并使用<xref:System.Web.UI.WebControls.TreeView.RaisePostBackEvent%2A>来检索数据, 并<xref:System.Web.UI.WebControls.TreeView.GetCallbackResult%2A>使用方法将检索到的数据返回到控件。 <xref:System.Web.UI.ICallbackEventHandler> <xref:System.Web.UI.WebControls.TreeView>  
   
  ]]></format>
         </remarks>
@@ -3714,7 +3714,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 控件开发人员应重写<xref:System.Web.UI.WebControls.TreeView.RaiseCallbackEvent%2A>方法。  
+ 控件开发人员应重<xref:System.Web.UI.WebControls.TreeView.RaiseCallbackEvent%2A>写方法。  
   
  ]]></format>
         </remarks>
@@ -3757,7 +3757,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 控件开发人员应重写<xref:System.Web.UI.WebControls.TreeView.LoadPostData%2A>方法。  
+ 控件开发人员应重<xref:System.Web.UI.WebControls.TreeView.LoadPostData%2A>写方法。  
   
  ]]></format>
         </remarks>
@@ -3794,7 +3794,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 控件开发人员应重写<xref:System.Web.UI.WebControls.TreeView.RaisePostDataChangedEvent%2A>方法。  
+ 控件开发人员应重<xref:System.Web.UI.WebControls.TreeView.RaisePostDataChangedEvent%2A>写方法。  
   
  ]]></format>
         </remarks>
@@ -3834,7 +3834,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 控件开发人员应重写<xref:System.Web.UI.WebControls.TreeView.RaisePostBackEvent%2A>方法。  
+ 控件开发人员应重<xref:System.Web.UI.WebControls.TreeView.RaisePostBackEvent%2A>写方法。  
   
  ]]></format>
         </remarks>
@@ -3857,17 +3857,17 @@
         <ReturnType>System.Web.UI.HtmlTextWriterTag</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取 <see cref="T:System.Web.UI.WebControls.TreeView" /> 控件的 <see cref="T:System.Web.UI.HtmlTextWriterTag" /> 值。</summary>
+        <summary>获取 <see cref="T:System.Web.UI.HtmlTextWriterTag" /> 控件的 <see cref="T:System.Web.UI.WebControls.TreeView" /> 值。</summary>
         <value>总是返回 <see cref="F:System.Web.UI.HtmlTextWriterTag.Div" /> 值。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.TagKey%2A>属性允许输出流写入相应 HTML 标记的最多为<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 属性允许输出流为<xref:System.Web.UI.WebControls.TreeView>控件写入适当的 HTML 标记。 <xref:System.Web.UI.WebControls.TreeView.TagKey%2A>  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>您可以重写<see cref="P:System.Web.UI.WebControls.TreeView.TagKey" />属性以指定的<see cref="T:System.Web.UI.HtmlTextWriterTag" />用于派生控件值。</para></block>
+        <block subset="none" type="overrides"><para>可以重写<see cref="P:System.Web.UI.WebControls.TreeView.TagKey" />属性以<see cref="T:System.Web.UI.HtmlTextWriterTag" />指定要用于派生控件的值。</para></block>
         <altmember cref="T:System.Web.UI.HtmlTextWriterTag" />
       </Docs>
     </Member>
@@ -3918,19 +3918,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.TreeView.Target%2A>属性指定的窗口或框架中显示的 Web 内容的链接到一个节点，单击该节点时。  
+ 使用 " <xref:System.Web.UI.WebControls.TreeView.Target%2A>属性" 指定在单击节点时要在其中显示链接到该节点的 Web 内容的窗口或框架。  
   
 > [!NOTE]
->  <xref:System.Web.UI.WebControls.TreeView.Target%2A>属性将呈现为`target`属性。 `target`特性，可以在`anchor`XHTML 1.1 文档类型定义中不允许元素。 未设置<xref:System.Web.UI.WebControls.TreeView.Target%2A>属性，如果呈现的输出<xref:System.Web.UI.WebControls.TreeView>必须符合 XHTML 1.1。 有关详细信息，请参阅[在 Visual Studio 和 ASP.NET 的 XHTML 标准](https://msdn.microsoft.com/library/1b78d416-66bb-43a5-ac77-c703aab55b97)。  
+>  <xref:System.Web.UI.WebControls.TreeView.Target%2A>属性呈现`target`为属性。 XHTML `target` 1.1 文档`anchor`类型定义中不允许使用元素的属性。 如果的<xref:System.Web.UI.WebControls.TreeView.Target%2A> <xref:System.Web.UI.WebControls.TreeView>呈现输出必须符合 XHTML 1.1, 请不要设置属性。 有关详细信息, 请参阅[Visual Studio 中的 XHTML 标准和 ASP.NET](https://msdn.microsoft.com/library/1b78d416-66bb-43a5-ac77-c703aab55b97)。  
 >   
->  在创建可访问的网页，应避免使用<xref:System.Web.UI.WebControls.TreeView.Target%2A>属性将另一个窗口作为目标。 有关详细信息，请参阅[ASP.NET 控件和可访问性](https://msdn.microsoft.com/library/847a37e3-ce20-41da-b0d3-7dfb0fdae9a0)。  
+>  创建可访问的网页时, 应避免使用<xref:System.Web.UI.WebControls.TreeView.Target%2A>属性来面向其他窗口。 有关详细信息, 请参阅[ASP.NET 控件和辅助功能](https://msdn.microsoft.com/library/847a37e3-ce20-41da-b0d3-7dfb0fdae9a0)。  
   
- 此属性的值存储在视图状态。  
+ 此属性的值存储在视图状态中。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.Target%2A>属性显示时单击该节点链接到一个新窗口中的节点的 Web 内容。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.Target%2A>属性在单击节点时显示链接到新窗口中某个节点的 Web 内容。  
   
  [!code-aspx-csharp[TreeViewTarget#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewTarget/CS/treeviewtargetcs.aspx#1)]
  [!code-aspx-vb[TreeViewTarget#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewTarget/VB/treeviewtargetvb.aspx#1)]  
@@ -3963,7 +3963,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.TrackViewState%2A>重写方法将标记作为控件视图状态的一部分开始对控件的跟踪并保存更改的起始点。  
+ 重<xref:System.Web.UI.WebControls.TreeView.TrackViewState%2A>写方法, 以将起始点标记为开始跟踪, 并将更改保存为控件的视图状态的一部分。  
   
  ]]></format>
         </remarks>
@@ -3993,16 +3993,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged>中的复选框时将引发事件<xref:System.Web.UI.WebControls.TreeView>控件更改状态的各次发送到服务器。 这使您可以提供执行自定义的例程，如更新数据库或显示的内容，每次此事件发生时的事件处理方法。  
+ 当控件<xref:System.Web.UI.WebControls.TreeView>中的复选框在向服务器的各次发送过程间更改状态时, 将引发<xref:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged>事件。 这使你可以提供一种事件处理方法, 该方法可在每次发生此事件时执行自定义例程, 如更新数据库或显示的内容。  
   
- 即使<xref:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged>触发事件在回发，更改复选框不会导致回发。  
+ 即使在回发时触发事件,更改复选框也不会导致回发。<xref:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged>  
   
- 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged>事件以更新<xref:System.Web.UI.WebControls.Label>控制时的复选框<xref:System.Web.UI.WebControls.TreeView>控件更改状态的各次发送到服务器。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.TreeNodeCheckChanged>事件在<xref:System.Web.UI.WebControls.TreeView>控件的复选框<xref:System.Web.UI.WebControls.Label>在向服务器的各次发送过程间更改状态时更新控件。  
   
  [!code-aspx-csharp[TreeViewCheckChanged#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewCheckChanged/CS/treeviewcheckchangedcs.aspx#1)]
  [!code-aspx-vb[TreeViewCheckChanged#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewCheckChanged/VB/treeviewcheckchangedvb.aspx#1)]  
@@ -4034,14 +4034,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.TreeNodeCollapsed>节点中处于折叠状态时引发事件<xref:System.Web.UI.WebControls.TreeView>控件。 这使您可以提供每次此事件发生时执行自定义的例程的事件处理方法。  
+ 节点在控件中处于折叠状态时引发事件。<xref:System.Web.UI.WebControls.TreeView.TreeNodeCollapsed> <xref:System.Web.UI.WebControls.TreeView> 这使你可以提供一种事件处理方法, 该方法可在每次发生此事件时执行自定义例程。  
   
- 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.TreeNodeCollapsed>事件以更新的内容<xref:System.Web.UI.WebControls.Label>控制当用户折叠中的节点<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 下面的代码示例演示当用户<xref:System.Web.UI.WebControls.TreeView.TreeNodeCollapsed> <xref:System.Web.UI.WebControls.TreeView>折叠控件中的节点时, 如何使用<xref:System.Web.UI.WebControls.Label>事件更新控件的内容。  
   
  [!code-aspx-csharp[TreeViewTreeNodeExpand#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewTreeNodeExpand/CS/treeviewtreenodeexpandcs.aspx#1)]
  [!code-aspx-vb[TreeViewTreeNodeExpand#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewTreeNodeExpand/VB/treeviewtreenodeexpandvb.aspx#1)]  
@@ -4073,21 +4073,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.TreeNodeDataBound>数据项绑定到中的一个节点时引发事件<xref:System.Web.UI.WebControls.TreeView>控件。 这使您可以提供每次此事件发生时执行自定义的例程的事件处理方法。  
+ 当<xref:System.Web.UI.WebControls.TreeView.TreeNodeDataBound>数据项绑定到<xref:System.Web.UI.WebControls.TreeView>控件中的节点时, 将引发事件。 这使你可以提供一种事件处理方法, 该方法可在每次发生此事件时执行自定义例程。  
   
- 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 本部分包含两个代码示例。 第一个代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.TreeNodeDataBound>事件以满足某些条件时才更改此图像可查看某个节点。 第二个代码示例在第一个代码示例提供示例 XML 数据。  
+ 本部分包含两个代码示例。 第一个代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.TreeNodeDataBound>事件在满足某些条件时更改节点的图像。 第二个代码示例提供了第一个代码示例的示例 XML 数据。  
   
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.TreeNodeDataBound>事件以满足某些条件时才更改此图像可查看某个节点。 此示例中正常工作，必须将复制此代码示例中，到名为 Book.xml 后提供的示例 XML 数据。 此外请务必提供对于此示例，显示你自己的映像。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.TreeNodeDataBound>事件在满足某些条件时更改节点的图像。 若要使此示例正常工作, 必须将示例 XML 数据 (在此代码示例之后提供) 复制到名为 books.xml 的文件中。 此外, 请务必提供自己的图像, 以便此示例显示。  
   
  [!code-aspx-csharp[TreeViewTreeNodeDataBound#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewTreeNodeDataBound/CS/treeviewtreenodedataboundcs.aspx#1)]
  [!code-aspx-vb[TreeViewTreeNodeDataBound#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewTreeNodeDataBound/VB/treeviewtreenodedataboundvb.aspx#1)]  
   
- 下面的代码示例为前面的代码示例提供示例 XML 数据。  
+ 下面的代码示例提供了前面的代码示例的示例 XML 数据。  
   
 ```  
 <Book Title="Book Title">  
@@ -4131,17 +4131,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded>中展开某个节点时将引发事件<xref:System.Web.UI.WebControls.TreeView>控件。 这使您可以提供每次此事件发生时执行自定义的例程的事件处理方法。  
+ 在<xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded> 控件<xref:System.Web.UI.WebControls.TreeView>中展开节点时, 将引发事件。 这使你可以提供一种事件处理方法, 该方法可在每次发生此事件时执行自定义例程。  
   
 > [!NOTE]
->  如果<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>节点的属性设置为`TreeNodeSelectAction.Expand`或`TreeNodeSelectAction.SelectExpand`，则<xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded>中单击该节点时，也会引发事件<xref:System.Web.UI.WebControls.TreeView>控件。  
+>  如果将<xref:System.Web.UI.WebControls.TreeNode.SelectAction%2A>节点的属性设置为`TreeNodeSelectAction.Expand`或`TreeNodeSelectAction.SelectExpand`, 则当在<xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded> <xref:System.Web.UI.WebControls.TreeView>控件中单击该节点时, 也会引发该事件。  
   
- 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded>事件以更新的内容<xref:System.Web.UI.WebControls.Label>控制在用户展开中的节点<xref:System.Web.UI.WebControls.TreeView>控件。  
+ 下面的代码示例演示当用户<xref:System.Web.UI.WebControls.TreeView.TreeNodeExpanded> <xref:System.Web.UI.WebControls.TreeView>展开控件中的节点时, 如何使用<xref:System.Web.UI.WebControls.Label>事件更新控件的内容。  
   
  [!code-aspx-csharp[TreeViewTreeNodeExpand#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewTreeNodeExpand/CS/treeviewtreenodeexpandcs.aspx#1)]
  [!code-aspx-vb[TreeViewTreeNodeExpand#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewTreeNodeExpand/VB/treeviewtreenodeexpandvb.aspx#1)]  
@@ -4174,21 +4174,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有时，它并不可行静态预定义的树结构，由于数据大小或依赖于用户输入的自定义内容。 正因为如此，<xref:System.Web.UI.WebControls.TreeView>控件支持动态节点填充。 当<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`，在运行时节点展开时，会填充该节点。  
+ 有时, 由于数据大小或自定义内容依赖于用户输入而导致静态预定义树结构是不切实际的。 因此, <xref:System.Web.UI.WebControls.TreeView>控件支持动态节点填充。 如果将<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`, 则在展开节点时, 将在运行时填充该节点。  
   
- 若要动态填充节点，请首先设置<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>到的节点属性`true`。 接下来，定义的事件处理方法<xref:System.Web.UI.WebControls.TreeView.TreeNodePopulate>以编程方式填充节点的事件。 典型的事件处理方法从数据源中检索节点数据、 将数据保存到的节点结构，以及然后将添加到的节点结构<xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>填充节点的集合。 通过添加创建的节点结构<xref:System.Web.UI.WebControls.TreeNode>对象添加到<xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>父节点的集合。  
+ 若要动态填充节点, 请首先将<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`。 接下来, 为<xref:System.Web.UI.WebControls.TreeView.TreeNodePopulate>以编程方式填充节点的事件定义事件处理方法。 典型的事件处理方法从数据源中检索节点数据, 将这些数据放入节点结构, 然后将节点结构添加到<xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>要填充的节点的集合中。 通过向父节点的<xref:System.Web.UI.WebControls.TreeNode> <xref:System.Web.UI.WebControls.TreeNode.ChildNodes%2A>集合添加对象来创建节点结构。  
   
 > [!NOTE]
->  当<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`，必须动态填充节点。 不能以声明方式嵌套; 其下方的另一个节点否则，在页上，将会出错。  
+>  如果将<xref:System.Web.UI.WebControls.TreeNode.PopulateOnDemand%2A>节点的属性设置为`true`, 则必须动态填充节点。 不能以声明方式在其下嵌套另一个节点;否则, 将在页面上出现错误。  
   
- 支持的浏览器 (Microsoft Internet Explorer 4.0 兼容浏览器及更高版本) 还可以充分利用客户端的节点填充。 如果启用，这将允许<xref:System.Web.UI.WebControls.TreeView>控件来填充客户端上的节点，展开该节点时，这会阻止需要回发到服务器。 客户端的节点填充的详细信息，请参阅<xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A>。  
+ 支持的浏览器 (Microsoft Internet Explorer 4.0 兼容的浏览器和更高版本) 也可利用客户端节点填充。 启用此<xref:System.Web.UI.WebControls.TreeView>功能后, 控件可以在该节点展开时在客户端上动态填充节点, 这会阻止需要回发到服务器。 有关客户端节点填充的详细信息, 请参阅<xref:System.Web.UI.WebControls.TreeView.PopulateNodesFromClient%2A>。  
   
- 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.TreeNodePopulate>事件以填充中的节点<xref:System.Web.UI.WebControls.TreeView>动态在服务器上的控件。 请注意，<xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>属性设置为`false`以防止在客户端上处理展开节点的事件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.TreeView.TreeNodePopulate>事件在服务器上动态填充<xref:System.Web.UI.WebControls.TreeView>控件中的节点。 请注意, <xref:System.Web.UI.WebControls.TreeView.EnableClientScript%2A>属性设置为`false` , 以防止在客户端上处理扩展节点事件。  
   
  [!code-aspx-csharp[TreeViewTreeNodePopulate#1](~/samples/snippets/csharp/VS_Snippets_WebNet/TreeViewTreeNodePopulate/CS/treeviewtreenodepopulatecs.aspx#1)]
  [!code-aspx-vb[TreeViewTreeNodePopulate#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/TreeViewTreeNodePopulate/VB/treeviewtreenodepopulatevb.aspx#1)]  
@@ -4223,7 +4223,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Web.UI.WebControls.TreeView.Visible%2A>属性设置为`false`，不呈现该控件。  
+ `false`如果将<xref:System.Web.UI.WebControls.TreeView.Visible%2A>属性设置为, 则不会呈现控件。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="OutAttribute" FullName="System.Runtime.InteropServices.OutAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="cb70984c1ab905b8c9d9c1abb2c14c0445d449ab" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58728854" /></Metadata><TypeSignature Language="C#" Value="public sealed class OutAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="2b9d778dabdac78db05ad4cd28b6596da8712163" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69269666" /></Metadata><TypeSignature Language="C#" Value="public sealed class OutAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit OutAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.OutAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class OutAttribute&#xA;Inherits Attribute" />
@@ -46,18 +46,18 @@
 ## Remarks  
  可以将此特性应用于参数。  
   
- <xref:System.Runtime.InteropServices.OutAttribute>是可选的。 该属性支持 COM 互操作和平台调用仅。 在没有显式设置时，互操作封送处理程序假定规则基于参数类型、 是否通过引用或通过值传递的参数和类型是否可直接复制或非直接复制。 例如，<xref:System.Text.StringBuilder>类始终假定为输入/输出和一个按值传递的字符串数组被假定为中。  
+ 是<xref:System.Runtime.InteropServices.OutAttribute>可选的。 只有 COM 互操作和平台调用支持特性。 在没有显式设置的情况下, 互操作封送拆收器会根据参数类型来使用规则, 无论参数是通过引用传递还是按值传递, 以及类型是可直接复制还是非直接复制。 例如, <xref:System.Text.StringBuilder>类始终假定为输入/输出, 而由值传递的字符串数组假定为 in。  
   
- 仅限扩展的行为永远不会是默认值封送处理行为的参数。 您可以将应用<xref:System.Runtime.InteropServices.OutAttribute>通过将更改为仅限扩展的行为，相当于使用的输入/输出行为的引用传递的值和引用类型到`out`C# 中的关键字。 例如，为只扩展，则可以更改值，默认情况下，仅在参数作为封送由传递的数组。 但是，行为不会始终提供预期的语义时的类型包括所有 blittable 元素或字段，因为互操作封送处理程序使用固定。 如果您不关心将数据传递到被调用方，对外封送处理可以提供更好的性能非 blittable 类型。  
+ 仅限 Out 行为绝不是参数的默认封送处理行为。 您可以将引用<xref:System.Runtime.InteropServices.OutAttribute>传递的值和引用类型应用于 "更改为只读" 行为, 这与在中`out` C#使用关键字等效。 例如, 默认情况下, 按值传递的数组 (作为仅限每个参数进行封送处理) 可以改为仅供使用。 但是, 当类型包含所有可直接复制到一起的元素或字段时, 该行为不会始终提供预期语义, 因为互操作封送拆收器使用固定。 如果你不介意将数据传递给被调用方, 则仅限 Out 封送处理可为非直接复制到本机的类型提供更好的性能。  
   
- 组合<xref:System.Runtime.InteropServices.InAttribute>和<xref:System.Runtime.InteropServices.OutAttribute>是特别有用时应用于数组和格式化，非 blittable 类型。 调用方才能看到所做的更改被调用方对这些类型仅在应用这两个属性时。 由于这些类型需要在封送处理期间复制，可以使用<xref:System.Runtime.InteropServices.InAttribute>和<xref:System.Runtime.InteropServices.OutAttribute>以减少不必要的副本。  
+ 当应用于<xref:System.Runtime.InteropServices.OutAttribute>数组和格式化的非本机类型时, 将和组合起来特别有用。<xref:System.Runtime.InteropServices.InAttribute> 调用方仅在应用这两个属性时才会看到被调用方对这些类型的更改。 由于这些类型需要在封送处理期间复制, <xref:System.Runtime.InteropServices.InAttribute>因此<xref:System.Runtime.InteropServices.OutAttribute>可以使用和来减少不必要的副本。  
   
- 有关详细信息的效果<xref:System.Runtime.InteropServices.OutAttribute>封送处理行为，请参阅[方向属性](https://msdn.microsoft.com/library/241ac5b5-928e-4969-8f58-1dbc048f9ea2)。  
+ 有关封送处理行为的影响<xref:System.Runtime.InteropServices.OutAttribute>的详细信息, 请参阅[方向属性](https://msdn.microsoft.com/library/241ac5b5-928e-4969-8f58-1dbc048f9ea2)。  
   
    
   
 ## Examples  
- 下面的示例演示如何应用<xref:System.Runtime.InteropServices.InAttribute>和<xref:System.Runtime.InteropServices.OutAttribute>平台调用来调用作为参数传递一个数组的原型。 方向特性的组合允许调用方能够看见被调用方所做的更改。  
+ 下面的示例演示如何将<xref:System.Runtime.InteropServices.InAttribute>和<xref:System.Runtime.InteropServices.OutAttribute>应用于将数组作为参数传递的平台调用原型。 使用方向特性组合后, 调用方可以查看被调用方所做的更改。  
   
  [!code-cpp[Interop InOutParameters#1](~/samples/snippets/cpp/VS_Snippets_CLR/Interop InOutParameters/CPP/inout.cpp#1)]
  [!code-csharp[Interop InOutParameters#1](~/samples/snippets/csharp/VS_Snippets_CLR/Interop InOutParameters/CS/inout.cs#1)]

@@ -1,5 +1,5 @@
 <Type Name="DesignerSerializationVisibilityAttribute" FullName="System.ComponentModel.DesignerSerializationVisibilityAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7e90839bff383bebeb9e0d6f2d4e8c21d896299b" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67241157" /></Metadata><TypeSignature Language="C#" Value="public sealed class DesignerSerializationVisibilityAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9ba467dc337375cdd84b4925fa6a0160d7f4acbc" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69347450" /></Metadata><TypeSignature Language="C#" Value="public sealed class DesignerSerializationVisibilityAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit DesignerSerializationVisibilityAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class DesignerSerializationVisibilityAttribute&#xA;Inherits Attribute" />
@@ -44,20 +44,20 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当序列化程序保留的设计模式文档的持久状态时，它通常将代码添加到要保存已在设计时设置的属性的值的组件初始化方法。 如果这种情况对于最基本类型，默认情况下没有的属性已设置为指示其他行为。  
+ 当序列化程序保持设计模式文档的持久状态时, 它通常会将代码添加到组件的初始化方法, 以持久保存在设计时设置的属性值。 默认情况下, 对于大多数基本类型, 如果未将属性设置为直接其他行为, 则会发生这种情况。  
   
- 与<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute>，可以指示属性值是否<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visible>，，并且应保存在初始化代码<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Hidden>，并在初始化代码中，不应持久化或组成<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Content>，其中应包含生成的每个公共、 非隐藏属性分配给属性的对象的初始化代码。  
+ 利用, 你可以指示属性的值是否为<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visible>, 并应在初始化代码<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Hidden>中保留, 并且不应在初始化代码中<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Content>保留, 也不能包含<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute>为分配给属性的对象的每个公共、非隐藏属性生成的初始化代码。  
   
- 不具有的成员<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute>将其视为好像它们具有<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute>值为<xref:System.ComponentModel.DesignerSerializationVisibility.Visible>。 属性的值标记为<xref:System.ComponentModel.DesignerSerializationVisibility.Visible>将由序列化，如有可能，该类型的序列化程序。 若要指定为特定类型或属性的自定义序列化，请使用<xref:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute>。  
+ 不具有的<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute>成员将被视为<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute>具有值为的<xref:System.ComponentModel.DesignerSerializationVisibility.Visible>。 如果可能, 则为类型的<xref:System.ComponentModel.DesignerSerializationVisibility.Visible>序列化程序对标记为的属性的值进行序列化。 若要为特定类型或属性指定自定义序列化, <xref:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute>请使用。  
   
  有关更多信息，请参阅[特性](~/docs/standard/attributes/index.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何将<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute>设置为<xref:System.ComponentModel.DesignerSerializationVisibility.Content>。 它仍然存在一个用户控件，它可以在设计时配置的公共属性的值。 若要使用的示例，首先将以下代码编译成用户控件库中。 接下来，在新的 Windows 应用程序项目添加到已编译的.dll 文件的引用。 如果使用的 Visual Studio`ContentSerializationExampleControl`自动添加到**工具箱**。  
+ 下面的代码示例演示<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute>如何将设置为。 <xref:System.ComponentModel.DesignerSerializationVisibility.Content> 它保留用户控件的公共属性的值, 该属性可在设计时配置。 若要使用此示例, 请首先将以下代码编译到用户控件库中。 接下来, 在新的 Windows 应用程序项目中添加对已编译 .dll 文件的引用。 如果使用的`ContentSerializationExampleControl`是 Visual Studio, 会自动将添加到 "**工具箱**"。  
   
- 中的控件拖**工具箱**向窗体，并设置的属性`DimensionData`在属性窗口中列出的对象。 当您查看窗体的代码时，代码将已添加到`InitializeComponent`父窗体的方法。 此代码将控件的属性的值设置为那些已在设计模式下设置。  
+ 将该控件从 "**工具箱**" 拖到窗体上, 并设置属性窗口`DimensionData`中列出的对象的属性。 查看窗体的代码时, 代码将添加到父窗体的`InitializeComponent`方法中。 此代码会将控件的属性值设置为在设计模式下设置的属性值。  
   
  [!code-cpp[Classic DesignerSerializationVisibilityAttribute Example#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Classic DesignerSerializationVisibilityAttribute Example/CPP/source.cpp#1)]
  [!code-csharp[Classic DesignerSerializationVisibilityAttribute Example#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Classic DesignerSerializationVisibilityAttribute Example/CS/source.cs#1)]
@@ -113,7 +113,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例指定设计器如何保存在组件上的属性。 此代码将创建一个新<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute>并将其值设置为<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Content?displayProperty=nameWithType>。  
+ 下面的代码示例指定设计器如何保存组件的属性。 此代码将创建一个<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute>新的, 并将<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Content?displayProperty=nameWithType>其值设置为。  
   
  [!code-cpp[Classic DesignerSerializationVisibilityAttribute.DesignerSerializationVisibilityAttribute Example#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Classic DesignerSerializationVisibilityAttribute.DesignerSerializationVisibilityAttribute Example/CPP/source.cpp#1)]
  [!code-csharp[Classic DesignerSerializationVisibilityAttribute.DesignerSerializationVisibilityAttribute Example#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Classic DesignerSerializationVisibilityAttribute.DesignerSerializationVisibilityAttribute Example/CS/source.cs#1)]
@@ -159,7 +159,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 标记与某个属性时`DesignerSerializationVisibilityAttribute.Content`，则其<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visibility%2A>属性设置为<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Content>。  
+ 当使用`DesignerSerializationVisibilityAttribute.Content`标记属性时, 其<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visibility%2A>属性的值设置为<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Content>。  
   
  ]]></format>
         </remarks>
@@ -203,7 +203,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当标记具有此值的属性时，此属性设置为常量成员<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visible>。 因此，当您想要检查是否为此值在代码中设置该属性，必须指定属性作为<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visible?displayProperty=nameWithType>。  
+ 使用此值标记属性时, 此属性设置为常量成员<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visible>。 因此, 当您要检查您的代码中是否将该属性设置为此值时, 您必须将属性指定<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visible?displayProperty=nameWithType>为。  
   
  ]]></format>
         </remarks>
@@ -323,7 +323,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 标记与某个属性时`DesignerSerializationVisibilityAttribute.Hidden`，则其<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visibility%2A>属性设置为常量成员<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Hidden>。  
+ 当使用`DesignerSerializationVisibilityAttribute.Hidden`标记属性时, 其<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visibility%2A>属性的值将设置为常量成员<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Hidden>。  
   
  ]]></format>
         </remarks>
@@ -408,9 +408,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示如何检查的值<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute>为`MyProperty`。 首先，代码获取<xref:System.ComponentModel.PropertyDescriptorCollection>与对象的所有属性。 接下来，代码通过索引访问<xref:System.ComponentModel.PropertyDescriptorCollection>若要获取`MyProperty`。 然后，代码返回此属性的属性，并将其保存到特性变量中。  
+ 下面的代码示例演示如何检查的值<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute>。 `MyProperty` 首先, 代码获取一个<xref:System.ComponentModel.PropertyDescriptorCollection> , 其中包含对象的所有属性。 接下来, 代码将索引<xref:System.ComponentModel.PropertyDescriptorCollection>到中以获取。 `MyProperty` 然后, 该代码将返回此属性的特性, 并将它们保存在特性变量中。  
   
- 此示例显示了两种不同的方式检查的值<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute>。 在第二个代码段中，该示例将调用<xref:System.Object.Equals%2A>方法替换`static`值。 在最后一个代码段中，该示例使用<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visibility%2A>属性检查的值。  
+ 此示例提供了两种不同的方法来检查的<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute>值。 在第二个代码片段中, 此示例<xref:System.Object.Equals%2A> `static`使用值调用方法。 在上一个代码段中, 该示例使用<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visibility%2A>属性来检查值。  
   
  [!code-cpp[Classic DesignerSerializationVisibilityAttribute.Visibility Example#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Classic DesignerSerializationVisibilityAttribute.Visibility Example/CPP/source.cpp#1)]
  [!code-csharp[Classic DesignerSerializationVisibilityAttribute.Visibility Example#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Classic DesignerSerializationVisibilityAttribute.Visibility Example/CS/source.cs#1)]
@@ -461,7 +461,7 @@
 ## Remarks  
  此字段是此属性的默认设置。  
   
- 标记与某个属性时`DesignerSerializationVisibilityAttribute.Visible`，则其`Visibility`属性设置为常量成员<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visible>。  
+ 当使用`DesignerSerializationVisibilityAttribute.Visible`标记属性时, 其`Visibility`属性的值将设置为常量成员<xref:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visible>。  
   
  ]]></format>
         </remarks>

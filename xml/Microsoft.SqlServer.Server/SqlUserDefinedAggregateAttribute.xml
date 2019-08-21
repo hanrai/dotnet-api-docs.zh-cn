@@ -1,5 +1,5 @@
 <Type Name="SqlUserDefinedAggregateAttribute" FullName="Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e8fd1e56875f9ffe2f6044503b3914cb2ca685d8" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56763764" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlUserDefinedAggregateAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="90d2e17566854dac8be759a77a5d1edce7d21b9b" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69303457" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlUserDefinedAggregateAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SqlUserDefinedAggregateAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SqlUserDefinedAggregateAttribute&#xA;Inherits Attribute" />
@@ -32,14 +32,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- SQL Server 将创建一个绑定到具有的类定义的用户定义聚合<xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute>自定义属性。 每个用户定义聚合都必须具有此特性进行批注。  
+ SQL Server 创建一个用户定义聚合, 该聚合绑定到具有<xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute>自定义属性的类定义。 每个用户定义的聚合都必须用此属性进行批注。  
   
- 用户定义聚合和示例的详细信息，请参阅 SQL Server 2005 联机丛书中的"CLR 用户定义聚合"。  
+ 有关用户定义聚合和示例的详细信息, 请参阅 SQL Server 2005 联机丛书中的 "CLR 用户定义聚合"。  
   
    
   
 ## Examples  
- 下面的示例演示<xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute>的用户定义聚合的属性。  聚合使用自定义序列化、 最大大小为 8000 个字节序列时，和是 null 值、 重复项，以及顺序不变。  
+ 下面的示例演示<xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute>用户定义聚合的特性。  聚合使用自定义序列化时, 最大大小为8000字节, 并与 null、重复和顺序无关。  
   
  [!code-csharp[DataWorks SqlUserDefinedAggregateAttribute Sample#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlUserDefinedAggregateAttribute Sample/CS/source.cs#1)]
  [!code-vb[DataWorks SqlUserDefinedAggregateAttribute Sample#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlUserDefinedAggregateAttribute Sample/VB/source.vb#1)]  
@@ -143,9 +143,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 由查询处理器，此属性是`true`如果聚合与重复值无关。 也就是说，S，聚合 {X} 时，可以为 S 的聚合相同 X 已经在 s。例如，聚合函数 MIN 和 MAX 如满足此属性，而总和不。  
+ 在查询处理器使用的情况下, 如果`true`聚合与重复项无关, 则此属性为。 也就是说, 当 X 已在中时, S、{X} 的聚合与 S 的聚合相同。例如, 聚合函数 (如 MIN 和 MAX) 满足此属性, 而 SUM 不满足。  
   
- 未正确设置此属性可能导致不正确的查询结果。 此属性不是一个优化程序提示;它会影响选择的计划和由查询返回的结果。  
+ 错误设置此属性可能会导致不正确的查询结果。 此属性不是优化器提示;这会影响所选的计划和查询返回的结果。  
   
  ]]></format>
         </remarks>
@@ -181,9 +181,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 由查询处理器，此属性是`true`如果聚合与空值无关。 S，{NULL} 的聚合，即是为 s。 聚合相同例如，聚合函数 MIN 和 MAX 如满足此属性，而 COUNT(*) 不。  
+ 在查询处理器使用的情况下, 如果`true`聚合与 null 值不相同, 则此属性为。 也就是说, S、{NULL} 的聚合与的聚合相同。例如, 聚合函数 (如 MIN 和 MAX) 满足此属性, 而 COUNT (*) 则不满足此属性。  
   
- 未正确设置此属性可能导致不正确的查询结果。 此属性不是一个优化程序提示;它会影响选择的计划和由查询返回的结果。  
+ 错误设置此属性可能会导致不正确的查询结果。 此属性不是优化器提示;它会影响选定的计划和查询返回的结果。  
   
  ]]></format>
         </remarks>
@@ -219,9 +219,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 留待将来使用。 此属性当前不使用由查询处理器： 当前不能保证顺序。  
+ 留待将来使用。 此属性当前未由查询处理器使用: order 当前不能保证。  
   
- 未正确设置此属性可能导致不正确的查询结果。 此属性不是一个优化程序提示;它会影响选择的计划和由查询返回的结果。  
+ 错误设置此属性可能会导致不正确的查询结果。 此属性不是优化器提示;它会影响选定的计划和查询返回的结果。  
   
  此属性的默认值为 `false`。  
   
@@ -259,9 +259,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 由查询处理器，此属性是`true`如果聚合返回`null`如果任何值进行不累积。  
+ 在查询处理器使用的情况下, 如果`true`没有`null`聚合任何值, 则此属性为。  
   
- 未正确设置此属性可能导致不正确的查询结果。 此属性不是一个优化程序提示;它会影响选择的计划和由查询返回的结果。  
+ 错误设置此属性可能会导致不正确的查询结果。 此属性不是优化器提示;它会影响选定的计划和查询返回的结果。  
   
  ]]></format>
         </remarks>
@@ -297,15 +297,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性没有指定本机格式序列化。  
+ 对于本机格式序列化, 无需指定此属性。  
   
- 必须指定<xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute.MaxByteSize%2A>UserDefined 序列化属性<xref:Microsoft.SqlServer.Server.Format>。  
+ 您必须指定<xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute.MaxByteSize%2A>具有用户定制序列化<xref:Microsoft.SqlServer.Server.Format>的属性。  
   
- 为此属性指定的允许值的最大<xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute.MaxByteSizeValue>字段。  
+ 此属性的最大允许值由<xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute.MaxByteSizeValue>字段指定。  
   
- 允许的最大大小为 2 千兆字节 (GB)。 您可以指定一个介于 1 到 8000 个字节，则为-1 表示大于 8000 个字节，最多 2 个千兆字节为单位的值。  
+ 允许的最大大小为 2 gb。 可以指定1到8000字节之间的一个数字, 或指定-1 表示大于8000字节的值, 最大为 2 gb。  
   
- 为用户定义的序列化指定，使用的聚合<xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute.MaxByteSize%2A>指的是序列化数据的总大小。 请考虑序列化的 10 个字符字符串的聚合 (<xref:System.Char>)。 字符串使用序列化时<xref:System.IO.BinaryWriter>，序列化字符串的总大小为 22 字节：每个 Unicode utf-16 字符占 2 个字节的字符，再加上 2 个控件的最大数目个字节的序列化二进制流所产生的开销的乘积。 因此，当确定的值<xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute.MaxByteSize%2A>，必须考虑序列化数据的总大小： 以二进制格式序列化的数据加上因序列化所产生的开销大小。  
+ 对于指定了用户定义的序列化的聚合<xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute.MaxByteSize%2A> , 是指序列化数据的总大小。 考虑使用聚合来序列化10个字符 (<xref:System.Char>) 的字符串。 使用对<xref:System.IO.BinaryWriter>字符串进行序列化时, 序列化字符串的总大小为22字节:每个 Unicode UTF-16 字符的2个字节, 乘以最大字符数, 再加上2个控制二进制流产生的开销的控制字节。 因此, 在确定的值<xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute.MaxByteSize%2A>时, 必须考虑序列化数据的总大小: 以二进制形式序列化的数据的大小加上序列化导致的开销。  
   
  ]]></format>
         </remarks>

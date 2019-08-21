@@ -1,5 +1,5 @@
 <Type Name="IndexOutOfRangeException" FullName="System.IndexOutOfRangeException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5d8fe7d4a73ee7c4e119ce51d0d38b262de5a544" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58745354" /></Metadata><TypeSignature Language="C#" Value="public sealed class IndexOutOfRangeException : SystemException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e315de6e35568d212d8e084a6e58d809d1519f74" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69420219" /></Metadata><TypeSignature Language="C#" Value="public sealed class IndexOutOfRangeException : SystemException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit IndexOutOfRangeException extends System.SystemException" />
   <TypeSignature Language="DocId" Value="T:System.IndexOutOfRangeException" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class IndexOutOfRangeException&#xA;Inherits SystemException" />
@@ -45,105 +45,105 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IndexOutOfRangeException>的无效索引用于访问数组或集合的成员或用于读取或写入从缓冲区中的特定位置时将引发异常。 此异常继承<xref:System.Exception>类但添加任何独特的成员。  
+ 当使用无效索引访问数组或集合的成员, 或者从缓冲区中的特定位置读取或写入时, 将引发异常。<xref:System.IndexOutOfRangeException> 此异常继承自类<xref:System.Exception> , 但不添加唯一成员。  
   
- 通常情况下，<xref:System.IndexOutOfRangeException>导致开发人员错误引发异常。 而不是处理异常，应诊断错误的原因并更正你的代码。 错误的最常见原因是：  
+ 通常, 由于<xref:System.IndexOutOfRangeException>开发人员错误, 将引发异常。 应该诊断错误的原因并更正代码, 而不是处理异常。 此错误的最常见原因是:  
   
--   从零开始的数组或集合的上限为 1，忘记少于其成员或元素，如下面的示例说明了。  
+-   忘记集合或从零开始的数组的上限比其成员或元素的数量少一, 如下面的示例所示。  
   
      [!code-csharp[System.IndexOutOfRangeException#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.indexoutofrangeexception/cs/length1.cs#3)]
      [!code-vb[System.IndexOutOfRangeException#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.indexoutofrangeexception/vb/length1.vb#3)]  
   
-     若要更正此错误，可以使用如下所示的代码。  
+     若要更正此错误, 可以使用如下所示的代码。  
   
      [!code-csharp[System.IndexOutOfRangeException#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.indexoutofrangeexception/cs/length2.cs#4)]
      [!code-vb[System.IndexOutOfRangeException#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.indexoutofrangeexception/vb/length2.vb#4)]  
   
-     或者，而不是通过它们的索引，循环访问数组中的所有元素，可以使用`foreach`语句 （在 C#) 或`For Each`（在 Visual Basic) 语句。  
+     或者, 您可以使用`foreach`语句 (在中C#) 或`For Each`语句 (在 Visual Basic 中), 而不是按索引来循环访问数组中的所有元素。  
   
--   尝试将数组元素分配到另一个数组不充分维度并具有较少的原始数组元素。 下面的示例尝试分配中的最后一个元素`value1`中的同一元素的数组`value2`数组。 但是，`value2`已错误地划分数组具有六个而不是七个元素。 因此，赋值会引发<xref:System.IndexOutOfRangeException>异常。  
+-   尝试将一个数组元素分配给另一个数组, 该数组的数组与原始数组相比, 其元素少。 下面的示例尝试将`value1`数组中的最后一个元素分配给`value2`数组中的同一元素。 但是, `value2`数组已错误地标注为包含六个或七个元素。 因此, 分配会引发<xref:System.IndexOutOfRangeException>异常。  
   
      [!code-csharp[System.IndexOutOfRangeException#10](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.indexoutofrangeexception/cs/Uninit1.cs#10)]
      [!code-vb[System.IndexOutOfRangeException#10](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.indexoutofrangeexception/vb/Uninit1.vb#10)]  
   
--   使用值的搜索方法循环访问数组或集合的特定索引位置开始的一部分返回。 如果你忘记了检查是否搜索操作找到匹配项，则运行时会引发<xref:System.IndexOutOfRangeException>异常，如本示例中所示。  
+-   使用搜索方法返回的值从特定索引位置开始循环访问数组或集合的一部分。 如果忘记检查搜索操作是否找到了匹配项, 则运行时将引发<xref:System.IndexOutOfRangeException>异常, 如本示例中所示。  
   
      [!code-csharp[System.IndexOutOfRangeException#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.indexoutofrangeexception/cs/negative1.cs#5)]
      [!code-vb[System.IndexOutOfRangeException#5](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.indexoutofrangeexception/vb/negative1.vb#5)]  
   
-     在这种情况下，<xref:System.Collections.Generic.List%601.IndexOf%2A?displayProperty=nameWithType>方法返回-1，这是无效的索引值，它无法找到匹配项时。 若要更正此错误，搜索方法的返回值之前循环访问数组中，检查上，在此示例中所示。  
+     在这种情况下<xref:System.Collections.Generic.List%601.IndexOf%2A?displayProperty=nameWithType> , 如果找不到匹配项, 该方法将返回-1, 这是无效的索引值。 若要更正此错误, 请检查搜索方法的返回值, 然后循环访问数组, 如本示例中所示。  
   
      [!code-csharp[System.IndexOutOfRangeException#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.indexoutofrangeexception/cs/negative2.cs#6)]
      [!code-vb[System.IndexOutOfRangeException#6](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.indexoutofrangeexception/vb/negative2.vb#6)]  
   
--   尝试使用或枚举结果集、 集合或测试是否返回的对象具有任何有效的数据的情况下由查询返回的数组。  
+-   尝试使用或枚举查询返回的结果集、集合或数组, 而不测试返回的对象是否具有任何有效数据。  
   
--   使用计算的值定义的起始索引、 的结束索引或要迭代的项目数。 如果计算结果是意外，可能会导致<xref:System.IndexOutOfRangeException>异常。 应检查应用程序的逻辑在计算索引值，并循环访问数组或集合之前验证值。 以下条件必须同时为 true;否则为<xref:System.IndexOutOfRangeException>引发异常：  
+-   使用计算得出的值定义起始索引、结束索引或要迭代的项数。 如果计算结果不是预期的, 则可能会导致<xref:System.IndexOutOfRangeException>异常。 应在计算索引值时检查程序的逻辑, 并在循环访问数组或集合之前验证该值。 必须满足以下条件:否则, <xref:System.IndexOutOfRangeException>将引发异常:  
   
-    -   起始索引必须大于或等于<xref:System.Array.GetLowerBound%2A?displayProperty=nameWithType>的维度的数组，它想要循环访问，或大于或等于 0 的集合。  
+    -   <xref:System.Array.GetLowerBound%2A?displayProperty=nameWithType>对于要循环访问的数组的维度, 或大于或等于集合的集合, 开始索引必须大于或等于。  
   
-    -   结束索引不能超过<xref:System.Array.GetUpperBound%2A?displayProperty=nameWithType>想要循环访问，或不能大于或等于数组的维度`Count`的集合属性。  
+    -   对于要循环访问的<xref:System.Array.GetUpperBound%2A?displayProperty=nameWithType>数组的维度, 或不能大于或等于集合的`Count`属性, 结束索引不能超过。  
   
-    -   下面的公式必须是你想要循环访问数组的维度，则返回 true:  
+    -   对于要循环访问的数组的维度, 以下公式必须为 true:  
   
         ```  
         start_index >= lower_bound And start_index + items_to_iterate - 1 <= upper_bound  
         ```  
   
-         一个集合，必须满足以下公式：  
+         对于集合, 以下公式必须为 true:  
   
         ```  
         start_index >= 0 And start_index + items_to_iterate <= Count  
         ```  
   
         > [!TIP]
-        >  数组或集合的起始索引绝不能是负数。  
+        >  数组或集合的起始索引绝不能为负数。  
   
--   假定数组必须从零开始。 可以通过创建不从零开始的数组<xref:System.Array.CreateInstance%28System.Type%2CSystem.Int32%5B%5D%2CSystem.Int32%5B%5D%29?displayProperty=nameWithType>方法和可以由 COM 互操作，尽管它们不符合 CLS 規格。 下面的示例阐释<xref:System.IndexOutOfRangeException>时尝试进行循环访问由创建的非基于零的数组引发<xref:System.Array.CreateInstance%28System.Type%2CSystem.Int32%5B%5D%2CSystem.Int32%5B%5D%29?displayProperty=nameWithType>方法。  
+-   假设数组必须从零开始。 不是从零开始的数组可以通过<xref:System.Array.CreateInstance%28System.Type%2CSystem.Int32%5B%5D%2CSystem.Int32%5B%5D%29?displayProperty=nameWithType>方法创建, 并且可由 COM 互操作返回, 尽管它们不符合 CLS。 下面的示例演示<xref:System.IndexOutOfRangeException>当你尝试循环访问<xref:System.Array.CreateInstance%28System.Type%2CSystem.Int32%5B%5D%2CSystem.Int32%5B%5D%29?displayProperty=nameWithType>由方法创建的非从零开始的数组时引发的。  
   
      [!code-csharp[System.IndexOutOfRangeException#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.indexoutofrangeexception/cs/nonzero1.cs#1)]
      [!code-vb[System.IndexOutOfRangeException#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.indexoutofrangeexception/vb/nonzero1.vb#1)]  
   
-     若要更正该错误，如以下示例所示，可以调用<xref:System.Array.GetLowerBound%2A>方法而不是进行假设数组的起始索引。  
+     若要更正此错误, 如下面的示例所示, 可以调用<xref:System.Array.GetLowerBound%2A>方法, 而不是假设数组的起始索引。  
   
      [!code-csharp[System.IndexOutOfRangeException#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.indexoutofrangeexception/cs/nonzero2.cs#2)]
      [!code-vb[System.IndexOutOfRangeException#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.indexoutofrangeexception/vb/nonzero2.vb#2)]  
   
-     请注意，当您调用<xref:System.Array.GetLowerBound%2A>方法以获取数组的起始索引还应调用<xref:System.Array.GetUpperBound%28System.Int32%29?displayProperty=nameWithType>方法以获取其结束索引。  
+     请注意, 当调用<xref:System.Array.GetLowerBound%2A>方法来获取数组的起始索引时, 还应<xref:System.Array.GetUpperBound%28System.Int32%29?displayProperty=nameWithType>调用方法来获取其结束索引。  
   
--   索引和数字数组或集合中该索引处的值，让人困惑。 使用时，通常会出现此问题`foreach`语句 （在 C#) 或`For Each`（在 Visual Basic) 语句。 以下示例演示了该问题。  
+-   将索引与数字数组或集合中该索引处的值混淆。 当使用语句 (在中`foreach` C#) 或`For Each`语句 (在 Visual Basic 中) 时, 通常会发生此问题。 以下示例演示了该问题。  
   
      [!code-csharp[System.IndexOutOfRangeException#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.indexoutofrangeexception/cs/foreach1.cs#7)]
      [!code-vb[System.IndexOutOfRangeException#7](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.indexoutofrangeexception/vb/foreach1.vb#7)]  
   
-     迭代构造返回数组或集合，不是其索引中的每个值。 若要消除此异常，请使用此代码。  
+     迭代构造返回数组或集合中的每个值, 而不是其索引。 若要消除此异常, 请使用此代码。  
   
      [!code-csharp[System.IndexOutOfRangeException#8](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.indexoutofrangeexception/cs/foreach2.cs#8)]
      [!code-vb[System.IndexOutOfRangeException#8](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.indexoutofrangeexception/vb/foreach2.vb#8)]  
   
--   无效的列名称提供至<xref:System.Data.DataView.Sort%2A?displayProperty=nameWithType>属性。  
+-   为<xref:System.Data.DataView.Sort%2A?displayProperty=nameWithType>属性提供了无效的列名称。  
   
--   违反线程安全性。 操作，如读取相同<xref:System.IO.StreamReader>对象，写入到同一<xref:System.IO.StreamWriter>对象从多个线程，还是在枚举中的对象<xref:System.Collections.Hashtable>从不同的线程可引发<xref:System.IndexOutOfRangeException>如果该对象不访问线程安全的方式。 此异常是通常间歇性的因为它依赖于争用条件。  
+-   违反线程安全。 如果对象不是在中访问<xref:System.IO.StreamReader>的, 则从同一对象<xref:System.IO.StreamWriter>读取、从多个线程写入同一对象或<xref:System.Collections.Hashtable>从不同线程中枚举对象的操作可能会引发。 <xref:System.IndexOutOfRangeException>线程安全的方式。 此异常通常是间歇性的, 因为它依赖于争用条件。  
   
- 使用硬编码的索引值来操作一个数组，很可能正在操作的数组的大小是否意外的索引值不正确或无效，或者引发异常。 若要防止操作引发<xref:System.IndexOutOfRangeException>异常，您可以执行以下操作：  
+ 如果索引值不正确或无效, 或者如果正在操作的数组的大小不正确, 则使用硬编码索引值来操作数组可能会引发异常。 若要防止操作引发<xref:System.IndexOutOfRangeException>异常, 可以执行以下操作:  
   
--   循环访问数组使用的元素[foreach](https://msdn.microsoft.com/library/ttw7t8t6.aspx)语句 （在 C#) 或[为每个...下一步](https://msdn.microsoft.com/library/5ebk1751.aspx)构造 （在 Visual Basic) 而不是按索引循环访问元素。  
+-   使用[foreach](https://msdn.microsoft.com/library/ttw7t8t6.aspx)语句 (在中C#为) 或[为每个 .。。下一](https://msdn.microsoft.com/library/5ebk1751.aspx)构造 (在 Visual Basic 中), 而不是按索引来循环访问元素。  
   
--   通过从返回的索引开始的索引循环访问的元素<xref:System.Array.GetLowerBound%2A?displayProperty=nameWithType>方法，并返回索引的情况直到<xref:System.Array.GetUpperBound%2A?displayProperty=nameWithType>方法。  
+-   按索引从<xref:System.Array.GetLowerBound%2A?displayProperty=nameWithType>方法返回的索引开始循环访问元素, 并以<xref:System.Array.GetUpperBound%2A?displayProperty=nameWithType>方法返回的索引结束。  
   
--   如果您要分配给另一个数组中的元素，请确保目标数组具有与源数组至少尽可能多的元素通过比较其<xref:System.Array.Length%2A?displayProperty=nameWithType>属性。  
+-   如果要将一个数组中的元素分配给另一个数组, 请确保目标数组的元素与源数组的元素数至少与源<xref:System.Array.Length%2A?displayProperty=nameWithType>数组的数目相同。  
   
  有关实例的初始属性值的列表<xref:System.IndexOutOfRangeException>，请参阅<xref:System.IndexOutOfRangeException>构造函数。  
   
- 以下的中间语言 (IL) 指令引发<xref:System.IndexOutOfRangeException>:  
+ 以下中间语言 (IL) 指令引发<xref:System.IndexOutOfRangeException>:  
   
--   ldelem.\<type>  
+-   ldelem.\<类型 >  
   
 -   ldelema  
   
 -   stelem.\<type>  
   
- <xref:System.IndexOutOfRangeException> 使用 HRESULT COR_E_INDEXOUTOFRANGE，其值 0x80131508。  
+ <xref:System.IndexOutOfRangeException>使用 COR_E_INDEXOUTOFRANGE 值为0x80131508 的 HRESULT。  
   
  ]]></format>
     </remarks>
@@ -199,7 +199,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数初始化<xref:System.Exception.Message%2A>为系统提供的描述错误，例如"的数组索引超出了范围。"的消息的新实例的属性 此消息将当前系统区域性考虑在内。  
+ 此构造函数将<xref:System.Exception.Message%2A>新实例的属性初始化为系统提供的描述错误的消息, 如 "数组索引超出范围"。 此消息将当前系统区域性考虑在内。  
   
  下表显示 <xref:System.IndexOutOfRangeException> 的实例的初始属性值。  
   
@@ -251,7 +251,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数初始化<xref:System.Exception.Message%2A?displayProperty=nameWithType>属性的新的异常使用`message`参数。 `message` 的内容被设计为人可理解的形式。 此构造函数的调用方需要确保此字符串已针对当前系统区域性进行了本地化。  
+ 此构造函数`message`使用<xref:System.Exception.Message%2A?displayProperty=nameWithType>参数初始化新异常的属性。 `message` 的内容被设计为人可理解的形式。 此构造函数的调用方需要确保此字符串已针对当前系统区域性进行了本地化。  
   
  下表显示 <xref:System.IndexOutOfRangeException> 的实例的初始属性值。  
   

@@ -1,5 +1,5 @@
 <Type Name="UIntPtr" FullName="System.UIntPtr">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e8893cda174301871a6399a280fad6a41884d072" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58734023" /></Metadata><TypeSignature Language="C#" Value="public struct UIntPtr : System.Runtime.Serialization.ISerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="105558fa1fc9ce1904e2c969ca249311f8d3269f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69404558" /></Metadata><TypeSignature Language="C#" Value="public struct UIntPtr : System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi serializable sealed beforefieldinit native unsigned int extends System.ValueType implements class System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.UIntPtr" />
   <TypeSignature Language="VB.NET" Value="Public Structure UIntPtr&#xA;Implements ISerializable" />
@@ -54,14 +54,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.UIntPtr>类型旨在作为其大小是特定于平台的一个整数。 也就是说，此类型的实例预期可在 32 位硬件和操作系统，32 位和 64 位硬件和操作系统上的 64 位。  
+ <xref:System.UIntPtr>类型设计为一个整数, 其大小是特定于平台的。 也就是说, 此类型的实例应该是32位硬件和操作系统上的32位, 以及64位硬件和操作系统上的64位。  
   
 > [!IMPORTANT]
->  <xref:System.IntPtr>类型是符合 CLS 时<xref:System.UIntPtr>类型不是。 仅<xref:System.IntPtr>公共语言运行时中使用类型。 <xref:System.UIntPtr>提供类型主要是为了保持与体系结构对称性<xref:System.IntPtr>类型。  
+>  类型符合 CLS, <xref:System.UIntPtr>而类型则为。 <xref:System.IntPtr> 仅在公共语言运行时中使用类型。<xref:System.IntPtr> 提供<xref:System.UIntPtr>此类型主要是为了维护<xref:System.IntPtr>类型的体系结构对称。  
   
- <xref:System.UIntPtr>类型使用的语言支持指针，并作为一种常见方式引用语言的支持和不支持指针之间的数据。 <xref:System.UIntPtr> 此外可以使用对象来保存句柄。  
+ <xref:System.UIntPtr>类型可以由支持指针的语言使用, 也可以作为在执行和不支持指针的语言之间引用数据的一种常用方式。 <xref:System.UIntPtr>对象也可以用来容纳句柄。  
   
- 此类型实现<xref:System.Runtime.Serialization.ISerializable>接口。  
+ 此类型实现 <xref:System.Runtime.Serialization.ISerializable> 接口。  
   
  ]]></format>
     </remarks>
@@ -169,7 +169,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果仅引发异常的值`value`需要比当前平台所支持的更多位数。  
+ 仅当的`value`值需要比当前平台支持的更多位时, 才会引发异常。  
   
  ]]></format>
         </remarks>
@@ -219,7 +219,7 @@
         <param name="value">指向未指定类型的指针。</param>
         <summary>使用指定的指向未指定类型的指针初始化 <see cref="T:System.UIntPtr" /> 的新实例。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
         <altmember cref="T:System.Void" />
       </Docs>
     </Member>
@@ -271,14 +271,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IntPtr.Add%2A>方法不会引发异常，如果结果太大，无法表示为指定的平台上的指针。 相反，在未检查的上下文中执行加法运算。  
+ 如果<xref:System.IntPtr.Add%2A>结果太大而无法表示为指定平台上的指针, 则此方法不会引发异常。 相反, 在未检查的上下文中执行加法运算。  
   
- 不支持运算符重载或自定义运算符的语言可以使用此方法将某一偏移量添加到无符号指针的值。  
+ 不支持运算符重载或自定义运算符的语言可以使用此方法将偏移量添加到无符号指针的值。  
   
    
   
 ## Examples  
- 下面的示例实例化<xref:System.UIntPtr>对象，它指向一个 10 个元素的数组，开头，然后调用<xref:System.UIntPtr.Add%2A>方法来循环访问数组中的元素。  
+ 下面的示例实例化<xref:System.UIntPtr>一个指向十元素数组开头的对象, 然后<xref:System.UIntPtr.Add%2A>调用方法来循环访问数组中的元素。  
   
  [!code-csharp[System.UIntPtr.Add#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.uintptr.add/cs/add1.cs#1)]
  [!code-vb[System.UIntPtr.Add#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.uintptr.add/vb/add1.vb#1)]  
@@ -427,16 +427,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.UIntPtr.op_Addition%2A>方法定义的加法运算<xref:System.UIntPtr>对象。 这样，如下所示的代码。  
+ 方法定义<xref:System.UIntPtr>对象的加法运算。 <xref:System.UIntPtr.op_Addition%2A> 它可以实现如下所示的代码。  
   
  [!code-csharp[System.UIntPtr.op_Addition#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.uintptr.op_addition/cs/op_addition1.cs#1)]
  [!code-vb[System.UIntPtr.op_Addition#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.uintptr.op_addition/vb/op_addition1.vb#1)]  
   
- 不支持自定义的运算符的语言可以调用<xref:System.UIntPtr.Add%2A>方法相反。  
+ 不支持自定义运算符的语言可以改为<xref:System.UIntPtr.Add%2A>调用方法。  
   
- 加法运算不会引发异常，如果结果太大，无法表示为指定的平台上的指针。 相反，它是在未检查的上下文中执行。  
+ 如果结果太大而无法表示为指定平台上的指针, 则加法运算不会引发异常。 相反, 它是在未检查的上下文中执行的。  
   
- 此运算符的等效方法是<xref:System.UIntPtr.Add%28System.UIntPtr%2CSystem.Int32%29?displayProperty=nameWithType>。 ]]></format>
+ 此运算符的等效方法为<xref:System.UIntPtr.Add%28System.UIntPtr%2CSystem.Int32%29?displayProperty=nameWithType>。 ]]></format>
         </remarks>
         <altmember cref="M:System.UIntPtr.Add(System.UIntPtr,System.Int32)" />
       </Docs>
@@ -488,7 +488,7 @@
         <summary>确定 <see cref="T:System.UIntPtr" /> 的两个指定的实例是否相等。</summary>
         <returns>如果 <paramref name="value1" /> 等于 <paramref name="value2" />，则为 <see langword="true" />否则为 <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[此运算符的等效方法是 <xref:System.UIntPtr.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
+          <format type="text/markdown"><![CDATA[此运算符的等效方法是<xref:System.UIntPtr.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
         </remarks>
       </Docs>
     </Member>
@@ -627,7 +627,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果仅引发异常的值`value`需要比当前平台所支持的更多位数。
+ 仅当的`value`值需要比当前平台支持的更多位时, 才会引发异常。
  ]]></format>
         </remarks>
         <exception cref="T:System.OverflowException">在 64 位平台上，<paramref name="value" /> 的值太大，无法表示为 32 位无符号整数。</exception>
@@ -731,7 +731,7 @@
 此 API 不兼容 CLS。</summary>
         <returns><paramref name="value" /> 的内容。</returns>
         <remarks></remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
         <altmember cref="M:System.UIntPtr.ToPointer" />
       </Docs>
     </Member>
@@ -784,7 +784,7 @@
 此 API 不兼容 CLS。</summary>
         <returns>初始化为 <see cref="T:System.UIntPtr" /> 的 <paramref name="value" /> 新实例。</returns>
         <remarks></remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
         <altmember cref="Overload:System.UIntPtr.#ctor" />
       </Docs>
     </Member>
@@ -835,7 +835,7 @@
         <summary>确定 <see cref="T:System.UIntPtr" /> 的两个指定的实例是否不等。</summary>
         <returns>如果 <paramref name="value1" /> 不等于 <paramref name="value2" />，则为 <see langword="true" />否则为 <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[此运算符的等效方法是 <xref:System.UIntPtr.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
+          <format type="text/markdown"><![CDATA[此运算符的等效方法是<xref:System.UIntPtr.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
         </remarks>
       </Docs>
     </Member>
@@ -887,14 +887,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.UIntPtr.op_Subtraction%2A>方法定义为该减法运算<xref:System.UIntPtr>对象。 这样，如下所示的代码。  
+ <xref:System.UIntPtr.op_Subtraction%2A>方法为<xref:System.UIntPtr>对象定义减法运算。 它可以实现如下所示的代码。  
   
  [!code-csharp[System.UIntPtr.op_Addition#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.uintptr.op_addition/cs/op_subtraction1.cs#2)]
  [!code-vb[System.UIntPtr.op_Addition#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.uintptr.op_addition/vb/op_subtraction1.vb#2)]  
   
- 不支持自定义的运算符的语言可以调用<xref:System.UIntPtr.Subtract%2A>方法相反。  
+ 不支持自定义运算符的语言可以改为<xref:System.UIntPtr.Subtract%2A>调用方法。  
   
- 如果结果太小，无法表示为指定的平台上的指针，该减法运算不会引发异常。 相反，它是在未检查的上下文中执行。  
+ 如果结果太小, 无法表示为指定平台上的指针, 则该减法运算不会引发异常。 相反, 它是在未检查的上下文中执行的。  
   
  ]]></format>
         </remarks>
@@ -987,14 +987,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IntPtr.Subtract%2A>方法不会引发异常，如果结果太小，无法表示为指定的平台上的指针。 相反，在未检查的上下文中执行减法运算。  
+ 如果<xref:System.IntPtr.Subtract%2A>结果太小, 无法表示为指定平台上的指针, 则此方法不会引发异常。 相反, 在未检查的上下文中执行减法运算。  
   
- 不支持运算符重载或自定义运算符的语言可以使用此方法要减去的偏移量，从无符号指针的值。  
+ 不支持运算符重载或自定义运算符的语言可以使用此方法从无符号指针的值中减去偏移量。  
   
    
   
 ## Examples  
- 下面的示例实例化<xref:System.IntPtr>对象，它指向一个 10 个元素的数组，末尾，然后调用<xref:System.IntPtr.Subtract%2A>方法以相反顺序循环访问数组中的元素。  
+ 下面的示例实例化<xref:System.IntPtr>一个指向十元素数组末尾的对象, 然后<xref:System.IntPtr.Subtract%2A>调用方法以按相反的顺序循环访问数组中的元素。  
   
  [!code-csharp[System.UIntPtr.Subtract#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.uintptr.subtract/cs/subtract1.cs#1)]
  [!code-vb[System.UIntPtr.Subtract#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.uintptr.subtract/vb/subtract1.vb#1)]  
@@ -1086,12 +1086,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法填充`info`参数的当前值与<xref:System.UIntPtr>对象。  
+ 此方法用当前`info` <xref:System.UIntPtr>对象的值填充参数。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="info" /> 为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直接调用方需要完全信任。 不能由部分受信任的或透明的代码使用此成员。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">需要对直接调用方的完全信任。 部分受信任的或透明的代码不能使用此成员。</permission>
       </Docs>
     </Member>
     <Member MemberName="ToPointer">
@@ -1185,7 +1185,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果的值<xref:System.IntPtr.Size%2A>属性的此实例为 4，则此方法等同于<xref:System.UInt32.ToString%2A>; 否则为此方法等效于<xref:System.UInt64.ToString%2A>。  
+ 如果此实例的<xref:System.IntPtr.Size%2A>属性值为 4, 则此方法<xref:System.UInt32.ToString%2A>等效于; 否则, <xref:System.UInt64.ToString%2A>此方法等效于。  
   
  ]]></format>
         </remarks>
@@ -1236,7 +1236,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果仅引发异常的值`value`需要比当前平台所支持的更多位数。  
+ 仅当的`value`值需要比当前平台支持的更多位时, 才会引发异常。  
   
  ]]></format>
         </remarks>
@@ -1325,9 +1325,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此字段的值不是等效于`null`。 使用此字段可有效地确定实例是否<xref:System.UIntPtr>已设置为非零值。  
+ 此字段的值与不等效`null`。 使用此字段有效地确定的<xref:System.UIntPtr>实例是否已设置为非零值。  
   
- 例如，假定变量 uip 是实例<xref:System.UIntPtr>。 您可以确定是否它已设置由构造函数，例如返回的值进行比较，来:" `if uip != new UIntPtr(0)...` "。 但是，调用构造函数以获取未初始化的指针是效率低下。 最好是代码" `if uip != UIntPtr.Zero...` "，或" `if !UIntPtr.Zero.Equals(uip)...` "。  
+ 例如, 假设变量 uip 为的<xref:System.UIntPtr>实例。 您可以通过将它与构造函数返回的值进行比较来确定是否已设置该设置, 例如: `if uip != new UIntPtr(0)...` ""。 但是, 调用构造函数以获取未初始化的指针是低效的。 更好的做法是编写 " `if uip != UIntPtr.Zero...` " 或 " `if !UIntPtr.Zero.Equals(uip)...` "。  
   
  ]]></format>
         </remarks>
