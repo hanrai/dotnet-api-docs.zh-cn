@@ -1,5 +1,5 @@
 <Type Name="Wizard" FullName="System.Web.UI.WebControls.Wizard">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="348811184147da80fa8d211a894cb0ef0a6f2de5" /><Meta Name="ms.sourcegitcommit" Value="4ee26ac79338b0bf99fa1e0913e8a06b21994d8e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/26/2019" /><Meta Name="ms.locfileid" Value="58455967" /></Metadata><TypeSignature Language="C#" Value="public class Wizard : System.Web.UI.WebControls.CompositeControl" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="971bce9bc7ca3e90436ee331a88a1623e1ec583d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69399269" /></Metadata><TypeSignature Language="C#" Value="public class Wizard : System.Web.UI.WebControls.CompositeControl" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Wizard extends System.Web.UI.WebControls.CompositeControl" />
   <TypeSignature Language="DocId" Value="T:System.Web.UI.WebControls.Wizard" />
   <TypeSignature Language="VB.NET" Value="Public Class Wizard&#xA;Inherits CompositeControl" />
@@ -43,17 +43,17 @@
   
 -   [向导组件](#components)  
   
--   [向导的步骤](#wizard_steps)  
+-   [向导步骤](#wizard_steps)  
   
--   [数据收集向导](#collecting_wizard_data)  
+-   [收集向导数据](#collecting_wizard_data)  
   
--   [向导的命令名称](#wizard_command_names)  
+-   [向导命令名称](#wizard_command_names)  
   
--   [动态变化的步骤](#dynamically_changing_steps)  
+-   [动态更改步骤](#dynamically_changing_steps)  
   
 -   [向导外观](#wizard_appearance)  
   
--   [格式设置使用的布局模板](#formatting_using_layout_templates)  
+-   [使用布局模板设置格式](#formatting_using_layout_templates)  
   
 -   [辅助功能](#accessibility)  
   
@@ -61,81 +61,81 @@
   
 <a name="introduction"></a>   
 ## <a name="introduction"></a>介绍  
- 可以使用<xref:System.Web.UI.WebControls.Wizard>控制转移到：  
+ 您可以使用<xref:System.Web.UI.WebControls.Wizard>控件来执行以下操作:  
   
--   跨多个步骤收集相关的数据。  
+-   跨多个步骤收集相关数据。  
   
--   分解较大的网页用于收集用户输入到较小的逻辑步骤。  
+-   分解一个更大的网页, 用于将用户输入收集到较小的逻辑步骤。  
   
--   允许进行线性或非线性导航步骤。  
+-   允许线性或非线性导航完成这些步骤。  
   
 <a name="components"></a>   
 ## <a name="wizard-components"></a>向导组件  
- <xref:System.Web.UI.WebControls.Wizard>控件由以下组件构成：  
+ 该<xref:System.Web.UI.WebControls.Wizard>控件由以下组件组成:  
   
--   一个<xref:System.Web.UI.WebControls.WizardStepCollection>由页面开发人员定义包含每个步骤的用户界面的步骤的集合。  
+-   一<xref:System.Web.UI.WebControls.WizardStepCollection>系列步骤, 其中包含由页面开发人员定义的每个步骤的用户界面。  
   
--   内置导航功能，用于确定要显示的相应按钮基于<xref:System.Web.UI.WebControls.WizardStepBase.StepType%2A>值。  
+-   内置导航功能, 用于根据<xref:System.Web.UI.WebControls.WizardStepBase.StepType%2A>值确定要显示的相应按钮。  
   
--   可自定义以显示特定的信息所在的步骤的用户目前上标题区域。  
+-   一种标题区域, 可对其进行自定义以显示特定于用户当前所处步骤的信息。  
   
--   控件中的步骤可用于快速导航到侧栏区域。  
+-   边栏区域, 可用于快速导航到控件中的步骤。  
   
     > [!NOTE]
-    >  如果使用 Microsoft Visual Studio 2005，请注意，<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>源视图中保持不变。 如果您更改<xref:System.Web.UI.WebControls.Wizard.WizardSteps%2A>属性在设计视图中通过单击侧栏按钮，然后运行页面的第一步`Wizard`控件，因此可能会显示<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>可能指向不同的步骤。  
+    >  如果使用 Microsoft Visual Studio 2005, 请注意<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A> , 将保留在源视图中。 如果在设计视图中<xref:System.Web.UI.WebControls.Wizard.WizardSteps%2A>通过单击侧栏按钮来更改属性, 然后运行页面, 则可能<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>不会显示`Wizard`控件的第一步, 因为可能会指向不同的步骤。  
   
 <a name="wizard_steps"></a>   
 ## <a name="wizard-steps"></a>向导步骤  
- 每个中的步骤<xref:System.Web.UI.WebControls.Wizard>控件具有<xref:System.Web.UI.WebControls.WizardStepBase.StepType%2A>属性，用于确定具有的导航功能的类型。 如果未指定的值<xref:System.Web.UI.WebControls.WizardStepBase.StepType%2A>属性，默认值是<xref:System.Web.UI.WebControls.WizardStepType.Auto>。 下表列出的可用设置<xref:System.Web.UI.WebControls.WizardStepBase.StepType%2A>属性和步骤的结果行为。  
+ <xref:System.Web.UI.WebControls.Wizard>控件中的每个步骤都有一个<xref:System.Web.UI.WebControls.WizardStepBase.StepType%2A>属性, 该属性确定该步骤具有的导航功能的类型。 如果没有为<xref:System.Web.UI.WebControls.WizardStepBase.StepType%2A>属性指定值, 则默认值为<xref:System.Web.UI.WebControls.WizardStepType.Auto>。 下表列出了<xref:System.Web.UI.WebControls.WizardStepBase.StepType%2A>属性的可用设置和步骤的结果行为。  
   
  `WizardStepType.Auto`  
- 为该步骤呈现的 UI 的导航取决于在其中声明该步骤的顺序。  
+ 为步骤呈现的导航 UI 由声明该步骤的顺序确定。  
   
  `WizardStepType.Complete`  
  该步骤是要显示的最后一个步骤。 不呈现任何导航按钮。  
   
  `WizardStepType.Finish`  
- 步骤是收集用户数据的最后一个。 **完成**呈现用于导航的按钮。  
+ 步骤是收集用户数据的最后一个步骤。 为导航呈现 "**完成**" 按钮。  
   
  `WizardStepType.Start`  
- 该步骤是要显示的第一个步骤。 一个**上一步**不呈现。  
+ 该步骤是要显示的第一个步骤。 不呈现 "**上一步**" 按钮。  
   
  `WizardStepType.Step`  
- 该步骤是任何步骤之间第一个和最后一个。 呈现用于导航的“上一步”和“下一步”按钮。  
+ 步骤是第一个和最后一个步骤之间的任何步骤。 呈现用于导航的“上一步”和“下一步”按钮。  
   
 <a name="collecting_wizard_data"></a>   
-## <a name="collecting-wizard-data"></a>数据收集向导  
- 使用<xref:System.Web.UI.WebControls.Wizard>控件，可以通过线性或非线性导航收集数据。 非线性导航的一些示例是跳过不必要的步骤，或返回到以前完成的步骤，若要更改某个值。 <xref:System.Web.UI.WebControls.Wizard>控件之间维护其状态的步骤，因此不需要之前的所有步骤中将保存到数据存储在一个步骤中输入的数据<xref:System.Web.UI.WebControls.Wizard>控件已完成。  
+## <a name="collecting-wizard-data"></a>收集向导数据  
+ <xref:System.Web.UI.WebControls.Wizard>使用控件, 可以通过线性或非线性导航来收集数据。 非线性导航的一些示例是跳过不必要的步骤, 或返回到之前完成的步骤来更改某个值。 控件在各个步骤之间维护其状态, 因此在步骤中输入的数据无需保存到数据存储区, 直到完成<xref:System.Web.UI.WebControls.Wizard>控件的所有步骤。 <xref:System.Web.UI.WebControls.Wizard>  
   
- 或者，如果你想要持久保存到作为数据存储所收集的数据的每个步骤完成，例如何时<xref:System.Web.UI.WebControls.Wizard.NextButtonClick>引发事件，则应设置<xref:System.Web.UI.WebControls.WizardStepBase.AllowReturn%2A>的属性<xref:System.Web.UI.WebControls.WizardStepBase>对象传递给`false`，以便用户不能返回到以前完成的步骤和后已提交更改的数据。  
+ 或者, 如果要在每个步骤完成时将收集的数据保存到数据存储区 ( <xref:System.Web.UI.WebControls.Wizard.NextButtonClick>如引发事件时), 则应将<xref:System.Web.UI.WebControls.WizardStepBase>对象的<xref:System.Web.UI.WebControls.WizardStepBase.AllowReturn%2A>属性设置为`false` , 以便用户无法返回到之前完成的步骤, 并在数据提交后更改数据。  
   
 <a name="wizard_command_names"></a>   
-## <a name="wizard-command-names"></a>向导的命令名称  
- <xref:System.Web.UI.WebControls.Wizard>控件将继承以下的命令名称，从<xref:System.Web.UI.WebControls.View>类和<xref:System.Web.UI.WebControls.MultiView>类： <xref:System.Web.UI.WebControls.MultiView.NextViewCommandName>， <xref:System.Web.UI.WebControls.MultiView.PreviousViewCommandName>， <xref:System.Web.UI.WebControls.MultiView.SwitchViewByIDCommandName>，和<xref:System.Web.UI.WebControls.MultiView.SwitchViewByIndexCommandName>。 向导控件将忽略这些命令名称，不包括任何特殊逻辑，用于启用这些命令来自动处理导航。 如果命令名称被删除，或在按钮中缺少<xref:System.Web.UI.WebControls.Wizard>控件，不会引发异常。 例如，如果<xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>按钮缺少的值<xref:System.Web.UI.WebControls.Button.CommandName%2A>，不会引发异常。  
+## <a name="wizard-command-names"></a>向导命令名称  
+ <xref:System.Web.UI.WebControls.View> <xref:System.Web.UI.WebControls.MultiView.SwitchViewByIDCommandName> <xref:System.Web.UI.WebControls.MultiView.NextViewCommandName> <xref:System.Web.UI.WebControls.MultiView.SwitchViewByIndexCommandName>控件继承类<xref:System.Web.UI.WebControls.MultiView.PreviousViewCommandName>和<xref:System.Web.UI.WebControls.MultiView>类中的以下命令名称:、、和。 <xref:System.Web.UI.WebControls.Wizard> 向导控件忽略这些命令名称, 并且不包含任何特殊逻辑来使这些命令自动用于导航。 如果从<xref:System.Web.UI.WebControls.Wizard>控件中的按钮删除或缺少命令名称, 则不会引发异常。 例如, 如果<xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>按钮缺少的<xref:System.Web.UI.WebControls.Button.CommandName%2A>值, 则不会引发异常。  
   
 <a name="dynamically_changing_steps"></a>   
-## <a name="dynamically-changing-steps"></a>动态变化的步骤  
- 可以使用<xref:System.Web.UI.WebControls.Wizard.MoveTo%2A>方法或<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>属性来动态更改当前显示中的步<xref:System.Web.UI.WebControls.Wizard>控件。  
+## <a name="dynamically-changing-steps"></a>动态更改步骤  
+ 您可以使用<xref:System.Web.UI.WebControls.Wizard.MoveTo%2A>方法<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>或属性动态更改当前显示在<xref:System.Web.UI.WebControls.Wizard>控件中的步骤。  
   
 > [!NOTE]
->  如果以编程方式添加<xref:System.Web.UI.WebControls.WizardStep>在`Page_Load`事件处理程序，必须将在导航窗格添加到在之前页面加载该步骤。  
+>  如果以编程方式<xref:System.Web.UI.WebControls.WizardStep> `Page_Load`在事件处理程序中添加, 则必须在加载页面之前将导航添加到该步骤。  
   
 <a name="wizard_appearance"></a>   
 ## <a name="wizard-appearance"></a>向导外观  
- 外观<xref:System.Web.UI.WebControls.Wizard>控件是通过模板、 外观和样式设置完全可自定义。 例如，可以使用<xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A>， <xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>， <xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>， <xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>，并<xref:System.Web.UI.WebControls.Wizard.StepNavigationTemplate%2A>属性，以自定义的界面<xref:System.Web.UI.WebControls.Wizard>控件。  
+ <xref:System.Web.UI.WebControls.Wizard>控件的外观可通过模板、外观和样式设置完全自定义。 例如, 您可以使用<xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A>、 <xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>、 <xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>、 <xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>和<xref:System.Web.UI.WebControls.Wizard.StepNavigationTemplate%2A>属性来自定义<xref:System.Web.UI.WebControls.Wizard>控件的接口。  
   
 > [!NOTE]
->  设置<xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>， <xref:System.Web.UI.WebControls.Wizard.DisplaySideBar%2A>， <xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A>， <xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>， <xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>，或<xref:System.Web.UI.WebControls.Wizard.StepNavigationTemplate%2A>属性会重新创建的子控件<xref:System.Web.UI.WebControls.Wizard>控件。 因此，子控件的视图状态会丢失进程中。 若要避免这种情况下，显式维护控件状态的<xref:System.Web.UI.WebControls.Wizard>控件的子控件显式，或避免将控件置于模板。  
+>  <xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>设置、<xref:System.Web.UI.WebControls.Wizard.DisplaySideBar%2A> 、、<xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A> <xref:System.Web.UI.WebControls.Wizard> 、或属性将重新创建控件的子控件<xref:System.Web.UI.WebControls.Wizard.StepNavigationTemplate%2A>。 <xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A> <xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A> 因此, 子控件的视图状态会在进程中丢失。 若要避免这种情况, 请显式保持<xref:System.Web.UI.WebControls.Wizard>控件的子控件的控件状态, 或避免在模板内放置控件。  
   
- 请注意，<xref:System.Web.UI.WebControls.Wizard>控件不支持特殊的 Microsoft Internet Explorer 呈现非标准或 quirks 模式。 若要获取最佳的 Internet Explorer 呈现使用<xref:System.Web.UI.WebControls.Wizard>控件，使用 XHTML 文档类型，默认情况下，Visual Web Developer 和 Visual Studio 中添加。  
+ 请注意, <xref:System.Web.UI.WebControls.Wizard>对于非标准或兼容模式, 控件不支持特殊的 Microsoft Internet Explorer 呈现。 若要使用<xref:System.Web.UI.WebControls.Wizard>控件获得最佳的 Internet Explorer 呈现功能, 请使用 XHTML 文档类型, 该类型默认情况下会在 visual Web Developer 和 visual Studio 中添加。  
   
 <a name="formatting_using_layout_templates"></a>   
-## <a name="formatting-using-layout-templates"></a>格式设置使用的布局模板  
- <xref:System.Web.UI.WebControls.Wizard>控制允许您指定控件的布局，而无需使用对应的 HTML`table`元素。 相反，可以使用`LayoutTemplate`元素以指定的布局。 在模板中，创建控件以指示应在控件中动态插入项的位置占位符。 (这是类似于如何将模板模型<xref:System.Web.UI.WebControls.ListView>控制的工作方式。)有关更多信息，请参见 <xref:System.Web.UI.WebControls.Wizard.LayoutTemplate%2A?displayProperty=nameWithType> 属性。  
+## <a name="formatting-using-layout-templates"></a>使用布局模板设置格式  
+ 控件使你可以指定控件的布局, 而无需使用 HTML `table`元素。 <xref:System.Web.UI.WebControls.Wizard> 相反, 可以使用`LayoutTemplate`元素来指定布局。 在模板中, 创建占位符控件以指示应将项动态插入控件的位置。 (这与<xref:System.Web.UI.WebControls.ListView>控件的模板模型的工作方式类似。)有关更多信息，请参见 <xref:System.Web.UI.WebControls.Wizard.LayoutTemplate%2A?displayProperty=nameWithType> 属性。  
   
 <a name="accessibility"></a>   
 ## <a name="accessibility"></a>可访问性  
- 有关如何配置此控件，以便它将生成符合辅助功能标准标记的信息，请参阅[Visual Studio 和 ASP.NET 中的辅助功能](https://msdn.microsoft.com/library/7e3ce9c4-6b7d-4fb1-94b5-72cf2a44fe13)和[ASP.NET 控件和可访问性](https://msdn.microsoft.com/library/847a37e3-ce20-41da-b0d3-7dfb0fdae9a0).  
+ 有关如何配置此控件以生成符合辅助功能标准的标记的信息, 请参阅[Visual Studio 中的辅助功能和 ASP.NET](https://msdn.microsoft.com/library/7e3ce9c4-6b7d-4fb1-94b5-72cf2a44fe13)和[ASP.NET 控件和辅助功能](https://msdn.microsoft.com/library/847a37e3-ce20-41da-b0d3-7dfb0fdae9a0)。  
   
 <a name="declarative_syntax"></a>   
 ## <a name="declarative-syntax"></a>声明性语法  
@@ -291,7 +291,7 @@
    
   
 ## Examples  
- 下面的代码示例演示如何定义<xref:System.Web.UI.WebControls.Wizard>控件来收集用户的名称和地址，用于输入单独的发货地址的选项。 如果用户不会选择**SeparateShippingCheckBox**，从而发出请求以添加单独的发货地址<xref:System.Web.UI.WebControls.Wizard>控件移动，直接从`Step2`到`Finish`。 上`Finish`步骤中，用户可以选择返回到的开头<xref:System.Web.UI.WebControls.Wizard>通过单击控件**GoBackButton**; 但是，以便用户可以`Step2`因为<xref:System.Web.UI.WebControls.WizardStepBase.AllowReturn%2A>的属性`Step1`设置为`false`。  
+ 下面的代码示例演示如何定义一个<xref:System.Web.UI.WebControls.Wizard>控件以收集用户的名称和地址, 并提供用于输入单独的装运地址的选项。 如果用户未选择**SeparateShippingCheckBox**, 因而发出了添加单独的寄送地址的请求, 则<xref:System.Web.UI.WebControls.Wizard>控件会直接从`Step2`移动到`Finish`。 在该`Finish`步骤中, 用户可以选择返回到<xref:System.Web.UI.WebControls.Wizard>控件开头, 方法`Step1`是单击 " **GoBackButton**"; 但是, 它会使用户进入`Step2` , 因为的<xref:System.Web.UI.WebControls.WizardStepBase.AllowReturn%2A>属性被设置为`false`.  
   
 > [!IMPORTANT]
 >  此示例具有一个接受用户输入的文本框，这是一个潜在的安全威胁。 默认情况下，ASP.NET 网页验证用户输入是否不包含脚本或 HTML 元素。 有关详细信息，请参阅[脚本侵入概述](https://msdn.microsoft.com/library/772c7312-211a-4eb3-8d6e-eec0aa1dcc07)。  
@@ -299,7 +299,7 @@
  [!code-aspx-csharp[System.Web.UI.WebControls.Wizard#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.Wizard/CS/wizardclasscs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.Wizard#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.Wizard/VB/wizardclassvb.aspx#1)]  
   
- 下面的代码示例是前面的示例中使用的 Web 页的代码隐藏文件。  
+ 下面的代码示例是在前面的示例中使用的网页的代码隐藏文件。  
   
  [!code-csharp[System.Web.UI.WebControls.Wizard#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.Wizard/CS/wizardclass.cs#2)]
  [!code-vb[System.Web.UI.WebControls.Wizard#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.Wizard/VB/wizardclass.vb#2)]  
@@ -335,7 +335,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.Wizard.%23ctor%2A>构造函数来创建和初始化的新实例<xref:System.Web.UI.WebControls.Wizard>类。  
+ 使用构造函数来创建和初始化<xref:System.Web.UI.WebControls.Wizard>类的新实例。 <xref:System.Web.UI.WebControls.Wizard.%23ctor%2A>  
   
  ]]></format>
         </remarks>
@@ -373,12 +373,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性返回<xref:System.Web.UI.WebControls.WizardStepBase>中当前显示的对象<xref:System.Web.UI.WebControls.Wizard>控件。 <xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性是只读的; 但是，您可以使用<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性访问当前属性<xref:System.Web.UI.WebControls.WizardStepBase>对象。 使用<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>属性来动态更改<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>为另一种<xref:System.Web.UI.WebControls.WizardStepBase>对象。 或者，可以使用<xref:System.Web.UI.WebControls.Wizard.MoveTo%2A>方法动态设置<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性。  
+ 属性返回当前显示在<xref:System.Web.UI.WebControls.Wizard>控件中的对象。<xref:System.Web.UI.WebControls.WizardStepBase> <xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A> 属性<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>是只读的; 但是, 您可以<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>使用属性来访问当前<xref:System.Web.UI.WebControls.WizardStepBase>对象的属性。 使用属性可将更改为不同<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A> <xref:System.Web.UI.WebControls.WizardStepBase>的对象。 <xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A> 或者, 可以使用<xref:System.Web.UI.WebControls.Wizard.MoveTo%2A>方法动态<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>设置属性。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性来确定哪个步骤设置下一步<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性的<xref:System.Web.UI.WebControls.Wizard>控件。 如果的值`CheckBox1.Checked`是`true`，则<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性设置为`Wizard1.Step3`; 否则为<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性设置为`Wizard1.Step2`。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性来确定要设置为<xref:System.Web.UI.WebControls.Wizard>控件的下一个<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性的步骤。 如果`CheckBox1.Checked`的`Wizard1.Step2`值`true`为, <xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>则`Wizard1.Step3`将<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性设置为; 否则, 属性设置为。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardActiveStep#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardActiveStep/CS/wizardactivestepcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardActiveStep#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardActiveStep/VB/wizardactivestepvb.aspx#1)]  
@@ -412,14 +412,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged>当前步骤时引发事件中显示<xref:System.Web.UI.WebControls.Wizard>控件发生更改。 使用<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged>事件，以便提供附加的处理时的当前步骤<xref:System.Web.UI.WebControls.Wizard>控件发生更改。  
+ 当控件<xref:System.Web.UI.WebControls.Wizard>中显示的当前步骤更改时, 将引发<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged>事件。 当控件的当前步骤发生更改时, 可以使用事件来提供其他处理。<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged> <xref:System.Web.UI.WebControls.Wizard>  
   
- 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged>事件以更新<xref:System.Web.UI.WebControls.Wizard.HeaderText%2A>属性的<xref:System.Web.UI.WebControls.Wizard>控件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged>事件<xref:System.Web.UI.WebControls.Wizard.HeaderText%2A>更新<xref:System.Web.UI.WebControls.Wizard>控件的属性。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardActiveStepChanged#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardActiveStepChanged/CS/wizardactivestepchangedcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardActiveStepChanged#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardActiveStepChanged/VB/wizardactivestepchangedvb.aspx#1)]  
@@ -461,23 +461,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>属性提供的从零开始的索引<xref:System.Web.UI.WebControls.WizardStepBase>中当前显示的对象<xref:System.Web.UI.WebControls.Wizard>控件。 您可以以编程方式设置<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>属性控制哪个步骤向用户显示在运行时。  
+ 属性提供当前在<xref:System.Web.UI.WebControls.Wizard>控件中显示的<xref:System.Web.UI.WebControls.WizardStepBase>对象的从零开始的索引。 <xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A> 您可以通过编程方式<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>设置属性来控制运行时向用户显示的步骤。  
   
 > [!NOTE]
->  如果使用 Microsoft Visual Studio 2005，请注意，<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>源视图中保持不变。 如果您更改<xref:System.Web.UI.WebControls.Wizard.WizardSteps%2A>属性在设计视图中通过单击侧栏按钮，然后运行页面的第一步`Wizard`控件，因此可能会显示<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>可能指向不同的步骤。  
+>  如果使用 Microsoft Visual Studio 2005, 请注意<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A> , 将保留在源视图中。 如果在设计视图中<xref:System.Web.UI.WebControls.Wizard.WizardSteps%2A>通过单击侧栏按钮来更改属性, 然后运行页面, 则可能<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>不会显示`Wizard`控件的第一步, 因为可能会指向不同的步骤。  
   
- 如果设置的值<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>为-1 以支持默认情况下不需要执行步骤的向导，出现以下行为：  
+ 如果将的<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>值设置为-1 以支持默认情况下不包含步骤的向导, 则会发生以下行为:  
   
--   如果以声明方式设置<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>为-1 或为-1 作为默认值，该控件将始终尝试呈现向导的第一步的集。  
+-   如果以声明方式<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>设置为-1, 或将其设置为-1 作为默认值, 则控件将始终尝试呈现向导中的第一步。  
   
--   如果以编程方式设置<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>为-1，该控件将不会呈现。  
+-   如果以编程方式<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>将设置为-1, 则不会呈现控件。  
   
- 无法通过主题或样式表主题设置此属性。 有关详细信息，请参阅<xref:System.Web.UI.ThemeableAttribute>并[ASP.NET 主题和外观](https://msdn.microsoft.com/library/5df3ebbd-d46c-4502-9406-02f9df4ef2c3)。  
+ 无法通过主题或样式表主题设置此属性。 有关详细信息, 请<xref:System.Web.UI.ThemeableAttribute>参阅和[ASP.NET 主题和外观](https://msdn.microsoft.com/library/5df3ebbd-d46c-4502-9406-02f9df4ef2c3)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>属性来设置<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性的<xref:System.Web.UI.WebControls.Wizard>控件。 如果的值`CheckBox1.Checked`是`true`，则<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性设置为`Wizard1.Step3`; 否则为<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性设置为`Wizard1.Step2`。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>属性来<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>设置<xref:System.Web.UI.WebControls.Wizard>控件的属性。 如果`CheckBox1.Checked`的`Wizard1.Step2`值`true`为, <xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>则`Wizard1.Step3`将<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性设置为; 否则, 属性设置为。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardActiveStepIndex#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardActiveStepIndex/CS/wizardactivestepindexcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardActiveStepIndex#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardActiveStepIndex/VB/wizardactivestepindexvb.aspx#1)]  
@@ -517,12 +517,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.AllowNavigationToStep%2A>方法可以从派生类由于的仅访问其`protected`修饰符。 在派生类中，可以使用<xref:System.Web.UI.WebControls.Wizard.AllowNavigationToStep%2A>方法，以确定是否可以使用传入的索引设置<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>属性。 <xref:System.Web.UI.WebControls.Wizard.AllowNavigationToStep%2A>方法将返回`false`如果传入的索引是指<xref:System.Web.UI.WebControls.WizardStepBase>对象，它被访问过而且其<xref:System.Web.UI.WebControls.WizardStepBase.AllowReturn%2A>属性设置为`false`; 否则为它将返回`true`。  
+ 只能从派生类访问`protected` 方法,因为它的修饰符。<xref:System.Web.UI.WebControls.Wizard.AllowNavigationToStep%2A> 在派生类中, 您可以使用<xref:System.Web.UI.WebControls.Wizard.AllowNavigationToStep%2A>方法来确定传入的索引是否可用于<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>设置属性。 如果<xref:System.Web.UI.WebControls.Wizard.AllowNavigationToStep%2A> `false` <xref:System.Web.UI.WebControls.WizardStepBase.AllowReturn%2A> `false`传入的`true`索引引用已访问的对象并将其属性设置为,则方法将返回;否则将返回。<xref:System.Web.UI.WebControls.WizardStepBase>  
   
    
   
 ## Examples  
- 下面的代码示例演示如何创建一个名为的派生的类`CustomWizard`并重写<xref:System.Web.UI.WebControls.Wizard.OnSideBarButtonClick%2A>方法。 上的侧栏区域的按钮时`CustomWizard`单击控件，<xref:System.Web.UI.WebControls.Wizard.AllowNavigationToStep%2A>方法调用以确定是否可以访问所选的步骤。 一条消息然后写入通知所出现的情况的用户对包含网页。  
+ 下面的代码示例演示如何创建一个名为`CustomWizard`的派生类, 并重<xref:System.Web.UI.WebControls.Wizard.OnSideBarButtonClick%2A>写方法。 单击`CustomWizard`控件侧栏区域中的按钮时<xref:System.Web.UI.WebControls.Wizard.AllowNavigationToStep%2A> , 将调用方法来确定是否可以访问选定的步骤。 然后, 会向包含的网页写入一条消息, 告知用户发生了什么情况。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardAllowNavigationToStep#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardAllowNavigationToStep/CS/wizardallownavigationtostepcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardAllowNavigationToStep#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardAllowNavigationToStep/VB/wizardallownavigationtostepvb.aspx#1)]  
@@ -556,14 +556,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.CancelButtonClick>引发事件时**取消**按钮<xref:System.Web.UI.WebControls.Wizard>单击控件。 使用<xref:System.Web.UI.WebControls.Wizard.CancelButtonClick>事件，以便提供附加的处理时**取消**单击按钮。  
+ 当<xref:System.Web.UI.WebControls.Wizard.CancelButtonClick>单击<xref:System.Web.UI.WebControls.Wizard>控件上的 "**取消**" 按钮时, 将引发事件。 当单击 "**取消**" 按钮时, 可以使用事件来提供其他处理。<xref:System.Web.UI.WebControls.Wizard.CancelButtonClick>  
   
- 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何指定的事件处理程序<xref:System.Web.UI.WebControls.Wizard.CancelButtonClick>事件。 当**取消**单击按钮时，页面将重定向到http://www.wingtiptoys.com/。  
+ 下面的代码示例演示如何为<xref:System.Web.UI.WebControls.Wizard.CancelButtonClick>事件指定事件处理程序。 单击 "**取消**" 按钮后, 该页将重定向到http://www.wingtiptoys.com/。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardCancelButtonClick#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardCancelButtonClick/CS/wizardcancelbuttonclickcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardCancelButtonClick#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardCancelButtonClick/VB/wizardcancelbuttonclickvb.aspx#1)]  
@@ -596,7 +596,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.CancelButtonID>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.CancelButtonID>是`"CancelButton"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.CancelButtonID>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.CancelButtonID>为`"CancelButton"`。  
   
  ]]></format>
         </remarks>
@@ -636,12 +636,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置为“取消”按钮显示的图像的 URL。</summary>
-        <value>显示的图像的 URL**取消**按钮<see cref="T:System.Web.UI.WebControls.Wizard" />控件。 默认值为空字符串 ("")。</value>
+        <value>为<see cref="T:System.Web.UI.WebControls.Wizard" />控件上的 "**取消**" 按钮显示的图像的 URL。 默认值为空字符串 ("")。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Web.UI.WebControls.Wizard.CancelButtonType%2A>属性设置为<xref:System.Web.UI.WebControls.ButtonType.Image>，使用<xref:System.Web.UI.WebControls.Wizard.CancelButtonImageUrl%2A>属性来指定要显示的图像**取消**按钮。  
+ 当属性设置为<xref:System.Web.UI.WebControls.ButtonType.Image>时, 使用<xref:System.Web.UI.WebControls.Wizard.CancelButtonImageUrl%2A>属性指定要为 "取消" 按钮显示的图像。  <xref:System.Web.UI.WebControls.Wizard.CancelButtonType%2A>  
   
  ]]></format>
         </remarks>
@@ -685,14 +685,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取对定义“取消”按钮外观的样式属性集合的引用。</summary>
-        <value>对引用<see cref="T:System.Web.UI.WebControls.Style" />，它定义的样式设置**取消**上<see cref="T:System.Web.UI.WebControls.Wizard" />。</value>
+        <value>一个对的引用<see cref="T:System.Web.UI.WebControls.Style" /> , 该引用定义上的 <see cref="T:System.Web.UI.WebControls.Wizard" />Cancel 的样式设置。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.CancelButtonStyle%2A>属性定义为外观**取消**按钮<xref:System.Web.UI.WebControls.Wizard>控件。 <xref:System.Web.UI.WebControls.Wizard.CancelButtonStyle%2A>属性是只读的; 但是，可以设置的属性<xref:System.Web.UI.WebControls.Style>它将返回的对象。 你可以以声明方式设置这些属性在窗体`Property-Subproperty`，其中`Subproperty`表示的属性<xref:System.Web.UI.WebControls.Style>类 (例如， `CancelButtonStyle-ForeColor`)。 你可以以编程方式设置的属性在窗体`Property.Subproperty`(例如， `CancelButtonStyle.ForeColor`)。  
+ 属性定义<xref:System.Web.UI.WebControls.Wizard>控件上 "取消" 按钮的外观。  <xref:System.Web.UI.WebControls.Wizard.CancelButtonStyle%2A> 属性<xref:System.Web.UI.WebControls.Wizard.CancelButtonStyle%2A>是只读的; 但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.Style>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.Style>表示类的属性 (例如`CancelButtonStyle-ForeColor`)。 可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `CancelButtonStyle.ForeColor`例如)。  
   
- 常用的设置包括自定义背景颜色、 文本颜色和字体属性。 样式设置<xref:System.Web.UI.WebControls.Wizard.CancelButtonStyle%2A>属性的样式设置与合并<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。 在应用任何设置都会<xref:System.Web.UI.WebControls.Wizard.CancelButtonStyle%2A>属性重写中的相应设置<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。  
+ 常见设置包括自定义背景色、文本颜色和字体属性。 <xref:System.Web.UI.WebControls.Wizard.CancelButtonStyle%2A>属性的样式设置与<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性的样式设置合并在一起。 在<xref:System.Web.UI.WebControls.Wizard.CancelButtonStyle%2A>属性中应用的任何设置都将重写<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性中的相应设置。  
   
  ]]></format>
         </remarks>
@@ -729,23 +729,23 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置为“取消”按钮显示的描述文字。</summary>
-        <value>为显示的文本标题**取消**上<see cref="T:System.Web.UI.WebControls.Wizard" />。 默认值是<c>"取消"</c>。 控件的默认文本将根据服务器当前的区域设置进行本地化。</value>
+        <value>为 " <see cref="T:System.Web.UI.WebControls.Wizard" />**取消**" 显示的文本标题。 默认值为<c>"Cancel"</c>。 控件的默认文本将根据服务器当前的区域设置进行本地化。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.CancelButtonText%2A>属性包含为显示的文本**取消**按钮<xref:System.Web.UI.WebControls.Wizard>控件。 具体取决于值<xref:System.Web.UI.WebControls.Wizard.CancelButtonType%2A>属性，<xref:System.Web.UI.WebControls.Wizard.CancelButtonText%2A>属性可以显示为按钮上文本的文本显示为一个映像，一种替代方法或链接的文本。 下表列出<xref:System.Web.UI.WebControls.Wizard.CancelButtonType%2A>值并对其各自的影响**取消**按钮文本。  
+ 属性包含为<xref:System.Web.UI.WebControls.Wizard>控件上的 "取消" 按钮显示的文本。  <xref:System.Web.UI.WebControls.Wizard.CancelButtonText%2A> 根据<xref:System.Web.UI.WebControls.Wizard.CancelButtonType%2A>属性的值<xref:System.Web.UI.WebControls.Wizard.CancelButtonText%2A> , 属性可以以文本形式显示在按钮上, 如显示为图像的替代文本或链接文本。 下表列出<xref:System.Web.UI.WebControls.Wizard.CancelButtonType%2A>了值及其在 "**取消**" 按钮文本上的相应效果。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Button>  
- 按钮上显示的文本。  
+ 文本出现在按钮上。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Image>  
- 文本显示为图像的替换文本。  
+ 文本显示为图像的替代文本。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Link>  
  文本显示为链接。  
   
- 此属性的值设置时，可以自动保存到资源文件使用设计器工具。 有关详细信息，请参阅<xref:System.ComponentModel.LocalizableAttribute>并[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
+ 设置此属性后, 可以使用设计器工具自动将此属性的值保存到资源文件中。 有关详细信息, 请<xref:System.ComponentModel.LocalizableAttribute>参阅和[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
   
  ]]></format>
         </remarks>
@@ -811,7 +811,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.CancelCommandName>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.CancelCommandName>是`"Cancel"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.CancelCommandName>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.CancelCommandName>为`"Cancel"`。  
   
  ]]></format>
         </remarks>
@@ -854,14 +854,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置在用户单击“取消”按钮时将定向到的 URL。</summary>
-        <value>在单击时将重定向到 URL**取消**上<see cref="T:System.Web.UI.WebControls.Wizard" />。 默认值为空字符串("")。</value>
+        <value>用户单击上的<see cref="T:System.Web.UI.WebControls.Wizard" />"**取消**" 时将重定向到的 URL。 默认值为空字符串("")。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.CancelDestinationPageUrl%2A>属性指定当用户单击显示的步骤**取消**按钮<xref:System.Web.UI.WebControls.Wizard>控件。 如果<xref:System.Web.UI.WebControls.Wizard.DisplayCancelButton%2A>属性设置为`true`并<xref:System.Web.UI.WebControls.Wizard.CancelDestinationPageUrl%2A>未设置属性、 刷新网页和<xref:System.Web.UI.WebControls.Wizard.OnCancelButtonClick%2A>引发事件。  
+ 属性指定用户单击<xref:System.Web.UI.WebControls.Wizard>控件上的 "取消" 按钮时显示的步骤。  <xref:System.Web.UI.WebControls.Wizard.CancelDestinationPageUrl%2A> 如果将`true` <xref:System.Web.UI.WebControls.Wizard.CancelDestinationPageUrl%2A>属性设置为, 并且未设置该属性<xref:System.Web.UI.WebControls.Wizard.OnCancelButtonClick%2A> , 则将刷新网页并引发事件。 <xref:System.Web.UI.WebControls.Wizard.DisplayCancelButton%2A>  
   
- 无法通过主题或样式表主题设置此属性。 有关详细信息，请参阅<xref:System.Web.UI.ThemeableAttribute>并[ASP.NET 主题和外观](https://msdn.microsoft.com/library/5df3ebbd-d46c-4502-9406-02f9df4ef2c3)。  
+ 无法通过主题或样式表主题设置此属性。 有关详细信息, 请<xref:System.Web.UI.ThemeableAttribute>参阅和[ASP.NET 主题和外观](https://msdn.microsoft.com/library/5df3ebbd-d46c-4502-9406-02f9df4ef2c3)。  
   
  ]]></format>
         </remarks>
@@ -901,12 +901,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.Wizard.CellPadding%2A>属性控制的单元格内容和单元格边框之间的间距。 指定的填充量添加到单元格的所有四个边。 列中的所有单元格都具有相同的单元格宽度;因此，间距已应用于列中最宽的单元格。 同样，同一行中的所有单元格具有相同的单元格高度。 因此，间距已应用到的行中最高的单元格。 不能指定单个单元格的大小。  
+ <xref:System.Web.UI.WebControls.Wizard.CellPadding%2A>使用属性可控制单元格内容和单元格边框之间的间距。 指定的填充量将添加到单元格的四个边。 列中的所有单元格都具有相同的单元宽度;因此, 间距适用于列中最宽的单元格。 同样, 同一行中的所有单元格都具有相同的单元高度。 这样, 间距就会应用于行中最高的单元格。 无法指定单个单元大小。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.CellPadding%2A>并<xref:System.Web.UI.WebControls.Wizard.CellSpacing%2A>属性进行编程的布局<xref:System.Web.UI.WebControls.Wizard>以声明方式控制。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.CellPadding%2A>和<xref:System.Web.UI.WebControls.Wizard.CellSpacing%2A>属性以声明方式对<xref:System.Web.UI.WebControls.Wizard>控件的布局进行编程。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardCellPadding#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardCellPadding/CS/wizardcellpaddingcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardCellPadding#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardCellPadding/VB/wizardcellpaddingvb.aspx#1)]  
@@ -945,12 +945,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.Wizard.CellSpacing%2A>属性来控制向导控件中相邻单元格之间的间距。 垂直方向和水平应用此间距。  
+ <xref:System.Web.UI.WebControls.Wizard.CellSpacing%2A>使用属性控制向导控件中相邻单元格之间的间距。 此间距同时应用于垂直和水平。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.CellPadding%2A>并<xref:System.Web.UI.WebControls.Wizard.CellSpacing%2A>属性进行编程的布局<xref:System.Web.UI.WebControls.Wizard>以声明方式控制。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.CellPadding%2A>和<xref:System.Web.UI.WebControls.Wizard.CellSpacing%2A>属性以声明方式对<xref:System.Web.UI.WebControls.Wizard>控件的布局进行编程。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardCellPadding#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardCellPadding/CS/wizardcellpaddingcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardCellPadding#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardCellPadding/VB/wizardcellpaddingvb.aspx#1)]  
@@ -1078,7 +1078,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.CustomFinishButtonID>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.CustomFinishButtonID>是`"CustomFinishButton"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.CustomFinishButtonID>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.CustomFinishButtonID>为`"CustomFinishButton"`。  
   
  ]]></format>
         </remarks>
@@ -1108,7 +1108,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.CustomNextButtonID>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.CustomNextButtonID>是`"CustomNextButton"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.CustomNextButtonID>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.CustomNextButtonID>为`"CustomNextButton"`。  
   
  ]]></format>
         </remarks>
@@ -1138,7 +1138,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.CustomPreviousButtonID>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.CustomPreviousButtonID>是`"CustomPreviousButton"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.CustomPreviousButtonID>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.CustomPreviousButtonID>为`"CustomPreviousButton"`。  
   
  ]]></format>
         </remarks>
@@ -1168,7 +1168,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.DataListID>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.DataListID>是`"SideBarList"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.DataListID>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.DataListID>为`"SideBarList"`。  
   
  ]]></format>
         </remarks>
@@ -1202,9 +1202,9 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个布尔值，指示是否显示“取消”按钮。</summary>
-        <value><see langword="true" /> 若要显示**取消**上<see cref="T:System.Web.UI.WebControls.Wizard" />; 否则为<see langword="false" />。 默认值为 <see langword="false" />。  
+        <value><see langword="true" />若要在上显示<see cref="T:System.Web.UI.WebControls.Wizard" />"取消" <see langword="false" />, 则为; 否则为。 默认值为 <see langword="false" />。  
   
-无法通过主题或样式表主题设置此属性。 有关详细信息，请参阅<see cref="T:System.Web.UI.ThemeableAttribute" />并[ASP.NET 主题和外观](https://msdn.microsoft.com/library/5df3ebbd-d46c-4502-9406-02f9df4ef2c3)。</value>
+无法通过主题或样式表主题设置此属性。 有关详细信息, 请<see cref="T:System.Web.UI.ThemeableAttribute" />参阅和[ASP.NET 主题和外观](https://msdn.microsoft.com/library/5df3ebbd-d46c-4502-9406-02f9df4ef2c3)。</value>
         <remarks>To be added.</remarks>
         <altmember cref="P:System.Web.UI.WebControls.Wizard.CancelButtonStyle" />
         <altmember cref="P:System.Web.UI.WebControls.Wizard.CancelButtonType" />
@@ -1245,12 +1245,12 @@
         <summary>获取或设置一个布尔值，该值指示是否显示 <see cref="T:System.Web.UI.WebControls.Wizard" /> 控件上的侧栏区域。</summary>
         <value>如果为 <see langword="true" />，则显示 <see cref="T:System.Web.UI.WebControls.Wizard" /> 上的侧栏区域；否则为 <see langword="false" />。 默认值为 <see langword="true" />。  
   
-无法通过主题或样式表主题设置此属性。 有关详细信息，请参阅<see cref="T:System.Web.UI.ThemeableAttribute" />并[ASP.NET 主题和外观](https://msdn.microsoft.com/library/5df3ebbd-d46c-4502-9406-02f9df4ef2c3)。</value>
+无法通过主题或样式表主题设置此属性。 有关详细信息, 请<see cref="T:System.Web.UI.ThemeableAttribute" />参阅和[ASP.NET 主题和外观](https://msdn.microsoft.com/library/5df3ebbd-d46c-4502-9406-02f9df4ef2c3)。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以在呈现的区别<xref:System.Web.UI.WebControls.Wizard>具体取决于是否将此属性设置为控件`true`或`false`。 当此属性的值设置为`true`并显示侧栏，不应用于单元格间距`HeadCell`， `StepCell`，或`NavigationCell`控制的表中的元素。 当此值是`false`，单元格间距已应用。 这可能会影响控件的呈现方式。  
+ <xref:System.Web.UI.WebControls.Wizard>控件的呈现可能有不同, 具体取决于此属性是设置为`true`还是`false`。 如果此`true`属性值设置为并且显示了边栏, 则单元格间距不会应用`HeadCell`于控件表`StepCell`的、 `NavigationCell`或元素。 如果该值为`false`, 则应用单元间距。 这可能会影响控件的呈现方式。  
   
  ]]></format>
         </remarks>
@@ -1282,14 +1282,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.FinishButtonClick>引发事件时**完成**按钮<xref:System.Web.UI.WebControls.Wizard>单击控件。 使用<xref:System.Web.UI.WebControls.Wizard.FinishButtonClick>事件，以便提供附加的处理时**完成**单击按钮。  
+ 当<xref:System.Web.UI.WebControls.Wizard.FinishButtonClick>单击<xref:System.Web.UI.WebControls.Wizard>控件上的 "**完成**" 按钮时, 将引发事件。 当单击 "**完成**" 按钮时, 可以使用事件来提供其他处理。<xref:System.Web.UI.WebControls.Wizard.FinishButtonClick>  
   
- 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何指定的事件处理程序<xref:System.Web.UI.WebControls.Wizard.FinishButtonClick>事件。 当**完成**单击按钮时，一条确认消息写入到`Label1`并且`Label1.Visible`属性设置为`true`，以便该消息显示在该步骤。  
+ 下面的代码示例演示如何为<xref:System.Web.UI.WebControls.Wizard.FinishButtonClick>事件指定事件处理程序。 单击 "**完成**" 按钮后, 将向`Label1`写入一条确认消息, 并`Label1.Visible`将属性设置`true`为, 以使消息显示在步骤中。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardFinishButtonClick#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardFinishButtonClick/CS/wizardfinishbuttonclickcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardFinishButtonClick#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardFinishButtonClick/VB/wizardfinishbuttonclickvb.aspx#1)]  
@@ -1322,7 +1322,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.FinishButtonID>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.FinishButtonID>是`"FinishButton"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.FinishButtonID>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.FinishButtonID>为`"FinishButton"`。  
   
  ]]></format>
         </remarks>
@@ -1362,12 +1362,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置为“完成”按钮显示的图像的 URL。</summary>
-        <value>显示的图像的 URL**完成**上<see cref="T:System.Web.UI.WebControls.Wizard" />。 默认值为空字符串("")。</value>
+        <value>在上为 "**完成**" <see cref="T:System.Web.UI.WebControls.Wizard" />显示的图像的 URL。 默认值为空字符串("")。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonType%2A>属性设置为<xref:System.Web.UI.WebControls.ButtonType.Image>字段中，使用<xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonImageUrl%2A>属性来指定要显示的图像**完成**按钮。  
+ 当属性设置<xref:System.Web.UI.WebControls.ButtonType.Image>为字段时, 请使用<xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonImageUrl%2A>属性指定要为 "完成" 按钮显示的图像。  <xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonType%2A>  
   
  ]]></format>
         </remarks>
@@ -1409,14 +1409,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取一个对 <see cref="T:System.Web.UI.WebControls.Style" /> 对象的引用，该对象定义“完成”按钮的设置。</summary>
-        <value>对引用<see cref="T:System.Web.UI.WebControls.Style" />，它定义的样式设置**完成**上<see cref="T:System.Web.UI.WebControls.Wizard" />。</value>
+        <value>一个对的引用<see cref="T:System.Web.UI.WebControls.Style" /> , 该引用定义上的 <see cref="T:System.Web.UI.WebControls.Wizard" />"完成" 的样式设置。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonStyle%2A>属性定义为外观**完成**按钮<xref:System.Web.UI.WebControls.Wizard>控件。 <xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonStyle%2A>属性是只读的; 但是，可以设置的属性<xref:System.Web.UI.WebControls.Style>它将返回的对象。 你可以以声明方式设置这些属性在窗体`Property-Subproperty`，其中`Subproperty`表示的属性<xref:System.Web.UI.WebControls.Style>类 (例如， `CancelButtonStyle-ForeColor`)。 你可以以编程方式设置的属性在窗体`Property.Subproperty`(例如， `CancelButtonStyle.ForeColor`)。  
+ 属性定义<xref:System.Web.UI.WebControls.Wizard>控件上 "完成" 按钮的外观。  <xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonStyle%2A> 属性<xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonStyle%2A>是只读的; 但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.Style>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.Style>表示类的属性 (例如`CancelButtonStyle-ForeColor`)。 可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `CancelButtonStyle.ForeColor`例如)。  
   
- 常用的设置包括自定义背景颜色、 文本颜色和字体属性。 样式设置<xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonStyle%2A>属性的样式设置与合并<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。 在应用任何设置都会<xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonStyle%2A>属性重写中的相应设置<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。  
+ 常见设置包括自定义背景色、文本颜色和字体属性。 <xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonStyle%2A>属性的样式设置与<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性的样式设置合并在一起。 在<xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonStyle%2A>属性中应用的任何设置都将重写<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性中的相应设置。  
   
  ]]></format>
         </remarks>
@@ -1451,23 +1451,23 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置为“完成”按钮显示的描述文字。</summary>
-        <value>为显示的文本标题**完成**上<see cref="T:System.Web.UI.WebControls.Wizard" />。 默认值是<c>"完成"</c>。 控件的默认文本将根据服务器当前的区域设置进行本地化。</value>
+        <value>为中的 " <see cref="T:System.Web.UI.WebControls.Wizard" />**完成**" 显示的文本标题。 默认值为<c>"Finish"</c>。 控件的默认文本将根据服务器当前的区域设置进行本地化。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonText%2A>属性包含为显示的文本**完成**按钮<xref:System.Web.UI.WebControls.Wizard>控件。 具体取决于值<xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonType%2A>属性，<xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonText%2A>属性可以显示为上一个按钮的文本的文本显示为图像无法呈现图像的浏览器中的替代方法或链接的文本。 下表列出的字段值<xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonType%2A>属性和相应的每个效果**完成**按钮文本。  
+ 属性包含为<xref:System.Web.UI.WebControls.Wizard>控件上的 "完成" 按钮显示的文本。  <xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonText%2A> 根据<xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonType%2A>属性的值<xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonText%2A> , 属性可以作为按钮上的文本出现, 作为在不呈现图像的浏览器中显示为图像的替代文本, 或显示为链接的文本。 下表列出了<xref:System.Web.UI.WebControls.Wizard.FinishCompleteButtonType%2A>属性的字段值, 并列出了 "**完成**" 按钮文本上每个字段的作用。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Button>  
- 按钮上显示的文本。  
+ 文本出现在按钮上。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Image>  
- 文本显示为图像的替换文本。  
+ 文本显示为图像的替代文本。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Link>  
  文本显示为链接文本。  
   
- 此属性的值设置时，可以自动保存到资源文件使用设计器工具。 有关详细信息，请参阅<xref:System.ComponentModel.LocalizableAttribute>并[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
+ 设置此属性后, 可以使用设计器工具自动将此属性的值保存到资源文件中。 有关详细信息, 请<xref:System.ComponentModel.LocalizableAttribute>参阅和[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
   
  ]]></format>
         </remarks>
@@ -1543,14 +1543,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置在用户单击“完成”按钮时将重定向到的 URL。</summary>
-        <value>在单击时将重定向到 URL**完成**上<see cref="T:System.Web.UI.WebControls.Wizard" />。 默认值为空字符串("")。</value>
+        <value>用户单击上的 " <see cref="T:System.Web.UI.WebControls.Wizard" />**完成**" 时将重定向到的 URL。 默认值为空字符串("")。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.FinishDestinationPageUrl%2A>属性指定当用户单击显示的步骤**完成**按钮<xref:System.Web.UI.WebControls.Wizard>控件。  
+ 属性指定用户单击<xref:System.Web.UI.WebControls.Wizard>控件上的 "完成" 按钮时显示的步骤。  <xref:System.Web.UI.WebControls.Wizard.FinishDestinationPageUrl%2A>  
   
- 无法通过主题或样式表主题设置此属性。 有关详细信息，请参阅<xref:System.Web.UI.ThemeableAttribute>并[ASP.NET 主题和外观](https://msdn.microsoft.com/library/5df3ebbd-d46c-4502-9406-02f9df4ef2c3)。  
+ 无法通过主题或样式表主题设置此属性。 有关详细信息, 请<xref:System.Web.UI.ThemeableAttribute>参阅和[ASP.NET 主题和外观](https://msdn.microsoft.com/library/5df3ebbd-d46c-4502-9406-02f9df4ef2c3)。  
   
  ]]></format>
         </remarks>
@@ -1600,19 +1600,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>属性指定的自定义内容上显示的导航区域<xref:System.Web.UI.WebControls.WizardStepType.Finish>的步骤<xref:System.Web.UI.WebControls.Wizard>控件。 通过创建指定的导航区域上的呈现方式的模板中定义的内容<xref:System.Web.UI.WebControls.WizardStepType.Finish>步骤。  
+ 使用属性指定为<xref:System.Web.UI.WebControls.Wizard>控件的<xref:System.Web.UI.WebControls.WizardStepType.Finish>步骤显示的导航区域的自定义内容。 <xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A> 通过创建指定如何在<xref:System.Web.UI.WebControls.WizardStepType.Finish>步骤中呈现导航区域的模板来定义内容。  
   
- 该模板的自定义内容包含在<xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>对象。 你可以添加到自定义内容<xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>对象在设计视图中或通过定义通过使用模板编辑模式<xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>对象内联使用`FinishNavigationTemplate`标记。 内容可以是简单的纯文本或更复杂 （嵌入其他控件在模板中，例如）。  
+ 模板的自定义内容包含在<xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>对象内。 您可以通过在 "设计" <xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>视图中使用模板编辑模式或通过使用`FinishNavigationTemplate`标记来<xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>定义嵌入对象, 将自定义内容添加到对象。 内容可以像纯文本或更复杂 (例如, 在模板中嵌入其他控件) 一样简单。  
   
 > [!NOTE]
->  <xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>中包含的对象<xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>属性必须包含两个<xref:System.Web.UI.WebControls.IButtonControl>控件，另一个使用其<xref:System.Web.UI.WebControls.IButtonControl.CommandName%2A>属性设置为"MoveComplete"和另一种具有其<xref:System.Web.UI.WebControls.IButtonControl.CommandName%2A>属性设置为"MovePrevious"以启用导航功能。  
+>  <xref:System.Web.UI.WebControls.IButtonControl.CommandName%2A> <xref:System.Web.UI.WebControls.IButtonControl.CommandName%2A> <xref:System.Web.UI.WebControls.IButtonControl>属性中包含的对象必须包含两个控件,一个控件的属性设置为"MoveComplete",另一个控件的属性设置为"MovePrevious",以启用<xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A> <xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>导航功能。  
   
- 若要访问模板中以编程方式定义的控件，请使用<xref:System.Web.UI.WebControls.CompositeControl.Controls%2A>的集合<xref:System.Web.UI.WebControls.Wizard>对象。 此外可以使用<xref:System.Web.UI.Control.FindControl%2A>方法<xref:System.Web.UI.WebControls.Wizard>对象来查找该控件，如果控件具有<xref:System.Web.UI.Control.ID%2A>指定属性。  
+ 若要以编程方式访问在模板中定义的控件, 请<xref:System.Web.UI.WebControls.CompositeControl.Controls%2A>使用<xref:System.Web.UI.WebControls.Wizard>对象的集合。 如果控件具有指定的<xref:System.Web.UI.Control.FindControl%2A> <xref:System.Web.UI.WebControls.Wizard> 属性,则还可以使用对象的方法<xref:System.Web.UI.Control.ID%2A>来查找控件。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>属性来创建自定义模板的导航区域<xref:System.Web.UI.WebControls.WizardStepType.Finish>步骤，用于<xref:System.Web.UI.WebControls.Wizard>控件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.FinishNavigationTemplate%2A>属性为<xref:System.Web.UI.WebControls.Wizard>控件的<xref:System.Web.UI.WebControls.WizardStepType.Finish>步骤导航区域创建自定义模板。  
   
 > [!IMPORTANT]
 >  此示例具有一个接受用户输入的文本框，这是一个潜在的安全威胁。 默认情况下，ASP.NET 网页验证用户输入是否不包含脚本或 HTML 元素。 有关详细信息，请参阅[脚本侵入概述](https://msdn.microsoft.com/library/772c7312-211a-4eb3-8d6e-eec0aa1dcc07)。  
@@ -1650,7 +1650,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonID>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonID> `"FinishPreviousButton"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonID>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonID>。 `"FinishPreviousButton"`  
   
  ]]></format>
         </remarks>
@@ -1690,12 +1690,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置为 <see cref="F:System.Web.UI.WebControls.WizardStepType.Finish" /> 步骤中的“上一步”按钮显示的图像的 URL。</summary>
-        <value>显示的图像的 URL**上一步**上<see cref="F:System.Web.UI.WebControls.WizardStepType.Finish" />的<see cref="T:System.Web.UI.WebControls.Wizard" />。 默认值为空字符串("")。</value>
+        <value>为<see cref="F:System.Web.UI.WebControls.WizardStepType.Finish" /> 的<see cref="T:System.Web.UI.WebControls.Wizard" />上的 "上**一步**" 显示的图像的 URL。 默认值为空字符串("")。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonType%2A>属性设置为<xref:System.Web.UI.WebControls.ButtonType.Image>字段中，使用<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonImageUrl%2A>属性来指定要显示的图像**上一步**按钮<xref:System.Web.UI.WebControls.WizardStepType.Finish>步骤。  
+ <xref:System.Web.UI.WebControls.ButtonType.Image> <xref:System.Web.UI.WebControls.WizardStepType.Finish> <xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonImageUrl%2A>当属性设置为字段时, 使用属性指定为步骤中的 "**上一**步" 按钮显示的图像。 <xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonType%2A>  
   
  ]]></format>
         </remarks>
@@ -1737,14 +1737,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取一个对 <see cref="T:System.Web.UI.WebControls.Style" /> 对象的引用，该对象定义 <see cref="F:System.Web.UI.WebControls.WizardStepType.Finish" /> 步骤中“上一步”按钮的设置。</summary>
-        <value>对引用<see cref="T:System.Web.UI.WebControls.Style" />，它定义的样式设置**上一步**上<see cref="F:System.Web.UI.WebControls.WizardStepType.Finish" />的<see cref="T:System.Web.UI.WebControls.Wizard" />。</value>
+        <value>一个对的引用<see cref="T:System.Web.UI.WebControls.Style" /> , 该引用定义的上的 " <see cref="F:System.Web.UI.WebControls.WizardStepType.Finish" /> <see cref="T:System.Web.UI.WebControls.Wizard" />**上一步**" 的样式设置。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonStyle%2A>属性定义为外观**上一步**按钮<xref:System.Web.UI.WebControls.WizardStepType.Finish>步骤<xref:System.Web.UI.WebControls.Wizard>控件。 <xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonStyle%2A>属性是只读的; 但是，可以设置的属性<xref:System.Web.UI.WebControls.Style>它将返回的对象。 你可以以声明方式设置这些属性在窗体`Property-Subproperty`，其中`Subproperty`表示的属性<xref:System.Web.UI.WebControls.Style>类 (例如， `CancelButtonStyle-ForeColor`)。 你可以以编程方式设置的属性在窗体`Property.Subproperty`(例如， `CancelButtonStyle.ForeColor`)。  
+ 属性定义<xref:System.Web.UI.WebControls.Wizard>控件<xref:System.Web.UI.WebControls.WizardStepType.Finish>步骤中 "**上一**步" 按钮的外观。 <xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonStyle%2A> 属性<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonStyle%2A>是只读的; 但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.Style>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.Style>表示类的属性 (例如`CancelButtonStyle-ForeColor`)。 可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `CancelButtonStyle.ForeColor`例如)。  
   
- 常用的设置包括自定义背景颜色、 文本颜色和字体属性。 样式设置<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonStyle%2A>属性的样式设置与合并<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。 在应用任何设置都会<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonStyle%2A>属性重写中的相应设置<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。  
+ 常见设置包括自定义背景色、文本颜色和字体属性。 <xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonStyle%2A>属性的样式设置与<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性的样式设置合并在一起。 在<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonStyle%2A>属性中应用的任何设置都将重写<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性中的相应设置。  
   
  ]]></format>
         </remarks>
@@ -1778,23 +1778,23 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置为 <see cref="F:System.Web.UI.WebControls.WizardStepType.Finish" /> 步骤中的“上一步”按钮显示的描述文字。</summary>
-        <value>为显示的文本标题**上一步**上<see cref="F:System.Web.UI.WebControls.WizardStepType.Finish" />的<see cref="T:System.Web.UI.WebControls.Wizard" />。 默认值是<c>"上一步"</c>。 控件的默认文本将根据服务器当前的区域设置进行本地化。</value>
+        <value>为的<see cref="F:System.Web.UI.WebControls.WizardStepType.Finish" /> 上的"上一步"显示的文本标题。<see cref="T:System.Web.UI.WebControls.Wizard" />  默认值为<c>"上一步"</c>。 控件的默认文本将根据服务器当前的区域设置进行本地化。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonText%2A>属性包含为显示的文本**上一步**按钮<xref:System.Web.UI.WebControls.WizardStepType.Finish>步骤<xref:System.Web.UI.WebControls.Wizard>控件。 具体取决于值<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonType%2A>属性，<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonText%2A>属性可以显示为上一个按钮的文本的文本显示为图像无法呈现图像的浏览器中的替代方法或链接的文本。 下表列出<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonType%2A>属性字段值以及对相应影响**上一步**按钮文本。  
+ 属性包含为<xref:System.Web.UI.WebControls.Wizard>控件的<xref:System.Web.UI.WebControls.WizardStepType.Finish>步骤中 "**上一**步" 按钮显示的文本。 <xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonText%2A> 根据<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonType%2A>属性的值<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonText%2A> , 属性可以作为按钮上的文本出现, 作为在不呈现图像的浏览器中显示为图像的替代文本, 或显示为链接的文本。 下表列出<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonType%2A>了属性字段值以及对**上一个**按钮文本的相应效果。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Button>  
- 按钮上显示的文本。  
+ 文本出现在按钮上。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Image>  
- 文本显示为图像的替换文本。  
+ 文本显示为图像的替代文本。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Link>  
  文本显示为链接。  
   
- 此属性的值设置时，可以自动保存到资源文件使用设计器工具。 有关详细信息，请参阅<xref:System.ComponentModel.LocalizableAttribute>并[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
+ 设置此属性后, 可以使用设计器工具自动将此属性的值保存到资源文件中。 有关详细信息, 请<xref:System.ComponentModel.LocalizableAttribute>参阅和[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
   
  ]]></format>
         </remarks>
@@ -1882,7 +1882,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.GetHistory%2A>方法返回一个集合，其中包含<xref:System.Web.UI.WebControls.WizardStepBase>已经被访问过的对象。 <xref:System.Web.UI.WebControls.WizardStepBase>对象中访问它们的顺序排列： 集合中的第一项是以前<xref:System.Web.UI.WebControls.WizardStepBase>对象，集合中的第二项为<xref:System.Web.UI.WebControls.WizardStepBase>在上一步之前所访问的对象，因此上。  
+ 方法返回一个集合, <xref:System.Web.UI.WebControls.WizardStepBase>其中包含已访问的对象。 <xref:System.Web.UI.WebControls.Wizard.GetHistory%2A> 按对象的访问顺序排列对象: 集合中的第一项是上<xref:System.Web.UI.WebControls.WizardStepBase>一个对象, 集合<xref:System.Web.UI.WebControls.WizardStepBase>中的第二项是在上一步骤之前访问的对象, 因此<xref:System.Web.UI.WebControls.WizardStepBase>基于.  
   
  ]]></format>
         </remarks>
@@ -1918,12 +1918,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.Wizard.GetStepType%2A>方法，以确定<xref:System.Web.UI.WebControls.WizardStepType>指定的值<xref:System.Web.UI.WebControls.WizardStepBase>对象。  
+ 使用方法可<xref:System.Web.UI.WebControls.WizardStepType>确定指定<xref:System.Web.UI.WebControls.WizardStepBase>对象的值。 <xref:System.Web.UI.WebControls.Wizard.GetStepType%2A>  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.GetStepType%2A>方法来确定关联<xref:System.Web.UI.WebControls.WizardStepType>值的当前步骤的<xref:System.Web.UI.WebControls.Wizard>控件。 每次<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged>引发事件时，新<xref:System.Web.UI.WebControls.WizardStepType>检索值，并且一条消息写入到`Label1`。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.GetStepType%2A>方法来确定<xref:System.Web.UI.WebControls.Wizard>控件当前步骤的<xref:System.Web.UI.WebControls.WizardStepType>关联值。 每次<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged>引发事件时, 都会检索新<xref:System.Web.UI.WebControls.WizardStepType>值并写入`Label1`消息。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardGetStepType#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardGetStepType/CS/wizardgetsteptypecs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardGetStepType#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardGetStepType/VB/wizardgetsteptypevb.aspx#1)]  
@@ -1956,7 +1956,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 占位符 ID 必须设置为"headerPlaceHolder"。  
+ 占位符 ID 必须设置为 "headerPlaceHolder"。  
   
  ]]></format>
         </remarks>
@@ -1999,9 +1999,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.HeaderStyle%2A>属性上定义标头区域的外观<xref:System.Web.UI.WebControls.Wizard>控件。 <xref:System.Web.UI.WebControls.Wizard.HeaderStyle%2A>属性是只读的; 但是，可以设置的属性<xref:System.Web.UI.WebControls.Style>它将返回的对象。 你可以以声明方式设置这些属性在窗体`Property-Subproperty`，其中`Subproperty`表示的属性<xref:System.Web.UI.WebControls.Style>类 (例如， `CancelButtonStyle-ForeColor`)。 你可以以编程方式设置的属性在窗体`Property.Subproperty`(例如， `CancelButtonStyle.ForeColor`)。  
+ 属性定义<xref:System.Web.UI.WebControls.Wizard>控件上标题区域的外观。 <xref:System.Web.UI.WebControls.Wizard.HeaderStyle%2A> 属性<xref:System.Web.UI.WebControls.Wizard.HeaderStyle%2A>是只读的; 但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.Style>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.Style>表示类的属性 (例如`CancelButtonStyle-ForeColor`)。 可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `CancelButtonStyle.ForeColor`例如)。  
   
- 常用的设置包括自定义背景颜色、 文本颜色和字体属性。  
+ 常见设置包括自定义背景色、文本颜色和字体属性。  
   
  ]]></format>
         </remarks>
@@ -2051,11 +2051,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A>属性指定的自定义内容上显示的标题区域<xref:System.Web.UI.WebControls.Wizard>控件。 通过创建指定如何呈现页眉区域模板中定义的内容。  
+ 使用属性指定为<xref:System.Web.UI.WebControls.Wizard>控件上的标题区域显示的自定义内容。 <xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A> 通过创建指定如何呈现页眉区的模板来定义内容。  
   
- 该模板的自定义内容包含在<xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A>对象。 你可以添加到自定义内容<xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A>对象在设计视图中或通过定义通过使用模板编辑模式<xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A>对象内联使用`HeaderTemplate`标记。 内容可以是简单的纯文本或更复杂 （嵌入其他控件在模板中，例如）。  
+ 模板的自定义内容包含在<xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A>对象内。 您可以通过在 "设计" <xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A>视图中使用模板编辑模式或通过使用`HeaderTemplate`标记来<xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A>定义嵌入对象, 将自定义内容添加到对象。 内容可以像纯文本或更复杂 (例如, 在模板中嵌入其他控件) 一样简单。  
   
- 若要访问模板中以编程方式定义的控件，请使用<xref:System.Web.UI.WebControls.CompositeControl.Controls%2A>的集合<xref:System.Web.UI.WebControls.Wizard>对象。 此外可以使用<xref:System.Web.UI.Control.FindControl%2A>方法<xref:System.Web.UI.WebControls.Wizard>对象来查找该控件，如果控件具有<xref:System.Web.UI.Control.ID%2A>指定属性。  
+ 若要以编程方式访问在模板中定义的控件, 请<xref:System.Web.UI.WebControls.CompositeControl.Controls%2A>使用<xref:System.Web.UI.WebControls.Wizard>对象的集合。 如果控件具有指定的<xref:System.Web.UI.Control.FindControl%2A> <xref:System.Web.UI.WebControls.Wizard> 属性,则还可以使用对象的方法<xref:System.Web.UI.Control.ID%2A>来查找控件。  
   
  ]]></format>
         </remarks>
@@ -2095,19 +2095,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.HeaderText%2A>属性定义显示的标题区域的文本标题<xref:System.Web.UI.WebControls.Wizard>控件。  
+ 属性定义为<xref:System.Web.UI.WebControls.Wizard>控件上的标题区域显示的文本标题。 <xref:System.Web.UI.WebControls.Wizard.HeaderText%2A>  
   
- 若要控制标头区域的样式，使用<xref:System.Web.UI.WebControls.Wizard.HeaderStyle%2A>属性。 或者，可以通过设置来定义自己的标头行的自定义 UI<xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A>属性，而不是<xref:System.Web.UI.WebControls.Wizard.HeaderText%2A>属性。  
+ 若要控制标题区的样式, 请使用<xref:System.Web.UI.WebControls.Wizard.HeaderStyle%2A>属性。 或者, 您可以通过设置<xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A>属性而不是<xref:System.Web.UI.WebControls.Wizard.HeaderText%2A>属性来为标题行定义您自己的自定义 UI。  
   
 > [!NOTE]
->  如果这两个<xref:System.Web.UI.WebControls.Wizard.HeaderText%2A>并<xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A>属性定义，<xref:System.Web.UI.WebControls.Wizard.HeaderText%2A>属性不起作用。  
+>  如果同时定义<xref:System.Web.UI.WebControls.Wizard.HeaderText%2A>了<xref:System.Web.UI.WebControls.Wizard.HeaderTemplate%2A>和属性, 则<xref:System.Web.UI.WebControls.Wizard.HeaderText%2A>属性不起作用。  
   
- 此属性的值设置时，可以自动保存到资源文件使用设计器工具。 有关详细信息，请参阅<xref:System.ComponentModel.LocalizableAttribute>并[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
+ 设置此属性后, 可以使用设计器工具自动将此属性的值保存到资源文件中。 有关详细信息, 请<xref:System.ComponentModel.LocalizableAttribute>参阅和[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged>事件以更新<xref:System.Web.UI.WebControls.Wizard.HeaderText%2A>属性的<xref:System.Web.UI.WebControls.Wizard>控件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged>事件<xref:System.Web.UI.WebControls.Wizard.HeaderText%2A>更新<xref:System.Web.UI.WebControls.Wizard>控件的属性。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardActiveStepChanged#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardActiveStepChanged/CS/wizardactivestepchangedcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardActiveStepChanged#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardActiveStepChanged/VB/wizardactivestepchangedvb.aspx#1)]  
@@ -2158,15 +2158,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Web.UI.WebControls.Wizard.LayoutTemplate%2A>属性来定义自定义用户界面 (UI) 的<xref:System.Web.UI.WebControls.Wizard>控件。 若要指定一个布局模板，添加`LayoutTemplate`元素内的<xref:System.Web.UI.WebControls.Wizard>控件标记。 内部`LayoutTemplate`元素中，添加的组件的占位符<xref:System.Web.UI.WebControls.Wizard>控件。 导航、 侧栏中和的向导步骤部分的占位符<xref:System.Web.UI.WebControls.Wizard>中，需要使用控件`LayoutTemplate`元素。  
+ 您可以使用<xref:System.Web.UI.WebControls.Wizard.LayoutTemplate%2A>属性定义<xref:System.Web.UI.WebControls.Wizard>控件的自定义用户界面 (UI)。 若要指定布局模板, 请在`LayoutTemplate` <xref:System.Web.UI.WebControls.Wizard>控件标记中添加一个元素。 在元素内, 为<xref:System.Web.UI.WebControls.Wizard>控件的组件添加占位符。 `LayoutTemplate` 在<xref:System.Web.UI.WebControls.Wizard> 元素`LayoutTemplate`中, 控件的导航、边栏和向导步骤部分的占位符是必需的。  
   
 > [!NOTE]
->  你可以修改布局模板中的**源**视图。 编辑中的布局模板**设计**不支持视图。  
+>  您可以在 "**源**" 视图中修改布局模板。 不支持在 "**设计**" 视图中编辑布局模板。  
   
    
   
 ## Examples  
- 下面的示例演示如何添加`LayoutTemplate`元素`Wizard`控件以及如何设置格式的组件`Wizard`控件中的使用`div`元素。 当控件呈现，则`div`元素将使用而不是 HTML 表，若要设置控件的格式。  
+ 下面的示例`LayoutTemplate`演示如何将元素添加`Wizard`到控件, 以及如何使用`div`元素`Wizard`设置控件组件的格式。 当控件呈现时, `div`将使用元素而不是 HTML 表设置控件的格式。  
   
   
   
@@ -2247,7 +2247,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.MoveCompleteCommandName>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.MoveCompleteCommandName>是`"MoveComplete"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.MoveCompleteCommandName>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.MoveCompleteCommandName>为`"MoveComplete"`。  
   
  ]]></format>
         </remarks>
@@ -2280,7 +2280,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.MoveNextCommandName>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.MoveNextCommandName>是`"MoveNext"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.MoveNextCommandName>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.MoveNextCommandName>为`"MoveNext"`。  
   
  ]]></format>
         </remarks>
@@ -2310,7 +2310,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.MovePreviousCommandName>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.MovePreviousCommandName>是`"MovePrevious"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.MovePreviousCommandName>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.MovePreviousCommandName>为`"MovePrevious"`。  
   
  ]]></format>
         </remarks>
@@ -2344,12 +2344,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.Wizard.MoveTo%2A>方法来控制哪些<xref:System.Web.UI.WebControls.WizardStepBase>-派生的对象设置为值<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>中的属性<xref:System.Web.UI.WebControls.Wizard>以编程方式控制。 这样一来，您可以更改<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性动态地基于其他条件在运行时。  
+ 使用方法控制以编程方式<xref:System.Web.UI.WebControls.WizardStepBase>将哪个派生对象设置为<xref:System.Web.UI.WebControls.Wizard>控件中的<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性的值。 <xref:System.Web.UI.WebControls.Wizard.MoveTo%2A> 这样一来, 您就可以<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>在运行时根据其他条件动态地更改属性。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.MoveTo%2A>控制方法<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性的<xref:System.Web.UI.WebControls.Wizard>控件。 如果的值`CheckBox1.Checked`是`true`，则<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性设置为`Wizard1.Step3`; 否则为<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性设置为`Wizard1.Step2`。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.MoveTo%2A>方法<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>控制<xref:System.Web.UI.WebControls.Wizard>控件的属性。 如果`CheckBox1.Checked`的`Wizard1.Step2`值`true`为, <xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>则`Wizard1.Step3`将<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性设置为; 否则, 属性设置为。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardMoveTo#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardMoveTo/CS/wizardmovetocs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardMoveTo#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardMoveTo/VB/wizardmovetovb.aspx#1)]  
@@ -2387,7 +2387,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.MoveToCommandName>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.MoveToCommandName>是`"Move"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.MoveToCommandName>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.MoveToCommandName>为`"Move"`。  
   
  ]]></format>
         </remarks>
@@ -2432,11 +2432,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性上定义的导航区域中按钮的外观<xref:System.Web.UI.WebControls.Wizard>控件。 <xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性是只读的; 但是，可以设置的属性<xref:System.Web.UI.WebControls.Style>它将返回的对象。 你可以以声明方式设置这些属性在窗体`Property-Subproperty`，其中`Subproperty`表示的属性<xref:System.Web.UI.WebControls.Style>类 (例如， `CancelButtonStyle-ForeColor`)。 你可以以编程方式设置的属性在窗体`Property.Subproperty`(例如， `CancelButtonStyle.ForeColor`)。  
+ 属性定义<xref:System.Web.UI.WebControls.Wizard>控件上导航区域中按钮的外观。 <xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A> 属性<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>是只读的; 但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.Style>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.Style>表示类的属性 (例如`CancelButtonStyle-ForeColor`)。 可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `CancelButtonStyle.ForeColor`例如)。  
   
- 常用的设置包括自定义背景颜色、 文本颜色和字体属性。 样式设置<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>与个别按钮样式合并属性。 在应用中的个别按钮样式属性的任何设置将重写中的相应设置<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。 例如，如果您设置`FinishPreviousButtonStyle.ForeColor`属性设置为`"red"`并`NavigationButtonStyle.ForeColor`属性设置为`"green"`，为按钮的颜色将为红色，因为各个样式设置<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonStyle%2A>属性替代的设置<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。  
+ 常见设置包括自定义背景色、文本颜色和字体属性。 <xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性的样式设置与各个按钮样式合并。 在单个按钮样式属性中应用的任何设置都将覆盖<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性中的相应设置。 例如, `FinishPreviousButtonStyle.ForeColor`如果将属性设置为`"red"` , 并`NavigationButtonStyle.ForeColor`将属性设置为`"green"`, 则<xref:System.Web.UI.WebControls.Wizard.FinishPreviousButtonStyle%2A>按钮的颜色将为红色, 因为属性的各个样式设置会重写<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。  
   
- 以下<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性样式由个别按钮样式设置重写：  
+ 以下<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性样式由各按钮样式设置重写:  
   
 -   <xref:System.Web.UI.WebControls.Style.BackColor%2A>  
   
@@ -2482,7 +2482,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 占位符 ID 必须设置为"navigationPlaceHolder"。  
+ 占位符 ID 必须设置为 "navigationPlaceHolder"。  
   
  ]]></format>
         </remarks>
@@ -2525,13 +2525,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.NavigationStyle%2A>属性定义上导航区域的外观<xref:System.Web.UI.WebControls.Wizard>控件。 <xref:System.Web.UI.WebControls.Wizard.NavigationStyle%2A>属性是只读的; 但是，可以设置的属性<xref:System.Web.UI.WebControls.Style>它将返回的对象。 你可以以声明方式设置这些属性在窗体`Property-Subproperty`，其中`Subproperty`表示的属性<xref:System.Web.UI.WebControls.Style>类 (例如， `CancelButtonStyle-ForeColor`)。 你可以以编程方式设置的属性在窗体`Property.Subproperty`(例如， `CancelButtonStyle.ForeColor`)。  
+ 属性定义<xref:System.Web.UI.WebControls.Wizard>控件上的导航区域的外观。 <xref:System.Web.UI.WebControls.Wizard.NavigationStyle%2A> 属性<xref:System.Web.UI.WebControls.Wizard.NavigationStyle%2A>是只读的; 但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.Style>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.Style>表示类的属性 (例如`CancelButtonStyle-ForeColor`)。 可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `CancelButtonStyle.ForeColor`例如)。  
   
- 常用的设置包括自定义背景颜色、 文本颜色和字体属性。  
+ 常见设置包括自定义背景色、文本颜色和字体属性。  
   
- 样式设置<xref:System.Web.UI.WebControls.Wizard.NavigationStyle%2A>属性的样式设置与合并<xref:System.Web.UI.WebControls.Wizard>控件。 在应用任何设置<xref:System.Web.UI.WebControls.Wizard.NavigationStyle%2A>属性重写的属性中的相应设置<xref:System.Web.UI.WebControls.Wizard>控件。  
+ <xref:System.Web.UI.WebControls.Wizard.NavigationStyle%2A>属性的样式设置与<xref:System.Web.UI.WebControls.Wizard>控件的样式设置合并。 在<xref:System.Web.UI.WebControls.Wizard.NavigationStyle%2A>属性中应用的任何设置都将覆盖<xref:System.Web.UI.WebControls.Wizard>控件的属性中的相应设置。  
   
- 以下<xref:System.Web.UI.WebControls.Wizard>重写的样式属性<xref:System.Web.UI.WebControls.Wizard.NavigationStyle%2A>设置：  
+ 以下<xref:System.Web.UI.WebControls.Wizard>样式属性被<xref:System.Web.UI.WebControls.Wizard.NavigationStyle%2A>设置重写:  
   
 -   <xref:System.Web.UI.WebControls.Style.BackColor%2A>  
   
@@ -2578,14 +2578,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.NextButtonClick>引发事件时**下一步**按钮<xref:System.Web.UI.WebControls.Wizard>单击控件。 使用<xref:System.Web.UI.WebControls.Wizard.NextButtonClick>事件，以便提供附加的处理时**下一步**单击按钮。  
+ 当单击<xref:System.Web.UI.WebControls.Wizard>控件上的 "**下一步**" 按钮时, 将引发事件。<xref:System.Web.UI.WebControls.Wizard.NextButtonClick> 当单击 "**下一步**" 按钮时, 可以使用事件来提供其他处理。<xref:System.Web.UI.WebControls.Wizard.NextButtonClick>  
   
- 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何指定的事件处理程序<xref:System.Web.UI.WebControls.Wizard.NextButtonClick>事件。 每次**下一步**单击按钮时，<xref:System.Web.UI.WebControls.WebControl.BorderWidth%2A>属性<xref:System.Web.UI.WebControls.Wizard>控制将随之增加 1 个像素，通过测量<xref:System.Web.UI.WebControls.Unit>类。  
+ 下面的代码示例演示如何为<xref:System.Web.UI.WebControls.Wizard.NextButtonClick>事件指定事件处理程序。 每次单击 "**下一步**" 按钮<xref:System.Web.UI.WebControls.WebControl.BorderWidth%2A>时, <xref:System.Web.UI.WebControls.Wizard>控件的属性将以<xref:System.Web.UI.WebControls.Unit> 1 像素为增量增加, 这由类衡量。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardNextPreviousButtonClick#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardNextPreviousButtonClick/CS/wizardnextpreviousbuttonclickcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardNextPreviousButtonClick#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardNextPreviousButtonClick/VB/wizardnextpreviousbuttonclickvb.aspx#1)]  
@@ -2624,23 +2624,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.OnActiveStepChanged%2A>方法将引发<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged>事件时<xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性的<xref:System.Web.UI.WebControls.Wizard>更改控制。 使用<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged>事件来提供额外的处理时的当前步骤将显示在<xref:System.Web.UI.WebControls.Wizard>控件发生更改。  
+ 方法在<xref:System.Web.UI.WebControls.Wizard>控件的<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged> <xref:System.Web.UI.WebControls.Wizard.ActiveStep%2A>属性发生更改时引发事件。 <xref:System.Web.UI.WebControls.Wizard.OnActiveStepChanged%2A> 当控件中显示的当前步骤发生更改时, 可以使用事件来提供其他处理。<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged> <xref:System.Web.UI.WebControls.Wizard>  
   
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.UI.WebControls.Wizard.OnActiveStepChanged%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged>事件以更新<xref:System.Web.UI.WebControls.Wizard.HeaderText%2A>属性的<xref:System.Web.UI.WebControls.Wizard>控件。  
+ 下面的代码示例演示如何使用<xref:System.Web.UI.WebControls.Wizard.ActiveStepChanged>事件<xref:System.Web.UI.WebControls.Wizard.HeaderText%2A>更新<xref:System.Web.UI.WebControls.Wizard>控件的属性。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardActiveStepChanged#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardActiveStepChanged/CS/wizardactivestepchangedcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardActiveStepChanged#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardActiveStepChanged/VB/wizardactivestepchangedvb.aspx#1)]  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.UI.WebControls.Wizard.OnActiveStepChanged(System.Object,System.EventArgs)" />方法在派生类中，则一定要调用<see cref="M:System.Web.UI.WebControls.Wizard.OnActiveStepChanged(System.Object,System.EventArgs)" />方法的基类以便注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在派生<see cref="M:System.Web.UI.WebControls.Wizard.OnActiveStepChanged(System.Object,System.EventArgs)" />类中重写方法时, 请确保<see cref="M:System.Web.UI.WebControls.Wizard.OnActiveStepChanged(System.Object,System.EventArgs)" />调用基类的方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="E:System.Web.UI.WebControls.Wizard.ActiveStepChanged" />
         <related type="Article" href="https://msdn.microsoft.com/library/c0cc4b96-8d75-41f7-977a-4d75098d7a9e">向导 Web 服务器控件</related>
       </Docs>
@@ -2699,23 +2699,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.CancelButtonClick>引发事件时**取消**单击按钮。  
+ 单击 "**取消**" 按钮时引发事件。<xref:System.Web.UI.WebControls.Wizard.CancelButtonClick>  
   
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.UI.WebControls.Wizard.OnCancelButtonClick%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何指定的事件处理程序<xref:System.Web.UI.WebControls.Wizard.CancelButtonClick>事件。 当**取消**单击按钮时，该步骤将重定向到http://www.wingtiptoys.com/。  
+ 下面的代码示例演示如何为<xref:System.Web.UI.WebControls.Wizard.CancelButtonClick>事件指定事件处理程序。 单击 "**取消**" 按钮后, 该步骤将重定向http://www.wingtiptoys.com/到。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardCancelButtonClick#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardCancelButtonClick/CS/wizardcancelbuttonclickcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardCancelButtonClick#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardCancelButtonClick/VB/wizardcancelbuttonclickvb.aspx#1)]  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.UI.WebControls.Wizard.OnCancelButtonClick(System.EventArgs)" />方法在派生类中，则一定要调用<see cref="M:System.Web.UI.WebControls.Wizard.OnCancelButtonClick(System.EventArgs)" />方法的基类以便注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在派生<see cref="M:System.Web.UI.WebControls.Wizard.OnCancelButtonClick(System.EventArgs)" />类中重写方法时, 请确保<see cref="M:System.Web.UI.WebControls.Wizard.OnCancelButtonClick(System.EventArgs)" />调用基类的方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="E:System.Web.UI.WebControls.Wizard.CancelButtonClick" />
         <related type="Article" href="https://msdn.microsoft.com/library/c0cc4b96-8d75-41f7-977a-4d75098d7a9e">向导 Web 服务器控件</related>
       </Docs>
@@ -2746,23 +2746,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.FinishButtonClick>引发事件时**完成**单击按钮。  
+ 单击<xref:System.Web.UI.WebControls.Wizard.FinishButtonClick> "**完成**" 按钮时, 将引发事件。  
   
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.UI.WebControls.Wizard.OnFinishButtonClick%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何指定的事件处理程序<xref:System.Web.UI.WebControls.Wizard.FinishButtonClick>事件。 当**完成**单击按钮时，一条确认消息写入到`Label1`并且`Label1.Visible`属性设置为`true`，以便该消息显示在该步骤。  
+ 下面的代码示例演示如何为<xref:System.Web.UI.WebControls.Wizard.FinishButtonClick>事件指定事件处理程序。 单击 "**完成**" 按钮后, 将向`Label1`写入一条确认消息, 并`Label1.Visible`将属性设置`true`为, 以使消息显示在步骤中。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardFinishButtonClick#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardFinishButtonClick/CS/wizardfinishbuttonclickcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardFinishButtonClick#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardFinishButtonClick/VB/wizardfinishbuttonclickvb.aspx#1)]  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.UI.WebControls.Wizard.OnFinishButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />方法在派生类中，则一定要调用<see cref="M:System.Web.UI.WebControls.Wizard.OnFinishButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />方法的基类以便注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在派生<see cref="M:System.Web.UI.WebControls.Wizard.OnFinishButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />类中重写方法时, 请确保<see cref="M:System.Web.UI.WebControls.Wizard.OnFinishButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />调用基类的方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="E:System.Web.UI.WebControls.Wizard.FinishButtonClick" />
         <related type="Article" href="https://msdn.microsoft.com/library/c0cc4b96-8d75-41f7-977a-4d75098d7a9e">向导 Web 服务器控件</related>
       </Docs>
@@ -2818,23 +2818,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.NextButtonClick>引发事件时**下一步**单击按钮。  
+ 单击<xref:System.Web.UI.WebControls.Wizard.NextButtonClick> "**下一步**" 按钮时将引发该事件。  
   
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.UI.WebControls.Wizard.OnNextButtonClick%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何指定的事件处理程序<xref:System.Web.UI.WebControls.Wizard.NextButtonClick>事件。 每次**下一步**单击按钮时，<xref:System.Web.UI.WebControls.WebControl.BorderWidth%2A>属性<xref:System.Web.UI.WebControls.Wizard>控制将随之增加 1 个像素，通过测量<xref:System.Web.UI.WebControls.Unit>类。  
+ 下面的代码示例演示如何为<xref:System.Web.UI.WebControls.Wizard.NextButtonClick>事件指定事件处理程序。 每次单击 "**下一步**" 按钮<xref:System.Web.UI.WebControls.WebControl.BorderWidth%2A>时, <xref:System.Web.UI.WebControls.Wizard>控件的属性将以<xref:System.Web.UI.WebControls.Unit> 1 像素为增量增加, 这由类衡量。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardNextPreviousButtonClick#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardNextPreviousButtonClick/CS/wizardnextpreviousbuttonclickcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardNextPreviousButtonClick#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardNextPreviousButtonClick/VB/wizardnextpreviousbuttonclickvb.aspx#1)]  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.UI.WebControls.Wizard.OnNextButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />方法在派生类中，则一定要调用<see cref="M:System.Web.UI.WebControls.Wizard.OnNextButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />方法的基类以便注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在派生<see cref="M:System.Web.UI.WebControls.Wizard.OnNextButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />类中重写方法时, 请确保<see cref="M:System.Web.UI.WebControls.Wizard.OnNextButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />调用基类的方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="E:System.Web.UI.WebControls.Wizard.NextButtonClick" />
         <related type="Article" href="https://msdn.microsoft.com/library/c0cc4b96-8d75-41f7-977a-4d75098d7a9e">向导 Web 服务器控件</related>
       </Docs>
@@ -2865,23 +2865,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.PreviousButtonClick>引发事件时**上一步**单击按钮。  
+ 单击 "**上一步**" 按钮时引发事件。<xref:System.Web.UI.WebControls.Wizard.PreviousButtonClick>  
   
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.UI.WebControls.Wizard.OnPreviousButtonClick%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何指定的事件处理程序<xref:System.Web.UI.WebControls.Wizard.PreviousButtonClick>事件。 每次**上一步**单击按钮时，<xref:System.Web.UI.WebControls.WebControl.BorderWidth%2A>属性<xref:System.Web.UI.WebControls.Wizard>控件，单位由 1 个像素，减少<xref:System.Web.UI.WebControls.Unit>类。  
+ 下面的代码示例演示如何为<xref:System.Web.UI.WebControls.Wizard.PreviousButtonClick>事件指定事件处理程序。 每次单击 "**上一步**" 按钮<xref:System.Web.UI.WebControls.WebControl.BorderWidth%2A>时, <xref:System.Web.UI.WebControls.Wizard>控件的属性将减少<xref:System.Web.UI.WebControls.Unit> 1 个像素, 这由类衡量。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardNextPreviousButtonClick#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardNextPreviousButtonClick/CS/wizardnextpreviousbuttonclickcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardNextPreviousButtonClick#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardNextPreviousButtonClick/VB/wizardnextpreviousbuttonclickvb.aspx#1)]  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.UI.WebControls.Wizard.OnPreviousButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />方法在派生类中，则一定要调用<see cref="M:System.Web.UI.WebControls.Wizard.OnPreviousButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />方法的基类以便注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在派生<see cref="M:System.Web.UI.WebControls.Wizard.OnPreviousButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />类中重写方法时, 请确保<see cref="M:System.Web.UI.WebControls.Wizard.OnPreviousButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />调用基类的方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="E:System.Web.UI.WebControls.Wizard.PreviousButtonClick" />
         <related type="Article" href="https://msdn.microsoft.com/library/c0cc4b96-8d75-41f7-977a-4d75098d7a9e">向导 Web 服务器控件</related>
       </Docs>
@@ -2912,26 +2912,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>单击侧栏区域上的按钮时引发事件。  
+ 单击<xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>侧栏区域上的按钮时, 将引发事件。  
   
 > [!NOTE]
->  <xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>事件不会引发一个事件，如果<xref:System.Web.UI.WebControls.Button>控件替换<xref:System.Web.UI.WebControls.Button.CommandName%2A>属性设置为`Move`之外的<xref:System.Web.UI.WebControls.DataList>控件的侧栏列表<xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>对象。  
+>  <xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick> 如果将<xref:System.Web.UI.WebControls.Button.CommandName%2A>属性设置<xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>为的`Move` 控件超出<xref:System.Web.UI.WebControls.DataList>对象的控件侧栏列表, 该事件不会引发事件。 <xref:System.Web.UI.WebControls.Button>  
   
- 引发事件时，将通过委托调用事件处理程序。 有关详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 引发事件时，将通过委托调用事件处理程序。 有关详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
  <xref:System.Web.UI.WebControls.Wizard.OnSideBarButtonClick%2A> 方法还允许派生类对事件进行处理而不必附加委托。 这是在派生类中处理事件的首选技术。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何指定的事件处理程序<xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>事件。 每次<xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>引发事件时，将消息写入到<xref:System.Web.UI.WebControls.Label.Text%2A>属性`Label1`的侧栏上单击区域中按钮的信息。  
+ 下面的代码示例演示如何为<xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>事件指定事件处理程序。 每次<xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>引发事件时, 都会向的<xref:System.Web.UI.WebControls.Label.Text%2A>属性`Label1`写入一条消息, 其中包含有关单击了哪个边栏区域按钮的信息。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardSideBarButtonClick#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardSideBarButtonClick/CS/wizardsidebarbuttonclickcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardSideBarButtonClick#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardSideBarButtonClick/VB/wizardsidebarbuttonclickvb.aspx#1)]  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>重写时<see cref="M:System.Web.UI.WebControls.Wizard.OnSideBarButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />方法在派生类中，则一定要调用<see cref="M:System.Web.UI.WebControls.Wizard.OnSideBarButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />方法的基类以便注册的委托接收事件。</para></block>
+        <block subset="none" type="overrides"><para>当在派生<see cref="M:System.Web.UI.WebControls.Wizard.OnSideBarButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />类中重写方法时, 请确保<see cref="M:System.Web.UI.WebControls.Wizard.OnSideBarButtonClick(System.Web.UI.WebControls.WizardNavigationEventArgs)" />调用基类的方法, 以便注册的委托接收事件。</para></block>
         <altmember cref="E:System.Web.UI.WebControls.Wizard.SideBarButtonClick" />
         <related type="Article" href="https://msdn.microsoft.com/library/c0cc4b96-8d75-41f7-977a-4d75098d7a9e">向导 Web 服务器控件</related>
       </Docs>
@@ -2958,14 +2958,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.PreviousButtonClick>引发事件时**上一步**按钮<xref:System.Web.UI.WebControls.Wizard>单击控件。 使用<xref:System.Web.UI.WebControls.Wizard.PreviousButtonClick>事件，以便提供附加的处理时**上一步**单击按钮。  
+ 单击<xref:System.Web.UI.WebControls.Wizard.PreviousButtonClick> 控件<xref:System.Web.UI.WebControls.Wizard>上的 "**上一个**" 按钮时, 将引发事件。 当单击 "**上一步**" 按钮时, 使用事件提供其他处理。<xref:System.Web.UI.WebControls.Wizard.PreviousButtonClick>  
   
- 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何指定的事件处理程序<xref:System.Web.UI.WebControls.Wizard.PreviousButtonClick>事件。 每次**上一步**单击按钮时，<xref:System.Web.UI.WebControls.WebControl.BorderWidth%2A>属性<xref:System.Web.UI.WebControls.Wizard>控件，单位由 1 个像素，减少<xref:System.Web.UI.WebControls.Unit>类。  
+ 下面的代码示例演示如何为<xref:System.Web.UI.WebControls.Wizard.PreviousButtonClick>事件指定事件处理程序。 每次单击 "**上一步**" 按钮<xref:System.Web.UI.WebControls.WebControl.BorderWidth%2A>时, <xref:System.Web.UI.WebControls.Wizard>控件的属性将减少<xref:System.Web.UI.WebControls.Unit> 1 个像素, 这由类衡量。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardNextPreviousButtonClick#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardNextPreviousButtonClick/CS/wizardnextpreviousbuttonclickcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardNextPreviousButtonClick#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardNextPreviousButtonClick/VB/wizardnextpreviousbuttonclickvb.aspx#1)]  
@@ -3095,17 +3095,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>上侧栏区域中的按钮时引发事件<xref:System.Web.UI.WebControls.Wizard>单击控件。 使用<xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>事件，以便提供附加处理，当单击侧栏区域中的按钮。  
+ 当<xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>单击<xref:System.Web.UI.WebControls.Wizard>控件上侧栏区域中的按钮时, 将引发事件。 当单击侧栏区域中的按钮时, 可以使用事件来提供其他处理。<xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>  
   
 > [!NOTE]
->  <xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>事件不会引发一个事件，如果<xref:System.Web.UI.WebControls.Button>控件替换<xref:System.Web.UI.WebControls.Button.CommandName%2A>属性设置为`Move`之外的<xref:System.Web.UI.WebControls.DataList>控件的侧栏列表<xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>对象。  
+>  <xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick> 如果将<xref:System.Web.UI.WebControls.Button.CommandName%2A>属性设置<xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>为的`Move` 控件超出<xref:System.Web.UI.WebControls.DataList>对象的控件侧栏列表, 该事件不会引发事件。 <xref:System.Web.UI.WebControls.Button>  
   
- 有关如何处理事件的详细信息，请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
+ 有关如何处理事件的详细信息, 请参阅[处理和引发事件](~/docs/standard/events/index.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何指定的事件处理程序<xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>事件。 每次<xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>引发事件时，将消息写入到<xref:System.Web.UI.WebControls.Label.Text%2A>属性`Label1`的侧栏上单击区域中按钮的信息。  
+ 下面的代码示例演示如何为<xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>事件指定事件处理程序。 每次<xref:System.Web.UI.WebControls.Wizard.SideBarButtonClick>引发事件时, 都会向的<xref:System.Web.UI.WebControls.Label.Text%2A>属性`Label1`写入一条消息, 其中包含有关单击了哪个边栏区域按钮的信息。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardSideBarButtonClick#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardSideBarButtonClick/CS/wizardsidebarbuttonclickcs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardSideBarButtonClick#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardSideBarButtonClick/VB/wizardsidebarbuttonclickvb.aspx#1)]  
@@ -3138,7 +3138,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.SideBarButtonID>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.SideBarButtonID>是`"SideBarButton"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.SideBarButtonID>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.SideBarButtonID>为`"SideBarButton"`。  
   
  ]]></format>
         </remarks>
@@ -3183,13 +3183,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.SideBarButtonStyle%2A>属性定义上的侧栏按钮的外观<xref:System.Web.UI.WebControls.Wizard>控件。 <xref:System.Web.UI.WebControls.Wizard.SideBarButtonStyle%2A>属性是只读的; 但是，可以设置的属性<xref:System.Web.UI.WebControls.Style>它将返回的对象。 你可以以声明方式设置这些属性在窗体`Property-Subproperty`，其中`Subproperty`表示的属性<xref:System.Web.UI.WebControls.Style>类 (例如， `CancelButtonStyle-ForeColor`)。 你可以以编程方式设置的属性在窗体`Property.Subproperty`(例如， `CancelButtonStyle.ForeColor`)。  
+ 属性定义<xref:System.Web.UI.WebControls.Wizard>控件侧栏上按钮的外观。 <xref:System.Web.UI.WebControls.Wizard.SideBarButtonStyle%2A> 属性<xref:System.Web.UI.WebControls.Wizard.SideBarButtonStyle%2A>是只读的; 但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.Style>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.Style>表示类的属性 (例如`CancelButtonStyle-ForeColor`)。 可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `CancelButtonStyle.ForeColor`例如)。  
   
- 常用的设置包括自定义背景颜色、 文本颜色和字体属性。  
+ 常见设置包括自定义背景色、文本颜色和字体属性。  
   
- 样式设置<xref:System.Web.UI.WebControls.Wizard.SideBarButtonStyle%2A>属性的样式设置与合并<xref:System.Web.UI.WebControls.Wizard>控件。 在应用任何设置<xref:System.Web.UI.WebControls.Wizard.SideBarButtonStyle%2A>属性重写的属性中的相应设置<xref:System.Web.UI.WebControls.Wizard>控件。  
+ <xref:System.Web.UI.WebControls.Wizard.SideBarButtonStyle%2A>属性的样式设置与<xref:System.Web.UI.WebControls.Wizard>控件的样式设置合并。 在<xref:System.Web.UI.WebControls.Wizard.SideBarButtonStyle%2A>属性中应用的任何设置都将覆盖<xref:System.Web.UI.WebControls.Wizard>控件的属性中的相应设置。  
   
- 以下<xref:System.Web.UI.WebControls.Wizard>重写的样式属性<xref:System.Web.UI.WebControls.Wizard.SideBarButtonStyle%2A>设置：  
+ 以下<xref:System.Web.UI.WebControls.Wizard>样式属性被<xref:System.Web.UI.WebControls.Wizard.SideBarButtonStyle%2A>设置重写:  
   
 -   <xref:System.Web.UI.WebControls.Style.BackColor%2A>  
   
@@ -3207,7 +3207,7 @@
   
 -   <xref:System.Web.UI.WebControls.Style.Width%2A>  
   
- 但是，如果使用模板来定义的外观<xref:System.Web.UI.WebControls.Wizard>控制侧栏中，<xref:System.Web.UI.WebControls.Wizard.SideBarButtonStyle%2A>属性不起作用。  
+ 但是, 当使用模板定义<xref:System.Web.UI.WebControls.Wizard>控件边栏的外观时<xref:System.Web.UI.WebControls.Wizard.SideBarButtonStyle%2A> , 属性不起作用。  
   
  ]]></format>
         </remarks>
@@ -3239,7 +3239,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 占位符 ID 必须设置为"sideBarPlaceHolder"。  
+ 占位符 ID 必须设置为 "sideBarPlaceHolder"。  
   
  ]]></format>
         </remarks>
@@ -3282,16 +3282,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.SideBarStyle%2A>属性定义上侧栏区域的外观<xref:System.Web.UI.WebControls.Wizard>控件。 <xref:System.Web.UI.WebControls.Wizard.SideBarStyle%2A>属性是只读的; 但是，可以设置的属性<xref:System.Web.UI.WebControls.Style>对象返回。 你可以以声明方式设置这些属性在窗体`Property-Subproperty`，其中`Subproperty`表示的属性<xref:System.Web.UI.WebControls.Style>类 (例如， `CancelButtonStyle-ForeColor`)。 你可以以编程方式设置的属性在窗体`Property.Subproperty`(例如， `CancelButtonStyle.ForeColor`)。  
+ 属性定义<xref:System.Web.UI.WebControls.Wizard>控件上侧栏区域的外观。 <xref:System.Web.UI.WebControls.Wizard.SideBarStyle%2A> 属性<xref:System.Web.UI.WebControls.Wizard.SideBarStyle%2A>是只读的; 但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.Style>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.Style>表示类的属性 (例如`CancelButtonStyle-ForeColor`)。 可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `CancelButtonStyle.ForeColor`例如)。  
   
- 常用的设置包括自定义背景颜色、 文本颜色和字体属性。  
+ 常见设置包括自定义背景色、文本颜色和字体属性。  
   
- 样式设置<xref:System.Web.UI.WebControls.Wizard.SideBarStyle%2A>属性的样式设置与合并<xref:System.Web.UI.WebControls.Wizard>控件。 在应用任何设置<xref:System.Web.UI.WebControls.Wizard.SideBarStyle%2A>属性重写的属性中的相应设置<xref:System.Web.UI.WebControls.Wizard>控件。  
+ <xref:System.Web.UI.WebControls.Wizard.SideBarStyle%2A>属性的样式设置与<xref:System.Web.UI.WebControls.Wizard>控件的样式设置合并。 在<xref:System.Web.UI.WebControls.Wizard.SideBarStyle%2A>属性中应用的任何设置都将覆盖<xref:System.Web.UI.WebControls.Wizard>控件的属性中的相应设置。  
   
 > [!NOTE]
->  高度属性<xref:System.Web.UI.WebControls.Wizard.SideBarStyle%2A>如果高度设置为小于该向导的高度，则忽略。 值设置为<xref:System.Web.UI.WebControls.Wizard.NavigationStyle%2A>高度和<xref:System.Web.UI.WebControls.Wizard.HeaderStyle%2A>高度将添加到向导的总高度。 例如，如果向导高度设置为 500px 并<xref:System.Web.UI.WebControls.Wizard.NavigationStyle%2A>高度或<xref:System.Web.UI.WebControls.Wizard.HeaderStyle%2A>高度设置为 50px 或 10%，则向导总高度为 550px。  
+>  如果高度设置为<xref:System.Web.UI.WebControls.Wizard.SideBarStyle%2A>小于向导的高度, 则将忽略的高度属性。 设置为<xref:System.Web.UI.WebControls.Wizard.NavigationStyle%2A> "高度" <xref:System.Web.UI.WebControls.Wizard.HeaderStyle%2A>和 "高度" 的值将添加到向导的总高度。 例如, 如果向导的 "高度" 设置为 "500px <xref:System.Web.UI.WebControls.Wizard.NavigationStyle%2A> ", <xref:System.Web.UI.WebControls.Wizard.HeaderStyle%2A> "高度" 或 "高度" 设置为 "50px" 或 "10%", 则 "总向导" 高度为 "550px"。  
   
- 以下<xref:System.Web.UI.WebControls.Wizard>重写的样式属性<xref:System.Web.UI.WebControls.Wizard.SideBarStyle%2A>设置：  
+ 以下<xref:System.Web.UI.WebControls.Wizard>样式属性被<xref:System.Web.UI.WebControls.Wizard.SideBarStyle%2A>设置重写:  
   
 -   <xref:System.Web.UI.WebControls.Style.BackColor%2A>  
   
@@ -3358,19 +3358,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>属性指定的自定义内容上显示的侧栏区域<xref:System.Web.UI.WebControls.Wizard>控件。 通过创建指定如何呈现的侧栏区域的模板中定义的内容。  
+ 使用属性指定为<xref:System.Web.UI.WebControls.Wizard>控件上侧栏区域显示的自定义内容。 <xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A> 通过创建指定如何呈现侧栏区域的模板来定义内容。  
   
- 该模板的自定义内容包含在<xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>对象。 你可以添加到自定义内容<xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>对象在设计视图中或通过定义通过使用模板编辑模式<xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>对象内联使用`SideBarTemplate`标记。 内容可以是简单的纯文本或更复杂 （嵌入其他控件在模板中，例如）。  
+ 模板的自定义内容包含在<xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>对象内。 您可以通过在 "设计" <xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>视图中使用模板编辑模式或通过使用`SideBarTemplate`标记来<xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>定义嵌入对象, 将自定义内容添加到对象。 内容可以像纯文本或更复杂 (例如, 在模板中嵌入其他控件) 一样简单。  
   
 > [!NOTE]
->  <xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A>对象必须包含<xref:System.Web.UI.WebControls.DataList>控制或<xref:System.Web.UI.WebControls.ListView>控件<xref:System.Web.UI.Control.ID%2A>属性设置为`"SideBarList"`启用侧栏导航功能。 此外，`"SideBarList"`上<xref:System.Web.UI.WebControls.DataList>或<xref:System.Web.UI.WebControls.ListView>控件必须包含<xref:System.Web.UI.WebControls.IButtonControl>控件。  
+>  <xref:System.Web.UI.WebControls.ListView> <xref:System.Web.UI.Control.ID%2A>对象必须包含控件或控件, 其属性设置为`"SideBarList"`才能启用侧栏导航功能。 <xref:System.Web.UI.WebControls.DataList> <xref:System.Web.UI.WebControls.Wizard.SideBarTemplate%2A> 此外, <xref:System.Web.UI.WebControls.DataList>或`"SideBarList"` <xref:System.Web.UI.WebControls.IButtonControl>控件上的必须包含一个控件。 <xref:System.Web.UI.WebControls.ListView>  
   
- 若要访问模板中以编程方式定义的控件，请使用<xref:System.Web.UI.WebControls.CompositeControl.Controls%2A>的集合<xref:System.Web.UI.WebControls.Wizard>对象。 此外可以使用<xref:System.Web.UI.Control.FindControl%2A>方法<xref:System.Web.UI.WebControls.Wizard>对象来查找该控件，如果控件具有<xref:System.Web.UI.Control.ID%2A>指定属性。  
+ 若要以编程方式访问在模板中定义的控件, 请<xref:System.Web.UI.WebControls.CompositeControl.Controls%2A>使用<xref:System.Web.UI.WebControls.Wizard>对象的集合。 如果控件具有指定的<xref:System.Web.UI.Control.FindControl%2A> <xref:System.Web.UI.WebControls.Wizard> 属性,则还可以使用对象的方法<xref:System.Web.UI.Control.ID%2A>来查找控件。  
   
    
   
 ## Examples  
- 下面的示例演示如何添加<xref:System.Web.UI.WebControls.ListView>控制对`SideBarTemplate`元素，以及如何使用<xref:System.Web.UI.WebControls.LinkButton>控件导航步骤。  
+ 下面的示例演示如何将<xref:System.Web.UI.WebControls.ListView>控件添加`SideBarTemplate`到元素<xref:System.Web.UI.WebControls.LinkButton> , 以及如何使用控件来导航这些步骤。  
   
 ```  
 <SideBarTemplate>  
@@ -3418,17 +3418,17 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，它用于呈现替换文本，以通知屏幕阅读器跳过侧栏区域中的内容。</summary>
-        <value>一个字符串，<see cref="T:System.Web.UI.WebControls.Wizard" /> 将其呈现为不可见图像的替换文本，作为对屏幕阅读器的提示。 默认值是<c>"跳过导航链接"</c>。 控件的默认文本将根据服务器当前的区域设置进行本地化。</value>
+        <value>一个字符串，<see cref="T:System.Web.UI.WebControls.Wizard" /> 将其呈现为不可见图像的替换文本，作为对屏幕阅读器的提示。 默认值为<c>"跳过导航链接"</c>。 控件的默认文本将根据服务器当前的区域设置进行本地化。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.Wizard.SkipLinkText%2A>属性来指定由屏幕读取器提供的功能要跳过侧栏区域的内容读取的隐藏图像的替换文字。 您指定的文本提供了辅助技术设备可用于使控件更易于访问的隐藏图像的说明。  
+ <xref:System.Web.UI.WebControls.Wizard.SkipLinkText%2A>使用属性指定屏幕阅读器读取的隐藏图像的替换文字, 以提供跳过侧栏区域内容的功能。 指定的文本提供了辅助技术设备, 其中包含隐藏图像的说明, 可用于使控件更易于访问。  
   
 > [!NOTE]
->  如果<xref:System.Web.UI.WebControls.Wizard.DisplaySideBar%2A>属性设置为`false`，则<xref:System.Web.UI.WebControls.Wizard.SkipLinkText%2A>属性不会创建的隐藏的图像的替换文字。  
+>  如果将`false`属性设置为, 则<xref:System.Web.UI.WebControls.Wizard.SkipLinkText%2A>属性不会创建具有替换文本的隐藏图像。 <xref:System.Web.UI.WebControls.Wizard.DisplaySideBar%2A>  
   
- 此属性的值设置时，可以自动保存到资源文件使用设计器工具。 有关详细信息，请参阅<xref:System.ComponentModel.LocalizableAttribute>并[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
+ 设置此属性后, 可以使用设计器工具自动将此属性的值保存到资源文件中。 有关详细信息, 请<xref:System.ComponentModel.LocalizableAttribute>参阅和[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
   
  ]]></format>
         </remarks>
@@ -3475,14 +3475,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>属性指定的自定义内容上显示的导航区域<xref:System.Web.UI.WebControls.WizardStepType.Start>的步骤<xref:System.Web.UI.WebControls.Wizard>控件。 通过创建指定的导航区域上的呈现方式的模板中定义的内容<xref:System.Web.UI.WebControls.WizardStepType.Start>步骤。  
+ 使用属性指定为<xref:System.Web.UI.WebControls.Wizard>控件的<xref:System.Web.UI.WebControls.WizardStepType.Start>步骤显示的导航区域的自定义内容。 <xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A> 通过创建指定如何在<xref:System.Web.UI.WebControls.WizardStepType.Start>步骤中呈现导航区域的模板来定义内容。  
   
- 该模板的自定义内容包含在<xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>对象。 你可以添加到自定义内容<xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>对象在设计视图中或通过定义通过使用模板编辑模式<xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>对象内联使用`StartNavigationTemplate`标记。 内容可以是简单的纯文本或更复杂 （嵌入其他控件在模板中，例如）。  
+ 模板的自定义内容包含在<xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>对象内。 您可以通过在 "设计" <xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>视图中使用模板编辑模式或通过使用`StartNavigationTemplate`标记来<xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>定义嵌入对象, 将自定义内容添加到对象。 内容可以像纯文本或更复杂 (例如, 在模板中嵌入其他控件) 一样简单。  
   
 > [!NOTE]
->  <xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>中包含的对象<xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>属性必须包含<xref:System.Web.UI.WebControls.IButtonControl>控件，其<xref:System.Web.UI.WebControls.IButtonControl.CommandName%2A>属性设置为`"MoveNext"`若要启用导航功能。  
+>  <xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A> `"MoveNext"` 属性中包含<xref:System.Web.UI.WebControls.IButtonControl.CommandName%2A>的对象必须包含一个<xref:System.Web.UI.WebControls.IButtonControl>控件, 其属性设置为, 以启用导航功能。 <xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>  
   
- 若要访问模板中以编程方式定义的控件，请使用<xref:System.Web.UI.WebControls.CompositeControl.Controls%2A>的集合<xref:System.Web.UI.WebControls.Wizard>对象。 此外可以使用<xref:System.Web.UI.Control.FindControl%2A>方法<xref:System.Web.UI.WebControls.Wizard>对象来查找该控件，如果控件具有<xref:System.Web.UI.Control.ID%2A>指定属性。  
+ 若要以编程方式访问在模板中定义的控件, 请<xref:System.Web.UI.WebControls.CompositeControl.Controls%2A>使用<xref:System.Web.UI.WebControls.Wizard>对象的集合。 如果控件具有指定的<xref:System.Web.UI.Control.FindControl%2A> <xref:System.Web.UI.WebControls.Wizard> 属性,则还可以使用对象的方法<xref:System.Web.UI.Control.ID%2A>来查找控件。  
   
  ]]></format>
         </remarks>
@@ -3514,7 +3514,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.StartNextButtonID>主要由控件开发人员使用。 值<xref:System.Web.UI.WebControls.Wizard.StartNextButtonID>是`"StartNextButton"`。  
+ <xref:System.Web.UI.WebControls.Wizard.StartNextButtonID>主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.StartNextButtonID>为`"StartNextButton"`。  
   
  ]]></format>
         </remarks>
@@ -3554,12 +3554,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置为 <see cref="F:System.Web.UI.WebControls.WizardStepType.Start" /> 步骤中的“下一步”按钮显示的图像的 URL。</summary>
-        <value>显示的图像的 URL**下一步**上<see cref="F:System.Web.UI.WebControls.WizardStepType.Start" />的<see cref="T:System.Web.UI.WebControls.Wizard" />。 默认值为空字符串("")。</value>
+        <value>为的<see cref="F:System.Web.UI.WebControls.WizardStepType.Start" /> 上的"下一步"显示的图像的URL。<see cref="T:System.Web.UI.WebControls.Wizard" />  默认值为空字符串("")。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Web.UI.WebControls.Wizard.StartNextButtonType%2A>属性设置为<xref:System.Web.UI.WebControls.ButtonType.Image>字段中，使用<xref:System.Web.UI.WebControls.Wizard.StartNextButtonImageUrl%2A>属性来指定要显示的图像**下一步**按钮。  
+ 当属性设置<xref:System.Web.UI.WebControls.ButtonType.Image>为字段时, 请使用<xref:System.Web.UI.WebControls.Wizard.StartNextButtonImageUrl%2A>属性指定为 "**下一步**" 按钮显示的图像。 <xref:System.Web.UI.WebControls.Wizard.StartNextButtonType%2A>  
   
  ]]></format>
         </remarks>
@@ -3602,14 +3602,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取一个对 <see cref="T:System.Web.UI.WebControls.Style" /> 的引用，该对象定义 <see cref="F:System.Web.UI.WebControls.WizardStepType.Start" /> 步骤中的“下一步”按钮的设置。</summary>
-        <value>对引用<see cref="T:System.Web.UI.WebControls.Style" />，它定义的样式设置**下一步**上<see cref="F:System.Web.UI.WebControls.WizardStepType.Start" />的<see cref="T:System.Web.UI.WebControls.Wizard" />。</value>
+        <value>一个对的引用<see cref="T:System.Web.UI.WebControls.Style" /> , 该引用定义的<see cref="F:System.Web.UI.WebControls.WizardStepType.Start" /> **下的下一** <see cref="T:System.Web.UI.WebControls.Wizard" />的样式设置。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.StartNextButtonStyle%2A>属性定义为外观**下一步**按钮<xref:System.Web.UI.WebControls.WizardStepType.Start>步骤<xref:System.Web.UI.WebControls.Wizard>控件。 <xref:System.Web.UI.WebControls.Wizard.StartNextButtonStyle%2A>属性是只读的; 但是，可以设置的属性<xref:System.Web.UI.WebControls.Style>它将返回的对象。 你可以以声明方式设置这些属性在窗体`Property-Subproperty`，其中`Subproperty`表示的属性<xref:System.Web.UI.WebControls.Style>类 (例如， `CancelButtonStyle-ForeColor`)。 你可以以编程方式设置的属性在窗体`Property.Subproperty`(例如， `CancelButtonStyle.ForeColor`)。  
+ 属性定义<xref:System.Web.UI.WebControls.WizardStepType.Start>控件步骤中的 "**下一步**" 按钮的外观。 <xref:System.Web.UI.WebControls.Wizard> <xref:System.Web.UI.WebControls.Wizard.StartNextButtonStyle%2A> 属性<xref:System.Web.UI.WebControls.Wizard.StartNextButtonStyle%2A>是只读的; 但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.Style>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.Style>表示类的属性 (例如`CancelButtonStyle-ForeColor`)。 可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `CancelButtonStyle.ForeColor`例如)。  
   
- 常用的设置包括自定义背景颜色、 文本颜色和字体属性。 样式设置<xref:System.Web.UI.WebControls.Wizard.StartNextButtonStyle%2A>属性的样式设置与合并<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。 在应用任何设置都会<xref:System.Web.UI.WebControls.Wizard.StartNextButtonStyle%2A>属性重写中的相应设置<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。  
+ 常见设置包括自定义背景色、文本颜色和字体属性。 <xref:System.Web.UI.WebControls.Wizard.StartNextButtonStyle%2A>属性的样式设置与<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性的样式设置合并在一起。 在<xref:System.Web.UI.WebControls.Wizard.StartNextButtonStyle%2A>属性中应用的任何设置都将重写<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性中的相应设置。  
   
  ]]></format>
         </remarks>
@@ -3645,23 +3645,23 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置为 <see cref="F:System.Web.UI.WebControls.WizardStepType.Start" /> 步骤中的“下一步”按钮显示的描述文字。</summary>
-        <value>为显示的文本标题**下一步**上<see cref="F:System.Web.UI.WebControls.WizardStepType.Start" />的<see cref="T:System.Web.UI.WebControls.Wizard" />。 默认值是<c>"下一步"</c>。 控件的默认文本将根据服务器当前的区域设置进行本地化。</value>
+        <value>为的<see cref="F:System.Web.UI.WebControls.WizardStepType.Start" /> 上的"下一步"显示的文本标题。<see cref="T:System.Web.UI.WebControls.Wizard" />  默认值为<c>"下一步"</c>。 控件的默认文本将根据服务器当前的区域设置进行本地化。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.StartNextButtonText%2A>属性包含为显示的文本**下一步**按钮<xref:System.Web.UI.WebControls.WizardStepType.Start>步骤<xref:System.Web.UI.WebControls.Wizard>控件。 具体取决于值<xref:System.Web.UI.WebControls.Wizard.StartNextButtonType%2A>属性，<xref:System.Web.UI.WebControls.Wizard.StartNextButtonText%2A>属性可以显示为上一个按钮的文本的文本显示为图像无法呈现图像的浏览器中的替代方法或链接的文本。 下表列出的字段值<xref:System.Web.UI.WebControls.Wizard.StartNextButtonType%2A>属性和相应的每个效果**下一步**按钮文本。  
+ 属性包含<xref:System.Web.UI.WebControls.WizardStepType.Start>为控件<xref:System.Web.UI.WebControls.Wizard>步骤中的 "**下一步**" 按钮显示的文本。 <xref:System.Web.UI.WebControls.Wizard.StartNextButtonText%2A> 根据<xref:System.Web.UI.WebControls.Wizard.StartNextButtonType%2A>属性的值<xref:System.Web.UI.WebControls.Wizard.StartNextButtonText%2A> , 属性可以作为按钮上的文本出现, 作为在不呈现图像的浏览器中显示为图像的替代文本, 或显示为链接的文本。 下表列出了<xref:System.Web.UI.WebControls.Wizard.StartNextButtonType%2A>属性的字段值, 并列出了每个字段在**下一个**按钮文本上的作用。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Button>  
- 按钮上显示的文本。  
+ 文本出现在按钮上。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Image>  
- 文本显示为图像的替换文本。  
+ 文本显示为图像的替代文本。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Link>  
  文本显示为链接。  
   
- 此属性的值设置时，可以自动保存到资源文件使用设计器工具。 有关详细信息，请参阅<xref:System.ComponentModel.LocalizableAttribute>并[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
+ 设置此属性后, 可以使用设计器工具自动将此属性的值保存到资源文件中。 有关详细信息, 请<xref:System.ComponentModel.LocalizableAttribute>参阅和[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
   
  ]]></format>
         </remarks>
@@ -3744,14 +3744,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A>属性指定的自定义内容上显示的导航区域<xref:System.Web.UI.WebControls.WizardStepType.Step>的步骤<xref:System.Web.UI.WebControls.Wizard>控件。 通过创建指定的导航区域上的呈现方式的模板中定义的内容<xref:System.Web.UI.WebControls.WizardStepType.Step>步骤。  
+ 使用属性指定为<xref:System.Web.UI.WebControls.Wizard>控件的<xref:System.Web.UI.WebControls.WizardStepType.Step>步骤显示的导航区域的自定义内容。 <xref:System.Web.UI.WebControls.Wizard.StartNavigationTemplate%2A> 通过创建指定如何在<xref:System.Web.UI.WebControls.WizardStepType.Step>步骤中呈现导航区域的模板来定义内容。  
   
- 该模板的自定义内容包含在<xref:System.Web.UI.WebControls.Wizard.StepNavigationTemplate%2A>对象。 你可以添加到自定义内容<xref:System.Web.UI.WebControls.Wizard.StepNavigationTemplate%2A>对象在设计视图中或通过定义通过使用模板编辑模式<xref:System.Web.UI.WebControls.Wizard.StepNavigationTemplate%2A>对象内联使用`StepNavigationTemplate`标记。 内容可以是简单的纯文本或更复杂 （嵌入其他控件在模板中，例如）。  
+ 模板的自定义内容包含在<xref:System.Web.UI.WebControls.Wizard.StepNavigationTemplate%2A>对象内。 您可以通过在 "设计" <xref:System.Web.UI.WebControls.Wizard.StepNavigationTemplate%2A>视图中使用模板编辑模式或通过使用`StepNavigationTemplate`标记来<xref:System.Web.UI.WebControls.Wizard.StepNavigationTemplate%2A>定义嵌入对象, 将自定义内容添加到对象。 内容可以像纯文本或更复杂 (例如, 在模板中嵌入其他控件) 一样简单。  
   
 > [!NOTE]
->  <xref:System.Web.UI.WebControls.Wizard.StepNavigationTemplate%2A>中包含的对象<xref:System.Web.UI.WebControls.Wizard.StepNavigationTemplate%2A>属性必须包含两个<xref:System.Web.UI.WebControls.IButtonControl>控件，另一个使用其<xref:System.Web.UI.WebControls.IButtonControl.CommandName%2A>属性设置为`"MoveNext"`另一个使用其<xref:System.Web.UI.WebControls.IButtonControl.CommandName%2A>属性设置为`"MovePrevious"`，以启用导航功能。  
+>  `"MoveNext"` <xref:System.Web.UI.WebControls.IButtonControl.CommandName%2A> <xref:System.Web.UI.WebControls.IButtonControl.CommandName%2A> <xref:System.Web.UI.WebControls.IButtonControl> `"MovePrevious"`属性中包含的对象必须包含两个控件,一个控件的属性设置为,另一个控件的属性设置为,以启用<xref:System.Web.UI.WebControls.Wizard.StepNavigationTemplate%2A> <xref:System.Web.UI.WebControls.Wizard.StepNavigationTemplate%2A>导航功能。  
   
- 若要访问模板中以编程方式定义的控件，请使用<xref:System.Web.UI.WebControls.CompositeControl.Controls%2A>的集合<xref:System.Web.UI.WebControls.Wizard>对象。 此外可以使用<xref:System.Web.UI.Control.FindControl%2A>方法<xref:System.Web.UI.WebControls.Wizard>对象来查找该控件，如果控件具有<xref:System.Web.UI.Control.ID%2A>指定属性。  
+ 若要以编程方式访问在模板中定义的控件, 请<xref:System.Web.UI.WebControls.CompositeControl.Controls%2A>使用<xref:System.Web.UI.WebControls.Wizard>对象的集合。 如果控件具有指定的<xref:System.Web.UI.Control.FindControl%2A> <xref:System.Web.UI.WebControls.Wizard> 属性,则还可以使用对象的方法<xref:System.Web.UI.Control.ID%2A>来查找控件。  
   
  ]]></format>
         </remarks>
@@ -3782,7 +3782,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.StepNextButtonID>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.StepNextButtonID>是`"StepNextButton"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.StepNextButtonID>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.StepNextButtonID>为`"StepNextButton"`。  
   
  ]]></format>
         </remarks>
@@ -3822,12 +3822,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置为“下一步”按钮显示的图像的 URL。</summary>
-        <value>显示的图像的 URL**下一步**上<see cref="T:System.Web.UI.WebControls.Wizard" />。</value>
+        <value>为**下一步** <see cref="T:System.Web.UI.WebControls.Wizard" />显示的图像的 URL。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Web.UI.WebControls.Wizard.StepNextButtonType%2A>属性设置为<xref:System.Web.UI.WebControls.ButtonType.Image>字段中，使用<xref:System.Web.UI.WebControls.Wizard.StepNextButtonImageUrl%2A>属性来指定要显示的图像**下一步**按钮。  
+ 当属性设置<xref:System.Web.UI.WebControls.ButtonType.Image>为字段时, 请使用<xref:System.Web.UI.WebControls.Wizard.StepNextButtonImageUrl%2A>属性指定为 "**下一步**" 按钮显示的图像。 <xref:System.Web.UI.WebControls.Wizard.StepNextButtonType%2A>  
   
  ]]></format>
         </remarks>
@@ -3869,14 +3869,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取一个对 <see cref="T:System.Web.UI.WebControls.Style" /> 对象的引用，该对象定义“下一步”按钮的设置。</summary>
-        <value>对引用<see cref="T:System.Web.UI.WebControls.Style" />，它定义的样式设置**下一步**上<see cref="T:System.Web.UI.WebControls.Wizard" />。</value>
+        <value>一个对的引用<see cref="T:System.Web.UI.WebControls.Style" /> , 该引用定义的<see cref="T:System.Web.UI.WebControls.Wizard" />**下一个**的样式设置。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.StepNextButtonStyle%2A>属性定义为外观**下一步**按钮<xref:System.Web.UI.WebControls.Wizard>控件。 <xref:System.Web.UI.WebControls.Wizard.StepNextButtonStyle%2A>属性是只读的; 但是，可以设置的属性<xref:System.Web.UI.WebControls.Style>它将返回的对象。 你可以以声明方式设置这些属性在窗体`Property-Subproperty`，其中`Subproperty`表示的属性<xref:System.Web.UI.WebControls.Style>类 (例如， `CancelButtonStyle-ForeColor`)。 你可以以编程方式设置的属性在窗体`Property.Subproperty`(例如， `CancelButtonStyle.ForeColor`)。  
+ 属性定义<xref:System.Web.UI.WebControls.Wizard>控件上 "**下一步**" 按钮的外观。 <xref:System.Web.UI.WebControls.Wizard.StepNextButtonStyle%2A> 属性<xref:System.Web.UI.WebControls.Wizard.StepNextButtonStyle%2A>是只读的; 但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.Style>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.Style>表示类的属性 (例如`CancelButtonStyle-ForeColor`)。 可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `CancelButtonStyle.ForeColor`例如)。  
   
- 常用的设置包括自定义背景颜色、 文本颜色和字体属性。 样式设置<xref:System.Web.UI.WebControls.Wizard.StepNextButtonStyle%2A>属性的样式设置与合并<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。 在应用任何设置都会<xref:System.Web.UI.WebControls.Wizard.StepNextButtonStyle%2A>属性重写中的相应设置<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。  
+ 常见设置包括自定义背景色、文本颜色和字体属性。 <xref:System.Web.UI.WebControls.Wizard.StepNextButtonStyle%2A>属性的样式设置与<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性的样式设置合并在一起。 在<xref:System.Web.UI.WebControls.Wizard.StepNextButtonStyle%2A>属性中应用的任何设置都将重写<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性中的相应设置。  
   
  ]]></format>
         </remarks>
@@ -3911,23 +3911,23 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置为“下一步”按钮显示的描述文字。</summary>
-        <value>为显示的文本标题**下一步**上<see cref="T:System.Web.UI.WebControls.Wizard" />。 默认值是<c>"下一步"</c>。 控件的默认文本将根据服务器当前的区域设置进行本地化。</value>
+        <value>为**下一步** <see cref="T:System.Web.UI.WebControls.Wizard" />显示的文本标题。 默认值为<c>"下一步"</c>。 控件的默认文本将根据服务器当前的区域设置进行本地化。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.StepNextButtonText%2A>属性包含为显示的文本**下一步**按钮<xref:System.Web.UI.WebControls.Wizard>控件。 具体取决于值<xref:System.Web.UI.WebControls.Wizard.StepNextButtonType%2A>属性，<xref:System.Web.UI.WebControls.Wizard.StepNextButtonText%2A>属性可以显示为按钮上文本的文本显示为一个映像，一种替代方法或链接的文本。 下表列出的字段值<xref:System.Web.UI.WebControls.Wizard.StepNextButtonType%2A>属性和相应的每个效果**下一步**按钮文本。  
+ 属性包含为<xref:System.Web.UI.WebControls.Wizard>控件上的 "**下一步**" 按钮显示的文本。 <xref:System.Web.UI.WebControls.Wizard.StepNextButtonText%2A> 根据<xref:System.Web.UI.WebControls.Wizard.StepNextButtonType%2A>属性的值<xref:System.Web.UI.WebControls.Wizard.StepNextButtonText%2A> , 属性可以以文本形式显示在按钮上, 如显示为图像的替代文本或链接文本。 下表列出了<xref:System.Web.UI.WebControls.Wizard.StepNextButtonType%2A>属性的字段值, 并列出了每个字段在**下一个**按钮文本上的作用。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Button>  
- 按钮上显示的文本。  
+ 文本出现在按钮上。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Image>  
- 文本显示为图像的替换文本。  
+ 文本显示为图像的替代文本。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Link>  
  文本显示为链接。  
   
- 此属性的值设置时，可以自动保存到资源文件使用设计器工具。 有关详细信息，请参阅<xref:System.ComponentModel.LocalizableAttribute>并[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
+ 设置此属性后, 可以使用设计器工具自动将此属性的值保存到资源文件中。 有关详细信息, 请<xref:System.ComponentModel.LocalizableAttribute>参阅和[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
   
  ]]></format>
         </remarks>
@@ -3990,7 +3990,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonID>字段主要由控件开发人员。 值<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonID>是`"StepPreviousButton"`。  
+ 此<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonID>字段主要由控件开发人员使用。 的值<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonID>为`"StepPreviousButton"`。  
   
  ]]></format>
         </remarks>
@@ -4030,12 +4030,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置为“上一步”按钮显示的图像的 URL。</summary>
-        <value>显示的图像的 URL**上一步**上<see cref="T:System.Web.UI.WebControls.Wizard" />。</value>
+        <value>为上的 " <see cref="T:System.Web.UI.WebControls.Wizard" />上**一步**" 显示的图像的 URL。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonType%2A>属性设置为<xref:System.Web.UI.WebControls.ButtonType.Image>字段中，使用<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonImageUrl%2A>属性来指定要显示的图像**上一步**按钮。  
+ 当属性设置<xref:System.Web.UI.WebControls.ButtonType.Image>为字段时, 使用<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonImageUrl%2A>属性指定为 "**上一步**" 按钮显示的图像。 <xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonType%2A>  
   
  ]]></format>
         </remarks>
@@ -4077,14 +4077,14 @@
       </ReturnValue>
       <Docs>
         <summary>获取一个对 <see cref="T:System.Web.UI.WebControls.Style" /> 对象的引用，该对象定义“上一步”按钮的设置。</summary>
-        <value>对引用<see cref="T:System.Web.UI.WebControls.Style" />，它定义的样式设置**上一步**上<see cref="F:System.Web.UI.WebControls.WizardStepType.Step" />为<see cref="T:System.Web.UI.WebControls.Wizard" />。</value>
+        <value>一个对的引用<see cref="T:System.Web.UI.WebControls.Style" /> , 该引用定义<see cref="F:System.Web.UI.WebControls.WizardStepType.Step" /> **上**针对<see cref="T:System.Web.UI.WebControls.Wizard" />的上的的样式设置。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonStyle%2A>属性定义的外观**上一步**按钮<xref:System.Web.UI.WebControls.WizardStepType.Step>步骤，用于<xref:System.Web.UI.WebControls.Wizard>控件。 <xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonStyle%2A>属性是只读的; 但是，可以设置的属性<xref:System.Web.UI.WebControls.Style>它将返回的对象。 你可以以声明方式设置这些属性在窗体`Property-Subproperty`，其中`Subproperty`表示的属性<xref:System.Web.UI.WebControls.Style>类 (例如， `CancelButtonStyle-ForeColor`)。 你可以以编程方式设置的属性在窗体`Property.Subproperty`(例如， `CancelButtonStyle.ForeColor`)。  
+ 属性定义<xref:System.Web.UI.WebControls.Wizard>控件<xref:System.Web.UI.WebControls.WizardStepType.Step>步骤中 "**上一**步" 按钮的外观。 <xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonStyle%2A> 属性<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonStyle%2A>是只读的; 但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.Style>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.Style>表示类的属性 (例如`CancelButtonStyle-ForeColor`)。 可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `CancelButtonStyle.ForeColor`例如)。  
   
- 常用的设置包括自定义背景颜色、 文本颜色和字体属性。 样式设置<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonStyle%2A>属性的样式设置与合并<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。 在应用任何设置都会<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonStyle%2A>属性重写中的相应设置<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性。  
+ 常见设置包括自定义背景色、文本颜色和字体属性。 <xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonStyle%2A>属性的样式设置与<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性的样式设置合并在一起。 在<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonStyle%2A>属性中应用的任何设置都将重写<xref:System.Web.UI.WebControls.Wizard.NavigationButtonStyle%2A>属性中的相应设置。  
   
  ]]></format>
         </remarks>
@@ -4119,23 +4119,23 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置为“上一步”按钮显示的描述文字。</summary>
-        <value>为显示的文本标题**上一步**上<see cref="T:System.Web.UI.WebControls.Wizard" />。 默认值是<c>"上一步"</c>。 控件的默认文本将根据服务器当前的区域设置进行本地化。</value>
+        <value>为上的 " <see cref="T:System.Web.UI.WebControls.Wizard" />上**一步**" 显示的文本标题。 默认值为<c>"上一步"</c>。 控件的默认文本将根据服务器当前的区域设置进行本地化。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonText%2A>属性包含为显示的文本**上一步**按钮<xref:System.Web.UI.WebControls.Wizard>控件。 具体取决于值<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonType%2A>属性，<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonText%2A>属性可以显示为上一个按钮的文本的文本显示为图像无法呈现图像的浏览器中的替代方法或链接的文本。 下表列出的字段值<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonType%2A>属性和相应的每个效果**上一步**按钮文本。  
+ 属性包含为<xref:System.Web.UI.WebControls.Wizard>控件上的 "**上一步**" 按钮显示的文本。 <xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonText%2A> 根据<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonType%2A>属性的值<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonText%2A> , 属性可以作为按钮上的文本出现, 作为在不呈现图像的浏览器中显示为图像的替代文本, 或显示为链接的文本。 下表列出了<xref:System.Web.UI.WebControls.Wizard.StepPreviousButtonType%2A>属性的字段值以及每个属性在上**一**按钮文本上的作用。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Button>  
- 按钮上显示的文本。  
+ 文本出现在按钮上。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Image>  
- 文本显示为图像的替换文本。  
+ 文本显示为图像的替代文本。  
   
  <xref:System.Web.UI.WebControls.ButtonType.Link>  
  文本显示为链接。  
   
- 此属性的值设置时，可以自动保存到资源文件使用设计器工具。 有关详细信息，请参阅<xref:System.ComponentModel.LocalizableAttribute>并[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
+ 设置此属性后, 可以使用设计器工具自动将此属性的值保存到资源文件中。 有关详细信息, 请<xref:System.ComponentModel.LocalizableAttribute>参阅和[全球化和本地化](https://msdn.microsoft.com/library/8ef3838e-9d05-4236-9dd0-ceecff9df80d)。  
   
  ]]></format>
         </remarks>
@@ -4213,11 +4213,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.StepStyle%2A>属性获取对引用<xref:System.Web.UI.WebControls.Style>对象，它定义为外观<xref:System.Web.UI.WebControls.WizardStep>对象上<xref:System.Web.UI.WebControls.Wizard>控件。 <xref:System.Web.UI.WebControls.Wizard.StepStyle%2A>属性是只读的; 但是，可以设置的属性<xref:System.Web.UI.WebControls.Style>它将返回的对象。 你可以以声明方式设置这些属性在窗体`Property-Subproperty`，其中`Subproperty`表示的属性<xref:System.Web.UI.WebControls.Style>类 (例如， `CancelButtonStyle-ForeColor`)。 你可以以编程方式设置的属性在窗体`Property.Subproperty`(例如， `CancelButtonStyle.ForeColor`)。  
+ 属性获取<xref:System.Web.UI.WebControls.WizardStep>对对象的引用, 该对象定义<xref:System.Web.UI.WebControls.Wizard>控件上的对象的外观。 <xref:System.Web.UI.WebControls.Style> <xref:System.Web.UI.WebControls.Wizard.StepStyle%2A> 属性<xref:System.Web.UI.WebControls.Wizard.StepStyle%2A>是只读的; 但是, 您可以设置它返回的<xref:System.Web.UI.WebControls.Style>对象的属性。 `Property-Subproperty`可以在窗体中以声明方式设置这些属性, 其中`Subproperty` <xref:System.Web.UI.WebControls.Style>表示类的属性 (例如`CancelButtonStyle-ForeColor`)。 可以在窗体`Property.Subproperty`中以编程方式设置属性 ( `CancelButtonStyle.ForeColor`例如)。  
   
- 常用的设置包括自定义背景颜色、 文本颜色和字体属性。 样式设置<xref:System.Web.UI.WebControls.Wizard.StepStyle%2A>属性的样式设置与合并<xref:System.Web.UI.WebControls.WebControl.Style%2A>属性的<xref:System.Web.UI.WebControls.Wizard>控件。 在应用任何设置都会<xref:System.Web.UI.WebControls.Wizard.StepStyle%2A>属性重写中的相应设置<xref:System.Web.UI.WebControls.WebControl.Style%2A>属性的<xref:System.Web.UI.WebControls.Wizard>控件。  
+ 常见设置包括自定义背景色、文本颜色和字体属性。 <xref:System.Web.UI.WebControls.Wizard.StepStyle%2A>属性的样式设置与<xref:System.Web.UI.WebControls.Wizard>控件的<xref:System.Web.UI.WebControls.WebControl.Style%2A>属性的样式设置合并在一起。 在<xref:System.Web.UI.WebControls.Wizard.StepStyle%2A>属性中应用的任何设置都将重写<xref:System.Web.UI.WebControls.Wizard>控件的<xref:System.Web.UI.WebControls.WebControl.Style%2A>属性中的相应设置。  
   
- 以下<xref:System.Web.UI.WebControls.Wizard.StepStyle%2A>属性可以设置要重写<xref:System.Web.UI.WebControls.WebControl.Style%2A>的属性<xref:System.Web.UI.WebControls.Wizard>控件：  
+ 可以设置<xref:System.Web.UI.WebControls.Wizard.StepStyle%2A>以下属性来<xref:System.Web.UI.WebControls.WebControl.Style%2A>重写<xref:System.Web.UI.WebControls.Wizard>控件的属性:  
   
 -   <xref:System.Web.UI.WebControls.Style.BackColor%2A>  
   
@@ -4237,7 +4237,7 @@
   
 -   <xref:System.Web.UI.WebControls.Style.Width%2A>  
   
- 当你使用<xref:System.Web.UI.WebControls.TemplatedWizardStep>模板来定义为外观<xref:System.Web.UI.WebControls.WizardStep>对象，<xref:System.Web.UI.WebControls.Wizard.StepStyle%2A>属性不起作用。  
+ 使用<xref:System.Web.UI.WebControls.TemplatedWizardStep>模板定义<xref:System.Web.UI.WebControls.WizardStep>对象的外观时, <xref:System.Web.UI.WebControls.Wizard.StepStyle%2A>属性不起作用。  
   
  ]]></format>
         </remarks>
@@ -4269,7 +4269,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.TagKey%2A>属性主要由控件开发人员来扩展<xref:System.Web.UI.WebControls.Wizard>控件。  
+ 此<xref:System.Web.UI.WebControls.Wizard.TagKey%2A>属性主要由控件开发人员用来<xref:System.Web.UI.WebControls.Wizard>扩展控件。  
   
  ]]></format>
         </remarks>
@@ -4320,7 +4320,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 占位符 ID 必须设置为"WizardStepPlaceHolder"。  
+ 占位符 ID 必须设置为 "WizardStepPlaceHolder"。  
   
  ]]></format>
         </remarks>
@@ -4366,19 +4366,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.Wizard.WizardSteps%2A>属性返回的集合<xref:System.Web.UI.WebControls.WizardStepBase>构成对象<xref:System.Web.UI.WebControls.Wizard>控件。 可以使用<xref:System.Web.UI.WebControls.Wizard.WizardSteps%2A>要访问集合<xref:System.Web.UI.WebControls.WizardStepBase>中包含的对象<xref:System.Web.UI.WebControls.Wizard>以编程方式控制。 使用<xref:System.Web.UI.WebControls.WizardStepCollection.Add%2A>， <xref:System.Web.UI.WebControls.WizardStepCollection.Remove%2A>， <xref:System.Web.UI.WebControls.WizardStepCollection.Clear%2A>，和<xref:System.Web.UI.WebControls.WizardStepCollection.Insert%2A>操作的方法<xref:System.Web.UI.WebControls.WizardStepBase>以编程方式在集合中的对象。  
+ 属性返回构成<xref:System.Web.UI.WebControls.Wizard>控件的<xref:System.Web.UI.WebControls.WizardStepBase>对象的集合。 <xref:System.Web.UI.WebControls.Wizard.WizardSteps%2A> 您可以使用该<xref:System.Web.UI.WebControls.Wizard.WizardSteps%2A>集合以编程方式<xref:System.Web.UI.WebControls.WizardStepBase>访问<xref:System.Web.UI.WebControls.Wizard>控件中包含的对象。 <xref:System.Web.UI.WebControls.WizardStepCollection.Add%2A>使用、 <xref:System.Web.UI.WebControls.WizardStepCollection.Remove%2A>、和方法<xref:System.Web.UI.WebControls.WizardStepCollection.Insert%2A>以编程方式操作集合<xref:System.Web.UI.WebControls.WizardStepBase>中的对象。 <xref:System.Web.UI.WebControls.WizardStepCollection.Clear%2A>  
   
 > [!NOTE]
->  如果使用 Microsoft Visual Studio 2005，请注意，<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>源视图中保持不变。 如果您更改<xref:System.Web.UI.WebControls.Wizard.WizardSteps%2A>属性在设计视图中通过单击侧栏按钮，然后运行页面的第一步`Wizard`控件，因此可能会显示<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>可能指向不同的步骤。  
+>  如果使用 Microsoft Visual Studio 2005, 请注意<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A> , 将保留在源视图中。 如果在设计视图中<xref:System.Web.UI.WebControls.Wizard.WizardSteps%2A>通过单击侧栏按钮来更改属性, 然后运行页面, 则可能<xref:System.Web.UI.WebControls.Wizard.ActiveStepIndex%2A>不会显示`Wizard`控件的第一步, 因为可能会指向不同的步骤。  
   
- 如果<xref:System.Web.UI.WebControls.Wizard>控件包含多个<xref:System.Web.UI.WebControls.WizardStepCollection>集合，集合将合并。  
+ 如果控件包含多个<xref:System.Web.UI.WebControls.WizardStepCollection>集合, 则将合并集合。 <xref:System.Web.UI.WebControls.Wizard>  
   
- 无法通过主题或样式表主题设置此属性。 有关详细信息，请参阅<xref:System.Web.UI.ThemeableAttribute>并[ASP.NET 主题和外观](https://msdn.microsoft.com/library/5df3ebbd-d46c-4502-9406-02f9df4ef2c3)。  
+ 无法通过主题或样式表主题设置此属性。 有关详细信息, 请<xref:System.Web.UI.ThemeableAttribute>参阅和[ASP.NET 主题和外观](https://msdn.microsoft.com/library/5df3ebbd-d46c-4502-9406-02f9df4ef2c3)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何创建<xref:System.Web.UI.WebControls.Wizard>以编程方式控制，以及如何使用<xref:System.Web.UI.WebControls.WizardStepCollection.Add%2A>方法中添加<xref:System.Web.UI.WebControls.WizardStepBase>对象添加到<xref:System.Web.UI.WebControls.Wizard.WizardSteps%2A>集合。  
+ 下面的代码示例演示如何以编程方式<xref:System.Web.UI.WebControls.Wizard>创建控件, 以及如何<xref:System.Web.UI.WebControls.WizardStepCollection.Add%2A>使用方法将对象添加<xref:System.Web.UI.WebControls.WizardStepBase>到<xref:System.Web.UI.WebControls.Wizard.WizardSteps%2A>集合中。  
   
  [!code-aspx-csharp[System.Web.UI.WebControls.WizardSteps#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardSteps/CS/wizardstepscs.aspx#1)]
  [!code-aspx-vb[System.Web.UI.WebControls.WizardSteps#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.UI.WebControls.WizardSteps/VB/wizardstepsvb.aspx#1)]  

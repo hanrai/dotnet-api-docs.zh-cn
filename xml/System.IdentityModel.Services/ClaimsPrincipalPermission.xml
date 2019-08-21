@@ -1,5 +1,5 @@
 <Type Name="ClaimsPrincipalPermission" FullName="System.IdentityModel.Services.ClaimsPrincipalPermission">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7da9c1c218c9c3251976195eca793df1ac01c138" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55310354" /></Metadata><TypeSignature Language="C#" Value="public sealed class ClaimsPrincipalPermission : System.Security.IPermission, System.Security.Permissions.IUnrestrictedPermission" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="2fb06ec7390b39d257cf72931b0cf79b68925403" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69283102" /></Metadata><TypeSignature Language="C#" Value="public sealed class ClaimsPrincipalPermission : System.Security.IPermission, System.Security.Permissions.IUnrestrictedPermission" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit ClaimsPrincipalPermission extends System.Object implements class System.Security.IPermission, class System.Security.ISecurityEncodable, class System.Security.Permissions.IUnrestrictedPermission" />
   <TypeSignature Language="DocId" Value="T:System.IdentityModel.Services.ClaimsPrincipalPermission" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ClaimsPrincipalPermission&#xA;Implements IPermission, IUnrestrictedPermission" />
@@ -34,27 +34,27 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IdentityModel.Services.ClaimsPrincipalPermission>类提供了使用执行命令性访问检查的能力<xref:System.Security.Claims.ClaimsAuthorizationManager>配置的应用程序。 通过调用<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>方法或静态<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.CheckAccess%2A>方法，可以提供对从执行路径中的资源为声明身份验证管理器定义的授权策略根据代码的保护。 声明性的访问权限检查可以通过使用执行<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>类。  
+ 类提供通过<xref:System.Security.Claims.ClaimsAuthorizationManager>使用为应用程序配置的来执行命令性访问检查的功能。 <xref:System.IdentityModel.Services.ClaimsPrincipalPermission> 通过调用<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>方法或静态<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.CheckAccess%2A>方法, 你可以根据为声明身份验证管理器定义的授权策略, 对代码的执行路径中的资源提供保护。 声明性访问检查可以通过使用<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>类来执行。  
   
 > [!IMPORTANT]
->  <xref:System.IdentityModel.Services.ClaimsPrincipalPermission>类使用情况下配置的声明授权管理器<xref:System.IdentityModel.Configuration.IdentityConfiguration>下设置<xref:System.IdentityModel.Services.FederatedAuthentication.FederationConfiguration%2A?displayProperty=nameWithType>属性。 这是在所有情况下，即使在其中未使用 WS 联合身份验证; 的方案中，则返回 true例如，活动 (WCF) Web 应用程序和控制台应用程序。 您可以指定的声明授权管理器配置中或以编程方式。 若要在配置文件中指定的声明授权管理器，设置[ &lt;claimsAuthorizationManager&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/claimsauthorizationmanager.md)元素下的[ &lt;identityConfiguration&gt;](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/identityconfiguration.md)元素，并确保此标识配置通过引用[ &lt;federationConfiguration&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/federationconfiguration.md)运行时加载的元素 （例如，通过设置`identityConfigurationName`属性)。 若要以编程方式设置声明授权管理器，提供的处理程序<xref:System.IdentityModel.Services.FederatedAuthentication.FederationConfigurationCreated?displayProperty=nameWithType>事件。  
+>  类使用配置的声明授权管理器<xref:System.IdentityModel.Configuration.IdentityConfiguration> <xref:System.IdentityModel.Services.FederatedAuthentication.FederationConfiguration%2A?displayProperty=nameWithType> , 该管理器由在属性下设置的进行。 <xref:System.IdentityModel.Services.ClaimsPrincipalPermission> 即使在不使用 WS-FEDERATION 的情况下, 也是如此,例如, 活动 (WCF) Web 应用程序和控制台应用程序。 可以在配置中或以编程方式指定声明授权管理器。 若要在配置文件中指定声明授权管理器, 请在[ &lt;identityConfiguration&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/identityconfiguration.md)元素下设置[ &lt;claimsAuthorizationManager&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/claimsauthorizationmanager.md)元素, 并确保标识配置由运行时加载[ &lt;的&gt; federationConfiguration](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/federationconfiguration.md)元素引用`identityConfigurationName` (例如, 通过设置特性)。 若要以编程方式设置声明授权管理器, 请为<xref:System.IdentityModel.Services.FederatedAuthentication.FederationConfigurationCreated?displayProperty=nameWithType>事件提供处理程序。  
   
- 某个级别上提供的功能<xref:System.IdentityModel.Services.ClaimsPrincipalPermission>类似于基于角色的访问检查 (RBAC) 通过提供<xref:System.Security.Permissions.PrincipalPermission>类; 但是，<xref:System.Security.Claims.ClaimsAuthorizationManager>类执行检查，依据提供活动的主体的声明。 这使更多粒度比通过纯 RBAC，其中许多权限通常收集单个角色下可用。 也许，更重要的是，基于声明的授权可实现更好地分离业务逻辑和授权策略，因为可以在代码中对资源的特定操作需要管理员权限和后端策略可以用于配置的声明提供实体都必须拥有才能满足此要求。 RBAC，喜欢<xref:System.IdentityModel.Services.ClaimsPrincipalPermission>与代码访问安全性实现的派生的类不同，它是执行基于用户的访问检查，<xref:System.Security.CodeAccessPermission>类，并使用堆栈审核，以确保代码的所有调用方已被授予权限， <xref:System.IdentityModel.Services.ClaimsPrincipalPermission>执行其检查仅在当前主体上的。  
+ 在一个级别上, 提供<xref:System.IdentityModel.Services.ClaimsPrincipalPermission>的功能类似于<xref:System.Security.Permissions.PrincipalPermission>通过<xref:System.Security.Claims.ClaimsAuthorizationManager>类提供的基于角色的访问检查 (RBAC); 但是, 类基于活动主体提供的声明执行检查。 这比通过纯 RBAC 提供的粒度要多得多, 在这种情况下, 通常会在单个角色下收集许多权限。 更重要的是, 更重要的是, 基于声明的授权可以更好地分离业务逻辑和授权策略, 因为可以对代码中的资源执行特定操作的权限, 并且可以使用后端策略来配置为了满足需求, 提供实体必须具有。 与 RBAC 类似<xref:System.IdentityModel.Services.ClaimsPrincipalPermission> , 执行基于用户的访问检查, 即, 与<xref:System.Security.CodeAccessPermission>从类派生的类实现的代码访问安全性不同, 并使用堆栈审核来确保已向代码的所有调用方授予权限, <xref:System.IdentityModel.Services.ClaimsPrincipalPermission>仅对当前主体执行检查。  
   
- 静态<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.CheckAccess%2A>方法检查指定的操作对指定资源的访问权限。 资源和操作是两个字符串，并且通常是 Uri。 此外可以初始化的实例<xref:System.IdentityModel.Services.ClaimsPrincipalPermission>操作和资源以及调用<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>方法。 构造函数仅采用单个资源和操作，尽管<xref:System.IdentityModel.Services.ClaimsPrincipalPermission>对象可以通过组合<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Union%2A>和<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Intersect%2A>方法。 通过使用这些方法创建的权限可能包含多个资源操作对。  
+ 静态<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.CheckAccess%2A>方法检查针对指定资源的指定操作的访问权限。 资源和操作都是字符串, 并且通常为 Uri。 你还可以<xref:System.IdentityModel.Services.ClaimsPrincipalPermission>使用操作和资源初始化实例, 并<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>调用方法。 尽管构造函数只使用单个资源和操作, <xref:System.IdentityModel.Services.ClaimsPrincipalPermission>但可以<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Union%2A>通过和<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Intersect%2A>方法合并对象。 使用这些方法创建的权限可能包含多个资源操作对。  
   
- 这两种方法通过调用来确定访问<xref:System.Security.Claims.ClaimsAuthorizationManager.CheckAccess%2A?displayProperty=nameWithType>方法已配置的声明授权管理器与<xref:System.Security.Claims.AuthorizationContext>组成活动的主体 (<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType>)，该资源和操作。 它们将引发<xref:System.Security.SecurityException>如果当前主体无权对资源; 执行操作，否则，执行将继续。  
+ 这两种方法都通过<xref:System.Security.Claims.ClaimsAuthorizationManager.CheckAccess%2A?displayProperty=nameWithType> <xref:System.Security.Claims.AuthorizationContext>使用活动主体 (<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType>)、资源和操作的组合调用已配置的声明授权管理器的方法来确定访问权限。 <xref:System.Security.SecurityException>如果当前主体无权对资源执行操作, 则它们会引发; 否则, 执行将继续。  
   
- 情况下<xref:System.IdentityModel.Services.ClaimsPrincipalPermission>，其中包含多个资源操作对，<xref:System.Security.Claims.ClaimsAuthorizationManager.CheckAccess%2A?displayProperty=nameWithType>的权限中的资源操作对每个调用方法。  为调用<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>成功，活动的主体必须为所有权限中的资源操作对授权。  
+ 对于包含多个资源操作对<xref:System.Security.Claims.ClaimsAuthorizationManager.CheckAccess%2A?displayProperty=nameWithType>的, 将为权限中包含的每个资源操作对调用方法。 <xref:System.IdentityModel.Services.ClaimsPrincipalPermission>  要使对<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>的调用成功, 必须针对权限中包含的所有资源操作对对活动主体进行授权。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用保护资源<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>方法，<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.CheckAccess%2A>方法，或<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>声明。 每种情况下，已配置<xref:System.Security.Claims.ClaimsAuthorizationManager>调用来评估当前主体针对指定的资源和操作。 如果指定的资源上指定的操作未授权当前主体<xref:System.Security.SecurityException>则引发该异常; 否则为执行将继续。  
+ 下面的示例演示如何使用<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>方法<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.CheckAccess%2A> 、方法或<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>声明保护资源。 在每种情况下, <xref:System.Security.Claims.ClaimsAuthorizationManager>将调用配置的来针对指定的资源和操作评估当前主体。 如果未对指定资源的指定操作授权当前主体, <xref:System.Security.SecurityException>则将引发; 否则, 执行将继续。  
   
  [!code-csharp[WifCppWithCam#1](~/samples/snippets/csharp/VS_Snippets_Misc/wifcppwithcam/cs/wifcppwithcam/program.cs#1)]  
   
- 下面的 XML 演示使用自定义声明授权所需的最低配置管理器与<xref:System.IdentityModel.Services.ClaimsPrincipalPermission>类。 您必须最小值，声明两`system.identityModel`和`system.identityModel.services`内的部分`<configSection>`元素，然后指定在授权管理器中的[ &lt;claimsAuthorizationManager&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/claimsauthorizationmanager.md)下的默认标识配置元素。 这将确保从默认的联合身份验证配置引用了授权管理器。 或者，可以指定在其下授权管理器中指定的标识配置的名称`identityConfigurationName`的属性[ &lt;federationConfiguration&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/federationconfiguration.md)元素。  
+ 下面的 XML 演示将自定义声明授权管理器与<xref:System.IdentityModel.Services.ClaimsPrincipalPermission>类结合使用所需的最低配置。 至少必须在`system.identityModel` `<configSection>`元素中同时声明`system.identityModel.services`和部分, 然后在 " [ &lt;claimsAuthorizationManager&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/claimsauthorizationmanager.md) " 元素中指定授权管理器默认标识配置。 这将确保从默认的联合身份验证配置引用授权管理器。 或者, 你可以指定在`identityConfigurationName` [ &lt;federationConfiguration&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/federationconfiguration.md)元素的属性中指定了授权管理器的标识配置的名称。  
   
 ```xml  
 <?xml version="1.0" encoding="utf-8" ?>  
@@ -110,9 +110,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IdentityModel.Services.ClaimsPrincipalPermission>对象初始化使用指定的资源操作对。 您可以调用<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>方法来执行访问检查。  
+ <xref:System.IdentityModel.Services.ClaimsPrincipalPermission>对象用指定的资源-操作对进行初始化。 您可以调用<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>方法来执行访问检查。  
   
- 构造函数仅采用单个资源和操作，尽管<xref:System.IdentityModel.Services.ClaimsPrincipalPermission>对象可以通过组合<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Union%2A>和<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Intersect%2A>方法。 通过这些方法创建的权限可能包含多个资源操作对。  
+ 尽管构造函数只使用单个资源和操作, <xref:System.IdentityModel.Services.ClaimsPrincipalPermission>但可以<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Union%2A>通过和<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Intersect%2A>方法合并对象。 通过这些方法创建的权限可能包含多个资源操作对。  
   
  ]]></format>
         </remarks>
@@ -152,14 +152,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须为指定的资源上指定的操作授权主体或<xref:System.Security.SecurityException>引发异常。  
+ 主体必须针对指定资源的指定操作进行授权, 否则<xref:System.Security.SecurityException>会引发异常。  
   
- <xref:System.Security.Claims.ClaimsAuthorizationManager.CheckAccess%2A?displayProperty=nameWithType>已配置的声明授权管理器的方法调用使用了<xref:System.Security.Claims.AuthorizationContext>组成活动的主体 (<xref:System.Threading.Thread.CurrentPrincipal%2A>)，该资源和操作。  
+ 配置的声明授权管理器的<xref:System.Security.Claims.AuthorizationContext> <xref:System.Threading.Thread.CurrentPrincipal%2A>方法是使用活动主体 ()、资源和操作的组合调用的。 <xref:System.Security.Claims.ClaimsAuthorizationManager.CheckAccess%2A?displayProperty=nameWithType>  
   
    
   
 ## Examples  
- 下面的示例演示如何使用保护资源<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.CheckAccess%2A>方法。 已配置的声明授权管理器调用来评估当前主体针对指定的资源和操作。 如果指定的资源上指定的操作未授权当前主体<xref:System.Security.SecurityException>则引发该异常; 否则为执行将继续。  
+ 下面的示例演示如何使用<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.CheckAccess%2A>方法保护资源。 将调用配置的声明授权管理器来评估当前主体是否针对指定的资源和操作。 如果未对指定资源的指定操作授权当前主体, <xref:System.Security.SecurityException>则将引发; 否则, 执行将继续。  
   
  [!code-csharp[WifCppWithCam#2](~/samples/snippets/csharp/VS_Snippets_Misc/wifcppwithcam/cs/wifcppwithcam/program.cs#2)]  
   
@@ -167,7 +167,7 @@
         </remarks>
         <exception cref="T:System.InvalidOperationException">当前主体无法从 <see cref="T:System.Security.Claims.ClaimsPrincipal" /> 进行分配。  
   
-- 或 - 
+或 
 没有配置的 <see cref="T:System.Security.Claims.ClaimsAuthorizationManager" />。</exception>
         <exception cref="T:System.Security.SecurityException">授权检查已失败。</exception>
       </Docs>
@@ -227,16 +227,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须为所有与此实例关联的资源操作对授权当前主体或<xref:System.Security.SecurityException>引发异常。  
+ 对于与此实例关联的所有资源操作对, 当前主体必须进行授权, 否则<xref:System.Security.SecurityException>将引发异常。  
   
- 构造函数仅采用单个资源和操作，尽管<xref:System.IdentityModel.Services.ClaimsPrincipalPermission>对象可以通过组合<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Union%2A>和<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Intersect%2A>方法。 通过这些方法创建的权限可能包含多个资源操作对。  
+ 尽管构造函数只使用单个资源和操作, <xref:System.IdentityModel.Services.ClaimsPrincipalPermission>但可以<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Union%2A>通过和<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Intersect%2A>方法合并对象。 通过这些方法创建的权限可能包含多个资源操作对。  
   
- <xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>方法将调用<xref:System.Security.Claims.ClaimsAuthorizationManager.CheckAccess%2A?displayProperty=nameWithType>方法的已配置的声明授权管理器与<xref:System.Security.Claims.AuthorizationContext>组成活动的主体 (<xref:System.Threading.Thread.CurrentPrincipal%2A>)，资源，并为每个包含的资源操作对操作在权限。 有关<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>成功活动主体必须为所有权限中包含的资源操作对都授权。  
+ 方法使用<xref:System.Security.Claims.AuthorizationContext>活动主体<xref:System.Security.Claims.ClaimsAuthorizationManager.CheckAccess%2A?displayProperty=nameWithType> (<xref:System.Threading.Thread.CurrentPrincipal%2A>)、资源和所包含的每个资源操作对的操作, 调用已配置的声明授权管理器的方法。 <xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>在权限中。 <xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>若要成功, 必须针对权限中包含的所有资源操作对对活动主体授权。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用保护资源<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>方法。 已配置的声明授权管理器调用来评估当前主体针对指定的资源和操作。 如果指定的资源上指定的操作未授权当前主体<xref:System.Security.SecurityException>则引发该异常; 否则为执行将继续。  
+ 下面的示例演示如何使用<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>方法保护资源。 将调用配置的声明授权管理器来评估当前主体是否针对指定的资源和操作。 如果未对指定资源的指定操作授权当前主体, <xref:System.Security.SecurityException>则将引发; 否则, 执行将继续。  
   
  [!code-csharp[WifCppWithCam#3](~/samples/snippets/csharp/VS_Snippets_Misc/wifcppwithcam/cs/wifcppwithcam/program.cs#3)]  
   
@@ -244,7 +244,7 @@
         </remarks>
         <exception cref="T:System.InvalidOperationException">当前主体无法从 <see cref="T:System.Security.Claims.ClaimsPrincipal" /> 进行分配。  
   
-- 或 - 
+或 
 没有配置的 <see cref="T:System.Security.Claims.ClaimsAuthorizationManager" />。</exception>
         <exception cref="T:System.Security.SecurityException">授权检查已失败。</exception>
       </Docs>
@@ -277,7 +277,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 重新构造权限从通过调用创建的 XML 编码<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.ToXml%2A>方法。  
+ 从通过调用<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.ToXml%2A>方法创建的 XML 编码重新构造权限。  
   
  ]]></format>
         </remarks>
@@ -314,7 +314,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的权限已在当前权限和指定权限中存在的资源操作对。 资源操作对存在于中只有一个或多个权限不包括在内。 有关<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>成功的新权限，当前主体只需获得了普遍适用于当前权限和指定的权限的资源操作对授权。  
+ 返回的权限只包含当前权限和指定权限中同时存在的资源操作对。 仅存在于其中一个权限或另一个权限中的资源操作对不包括在内。 <xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>若要成功实现新的权限, 当前主体只需获得对当前权限和指定权限通用的资源-操作对的授权。  
   
  ]]></format>
         </remarks>
@@ -349,7 +349,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果所有当前权限中的资源操作对也都存在于指定的权限，则当前权限是指定权限的子集。 如果`target`是`null`或者不是实例<xref:System.IdentityModel.Services.ClaimsPrincipalPermission>，则<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.IsSubsetOf%2A>返回`false`。  
+ 如果当前权限中包含的所有资源操作对也存在于指定权限中, 则当前权限是指定权限的子集。 如果`target` <xref:System.IdentityModel.Services.ClaimsPrincipalPermission>为`null`或不是的实例, 则<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.IsSubsetOf%2A>返回`false`。  
   
  ]]></format>
         </remarks>
@@ -406,7 +406,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 主体可以重新构造 XML 编码形式从通过调用<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.FromXml%2A>方法。  
+ 通过调用<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.FromXml%2A>方法, 可以从其 XML 编码格式重新构造主体。  
   
  ]]></format>
         </remarks>
@@ -441,7 +441,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回的权限的所有资源操作对当前权限中存在的所有的资源操作对提供的指定的权限。 有关<xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>成功的新权限，当前的主体必须授权的所有当前权限中存在的资源操作对和所有存在于中的指定权限的资源操作对。  
+ 返回的权限包含当前权限中存在的所有资源操作对, 以及存在指定权限的所有资源操作对。 <xref:System.IdentityModel.Services.ClaimsPrincipalPermission.Demand%2A>若要成功实现新的权限, 当前主体必须为当前权限中存在的所有资源操作对和指定权限中存在的所有资源-操作对进行授权。  
   
  ]]></format>
         </remarks>

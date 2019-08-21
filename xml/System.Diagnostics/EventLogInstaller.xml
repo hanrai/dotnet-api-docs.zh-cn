@@ -1,5 +1,5 @@
 <Type Name="EventLogInstaller" FullName="System.Diagnostics.EventLogInstaller">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="88596074c0bd24dd3f2dd67de13860ad50ec959d" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63887906" /></Metadata><TypeSignature Language="C#" Value="public class EventLogInstaller : System.Configuration.Install.ComponentInstaller" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ebf5fa22cda84c35fafbe169edaec4cdc04e0480" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69076298" /></Metadata><TypeSignature Language="C#" Value="public class EventLogInstaller : System.Configuration.Install.ComponentInstaller" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit EventLogInstaller extends System.Configuration.Install.ComponentInstaller" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.EventLogInstaller" />
   <TypeSignature Language="VB.NET" Value="Public Class EventLogInstaller&#xA;Inherits ComponentInstaller" />
@@ -21,39 +21,39 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.EventLogInstaller>由[Installutil.exe （安装程序工具）](~/docs/framework/tools/installutil-exe-installer-tool.md)时安装事件日志。 <xref:System.Diagnostics.EventLogInstaller>类可以仅在本地计算机上安装事件日志。  
+ 安装事件日志时, 由[installutil.exe (安装程序工具)](~/docs/framework/tools/installutil-exe-installer-tool.md)使用。 <xref:System.Diagnostics.EventLogInstaller> <xref:System.Diagnostics.EventLogInstaller>类只能在本地计算机上安装事件日志。  
   
- 使用<xref:System.Diagnostics.EventLogInstaller>类当你的应用程序将事件日志写入; 不需要使用你的应用程序的事件日志安装程序从事件日志中读取。 应用程序和服务应写入应用程序日志或自定义日志。 设备驱动程序应该写入系统日志。  
+ 当应用程序写入事件日志时使用类;不需要为应用程序使用事件日志安装程序来读取事件日志。<xref:System.Diagnostics.EventLogInstaller> 应用程序和服务应写入应用程序日志或自定义日志。 设备驱动程序应该写入系统日志。  
   
 > [!NOTE]
->  安全日志是只读的。  
+>  安全日志为只读。  
   
- 安装程序创建的事件源中指定的<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性，它为事件日志中指定的寄存器<xref:System.Diagnostics.EventLogInstaller.Log%2A>属性。 此行为是类似于调用<xref:System.Diagnostics.EventLog.CreateEventSource%2A>上<xref:System.Diagnostics.EventLog>组件。  
+ 安装程序将创建在<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性中指定的事件源, 并将其注册到属性中<xref:System.Diagnostics.EventLogInstaller.Log%2A>指定的事件日志。 此行为类似于<xref:System.Diagnostics.EventLog.CreateEventSource%2A> <xref:System.Diagnostics.EventLog>在组件上调用。  
   
- 使用<xref:System.Diagnostics.EventLog.WriteEvent%2A>和<xref:System.Diagnostics.EventLog.WriteEntry%2A>方法将事件写入到事件日志。 必须指定事件源写入事件;必须创建并写入与源的第一项之前配置的事件源。  
+ <xref:System.Diagnostics.EventLog.WriteEvent%2A>使用和<xref:System.Diagnostics.EventLog.WriteEntry%2A>方法可将事件写入事件日志。 您必须指定事件源以写入事件;在写入包含源的第一个条目之前, 必须创建并配置事件源。  
   
- 在应用程序的安装过程中创建新的事件源。 这允许操作系统以刷新其注册的事件源的列表和它们的配置的时间。 如果操作系统没有刷新其事件源的列表，并且尝试写入新的源的事件写入操作将失败。 可以配置新的源使用<xref:System.Diagnostics.EventLogInstaller>，或使用<xref:System.Diagnostics.EventLog.CreateEventSource%2A>方法。 若要创建新的事件源的计算机上，必须具有管理权限。  
+ 在应用程序安装过程中创建新的事件源。 这样, 操作系统就可以刷新其已注册事件源的列表及其配置。 如果操作系统尚未刷新其事件源列表, 而你尝试使用新源写入事件, 则写入操作将失败。 您可以使用<xref:System.Diagnostics.EventLogInstaller>或<xref:System.Diagnostics.EventLog.CreateEventSource%2A>方法来配置新源。 您必须对该计算机具有管理权限才能创建新的事件源。  
   
- 可以创建现有事件日志或新的事件日志的事件源。 创建新的源为新的事件日志时，系统注册该日志的源，但直到第一个条目写入不创建该日志。  
+ 可以为现有事件日志或新的事件日志创建事件源。 为新的事件日志创建新源时, 系统将为该日志注册源, 但在向其中写入第一个条目之前, 不会创建日志。  
   
- 若要安装事件日志，请创建继承的项目安装程序类<xref:System.Configuration.Install.Installer>，并设置<xref:System.ComponentModel.RunInstallerAttribute>到类`true`。 您的项目内创建<xref:System.Diagnostics.EventLogInstaller>为每个事件日志将写入到应用程序，并且将实例添加到你的项目安装程序类。  
+ 若要安装事件日志, 请创建从<xref:System.Configuration.Install.Installer>继承的项目安装程序类, 并将类`true`的<xref:System.ComponentModel.RunInstallerAttribute>设置为。 在项目中, <xref:System.Diagnostics.EventLogInstaller>为应用程序将写入的每个事件日志创建, 并将实例添加到项目安装程序类。  
   
- 当[Installutil.exe （安装程序工具）](~/docs/framework/tools/installutil-exe-installer-tool.md)是调用，它会查看<xref:System.ComponentModel.RunInstallerAttribute>。 如果它是`true`，该工具会安装中的所有项<xref:System.Configuration.Install.Installer.Installers%2A>项目安装程序与关联的集合。 如果<xref:System.ComponentModel.RunInstallerAttribute>是`false`，此工具将忽略项目安装程序。  
+ 调用[installutil.exe (安装程序工具)](~/docs/framework/tools/installutil-exe-installer-tool.md)时, 它将查看<xref:System.ComponentModel.RunInstallerAttribute>。 如果是`true`, 则该工具将安装与项目安装程序<xref:System.Configuration.Install.Installer.Installers%2A>关联的集合中的所有项。 如果<xref:System.ComponentModel.RunInstallerAttribute> 为`false`, 则该工具将忽略项目安装程序。  
   
- 修改的其他属性<xref:System.Diagnostics.EventLogInstaller>之前或之后添加到实例<xref:System.Configuration.Install.Installer.Installers%2A>项目安装程序，但在之前运行该安装程序工具的集合。 必须设置<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性，如果你的应用程序将写入事件日志。  
+ 在将实例添加<xref:System.Diagnostics.EventLogInstaller> <xref:System.Configuration.Install.Installer.Installers%2A>到项目安装程序的集合之前或之后, 但在安装程序工具运行之前修改的其他属性。 如果你的应用<xref:System.Diagnostics.EventLogInstaller.Source%2A>程序将写入事件日志, 则必须设置属性。  
   
- 使用<xref:System.Diagnostics.EventLogInstaller>注册一个新的或现有的事件日志; 新的源不使用<xref:System.Diagnostics.EventLogInstaller>若要更改现有的源。 <xref:System.Diagnostics.EventLogInstaller>类不会修改现有源以匹配指定的安装属性的配置属性。 <xref:System.Diagnostics.EventLogInstaller.Install%2A>方法将引发异常，如果<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性与为另一个事件日志的计算机上注册的源名称相匹配。 <xref:System.Diagnostics.EventLogInstaller.Install%2A>方法不会注册源，如果<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性与已注册相同的事件日志中指定的源名称相匹配<xref:System.Diagnostics.EventLogInstaller.Log%2A>属性。  
+ 用于为新的或现有的事件日志注册新源; 不要使用<xref:System.Diagnostics.EventLogInstaller>来更改现有源。 <xref:System.Diagnostics.EventLogInstaller> <xref:System.Diagnostics.EventLogInstaller>类不会修改现有源的配置属性以匹配指定的安装属性。 如果<xref:System.Diagnostics.EventLogInstaller.Install%2A> 该<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性与为计算机上的不同事件日志注册的源名称匹配, 则该方法将引发异常。 如果属性与已为<xref:System.Diagnostics.EventLogInstaller.Install%2A> <xref:System.Diagnostics.EventLogInstaller.Log%2A>属性中指定的相同事件日志注册的源名称匹配, 则该方法不会注册源。 <xref:System.Diagnostics.EventLogInstaller.Source%2A>  
   
- 您可以注册事件源的本地化的资源文件为事件类别和消息字符串。 你的应用程序可以写入事件日志项使用资源标识符，而不指定实际的字符串。 事件查看器使用的资源标识符来查找并显示基于当前语言设置的本地化的资源文件中的相应字符串。 可以注册一个单独的文件的事件类别、 消息和参数插入字符串，也可以注册相同的资源文件，所有三种类型的字符串。 使用<xref:System.Diagnostics.EventLogInstaller.CategoryCount%2A>， <xref:System.Diagnostics.EventLogInstaller.CategoryResourceFile%2A>， <xref:System.Diagnostics.EventLogInstaller.MessageResourceFile%2A>，和<xref:System.Diagnostics.EventLogInstaller.ParameterResourceFile%2A>属性来配置要本地化的项写入事件日志的源。 如果你的应用程序直接将字符串值写入事件日志，您不需要设置这些属性。  
+ 可以向事件类别和消息字符串的本地化资源文件注册事件源。 应用程序可以使用资源标识符而不是指定实际字符串来编写事件日志项。 事件查看器使用资源标识符从本地化的资源文件中查找并显示相应的字符串。 您可以为事件类别、消息和参数插入字符串注册单独的文件, 也可以为所有这三种类型的字符串注册同一资源文件。 <xref:System.Diagnostics.EventLogInstaller.CategoryCount%2A>使用、 <xref:System.Diagnostics.EventLogInstaller.CategoryResourceFile%2A>、 <xref:System.Diagnostics.EventLogInstaller.MessageResourceFile%2A>和属性将源配置为将本地化项写入事件日志。<xref:System.Diagnostics.EventLogInstaller.ParameterResourceFile%2A> 如果你的应用程序将字符串值直接写入事件日志, 则无需设置这些属性。  
   
- 要写入本地化的项还是要直接写入字符串，必须配置源。 如果你的应用程序将使用资源标识符和字符串值的条目写入，则必须注册两个单独的源。 例如，配置一个源的资源文件，以及如何将该源中的<xref:System.Diagnostics.EventLog.WriteEvent%2A>方法来编写使用资源标识符添加到事件日志条目。 创建不同的源，而无需资源文件，然后使用在该源<xref:System.Diagnostics.EventLog.WriteEntry%2A>方法将字符串直接写入事件日志使用的源。  
+ 源必须配置为写入本地化项或写入直接字符串。 如果应用程序使用资源标识符和字符串值写入条目, 则必须注册两个不同的源。 例如, 使用资源文件配置一个源, 然后在<xref:System.Diagnostics.EventLog.WriteEvent%2A>方法中使用该源, 将使用资源标识符的项写入事件日志。 创建不含资源文件的其他源, 然后在<xref:System.Diagnostics.EventLog.WriteEntry%2A>方法中使用该源, 使用该源直接向事件日志写入字符串。  
   
- 通常情况下，不调用的方法<xref:System.Diagnostics.EventLogInstaller>类在代码中; 它们通常被称为只能由 Installutil.exe。 该工具会自动调用<xref:System.Diagnostics.EventLogInstaller.Install%2A>在安装过程中的方法。 如有必要，它退出故障，通过调用<xref:System.Diagnostics.EventLogInstaller.Rollback%2A>生成了异常的对象的方法。  
+ 通常, 你不会从代码中调用<xref:System.Diagnostics.EventLogInstaller>类的方法; 它们通常仅由 installutil.exe 调用。 该工具会在安装<xref:System.Diagnostics.EventLogInstaller.Install%2A>过程中自动调用此方法。 如果需要, 它会通过调用<xref:System.Diagnostics.EventLogInstaller.Rollback%2A>生成异常的对象的方法来实现故障。  
   
    
   
 ## Examples  
- 下面的代码示例设置新的事件源的安装属性。 代码示例设置的源名称和事件日志名称，并添加<xref:System.Diagnostics.EventLogInstaller>到<xref:System.Configuration.Install.Installer.Installers%2A>集合。  
+ 下面的代码示例设置新事件源的安装属性。 此代码示例设置源名称和事件日志名称, 并将添加<xref:System.Diagnostics.EventLogInstaller> <xref:System.Configuration.Install.Installer.Installers%2A>到集合中。  
   
  [!code-cpp[EventLogInstaller#1](~/samples/snippets/cpp/VS_Snippets_CLR/EventLogInstaller/CPP/eventloginstaller.cpp#1)]
  [!code-csharp[EventLogInstaller#1](~/samples/snippets/csharp/VS_Snippets_CLR/EventLogInstaller/CS/eventloginstaller.cs#1)]
@@ -113,22 +113,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Diagnostics.EventLogInstaller.CategoryCount%2A>和<xref:System.Diagnostics.EventLogInstaller.CategoryResourceFile%2A>属性在写入事件时已本地化的类别字符串。 如果在写入事件时提供一个类别，事件查看器显示事件条目的类别。 事件日志类别是应用程序定义的字符串，用于帮助筛选事件，或提供有关事件的信息。 例如，你的应用程序可以定义分隔不同类别的不同组件或不同的操作。  
+ <xref:System.Diagnostics.EventLogInstaller.CategoryCount%2A>使用和<xref:System.Diagnostics.EventLogInstaller.CategoryResourceFile%2A>属性来写入包含本地化类别字符串的事件。 如果在编写事件时提供类别, 事件查看器将显示事件条目的类别。 事件日志类别是应用程序定义的字符串, 可帮助筛选事件, 或提供有关事件的信息。 例如, 你的应用程序可以为不同的组件或不同的操作定义单独的类别。  
   
- 事件类别是可选的;如果你的应用程序不使用类别，则不要设置<xref:System.Diagnostics.EventLogInstaller.CategoryCount%2A>和<xref:System.Diagnostics.EventLogInstaller.CategoryResourceFile%2A>属性。  
+ 事件类别是可选的;如果你的应用程序不使用类别, 请不要设置<xref:System.Diagnostics.EventLogInstaller.CategoryCount%2A>和<xref:System.Diagnostics.EventLogInstaller.CategoryResourceFile%2A>属性。  
   
- 有关如何定义事件消息和生成事件资源文件的详细信息，请参阅平台 SDK 文档中的"消息编译器"主题[ http://msdn.microsoft.com ](https://msdn.microsoft.com/)。  
+ 有关定义事件消息和生成事件资源文件的详细信息, 请参阅中的平台 SDK 文档[http://msdn.microsoft.com](https://msdn.microsoft.com/)中的 "消息编译器" 主题。  
   
    
   
 ## Examples  
- 下面的代码示例设置新的事件源的安装属性。 代码示例设置事件源名称、 事件日志名称和本地化的事件文本的资源文件。  
+ 下面的代码示例设置新事件源的安装属性。 此代码示例为本地化事件文本设置事件源名称、事件日志名称和资源文件。  
   
  [!code-cpp[EventLogInstaller_Resources#1](~/samples/snippets/cpp/VS_Snippets_CLR/eventlogInstaller_Resources/CPP/source.cpp#1)]
  [!code-csharp[EventLogInstaller_Resources#1](~/samples/snippets/csharp/VS_Snippets_CLR/eventlogInstaller_Resources/CS/source.cs#1)]
  [!code-vb[EventLogInstaller_Resources#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/eventlogInstaller_Resources/VB/source.vb#1)]  
   
- 代码示例使用下面的消息文本文件，内置的资源库 EventLogMsgs.dll。 消息文本文件是从其创建的消息资源文件的源。 消息文本文件定义的资源标识符和类别、 事件消息和参数插入字符串的文本。  
+ 此代码示例使用资源库 EventLogMsgs 中内置的以下消息文本文件。 消息文本文件是从中创建消息资源文件的源。 消息文本文件定义类别、事件消息和参数插入字符串的资源标识符和文本。  
   
 ```  
 ; // EventLogMsgs.mc  
@@ -288,22 +288,22 @@ SVC_UPDATE.EXE
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Diagnostics.EventLogInstaller.CategoryCount%2A>和<xref:System.Diagnostics.EventLogInstaller.CategoryResourceFile%2A>属性在写入事件时已本地化的类别字符串。 如果在写入事件时提供一个类别，事件查看器显示事件项的类别。 事件日志类别是应用程序定义的字符串，用于帮助筛选事件，或提供有关事件的信息。 例如，应用程序可能具有不同的组件或不同的操作的单独类别。  
+ <xref:System.Diagnostics.EventLogInstaller.CategoryCount%2A>使用和<xref:System.Diagnostics.EventLogInstaller.CategoryResourceFile%2A>属性来写入包含本地化类别字符串的事件。 如果你在写入事件时提供了一个类别, 则事件查看器将显示该事件项的类别。 事件日志类别是应用程序定义的字符串, 可帮助筛选事件, 或提供有关事件的信息。 例如, 应用程序可能有不同的类别用于不同的组件或不同的操作。  
   
- 事件类别是可选的;如果你的应用程序不使用类别，则不要设置<xref:System.Diagnostics.EventLogInstaller.CategoryCount%2A>和<xref:System.Diagnostics.EventLogInstaller.CategoryResourceFile%2A>属性。  
+ 事件类别是可选的;如果你的应用程序不使用类别, 请不要设置<xref:System.Diagnostics.EventLogInstaller.CategoryCount%2A>和<xref:System.Diagnostics.EventLogInstaller.CategoryResourceFile%2A>属性。  
   
- 有关如何定义事件消息和生成事件资源文件的详细信息，请参阅平台 SDK 文档中的"消息编译器"主题[ http://msdn.microsoft.com ](https://msdn.microsoft.com/)。  
+ 有关定义事件消息和生成事件资源文件的详细信息, 请参阅中的平台 SDK 文档[http://msdn.microsoft.com](https://msdn.microsoft.com/)中的 "消息编译器" 主题。  
   
    
   
 ## Examples  
- 下面的代码示例设置新的事件源的安装属性。 代码示例设置事件源名称、 事件日志名称和本地化的事件文本的资源文件。  
+ 下面的代码示例设置新事件源的安装属性。 此代码示例为本地化事件文本设置事件源名称、事件日志名称和资源文件。  
   
  [!code-cpp[EventLogInstaller_Resources#1](~/samples/snippets/cpp/VS_Snippets_CLR/eventlogInstaller_Resources/CPP/source.cpp#1)]
  [!code-csharp[EventLogInstaller_Resources#1](~/samples/snippets/csharp/VS_Snippets_CLR/eventlogInstaller_Resources/CS/source.cs#1)]
  [!code-vb[EventLogInstaller_Resources#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/eventlogInstaller_Resources/VB/source.vb#1)]  
   
- 代码示例使用下面的消息文本文件，内置的资源库 EventLogMsgs.dll。 消息文本文件是从其创建的消息资源文件的源。 消息文本文件定义的资源标识符和类别、 事件消息和参数插入字符串的文本。  
+ 此代码示例使用资源库 EventLogMsgs 中内置的以下消息文本文件。 消息文本文件是从中创建消息资源文件的源。 消息文本文件定义类别、事件消息和参数插入字符串的资源标识符和文本。  
   
 ```  
 ; // EventLogMsgs.mc  
@@ -450,11 +450,11 @@ SVC_UPDATE.EXE
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通过指定的组件`component`参数必须是<xref:System.Diagnostics.EventLog>; 否则为将引发异常。  
+ `component`参数指定的组件必须<xref:System.Diagnostics.EventLog>是; 否则, 将引发异常。  
   
- 通常情况下，不调用的方法<xref:System.Diagnostics.EventLogInstaller>从在代码中; 它们通常称为仅可由[Installutil.exe （安装程序工具）](~/docs/framework/tools/installutil-exe-installer-tool.md)。 <xref:System.Diagnostics.EventLogInstaller.CopyFromComponent%2A> Installutil.exe 使用它来设置的属性值<xref:System.Diagnostics.EventLogInstaller>对的值的现有<xref:System.Diagnostics.EventLog>。  
+ 通常情况下, 你不会从代码中<xref:System.Diagnostics.EventLogInstaller>调用的方法; 它们通常仅由[installutil.exe (安装程序工具)](~/docs/framework/tools/installutil-exe-installer-tool.md)调用。 <xref:System.Diagnostics.EventLogInstaller.CopyFromComponent%2A>由 installutil.exe 用来将的<xref:System.Diagnostics.EventLogInstaller>属性值设置为现有<xref:System.Diagnostics.EventLog>的的值。  
   
- 如果<xref:System.Diagnostics.EventLog.Log%2A>的<xref:System.Diagnostics.EventLog>，它是传递中为空字符串 ("")，必须设置<xref:System.Diagnostics.EventLog.Log%2A>为安装程序在执行之前有效的值的属性。  
+ 如果传入的的为空字符串 ("") <xref:System.Diagnostics.EventLog.Log%2A> , 则必须在安装程序执行之前将该属性设置为有效的值。 <xref:System.Diagnostics.EventLog.Log%2A> <xref:System.Diagnostics.EventLog>  
   
  ]]></format>
         </remarks>
@@ -491,13 +491,13 @@ SVC_UPDATE.EXE
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.EventLogInstaller.Install%2A>方法将事件日志信息写入到注册表中，并将事件日志关联与由指定的日志<xref:System.Diagnostics.EventLogInstaller.Log%2A>属性。 如果尚不存在日志 （和指定源），<xref:System.Diagnostics.EventLogInstaller.Install%2A>创建的日志，并将新的源与之相关联。  
+ 方法将事件日志信息写入注册表, 并将事件日志与<xref:System.Diagnostics.EventLogInstaller.Log%2A>属性指定的日志相关联。 <xref:System.Diagnostics.EventLogInstaller.Install%2A> 如果日志尚不存在 (并且指定了源), <xref:System.Diagnostics.EventLogInstaller.Install%2A>则将创建一个日志并将新的源与此日志关联。  
   
- 通常情况下，不调用的方法<xref:System.Diagnostics.EventLogInstaller>从在代码中; 它们通常称为仅可由[Installutil.exe （安装程序工具）](~/docs/framework/tools/installutil-exe-installer-tool.md)。 该工具会自动调用<xref:System.Diagnostics.EventLogInstaller.Install%2A>方法在安装过程中写入事件日志正在安装的注册表信息。 安装是事务性的因此如果在安装期间安装项目的任何组件的故障，则所有以前安装的组件将回滚到安装前的状态。 这通过调用每个组件实现<xref:System.Diagnostics.EventLogInstaller.Rollback%2A>方法。  
+ 通常情况下, 你不会从代码中<xref:System.Diagnostics.EventLogInstaller>调用的方法; 它们通常仅由[installutil.exe (安装程序工具)](~/docs/framework/tools/installutil-exe-installer-tool.md)调用。 此工具会在安装<xref:System.Diagnostics.EventLogInstaller.Install%2A>过程中自动调用方法, 以写入与要安装的事件日志关联的注册表信息。 安装是事务性的, 因此, 如果在安装过程中任何安装项目组件发生故障, 则所有以前安装的组件都将回滚到其安装前状态。 这可以通过调用每个组件的<xref:System.Diagnostics.EventLogInstaller.Rollback%2A>方法来实现。  
   
- 使用<xref:System.Diagnostics.EventLogInstaller>注册一个新的或现有的事件日志; 新的源不使用<xref:System.Diagnostics.EventLogInstaller>若要更改现有的源。 <xref:System.Diagnostics.EventLogInstaller>类不会修改现有源以匹配指定的安装属性的配置属性。 <xref:System.Diagnostics.EventLogInstaller.Install%2A>方法将引发异常，如果<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性与为另一个事件日志的计算机上注册的源名称相匹配。 <xref:System.Diagnostics.EventLogInstaller.Install%2A>方法将跳过注册源，如果<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性与已注册相同的事件日志中指定的源名称相匹配<xref:System.Diagnostics.EventLogInstaller.Log%2A>属性。  
+ 用于为新的或现有的事件日志注册新源; 不要使用<xref:System.Diagnostics.EventLogInstaller>来更改现有源。 <xref:System.Diagnostics.EventLogInstaller> <xref:System.Diagnostics.EventLogInstaller>类不会修改现有源的配置属性以匹配指定的安装属性。 如果<xref:System.Diagnostics.EventLogInstaller.Install%2A> 该<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性与为计算机上的不同事件日志注册的源名称匹配, 则该方法将引发异常。 如果属性与已为<xref:System.Diagnostics.EventLogInstaller.Install%2A> <xref:System.Diagnostics.EventLogInstaller.Log%2A>属性中指定的相同事件日志注册的源名称匹配, 则该方法将跳过注册源。 <xref:System.Diagnostics.EventLogInstaller.Source%2A>  
   
- 应用程序的安装例程使用的项目安装程序<xref:System.Configuration.Install.Installer.Context%2A?displayProperty=nameWithType>属性来自动维护有关已安装的组件的信息。 此状态信息，传递给<xref:System.Diagnostics.EventLogInstaller.Install%2A>作为`stateSaver`工具安装每个参数，将持续更新<xref:System.Diagnostics.EventLogInstaller>。 通常情况下，不需要为你的代码可以显式修改此状态信息。  
+ 应用程序的安装例程使用项目安装程序的<xref:System.Configuration.Install.Installer.Context%2A?displayProperty=nameWithType>属性来自动维护有关已安装的组件的信息。 当工具安装每个<xref:System.Diagnostics.EventLogInstaller.Install%2A> <xref:System.Diagnostics.EventLogInstaller>时, 此状态信息`stateSaver` (作为参数传递给) 将持续更新。 通常, 你的代码不需要显式修改此状态信息。  
   
  ]]></format>
         </remarks>
@@ -536,7 +536,7 @@ SVC_UPDATE.EXE
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常情况下，不调用的方法<xref:System.Diagnostics.EventLogInstaller>从在代码中; 它们通常仅由调用安装程序工具 (Installutil.exe)。  
+ 通常情况下, 你不会从代码中<xref:System.Diagnostics.EventLogInstaller>调用的方法; 它们通常仅由安装程序工具 (installutil.exe) 调用。  
   
  ]]></format>
         </remarks>
@@ -578,15 +578,15 @@ SVC_UPDATE.EXE
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Diagnostics.EventLogInstaller.Log%2A>要关联中指定的源属性<xref:System.Diagnostics.EventLogInstaller.Source%2A>与现有的日志或本地计算机上的新日志的属性。 [Installutil.exe （安装程序工具）](~/docs/framework/tools/installutil-exe-installer-tool.md)使用此信息来将源映射到计算机的注册表中的日志。 应用程序和服务应写入应用程序日志或自定义日志。 设备驱动程序应该写入系统日志。  
+ 您可以使用<xref:System.Diagnostics.EventLogInstaller.Log%2A>属性将在<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性中指定的源与本地计算机上的现有日志或新日志相关联。 [Installutil.exe (安装程序工具)](~/docs/framework/tools/installutil-exe-installer-tool.md)使用此信息将源映射到计算机注册表中的日志。 应用程序和服务应写入应用程序日志或自定义日志。 设备驱动程序应该写入系统日志。  
   
- 若要向事件日志写入条目，必须创建源，并将其注册到事件日志。 事件源一次只能写入到一个日志。 安装程序使用的值<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性可作为有效项源的事件日志中注册你的应用程序。 如果不指定安装程序运行之前的日志名称，安装程序将注册到应用程序日志源。 如果指定新的源和现有的日志时，安装程序创建新的事件源，并将其与您指定的日志关联。 如果指定新的源和新的日志，安装程序将在注册表中，新的日志与相关联的新的源，但直到第一个条目写入不创建该日志。  
+ 若要将条目写入事件日志, 必须创建一个源, 并将其注册到事件日志。 一个事件源一次只能写入一个日志。 安装程序使用<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性的值将应用程序和事件日志注册为条目的有效源。 如果在安装程序运行之前未指定日志名称, 则安装程序会将源注册到应用程序日志。 如果指定新的源和现有日志, 安装程序将创建一个新的事件源, 并将其与指定的日志关联。 如果同时指定新源和新日志, 则安装程序会将新的源与注册表中的新日志关联, 但在向其中写入第一个条目之前, 不会创建日志。  
   
- 操作系统将事件日志存储为文件。 当你使用<xref:System.Diagnostics.EventLogInstaller>或<xref:System.Diagnostics.EventLog.CreateEventSource%2A>方法来创建新的事件日志关联的文件存储在指定计算机上的 %SystemRoot%\System32\Config 目录中。 通过追加的前 8 个字符设置的文件名称<xref:System.Diagnostics.EventLogInstaller.Log%2A>".evt"文件扩展名的属性。  
+ 操作系统将事件日志存储为文件。 当使用<xref:System.Diagnostics.EventLogInstaller> <xref:System.Diagnostics.EventLog.CreateEventSource%2A>或方法创建新的事件日志时, 关联的文件将存储在指定计算机上的%SystemRoot%\System32\Config 目录中。 文件名的设置方法是将<xref:System.Diagnostics.EventLogInstaller.Log%2A>属性的前8个字符追加到文件扩展名 ".evt"。  
   
- 使用<xref:System.Diagnostics.EventLogInstaller>注册一个新的或现有的事件日志; 新的源不使用<xref:System.Diagnostics.EventLogInstaller>若要更改现有的源。 <xref:System.Diagnostics.EventLogInstaller>类不会修改现有源以匹配指定的安装属性的配置属性。 <xref:System.Diagnostics.EventLogInstaller.Install%2A>方法将引发异常，如果<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性与为另一个事件日志的计算机上注册的源名称相匹配。 <xref:System.Diagnostics.EventLogInstaller.Install%2A>方法不会注册源，如果<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性与已注册相同的事件日志中指定的源名称相匹配<xref:System.Diagnostics.EventLogInstaller.Log%2A>属性。  
+ 用于为新的或现有的事件日志注册新源; 不要使用<xref:System.Diagnostics.EventLogInstaller>来更改现有源。 <xref:System.Diagnostics.EventLogInstaller> <xref:System.Diagnostics.EventLogInstaller>类不会修改现有源的配置属性以匹配指定的安装属性。 如果<xref:System.Diagnostics.EventLogInstaller.Install%2A> 该<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性与为计算机上的不同事件日志注册的源名称匹配, 则该方法将引发异常。 如果属性与已为<xref:System.Diagnostics.EventLogInstaller.Install%2A> <xref:System.Diagnostics.EventLogInstaller.Log%2A>属性中指定的相同事件日志注册的源名称匹配, 则该方法不会注册源。 <xref:System.Diagnostics.EventLogInstaller.Source%2A>  
   
- 有关详细信息的事件日志和源的行为，请参阅<xref:System.Diagnostics.EventLog>类的文档<xref:System.Diagnostics.EventLog.Log%2A>和<xref:System.Diagnostics.EventLog.Source%2A>属性。  
+ 有关事件日志和源行为的详细信息, 请参阅<xref:System.Diagnostics.EventLog> <xref:System.Diagnostics.EventLog.Log%2A>和<xref:System.Diagnostics.EventLog.Source%2A>属性的类文档。  
   
  ]]></format>
         </remarks>
@@ -634,28 +634,28 @@ SVC_UPDATE.EXE
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Diagnostics.EventLogInstaller.MessageResourceFile%2A>属性可配置事件日志源写入本地化的事件消息。 事件消息是应用程序定义的字符串，描述向用户事件。  
+ <xref:System.Diagnostics.EventLogInstaller.MessageResourceFile%2A>使用属性将事件日志源配置为写入本地化事件消息。 事件消息是应用程序定义的字符串, 用于向用户描述事件。  
   
- 你的应用程序可以编写使用资源标识符的事件日志条目。 资源标识符的消息中编制索引<xref:System.Diagnostics.EventLogInstaller.MessageResourceFile%2A>。 事件查看器使用的资源标识符来查找并显示基于当前语言设置的本地化的资源文件中的相应字符串。  
+ 应用程序可以使用资源标识符编写事件日志项。 资源标识符对位于中<xref:System.Diagnostics.EventLogInstaller.MessageResourceFile%2A>的消息进行索引。 事件查看器使用资源标识符从本地化的资源文件中查找并显示相应的字符串。  
   
- 要写入本地化的项还是要直接写入字符串，必须配置的事件源。 使用<xref:System.Diagnostics.EventLog.WriteEvent%2A>方法写入本地化的项配置与消息资源文件的源。  
+ 事件源必须配置为写入本地化项或写入直接字符串。 <xref:System.Diagnostics.EventLog.WriteEvent%2A>使用方法为使用消息资源文件配置的源写入本地化项。  
   
- 如果你的应用程序写入事件消息字符串直接，而不是在已本地化的资源文件中，使用资源标识符未设置<xref:System.Diagnostics.EventLogInstaller.MessageResourceFile%2A>属性。  
+ 如果你的应用程序直接写入事件消息字符串, 而不是在本地化的资源文件中使用资源标识符, 请<xref:System.Diagnostics.EventLogInstaller.MessageResourceFile%2A>不要设置属性。  
   
- 如果<xref:System.Diagnostics.EventLog.MachineName%2A>属性不是本地计算机标识符 ("。")，.NET Framework 假定的资源文件在远程计算机上。 如果<xref:System.Diagnostics.EventLogInstaller.MessageResourceFile%2A>属性值包含驱动器号、 资源文件被假定为上\\ \\< machinename\>\\< 驱动器\>$ 共享 (例如， \\\server\c$)。 如果值包含字符串 %systemroot%，假定的资源文件位于\\ \\< machinename\>\admin$ 共享 (例如， \\\server\admin$)。  
+ 如果该<xref:System.Diagnostics.EventLog.MachineName%2A>属性不是本地计算机标识符 ("."), 则 .NET Framework 假设资源文件位于远程计算机上。 \\ \\ \\ \\\>\>如果属性值包含驱动器号, 则假定资源文件位于 < machinename < drive $ share (例如, \server <xref:System.Diagnostics.EventLogInstaller.MessageResourceFile%2A>\c $)。 如果值包含字符串% systemroot%, 则\\假定资源文件位于\\< machinename\>\admin $ share 上 (例如\\\server\admin $)。  
   
- 有关如何定义事件消息和生成事件资源文件的详细信息，请参阅平台 SDK 文档中的"消息编译器"主题[ http://msdn.microsoft.com ](https://msdn.microsoft.com/)。  
+ 有关定义事件消息和生成事件资源文件的详细信息, 请参阅中的平台 SDK 文档[http://msdn.microsoft.com](https://msdn.microsoft.com/)中的 "消息编译器" 主题。  
   
    
   
 ## Examples  
- 下面的代码示例设置新的事件源的安装属性。 代码示例设置事件源名称、 事件日志名称和本地化的事件文本的资源文件。  
+ 下面的代码示例设置新事件源的安装属性。 此代码示例为本地化事件文本设置事件源名称、事件日志名称和资源文件。  
   
  [!code-cpp[EventLogInstaller_Resources#1](~/samples/snippets/cpp/VS_Snippets_CLR/eventlogInstaller_Resources/CPP/source.cpp#1)]
  [!code-csharp[EventLogInstaller_Resources#1](~/samples/snippets/csharp/VS_Snippets_CLR/eventlogInstaller_Resources/CS/source.cs#1)]
  [!code-vb[EventLogInstaller_Resources#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/eventlogInstaller_Resources/VB/source.vb#1)]  
   
- 代码示例使用下面的消息文本文件，内置的资源库 EventLogMsgs.dll。 消息文本文件是从其创建的消息资源文件的源。 消息文本文件定义的资源标识符和类别、 事件消息和参数插入字符串的文本。  
+ 此代码示例使用资源库 EventLogMsgs 中内置的以下消息文本文件。 消息文本文件是从中创建消息资源文件的源。 消息文本文件定义类别、事件消息和参数插入字符串的资源标识符和文本。  
   
 ```  
 ; // EventLogMsgs.mc  
@@ -813,9 +813,9 @@ SVC_UPDATE.EXE
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Diagnostics.EventLogInstaller.ParameterResourceFile%2A>属性可配置事件日志源写入本地化的事件消息与插入参数字符串。 每个本地化的事件消息中指定<xref:System.Diagnostics.EventLogInstaller.MessageResourceFile%2A>属性可以包含插入字符串的占位符。 这些占位符用于指定的位置和资源标识符内的事件消息的独立于语言的字符串。 事件查看器替换中对应的字符串的占位符<xref:System.Diagnostics.EventLogInstaller.ParameterResourceFile%2A>和格式化本地化的事件项的事件日志消息。  
+ <xref:System.Diagnostics.EventLogInstaller.ParameterResourceFile%2A>使用属性来配置事件日志源, 以使用插入的参数字符串写入本地化事件消息。 <xref:System.Diagnostics.EventLogInstaller.MessageResourceFile%2A>属性中指定的每个本地化事件消息可以包含插入字符串的占位符。 这些占位符用于指定事件消息中与语言无关的字符串的位置和资源标识符。 事件查看器将占位符替换为相应的字符串<xref:System.Diagnostics.EventLogInstaller.ParameterResourceFile%2A> , 并为本地化事件项设置事件日志消息的格式。  
   
- 例如，消息文本文件中的以下部分定义的参数占位符的字符串：  
+ 例如, 消息文本文件的以下部分定义带有参数占位符的字符串:  
   
 ```  
   
@@ -828,7 +828,7 @@ Component %%6050 is starting.
 .  
 ```  
   
- 在参数资源文件中，插入字符串必须使用定义的资源标识符对应于该占位符，如下所示：  
+ 在参数资源文件中, 插入字符串必须定义为与占位符对应的资源标识符, 如下所示:  
   
 ```  
 MessageId = 6050  
@@ -840,22 +840,22 @@ TRIGGER.EXE
 .  
 ```  
   
- 要写入本地化的项还是要直接写入字符串，必须配置的事件源。 使用<xref:System.Diagnostics.EventLog.WriteEvent%2A>方法写入本地化的项配置与消息资源文件的源。  
+ 事件源必须配置为写入本地化项或写入直接字符串。 <xref:System.Diagnostics.EventLog.WriteEvent%2A>使用方法为使用消息资源文件配置的源写入本地化项。  
   
- 如果你的应用程序事件消息字符串将直接写入到事件日志，或者如果你<xref:System.Diagnostics.EventLogInstaller.MessageResourceFile%2A>不包含消息未设置带有参数插入占位符<xref:System.Diagnostics.EventLogInstaller.ParameterResourceFile%2A>属性。  
+ 如果你的应用程序将事件消息字符串直接写入事件日志, 或者, <xref:System.Diagnostics.EventLogInstaller.MessageResourceFile%2A>如果不包含具有参数插入占位符的消息, 请不要<xref:System.Diagnostics.EventLogInstaller.ParameterResourceFile%2A>设置属性。  
   
- 有关如何定义事件消息和生成事件资源文件的详细信息，请参阅平台 SDK 文档中的"消息编译器"主题[ http://msdn.microsoft.com ](https://msdn.microsoft.com/)。  
+ 有关定义事件消息和生成事件资源文件的详细信息, 请参阅中的平台 SDK 文档[http://msdn.microsoft.com](https://msdn.microsoft.com/)中的 "消息编译器" 主题。  
   
    
   
 ## Examples  
- 下面的代码示例设置新的事件源的安装属性。 代码示例设置事件源名称、 事件日志名称和本地化的事件文本的资源文件。  
+ 下面的代码示例设置新事件源的安装属性。 此代码示例为本地化事件文本设置事件源名称、事件日志名称和资源文件。  
   
  [!code-cpp[EventLogInstaller_Resources#1](~/samples/snippets/cpp/VS_Snippets_CLR/eventlogInstaller_Resources/CPP/source.cpp#1)]
  [!code-csharp[EventLogInstaller_Resources#1](~/samples/snippets/csharp/VS_Snippets_CLR/eventlogInstaller_Resources/CS/source.cs#1)]
  [!code-vb[EventLogInstaller_Resources#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/eventlogInstaller_Resources/VB/source.vb#1)]  
   
- 代码示例使用下面的消息文本文件，内置的资源库 EventLogMsgs.dll。 消息文本文件是从其创建的消息资源文件的源。 消息文本文件定义的资源标识符和类别、 事件消息和参数插入字符串的文本。 具体而言，定义为资源标识符 1004年的消息使用的资源标识符 5002 定义的参数字符串占位符。  
+ 此代码示例使用资源库 EventLogMsgs 中内置的以下消息文本文件。 消息文本文件是从中创建消息资源文件的源。 消息文本文件定义类别、事件消息和参数插入字符串的资源标识符和文本。 具体而言, 为资源标识符1004定义的消息使用占位符作为为资源标识符5002定义的参数字符串。  
   
 ```  
 ; // EventLogMsgs.mc  
@@ -1000,11 +1000,11 @@ SVC_UPDATE.EXE
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.EventLogInstaller.Rollback%2A>方法撤消的影响<xref:System.Diagnostics.EventLogInstaller.Install%2A>方法。 <xref:System.Diagnostics.EventLogInstaller.Rollback%2A> 安装项目中的任何组件的安装失败时调用。 <xref:System.Diagnostics.EventLogInstaller.Install%2A>方法创建，或设置事件日志和事件源的属性。 <xref:System.Diagnostics.EventLogInstaller.Rollback%2A> 删除事件日志和源，或者将预先存在的源的属性重置为其安装前的值。  
+ 方法撤消<xref:System.Diagnostics.EventLogInstaller.Install%2A>方法的效果。 <xref:System.Diagnostics.EventLogInstaller.Rollback%2A> <xref:System.Diagnostics.EventLogInstaller.Rollback%2A>如果安装项目中的任何组件的安装失败, 则调用。 <xref:System.Diagnostics.EventLogInstaller.Install%2A>方法创建或设置事件日志和事件源的属性。 <xref:System.Diagnostics.EventLogInstaller.Rollback%2A>删除事件日志和源, 或将预先存在的源的属性重置为其预安装值。  
   
- 通常情况下，不调用的方法<xref:System.Diagnostics.EventLogInstaller>从在代码中; 它们通常称为仅可由[Installutil.exe （安装程序工具）](~/docs/framework/tools/installutil-exe-installer-tool.md)。 该工具将调用<xref:System.Diagnostics.EventLogInstaller.Rollback%2A>方法，当这个或另一个组件未安装，以撤消安装过程中所做的任何更改时。  
+ 通常情况下, 你不会从代码中<xref:System.Diagnostics.EventLogInstaller>调用的方法; 它们通常仅由[installutil.exe (安装程序工具)](~/docs/framework/tools/installutil-exe-installer-tool.md)调用。 此工具会调用<xref:System.Diagnostics.EventLogInstaller.Rollback%2A>方法, 当此组件或其他组件安装失败时, 将撤消安装过程中的任何更改。  
   
- 应用程序的安装例程使用的项目安装程序<xref:System.Configuration.Install.Installer.Context%2A?displayProperty=nameWithType>属性来自动维护有关已安装的组件的信息。 此状态信息，传递给<xref:System.Diagnostics.EventLogInstaller.Rollback%2A>作为`savedState`参数，将持续更新，因为该工具将返回每个<xref:System.Diagnostics.EventLogInstaller>。 通常情况下，不需要为你的代码可以显式修改此状态信息。  
+ 应用程序的安装例程使用项目安装程序的<xref:System.Configuration.Install.Installer.Context%2A?displayProperty=nameWithType>属性来自动维护有关已安装的组件的信息。 当工具回滚每个<xref:System.Diagnostics.EventLogInstaller.Rollback%2A> <xref:System.Diagnostics.EventLogInstaller>时, 此状态信息`savedState` (作为参数传递给) 会不断更新。 通常, 你的代码不需要显式修改此状态信息。  
   
  ]]></format>
         </remarks>
@@ -1048,15 +1048,15 @@ SVC_UPDATE.EXE
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 事件源指示什么来记录事件。 它通常是应用程序的名称或大型应用程序内的一个组件的名称。  
+ 事件源指示记录事件的内容。 它通常是应用程序的名称, 或者是大型应用程序中组件的名称。  
   
- 安装程序使用的值<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性可作为有效项源的事件日志中注册你的应用程序。 新的源名称不能与现有的源名称或现有的事件日志名称匹配。 每个源只能写入到一个事件日志一次;但是，你的应用程序可以使用多个源写入多个事件日志。 例如，你的应用程序可能需要多个源配置为使用不同的事件日志或不同的资源文件。  
+ 安装程序使用<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性的值将应用程序和事件日志注册为条目的有效源。 新的源名称不能与现有的源名称或现有的事件日志名称相匹配。 每个源一次只能写入一个事件日志;但是, 应用程序可以使用多个源来写入多个事件日志。 例如, 你的应用程序可能需要为不同的事件日志或不同的资源文件配置多个源。  
   
- 应用程序和服务应写入应用程序日志或自定义日志。 设备驱动程序应该写入系统日志。 如果不指定安装程序运行之前的日志名称，安装程序将注册到应用程序日志源。 如果指定不存在日志的名称，请将系统注册<xref:System.Diagnostics.EventLogInstaller.Source%2A>到该日志，但直到第一个条目写入不创建该日志。  
+ 应用程序和服务应写入应用程序日志或自定义日志。 设备驱动程序应该写入系统日志。 如果在安装程序运行之前未指定日志名称, 则安装程序会将源注册到应用程序日志。 如果指定不存在的日志的名称, 系统会将注册<xref:System.Diagnostics.EventLogInstaller.Source%2A>到该日志, 但在向其中写入第一个条目之前, 不会创建该日志。  
   
- 使用<xref:System.Diagnostics.EventLogInstaller>注册一个新的或现有的事件日志; 新的源不使用<xref:System.Diagnostics.EventLogInstaller>若要更改现有的源。 <xref:System.Diagnostics.EventLogInstaller>类不会修改现有源以匹配指定的安装属性的配置属性。 <xref:System.Diagnostics.EventLogInstaller.Install%2A>方法将引发异常，如果<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性与为另一个事件日志的计算机上注册的源名称相匹配。 <xref:System.Diagnostics.EventLogInstaller.Install%2A>方法不会注册源，如果<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性与已注册相同的事件日志中指定的源名称相匹配<xref:System.Diagnostics.EventLogInstaller.Log%2A>属性。  
+ 用于为新的或现有的事件日志注册新源; 不要使用<xref:System.Diagnostics.EventLogInstaller>来更改现有源。 <xref:System.Diagnostics.EventLogInstaller> <xref:System.Diagnostics.EventLogInstaller>类不会修改现有源的配置属性以匹配指定的安装属性。 如果<xref:System.Diagnostics.EventLogInstaller.Install%2A> 该<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性与为计算机上的不同事件日志注册的源名称匹配, 则该方法将引发异常。 如果属性与已为<xref:System.Diagnostics.EventLogInstaller.Install%2A> <xref:System.Diagnostics.EventLogInstaller.Log%2A>属性中指定的相同事件日志注册的源名称匹配, 则该方法不会注册源。 <xref:System.Diagnostics.EventLogInstaller.Source%2A>  
   
- 有关详细信息的事件日志和源的行为，请参阅<xref:System.Diagnostics.EventLog>类的文档<xref:System.Diagnostics.EventLog.Log%2A>和<xref:System.Diagnostics.EventLog.Source%2A>属性。  
+ 有关事件日志和源行为的详细信息, 请参阅<xref:System.Diagnostics.EventLog> <xref:System.Diagnostics.EventLog.Log%2A>和<xref:System.Diagnostics.EventLog.Source%2A>属性的类文档。  
   
  ]]></format>
         </remarks>
@@ -1091,11 +1091,11 @@ SVC_UPDATE.EXE
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Diagnostics.EventLogInstaller.UninstallAction%2A>属性值是`Remove`，则<xref:System.Diagnostics.EventLogInstaller.Uninstall%2A>方法删除源和关联的日志安装程序创建如果<xref:System.Diagnostics.EventLogInstaller.Log%2A>和<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性指定创建新的事件日志和源。  
+ <xref:System.Diagnostics.EventLogInstaller.Log%2A> `Remove` <xref:System.Diagnostics.EventLogInstaller.Uninstall%2A>如果属性值为, 则当和<xref:System.Diagnostics.EventLogInstaller.Source%2A>属性指定创建新的事件日志和源时, 该方法会删除安装程序创建的源和关联日志。 <xref:System.Diagnostics.EventLogInstaller.UninstallAction%2A>  
   
- 通常情况下，不调用的方法<xref:System.Diagnostics.EventLogInstaller>从在代码中; 它们通常称为仅可由[Installutil.exe （安装程序工具）](~/docs/framework/tools/installutil-exe-installer-tool.md)在卸载模式。 该工具会自动调用<xref:System.Diagnostics.EventLogInstaller.Uninstall%2A>方法还原受影响的在安装程序安装前的状态系统的部分。 这包括删除与正在卸载的事件日志关联的注册表信息。  
+ 通常情况下, 你不会从代码中<xref:System.Diagnostics.EventLogInstaller>调用的方法; 它们通常仅由[installutil.exe (安装程序工具)](~/docs/framework/tools/installutil-exe-installer-tool.md)在卸载模式下调用。 该工具会自动调用<xref:System.Diagnostics.EventLogInstaller.Uninstall%2A>方法, 将受安装影响的系统部件还原为其安装前的状态。 这包括删除与要卸载的事件日志关联的注册表信息。  
   
- 应用程序的项目安装程序卸载例程使用<xref:System.Configuration.Install.Installer.Context%2A?displayProperty=nameWithType>属性来自动维护有关已卸载的组件的信息。 此状态信息，传递给<xref:System.Diagnostics.EventLogInstaller.Uninstall%2A>作为`savedState`工具卸载每个参数，将持续更新<xref:System.Diagnostics.EventLogInstaller>。 通常情况下，不需要为你的代码可以显式修改此状态信息。  
+ 应用程序的卸载例程使用项目安装程序的<xref:System.Configuration.Install.Installer.Context%2A?displayProperty=nameWithType>属性来自动维护有关已卸载的组件的信息。 此状态信息作为<xref:System.Diagnostics.EventLogInstaller.Uninstall%2A> `savedState`参数传递给, 在工具卸载每个<xref:System.Diagnostics.EventLogInstaller>时, 会不断更新。 通常, 你的代码不需要显式修改此状态信息。  
   
  ]]></format>
         </remarks>
@@ -1132,7 +1132,7 @@ SVC_UPDATE.EXE
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 安装事件日志，可以根据需要连接到现有的日志。 如果这样做，您必须决定是否在日志应返回到安装前的状态，还是应保持在其当前的安装后状态。 如果你选择事件日志返回到安装前的状态，则不会还原到在安装时的事件日志条目的更改。 可以重置与关联的事件日志属性<xref:System.Diagnostics.EventLogInstaller>到安装前的值。  
+ 当你安装事件日志时, 可以选择将其连接到现有日志。 如果这样做, 则必须决定日志是否应恢复为其安装前的状态, 或保持其当前的安装后状态。 如果您选择将事件日志恢复为其安装前的状态, 则不会还原在安装时对事件日志条目所做的更改。 你可以仅将与<xref:System.Diagnostics.EventLogInstaller>相关联的事件日志属性重置为其预安装值。  
   
  ]]></format>
         </remarks>

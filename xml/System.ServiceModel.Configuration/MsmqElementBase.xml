@@ -1,5 +1,5 @@
 <Type Name="MsmqElementBase" FullName="System.ServiceModel.Configuration.MsmqElementBase">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5918620355af4b7860be9520e37dc86e4b4143f7" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55347963" /></Metadata><TypeSignature Language="C#" Value="public abstract class MsmqElementBase : System.ServiceModel.Configuration.TransportElement" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="212a3a402f1557d1b32d26c459b16c79343ce18c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69240559" /></Metadata><TypeSignature Language="C#" Value="public abstract class MsmqElementBase : System.ServiceModel.Configuration.TransportElement" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit MsmqElementBase extends System.ServiceModel.Configuration.TransportElement" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Configuration.MsmqElementBase" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class MsmqElementBase&#xA;Inherits TransportElement" />
@@ -259,11 +259,11 @@
   
  将 <xref:System.ServiceModel.MsmqBindingBase.ExactlyOnce%2A> 设置为 `true` 时发送的消息必须只发送到事务性队列。  
   
- <xref:System.ServiceModel.MsmqBindingBase.ExactlyOnce%2A>如果设置为`true`，指示消息队列 (也称为 MSMQ) 应确保将发送的消息传递到接收的消息队列一次且只有一次，如果传递失败，消息发送到死信队列。  
+ <xref:System.ServiceModel.MsmqBindingBase.ExactlyOnce%2A>当设置为`true`时, 指示消息队列 (也称为 MSMQ) 会确保将发送的消息传递到接收消息队列一次且只有一次, 如果传递失败, 则会将消息发送到死信队列。  
   
  对于要求将 <xref:System.ServiceModel.MsmqBindingBase.ExactlyOnce%2A> 设置为 `false` 的消息，<xref:System.ServiceModel.MsmqBindingBase.DeadLetterQueue%2A> 属性默认为 `null`。  
   
- 对于需要的消息<xref:System.ServiceModel.MsmqBindingBase.ExactlyOnce%2A>要`true`，则<xref:System.ServiceModel.MsmqBindingBase.DeadLetterQueue%2A>属性默认值为消息队列中的事务性系统级死信队列。  
+ 对于需要<xref:System.ServiceModel.MsmqBindingBase.ExactlyOnce%2A> <xref:System.ServiceModel.MsmqBindingBase.DeadLetterQueue%2A>的消息`true`, 属性默认为消息队列中的事务性系统级死信队列。  
   
  ]]></format>
         </remarks>
@@ -374,7 +374,7 @@
         <ReturnType>System.Configuration.ConfigurationPropertyCollection</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个 <see cref="T:System.Configuration.ConfigurationPropertyCollection" /> 实例，该实例包含一个 <see cref="T:System.Configuration.ConfigurationProperty" /> 对象集合，这些对象可以是此配置元素的属性或 <see cref="T:System.Configuration.ConfigurationElement" /> 对象。</summary>
+        <summary>获取一个 <see cref="T:System.Configuration.ConfigurationPropertyCollection" /> 实例，该实例包含一个 <see cref="T:System.Configuration.ConfigurationProperty" /> 对象集合，这些对象可以是此配置元素的特性或 <see cref="T:System.Configuration.ConfigurationElement" /> 对象。</summary>
         <value>一个 <see cref="T:System.Configuration.ConfigurationPropertyCollection" /> 实例，该实例包含一个 <see cref="T:System.Configuration.ConfigurationProperty" /> 对象集合，这些对象可以是此绑定配置元素的特性或 <see cref="T:System.Configuration.ConfigurationElement" /> 对象。</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -406,7 +406,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这是当`true`，服务可以"扫视"队列的消息以开始处理它，并发生任何错误并且引发异常，如果其保留在队列。 服务还可"锁定"消息以便重试时间在以后处理。 ReceiveContext 提供了一种机制来"完成"消息一次处理，因此可以从队列中删除。 消息不再通过网络进行读取并将其重写到队列和各个消息处理期间不会在不同的服务实例。  
+ 如果是`true`, 服务可以 "扫视" 队列中的消息以开始处理它, 如果发生任何错误并且引发异常, 则该消息将保留在队列中。 服务还可 "锁定" 消息以便在稍后的某个时间点重试处理。 ReceiveContext 提供了一种机制, 用于在处理后 "完成" 消息, 以便可以从队列中删除该消息。 消息将不再被读取并重新写入到网络上的队列中, 并且在处理过程中各个消息不会在不同的服务实例之间切换。  
   
  ]]></format>
         </remarks>
@@ -523,12 +523,12 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指示尝试传递无法立即传递的消息时，各个重试周期之间的时间延迟。</summary>
-        <value>一个 <see cref="T:System.TimeSpan" />，指定在开始下一个尝试传递到接收应用程序的周期前等待的时间间隔。 默认值是"00: 10:00"。</value>
+        <value>一个 <see cref="T:System.TimeSpan" />，指定在开始下一个尝试传递到接收应用程序的周期前等待的时间间隔。 默认值为 "00:10:00"。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 单个重试周期尝试按指定次数向接收应用程序传递消息。 尝试次数由 <xref:System.ServiceModel.MsmqBindingBase.ReceiveRetryCount%2A> 属性指定。 如果在连续重试了指定次数后，应用程序仍未能处理消息，则将消息发送到重试队列。 后续的重试周期包括在经过由 <xref:System.ServiceModel.MsmqBindingBase.RetryCycleDelay%2A> 属性指定的延迟后，从重试队列返回应用程序队列以再次尝试传递给接收应用程序的消息。 指定重试周期数<xref:System.ServiceModel.MsmqBindingBase.MaxRetryCycles%2A>属性。  
+ 单个重试周期尝试按指定次数向接收应用程序传递消息。 尝试次数由 <xref:System.ServiceModel.MsmqBindingBase.ReceiveRetryCount%2A> 属性指定。 如果在连续重试了指定次数后，应用程序仍未能处理消息，则将消息发送到重试队列。 后续的重试周期包括在经过由 <xref:System.ServiceModel.MsmqBindingBase.RetryCycleDelay%2A> 属性指定的延迟后，从重试队列返回应用程序队列以再次尝试传递给接收应用程序的消息。 重试周期数由<xref:System.ServiceModel.MsmqBindingBase.MaxRetryCycles%2A>属性指定。  
   
  ]]></format>
         </remarks>

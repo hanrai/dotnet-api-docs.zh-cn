@@ -1,5 +1,5 @@
 <Type Name="Guid" FullName="System.Guid">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="deedaab4b6182753ad64ca609b91c0845ac43db3" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58741149" /></Metadata><TypeSignature Language="C#" Value="public struct Guid : IComparable, IComparable&lt;Guid&gt;, IEquatable&lt;Guid&gt;, IFormattable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="90f5f63b98c833a92d46b121a1cc0261c510370f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69406082" /></Metadata><TypeSignature Language="C#" Value="public struct Guid : IComparable, IComparable&lt;Guid&gt;, IEquatable&lt;Guid&gt;, IFormattable" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi serializable sealed beforefieldinit Guid extends System.ValueType implements class System.IComparable, class System.IComparable`1&lt;valuetype System.Guid&gt;, class System.IEquatable`1&lt;valuetype System.Guid&gt;, class System.IFormattable" />
   <TypeSignature Language="DocId" Value="T:System.Guid" />
   <TypeSignature Language="VB.NET" Value="Public Structure Guid&#xA;Implements IComparable, IComparable(Of Guid), IEquatable(Of Guid), IFormattable" />
@@ -57,18 +57,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- GUID 是一个 128 位整数 （16 个字节），它可用于跨所有计算机和网络中，任何唯一标识符是必需的。 此类标识符具有重复的可能性非常小。  
+ GUID 是一个128位整数 (16 字节), 可以在需要唯一标识符的所有计算机和网络中使用。 此类标识符的重复概率非常低。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Runtime.InteropServices.GuidAttribute?displayProperty=nameWithType>类，以将 GUID 分配给接口和一个用户定义的类。 它通过调用检索的 GUID 值<xref:System.Attribute.GetCustomAttribute%2A>方法，并将其与其他两个 Guid 来确定它们是否相等。  
+ 下面的示例使用<xref:System.Runtime.InteropServices.GuidAttribute?displayProperty=nameWithType>类将 GUID 分配给接口和用户定义的类。 它通过调用<xref:System.Attribute.GetCustomAttribute%2A>方法来检索 GUID 的值, 并将其与其他两个 guid 进行比较以确定它们是否相等。  
   
  [!code-cpp[Guid#1](~/samples/snippets/cpp/VS_Snippets_CLR/Guid/CPP/Guids.cpp#1)]
  [!code-csharp[Guid#1](~/samples/snippets/csharp/VS_Snippets_CLR/Guid/CS/Guids.cs#1)]
  [!code-vb[Guid#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/Guid/VB/Guids.vb#1)]  
   
- 请注意，<xref:System.Runtime.InteropServices.GuidAttribute>属性通常用于应用程序中公开的类型由 com 使用。 如果编译此示例中，你可以运行[程序集注册工具 (Regasm.exe)](~/docs/framework/tools/regasm-exe-assembly-registration-tool.md)上生成的程序集来创建注册表 (.reg) 和类型库 (.tlb) 文件。 .Reg 文件可用于 coclass 注册在注册表中，而.tlb 文件可以提供用于 COM 互操作的元数据。  
+ 请注意, <xref:System.Runtime.InteropServices.GuidAttribute>特性通常在应用程序中用于向 COM 公开类型。 如果编译此示例, 则可以在生成的程序集上运行[程序集注册工具 (Regasm)](~/docs/framework/tools/regasm-exe-assembly-registration-tool.md) , 以创建注册表 (.reg) 和类型库 (.tlb) 文件。 .Reg 文件可用于在注册表中注册 coclass, .tlb 文件可以提供 COM 互操作的元数据。  
   
  ]]></format>
     </remarks>
@@ -188,28 +188,41 @@
         <Parameter Name="g" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="g">包含下面任一格式的 GUID 的字符串（“d”表示忽略大小写的十六进制数字）： 
-32 个连续的数字： 
-dddddddddddddddddddddddddddddddd 
-- 或 - 
-8、4、4、4 和 12 位数字的分组，各组之间有连线符。 也可以用一对大括号或者圆括号将整个 GUID 括起来： 
-dddddddd-dddd-dddd-dddd-dddddddddddd 
-- 或 - 
-{dddddddd-dddd-dddd-dddd-dddddddddddd} 
-- 或 - 
-(dddddddd-dddd-dddd-dddd-dddddddddddd) 
-- 或 - 
-8、4 和 4 位数字的分组，和一个 8 组 2 位数字的子集，每组都带有前缀“0x”或“0X”，以逗号分隔。 整个 GUID 和子集用大括号括起来： 
-{0xdddddddd, 0xdddd, 0xdddd,{0xdd,0xdd,0xdd,0xdd,0xdd,0xdd,0xdd,0xdd}} 
-所有大括号、逗号和“0x”前缀都是必需的。 所有内置的空格都将被忽略。 组中的所有前导零都将被忽略。  
+        <param name="g">包含下面任一格式的 GUID 的字符串（“d”表示忽略大小写的十六进制数字）：  
   
-组中显示的数字为可在该组显示的有意义数字的最大数目。 你可以指定从 1 到为组显示的位数。 指定的位数被认为是该组低序位的位数。</param>
+ 32 个连续的数字：  
+  
+ dddddddddddddddddddddddddddddddd  
+  
+ 或  
+  
+ 8、4、4、4 和 12 位数字的分组，各组之间有连线符。 也可以用一对大括号或者圆括号将整个 GUID 括起来：  
+  
+ dddddddd-dddd-dddd-dddd-dddddddddddd  
+  
+ 或  
+  
+ {dddddddd-dddd-dddd-dddd-dddddddddddd}  
+  
+ - 或 -  
+  
+ (dddddddd-dddd-dddd-dddd-dddddddddddd)  
+  
+ - 或 -  
+  
+ 8、4 和 4 位数字的分组，和一个 8 组 2 位数字的子集，每组都带有前缀“0x”或“0X”，以逗号分隔。 整个 GUID 和子集用大括号括起来：  
+  
+ {0xdddddddd, 0xdddd, 0xdddd,{0xdd,0xdd,0xdd,0xdd,0xdd,0xdd,0xdd,0xdd}}  
+  
+ 所有大括号、逗号和“0x”前缀都是必需的。 所有内置的空格都将被忽略。 组中的所有前导零都将被忽略。  
+  
+ 组中显示的数字为可在该组显示的有意义数字的最大数目。 你可以指定从 1 到为组显示的位数。 指定的位数被认为是该组低序位的位数。</param>
         <summary>使用指定字符串所表示的值初始化 <see cref="T:System.Guid" /> 类的新实例。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 中的字母的十六进制数字`g`参数可以是大写或小写。 例如，以下字符串表示相同的 GUID:  
+ `g`参数中的字母十六进制数字可以是大写或小写。 例如, 以下字符串表示相同的 GUID:  
   
  "ca761232ed4211cebacd00aa0057b223"  
   
@@ -219,12 +232,12 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
   
  "(CA761232-ED42-11CE-BACD-00AA0057B223)"  
   
- "{0xCA761232、 0xED42、 0x11CE，{0xBA、 0xcd 填充，0x00、 0xAA，0x00、 0x57，0xB2，0x23}}"  
+ "{0xCA761232, 0xED42, 0x11CE, {0xBA, 0xCD, 0x00, 0xAA, 0x00, 0x57, 0xB2, 0x23}}"  
   
    
   
 ## Examples  
- 以下示例将备注部分中列出每个字符串传递<xref:System.Guid.%23ctor%28System.String%29>构造函数。  
+ 下面的示例将 "备注" 部分中列出的每个<xref:System.Guid.%23ctor%28System.String%29>字符串传递到构造函数。  
   
  [!code-csharp[System.Guid.ctor#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.guid.ctor/cs/ctor1.cs#1)]
  [!code-vb[System.Guid.ctor#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.guid.ctor/vb/ctor1.vb#1)]  
@@ -281,7 +294,7 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- `Guid(1,2,3,new byte[]{0,1,2,3,4,5,6,7})` 创建<xref:System.Guid>对应于"00000001-0002-0003-0001-020304050607"。  
+ `Guid(1,2,3,new byte[]{0,1,2,3,4,5,6,7})`<xref:System.Guid>创建对应于 "00000001-0002-0003-0001-020304050607" 的。  
   
  ]]></format>
         </remarks>
@@ -348,12 +361,12 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在这种方式中指定单个字节可用于绕过的计算机的特定类型的字节顺序限制 （big endian 或 little-endian 字节顺序）。  
+ 以这种方式指定单个字节可用于绕过特定类型的计算机的字节顺序限制 (大字节序或小字节序字节顺序)。  
   
    
   
 ## Examples  
- 以下示例创建一个其字符串表示形式是"0000000a-000b-000c-0001-020304050607"的 GUID。  
+ 下面的示例创建一个 GUID, 其字符串表示形式为 "0000000a-000b-000c-0001-020304050607"。  
   
  [!code-csharp[System.Guid.Ctor#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.guid.ctor/cs/ctor2.cs#2)]
  [!code-vb[System.Guid.Ctor#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.guid.ctor/vb/ctor2.vb#2)]  
@@ -424,12 +437,12 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在这种方式中指定的字节数可避免字节顺序问题。  
+ 以这种方式指定字节可避免出现 endian 问题。  
   
    
   
 ## Examples  
- Guid(0xa,0xb,0xc,0,1,2,3,4,5,6,7) 创建<xref:System.Guid>对应于"0000000a-000b-000c-0001-020304050607"。  
+ Guid (0xa, 0xb, 0xc, 0, 1, 2, 3, 4, 5, 6, 7) 将<xref:System.Guid>创建对应于 "0000000a-000b-000c-0001-020304050607" 的。  
   
  ]]></format>
         </remarks>
@@ -491,7 +504,7 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
         <returns>一个带符号数字，指示此实例和 <paramref name="value" /> 的相对值。  
   
  <list type="table"><listheader><term> 返回值 
- </term><description> 描述 
+ </term><description> 说明 
  </description></listheader><item><term> 负整数 
  </term><description> 此实例小于 <paramref name="value" />。  
   
@@ -506,26 +519,26 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Guid.CompareTo%2A>方法将 Guid 进行比较，就好像这些值提供给<xref:System.Guid.%23ctor%28System.Int32%2CSystem.Int16%2CSystem.Int16%2CSystem.Byte%5B%5D%29>构造函数中的，按如下所示：  
+ 方法将 guid 与提供<xref:System.Guid.%23ctor%28System.Int32%2CSystem.Int16%2CSystem.Int16%2CSystem.Byte%5B%5D%29>给构造函数的值进行比较, 如下所示: <xref:System.Guid.CompareTo%2A>  
   
--   它将进行比较<xref:System.UInt32>值，并返回一个结果，如果它们不相等。 如果它们相等，则执行下一步的比较。  
+-   它比较<xref:System.UInt32>值, 如果结果不相等, 则返回结果。 如果它们相等, 则执行下一次比较。  
   
--   它将进行比较的第一个<xref:System.UInt16>值，并返回一个结果，如果它们不相等。 如果它们相等，则执行下一步的比较。  
+-   它比较第一个<xref:System.UInt16>值, 如果结果不相等, 则返回结果。 如果它们相等, 则执行下一次比较。  
   
--   它将进行比较的第二个<xref:System.UInt16>值，并返回一个结果，如果它们不相等。 如果它们相等，则执行下一步的比较。  
+-   它比较第二<xref:System.UInt16>个值, 如果结果不相等, 则返回结果。 如果它们相等, 则执行下一次比较。  
   
--   如果执行的下一步八逐字节比较<xref:System.Byte>值。 当它遇到的第一个不相等对时，它返回的结果。 否则，它将返回 0，指示两个<xref:System.Guid>值是否相等。  
+-   如果对接下来的 8 <xref:System.Byte>个值执行逐字节的比较。 如果遇到第一个不相等对, 则返回结果。 否则, 它返回0以指示这两个<xref:System.Guid>值相等。  
   
- 请注意，最后一个八个字节的字符串表示形式中出现<xref:System.Guid>按相反的顺序，从低到高字节的字节。 例如，在的字符串表示形式<xref:System.Guid>值"01e75c83-c6f5-4192-b57e-7427cec5560d"最后一个八个字节是"b57e-7427cec5560d。" 换而言之，最后一个八个字节进行比较在从左到右从开始 0xb5 逐字节的基础上。  
+ 请注意, 最终的八个字节以相反顺序出现在<xref:System.Guid>的字符串表示形式中, 从低字节到高位字节。 例如, 在<xref:System.Guid>值 "01e75c83-c6f5-4192-b57e-7427cec5560d" 的字符串表示形式中, 最后八个字节为 "b57e-7427cec5560d"。 换而言之, 最后八个字节按从0xb5 开始的从左到右的逐字节进行比较。  
   
- 如果两个 Guid 相等的组件的值，此方法将比较下一个组件。 当它找到的值不相等的组件时，它返回的结果。  
+ 如果两个 Guid 对于一个组件具有相等的值, 则该方法会比较下一个组件。 当找到值不相等的组件时, 它将返回结果。  
   
- 此方法实现<xref:System.IComparable%601?displayProperty=nameWithType>接口，并且执行略微优于<xref:System.Guid.CompareTo%2A?displayProperty=nameWithType>方法因为它不具有要转换`value`参数<xref:System.Guid>值。  
+ 此方法实现<xref:System.IComparable%601?displayProperty=nameWithType>接口, 且执行<xref:System.Guid.CompareTo%2A?displayProperty=nameWithType>方式略优于方法, 因为它不必<xref:System.Guid>将`value`参数转换为值。  
   
    
   
 ## Examples  
- 下面的示例调用<xref:System.Guid.CompareTo%28System.Guid%29>方法具有两个类似的 GUID 值的 GUID 值进行比较。  
+ 下面的示例调用<xref:System.Guid.CompareTo%28System.Guid%29>方法来比较 guid 值和两个相似的 guid 值。  
   
  [!code-csharp[System.Guid.CompareTo#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.guid.compareto/cs/compareto2.cs#1)]
  [!code-vb[System.Guid.CompareTo#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.guid.compareto/vb/compareto2.vb#1)]  
@@ -574,7 +587,7 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
         <returns>一个带符号数字，指示此实例和 <paramref name="value" /> 的相对值。  
   
  <list type="table"><listheader><term> 返回值 
- </term><description> 描述 
+ </term><description> 说明 
  </description></listheader><item><term> 负整数 
  </term><description> 此实例小于 <paramref name="value" />。  
   
@@ -589,26 +602,26 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `value`参数必须是`null`的实例或<xref:System.Guid>; 否则为将引发异常。 任何实例<xref:System.Guid>，而不考虑其值被视为大于`null`。  
+ 参数必须为`null`或的实例<xref:System.Guid>; 否则, 将引发异常。 `value` 的任何实例<xref:System.Guid>, 无论其值如何, 都视为`null`大于。  
   
- <xref:System.Guid.CompareTo%2A>方法将 Guid 进行比较，就好像这些值提供给<xref:System.Guid.%23ctor%2A>构造函数中的，按如下所示：  
+ 方法将 guid 与提供<xref:System.Guid.%23ctor%2A>给构造函数的值进行比较, 如下所示: <xref:System.Guid.CompareTo%2A>  
   
--   它将进行比较<xref:System.Int32>值，并返回一个结果，如果它们不相等。 如果它们相等，则执行下一步的比较。  
+-   它比较<xref:System.Int32>值, 如果结果不相等, 则返回结果。 如果它们相等, 则执行下一次比较。  
   
--   它将进行比较的第一个<xref:System.Int16>值，并返回一个结果，如果它们不相等。 如果它们相等，则执行下一步的比较。  
+-   它比较第一个<xref:System.Int16>值, 如果结果不相等, 则返回结果。 如果它们相等, 则执行下一次比较。  
   
--   它将进行比较的第二个<xref:System.Int16>值，并返回一个结果，如果它们不相等。 如果它们相等，则执行下一步的比较。  
+-   它比较第二<xref:System.Int16>个值, 如果结果不相等, 则返回结果。 如果它们相等, 则执行下一次比较。  
   
--   如果执行的下一步八逐字节比较<xref:System.Byte>值。 当它遇到的第一个不相等对时，它返回的结果。 否则，它将返回 0，指示两个<xref:System.Guid>值是否相等。  
+-   如果对接下来的 8 <xref:System.Byte>个值执行逐字节的比较。 如果遇到第一个不相等对, 则返回结果。 否则, 它返回0以指示这两个<xref:System.Guid>值相等。  
   
- 如果两个 Guid 相等的组件的值，此方法将比较下一个组件。 当它找到的值不相等的组件时，它返回的结果。  
+ 如果两个 Guid 对于一个组件具有相等的值, 则该方法会比较下一个组件。 当找到值不相等的组件时, 它将返回结果。  
   
- 请注意，最后一个八个字节的字符串表示形式中出现<xref:System.Guid>按相反的顺序，从低到高字节的字节。 例如，在的字符串表示形式<xref:System.Guid>值"01e75c83-c6f5-4192-b57e-7427cec5560d"最后一个八个字节是"b57e-7427cec5560d。"  
+ 请注意, 最终的八个字节以相反顺序出现在<xref:System.Guid>的字符串表示形式中, 从低字节到高位字节。 例如, 在<xref:System.Guid>值 "01e75c83-c6f5-4192-b57e-7427cec5560d" 的字符串表示形式中, 最后八个字节为 "b57e-7427cec5560d"。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Runtime.InteropServices.GuidAttribute>属性要分配给一个类的 GUID。 它通过调用来检索此 GUID 的值<xref:System.Attribute.GetCustomAttribute%2A?displayProperty=nameWithType>方法并传入<xref:System.Runtime.InteropServices.GuidAttribute.Value%2A>所返回的属性<xref:System.Runtime.InteropServices.GuidAttribute>对象传递给<xref:System.Guid.Parse%2A>方法。 然后它将该 GUID 值对数组进行比较。  
+ 下面的示例使用<xref:System.Runtime.InteropServices.GuidAttribute>属性将 GUID 分配给某个类。 它通过调用<xref:System.Attribute.GetCustomAttribute%2A?displayProperty=nameWithType>方法并将<xref:System.Runtime.InteropServices.GuidAttribute>返回<xref:System.Guid.Parse%2A>的对象的<xref:System.Runtime.InteropServices.GuidAttribute.Value%2A>属性传递给方法来检索此 GUID 的值。 然后, 它会将该 GUID 与值数组进行比较。  
   
  [!code-csharp[System.Guid.CompareTo#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.guid.compareto/cs/compareto1.cs#2)]
  [!code-vb[System.Guid.CompareTo#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.guid.compareto/vb/compareto1.vb#2)]  
@@ -656,7 +669,7 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 您可以比较值为 GUID<xref:System.Guid.Empty?displayProperty=nameWithType>字段以确定一个 GUID 是否为非零值。 下面的示例使用<xref:System.Guid.op_Equality%2A>运算符比较两个 GUID 值<xref:System.Guid.Empty?displayProperty=nameWithType>以确定它们是否包含以独占方式的零。  
+ 可以将 guid 与<xref:System.Guid.Empty?displayProperty=nameWithType>字段的值进行比较, 以确定 guid 是否为非零值。 下面的示例使用<xref:System.Guid.op_Equality%2A>运算符将两个 GUID 值与<xref:System.Guid.Empty?displayProperty=nameWithType>进行比较, 以确定它们是否仅包含零。  
   
  [!code-csharp[System.Guid.Empty#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.guid.empty/cs/empty.cs#1)]
  [!code-vb[System.Guid.Empty#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.guid.empty/vb/empty.vb#1)]  
@@ -723,9 +736,9 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 两个<xref:System.Guid>对象是否相等，如果它们没有完全相同的字节值。  
+ 如果<xref:System.Guid>两个对象具有相同的字节值, 则这两个对象相等。  
   
- 此方法的性能略高于<xref:System.Guid.Equals%2A>方法因为它没有到 box`g`参数。  
+ 此方法的执行效果略优于<xref:System.Guid.Equals%2A>方法, 因为它不需要对`g`参数进行框。  
   
  ]]></format>
         </remarks>
@@ -776,7 +789,7 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 两个<xref:System.Guid>对象是否相等，如果它们没有完全相同的字节值。  
+ 如果<xref:System.Guid>两个对象具有相同的字节值, 则这两个对象相等。  
   
  ]]></format>
         </remarks>
@@ -866,12 +879,12 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这是一种方便`static`方法可以调用以获取新<xref:System.Guid>。 此方法包装调用 Windows [CoCreateGuid](https://msdn.microsoft.com/library/windows/desktop/ms688568.aspx)函数。 返回<xref:System.Guid>保证不等于<xref:System.Guid.Empty?displayProperty=nameWithType>。  
+ 这是一种`static`便捷的方法, 可以调用它来获取<xref:System.Guid>新的。 方法包装对 Windows [CoCreateGuid](https://msdn.microsoft.com/library/windows/desktop/ms688568.aspx)函数的调用。 保证返回<xref:System.Guid>的不相等<xref:System.Guid.Empty?displayProperty=nameWithType>。  
   
    
   
 ## Examples  
- 下面的代码示例创建并显示两个值<xref:System.Guid>对象。  
+ 下面的代码示例创建并显示两个<xref:System.Guid>对象的值。  
   
  [!code-csharp[system.guid.newguid#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.guid.newguid/cs/ng.cs#1)]
  [!code-vb[system.guid.newguid#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.guid.newguid/vb/ng.vb#1)]  
@@ -922,10 +935,10 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
         <summary>指示两个指定的 <see cref="T:System.Guid" /> 对象的值是否相等。</summary>
         <returns>如果 <paramref name="a" /> 和 <paramref name="b" /> 相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[此运算符的等效方法是 <xref:System.Guid.Equals%28System.Object%29?displayProperty=nameWithType>  
+          <format type="text/markdown"><![CDATA[此运算符的等效方法是<xref:System.Guid.Equals%28System.Object%29?displayProperty=nameWithType>  
   
 ## Examples  
- 下面的示例使用<xref:System.Guid.op_Equality%2A>运算符比较两个 GUID 值<xref:System.Guid.Empty?displayProperty=nameWithType>以确定它们是否包含以独占方式的零。  
+ 下面的示例使用<xref:System.Guid.op_Equality%2A>运算符将两个 GUID 值与<xref:System.Guid.Empty?displayProperty=nameWithType>进行比较, 以确定它们是否仅包含零。  
   
  [!code-csharp[System.Guid.Empty#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.guid.empty/cs/empty.cs#1)]
  [!code-vb[System.Guid.Empty#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.guid.empty/vb/empty.vb#1)]  
@@ -976,7 +989,7 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
         <summary>指示两个指定的 <see cref="T:System.Guid" /> 对象的值是否不相等。</summary>
         <returns>如果 <paramref name="a" /> 和 <paramref name="b" /> 不相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[此运算符的等效方法是 <xref:System.Guid.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
+          <format type="text/markdown"><![CDATA[此运算符的等效方法是<xref:System.Guid.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
         </remarks>
       </Docs>
     </Member>
@@ -1053,32 +1066,32 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Guid.Parse%2A>方法修整中任何前导或尾随的空白区域`input`，并将转换的字符串表示形式将 GUID 传递给<xref:System.Guid>值。 此方法可以将转换中任何一种由五个格式字符串<xref:System.Guid.ToString%28System.String%29>和<xref:System.Guid.ToString%28System.String%2CSystem.IFormatProvider%29>方法下, 表中所示。  
+ 方法将从中`input`剪裁任意前导空格或尾随空格, 并将 GUID 的字符串表示形式转换<xref:System.Guid>为值。 <xref:System.Guid.Parse%2A> 此方法可以转换<xref:System.Guid.ToString%28System.String%29>和<xref:System.Guid.ToString%28System.String%2CSystem.IFormatProvider%29>方法生成的五种格式中的任何一种格式的字符串, 如下表所示。  
   
-|说明符|描述|格式|  
+|说明符|说明|格式|  
 |---------------|-----------------|------------|  
-|`N`|32 位数字|00000000000000000000000000000000|  
-|`D`|由连字符分隔的 32 位数字|00000000-0000-0000-0000-000000000000|  
-|`B`|由括在大括号中的连字符分隔的 32 位数字|{00000000-0000-0000-0000-000000000000}|  
-|`P`|由括在括号中的连字符分隔的 32 位数字|(00000000-0000-0000-0000-000000000000)|  
-|`X`|括在大括号，其中的第四个值是 8 个十六进制值的子集也括在大括号中的四个十六进制值|{0x00000000,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}|  
+|`N`|32位|00000000000000000000000000000000|  
+|`D`|32的数字, 由连字符分隔|00000000-0000-0000-0000-000000000000|  
+|`B`|32位, 用连字符隔开, 括在大括号中|{00000000-0000-0000-0000-000000000000}|  
+|`P`|由连字符分隔的32位, 括在括号中|(00000000-0000-0000-0000-000000000000)|  
+|`X`|括在大括号中的四个十六进制值, 其中第四个值是八个十六进制值的子集, 这些值也括在大括号中|{0x00000000, 0x0000, 0x0000, {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}|  
   
- 该方法将引发<xref:System.FormatException>如果无法成功分析字符串。 以下是一些可能出现此问题原因的原因包括：  
+ <xref:System.FormatException>如果无法成功分析字符串, 方法将引发。 下面是可能出现此情况的一些原因:  
   
--   `input` 包含不是十六进制的字符集的一部分的字符。  
+-   `input`包含不属于十六进制字符集的字符。  
   
--   `input` 具有过多或太少数字字符。  
+-   `input`具有太多或太少的数字字符。  
   
--   `input` 具有过多或过少的适用于特定格式的非数字字符。  
+-   `input`具有的非数字字符太多或太少, 适用于特定格式。  
   
--   `input` 不是可识别的格式中的某个<xref:System.Guid.ToString%2A>方法并且在上表中列出。  
+-   `input`不是<xref:System.Guid.ToString%2A>方法所识别的格式之一, 并在上表中列出。  
   
- 使用<xref:System.Guid.TryParse%2A>方法来捕获任何不成功的分析操作，而无需处理的异常。  
+ <xref:System.Guid.TryParse%2A>使用方法可捕获所有不成功的分析操作, 而无需处理异常。  
   
    
   
 ## Examples  
- 下面的示例将创建一个新的 GUID，将其转换为三个单独的字符串表示形式，通过调用<xref:System.Guid.ToString%28System.String%29>方法与"B"、"D"和"X"格式说明符，并随后将调用<xref:System.Guid.Parse%2A>方法将字符串转换回<xref:System.Guid>值。  
+ 下面的示例创建一个新的 GUID, 通过使用 "B"、"D" <xref:System.Guid.ToString%28System.String%29>和 "X" 格式说明符调用方法, 将其转换为三个单独的字符串表示形式, 然后<xref:System.Guid.Parse%2A>调用方法以<xref:System.Guid>将字符串转换回分隔.  
   
  [!code-csharp[System.Guid.Parse#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.guid.parse/cs/parseex1.cs#3)]
  [!code-vb[System.Guid.Parse#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.guid.parse/vb/parseex1.vb#3)]  
@@ -1168,20 +1181,20 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Guid.ParseExact%2A>方法需要使用字符串将转换为在指定的格式中准确`format`参数，删除前导空格和尾随空白字符后。 下表显示了接受的格式说明符`format`参数。 "0"表示一个数字;连字符 ("-")，大括号 ("{"，"}")，和括号 （"（"，"）"） 显示所示。  
+ 方法要求在删除前导和尾随空白字符后, 将字符串转换为完全`format`按照参数指定的格式。 <xref:System.Guid.ParseExact%2A> 下表显示`format`参数的接受格式说明符。 "0" 表示一个数字;连字符 ("-")、大括号 ("{"、"}") 和括号 ("(", ")") 如图所示。  
   
-|说明符|设置格式的`input`参数|  
+|说明符|`input`参数的格式|  
 |---------------|-------------------------------------|  
-|N|32 位数字：<br /><br /> 00000000000000000000000000000000|  
-|D|由连字符分隔的 32 位数字：<br /><br /> 00000000-0000-0000-0000-000000000000|  
-|B|由连字符，括在大括号分隔的 32 位数字：<br /><br /> {00000000-0000-0000-0000-000000000000}|  
-|P|由括在括号中的连字符分隔的 32 位数字：<br /><br /> (00000000-0000-0000-0000-000000000000)|  
-|X|括在大括号，其中的第四个值是 8 个十六进制值的子集也括在大括号中的四个十六进制值：<br /><br /> {0x00000000,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}|  
+|N|32位数:<br /><br /> 00000000000000000000000000000000|  
+|D|32的数字, 由连字符分隔:<br /><br /> 00000000-0000-0000-0000-000000000000|  
+|B|32位, 用连字符隔开, 括在大括号中:<br /><br /> {00000000-0000-0000-0000-000000000000}|  
+|P|32位, 用连字符隔开, 括在括号中:<br /><br /> (00000000-0000-0000-0000-000000000000)|  
+|X|括在大括号中的四个十六进制值, 其中第四个值是八个十六进制值的子集 (也括在大括号中):<br /><br /> {0x00000000, 0x0000, 0x0000, {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}|  
   
    
   
 ## Examples  
- 下面的示例调用<xref:System.Guid.ToString%28System.String%29>与每个受支持的格式说明符生成一个表示单个 GUID 的字符串数组的方法。 这些然后传递给<xref:System.Guid.ParseExact%2A>方法，成功地分析符合"B"格式说明符的字符串。  
+ 下面的示例使用每<xref:System.Guid.ToString%28System.String%29>个受支持的格式说明符调用方法, 以生成一个表示单个 GUID 的字符串数组。 然后, 将这些<xref:System.Guid.ParseExact%2A>方法传递给方法, 该方法仅成功分析符合 "B" 格式说明符的字符串。  
   
  [!code-csharp[System.Guid.Parse#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.guid.parse/cs/parseexactex1.cs#4)]
  [!code-vb[System.Guid.Parse#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.guid.parse/vb/parseexactex1.vb#4)]  
@@ -1308,14 +1321,14 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用此方法返回到往返的字节数组<xref:System.Guid>值通过调用<xref:System.Guid.%23ctor%28System.Byte%5B%5D%29>构造函数。  
+ 您可以使用此方法返回的字节数组, 通过<xref:System.Guid> <xref:System.Guid.%23ctor%28System.Byte%5B%5D%29>调用构造函数来往返值。  
   
- 请注意，不同的字符串表示形式中返回的字节数组中的字节顺序<xref:System.Guid>值。 开始将 4 字节组和接下来两个双字节组的顺序颠倒，而最后一个双字节组和右六个字节组的顺序是相同。 说明如示例所示。  
+ 请注意, 返回的字节数组中的字节顺序不同于<xref:System.Guid>值的字符串表示形式。 将反转第四个字节组和下一个 2 2 字节组的顺序, 而最后两个字节组和结束的六字节组的顺序是相同的。 说明如示例所示。  
   
    
   
 ## Examples  
- 下面的示例调用<xref:System.Guid.NewGuid%2A>方法来创建<xref:System.Guid>值，然后调用<xref:System.Guid.ToByteArray%2A>方法来表示<xref:System.Guid>作为字节数组的值。 然后会将这两个值显示在控制台。 最后，它实例化一个新<xref:System.Guid>值从字节数组并调用其<xref:System.Guid.Equals%28System.Guid%29>方法来显示，这两个<xref:System.Guid>的值相等。  
+ 下面的示例<xref:System.Guid.NewGuid%2A>调用方法以创建一个<xref:System.Guid>值<xref:System.Guid.ToByteArray%2A> , 然后调用方法以将<xref:System.Guid>值表示为字节数组。 然后, 它会将这两个值显示到控制台。 最后, 它从字节数组<xref:System.Guid>中实例化一个新值, 并<xref:System.Guid.Equals%28System.Guid%29>调用其方法来显示这<xref:System.Guid>两个值相同。  
   
  [!code-csharp[System.Guid.ToByteArray#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.guid.tobytearray/cs/tobytearray3.cs#1)]
  [!code-vb[System.Guid.ToByteArray#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.guid.tobytearray/vb/tobytearray3.vb#1)]  
@@ -1380,7 +1393,7 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法提供了足够的典型用法; 的默认 GUID 格式但是，那些需要将此方法的其他版本`format`参数提供几个常见格式变体。  
+ 此方法提供的默认 GUID 格式足以满足典型用途;但是, 采用`format`参数的此方法的其他版本提供几种常见格式变化形式。  
   
  ]]></format>
         </remarks>
@@ -1429,17 +1442,17 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 下表显示了接受的格式说明符`format`参数。 "0"表示一个数字;连字符 ("-")，大括号 ("{"，"}")，和括号 （"（"，"）"） 显示所示。  
+ 下表显示`format`参数的接受格式说明符。 "0" 表示一个数字;连字符 ("-")、大括号 ("{"、"}") 和括号 ("(", ")") 如图所示。  
   
 |说明符|返回值的格式|  
 |---------------|----------------------------|  
-|`N`|32 位数字：<br /><br /> 00000000000000000000000000000000|  
-|`D`|由连字符分隔的 32 位数字：<br /><br /> 00000000-0000-0000-0000-000000000000|  
-|`B`|由连字符，括在大括号分隔的 32 位数字：<br /><br /> {00000000-0000-0000-0000-000000000000}|  
-|`P`|由括在括号中的连字符分隔的 32 位数字：<br /><br /> (00000000-0000-0000-0000-000000000000)|  
-|`X`|括在大括号，其中的第四个值是 8 个十六进制值的子集也括在大括号中的四个十六进制值：<br /><br /> {0x00000000,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}|  
+|`N`|32位数:<br /><br /> 00000000000000000000000000000000|  
+|`D`|32的数字, 由连字符分隔:<br /><br /> 00000000-0000-0000-0000-000000000000|  
+|`B`|32位, 用连字符隔开, 括在大括号中:<br /><br /> {00000000-0000-0000-0000-000000000000}|  
+|`P`|32位, 用连字符隔开, 括在括号中:<br /><br /> (00000000-0000-0000-0000-000000000000)|  
+|`X`|括在大括号中的四个十六进制值, 其中第四个值是八个十六进制值的子集 (也括在大括号中):<br /><br /> {0x00000000, 0x0000, 0x0000, {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}|  
   
- 十六进制数字 a 到 f 是小写返回的字符串中。 若要将它们转换为大写，调用<xref:System.String.ToUpper%2A?displayProperty=nameWithType>对返回的字符串的方法。  
+ 在返回的字符串中, 从 a 到 f 的十六进制数字是小写的。 若要将其转换为大写, <xref:System.String.ToUpper%2A?displayProperty=nameWithType>请对返回的字符串调用方法。  
   
  ]]></format>
         </remarks>
@@ -1495,21 +1508,21 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `provider`参数保留供将来使用，并不计入此方法的执行。 可以将传递`null`方法调用中。  
+ `provider`参数保留供将来使用, 并且不会影响此方法的执行。 可以在方法`null`调用中传递。  
   
- 下表显示了接受的格式说明符`format`参数。 "0"表示一个数字;连字符 ("-")，大括号 ("{"，"}")，和括号 （"（"，"）"） 显示所示。  
+ 下表显示`format`参数的接受格式说明符。 "0" 表示一个数字;连字符 ("-")、大括号 ("{"、"}") 和括号 ("(", ")") 如图所示。  
   
 |说明符|返回值的格式|  
 |---------------|----------------------------|  
-|`N`|32 位数字：<br /><br /> 00000000000000000000000000000000|  
-|`D`|由连字符分隔的 32 位数字：<br /><br /> 00000000-0000-0000-0000-000000000000|  
-|`B`|由连字符，括在大括号分隔的 32 位数字：<br /><br /> {00000000-0000-0000-0000-000000000000}|  
-|`P`|由括在括号中的连字符分隔的 32 位数字：<br /><br /> (00000000-0000-0000-0000-000000000000)|  
-|`X`|括在大括号，其中的第四个值是 8 个十六进制值的子集也括在大括号中的四个十六进制值：<br /><br /> {0x00000000,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}|  
+|`N`|32位数:<br /><br /> 00000000000000000000000000000000|  
+|`D`|32的数字, 由连字符分隔:<br /><br /> 00000000-0000-0000-0000-000000000000|  
+|`B`|32位, 用连字符隔开, 括在大括号中:<br /><br /> {00000000-0000-0000-0000-000000000000}|  
+|`P`|32位, 用连字符隔开, 括在括号中:<br /><br /> (00000000-0000-0000-0000-000000000000)|  
+|`X`|括在大括号中的四个十六进制值, 其中第四个值是八个十六进制值的子集 (也括在大括号中):<br /><br /> {0x00000000, 0x0000, 0x0000, {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}|  
   
- 十六进制数字 a 到 f 是小写返回的字符串中。 若要将它们转换为大写，调用<xref:System.String.ToUpper%2A?displayProperty=nameWithType>对返回的字符串的方法。  
+ 在返回的字符串中, 从 a 到 f 的十六进制数字是小写的。 若要将其转换为大写, <xref:System.String.ToUpper%2A?displayProperty=nameWithType>请对返回的字符串调用方法。  
   
- 因为`provider`参数被忽略，不能使用它来提供自定义格式设置解决方案。 来表示<xref:System.Guid>值作为标准 GUID 格式字符串，调用不支持的格式字符串<xref:System.String.Format%28System.IFormatProvider%2CSystem.String%2CSystem.Object%5B%5D%29?displayProperty=nameWithType>方法替换`provider`对象，它同时实现<xref:System.ICustomFormatter>和<xref:System.IFormatProvider>接口。 有关详细信息，请参阅中的"自定义格式设置使用 icustomformatter 进行"部分[格式设置类型](~/docs/standard/base-types/formatting-types.md)一文。  
+ `provider`由于参数被忽略, 因此不能使用它来提供自定义格式设置解决方案。 若要将<xref:System.Guid>值表示为标准 GUID 格式字符串不支持的格式的字符串, 请使用`provider`实现<xref:System.ICustomFormatter>和<xref:System.IFormatProvider>接口<xref:System.String.Format%28System.IFormatProvider%2CSystem.String%2CSystem.Object%5B%5D%29?displayProperty=nameWithType>的对象调用方法。 有关详细信息, 请参阅[格式设置](~/docs/standard/base-types/formatting-types.md)一文中的 "带 ICustomFormatter 的自定义格式" 部分。  
   
  ]]></format>
         </remarks>
@@ -1628,20 +1641,20 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法就像<xref:System.Guid.Parse%2A>方法，不同之处在于而不是返回的已分析的 GUID，它将返回`false`如果`input`是`null`或不在识别的格式，并且不会引发异常。 剪裁任何前导或尾随的空白区域，能够从`input`，并将转换中任意五个识别的格式字符串<xref:System.Guid.ToString%28System.String%29>和<xref:System.Guid.ToString%28System.String%2CSystem.IFormatProvider%29>方法下, 表中所示。  
+ 此方法与<xref:System.Guid.Parse%2A>方法类似, 不同之处在于, `false`它不会返回已分析的 GUID `input` , `null`如果为或不是可识别的格式, 则不会引发异常。 它将从`input`和<xref:System.Guid.ToString%28System.String%2CSystem.IFormatProvider%29>方法所识别<xref:System.Guid.ToString%28System.String%29>的五种格式中的任何一种格式中剪裁字符串, 并转换字符串, 如下表所示。  
   
-|说明符|描述|格式|  
+|说明符|说明|格式|  
 |---------------|-----------------|------------|  
-|`N`|32 位数字|00000000000000000000000000000000|  
-|`D`|由连字符分隔的 32 位数字|00000000-0000-0000-0000-000000000000|  
-|`B`|由括在大括号中的连字符分隔的 32 位数字|{00000000-0000-0000-0000-000000000000}|  
-|`P`|由括在括号中的连字符分隔的 32 位数字|(00000000-0000-0000-0000-000000000000)|  
-|`X`|括在大括号，其中的第四个值是 8 个十六进制值的子集也括在大括号中的四个十六进制值|{0x00000000,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}|  
+|`N`|32位|00000000000000000000000000000000|  
+|`D`|32的数字, 由连字符分隔|00000000-0000-0000-0000-000000000000|  
+|`B`|32位, 用连字符隔开, 括在大括号中|{00000000-0000-0000-0000-000000000000}|  
+|`P`|由连字符分隔的32位, 括在括号中|(00000000-0000-0000-0000-000000000000)|  
+|`X`|括在大括号中的四个十六进制值, 其中第四个值是八个十六进制值的子集, 这些值也括在大括号中|{0x00000000, 0x0000, 0x0000, {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}|  
   
    
   
 ## Examples  
- 下面的示例将创建一个新的 GUID，将其转换为三个单独的字符串表示形式，通过调用<xref:System.Guid.ToString%28System.String%29>方法与"B"、"D"和"X"格式说明符，并随后将调用<xref:System.Guid.TryParse%2A>方法将字符串转换回<xref:System.Guid>值。  
+ 下面的示例创建一个新的 GUID, 通过使用 "B"、"D" <xref:System.Guid.ToString%28System.String%29>和 "X" 格式说明符调用方法, 将其转换为三个单独的字符串表示形式, 然后<xref:System.Guid.TryParse%2A>调用方法以<xref:System.Guid>将字符串转换回分隔.  
   
  [!code-csharp[System.Guid.Parse#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.guid.parse/cs/tryparseex1.cs#2)]
  [!code-vb[System.Guid.Parse#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.guid.parse/vb/tryparseex1.vb#2)]  
@@ -1732,22 +1745,22 @@ dddddddd-dddd-dddd-dddd-dddddddddddd
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法要求要转换为严格按照所指定的格式的字符串`format`参数，删除前导空格和尾随空白字符后。 它将返回`false`如果`input`是`null`不在指定的格式或`format`，并且不会引发异常。  
+ 此方法要求在删除前导和尾随空白字符后, 将字符串转换为`format`完全按照参数指定的格式。 如果`false` `input`为或`null`未采用指定的格式,则它将返回,且不`format`会引发异常。  
   
- 下表显示了接受的格式说明符`format`参数。 "0"表示一个数字;连字符 ("-")，大括号 ("{"，"}")，和括号 （"（"，"）"） 显示所示。  
+ 下表显示`format`参数的接受格式说明符。 "0" 表示一个数字;连字符 ("-")、大括号 ("{"、"}") 和括号 ("(", ")") 如图所示。  
   
-|说明符|设置格式的`input`参数|  
+|说明符|`input`参数的格式|  
 |---------------|-------------------------------------|  
-|N|32 位数字：<br /><br /> 00000000000000000000000000000000|  
-|D|由连字符分隔的 32 位数字：<br /><br /> 00000000-0000-0000-0000-000000000000|  
-|B|由连字符，括在大括号分隔的 32 位数字：<br /><br /> {00000000-0000-0000-0000-000000000000}|  
-|P|由括在括号中的连字符分隔的 32 位数字：<br /><br /> (00000000-0000-0000-0000-000000000000)|  
-|X|括在大括号，其中的第四个值是 8 个十六进制值的子集也括在大括号中的四个十六进制值：<br /><br /> {0x00000000,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}|  
+|N|32位数:<br /><br /> 00000000000000000000000000000000|  
+|D|32的数字, 由连字符分隔:<br /><br /> 00000000-0000-0000-0000-000000000000|  
+|B|32位, 用连字符隔开, 括在大括号中:<br /><br /> {00000000-0000-0000-0000-000000000000}|  
+|P|32位, 用连字符隔开, 括在括号中:<br /><br /> (00000000-0000-0000-0000-000000000000)|  
+|X|括在大括号中的四个十六进制值, 其中第四个值是八个十六进制值的子集 (也括在大括号中):<br /><br /> {0x00000000, 0x0000, 0x0000, {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}|  
   
    
   
 ## Examples  
- 下面的示例调用<xref:System.Guid.ToString%28System.String%29>与每个受支持的格式说明符生成一个表示单个 GUID 的字符串数组的方法。 这些然后传递给<xref:System.Guid.TryParseExact%2A>方法，成功地分析符合"B"格式说明符的字符串。  
+ 下面的示例使用每<xref:System.Guid.ToString%28System.String%29>个受支持的格式说明符调用方法, 以生成一个表示单个 GUID 的字符串数组。 然后, 将这些<xref:System.Guid.TryParseExact%2A>方法传递给方法, 该方法成功分析符合 "B" 格式说明符的字符串。  
   
  [!code-csharp[System.Guid.Parse#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.guid.parse/cs/tryparseexactex1.cs#5)]
  [!code-vb[System.Guid.Parse#5](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.guid.parse/vb/tryparseexactex1.vb#5)]  

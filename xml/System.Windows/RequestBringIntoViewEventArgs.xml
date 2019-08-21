@@ -1,5 +1,5 @@
 <Type Name="RequestBringIntoViewEventArgs" FullName="System.Windows.RequestBringIntoViewEventArgs">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="eb6677d340db2e1ffe9d8cf4e749cbb3e8ba83fa" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64185045" /></Metadata><TypeSignature Language="C#" Value="public class RequestBringIntoViewEventArgs : System.Windows.RoutedEventArgs" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8dedc010a032951ae5455df27586a27907cf9a1f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69444276" /></Metadata><TypeSignature Language="C#" Value="public class RequestBringIntoViewEventArgs : System.Windows.RoutedEventArgs" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit RequestBringIntoViewEventArgs extends System.Windows.RoutedEventArgs" />
   <TypeSignature Language="DocId" Value="T:System.Windows.RequestBringIntoViewEventArgs" />
   <TypeSignature Language="VB.NET" Value="Public Class RequestBringIntoViewEventArgs&#xA;Inherits RoutedEventArgs" />
@@ -20,11 +20,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.FrameworkElement.RequestBringIntoView?displayProperty=nameWithType>调用时，引发事件的元素<xref:System.Windows.FrameworkElement.BringIntoView%2A>从该元素。 通常情况下，此路由的事件未处理的源。 未实现可滚动区域或剪辑内容不应处理事件的概念相似的中间类。  该事件应允许以实现可滚动区域或以其他方式指定的父元素的气泡<xref:System.Windows.UIElement.ClipToBounds%2A> `false`。 此类的父元素通常会提供类处理<xref:System.Windows.FrameworkElement.RequestBringIntoView>事件，这是必要的呈现逻辑发生给定的元素请求，它将可查看在使剪辑区域时。  
+ 当<xref:System.Windows.FrameworkElement.RequestBringIntoView?displayProperty=nameWithType>你从该元素调用<xref:System.Windows.FrameworkElement.BringIntoView%2A>时, 该事件由元素引发。 通常, 此路由事件不由源处理。 不实现可滚动区域的中间类或剪切内容不应处理事件的类似概念。  应该允许事件冒泡到实现可滚动区域或指定<xref:System.Windows.UIElement.ClipToBounds%2A> `false`的父元素。 此类父元素通常为<xref:System.Windows.FrameworkElement.RequestBringIntoView>事件提供类处理, 即只要给定元素请求在剪辑区域内可查看, 就会发生必要的呈现逻辑。  
   
- 内容元素可能会导致要由其内容宿主引发的事件 (通过调用<xref:System.Windows.FrameworkContentElement.BringIntoView%2A>和引发<xref:System.Windows.FrameworkElement.RequestBringIntoView?displayProperty=nameWithType>来自内容主机)。 同样，可以请求要使用的帮助器方法放入视图的逻辑树元素<xref:System.Windows.LogicalTreeHelper.BringIntoView%2A?displayProperty=nameWithType>。  
+ 内容元素可能会导致事件由其内容宿主引发 (通过调用<xref:System.Windows.FrameworkContentElement.BringIntoView%2A>内容宿主并从内容主机进行引发<xref:System.Windows.FrameworkElement.RequestBringIntoView?displayProperty=nameWithType> )。 同样, 可以通过 helper 方法<xref:System.Windows.LogicalTreeHelper.BringIntoView%2A?displayProperty=nameWithType>请求使逻辑树元素进入视图。  
   
- 一个<xref:System.Windows.Controls.ListBox>实现相关但不同的方法<xref:System.Windows.Controls.ListBox.ScrollIntoView%2A>。  
+ 实现一个相关但不同的方法<xref:System.Windows.Controls.ListBox.ScrollIntoView%2A>。 <xref:System.Windows.Controls.ListBox>  
   
  ]]></format>
     </remarks>
@@ -60,7 +60,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此实现将强制转换为泛型处理程序<xref:System.Windows.RequestBringIntoViewEventHandler>，然后调用它。 有关此实现模式以及它的原因的详细信息，请参阅<xref:System.Windows.RoutedEventArgs.InvokeEventHandler%2A>并[路由事件概述](~/docs/framework/wpf/advanced/routed-events-overview.md)。  
+ 此实现将泛型处理程序强制转换<xref:System.Windows.RequestBringIntoViewEventHandler>为, 然后调用它。 有关此实现模式及其原因的详细信息, 请参阅<xref:System.Windows.RoutedEventArgs.InvokeEventHandler%2A>和[路由事件概述](~/docs/framework/wpf/advanced/routed-events-overview.md)。  
   
  ]]></format>
         </remarks>
@@ -95,7 +95,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此对象通常是同一个对象，返回的<xref:System.Windows.RoutedEventArgs.Source%2A?displayProperty=nameWithType>。  
+ 此对象通常是返回<xref:System.Windows.RoutedEventArgs.Source%2A?displayProperty=nameWithType>的相同对象。  
   
  ]]></format>
         </remarks>
@@ -130,7 +130,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果的签名<xref:System.Windows.FrameworkElement.BringIntoView%2A>的调用时引发事件未指定目标矩形，此属性可能<xref:System.Windows.Rect.Empty%2A>的值<xref:System.Windows.Rect>结构。  
+ 如果为引发事件<xref:System.Windows.FrameworkElement.BringIntoView%2A>而调用的签名未指定目标矩形, 则此属性可能<xref:System.Windows.Rect.Empty%2A>是<xref:System.Windows.Rect>结构的值。  
   
  ]]></format>
         </remarks>
