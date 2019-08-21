@@ -1,5 +1,5 @@
 <Type Name="ManipulationProcessor2D" FullName="System.Windows.Input.Manipulations.ManipulationProcessor2D">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="334bf6eda70ab47cec7b59012a33e50eab9e9cc0" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55353995" /></Metadata><TypeSignature Language="C#" Value="public class ManipulationProcessor2D" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="23325cb1cfed6d36224a559440212534c9ddf78a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69173918" /></Metadata><TypeSignature Language="C#" Value="public class ManipulationProcessor2D" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ManipulationProcessor2D extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" />
   <TypeSignature Language="VB.NET" Value="Public Class ManipulationProcessor2D" />
@@ -19,13 +19,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D>对象将操控程序集合视为复合对象。 你的应用程序便无需再从的跟踪和管理单个操控器。  
+ <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D>对象将操控器的集合视为复合对象。 然后, 你的应用程序将从跟踪和管理单个操控器的必要中释放。  
   
- 操作处理器本身不会导致要移动的元素。 你的应用程序开始在必要时，操作，然后从操作处理器接收信息，通过侦听<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started>，<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta>和<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed>事件。 通过这些事件接收的值使你可以更改位置、 大小或根据需要的元素的方向。  
+ 操作处理器本身不会导致元素移动。 应用程序会根据需要开始操作, 然后通过侦听<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started> <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta>和<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed>事件从操作处理器接收信息。 通过这些事件接收的值使您能够根据需要更改元素的位置、大小或方向。  
   
- 通知操作处理器允许哪些类型的操作 （转换、 缩放、 旋转） 通过设置<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.SupportedManipulations%2A>属性。 然后，可以提供对其进行操作的元素转换到非条件逻辑。 例如，而不是检查是否启用之前更改元素的方向旋转，可以无条件地将应用从操作处理器; 接收到的旋转系数如果未启用旋转，操作处理器将报告已发生不旋转的更改。  
+ 通过设置<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.SupportedManipulations%2A>属性, 通知操作处理器允许哪些类型的操作 (平移、缩放、旋转)。 然后, 可以向正在操作的元素的转换提供非条件逻辑。 例如, 您可以无条件地应用从操作处理器接收的旋转系数, 而不是在更改元素方向之前检查是否启用了旋转。如果未启用旋转, 操作处理器将报告未发生循环更改。  
   
- 当释放的元素，对其进行操作 （删除所有操控器），惯性处理可用于模拟冲突并导致要逐渐降低其移动速度在停止之前的元素。 有关更多信息，请参见 <xref:System.Windows.Input.Manipulations.InertiaProcessor2D> 类。  
+ 当释放正在处理的元素 (删除所有操控器) 时, 您可以使用惯性处理来模拟摩擦, 并使元素在进入停止之前逐渐减慢其运动。 有关更多信息，请参见 <xref:System.Windows.Input.Manipulations.InertiaProcessor2D> 类。  
   
  ]]></format>
     </remarks>
@@ -157,7 +157,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta?displayProperty=nameWithType>事件和<xref:System.Windows.Input.Manipulations.InertiaProcessor2D.Delta?displayProperty=nameWithType>事件具有相同的类型。 通常情况下，您可以使用相同的事件处理程序的这两个事件。  
+ <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta?displayProperty=nameWithType> 事件<xref:System.Windows.Input.Manipulations.InertiaProcessor2D.Delta?displayProperty=nameWithType>和事件的类型相同。 通常, 可以对这两个事件使用相同的事件处理程序。  
   
    
   
@@ -195,11 +195,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果操控器非常接近当前正在处理的操控器质心的非常小的操控器移动可能会变得非常大的旋转或缩放更改。 若要避免此问题，请设置<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.MinimumScaleRotateRadius%2A>为大于零。 比更接近到质心的距离将不包括在旋转和缩放操作任何操控器。  
+ 如果操控器极接近当前正在处理的操控操控器的中心, 则非常小的操控器运动可能会成为旋转或缩放的极大变化。 若要避免此问题, <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.MinimumScaleRotateRadius%2A>请将设置为大于零的值。 与大容量中心距离更近的任何操控器都不会包含在旋转和缩放操作中。  
   
- 要使用的典型值应基于的操控器的"意外"动作情况的可能程度。 例如，如果操控器是人类的手指触摸屏幕，可能适合对应于一厘米左右的半径。  
+ 要使用的典型值应基于操控器 "意外" 动作的可能程度。 例如, 如果操控器是触摸屏幕的人, 则对应于一厘米的半径可能合适。  
   
- 值为<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.MinimumScaleRotateRadius%2A>必须是有限的非负数字。  
+ 的<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.MinimumScaleRotateRadius%2A>值必须是有限的非负数。  
   
  ]]></format>
         </remarks>
@@ -235,7 +235,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Pivot%2A>属性用于提供单一操控程序旋转的轴信息。 将此属性设置为 null 禁用单一操控程序旋转。  
+ <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Pivot%2A>属性用于为单一操控程序旋转提供透视信息。 将此属性设置为 null 可禁用单一操控程序旋转。  
   
  ]]></format>
         </remarks>
@@ -268,12 +268,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 参数`manipulators`可能为空列表或 null。 如果这导致达到零，操控器数<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed>引发事件。  
+ 参数`manipulators`可以为空列表或 null。 如果这会导致操控器数达到零, <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed>则引发事件。  
   
    
   
 ## Examples  
- 在以下示例中，<xref:System.Windows.UIElement.OnLostMouseCapture%2A>方法<xref:System.Windows.UIElement>对象重写，以调用<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.ProcessManipulators%2A>方法，其中的列表<xref:System.Windows.Input.Manipulations.Manipulator2D>对象设置为 null。  
+ 在下面的示例中, <xref:System.Windows.UIElement.OnLostMouseCapture%2A>将重写<xref:System.Windows.UIElement>对象的方法, 以调用<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.ProcessManipulators%2A>方法, 并将<xref:System.Windows.Input.Manipulations.Manipulator2D>对象的列表设置为 null。  
   
  [!code-csharp[ManipulationAPI#_ManipulationItem_OnLostMouseCapture](~/samples/snippets/csharp/VS_Snippets_Misc/manipulationapi/cs/manipulationitem.xaml.cs#_manipulationitem_onlostmousecapture)]  
   
@@ -334,7 +334,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 在下面的示例中，事件处理程序<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started>事件检查，以查看是否运行惯性处理，如果是这样，将停止它。  
+ 在下面的示例中, <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started>事件的事件处理程序检查是否正在运行惯性处理, 如果是, 则将其停止。  
   
  [!code-csharp[ManipulationAPI#_ManipulationItem_OnManipulationStarted](~/samples/snippets/csharp/VS_Snippets_Misc/manipulationapi/cs/manipulationitem.xaml.cs#_manipulationitem_onmanipulationstarted)]  
   

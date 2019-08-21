@@ -1,5 +1,5 @@
 <Type Name="IDataflowBlock" FullName="System.Threading.Tasks.Dataflow.IDataflowBlock">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5f93664f38a2b1309ca4ebb43f549e6e4a57847d" /><Meta Name="ms.sourcegitcommit" Value="8e213bb5e6801f6e29861ba72664978ad00e34fa" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/18/2019" /><Meta Name="ms.locfileid" Value="56345991" /></Metadata><TypeSignature Language="C#" Value="public interface IDataflowBlock" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="922e51c4535f569d191ae9d794114b2b515e0aa2" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69230161" /></Metadata><TypeSignature Language="C#" Value="public interface IDataflowBlock" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDataflowBlock" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Tasks.Dataflow.IDataflowBlock" />
   <TypeSignature Language="VB.NET" Value="Public Interface IDataflowBlock" />
@@ -55,7 +55,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 后<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Complete%2A>已在数据流块上调用，将完成的块，并将其<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Completion%2A>处理以前提供的所有数据后，任务将进入最终状态。 <xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Complete%2A> 将不会阻止等待完成发生，而是将发起请求; 但若要等待完成发生，<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Completion%2A>可能使用任务。  
+ 在<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Complete%2A>数据流块上调用之后, 该块将完成, 并且其<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Completion%2A>任务在处理所有以前可用的数据后将进入最终状态。 <xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Complete%2A>不会阻止等待完成, 而是会启动请求;若要等待完成, <xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Completion%2A>可以使用任务。  
   
  ]]></format>
         </remarks>
@@ -88,7 +88,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 数据流块被视为已完成，它当前不在处理一条消息，当保证它不会处理更多消息。 返回<xref:System.Threading.Tasks.Task>相关联的块已完成时，将转换为已完成状态。 它将转换为<xref:System.Threading.Tasks.TaskStatus><xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状态时阻止完成其处理成功根据数据流块定义的语义。 它将转换为<xref:System.Threading.Tasks.TaskStatus><xref:System.Threading.Tasks.TaskStatus.Faulted>时数据流块已完成处理过早地由于未经处理的异常，并将转换到状态<xref:System.Threading.Tasks.TaskStatus><xref:System.Threading.Tasks.TaskStatus.Canceled>时数据流块已完成的状态由于接收取消请求而导致过早地处理。 如果任务完成时处于<xref:System.Threading.Tasks.TaskStatus.Faulted>状态，其`Exception`属性将返回<xref:System.AggregateException>其中包含导致失败的块的一个或多个异常。  
+ 数据流块在当前未处理消息时, 将被视为已完成, 并保证其不会再处理其他消息。 完成关联<xref:System.Threading.Tasks.Task>的块后, 返回的将转换为已完成状态。 当块根据数据流块<xref:System.Threading.Tasks.TaskStatus>的定义语义成功完成其处理时, 它将转换为<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状态。 当数据流块由于未经<xref:System.Threading.Tasks.TaskStatus>处理的异常而提前完成处理时, 它将转换为<xref:System.Threading.Tasks.TaskStatus.Faulted>状态, 并将在数据流块完成<xref:System.Threading.Tasks.TaskStatus>后转换为<xref:System.Threading.Tasks.TaskStatus.Canceled>状态由于接收取消请求而提前处理。 如果任务在<xref:System.Threading.Tasks.TaskStatus.Faulted>状态中完成, 则其`Exception`属性将返回<xref:System.AggregateException> , 其中包含导致块失败的一个或多个异常。  
   
  ]]></format>
         </remarks>
@@ -123,7 +123,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 之后<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Fault%2A>已在数据流块上调用，将完成的块，并将其<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Completion%2A>任务将进入最终状态。 在出错块，作为与取消块，缓冲将导致消息 （未处理的输入的消息，以及 unoffered 的输出消息） 会丢失。  
+ 在<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Fault%2A>数据流块上调用之后, 该块将完成, 并且其<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Completion%2A>任务将进入最终状态。 如果对块进行错误处理, 就像取消块一样, 导致缓冲消息 (未处理的输入消息以及 unoffered 的输出消息) 丢失。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="ExpressionBuilder" FullName="System.Web.Compilation.ExpressionBuilder">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c95575203f50428a9a00c189c03e2ed637812f38" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64148201" /></Metadata><TypeSignature Language="C#" Value="public abstract class ExpressionBuilder" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="203b0d475469a88a88a694024bb22c74746c33e2" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69142271" /></Metadata><TypeSignature Language="C#" Value="public abstract class ExpressionBuilder" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ExpressionBuilder extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Web.Compilation.ExpressionBuilder" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ExpressionBuilder" />
@@ -20,22 +20,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Compilation.ExpressionBuilder>类是表达式生成器的基类，如<xref:System.Web.Compilation.AppSettingsExpressionBuilder>类，在页分析过程中创建的代码表达式。  
+ 类是表达式生成器 (如<xref:System.Web.Compilation.AppSettingsExpressionBuilder>类) 的基类, 用于在页的分析过程中创建代码表达式。 <xref:System.Web.Compilation.ExpressionBuilder>  
   
- 表达式生成器分析声明性表达式，并创建代码来检索绑定到控件属性的值。 在无编译方案中，表达式生成器支持非编译功能的计算过程运行时中的表达式。  
+ 表达式生成器分析声明性表达式并创建代码以检索绑定到控件属性的值。 在无编译情况下, 支持无编译功能的表达式生成器将在运行时计算表达式。  
   
- 当页分析器遇到分隔的字符串的表达式`<%$ %>`，它将创建基于前缀的字符串中的表达式的表达式生成器。 前缀是字符串的冒号 （:） 左侧的一部分。 例如，当分析器遇到字符串`<%$ ConnectionStrings:MessageDB %>`，它会创建<xref:System.Web.Compilation.ConnectionStringsExpressionBuilder>对象。 前缀与相关联的 Web.config 文件中的表达式生成器<xref:System.Web.Configuration.CompilationSection.ExpressionBuilders%2A>部分。  
+ 当页分析器遇到用字符串`<%$ %>`分隔的表达式时, 它将基于字符串中的前缀为该表达式创建一个表达式生成器。 前缀是位于冒号 (:) 的左侧的字符串部分。 例如, 当分析器遇到字符串`<%$ ConnectionStrings:MessageDB %>`时, 它将创建一个<xref:System.Web.Compilation.ConnectionStringsExpressionBuilder>对象。 前缀与<xref:System.Web.Configuration.CompilationSection.ExpressionBuilders%2A>节中 web.config 文件中的表达式生成器关联。  
   
- 声明性表达式的右侧被传递给表达式生成器进行评估。 重写<xref:System.Web.Compilation.ExpressionBuilder.GetCodeExpression%2A>方法生成的页面将已编译的代码。  
+ 声明性表达式的右侧传递到表达式生成器进行计算。 重写<xref:System.Web.Compilation.ExpressionBuilder.GetCodeExpression%2A>方法以生成将与页一起编译的代码。  
   
- 如果你想要不进行编译的页上处于活动状态的自定义表达式生成器，还必须重写<xref:System.Web.Compilation.ExpressionBuilder.EvaluateExpression%2A>方法以返回一个对象，表示表达式的结果。 此外必须重写<xref:System.Web.Compilation.ExpressionBuilder.SupportsEvaluate%2A>属性以指示自定义表达式生成器确实支持非编译页。  
+ 如果希望自定义表达式生成器在未编译的页上处于活动状态, 则还必须重写<xref:System.Web.Compilation.ExpressionBuilder.EvaluateExpression%2A>方法以返回表示该表达式结果的对象。 还必须重写<xref:System.Web.Compilation.ExpressionBuilder.SupportsEvaluate%2A>属性, 以指示自定义表达式生成器不支持编译页。  
   
- 您可以定义一组用于选择和计算表达式与该键关联的控件属性在设计时通过实现一个表达式编辑器的属性和方法。 在编辑器上表达式生成器通过类级别的元数据标记。 有关更多信息，请参见<xref:System.Web.UI.Design.ExpressionEditor>。  
+ 通过实现表达式编辑器, 您可以在设计时定义与控件属性关联的一组属性和方法。 编辑器通过类级元数据在表达式生成器上进行标记。 有关详细信息，请参阅 <xref:System.Web.UI.Design.ExpressionEditor>。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何通过实现来生成自定义表达式生成器<xref:System.Web.Compilation.ExpressionBuilder>抽象类。 此实现<xref:System.Web.Compilation.ExpressionBuilder>返回语句传递给表达式的计算结果。 若要运行此示例中，必须先在 Web.config 文件中注册自定义表达式生成器。 第一个代码示例演示如何在 Web.config 文件中注册自定义表达式生成器。  
+ 下面的代码示例演示如何通过实现<xref:System.Web.Compilation.ExpressionBuilder>抽象类来生成自定义表达式生成器。 的<xref:System.Web.Compilation.ExpressionBuilder>此实现返回传递给表达式的计算语句。 若要运行此示例, 必须先在 web.config 文件中注册自定义表达式生成器。 第一个代码示例演示如何在 web.config 文件中注册自定义表达式生成器。  
   
 ```  
 <configuration>  
@@ -50,21 +50,21 @@
 </configuration>  
 ```  
   
- 第二个代码示例演示如何引用.aspx 文件中的表达式。  
+ 第二个代码示例演示如何引用 .aspx 文件中的表达式。  
   
 ```  
 <asp:Label ID="Label1" runat="server"   
 Text="<%$ MyCustomExpression:Hello, world! %>" />  
 ```  
   
- 第三个代码示例演示如何通过从派生来开发自定义的表达式生成器<xref:System.Web.Compilation.ExpressionBuilder>。 若要运行此代码示例，必须将该类放在 App_Code 文件夹中。  
+ 第三个代码示例演示如何通过从<xref:System.Web.Compilation.ExpressionBuilder>派生来开发自定义表达式生成器。 若要运行此代码示例, 必须将类放置在 App_Code 文件夹中。  
   
  [!code-csharp[System.Web.Compilation.ExpressionBuilder#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Compilation.ExpressionBuilder/CS/MyExpressionBuilder.cs#1)] 
  [!code-vb[System.Web.Compilation.ExpressionBuilder#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Compilation.ExpressionBuilder/VB/MyExpressionBuilder.vb#1)]   
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>继承自<see cref="T:System.Web.Compilation.ExpressionBuilder" />类，必须重写<see cref="M:System.Web.Compilation.ExpressionBuilder.GetCodeExpression(System.Web.UI.BoundPropertyEntry,System.Object,System.Web.Compilation.ExpressionBuilderContext)" />方法。</para></block>
+    <block subset="none" type="overrides"><para>从<see cref="T:System.Web.Compilation.ExpressionBuilder" />类继承时, 必须<see cref="M:System.Web.Compilation.ExpressionBuilder.GetCodeExpression(System.Web.UI.BoundPropertyEntry,System.Object,System.Web.Compilation.ExpressionBuilderContext)" />重写方法。</para></block>
     <altmember cref="T:System.Web.Compilation.ExpressionBuilderContext" />
     <altmember cref="T:System.Web.Configuration.ExpressionBuilder" />
     <altmember cref="T:System.Web.Configuration.ExpressionBuilderCollection" />
@@ -96,11 +96,11 @@ Text="<%$ MyCustomExpression:Hello, world! %>" />
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 因为<xref:System.Web.Compilation.ExpressionBuilder>类为抽象类，不能创建的实例<xref:System.Web.Compilation.ExpressionBuilder>直接通过使用<xref:System.Web.Compilation.ExpressionBuilder.%23ctor%2A>构造函数。  
+ 由于类是抽象类, 因此不能使用<xref:System.Web.Compilation.ExpressionBuilder.%23ctor%2A>构造函数<xref:System.Web.Compilation.ExpressionBuilder>直接创建的实例。 <xref:System.Web.Compilation.ExpressionBuilder>  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>当派生自<see cref="T:System.Web.Compilation.ExpressionBuilder" />类中重写<see cref="M:System.Web.Compilation.ExpressionBuilder.#ctor" />构造函数来实现您的表达式生成器实现的自定义初始化操作。</para></block>
+        <block subset="none" type="overrides"><para>从<see cref="T:System.Web.Compilation.ExpressionBuilder" />类派生时, <see cref="M:System.Web.Compilation.ExpressionBuilder.#ctor" />重写构造函数以实现表达式生成器实现的自定义初始化操作。</para></block>
         <altmember cref="T:System.Web.Compilation.ExpressionBuilderContext" />
         <altmember cref="T:System.Web.Configuration.ExpressionBuilder" />
         <altmember cref="T:System.Web.Configuration.ExpressionBuilderCollection" />
@@ -141,19 +141,19 @@ Text="<%$ MyCustomExpression:Hello, world! %>" />
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果您希望您<xref:System.Web.Compilation.ExpressionBuilder>支持非编译功能的页上处于活动状态的对象可以重写<xref:System.Web.Compilation.ExpressionBuilder.EvaluateExpression%2A>方法和<xref:System.Web.Compilation.ExpressionBuilder.SupportsEvaluate%2A>属性。 <xref:System.Web.Compilation.ExpressionBuilder.EvaluateExpression%2A>方法应返回当前表达式的计算。  
+ 如果希望<xref:System.Web.Compilation.ExpressionBuilder>对象在支持无编译功能的页面上处于活动状态, 则可以<xref:System.Web.Compilation.ExpressionBuilder.EvaluateExpression%2A>重写方法和<xref:System.Web.Compilation.ExpressionBuilder.SupportsEvaluate%2A>属性。 <xref:System.Web.Compilation.ExpressionBuilder.EvaluateExpression%2A>方法应返回当前表达式的计算。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何使用已重写<xref:System.Web.Compilation.ExpressionBuilder.EvaluateExpression%2A>方法以返回计算的表达式。  
+ 下面的代码示例演示如何使用重写<xref:System.Web.Compilation.ExpressionBuilder.EvaluateExpression%2A>的方法返回计算的表达式。  
   
  [!code-csharp[System.Web.Compilation.ExpressionBuilder#3](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Compilation.ExpressionBuilder/CS/MyExpressionBuilder.cs#3)]    
  [!code-vb[System.Web.Compilation.ExpressionBuilder#3](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Compilation.ExpressionBuilder/VB/MyExpressionBuilder.vb#3)]   
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>如果重写<see cref="M:System.Web.Compilation.ExpressionBuilder.EvaluateExpression(System.Object,System.Web.UI.BoundPropertyEntry,System.Object,System.Web.Compilation.ExpressionBuilderContext)" />方法，您还必须重写<see cref="P:System.Web.Compilation.ExpressionBuilder.SupportsEvaluate" />属性。</para></block>
+        <block subset="none" type="overrides"><para>如果重写<see cref="M:System.Web.Compilation.ExpressionBuilder.EvaluateExpression(System.Object,System.Web.UI.BoundPropertyEntry,System.Object,System.Web.Compilation.ExpressionBuilderContext)" />方法, 则还必须<see cref="P:System.Web.Compilation.ExpressionBuilder.SupportsEvaluate" />重写属性。</para></block>
       </Docs>
     </Member>
     <Member MemberName="GetCodeExpression">
@@ -187,19 +187,19 @@ Text="<%$ MyCustomExpression:Hello, world! %>" />
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 继承的类<xref:System.Web.Compilation.ExpressionBuilder>类必须实现<xref:System.Web.Compilation.ExpressionBuilder.GetCodeExpression%2A>抽象方法。  
+ 从<xref:System.Web.Compilation.ExpressionBuilder>类继承的类必须<xref:System.Web.Compilation.ExpressionBuilder.GetCodeExpression%2A>实现抽象方法。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何返回<xref:System.CodeDom.CodeExpression>对象通过重写<xref:System.Web.Compilation.ExpressionBuilder.GetCodeExpression%2A>方法。  
+ 下面的代码示例演示如何通过<xref:System.CodeDom.CodeExpression> <xref:System.Web.Compilation.ExpressionBuilder.GetCodeExpression%2A>重写方法来返回对象。  
   
  [!code-csharp[System.Web.Compilation.ExpressionBuilder#4](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Compilation.ExpressionBuilder/CS/MyExpressionBuilder.cs#4)] 
  [!code-vb[System.Web.Compilation.ExpressionBuilder#4](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Compilation.ExpressionBuilder/VB/MyExpressionBuilder.vb#4)]   
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>如果实现自定义表达式生成器，您必须执行正确的类型强制转换为控件属性，并返回中的强制转换操作<see cref="T:System.CodeDom.CodeExpression" />对象。</para></block>
+        <block subset="none" type="overrides"><para>如果实现自定义表达式生成器, 则必须对控件属性执行正确的类型强制转换, 并在<see cref="T:System.CodeDom.CodeExpression" />对象中返回 cast 运算。</para></block>
       </Docs>
     </Member>
     <Member MemberName="ParseExpression">
@@ -233,7 +233,7 @@ Text="<%$ MyCustomExpression:Hello, world! %>" />
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当在派生类中重写此方法分析表达式，并将其返回为一个对象，可用作`parsedData`中的参数<xref:System.Web.Compilation.ExpressionBuilder.GetCodeExpression%2A>或<xref:System.Web.Compilation.ExpressionBuilder.EvaluateExpression%2A>方法。  
+ 当在派生类中重写时, 此方法会分析表达式, 并将其返回为可用作`parsedData` <xref:System.Web.Compilation.ExpressionBuilder.GetCodeExpression%2A>或<xref:System.Web.Compilation.ExpressionBuilder.EvaluateExpression%2A>方法中的参数的对象。  
   
  ]]></format>
         </remarks>
@@ -262,7 +262,7 @@ Text="<%$ MyCustomExpression:Hello, world! %>" />
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认值为<xref:System.Web.Compilation.ExpressionBuilder.SupportsEvaluate%2A>属性是`false`。 若要支持非编译页，您必须重写二者<xref:System.Web.Compilation.ExpressionBuilder.EvaluateExpression%2A>方法和<xref:System.Web.Compilation.ExpressionBuilder.SupportsEvaluate%2A>属性。  
+ <xref:System.Web.Compilation.ExpressionBuilder.SupportsEvaluate%2A>属性的默认值为`false`。 若要支持无编译页, 必须重写<xref:System.Web.Compilation.ExpressionBuilder.EvaluateExpression%2A>方法<xref:System.Web.Compilation.ExpressionBuilder.SupportsEvaluate%2A>和属性。  
   
    
   

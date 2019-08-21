@@ -1,5 +1,5 @@
 <Type Name="IsolatedStorageFile" FullName="System.IO.IsolatedStorage.IsolatedStorageFile">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="20a0721abf3f959b6b4343c7826a19b6bd516223" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58737890" /></Metadata><TypeSignature Language="C#" Value="public sealed class IsolatedStorageFile : System.IO.IsolatedStorage.IsolatedStorage, IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f4a10f5fd49892f6c31eababc3a86a96a17757b7" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69245396" /></Metadata><TypeSignature Language="C#" Value="public sealed class IsolatedStorageFile : System.IO.IsolatedStorage.IsolatedStorage, IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit IsolatedStorageFile extends System.IO.IsolatedStorage.IsolatedStorage implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.IO.IsolatedStorage.IsolatedStorageFile" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class IsolatedStorageFile&#xA;Inherits IsolatedStorage&#xA;Implements IDisposable" />
@@ -43,11 +43,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此对象对应于一个特定的独立的存储范围内，文件由<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream>存在的对象。 应用程序可以使用独立的存储将数据保存在文件系统中，其自己独立部分中，而无需指定文件系统中的特定路径。 独立存储区的作用域为特定的程序集，因为大多数其他托管的代码将不能访问您的代码的数据 （高度受信任的托管的代码和管理工具可以与其他程序集访问存储区）。 非托管的代码可以访问任何独立存储区。  
+ 此对象对应于指定的独立存储范围, 其中的文件由<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream>对象表示。 应用程序可以使用独立存储将数据保存在文件系统自身的隔离部分中, 而无需在文件系统中指定特定路径。 由于独立存储区的作用域为特定程序集, 因此, 大多数其他托管代码将无法访问您的代码的数据 (高度信任的托管代码和管理工具可以访问其他程序集中的存储)。 非托管代码可以访问任何独立的存储区。  
   
  有关详细信息，请参阅 [独立存储](~/docs/standard/io/isolated-storage.md)。  
   
- 此类型实现<xref:System.IDisposable>接口。 在使用完类型后，您应直接或间接释放类型。 若要直接释放类型，调用其<xref:System.IDisposable.Dispose%2A>中的方法`try` / `catch`块。 若要间接释放类型，请使用 `using`（在 C# 中）或 `Using`（在 Visual Basic 中）等语言构造。 有关详细信息，请参阅中的"使用对象实现 IDisposable"一节<xref:System.IDisposable>接口主题。  
+ 此类型实现 <xref:System.IDisposable> 接口。 在使用完类型后，您应直接或间接释放类型。 若要直接释放类型，请在 `try`/`catch` 块中调用其 <xref:System.IDisposable.Dispose%2A> 方法。 若要间接释放类型，请使用 `using`（在 C# 中）或 `Using`（在 Visual Basic 中）等语言构造。 有关详细信息，请参阅 <xref:System.IDisposable> 接口主题中的“使用实现 IDisposable 的对象”一节。  
   
 > [!IMPORTANT]
 >  独立存储不适用于 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] 应用。 相反，使用 `Windows.Storage` API 中包含的 [!INCLUDE[wrt](~/includes/wrt-md.md)] 命名空间中的应用程序数据类来存储本地数据和文件。 有关详细信息，请参阅 Windows 开发人员中心的 [应用程序数据](https://go.microsoft.com/fwlink/?LinkId=229175) 。  
@@ -55,7 +55,7 @@
    
   
 ## Examples  
- 下面的代码示例展示了如何在独立存储中创建文件和目录。 首先，按用户、 域和程序集隔离的存储是检索并放入`isoStore`变量。 <xref:System.IO.IsolatedStorage.IsolatedStorageFile.CreateDirectory%2A>然后调用方法来创建目录和两个实例<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream>类在这些目录中创建文件。  
+ 下面的代码示例展示了如何在独立存储中创建文件和目录。 首先, 将检索一个按用户、域和程序集隔离的存储区, 并将其`isoStore`放置在变量中。 然后调用<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream>方法以创建目录, 类的两个实例在这些目录中创建文件。 <xref:System.IO.IsolatedStorage.IsolatedStorageFile.CreateDirectory%2A>  
   
  [!code-csharp[Conceptual.IsolatedStorage#1](~/samples/snippets/csharp/VS_Snippets_CLR/conceptual.isolatedstorage/cs/source.cs#1)]
  [!code-vb[Conceptual.IsolatedStorage#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/conceptual.isolatedstorage/vb/source.vb#1)]  
@@ -106,8 +106,9 @@
         <exception cref="T:System.InvalidOperationException">独立存储区已关闭。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
   
-- 或 - 
-已禁用独立存储。</exception>
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
         <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
@@ -152,7 +153,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的代码示例演示如何使用 <xref:System.IO.IsolatedStorage.IsolatedStorageFile.Close%2A> 方法。 此示例的完整上下文，请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
+ 下面的代码示例演示如何使用 <xref:System.IO.IsolatedStorage.IsolatedStorageFile.Close%2A> 方法。 有关此示例的完整上下文, 请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#10](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/source.cpp#10)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#10](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/source.cs#10)]
@@ -160,7 +161,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -218,7 +219,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `sourceFileName` 和`destinationFileName`必须指定不同的文件名。 使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile%28System.String%2CSystem.String%2CSystem.Boolean%29?displayProperty=nameWithType>方法重载来覆盖现有文件。  
+ `sourceFileName`和`destinationFileName`必须指定不同的文件名。 <xref:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile%28System.String%2CSystem.String%2CSystem.Boolean%29?displayProperty=nameWithType>使用方法重载覆盖现有文件。  
   
  ]]></format>
         </remarks>
@@ -230,10 +231,10 @@
         <exception cref="T:System.IO.DirectoryNotFoundException">未找到 <paramref name="sourceFileName" />。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
   
-- 或 - 
+或 
 已禁用独立存储。  
   
-- 或 - 
+或 
  <paramref name="destinationFileName" /> 已存在。  
   
 - 或 - 
@@ -290,7 +291,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `sourceFileName` 并`destinationFileName`可以具有相同的文件名称，如果`overwrite`是`true`。  
+ `sourceFileName`如果`destinationFileName` 为,`true`则和可具有相同的文件名。 `overwrite`  
   
  ]]></format>
         </remarks>
@@ -302,11 +303,13 @@
         <exception cref="T:System.IO.DirectoryNotFoundException">未找到 <paramref name="sourceFileName" />。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
   
-- 或 - 
-已禁用独立存储。  
+ - 或 -  
   
-- 或 - 
-发生了 I/O 错误。</exception>
+ 已禁用独立存储。  
+  
+ - 或 -  
+  
+ 发生了 I/O 错误。</exception>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -354,12 +357,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 最初，创建的目录包含任何文件。 如果该目录已存在，<xref:System.IO.IsolatedStorage.IsolatedStorageFile.CreateDirectory%2A>方法返回，而不创建新的目录。 [如何：在独立存储中创建文件和目录](~/docs/standard/io/how-to-create-files-and-directories-in-isolated-storage.md)的示例演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.CreateDirectory%2A>方法  
+ 创建的目录最初不包含任何文件。 如果该目录已存在, 则<xref:System.IO.IsolatedStorage.IsolatedStorageFile.CreateDirectory%2A>该方法返回, 而不创建新目录。 [如何：在独立存储](~/docs/standard/io/how-to-create-files-and-directories-in-isolated-storage.md)中创建文件和目录示例演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.CreateDirectory%2A>方法  
   
    
   
 ## Examples  
- 下面的代码示例演示了<xref:System.IO.IsolatedStorage.IsolatedStorageFile.CreateDirectory%2A>方法。 此示例的完整上下文，请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
+ 下面的代码示例演示<xref:System.IO.IsolatedStorage.IsolatedStorageFile.CreateDirectory%2A>方法。 有关此示例的完整上下文, 请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#7](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/source.cpp#7)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/source.cs#7)]
@@ -369,8 +372,8 @@
         </remarks>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">当前代码没有足够的权限创建独立存储目录。</exception>
         <exception cref="T:System.ArgumentNullException">目录路径为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于访问独立的存储范围。</permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于访问独立存储范围。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -417,14 +420,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法相当于使用<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream.%23ctor%28System.String%2CSystem.IO.FileMode%2CSystem.IO.FileAccess%2CSystem.IO.FileShare%2CSystem.IO.IsolatedStorage.IsolatedStorageFile%29?displayProperty=nameWithType>构造函数。  
+ 此方法等效于使用<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream.%23ctor%28System.String%2CSystem.IO.FileMode%2CSystem.IO.FileAccess%2CSystem.IO.FileShare%2CSystem.IO.IsolatedStorage.IsolatedStorageFile%29?displayProperty=nameWithType>构造函数。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
   
-- 或 - 
-已禁用独立存储。</exception>
+ 或  
+  
+ 已禁用独立存储。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="path" /> 的格式不正确。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="path" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><paramref name="path" /> 中的目录不存在。</exception>
@@ -481,16 +485,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 表示所有文件和目录的独立的存储范围内的总体使用情况。  
+ 表示独立存储范围内所有文件和目录的总使用量。  
   
- 当前大小不能准确地确定对于参与漫游用户配置文件的存储中。 漫游配置文件是通常在多个客户端计算机上缓存和更高版本与服务器同步，因为对于此类存储不能强制实施配额并不报告的当前大小。  
+ 对于加入漫游用户配置文件的商店, 无法准确确定当前大小。 因为漫游配置文件通常缓存在多个客户端计算机上, 之后与服务器同步, 所以无法为此类存储强制执行配额, 并且不会报告当前大小。  
   
- [如何：预见独立存储的空间不足的情况](~/docs/standard/io/how-to-anticipate-out-of-space-conditions-with-isolated-storage.md)的示例演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.CurrentSize%2A>属性。  
+ [如何：使用独立存储](~/docs/standard/io/how-to-anticipate-out-of-space-conditions-with-isolated-storage.md)来预见空间不足的情况示例演示<xref:System.IO.IsolatedStorage.IsolatedStorageFile.CurrentSize%2A>属性的用法。  
   
    
   
 ## Examples  
- 下面的代码示例演示了<xref:System.IO.IsolatedStorage.IsolatedStorageFile.CurrentSize%2A>属性。 此示例的完整上下文，请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
+ 下面的代码示例演示了<xref:System.IO.IsolatedStorage.IsolatedStorageFile.CurrentSize%2A>属性。 有关此示例的完整上下文, 请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#5](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/source.cpp#5)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/source.cs#5)]
@@ -547,9 +551,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在被删除之前，目录必须为空。 一经删除便不能恢复删除的目录。  
+ 删除目录之前, 该目录必须为空。 删除后, 无法恢复已删除的目录。  
   
- [如何：删除独立存储中文件和目录](~/docs/standard/io/how-to-delete-files-and-directories-in-isolated-storage.md)的示例演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.DeleteDirectory%2A>方法。  
+ [如何：删除独立存储](~/docs/standard/io/how-to-delete-files-and-directories-in-isolated-storage.md)中的文件和目录示例演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.DeleteDirectory%2A>方法。  
   
    
   
@@ -562,8 +566,8 @@
         </remarks>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">该目录未能删除。</exception>
         <exception cref="T:System.ArgumentNullException">目录路径为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于访问独立的存储范围。</permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于访问独立存储范围。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -611,14 +615,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一经删除便不能恢复已删除的文件。  
+ 删除后, 无法恢复已删除的文件。  
   
- [如何：删除独立存储中文件和目录](~/docs/standard/io/how-to-delete-files-and-directories-in-isolated-storage.md)的示例演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.DeleteFile%2A>方法。  
+ [如何：删除独立存储](~/docs/standard/io/how-to-delete-files-and-directories-in-isolated-storage.md)中的文件和目录示例演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.DeleteFile%2A>方法。  
   
    
   
 ## Examples  
- 下面的代码示例使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.DeleteFile%2A>方法来删除独立存储中的文件数。  
+ 下面的代码示例使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.DeleteFile%2A>方法来删除独立存储中的多个文件。  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#6](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/source.cpp#6)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/source.cs#6)]
@@ -628,8 +632,8 @@
         </remarks>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">目标文件已打开或者路径不正确。</exception>
         <exception cref="T:System.ArgumentNullException">文件路径为 <see langword="null" />。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于访问独立的存储范围中的文件。</permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于访问独立存储范围中的文件。</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -681,8 +685,9 @@
         <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
   
-- 或 - 
-已禁用独立存储。</exception>
+ 或  
+  
+ 已禁用独立存储。</exception>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -725,15 +730,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在完成使用 `Dispose` 后，应调用 <xref:System.IO.IsolatedStorage.IsolatedStorageFile>。 `Dispose` 方法使 <xref:System.IO.IsolatedStorage.IsolatedStorageFile> 处于不可用状态。 在调用`Dispose`，必须释放对所有引用<xref:System.IO.IsolatedStorage.IsolatedStorageFile>这样垃圾回收器才能收回内存的<xref:System.IO.IsolatedStorage.IsolatedStorageFile>占用。  
+ 在完成使用 `Dispose` 后，应调用 <xref:System.IO.IsolatedStorage.IsolatedStorageFile>。 `Dispose` 方法使 <xref:System.IO.IsolatedStorage.IsolatedStorageFile> 处于不可用状态。 调用`Dispose`后, 必须释放对的<xref:System.IO.IsolatedStorage.IsolatedStorageFile>所有引用, 这样垃圾回收器<xref:System.IO.IsolatedStorage.IsolatedStorageFile>才能收回占用的内存。  
   
 > [!NOTE]
->  在发布到最后一个引用前，始终调用 Dispose <xref:System.IO.IsolatedStorage.IsolatedStorageFile>。 否则为资源<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream>是使用之前，不会释放垃圾集合调用<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream>对象的<xref:System.Object.Finalize%2A>方法。  
+>  在释放对的<xref:System.IO.IsolatedStorage.IsolatedStorageFile>最后一个引用之前, 请始终调用 Dispose。 否则, 在垃圾回收<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream> <xref:System.IO.IsolatedStorage.IsolatedStorageFileStream>调用对象的<xref:System.Object.Finalize%2A>方法之前, 将不会释放正在使用的资源。  
   
    
   
 ## Examples  
- 下面的代码示例打开一个独立的存储文件、 使用它将信息写入流，关闭该文件，然后使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.Dispose%2A>方法来释放所有资源。  
+ 下面的代码示例将打开一个独立的存储文件, 使用它将信息写入流, 关闭该文件, 然后使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.Dispose%2A>方法释放所有资源。  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#10](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/source.cpp#10)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#10](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/source.cs#10)]
@@ -741,7 +746,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -873,7 +878,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果路径所描述的文件不存在，此方法返回午夜 12:00，公元 1601 年 1 月 1 日 (C.E.)协调世界时 (UTC)，调整为本地时间。  
+ 如果路径描述的文件不存在, 则此方法返回12:00 年1月1日午夜1601 公元协调世界时 (UTC), 调整为本地时间。  
   
  ]]></format>
         </remarks>
@@ -883,8 +888,9 @@
         <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
   
-- 或 - 
-已禁用独立存储。</exception>
+ 或  
+  
+ 已禁用独立存储。</exception>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -941,7 +947,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法相当于使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames%28System.String%29?displayProperty=nameWithType>方法使用"*"指定的搜索模式。  
+ 此方法等效于使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames%28System.String%29?displayProperty=nameWithType>为搜索模式指定了 "*" 的方法。  
   
  ]]></format>
         </remarks>
@@ -998,18 +1004,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通配符必须仅为的最后一个元素的`searchPattern`。 例如，"directory1 / * 等\*"是一个有效的搜索字符串，但"\*等 \* /目录"不是。  
+ 通配符字符必须在的最后一个`searchPattern`元素中。 例如, "directory1/* etc\*" 是有效的搜索字符串, 但 "\*etc\*/目录" 不是。  
   
- `searchPattern` "Project\Data *"将使项目的独立的存储范围中的数据开头的所有子目录。 `searchPattern` "\*"将返回位于根目录中的所有目录。 字符串的搜索条件的完整说明，请参阅<xref:System.IO.Directory>类。  
+ `searchPattern` "Project\Data *" 将从独立存储范围中的数据开始, 为项目的所有子目录提供。 `searchPattern` "\*" 将返回根目录中的所有目录。 有关搜索字符串条件的完整说明, 请参阅<xref:System.IO.Directory>类。  
   
- 获取文件的名称的信息，请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames%2A>方法。  
+ 有关获取文件名称的信息, 请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames%2A>方法。  
   
- [如何：在独立存储中查找现有文件和目录](~/docs/standard/io/how-to-find-existing-files-and-directories-in-isolated-storage.md)的示例演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames%2A>方法。  
+ [如何：在独立存储](~/docs/standard/io/how-to-find-existing-files-and-directories-in-isolated-storage.md)中查找现有文件和目录示例演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames%2A>方法。  
   
    
   
 ## Examples  
- 下面的代码示例演示了<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames%2A>方法。 此示例的完整上下文，请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
+ 下面的代码示例演示<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames%2A>方法。 有关此示例的完整上下文, 请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#16](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/source.cpp#16)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#16](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/source.cs#16)]
@@ -1023,7 +1029,7 @@
         <exception cref="T:System.UnauthorizedAccessException">调用方不具有枚举从 <paramref name="searchPattern" /> 解析的目录的权限。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException">未找到 <paramref name="searchPattern" /> 指定的一个或多个目录。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -1071,12 +1077,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- [如何：枚举独立存储的存储区](~/docs/standard/io/how-to-enumerate-stores-for-isolated-storage.md)的示例演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetEnumerator%2A>方法。  
+ [如何：枚举独立存储](~/docs/standard/io/how-to-enumerate-stores-for-isolated-storage.md)的存储区示例演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetEnumerator%2A>方法。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">使用独立的存储。 关联的枚举： <see cref="F:System.Security.Permissions.IsolatedStorageContainment.AdministerIsolatedStorageByUser" /></permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于使用独立存储。 关联的枚举:<see cref="F:System.Security.Permissions.IsolatedStorageContainment.AdministerIsolatedStorageByUser" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -1130,7 +1136,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法相当于使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames%28System.String%29?displayProperty=nameWithType>方法使用"*"指定的搜索模式。  
+ 此方法等效于使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames%28System.String%29?displayProperty=nameWithType>为搜索模式指定了 "*" 的方法。  
   
  ]]></format>
         </remarks>
@@ -1185,16 +1191,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `searchPattern` "Project\Data *.txt"将提供从数据开始在独立的存储范围的项目目录中的所有".txt"文件。 搜索模式字符串的完整说明，请参阅<xref:System.IO.Directory?displayProperty=nameWithType>。  
+ `searchPattern` "Project\Data * .txt" 将为所有 ".txt" 文件提供在独立存储范围的项目目录中以数据开头的文件。 有关搜索模式字符串的完整说明, 请<xref:System.IO.Directory?displayProperty=nameWithType>参阅。  
   
- 有关如何查找目录名称的信息，请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames%2A>方法。  
+ 有关如何查找目录名称的信息, 请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames%2A>方法。  
   
- [如何：在独立存储中查找现有文件和目录](~/docs/standard/io/how-to-find-existing-files-and-directories-in-isolated-storage.md)的示例演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames%2A>方法。  
+ [如何：在独立存储](~/docs/standard/io/how-to-find-existing-files-and-directories-in-isolated-storage.md)中查找现有文件和目录示例演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames%2A>方法。  
   
    
   
 ## Examples  
- 下面的代码示例演示了<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames%2A>方法。 此示例的完整上下文，请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
+ 下面的代码示例演示<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames%2A>方法。 有关此示例的完整上下文, 请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#16](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/source.cpp#16)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#16](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/source.cs#16)]
@@ -1206,7 +1212,7 @@
         <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException">无法找到 <paramref name="searchPattern" /> 指定的文件路径。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -1256,7 +1262,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果该文件描述`path`不存在，此方法将返回到公元 1601 年 1 月 1 日午夜 12:00 点 (C.E.)协调世界时 (UTC)，调整为本地时间。  
+ 如果描述的`path`文件不存在, 则此方法将返回12:00 年1月1日午夜1601 公元协调世界时 (UTC), 调整为本地时间。  
   
  ]]></format>
         </remarks>
@@ -1266,8 +1272,9 @@
         <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
   
-- 或 - 
-已禁用独立存储。</exception>
+ 或  
+  
+ 已禁用独立存储。</exception>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -1317,7 +1324,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果该文件描述`path`不存在，此方法将返回到公元 1601 年 1 月 1 日午夜 12:00 点 (C.E.)协调世界时 (UTC)，调整为本地时间。  
+ 如果描述的`path`文件不存在, 则此方法将返回12:00 年1月1日午夜1601 公元协调世界时 (UTC), 调整为本地时间。  
   
  ]]></format>
         </remarks>
@@ -1327,8 +1334,9 @@
         <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
   
-- 或 - 
-已禁用独立存储。</exception>
+ 或  
+  
+ 已禁用独立存储。</exception>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -1372,9 +1380,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此方法时，与应用程序相关联的所有程序集使用相同的独立存储区。  
+ 使用此方法时, 与应用程序关联的所有程序集都使用相同的独立存储区。  
   
- <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetMachineStoreForApplication%2A> 在功能上等效于下面的代码：  
+ <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetMachineStoreForApplication%2A>在功能上等效于以下代码:  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#18](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/remarks.cpp#18)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#18](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/remarks.cs#18)]
@@ -1384,14 +1392,16 @@
         </remarks>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">未能确定调用方的应用程序标识。  
   
-- 或 - 
-未能确定为应用程序域授予的权限集。  
+ 或  
   
-- 或 - 
-无法初始化独立的存储位置。</exception>
+ 未能确定为应用程序域授予的权限集。  
+  
+ - 或 -  
+  
+ 无法初始化独立的存储位置。</exception>
         <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">使用独立的存储。 关联的枚举： <see cref="F:System.Security.Permissions.IsolatedStorageContainment.AssemblyIsolationByUser" /></permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于使用独立存储。 关联的枚举:<see cref="F:System.Security.Permissions.IsolatedStorageContainment.AssemblyIsolationByUser" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -1435,23 +1445,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此方法时，相同的程序集内不同的应用程序始终使用相同的独立存储区。  
+ 使用此方法时, 不同应用程序中的同一程序集始终使用相同的独立存储区。  
   
- <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetMachineStoreForAssembly%2A> 在功能上等效于下面的代码：  
+ <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetMachineStoreForAssembly%2A>在功能上等效于以下代码:  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#19](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/remarks.cpp#19)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#19](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/remarks.cs#19)]
  [!code-vb[System.IO.IsolatedStorage.IsolatedStorage#19](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/VB/remarks.vb#19)]  
   
 > [!NOTE]
->  始终运行同一应用程序域中的不同程序集具有不同的独立存储区。  
+>  在同一应用程序域中运行的不同程序集始终具有不同的独立存储区。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法初始化独立的存储位置。</exception>
         <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">使用独立的存储。 关联的枚举： <see cref="F:System.Security.Permissions.IsolatedStorageContainment.AssemblyIsolationByUser" /></permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于使用独立存储。 关联的枚举:<see cref="F:System.Security.Permissions.IsolatedStorageContainment.AssemblyIsolationByUser" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -1495,23 +1505,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 相同的程序集代码将使用不同的独立存储区时在不同应用程序的上下文中使用。  
+ 在不同应用程序的上下文中使用时, 相同的程序集代码将使用不同的独立存储区。  
   
- <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetMachineStoreForDomain%2A> 在功能上等效于下面的代码：  
+ <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetMachineStoreForDomain%2A>在功能上等效于以下代码:  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#20](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/remarks.cpp#20)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#20](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/remarks.cs#20)]
  [!code-vb[System.IO.IsolatedStorage.IsolatedStorage#20](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/VB/remarks.vb#20)]  
   
- 始终运行同一应用程序域中的不同程序集具有不同的独立存储区。  
+ 在同一应用程序域中运行的不同程序集始终具有不同的独立存储区。  
   
 > [!NOTE]
->  <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain%2A> 将返回<xref:System.IO.IsolatedStorage.IsolatedStorageFile>对象没有配额，如果该程序集安装到其中的应用程序域不具有<xref:System.Security.Permissions.IsolatedStorageFilePermission>。 稍后将尝试创建<xref:System.IO.IsolatedStorage.IsolatedStorageFile>对象使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile>不具有配额的对象将因<xref:System.IO.IsolatedStorage.IsolatedStorageException>。  
+>  <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain%2A>如果安装<xref:System.IO.IsolatedStorage.IsolatedStorageFile> <xref:System.Security.Permissions.IsolatedStorageFilePermission>程序集的应用程序域没有, 则将返回不带配额的对象。 稍后, 尝试<xref:System.IO.IsolatedStorage.IsolatedStorageFile>使用没有<xref:System.IO.IsolatedStorage.IsolatedStorageFile> <xref:System.IO.IsolatedStorage.IsolatedStorageException>配额的对象创建对象将失败, 并出现。  
   
    
   
 ## Examples  
- 下面的代码示例演示了<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain%2A>方法。 此示例的完整上下文，请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
+ 下面的代码示例演示<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain%2A>方法。 有关此示例的完整上下文, 请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#10](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/source.cpp#10)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#10](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/source.cs#10)]
@@ -1522,16 +1532,19 @@
         <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">存储区未能打开。  
   
-- 或 - 
-指定的程序集没有足够的权限创建独立存储区。  
+ - 或 -  
   
-- 或 - 
-不能确定应用程序域的权限。  
+ 指定的程序集没有足够的权限创建独立存储区。  
   
-- 或 - 
-无法初始化独立的存储位置。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">使用独立的存储。 关联的枚举： <see cref="F:System.Security.Permissions.IsolatedStorageContainment.DomainIsolationByUser" /></permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+ 或  
+  
+ 不能确定应用程序域的权限。  
+  
+ - 或 -  
+  
+ 无法初始化独立的存储位置。</exception>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于使用独立存储。 关联的枚举:<see cref="F:System.Security.Permissions.IsolatedStorageContainment.DomainIsolationByUser" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -1626,7 +1639,7 @@
 ## Remarks  
   
 > [!NOTE]
->  如果`scope`参数是<xref:System.IO.IsolatedStorage.IsolatedStorageScope.Application?displayProperty=nameWithType>，在其中安装的程序集的应用程序域但尚未<xref:System.Security.Permissions.IsolatedStorageFilePermission>，则<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>方法将返回<xref:System.IO.IsolatedStorage.IsolatedStorageFile>对象没有配额。 稍后将尝试创建<xref:System.IO.IsolatedStorage.IsolatedStorageFile>对象使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile>不具有配额的对象将因<xref:System.IO.IsolatedStorage.IsolatedStorageException>。  
+>  <xref:System.IO.IsolatedStorage.IsolatedStorageScope.Application?displayProperty=nameWithType> <xref:System.Security.Permissions.IsolatedStorageFilePermission> <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>如果参数为, 并且安装程序集的应用程序域没有, 则该方法将返回<xref:System.IO.IsolatedStorage.IsolatedStorageFile>不带配额的对象。 `scope` 稍后, 尝试<xref:System.IO.IsolatedStorage.IsolatedStorageFile>使用没有<xref:System.IO.IsolatedStorage.IsolatedStorageFile> <xref:System.IO.IsolatedStorage.IsolatedStorageException>配额的对象创建对象将失败, 并出现。  
   
  ]]></format>
         </remarks>
@@ -1643,8 +1656,8 @@
   
 - 或 - 
  <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Assembly" />，但不能确定调用程序集的权限。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">使用独立的存储。 关联的枚举： <see cref="F:System.Security.Permissions.IsolatedStorageContainment.AdministerIsolatedStorageByUser" /></permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于使用独立存储。 关联的枚举:<see cref="F:System.Security.Permissions.IsolatedStorageContainment.AdministerIsolatedStorageByUser" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain" />
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication" />
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForAssembly" />
@@ -1698,7 +1711,7 @@
 ## Remarks  
   
 > [!NOTE]
->  如果`scope`参数是<xref:System.IO.IsolatedStorage.IsolatedStorageScope.Application>，在其中安装的程序集的应用程序域但尚未<xref:System.Security.Permissions.IsolatedStorageFilePermission>，则<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>方法将返回<xref:System.IO.IsolatedStorage.IsolatedStorageFile>对象没有配额。 稍后将尝试创建<xref:System.IO.IsolatedStorage.IsolatedStorageFile>对象使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile>不具有配额的对象将因<xref:System.IO.IsolatedStorage.IsolatedStorageException>。  
+>  <xref:System.IO.IsolatedStorage.IsolatedStorageScope.Application> <xref:System.Security.Permissions.IsolatedStorageFilePermission> <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>如果参数为, 并且安装程序集的应用程序域没有, 则该方法将返回<xref:System.IO.IsolatedStorage.IsolatedStorageFile>不带配额的对象。 `scope` 稍后, 尝试<xref:System.IO.IsolatedStorage.IsolatedStorageFile>使用没有<xref:System.IO.IsolatedStorage.IsolatedStorageFile> <xref:System.IO.IsolatedStorage.IsolatedStorageException>配额的对象创建对象将失败, 并出现。  
   
  ]]></format>
         </remarks>
@@ -1707,16 +1720,16 @@
         <exception cref="T:System.ArgumentException"><paramref name="scope" /> 无效。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法初始化独立的存储位置。  
   
-- 或 - 
+或 
  <paramref name="scope" /> 包含枚举值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Application" />，但不能确定调用方的应用程序标识，因为当前应用程序域的 <see cref="P:System.AppDomain.ActivationContext" /> 返回了 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Domain" />，但不能确定应用程序域的权限。  
   
 - 或 - 
  <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Assembly" />，但不能确定调用程序集的权限。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">使用独立的存储。 关联的枚举： <see cref="F:System.Security.Permissions.IsolatedStorageContainment.AdministerIsolatedStorageByUser" /></permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于使用独立存储。 关联的枚举:<see cref="F:System.Security.Permissions.IsolatedStorageContainment.AdministerIsolatedStorageByUser" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain" />
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication" />
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForAssembly" />
@@ -1771,31 +1784,31 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这种形式的`GetStore`最适用于需要打开存储区，就像另一个程序集的管理代码。 当前正在执行的程序集提供的证据而不被打开的存储。  
+ 这种形式`GetStore`最适用于需要打开应用程序的管理代码, 就像它是其他程序集一样。 将为所提供的证据 (而不是当前正在执行的程序集) 打开存储区。  
   
 > [!NOTE]
->  如果`scope`参数是<xref:System.IO.IsolatedStorage.IsolatedStorageScope.Domain>，在其中安装的程序集的应用程序域但尚未<xref:System.Security.Permissions.IsolatedStorageFilePermission>，则<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>方法将返回<xref:System.IO.IsolatedStorage.IsolatedStorageFile>对象没有配额。 稍后将尝试创建<xref:System.IO.IsolatedStorage.IsolatedStorageFile>对象使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile>不具有配额的对象将因<xref:System.IO.IsolatedStorage.IsolatedStorageException>。  
+>  <xref:System.IO.IsolatedStorage.IsolatedStorageScope.Domain> <xref:System.Security.Permissions.IsolatedStorageFilePermission> <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>如果参数为, 并且安装程序集的应用程序域没有, 则该方法将返回<xref:System.IO.IsolatedStorage.IsolatedStorageFile>不带配额的对象。 `scope` 稍后, 尝试<xref:System.IO.IsolatedStorage.IsolatedStorageFile>使用没有<xref:System.IO.IsolatedStorage.IsolatedStorageFile> <xref:System.IO.IsolatedStorage.IsolatedStorageException>配额的对象创建对象将失败, 并出现。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
         <exception cref="T:System.ArgumentNullException">既不传递 <paramref name="domainIdentity" />，也不传递 <paramref name="assemblyIdentity" />。 这将验证使用的是正确的构造函数。  
   
-- 或 - 
+或 
 <paramref name="domainIdentity" /> 或 <paramref name="assemblyIdentity" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="scope" /> 无效。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法初始化独立的存储位置。  
   
-- 或 - 
+或 
  <paramref name="scope" /> 包含枚举值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Application" />，但不能确定调用方的应用程序标识，因为当前应用程序域的 <see cref="P:System.AppDomain.ActivationContext" /> 返回了 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Domain" />，但不能确定应用程序域的权限。  
   
-- 或 - 
+或 
  <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Assembly" />，但不能确定调用程序集的权限。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">使用独立的存储。 关联的枚举： <see cref="F:System.Security.Permissions.IsolatedStorageContainment.AdministerIsolatedStorageByUser" /></permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于使用独立存储。 关联的枚举:<see cref="F:System.Security.Permissions.IsolatedStorageContainment.AdministerIsolatedStorageByUser" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain" />
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication" />
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForAssembly" />
@@ -1850,17 +1863,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这是重载的<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>最有可能在应用程序代码中调用。  
+ 这是最可能从<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>应用程序代码中调用的重载。  
   
- 此重载<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>打开独立存储区中传递的证据类型。  
+ 此重载<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>会为传入的证据类型打开一个独立的存储区。  
   
 > [!NOTE]
->  如果`scope`参数是<xref:System.IO.IsolatedStorage.IsolatedStorageScope.Domain>，在其中安装的程序集的应用程序域但尚未<xref:System.Security.Permissions.IsolatedStorageFilePermission>，则<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>方法将返回<xref:System.IO.IsolatedStorage.IsolatedStorageFile>对象没有配额。 稍后将尝试创建<xref:System.IO.IsolatedStorage.IsolatedStorageFile>对象使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile>不具有配额的对象将因<xref:System.IO.IsolatedStorage.IsolatedStorageException>。  
+>  <xref:System.IO.IsolatedStorage.IsolatedStorageScope.Domain> <xref:System.Security.Permissions.IsolatedStorageFilePermission> <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>如果参数为, 并且安装程序集的应用程序域没有, 则该方法将返回<xref:System.IO.IsolatedStorage.IsolatedStorageFile>不带配额的对象。 `scope` 稍后, 尝试<xref:System.IO.IsolatedStorage.IsolatedStorageFile>使用没有<xref:System.IO.IsolatedStorage.IsolatedStorageFile> <xref:System.IO.IsolatedStorage.IsolatedStorageException>配额的对象创建对象将失败, 并出现。  
   
    
   
 ## Examples  
- 下面的代码示例演示了<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>方法。 此示例的完整上下文，请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
+ 下面的代码示例演示<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>方法。 有关此示例的完整上下文, 请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#15](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/source.cpp#15)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#15](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/source.cs#15)]
@@ -1872,19 +1885,19 @@
         <exception cref="T:System.ArgumentException"><paramref name="scope" /> 无效。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">所提供的证据类型没有出现在程序集证据列表中。  
   
-- 或 - 
+或 
 无法初始化独立的存储位置。  
   
 - 或 - 
  <paramref name="scope" /> 包含枚举值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Application" />，但不能确定调用方的应用程序标识，因为当前应用程序域的 <see cref="P:System.AppDomain.ActivationContext" /> 返回了 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Domain" />，但不能确定应用程序域的权限。  
   
 - 或 - 
  <paramref name="scope" /> 包含 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Assembly" />，但不能决定调用程序集的权限。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">使用独立的存储。 关联的枚举： <see cref="F:System.Security.Permissions.IsolatedStorageContainment.AdministerIsolatedStorageByUser" /></permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于使用独立存储。 关联的枚举:<see cref="F:System.Security.Permissions.IsolatedStorageContainment.AdministerIsolatedStorageByUser" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain" />
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication" />
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForAssembly" />
@@ -1941,12 +1954,12 @@
 ## Remarks  
   
 > [!NOTE]
->  如果`scope`参数是<xref:System.IO.IsolatedStorage.IsolatedStorageScope.Domain>，在其中安装的程序集的应用程序域但尚未<xref:System.Security.Permissions.IsolatedStorageFilePermission>，则<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>方法将返回<xref:System.IO.IsolatedStorage.IsolatedStorageFile>对象没有配额。 稍后将尝试创建<xref:System.IO.IsolatedStorage.IsolatedStorageFile>对象使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile>不具有配额的对象将因<xref:System.IO.IsolatedStorage.IsolatedStorageException>。  
+>  <xref:System.IO.IsolatedStorage.IsolatedStorageScope.Domain> <xref:System.Security.Permissions.IsolatedStorageFilePermission> <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore%2A>如果参数为, 并且安装程序集的应用程序域没有, 则该方法将返回<xref:System.IO.IsolatedStorage.IsolatedStorageFile>不带配额的对象。 `scope` 稍后, 尝试<xref:System.IO.IsolatedStorage.IsolatedStorageFile>使用没有<xref:System.IO.IsolatedStorage.IsolatedStorageFile> <xref:System.IO.IsolatedStorage.IsolatedStorageException>配额的对象创建对象将失败, 并出现。  
   
    
   
 ## Examples  
- 下面的代码示例获取存储根据发布服务器证据。  
+ 下面的代码示例基于发行者证据获取存储区。  
   
  [!code-csharp[System.IO.IsolatedStorage.GetStore#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.GetStore/CS/source.cs#1)]
  [!code-vb[System.IO.IsolatedStorage.GetStore#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IO.IsolatedStorage.GetStore/VB/source.vb#1)]  
@@ -1958,16 +1971,16 @@
         <exception cref="T:System.ArgumentException"><paramref name="scope" /> 无效。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法初始化独立的存储位置。  
   
-- 或 - 
+或 
  <paramref name="scope" /> 包含枚举值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Application" />，但不能确定调用方的应用程序标识，因为当前应用程序域的 <see cref="P:System.AppDomain.ActivationContext" /> 返回了 <see langword="null" />。  
   
-- 或 - 
+或 
  <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Domain" />，但不能确定应用程序域的权限。  
   
 - 或 - 
  <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Assembly" />，但不能确定调用程序集的权限。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">使用独立的存储。 关联的枚举： <see cref="F:System.Security.Permissions.IsolatedStorageContainment.AdministerIsolatedStorageByUser" /></permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于使用独立存储。 关联的枚举:<see cref="F:System.Security.Permissions.IsolatedStorageContainment.AdministerIsolatedStorageByUser" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain" />
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication" />
         <altmember cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForAssembly" />
@@ -2015,28 +2028,28 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此方法时，与应用程序相关联的所有程序集使用相同的独立存储区。 仅当应用程序可以确定标识-例如，应用程序通过 ClickOnce 部署发布或是基于 Silverlight 的应用程序时，可以使用此方法。 如果尝试使用此方法 ClickOnce 或基于 Silverlight 的应用程序之外，你将收到<xref:System.IO.IsolatedStorage.IsolatedStorageException>异常，因为不能确定调用方的应用程序标识。  
+ 使用此方法时, 与应用程序关联的所有程序集都使用相同的独立存储区。 仅当可以确定应用程序标识时 (例如, 当应用程序通过 ClickOnce 部署发布或基于 Silverlight 的应用程序时), 才能使用此方法。 如果尝试在基于 ClickOnce 或 Silverlight 的应用程序外部使用此方法, 则将收到<xref:System.IO.IsolatedStorage.IsolatedStorageException>异常, 因为无法确定调用方的应用程序标识。  
   
- <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication%2A> 在功能上等效于下面的代码：  
+ <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication%2A>在功能上等效于以下代码:  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#21](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/remarks.cpp#21)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#21](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/remarks.cs#21)]
  [!code-vb[System.IO.IsolatedStorage.IsolatedStorage#21](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/VB/remarks.vb#21)]  
   
- 在此代码中，`applicationIdentity`参数`GetStore(IsolatedStorageScope scope, Object applicationIdentity)`是`null`。  
+ 在此代码中, `applicationIdentity`的`GetStore(IsolatedStorageScope scope, Object applicationIdentity)`参数为`null`。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法初始化独立的存储位置。  
   
-- 或 - 
+或 
 未能确定调用方的应用程序标识，因为 <see cref="P:System.AppDomain.ActivationContext" /> 属性返回了 <see langword="null" />。  
   
-- 或 - 
+或 
 不能确定应用程序域的权限。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">使用独立的存储。 关联的枚举： <see cref="F:System.Security.Permissions.IsolatedStorageContainment.AssemblyIsolationByUser" /></permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于使用独立存储。 关联的枚举:<see cref="F:System.Security.Permissions.IsolatedStorageContainment.AssemblyIsolationByUser" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -2081,26 +2094,27 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此方法时，相同的程序集内不同的应用程序始终使用相同的独立存储区。  
+ 使用此方法时, 不同应用程序中的同一程序集始终使用相同的独立存储区。  
   
- <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForAssembly%2A> 在功能上等效于下面的代码：  
+ <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForAssembly%2A>在功能上等效于以下代码:  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#22](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/remarks.cpp#22)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#22](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/remarks.cs#22)]
  [!code-vb[System.IO.IsolatedStorage.IsolatedStorage#22](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/VB/remarks.vb#22)]  
   
 > [!NOTE]
->  始终运行同一应用程序域中的不同程序集具有不同的独立存储区。  
+>  在同一应用程序域中运行的不同程序集始终具有不同的独立存储区。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法初始化独立的存储位置。  
   
-- 或 - 
-不能确定调用程序集的权限。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">使用独立的存储。 关联的枚举： <see cref="F:System.Security.Permissions.IsolatedStorageContainment.AssemblyIsolationByUser" /></permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+ 或  
+  
+ 不能确定调用程序集的权限。</exception>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于使用独立存储。 关联的枚举:<see cref="F:System.Security.Permissions.IsolatedStorageContainment.AssemblyIsolationByUser" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -2145,23 +2159,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 相同的程序集代码将使用不同的独立存储区时在不同应用程序的上下文中使用。  
+ 在不同应用程序的上下文中使用时, 相同的程序集代码将使用不同的独立存储区。  
   
- <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain%2A> 在功能上等效于下面的代码：  
+ <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain%2A>在功能上等效于以下代码:  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#23](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/remarks.cpp#23)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#23](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/remarks.cs#23)]
  [!code-vb[System.IO.IsolatedStorage.IsolatedStorage#23](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/VB/remarks.vb#23)]  
   
- 始终运行同一应用程序域中的不同程序集具有不同的独立存储区。  
+ 在同一应用程序域中运行的不同程序集始终具有不同的独立存储区。  
   
 > [!NOTE]
->  <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain%2A> 将返回<xref:System.IO.IsolatedStorage.IsolatedStorageFile>对象没有配额，如果在其中安装的程序集的应用程序域不具有<xref:System.Security.Permissions.IsolatedStorageFilePermission>。 稍后将尝试创建<xref:System.IO.IsolatedStorage.IsolatedStorageFile>对象使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile>不具有配额的对象将因<xref:System.IO.IsolatedStorage.IsolatedStorageException>。  
+>  <xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain%2A>如果安装<xref:System.IO.IsolatedStorage.IsolatedStorageFile> <xref:System.Security.Permissions.IsolatedStorageFilePermission>程序集的应用程序域没有, 则将返回不带配额的对象。 稍后, 尝试<xref:System.IO.IsolatedStorage.IsolatedStorageFile>使用没有<xref:System.IO.IsolatedStorage.IsolatedStorageFile> <xref:System.IO.IsolatedStorage.IsolatedStorageException>配额的对象创建对象将失败, 并出现。  
   
    
   
 ## Examples  
- 下面的代码示例演示了<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain%2A>方法。 此示例的完整上下文，请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
+ 下面的代码示例演示<xref:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain%2A>方法。 有关此示例的完整上下文, 请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#10](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/source.cpp#10)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#10](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/source.cs#10)]
@@ -2172,16 +2186,19 @@
         <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">存储区未能打开。  
   
-- 或 - 
-指定的程序集没有足够的权限创建独立存储区。  
+ 或  
   
-- 或 - 
-无法初始化独立的存储位置。  
+ 指定的程序集没有足够的权限创建独立存储区。  
   
-- 或 - 
-不能确定应用程序域的权限。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">使用独立的存储。 关联的枚举： <see cref="F:System.Security.Permissions.IsolatedStorageContainment.DomainIsolationByUser" /></permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+ - 或 -  
+  
+ 无法初始化独立的存储位置。  
+  
+ 或  
+  
+ 不能确定应用程序域的权限。</exception>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于使用独立存储。 关联的枚举:<see cref="F:System.Security.Permissions.IsolatedStorageContainment.DomainIsolationByUser" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -2279,15 +2296,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IO.IsolatedStorage.IsolatedStorageFile.IncreaseQuotaTo%2A>方法使应用程序显式请求更大配额大小 （字节）。 新的配额大小不能小于当前配额大小，因为仅配额增加允许。  
+ 使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.IncreaseQuotaTo%2A>方法, 应用程序可以显式请求更大的配额大小 (以字节为单位)。 新的配额大小不得小于当前配额大小, 因为只允许增加配额。  
   
- 每当<xref:System.IO.IsolatedStorage.IsolatedStorageFile.IncreaseQuotaTo%2A>方法是调用的、 独立存储调用<xref:System.AppDomainManager.CheckSecuritySettings%2A>方法。  
+ 每次调用<xref:System.AppDomainManager.CheckSecuritySettings%2A> 方法时,独立存储都<xref:System.IO.IsolatedStorage.IsolatedStorageFile.IncreaseQuotaTo%2A>将调用方法。  
   
- 您可以通过创建自定义实现策略决策<xref:System.AppDomainManager>对象，它将覆盖<xref:System.AppDomainManager.CheckSecuritySettings%2A>方法，以便该对象可以执行基于策略决策<xref:System.IO.IsolatedStorage.IsolatedStorageSecurityState>对象。  
+ 您可以通过创建一个<xref:System.AppDomainManager> <xref:System.AppDomainManager.CheckSecuritySettings%2A>重写方法的自定义对象来实现策略决策, 以便对象可以基于<xref:System.IO.IsolatedStorage.IsolatedStorageSecurityState>对象执行策略决策。  
   
- 如果没有自定义<xref:System.AppDomainManager>对象，配额增加请求被拒绝，因为的默认实现<xref:System.AppDomainManager.CheckSecuritySettings%2A>返回`false`。  
+ 如果没有自定义<xref:System.AppDomainManager>对象, 则会拒绝配额增加请求, 因为<xref:System.AppDomainManager.CheckSecuritySettings%2A>返回`false`的默认实现。  
   
- 目前，没有任何.NET Framework 中的主机提供此自定义，因此<xref:System.IO.IsolatedStorage.IsolatedStorageFile.IncreaseQuotaTo%2A>始终返回`false`。  
+ 目前, .NET Framework 中的任何主机均不提供此自定义, <xref:System.IO.IsolatedStorage.IsolatedStorageFile.IncreaseQuotaTo%2A>因此始终`false`返回。  
   
  ]]></format>
         </remarks>
@@ -2298,8 +2315,9 @@
         <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
   
-- 或 - 
-已禁用独立存储。</exception>
+ 或  
+  
+ 已禁用独立存储。</exception>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -2341,7 +2359,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 始终启用完整的.NET Framework 应用程序的独立的存储。  
+ 完全 .NET Framework 的应用程序的独立存储始终处于启用状态。  
   
  ]]></format>
         </remarks>
@@ -2397,14 +2415,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可用的字节数受管理员设置的独立的存储配额。 因此相同的代码可以接收不同的配额，如果运行不同的证据，证据，根据安全策略中配置配额。 例如，应用程序的本地运行，并且还从 intranet 上的共享很可能会接收不同的配额。  
+ 可用字节数受管理员设置的独立存储配额的限制。 配额是在安全策略中根据证据进行配置的, 因此, 如果使用不同的证据运行, 则相同的代码可能会收到不同的配额。 例如, 从本地运行的应用程序, 也可能会收到不同的配额。  
   
- [如何：预见独立存储的空间不足的情况](~/docs/standard/io/how-to-anticipate-out-of-space-conditions-with-isolated-storage.md)的示例演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.MaximumSize%2A>属性。  
+ [如何：使用独立存储](~/docs/standard/io/how-to-anticipate-out-of-space-conditions-with-isolated-storage.md)来预见空间不足的情况示例演示<xref:System.IO.IsolatedStorage.IsolatedStorageFile.MaximumSize%2A>属性的用法。  
   
    
   
 ## Examples  
- 下面的代码示例演示了<xref:System.IO.IsolatedStorage.IsolatedStorageFile.MaximumSize%2A>属性。 此示例的完整上下文，请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
+ 下面的代码示例演示了<xref:System.IO.IsolatedStorage.IsolatedStorageFile.MaximumSize%2A>属性。 有关此示例的完整上下文, 请参阅<xref:System.IO.IsolatedStorage.IsolatedStorageFile>概述。  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#5](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/source.cpp#5)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/source.cs#5)]
@@ -2464,7 +2482,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `sourceFileName` 和`destinationFileName`必须指定不同的目录名称。  
+ `sourceFileName`和`destinationFileName`必须指定不同的目录名称。  
   
  ]]></format>
         </remarks>
@@ -2478,10 +2496,10 @@
 - 或 - 
 已禁用独立存储。  
   
-- 或 - 
+或 
  <paramref name="destinationDirectoryName" /> 已存在。  
   
-- 或 - 
+或 
  <paramref name="sourceDirectoryName" /> 和 <paramref name="destinationDirectoryName" /> 引用相同的目录。</exception>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
@@ -2533,7 +2551,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法不会引发异常，如果`sourceFileName`和`destinationFileName`相同。  
+ 如果`sourceFileName`和是相同的, `destinationFileName`则此方法不会引发异常。  
   
  ]]></format>
         </remarks>
@@ -2544,8 +2562,9 @@
         <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="sourceFileName" />。</exception>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
   
-- 或 - 
-已禁用独立存储。</exception>
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
     </Member>
@@ -2604,14 +2623,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法相当于使用<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream.%23ctor%28System.String%2CSystem.IO.FileMode%2CSystem.IO.IsolatedStorage.IsolatedStorageFile%29?displayProperty=nameWithType>构造函数。  
+ 此方法等效于使用<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream.%23ctor%28System.String%2CSystem.IO.FileMode%2CSystem.IO.IsolatedStorage.IsolatedStorageFile%29?displayProperty=nameWithType>构造函数。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
   
-- 或 - 
-已禁用独立存储。</exception>
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="path" /> 的格式不正确。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="path" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><paramref name="path" /> 中的目录不存在。</exception>
@@ -2667,14 +2687,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法相当于使用<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream.%23ctor%28System.String%2CSystem.IO.FileMode%2CSystem.IO.FileAccess%2CSystem.IO.IsolatedStorage.IsolatedStorageFile%29?displayProperty=nameWithType>构造函数。  
+ 此方法等效于使用<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream.%23ctor%28System.String%2CSystem.IO.FileMode%2CSystem.IO.FileAccess%2CSystem.IO.IsolatedStorage.IsolatedStorageFile%29?displayProperty=nameWithType>构造函数。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
   
-- 或 - 
-已禁用独立存储。</exception>
+ 或  
+  
+ 已禁用独立存储。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="path" /> 的格式不正确。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="path" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><paramref name="path" /> 中的目录不存在。</exception>
@@ -2732,14 +2753,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法相当于使用<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream.%23ctor%28System.String%2CSystem.IO.FileMode%2CSystem.IO.FileAccess%2CSystem.IO.FileShare%2CSystem.IO.IsolatedStorage.IsolatedStorageFile%29?displayProperty=nameWithType>构造函数。  
+ 此方法等效于使用<xref:System.IO.IsolatedStorage.IsolatedStorageFileStream.%23ctor%28System.String%2CSystem.IO.FileMode%2CSystem.IO.FileAccess%2CSystem.IO.FileShare%2CSystem.IO.IsolatedStorage.IsolatedStorageFile%29?displayProperty=nameWithType>构造函数。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
   
-- 或 - 
-已禁用独立存储。</exception>
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="path" /> 的格式不正确。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="path" /> 为 <see langword="null" />。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><paramref name="path" /> 中的目录不存在。</exception>
@@ -2791,8 +2813,9 @@
         <remarks>To be added.</remarks>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
   
-- 或 - 
-已禁用独立存储。</exception>
+ 或  
+  
+ 已禁用独立存储。</exception>
         <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
@@ -2849,14 +2872,14 @@
 ## Remarks  
   
 > [!CAUTION]
->  此方法不可挽回地删除整个范围内包含的所有目录和文件。  
+>  此方法不可撤销删除整个作用域以及包含的所有目录和文件。  
   
- 如果正在使用的任何目录或文件存储区中的，在存储区删除尝试失败，并存储被标记为删除。 修改存储区的任何后续尝试引发<xref:System.IO.IsolatedStorage.IsolatedStorageException>。  
+ 如果存储中的任何目录或文件正在使用中, 则对存储的删除尝试将失败, 并且存储将标记为要删除。 任何后续修改存储区的尝试都将<xref:System.IO.IsolatedStorage.IsolatedStorageException>引发。  
   
    
   
 ## Examples  
- 下面的代码示例使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.Remove%2A>方法后已清空其内容中删除独立的存储文件。 [如何：删除存储在独立存储中](~/docs/standard/io/how-to-delete-stores-in-isolated-storage.md)示例还演示如何使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.Remove%2A>方法。  
+ 下面的代码示例使用<xref:System.IO.IsolatedStorage.IsolatedStorageFile.Remove%2A>方法在将独立存储文件的内容清空后将其删除。 [如何：删除独立存储](~/docs/standard/io/how-to-delete-stores-in-isolated-storage.md)中的存储示例还演示了<xref:System.IO.IsolatedStorage.IsolatedStorageFile.Remove%2A>方法的用法。  
   
  [!code-cpp[System.IO.IsolatedStorage.IsolatedStorage#16](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CPP/source.cpp#16)]
  [!code-csharp[System.IO.IsolatedStorage.IsolatedStorage#16](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IO.IsolatedStorage.IsolatedStorage/CS/source.cs#16)]
@@ -2865,7 +2888,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法删除独立存储区。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="https://msdn.microsoft.com/library/3947e333-5af6-4601-b2f1-24d4d6129cf3">如何：删除独立存储中的存储区</related>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>
@@ -2915,15 +2938,15 @@
 ## Remarks  
   
 > [!CAUTION]
->  此方法不可挽回地删除整个范围内包含的所有目录和文件。  
+>  此方法不可撤销删除整个作用域以及包含的所有目录和文件。  
   
- 如果正在使用的任何目录或文件存储区中的，在存储区删除尝试失败，并存储被标记为删除。 修改存储区的任何后续尝试引发<xref:System.IO.IsolatedStorage.IsolatedStorageException>。  
+ 如果存储中的任何目录或文件正在使用中, 则对存储的删除尝试将失败, 并且存储将标记为要删除。 任何后续修改存储区的尝试都将<xref:System.IO.IsolatedStorage.IsolatedStorageException>引发。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法移除独立存储区。</exception>
-        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">使用独立的存储。 关联的枚举： <see cref="F:System.Security.Permissions.IsolatedStorageContainment.AdministerIsolatedStorageByUser" /></permission>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">当调用后期绑定机制通过如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />。 关联的枚举： <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.IsolatedStorageFilePermission">用于使用独立存储。 关联的枚举:<see cref="F:System.Security.Permissions.IsolatedStorageContainment.AdministerIsolatedStorageByUser" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">当通过诸如<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />等机制后期绑定调用时。 关联的枚举:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
         <related type="Article" href="https://msdn.microsoft.com/library/3947e333-5af6-4601-b2f1-24d4d6129cf3">如何：删除独立存储中的存储区</related>
         <related type="Article" href="~/docs/standard/io/isolated-storage.md">独立存储</related>
       </Docs>

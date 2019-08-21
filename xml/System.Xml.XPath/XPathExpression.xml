@@ -1,5 +1,5 @@
 <Type Name="XPathExpression" FullName="System.Xml.XPath.XPathExpression">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c68e845b308bf92e545b917a121106448455bcbe" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58737805" /></Metadata><TypeSignature Language="C#" Value="public abstract class XPathExpression" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="44e474cc108ccd24c144584a2da08c3b347be647" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69440450" /></Metadata><TypeSignature Language="C#" Value="public abstract class XPathExpression" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit XPathExpression extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Xml.XPath.XPathExpression" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class XPathExpression" />
@@ -36,12 +36,12 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此类返回的结果作为<xref:System.Xml.XPath.XPathNavigator.Compile%2A>方法的<xref:System.Xml.XPath.XPathNavigator>类。 它是到参数<xref:System.Xml.XPath.XPathNavigator.Evaluate%2A>， <xref:System.Xml.XPath.XPathNavigator.Matches%2A>， <xref:System.Xml.XPath.XPathNavigator.Select%2A>，和<xref:System.Xml.XPath.XPathNavigator.SelectSingleNode%2A>方法的<xref:System.Xml.XPath.XPathNavigator>类。  
+ 此类作为<xref:System.Xml.XPath.XPathNavigator.Compile%2A> <xref:System.Xml.XPath.XPathNavigator>类的方法的结果返回。 <xref:System.Xml.XPath.XPathNavigator.Evaluate%2A>它是类<xref:System.Xml.XPath.XPathNavigator>的<xref:System.Xml.XPath.XPathNavigator.Matches%2A> <xref:System.Xml.XPath.XPathNavigator.SelectSingleNode%2A> 、、和<xref:System.Xml.XPath.XPathNavigator.Select%2A>方法的参数。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用 XPath 返回类型来确定如何处理 XPath 表达式。  
+ 下面的示例演示如何使用 XPath 返回类型确定如何处理 XPath 表达式。  
   
  [!code-cpp[XPathExpression.ReturnType#1](~/samples/snippets/cpp/VS_Snippets_Data/XPathExpression.ReturnType/CPP/returntype.cpp#1)]
  [!code-csharp[XPathExpression.ReturnType#1](~/samples/snippets/csharp/VS_Snippets_Data/XPathExpression.ReturnType/CS/returntype.cs#1)]
@@ -82,7 +82,7 @@
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>继承自<see cref="T:System.Xml.XPath.XPathExpression" />类，必须重写以下成员： 
+    <block subset="none" type="overrides"><para>从<see cref="T:System.Xml.XPath.XPathExpression" />类继承时, 必须重写以下成员: 
 -   <see cref="M:System.Xml.XPath.XPathExpression.AddSort(System.Object,System.Collections.IComparer)" /><see cref="M:System.Xml.XPath.XPathExpression.AddSort(System.Object,System.Xml.XPath.XmlSortOrder,System.Xml.XPath.XmlCaseOrder,System.String,System.Xml.XPath.XmlDataType)" />  
   
 -   <see cref="M:System.Xml.XPath.XPathExpression.Clone" />  
@@ -149,9 +149,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xml.XPath.XPathExpression.AddSort%2A>方法使用户能够以对的字符串或数字而不是其数据类型的对象。 <xref:System.Collections.IComparer>对象提供的实现<xref:System.Collections.IComparer.Compare%2A>支持用户定义的类的排序的方法。  
+ 使用<xref:System.Xml.XPath.XPathExpression.AddSort%2A>方法, 用户可以按其数据类型而不是字符串或数字对对象进行排序。 对象提供<xref:System.Collections.IComparer.Compare%2A>方法的实现, 该方法支持对用户定义的类进行排序。 <xref:System.Collections.IComparer>  
   
- 丛书将在以下示例中，按 ISBN 编号，其中`isbn`是一个对象，实现<xref:System.Collections.IComparer>接口。  
+ 在下面的示例中, 书籍按 ISBN 编号排序, 其中`isbn`是<xref:System.Collections.IComparer>实现接口的对象。  
   
 ```vb  
 Dim expression As XPathExpression = navigator.Compile("bookstore/book")  
@@ -165,13 +165,13 @@ ISBN isbn = new ISBN();
 expression.AddSort("@ISBN", (IComparer)isbn);  
 ```  
   
- 以下是使用时要考虑的重要说明<xref:System.Xml.XPath.XPathExpression.AddSort%2A>方法。  
+ 以下是使用<xref:System.Xml.XPath.XPathExpression.AddSort%2A>方法时要考虑的重要注意事项。  
   
--   添加排序的顺序提供排序关键字的使用顺序。  
+-   添加排序的顺序提供排序键顺序。  
   
--   如果<xref:System.Xml.XPath.XPathExpression>或排序键需要命名空间解析，则必须使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法以提供<xref:System.Xml.XmlNamespaceManager>用于命名空间解析。  
+-   如果或排序关键字需要命名空间解析, 则必须<xref:System.Xml.XPath.XPathExpression.SetContext%2A>使用方法来提供<xref:System.Xml.XmlNamespaceManager>命名空间解析。 <xref:System.Xml.XPath.XPathExpression>  
   
--   如果<xref:System.Xml.XPath.XPathExpression>不包括一个前缀，则假定命名空间统一资源标识符 (URI) 是空的命名空间。 如果 XML 包含默认命名空间，则仍必须使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法，并提供<xref:System.Xml.XmlNamespaceManager>，其中包含前缀和命名空间要处理的默认命名空间 URI。  
+-   <xref:System.Xml.XPath.XPathExpression>如果不包含前缀, 则假定命名空间统一资源标识符 (URI) 为空命名空间。 如果 XML 包含默认命名空间, 则仍必须使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法, 并提供一个<xref:System.Xml.XmlNamespaceManager> , 其中包含用于处理默认命名空间的前缀和命名空间 URI。  
   
  ]]></format>
         </remarks>
@@ -233,16 +233,16 @@ expression.AddSort("@ISBN", (IComparer)isbn);
   
 ## Remarks  
   
--   添加排序的顺序提供排序关键字的使用顺序。  
+-   添加排序的顺序提供排序键顺序。  
   
--   如果<xref:System.Xml.XPath.XPathExpression>或排序键需要命名空间解析，则必须使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法以提供<xref:System.Xml.XmlNamespaceManager>用于命名空间解析。  
+-   如果或排序关键字需要命名空间解析, 则必须<xref:System.Xml.XPath.XPathExpression.SetContext%2A>使用方法来提供<xref:System.Xml.XmlNamespaceManager>命名空间解析。 <xref:System.Xml.XPath.XPathExpression>  
   
--   如果<xref:System.Xml.XPath.XPathExpression>不包括一个前缀，则假定命名空间统一资源标识符 (URI) 是空的命名空间。 如果 XML 包含默认命名空间，则仍必须使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法，并提供<xref:System.Xml.XmlNamespaceManager>，其中包含前缀和命名空间要处理的默认命名空间 URI。  
+-   <xref:System.Xml.XPath.XPathExpression>如果不包含前缀, 则假定命名空间统一资源标识符 (URI) 为空命名空间。 如果 XML 包含默认命名空间, 则仍必须使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法, 并提供一个<xref:System.Xml.XmlNamespaceManager> , 其中包含用于处理默认命名空间的前缀和命名空间 URI。  
   
    
   
 ## Examples  
- 下面的示例演示如何按价格的降序顺序对书籍文档进行排序。  
+ 下面的示例演示如何按价格以降序对书籍文档进行排序。  
   
  [!code-vb[XPathXMLExamples#4](~/samples/snippets/visualbasic/VS_Snippets_Data/XPathXMLExamples/vb/xpathexpression.addsort.vb#4)]  
   
@@ -291,7 +291,7 @@ expression.AddSort("@ISBN", (IComparer)isbn);
         <altmember cref="T:System.Globalization.CultureInfo" />
         <altmember cref="Overload:System.String.Compare" />
         <altmember cref="M:System.Xml.XPath.XPathExpression.SetContext(System.Xml.XmlNamespaceManager)" />
-        <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkId=148089">Namespace 前缀的字符串传递给 XPathExpression.AddSort</related>
+        <related type="ExternalDocumentation" href="https://go.microsoft.com/fwlink/?LinkId=148089">传递给 XPathExpression 的字符串中的命名空间前缀。 AddSort</related>
       </Docs>
     </Member>
     <Member MemberName="Clone">
@@ -334,7 +334,7 @@ expression.AddSort("@ISBN", (IComparer)isbn);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当在派生类中重写<xref:System.Xml.XPath.XPathExpression.Clone%2A>方法返回的此克隆<xref:System.Xml.XPath.XPathExpression>具有与此相同的状态对象<xref:System.Xml.XPath.XPathExpression>对象。  
+ 当在派生类中重写时<xref:System.Xml.XPath.XPathExpression.Clone%2A> , 方法将返回此<xref:System.Xml.XPath.XPathExpression>对象的具有与此<xref:System.Xml.XPath.XPathExpression>对象相同的状态的克隆。  
   
  ]]></format>
         </remarks>
@@ -396,7 +396,7 @@ expression.AddSort("@ISBN", (IComparer)isbn);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- XPath 表达式计算为生成以下结果类型之一。  
+ 计算 XPath 表达式以生成以下结果类型之一。  
   
 -   <xref:System.Xml.XPath.XPathResultType.NodeSet>  
   
@@ -407,12 +407,12 @@ expression.AddSort("@ISBN", (IComparer)isbn);
 -   <xref:System.Xml.XPath.XPathResultType.String>  
   
 > [!NOTE]
->  如果 XPath 表达式中指定带有无效参数的个数 （或未实现的用户定义函数），则仅在运行时将发生异常。 在编译时不检查用户定义的函数和执行计算表达式时才发生异常而导致的用户定义的函数。  
+>  如果在 XPath 表达式中指定了具有无效参数数目 (或未实现的用户定义函数) 的用户定义函数, 则仅在运行时出现异常。 在编译时不检查用户定义的函数, 并且仅当执行计算表达式时, 用户定义函数产生的异常才会出现。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用 XPath 返回类型来确定如何处理 XPath 表达式。 该示例使用<xref:System.Xml.XPath.XPathExpression.Compile%2A>方法以返回新<xref:System.Xml.XPath.XPathExpression>对象。  
+ 下面的示例演示如何使用 XPath 返回类型确定如何处理 XPath 表达式。 该示例使用<xref:System.Xml.XPath.XPathExpression.Compile%2A>方法返回新<xref:System.Xml.XPath.XPathExpression>的对象。  
   
  [!code-cpp[XPathExpression.ReturnType#1](~/samples/snippets/cpp/VS_Snippets_Data/XPathExpression.ReturnType/CPP/returntype.cpp#1)]
  [!code-csharp[XPathExpression.ReturnType#1](~/samples/snippets/csharp/VS_Snippets_Data/XPathExpression.ReturnType/CS/returntype.cs#1)]
@@ -502,7 +502,7 @@ expression.AddSort("@ISBN", (IComparer)isbn);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- XPath 表达式计算为生成以下结果类型之一。  
+ 计算 XPath 表达式以生成以下结果类型之一。  
   
 -   <xref:System.Xml.XPath.XPathResultType.NodeSet>  
   
@@ -513,10 +513,10 @@ expression.AddSort("@ISBN", (IComparer)isbn);
 -   <xref:System.Xml.XPath.XPathResultType.String>  
   
 > [!NOTE]
->  如果在 XPath 表达式中指定的参数数目无效 （或未实现的用户定义函数），则仅在运行时将发生异常。 在编译时不检查用户定义的函数和用户定义的函数的异常发生，仅当执行计算的表达式。  
+>  如果在 XPath 表达式中指定了具有无效参数数目 (或未实现的用户定义函数) 的用户定义函数, 则仅在运行时出现异常。 不会在编译时检查用户定义的函数, 并且仅当执行计算表达式时才会出现用户定义函数引发的异常。  
   
 > [!NOTE]
->  不能编译<xref:System.Xml.XPath.XPathExpression>表示通过一个步骤中的自定义上下文<xref:System.Xml.Xsl.XsltContext>，它可以实现<xref:System.Xml.IXmlNamespaceResolver>，作为此方法的参数。 若要使用<xref:System.Xml.XPath.XPathExpression>与自定义上下文，必须调用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法之后编译的表达式。  
+>  在一个步骤中<xref:System.Xml.XPath.XPathExpression> <xref:System.Xml.Xsl.XsltContext>, 通过将实现<xref:System.Xml.IXmlNamespaceResolver>的作为参数传递给此方法, 无法在一个步骤中编译 with 自定义上下文。 若要将<xref:System.Xml.XPath.XPathExpression>与自定义上下文一起使用, 必须在<xref:System.Xml.XPath.XPathExpression.SetContext%2A>编译表达式后调用方法。  
   
  ]]></format>
         </remarks>
@@ -604,7 +604,7 @@ expression.AddSort("@ISBN", (IComparer)isbn);
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 下面的示例演示如何使用 XPath 返回类型来确定如何处理 XPath 表达式。  
+ 下面的示例演示如何使用 XPath 返回类型确定如何处理 XPath 表达式。  
   
  [!code-cpp[XPathExpression.ReturnType#1](~/samples/snippets/cpp/VS_Snippets_Data/XPathExpression.ReturnType/CPP/returntype.cpp#1)]
  [!code-csharp[XPathExpression.ReturnType#1](~/samples/snippets/csharp/VS_Snippets_Data/XPathExpression.ReturnType/CS/returntype.cs#1)]
@@ -698,20 +698,20 @@ expression.AddSort("@ISBN", (IComparer)isbn);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用实现的类支持 Namespace 分辨率<xref:System.Xml.IXmlNamespaceResolver>接口，如<xref:System.Xml.XmlNamespaceManager>类。 <xref:System.Xml.XmlNamespaceManager>存储前缀和命名空间统一资源标识符 (URI) 的映射。 如果<xref:System.Xml.XPath.XPathExpression>需要命名空间解析、 前缀和命名空间 URI 对必须添加到一个对象，如<xref:System.Xml.XmlNamespaceManager>类，该类实现<xref:System.Xml.IXmlNamespaceResolver>接口，并<xref:System.Xml.XPath.XPathExpression.SetContext%2A>必须调用方法来指定<xref:System.Xml.IXmlNamespaceResolver>要用于命名空间解析的接口对象。  
+ 使用实现<xref:System.Xml.IXmlNamespaceResolver>接口的类 (如<xref:System.Xml.XmlNamespaceManager>类) 支持命名空间解析。 <xref:System.Xml.XmlNamespaceManager>存储前缀和命名空间统一资源标识符 (URI) 映射。 如果需要命名空间解析, 则必须将前缀和命名空间 URI 对添加到对象 (例如<xref:System.Xml.XmlNamespaceManager>实现<xref:System.Xml.IXmlNamespaceResolver>接口的类), 并且<xref:System.Xml.XPath.XPathExpression.SetContext%2A>必须调用方法以指定<xref:System.Xml.XPath.XPathExpression> <xref:System.Xml.IXmlNamespaceResolver>要用于命名空间解析的接口对象。  
   
- 以下是使用时要考虑的重要说明<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法。  
+ 以下是使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法时要考虑的重要注意事项。  
   
--   如果<xref:System.Xml.XPath.XPathExpression>不包括一个前缀，则假定命名空间 URI 是空的命名空间。 如果 XML 包含默认命名空间，则仍必须使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法并提供包含前缀和命名空间要处理的默认命名空间 URI 的对象。  
+-   <xref:System.Xml.XPath.XPathExpression>如果不包含前缀, 则假定命名空间 URI 为空命名空间。 如果 XML 包含默认命名空间, 仍必须使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法, 并提供一个对象, 该对象包含用于处理默认命名空间的前缀和命名空间 URI。  
   
--   此外可以提供<xref:System.Xml.IXmlNamespaceResolver>命名空间解析的接口对象<xref:System.Xml.XPath.XPathExpression.Compile%2A>方法在创建时你<xref:System.Xml.XPath.XPathExpression>对象。  
+-   你还可以在创建<xref:System.Xml.IXmlNamespaceResolver> <xref:System.Xml.XPath.XPathExpression>对象时<xref:System.Xml.XPath.XPathExpression.Compile%2A>向方法提供用于命名空间解析的接口对象。  
   
--   <xref:System.Xml.XPath.XPathExpression.SetContext%2A> 接受<xref:System.Xml.Xsl.XsltContext>作为命名空间冲突解决程序，因此可以实现自定义上下文，并使用函数和变量基于<xref:System.Xml.Xsl.IXsltContextFunction>和<xref:System.Xml.Xsl.IXsltContextVariable>。 XPath 表达式将执行它们。 有关详细信息，请参阅[用户定义函数和变量](~/docs/standard/data/xml/user-defined-functions-and-variables.md)。  
+-   <xref:System.Xml.XPath.XPathExpression.SetContext%2A>接受<xref:System.Xml.Xsl.XsltContext>作为命名空间解析程序, 以便您可以实现自定义上下文并<xref:System.Xml.Xsl.IXsltContextFunction>基于和<xref:System.Xml.Xsl.IXsltContextVariable>使用函数和变量。 XPath 表达式将执行它们。 有关详细信息, 请参阅[用户定义的函数和变量](~/docs/standard/data/xml/user-defined-functions-and-variables.md)。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用 XPath 返回类型来确定如何处理 XPath 表达式，以及如何使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法以提供<xref:System.Xml.XmlNamespaceManager>命名空间解析的对象。  
+ 下面的示例演示如何使用 xpath 返回类型确定如何处理 xpath 表达式, 以及如何使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法来<xref:System.Xml.XmlNamespaceManager>提供用于命名空间解析的对象。  
   
  [!code-cpp[XPathExpression.ReturnType#1](~/samples/snippets/cpp/VS_Snippets_Data/XPathExpression.ReturnType/CPP/returntype.cpp#1)]
  [!code-csharp[XPathExpression.ReturnType#1](~/samples/snippets/csharp/VS_Snippets_Data/XPathExpression.ReturnType/CS/returntype.cs#1)]
@@ -801,20 +801,20 @@ expression.AddSort("@ISBN", (IComparer)isbn);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用支持 Namespace 分辨率<xref:System.Xml.XmlNamespaceManager>存储前缀和命名空间统一资源标识符 (URI) 映射的类。 如果<xref:System.Xml.XPath.XPathExpression>需要命名空间解析、 前缀和命名空间 URI 对必须添加到<xref:System.Xml.XmlNamespaceManager>对象和<xref:System.Xml.XPath.XPathExpression.SetContext%2A>必须在调用方法来指定<xref:System.Xml.XmlNamespaceManager>要用于命名空间解析的对象。  
+ 使用存储前缀和命名空间<xref:System.Xml.XmlNamespaceManager>统一资源标识符 (URI) 映射的类支持命名空间解析。 如果需要命名空间解析, 则必须将前缀和命名空间 URI 对添加<xref:System.Xml.XmlNamespaceManager>到对象中, <xref:System.Xml.XPath.XPathExpression.SetContext%2A>并且必须调用方法以指定<xref:System.Xml.XmlNamespaceManager>要用于命名空间解析的对象。 <xref:System.Xml.XPath.XPathExpression>  
   
- 以下是使用时要考虑的重要说明<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法。  
+ 以下是使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法时要考虑的重要注意事项。  
   
--   如果<xref:System.Xml.XPath.XPathExpression>不包括一个前缀，则假定命名空间 URI 是空的命名空间。 如果 XML 包含默认命名空间，则仍必须使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法，并提供<xref:System.Xml.XmlNamespaceManager>对象，它包含前缀和命名空间要处理的默认命名空间 URI。  
+-   <xref:System.Xml.XPath.XPathExpression>如果不包含前缀, 则假定命名空间 URI 为空命名空间。 如果 XML 包含默认命名空间, 仍必须使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法, 并提供一个<xref:System.Xml.XmlNamespaceManager>对象, 该对象包含用于处理默认命名空间的前缀和命名空间 URI。  
   
--   此外可以提供<xref:System.Xml.IXmlNamespaceResolver>命名空间解析的对象<xref:System.Xml.XPath.XPathExpression.Compile%2A>方法在创建时你<xref:System.Xml.XPath.XPathExpression>对象。  
+-   你还可以在创建<xref:System.Xml.IXmlNamespaceResolver> <xref:System.Xml.XPath.XPathExpression>对象时<xref:System.Xml.XPath.XPathExpression.Compile%2A>向方法提供用于命名空间解析的对象。  
   
--   <xref:System.Xml.XPath.XPathExpression.SetContext%2A> 接受<xref:System.Xml.Xsl.XsltContext>作为命名空间冲突解决程序，因此可以实现自定义上下文，并使用函数和变量基于<xref:System.Xml.Xsl.IXsltContextFunction>和<xref:System.Xml.Xsl.IXsltContextVariable>。 XPath 表达式将执行它们。 有关详细信息，请参阅[用户定义函数和变量](~/docs/standard/data/xml/user-defined-functions-and-variables.md)。  
+-   <xref:System.Xml.XPath.XPathExpression.SetContext%2A>接受<xref:System.Xml.Xsl.XsltContext>作为命名空间解析程序, 以便您可以实现自定义上下文并<xref:System.Xml.Xsl.IXsltContextFunction>基于和<xref:System.Xml.Xsl.IXsltContextVariable>使用函数和变量。 XPath 表达式将执行它们。 有关详细信息, 请参阅[用户定义的函数和变量](~/docs/standard/data/xml/user-defined-functions-and-variables.md)。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用 XPath 返回类型来确定如何处理 XPath 表达式，以及如何使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法以提供<xref:System.Xml.XmlNamespaceManager>命名空间解析的对象。  
+ 下面的示例演示如何使用 xpath 返回类型确定如何处理 xpath 表达式, 以及如何使用<xref:System.Xml.XPath.XPathExpression.SetContext%2A>方法来<xref:System.Xml.XmlNamespaceManager>提供用于命名空间解析的对象。  
   
  [!code-cpp[XPathExpression.ReturnType#1](~/samples/snippets/cpp/VS_Snippets_Data/XPathExpression.ReturnType/CPP/returntype.cpp#1)]
  [!code-csharp[XPathExpression.ReturnType#1](~/samples/snippets/csharp/VS_Snippets_Data/XPathExpression.ReturnType/CS/returntype.cs#1)]
