@@ -1,5 +1,5 @@
 <Type Name="ClaimsPrincipalPermissionAttribute" FullName="System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b8ece915abec9ab7a6d6974d8cf6c13dd8f37962" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55373300" /></Metadata><TypeSignature Language="C#" Value="public sealed class ClaimsPrincipalPermissionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c6857b0241c051efe9b3a64cc495e1102811ddd6" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69283099" /></Metadata><TypeSignature Language="C#" Value="public sealed class ClaimsPrincipalPermissionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ClaimsPrincipalPermissionAttribute extends System.Security.Permissions.CodeAccessSecurityAttribute" />
   <TypeSignature Language="DocId" Value="T:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ClaimsPrincipalPermissionAttribute&#xA;Inherits CodeAccessSecurityAttribute" />
@@ -24,21 +24,21 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>用于以声明方式请求访问检查使用已配置<xref:System.Security.Claims.ClaimsAuthorizationManager>。  
+ 用于使用配置<xref:System.Security.Claims.ClaimsAuthorizationManager>的以声明方式请求访问检查。 <xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>  
   
- 必须指定之一<xref:System.Security.Permissions.SecurityAction>值，`Resource`和一个`Operation`中你<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>声明。 `Resource`并`Operation`属性指定的资源和为其操作当前主体 (<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType>) 必须为继续执行授权。 如果未授权当前主体在指定的资源上执行指定的操作 （操作）<xref:System.Security.SecurityException>引发。  
+ 你<xref:System.Security.Permissions.SecurityAction>必须在`Resource` 声明<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>中指定一个值、一个和`Operation`一个。 和属性指定当前主体 (<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType>) 必须获得权限才能继续执行的资源和操作。 `Operation` `Resource` 如果当前主体无权对指定的资源执行指定的<xref:System.Security.SecurityException>操作 (操作), 则会引发。  
   
 > [!IMPORTANT]
->  <xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>类使用情况下配置的声明授权管理器<xref:System.IdentityModel.Configuration.IdentityConfiguration>下设置<xref:System.IdentityModel.Services.FederatedAuthentication.FederationConfiguration%2A?displayProperty=nameWithType>属性。 这是在所有情况下，即使在其中未使用 WS 联合身份验证; 的方案中，则返回 true例如，活动 (WCF) Web 应用程序和控制台应用程序。 您可以指定的声明授权管理器配置中或以编程方式。 若要在配置文件中指定的声明授权管理器，设置[ &lt;claimsAuthorizationManager&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/claimsauthorizationmanager.md)元素下的[ &lt;identityConfiguration&gt;](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/identityconfiguration.md)元素，并确保此标识配置通过引用[ &lt;federationConfiguration&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/federationconfiguration.md)运行时加载的元素 （例如，通过设置`identityConfigurationName`属性)。 若要以编程方式设置声明授权管理器，提供的处理程序<xref:System.IdentityModel.Services.FederatedAuthentication.FederationConfigurationCreated?displayProperty=nameWithType>事件。  
+>  类使用配置的声明授权管理器<xref:System.IdentityModel.Configuration.IdentityConfiguration> <xref:System.IdentityModel.Services.FederatedAuthentication.FederationConfiguration%2A?displayProperty=nameWithType> , 该管理器由在属性下设置的进行。 <xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute> 即使在不使用 WS-FEDERATION 的情况下, 也是如此,例如, 活动 (WCF) Web 应用程序和控制台应用程序。 可以在配置中或以编程方式指定声明授权管理器。 若要在配置文件中指定声明授权管理器, 请在[ &lt;identityConfiguration&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/identityconfiguration.md)元素下设置[ &lt;claimsAuthorizationManager&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/claimsauthorizationmanager.md)元素, 并确保标识配置由运行时加载[ &lt;的&gt; federationConfiguration](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/federationconfiguration.md)元素引用`identityConfigurationName` (例如, 通过设置特性)。 若要以编程方式设置声明授权管理器, 请为<xref:System.IdentityModel.Services.FederatedAuthentication.FederationConfigurationCreated?displayProperty=nameWithType>事件提供处理程序。  
   
    
   
 ## Examples  
- 下面的示例演示如何保护方法的修饰来与<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>属性。 该属性将评估是否应通过利用提供的逻辑的当前主体授予访问权限<xref:System.Security.Claims.ClaimsAuthorizationManager>应用程序上下文中的实例。 如果指定的资源上指定的操作未授权当前主体<xref:System.Security.SecurityException>则引发该异常; 否则为执行将继续。  
+ 下面的示例演示如何通过使用<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>特性修饰方法来保护方法。 特性通过利用应用程序上下文中的<xref:System.Security.Claims.ClaimsAuthorizationManager>实例提供的逻辑来评估是否应向当前主体授予访问权限。 如果未对指定资源的指定操作授权当前主体, <xref:System.Security.SecurityException>则将引发; 否则, 执行将继续。  
   
  [!code-csharp[WifCppWithCam#4](~/samples/snippets/csharp/VS_Snippets_Misc/wifcppwithcam/cs/wifcppwithcam/program.cs#4)]  
   
- 下面的 XML 演示使用自定义声明授权所需的最低配置管理器与<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>类。 您必须最小值，声明两`system.identityModel`和`system.identityModel.services`内的部分`<configSection>`元素，然后指定在授权管理器中的[ &lt;claimsAuthorizationManager&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/claimsauthorizationmanager.md)下的默认标识配置元素。 这将确保从默认的联合身份验证配置引用了授权管理器。 或者，可以指定在其下授权管理器中指定的标识配置的名称`identityConfigurationName`的属性[ &lt;federationConfiguration&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/federationconfiguration.md)元素。  
+ 下面的 XML 演示将自定义声明授权管理器与<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>类结合使用所需的最低配置。 至少必须在`system.identityModel` `<configSection>`元素中同时声明`system.identityModel.services`和部分, 然后在 " [ &lt;claimsAuthorizationManager&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/claimsauthorizationmanager.md) " 元素中指定授权管理器默认标识配置。 这将确保从默认的联合身份验证配置引用授权管理器。 或者, 你可以指定在`identityConfigurationName` [ &lt;federationConfiguration&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/federationconfiguration.md)元素的属性中指定了授权管理器的标识配置的名称。  
   
 ```xml  
 <?xml version="1.0" encoding="utf-8" ?>  
@@ -92,7 +92,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此外必须指定`Operation`并`Resource`中的属性您<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>声明或异常时将引发<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute.CreatePermission%2A>调用方法，创建的权限。  
+ 还必须在`Operation` <xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>声明中指定`Resource`和属性, <xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute.CreatePermission%2A>否则在调用方法创建权限时将引发异常。  
   
  ]]></format>
         </remarks>
@@ -126,7 +126,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IdentityModel.Services.ClaimsPrincipalPermission>使用的值来创建对象<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute.Operation%2A>属性和<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute.Resource%2A>属性。 必须指定`Operation`并`Resource`中的属性您<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>声明或异常时将引发<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute.CreatePermission%2A>调用方法，创建的权限。  
+ 对象是通过使用<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute.Operation%2A>属性和<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute.Resource%2A>属性的值创建的。 <xref:System.IdentityModel.Services.ClaimsPrincipalPermission> 必须在`Operation` 声明中<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>指定和属性, `Resource` <xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute.CreatePermission%2A>否则在调用方法创建权限时将引发异常。  
   
  ]]></format>
         </remarks>
@@ -154,7 +154,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 该操作是应为其授权当前主体在指定资源的操作。 必须设置`Operation`属性中的您<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>声明或异常时将引发<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute.CreatePermission%2A>调用方法，创建的权限。  
+ 操作是在指定资源上为其授权当前主体的操作。 必须`Operation` <xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute.CreatePermission%2A>在声明中设置属性, 否则在调用方法创建权限时将引发异常。 <xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>  
   
  ]]></format>
         </remarks>
@@ -182,7 +182,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在其应授权当前主体执行指定的操作的资源。 必须设置`Resource`属性中的您<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>声明或异常时将引发<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute.CreatePermission%2A>调用方法，创建的权限。  
+ 应为其授权当前主体执行指定操作的资源。 必须`Resource` <xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute.CreatePermission%2A>在声明中设置属性, 否则在调用方法创建权限时将引发异常。 <xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>  
   
  ]]></format>
         </remarks>

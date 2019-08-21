@@ -1,5 +1,5 @@
 <Type Name="SignInResponseMessage" FullName="System.IdentityModel.Services.SignInResponseMessage">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="76abd48e5453f2866133e91d20e4e85f476da62e" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="63984510" /></Metadata><TypeSignature Language="C#" Value="public class SignInResponseMessage : System.IdentityModel.Services.WSFederationMessage" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e74df2cd407e5fefb35657b9a243aebd639c308a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69282368" /></Metadata><TypeSignature Language="C#" Value="public class SignInResponseMessage : System.IdentityModel.Services.WSFederationMessage" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit SignInResponseMessage extends System.IdentityModel.Services.WSFederationMessage" />
   <TypeSignature Language="DocId" Value="T:System.IdentityModel.Services.SignInResponseMessage" />
   <TypeSignature Language="VB.NET" Value="Public Class SignInResponseMessage&#xA;Inherits WSFederationMessage" />
@@ -19,13 +19,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 操作参数 (wa) 接收消息的"wsignin1.0"，并且该消息包含 wresult 或 wresultptr 参数时，则创建消息。  
+ 当收到的消息的操作参数 (wa) 为 "wsignin1.0 1.0" 且消息包含 wresult 或 wresultptr 参数时, 将创建此消息。  
   
- 转换时<xref:System.IdentityModel.Protocols.WSTrust.RequestSecurityTokenResponse>对象传递给<xref:System.IdentityModel.Services.SignInResponseMessage>对象上放置于 RequestSecurityTokenResponse 消息的上下文属性不转移，并且必须显式设置。  
+ 将<xref:System.IdentityModel.Protocols.WSTrust.RequestSecurityTokenResponse>对象转换<xref:System.IdentityModel.Services.SignInResponseMessage>为对象时, 不会传输 RequestSecurityTokenResponse 消息上的上下文属性, 必须对其进行显式设置。  
   
  [!INCLUDE[wif_wsfed_ref](~/includes/wif-wsfed-ref-md.md)]  
   
- 有关此类表示的消息的详细信息，请参阅 WS 联合身份验证规范。  
+ 有关此类表示的消息的详细信息, 请参阅 WS 联合身份验证规范。  
   
  ]]></format>
     </remarks>
@@ -115,13 +115,13 @@
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="baseUrl" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="Response" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="federationSerializer" /> 为 <see langword="null" />。  
   
-或 
+- 或 - 
  <paramref name="context" /> 为 <see langword="null" />。</exception>
       </Docs>
     </Member>
@@ -147,7 +147,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置为`null`或空字符串来从消息中删除 wresult 参数。 任一<xref:System.IdentityModel.Services.SignInResponseMessage.Result%2A>属性或<xref:System.IdentityModel.Services.SignInResponseMessage.ResultPtr%2A>属性必须设置为有效的消息。  
+ 设置为`null`或空字符串, 以便从消息中删除 wresult 参数。 必须设置<xref:System.IdentityModel.Services.SignInResponseMessage.ResultPtr%2A>属性或属性才能使消息有效。 <xref:System.IdentityModel.Services.SignInResponseMessage.Result%2A>  
   
  ]]></format>
         </remarks>
@@ -175,7 +175,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置为`null`或空字符串来从消息中删除 wresultptr 参数。 任一<xref:System.IdentityModel.Services.SignInResponseMessage.Result%2A>属性或<xref:System.IdentityModel.Services.SignInResponseMessage.ResultPtr%2A>属性必须设置为有效的消息。  
+ 设置为`null`或空字符串, 以便从消息中删除 wresultptr 参数。 必须设置<xref:System.IdentityModel.Services.SignInResponseMessage.ResultPtr%2A>属性或属性才能使消息有效。 <xref:System.IdentityModel.Services.SignInResponseMessage.Result%2A>  
   
  ]]></format>
         </remarks>
@@ -204,14 +204,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 检查操作参数 (wa) 为"wsignin1.0"并确保指定的 wresult 或 wresultptr 参数。  
+ 检查操作参数 (wa) 是否为 "wsignin1.0 1.0", 以及是否指定了 wresult 参数或 wresultptr 参数。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">操作参数 (wa) 不为“wsignin1.0”。</exception>
-        <exception cref="T:System.IdentityModel.Services.WSFederationMessageException">wresult 参数和 wresultptr 参数都未被指定 
-或 
-指定的 wresult 参数和 wresultptr 参数。</exception>
+        <exception cref="T:System.IdentityModel.Services.WSFederationMessageException">wresult 参数和 wresultptr 参数都未被指定  
+  
+ 或  
+  
+ 指定的 wresult 参数和 wresultptr 参数。</exception>
       </Docs>
     </Member>
     <Member MemberName="Write">
@@ -239,7 +241,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法调用<xref:System.IdentityModel.Services.SignInResponseMessage.Validate%2A>方法，然后再写入消息。  
+ 此方法在写入<xref:System.IdentityModel.Services.SignInResponseMessage.Validate%2A>消息之前调用方法。  
   
  ]]></format>
         </remarks>
