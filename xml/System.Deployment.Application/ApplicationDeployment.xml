@@ -1,5 +1,5 @@
 <Type Name="ApplicationDeployment" FullName="System.Deployment.Application.ApplicationDeployment">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c6183cc6f4399de605648ac8bc90cbbe6d8ae170" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63889215" /></Metadata><TypeSignature Language="C#" Value="public sealed class ApplicationDeployment" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8379c73e9a877ea2f6ccf2cdb8d66be6232d250e" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69366431" /></Metadata><TypeSignature Language="C#" Value="public sealed class ApplicationDeployment" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ApplicationDeployment extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Deployment.Application.ApplicationDeployment" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ApplicationDeployment" />
@@ -20,26 +20,26 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 你可以配置你[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序检查更新并安装它们自动通过`subscription`部署清单的元素。 某些应用程序，但是，需要更好地控制他们的更新。 您可能想要以编程方式，安装所需的更新，并提示用户安装在方便的可选更新。 通过关闭部署清单中的订阅更新，可能需要完全控制应用程序的更新策略。 或者，可以结合使用自动订阅<xref:System.Deployment.Application.ApplicationDeployment>，它使[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]定期更新应用程序，但使用<xref:System.Deployment.Application.ApplicationDeployment>他们发布后不久下载关键更新。  
+ 你可以将[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序配置为检查更新, 并`subscription`通过部署清单的元素自动安装更新。 但是, 某些应用程序需要更好地控制其更新。 你可能想要以编程方式安装所需的更新, 并在方便时提示用户安装可选更新。 通过关闭部署清单中的订阅更新, 可以完全控制应用程序的更新策略。 或者, 你可以将自动订阅与<xref:System.Deployment.Application.ApplicationDeployment>结合使用, 后者允许[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]定期更新<xref:System.Deployment.Application.ApplicationDeployment>应用程序, 但会在发布重要更新后立即下载这些更新。  
   
- 你可以测试你的部署使用有可用的更新是否<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdate%2A>或<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsync%2A>方法; 后, 一种方法将引发<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateCompleted>在成功完成的事件。 <xref:System.Deployment.Application.ApplicationDeployment.CheckForDetailedUpdate%2A> 返回有关此更新，例如其版本号以及它是否为当前用户所需的更新的重要信息。 如果有可用的更新，你可以通过安装它<xref:System.Deployment.Application.ApplicationDeployment.Update%2A>或<xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A>; 后一种方法将引发<xref:System.Deployment.Application.ApplicationDeployment.UpdateCompleted>后更新的安装已完成事件。 对于大型更新，可以接收通过进度通知<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateProgressChanged>和<xref:System.Deployment.Application.ApplicationDeployment.UpdateProgressChanged>事件，并使用中的信息<xref:System.ComponentModel.ProgressChangedEventArgs>以通知用户下载状态。  
+ 您可以使用<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdate%2A> <xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsync%2A>或方法测试您的部署是否具有可用的更新; 后一种方法会在成功完成<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateCompleted>时引发事件。 <xref:System.Deployment.Application.ApplicationDeployment.CheckForDetailedUpdate%2A>返回有关更新的重要信息, 例如更新的版本号以及当前用户是否需要更新。 如果有可用的更新, 则可以使用<xref:System.Deployment.Application.ApplicationDeployment.Update%2A>或<xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A>安装它; 后一种方法会在<xref:System.Deployment.Application.ApplicationDeployment.UpdateCompleted>更新安装完成后引发事件。 对于较大的更新, 可以通过<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateProgressChanged>和<xref:System.Deployment.Application.ApplicationDeployment.UpdateProgressChanged>事件接收进度通知, 并使用中<xref:System.ComponentModel.ProgressChangedEventArgs>的信息通知用户下载状态。  
   
- 此外可以使用<xref:System.Deployment.Application.ApplicationDeployment>下载大型文件和按需程序集。 这些文件必须标记为"可选"中部署的应用程序清单，以便它们不会在安装过程中下载。 可以通过在应用程序的持续时间下载文件随时<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A>或<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>方法。 通过提供的事件处理程序被加载到内存之前，您可以下载的程序集<xref:System.AppDomain.AssemblyResolve>上的事件<xref:System.AppDomain>类。 有关详细信息，请参阅[演练：在设计器中使用 ClickOnce 部署 API 按需下载程序集](https://msdn.microsoft.com/library/59a0dd5f-1cab-4f2f-b780-0ab7399905d5)。  
-  
-> [!NOTE]
->  如果更新[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序中运行应用程序时，用户将不看到更新，直到你调用<xref:System.Windows.Forms.Application.Restart%2A>方法的<xref:System.Windows.Forms.Application>，这将关闭当前正在运行的应用程序实例并立即重新启动它。  
-  
- <xref:System.Deployment.Application.ApplicationDeployment> 没有公共构造函数;获取内的类的实例[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序通过<xref:System.Deployment.Application.ApplicationDeployment.CurrentDeployment%2A>属性。 您使用<xref:System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed%2A>属性以验证当前应用程序是否[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序。  
-  
- <xref:System.Deployment.Application.ApplicationDeployment> 检查更新和下载支持文件以异步方式更新使用新的[基于事件的异步模式概述](~/docs/standard/asynchronous-programming-patterns/event-based-asynchronous-pattern-overview.md)，其公开为类事件的完成回调。 <xref:System.Deployment.Application.ApplicationDeployment> 启动和管理的线程，并返回正确的 UI 线程上调用你的应用程序。 通过此类，可以更新而不需要锁定应用程序，以便用户可以继续工作时安装更新。 如果发生更新时，用户必须停止所有工作，请考虑改为使用同步方法。  
+ 你还可以使用<xref:System.Deployment.Application.ApplicationDeployment>按需下载大型文件和程序集。 必须在部署的应用程序清单中将这些文件标记为 "可选", 以便在安装过程中不会下载这些文件。 可以通过使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A> <xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>或方法在应用程序持续时间内随时下载文件。 通过为<xref:System.AppDomain.AssemblyResolve> <xref:System.AppDomain>类的事件提供事件处理程序, 可以在将程序集加载到内存中之前下载程序集。 有关详细信息，请参阅[演练：在设计器中使用 ClickOnce 部署 API 按需下载程序集](https://msdn.microsoft.com/library/59a0dd5f-1cab-4f2f-b780-0ab7399905d5)。  
   
 > [!NOTE]
->  执行异步更新，则要求您的应用程序导入这两<xref:System.Deployment.Application>和<xref:System.ComponentModel>命名空间。  
+>  如果在应用程序[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]运行时更新应用程序, 则在<xref:System.Windows.Forms.Application.Restart%2A>调用的方法<xref:System.Windows.Forms.Application>之前, 用户将看不到更新, 这会关闭当前正在运行的应用程序实例并立即重新启动以便.  
+  
+ <xref:System.Deployment.Application.ApplicationDeployment>没有公共构造函数;您可以[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)] <xref:System.Deployment.Application.ApplicationDeployment.CurrentDeployment%2A>通过属性获取应用程序中的类的实例。 使用<xref:System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed%2A>属性来验证当前应用程序[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]是否是应用程序。  
+  
+ <xref:System.Deployment.Application.ApplicationDeployment>支持通过使用新的[基于事件的异步模式概述](~/docs/standard/asynchronous-programming-patterns/event-based-asynchronous-pattern-overview.md)(公开完成回调作为类事件), 以异步方式检查更新和下载更新文件。 <xref:System.Deployment.Application.ApplicationDeployment>启动并管理线程, 并向正确的 UI 线程返回应用程序。 通过此类, 可以在不锁定应用程序的情况下进行更新, 以便用户可以在更新安装过程中继续工作。 如果用户必须在发生更新时停止所有工作, 请考虑改用同步方法。  
+  
+> [!NOTE]
+>  执行异步更新要求你的<xref:System.Deployment.Application>应用程序同时导入和<xref:System.ComponentModel>命名空间。  
   
    
   
 ## Examples  
- 下面的代码示例确定在应用程序加载时，是否有新的更新可用;如果所需的更新可用，该代码示例将以异步方式安装此更新。 应将此代码添加到包含窗体<xref:System.Windows.Forms.TextBox>名为`downloadStatus`。  
+ 下面的代码示例在应用程序加载时确定是否有新的更新可用;如果有必需的更新, 则代码示例会以异步方式安装更新。 应将此代码添加到包含<xref:System.Windows.Forms.TextBox>已命名`downloadStatus`的的窗体中。  
   
  [!code-cpp[ClickOnceAPI#1](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#1)]
  [!code-csharp[ClickOnceAPI#1](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#1)]
@@ -47,7 +47,7 @@
   
  ]]></format>
     </remarks>
-    <related type="Article" href="https://msdn.microsoft.com/library/59a0dd5f-1cab-4f2f-b780-0ab7399905d5">演练：下载 ClickOnce 部署 API 使用设计器中使用按需程序集</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/59a0dd5f-1cab-4f2f-b780-0ab7399905d5">演练：使用设计器使用 ClickOnce 部署 API 按需下载程序集</related>
   </Docs>
   <Members>
     <Member MemberName="ActivationUri">
@@ -68,17 +68,17 @@
       </ReturnValue>
       <Docs>
         <summary>获取用于启动应用程序的部署清单的 URL。</summary>
-        <value>如果长度为零的字符串<c>TrustUrlParameters</c>部署清单中的属性是<see langword="false" />，或如果用户提供了一个 UNC 以打开部署或本地打开它。 否则，返回值为用于启动应用程序的完整 URL（包含所有参数）。</value>
+        <value>如果部署清单中的<c>TrustUrlParameters</c>属性为<see langword="false" />, 则为零长度字符串; 或者, 如果用户已提供 UNC 来打开部署或已在本地打开它, 则为零长度字符串。 否则，返回值为用于启动应用程序的完整 URL（包含所有参数）。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性将在完全受信任和部分受信任的应用程序中工作。  
+ 此属性可在完全信任和部分信任的应用程序中使用。  
   
    
   
 ## Examples  
- 下面的代码演示如何检索通过使用 URL 参数<xref:System.Deployment.Application.ApplicationDeployment.ActivationUri%2A>，以及如何使用<xref:System.Web.HttpUtility>类，以安全地分析查询字符串。 相同的查询字符串变量的多个实例合并在返回的一个条目<xref:System.Collections.Specialized.NameValueCollection>。  
+ 下面的代码演示如何使用<xref:System.Deployment.Application.ApplicationDeployment.ActivationUri%2A>检索 URL 参数, 以及如何<xref:System.Web.HttpUtility>使用类来安全地分析查询字符串。 在返回<xref:System.Collections.Specialized.NameValueCollection>的的一项中合并了同一查询字符串变量的多个匹配项。  
   
  [!code-csharp[ClickOnceQueryString#1](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceQueryString/CS/Form1.cs#1)]
  [!code-vb[ClickOnceQueryString#1](~/samples/snippets/visualbasic/VS_Snippets_Winforms/ClickOnceQueryString/VB/Form1.vb#1)]  
@@ -120,12 +120,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Deployment.Application.ApplicationDeployment.CheckForDetailedUpdate%2A>同步调用方将得到相同的方法可以扩展异步调用方使用的信息<xref:System.Deployment.Application.CheckForUpdateCompletedEventArgs>类。  
+ 使用方法, 同步调用方可以获取异步调用方使用类获取的相同扩展信息。<xref:System.Deployment.Application.CheckForUpdateCompletedEventArgs> <xref:System.Deployment.Application.ApplicationDeployment.CheckForDetailedUpdate%2A>  
   
    
   
 ## Examples  
- 下面的代码示例使用<xref:System.Deployment.Application.ApplicationDeployment.CheckForDetailedUpdate%2A>来检索有关最新的更新信息。 如果存在更新，它会自动安装此更新是必需的更新; 如果仅否则，它会提示用户。  
+ 下面的代码示例使用<xref:System.Deployment.Application.ApplicationDeployment.CheckForDetailedUpdate%2A>检索有关最新更新的信息。 如果更新存在, 则它仅在需要更新时才会自动安装;否则, 系统将提示用户。  
   
  [!code-cpp[ClickOnceAPI#7](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#7)]
  [!code-csharp[ClickOnceAPI#7](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#7)]
@@ -136,7 +136,7 @@
         <exception cref="T:System.InvalidOperationException">当前应用程序未被配置为支持更新，或是已存在另一个已在进行中的更新检查操作。</exception>
         <exception cref="T:System.Deployment.Application.DeploymentDownloadException">无法下载部署清单。 此异常将显示在 <see cref="P:System.ComponentModel.AsyncCompletedEventArgs.Error" /> 事件的 <see cref="E:System.Deployment.Application.ApplicationDeployment.CheckForUpdateCompleted" /> 属性中。</exception>
         <exception cref="T:System.Deployment.Application.InvalidDeploymentException">部署清单已损坏。 在尝试为用户部署此应用程序前，请重新生成应用程序的清单。 此异常将显示在 <see cref="P:System.ComponentModel.AsyncCompletedEventArgs.Error" /> 事件的 <see cref="E:System.Deployment.Application.ApplicationDeployment.CheckForUpdateCompleted" /> 属性中。</exception>
-        <permission cref="T:System.Security.PermissionSet">对于到本地计算机的完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
+        <permission cref="T:System.Security.PermissionSet">对本地计算机具有完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
       </Docs>
     </Member>
     <Member MemberName="CheckForDetailedUpdate">
@@ -198,17 +198,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdate%2A>方法进行比较，请参阅部署清单中指定的版本与当前安装的部署的版本<xref:System.Deployment.Application.ApplicationDeployment.UpdateLocation%2A>。 如果在服务器上的版本是已安装的版本不同，它将返回`true`。  
+ 方法将当前安装的部署版本与在中<xref:System.Deployment.Application.ApplicationDeployment.UpdateLocation%2A>找到的部署清单中指定的版本进行比较。 <xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdate%2A> 如果服务器上的版本不同于已安装的版本, 它将返回`true`。  
   
- 此方法将阻塞，直到完成该检查。 若要以异步方式检查更新，请使用<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsync%2A>方法相反。  
+ 此方法将被阻止, 直到完成检查。 若要以异步方式检查更新, 请<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsync%2A>改用方法。  
   
 > [!NOTE]
->  如果<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdate%2A>发现更新可用，且用户选择不安装它，[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]会提示有可用的更新在下次运行应用程序的用户。 没有方法来禁用此提示。 (如果应用程序所需的更新，[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]无提示安装。)  
+>  如果<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdate%2A>发现更新可用且用户选择不安装, [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]则在下次运行应用程序时, 将提示用户提供更新。 无法禁用此提示。 (如果应用程序是必需的更新, [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]则会在不提示的情况下安装它。)  
   
    
   
 ## Examples  
- 下面的代码示例检查应用程序更新;如果找到一个对象，它将安装它以同步方式。  
+ 下面的代码示例检查应用程序更新;如果有一个可用, 则它会同步安装。  
   
  [!code-cpp[ClickOnceAPI#5](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#5)]
  [!code-csharp[ClickOnceAPI#5](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#5)]
@@ -219,7 +219,7 @@
         <exception cref="T:System.InvalidOperationException">如果更新已在进行中，而这时又调用 <see cref="M:System.Deployment.Application.ApplicationDeployment.CheckForUpdate" /> 方法，那么 [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)] 会立即引发此异常。</exception>
         <exception cref="T:System.Deployment.Application.DeploymentDownloadException">无法下载部署清单。</exception>
         <exception cref="T:System.Deployment.Application.InvalidDeploymentException">部署清单已损坏。 您可能需要重新部署应用程序才能修复此问题。</exception>
-        <permission cref="T:System.Security.PermissionSet">对于到本地计算机的完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
+        <permission cref="T:System.Security.PermissionSet">对本地计算机具有完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
         <altmember cref="M:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsync" />
         <altmember cref="M:System.Deployment.Application.ApplicationDeployment.CheckForDetailedUpdate" />
       </Docs>
@@ -273,17 +273,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsync%2A> 将立即返回，启动单独的线程来下载更新的应用程序。 当方法完成或被取消时，将引发<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateCompleted>事件。 可以使用<xref:System.ComponentModel.AsyncCompletedEventArgs>以确定是否已取消此操作，或如果更新的过程中引发了异常，此事件处理程序中。  
+ <xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsync%2A>立即返回并启动一个单独的线程, 用于下载更新后的应用程序。 当方法完成或取消时, 它会引发<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateCompleted>事件。 您可以在<xref:System.ComponentModel.AsyncCompletedEventArgs>此事件处理程序中使用来确定操作是否已取消, 或者是否在更新过程中引发了异常。  
   
- 您可以通过调用取消异步更新<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsyncCancel%2A>。  
+ 可以通过调用<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsyncCancel%2A>取消异步更新。  
   
 > [!NOTE]
->  如果<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdate%2A>发现更新可用，且用户选择不安装它，[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]会提示有可用的更新在下次运行应用程序的用户。 没有方法来禁用此提示。 (如果应用程序所需的更新，[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]无提示安装。)  
+>  如果<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdate%2A>发现更新可用且用户选择不安装, [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]则在下次运行应用程序时, 将提示用户提供更新。 无法禁用此提示。 (如果应用程序是必需的更新, [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]则会在不提示的情况下安装它。)  
   
    
   
 ## Examples  
- 下面的示例以异步方式检查更新和安装更新，如果存在。  
+ 下面的示例以异步方式检查更新, 并安装更新 (如果存在)。  
   
  [!code-cpp[ClickOnceAPI#1](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#1)]
  [!code-csharp[ClickOnceAPI#1](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#1)]
@@ -294,7 +294,7 @@
         <exception cref="T:System.InvalidOperationException">如果更新已在进行中，而这时又调用 <see cref="M:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsync" /> 方法，那么 [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)] 会立即引发此异常。</exception>
         <exception cref="T:System.Deployment.Application.DeploymentDownloadException">无法下载部署清单。 此异常出现在 <see cref="P:System.ComponentModel.AsyncCompletedEventArgs.Error" /> 事件的 <see cref="E:System.Deployment.Application.ApplicationDeployment.CheckForUpdateCompleted" /> 属性中。</exception>
         <exception cref="T:System.Deployment.Application.InvalidDeploymentException">部署清单已损坏。 您可能需要重新部署应用程序才能修复此问题。 此异常出现在 <see cref="P:System.ComponentModel.AsyncCompletedEventArgs.Error" /> 事件的 <see cref="E:System.Deployment.Application.ApplicationDeployment.CheckForUpdateCompleted" /> 属性中。</exception>
-        <permission cref="T:System.Security.PermissionSet">对于到本地计算机的完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
+        <permission cref="T:System.Security.PermissionSet">对本地计算机具有完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
         <altmember cref="M:System.Deployment.Application.ApplicationDeployment.CheckForUpdate" />
         <altmember cref="M:System.Deployment.Application.ApplicationDeployment.CheckForDetailedUpdate" />
         <altmember cref="M:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsyncCancel" />
@@ -323,9 +323,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此方法来取消与启动的更新检查<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsync%2A>方法。  
+ 使用此方法可取消使用<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsync%2A>方法启动的更新检查。  
   
- 此方法不会取消任何后台更新，可能已在进行，例如订阅的一部分启动的更新。 有关订阅的详细信息，请参阅[选择 ClickOnce 更新策略](https://msdn.microsoft.com/library/d8b6e7bb-4ea0-47f3-91cd-48580bdceccc)。  
+ 此方法不会取消任何可能正在进行的后台更新, 如作为订阅的一部分启动的更新。 有关订阅的详细信息, 请参阅[选择 ClickOnce 更新策略](https://msdn.microsoft.com/library/d8b6e7bb-4ea0-47f3-91cd-48580bdceccc)。  
   
  ]]></format>
         </remarks>
@@ -353,12 +353,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Deployment.Application.CheckForUpdateCompletedEventArgs>类将告诉您，在其他内容、 的更新版本、 大有更新，和可用的更新是必需还是可选。  
+ <xref:System.Deployment.Application.CheckForUpdateCompletedEventArgs>类将告诉你, 更新的版本、更新的大小以及可用更新是必需的还是可选的。  
   
    
   
 ## Examples  
- 下面的代码示例使用<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateCompleted>来决定是否要求用户安装可用的应用程序更新。 如果更新是强制性的升级，<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateCompleted>事件处理程序不会提示用户。 该示例需要部署包含的 Windows 窗体应用程序<xref:System.Windows.Forms.StatusStrip>控件，并且此控件包含<xref:System.Windows.Forms.ToolStripStatusLabel>控件命名为`downloadStatus`。  
+ 下面的代码示例使用<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateCompleted>来确定是否要求用户安装可用的应用程序更新。 如果更新是必需升级, 则<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateCompleted>事件处理程序不会提示用户。 该示例要求你部署一个包含<xref:System.Windows.Forms.StatusStrip>控件的 Windows 窗体应用程序, 并且此控件包含一个<xref:System.Windows.Forms.ToolStripStatusLabel>名为`downloadStatus`的控件。  
   
  [!code-cpp[ClickOnceAPI#1](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#1)]
  [!code-csharp[ClickOnceAPI#1](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#1)]
@@ -390,12 +390,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateProgressChanged> 有关应用程序的部署的下载状态的报告清单。 这可以是通过慢速网络连接下载部署的用户的重要信息。  
+ <xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateProgressChanged>报告应用程序的部署清单的下载状态。 对于在慢速网络连接上下载部署的用户而言, 这可能是一项重要的信息。  
   
    
   
 ## Examples  
- 下面的代码示例使用<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateProgressChanged>事件来通知用户的部署清单中有多少剩下要下载。 该示例需要部署包含的 Windows 窗体应用程序<xref:System.Windows.Forms.StatusStrip>控件，并且此控件包含<xref:System.Windows.Forms.ToolStripStatusLabel>控件命名为`downloadStatus`。 
+ 下面的代码示例使用<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateProgressChanged>事件来通知用户要下载多少部署清单。 该示例要求你部署一个包含<xref:System.Windows.Forms.StatusStrip>控件的 Windows 窗体应用程序, 并且此控件包含一个<xref:System.Windows.Forms.ToolStripStatusLabel>名为`downloadStatus`的控件。 
   
  [!code-cpp[ClickOnceAPI#1](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#1)]
  [!code-csharp[ClickOnceAPI#1](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#1)]
@@ -428,14 +428,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不能创建的实例<xref:System.Deployment.Application.ApplicationDeployment>直接在你的应用程序; 必须检索有效的实例通过<xref:System.Deployment.Application.ApplicationDeployment.CurrentDeployment%2A>属性。  
+ 你不能直接在<xref:System.Deployment.Application.ApplicationDeployment>应用程序中创建的实例; 你必须<xref:System.Deployment.Application.ApplicationDeployment.CurrentDeployment%2A>通过属性检索有效的实例。  
   
- <xref:System.Deployment.Application.ApplicationDeployment.CurrentDeployment%2A>静态属性是在使用部署的应用程序只能从有效[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]。 尝试从非调用此属性[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序将引发异常。 如果你正在开发的应用程序可能会或不可能通过使用部署[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]，使用<xref:System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed%2A>属性来测试是否为当前程序[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序。  
+ 静态属性只能从使用[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]部署的应用程序内部有效。 <xref:System.Deployment.Application.ApplicationDeployment.CurrentDeployment%2A> 尝试从非[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序调用此属性将引发异常。 如果你正在开发的应用程序可能使用或不使用[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]进行部署, 请<xref:System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed%2A>使用属性来测试当前程序是否是[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序。  
   
    
   
 ## Examples  
- 下面的代码示例检索<xref:System.Deployment.Application.ApplicationDeployment.CurrentDeployment%2A>和检查，以确定是否已在过去三天中更新应用程序。  
+ 下面的代码示例检索<xref:System.Deployment.Application.ApplicationDeployment.CurrentDeployment%2A>并检查以确定是否已在过去三天内更新应用程序。  
   
  [!code-cpp[ClickOnceAPI#3](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#3)]
  [!code-csharp[ClickOnceAPI#3](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#3)]
@@ -470,12 +470,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Deployment.Application.ApplicationDeployment.CurrentVersion%2A> 将不同于<xref:System.Deployment.Application.ApplicationDeployment.UpdatedVersion%2A>如果已安装新更新，但尚未调用<xref:System.Windows.Forms.Application.Restart%2A>。 如果部署清单配置为执行自动更新，您可以比较这两个值以确定如果应重新启动该应用程序。  
+ <xref:System.Deployment.Application.ApplicationDeployment.CurrentVersion%2A><xref:System.Deployment.Application.ApplicationDeployment.UpdatedVersion%2A>如果已安装新的更新, 但尚未调用<xref:System.Windows.Forms.Application.Restart%2A>, 则与不同。 如果将部署清单配置为执行自动更新, 可以比较这两个值, 以确定是否应重新启动应用程序。  
   
    
   
 ## Examples  
- 下面的代码示例定义一个方法，用于确定是否[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]已更新应用程序。  
+ 下面的代码示例定义了一个方法, 该[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]方法确定是否已更新了应用程序。  
   
  [!code-cpp[ClickOnceAPI#3](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#3)]
  [!code-csharp[ClickOnceAPI#3](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#3)]
@@ -483,7 +483,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.PermissionSet">对于到本地计算机的完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
+        <permission cref="T:System.Security.PermissionSet">对本地计算机具有完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
         <altmember cref="P:System.Deployment.Application.ApplicationDeployment.UpdatedVersion" />
       </Docs>
     </Member>
@@ -535,24 +535,24 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序中，标记为"可选"应用程序清单中的文件不会下载在初始化或更新过程。 可以使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A>方法，若要下载的所有文件属于命名组按需，则不会消耗网络资源和磁盘空间只有在确定用户需要使用它们。 例如，某些用户可能需要使用其他用户可能无法调用它时每天都在应用程序中包含的数据分析包。  
+ [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]在应用程序中, 应用程序清单中标记为 "可选" 的文件在初始化或更新过程中不会下载。 你可以使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A>方法来按需下载属于命名组的所有文件, 以便在你确定用户需要它们之前, 不会消耗网络资源和磁盘空间。 例如, 某些用户可能需要每天使用您的应用程序中包含的数据分析包, 而其他用户则可能永远不会调用它。  
   
- 若要使用已下载的程序集<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A>，将附加到的事件侦听器<xref:System.AppDomain.AssemblyResolve>上的事件<xref:System.AppDomain.CurrentDomain%2A>。 有关示例，请参阅 =[演练：在设计器中使用 ClickOnce 部署 API 按需下载程序集](https://msdn.microsoft.com/library/59a0dd5f-1cab-4f2f-b780-0ab7399905d5)。  
+ 若要使用已下载的<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A>程序集, 请将事件侦听器附加到上<xref:System.AppDomain.AssemblyResolve> <xref:System.AppDomain.CurrentDomain%2A>的事件。 有关示例, 请参阅 =[演练:在设计器中使用 ClickOnce 部署 API 按需下载程序集](https://msdn.microsoft.com/library/59a0dd5f-1cab-4f2f-b780-0ab7399905d5)。  
   
- 所有文件都下载到[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序缓存中，因此独立于应用程序的当前版本。 假设某个应用程序下载的文件组后，该用户安装的新版本的应用程序，但稍后又还原为以前版本的应用程序。 在这种情况下上, 一版本仍将最初下载的文件的副本。 有关访问数据文件的详细信息，请参阅[访问本地数据和 ClickOnce 应用程序中的远程数据](https://msdn.microsoft.com/library/be5cbe12-6cb6-49c9-aa59-a1624e1eef3d)。  
+ 所有文件都下载到[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序缓存中, 因此与当前版本的应用程序隔离。 假设应用程序下载文件组后, 用户会安装新版本的应用程序, 但稍后会恢复到应用程序的以前版本。 在这种情况下, 先前版本仍将具有它最初下载的文件的副本。 有关访问数据文件的详细信息, 请参阅[在 ClickOnce 应用程序中访问本地数据和远程数据](https://msdn.microsoft.com/library/be5cbe12-6cb6-49c9-aa59-a1624e1eef3d)。  
   
- <xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A> 适用于部分受信任应用程序，即，在任何[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]与运行应用程序受限制的权限。 但是，如果您尝试进行动态加载程序集，则你的应用程序需要完全信任。  
+ <xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A>在部分受信任的应用程序中工作, 即[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)] , 在运行具有受限权限的应用程序中。 但是, 如果您尝试动态加载程序集, 则您的应用程序将需要完全信任。  
   
  当前不支持按需下载数据文件。  
   
- 你的应用程序不会响应用户输入，直到<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A>方法返回。 如果你需要下载文件而不会中断用户的工作流中，使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>方法相反。  
+ 在<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A>方法返回之前, 应用程序将不会响应用户输入。 如果需要在不中断用户工作流的情况下下载文件, 请<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>改用方法。  
   
- 仅由其文件名称，不能下载单个文件。 若要下载单个文件，将其分配中的组名在[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]部署和下载使用此方法的组。  
+ 不能单独按文件名下载单个文件。 若要下载单个文件, 请在[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]部署中为其分配一个组名称, 并使用此方法下载组。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何按需将程序集加载方式是侦听<xref:System.AppDomain.AssemblyResolve>事件。  
+ 下面的代码示例演示如何通过侦听<xref:System.AppDomain.AssemblyResolve>事件, 按需加载程序集。  
   
  [!code-csharp[ClickOnceOnDemandCmdLine#2](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceOnDemandCmdLine/CS/Form1.cs#2)]  
   
@@ -602,23 +602,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序中，标记为"可选"应用程序清单中的文件不会下载在初始化或更新过程。 可以使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>方法，若要下载的所有文件属于命名组按需，则不会消耗网络资源和磁盘空间只有在确定用户需要使用它们。 此方法适用于静态文件，不仅对于应用程序可能会或可能不需要的程序集。 例如，某些用户可能需要使用其他用户可能无法调用它时每天都在应用程序中包含的数据分析包。  
+ [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]在应用程序中, 应用程序清单中标记为 "可选" 的文件在初始化或更新过程中不会下载。 你可以使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>方法来按需下载属于命名组的所有文件, 以便在你确定用户需要它们之前, 不会消耗网络资源和磁盘空间。 此方法不仅可用于静态文件, 还可用于应用程序可能需要或不需要的程序集。 例如, 某些用户可能需要每天使用您的应用程序中包含的数据分析包, 而其他用户则可能永远不会调用它。  
   
- 若要下载按需程序集，将附加到的事件侦听器<xref:System.AppDomain.AssemblyResolve>上的事件<xref:System.AppDomain.CurrentDomain%2A>。 有关示例，请参阅[演练：下载程序集使用 ClickOnce 部署 API 按需](https://msdn.microsoft.com/library/d20e2789-8621-4806-b5b7-841122da1456)。  
+ 若要按需下载程序集, 请将事件侦听器<xref:System.AppDomain.AssemblyResolve>附加到<xref:System.AppDomain.CurrentDomain%2A>上的事件。 有关示例，请参阅[演练：用 ClickOnce 部署 API](https://msdn.microsoft.com/library/d20e2789-8621-4806-b5b7-841122da1456)按需下载程序集。  
   
- 所有程序集下载到[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序缓存。  
+ 所有程序集都下载到[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序缓存。  
   
- 所有静态文件下载到[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序的数据目录，因此独立于应用程序的当前版本。 假设某个应用程序下载的文件组后，该用户安装的新版本的应用程序，但稍后又还原为以前版本的应用程序。 在这种情况下上, 一版本仍将最初下载的文件的副本。 有关访问静态文件的详细信息，请参阅[访问本地数据和 ClickOnce 应用程序中的远程数据](https://msdn.microsoft.com/library/be5cbe12-6cb6-49c9-aa59-a1624e1eef3d)。  
+ 所有静态文件都下载到[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序的数据目录中, 因此与当前版本的应用程序隔离。 假设应用程序下载文件组后, 用户会安装新版本的应用程序, 但稍后会恢复到应用程序的以前版本。 在这种情况下, 先前版本仍将具有它最初下载的文件的副本。 有关访问静态文件的详细信息, 请参阅[在 ClickOnce 应用程序中访问本地数据和远程数据](https://msdn.microsoft.com/library/be5cbe12-6cb6-49c9-aa59-a1624e1eef3d)。  
   
- 您可以下载同时使用多个文件组<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>。 可以通过使用区分在它们之间<xref:System.Deployment.Application.DeploymentProgressChangedEventArgs.Group%2A>的属性<xref:System.Deployment.Application.DeploymentProgressChangedEventArgs>类，该类传递给<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupProgressChanged>事件。 如果您需要将更复杂的状态，则可以使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>传入`state`对象。  
+ 您可以使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>同时下载多个文件组。 可以通过使用<xref:System.Deployment.Application.DeploymentProgressChangedEventArgs.Group%2A>传递给<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupProgressChanged>事件的<xref:System.Deployment.Application.DeploymentProgressChangedEventArgs>类的属性来区分它们。 如果需要传递更复杂的状态, 可以使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>传入`state`对象。  
   
- <xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A> 适用于部分受信任应用程序，即，在任何[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]与运行应用程序受限制的权限。 但是，如果尝试以动态加载程序集，则你的应用程序需要完全信任。  
+ <xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A>在部分受信任的应用程序中工作, 即[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)] , 在运行具有受限权限的应用程序中。 但是, 如果你试图动态加载程序集, 则你的应用程序将需要完全信任。  
   
  当前不支持按需下载数据文件。  
   
- 仅由其文件名称，不能下载单个文件。 若要下载单个文件，将其分配中的组名在[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]部署和下载使用此方法的组。  
+ 不能单独按文件名下载单个文件。 若要下载单个文件, 请在[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]部署中为其分配一个组名称, 并使用此方法下载组。  
   
- 若要取消异步下载，请调用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsyncCancel%2A>方法。  
+ 若要取消异步下载, 请调用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsyncCancel%2A>方法。  
   
  ]]></format>
         </remarks>
@@ -660,19 +660,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序中，标记为"可选"应用程序清单中的文件不会下载在初始化或更新过程。 可以使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>方法，若要下载的所有文件属于命名组按需，则不会消耗网络资源和磁盘空间只有在确定用户需要使用它们。 此方法适用于静态文件，不仅对于应用程序可能会或可能不需要的程序集。 例如，某些用户可能需要使用其他用户可能无法调用它时每天都在应用程序中包含的数据分析包。 若要下载按需程序集，将附加到的事件侦听器<xref:System.AppDomain.AssemblyResolve>上的事件<xref:System.AppDomain.CurrentDomain%2A>。  
+ [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]在应用程序中, 应用程序清单中标记为 "可选" 的文件在初始化或更新过程中不会下载。 你可以使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>方法来按需下载属于命名组的所有文件, 以便在你确定用户需要它们之前, 不会消耗网络资源和磁盘空间。 此方法不仅可用于静态文件, 还可用于应用程序可能需要或不需要的程序集。 例如, 某些用户可能需要每天使用您的应用程序中包含的数据分析包, 而其他用户则可能永远不会调用它。 若要按需下载程序集, 请将事件侦听器<xref:System.AppDomain.AssemblyResolve>附加到<xref:System.AppDomain.CurrentDomain%2A>上的事件。  
   
- 您可以同时下载多个文件组使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>方法。 可以通过使用区分在它们之间<xref:System.Deployment.Application.DeploymentProgressChangedEventArgs.Group%2A>的属性<xref:System.Deployment.Application.DeploymentProgressChangedEventArgs>类，该类传递给<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupProgressChanged>事件。 如果您需要将更复杂的状态，则可以使用  
+ 您可以使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>方法同时下载多个文件组。 可以通过使用<xref:System.Deployment.Application.DeploymentProgressChangedEventArgs.Group%2A>传递给<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupProgressChanged>事件的<xref:System.Deployment.Application.DeploymentProgressChangedEventArgs>类的属性来区分它们。 如果需要传递更复杂的状态, 可以使用  
   
- <xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A> 若要传入`state`对象。  
+ <xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>传递`state`对象。  
   
- 所有静态文件下载到[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序的数据目录，因此独立于应用程序的当前版本。 有关访问静态文件的详细信息，请参阅[访问本地数据和 ClickOnce 应用程序中的远程数据](https://msdn.microsoft.com/library/be5cbe12-6cb6-49c9-aa59-a1624e1eef3d)。 . 假设在某个应用程序下载的文件组，用户安装新版本的应用程序，但更高版本的用户将恢复为以前版本的应用程序。 在这种情况下上, 一版本仍将最初下载的文件的副本。  
+ 所有静态文件都下载到[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序的数据目录中, 因此与当前版本的应用程序隔离。 有关访问静态文件的详细信息, 请参阅[在 ClickOnce 应用程序中访问本地数据和远程数据](https://msdn.microsoft.com/library/be5cbe12-6cb6-49c9-aa59-a1624e1eef3d)。 。 假设应用程序下载文件组后, 用户会安装新版本的应用程序, 但以后用户会恢复到应用程序的以前版本。 在这种情况下, 先前版本仍将具有它最初下载的文件的副本。  
   
- <xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A> 适用于部分受信任应用程序，即，在任何[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]与运行应用程序受限制的权限。 但是，如果尝试以动态加载程序集，则你的应用程序需要完全信任。  
+ <xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A>在部分受信任的应用程序中工作, 即[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)] , 在运行具有受限权限的应用程序中。 但是, 如果你试图动态加载程序集, 则你的应用程序将需要完全信任。  
   
  当前不支持按需下载数据文件。  
   
- 若要取消异步下载，请调用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsyncCancel%2A>方法。  
+ 若要取消异步下载, 请调用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsyncCancel%2A>方法。  
   
  ]]></format>
         </remarks>
@@ -734,14 +734,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupCompleted>主应用程序线程上调用事件。 它是线程安全地调用直接在此回调中的应用程序的 Windows 窗体控件。  
+ 在主应用程序线程上调用事件。<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupCompleted> 在此回调中直接调用应用程序的 Windows 窗体控件是线程安全的。  
   
- 检查<xref:System.ComponentModel.AsyncCompletedEventArgs.Error%2A>属性的<xref:System.ComponentModel.AsyncCompletedEventArgs>提供给此回调。 如果此属性为`null`，则下载已成功; 如果不是`null`、 安装未成功，并且你可以找到有关通过安装失败的详细信息<xref:System.ComponentModel.AsyncCompletedEventArgs.Error%2A>属性。  
+ 检查提供给此回调<xref:System.ComponentModel.AsyncCompletedEventArgs>的的属性。<xref:System.ComponentModel.AsyncCompletedEventArgs.Error%2A> 如果此属性为`null`, 则下载成功; 如果不`null`是, 则安装未成功, 你可以通过<xref:System.ComponentModel.AsyncCompletedEventArgs.Error%2A>属性找到有关安装失败的详细信息。  
   
    
   
 ## Examples  
- 下面的代码示例下载在后台的帮助文件的组。 该示例需要部署包含的 Windows 窗体应用程序<xref:System.Windows.Forms.StatusStrip>控件，并且此控件包含<xref:System.Windows.Forms.ToolStripStatusLabel>控件命名为`downloadStatus`。 
+ 下面的代码示例在后台下载一组帮助文件。 该示例要求你部署一个包含<xref:System.Windows.Forms.StatusStrip>控件的 Windows 窗体应用程序, 并且此控件包含一个<xref:System.Windows.Forms.ToolStripStatusLabel>名为`downloadStatus`的控件。 
   
  [!code-cpp[ClickOnceAPI#8](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#8)]
  [!code-csharp[ClickOnceAPI#8](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#8)]
@@ -773,14 +773,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupProgressChanged>主应用程序线程上调用事件。 它是线程安全地调用直接在此回调中的应用程序的 Windows 窗体控件。  
+ 在主应用程序线程上调用事件。<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupProgressChanged> 在此回调中直接调用应用程序的 Windows 窗体控件是线程安全的。  
   
- 使用中提供的信息<xref:System.Deployment.Application.DeploymentProgressChangedEventArgs>将进度信息传递给你的用户。  
+ 使用中<xref:System.Deployment.Application.DeploymentProgressChangedEventArgs>提供的信息将进度信息传递给用户。  
   
    
   
 ## Examples  
- 下面的代码示例下载在后台的帮助文件的组。 该示例需要部署包含的 Windows 窗体应用程序<xref:System.Windows.Forms.StatusStrip>控件，并且此控件包含<xref:System.Windows.Forms.ToolStripStatusLabel>控件命名为`downloadStatus`。  
+ 下面的代码示例在后台下载一组帮助文件。 该示例要求你部署一个包含<xref:System.Windows.Forms.StatusStrip>控件的 Windows 窗体应用程序, 并且此控件包含一个<xref:System.Windows.Forms.ToolStripStatusLabel>名为`downloadStatus`的控件。  
   
  [!code-cpp[ClickOnceAPI#8](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#8)]
  [!code-csharp[ClickOnceAPI#8](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#8)]
@@ -817,14 +817,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Deployment.Application.ApplicationDeployment.IsFileGroupDownloaded%2A> 没有任何安全请求的部分受信任的应用程序中的工作原理。  
+ <xref:System.Deployment.Application.ApplicationDeployment.IsFileGroupDownloaded%2A>在部分信任的应用程序中工作, 无需任何安全要求。  
   
- 当你更新应用程序时[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]将按需数据的任何文件从以前的版本复制到新版本的数据目录。 如果下载这些文件的新版本，则应删除任何你想要保留从旧版本并将其移到新版本的数据。  
+ 更新应用程序时, [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]会将任何按需数据文件从以前的版本复制到新版本的数据目录中。 如果下载这些文件的新版本, 应从旧版本中删除任何要保留的数据, 并将其移到新版本中。  
   
    
   
 ## Examples  
- 下面的代码示例下载中的所有文件`HelpFiles`组到磁盘。  
+ 下面的代码示例将`HelpFiles`组中的所有文件下载到磁盘。  
   
  [!code-cpp[ClickOnceAPI#8](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#8)]
  [!code-csharp[ClickOnceAPI#8](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#8)]
@@ -860,21 +860,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Deployment.Application.ApplicationDeployment.IsFirstRun%2A>以确定是否需要执行第一次运行应用程序的任何一次性初始化操作。  
+ 使用<xref:System.Deployment.Application.ApplicationDeployment.IsFirstRun%2A>确定是否需要在首次运行应用程序时执行任何一次性的初始化操作。  
   
- 不要假定<xref:System.Deployment.Application.ApplicationDeployment.IsFirstRun%2A>设置的`true`指示应用程序的此实例是第一个要向用户显示其用户界面。 由于在系统安排进程的方式，应用程序的一个实例可能具有其<xref:System.Deployment.Application.ApplicationDeployment.IsFirstRun%2A>属性设置为`true`，但另一个实例可能是第一个要在屏幕上呈现。 每当用户从一个版本升级到下一步是重置此属性的值。 如果你想要执行的操作仅应对第一个时间的任何版本运行该应用程序，你将需要执行其他测试，如检查是否存在文件创建第一次或存储标志使用**应用程序设置**。  
+ 不要假设<xref:System.Deployment.Application.ApplicationDeployment.IsFirstRun%2A> `true`设置为指示应用程序的这一实例是向用户显示其用户界面的第一个实例。 由于系统计划进程的方式, 应用程序的一个实例可能会将其<xref:System.Deployment.Application.ApplicationDeployment.IsFirstRun%2A>属性设置为`true`, 而另一个实例可能是第一个在屏幕上呈现的实例。 每当用户从一个版本升级到下一个版本时, 此属性的值就会重置。 如果只想在运行应用程序的任何版本时执行操作, 则需要执行其他测试, 如检查是否存在首次创建的文件, 或使用**应用程序设置**存储标志。  
   
    
   
 ## Examples  
- 下面的代码示例使用<xref:System.Deployment.Application.ApplicationDeployment.IsFirstRun%2A>来确定是否要检查的文件组的更新`HelpFiles`。 如果已更新一个或多个文件，则会调用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A>以获取新版本。  
+ 下面的代码示例使用<xref:System.Deployment.Application.ApplicationDeployment.IsFirstRun%2A>来确定是否检查文件组`HelpFiles`的更新。 如果一个或多个文件已更新, 则它将调用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A>以获取新版本。  
   
  [!code-csharp[ClickOnceAPI#9](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#9)]
  [!code-vb[ClickOnceAPI#9](~/samples/snippets/visualbasic/VS_Snippets_Winforms/ClickOnceAPI/VB/Form1.vb#9)]  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.PermissionSet">对于到本地计算机的完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
+        <permission cref="T:System.Security.PermissionSet">对本地计算机具有完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
       </Docs>
     </Member>
     <Member MemberName="IsNetworkDeployed">
@@ -900,21 +900,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果希望应用程序运行这两个之内和之外[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]（例如，如果需要调试应用程序在本地计算机上的部署它之前） 的部署、 测试<xref:System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed%2A>然后才能访问<xref:System.Deployment.Application.ApplicationDeployment.CurrentDeployment%2A>属性。  
+ 如果你希望应用程序在[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]部署内部和外部运行 (例如, 如果你需要在部署之前在本地计算机上调试应用程序), 请在访问<xref:System.Deployment.Application.ApplicationDeployment.CurrentDeployment%2A>属性之前进行<xref:System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed%2A>测试。  
   
- <xref:System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed%2A> 将返回`true`无论应用程序是安装还是托管，并且无论是否从网站、 文件共享或 CD-ROM 安装。  
+ <xref:System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed%2A>无论应用`true`程序是联机安装还是托管, 无论该应用程序是从网站、文件共享还是 cd-rom 安装, 都将返回。  
   
    
   
 ## Examples  
- 下面的代码示例检索<xref:System.Deployment.Application.ApplicationDeployment.CurrentDeployment%2A>通过使用<xref:System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed%2A>首先以确保该引用不是`null`。  
+ 下面的代码示例首先<xref:System.Deployment.Application.ApplicationDeployment.CurrentDeployment%2A>使用<xref:System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed%2A>检索, 以确保引用不`null`是。  
   
  [!code-cpp[ClickOnceAPI#2](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#2)]
  [!code-csharp[ClickOnceAPI#2](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#2)]  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.PermissionSet">对于到本地计算机的完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
+        <permission cref="T:System.Security.PermissionSet">对本地计算机具有完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
       </Docs>
     </Member>
     <Member MemberName="TimeOfLastUpdateCheck">
@@ -940,14 +940,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序可以配置为订阅更新。 在此方案中，[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]轮询在部署清单中定义的时间间隔自动应用程序的部署位置，并确定是否有可用更新。 <xref:System.Deployment.Application.ApplicationDeployment.TimeOfLastUpdateCheck%2A> 返回上次更新检查而不考虑它是否已启动订阅或显式检查使用的时间<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdate%2A>， <xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsync%2A>， <xref:System.Deployment.Application.ApplicationDeployment.CheckForDetailedUpdate%2A>， <xref:System.Deployment.Application.ApplicationDeployment.Update%2A>，或<xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A>方法。  
+ [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序可以配置订阅更新。 在此方案中[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)] , 将按部署清单中定义的时间间隔自动轮询应用程序的部署位置, 并确定是否有可用的更新。 <xref:System.Deployment.Application.ApplicationDeployment.TimeOfLastUpdateCheck%2A>返回上次更新检查的时间<xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdate%2A>, 不管是由订阅启动还是通过使用、 <xref:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsync%2A>、 <xref:System.Deployment.Application.ApplicationDeployment.CheckForDetailedUpdate%2A>、 <xref:System.Deployment.Application.ApplicationDeployment.Update%2A>或<xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A>方法的显式检查来启动。  
   
- 如果安装应用程序后，执行更新检查<xref:System.Deployment.Application.ApplicationDeployment.TimeOfLastUpdateCheck%2A>返回的安装时间。  
+ 如果自安装应用程序后未执行任何更新检查, <xref:System.Deployment.Application.ApplicationDeployment.TimeOfLastUpdateCheck%2A>则返回安装时间。  
   
    
   
 ## Examples  
- 下面的代码示例检查是否[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序已选中在过去三天中的可用更新。  
+ 下面的代码示例检查过去三[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]天是否已检查应用程序的可用更新。  
   
  [!code-cpp[ClickOnceAPI#3](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#3)]
  [!code-csharp[ClickOnceAPI#3](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#3)]
@@ -955,7 +955,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.PermissionSet">对于到本地计算机的完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
+        <permission cref="T:System.Security.PermissionSet">对本地计算机具有完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
         <related type="Article" href="https://msdn.microsoft.com/library/d8b6e7bb-4ea0-47f3-91cd-48580bdceccc">选择 ClickOnce 更新策略</related>
       </Docs>
     </Member>
@@ -983,22 +983,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序被视为发布到指定的位置的应用程序的新版本时更新<xref:System.Deployment.Application.ApplicationDeployment.UpdateLocation%2A>，应用程序的部署清单中的版本号为当前大于应用程序的版本号用户的计算机上安装。  
+ 当你将新版本的应用程序发布到指定<xref:System.Deployment.Application.ApplicationDeployment.UpdateLocation%2A>的位置, 并且应用程序的部署清单中的版本号大于当前应用程序的版本号时, 应用程序将被视为已更新安装在用户的计算机上。  
   
- <xref:System.Deployment.Application.ApplicationDeployment.Update%2A>调用会阻塞，直到下载到客户端计算机更新并将其安装到[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]缓存; 在此期间，应用程序不会响应用户。 如果你想要维护应用程序响应能力或在下载时，使用显示的进度报告<xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A>方法相反。  
+ 此调用将被阻止, 直到更新已下载到客户端计算机并安装[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]到缓存中; 在此期间, 该应用程序将不会响应用户。 <xref:System.Deployment.Application.ApplicationDeployment.Update%2A> 如果要在下载过程中保持应用程序响应或显示进度报告, 请<xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A>改用方法。  
   
- <xref:System.Deployment.Application.ApplicationDeployment.Update%2A> 下载所有未标记为"可选"应用程序清单中的文件。 可以使用下载可选文件按需<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A>或<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>方法。  
+ <xref:System.Deployment.Application.ApplicationDeployment.Update%2A>下载应用程序清单中未标记为 "可选" 的所有文件。 您可以通过使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A> <xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>或方法, 按需下载可选文件。  
   
- [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)] 可能已将更新应用程序会自动调用时<xref:System.Deployment.Application.ApplicationDeployment.Update%2A>方法; 如果发生这种情况，调用此方法将引发<xref:System.InvalidOperationException>。  
+ [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]在调用<xref:System.Deployment.Application.ApplicationDeployment.Update%2A>方法时可能已自动更新应用程序; 如果发生这种情况, 则调用此方法将<xref:System.InvalidOperationException>引发。  
   
- 如果已在你的部署中更新一个或多个文件，但不是刷新应用程序清单中，你将收到<xref:System.Deployment.Application.InvalidDeploymentException>。 大多数情况下，重新部署你[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序可解决此问题。 如果在部署清单或应用程序清单上的公共密钥签名无效或缺失，也会收到此异常。  
+ 如果已在部署中更新了一个或多个文件, 但尚未刷新应用程序清单, 则会收到<xref:System.Deployment.Application.InvalidDeploymentException>。 大多数情况下, 重新部署[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]应用程序就能解决此问题。 如果部署清单或应用程序清单上的公钥签名无效或缺失, 您也会收到此异常。  
   
- 更新可能会请求在本地计算机上的信任级别比应用程序的以前版本高。 如果应用程序使用受信任的应用程序部署，公共语言运行时 (CLR) 信任关系管理器将检查部署清单，以确定它是否包含有效的信任许可证。 如果部署清单不包含有效的信任许可证，[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]停止安装，且会引发<xref:System.Deployment.Application.TrustNotGrantedException>。 <xref:System.Deployment.Application.ApplicationDeployment.Update%2A>方法永远不会显示一个提示，询问用户是否要授予应用程序的权限运行。  
+ 更新可能会在本地计算机上请求比应用程序的以前版本更高的信任级别。 如果应用程序使用受信任的应用程序部署, 则公共语言运行时 (CLR) 信任关系管理器将检查部署清单, 以确定它是否包含有效的信任许可证。 如果部署清单不包含有效的信任许可证, [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]则将停止安装并<xref:System.Deployment.Application.TrustNotGrantedException>引发。 该<xref:System.Deployment.Application.ApplicationDeployment.Update%2A>方法将不会显示询问用户是否要授予应用程序运行权限的提示。  
   
    
   
 ## Examples  
- 下面的代码示例检查应用程序更新;如果有可用的更新，，安装该解决方案以同步方式。  
+ 下面的代码示例检查应用程序更新;如果更新可用, 则它会同步安装。  
   
  [!code-cpp[ClickOnceAPI#6](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#6)]
  [!code-csharp[ClickOnceAPI#6](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#6)]
@@ -1010,7 +1010,7 @@
         <exception cref="T:System.Deployment.Application.InvalidDeploymentException">[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)] 部署已损坏。 有关如何诊断和更正问题的提示，请参阅 [ClickOnce 部署疑难解答](https://msdn.microsoft.com/library/58e90012-f68b-4852-8ae9-58e361cbcc32)。</exception>
         <exception cref="T:System.Deployment.Application.DeploymentDownloadException">未能从其网络位置下载新部署。</exception>
         <exception cref="T:System.InvalidOperationException">当前应用程序正在更新。</exception>
-        <permission cref="T:System.Security.PermissionSet">对于到本地计算机的完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
+        <permission cref="T:System.Security.PermissionSet">对本地计算机具有完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
         <altmember cref="M:System.Deployment.Application.ApplicationDeployment.UpdateAsync" />
         <altmember cref="M:System.Deployment.Application.ApplicationDeployment.CheckForUpdateAsync" />
         <altmember cref="M:System.Deployment.Application.ApplicationDeployment.CheckForUpdate" />
@@ -1042,24 +1042,24 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序被视为发布到指定的位置的应用程序的新版本时更新<xref:System.Deployment.Application.ApplicationDeployment.UpdateLocation%2A>，应用程序的部署清单中的版本号为当前大于应用程序的版本号用户的计算机上安装。  
+ 当你将新版本的应用程序发布到指定<xref:System.Deployment.Application.ApplicationDeployment.UpdateLocation%2A>的位置, 并且应用程序的部署清单中的版本号大于当前应用程序的版本号时, 应用程序将被视为已更新安装在用户的计算机上。  
   
- 在下载更新，[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]将引发<xref:System.Deployment.Application.ApplicationDeployment.UpdateProgressChanged>上主应用程序线程来通知你下载的状态事件处理程序。 当异步更新完成或遇到了异常[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]将引发<xref:System.Deployment.Application.ApplicationDeployment.UpdateCompleted>主应用程序线程上的事件。 检查<xref:System.ComponentModel.AsyncCompletedEventArgs>提供给此事件以确定更新是否成功。  
+ 在下载更新时, [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]将在主<xref:System.Deployment.Application.ApplicationDeployment.UpdateProgressChanged>应用程序线程上引发事件处理程序, 通知您下载的状态。 在异步更新完成或遇到异常时, [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]将在主应用程序线程上<xref:System.Deployment.Application.ApplicationDeployment.UpdateCompleted>引发事件。 检查提供<xref:System.ComponentModel.AsyncCompletedEventArgs>给此事件的, 以确定更新是否成功。  
   
- 如果<xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A>引发异常，[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]调用<xref:System.Deployment.Application.ApplicationDeployment.UpdateCompleted>，并设置<xref:System.ComponentModel.AsyncCompletedEventArgs.Error%2A>属性<xref:System.ComponentModel.AsyncCompletedEventArgs>对引发的异常。  
+ 如果<xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A>引发异常, [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]则调用<xref:System.Deployment.Application.ApplicationDeployment.UpdateCompleted>并将的<xref:System.ComponentModel.AsyncCompletedEventArgs.Error%2A> <xref:System.ComponentModel.AsyncCompletedEventArgs>属性设置为引发的异常。  
   
- <xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A> 将下载在部署中未标记为"可选"应用程序清单中的所有文件。 可以使用下载可选文件按需<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A>或<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>方法。  
+ <xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A>将下载部署中的所有文件, 这些文件在应用程序清单中未标记为 "可选"。 您可以通过使用<xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroup%2A> <xref:System.Deployment.Application.ApplicationDeployment.DownloadFileGroupAsync%2A>或方法, 按需下载可选文件。  
   
- [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)] 可能已将更新应用程序会自动调用时<xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A>方法; 如果发生这种情况，调用此方法将引发<xref:System.InvalidOperationException>。  
+ [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]在调用<xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A>方法时可能已自动更新应用程序; 如果发生这种情况, 则调用此方法将<xref:System.InvalidOperationException>引发。  
   
- 如果已在你的部署中更新一个或多个文件，但不是刷新应用程序清单中，你将收到<xref:System.Deployment.Application.InvalidDeploymentException>。 大多数情况下，重新生成应用程序清单可解决此问题。 如果在部署清单或应用程序清单上的公共密钥签名无效或缺失，也会收到此异常。  
+ 如果已在部署中更新了一个或多个文件, 但尚未刷新应用程序清单, 则会收到<xref:System.Deployment.Application.InvalidDeploymentException>。 大多数情况下, 重新生成应用程序清单会解决此问题。 如果部署清单或应用程序清单上的公钥签名无效或缺失, 您也会收到此异常。  
   
- 更新可能会请求在本地计算机上的信任级别比应用程序的以前版本高。 如果应用程序使用受信任的应用程序部署，公共语言运行时 (CLR) 信任关系管理器将检查部署清单，以确定它是否包含有效的信任许可证。 如果部署清单不包含有效的信任许可证，[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]停止安装，且会引发<xref:System.Deployment.Application.TrustNotGrantedException>。 <xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A> 将永远不会显示一个提示，询问用户他们想要授予应用程序的权限运行。  
+ 更新可能会在本地计算机上请求比应用程序的以前版本更高的信任级别。 如果应用程序使用受信任的应用程序部署, 则公共语言运行时 (CLR) 信任关系管理器将检查部署清单, 以确定它是否包含有效的信任许可证。 如果部署清单不包含有效的信任许可证, [!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]则将停止安装并<xref:System.Deployment.Application.TrustNotGrantedException>引发。 <xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A>将不会显示询问用户是否要授予应用程序运行权限的提示。  
   
    
   
 ## Examples  
- 下面的代码示例确定新的更新在应用程序加载时; 是否可用如果所需的更新可用，它以异步方式安装此更新。 该示例需要部署包含的 Windows 窗体应用程序<xref:System.Windows.Forms.StatusStrip>控件，并且此控件包含<xref:System.Windows.Forms.ToolStripStatusLabel>控件命名为`downloadStatus`。  
+ 下面的代码示例确定新的更新在应用程序加载时是否可用;如果有必需的更新, 则它会以异步方式安装更新。 该示例要求你部署一个包含<xref:System.Windows.Forms.StatusStrip>控件的 Windows 窗体应用程序, 并且此控件包含一个<xref:System.Windows.Forms.ToolStripStatusLabel>名为`downloadStatus`的控件。  
   
  [!code-cpp[ClickOnceAPI#1](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#1)]
  [!code-csharp[ClickOnceAPI#1](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#1)]
@@ -1070,7 +1070,7 @@
         <exception cref="T:System.Deployment.Application.TrustNotGrantedException">本地计算机未授予此应用程序执行其请求的操作所需的权限级别。</exception>
         <exception cref="T:System.Deployment.Application.InvalidDeploymentException">[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)] 部署已损坏。 有关如何诊断和更正问题的提示，请参阅 [ClickOnce 部署疑难解答](https://msdn.microsoft.com/library/58e90012-f68b-4852-8ae9-58e361cbcc32)。</exception>
         <exception cref="T:System.Deployment.Application.DeploymentDownloadException">未能从其网络位置下载新部署。</exception>
-        <permission cref="T:System.Security.PermissionSet">对于到本地计算机的完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
+        <permission cref="T:System.Security.PermissionSet">对本地计算机具有完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
         <altmember cref="E:System.Deployment.Application.ApplicationDeployment.UpdateCompleted" />
         <related type="Article" href="https://msdn.microsoft.com/library/d8b6e7bb-4ea0-47f3-91cd-48580bdceccc">选择 ClickOnce 更新策略</related>
         <related type="Article" href="https://msdn.microsoft.com/library/a05b5f2f-d1f2-471a-8096-8b11f7554265">ClickOnce 部署和安全</related>
@@ -1099,11 +1099,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Deployment.Application.ApplicationDeployment.UpdateAsyncCancel%2A> 只取消通过调用启动的更新<xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A>; 它不会取消更新作为订阅的一部分启动。  
+ <xref:System.Deployment.Application.ApplicationDeployment.UpdateAsyncCancel%2A>仅取消通过调用<xref:System.Deployment.Application.ApplicationDeployment.UpdateAsync%2A>启动的更新; 它不会取消作为订阅的一部分启动的更新。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.PermissionSet">对于到本地计算机的完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
+        <permission cref="T:System.Security.PermissionSet">对本地计算机具有完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
         <related type="Article" href="https://msdn.microsoft.com/library/d8b6e7bb-4ea0-47f3-91cd-48580bdceccc">选择 ClickOnce 更新策略</related>
       </Docs>
     </Member>
@@ -1129,18 +1129,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Deployment.Application.ApplicationDeployment.UpdateCompleted>主应用程序线程上调用事件。 您可能会调用直接在此回调中的应用程序的 Windows 窗体控件而不会触发异常。  
+ 在主应用程序线程上调用事件。<xref:System.Deployment.Application.ApplicationDeployment.UpdateCompleted> 你可以直接在此回调内调用应用程序的 Windows 窗体控件, 而不会触发异常。  
   
- 检查<xref:System.ComponentModel.AsyncCompletedEventArgs.Error%2A>属性的<xref:System.ComponentModel.AsyncCompletedEventArgs>提供给此回调。 如果此属性为`null`，安装是否成功; 如果不是`null`，安装未成功，并且可以找到有关通过此安装失败的详细信息<xref:System.ComponentModel.AsyncCompletedEventArgs.Error%2A>属性。 一旦已下载更新，你将需要调用<xref:System.Windows.Forms.Application.Restart%2A>方法<xref:System.Windows.Forms.Application>使用较新版本的应用程序。  
+ 检查提供给此回调<xref:System.ComponentModel.AsyncCompletedEventArgs>的的属性。<xref:System.ComponentModel.AsyncCompletedEventArgs.Error%2A> 如果此属性为`null`, 则安装成功; 如果不`null`是, 则安装未成功, 你可以通过属性找到有关此安装失败的<xref:System.ComponentModel.AsyncCompletedEventArgs.Error%2A>详细信息。 下载更新后, 你将需要对调用<xref:System.Windows.Forms.Application.Restart%2A>方法<xref:System.Windows.Forms.Application>以使用应用程序的较新版本。  
   
- 如果更新的安装已取消通过调用<xref:System.Deployment.Application.ApplicationDeployment.UpdateAsyncCancel%2A>，则<xref:System.ComponentModel.AsyncCompletedEventArgs.Cancelled%2A>的属性<xref:System.ComponentModel.AsyncCompletedEventArgs>类将为`true`。  
+ 如果通过调用<xref:System.Deployment.Application.ApplicationDeployment.UpdateAsyncCancel%2A>取消了更新的安装, <xref:System.ComponentModel.AsyncCompletedEventArgs>则类的<xref:System.ComponentModel.AsyncCompletedEventArgs.Cancelled%2A>属性将为`true`。  
   
- 若要使用此事件处理程序，你的应用程序必须同时导入<xref:System.Deployment.Application>和<xref:System.ComponentModel>命名空间。  
+ 若要使用此事件处理程序, 你的<xref:System.Deployment.Application>应用程序必须同时导入和<xref:System.ComponentModel>命名空间。  
   
    
   
 ## Examples  
- 下面的代码示例确定在应用程序加载时，是否有新的更新可用;如果所需的更新可用，它以异步方式安装此更新。 该示例需要部署包含的 Windows 窗体应用程序<xref:System.Windows.Forms.StatusStrip>控件，并且此控件包含<xref:System.Windows.Forms.ToolStripStatusLabel>控件命名为`downloadStatus`。  
+ 下面的代码示例在应用程序加载时确定是否有新的更新可用;如果有必需的更新, 则它会以异步方式安装更新。 该示例要求你部署一个包含<xref:System.Windows.Forms.StatusStrip>控件的 Windows 窗体应用程序, 并且此控件包含一个<xref:System.Windows.Forms.ToolStripStatusLabel>名为`downloadStatus`的控件。  
   
  [!code-cpp[ClickOnceAPI#1](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#1)]
  [!code-csharp[ClickOnceAPI#1](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#1)]
@@ -1195,14 +1195,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Deployment.Application.ApplicationDeployment.UpdatedVersion%2A> 不同于<xref:System.Deployment.Application.ApplicationDeployment.CurrentVersion%2A>如果已安装新更新但尚未调用<xref:System.Windows.Forms.Application.Restart%2A>上<xref:System.Windows.Forms.Application>。 如果应用程序的部署清单配置为执行自动更新，您可以比较这两个值以确定是否应重新启动该应用程序。  
+ <xref:System.Deployment.Application.ApplicationDeployment.UpdatedVersion%2A>如果已安装新的更新, 但尚未在上<xref:System.Windows.Forms.Application>调用<xref:System.Windows.Forms.Application.Restart%2A> , 则与不同。 <xref:System.Deployment.Application.ApplicationDeployment.CurrentVersion%2A> 如果将应用程序的部署清单配置为执行自动更新, 可以比较这两个值, 以确定是否应重新启动应用程序。  
   
- 如果尚未更新应用程序，<xref:System.Deployment.Application.ApplicationDeployment.UpdatedVersion%2A>返回相同的值<xref:System.Deployment.Application.ApplicationDeployment.CurrentVersion%2A>。  
+ 如果应用程序尚未更新, <xref:System.Deployment.Application.ApplicationDeployment.UpdatedVersion%2A>则返回与相同的<xref:System.Deployment.Application.ApplicationDeployment.CurrentVersion%2A>值。  
   
    
   
 ## Examples  
- 下面的代码示例定义一个方法，用于确定是否[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]已更新应用程序。  
+ 下面的代码示例定义了一个方法, 该[!INCLUDE[ndptecclick](~/includes/ndptecclick-md.md)]方法确定是否已更新了应用程序。  
   
  [!code-cpp[ClickOnceAPI#4](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#4)]
  [!code-csharp[ClickOnceAPI#4](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#4)]
@@ -1210,7 +1210,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.PermissionSet">对于到本地计算机的完全访问权限。 关联的枚举： <see cref="T:System.Security.Permissions.PermissionState" /></permission>
+        <permission cref="T:System.Security.PermissionSet">对本地计算机具有完全访问权限。 关联的枚举:<see cref="T:System.Security.Permissions.PermissionState" /></permission>
       </Docs>
     </Member>
     <Member MemberName="UpdateLocation">
@@ -1236,13 +1236,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Deployment.Application.ApplicationDeployment.UpdateLocation%2A> 可能不同于使用最初下载应用程序，如果应用程序的部署配置为使用更新重定向的网站。  
+ <xref:System.Deployment.Application.ApplicationDeployment.UpdateLocation%2A>如果应用程序的部署配置为使用更新重定向, 则在最初用于下载应用程序的网站上可能会有所不同。  
   
- 仅在应用程序的部署清单中，可以更改此值。  
+ 只能在应用程序的部署清单中更改此值。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.PermissionSet">对于到本地计算机的完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
+        <permission cref="T:System.Security.PermissionSet">对本地计算机具有完全访问权限。 关联枚举：<see cref="T:System.Security.Permissions.PermissionState" />。</permission>
         <related type="Article" href="https://msdn.microsoft.com/library/7faacd35-2638-492d-80f6-6b57e5f820de">如何：指定部署更新的其他位置</related>
       </Docs>
     </Member>
@@ -1268,12 +1268,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Deployment.Application.ApplicationDeployment.UpdateProgressChanged>主应用程序线程上调用事件。 您可能会调用直接在此回调中的应用程序的 Windows 窗体控件而不会触发异常。  
+ 在主应用程序线程上调用事件。<xref:System.Deployment.Application.ApplicationDeployment.UpdateProgressChanged> 你可以直接在此回调内调用应用程序的 Windows 窗体控件, 而不会触发异常。  
   
    
   
 ## Examples  
- 下面的代码示例确定在应用程序加载时，是否有新的更新可用;如果所需的更新可用，它以异步方式安装此更新。  
+ 下面的代码示例在应用程序加载时确定是否有新的更新可用;如果有必需的更新, 则它会以异步方式安装更新。  
   
  [!code-cpp[ClickOnceAPI#1](~/samples/snippets/cpp/VS_Snippets_Winforms/ClickOnceAPI/cpp/form1.cpp#1)]
  [!code-csharp[ClickOnceAPI#1](~/samples/snippets/csharp/VS_Snippets_Winforms/ClickOnceAPI/CS/Form1.cs#1)]

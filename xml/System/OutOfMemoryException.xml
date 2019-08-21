@@ -1,5 +1,5 @@
 <Type Name="OutOfMemoryException" FullName="System.OutOfMemoryException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9ce577fc987f179731007342480dbc58aebee998" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58746027" /></Metadata><TypeSignature Language="C#" Value="public class OutOfMemoryException : SystemException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c574bc0aed3087f2fd50be00b99febeae9e3f711" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69419640" /></Metadata><TypeSignature Language="C#" Value="public class OutOfMemoryException : SystemException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit OutOfMemoryException extends System.SystemException" />
   <TypeSignature Language="DocId" Value="T:System.OutOfMemoryException" />
   <TypeSignature Language="VB.NET" Value="Public Class OutOfMemoryException&#xA;Inherits SystemException" />
@@ -46,94 +46,94 @@
   
 ## Remarks
 
-<xref:System.OutOfMemoryException> 使用 HRESULT `COR_E_OUTOFMEMORY`，其中包含已用完 0x8007000E 的值。  
+<xref:System.OutOfMemoryException>使用具有值`COR_E_OUTOFMEMORY`0x8007000E 的 HRESULT。  
   
 有关实例的初始属性值的列表<xref:System.OutOfMemoryException>，请参阅<xref:System.OutOfMemoryException.%23ctor%2A>构造函数。  
   
 > [!NOTE]
->  值继承<xref:System.Exception.Data%2A>属性始终为`null`。  
+>  继承<xref:System.Exception.Data%2A>属性的值始终`null`为。  
   
-<xref:System.OutOfMemoryException>异常有两个主要原因：  
+<xref:System.OutOfMemoryException>异常有两个主要原因:  
   
--   尝试展开<xref:System.Text.StringBuilder>对象定义的长度超出其<xref:System.Text.StringBuilder.MaxCapacity%2A?displayProperty=nameWithType>属性。  
+-   你正试图展开一个<xref:System.Text.StringBuilder>超出其<xref:System.Text.StringBuilder.MaxCapacity%2A?displayProperty=nameWithType>属性所定义的长度的对象。  
   
--   公共语言运行时无法分配连续内存不足，无法成功执行操作。 可以由任何需要的内存分配的属性赋值或方法调用引发此异常。 有关详细信息的原因<xref:System.OutOfMemoryException>异常，请参阅["内存不足"不是指物理内存](https://blogs.msdn.com/b/ericlippert/archive/2009/06/08/out-of-memory-does-not-refer-to-physical-memory.aspx)。  
+-   公共语言运行时无法分配足够的连续内存来成功执行操作。 需要内存分配的任何属性赋值或方法调用都可能引发此异常。 有关<xref:System.OutOfMemoryException>异常原因的详细信息, 请参阅["内存不足" 不引用物理内存](https://blogs.msdn.com/b/ericlippert/archive/2009/06/08/out-of-memory-does-not-refer-to-physical-memory.aspx)。  
   
-     这种类型的<xref:System.OutOfMemoryException>异常表示发生灾难性故障。 如果您选择要处理的异常，应包括`catch`块调用<xref:System.Environment.FailFast%2A?displayProperty=nameWithType>方法来终止您的应用程序并向系统事件日志中，添加一个条目，如以下示例所示。  
+     此类型的<xref:System.OutOfMemoryException>异常表示灾难性故障。 如果选择处理异常, 则应包括一个`catch` <xref:System.Environment.FailFast%2A?displayProperty=nameWithType>调用方法的块以终止应用程序, 并向系统事件日志中添加一个条目, 如以下示例所示。  
   
      [!code-csharp[System.OutOfMemoryException#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.outofmemoryexception/cs/failfast1.cs#2)]
      [!code-vb[System.OutOfMemoryException#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.outofmemoryexception/vb/failfast1.vb#2)]  
   
- 某些在其下引发异常，并且可用于消除它的操作包括以下条件：  
+ 引发异常的一些条件, 以及可以采取哪些措施来消除异常, 包括以下各项:  
   
 **正在调用<xref:System.Text.StringBuilder.Insert%2A?displayProperty=nameWithType>方法。**  
 
-尝试增加的长度<xref:System.Text.StringBuilder>对象指定的大小超出其<xref:System.Text.StringBuilder.MaxCapacity%2A?displayProperty=nameWithType>属性。 下面的示例阐释<xref:System.OutOfMemoryException>通过调用引发异常<xref:System.Text.StringBuilder.Insert%28System.Int32%2CSystem.String%2CSystem.Int32%29?displayProperty=nameWithType>方法时此示例尝试将导致对象的字符串插入<xref:System.Text.StringBuilder.Length%2A>属性超过其最大容量。  
+尝试增加<xref:System.Text.StringBuilder>对象的长度超出其<xref:System.Text.StringBuilder.MaxCapacity%2A?displayProperty=nameWithType>属性指定的大小。 下面的示例演示当<xref:System.OutOfMemoryException>示例尝试插入将导致对象的<xref:System.Text.StringBuilder.Insert%28System.Int32%2CSystem.String%2CSystem.Int32%29?displayProperty=nameWithType> <xref:System.Text.StringBuilder.Length%2A>属性超过其最大容量的字符串时, 调用方法所引发的异常。  
   
 [!code-csharp[System.OutOfMemoryException#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.outofmemoryexception/cs/sb_example1.cs#1)]
 [!code-vb[System.OutOfMemoryException#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.outofmemoryexception/vb/sb_example1.vb#1)]  
   
-您可以执行以下操作来解决此错误：  
+可以执行以下任一操作来解决该错误:  
   
--   替换为调用<xref:System.Text.StringBuilder.%23ctor%28System.Int32%2CSystem.Int32%29?displayProperty=nameWithType>构造函数通过调用任何其他<xref:System.Text.StringBuilder>构造函数重载。 最大容量为你<xref:System.Text.StringBuilder>对象将设置为其默认值，即<xref:System.Int32.MaxValue?displayProperty=nameWithType>。  
+-   将对<xref:System.Text.StringBuilder.%23ctor%28System.Int32%2CSystem.Int32%29?displayProperty=nameWithType>构造函数的调用替换为调用任何其他<xref:System.Text.StringBuilder>构造函数重载。 <xref:System.Text.StringBuilder>对象的最大容量将设置为其默认值, <xref:System.Int32.MaxValue?displayProperty=nameWithType>即。  
 
--   调用<xref:System.Text.StringBuilder.%23ctor%28System.Int32%2CSystem.Int32%29?displayProperty=nameWithType>构造函数与`maxCapacity`该值是否足够大以容纳任何扩展到<xref:System.Text.StringBuilder>对象。  
+-   使用足够大的<xref:System.Text.StringBuilder> <xref:System.Text.StringBuilder.%23ctor%28System.Int32%2CSystem.Int32%29?displayProperty=nameWithType> 值调用构造函数,以容纳到对象`maxCapacity`的任何扩展。  
   
-**您的应用程序以 32 位进程形式运行。**
+**您的应用程序作为32位进程运行。**
 
-32 位进程可以分配最多 2 GB 的 32 位系统上的虚拟用户模式内存，4 GB 的 64 位系统上的用户模式虚拟内存。 这会使公共语言运行时根据需要分配大量的分配足够的连续内存更困难。 与此相反，64 位进程可以分配多达 8 TB 的虚拟内存。 若要解决此异常，请重新编译您的应用程序以面向 64 位平台。 针对 Visual Studio 中的特定平台的信息，请参阅[如何：将项目配置为面向平台](https://msdn.microsoft.com/library/845302fc-273d-4f81-820a-7296ce91bd76)。  
+32位进程最多可以在32位系统上分配2GB 的虚拟用户模式内存, 在64位系统上分配4GB 的虚拟用户模式内存。 这会使公共语言运行时在需要大量分配时更难分配足够的连续内存。 与此相反, 64 位进程最多可分配8TB 的虚拟内存。 若要解决此异常, 请重新编译你的应用以面向64位平台。 有关在 Visual Studio 中面向特定平台的信息, [请参阅如何:将项目配置为面向平台](https://msdn.microsoft.com/library/845302fc-273d-4f81-820a-7296ce91bd76)。  
   
-**应用正在泄露非托管的资源** 
+**应用正在泄漏非托管资源** 
 
-虽然垃圾回收器可以释放内存分配给托管类型，它不会管理分配给非托管资源，如操作系统处理 （包括文件、 内存映射文件、 管道、 注册表项和等待句柄的句柄） 的内存和直接由 Windows API 调用或对内存分配函数的调用如分配内存块`malloc`。 使用非托管的资源的类型可实现<xref:System.IDisposable>接口。  
+虽然垃圾回收器能够释放分配给托管类型的内存, 但它不管理分配给非托管资源 (例如操作系统句柄) 的内存 (包括文件、内存映射文件、管道、注册表项和等待句柄的句柄)由 Windows API 调用或通过调用内存分配函数 (如) `malloc`而直接分配的和内存块。 使用非托管资源的类型实现<xref:System.IDisposable>接口。  
 
-如果您正在使用使用非托管的资源的类型，您应确保调用其<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>方法使用它完成。 (某些类型还实现`Close`方法在功能上与相同`Dispose`方法。)有关详细信息，请参阅[使用对象，实现 IDisposable](~/docs/standard/garbage-collection/using-objects.md)主题。  
+如果你使用的是使用非托管资源的类型, 则应确保在使用完<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>该类型后调用其方法。 (某些类型还实现`Close`了在函数`Dispose`中与方法相同的方法。)有关详细信息, 请参阅[使用实现 IDisposable 的对象](~/docs/standard/garbage-collection/using-objects.md)主题。  
 
-如果已创建使用非托管的资源的类型，请确保你已实现 Dispose 模式并，如有必要，提供终结器。 有关详细信息，请参阅[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)和<xref:System.Object.Finalize%2A?displayProperty=nameWithType>。  
+如果已创建使用非托管资源的类型, 请确保已实现 Dispose 模式, 并在必要时提供终结器。 有关详细信息, 请参阅[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)和<xref:System.Object.Finalize%2A?displayProperty=nameWithType>。  
   
-**您尝试在 64 位进程中创建一个大型数组**
+**你正在尝试在64位进程中创建一个大型数组**
 
-默认情况下，在.NET Framework 公共语言运行时不允许其大小超过 2 GB 的单个对象。 若要覆盖此默认设置，可以使用[ \<gcAllowVeryLargeObjects >](~/docs/framework/configure-apps/file-schema/runtime/gcallowverylargeobjects-element.md)配置文件设置以启用总大小超过 2 GB 的数组。 在.NET Core 上支持大于 2 GB 默认情况下启用的数组。 
+默认情况下, .NET Framework 中的公共语言运行时不允许大小超过2GB 的单个对象。 若要替代此默认值, 可以使用[ \<gcAllowVeryLargeObjects >](~/docs/framework/configure-apps/file-schema/runtime/gcallowverylargeobjects-element.md)配置文件设置来启用总计大小超过 2 GB 的数组。 在 .NET Core 中, 默认情况下会启用支持大于 2 GB 的数组。 
   
-**你正在使用非常大 （如数组、 集合或数据库的数据集） 的数据集在内存中。**
+**在内存中使用非常大的数据集 (如数组、集合或数据库数据集)。**
 
-当数据结构或驻留在内存中的数据集变得太大，公共语言运行时无法为它们分配连续内存不足时<xref:System.OutOfMemoryException>异常结果。  
+当内存中驻留的数据结构或数据集变得很大时, 公共语言运行时无法为它们分配足够的连续内存时<xref:System.OutOfMemoryException> , 会产生异常。  
 
-若要防止<xref:System.OutOfMemoryException>异常，则必须修改应用程序，以便更少的数据驻留在内存中，或将数据划分成需要的较小的内存分配的段。 例如:  
+若要防止<xref:System.OutOfMemoryException>这些异常, 必须修改应用程序, 以便减少内存中驻留的数据, 或将数据分成需要较小的内存分配的段。 例如:  
 
--   如果是从数据库检索的所有数据，然后对其进行筛选以最大程度减少往返服务器应用程序中，您应修改查询以返回仅应用所需的数据子集。 使用大型表时，多个查询时，几乎总是的详细信息比检索所有单个表中的数据，然后对其进行处理的效率高。  
+-   如果要从数据库中检索所有数据, 然后在应用程序中对其进行筛选, 以最大程度地减少到服务器的往返, 则应修改查询以仅返回应用程序所需的数据的子集。 处理大型表时, 多个查询几乎始终比检索单个表中的所有数据, 然后对其进行操作的效率更高。  
 
--   如果在执行用户动态创建的查询，应确保由查询返回的记录数会受到限制。  
+-   如果执行的是用户动态创建的查询, 则应确保查询返回的记录数受到限制。  
 
--   如果使用的大型数组或对象的其他集合中的其大小结果<xref:System.OutOfMemoryException>异常，则应修改应用程序能够将数据子集而不是一次性全部使用它。  
+-   如果你使用的大型数组或其他集合对象的大小会导致<xref:System.OutOfMemoryException>异常, 则应该将应用程序修改为使用子集来处理数据, 而不是一次处理所有数据。  
   
-以下示例将获取一个数组，其中包括 200 万个浮点值，然后计算其平均值。 该示例的输出显示，因为该示例在内存中存储整个数组，它会计算平均值之前,<xref:System.OutOfMemoryException>引发。  
+下面的示例获取一个包含200000000浮点值的数组, 然后计算其平均值。 该示例的输出显示, 因为该示例在计算平均值之前将整个数组存储在内存中, <xref:System.OutOfMemoryException>因此将引发。  
 
 [!code-csharp[System.OutOfMemoryException#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.outofmemoryexception/cs/data1.cs#3)]
 [!code-vb[System.OutOfMemoryException#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.outofmemoryexception/vb/data1.vb#3)]  
   
-下面的示例可消除<xref:System.OutOfMemoryException>由处理传入的数据，而不是将整个数据集存储在内存中，序列化到文件数据，如有必要以允许进一步处理 （这些行中注释掉示例中，异常由于这种情况下它们生成一个文件，其大小是大于 1 GB），并将计算的平均值和事例数返回到调用例程。  
+下面的示例通过处理<xref:System.OutOfMemoryException>传入的数据而无需将整个数据集存储在内存中, 将数据序列化到文件 (如果需要) 来进行进一步处理, 从而消除了异常, 如示例中注释掉这些行,由于在这种情况下, 它们生成的文件的大小大于 1GB, 并将计算所得的平均值和事例数返回到调用例程。  
 
 [!code-csharp[System.OutOfMemoryException#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.outofmemoryexception/cs/data2.cs#4)]
 [!code-vb[System.OutOfMemoryException#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.outofmemoryexception/vb/data2.vb#4)]  
   
-**重复连接长字符串。** 
+**你要反复串联大型字符串。** 
 
-由于字符串是不可变，每个字符串串联操作将创建一个新字符串。 对于小字符串，或对于串联操作中，较少数量的影响可以忽略不计。 但对于大型字符串或非常大量的串联操作中，字符串串联可能会导致大量的内存分配和内存碎片，性能不佳，并可能<xref:System.OutOfMemoryException>异常。  
+因为字符串是不可变的, 所以每个字符串串联操作都会创建一个新字符串。 对于小字符串或少量串联操作的影响, 可忽略不计。 但对于大型字符串或大量串联操作, 字符串连接可能会导致大量的内存分配和内存碎片, 并导致性能不佳, 还可能<xref:System.OutOfMemoryException>出现异常。  
 
-当连接长字符串，或执行大量的串联操作中，您应使用<xref:System.Text.StringBuilder>类而不是<xref:System.String>类。 完成操作字符串后，将转换<xref:System.Text.StringBuilder>实例与通过调用字符串<xref:System.Text.StringBuilder.ToString%2A?displayProperty=nameWithType>方法。  
+在连接大型字符串或执行大量串联操作时, 应使用<xref:System.Text.StringBuilder>类, 而不是<xref:System.String>类。 完成操作字符串后, 通过<xref:System.Text.StringBuilder> <xref:System.Text.StringBuilder.ToString%2A?displayProperty=nameWithType>调用方法将实例转换为字符串。  
   
 **将大量对象固定在内存中。**  
  
-很长一段固定内存中的大量对象可以使难以垃圾回收器分配的内存的连续块。 如果已将固定大量对象在内存中，例如通过使用`fixed`语句在 C# 或通过调用<xref:System.Runtime.InteropServices.GCHandle.Alloc%28System.Object%2CSystem.Runtime.InteropServices.GCHandleType%29?displayProperty=nameWithType>方法的句柄类型替换<xref:System.Runtime.InteropServices.GCHandleType.Pinned?displayProperty=nameWithType>，您可以执行以下操作为地址<xref:System.OutOfMemoryException>异常。  
+长时间将大量对象固定在内存中可能会使垃圾回收器难以分配连续的内存块。 如果已将大量对象固定在内存中 (例如, 通过`fixed`使用中C#的语句<xref:System.Runtime.InteropServices.GCHandle.Alloc%28System.Object%2CSystem.Runtime.InteropServices.GCHandleType%29?displayProperty=nameWithType>或通过使用的句柄类型<xref:System.Runtime.InteropServices.GCHandleType.Pinned?displayProperty=nameWithType>调用方法), 则可以执行以下操作来解决<xref:System.OutOfMemoryException>异常。  
   
--   评估是否真的需要固定，每个对象  
+-   评估是否确实需要固定每个对象,  
 
--   请确保每个对象已取消固定越早越好。  
+-   确保每个对象尽快取消固定。  
 
--   请确保每个调用到<xref:System.Runtime.InteropServices.GCHandle.Alloc%28System.Object%2CSystem.Runtime.InteropServices.GCHandleType%29?displayProperty=nameWithType>pin 内存的方法具有相应地调用<xref:System.Runtime.InteropServices.GCHandle.Free%2A?displayProperty=nameWithType>方法来取消固定的内存。  
+-   确保每次调用<xref:System.Runtime.InteropServices.GCHandle.Alloc%28System.Object%2CSystem.Runtime.InteropServices.GCHandleType%29?displayProperty=nameWithType>方法以固定内存时都有相应的<xref:System.Runtime.InteropServices.GCHandle.Free%2A?displayProperty=nameWithType>方法调用方法来取消固定该内存。  
 
-以下 Microsoft 中间 (MSIL) 指令引发<xref:System.OutOfMemoryException>异常：  
+以下 Microsoft 中间 (MSIL) 指令引发了<xref:System.OutOfMemoryException>异常:  
   
 -   [box](https://msdn.microsoft.com/library/system.reflection.emit.opcodes.box.aspx)  
 -   [newarr](https://msdn.microsoft.com/library/system.reflection.emit.opcodes.newarr.aspx)  
@@ -195,7 +195,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数初始化<xref:System.Exception.Message%2A>为系统提供的错误进行描述，如"没有足够的内存来继续执行程序。"的消息的新实例的属性 此消息将当前系统区域性考虑在内。  
+ 此构造函数将<xref:System.Exception.Message%2A>新实例的属性初始化为系统提供的描述错误的消息, 如 "没有足够的内存继续执行程序"。 此消息将当前系统区域性考虑在内。  
   
  下表显示 <xref:System.OutOfMemoryException> 的实例的初始属性值。  
   
