@@ -1,5 +1,5 @@
 <Type Name="Point3D" FullName="System.Windows.Forms.DataVisualization.Charting.Point3D">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a158f824058f4108266fb075ddf588e12e4a039b" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55380606" /></Metadata><TypeSignature Language="C#" Value="public class Point3D" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b79ed7f2271a6abeac06b2a09a416df351b0cc80" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69204649" /></Metadata><TypeSignature Language="C#" Value="public class Point3D" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Point3D extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Forms.DataVisualization.Charting.Point3D" />
   <TypeSignature Language="VB.NET" Value="Public Class Point3D" />
@@ -19,11 +19,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 自定义-这使用 GDI + 完成-3D 绘图中的任何点必须转换从相对 X、 Y 和 Z (3D) 相对 X 坐标和 Y (2D) 协调使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法。 通过调用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>，X 和 Y 值的<xref:System.Windows.Forms.DataVisualization.Charting.Point3D>对象更改，以便它们反映 3 维空间。 新的 X 和 Y 点后更改为使用的绝对像素坐标然后使用 GDI + 方法调用的 Z 值然后忽略-<xref:System.Windows.Forms.DataVisualization.Charting.ChartGraphics.GetAbsolutePoint%2A>方法。  
+ 自定义三维绘图中使用的任何点 (使用 gdi + 完成) 必须使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法从相对 x、y 和 Z (3d) 坐标转换为相对 x 和 y (二维) 坐标。 通过调用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>, 将更改<xref:System.Windows.Forms.DataVisualization.Charting.Point3D>对象的 X 和 Y 值, 以反映三维空间。 然后, 可以将新的 X 和 Y 点用于 gdi + 方法调用-然后, 在使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartGraphics.GetAbsolutePoint%2A>方法将 Z 值更改为绝对像素坐标后, 将忽略 Z 值。  
   
- 请注意，可能的 Z 坐标小于零 （位于图表区的后面） 或大于 100 （位于图表区的前面）。  
+ 请注意, Z 坐标可能小于零 (位于图表区域后面) 或大于 100 (位于图表区域的前方)。  
   
- 若要同时启用三维图表，并处理其样式，请使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.Area3DStyle%2A>属性。 <xref:System.Windows.Forms.DataVisualization.Charting.Point3D>类不用于三维样式。  
+ 若要启用三维图表并使用其样式, 请使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.Area3DStyle%2A>属性。 <xref:System.Windows.Forms.DataVisualization.Charting.Point3D>类不用于三维样式。  
   
  ]]></format>
     </remarks>
@@ -113,9 +113,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须转换自定义-这使用 GDI + 完成-3D 绘图中的任何点从 X、 Y 和 Z (3D) 坐标到 X 和 Y (2D) 协调使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法。 此方法采用的一组<xref:System.Windows.Forms.DataVisualization.Charting.Point3D>对象作为其唯一的参数。 通过调用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>，X 和 Y 属性值更改为反映 3 维空间。  
+ 自定义三维绘图中使用的任何点 (使用 gdi + 完成) 必须使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法从 x、y 和 Z (3d) 坐标转换为 x 和 y (二维) 坐标。 此方法采用对象的数组<xref:System.Windows.Forms.DataVisualization.Charting.Point3D>作为其唯一的参数。 通过调用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>, X 和 Y 属性值将更改, 以反映三维空间。  
   
- 这些新的 X 和 Y 坐标随后转换为绝对坐标，使用一种方法类似于<xref:System.Windows.Forms.DataVisualization.Charting.ChartGraphics.GetAbsolutePoint%2A>方法。 将转换的坐标后,<xref:System.Windows.Forms.DataVisualization.Charting.Point3D.PointF%2A>每个 Point3D 对象的属性可用于执行任何 GDI + 方法<xref:System.Drawing.PointF>对象作为参数。  
+ 然后使用方法 (如<xref:System.Windows.Forms.DataVisualization.Charting.ChartGraphics.GetAbsolutePoint%2A>方法) 将这些新的 X 和 Y 坐标转换为绝对坐标。 转换坐标后, 每个<xref:System.Windows.Forms.DataVisualization.Charting.Point3D.PointF%2A> Point3D 对象的属性可用于<xref:System.Drawing.PointF>采用对象作为参数的任何 gdi + 方法。  
   
  ]]></format>
         </remarks>
@@ -151,11 +151,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须转换自定义-这使用 GDI + 完成-3D 绘图中的任何点从 X、 Y 和 Z (3D) 坐标到 X 和 Y (2D) 协调使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法。 此方法作为其唯一参数采用 Point3D 对象的数组。 通过调用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法中，X 和 Y 属性值更改为反映 3 维空间。  
+ 自定义三维绘图中使用的任何点 (使用 gdi + 完成) 必须使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法从 x、y 和 Z (3d) 坐标转换为 x 和 y (二维) 坐标。 此方法采用 Point3D 对象的数组作为其唯一参数。 通过调用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法, X 和 Y 属性值将更改, 以反映三维空间。  
   
- 这些新的 X 和 Y 坐标随后使用的转换为绝对坐标<xref:System.Windows.Forms.DataVisualization.Charting.ChartGraphics.GetAbsolutePoint%2A>方法。 然后使用 GDI + 方法调用。  
+ 然后, 使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartGraphics.GetAbsolutePoint%2A>方法将这些新的 X 和 Y 坐标转换为绝对坐标。 然后, 它们将用于 GDI + 方法调用。  
   
- 相对 X 坐标可以通过调用从轴值获取<xref:System.Windows.Forms.DataVisualization.Charting.Axis.ValueToPosition%2A>方法。  
+ 可以通过调用<xref:System.Windows.Forms.DataVisualization.Charting.Axis.ValueToPosition%2A>方法从轴值获取相对 X 坐标。  
   
  ]]></format>
         </remarks>
@@ -191,11 +191,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须转换自定义-这使用 GDI + 完成-3D 绘图中的任何点从 X、 Y 和 Z (3D) 坐标到 X 和 Y (2D) 协调使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法。 此方法作为其唯一参数采用 Point3D 对象的数组。 通过调用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法中，X 和 Y 属性值更改为反映 3 维空间。  
+ 自定义三维绘图中使用的任何点 (使用 gdi + 完成) 必须使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法从 x、y 和 Z (3d) 坐标转换为 x 和 y (二维) 坐标。 此方法采用 Point3D 对象的数组作为其唯一参数。 通过调用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法, X 和 Y 属性值将更改, 以反映三维空间。  
   
- 这些新的 X 和 Y 坐标随后转换为绝对坐标使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartGraphics.GetAbsolutePoint%2A>方法。 然后使用 GDI + 方法调用。  
+ 然后, 使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartGraphics.GetAbsolutePoint%2A>方法将这些新的 X 和 Y 坐标转换为绝对坐标。 然后, 它们将用于 GDI + 方法调用。  
   
- 可以从轴值使用获取的相对 Y 坐标<xref:System.Windows.Forms.DataVisualization.Charting.Axis.ValueToPosition%2A>方法。  
+ 可以使用<xref:System.Windows.Forms.DataVisualization.Charting.Axis.ValueToPosition%2A>方法从轴值获取相对 Y 坐标。  
   
  ]]></format>
         </remarks>
@@ -237,15 +237,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此 Z 属性始终以相关图表区域深度的百分比表示。 用三维图表，Z 坐标是相对的并且具有值为 0 的图表区背面墙和图表区的前墙 100 的值。  
+ 此 Z 属性始终以相关图表区域深度的百分比表示。 对于三维图表, Z 坐标是相对的, 其值为0表示图表区的背面墙, 值为100表示图表区的前墙。  
   
- **请注意**此 Z 属性可能小于零 （位于图表区的后面） 或大于 100 （位于图表区的前面）。  
+ **注意**此 Z 属性可能小于零 (位于图表区域后面) 或大于 100 (位于图表区域的前方)。  
   
- 必须转换自定义-这使用 GDI + 完成-3D 绘图中的任何点从 X、 Y 和 Z (3D) 坐标到 X 和 Y (2D) 协调使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法。 此方法作为其唯一参数采用 Point3D 对象的数组。 通过调用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法中，X 和 Y 属性值更改为反映 3 维空间。  
+ 自定义三维绘图中使用的任何点 (使用 gdi + 完成) 必须使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法从 x、y 和 Z (3d) 坐标转换为 x 和 y (二维) 坐标。 此方法采用 Point3D 对象的数组作为其唯一参数。 通过调用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.TransformPoints%2A>方法, X 和 Y 属性值将更改, 以反映三维空间。  
   
- 这些新的 X 和 Y 坐标随后转换为绝对坐标使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartGraphics.GetAbsolutePoint%2A>方法。 然后使用 GDI + 方法调用。  
+ 然后, 使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartGraphics.GetAbsolutePoint%2A>方法将这些新的 X 和 Y 坐标转换为绝对坐标。 然后, 它们将用于 GDI + 方法调用。  
   
- 可以通过使用为序列获取相对 Z 坐标<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.GetSeriesDepth%2A>和<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.GetSeriesZPosition%2A>方法。  
+ 可以使用<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.GetSeriesDepth%2A>和<xref:System.Windows.Forms.DataVisualization.Charting.ChartArea.GetSeriesZPosition%2A>方法为序列获取相对 Z 坐标。  
   
  ]]></format>
         </remarks>

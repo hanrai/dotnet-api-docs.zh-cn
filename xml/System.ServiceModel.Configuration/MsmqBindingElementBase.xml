@@ -1,5 +1,5 @@
 <Type Name="MsmqBindingElementBase" FullName="System.ServiceModel.Configuration.MsmqBindingElementBase">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6801645420417b2fd7423bc5d1c123ba4ae743ba" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55307251" /></Metadata><TypeSignature Language="C#" Value="public abstract class MsmqBindingElementBase : System.ServiceModel.Configuration.StandardBindingElement" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b98fbeb8fd666e61ab7e3170976ac162ce58871b" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69105094" /></Metadata><TypeSignature Language="C#" Value="public abstract class MsmqBindingElementBase : System.ServiceModel.Configuration.StandardBindingElement" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit MsmqBindingElementBase extends System.ServiceModel.Configuration.StandardBindingElement" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Configuration.MsmqBindingElementBase" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class MsmqBindingElementBase&#xA;Inherits StandardBindingElement" />
@@ -113,7 +113,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个*死信队列*是由发送应用程序的队列管理器，可以存储未能传递或已过期的消息队列。 使用 `CustomDeadLetterQueue` 属性可以指定自定义死信队列，而不必使用默认的系统级死信队列。  
+ *死信队列*是由发送应用程序的队列管理器管理的队列, 用于存储未能传递或已过期的消息。 使用 `CustomDeadLetterQueue` 属性可以指定自定义死信队列，而不必使用默认的系统级死信队列。  
   
  <xref:System.ServiceModel.Configuration.MsmqBindingElementBase.CustomDeadLetterQueue%2A> 指定的 URI 必须使用 net.msmq 方案。  
   
@@ -151,7 +151,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- *死信队列*是由发送应用程序的队列管理器，可以存储未能传递或已过期的消息队列。 造成消息未能到达接收应用程序的原因包括：  
+ *死信队列*是由发送应用程序的队列管理器管理的队列, 用于存储未能传递或已过期的消息。 造成消息未能到达接收应用程序的原因包括：  
   
 -   事务性消息被发送到非事务性队列中。  
   
@@ -165,7 +165,7 @@
   
 -   超出了目标计算机的消息存储配额或目标队列的存储配额，或者在消息到达时目标计算机上没有可用的存储空间。  
   
--   发送方不具有[访问权限](https://go.microsoft.com/fwlink/?LinkID=96167)需将消息放入目标队列。  
+-   发送方没有将消息放入目标队列所需的[访问权限](https://go.microsoft.com/fwlink/?LinkID=96167)。  
   
 -   附加在消息上的数字签名无效。  
   
@@ -239,7 +239,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Channels.MsmqBindingElementBase.ExactlyOnce%2A>如果设置为`true`，指示消息队列 (也称为 MSMQ) 应确保，将发送的消息传递到接收的消息队列一次且只有一次。 如果传递失败，消息发送到死信队列，具体取决于`DeadLetterQueue`属性设置。 若要将 <xref:System.ServiceModel.Channels.MsmqBindingElementBase.ExactlyOnce%2A> 设置为 `true`，则要求队列为事务性队列。  
+ <xref:System.ServiceModel.Channels.MsmqBindingElementBase.ExactlyOnce%2A>当设置为`true`时, 指示消息队列 (也称为 MSMQ) 会确保将发送的消息传递到接收消息队列一次且只有一次。 如果传递失败, 则会根据`DeadLetterQueue`属性设置将消息发送到死信队列。 若要将 <xref:System.ServiceModel.Channels.MsmqBindingElementBase.ExactlyOnce%2A> 设置为 `true`，则要求队列为事务性队列。  
   
  ]]></format>
         </remarks>
@@ -337,7 +337,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个*重试周期*是一条消息从重试队列传输到应用程序队列以尝试传递给应用程序的时间。 若立即重试失败次数达到 <xref:System.ServiceModel.Configuration.MsmqBindingElementBase.ReceiveRetryCount%2A> 指定的值，消息则被放到重试队列中。 <xref:System.ServiceModel.Configuration.MsmqBindingElementBase.MaxRetryCycles%2A> 指定重试周期数，它不包含第一次发送消息的尝试。 最多会进行 (1 + MaxRetryCycles) * (ReceiveRetryCount + 1) 次传递消息的尝试。 例如，如果 ReceiveRetryCount 为 0，且 MaxRetryCycles 为 1，则最多将进行两次传递消息的尝试。 此属性可以在 [!INCLUDE[wv](~/includes/wv-md.md)] 操作系统及其更高版本上使用。  
+ *重试周期*是指将消息从重试队列传输到应用程序队列以尝试向应用程序传递。 若立即重试失败次数达到 <xref:System.ServiceModel.Configuration.MsmqBindingElementBase.ReceiveRetryCount%2A> 指定的值，消息则被放到重试队列中。 <xref:System.ServiceModel.Configuration.MsmqBindingElementBase.MaxRetryCycles%2A> 指定重试周期数，它不包含第一次发送消息的尝试。 最多会进行 (1 + MaxRetryCycles) * (ReceiveRetryCount + 1) 次传递消息的尝试。 例如，如果 ReceiveRetryCount 为 0，且 MaxRetryCycles 为 1，则最多将进行两次传递消息的尝试。 此属性可以在 [!INCLUDE[wv](~/includes/wv-md.md)] 操作系统及其更高版本上使用。  
   
  ]]></format>
         </remarks>
@@ -384,7 +384,7 @@
         <ReturnType>System.Configuration.ConfigurationPropertyCollection</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取一个 <see cref="T:System.Configuration.ConfigurationPropertyCollection" /> 实例，该实例包含一个 <see cref="T:System.Configuration.ConfigurationProperty" /> 对象集合，这些对象可以是此配置元素的属性或 <see cref="T:System.Configuration.ConfigurationElement" /> 对象。</summary>
+        <summary>获取一个 <see cref="T:System.Configuration.ConfigurationPropertyCollection" /> 实例，该实例包含一个 <see cref="T:System.Configuration.ConfigurationProperty" /> 对象集合，这些对象可以是此配置元素的特性或 <see cref="T:System.Configuration.ConfigurationElement" /> 对象。</summary>
         <value>一个 <see cref="T:System.Configuration.ConfigurationPropertyCollection" /> 实例，该实例包含一个 <see cref="T:System.Configuration.ConfigurationProperty" /> 对象集合，这些对象可以是此绑定配置元素的特性或 <see cref="T:System.Configuration.ConfigurationElement" /> 对象。</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -416,7 +416,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 启用此功能后，服务可以"扫视"队列的消息以开始处理它，而且，如果发生任何错误并且引发异常，将其保留在队列。 服务还可"锁定"消息以便重试时间在以后处理。 ReceiveContext 提供了一种机制来"完成"消息一次处理，因此可以从队列中删除。 消息不再通过网络进行读取并将其重写到队列和各个消息处理期间不会在不同的服务实例。  
+ 当启用此功能时, 服务可以 "扫视" 队列中的消息以开始处理它, 如果发生任何错误并且引发异常, 则该消息将保留在队列中。 服务还可 "锁定" 消息以便在稍后的某个时间点重试处理。 ReceiveContext 提供了一种机制, 用于在处理后 "完成" 消息, 以便可以从队列中删除该消息。 消息将不再被读取并重新写入到网络上的队列中, 并且在处理过程中各个消息不会在不同的服务实例之间切换。  
   
  ]]></format>
         </remarks>

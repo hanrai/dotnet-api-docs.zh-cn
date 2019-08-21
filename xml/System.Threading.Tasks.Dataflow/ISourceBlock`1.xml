@@ -1,5 +1,5 @@
 <Type Name="ISourceBlock&lt;TOutput&gt;" FullName="System.Threading.Tasks.Dataflow.ISourceBlock&lt;TOutput&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ec203c0549a12afc6ac50891f4726e9f4784f080" /><Meta Name="ms.sourcegitcommit" Value="8e213bb5e6801f6e29861ba72664978ad00e34fa" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/18/2019" /><Meta Name="ms.locfileid" Value="56379522" /></Metadata><TypeSignature Language="C#" Value="public interface ISourceBlock&lt;out TOutput&gt; : System.Threading.Tasks.Dataflow.IDataflowBlock" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5aec06d8acb9dfbecad3d46c6bebb019759882af" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69099622" /></Metadata><TypeSignature Language="C#" Value="public interface ISourceBlock&lt;out TOutput&gt; : System.Threading.Tasks.Dataflow.IDataflowBlock" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ISourceBlock`1&lt;+ TOutput&gt; implements class System.Threading.Tasks.Dataflow.IDataflowBlock" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Tasks.Dataflow.ISourceBlock`1" />
   <TypeSignature Language="VB.NET" Value="Public Interface ISourceBlock(Of Out TOutput)&#xA;Implements IDataflowBlock" />
@@ -27,8 +27,8 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <typeparam name="TOutput">指定提供的数据类型<see cref="T:System.Threading.Tasks.Dataflow.ISourceBlock`1" />。</typeparam>
-    <summary>表示数据流块，其为数据源。</summary>
+    <typeparam name="TOutput">指定提供<see cref="T:System.Threading.Tasks.Dataflow.ISourceBlock`1" />的数据类型。</typeparam>
+    <summary>表示作为数据源的数据流块。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
@@ -76,7 +76,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 仅<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601>实例链接到这<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601>实例可能会使用<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ConsumeMessage%2A>，并仅必须用于使用<xref:System.Threading.Tasks.Dataflow.DataflowMessageHeader>实例以前提供的此源到目标。  
+ 只有<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601>链接到此<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601>实例的实例可以<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ConsumeMessage%2A>使用, <xref:System.Threading.Tasks.Dataflow.DataflowMessageHeader>并且它只能用于使用以前由此源提供给目标的实例。  
   
  ]]></format>
         </remarks>
@@ -149,7 +149,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 仅<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601>实例链接到这<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601>实例可能会使用`ReleaseReservation`，它必须仅用于发布和<xref:System.Threading.Tasks.Dataflow.DataflowMessageHeader>以前并成功由目标保留的实例。  
+ 只有<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601>链接到此<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601>实例的实例才`ReleaseReservation`可以使用, 并且它必须仅用于释放<xref:System.Threading.Tasks.Dataflow.DataflowMessageHeader>先前由目标成功保留的实例。  
   
  ]]></format>
         </remarks>
@@ -191,11 +191,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 仅<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601>实例链接到这<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601>实例可能会使用<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ReserveMessage%2A>，并仅必须用于保留<xref:System.Threading.Tasks.Dataflow.DataflowMessageHeader>实例以前提供的此源到目标。  
+ 只有<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601>链接到此<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601>实例的实例可以<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ReserveMessage%2A>使用, 并且它必须仅用于保留<xref:System.Threading.Tasks.Dataflow.DataflowMessageHeader>此源之前提供给目标的实例。  
   
- 如果`true`返回，则<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601>必须随后调用<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ConsumeMessage%2A>或<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ReleaseReservation%2A>此消息。 如果不这样做可能会导致无法传播到这个或其他目标的其他任何消息的源。  
+ 如果`true`返回, 则<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601>必须随后为此消息<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ConsumeMessage%2A>调用<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ReleaseReservation%2A>或。 如果不这样做, 可能会导致源无法将任何进一步的消息传播到此目标或其他目标。  
   
- <xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ReserveMessage%2A> 不得调用，而目标保持任何内部锁。 执行此操作将违反需要避免数据流网络中的死锁在锁层次结构。  
+ <xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ReserveMessage%2A>当目标持有任何内部锁时, 不得调用。 这样做将违反锁层次结构, 以避免数据流网络中的死锁。  
   
  ]]></format>
         </remarks>

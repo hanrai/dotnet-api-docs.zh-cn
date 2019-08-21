@@ -1,5 +1,5 @@
 <Type Name="AmbientPropertyValue" FullName="System.Xaml.AmbientPropertyValue">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f6af58c20c5950eead76a68ac2c6208b839262cb" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64175074" /></Metadata><TypeSignature Language="C#" Value="public class AmbientPropertyValue" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="fa556d627fd741b02d3d7c31895e65f06e8daaed" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69427765" /></Metadata><TypeSignature Language="C#" Value="public class AmbientPropertyValue" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit AmbientPropertyValue extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Xaml.AmbientPropertyValue" />
   <TypeSignature Language="VB.NET" Value="Public Class AmbientPropertyValue" />
@@ -19,21 +19,21 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xaml.AmbientPropertyValue> 表示通过调用返回的信息项<xref:System.Xaml.IAmbientProvider>服务方法。 `GetAll`方法返回枚举或数组<xref:System.Xaml.AmbientPropertyValue>项;`GetFirst`方法返回单个<xref:System.Xaml.AmbientPropertyValue>。  
+ <xref:System.Xaml.AmbientPropertyValue>表示通过调用<xref:System.Xaml.IAmbientProvider>服务方法返回的信息项。 方法返回项的<xref:System.Xaml.AmbientPropertyValue>枚举或数组; `GetFirst`方法返回单个<xref:System.Xaml.AmbientPropertyValue>。 `GetAll`  
   
-## <a name="about-ambient-properties"></a>有关环境属性  
- 环境属性是其属性值应为 XAML 节点结构中的值转换器用法和其下的对象图可用属性。 在加载路径的对象写入阶段或保存的序列化阶段期间的环境概念是 XAML 处理器相关路径。  
+## <a name="about-ambient-properties"></a>关于环境属性  
+ 环境属性是一个属性, 它的属性值应该可用于 XAML 节点结构中的值转换器用法和它下面的对象图。 环境概念与 XAML 处理器相关, 在加载路径或保存路径的序列化阶段的对象写入阶段。  
   
- 一种类型还可能被由于环境。 在这种情况下，使用特性化的类型的所有属性都报告为环境。  
+ 类型也可以特性化为环境。 在这种情况下, 使用特性化类型的所有属性都将报告为环境。  
   
- 在加载路径的情况下，环境属性值可能会影响其下存在 XAML 节点结构中的其他属性的对象关系图生成值。 当处理为 XAML 节点流，环境的概念意味着环境属性值必须是可用于类型转换器和标记扩展`StartObject`到`EndObject`。 同样，类型转换器或标记扩展使用该保存路径可以查找环境属性和它的值。 因此，XAML 生成的是更好的往返过程表示形式。  
+ 在加载路径情况下, 环境属性值可能会影响 XAML 节点结构中存在于其下的其他属性的对象图生成值。 当处理为 XAML 节点流时, 环境概念表示环境属性值必须可用于的类型转换器和标记扩展`StartObject`。 `EndObject` 同样, 用于保存路径的类型转换器或标记扩展可以查找环境属性及其值。 因此, 生成的 XAML 是更好的往返表示形式。  
   
- 根据其语言定义，XAML 不会指定必须处理对象的成员的顺序。 但是，任何环境属性值都必须首先由 XAML 读取器处理，以便其他属性中包含的类型转换器和标记扩展用法可以访问通过<xref:System.Xaml.IAmbientProvider>服务。  
+ XAML 不会按照语言定义来指定处理对象成员的顺序。 但是, 必须先由 XAML 读取器处理任何环境属性值, 以便其他属性中包含的类型转换器和标记扩展用法可以通过<xref:System.Xaml.IAmbientProvider>服务访问它。  
   
- <xref:System.Xaml.XamlMember.DependsOn%2A> 是一个类似的概念，还会影响 XAML 节点处理顺序。 但是，<xref:System.Xaml.XamlMember.DependsOn%2A>仅用于对等成员和节点关系; 因此不可能影响所有后代。 此外，<xref:System.Xaml.XamlMember.DependsOn%2A>直接影响对象关系图属性设置，而环境技术依赖于类型转换器或标记扩展。 在环境的技术，还必须有特定的类型转换器或标记扩展定义。 负责每个类型转换器或标记扩展，以确定应如何解释和应用于使用类型转换器或标记扩展的对象关系图位置的环境属性值。  
+ <xref:System.Xaml.XamlMember.DependsOn%2A>是一个类似的概念, 也会影响 XAML 节点处理顺序。 但是, <xref:System.Xaml.XamlMember.DependsOn%2A>只能用于对等成员和节点关系, 它无法影响所有后代。 同时, <xref:System.Xaml.XamlMember.DependsOn%2A>直接影响对象图的属性设置, 而环境技术依赖于类型转换器或标记扩展。 在环境技术中, 还必须有特定的类型转换器或标记扩展定义。 这取决于每个类型转换器或标记扩展, 以确定应如何解释环境属性值并将其应用到使用类型转换器或标记扩展的对象图位置。  
   
 ## <a name="wpf-usage-notes"></a>WPF 用法说明  
- 中所示的环境属性方案[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]功能集是<xref:System.Windows.Style.TargetType%2A?displayProperty=nameWithType>，可以限定必要的属性名称查找有关其他值。 在这种情况下，<xref:System.Windows.Style.TargetType%2A?displayProperty=nameWithType>值限定<xref:System.Windows.Setter.Property%2A?displayProperty=nameWithType>中下面的 XAML 节点的值。 <xref:System.Windows.Setter.Property%2A?displayProperty=nameWithType> 使用的类型转换器行为<xref:System.Windows.DependencyProperty>。 此行为访问环境<xref:System.Windows.Style.TargetType%2A?displayProperty=nameWithType>通过查询值<xref:System.Xaml.IAmbientProvider.GetFirstAmbientValue%2A>从可用于类型转换器和标记扩展的服务上下文。  
+ [!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]功能集中阐释的环境属性方案为<xref:System.Windows.Style.TargetType%2A?displayProperty=nameWithType>, 它可以为其他值限定必需的属性名称查找。 在这种情况下<xref:System.Windows.Style.TargetType%2A?displayProperty=nameWithType> , 值限定<xref:System.Windows.Setter.Property%2A?displayProperty=nameWithType>其下的 XAML 节点中的值。 <xref:System.Windows.Setter.Property%2A?displayProperty=nameWithType>使用的类型转换器行为<xref:System.Windows.DependencyProperty>。 此行为通过从可<xref:System.Windows.Style.TargetType%2A?displayProperty=nameWithType>供类型转换器<xref:System.Xaml.IAmbientProvider.GetFirstAmbientValue%2A>和标记扩展使用的服务上下文进行查询来访问环境值。  
   
  ]]></format>
     </remarks>

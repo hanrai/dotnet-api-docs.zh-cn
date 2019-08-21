@@ -1,5 +1,5 @@
 <Type Name="IPersistComponentSettings" FullName="System.Configuration.IPersistComponentSettings">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9127b6636e86acc136c4dfc774ac26d983a775c8" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56767391" /></Metadata><TypeSignature Language="C#" Value="public interface IPersistComponentSettings" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7334668a390ddea282822d40a701007c04e22340" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69129506" /></Metadata><TypeSignature Language="C#" Value="public interface IPersistComponentSettings" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IPersistComponentSettings" />
   <TypeSignature Language="DocId" Value="T:System.Configuration.IPersistComponentSettings" />
   <TypeSignature Language="VB.NET" Value="Public Interface IPersistComponentSettings" />
@@ -23,7 +23,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常情况下，您可以添加应用程序设置支持对应用程序通过创建设置包装类，该类派生自<xref:System.Configuration.ApplicationSettingsBase>，然后将特殊属性添加到此类。 但是，这种方法不足够的封装应用程序设置的控件，以便其容器受防护的详细信息。 <xref:System.Configuration.IPersistComponentSettings>接口提供了用于应用程序设置状态更改请求设置为控件、 组件或库模块进行通信的标准接口具有的应用程序。 设计时工具还依赖于此接口，以便正确地管理控件和组件。  
+ 通常, 可以通过创建一个从派生的<xref:System.Configuration.ApplicationSettingsBase>设置包装器类, 并向此类添加特殊属性, 将应用程序设置支持添加到应用程序。 但是, 此方法并不能充分封装控件的应用程序设置, 因此无法从详细信息中屏蔽其容器。 <xref:System.Configuration.IPersistComponentSettings>接口为应用程序提供了一个标准接口, 用于将应用程序设置状态更改请求与控件、组件或库模块通信。 设计时工具还依赖于此接口以正确管理控件和组件。  
   
  ]]></format>
     </remarks>
@@ -60,11 +60,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一般情况下，<xref:System.Configuration.IPersistComponentSettings.LoadComponentSettings%2A>方法执行两项主要操作：  
+ 通常, <xref:System.Configuration.IPersistComponentSettings.LoadComponentSettings%2A>方法执行两项基本操作:  
   
--   它会导致控件以刷新其应用程序设置属性的值通常通过调用包含的每个应用程序设置实例及其<xref:System.Configuration.ApplicationSettingsBase.Reload%2A>方法。  
+-   它会导致控件包含的每个应用程序设置实例刷新其应用程序设置属性的值, 通常通过调用<xref:System.Configuration.ApplicationSettingsBase.Reload%2A>其方法来刷新。  
   
--   根据需要，它会更新依赖于这些重新加载设置属性的常规属性。 例如，如果设置类包含`location`设置属性<xref:System.Configuration.IPersistComponentSettings.LoadComponentSettings%2A>应确保控件的<xref:System.Windows.Forms.Control.Location%2A>属性会更新以反映重新加载的设置。  
+-   根据需要, 它会更新依赖于这些重新加载的设置属性的常规属性。 例如, 如果 settings 类包含`location`设置属性, <xref:System.Configuration.IPersistComponentSettings.LoadComponentSettings%2A>应确保更新控件的属性以反映此<xref:System.Windows.Forms.Control.Location%2A>重新加载的设置。  
   
  ]]></format>
         </remarks>
@@ -102,7 +102,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 实现<xref:System.Configuration.IPersistComponentSettings.ResetComponentSettings%2A>方法通常会调用<xref:System.Configuration.ApplicationSettingsBase.Reset%2A>它包含应用程序设置类的每个实例上的方法。  
+ <xref:System.Configuration.IPersistComponentSettings.ResetComponentSettings%2A>方法的实现通常对它包含的<xref:System.Configuration.ApplicationSettingsBase.Reset%2A>应用程序设置类的每个实例调用方法。  
   
  ]]></format>
         </remarks>
@@ -139,10 +139,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Configuration.IPersistComponentSettings.SaveComponentSettings%2A>方法将控件的应用程序设置属性的值写入到关联的数据存储区。 该方法使用的数据存储区和序列化技术由通过每个设置类与关联的设置提供程序<xref:System.Configuration.SettingsProviderAttribute>。 可以通过使用所选的设置提供程序的重写<xref:System.Configuration.ISettingsProviderService>接口。  
+ <xref:System.Configuration.IPersistComponentSettings.SaveComponentSettings%2A>方法将控件的应用程序设置属性的值写入关联的数据存储区。 方法使用的数据存储和序列化技术由与每个 settings 类<xref:System.Configuration.SettingsProviderAttribute>相关联的设置提供程序确定。 您可以使用<xref:System.Configuration.ISettingsProviderService>接口覆盖设置提供程序的选择。  
   
 > [!NOTE]
->  如果<xref:System.Configuration.IPersistComponentSettings.SaveSettings%2A>属性是`true`，该控件应调用<xref:System.Configuration.IPersistComponentSettings.SaveComponentSettings%2A>入其自己<xref:System.Windows.Forms.Control.Dispose%2A>方法，以使应用程序结束之前自动存储控件的配置数据。  
+>  如果属性为`true`, 则控件应调用<xref:System.Configuration.IPersistComponentSettings.SaveComponentSettings%2A>其自身<xref:System.Windows.Forms.Control.Dispose%2A>的方法, 以便在应用程序结束之前自动存储控件的配置数据。 <xref:System.Configuration.IPersistComponentSettings.SaveSettings%2A>  
   
  ]]></format>
         </remarks>
@@ -184,14 +184,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果控件包含配置数据，它通常将保留此数据以响应对的显式调用<xref:System.Configuration.IPersistComponentSettings.SaveComponentSettings%2A>方法或有时隐式时控件的<xref:System.Windows.Forms.Control.Dispose%2A>调用方法。 <xref:System.Configuration.IPersistComponentSettings.SaveSettings%2A>属性确定是否控件自动保持其配置数据时被释放。  
+ 如果控件包含配置数据, 则通常会保留此数据以响应对<xref:System.Configuration.IPersistComponentSettings.SaveComponentSettings%2A>方法的显式调用, 或在调用控件的<xref:System.Windows.Forms.Control.Dispose%2A>方法时隐式调用。 <xref:System.Configuration.IPersistComponentSettings.SaveSettings%2A>属性确定控件在释放时是否自动保存其配置数据。  
   
- 默认值<xref:System.Configuration.IPersistComponentSettings.SaveSettings%2A>取决于控件的实现。 控件的文档应指示其是否使用应用程序设置、 数据保持不变，和的默认值<xref:System.Configuration.IPersistComponentSettings.SaveSettings%2A>属性。  
+ 的<xref:System.Configuration.IPersistComponentSettings.SaveSettings%2A>默认值取决于控件的实现。 控件的文档应指示它使用的是应用程序设置、要保存的数据以及<xref:System.Configuration.IPersistComponentSettings.SaveSettings%2A>属性的默认值。  
   
    
   
 ## Examples  
- 下面的代码示例显示了一个控件，若要检查的值的正确方法<xref:System.Configuration.IPersistComponentSettings.SaveSettings%2A>属性之前它将尝试自动保持其配置数据。  
+ 下面的代码示例演示了在尝试自动保留其配置数据之前, 控件检查<xref:System.Configuration.IPersistComponentSettings.SaveSettings%2A>属性值的正确方法。  
   
  `protected override void Dispose( bool disposing ) {`  
   
@@ -250,17 +250,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Configuration.IPersistComponentSettings.SettingsKey%2A>属性来消除歧义的应用程序设置属性组时有多个相同的包装器类的实例。 例如，如果控件包含关联的包装类，然后将相同的控件的多个实例放在同一应用程序通常会在包装器类的多个实例。 仅当在按实例逐一; 上不同的配置数据时，才需要设置键例如，动态定位控件的位置。  
+ 当存在多个具有相同包装类的实例时, 请使用属性来消除应用程序设置属性组的歧义。<xref:System.Configuration.IPersistComponentSettings.SettingsKey%2A> 例如, 如果控件包含关联的包装类, 则在同一应用程序中放置同一控件的多个实例通常会导致包装类的多个实例。 仅当配置数据在每个实例上不同时, 才需要设置键;例如, 动态定位的控件的位置。  
   
- 以下常规规则适用于使用<xref:System.Configuration.IPersistComponentSettings.SettingsKey%2A>:  
+ 以下一般规则适用于使用<xref:System.Configuration.IPersistComponentSettings.SettingsKey%2A>:  
   
--   一个控件，像任何类中，可能包含零个或多个应用程序设置类派生自<xref:System.Configuration.ApplicationSettingsBase>。 每个设置类包含其自身<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A?displayProperty=nameWithType>属性，这有助于消除歧义该类的多个实例。  
+-   类似于任何类的控件可以包含从派生的<xref:System.Configuration.ApplicationSettingsBase>零个或多个应用程序设置类。 每个 settings 类都包含<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A?displayProperty=nameWithType>自己的属性, 这有助于消除该类的多个实例的歧义。  
   
--   控件应为不同的设置类将其每个实例数据和共享的数据。  
+-   控件应将其每个实例的数据及其共享数据分隔到不同的设置类中。  
   
--   与任何基于实例的配置数据，控件`get`访问器的<xref:System.Configuration.IPersistComponentSettings.SettingsKey%2A>属性应默认为<xref:System.Windows.Forms.Control.Name%2A>的控件。 在大多数情况下名称是控件的唯一的应用程序中。 如果控件包含共享配置数据，仅`get`应默认为`null`。  
+-   对于包含每个实例配置数据的控件, `get` <xref:System.Configuration.IPersistComponentSettings.SettingsKey%2A> <xref:System.Windows.Forms.Control.Name%2A>属性的访问器应默认为控件的。 在大多数情况下, 控件的名称将在应用程序中是唯一的。 如果控件仅包含共享的配置数据, `get`则默认为`null`。  
   
--   `set`应实现此属性访问器包含每个实例和共享的配置数据的设置类之间进行区分。 对于包含每个实例数据，每个设置类`set`应仅传递到<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A?displayProperty=nameWithType>设置类的属性。 对于包含共享的数据，设置类`set`应为该设置类执行任何操作。  
+-   应`set`实现此属性的访问器来区分包含每个实例的设置类和共享配置数据。 对于包含每个实例数据的每个 settings `set`类, 只应传递<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A?displayProperty=nameWithType>到 settings 类的属性。 对于包含共享数据的设置类`set` , 不应对该设置类执行任何操作。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="PerformanceCounterInstaller" FullName="System.Diagnostics.PerformanceCounterInstaller">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a0ecde39567bbe8bd0e545262bee6420f3605415" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55366569" /></Metadata><TypeSignature Language="C#" Value="public class PerformanceCounterInstaller : System.Configuration.Install.ComponentInstaller" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="32088cb76dffd3ed3f1cfb319776f012f55a2950" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69075909" /></Metadata><TypeSignature Language="C#" Value="public class PerformanceCounterInstaller : System.Configuration.Install.ComponentInstaller" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit PerformanceCounterInstaller extends System.Configuration.Install.ComponentInstaller" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.PerformanceCounterInstaller" />
   <TypeSignature Language="VB.NET" Value="Public Class PerformanceCounterInstaller&#xA;Inherits ComponentInstaller" />
@@ -21,12 +21,12 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 以下信息可能有助于在安装应用程序启动时的性能计数器时提供性能改进。 安装.NET framework 2.0 版的性能计数器类别使用单独的共享的内存，每个性能计数器类别都有自己的内存。 可以通过创建 DWORD 注册表项 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services 中名为 FileMappingSize 指定单独的共享内存的大小\\*\<类别名称 >* \性能。 FileMappingSize 值设置为该类别的共享的内存大小。 默认大小为 131072 十进制。 如果不存在，FileMappingSize 值`fileMappingSize`特性值`performanceCounters`使用 Machine.config 文件中指定的元素时，从而导致额外的配置文件处理的开销。 您可以通过在注册表中设置的文件映射大小来实现对应用程序启动性能的改进。  
+ 在应用程序启动时安装性能计数器时, 以下信息可能有助于提高性能。 随 .NET Framework 版本2.0 一起安装的性能计数器类别使用单独的共享内存, 其中每个性能计数器类别都有自己的内存。 可以通过在注册表项 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\\*\<类别名称*中创建一个名为 FileMappingSize 的 DWORD, 来指定单独共享内存的大小, > \Performance。 FileMappingSize 值设置为类别的共享内存大小。 默认大小为131072。 如果 FileMappingSize 值不存在, 则使用在`fileMappingSize` machine.config 文件中指定`performanceCounters`的元素的属性值, 从而导致配置文件处理出现额外的开销。 可以通过在注册表中设置文件映射大小来实现对应用程序启动的性能改进。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何创建<xref:System.Diagnostics.PerformanceCounterInstaller>对象，并将其添加到<xref:System.Configuration.Install.InstallerCollection>。  
+ 下面的代码示例演示如何创建<xref:System.Diagnostics.PerformanceCounterInstaller>对象并将其添加<xref:System.Configuration.Install.InstallerCollection>到中。  
   
  [!code-cpp[PerformanceCounterInstaller#1](~/samples/snippets/cpp/VS_Snippets_CLR/PerformanceCounterInstaller/CPP/performancecounterinstaller.cpp#1)]
  [!code-csharp[PerformanceCounterInstaller#1](~/samples/snippets/csharp/VS_Snippets_CLR/PerformanceCounterInstaller/CS/performancecounterinstaller.cs#1)]
@@ -157,7 +157,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.PerformanceCounterInstaller.CategoryType%2A>属性指定性能计数器类别是否可以具有多个实例。  
+ <xref:System.Diagnostics.PerformanceCounterInstaller.CategoryType%2A>属性指定性能计数器类别是否可以有多个实例。  
   
  ]]></format>
         </remarks>
@@ -191,7 +191,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.PerformanceCounterInstaller> 只能在同一类别中安装多个计数器。  
+ <xref:System.Diagnostics.PerformanceCounterInstaller>只能在同一类别中安装多个计数器。  
   
  ]]></format>
         </remarks>
@@ -200,7 +200,7 @@
 - 或 - 
 指定的 <see cref="T:System.Diagnostics.PerformanceCounter" /> 不完整。  
   
-- 或 - 
+或 
 尝试安装不同类别中的多个计数器。</exception>
       </Docs>
     </Member>
@@ -264,7 +264,7 @@
 ## Remarks  
   
 > [!NOTE]
->  安装具有相同名称的一个服务，以及性能计数器时, 安装的性能计数器之前安装该服务。  
+>  在安装具有相同名称的服务和性能计数器时, 请在安装性能计数器之前安装该服务。  
   
  ]]></format>
         </remarks>
@@ -291,7 +291,7 @@
         <Parameter Name="savedState" Type="System.Collections.IDictionary" />
       </Parameters>
       <Docs>
-        <param name="savedState"><see cref="T:System.Collections.IDictionary" /> 包含计算机的安装前状态。</param>
+        <param name="savedState"><see cref="T:System.Collections.IDictionary" />，它包含计算机的安装前状态。</param>
         <summary>将计算机还原为安装前的状态。</summary>
         <remarks>To be added.</remarks>
       </Docs>

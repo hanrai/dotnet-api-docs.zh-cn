@@ -1,5 +1,5 @@
 <Type Name="LifetimeServices" FullName="System.Runtime.Remoting.Lifetime.LifetimeServices">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f858c701b8e91bb960afbce09b207fd4ec670897" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64113435" /></Metadata><TypeSignature Language="C#" Value="public sealed class LifetimeServices" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="89ce4ee3658671422f76e78073db95594b7d082c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69061497" /></Metadata><TypeSignature Language="C#" Value="public sealed class LifetimeServices" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed LifetimeServices extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Remoting.Lifetime.LifetimeServices" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class LifetimeServices" />
@@ -30,12 +30,12 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 分布式的垃圾回收是负责控制的服务器应用程序的生存期，并为它们的生存期结束时将其删除。 传统上，分布式的垃圾回收使用引用计数和 ping 进行控制。 这适用于有几个客户端，每个对象，但也有成千上万的客户端每个每个对象时不起作用。 当客户端的数量增加时，生存期服务可采用传统分布式垃圾回收器和扩展的函数。  
+ 分布式垃圾回收负责控制服务器应用程序的生存期, 并在其生存期过期时将其删除。 传统上, 分布式垃圾回收使用引用计数和 ping 控制。 如果每个对象有少量的客户端, 则这种方法很有效, 但当每个对象有数千个客户端时, 此功能就不能正常工作。 生存期服务可以假定传统分布式垃圾回收器的功能, 并且在客户端数量增加时可以很好地进行缩放。  
   
- 生存期服务将租约与每个远程激活的对象相关联。 租约过期时，删除的对象。  
+ 生存期服务将租约与每个远程激活的对象相关联。 当租约过期时, 将删除该对象。  
   
 > [!NOTE]
->  此类，可以链接要求。 如果直接调用方没有基础结构权限，将引发 SecurityException。 请参阅[链接要求](~/docs/framework/misc/link-demands.md)有关详细信息。  
+>  此类发出链接请求。 如果直接调用方没有基础结构权限, 则会引发 SecurityException。 有关详细信息, 请参阅[链接要求](~/docs/framework/misc/link-demands.md)。  
   
    
   
@@ -46,7 +46,7 @@
   
  ]]></format>
     </remarks>
-    <permission cref="T:System.Security.Permissions.SecurityPermission">用于操作的基础结构代码。 要求值： <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;权限值： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+    <permission cref="T:System.Security.Permissions.SecurityPermission">用于处理基础结构代码。 要求值: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;权限值:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -107,14 +107,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当前的属性定义的租约管理器将变为活动状态，以清除到期租约的频率。 例如，如果<xref:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime%2A>设置为 100 秒租约列表检查其中是否存在清理和续订每隔 100 秒。  
+ 当前属性定义租约管理器激活的频率, 以清理过期的租约。 例如, 如果<xref:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime%2A>设置为100秒, 则每100秒检查一次租约列表中是否有清理和续订。  
   
- 默认值<xref:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime%2A>属性值为 10 秒。  
+ <xref:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime%2A>属性的默认值为10秒。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">在调用堆栈上部，至少有一个调用方没有配置远程处理类型和通道的权限。 仅在设置该属性值时才会引发此异常。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于配置的远程处理基础结构。 要求值： <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;权限值： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于配置远程处理基础结构。 要求值: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;权限值:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
       </Docs>
     </Member>
     <Member MemberName="LeaseTime">
@@ -147,12 +147,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认租约时间跨度为 5 分钟。  
+ 默认租约时间跨度为5分钟。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">在调用堆栈上部，至少有一个调用方没有配置远程处理类型和通道的权限。 仅在设置该属性值时才会引发此异常。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于配置的远程处理基础结构。 要求值： <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;权限值： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于配置远程处理基础结构。 要求值: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;权限值:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
       </Docs>
     </Member>
     <Member MemberName="RenewOnCallTime">
@@ -185,7 +185,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通过该扩展的生存期租约的默认值续订时间为 2 分钟。  
+ 生存期租约延长的默认续订时间为2分钟。  
   
    
   
@@ -197,7 +197,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">在调用堆栈上部，至少有一个调用方没有配置远程处理类型和通道的权限。 仅在设置该属性值时才会引发此异常。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于配置的远程处理基础结构。 要求值： <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;权限值： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于配置远程处理基础结构。 要求值: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;权限值:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
       </Docs>
     </Member>
     <Member MemberName="SponsorshipTimeout">
@@ -230,7 +230,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 主办方调用已超时的默认时间为 2 分钟。  
+ 调用主办方的默认时间超时为2分钟。  
   
    
   
@@ -242,7 +242,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">在调用堆栈上部，至少有一个调用方没有配置远程处理类型和通道的权限。 仅在设置该属性值时才会引发此异常。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">用于配置的远程处理基础结构。 要求值： <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;权限值： <see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">用于配置远程处理基础结构。 要求值: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;权限值:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
       </Docs>
     </Member>
   </Members>
