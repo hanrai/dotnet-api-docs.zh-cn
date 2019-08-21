@@ -1,5 +1,5 @@
 <Type Name="HttpContent" FullName="System.Net.Http.HttpContent">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="789be93abffa501a2b892a614aeac1cc4ebb0fe3" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58749907" /></Metadata><TypeSignature Language="C#" Value="public abstract class HttpContent : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="3ea0bd117154431b899b26f84c7713b150c4b064" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69092290" /></Metadata><TypeSignature Language="C#" Value="public abstract class HttpContent : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit HttpContent extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Net.Http.HttpContent" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class HttpContent&#xA;Implements IDisposable" />
@@ -110,7 +110,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task>对象将完成的所有内容写入到的流对象作为传递后`stream`参数。  
+ 此操作不会阻止。 将所有<xref:System.Threading.Tasks.Task>内容写入`stream`作为参数传递的流对象后, 返回的对象将完成。  
   
  ]]></format>
         </remarks>
@@ -152,7 +152,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task>对象将完成的所有内容写入到的流对象作为传递后`stream`参数。  
+ 此操作不会阻止。 将所有<xref:System.Threading.Tasks.Task>内容写入`stream`作为参数传递的流对象后, 返回的对象将完成。  
   
  ]]></format>
         </remarks>
@@ -195,11 +195,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成的所有内容都已写入内存流。  
+ 此操作不会阻止。 将所有<xref:System.Threading.Tasks.Task%601>内容写入内存流后, 返回的对象将会完成。  
   
- 操作完成后，<xref:System.Threading.Tasks.Task%601.Result%2A>返回的任务对象上的属性包含表示将 HTTP 内容的内存流。 然后可以使用返回的流读取使用多个流 Api 的内容。  
+ 操作完成后, 返回任务<xref:System.Threading.Tasks.Task%601.Result%2A>对象上的属性将包含表示 HTTP 内容的内存流。 然后, 可以使用各种流 Api 使用返回的流读取内容。  
   
- <xref:System.Net.Http.HttpContent.CreateContentReadStreamAsync%2A>方法缓冲到内存流的内容。 如果没有更好的方法来检索的内容以流的形式，派生的类可以重写此行为。 例如，一个字节数组或一个字符串，可以使用更高效的方法方法，例如 wrapping 只读的<xref:System.IO.MemoryStream>字节或字符串周围。)  
+ <xref:System.Net.Http.HttpContent.CreateContentReadStreamAsync%2A>方法将内容缓冲到内存流。 如果有更好的方法将内容检索为流, 派生类可以重写此行为。 例如, 字节数组或字符串可以使用更高效的方法, 例如在字节或字符串<xref:System.IO.MemoryStream>周围环绕只读。)  
   
  ]]></format>
         </remarks>
@@ -284,7 +284,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法由公共`Dispose()`方法和<xref:System.Object.Finalize%2A>方法。 `Dispose()` 调用受保护`Dispose(Boolean)`方法替换`disposing`参数设置为`true`。 <xref:System.Object.Finalize%2A> 调用`Dispose`与`disposing`设置为`false`。当`disposing`参数是`true`，此方法释放任何托管对象所持有的所有资源，此<xref:System.Net.Http.HttpContent>的引用。 此方法调用每个引用对象的 `Dispose()` 方法。  
+ 此方法由公共`Dispose()`方法<xref:System.Object.Finalize%2A>和方法调用。 `Dispose()`调用受保护`Dispose(Boolean)`的方法, `disposing`并将参数`true`设置为。 <xref:System.Object.Finalize%2A>在`Dispose` 设置`disposing` 为`false`的情况调用。当参数为`true`时, 此方法释放该<xref:System.Net.Http.HttpContent>引用的任何托管对象所持有的所有资源。 `disposing` 此方法调用每个引用对象的 `Dispose()` 方法。  
   
  ]]></format>
         </remarks>
@@ -333,7 +333,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。  
+ 此操作不会阻止。  
   
  ]]></format>
         </remarks>
@@ -371,9 +371,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task>对象将完成后的所有内容已序列化到内存缓冲区。  
+ 此操作不会阻止。 所有内容<xref:System.Threading.Tasks.Task>都序列化到内存缓冲区后, 返回的对象将会完成。  
   
- 内容序列化为内存缓冲区后，会调用到其中一个<xref:System.Net.Http.HttpContent.CopyToAsync%2A>方法会将内存缓冲区的内容复制到目标流。  
+ 将内容序列化到内存缓冲区后, 对其中一种<xref:System.Net.Http.HttpContent.CopyToAsync%2A>方法的调用会将内存缓冲区的内容复制到目标流中。  
   
  ]]></format>
         </remarks>
@@ -419,11 +419,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task>对象将完成后的所有内容已序列化到内存缓冲区。  
+ 此操作不会阻止。 所有内容<xref:System.Threading.Tasks.Task>都序列化到内存缓冲区后, 返回的对象将会完成。  
   
- 内容序列化为内存缓冲区后，会调用到其中一个<xref:System.Net.Http.HttpContent.CopyToAsync%2A>方法会将内存缓冲区的内容复制到目标流。  
+ 将内容序列化到内存缓冲区后, 对其中一种<xref:System.Net.Http.HttpContent.CopyToAsync%2A>方法的调用会将内存缓冲区的内容复制到目标流中。  
   
- 如果内容超出了中传递的值`maxBufferSize`参数，将引发异常。  
+ 如果内容超出`maxBufferSize`参数中传递的值, 则会引发异常。  
   
  ]]></format>
         </remarks>
@@ -466,9 +466,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成的所有内容作为字节数组写入后。  
+ 此操作不会阻止。 在将<xref:System.Threading.Tasks.Task%601>所有内容都作为字节数组写入后, 返回的对象将完成。  
   
- 操作完成后，<xref:System.Threading.Tasks.Task%601.Result%2A>返回的任务对象上的属性包含与 HTTP 内容的字节数组。  
+ 操作完成后, 返回任务<xref:System.Threading.Tasks.Task%601.Result%2A>对象上的属性将包含 HTTP 内容的字节数组。  
   
  ]]></format>
         </remarks>
@@ -511,9 +511,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成所有流之后，已读取表示内容。  
+ 此操作不会阻止。 在读取<xref:System.Threading.Tasks.Task%601>所有表示内容的流后, 返回的对象将完成。  
   
- 操作完成后，<xref:System.Threading.Tasks.Task%601.Result%2A>返回的任务对象上的属性包含表示将 HTTP 内容的流。 然后可以使用返回的流读取使用多个流 Api 的内容。  
+ 操作完成后, 返回任务<xref:System.Threading.Tasks.Task%601.Result%2A>对象上的属性将包含表示 HTTP 内容的流。 然后, 可以使用各种流 Api 使用返回的流读取内容。  
   
  ]]></format>
         </remarks>
@@ -556,9 +556,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成后的所有内容已编写为字符串。  
+ 此操作不会阻止。 将所有<xref:System.Threading.Tasks.Task%601>内容都编写为字符串后, 将完成返回的对象。  
   
- 操作完成后，<xref:System.Threading.Tasks.Task%601.Result%2A>返回的任务对象上的属性包含与 HTTP 内容的字符串。  
+ 操作完成后, 返回的<xref:System.Threading.Tasks.Task%601.Result%2A>任务对象上的属性将包含具有 HTTP 内容的字符串。  
   
  ]]></format>
         </remarks>
@@ -600,7 +600,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不会阻止此操作。 返回<xref:System.Threading.Tasks.Task%601>对象将完成后的所有内容已序列化到传入的流对象`stream`参数。  
+ 此操作不会阻止。 所有内容<xref:System.Threading.Tasks.Task%601>都序列化为`stream`在参数中传递的流对象后, 返回的对象将完成。  
   
  ]]></format>
         </remarks>
@@ -641,7 +641,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Http.HttpContent.TryComputeLength%2A>方法使 HTTP 内容能够计算内容的长度。 这是适用于内容类型能够轻松地计算出的内容长度。 如果计算的内容长度不能或者成本高昂 （且需要系统的数据进行缓冲整个内容序列化将可能产生巨额开销或需要分配大量内存的系统位置），此方法可以返回`false`。 如果此方法返回`false`，这意味着的所需 chunked 的传输或发送到服务器之前，必须获取缓冲内容。  
+ <xref:System.Net.Http.HttpContent.TryComputeLength%2A>方法可让 HTTP 内容计算内容长度。 这对于能够轻松计算内容长度的内容类型很有用。 如果无法或昂贵地计算内容长度 (要求系统缓冲序列化会消耗大量内存或需要系统分配大量内存的完整内容), 则此方法可能返回`false`。 如果此方法返回`false`, 则表示需要分块传输, 或者必须在将内容发送到服务器之前缓冲内容。  
   
  ]]></format>
         </remarks>

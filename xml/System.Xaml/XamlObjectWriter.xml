@@ -1,5 +1,5 @@
 <Type Name="XamlObjectWriter" FullName="System.Xaml.XamlObjectWriter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="88e6ca45083f7c3b687072f89d33f2067088da08" /><Meta Name="ms.sourcegitcommit" Value="c5fd6b431a16f0412349201a0e93a9eacddf4b35" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="12/14/2018" /><Meta Name="ms.locfileid" Value="53390854" /></Metadata><TypeSignature Language="C#" Value="public class XamlObjectWriter : System.Xaml.XamlWriter, System.Xaml.IXamlLineInfoConsumer" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="31f36e0757a0ec127b5ff19e37dca6c8a490d0de" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69427206" /></Metadata><TypeSignature Language="C#" Value="public class XamlObjectWriter : System.Xaml.XamlWriter, System.Xaml.IXamlLineInfoConsumer" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit XamlObjectWriter extends System.Xaml.XamlWriter implements class System.Xaml.IXamlLineInfoConsumer" />
   <TypeSignature Language="DocId" Value="T:System.Xaml.XamlObjectWriter" />
   <TypeSignature Language="VB.NET" Value="Public Class XamlObjectWriter&#xA;Inherits XamlWriter&#xA;Implements IXamlLineInfoConsumer" />
@@ -23,31 +23,31 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `Write`的方法<xref:System.Xaml.XamlObjectWriter>实现一种模式，以便<xref:System.Xaml.XamlObjectWriter>使用<xref:System.Xaml.XamlWriter>由定义<xref:System.Xaml.XamlWriter.WriteNode%2A>方法。 <xref:System.Xaml.XamlWriter.WriteNode%2A> 逻辑交换机之间`Write`方法，具体取决于哪个节点类型是在读取器中的当前位置。  
+ <xref:System.Xaml.XamlObjectWriter>的`Write` 方法实现模式<xref:System.Xaml.XamlWriter> , 以便使用由<xref:System.Xaml.XamlWriter.WriteNode%2A>方法定义的。 <xref:System.Xaml.XamlObjectWriter> <xref:System.Xaml.XamlWriter.WriteNode%2A>逻辑在`Write`方法之间切换, 具体取决于读取器中当前位置的节点类型。  
   
 ## <a name="scope"></a>范围  
- 一个<xref:System.Xaml.XamlObjectWriter>有作用域; 它是一个概念，则<xref:System.Xaml.XamlObjectWriter>其输出对象关系图中引用的概念点保持不变。 特定作用域，某些操作可能是有效或无效，或产生无操作的结果。 例如，如果您调用<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A>编写指令的对象初始化已作为实例存在，则默认实现，将引发异常。  
+ 具有作用域的概念; 即<xref:System.Xaml.XamlObjectWriter> , 在其输出对象关系图中维护一个概念点引用。 <xref:System.Xaml.XamlObjectWriter> 对于特定范围, 某些操作可能有效或无效, 或者产生无操作结果。 例如, 如果您调用<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A>来编写在已作为实例存在的对象上进行初始化的指令, 则默认实现将引发异常。  
   
- 用于跟踪在自定义的作用域的可行方法<xref:System.Xaml.XamlObjectWriter>是对齐的堆栈或框架类的节点操作。 堆栈或框架可以跟踪的 push 和 pop 针对每个进入或退出时的对象模型深度级别而<xref:System.Xaml.XamlObjectWriter>写入对象图。  
+ 跟踪自定义<xref:System.Xaml.XamlObjectWriter>中的作用域的可能方法是将节点操作与堆栈或帧类对齐。 在<xref:System.Xaml.XamlObjectWriter>写入对象图时, 堆栈或帧可以跟踪输入或退出的对象模型深度的每个级别的 push 和 pop。  
   
-## <a name="callbacks"></a>回调  
- 若要支持中级和高级<xref:System.Xaml.XamlObjectWriter>情况下，写入对象图的机制提供回调发生的入口点时<xref:System.Xaml.XamlObjectWriter>提交或将要提交特定的操作。 某些回调在设置中启用并不特定于对象类型或写入; 该成员但是，回调信息通常是在上下文中可用，或者是在事件将通过在发送的数据。 下面是一组相关的回调：  
+## <a name="callbacks"></a>回电  
+ 为了支持中级和高级<xref:System.Xaml.XamlObjectWriter>方案, 编写对象图的机制提供了<xref:System.Xaml.XamlObjectWriter>在提交或将要提交特定操作时出现的回调入口点。 某些回调在设置中启用, 并且不特定于对象类型或被写入的成员;但是, 回调信息通常在上下文中提供, 或在通过回调发送的事件数据中提供。 下面是相关回调的列表:  
   
--   通过声明的回调<xref:System.Xaml.XamlObjectWriterSettings.AfterBeginInitHandler%2A>时作用域转到新的对象并在调用<xref:System.ComponentModel.ISupportInitialize.BeginInit%2A>阶段创建的每个对象的对象生存期。  
+-   当作用域进入新对象<xref:System.Xaml.XamlObjectWriterSettings.AfterBeginInitHandler%2A>时, 以及<xref:System.ComponentModel.ISupportInitialize.BeginInit%2A>在对象生存期的每个所创建对象的阶段, 将调用由声明的回调。  
   
--   通过声明的回调<xref:System.Xaml.XamlObjectWriterSettings.AfterEndInitHandler%2A>时作用域转到新的对象并在调用<xref:System.ComponentModel.ISupportInitialize.EndInit%2A>阶段创建的每个对象的对象生存期。  
+-   当作用域进入新对象<xref:System.Xaml.XamlObjectWriterSettings.AfterEndInitHandler%2A>时, 以及<xref:System.ComponentModel.ISupportInitialize.EndInit%2A>在对象生存期的每个所创建对象的阶段, 将调用由声明的回调。  
   
--   通过声明的回调<xref:System.Xaml.XamlObjectWriterSettings.BeforePropertiesHandler%2A>当作用域对象，在启动时，调用时第一个<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A>进行但尚未提交到该对象的作用域调用。  
+-   当作用域在对象中<xref:System.Xaml.XamlObjectWriterSettings.BeforePropertiesHandler%2A>启动时, 将调用由声明的回调, 并在第一次<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A>调用该对象范围但尚未提交时发生。  
   
--   通过声明的回调<xref:System.Xaml.XamlObjectWriterSettings.AfterPropertiesHandler%2A>作用域的对象中启动并发生时调用时<xref:System.Xaml.XamlObjectWriter.WriteEndObject%2A>进行但尚未提交到该对象的作用域调用。  
+-   当作用域在对象中<xref:System.Xaml.XamlObjectWriterSettings.AfterPropertiesHandler%2A>启动时, 将调用由声明的回调, 并在对该<xref:System.Xaml.XamlObjectWriter.WriteEndObject%2A>对象范围的调用但尚未提交时发生。  
   
--   通过声明的回调<xref:System.Xaml.XamlObjectWriterSettings.XamlSetValueHandler%2A>时调用<xref:System.Xaml.XamlObjectWriter.OnSetValue%2A>调用。  
+-   当调用时<xref:System.Xaml.XamlObjectWriter.OnSetValue%2A> , 将调用<xref:System.Xaml.XamlObjectWriterSettings.XamlSetValueHandler%2A>由声明的回调。  
   
-## <a name="writing-dictionary-keys"></a>书写字典键  
- 默认实现<xref:System.Xaml.XamlObjectWriter>支持的约束类型转换<xref:System.Collections.Generic.Dictionary%602>之前字典内容将添加到对象图。 这种方式，泛型字典可以在运行时中由对象键控，并可以匹配相关的泛型`Add`和索引器行为。 但是，在实现中的基础<xref:System.Xaml.XamlObjectWriter>，此功能仅存在对象图创建基<xref:System.Collections.Generic.Dictionary%602>类，而不适用于的派生类<xref:System.Collections.Generic.Dictionary%602>。  
+## <a name="writing-dictionary-keys"></a>写入字典键  
+ 在将字典内容<xref:System.Xaml.XamlObjectWriter>添加到对象图之前, 的默认<xref:System.Collections.Generic.Dictionary%602>实现支持对的约束的类型转换。 通过这种方式, 一般字典可在运行时按对象进行键控, 并可与相关的`Add`泛型和索引器行为匹配。 但是, 在为基<xref:System.Xaml.XamlObjectWriter>实现时, 此功能仅适用于从基类<xref:System.Collections.Generic.Dictionary%602>创建的对象图, <xref:System.Collections.Generic.Dictionary%602>不适用于的派生类。  
   
-## <a name="checks-for-disposed"></a>检查释放  
- 延迟的操作或针对已在此期间中已释放的 XAML 编写器实例进行调用，其中可能会使用 XAML 编写器。 各种 Api<xref:System.Xaml.XamlObjectWriter>可能会引发<xref:System.ObjectDisposedException>在这些情况下。  
+## <a name="checks-for-disposed"></a>检查是否已释放  
+ XAML 编写器可能用于延迟的操作, 或对已在中期中释放的 XAML 编写器实例进行调用的位置。 在这些情况<xref:System.Xaml.XamlObjectWriter>下, <xref:System.ObjectDisposedException>可能会引发的各种 api。  
   
  ]]></format>
     </remarks>
@@ -281,7 +281,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`SetValue`为此 XAML 编写器的操作具有关联的处理程序 (<xref:System.Xaml.XamlObjectWriterSettings.XamlSetValueHandler%2A>中声明<xref:System.Xaml.XamlObjectWriterSettings>)，此方法创建新<xref:System.Windows.Markup.XamlSetValueEventArgs>并将其传递到处理程序。 返回值将设置通过阅读<xref:System.Windows.Markup.XamlSetValueEventArgs.Handled%2A>传递的事件数据的值。 如果没有处理程序，并调用此方法，该调用将返回`false`。  
+ 如果此`SetValue` XAML 编写器的操作具有关联的处理程序 ( <xref:System.Xaml.XamlObjectWriterSettings.XamlSetValueHandler%2A>在中<xref:System.Xaml.XamlObjectWriterSettings>声明了), 则此方法<xref:System.Windows.Markup.XamlSetValueEventArgs>将创建新的并将其传递给处理程序。 返回值是通过读取<xref:System.Windows.Markup.XamlSetValueEventArgs.Handled%2A>通过事件数据传递的值来设置的。 如果不存在处理程序并且调用了此方法, 则调用`false`将返回。  
   
  ]]></format>
         </remarks>
@@ -314,9 +314,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 最常见的用法<xref:System.Xaml.XamlObjectWriter.Result%2A>是仅在知道节点流为在其末尾，且对象关系图已完成时调用它。 否则为在对象图很可能是不完整，并不是适用于大多数平台方案。  
+ 最常见的<xref:System.Xaml.XamlObjectWriter.Result%2A>用法是仅当已知节点流的末尾时才调用此方法, 并且对象图已经完成。 否则, 对象图可能是不完整的, 在大多数平台方案中都不适用。  
   
- <xref:System.Xaml.XamlObjectWriter.Result%2A> 如果在调用后立即调用通常仅包含一个非 null 值<xref:System.Xaml.XamlObjectWriter.WriteEndObject%2A>，并且当前作用域中的成员，该对象提供的值。  
+ <xref:System.Xaml.XamlObjectWriter.Result%2A>通常<xref:System.Xaml.XamlObjectWriter.WriteEndObject%2A>, 如果在调用后立即调用, 并且当前范围位于对象提供值的成员中, 则通常仅包含非 null 值。  
   
  ]]></format>
         </remarks>
@@ -372,7 +372,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- XAML 架构上下文是最实用的对象编写方案的必要信息源。 XAML 架构上下文会影响在查找类型的后备类型和包含程序集的信息存在后备类型。 默认 XAML 架构上下文基于 CLR 类型映射规则。 框架通常会提供其自己的 XAML 架构上下文才能确保程序集加载机制与框架的编程和应用程序模型相匹配。  
+ XAML 架构上下文是大多数实际对象编写方案必需的信息源。 XAML 架构上下文会影响后备类型的类型查找, 并保存有关支持类型的程序集的信息。 默认 XAML 架构上下文基于 CLR 类型映射规则。 框架通常提供自己的 XAML 架构上下文, 以确保程序集加载机制与框架的编程 amd 应用程序模型匹配。  
   
  ]]></format>
         </remarks>
@@ -408,7 +408,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此服务方法不应在代码中直接调用。 但是，如果要创建从派生的类<xref:System.Xaml.XamlObjectWriter>和预期要报告上下文行号是不可用或没有什么用处，可能会在调用此方法。  
+ 此服务方法不应在代码中直接调用。 但是, 如果要从<xref:System.Xaml.XamlObjectWriter>创建派生类, 并希望报告某个行号不可用或不有用的上下文, 则可以调用此方法。  
   
  ]]></format>
         </remarks>
@@ -489,9 +489,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果此`EndObject`位置范围正在关闭的根对象，该新对象范围将成为根范围。  
+ 如果此`EndObject`位置范围正在关闭根对象, 则新的对象范围将成为根范围。  
   
- 对调用<xref:System.Xaml.XamlObjectWriter.WriteStartObject%2A>可能还未创建该对象由于对象成员可能是必需的初始化路径，例如初始化文本或初始化参数。 对于这些情况下，在调用<xref:System.Xaml.XamlObjectWriter.WriteEndObject%2A>实际写入的对象。  
+ 对<xref:System.Xaml.XamlObjectWriter.WriteStartObject%2A>的调用可能尚未创建对象, 因为对象成员可能是必需的初始化路径, 例如初始化文本或初始化参数。 对于这些情况, 调用<xref:System.Xaml.XamlObjectWriter.WriteEndObject%2A>实际上会写入对象。  
   
  ]]></format>
         </remarks>
@@ -519,11 +519,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 与写入之间的差别<xref:System.Xaml.XamlObjectWriter.WriteGetObject%2A>写入和用<xref:System.Xaml.XamlObjectWriter.WriteStartObject%2A>生成的对象图中所示。 <xref:System.Xaml.XamlObjectWriter.WriteGetObject%2A> 并不会构造类型的实例，因为<xref:System.Xaml.XamlObjectWriter.WriteGetObject%2A>API 具有要通知的内容来构造对象图的信息。 父属性已初始化; 相反，创建对象因此<xref:System.Xaml.XamlObjectWriter>不需要构造方法。 与此相反，<xref:System.Xaml.XamlObjectWriter.WriteStartObject%2A>指定该类型的实例应构造并插入到的对象图。  
+ 可在生成的对象<xref:System.Xaml.XamlObjectWriter.WriteGetObject%2A>图中查看<xref:System.Xaml.XamlObjectWriter.WriteStartObject%2A>通过编写和向写入的不同之处。 <xref:System.Xaml.XamlObjectWriter.WriteGetObject%2A>不构造类型的实例, 因为<xref:System.Xaml.XamlObjectWriter.WriteGetObject%2A> API 没有信息来通知对象关系图的构造。 相反, 对象是在初始化父属性时创建的;<xref:System.Xaml.XamlObjectWriter>因此, 不需要构造它。 相反, <xref:System.Xaml.XamlObjectWriter.WriteStartObject%2A>指定应构造该类型的实例并将其插入到对象图中。  
   
- 如果为一系列的帧，XAML 节点流的认为<xref:System.Xaml.XamlObjectWriter.WriteGetObject%2A>均衡到<xref:System.Xaml.XamlObjectWriter.WriteEndObject%2A>调用。 因此，数<xref:System.Xaml.XamlObjectWriter.WriteGetObject%2A>加上<xref:System.Xaml.XamlObjectWriter.WriteStartObject%2A>调用的数量应相等<xref:System.Xaml.XamlObjectWriter.WriteEndObject%2A>作为 XAML 节点流的完整对象写入评估的一部分调用。  
+ 如果将 XAML 节点流视为一系列的帧, 则会将其<xref:System.Xaml.XamlObjectWriter.WriteGetObject%2A>平衡<xref:System.Xaml.XamlObjectWriter.WriteEndObject%2A>到调用。 因此, <xref:System.Xaml.XamlObjectWriter.WriteGetObject%2A>加上<xref:System.Xaml.XamlObjectWriter.WriteStartObject%2A>调用的次数<xref:System.Xaml.XamlObjectWriter.WriteEndObject%2A>应等于 XAML 节点流的完整对象写入计算的一部分的调用数。  
   
- 概念`StartObject`定位对象图中的隐式对象是必需的因为尽管本身的对象值是隐式默认值，但该对象仍可能需要编写基于 XAML 节点流的成员。 出现这种情况的典型情况是当<xref:System.Xaml.XamlObjectWriter>写入成员节点的集合属性，而且集合初始化是隐式的创建拥有集合属性的对象。  
+ 对象图`StartObject`中的隐式对象的概念位置是必需的, 因为虽然对象值本身是隐式默认值, 但该对象可能仍有需要基于 XAML 节点流编写的成员。 出现这种情况的典型方案是<xref:System.Xaml.XamlObjectWriter> : 为集合属性写入成员节点, 并且集合初始化是隐式的, 以创建拥有集合属性的对象。  
   
  ]]></format>
         </remarks>
@@ -553,11 +553,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以在当前作用域是根范围、 对象范围或成员范围编写命名空间声明。 但是，<xref:System.Xaml.XamlObjectWriter.WriteNamespace%2A>只能在调用之前调用以下项之一： <xref:System.Xaml.XamlObjectWriter.WriteNamespace%2A>， <xref:System.Xaml.XamlObjectWriter.WriteStartObject%2A>，或<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A>。 连续<xref:System.Xaml.XamlObjectWriter.WriteNamespace%2A>情况是用于将多个命名空间声明写入同一个节点。 最终，或者<xref:System.Xaml.XamlObjectWriter.WriteStartObject%2A>或<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A>必须调用。  
+ 如果当前范围是根范围、对象范围或成员范围, 则可以编写命名空间声明。 但是, <xref:System.Xaml.XamlObjectWriter.WriteNamespace%2A>只能在调用以下项之一之前调用: <xref:System.Xaml.XamlObjectWriter.WriteNamespace%2A>、 <xref:System.Xaml.XamlObjectWriter.WriteStartObject%2A>或<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A>。 连续<xref:System.Xaml.XamlObjectWriter.WriteNamespace%2A>的情况是将多个命名空间声明写入同一节点。 最终, <xref:System.Xaml.XamlObjectWriter.WriteStartObject%2A>必须调用<xref:System.Xaml.XamlObjectWriter.WriteStartMember%2A>或。  
   
- <xref:System.Xaml.XamlObjectWriter.WriteNamespace%2A> 不使用`Start` / `End`隐喻。 尽管 XAML 命名空间具有在 CLR 表示形式意义上的成员，但成员已知，且无需将表示为一种特殊的<xref:System.Xaml.XamlMember>可扩展性。 若要访问的值<xref:System.Xaml.NamespaceDeclaration>，你访问其<xref:System.Xaml.NamespaceDeclaration.Namespace%2A>和<xref:System.Xaml.NamespaceDeclaration.Prefix%2A>属性。  
+ <xref:System.Xaml.XamlObjectWriter.WriteNamespace%2A>不使用`Start` /比喻。`End` 尽管 XAML 命名空间具有 CLR 表示法中的成员, 但这些成员是已知的, 无需表示为可扩展性的特殊类型<xref:System.Xaml.XamlMember> 。 若要访问的<xref:System.Xaml.NamespaceDeclaration>值, 请访问其<xref:System.Xaml.NamespaceDeclaration.Namespace%2A>和<xref:System.Xaml.NamespaceDeclaration.Prefix%2A>属性。  
   
- 命名空间声明可能具有<xref:System.String.Empty?displayProperty=nameWithType>的前缀值。 一个<xref:System.String.Empty?displayProperty=nameWithType>前缀表示的默认 XAML 命名空间声明。 不要尝试使用 null 以表示默认的前缀; 在此 API，会引发异常。 有关详情，请参阅<xref:System.Xaml.NamespaceDeclaration>。  
+ 命名空间声明可以具有<xref:System.String.Empty?displayProperty=nameWithType>前缀的值。 <xref:System.String.Empty?displayProperty=nameWithType>前缀表示默认 XAML 命名空间的声明。 不要尝试使用 null 来表示默认前缀; 它在此 API 中引发异常。 有关详细信息，请参阅 <xref:System.Xaml.NamespaceDeclaration>。  
   
  ]]></format>
         </remarks>
@@ -593,7 +593,7 @@
 ## Remarks  
   
 > [!TIP]
->  观看有关<xref:System.Xaml.XamlDuplicateMemberException>，两次在输入 XAML 中设置相同的 XAML 属性时会发生此情况。 在简单情况下，例如当同一个属性设置特性语法和属性元素语法中可以轻松查看输入的标记中此异常。 但是，更微妙的情况下会发生更难以发现的。 例如，如果将一个 XAML 内容属性，如果涉及 XAML 环境属性和属性，可附加的使用情况和实例使用情况，可能会发生此异常。 在开发的调试阶段，通常可以通过查看连接读取的标记和对象关系图写入中间 XAML 节点表示形式找到此异常。  
+>  <xref:System.Xaml.XamlDuplicateMemberException>监视, 这在 xaml 输入中两次设置相同的 xaml 属性时发生。 在简单的情况下 (如在属性语法和属性元素语法中同时设置相同属性时), 可以轻松地在输入标记中看到此异常。 但是, 可能会出现更难以发现的更多微妙情况。 例如, 如果您设置了 xaml 内容属性 (包括 XAML 环境属性), 并且属性同时启用了可附加的用法和实例使用情况, 则可能会发生此异常。 在开发的调试阶段, 你通常可以通过查看连接标记读取和对象图写入的中间 XAML 节点表示形式来查找此异常。  
   
  ]]></format>
         </remarks>
@@ -602,7 +602,7 @@
 或 
  <see cref="P:System.Xaml.XamlLanguage.UnknownContent" /> 传递，指示 XAML 节点流为不支持内容的对象包含内容。  
   
-- 或 - 
+或 
 尝试在无效的范围中写入开始成员。</exception>
         <exception cref="T:System.Xaml.XamlDuplicateMemberException"><paramref name="property" /> 指定父对象作用域中已显式设置的属性。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="property" /> 为 <see langword="null" />。</exception>
@@ -631,11 +631,11 @@
         <remarks>To be added.</remarks>
         <exception cref="T:System.Xaml.XamlObjectWriterException">处理 <see cref="P:System.Xaml.XamlType.IsUnknown" /> 类型，且无法创建对象。  
   
-- 或 - 
+或 
 尝试在无效的范围中写入开始对象。</exception>
         <exception cref="T:System.Xaml.XamlParseException">尝试在根对象已经在设置中提供时写入根对象。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="xamlType" /> 为 <see langword="null" />。</exception>
-        <block subset="none" type="overrides"><para>如果当前范围位于集合、 字典或数组，应使用添加到集合、 字典或数组的新实例<see langword="Add" />相关类型的方法。 否则，该成员应分配给新实例。</para></block>
+        <block subset="none" type="overrides"><para>如果当前范围位于集合、字典或数组中, 则应使用<see langword="Add" />相关类型的方法将新实例添加到集合、字典或数组。 否则, 应将成员分配给新的实例。</para></block>
       </Docs>
     </Member>
     <Member MemberName="WriteValue">

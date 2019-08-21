@@ -1,5 +1,5 @@
 <Type Name="DbEnumerator" FullName="System.Data.Common.DbEnumerator">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ff9742615e1e5940c1f0e4a891483fa5bb1f1f6a" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63896029" /></Metadata><TypeSignature Language="C#" Value="public class DbEnumerator : System.Collections.IEnumerator" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0cf5aab6040499b001ff4435c40f27b104705e85" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69376897" /></Metadata><TypeSignature Language="C#" Value="public class DbEnumerator : System.Collections.IEnumerator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DbEnumerator extends System.Object implements class System.Collections.IEnumerator" />
   <TypeSignature Language="DocId" Value="T:System.Data.Common.DbEnumerator" />
   <TypeSignature Language="VB.NET" Value="Public Class DbEnumerator&#xA;Implements IEnumerator" />
@@ -37,9 +37,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Common.DbEnumerator>类实现由.NET Framework 数据提供程序提供绑定支持的数据。  
+ <xref:System.Data.Common.DbEnumerator>类由 .NET Framework 数据提供程序实现, 以提供数据绑定支持。  
   
- 根据设计，<xref:System.Data.Common.DbEnumerator>对象的目的是为用于只有一个结果集。 例如，如果您执行的批处理语句包含两个 SQL SELECT 语句返回不同的架构，第二个语句将可能不返回整个架构。 若要避免这种情况下，获得<xref:System.Data.Common.DbEnumerator>为每个结果集，，然后调用`NextResult`.NET Framework 数据提供程序 DataReader 对象的方法。  
+ 按照设计, <xref:System.Data.Common.DbEnumerator>对象只与一个结果集一起使用。 例如, 如果执行包含两个返回不同架构的 SQL SELECT 语句的批处理语句, 则第二条语句可能不会返回整个架构。 若要避免这种情况, <xref:System.Data.Common.DbEnumerator>请获取每个结果集的, `NextResult`然后调用 .NET Framework 数据提供程序 DataReader 对象的方法。  
   
  ]]></format>
     </remarks>
@@ -235,7 +235,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 创建一个枚举器或<xref:System.Data.Common.DbEnumerator.Reset%2A>，<xref:System.Data.Common.DbEnumerator.MoveNext%2A>必须调用以枚举器前进到集合，然后再读取的值的第一个元素<xref:System.Data.Common.DbEnumerator.Current%2A>; 否则为<xref:System.Data.Common.DbEnumerator.Current%2A>是不确定的。 <xref:System.Data.Common.DbEnumerator.Current%2A> 此外会引发异常，如果最后一次调用到<xref:System.Data.Common.DbEnumerator.MoveNext%2A>返回 false，指示集合的末尾。 <xref:System.Data.Common.DbEnumerator.Current%2A> 不会移动到调用连续的枚举器的位置<xref:System.Data.Common.DbEnumerator.Current%2A>直到返回同一对象<xref:System.Data.Common.DbEnumerator.MoveNext%2A>或<xref:System.Data.Common.DbEnumerator.Reset%2A>调用。 只要集合保持不变，枚举数就保持有效。 如果对集合进行了更改，例如添加、 修改或删除元素，则枚举数将失效，并且下一个调用<xref:System.Data.Common.DbEnumerator.MoveNext%2A>或<xref:System.Data.Common.DbEnumerator.Reset%2A>生成<xref:System.InvalidOperationException>。 如果集合修改之间<xref:System.Data.Common.DbEnumerator.MoveNext%2A>并<xref:System.Data.Common.DbEnumerator.Current%2A>，<xref:System.Data.Common.DbEnumerator.Current%2A>即使枚举数已经无效，则返回它设置的元素。  
+ 在创建枚举器之后或<xref:System.Data.Common.DbEnumerator.Reset%2A>之后, 必须先调用以将枚举数前移到集合的第一个元素, <xref:System.Data.Common.DbEnumerator.MoveNext%2A> <xref:System.Data.Common.DbEnumerator.Current%2A>然后才能读取的值; 否则, <xref:System.Data.Common.DbEnumerator.Current%2A>将未定义。 <xref:System.Data.Common.DbEnumerator.Current%2A>如果最后一次调用<xref:System.Data.Common.DbEnumerator.MoveNext%2A>返回 false, 则还会引发异常, 指示集合的末尾。 <xref:System.Data.Common.DbEnumerator.Current%2A>在调用<xref:System.Data.Common.DbEnumerator.Current%2A> <xref:System.Data.Common.DbEnumerator.MoveNext%2A>或之前,不会移动枚举器的位置和连续调用来返回相同的对象。<xref:System.Data.Common.DbEnumerator.Reset%2A> 只要集合保持不变，枚举数就保持有效。 如果对集合所做的更改 (如添加、修改或删除元素), 则枚举器将失效且不可恢复, 并<xref:System.Data.Common.DbEnumerator.MoveNext%2A>将<xref:System.Data.Common.DbEnumerator.Reset%2A>对或<xref:System.InvalidOperationException>的下一个调用生成。 如果集合在和<xref:System.Data.Common.DbEnumerator.MoveNext%2A> <xref:System.Data.Common.DbEnumerator.Current%2A>之间进行了修改<xref:System.Data.Common.DbEnumerator.Current%2A> , 则将返回它所设置到的元素, 即使枚举器已失效。  
   
  ]]></format>
         </remarks>
@@ -283,7 +283,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 创建一个枚举器后，或调用<xref:System.Data.Common.DbEnumerator.Reset%2A>，一个枚举器位于集合中，并在首次调用的第一个元素的前面<xref:System.Data.Common.DbEnumerator.MoveNext%2A>移到第一个元素的集合的枚举器。 集合的末尾是传递，因为在后续调用后<xref:System.Data.Common.DbEnumerator.MoveNext%2A>返回 false 直到<xref:System.Data.Common.DbEnumerator.Reset%2A>调用。 只要集合保持不变，枚举数就保持有效。 如果对集合进行了更改，例如添加、 修改或删除元素，则枚举数将失效，并且下一个调用<xref:System.Data.Common.DbEnumerator.MoveNext%2A>或<xref:System.Data.Common.DbEnumerator.Reset%2A>引发<xref:System.InvalidOperationException>。  
+ 在创建枚举器之后或在调用之后, <xref:System.Data.Common.DbEnumerator.Reset%2A>枚举数将定位到集合的第一个元素之前, 第一次调用将枚举<xref:System.Data.Common.DbEnumerator.MoveNext%2A>数移到集合的第一个元素上。 在传递集合的末尾后, 对<xref:System.Data.Common.DbEnumerator.MoveNext%2A>的后续调用将返回 false, 直到<xref:System.Data.Common.DbEnumerator.Reset%2A>调用。 只要集合保持不变，枚举数就保持有效。 如果对集合所做的更改 (如添加、修改或删除元素), 则枚举器将失效且不可恢复, 并且<xref:System.Data.Common.DbEnumerator.MoveNext%2A>对<xref:System.Data.Common.DbEnumerator.Reset%2A>或的<xref:System.InvalidOperationException>下一个调用将引发。  
   
  ]]></format>
         </remarks>
@@ -335,7 +335,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 只要集合保持不变，枚举数就保持有效。 如果对集合进行了更改，例如添加、 修改或删除元素，则枚举数将失效，并且下一个调用<xref:System.Data.Common.DbEnumerator.MoveNext%2A>或<xref:System.Data.Common.DbEnumerator.Reset%2A>引发<xref:System.InvalidOperationException>。  
+ 只要集合保持不变，枚举数就保持有效。 如果对集合所做的更改 (如添加、修改或删除元素), 则枚举器将失效且不可恢复, 并且<xref:System.Data.Common.DbEnumerator.MoveNext%2A>对<xref:System.Data.Common.DbEnumerator.Reset%2A>或的<xref:System.InvalidOperationException>下一个调用将引发。  
   
  ]]></format>
         </remarks>

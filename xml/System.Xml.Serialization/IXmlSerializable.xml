@@ -1,5 +1,5 @@
 <Type Name="IXmlSerializable" FullName="System.Xml.Serialization.IXmlSerializable">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4cf7afe0712d7f7f6b2a9c9fadcd8bd19a613637" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58708903" /></Metadata><TypeSignature Language="C#" Value="public interface IXmlSerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e6ba04df9f4691c166c077ed025013951e401d89" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69424827" /></Metadata><TypeSignature Language="C#" Value="public interface IXmlSerializable" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IXmlSerializable" />
   <TypeSignature Language="DocId" Value="T:System.Xml.Serialization.IXmlSerializable" />
   <TypeSignature Language="VB.NET" Value="Public Interface IXmlSerializable" />
@@ -37,16 +37,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有两个原因，若要实现此接口。 第一种是控制您的对象序列化或反序列化方式<xref:System.Xml.Serialization.XmlSerializer>。 例如，可以为字节而不是缓冲大型数据集时，消息的分块数据并也避免膨胀时发生数据使用 Base64 编码进行编码的。 若要控制的序列化，实现<xref:System.Xml.Serialization.IXmlSerializable.ReadXml%2A>并<xref:System.Xml.Serialization.IXmlSerializable.WriteXml%2A>方法可用于控制<xref:System.Xml.XmlReader>和<xref:System.Xml.XmlWriter>类用于读取和写入 XML。 此示例，请参阅[如何：序列化数据进行分块](~/docs/standard/serialization/how-to-chunk-serialized-data.md)。  
+ 实现此接口有两个原因。 第一种方法是控制如何将对象序列化或反序列<xref:System.Xml.Serialization.XmlSerializer>化。 例如, 你可以将数据块区转换为字节, 而不是缓冲大型数据集, 同时还应避免在使用 Base64 编码对数据进行编码时出现膨胀。 若要控制序列化, 请<xref:System.Xml.Serialization.IXmlSerializable.ReadXml%2A>实现<xref:System.Xml.Serialization.IXmlSerializable.WriteXml%2A>和方法来控制<xref:System.Xml.XmlReader>用于<xref:System.Xml.XmlWriter>读取和写入 XML 的和类。 有关此操作的示例, 请[参阅如何:区块序列化](~/docs/standard/serialization/how-to-chunk-serialized-data.md)数据。  
   
- 第二个原因是为了能够控制的架构。 若要启用此功能，必须应用<xref:System.Xml.Serialization.XmlSchemaProviderAttribute>到的可序列化类型，并指定返回的架构的静态成员的名称。 有关示例，请参见<xref:System.Xml.Serialization.XmlSchemaProviderAttribute>。  
+ 第二个原因是能够控制架构。 若要启用此条件, 您必须<xref:System.Xml.Serialization.XmlSchemaProviderAttribute>将应用于可序列化的类型, 并指定返回该架构的静态成员的名称。 有关示例，请参见<xref:System.Xml.Serialization.XmlSchemaProviderAttribute>。  
   
- 实现接口的类必须具有无参数构造函数。 这是一项要求的<xref:System.Xml.Serialization.XmlSerializer>类。  
+ 实现接口的类必须具有无参数的构造函数。 这是<xref:System.Xml.Serialization.XmlSerializer>类的必要条件。  
   
    
   
 ## Examples  
- 下面的代码示例演示一种实现<xref:System.Xml.Serialization.IXmlSerializable>序列化的私有字段的接口。  
+ 下面的示例代码演示了一个<xref:System.Xml.Serialization.IXmlSerializable>接口的实现, 该接口序列化私有字段。  
   
  [!code-cpp[XmlSerialization_IXmlSerializable#0](~/samples/snippets/cpp/VS_Snippets_Remoting/XmlSerialization_IXmlSerializable/CPP/person.cpp#0)]
  [!code-csharp[XmlSerialization_IXmlSerializable#0](~/samples/snippets/csharp/VS_Snippets_Remoting/XmlSerialization_IXmlSerializable/CS/person.cs#0)]  
@@ -108,11 +108,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 序列化或反序列化对象时<xref:System.Xml.Serialization.XmlSerializer>类不执行 XML 验证。 出于此原因，通常很安全地忽略架构信息通过提供的简单实现来这种方法，例如通过返回`null`(`Nothing`在 Visual Basic 中)。  
+ 序列化或反序列化对象时<xref:System.Xml.Serialization.XmlSerializer> , 类不执行 XML 验证。 出于此原因, 通过提供此方法的普通实现 (例如`null` `Nothing` , 在 Visual Basic 中), 通常可以安全地省略架构信息。  
   
- 如果提供的架构信息是必需的则应使用<xref:System.Xml.Serialization.XmlSchemaProviderAttribute>属性。 `GetSchema`方法应仍然返回`null`(或`Nothing`)。  
+ 如果需要提供架构信息, 则应该使用<xref:System.Xml.Serialization.XmlSchemaProviderAttribute>特性。 方法应仍返回`null` (或`Nothing`)。 `GetSchema`  
   
- 某些[!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)]类型，以及旧的自定义类型实现`IXmlSerializable`可能使用接口`GetSchema`而不是`XmlSchemaProvider`。 在这种情况下，该方法返回准确的 XML 架构描述生成的对象的 XML 表示形式<xref:System.Data.DataSet.WriteXml%2A>方法。  
+ 某些[!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)]类型以及实现接口的`IXmlSerializable`旧自定义类型`XmlSchemaProvider`可能使用`GetSchema`而不是。 在这种情况下, 方法返回准确的 xml 架构, 该架构描述<xref:System.Data.DataSet.WriteXml%2A>方法所生成的对象的 XML 表示形式。  
   
  ]]></format>
         </remarks>
@@ -164,16 +164,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xml.Serialization.IXmlSerializable.ReadXml%2A>方法必须重建对象使用的信息已写入<xref:System.Xml.Serialization.IXmlSerializable.WriteXml%2A>方法。  
+ 方法必须使用<xref:System.Xml.Serialization.IXmlSerializable.WriteXml%2A>方法编写的信息重建您的对象。 <xref:System.Xml.Serialization.IXmlSerializable.ReadXml%2A>  
   
- 调用此方法时，读取器定位在包装你的类型的信息的开始标记。 也就是说，直接在开始标记上，该值指示序列化对象的开头。 此方法返回时，它必须具有读取整个元素从开始到结束，包括其所有内容。 与不同<xref:System.Xml.Serialization.IXmlSerializable.WriteXml%2A>方法，该框架不会自动处理的包装元素。 您的实现必须执行此操作。 如果不遵守这些定位规则可能会导致代码，以生成意外的运行时异常或已损坏的数据。  
+ 调用此方法时, 读取器将定位在包装您的类型的信息的开始标记上。 也就是说, 直接在指示序列化对象开始的开始标记上。 此方法返回时, 它必须读取从开始到结尾的整个元素, 包括其所有内容。 <xref:System.Xml.Serialization.IXmlSerializable.WriteXml%2A>与方法不同, 框架不会自动处理包装元素。 你的实现必须这样做。 未能遵守这些定位规则可能会导致代码生成意外的运行时异常或数据损坏。  
   
- 实现此方法时，应考虑可能的恶意用户可能会提供格式正确但无效的 XML 表示形式，以破坏或改变你的应用程序的行为。  
+ 实现此方法时, 应考虑到恶意用户可能会提供格式正确但无效的 XML 表示形式, 以便禁用或更改应用程序的行为。  
   
    
   
 ## Examples  
- 下面的示例演示的实现<xref:System.Xml.Serialization.IXmlSerializable.ReadXml%2A>方法。  
+ 下面的示例演示<xref:System.Xml.Serialization.IXmlSerializable.ReadXml%2A>方法的实现。  
   
  [!code-cpp[XmlSerialization_IXmlSerializable#2](~/samples/snippets/cpp/VS_Snippets_Remoting/XmlSerialization_IXmlSerializable/CPP/person.cpp#2)]
  [!code-csharp[XmlSerialization_IXmlSerializable#2](~/samples/snippets/csharp/VS_Snippets_Remoting/XmlSerialization_IXmlSerializable/CS/person.cs#2)]  
@@ -233,16 +233,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xml.Serialization.IXmlSerializable.WriteXml%2A>你提供的实现应写出对象的 XML 表示形式。 框架写入包装元素，并将其启动后的 XML 编写器。 您的实现可能会编写其内容，包括子元素。 Framework 然后关闭包装元素。  
+ 提供<xref:System.Xml.Serialization.IXmlSerializable.WriteXml%2A>的实现应写出对象的 XML 表示形式。 框架编写包装元素, 并在其开始后定位 XML 编写器。 您的实现可能会写入它的内容, 包括子元素。 然后, 框架会关闭包装元素。  
   
- 将足够信息写入<xref:System.Xml.XmlWriter>流，以允许<xref:System.Xml.Serialization.IXmlSerializable.ReadXml%2A>方法来重新构建您的对象。  
+ 将足够的信息<xref:System.Xml.XmlWriter>写入流, 以允许方法重建你的<xref:System.Xml.Serialization.IXmlSerializable.ReadXml%2A>对象。  
   
- 例如，如果对象的状态包括一个数组变量，一定要记数组的长度，或使用父元素包含的元素的描述的数组值，以便您知道多少个值时重建对象读取。  
+ 例如, 如果您的对象状态包含数组变量, 请确保编写数组的长度, 或使用父元素来包含描述数组值的元素, 以便您知道在重建对象时要读取的值的数目。  
   
    
   
 ## Examples  
- 下面的示例演示的实现<xref:System.Xml.Serialization.IXmlSerializable.WriteXml%2A>方法。  
+ 下面的示例演示<xref:System.Xml.Serialization.IXmlSerializable.WriteXml%2A>方法的实现。  
   
  [!code-cpp[XmlSerialization_IXmlSerializable#1](~/samples/snippets/cpp/VS_Snippets_Remoting/XmlSerialization_IXmlSerializable/CPP/person.cpp#1)]
  [!code-csharp[XmlSerialization_IXmlSerializable#1](~/samples/snippets/csharp/VS_Snippets_Remoting/XmlSerialization_IXmlSerializable/CS/person.cs#1)]  

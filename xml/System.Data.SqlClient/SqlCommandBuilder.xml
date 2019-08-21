@@ -1,5 +1,5 @@
 <Type Name="SqlCommandBuilder" FullName="System.Data.SqlClient.SqlCommandBuilder">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0f53b5aa8d1732440f4fb531b4288186be22c27f" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57958528" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlCommandBuilder : System.Data.Common.DbCommandBuilder" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c73e1f310be857a9d1632ca6c3cd57f39415883c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69369220" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlCommandBuilder : System.Data.Common.DbCommandBuilder" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SqlCommandBuilder extends System.Data.Common.DbCommandBuilder" />
   <TypeSignature Language="DocId" Value="T:System.Data.SqlClient.SqlCommandBuilder" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SqlCommandBuilder&#xA;Inherits DbCommandBuilder" />
@@ -29,23 +29,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlDataAdapter>不会自动生成所需协调对所做更改的 TRANSACT-SQL 语句<xref:System.Data.DataSet>与关联的 SQL Server 实例。 但是，可以创建<xref:System.Data.SqlClient.SqlCommandBuilder>对象来自动生成的单表更新 TRANSACT-SQL 语句，如果您设置<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>属性的<xref:System.Data.SqlClient.SqlDataAdapter>。 然后，将不设置任何其他 TRANSACT-SQL 语句生成的<xref:System.Data.SqlClient.SqlCommandBuilder>。  
+ 不会自动生成将对的<xref:System.Data.DataSet>更改与 SQL Server 的关联实例进行协调所需的 transact-sql 语句。 <xref:System.Data.SqlClient.SqlDataAdapter> 但是, 如果<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>设置了的<xref:System.Data.SqlClient.SqlCommandBuilder> <xref:System.Data.SqlClient.SqlDataAdapter>属性, 则可以创建一个对象来自动为单表更新生成 transact-sql 语句。 然后, 将生成<xref:System.Data.SqlClient.SqlCommandBuilder>未设置的任何其他 transact-sql 语句。  
   
- <xref:System.Data.SqlClient.SqlCommandBuilder>将自身注册为侦听器<xref:System.Data.SqlClient.SqlDataAdapter.RowUpdating>事件何时设置<xref:System.Data.SqlClient.SqlCommandBuilder.DataAdapter%2A>属性。 您可以仅将相关联<xref:System.Data.SqlClient.SqlDataAdapter>或<xref:System.Data.SqlClient.SqlCommandBuilder>与每个其他对象一次。  
+ 只要设置<xref:System.Data.SqlClient.SqlCommandBuilder.DataAdapter%2A>属性, 就会将<xref:System.Data.SqlClient.SqlDataAdapter.RowUpdating>自身注册为事件侦听器。<xref:System.Data.SqlClient.SqlCommandBuilder> 一次只能将一个<xref:System.Data.SqlClient.SqlDataAdapter>或<xref:System.Data.SqlClient.SqlCommandBuilder>对象彼此关联。  
   
- 若要生成 INSERT、 UPDATE 或 DELETE 语句<xref:System.Data.SqlClient.SqlCommandBuilder>使用<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>要自动检索一组元数据的属性。 如果您更改<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>已检索了的元数据，如第一次更新，应调用后<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>方法来更新元数据。  
+ 若要生成 INSERT、UPDATE 或 DELETE 语句, 请<xref:System.Data.SqlClient.SqlCommandBuilder> <xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>使用属性来自动检索所需的元数据集。 如果在检索元<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>数据后更改 (例如, 在第一次更新之后), 则应<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>调用方法来更新元数据。  
   
- 
-  `SelectCommand` 还必须至少返回一个主键或唯一列。 如果不存在，任何**InvalidOperation**则会生成异常，并且不会生成命令。  
+ `SelectCommand` 还必须至少返回一个主键或唯一列。 如果没有, 则生成**InvalidOperation**异常, 且不生成命令。  
   
- <xref:System.Data.SqlClient.SqlCommandBuilder>还使用<xref:System.Data.SqlClient.SqlCommand.Connection%2A>， <xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>，和<xref:System.Data.SqlClient.SqlCommand.Transaction%2A>属性引用的<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>。 用户应调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果修改一个或多个这些属性，或如果<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>本身将被替换。 否则为<xref:System.Data.SqlClient.SqlDataAdapter.InsertCommand%2A>， <xref:System.Data.SqlClient.SqlDataAdapter.UpdateCommand%2A>，和<xref:System.Data.SqlClient.SqlDataAdapter.DeleteCommand%2A>属性保留其以前的值。  
+ <xref:System.Data.SqlClient.SqlCommandBuilder>还<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>使用引用的<xref:System.Data.SqlClient.SqlCommand.Transaction%2A> 、和属性。<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A> <xref:System.Data.SqlClient.SqlCommand.Connection%2A> 如果修改了其中<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>一个或多个属性, 则用户应调用, 或者<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>是否替换自身。 否则, <xref:System.Data.SqlClient.SqlDataAdapter.InsertCommand%2A>、 <xref:System.Data.SqlClient.SqlDataAdapter.UpdateCommand%2A>和<xref:System.Data.SqlClient.SqlDataAdapter.DeleteCommand%2A>属性将保留其以前的值。  
   
- 如果您调用<xref:System.ComponentModel.Component.Dispose%2A>，则<xref:System.Data.SqlClient.SqlCommandBuilder>会与其<xref:System.Data.SqlClient.SqlDataAdapter>，并且无法再使用生成的命令。  
+ 如果调用<xref:System.ComponentModel.Component.Dispose%2A> <xref:System.Data.SqlClient.SqlCommandBuilder> , 将从<xref:System.Data.SqlClient.SqlDataAdapter>解除关联, 并且不再使用生成的命令。  
   
    
   
 ## Examples  
- 下面的示例使用<xref:System.Data.SqlClient.SqlCommand>，以及<xref:System.Data.SqlClient.SqlDataAdapter>和<xref:System.Data.SqlClient.SqlConnection>，以从数据源选择的行。 该示例连接字符串、 TRANSACT-SQL SELECT 语句的查询字符串和为数据库表的名称的字符串传递。 然后该示例创建<xref:System.Data.SqlClient.SqlCommandBuilder>。  
+ 下面的示例使用<xref:System.Data.SqlClient.SqlCommand> <xref:System.Data.SqlClient.SqlDataAdapter>和<xref:System.Data.SqlClient.SqlConnection>来从数据源中选择行。 该示例传递了一个连接字符串、一个查询字符串 (即 Transact-sql SELECT 语句) 和一个作为数据库表的名称的字符串。 然后, 该示例创建<xref:System.Data.SqlClient.SqlCommandBuilder>一个。  
   
  [!code-csharp[Classic WebData SqlCommandBuilder#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlCommandBuilder/CS/Source.cs#1)]
  [!code-vb[Classic WebData SqlCommandBuilder#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlCommandBuilder/VB/Source.vb#1)]  
@@ -126,14 +125,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlCommandBuilder>将自身注册为侦听器<xref:System.Data.SqlClient.SqlDataAdapter.RowUpdating>由生成的事件<xref:System.Data.SqlClient.SqlDataAdapter>此属性中指定。  
+ 将<xref:System.Data.SqlClient.SqlCommandBuilder>自身注册为在此属性<xref:System.Data.SqlClient.SqlDataAdapter.RowUpdating>中指定的<xref:System.Data.SqlClient.SqlDataAdapter>生成的事件侦听器。  
   
- 当你创建的新实例<xref:System.Data.SqlClient.SqlCommandBuilder>，任何现有<xref:System.Data.SqlClient.SqlCommandBuilder>与此相关<xref:System.Data.SqlClient.SqlDataAdapter>发布。  
+ 当你创建的新实例<xref:System.Data.SqlClient.SqlCommandBuilder>时, 将释放与此<xref:System.Data.SqlClient.SqlDataAdapter>关联的任何现有<xref:System.Data.SqlClient.SqlCommandBuilder> 。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -212,8 +211,8 @@
         <summary>对于 <see cref="T:System.Data.Common.CatalogLocation" /> 类的实例，设置或获取 <see cref="T:System.Data.SqlClient.SqlCommandBuilder" />。</summary>
         <value>一个 <see cref="T:System.Data.Common.CatalogLocation" /> 对象。</value>
         <remarks>To be added.</remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -255,8 +254,8 @@
         <summary>设置或获取一个字符串，该字符串用作 <see cref="T:System.Data.SqlClient.SqlCommandBuilder" /> 类的实例的目录分隔符。</summary>
         <value>指示要用于 <see cref="T:System.Data.SqlClient.SqlCommandBuilder" /> 类的目录分隔符的字符串。</value>
         <remarks>To be added.</remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -299,14 +298,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlCommandBuilder>将自身注册为侦听器<xref:System.Data.SqlClient.SqlDataAdapter.RowUpdating>由生成的事件<xref:System.Data.SqlClient.SqlDataAdapter>此属性中指定。  
+ 将<xref:System.Data.SqlClient.SqlCommandBuilder>自身注册为在此属性<xref:System.Data.SqlClient.SqlDataAdapter.RowUpdating>中指定的<xref:System.Data.SqlClient.SqlDataAdapter>生成的事件侦听器。  
   
- 当你创建的新实例<xref:System.Data.SqlClient.SqlCommandBuilder>，任何现有<xref:System.Data.SqlClient.SqlCommandBuilder>与此相关<xref:System.Data.SqlClient.SqlDataAdapter>发布。  
+ 当你创建的新实例<xref:System.Data.SqlClient.SqlCommandBuilder>时, 将释放与此<xref:System.Data.SqlClient.SqlDataAdapter>关联的任何现有<xref:System.Data.SqlClient.SqlCommandBuilder> 。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -344,19 +343,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `DeriveParameters` 将覆盖任何现有参数信息`SqlDbCommand`。  
+ `DeriveParameters`覆盖的`SqlDbCommand`任何现有参数信息。  
   
- `DeriveParameters` 需要额外调用数据库中获取信息。 如果在提前知道参数信息，则更有效地通过显式设置的信息填充的参数集合。  
+ `DeriveParameters`需要对数据库进行额外的调用以获取信息。 如果事先知道了参数信息, 则通过显式设置信息更有效地填充参数集合。  
   
- 您只能使用`DeriveParameters`的存储过程。 不能使用`DeriveParameters`与扩展存储过程。 不能使用`DeriveParameters`填充<xref:System.Data.SqlClient.SqlParameterCollection>使用任意 Transact SQL 语句，如参数化 SELECT 语句。  
+ 只能与存储过程`DeriveParameters`一起使用。 不能对`DeriveParameters`扩展存储过程使用。 不能使用`DeriveParameters`来<xref:System.Data.SqlClient.SqlParameterCollection>填充任意 transact-sql 语句, 如参数化 SELECT 语句。  
   
- 有关详细信息，请参阅[配置参数和参数数据类型](~/docs/framework/data/adonet/configuring-parameters-and-parameter-data-types.md)。  
+ 有关详细信息, 请参阅[配置参数和参数数据类型](~/docs/framework/data/adonet/configuring-parameters-and-parameter-data-types.md)。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">此命令文本不是一个有效的存储过程名。</exception>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -399,18 +398,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.SqlClient.SqlCommand>要执行对象。  
+ 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>方法进行信息性或故障排除, 因为它返回要执行的<xref:System.Data.SqlClient.SqlCommand>对象。  
   
- 此外可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>并修改<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.SqlClient.SqlDataAdapter>。  
+ 您还可以将<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>并<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.SqlClient.SqlDataAdapter>显式设置该值。  
   
- 首先生成的 SQL 语句后，应用程序必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>仍将使用从上一语句，这可能不是正确的信息。 SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>。  
+ 首次生成 SQL 语句后, 如果应用程序以任何方式<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>更改语句, 则必须显式调用。 否则, <xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>仍将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>时, 将首先生成 SQL 语句。  
   
- 有关详细信息，请参阅[使用 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
+ 有关详细信息, 请参阅[通过 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </MemberGroup>
@@ -446,18 +445,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.SqlClient.SqlCommand>要执行对象。  
+ 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>方法进行信息性或故障排除, 因为它返回要执行的<xref:System.Data.SqlClient.SqlCommand>对象。  
   
- 此外可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>并修改<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.SqlClient.SqlDataAdapter>。  
+ 您还可以将<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>并<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.SqlClient.SqlDataAdapter>显式设置该值。  
   
- 首先生成的 SQL 语句后，应用程序必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>仍将使用从上一语句，这可能不是正确的信息。 SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>。  
+ 首次生成 SQL 语句后, 如果应用程序以任何方式<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>更改语句, 则必须显式调用。 否则, <xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>仍将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>时, 将首先生成 SQL 语句。  
   
- 有关详细信息，请参阅[使用 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
+ 有关详细信息, 请参阅[通过 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -495,26 +494,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.SqlClient.SqlCommand>要执行对象。  
+ 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>方法进行信息性或故障排除, 因为它返回要执行的<xref:System.Data.SqlClient.SqlCommand>对象。  
   
- 此外可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>并修改<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.SqlClient.SqlDataAdapter>。  
+ 您还可以将<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>并<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.SqlClient.SqlDataAdapter>显式设置该值。  
   
- 首先生成的 SQL 语句后，应用程序必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>仍将使用从上一语句，这可能不是正确的信息。 SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>。  
+ 首次生成 SQL 语句后, 如果应用程序以任何方式<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>更改语句, 则必须显式调用。 否则, <xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>仍将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>时, 将首先生成 SQL 语句。  
   
- 生成参数名称时的默认行为是使用`@p1`， `@p2`，为各种参数，依此类推。 传递`true`有关`useColumnsForParameterNames`参数允许你强制<xref:System.Data.OleDb.OleDbCommandBuilder>生成改为基于列名称的参数。 仅当满足以下条件时，此操作将成功：  
+ 生成参数名称时, 默认行为是对各种参数使用`@p1`、 `@p2`等。 通过`true` 为<xref:System.Data.OleDb.OleDbCommandBuilder>参数传递, 可以强制根据列名生成参数。 `useColumnsForParameterNames` 仅当满足以下条件时, 此操作才会成功:  
   
--   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>从返回**GetSchema**方法调用，并在找到<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>指定集合，其长度为等于或大于生成的参数名称。  
+-   已<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>指定从**GetSchema**方法调用返回<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>并在集合中找到的, 其长度等于或大于生成的参数名称。  
   
--   生成的参数名称符合中指定的条件<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>从返回**GetSchema**方法调用，并在找到<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>集合正则表达式。  
+-   生成的参数名称满足在**GetSchema**方法调用返回<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>的中指定的条件<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation> , 并在集合正则表达式中找到。  
   
--   一个<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>从返回**GetSchema**方法调用，并在找到<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>指定集合。  
+-   指定<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>了从**GetSchema**方法调用返回的<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation> , 并在集合中找到了。  
   
- 有关详细信息，请参阅[使用 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
+ 有关详细信息, 请参阅[通过 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -530,18 +529,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.SqlClient.SqlCommand>要执行对象。  
+ 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>方法进行信息性或故障排除, 因为它返回要执行的<xref:System.Data.SqlClient.SqlCommand>对象。  
   
- 此外可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>并修改<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.SqlClient.SqlDataAdapter>。  
+ 您还可以将<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>并<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.SqlClient.SqlDataAdapter>显式设置该值。  
   
- 第一次生成 TRANSACT-SQL 语句后，应用程序必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>仍将使用从上一语句，这可能不是正确的信息。 TRANSACT-SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>。  
+ 首次生成 transact-sql 语句后, 如果应用程序以任何方式更改语句<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A> , 则必须显式调用。 否则, <xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>仍将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>时, 将首先生成 transact-sql 语句。  
   
- 有关详细信息，请参阅[使用 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
+ 有关详细信息, 请参阅[通过 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </MemberGroup>
@@ -577,18 +576,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.SqlClient.SqlCommand>要执行对象。  
+ 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>方法进行信息性或故障排除, 因为它返回要执行的<xref:System.Data.SqlClient.SqlCommand>对象。  
   
- 此外可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>并修改<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.SqlClient.SqlDataAdapter>。  
+ 您还可以将<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>并<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.SqlClient.SqlDataAdapter>显式设置该值。  
   
- 第一次生成 TRANSACT-SQL 语句后，应用程序必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>仍将使用从上一语句，这可能不是正确的信息。 TRANSACT-SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>。  
+ 首次生成 transact-sql 语句后, 如果应用程序以任何方式更改语句<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A> , 则必须显式调用。 否则, <xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>仍将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>时, 将首先生成 transact-sql 语句。  
   
- 有关详细信息，请参阅[使用 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
+ 有关详细信息, 请参阅[通过 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -626,26 +625,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.SqlClient.SqlCommand>要执行对象。  
+ 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>方法进行信息性或故障排除, 因为它返回要执行的<xref:System.Data.SqlClient.SqlCommand>对象。  
   
- 此外可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>并修改<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.SqlClient.SqlDataAdapter>。  
+ 您还可以将<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>并<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.SqlClient.SqlDataAdapter>显式设置该值。  
   
- 第一次生成 TRANSACT-SQL 语句后，应用程序必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>仍将使用从上一语句，这可能不是正确的信息。 TRANSACT-SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>。  
+ 首次生成 transact-sql 语句后, 如果应用程序以任何方式更改语句<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A> , 则必须显式调用。 否则, <xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>仍将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>时, 将首先生成 transact-sql 语句。  
   
- 生成参数名称时的默认行为是使用`@p1`， `@p2`，为各种参数，依此类推。 传递`true`有关`useColumnsForParameterNames`参数允许你强制<xref:System.Data.OleDb.OleDbCommandBuilder>生成改为基于列名称的参数。 仅当满足以下条件时，此操作将成功：  
+ 生成参数名称时, 默认行为是对各种参数使用`@p1`、 `@p2`等。 通过`true` 为<xref:System.Data.OleDb.OleDbCommandBuilder>参数传递, 可以强制根据列名生成参数。 `useColumnsForParameterNames` 仅当满足以下条件时, 此操作才会成功:  
   
--   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>从返回**GetSchema**方法调用，并在找到<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>指定集合，其长度为等于或大于生成的参数名称。  
+-   已<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>指定从**GetSchema**方法调用返回<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>并在集合中找到的, 其长度等于或大于生成的参数名称。  
   
--   生成的参数名称符合中指定的条件<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>从返回**GetSchema**方法调用，并在找到<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>集合正则表达式。  
+-   生成的参数名称满足在**GetSchema**方法调用返回<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>的中指定的条件<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation> , 并在集合正则表达式中找到。  
   
--   一个<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>从返回**GetSchema**方法调用，并在找到<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>指定集合。  
+-   指定<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>了从**GetSchema**方法调用返回的<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation> , 并在集合中找到了。  
   
- 有关详细信息，请参阅[使用 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
+ 有关详细信息, 请参阅[通过 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -793,13 +792,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.SqlClient.SqlCommand>要执行对象。  
+ 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>方法进行信息性或故障排除, 因为它返回要执行的<xref:System.Data.SqlClient.SqlCommand>对象。  
   
- 此外可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>并修改<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.SqlClient.SqlDataAdapter>。  
+ 您还可以将<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>并<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.SqlClient.SqlDataAdapter>显式设置该值。  
   
- 第一次生成 TRANSACT-SQL 语句后，应用程序必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>仍将使用从上一语句，这可能不是正确的信息。 TRANSACT-SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>。  
+ 首次生成 transact-sql 语句后, 如果应用程序以任何方式更改语句<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A> , 则必须显式调用。 否则, <xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>仍将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>时, 将首先生成 transact-sql 语句。  
   
- 有关详细信息，请参阅[使用 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
+ 有关详细信息, 请参阅[通过 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
   
  ]]></format>
         </remarks>
@@ -837,18 +836,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.SqlClient.SqlCommand>要执行对象。  
+ 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>方法进行信息性或故障排除, 因为它返回要执行的<xref:System.Data.SqlClient.SqlCommand>对象。  
   
- 此外可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>并修改<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.SqlClient.SqlDataAdapter>。  
+ 您还可以将<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>并<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.SqlClient.SqlDataAdapter>显式设置该值。  
   
- 第一次生成 TRANSACT-SQL 语句后，应用程序必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>仍将使用从上一语句，这可能不是正确的信息。 TRANSACT-SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>。  
+ 首次生成 transact-sql 语句后, 如果应用程序以任何方式更改语句<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A> , 则必须显式调用。 否则, <xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>仍将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>时, 将首先生成 transact-sql 语句。  
   
- 有关详细信息，请参阅[使用 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
+ 有关详细信息, 请参阅[通过 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -886,26 +885,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>方法的信息性消息或故障排除目的，因为它返回<xref:System.Data.SqlClient.SqlCommand>要执行对象。  
+ 应用程序可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>方法进行信息性或故障排除, 因为它返回要执行的<xref:System.Data.SqlClient.SqlCommand>对象。  
   
- 此外可以使用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>修改命令的基础。 例如，可能会调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>并修改<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>值，然后上显式设置它<xref:System.Data.SqlClient.SqlDataAdapter>。  
+ 您还可以将<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>用作修改后的命令的基础。 例如, 你可以调用<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>并<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>修改值, 然后在上<xref:System.Data.SqlClient.SqlDataAdapter>显式设置该值。  
   
- 第一次生成 TRANSACT-SQL 语句后，应用程序必须显式调用<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>如果发生更改以任何方式的语句。 否则为<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>仍将使用从上一语句，这可能不是正确的信息。 TRANSACT-SQL 语句将首次生成时应用程序调用任一<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>。  
+ 首次生成 transact-sql 语句后, 如果应用程序以任何方式更改语句<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A> , 则必须显式调用。 否则, <xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>仍将使用前一语句中的信息, 这可能是不正确的。 当应用程序调用<xref:System.Data.Common.DbDataAdapter.Update%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>时, 将首先生成 transact-sql 语句。  
   
- 生成参数名称时的默认行为是使用`@p1`， `@p2`，为各种参数，依此类推。 传递`true`有关`useColumnsForParameterNames`参数允许你强制<xref:System.Data.OleDb.OleDbCommandBuilder>生成改为基于列名称的参数。 仅当满足以下条件时，此操作将成功：  
+ 生成参数名称时, 默认行为是对各种参数使用`@p1`、 `@p2`等。 通过`true` 为<xref:System.Data.OleDb.OleDbCommandBuilder>参数传递, 可以强制根据列名生成参数。 `useColumnsForParameterNames` 仅当满足以下条件时, 此操作才会成功:  
   
--   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>从返回**GetSchema**方法调用，并在找到<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>指定集合，其长度为等于或大于生成的参数名称。  
+-   已<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>指定从**GetSchema**方法调用返回<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>并在集合中找到的, 其长度等于或大于生成的参数名称。  
   
--   生成的参数名称符合中指定的条件<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>从返回**GetSchema**方法调用，并在找到<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>集合正则表达式。  
+-   生成的参数名称满足在**GetSchema**方法调用返回<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>的中指定的条件<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation> , 并在集合正则表达式中找到。  
   
--   一个<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>从返回**GetSchema**方法调用，并在找到<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>指定集合。  
+-   指定<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>了从**GetSchema**方法调用返回的<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation> , 并在集合中找到了。  
   
- 有关详细信息，请参阅[使用 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
+ 有关详细信息, 请参阅[通过 Commandbuilder 生成命令](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -973,8 +972,8 @@
         <summary>给定了具有正确的目录大小写设置且不带引号的标识符时，返回该标识符的正确的带引号形式。 这包括正确地转义该标识符中的任何嵌入引号。</summary>
         <returns>带引号的标识符版本。 标识符内的嵌入引号被正确地转义。</returns>
         <remarks>To be added.</remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -1025,13 +1024,13 @@
 ## Remarks  
   
 > [!NOTE]
->  虽然不能更改<xref:System.Data.SqlClient.SqlCommandBuilder.QuotePrefix%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.QuoteSuffix%2A>属性后插入、 更新或删除生成命令，可以将其设置更改之后调用`Update`DataAdapter 方法。  
+>  虽然在生成 insert、 <xref:System.Data.SqlClient.SqlCommandBuilder.QuotePrefix%2A> update <xref:System.Data.SqlClient.SqlCommandBuilder.QuoteSuffix%2A>或 delete 命令后无法更改或属性, 但你可以在调用 DataAdapter 的`Update`方法之后更改其设置。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">在生成 INSERT、UPDATE 或 DELETE 命令后，不能更改此属性。</exception>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -1082,13 +1081,13 @@
 ## Remarks  
   
 > [!NOTE]
->  虽然不能更改<xref:System.Data.SqlClient.SqlCommandBuilder.QuotePrefix%2A>或<xref:System.Data.SqlClient.SqlCommandBuilder.QuoteSuffix%2A>属性后插入、 更新或删除操作已生成，可以将其设置更改之后调用`Update`DataAdapter 方法。  
+>  虽然在生成插入、 <xref:System.Data.SqlClient.SqlCommandBuilder.QuotePrefix%2A>更新<xref:System.Data.SqlClient.SqlCommandBuilder.QuoteSuffix%2A>或删除操作后无法更改或属性, 但你可以在调用 DataAdapter 的`Update`方法之后更改其设置。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">当生成 Insert、Update 或 Delete 命令后，不能更改此属性。</exception>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -1157,12 +1156,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常情况下，数据库服务器中使用某些字符的标识符分隔的架构名称来指示标识符的架构。 例如，SQL Server 使用一段时间，创建完整的标识符，例如 Person.CustomerName，其中"Person"是架构名称，"CustomerName"是的标识符。 修改此行为的开发人员可以将此属性设置。  
+ 通常, 数据库服务器通过将标识符中的架构名称与一个字符隔开, 来指示标识符的架构。 例如, SQL Server 使用句点, 创建完整的标识符 (如 CustomerName), 其中 "Person" 是架构名称, 而 "CustomerName" 是标识符。 设置此属性可让开发人员修改此行为。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -1229,8 +1228,8 @@
         <summary>给定了带引号的标识符时，返回该标识符的正确的不带引号的形式。 这包括正确地非转义该标识符的所有嵌入的引号。</summary>
         <returns>未加引号的标识符，其嵌入的引号已正确进行非转义。</returns>
         <remarks>To be added.</remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">连接和检索 ADO.NET 中的数据</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用用于 SQL Server 的.NET Framework 数据提供程序</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">在 ADO.NET 中连接和检索数据</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">使用 SQL Server 的 .NET Framework 数据提供程序</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>

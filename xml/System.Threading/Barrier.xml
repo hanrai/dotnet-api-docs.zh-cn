@@ -1,5 +1,5 @@
 <Type Name="Barrier" FullName="System.Threading.Barrier">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c2012ee136cf2047bb7f0049b4f4761a1092883c" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58692598" /></Metadata><TypeSignature Language="C#" Value="public class Barrier : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bee8026d3993b24f779b79de161aa4ef16ae3f60" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69230372" /></Metadata><TypeSignature Language="C#" Value="public class Barrier : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Barrier extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Barrier" />
   <TypeSignature Language="VB.NET" Value="Public Class Barrier&#xA;Implements IDisposable" />
@@ -44,19 +44,19 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一组任务间移动通过一系列的阶段，组中的每个表示它已经到达来协作<xref:System.Threading.Barrier>中给定的阶段和隐式地等待所有其他到达。 相同<xref:System.Threading.Barrier>可用于多个阶段。  
+ 通过一系列阶段共同合作的一组任务, 其中每个阶段都在每个阶段到达<xref:System.Threading.Barrier> , 并隐式等待所有其他阶段到达。 相同<xref:System.Threading.Barrier>的可用于多个阶段。  
   
    
   
 ## Examples  
- 下面的示例演示如何使用一个障碍：  
+ 下面的示例演示如何使用屏障:  
   
  [!code-csharp[System.Threading.Barrier#01](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.barrier/cs/barrier.cs#01)]
  [!code-vb[System.Threading.Barrier#01](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.barrier/vb/barrier.vb#01)]  
   
  ]]></format>
     </remarks>
-    <threadsafe>所有公共和受保护成员<see cref="T:System.Threading.Barrier" />都是线程安全的同时从多个线程，Dispose 除外，它必须仅能时使用所有其他操作<see cref="T:System.Threading.Barrier" />已完成。</threadsafe>
+    <threadsafe>的所有公共和受保护<see cref="T:System.Threading.Barrier" />的成员都是线程安全的, 并且可以从多个线程并发使用, 而 Dispose 除外, 只需在上的<see cref="T:System.Threading.Barrier" />所有其他操作完成后使用。</threadsafe>
     <related type="Article" href="https://msdn.microsoft.com/library/613a8bc7-6a28-4795-bd6c-1abd9050478f">屏障 (.NET Framework)</related>
     <related type="Article" href="https://msdn.microsoft.com/library/e1a253ff-e0fb-4df8-95ff-d01a90d4cb19">如何：使用屏障来使并发操作保持同步</related>
   </Docs>
@@ -153,7 +153,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `postPhaseAction`在一个阶段，所有参与者都到达屏障后，将执行委托。 参与者将不被发布到下一阶段之前 postPhaseAction 委托已完成执行。  
+ `postPhaseAction`委托将在所有参与者在一个阶段到达关卡后执行。 在 postPhaseAction 委托执行完毕之前, 不会将参与者发布到下一阶段。  
   
  ]]></format>
         </remarks>
@@ -198,15 +198,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果屏障当前正在执行后阶段操作，此调用将被阻止，直到的后期阶段操作完成并屏障移动到下一阶段。  
+ 如果关卡当前正在执行 "后阶段" 操作, 此调用将被阻止, 直到 "后期阶段" 操作完成并且关卡已转到下一阶段。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
         <exception cref="T:System.InvalidOperationException">添加参与者将导致屏障的参与者计数超过 32,767。  
   
-- 或 - 
-该方法从阶段后操作中调用。</exception>
+ - 或 -  
+  
+ 该方法从阶段后操作中调用。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/613a8bc7-6a28-4795-bd6c-1abd9050478f">屏障 (.NET Framework)</related>
         <related type="Article" href="https://msdn.microsoft.com/library/e1a253ff-e0fb-4df8-95ff-d01a90d4cb19">如何：使用屏障来使并发操作保持同步</related>
       </Docs>
@@ -250,7 +251,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果屏障当前正在执行后阶段操作，此调用将被阻止，直到的后期阶段操作完成并屏障移动到下一阶段。  
+ 如果关卡当前正在执行 "后阶段" 操作, 此调用将被阻止, 直到 "后期阶段" 操作完成并且关卡已转到下一阶段。  
   
  ]]></format>
         </remarks>
@@ -356,9 +357,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在完成使用 `Dispose` 后，应调用 <xref:System.Threading.Barrier>。 `Dispose` 方法使 <xref:System.Threading.Barrier> 处于不可用状态。 在调用`Dispose`，必须释放对所有引用<xref:System.Threading.Barrier>这样垃圾回收器才能收回内存的<xref:System.Threading.Barrier>占用。  
+ 在完成使用 `Dispose` 后，应调用 <xref:System.Threading.Barrier>。 `Dispose` 方法使 <xref:System.Threading.Barrier> 处于不可用状态。 调用`Dispose`后, 必须释放对的<xref:System.Threading.Barrier>所有引用, 以便垃圾回收器能够<xref:System.Threading.Barrier>回收占用的内存。  
   
- 有关详细信息，请参阅[清理了非托管资源](~/docs/standard/garbage-collection/unmanaged.md)并[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
+ 有关详细信息, 请参阅[清理非托管资源](~/docs/standard/garbage-collection/unmanaged.md)和[实现 Dispose 方法](~/docs/standard/garbage-collection/implementing-dispose.md)。  
   
 > [!NOTE]
 >  每次释放对 `Dispose` 的最后一个引用前，均应调用 <xref:System.Threading.Barrier>。 否则，在垃圾回收器调用 <xref:System.Threading.Barrier> 对象的 `Finalize` 方法之前，该对象正在使用的资源不会被释放。  
@@ -408,7 +409,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 与大多数的成员的不同<xref:System.Threading.Barrier>，Dispose 不是线程安全的和不能与此实例的其他成员同时使用。  
+ 与的大多数成员<xref:System.Threading.Barrier>不同, Dispose 不是线程安全的, 不能与此实例的其他成员同时使用。  
   
  ]]></format>
         </remarks>
@@ -487,7 +488,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这可能在阶段后操作委托执行过程中为 0 或如果 ParticipantCount 为 0。  
+ 在执行阶段操作委托执行期间, 如果 ParticipantCount 为 0, 则这可能为0。  
   
  ]]></format>
         </remarks>
@@ -535,8 +536,9 @@
         <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
         <exception cref="T:System.InvalidOperationException">屏障已经有 0 个参与者。  
   
-- 或 - 
-该方法从阶段后操作中调用。</exception>
+ - 或 -  
+  
+ 该方法从阶段后操作中调用。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/613a8bc7-6a28-4795-bd6c-1abd9050478f">屏障 (.NET Framework)</related>
         <related type="Article" href="https://msdn.microsoft.com/library/e1a253ff-e0fb-4df8-95ff-d01a90d4cb19">如何：使用屏障来使并发操作保持同步</related>
       </Docs>
@@ -579,7 +581,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`participantCount`屏障已经等待参与者、 此移除满足关卡、 执行后阶段操作和所有参与者都被唤醒，因为如果要删除此参与者已成功到达屏障。  
+ 如果`participantCount`参与者已在等待关卡, 此删除操作将完成关卡, 执行 "后期阶段" 操作, 并且所有参与者都将唤醒, 就像要删除的此参与者已成功达到关卡一样。  
   
  ]]></format>
         </remarks>
@@ -587,11 +589,13 @@
         <exception cref="T:System.ArgumentOutOfRangeException">参与者总数小于指定 <paramref name="participantCount" /></exception>
         <exception cref="T:System.InvalidOperationException">屏障已经有 0 个参与者。  
   
-- 或 - 
-该方法从阶段后操作中调用。  
+ 或  
   
-- 或 - 
-当前的参与者计数小于指定 participantCount</exception>
+ 该方法从阶段后操作中调用。  
+  
+ - 或 -  
+  
+ 当前的参与者计数小于指定 participantCount</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/613a8bc7-6a28-4795-bd6c-1abd9050478f">屏障 (.NET Framework)</related>
         <related type="Article" href="https://msdn.microsoft.com/library/e1a253ff-e0fb-4df8-95ff-d01a90d4cb19">如何：使用屏障来使并发操作保持同步</related>
       </Docs>
@@ -816,7 +820,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`cancellationToken`已被取消之前该信号发生作用，则<xref:System.OperationCanceledException>引发和<xref:System.Threading.Barrier.ParticipantsRemaining%2A>值不能降低。 如果`cancellationToken`未被取消或已取消信号然后生效后<xref:System.Threading.Barrier.ParticipantsRemaining%2A>减少和 no<xref:System.OperationCanceledException>引发。  
+ 如果在信号生效之前已取消, <xref:System.OperationCanceledException>则会引发并<xref:System.Threading.Barrier.ParticipantsRemaining%2A>减小值。 `cancellationToken` 如果在`cancellationToken`信号<xref:System.Threading.Barrier.ParticipantsRemaining%2A>生效后未取消或被取消, 则会降低, 并且不<xref:System.OperationCanceledException>会引发。  
   
  ]]></format>
         </remarks>
