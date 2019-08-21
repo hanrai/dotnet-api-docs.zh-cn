@@ -1,5 +1,5 @@
 <Type Name="FtpWebRequest" FullName="System.Net.FtpWebRequest">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e179fcb3123ee5c133417a91ca70870c2f2c9a4f" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58716754" /></Metadata><TypeSignature Language="C#" Value="public sealed class FtpWebRequest : System.Net.WebRequest" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9c49f50c0cd66d2e16a249b769d840807e011c17" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69071721" /></Metadata><TypeSignature Language="C#" Value="public sealed class FtpWebRequest : System.Net.WebRequest" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit FtpWebRequest extends System.Net.WebRequest" />
   <TypeSignature Language="DocId" Value="T:System.Net.FtpWebRequest" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class FtpWebRequest&#xA;Inherits WebRequest" />
@@ -33,36 +33,36 @@
 ## Remarks
 
 > [!IMPORTANT]
->  我们不建议你使用`FtpWebRequest`类的新的开发。 有关详细信息和替代方案`FtpWebRequest`，请参阅[不应使用 WebRequest](https://github.com/dotnet/platform-compat/blob/master/docs/DE0003.md) GitHub 上。
+>  不建议使用`FtpWebRequest`类进行新的开发。 有关的详细信息和替代`FtpWebRequest`方法, 请参阅[WebRequest 不应](https://github.com/dotnet/platform-compat/blob/master/docs/DE0003.md)在 GitHub 上使用。
 
- 若要获取的实例<xref:System.Net.FtpWebRequest>，使用<xref:System.Net.WebRequest.Create%2A>方法。 此外可以使用<xref:System.Net.WebClient>类来上传和下载信息从 FTP 服务器。 使用任一种方法，当您指定使用 FTP 方案的网络资源 (例如， `"ftp://contoso.com"`)<xref:System.Net.FtpWebRequest>类提供了能够以编程方式与 FTP 服务器进行交互。  
+ 若要获取的<xref:System.Net.FtpWebRequest>实例, 请<xref:System.Net.WebRequest.Create%2A>使用方法。 你还可以使用<xref:System.Net.WebClient>类从 FTP 服务器上传和下载信息。 使用上述任一方法时, 如果指定使用 ftp 方案的网络资源 (例如`"ftp://contoso.com"` <xref:System.Net.FtpWebRequest> ), 类就能以编程方式与 ftp 服务器交互。  
   
- 该 URI 可以是相对值还是绝对值。 如果 URI 是窗体`"ftp://contoso.com/%2fpath"`(%2f 是转义字符 /)，然后 URI 是绝对的当前目录是`/path`。 如果，但是，URI 是窗体`"ftp://contoso.com/path"`，.NET Framework 首次登录到 FTP 服务器 (通过使用用户名和密码设置<xref:System.Net.FtpWebRequest.Credentials%2A>属性)，则当前目录设置为`<UserLoginDirectory>/path`。  
+ 该 URI 可以是相对路径或绝对 URI。 如果 uri 的形式`"ftp://contoso.com/%2fpath"`为 (% 2f 是转义的 "/"), 则 uri 为绝对 uri, 当前目录为。 `/path` 但是, 如果 URI 的形式`"ftp://contoso.com/path"`为, 则首先 .NET Framework 登录到 FTP 服务器 (使用<xref:System.Net.FtpWebRequest.Credentials%2A>属性设置的用户名和密码), 然后将当前目录设置为`<UserLoginDirectory>/path`。  
   
- 必须具有有效的用户名和密码对服务器或服务器必须允许匿名登录。 可以指定用于通过设置连接到服务器的凭据<xref:System.Net.FtpWebRequest.Credentials%2A>属性也可以将它们包含在<xref:System.Uri.UserInfo%2A>URI 部分传递给<xref:System.Net.WebRequest.Create%2A>方法。 如果包括<xref:System.Uri.UserInfo%2A>URI 中的信息<xref:System.Net.FtpWebRequest.Credentials%2A>属性设置为指定的用户名和密码信息与新的网络凭据。  
+ 必须为服务器提供有效的用户名和密码, 否则服务器必须允许匿名登录。 您可以通过设置<xref:System.Net.FtpWebRequest.Credentials%2A>属性来指定用于连接到服务器的凭据, 也可以<xref:System.Uri.UserInfo%2A>在传递给该<xref:System.Net.WebRequest.Create%2A>方法的 URI 部分中包含它们。 如果在 URI <xref:System.Uri.UserInfo%2A>中包含信息<xref:System.Net.FtpWebRequest.Credentials%2A> , 则使用指定的用户名和密码信息将属性设置为新的网络凭据。  
   
 > [!CAUTION]
->  除非<xref:System.Net.FtpWebRequest.EnableSsl%2A>属性是`true`，所有数据和命令，其中包括你的用户名和密码信息，向服务器都发送以明文形式。 监视网络流量的任何人都可以查看你的凭据，并将其用于连接到服务器。 如果要连接到 FTP 服务器要求凭据，并支持安全套接字层 (SSL)，则应设置<xref:System.Net.FtpWebRequest.EnableSsl%2A>到`true`。  
+>  除非属性为`true`, 否则所有数据和命令 (包括你的用户名和密码信息) 都将以明文形式发送到服务器。 <xref:System.Net.FtpWebRequest.EnableSsl%2A> 监视网络流量的任何人都可以查看凭据并使用它们连接到服务器。 如果要连接到需要凭据的 FTP 服务器并支持安全套接字层 (SSL), 则应将设置<xref:System.Net.FtpWebRequest.EnableSsl%2A>为。 `true`  
   
- 您必须具有<xref:System.Net.WebPermission>来访问 FTP 资源; 否则为<xref:System.Security.SecurityException>引发异常。  
+ 您必须<xref:System.Net.WebPermission>访问 FTP 资源; 否则<xref:System.Security.SecurityException> , 将引发异常。  
   
- 指定要通过设置发送到服务器的 FTP 命令<xref:System.Net.FtpWebRequest.Method%2A>属性中定义的值<xref:System.Net.WebRequestMethods.Ftp>结构。 若要传输的文本数据，更改<xref:System.Net.FtpWebRequest.UseBinary%2A>属性从其默认值 (`true`) 到`false`。 有关详细信息和限制，请参阅<xref:System.Net.FtpWebRequest.Method%2A>。  
+ 通过将<xref:System.Net.FtpWebRequest.Method%2A>属性设置为<xref:System.Net.WebRequestMethods.Ftp>结构中定义的值来指定要发送到服务器的 FTP 命令。 若要传输文本数据, 请<xref:System.Net.FtpWebRequest.UseBinary%2A>将属性从其默认值`true`() `false`更改为。 有关详细信息和限制, <xref:System.Net.FtpWebRequest.Method%2A>请参阅。  
   
- 使用时<xref:System.Net.FtpWebRequest>对象以将文件上载到服务器，必须将文件内容写入到请求流获取通过调用<xref:System.Net.FtpWebRequest.GetRequestStream%2A>方法或其异步对应<xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>和<xref:System.Net.FtpWebRequest.EndGetRequestStream%2A>方法。 必须写入到流，并在发送请求之前关闭流。  
+ 使用<xref:System.Net.FtpWebRequest>对象将文件上载到服务器时, 必须将文件内容写入通过<xref:System.Net.FtpWebRequest.GetRequestStream%2A>调用方法或<xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>其异步对应项 (和<xref:System.Net.FtpWebRequest.EndGetRequestStream%2A>方法) 获得的请求流。 在发送请求之前, 必须写入流并关闭流。  
   
- 请求被发送到服务器，通过调用<xref:System.Net.FtpWebRequest.GetResponse%2A>方法或其异步对应<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>和<xref:System.Net.FtpWebRequest.EndGetResponse%2A>方法。 完成请求的操作后，<xref:System.Net.FtpWebResponse>返回对象。 <xref:System.Net.FtpWebResponse>对象提供相应的操作和从服务器下载的任何数据的状态。  
+ 通过调用<xref:System.Net.FtpWebRequest.GetResponse%2A>方法或其异步对应项<xref:System.Net.FtpWebRequest.BeginGetResponse%2A> 、和<xref:System.Net.FtpWebRequest.EndGetResponse%2A>方法将请求发送到服务器。 当请求的操作完成时, <xref:System.Net.FtpWebResponse>将返回一个对象。 <xref:System.Net.FtpWebResponse>对象提供操作的状态以及从服务器下载的任何数据。  
   
- 可以设置超时值以读取或写入到服务器通过使用<xref:System.Net.FtpWebRequest.ReadWriteTimeout%2A>属性。 如果超过超时期限时，调用方法将引发<xref:System.Net.WebException>与<xref:System.Net.WebExceptionStatus>设置为<xref:System.Net.WebExceptionStatus.Timeout>。  
+ 您可以使用<xref:System.Net.FtpWebRequest.ReadWriteTimeout%2A>属性设置用于读取或写入服务器的超时值。 如果超过超时期限, 则调用方法会引发<xref:System.Net.WebException> , 并<xref:System.Net.WebExceptionStatus>将设置为<xref:System.Net.WebExceptionStatus.Timeout>。  
   
- 当从 FTP 服务器下载文件，如果命令成功，所请求的文件的内容中提供了响应对象的流。 可以通过调用访问此流<xref:System.Net.FtpWebResponse.GetResponseStream%2A>方法。 有关详情，请参阅<xref:System.Net.FtpWebResponse>。  
+ 从 FTP 服务器下载文件时, 如果命令成功, 则所请求文件的内容可用于响应对象的流中。 可以通过调用<xref:System.Net.FtpWebResponse.GetResponseStream%2A>方法访问此流。 有关详细信息，请参阅 <xref:System.Net.FtpWebResponse>。  
   
- 如果<xref:System.Net.FtpWebRequest.Proxy%2A>属性设置，或者直接或在配置文件中，与 FTP 服务器之间的通信都通过指定的代理。 如果指定的代理是 HTTP 代理，则仅<xref:System.Net.WebRequestMethods.Ftp.DownloadFile>， <xref:System.Net.WebRequestMethods.Ftp.ListDirectory>，和<xref:System.Net.WebRequestMethods.Ftp.ListDirectoryDetails>支持命令。  
+ 如果该<xref:System.Net.FtpWebRequest.Proxy%2A>属性是直接设置的, 或者是在配置文件中设置的, 则通过指定的代理建立与 FTP 服务器的通信。 如果指定的代理是 HTTP 代理, 则仅<xref:System.Net.WebRequestMethods.Ftp.DownloadFile>支持、 <xref:System.Net.WebRequestMethods.Ftp.ListDirectory>和<xref:System.Net.WebRequestMethods.Ftp.ListDirectoryDetails>命令。  
   
- 仅下载二进制内容缓存;也就是说，使用接收的内容<xref:System.Net.WebRequestMethods.Ftp.DownloadFile>命令<xref:System.Net.FtpWebRequest.UseBinary%2A>属性设置为`true`。  
+ 仅缓存下载的二进制内容;也就是说, 使用<xref:System.Net.WebRequestMethods.Ftp.DownloadFile>命令<xref:System.Net.FtpWebRequest.UseBinary%2A>接收的内容, 其属性设置为`true`。  
   
- 多个<xref:System.Net.FtpWebRequest>s 重用现有连接，在可能的情况。  
+ 如果<xref:System.Net.FtpWebRequest>可能, 多个重复使用现有连接。  
   
- 有关 FTP 协议的详细信息，请参阅[RFC 959:文件传输协议](https://www.ietf.org/rfc/rfc959.txt)。  
+ 有关 FTP 协议的详细信息, 请参阅[RFC 959:文件传输协议](https://www.ietf.org/rfc/rfc959.txt)。  
   
    
   
@@ -72,19 +72,19 @@
  [!code-cpp[NCLFtpClient#4](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#4)]
  [!code-csharp[NCLFtpClient#4](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#4)]  
   
- 下面的代码示例演示如何通过使用从 FTP 服务器下载文件<xref:System.Net.WebClient>类。  
+ 下面的代码示例演示如何使用<xref:System.Net.WebClient>类从 FTP 服务器下载文件。  
   
  [!code-cpp[NCLFtpClient#5](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#5)]
  [!code-csharp[NCLFtpClient#5](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#5)]  
   
- 下面的代码示例演示如何使用异步操作将文件上传到 FTP 服务器。  
+ 下面的代码示例演示如何使用异步操作将文件上载到 FTP 服务器。  
   
  [!code-cpp[NCLFtpAsync#1](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpAsync/CPP/async.cpp#1)]
  [!code-csharp[NCLFtpAsync#1](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpAsync/CS/async.cs#1)]  
   
  ]]></format>
     </remarks>
-    <permission cref="T:System.Net.WebPermission">用于访问引用此请求的资源。 关联枚举：<see cref="F:System.Net.NetworkAccess.Connect" />。</permission>
+    <permission cref="T:System.Net.WebPermission">用于访问此请求引用的资源。 关联枚举：<see cref="F:System.Net.NetworkAccess.Connect" />。</permission>
     <altmember cref="T:System.Net.FtpWebResponse" />
     <altmember cref="T:System.Net.FtpStatusCode" />
     <altmember cref="T:System.Net.WebRequestMethods.Ftp" />
@@ -127,15 +127,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果没有正在进行中的操作，此方法没有任何影响。 如果文件传输过程中，此方法将终止传输。  
+ 如果没有正在进行的操作, 此方法不执行任何操作。 如果文件传输正在进行, 则此方法将终止传输。  
   
 > [!NOTE]
->  当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息，请参阅[在.NET Framework 中进行网络跟踪](~/docs/framework/network-programming/network-tracing.md)。  
+>  当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息, 请参阅[.NET Framework 中的网络跟踪](~/docs/framework/network-programming/network-tracing.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示用户如何可以终止异步上传到服务器的文件从本地目录。  
+ 下面的代码示例演示了用户可以如何终止从本地目录到服务器的异步文件上传。  
   
  [!code-cpp[NCLFtpClient#10](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#10)]
  [!code-csharp[NCLFtpClient#10](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#10)]  
@@ -190,19 +190,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须通过调用完成的异步操作<xref:System.Net.FtpWebRequest.EndGetRequestStream%2A>方法。 通常情况下，<xref:System.Net.FtpWebRequest.EndGetRequestStream%2A>由所引用的方法调用`callback`。 若要确定操作的状态，请检查属性<xref:System.IAsyncResult>此方法返回的对象。  
+ 必须通过调用<xref:System.Net.FtpWebRequest.EndGetRequestStream%2A>方法来完成异步操作。 通常, <xref:System.Net.FtpWebRequest.EndGetRequestStream%2A>由`callback`引用的方法调用。 若要确定操作的状态, 请检查由此方法返回的<xref:System.IAsyncResult>对象中的属性。  
   
- 此方法不会阻止等待流时。 若要阻止，请调用<xref:System.Net.FtpWebRequest.GetRequestStream%2A>来替代此方法。  
+ 在等待流时, 此方法不会被阻止。 若要阻止, <xref:System.Net.FtpWebRequest.GetRequestStream%2A>请调用以替换此方法。  
   
- 有关使用异步编程模型的详细信息，请参阅[Calling Synchronous Methods Asynchronously](~/docs/standard/asynchronous-programming-patterns/calling-synchronous-methods-asynchronously.md)。  
+ 有关使用异步编程模型的详细信息, 请参阅[以异步方式调用同步方法](~/docs/standard/asynchronous-programming-patterns/calling-synchronous-methods-asynchronously.md)。  
   
 > [!NOTE]
->  当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息，请参阅[在.NET Framework 中进行网络跟踪](~/docs/framework/network-programming/network-tracing.md)。  
+>  当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息, 请参阅[.NET Framework 中的网络跟踪](~/docs/framework/network-programming/network-tracing.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何开始异步操作以获取请求的流。 此代码示例是为提供一个更大示例的一部分<xref:System.Net.FtpWebRequest>类概述。  
+ 下面的代码示例演示如何开始异步操作以获取请求的流。 此代码示例是为<xref:System.Net.FtpWebRequest>类概述提供的更大示例的一部分。  
   
  [!code-cpp[NCLFtpAsync#4](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpAsync/CPP/async.cpp#4)]
  [!code-csharp[NCLFtpAsync#4](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpAsync/CS/async.cs#4)]  
@@ -212,7 +212,7 @@
         <exception cref="T:System.InvalidOperationException">此前对此方法或 <see cref="M:System.Net.FtpWebRequest.GetRequestStream" /> 的调用尚未完成。</exception>
         <exception cref="T:System.Net.WebException">未能建立到 FTP 服务器的连接。</exception>
         <exception cref="T:System.Net.ProtocolViolationException"><see cref="P:System.Net.FtpWebRequest.Method" /> 属性没有设置为 <see cref="F:System.Net.WebRequestMethods.Ftp.UploadFile" />。</exception>
-        <block subset="none" type="usage"><para>此方法将生成网络流量。</para></block>
+        <block subset="none" type="usage"><para>此方法生成网络流量。</para></block>
         <altmember cref="T:System.Net.FtpWebResponse" />
         <altmember cref="T:System.Net.FtpStatusCode" />
         <altmember cref="T:System.Net.WebRequestMethods.Ftp" />
@@ -261,23 +261,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须通过调用完成的异步操作<xref:System.Net.FtpWebRequest.EndGetResponse%2A>方法。 通常情况下，<xref:System.Net.FtpWebRequest.EndGetResponse%2A>由所引用的方法调用`callback`。 若要确定操作的状态，请检查属性<xref:System.IAsyncResult>返回对象<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>方法。  
+ 必须通过调用<xref:System.Net.FtpWebRequest.EndGetResponse%2A>方法来完成异步操作。 通常, <xref:System.Net.FtpWebRequest.EndGetResponse%2A>由`callback`引用的方法调用。 若要确定操作的状态, 请检查<xref:System.IAsyncResult> <xref:System.Net.FtpWebRequest.BeginGetResponse%2A>方法返回的对象中的属性。  
   
- 如果<xref:System.Net.FtpWebRequest.Proxy%2A>属性设置，或者直接或在配置文件中，与 FTP 服务器之间的通信都通过指定的代理。  
+ 如果该<xref:System.Net.FtpWebRequest.Proxy%2A>属性是直接设置的, 或者是在配置文件中设置的, 则通过指定的代理建立与 FTP 服务器的通信。  
   
- <xref:System.Net.FtpWebRequest.BeginGetResponse%2A> 不会阻止等待来自服务器的响应时。 若要阻止，请调用<xref:System.Net.FtpWebRequest.GetResponse%2A>方法来代替<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>。  
+ <xref:System.Net.FtpWebRequest.BeginGetResponse%2A>等待服务器的响应时不会阻止。 若要阻止, 请<xref:System.Net.FtpWebRequest.GetResponse%2A>调用方法<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>代替。  
   
- 有关使用异步编程模型的详细信息，请参阅[Calling Synchronous Methods Asynchronously](~/docs/standard/asynchronous-programming-patterns/calling-synchronous-methods-asynchronously.md)。  
+ 有关使用异步编程模型的详细信息, 请参阅[以异步方式调用同步方法](~/docs/standard/asynchronous-programming-patterns/calling-synchronous-methods-asynchronously.md)。  
   
- 当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息，请参阅[在.NET Framework 中进行网络跟踪](~/docs/framework/network-programming/network-tracing.md)。  
+ 当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息, 请参阅[.NET Framework 中的网络跟踪](~/docs/framework/network-programming/network-tracing.md)。  
   
 > [!NOTE]
->  如果<xref:System.Net.WebException>是引发，使用<xref:System.Net.WebException.Response%2A>和<xref:System.Net.WebException.Status%2A>异常来确定来自服务器的响应的属性。  
+>  如果引发了, 则使用异常<xref:System.Net.WebException.Response%2A>的<xref:System.Net.WebException.Status%2A>和属性来确定来自服务器的响应。 <xref:System.Net.WebException>  
   
    
   
 ## Examples  
- 下面的代码示例演示结束异步操作以获取请求的流，然后开始获取响应的请求。 此代码示例是为提供一个更大示例的一部分<xref:System.Net.FtpWebRequest>类概述。  
+ 下面的代码示例演示如何结束异步操作以获取请求的流, 然后启动请求以获取响应。 此代码示例是为<xref:System.Net.FtpWebRequest>类概述提供的更大示例的一部分。  
   
  [!code-cpp[NCLFtpAsync#5](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpAsync/CPP/async.cpp#5)]
  [!code-csharp[NCLFtpAsync#5](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpAsync/CS/async.cs#5)]  
@@ -285,7 +285,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">已经为此实例调用了 <see cref="M:System.Net.FtpWebRequest.GetResponse" /> 或 <see cref="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />。</exception>
-        <block subset="none" type="usage"><para>此方法将生成网络流量。</para></block>
+        <block subset="none" type="usage"><para>此方法生成网络流量。</para></block>
         <altmember cref="T:System.Net.FtpWebResponse" />
         <altmember cref="T:System.Net.FtpStatusCode" />
         <altmember cref="T:System.Net.WebRequestMethods.Ftp" />
@@ -333,10 +333,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 客户端证书用于在初始的 SSL 连接协商过程对客户端进行身份验证。 有关详情，请参阅<xref:System.Net.FtpWebRequest.EnableSsl%2A>。  
+ 在初始 SSL 连接协商过程中, 客户端证书用于对客户端进行身份验证。 有关详细信息，请参阅 <xref:System.Net.FtpWebRequest.EnableSsl%2A>。  
   
 > [!NOTE]
->  .NET Framework 缓存 SSL 会话，因为它们创建并尝试尽可能重用缓存的会话的新请求。 在尝试以重复使用的 SSL 会话时，.NET Framework 使用的第一个元素<xref:System.Net.HttpWebRequest.ClientCertificates%2A>（如果没有一个），或尝试重复使用匿名会话，如果<xref:System.Net.HttpWebRequest.ClientCertificates%2A>为空。  
+>  .NET Framework 在创建 SSL 会话时将其缓存, 并尝试为新请求重用缓存会话 (如果可能)。 尝试重用 SSL 会话时, .NET Framework 使用的<xref:System.Net.HttpWebRequest.ClientCertificates%2A>第一个元素 (如果有), 或者如果<xref:System.Net.HttpWebRequest.ClientCertificates%2A>为空, 则尝试重新使用匿名会话。  
   
  ]]></format>
         </remarks>
@@ -391,11 +391,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 连接组将与一个特定的连接或连接的一组相关联请求的集。 仅当在请求凭据相同，并且该请求指定的连接组名称在相同的应用程序域中，发出请求才可以重用的连接组中的连接。 如果请求未指定连接组名称，可以使用与请求的服务器不是与连接组相关联的任何现有连接。 当凭据都不相同时，现有连接已关闭，并且新的请求必须重新进行身份验证。  
+ 连接组将一组请求与特定连接或连接集相关联。 连接组中的连接只能由同一应用程序域中的请求重复使用, 前提是请求上的凭据相同, 并且请求指定连接组名称。 如果请求未指定连接组名称, 则可以使用与连接组不关联的任何已请求服务器的现有连接。 如果凭据不相同, 则会关闭现有连接, 必须重新对新请求进行身份验证。  
   
- 使用连接组可以提高性能，因为这允许所有用户要重用与用户的凭据进行身份验证连接请求。  
+ 使用连接组可以提高性能, 因为这允许用户的所有请求重用使用用户凭据进行身份验证的连接。  
   
- 更改<xref:System.Net.FtpWebRequest.ConnectionGroupName%2A>属性后调用<xref:System.Net.FtpWebRequest.GetRequestStream%2A>， <xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>， <xref:System.Net.FtpWebRequest.GetResponse%2A>，或<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>方法使<xref:System.InvalidOperationException>异常。  
+ <xref:System.Net.FtpWebRequest.ConnectionGroupName%2A>在<xref:System.InvalidOperationException>调用、 、<xref:System.Net.FtpWebRequest.GetResponse%2A>或方法之后更改属性将导致异常。<xref:System.Net.FtpWebRequest.BeginGetResponse%2A> <xref:System.Net.FtpWebRequest.GetRequestStream%2A> <xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>  
   
    
   
@@ -459,7 +459,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.FtpWebRequest.ContentLength%2A>属性仅用于使用的其他实现的兼容性<xref:System.Net.WebRequest>和<xref:System.Net.WebResponse>类。 若要使用没有理由<xref:System.Net.FtpWebRequest.ContentLength%2A>。  
+ 提供属性只是为了与<xref:System.Net.WebRequest>和<xref:System.Net.WebResponse>类的其他实现兼容。 <xref:System.Net.FtpWebRequest.ContentLength%2A> 没有理由使用<xref:System.Net.FtpWebRequest.ContentLength%2A>。  
   
  ]]></format>
         </remarks>
@@ -504,16 +504,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置<xref:System.Net.FtpWebRequest.ContentOffset%2A>属性从 FTP 服务器下载文件时。 此偏移量指示标记要下载的数据的开始位置的服务器的文件中的位置。 偏移量指定为从该文件; 开始的字节数第一个字节的偏移量为零。  
+ 从 FTP 服务器下载文件时设置属性。<xref:System.Net.FtpWebRequest.ContentOffset%2A> 此偏移量指示服务器文件中用于标记要下载的数据开始位置的位置。 偏移量指定为从文件开头开始的字节数;第一个字节的偏移量为零。  
   
- 设置<xref:System.Net.FtpWebRequest.ContentOffset%2A>会导致<xref:System.Net.FtpWebRequest>发送重新启动 (`REST`) 命令到服务器。 如果将数据上载到服务器，大多数 FTP 服务器实现会忽略此命令。  
+ 设置<xref:System.Net.FtpWebRequest.ContentOffset%2A> `REST`会导致向服务器发送 restart () 命令。 <xref:System.Net.FtpWebRequest> 如果要将数据上传到服务器, 则多数 FTP 服务器实现将忽略此命令。  
   
- 更改<xref:System.Net.FtpWebRequest.ContentOffset%2A>后调用<xref:System.Net.FtpWebRequest.GetRequestStream%2A>， <xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>， <xref:System.Net.FtpWebRequest.GetResponse%2A>，或<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>方法使<xref:System.InvalidOperationException>异常。  
+ 在<xref:System.Net.FtpWebRequest.ContentOffset%2A> 调用<xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>、、或方法之后<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>更改将导致<xref:System.InvalidOperationException>异常。 <xref:System.Net.FtpWebRequest.GetResponse%2A> <xref:System.Net.FtpWebRequest.GetRequestStream%2A>  
   
    
   
 ## Examples  
- 下面的代码示例演示从一台服务器并将下载的数据追加到本地文件的下载文件的一部分。  
+ 下面的代码示例演示如何从服务器下载部分文件, 并将下载的数据追加到本地文件。  
   
  [!code-cpp[NclFtpClient#7](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#7)]
  [!code-csharp[NclFtpClient#7](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#7)]  
@@ -564,7 +564,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.FtpWebRequest.ContentType%2A>属性仅用于使用的其他实现的兼容性<xref:System.Net.WebRequest>和<xref:System.Net.WebResponse>类。 若要使用没有理由<xref:System.Net.FtpWebRequest.ContentType%2A>。  
+ 提供属性只是为了与<xref:System.Net.WebRequest>和<xref:System.Net.WebResponse>类的其他实现兼容。 <xref:System.Net.FtpWebRequest.ContentType%2A> 没有理由使用<xref:System.Net.FtpWebRequest.ContentType%2A>。  
   
  ]]></format>
         </remarks>
@@ -610,17 +610,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不需要使用匿名登录进行连接时指定的凭据。 必须设置<xref:System.Net.FtpWebRequest.Credentials%2A>属性使用的凭据类型<xref:System.Net.NetworkCredential>; 这可确保，可以读取并发送到服务器的用户名和密码。  
+ 使用匿名登录进行连接时, 不需要指定凭据。 必须通过使用类型<xref:System.Net.FtpWebRequest.Credentials%2A> <xref:System.Net.NetworkCredential>的凭据来设置属性; 这可以确保可读取和发送到服务器的用户名和密码。  
   
 > [!CAUTION]
->  凭据信息并未加密时传输到服务器，除非<xref:System.Net.FtpWebRequest.EnableSsl%2A>属性设置为`true`。  
+>  除非将<xref:System.Net.FtpWebRequest.EnableSsl%2A>属性设置为`true`, 否则传输到服务器时不会加密凭据信息。  
   
- 更改<xref:System.Net.FtpWebRequest.Credentials%2A>后调用<xref:System.Net.FtpWebRequest.GetRequestStream%2A>， <xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>， <xref:System.Net.FtpWebRequest.GetResponse%2A>，或<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>方法使<xref:System.InvalidOperationException>异常。  
+ 在<xref:System.Net.FtpWebRequest.Credentials%2A> 调用<xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>、、或方法之后<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>更改将导致<xref:System.InvalidOperationException>异常。 <xref:System.Net.FtpWebRequest.GetResponse%2A> <xref:System.Net.FtpWebRequest.GetRequestStream%2A>  
   
    
   
 ## Examples  
- 下面的代码示例检索此属性的值，并使用它来显示用户名。  
+ 下面的代码示例检索此属性的值, 并使用它来显示该用户名。  
   
  [!code-cpp[NCLFtpClient#14](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#14)]
  [!code-csharp[NCLFtpClient#14](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#14)]  
@@ -676,27 +676,27 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 只有使用接收的内容<xref:System.Net.WebRequestMethods.Ftp.DownloadFile>缓存命令。  
+ 仅缓存使用<xref:System.Net.WebRequestMethods.Ftp.DownloadFile>命令接收的内容。  
   
- 下表描述了 FTP 缓存策略的效果<xref:System.Net.FtpWebRequest>。  
+ 下表描述了 FTP 缓存策略对<xref:System.Net.FtpWebRequest>的影响。  
   
 |策略|效果|  
 |------------|------------|  
-|<xref:System.Net.Cache.RequestCacheLevel.Default>|如果资源是最新、 内容长度是准确的并且存在过期、 修改和内容长度属性将，返回缓存的资源。|  
-|<xref:System.Net.Cache.RequestCacheLevel.BypassCache>|从服务器返回的资源。|  
-|<xref:System.Net.Cache.RequestCacheLevel.CacheOnly>|如果内容长度存在并且匹配的项大小;，返回缓存的资源否则，将引发<xref:System.Net.WebException>。|  
-|<xref:System.Net.Cache.RequestCacheLevel.CacheIfAvailable>|如果提供了内容的长度，并且与匹配项的大小;，返回缓存的资源否则为该资源从服务器下载，并返回到调用方。|  
-|<xref:System.Net.Cache.RequestCacheLevel.Revalidate>|如果缓存资源的时间戳是与服务器; 上的资源的时间戳相同，则返回缓存的资源否则为资源是从服务器下载，存储在缓存中，并返回给调用方。|  
-|<xref:System.Net.Cache.RequestCacheLevel.Reload>|从服务器下载资源、 将其存储在缓存中，并返回给调用方的资源。|  
-|<xref:System.Net.Cache.RequestCacheLevel.NoCacheNoStore>|如果缓存的资源存在，将删除它。 资源从服务器下载，并返回到调用方。|  
+|<xref:System.Net.Cache.RequestCacheLevel.Default>|如果资源是最新的, 则返回缓存的资源, 内容长度准确, 并且存在过期、修改和内容长度属性。|  
+|<xref:System.Net.Cache.RequestCacheLevel.BypassCache>|从服务器返回资源。|  
+|<xref:System.Net.Cache.RequestCacheLevel.CacheOnly>|如果内容长度存在并且与条目大小匹配, 则返回缓存的资源;否则, 将<xref:System.Net.WebException>引发。|  
+|<xref:System.Net.Cache.RequestCacheLevel.CacheIfAvailable>|如果提供了内容长度并与条目大小匹配, 则返回缓存的资源;否则, 将从服务器下载资源, 并将其返回给调用方。|  
+|<xref:System.Net.Cache.RequestCacheLevel.Revalidate>|如果缓存资源的时间戳与服务器上资源的时间戳相同, 则返回缓存的资源;否则, 将从服务器下载资源, 并将其存储在缓存中, 并将其返回给调用方。|  
+|<xref:System.Net.Cache.RequestCacheLevel.Reload>|从服务器下载资源, 将其存储在缓存中, 并将资源返回给调用方。|  
+|<xref:System.Net.Cache.RequestCacheLevel.NoCacheNoStore>|如果缓存的资源存在, 则将其删除。 从服务器下载资源, 并将其返回给调用方。|  
   
 > [!NOTE]
->  设置<xref:System.Net.FtpWebRequest.DefaultCachePolicy%2A>重写任何配置设置。  
+>  设置<xref:System.Net.FtpWebRequest.DefaultCachePolicy%2A>将替代任何配置设置。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException">调用方尝试将此属性设置为 <see langword="null" />。</exception>
-        <related type="Article" href="https://msdn.microsoft.com/library/0eb0c5cb-dd97-484d-8614-785e88877abb">defaultFtpCachePolicy （网络设置）</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/0eb0c5cb-dd97-484d-8614-785e88877abb">defaultFtpCachePolicy (网络设置)</related>
       </Docs>
     </Member>
     <Member MemberName="EnableSsl">
@@ -740,14 +740,14 @@
 ## Remarks  
   
 > [!CAUTION]
->  除非<xref:System.Net.FtpWebRequest.EnableSsl%2A>属性是`true`，所有数据和命令，其中包括你的用户名和密码信息，向服务器都发送以明文形式。 监视网络流量的任何人都可以查看你的凭据，并将其用于连接到服务器。 如果要连接到 FTP 服务器要求凭据，并支持 SSL，则应设置<xref:System.Net.FtpWebRequest.EnableSsl%2A>到`true`。  
+>  除非属性为`true`, 否则所有数据和命令 (包括你的用户名和密码信息) 都将以明文形式发送到服务器。 <xref:System.Net.FtpWebRequest.EnableSsl%2A> 监视网络流量的任何人都可以查看凭据并使用它们连接到服务器。 如果要连接到需要凭据并支持 SSL 的 FTP 服务器, 则应将设置<xref:System.Net.FtpWebRequest.EnableSsl%2A>为。 `true`  
   
- `"AUTH TLS"`命令发送到服务器以请求的加密的会话。 如果服务器无法识别此命令，则会收到<xref:System.Net.WebException>异常。  
+ 此`"AUTH TLS"`命令将发送到服务器以请求加密会话。 如果服务器无法识别此命令, 将收到一个<xref:System.Net.WebException>异常。  
   
    
   
 ## Examples  
- 下面的代码示例使用加密的连接以下载的目录列表从 FTP 服务器。  
+ 下面的代码示例使用加密连接从 FTP 服务器下载目录列表。  
   
  [!code-cpp[NCLFtpClient#8](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#8)]
  [!code-csharp[NCLFtpClient#8](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#8)]  
@@ -801,17 +801,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果该操作未完成，<xref:System.Net.FtpWebRequest.EndGetRequestStream%2A>方法进行阻止，直到操作完成。 若要确定操作是否已完成，请检查<xref:System.IAsyncResult.IsCompleted%2A>属性之前调用<xref:System.Net.FtpWebRequest.EndGetRequestStream%2A>。  
+ 如果操作尚未完成, 则方法将<xref:System.Net.FtpWebRequest.EndGetRequestStream%2A>被阻止, 直到操作完成。 若要确定操作是否已完成, 请在<xref:System.IAsyncResult.IsCompleted%2A>调用<xref:System.Net.FtpWebRequest.EndGetRequestStream%2A>前检查属性。  
   
- 除了"异常"中所示的异常<xref:System.Net.FtpWebRequest.EndGetRequestStream%2A>重新打开以进行写入的流时引发的异常引发。  
+ 除了 "异常" 中所述的异常之外, <xref:System.Net.FtpWebRequest.EndGetRequestStream%2A>还会重新引发打开要写入的流时引发的异常。  
   
 > [!NOTE]
->  当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息，请参阅[在.NET Framework 中进行网络跟踪](~/docs/framework/network-programming/network-tracing.md)。  
+>  当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息, 请参阅[.NET Framework 中的网络跟踪](~/docs/framework/network-programming/network-tracing.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何结束异步操作以获取请求的流。 此代码示例是为提供一个更大示例的一部分<xref:System.Net.FtpWebRequest>类概述。  
+ 下面的代码示例演示如何结束异步操作以获取请求的流。 此代码示例是为<xref:System.Net.FtpWebRequest>类概述提供的更大示例的一部分。  
   
  [!code-cpp[NCLFtpAsync#5](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpAsync/CPP/async.cpp#5)]
  [!code-csharp[NCLFtpAsync#5](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpAsync/CS/async.cs#5)]  
@@ -867,17 +867,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果该操作未完成时<xref:System.Net.FtpWebRequest.EndGetResponse%2A>调用方法时，<xref:System.Net.FtpWebRequest.EndGetResponse%2A>阻止，直到操作完成。 若要阻止阻塞，请检查<xref:System.IAsyncResult.IsCompleted%2A>属性之前调用<xref:System.Net.FtpWebRequest.EndGetResponse%2A>。  
+ 如果在调用<xref:System.Net.FtpWebRequest.EndGetResponse%2A>方法时操作尚未完成, <xref:System.Net.FtpWebRequest.EndGetResponse%2A>则会阻止操作完成。 若要防止阻塞, 请<xref:System.IAsyncResult.IsCompleted%2A>在调用<xref:System.Net.FtpWebRequest.EndGetResponse%2A>前检查属性。  
   
- 除了"异常"中所示的异常<xref:System.Net.FtpWebRequest.EndGetResponse%2A>重新引发与服务器通信时引发的异常。  
+ 除了 "异常" 中所述的异常, <xref:System.Net.FtpWebRequest.EndGetResponse%2A>还会重新引发与服务器通信时引发的异常。  
   
 > [!NOTE]
->  当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息，请参阅[在.NET Framework 中进行网络跟踪](~/docs/framework/network-programming/network-tracing.md)。  
+>  当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息, 请参阅[.NET Framework 中的网络跟踪](~/docs/framework/network-programming/network-tracing.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何结束异步操作以获得响应。 此代码示例是为提供一个更大示例的一部分<xref:System.Net.FtpWebRequest>类概述。  
+ 下面的代码示例演示如何结束异步操作以获取响应。 此代码示例是为<xref:System.Net.FtpWebRequest>类概述提供的更大示例的一部分。  
   
  [!code-cpp[NCLFtpAsync#6](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpAsync/CPP/async.cpp#6)]
  [!code-csharp[NCLFtpAsync#6](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpAsync/CS/async.cs#6)]  
@@ -888,7 +888,7 @@
         <exception cref="T:System.ArgumentException">未能通过调用 <see cref="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> 获取 <paramref name="asyncResult" />。</exception>
         <exception cref="T:System.InvalidOperationException">已为 <paramref name="asyncResult" /> 标识的操作调用了此方法。</exception>
         <exception cref="T:System.Net.WebException">使用 HTTP 代理时出错。</exception>
-        <block subset="none" type="usage"><para>此方法将生成网络流量。</para></block>
+        <block subset="none" type="usage"><para>此方法生成网络流量。</para></block>
         <altmember cref="T:System.Net.FtpWebResponse" />
         <altmember cref="T:System.Net.FtpStatusCode" />
         <altmember cref="T:System.Net.WebRequestMethods.Ftp" />
@@ -933,19 +933,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置请求属性之前调用<xref:System.Net.FtpWebRequest.GetRequestStream%2A>方法。 将数据写入流之后, 您必须关闭在发送请求之前的流。  
+ 在调用<xref:System.Net.FtpWebRequest.GetRequestStream%2A>方法之前设置请求属性。 将数据写入流后, 必须在发送请求前关闭流。  
   
- 如果没有设置<xref:System.Net.FtpWebRequest.Method%2A>属性设置为<xref:System.Net.WebRequestMethods.Ftp.UploadFile>或<xref:System.Net.WebRequestMethods.Ftp.AppendFile>，不能获取的流。  
+ 如果未将<xref:System.Net.FtpWebRequest.Method%2A>属性设置为<xref:System.Net.WebRequestMethods.Ftp.UploadFile>或<xref:System.Net.WebRequestMethods.Ftp.AppendFile>, 则无法获取该流。  
   
- <xref:System.Net.FtpWebRequest.GetRequestStream%2A> 在等待流时阻止。 若要防止此情况，调用<xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>方法来代替<xref:System.Net.FtpWebRequest.GetRequestStream%2A>。  
+ <xref:System.Net.FtpWebRequest.GetRequestStream%2A>等待流时阻止。 若要防止出现这种<xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>情况<xref:System.Net.FtpWebRequest.GetRequestStream%2A>, 请调用方法代替。  
   
 > [!NOTE]
->  当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息，请参阅[在.NET Framework 中进行网络跟踪](~/docs/framework/network-programming/network-tracing.md)。  
+>  当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息, 请参阅[.NET Framework 中的网络跟踪](~/docs/framework/network-programming/network-tracing.md)。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何将文件复制到请求的数据流并将请求发送到服务器，以将数据上传并将其追加到文件。  
+ 下面的代码示例演示如何将文件复制到请求的数据流, 以及如何将请求发送到服务器以上载数据并将其追加到文件中。  
   
  [!code-cpp[NCLFtpClient#3](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#3)]
  [!code-csharp[NCLFtpClient#3](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#3)]  
@@ -954,11 +954,11 @@
         </remarks>
         <exception cref="T:System.InvalidOperationException"><see cref="M:System.Net.FtpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" /> 已被调用并且尚未完成。  
   
-- 或 - 
+或 
 HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.Net.WebRequestMethods.Ftp.DownloadFile" />、<see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectory" /> 或 <see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectoryDetails" />。</exception>
         <exception cref="T:System.Net.WebException">未能建立到 FTP 服务器的连接。</exception>
         <exception cref="T:System.Net.ProtocolViolationException"><see cref="P:System.Net.FtpWebRequest.Method" /> 属性未设置为 <see cref="F:System.Net.WebRequestMethods.Ftp.UploadFile" /> 或 <see cref="F:System.Net.WebRequestMethods.Ftp.AppendFile" />。</exception>
-        <block subset="none" type="usage"><para>此方法将生成网络流量。</para></block>
+        <block subset="none" type="usage"><para>此方法生成网络流量。</para></block>
         <altmember cref="T:System.Net.FtpWebResponse" />
         <altmember cref="T:System.Net.FtpStatusCode" />
         <altmember cref="T:System.Net.WebRequestMethods.Ftp" />
@@ -1002,23 +1002,23 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要访问特定于 FTP 的属性，必须强制转换<xref:System.Net.WebResponse>到此方法返回的对象<xref:System.Net.FtpWebResponse>。  
+ 若要访问特定于 FTP 的属性, 必须将此<xref:System.Net.WebResponse>方法返回的对象强制转换<xref:System.Net.FtpWebResponse>为。  
   
- <xref:System.Net.FtpWebRequest.GetResponse%2A> 控制连接建立，并且还可以创建数据连接。 <xref:System.Net.FtpWebRequest.GetResponse%2A> 阻止，直到收到响应。 若要防止此情况，您可以通过执行此操作以异步方式调用<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>并<xref:System.Net.FtpWebRequest.EndGetResponse%2A>方法来代替<xref:System.Net.FtpWebRequest.GetResponse%2A>。  
+ <xref:System.Net.FtpWebRequest.GetResponse%2A>导致建立控制连接, 并且还可能会创建数据连接。 <xref:System.Net.FtpWebRequest.GetResponse%2A>阻止, 直到收到响应。 若要防止出现这种情况, 可以通过调用<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>和<xref:System.Net.FtpWebRequest.EndGetResponse%2A>方法替换<xref:System.Net.FtpWebRequest.GetResponse%2A>来异步执行此操作。  
   
- 如果<xref:System.Net.FtpWebRequest.Proxy%2A>属性设置，或者直接或在配置文件中，与 FTP 服务器之间的通信都通过代理服务器。  
+ 如果该<xref:System.Net.FtpWebRequest.Proxy%2A>属性是直接设置的, 或者是在配置文件中设置的, 则通过代理建立与 FTP 服务器的通信。  
   
- 如果<xref:System.Net.WebException>是引发，使用<xref:System.Net.WebException.Response%2A>和<xref:System.Net.WebException.Status%2A>异常来确定来自服务器的响应的属性。  
+ 如果引发了, 则使用异常<xref:System.Net.WebException.Response%2A>的<xref:System.Net.WebException.Status%2A>和属性来确定来自服务器的响应。 <xref:System.Net.WebException>  
   
- 当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息，请参阅[在.NET Framework 中进行网络跟踪](~/docs/framework/network-programming/network-tracing.md)。  
+ 当你在应用程序中启用网络跟踪后，此成员将输出跟踪信息。 有关详细信息, 请参阅[.NET Framework 中的网络跟踪](~/docs/framework/network-programming/network-tracing.md)。  
   
 > [!NOTE]
->  多次调用<xref:System.Net.FtpWebRequest.GetResponse%2A>返回相同的响应对象中; 请求不重新颁发。  
+>  多次调用<xref:System.Net.FtpWebRequest.GetResponse%2A>将返回相同的响应对象; 不会重新发出该请求。  
   
    
   
 ## Examples  
- 下面的代码示例演示如何将文件复制到请求的数据流并发送请求以将数据追加到一个文件服务器。 此示例调用<xref:System.Net.FtpWebRequest.GetResponse%2A>发送请求并阻止，直到服务器返回的响应。  
+ 下面的代码示例演示如何将文件复制到请求的数据流, 以及如何将请求发送到向服务器追加数据。 该示例调用<xref:System.Net.FtpWebRequest.GetResponse%2A>发送请求, 并阻止服务器返回响应。  
   
  [!code-cpp[NCLFtpClient#3](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#3)]
  [!code-csharp[NCLFtpClient#3](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#3)]  
@@ -1027,13 +1027,13 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
         </remarks>
         <exception cref="T:System.InvalidOperationException">已经为此实例调用了 <see cref="M:System.Net.FtpWebRequest.GetResponse" /> 或 <see cref="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />。  
   
-- 或 - 
+或 
 HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.Net.WebRequestMethods.Ftp.DownloadFile" />、<see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectory" /> 或 <see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectoryDetails" />。</exception>
         <exception cref="T:System.Net.WebException"><see cref="P:System.Net.FtpWebRequest.EnableSsl" /> 设置为 <see langword="true" />，但服务器不支持此功能。  
   
-- 或 - 
+或 
 <see cref="P:System.Net.FtpWebRequest.Timeout" /> 已指定，且已超时。</exception>
-        <block subset="none" type="usage"><para>此方法将生成网络流量。</para></block>
+        <block subset="none" type="usage"><para>此方法生成网络流量。</para></block>
         <altmember cref="T:System.Net.FtpWebResponse" />
         <altmember cref="T:System.Net.FtpStatusCode" />
         <altmember cref="T:System.Net.WebRequestMethods.Ftp" />
@@ -1081,7 +1081,7 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.FtpWebRequest.Headers%2A>属性仅用于使用的其他实现的兼容性<xref:System.Net.WebRequest>和<xref:System.Net.WebResponse>类。 若要使用没有理由<xref:System.Net.FtpWebRequest.Headers%2A>。  
+ 提供属性只是为了与<xref:System.Net.WebRequest>和<xref:System.Net.WebResponse>类的其他实现兼容。 <xref:System.Net.FtpWebRequest.Headers%2A> 没有理由使用<xref:System.Net.FtpWebRequest.Headers%2A>。  
   
  ]]></format>
         </remarks>
@@ -1129,14 +1129,14 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当<xref:System.Net.FtpWebRequest.KeepAlive%2A>属性设置为`false`，在调用时控制连接已关闭<xref:System.Net.FtpWebResponse.Close%2A>方法。  
+ 当属性设置为`false`时, 将在调用<xref:System.Net.FtpWebResponse.Close%2A>方法时关闭控件连接。 <xref:System.Net.FtpWebRequest.KeepAlive%2A>  
   
- 更改<xref:System.Net.FtpWebRequest.KeepAlive%2A>后调用<xref:System.Net.FtpWebRequest.GetRequestStream%2A>， <xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>， <xref:System.Net.FtpWebRequest.GetResponse%2A>，或<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>方法使<xref:System.InvalidOperationException>异常。  
+ 在<xref:System.Net.FtpWebRequest.KeepAlive%2A> 调用<xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>、、或方法之后<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>更改将导致<xref:System.InvalidOperationException>异常。 <xref:System.Net.FtpWebRequest.GetResponse%2A> <xref:System.Net.FtpWebRequest.GetRequestStream%2A>  
   
    
   
 ## Examples  
- 下面的代码示例检索并显示为指定的属性值<xref:System.Net.FtpWebRequest>对象。  
+ 下面的代码示例检索并显示指定<xref:System.Net.FtpWebRequest>的对象的属性值。  
   
  [!code-cpp[NCLFtpClient#15](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#15)]
  [!code-csharp[NCLFtpClient#15](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#15)]  
@@ -1186,18 +1186,18 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.FtpWebRequest.Method%2A>属性确定哪个命令发送到服务器。 您设置<xref:System.Net.FtpWebRequest.Method%2A>使用的公共字段成员中定义的字符串<xref:System.Net.WebRequestMethods.Ftp>类。 请注意，在中定义的字符串<xref:System.Net.WebRequestMethods.Ftp>类是唯一支持的选项<xref:System.Net.FtpWebRequest.Method%2A>属性。 设置<xref:System.Net.FtpWebRequest.Method%2A>属性设置为任何其他值将导致<xref:System.ArgumentException>异常。  
+ <xref:System.Net.FtpWebRequest.Method%2A>属性确定将哪个命令发送到服务器。 您可以使用<xref:System.Net.FtpWebRequest.Method%2A> <xref:System.Net.WebRequestMethods.Ftp>类的公共字段成员中定义的字符串来设置。 请注意, 在<xref:System.Net.WebRequestMethods.Ftp>类中定义的字符串是唯一受支持的<xref:System.Net.FtpWebRequest.Method%2A>属性选项。 将属性设置为任何其他值将导致<xref:System.ArgumentException>异常。 <xref:System.Net.FtpWebRequest.Method%2A>  
   
- 设置时<xref:System.Net.FtpWebRequest.Method%2A>到<xref:System.Net.WebRequestMethods.Ftp.UploadFile>，则必须在调用之前进行<xref:System.Net.FtpWebRequest.GetRequestStream%2A>方法。 在正确的顺序会导致调用这些成员失败<xref:System.Net.ProtocolViolationException>尝试获取请求流时出现异常。  
+ 如果将<xref:System.Net.FtpWebRequest.Method%2A>设置<xref:System.Net.WebRequestMethods.Ftp.UploadFile>为, 则必须在调用<xref:System.Net.FtpWebRequest.GetRequestStream%2A>方法之前执行此操作。 如果未能按正确的顺序调用这些成员, 则<xref:System.Net.ProtocolViolationException>会在你尝试获取请求流时引发异常。  
   
- 为提供的凭据<xref:System.Net.FtpWebRequest>对象必须有权执行指定的方法。 如果没有，则 FTP 命令将失败。  
+ 为<xref:System.Net.FtpWebRequest>对象提供的凭据必须具有执行指定方法的权限。 否则, FTP 命令将失败。  
   
- 若要确定是成功还是失败的命令，检查<xref:System.Net.FtpWebResponse.StatusCode%2A>和<xref:System.Net.FtpWebResponse.StatusDescription%2A>属性。  
+ 若要确定命令是成功还是失败, 请检查<xref:System.Net.FtpWebResponse.StatusCode%2A>和<xref:System.Net.FtpWebResponse.StatusDescription%2A>属性。  
   
    
   
 ## Examples  
- 下面的代码示例将此属性设置为<xref:System.Net.WebRequestMethods.Ftp.DeleteFile>。  
+ 下面的代码示例将此属性设置<xref:System.Net.WebRequestMethods.Ftp.DeleteFile>为。  
   
  [!code-cpp[NCLFtpClient#4](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#4)]
  [!code-csharp[NCLFtpClient#4](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#4)]  
@@ -1207,11 +1207,13 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
         <exception cref="T:System.InvalidOperationException">对于一个已在进行的请求为此属性指定了一个新值。</exception>
         <exception cref="T:System.ArgumentException">此方法无效。  
   
-- 或 - 
-不支持此方法。  
+- 或 -
   
-- 或 - 
-指定了多个方法。</exception>
+ 不支持此方法。  
+  
+或
+  
+ 指定了多个方法。</exception>
         <altmember cref="T:System.Net.FtpWebResponse" />
         <altmember cref="T:System.Net.FtpStatusCode" />
         <altmember cref="T:System.Net.WebRequestMethods.Ftp" />
@@ -1254,7 +1256,7 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.FtpWebRequest.PreAuthenticate%2A>属性仅用于使用的其他实现的兼容性<xref:System.Net.WebRequest>和<xref:System.Net.WebResponse>类。  
+ 提供属性只是为了与<xref:System.Net.WebRequest>和<xref:System.Net.WebResponse>类的其他实现兼容。 <xref:System.Net.FtpWebRequest.PreAuthenticate%2A>  
   
  ]]></format>
         </remarks>
@@ -1290,7 +1292,7 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
       </ReturnValue>
       <Docs>
         <summary>获取或设置用于与 FTP 服务器通信的代理。</summary>
-        <value>负责与 FTP 服务器通信的 <see cref="T:System.Net.IWebProxy" /> 实例。 在.NET Core，其值是<see langword="null" />。</value>
+        <value>负责与 FTP 服务器通信的 <see cref="T:System.Net.IWebProxy" /> 实例。 在 .NET Core 中, 其值<see langword="null" />为。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1298,21 +1300,21 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
 
 ### <a name="on-net-framework"></a>.NET Framework 上
 
- <xref:System.Net.FtpWebRequest.Proxy%2A>属性标识<xref:System.Net.IWebProxy>与 FTP 服务器进行通信的实例。 代理的设置是由系统使用的配置文件和 Internet Explorer 本地网络设置。 若要指定应使用任何代理，请设置<xref:System.Net.FtpWebRequest.Proxy%2A>返回的代理实例到<xref:System.Net.GlobalProxySelection.GetEmptyWebProxy%2A?displayProperty=nameWithType>方法。 有关自动代理检测的详细信息，请参阅[自动代理检测](~/docs/framework/network-programming/automatic-proxy-detection.md)。  
+ 属性标识与 FTP 服务器通信的实例。<xref:System.Net.IWebProxy> <xref:System.Net.FtpWebRequest.Proxy%2A> 代理由系统通过使用配置文件和 Internet Explorer 局域网设置进行设置。 若要指定不应使用代理, 请将<xref:System.Net.FtpWebRequest.Proxy%2A>设置为<xref:System.Net.GlobalProxySelection.GetEmptyWebProxy%2A?displayProperty=nameWithType>方法返回的代理实例。 有关自动代理检测的详细信息, 请参阅[自动代理检测](~/docs/framework/network-programming/automatic-proxy-detection.md)。  
   
- 必须设置<xref:System.Net.FtpWebRequest.Proxy%2A>之前将数据写入到请求的流或获取响应。 更改<xref:System.Net.FtpWebRequest.Proxy%2A>后调用<xref:System.Net.FtpWebRequest.GetRequestStream%2A>， <xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>， <xref:System.Net.FtpWebRequest.GetResponse%2A>，或<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>方法使<xref:System.InvalidOperationException>异常。  
+ 在将数据<xref:System.Net.FtpWebRequest.Proxy%2A>写入请求的流或获取响应之前, 必须设置。 在<xref:System.Net.FtpWebRequest.Proxy%2A> 调用<xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>、、或方法之后<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>更改将导致<xref:System.InvalidOperationException>异常。 <xref:System.Net.FtpWebRequest.GetResponse%2A> <xref:System.Net.FtpWebRequest.GetRequestStream%2A>  
   
  <xref:System.Net.FtpWebRequest>类支持 HTTP 和 ISA 防火墙客户端代理。  
   
- 如果指定的代理是 HTTP 代理，则仅<xref:System.Net.WebRequestMethods.Ftp.DownloadFile>， <xref:System.Net.WebRequestMethods.Ftp.ListDirectory>，和<xref:System.Net.WebRequestMethods.Ftp.ListDirectoryDetails>支持命令。  
+ 如果指定的代理是 HTTP 代理, 则仅<xref:System.Net.WebRequestMethods.Ftp.DownloadFile>支持、 <xref:System.Net.WebRequestMethods.Ftp.ListDirectory>和<xref:System.Net.WebRequestMethods.Ftp.ListDirectoryDetails>命令。  
   
-### <a name="on-net-core"></a>.NET Core 上   
+### <a name="on-net-core"></a>.NET Core 上的   
 
-`FtpWebRequest.Proxy`不支持属性。 将属性设置不起作用。 获取属性值返回`null`。 
+不`FtpWebRequest.Proxy`支持该属性。 设置属性不起作用。 获取属性值返回`null`。 
 
 
 ## Examples  
- 下面的代码示例显示了此属性的值。  
+ 下面的代码示例显示此属性值。  
   
  [!code-cpp[NCLFtpClient#16](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#16)]
  [!code-csharp[NCLFtpClient#16](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#16)]  
@@ -1370,11 +1372,11 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.FtpWebRequest.ReadWriteTimeout%2A>写入到返回的流时使用<xref:System.Net.FtpWebRequest.GetRequestStream%2A>方法或在读取返回的流<xref:System.Net.FtpWebResponse.GetResponseStream%2A>方法。  
+ 当写入由方法返回的流或从<xref:System.Net.FtpWebResponse.GetResponseStream%2A>方法返回的流中读取时, 将使用。 <xref:System.Net.FtpWebRequest.GetRequestStream%2A> <xref:System.Net.FtpWebRequest.ReadWriteTimeout%2A>  
   
- 具体而言，<xref:System.Net.FtpWebRequest.ReadWriteTimeout%2A>属性控制的超时<xref:System.IO.Stream.Read%2A>方法，用于读取返回的流<xref:System.Net.FtpWebResponse.GetResponseStream%2A>方法，并为<xref:System.IO.Stream.Write%2A>方法，用于写入到流返回的<xref:System.Net.FtpWebRequest.GetRequestStream%2A>方法。 如果超过超时期限时，调用方法将引发<xref:System.Net.WebException>与<xref:System.Net.WebExceptionStatus>设置为<xref:System.Net.WebExceptionStatus.Timeout>。  
+ 具体而言, <xref:System.Net.FtpWebRequest.ReadWriteTimeout%2A>属性控制<xref:System.IO.Stream.Read%2A>方法的超时时间, 该方法用于读取<xref:System.Net.FtpWebResponse.GetResponseStream%2A>方法返回的流, 并用于用于写入到该方法返回<xref:System.IO.Stream.Write%2A> <xref:System.Net.FtpWebRequest.GetRequestStream%2A>的流的方法。方法。 如果超过超时期限, 则调用方法会引发<xref:System.Net.WebException> , 并<xref:System.Net.WebExceptionStatus>将设置为<xref:System.Net.WebExceptionStatus.Timeout>。  
   
- 若要指定要等待的时间完成请求的时间量，请使用<xref:System.Net.FtpWebRequest.Timeout%2A>属性。  
+ 若要指定等待请求完成的时间量, 请使用<xref:System.Net.FtpWebRequest.Timeout%2A>属性。  
   
  ]]></format>
         </remarks>
@@ -1461,12 +1463,12 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 值<xref:System.Net.FtpWebRequest.RequestUri%2A>属性是 URI 时指定<xref:System.Net.WebRequest.Create%2A>调用方法来获取此实例。  
+ <xref:System.Net.FtpWebRequest.RequestUri%2A>属性的值是在调用<xref:System.Net.WebRequest.Create%2A>方法获取此实例时指定的 URI。  
   
    
   
 ## Examples  
- 下面的代码示例显示了此属性的值。  
+ 下面的代码示例显示此属性值。  
   
  [!code-cpp[NCLFtpClient#14](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#14)]
  [!code-csharp[NCLFtpClient#14](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#14)]  
@@ -1515,12 +1517,12 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果没有<xref:System.Net.ServicePoint>对象存在，则创建一个用于 FTP 服务器。 若要设置的最大可以为 FTP 服务器打开的连接数，设置<xref:System.Net.ServicePoint.ConnectionLimit%2A>属性的<xref:System.Net.ServicePoint>此属性返回的实例。  
+ 如果对象<xref:System.Net.ServicePoint>不存在, 则为 FTP 服务器创建一个。 若要设置可为 FTP 服务器打开的最大连接数, 请设置<xref:System.Net.ServicePoint.ConnectionLimit%2A>此属性返回的<xref:System.Net.ServicePoint>实例的属性。  
   
    
   
 ## Examples  
- 下面的代码示例从请求中检索服务点和最大连接数设置为 1。  
+ 下面的代码示例从请求中检索服务点, 并将最大连接数设置为1。  
   
  [!code-cpp[NCLFtpClient#1](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#1)]
  [!code-csharp[NCLFtpClient#1](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#1)]  
@@ -1574,13 +1576,13 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要指定无限值，设置<xref:System.Net.FtpWebRequest.Timeout%2A>属性设置为<xref:System.Threading.Timeout.Infinite>(-1)。 这是默认值。  
+ 若要指定无限值, 请将<xref:System.Net.FtpWebRequest.Timeout%2A>属性设置<xref:System.Threading.Timeout.Infinite>为 (-1)。 这是默认值。  
   
- <xref:System.Net.FtpWebRequest.Timeout%2A> 是与发出同步请求的毫秒数<xref:System.Net.FtpWebRequest.GetResponse%2A>方法等待响应，<xref:System.Net.FtpWebRequest.GetRequestStream%2A>方法等待流。 如果资源不会响应在超时期内，请求将引发<xref:System.Net.WebException>与<xref:System.Net.WebException.Status%2A>属性设置为<xref:System.Net.WebExceptionStatus.Timeout>。  
+ <xref:System.Net.FtpWebRequest.Timeout%2A>使用<xref:System.Net.FtpWebRequest.GetResponse%2A>方法发出的同步请求等待响应并且<xref:System.Net.FtpWebRequest.GetRequestStream%2A>该方法等待流的毫秒数。 如果资源在超时期限内未响应, 则该请求将引发<xref:System.Net.WebException> , <xref:System.Net.WebException.Status%2A>并将属性设置为<xref:System.Net.WebExceptionStatus.Timeout>。  
   
- 更改<xref:System.Net.FtpWebRequest.Timeout%2A>后调用<xref:System.Net.FtpWebRequest.GetRequestStream%2A>， <xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>， <xref:System.Net.FtpWebRequest.GetResponse%2A>，或<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>方法使<xref:System.InvalidOperationException>异常。  
+ 在<xref:System.Net.FtpWebRequest.Timeout%2A> 调用<xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>、、或方法之后<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>更改将导致<xref:System.InvalidOperationException>异常。 <xref:System.Net.FtpWebRequest.GetResponse%2A> <xref:System.Net.FtpWebRequest.GetRequestStream%2A>  
   
- 域名系统 (DNS) 查询可能需要最多 15 秒钟才能返回或超时时间。如果你的请求包含需要解析的主机名，并设置<xref:System.Net.FtpWebRequest.Timeout%2A>的值不超过 15 秒，可能需要花费 15 秒或更长时间才<xref:System.Net.WebException>引发来指示你的请求超时。  
+ 域名系统 (DNS) 查询可能需要长达15秒钟的时间来返回或超时。如果你的请求包含需要解析的主机名, 并且你<xref:System.Net.FtpWebRequest.Timeout%2A>将其设置为小于15秒的值, 则可能需要15秒或更<xref:System.Net.WebException>长时间, 然后才会引发以指示请求超时。  
   
    
   
@@ -1641,14 +1643,14 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果要发送二进制数据，例如图像，将此属性设置为`true`。 如果要发送文本，将属性设置为`false`。 指定`true`会导致<xref:System.Net.FtpWebRequest>发送`"TYPE I"`命令到服务器。 指定`false`会导致<xref:System.Net.FtpWebRequest>发送`"Type A"`命令到服务器。 FTP 服务器可以忽略这些命令。  
+ 如果要发送二进制数据 (如图像), 请将此属性设置为`true`。 如果要发送文本, 请将属性设置为`false`。 如果`true`指定, <xref:System.Net.FtpWebRequest>则会将`"TYPE I"`命令发送到服务器。 如果`false`指定, <xref:System.Net.FtpWebRequest>则会将`"Type A"`命令发送到服务器。 FTP 服务器可以忽略这些命令。  
   
- 更改<xref:System.Net.FtpWebRequest.UseBinary%2A>后调用<xref:System.Net.FtpWebRequest.GetRequestStream%2A>， <xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>， <xref:System.Net.FtpWebRequest.GetResponse%2A>，或<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>方法使<xref:System.InvalidOperationException>异常。  
+ 在<xref:System.Net.FtpWebRequest.UseBinary%2A> 调用<xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>、、或方法之后<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>更改将导致<xref:System.InvalidOperationException>异常。 <xref:System.Net.FtpWebRequest.GetResponse%2A> <xref:System.Net.FtpWebRequest.GetRequestStream%2A>  
   
    
   
 ## Examples  
- 下面的代码示例检索并显示为指定的属性值<xref:System.Net.FtpWebRequest>对象。  
+ 下面的代码示例检索并显示指定<xref:System.Net.FtpWebRequest>的对象的属性值。  
   
  [!code-cpp[NCLFtpClient#15](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#15)]
  [!code-csharp[NCLFtpClient#15](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#15)]  
@@ -1703,7 +1705,7 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.FtpWebRequest.UseDefaultCredentials%2A>属性仅用于使用的其他实现的兼容性<xref:System.Net.WebRequest>和<xref:System.Net.WebResponse>类。 若要使用没有理由<xref:System.Net.FtpWebRequest.UseDefaultCredentials%2A>。  
+ 提供属性只是为了与<xref:System.Net.WebRequest>和<xref:System.Net.WebResponse>类的其他实现兼容。 <xref:System.Net.FtpWebRequest.UseDefaultCredentials%2A> 没有理由使用<xref:System.Net.FtpWebRequest.UseDefaultCredentials%2A>。  
   
  ]]></format>
         </remarks>
@@ -1749,18 +1751,18 @@ HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.N
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置<xref:System.Net.FtpWebRequest.UsePassive%2A>属性设置为`true`将发送"`PASV"`命令到服务器。 此命令请求服务器以侦听数据端口和等待连接，而不是启动一个在收到传输命令时。  
+ 设置属性以`true`将 "`PASV"`命令发送到服务器。 <xref:System.Net.FtpWebRequest.UsePassive%2A> 此命令请求服务器侦听数据端口并等待连接, 而不是在接收到传输命令时启动连接。  
   
- 有关使用指定的行为的说明<xref:System.Net.FtpWebRequest.UsePassive%2A>，请参阅[RFC 959:"文件传输协议"，第 3.2 节："建立数据连接"和 4.1.2 部分："转换参数的命令"](https://www.ietf.org/rfc/rfc959.txt)。  
+ 有关使用<xref:System.Net.FtpWebRequest.UsePassive%2A>指定的行为的说明, 请参阅[RFC 959:"文件传输协议", 3.2 节:"建立数据连接" 和第4.1.2 节:"传输参数命令"](https://www.ietf.org/rfc/rfc959.txt)。  
   
- 更改<xref:System.Net.FtpWebRequest.UsePassive%2A>后调用<xref:System.Net.FtpWebRequest.GetRequestStream%2A>， <xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>， <xref:System.Net.FtpWebRequest.GetResponse%2A>，或<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>方法使<xref:System.InvalidOperationException>异常。  
+ 在<xref:System.Net.FtpWebRequest.UsePassive%2A> 调用<xref:System.Net.FtpWebRequest.BeginGetRequestStream%2A>、、或方法之后<xref:System.Net.FtpWebRequest.BeginGetResponse%2A>更改将导致<xref:System.InvalidOperationException>异常。 <xref:System.Net.FtpWebRequest.GetResponse%2A> <xref:System.Net.FtpWebRequest.GetRequestStream%2A>  
   
- 如果<xref:System.Net.FtpWebRequest.UsePassive%2A>设置为`true`、 FTP 服务器可能不会发送该文件的大小和下载进度始终为零。 如果<xref:System.Net.FtpWebRequest.UsePassive%2A>设置为`false`，防火墙可引发警报，并阻止文件下载。  
+ 如果<xref:System.Net.FtpWebRequest.UsePassive%2A>设置为`true`, FTP 服务器可能不会发送文件的大小, 并且下载进度始终可以为零。 如果<xref:System.Net.FtpWebRequest.UsePassive%2A>设置为`false`, 则防火墙可能会引发警报并阻止文件下载。  
   
    
   
 ## Examples  
- 下面的代码示例检索并显示为指定的属性值<xref:System.Net.FtpWebRequest>对象。  
+ 下面的代码示例检索并显示指定<xref:System.Net.FtpWebRequest>的对象的属性值。  
   
  [!code-cpp[NCLFtpClient#6](~/samples/snippets/cpp/VS_Snippets_Remoting/NCLFtpClient/CPP/ftptests.cpp#6)]
  [!code-csharp[NCLFtpClient#6](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLFtpClient/CS/ftptests.cs#6)]  

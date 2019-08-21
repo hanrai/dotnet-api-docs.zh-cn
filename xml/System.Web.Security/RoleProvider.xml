@@ -1,5 +1,5 @@
 <Type Name="RoleProvider" FullName="System.Web.Security.RoleProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="33a7ad2cf07f9ba52a5dfcde65d9f08df7a73804" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57927958" /></Metadata><TypeSignature Language="C#" Value="public abstract class RoleProvider : System.Configuration.Provider.ProviderBase" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="cd95e97a5387fbdae81b34c61b0740a65b82dd3c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69051670" /></Metadata><TypeSignature Language="C#" Value="public abstract class RoleProvider : System.Configuration.Provider.ProviderBase" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit RoleProvider extends System.Configuration.Provider.ProviderBase" />
   <TypeSignature Language="DocId" Value="T:System.Web.Security.RoleProvider" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class RoleProvider&#xA;Inherits ProviderBase" />
@@ -28,15 +28,15 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ASP.NET 角色管理旨在使你能够轻松地为 ASP.NET 应用程序使用大量不同的角色提供程序。 可以使用随.NET Framework 提供的角色提供程序也可以实现自己的提供程序。  
+ ASP.NET 角色管理旨在使你能够轻松地为 ASP.NET 应用程序使用多个不同的角色提供程序。 您可以使用 .NET Framework 附带的提供的角色提供程序, 也可以实现您自己的提供程序。  
   
- 在实现自定义角色提供程序时，需要继承<xref:System.Web.Security.RoleProvider>抽象类。  
+ 实现自定义角色提供程序时, 需要继承<xref:System.Web.Security.RoleProvider>抽象类。  
   
- 有两个用于创建自定义角色提供程序的主要原因。  
+ 创建自定义角色提供程序的主要原因有两个。  
   
--   您必须将角色信息存储在.NET Framework 中，如 FoxPro 数据库、 Oracle 数据库或其他数据源中包含的角色提供程序不支持的数据源中。  
+-   您需要将角色信息存储在 .NET Framework 中包含的角色提供程序不支持的数据源中, 如 FoxPro 数据库、Oracle 数据库或其他数据源。  
   
--   需要管理角色使用不同于使用.NET Framework 附带的提供程序的数据库架构的数据库架构的信息。 此常见示例是角色中的公司或网站上的 SQL Server 数据库已存在的数据。  
+-   需要使用与 .NET Framework 附带的提供程序所使用的数据库架构不同的数据库架构来管理角色信息。 这种情况的一个常见示例是公司或网站的 SQL Server 数据库中已存在的角色数据。  
   
  ]]></format>
     </remarks>
@@ -70,7 +70,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不需要实现继承的类的构造函数<xref:System.Web.Security.RoleProvider>抽象类。 值初始化<xref:System.Web.Security.RoleProvider>实现传递到<xref:System.Configuration.Provider.ProviderBase.Initialize%2A>方法的实现。  
+ 不需要为继承<xref:System.Web.Security.RoleProvider>抽象类的类实现构造函数。 <xref:System.Web.Security.RoleProvider>实现的初始化值将传递<xref:System.Configuration.Provider.ProviderBase.Initialize%2A>给方法实现。  
   
  ]]></format>
         </remarks>
@@ -108,22 +108,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.RoleProvider.AddUsersToRoles%2A> 由调用<xref:System.Web.Security.Roles>类，以将指定的用户与数据源的指定角色相关联。 角色添加到已配置<xref:System.Web.Security.RoleProvider.ApplicationName%2A>。  
+ <xref:System.Web.Security.RoleProvider.AddUsersToRoles%2A>由<xref:System.Web.Security.Roles>类调用, 以将指定用户与数据源中的指定角色关联。 角色将添加到已配置<xref:System.Web.Security.RoleProvider.ApplicationName%2A>的。  
   
- 如果任何指定的角色名为找不到已配置的`applicationName`，我们建议您的提供程序引发<xref:System.Configuration.Provider.ProviderException>。  
+ 如果未找到配置`applicationName`的任何指定角色名称, 则建议提供程序<xref:System.Configuration.Provider.ProviderException>引发。  
   
- 如果任何指定的用户名不与任何已配置的指定的角色名相关联`applicationName`，我们建议您的提供程序引发<xref:System.Configuration.Provider.ProviderException>。  
+ 如果任何指定的用户名与所配置`applicationName`的任何指定的角色名称都不关联, 则建议提供程序<xref:System.Configuration.Provider.ProviderException>引发。  
   
- 如果任何指定的用户名为`null`或为空字符串，我们建议您的提供程序引发异常。  
+ 如果任何指定的用户名为`null`或为空字符串, 则建议提供程序引发异常。  
   
- 如果任何指定的角色名为`null`或为空字符串，我们建议您的提供程序引发异常。  
+ 如果任何指定的角色名称为`null`或为空字符串, 则建议提供程序引发异常。  
   
- 如果您的数据源支持事务，我们建议你包含每个在事务中添加操作和回滚事务并引发异常，如果有任何添加操作将失败。  
+ 如果你的数据源支持事务, 则建议你将每个 add 操作包含在一个事务中, 并在任何添加操作失败的情况下回滚该事务并引发异常。  
   
    
   
 ## Examples  
- 下面的代码示例演示的示例实现<xref:System.Web.Security.RoleProvider.AddUsersToRoles%2A>方法。  
+ 下面的代码示例演示<xref:System.Web.Security.RoleProvider.AddUsersToRoles%2A>方法的示例实现。  
   
  [!code-csharp[System.Web.Security.IRoleProvider#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/CS/odbcroleprovidersnippets.cs#2)]
  [!code-vb[System.Web.Security.IRoleProvider#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/VB/odbcroleprovidersnippets.vb#2)]  
@@ -159,14 +159,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.RoleProvider.ApplicationName%2A>由<xref:System.Web.Security.Roles>类，以将用户和角色与不同的应用程序相关联。 这使多个应用程序可以使用相同的数据库存储用户和角色信息，而不重复的用户名或角色名称之间发生冲突。 多个 ASP.NET 应用程序可以通过指定相同的值中使用相同的数据库<xref:System.Web.Security.Roles.ApplicationName%2A>属性。 <xref:System.Web.Security.Roles.ApplicationName%2A>可以以编程方式设置属性或者可以在 Web 应用程序使用的配置文件中以声明方式设置`applicationName`属性。  
+ <xref:System.Web.Security.RoleProvider.ApplicationName%2A> 由类用于将用户和角色与不同的<xref:System.Web.Security.Roles>应用程序相关联。 这使多个应用程序能够使用同一个数据库来存储用户和角色信息, 而不会在重复用户名或角色名称之间发生冲突。 多个 ASP.NET 应用程序可以通过在<xref:System.Web.Security.Roles.ApplicationName%2A>属性中指定相同的值来使用相同的数据库。 可以<xref:System.Web.Security.Roles.ApplicationName%2A>通过编程方式设置该属性, 也可以`applicationName`使用属性在 Web 应用程序的配置文件中以声明方式设置该属性。  
   
- 如果没有<xref:System.Web.Security.RoleProvider.ApplicationName%2A>指定属性，我们建议<xref:System.Web.Hosting.HostingEnvironment.ApplicationVirtualPath%2A>使用属性值。  
+ 如果未<xref:System.Web.Security.RoleProvider.ApplicationName%2A>指定属性, 则建议<xref:System.Web.Hosting.HostingEnvironment.ApplicationVirtualPath%2A>使用属性值。  
   
    
   
 ## Examples  
- 下面的代码示例演示的示例实现<xref:System.Web.Security.RoleProvider.ApplicationName%2A>属性。  
+ 下面的代码示例演示了<xref:System.Web.Security.RoleProvider.ApplicationName%2A>属性的示例实现。  
   
  [!code-csharp[System.Web.Security.IRoleProvider#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/CS/odbcroleprovidersnippets.cs#1)]
  [!code-vb[System.Web.Security.IRoleProvider#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/VB/odbcroleprovidersnippets.vb#1)]  
@@ -205,18 +205,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.RoleProvider.CreateRole%2A> 调用<xref:System.Web.Security.Roles.CreateRole%2A>方法<xref:System.Web.Security.Roles>类，以将指定的角色添加到已配置的数据源<xref:System.Web.Security.RoleProvider.ApplicationName%2A>。  
+ <xref:System.Web.Security.RoleProvider.CreateRole%2A>由<xref:System.Web.Security.Roles.CreateRole%2A> <xref:System.Web.Security.Roles>类的方法调用, 以将指定的角色添加到已配置<xref:System.Web.Security.RoleProvider.ApplicationName%2A>的的数据源。  
   
- 如果指定的角色名称已存在已配置的`applicationName`，是`null`，或为空字符串，我们建议您的提供程序引发异常。  
+ 如果已为配置`applicationName`的指定角色名称, 为`null`或为空字符串, 则建议提供程序引发异常。  
   
- 如果指定的角色名称包含逗号，我们建议提供程序引发异常。  
+ 如果指定的角色名称包含逗号, 则建议提供程序引发异常。  
   
- 如果您的数据源限制的角色名称的长度，例如，通过固定长度列的表在数据库中，我们建议引发异常，如果角色名称超出了允许的数据源的最大长度。  
+ 如果您的数据源限制角色名称的长度 (例如, 通过数据库中表的固定长度列), 则建议您在角色名称超出数据源所允许的最大长度时引发异常。  
   
    
   
 ## Examples  
- 下面的代码示例演示的示例实现<xref:System.Web.Security.RoleProvider.CreateRole%2A>方法。  
+ 下面的代码示例演示<xref:System.Web.Security.RoleProvider.CreateRole%2A>方法的示例实现。  
   
  [!code-csharp[System.Web.Security.IRoleProvider#3](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/CS/odbcroleprovidersnippets.cs#3)]
  [!code-vb[System.Web.Security.IRoleProvider#3](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/VB/odbcroleprovidersnippets.vb#3)]  
@@ -258,18 +258,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.RoleProvider.DeleteRole%2A> 调用<xref:System.Web.Security.Roles.DeleteRole%2A>和<xref:System.Web.Security.Roles.DeleteRole%2A>方法的<xref:System.Web.Security.Roles>类，以从已配置的数据源中删除指定的角色<xref:System.Web.Security.RoleProvider.ApplicationName%2A>。  
+ <xref:System.Web.Security.RoleProvider.DeleteRole%2A>由<xref:System.Web.Security.Roles.DeleteRole%2A> <xref:System.Web.Security.Roles> <xref:System.Web.Security.RoleProvider.ApplicationName%2A>和类的方法调用, 以从配置的的数据源中删除指定的角色。 <xref:System.Web.Security.Roles.DeleteRole%2A>  
   
- 当从数据源中删除角色时，请确保还删除用户名称和已配置的已删除的角色之间的任何关联`applicationName`。  
+ 当你从数据源中删除某个角色时, 请确保你还删除了已配置`applicationName`的用户名和已删除角色之间的任何关联。  
   
- 如果`throwOnPopulatedRole`是`true`，并由标识的角色`roleName`参数具有一个或多个成员，则引发<xref:System.Configuration.Provider.ProviderException>并不删除该角色。 如果`throwOnPopulatedRole`是`false`，然后删除该角色，或不为空。  
+ 如果`throwOnPopulatedRole` `roleName` <xref:System.Configuration.Provider.ProviderException>为`true`, 并且由参数标识的角色具有一个或多个成员, 则会引发, 而不会删除该角色。 如果`throwOnPopulatedRole` 为`false`, 则删除角色 (无论是否为空)。  
   
- 如果指定的角色名称不存在，则`null`，或为空字符串，我们建议您的提供程序引发异常。  
+ 如果指定的角色名称不存在、为`null`或为空字符串, 则建议提供程序引发异常。  
   
    
   
 ## Examples  
- 下面的代码示例演示的示例实现<xref:System.Web.Security.RoleProvider.DeleteRole%2A>方法。  
+ 下面的代码示例演示<xref:System.Web.Security.RoleProvider.DeleteRole%2A>方法的示例实现。  
   
  [!code-csharp[System.Web.Security.IRoleProvider#4](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/CS/odbcroleprovidersnippets.cs#4)]
  [!code-vb[System.Web.Security.IRoleProvider#4](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/VB/odbcroleprovidersnippets.vb#4)]  
@@ -311,14 +311,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.RoleProvider.FindUsersInRole%2A>调用方法<xref:System.Web.Security.Roles>类，并返回其中用户名包含所提供的匹配项的角色中的用户列表`usernameToMatch`已配置的`applicationName`。 通配符，则包括支持基于数据源。 按字母顺序返回用户的用户名。  
+ 方法由类调用, 并返回一个角色中用户的列表, 其中用户名包含为配置`applicationName`的提供`usernameToMatch`的的匹配项。 <xref:System.Web.Security.Roles> <xref:System.Web.Security.RoleProvider.FindUsersInRole%2A> 通配符支持包含在数据源的基础上。 按用户名按字母顺序返回用户。  
   
- 我们建议您引发<xref:System.Configuration.Provider.ProviderException>如果`roleName`数据源中不存在。  
+ 建议您在数据源中<xref:System.Configuration.Provider.ProviderException>不`roleName`存在时引发。  
   
    
   
 ## Examples  
- 下面的代码示例演示一个示例<xref:System.Web.Security.RoleProvider.FindUsersInRole%2A>实现。  
+ 下面的代码示例演示了一个<xref:System.Web.Security.RoleProvider.FindUsersInRole%2A>示例实现。  
   
  [!code-csharp[System.Web.Security.IRoleProvider#11](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/CS/odbcroleprovidersnippets.cs#11)]
  [!code-vb[System.Web.Security.IRoleProvider#11](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/VB/odbcroleprovidersnippets.vb#11)]  
@@ -355,14 +355,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.RoleProvider.GetAllRoles%2A> 调用<xref:System.Web.Security.Roles.GetAllRoles%2A>方法的<xref:System.Web.Security.Roles>类，以从数据源检索的角色名称的列表。 仅为指定角色<xref:System.Web.Security.RoleProvider.ApplicationName%2A>检索。  
+ <xref:System.Web.Security.RoleProvider.GetAllRoles%2A>由<xref:System.Web.Security.Roles.GetAllRoles%2A> <xref:System.Web.Security.Roles>类的方法调用, 以从数据源中检索角色名称的列表。 仅检索指定<xref:System.Web.Security.RoleProvider.ApplicationName%2A>的角色。  
   
- 如果已配置的不存在任何角色`applicationName`，我们建议您的提供程序返回不含任何元素的字符串数组。  
+ 如果配置`applicationName`的不存在任何角色, 则建议提供程序返回不包含任何元素的字符串数组。  
   
    
   
 ## Examples  
- 下面的代码示例演示的示例实现<xref:System.Web.Security.RoleProvider.GetAllRoles%2A>方法。  
+ 下面的代码示例演示<xref:System.Web.Security.RoleProvider.GetAllRoles%2A>方法的示例实现。  
   
  [!code-csharp[System.Web.Security.IRoleProvider#5](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/CS/odbcroleprovidersnippets.cs#5)]
  [!code-vb[System.Web.Security.IRoleProvider#5](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/VB/odbcroleprovidersnippets.vb#5)]  
@@ -402,16 +402,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.RoleProvider.GetRolesForUser%2A> 调用<xref:System.Web.Security.Roles.GetRolesForUser%2A>方法的<xref:System.Web.Security.Roles>类检索指定的用户从数据源是与相关联的角色名称。 只有已配置的角色<xref:System.Web.Security.RoleProvider.ApplicationName%2A>检索。  
+ <xref:System.Web.Security.RoleProvider.GetRolesForUser%2A>由<xref:System.Web.Security.Roles.GetRolesForUser%2A> <xref:System.Web.Security.Roles>类的方法调用, 以从数据源中检索指定用户关联的角色名称。 仅检索配置<xref:System.Web.Security.RoleProvider.ApplicationName%2A>的角色。  
   
- 如果不指定用户在已配置存在任何角色`applicationName`，我们建议您的提供程序返回不含任何元素的字符串数组。  
+ 如果为配置`applicationName`的指定用户不存在任何角色, 则建议提供程序返回不包含任何元素的字符串数组。  
   
- 如果指定的用户名称是`null`或为空字符串，我们建议您的提供程序引发异常。  
+ 如果指定的用户名为`null`或为空字符串, 则建议提供程序引发异常。  
   
    
   
 ## Examples  
- 下面的代码示例演示的示例实现<xref:System.Web.Security.RoleProvider.GetRolesForUser%2A>方法。  
+ 下面的代码示例演示<xref:System.Web.Security.RoleProvider.GetRolesForUser%2A>方法的示例实现。  
   
  [!code-csharp[System.Web.Security.IRoleProvider#6](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/CS/odbcroleprovidersnippets.cs#6)]
  [!code-vb[System.Web.Security.IRoleProvider#6](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/VB/odbcroleprovidersnippets.vb#6)]  
@@ -451,16 +451,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.RoleProvider.GetUsersInRole%2A> 调用<xref:System.Web.Security.Roles.GetUsersInRole%2A>方法的<xref:System.Web.Security.Roles>类来检索与数据源中的角色相关联的用户名。 只有已配置的角色<xref:System.Web.Security.RoleProvider.ApplicationName%2A>检索。  
+ <xref:System.Web.Security.RoleProvider.GetUsersInRole%2A>由<xref:System.Web.Security.Roles.GetUsersInRole%2A> <xref:System.Web.Security.Roles>类的方法调用, 以检索与数据源中的角色关联的用户名。 仅检索配置<xref:System.Web.Security.RoleProvider.ApplicationName%2A>的角色。  
   
- 如果指定的角色名称不存在已配置的`applicationName`或者是`null`或空字符串，我们建议您的提供程序引发异常。  
+ 如果为配置`applicationName`的指定角色名称不存在, 或者如果为`null`或空字符串, 则建议提供程序引发异常。  
   
- 如果任何用户都与指定的角色已配置的`applicationName`，我们建议您的提供程序返回不含任何元素的字符串数组。  
+ 如果没有任何用户与配置`applicationName`的的指定角色关联, 则建议提供程序返回不包含任何元素的字符串数组。  
   
    
   
 ## Examples  
- 下面的代码示例演示的示例实现<xref:System.Web.Security.RoleProvider.GetUsersInRole%2A>方法。  
+ 下面的代码示例演示<xref:System.Web.Security.RoleProvider.GetUsersInRole%2A>方法的示例实现。  
   
  [!code-csharp[System.Web.Security.IRoleProvider#7](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/CS/odbcroleprovidersnippets.cs#7)]
  [!code-vb[System.Web.Security.IRoleProvider#7](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/VB/odbcroleprovidersnippets.vb#7)]  
@@ -502,16 +502,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.RoleProvider.IsUserInRole%2A>调用方法<xref:System.Web.Security.Roles.IsUserInRole%2A>方法<xref:System.Web.Security.Roles>类来确定当前登录的用户是否与已配置的数据源中的角色相关联<xref:System.Web.Security.Roles.ApplicationName%2A>。  
+ 方法由类的方法调用, 以确定当前登录用户是否与配置<xref:System.Web.Security.Roles.ApplicationName%2A>的的数据源中的角色关联。 <xref:System.Web.Security.Roles.IsUserInRole%2A> <xref:System.Web.Security.Roles> <xref:System.Web.Security.RoleProvider.IsUserInRole%2A>  
   
- 如果指定的用户名称是`null`或为空字符串，我们建议您的提供程序引发异常。  
+ 如果指定的用户名为`null`或为空字符串, 则建议提供程序引发异常。  
   
- 如果指定的角色名称为`null`或为空字符串，我们建议您的提供程序引发异常。  
+ 如果指定的角色名称为`null`或为空字符串, 则建议提供程序引发异常。  
   
    
   
 ## Examples  
- 下面的代码示例演示的示例实现<xref:System.Web.Security.RoleProvider.IsUserInRole%2A>方法。  
+ 下面的代码示例演示<xref:System.Web.Security.RoleProvider.IsUserInRole%2A>方法的示例实现。  
   
  [!code-csharp[System.Web.Security.IRoleProvider#8](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/CS/odbcroleprovidersnippets.cs#8)]
  [!code-vb[System.Web.Security.IRoleProvider#8](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/VB/odbcroleprovidersnippets.vb#8)]  
@@ -552,22 +552,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.RoleProvider.RemoveUsersFromRoles%2A> 调用<xref:System.Web.Security.Roles.RemoveUserFromRole%2A>， <xref:System.Web.Security.Roles.RemoveUsersFromRole%2A> ， <xref:System.Web.Security.Roles.RemoveUserFromRoles%2A> ，和<xref:System.Web.Security.Roles.RemoveUsersFromRoles%2A>方法的<xref:System.Web.Security.Roles>类，以从数据源的指定角色中删除指定的用户。 只有已配置的角色<xref:System.Web.Security.RoleProvider.ApplicationName%2A>进行修改。  
+ <xref:System.Web.Security.RoleProvider.RemoveUsersFromRoles%2A><xref:System.Web.Security.Roles.RemoveUserFromRole%2A> <xref:System.Web.Security.Roles.RemoveUsersFromRole%2A>由类的<xref:System.Web.Security.Roles.RemoveUserFromRoles%2A> 、、和<xref:System.Web.Security.Roles.RemoveUsersFromRoles%2A>方法调用, 以从数据源的指定角色中移除指定的用户。 <xref:System.Web.Security.Roles> 仅修改已配置<xref:System.Web.Security.RoleProvider.ApplicationName%2A>的角色。  
   
- 如果任何指定的角色名为找不到已配置的`applicationName`，我们建议您的提供程序引发<xref:System.Configuration.Provider.ProviderException>。  
+ 如果未找到配置`applicationName`的任何指定角色名称, 则建议提供程序<xref:System.Configuration.Provider.ProviderException>引发。  
   
- 如果任何指定的用户名不与任何已配置的指定的角色名相关联`applicationName`，我们建议您的提供程序引发<xref:System.Configuration.Provider.ProviderException>。  
+ 如果任何指定的用户名与所配置`applicationName`的任何指定的角色名称都不关联, 则建议提供程序<xref:System.Configuration.Provider.ProviderException>引发。  
   
- 如果任何指定的用户名为`null`或为空字符串，我们建议您的提供程序引发异常。  
+ 如果任何指定的用户名为`null`或为空字符串, 则建议提供程序引发异常。  
   
- 如果任何指定的角色名为`null`或为空字符串，我们建议您的提供程序引发异常。  
+ 如果任何指定的角色名称为`null`或为空字符串, 则建议提供程序引发异常。  
   
- 如果您的数据源支持事务，我们建议在事务中包括的每个删除操作并回滚事务，如果任何删除操作失败引发异常。  
+ 如果你的数据源支持事务, 则建议你将每个删除操作包含在一个事务中, 并在任何删除操作失败的情况下回滚该事务并引发异常。  
   
    
   
 ## Examples  
- 下面的代码示例演示的示例实现<xref:System.Web.Security.RoleProvider.RemoveUsersFromRoles%2A>方法。  
+ 下面的代码示例演示<xref:System.Web.Security.RoleProvider.RemoveUsersFromRoles%2A>方法的示例实现。  
   
  [!code-csharp[System.Web.Security.IRoleProvider#9](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/CS/odbcroleprovidersnippets.cs#9)]
  [!code-vb[System.Web.Security.IRoleProvider#9](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/VB/odbcroleprovidersnippets.vb#9)]  
@@ -607,14 +607,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.RoleProvider.RoleExists%2A> 调用<xref:System.Web.Security.Roles.RoleExists%2A>方法<xref:System.Web.Security.Roles>类来确定是否已配置的数据源中存在的角色名称<xref:System.Web.Security.Roles.ApplicationName%2A>。  
+ <xref:System.Web.Security.RoleProvider.RoleExists%2A>由<xref:System.Web.Security.Roles.RoleExists%2A> <xref:System.Web.Security.Roles>类的方法调用, 以确定配置<xref:System.Web.Security.Roles.ApplicationName%2A>的的数据源中是否存在角色名称。  
   
- 如果指定的角色名称为`null`或为空字符串，我们建议您的提供程序引发异常。  
+ 如果指定的角色名称为`null`或为空字符串, 则建议提供程序引发异常。  
   
    
   
 ## Examples  
- 下面的代码示例演示的示例实现<xref:System.Web.Security.RoleProvider.RoleExists%2A>方法。  
+ 下面的代码示例演示<xref:System.Web.Security.RoleProvider.RoleExists%2A>方法的示例实现。  
   
  [!code-csharp[System.Web.Security.IRoleProvider#10](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/CS/odbcroleprovidersnippets.cs#10)]
  [!code-vb[System.Web.Security.IRoleProvider#10](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Security.IRoleProvider/VB/odbcroleprovidersnippets.vb#10)]  
