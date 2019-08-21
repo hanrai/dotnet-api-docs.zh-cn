@@ -1,5 +1,5 @@
 <Type Name="ISymbolWriter" FullName="System.Diagnostics.SymbolStore.ISymbolWriter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5c3c6d75dacbdcadfc07e138682b5c588008b247" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58736279" /></Metadata><TypeSignature Language="C#" Value="public interface ISymbolWriter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e0542c7e379f461dfae3a98ed7d9024e8f89741e" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69078025" /></Metadata><TypeSignature Language="C#" Value="public interface ISymbolWriter" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ISymbolWriter" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.SymbolStore.ISymbolWriter" />
   <TypeSignature Language="VB.NET" Value="Public Interface ISymbolWriter" />
@@ -34,10 +34,10 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.SymbolStore.ISymbolWriter>接口提供了定义的文档、 序列点、 词法作用域和变量的方法。  
+ <xref:System.Diagnostics.SymbolStore.ISymbolWriter>接口提供定义文档、序列点、词法范围和变量的方法。  
   
 > [!NOTE]
->  此接口是托管的副本`ISymUnmanagedWriter`接口，这是一个提供替代方法以读取和写入调试符号信息的非托管的符号存储区接口。  
+>  此接口是`ISymUnmanagedWriter`接口的托管对应项, 它是一个非托管符号存储区接口, 可提供另一种方法来读取和写入调试符号信息。  
   
  ]]></format>
     </remarks>
@@ -79,7 +79,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此调用后，<xref:System.Diagnostics.SymbolStore.ISymbolWriter>变为无效有关进一步的更新。  
+ 在此调用之后<xref:System.Diagnostics.SymbolStore.ISymbolWriter> , 将变为无效以便进一步更新。  
   
  ]]></format>
         </remarks>
@@ -120,7 +120,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一种方法关闭之后，不能定义从在其中一个符号。  
+ 关闭方法后, 不能在其中定义符号。  
   
  ]]></format>
         </remarks>
@@ -198,7 +198,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 关闭作用域后，不能定义的变量中。  
+ 范围关闭后, 不能在其中定义变量。  
   
  ]]></format>
         </remarks>
@@ -300,7 +300,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.SymbolStore.ISymbolWriter.DefineField%2A>方法定义一个方法中不是通过使用指定的字段的类、 位域和等的变量。  
+ <xref:System.Diagnostics.SymbolStore.ISymbolWriter.DefineField%2A>方法通过使用类中的指定字段、位域等来定义一个不在方法中的变量。  
   
  ]]></format>
         </remarks>
@@ -409,9 +409,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `startOffset`和`endOffset`参数是可选的。 如果其值为零，它们将被忽略，并在整个范围内定义的变量。 如果其值为非零值，该变量在当前作用域的偏移量之内。  
+ `startOffset` 和`endOffset`参数是可选的。 如果其值为零, 则将其忽略, 并在整个范围内定义变量。 如果其值为非零值, 则该变量将处于当前范围的偏移量内。  
   
- 您可以调用<xref:System.Diagnostics.SymbolStore.ISymbolWriter.DefineLocalVariable%2A>多次针对不同的偏移量范围，在整个范围中出现多次的同一名称的变量。 （在这种情况下，开始和结束偏移量不能重叠。）  
+ 对于同一名称<xref:System.Diagnostics.SymbolStore.ISymbolWriter.DefineLocalVariable%2A>在整个范围内的不同偏移范围内出现多次的变量, 可以多次调用。 (在这种情况下, 开始和结束偏移量不得重叠。)  
   
  ]]></format>
         </remarks>
@@ -467,7 +467,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果给定方法的元数据中定义参数，则无需调用此方法与重新定义它们。 符号读取器必须首先，检查这些在正常的元数据，然后使用符号存储区。  
+ 如果在给定方法的元数据中定义了参数, 则不必再次使用对此方法的调用来定义这些参数。 符号读取器需要首先在普通元数据中检查这些项, 然后再使用符号存储区。  
   
  ]]></format>
         </remarks>
@@ -521,7 +521,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 每个行和每个列定义一种方法中的语句的开始。 数组应以偏移量的升序进行排序。 偏移量始终是方法的从开头，以字节为单位的偏移量。  
+ 每行和每列都定义方法中语句的开头。 应按偏移量的递增顺序对数组进行排序。 偏移量始终是从方法开始处的偏移量 (以字节为单位)。  
   
  ]]></format>
         </remarks>
@@ -569,7 +569,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.SymbolStore.ISymbolWriter.Initialize%2A> 此外设置输出文件的名称写入调试符号的位置。 此方法可以调用仅一次，并且必须编写器的任何其他方法之前调用。  
+ <xref:System.Diagnostics.SymbolStore.ISymbolWriter.Initialize%2A>还设置在其中写入调试符号的输出文件名。 此方法只能调用一次, 并且必须在任何其他编写器方法之前调用。  
   
  ]]></format>
         </remarks>
@@ -613,7 +613,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定的方法将成为当前方法的调用，以定义序列点、 参数和词法范围。 没有围绕整个方法的隐式词法作用域。 重新打开已关闭的方法会清除任何以前定义的符号的方法。  
+ 指定的方法将成为定义序列点、参数和词法范围的调用的当前方法。 围绕整个方法, 存在一个隐式词法范围。 重新打开以前关闭的方法将会清除以前为该方法定义的任何符号。  
   
  ]]></format>
         </remarks>
@@ -657,7 +657,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 定义方法或命名空间中存在的变量之前调用此方法。 可以嵌套命名空间。  
+ 在定义命名空间中存在的方法或变量之前调用此方法。 命名空间可以嵌套。  
   
  ]]></format>
         </remarks>
@@ -702,9 +702,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此范围将成为新的当前作用域，并推送到的作用域堆栈上。 作用域必须形成层次结构。 同级不能重叠。  
+ 此范围将成为新的当前范围, 并推送到作用域的堆栈上。 范围必须构成层次结构。 同级不允许重叠。  
   
- 范围标识符是仅在当前方法中有效。  
+ 范围标识符只在当前方法中有效。  
   
  ]]></format>
         </remarks>
@@ -840,7 +840,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.SymbolStore.ISymbolWriter.SetSymAttribute%2A>方法只是与符号信息关联并不是元数据自定义属性。  
+ <xref:System.Diagnostics.SymbolStore.ISymbolWriter.SetSymAttribute%2A>方法只与符号信息关联, 而不是元数据自定义特性。  
   
  ]]></format>
         </remarks>
@@ -884,7 +884,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 基础`ISymUnmanagedWriter`（相应的非托管的接口） 表示托管代码的符号编写器。 接口提供了用于定义文档、 序列点、 词法作用域和变量的方法。  
+ 基础`ISymUnmanagedWriter` (对应的非托管接口) 表示托管代码的符号编写器。 接口提供用于定义文档、序列点、词法范围和变量的方法。  
   
  ]]></format>
         </remarks>
@@ -928,7 +928,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 这通常是你的主要方法，而不是编译器生成存根 （stub） 之前的主要方法。  
+ 这通常是 main 方法, 而不是 main 方法之前的编译器生成的存根。  
   
  ]]></format>
         </remarks>
@@ -972,7 +972,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 关闭当前作用域可防止此作用域使用的命名空间。 命名空间将保留在当前打开的范围从继承的所有作用域中使用。  
+ 关闭当前范围会阻止此作用域使用该命名空间。 命名空间仍在继承自当前打开范围的所有范围内使用。  
   
  ]]></format>
         </remarks>
