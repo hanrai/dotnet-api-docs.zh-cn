@@ -1,5 +1,5 @@
 <Type Name="UdpSingleSourceMulticastClient" FullName="System.Net.Sockets.UdpSingleSourceMulticastClient">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c027a4d4116c04f027be65aee90bb4584786c2ec" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55395907" /></Metadata><TypeSignature Language="C#" Value="public class UdpSingleSourceMulticastClient : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9eb81441e483a85c9c2256e50ce009ef6eb76c41" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69112037" /></Metadata><TypeSignature Language="C#" Value="public class UdpSingleSourceMulticastClient : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit UdpSingleSourceMulticastClient extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Net.Sockets.UdpSingleSourceMulticastClient" />
   <TypeSignature Language="VB.NET" Value="Public Class UdpSingleSourceMulticastClient&#xA;Implements IDisposable" />
@@ -31,11 +31,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须知道的多路广播的组地址和发件人源地址。  
+ 多路广播组地址和发件人源地址必须是已知的。  
   
- 除了从特定的发件人，接收多路广播的数据<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>客户端还可以单播数据发送回发件人。  
+ 除了从特定发件人接收多播数据外, <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>客户端还可以将单播数据发送回发送方。  
   
- 若要从多个源接收多播或源不提前已知时使用<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>类。  
+ 若要从多个源接收多播, 或在未提前知道源的情况下<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>使用类, 请改用类。  
   
  ]]></format>
     </remarks>
@@ -75,11 +75,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>构造函数相关联的 UDP 多播套接字组地址和端口，但不会将绑定或以其他方式使用套接字。  
+ <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>构造函数将 UDP 多播套接字与组地址和端口关联, 但不绑定或以其他方式使用套接字。  
   
- `groupAddress`参数可以为 IPv6 或 IPv4 多播地址。 但是的地址族`sourceAddress`和`groupAddress`参数必须相同。  
+ `groupAddress`参数可以是 IPv6 或 IPv4 多播地址。 但是, `sourceAddress`和`groupAddress`参数的地址族必须相同。  
   
- `localPort`参数必须指定一个端口小于 1024。  
+ `localPort`参数不得指定小于1024的端口。  
   
  ]]></format>
         </remarks>
@@ -130,11 +130,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginJoinGroup%2A>方法将 UDP 多播套接字绑定到本地端口，并加入多播的组以允许从单个源地址接收的数据报。 中指定多路广播的组地址、 单个源地址和要绑定到的本地端口<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>构造函数。  
+ <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginJoinGroup%2A>方法将 UDP 多播套接字绑定到本地端口, 并联接多播组, 以允许从单个源地址接收数据报。 要绑定到的多播组地址、单个源地址和本地端口都在<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>构造函数中指定。  
   
- 中指定的方法`callback`参数调用时要加入多播的组的操作已完成。  
+ 当联接多播组的`callback`操作已完成时, 将调用参数中指定的方法。  
   
- 如果所需的运行时，<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginJoinGroup%2A>方法还执行策略检查，以验证客户端是否可以访问多路广播的组。 如果客户端不允许访问，<xref:System.Net.Sockets.SocketException>将引发<xref:System.Net.Sockets.SocketError.AccessDenied>。  
+ 如果运行时需要, 该<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginJoinGroup%2A>方法还执行策略检查以验证是否允许客户端访问多路广播组。 如果不允许客户端访问, <xref:System.Net.Sockets.SocketException>则会<xref:System.Net.Sockets.SocketError.AccessDenied>引发。  
   
  ]]></format>
         </remarks>
@@ -185,20 +185,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>方法开始从来自单个发件人已联接的多播组接收 UDP 数据包的操作。 中指定的本地端口、 多路广播的组和发件人源地址<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>构造函数。 多播客户端必须具有已完成到多路广播组的联接。  
+ <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>方法开始从一个发送方的已联接的多播组接收 UDP 数据包的操作。 本地端口、多播组和发件人源地址在<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>构造函数中指定。 多播客户端还必须已完成到多播组的联接。  
   
- 中指定的方法`callback`已接收数据包时要调用参数。  
+ 接收到数据包时, `callback`将调用参数中指定的方法。  
   
- 很可能将出现套接字故障，如果接收操作失败以同步方式，尽管这并不常见使用 UDP。 如果套接字失败，则<xref:System.Net.Sockets.SocketException>引发。 收到的错误指定的成员为<xref:System.Net.Sockets.SocketError>枚举。  
+ 如果接收操作同步失败, 则可能会出现套接字故障, 但这种情况不太常见。 如果出现套接字故障, <xref:System.Net.Sockets.SocketException>则会引发。 收到的错误被指定为<xref:System.Net.Sockets.SocketError>枚举的成员。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> 为 null 引用（在 Visual Basic 中为 Nothing）。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset" /> 小于 0 
-- 或 - 
+或 
  <paramref name="offset" /> 大于 <paramref name="buffer" /> 的长度。  
   
-- 或 - 
+或 
  <paramref name="count" /> 小于 0 
 - 或 - 
  <paramref name="offset" /> 加上此计数大于 <paramref name="buffer" /> 的长度。</exception>
@@ -251,17 +251,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A>方法开始将 UDP 数据包发送到以前指定的源的操作。  
+ <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A>方法开始向之前指定的源发送 UDP 数据包的操作。  
   
- 某些协议使用此信息来传递流控制，质量的服务统计信息或恢复消息。  
+ 某些协议使用此信息传递流控制、服务统计信息或恢复消息。  
   
- 中指定的方法`callback`参数调用时发送一个数据包。  
+ 发送数据包时, 将`callback`调用参数中指定的方法。  
   
- 客户端必须已完成到多路广播组的联接。  
+ 客户端必须已完成到多播组的联接。  
   
- 如果在指定目标端口`remotePort`参数是小于 1024<xref:System.Net.Sockets.SocketException>引发与<xref:System.Net.Sockets.SocketError.AccessDenied>。  
+ 如果`remotePort`参数中指定的目标端口小于 1024 <xref:System.Net.Sockets.SocketException> , 则会引发<xref:System.Net.Sockets.SocketError.AccessDenied>。  
   
- 就可以具有套接字失败，如果发送操作失败以同步方式，虽然这是与 UDP 不常见。 如果套接字失败，则<xref:System.Net.Sockets.SocketException>引发。 收到的错误指定的成员为<xref:System.Net.Sockets.SocketError>枚举。  
+ 如果发送操作同步失败, 则可能会出现套接字故障, 但这种情况并不常见。 如果出现套接字故障, <xref:System.Net.Sockets.SocketException>则会引发。 收到的错误被指定为<xref:System.Net.Sockets.SocketError>枚举的成员。  
   
  ]]></format>
         </remarks>
@@ -270,9 +270,9 @@
 - 或 - 
  <paramref name="offset" /> 大于 <paramref name="buffer" /> 的长度。  
   
-- 或 - 
+或 
  <paramref name="count" /> 小于 0 
-- 或 - 
+或 
  <paramref name="offset" /> 加上此计数大于 <paramref name="buffer" /> 的长度。  
   
 - 或 - 
@@ -315,7 +315,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在完成使用 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.Dispose%2A> 后，应调用 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>。 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.Dispose%2A> 方法使 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient> 处于不可用状态。 在调用<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.Dispose%2A>，必须释放对所有引用<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>这样垃圾回收器才能收回内存的<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>占用。  
+ 在完成使用 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.Dispose%2A> 后，应调用 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>。 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.Dispose%2A> 方法使 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient> 处于不可用状态。 调用<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.Dispose%2A>后, 必须释放对的<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>所有引用, 以便垃圾回收器能够<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>回收占用的内存。  
   
  每次释放对 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.Dispose%2A> 的最后一个引用前，均应调用 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>。 否则，在垃圾回收器调用 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient> 对象的 <xref:System.Object.Finalize%2A> 方法之前，该对象正在使用的资源不会被释放。  
   
@@ -356,11 +356,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndJoinGroup%2A>方法完成异步绑定到多播组的套接字和联接操作。  
+ <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndJoinGroup%2A>方法完成到套接字的异步绑定, 并将操作联接到多播组。  
   
- 如果所需的运行时，<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndJoinGroup%2A>方法还执行策略检查，以验证客户端是否可以访问多路广播的组。 如果客户端不允许访问，<xref:System.Net.Sockets.SocketException>将引发<xref:System.Net.Sockets.SocketError.AccessDenied>。  
+ 如果运行时需要, 该<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndJoinGroup%2A>方法还执行策略检查以验证是否允许客户端访问多路广播组。 如果不允许客户端访问, <xref:System.Net.Sockets.SocketException>则会<xref:System.Net.Sockets.SocketError.AccessDenied>引发。  
   
- 如果在执行联接组操作，套接字失败<xref:System.Net.Sockets.SocketException>引发。 收到的错误指定的成员为<xref:System.Net.Sockets.SocketError>枚举。  
+ 如果在执行联接组操作时出现套接字错误, <xref:System.Net.Sockets.SocketException>则会引发。 收到的错误被指定为<xref:System.Net.Sockets.SocketError>枚举的成员。  
   
  ]]></format>
         </remarks>
@@ -405,9 +405,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource%2A>方法完成异步操作以从多路广播组中的单一源接收数据包。  
+ <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource%2A>方法完成异步操作以接收来自多路广播组中单个源的数据包。  
   
- 如果在执行接收操作时出现套接字故障<xref:System.Net.Sockets.SocketException>引发。 收到的错误指定的成员为<xref:System.Net.Sockets.SocketError>枚举。  
+ 如果在执行接收操作时出现套接字错误, <xref:System.Net.Sockets.SocketException>则会引发。 收到的错误被指定为<xref:System.Net.Sockets.SocketError>枚举的成员。  
   
  ]]></format>
         </remarks>
@@ -450,9 +450,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndSendToSource%2A>方法完成异步操作以将数据包发送到以前指定的单一源。  
+ <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndSendToSource%2A>方法完成将数据包发送到以前指定的单一源的异步操作。  
   
- 如果在执行接收操作时出现套接字故障<xref:System.Net.Sockets.SocketException>引发。 收到的错误指定的成员为<xref:System.Net.Sockets.SocketError>枚举。  
+ 如果在执行接收操作时出现套接字错误, <xref:System.Net.Sockets.SocketException>则会引发。 收到的错误被指定为<xref:System.Net.Sockets.SocketError>枚举的成员。  
   
  ]]></format>
         </remarks>
@@ -494,9 +494,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `ReceiveBufferSize`属性获取或设置大小，以字节为单位的接收缓冲区的基础<xref:System.Net.Sockets.Socket>用于对此的多播的接收操作<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>实例。 具体而言，`ReceiveBufferSize`属性控制当数据包到达时，但尚未调用应用程序时使用堆栈的缓冲区的大小<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>方法。 如果此缓冲区被填满，并且在应用程序调用之前不断传入数据包<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>和<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource%2A>方法，旧的数据包将被丢弃。 应用程序永远无法接收旧的数据包，并改为调用时才接收较新的数据包<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>方法。  
+ 属性获取或设置用于此<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>实例上的多播接收操作的基础<xref:System.Net.Sockets.Socket>的接收缓冲区的大小 (以字节为单位)。 `ReceiveBufferSize` 具体而言, `ReceiveBufferSize`属性控制堆栈在包到达时使用的缓冲区大小, 但应用程序尚未<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>调用方法。 如果此缓冲区已满, 并且包在应用程序调用<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>和<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource%2A>方法之前继续存在, 则将删除旧的数据包。 应用程序将永远无法接收旧数据包, 并将在调用<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>方法时接收到较新的数据包。  
   
- Windows 上的接收缓冲区的默认大小为 8192。  
+ Windows 上的接收缓冲区的默认大小为8192。  
   
  ]]></format>
         </remarks>
@@ -537,13 +537,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- SendBufferSize 属性获取或设置的大小，以字节为单位的发送缓冲区的基础<xref:System.Net.Sockets.Socket>用于对此的多播的发送操作<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>实例。  
+ SendBufferSize 属性获取或设置基础<xref:System.Net.Sockets.Socket>的发送缓冲区的大小 (以字节为单位), 该缓冲区用于此<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>实例上的多播发送操作。  
   
- Mac OS X 上<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize%2A>属性控制字节数可以是网络堆栈的额外调用前，发送等待缓冲区中<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A>方法开始失败。 Mac OS X 上的应用程序可能需要加以注意此属性，如果它们将在短时间范围内发送大量的 UDP 数据包。  
+ 在 Mac OS X 上, <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize%2A>属性控制在其他<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A>方法启动失败之前, 网络堆栈等待发送的缓冲区中的字节数。 如果应用程序在较短时间内发送大量 UDP 数据包, 则 Mac OS X 上的应用程序可能需要与此属性相关。  
   
- 在 Windows 中上, 调用<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A>方法将采用较长的时间调用的回调，具体取决于值<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize%2A>属性如果发送缓冲区已满。 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize%2A>属性仅控制是否在用户的缓冲区保持在物理内存中锁定，直到在发送完成。  
+ 在 Windows 上, 如果发送<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A>缓冲区已满, 调用方法将需要更长的时间来调用<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize%2A>回调。 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize%2A>属性仅控制用户的缓冲区是否在物理内存中保持锁定状态, 直到发送完成。  
   
- Windows 上的发送缓冲区的默认大小为 8192。  
+ Windows 上的发送缓冲区的默认大小为8192。  
   
  ]]></format>
         </remarks>

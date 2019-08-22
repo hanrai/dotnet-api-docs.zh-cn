@@ -1,5 +1,5 @@
 <Type Name="JsonElement" FullName="System.Text.Json.JsonElement">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="32916f0eb8286ba76ac381268b45c791d1a84bd8" /><Meta Name="ms.sourcegitcommit" Value="0959d8d88abd48debd487e54e54df29d51634f7f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/02/2019" /><Meta Name="ms.locfileid" Value="68731980" /></Metadata><TypeSignature Language="C#" Value="public struct JsonElement" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="57be16192e3b5668c28e94cafc93de17774b813e" /><Meta Name="ms.sourcegitcommit" Value="cb4d218ffd5a459a5f921fe1d945c682d1e09aca" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/16/2019" /><Meta Name="ms.locfileid" Value="69540794" /></Metadata><TypeSignature Language="C#" Value="public struct JsonElement" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit JsonElement extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Text.Json.JsonElement" />
   <TypeSignature Language="VB.NET" Value="Public Structure JsonElement" />
@@ -45,7 +45,7 @@
         <remarks>
           <format><![CDATA[
           
-如果此 JsonElement 本身是对`Clone`的前一次调用的输出或包含在另一个 JsonElement 中的值`Clone`, 而后者是先前调用的输出, 则此方法不会产生额外的内存分配。
+如果这<xref:System.Text.Json.JsonElement>本身就是对`Clone`的前一次调用的输出或包含在之前<xref:System.Text.Json.JsonElement>调用`Clone`的输出的另一个中的值, 则此方法不会产生额外的内存分配。
 
           ]]></format>
         </remarks>
@@ -210,7 +210,7 @@
 
 ## Remarks
 
-此方法不会创建 base 64 编码的 JSON 字符串以外的值的字节表示形式。
+此方法不会创建 Base64 编码的 JSON 字符串以外的值的字节表示形式。
 
             ]]></format>
         </remarks>
@@ -939,16 +939,16 @@
         <Parameter Name="value" Type="System.Byte[]" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="value">如果方法成功，则包含 base 64 文本的已解码二进制表示形式。</param>
-        <summary>尝试将当前 JSON 字符串表示为字节数组（假定它是 base 64 编码）。</summary>
-        <returns>如果整个标记值编码为有效 base 64 文本并且可以成功解码为字节，则为 <see langword="true" />。
+        <param name="value">如果方法成功，则包含 Base64 文本的已解码二进制表示形式。</param>
+        <summary>尝试将当前 JSON 字符串表示为字节数组（假定它是 Base64 编码）。</summary>
+        <returns>如果整个标记值编码为有效 Base64 文本并且可以成功解码为字节，则为 <see langword="true" />。
               否则为 <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
-此方法不会创建基64编码的 JSON 字符串以外的值的字节数组表示形式。
+此方法不会创建 Base64 编码的 JSON 字符串以外的值的字节数组表示形式。
 
             ]]></format>
         </remarks>
@@ -1677,125 +1677,13 @@
         <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
       </Docs>
     </Member>
-    <Member MemberName="WriteProperty">
-      <MemberSignature Language="C#" Value="public void WriteProperty (ReadOnlySpan&lt;byte&gt; utf8PropertyName, System.Text.Json.Utf8JsonWriter writer);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void WriteProperty(valuetype System.ReadOnlySpan`1&lt;unsigned int8&gt; utf8PropertyName, class System.Text.Json.Utf8JsonWriter writer) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonElement.WriteProperty(System.ReadOnlySpan{System.Byte},System.Text.Json.Utf8JsonWriter)" />
-      <MemberSignature Language="VB.NET" Value="Public Sub WriteProperty (utf8PropertyName As ReadOnlySpan(Of Byte), writer As Utf8JsonWriter)" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; void WriteProperty(ReadOnlySpan&lt;System::Byte&gt; utf8PropertyName, System::Text::Json::Utf8JsonWriter ^ writer);" />
-      <MemberSignature Language="F#" Value="member this.WriteProperty : ReadOnlySpan&lt;byte&gt; * System.Text.Json.Utf8JsonWriter -&gt; unit" Usage="jsonElement.WriteProperty (utf8PropertyName, writer)" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyName>System.Text.Json</AssemblyName>
-        <AssemblyVersion>4.0.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="utf8PropertyName" Type="System.ReadOnlySpan&lt;System.Byte&gt;" />
-        <Parameter Name="writer" Type="System.Text.Json.Utf8JsonWriter" />
-      </Parameters>
-      <Docs>
-        <param name="utf8PropertyName">JSON 对象中此值的名称，以 UTF-8 文本形式表示。</param>
-        <param name="writer">编写器。</param>
-        <summary>将元素作为命名 JSON 对象属性写入指定编写器，其名称由 UTF8 编码的字节范围指定。</summary>
-        <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 是 <see cref="F:System.Text.Json.JsonValueKind.Undefined" />。</exception>
-        <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
-      </Docs>
-    </Member>
-    <Member MemberName="WriteProperty">
-      <MemberSignature Language="C#" Value="public void WriteProperty (ReadOnlySpan&lt;char&gt; propertyName, System.Text.Json.Utf8JsonWriter writer);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void WriteProperty(valuetype System.ReadOnlySpan`1&lt;char&gt; propertyName, class System.Text.Json.Utf8JsonWriter writer) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonElement.WriteProperty(System.ReadOnlySpan{System.Char},System.Text.Json.Utf8JsonWriter)" />
-      <MemberSignature Language="VB.NET" Value="Public Sub WriteProperty (propertyName As ReadOnlySpan(Of Char), writer As Utf8JsonWriter)" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; void WriteProperty(ReadOnlySpan&lt;char&gt; propertyName, System::Text::Json::Utf8JsonWriter ^ writer);" />
-      <MemberSignature Language="F#" Value="member this.WriteProperty : ReadOnlySpan&lt;char&gt; * System.Text.Json.Utf8JsonWriter -&gt; unit" Usage="jsonElement.WriteProperty (propertyName, writer)" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyName>System.Text.Json</AssemblyName>
-        <AssemblyVersion>4.0.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="propertyName" Type="System.ReadOnlySpan&lt;System.Char&gt;" />
-        <Parameter Name="writer" Type="System.Text.Json.Utf8JsonWriter" />
-      </Parameters>
-      <Docs>
-        <param name="propertyName">JSON 对象中此值的名称。</param>
-        <param name="writer">编写器。</param>
-        <summary>将元素作为命名 JSON 对象属性写入提供的编写器，其名称由只读字节范围指定。</summary>
-        <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 是 <see cref="F:System.Text.Json.JsonValueKind.Undefined" />。</exception>
-        <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
-      </Docs>
-    </Member>
-    <Member MemberName="WriteProperty">
-      <MemberSignature Language="C#" Value="public void WriteProperty (string propertyName, System.Text.Json.Utf8JsonWriter writer);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void WriteProperty(string propertyName, class System.Text.Json.Utf8JsonWriter writer) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonElement.WriteProperty(System.String,System.Text.Json.Utf8JsonWriter)" />
-      <MemberSignature Language="VB.NET" Value="Public Sub WriteProperty (propertyName As String, writer As Utf8JsonWriter)" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; void WriteProperty(System::String ^ propertyName, System::Text::Json::Utf8JsonWriter ^ writer);" />
-      <MemberSignature Language="F#" Value="member this.WriteProperty : string * System.Text.Json.Utf8JsonWriter -&gt; unit" Usage="jsonElement.WriteProperty (propertyName, writer)" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyName>System.Text.Json</AssemblyName>
-        <AssemblyVersion>4.0.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="propertyName" Type="System.String" />
-        <Parameter Name="writer" Type="System.Text.Json.Utf8JsonWriter" />
-      </Parameters>
-      <Docs>
-        <param name="propertyName">JSON 对象中此值的名称。</param>
-        <param name="writer">编写器。</param>
-        <summary>将元素作为命名 JSON 对象属性写入提供的编写器，其名称由字符串指定。</summary>
-        <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 是 <see cref="F:System.Text.Json.JsonValueKind.Undefined" />。</exception>
-        <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
-      </Docs>
-    </Member>
-    <Member MemberName="WriteProperty">
-      <MemberSignature Language="C#" Value="public void WriteProperty (System.Text.Json.JsonEncodedText propertyName, System.Text.Json.Utf8JsonWriter writer);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void WriteProperty(valuetype System.Text.Json.JsonEncodedText propertyName, class System.Text.Json.Utf8JsonWriter writer) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonElement.WriteProperty(System.Text.Json.JsonEncodedText,System.Text.Json.Utf8JsonWriter)" />
-      <MemberSignature Language="VB.NET" Value="Public Sub WriteProperty (propertyName As JsonEncodedText, writer As Utf8JsonWriter)" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; void WriteProperty(System::Text::Json::JsonEncodedText propertyName, System::Text::Json::Utf8JsonWriter ^ writer);" />
-      <MemberSignature Language="F#" Value="member this.WriteProperty : System.Text.Json.JsonEncodedText * System.Text.Json.Utf8JsonWriter -&gt; unit" Usage="jsonElement.WriteProperty (propertyName, writer)" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyName>System.Text.Json</AssemblyName>
-        <AssemblyVersion>4.0.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="propertyName" Type="System.Text.Json.JsonEncodedText" />
-        <Parameter Name="writer" Type="System.Text.Json.Utf8JsonWriter" />
-      </Parameters>
-      <Docs>
-        <param name="propertyName">JSON 对象中此值的预编码名称。</param>
-        <param name="writer">编写器。</param>
-        <summary>将元素作为命名 JSON 对象属性写入提供的编写器，其名称由 JSON 编码文本指定。</summary>
-        <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 是 <see cref="F:System.Text.Json.JsonValueKind.Undefined" />。</exception>
-        <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
-      </Docs>
-    </Member>
-    <Member MemberName="WriteValue">
-      <MemberSignature Language="C#" Value="public void WriteValue (System.Text.Json.Utf8JsonWriter writer);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void WriteValue(class System.Text.Json.Utf8JsonWriter writer) cil managed" />
-      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonElement.WriteValue(System.Text.Json.Utf8JsonWriter)" />
-      <MemberSignature Language="VB.NET" Value="Public Sub WriteValue (writer As Utf8JsonWriter)" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; void WriteValue(System::Text::Json::Utf8JsonWriter ^ writer);" />
-      <MemberSignature Language="F#" Value="member this.WriteValue : System.Text.Json.Utf8JsonWriter -&gt; unit" Usage="jsonElement.WriteValue writer" />
+    <Member MemberName="WriteTo">
+      <MemberSignature Language="C#" Value="public void WriteTo (System.Text.Json.Utf8JsonWriter writer);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void WriteTo(class System.Text.Json.Utf8JsonWriter writer) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.Text.Json.JsonElement.WriteTo(System.Text.Json.Utf8JsonWriter)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub WriteTo (writer As Utf8JsonWriter)" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; void WriteTo(System::Text::Json::Utf8JsonWriter ^ writer);" />
+      <MemberSignature Language="F#" Value="member this.WriteTo : System.Text.Json.Utf8JsonWriter -&gt; unit" Usage="jsonElement.WriteTo writer" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Text.Json</AssemblyName>
@@ -1808,10 +1696,11 @@
         <Parameter Name="writer" Type="System.Text.Json.Utf8JsonWriter" />
       </Parameters>
       <Docs>
-        <param name="writer">编写器。</param>
-        <summary>将元素作为 JSON 值写入所提供的编写器。</summary>
+        <param name="writer">要将元素写入到的编写器。</param>
+        <summary>将元素作为 JSON 值写入指定的编写器。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 是 <see cref="F:System.Text.Json.JsonValueKind.Undefined" />。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> 参数为 <see langword="null" />。</exception>
+        <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 为 <see cref="F:System.Text.Json.JsonValueKind.Undefined" />。</exception>
         <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
       </Docs>
     </Member>
