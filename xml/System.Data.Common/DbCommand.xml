@@ -1,5 +1,5 @@
 <Type Name="DbCommand" FullName="System.Data.Common.DbCommand">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5c2d583eda7d1fffc21e775424529a72907dfd8a" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67240899" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbCommand : System.ComponentModel.Component, IDisposable, System.Data.IDbCommand" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="6a73a5b41030dee4b261c8f31abb6c39b4db40b0" /><Meta Name="ms.sourcegitcommit" Value="cb4d218ffd5a459a5f921fe1d945c682d1e09aca" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/16/2019" /><Meta Name="ms.locfileid" Value="69539493" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbCommand : System.ComponentModel.Component, IDisposable, System.Data.IDbCommand" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DbCommand extends System.ComponentModel.Component implements class System.Data.IDbCommand, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Data.Common.DbCommand" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DbCommand&#xA;Inherits Component&#xA;Implements IDbCommand, IDisposable" />
@@ -107,12 +107,12 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>尝试取消 <see cref="T:System.Data.Common.DbCommand" /> 的执行。</summary>
+        <summary>在派生类中重写时，尝试取消 <see cref="T:System.Data.Common.DbCommand" /> 的执行。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果没有任何要取消，没有任何反应。 但是，如果有正在执行的命令，则即使取消尝试失败，也不会生成异常。  
+ 如果没有要取消的内容, 则不会执行任何操作。 但是，如果有正在执行的命令，则即使取消尝试失败，也不会生成异常。  
   
  ]]></format>
         </remarks>
@@ -160,13 +160,13 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置对数据源运行的文本命令。</summary>
+        <summary>在派生类中重写时，获取或设置对数据源运行的文本命令。</summary>
         <value>要执行的文本命令。 默认值为空字符串 ("")。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当您将设置<xref:System.Data.CommandType>到`StoredProcedure`，应设置<xref:System.Data.Common.DbCommand.CommandText%2A>属性设置为存储过程的名称。 该命令执行此存储的过程时调用的一个`Execute`方法。  
+ 如果将设置<xref:System.Data.CommandType>为`StoredProcedure`, 则应将属性设置为存储过程的名称。<xref:System.Data.Common.DbCommand.CommandText%2A> 当调用其中一种`Execute`方法时, 该命令将执行此存储过程。  
   
  ]]></format>
         </remarks>
@@ -206,15 +206,15 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置在终止尝试执行命令并生成错误之前的等待时间。</summary>
+        <summary>在派生类中重写时，获取或设置在终止尝试执行命令并生成错误之前的等待时间。</summary>
         <value>等待命令执行所需的时间（以秒为单位）。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ArgumentException>如果生成已分配<xref:System.Data.Common.DbCommand.CommandTimeout%2A>属性值小于 0。  
+ 如果分配<xref:System.Data.Common.DbCommand.CommandTimeout%2A>的属性值小于 0,则生成。<xref:System.ArgumentException>  
   
- 请为实施者，注意建议 0 表示无超时。  
+ 请注意, 对于实现者, 建议0表示没有超时。  
   
  ]]></format>
         </remarks>
@@ -262,13 +262,13 @@
         <ReturnType>System.Data.CommandType</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>指示或指定解释 <see cref="P:System.Data.Common.DbCommand.CommandText" /> 属性的方式。</summary>
-        <value><see cref="T:System.Data.CommandType" /> 值之一。 默认值为 <see langword="Text" />。</value>
+        <summary>在派生类中重写时，获取或设置 <see cref="P:System.Data.Common.DbCommand.CommandText" /> 属性的解释方式。</summary>
+        <value>指定如何解释命令字符串的枚举值之一。 默认值为 <see langword="Text" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当您将设置<xref:System.Data.CommandType>到`StoredProcedure`，应设置<xref:System.Data.Common.DbCommand.CommandText%2A>属性设置为存储过程的名称。 该命令执行此存储的过程时调用的一个`Execute`方法。  
+ 如果将设置<xref:System.Data.CommandType>为`StoredProcedure`, 则应将属性设置为存储过程的名称。<xref:System.Data.Common.DbCommand.CommandText%2A> 当调用其中一种`Execute`方法时, 该命令将执行此存储过程。  
   
  ]]></format>
         </remarks>
@@ -353,7 +353,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>创建 <see cref="T:System.Data.Common.DbParameter" /> 对象的新实例。</summary>
+        <summary>在派生类中重写时，创建 <see cref="T:System.Data.Common.DbParameter" /> 对象的新实例。</summary>
         <returns>一个 <see cref="T:System.Data.Common.DbParameter" /> 对象。</returns>
         <remarks>To be added.</remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
@@ -426,7 +426,7 @@
         <ReturnType>System.Data.Common.DbConnection</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置此 <see cref="T:System.Data.Common.DbConnection" /> 使用的 <see cref="T:System.Data.Common.DbCommand" />。</summary>
+        <summary>当在派生类中重写时，获取或设置此 <see cref="T:System.Data.Common.DbCommand" /> 使用的 <see cref="T:System.Data.Common.DbConnection" />。</summary>
         <value>与数据源的连接。</value>
         <remarks>To be added.</remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
@@ -462,7 +462,7 @@
         <ReturnType>System.Data.Common.DbParameterCollection</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取 <see cref="T:System.Data.Common.DbParameter" /> 对象的集合。</summary>
+        <summary>在派生类中重写时，获取 <see cref="T:System.Data.Common.DbParameter" /> 对象的集合。</summary>
         <value>SQL 语句或存储过程的参数。</value>
         <remarks>To be added.</remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
@@ -498,8 +498,8 @@
         <ReturnType>System.Data.Common.DbTransaction</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置将在其中执行此 <see cref="T:System.Data.Common.DbCommand" /> 对象的 <see cref="P:System.Data.Common.DbCommand.DbTransaction" />。</summary>
-        <value>要在其中执行 .NET Framework 数据提供程序的 Command 对象的事务。 默认值为空引用（在 Visual Basic 中为 <see langword="Nothing" />）。</value>
+        <summary>当在派生类中重写时，获取或设置执行 <see cref="T:System.Data.Common.DbCommand" /> 对象时所在的 <see cref="P:System.Data.Common.DbCommand.DbTransaction" />。</summary>
+        <value>.NET 数据提供程序的命令对象在其中执行的事务。 默认值为空引用（在 Visual Basic 中为 <see langword="Nothing" />）。</value>
         <remarks>To be added.</remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
@@ -548,7 +548,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置一个值，该值指示此命令对象在自定义界面控件中是否可见。</summary>
+        <summary>当在派生类中重写时，获取或设置一个值，该值指示此命令对象在自定义界面控件中是否可见。</summary>
         <value>如果该命令对象应在控件中可见，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</value>
         <remarks>To be added.</remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
@@ -639,9 +639,17 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary>异步处置命令对象。</summary>
+        <returns>表示异步操作的 <see cref="P:System.Threading.Tasks.ValueTask" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 此异步方法的默认实现将委托给其同步对应项, 并返回`ValueTask`已完成的, 这可能会阻止调用线程。
+ 
+ 支持[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)的数据访问接口应使用异步 i/o 操作来重写默认实现。
+ ]]></format>
+        </remarks>          
       </Docs>
     </Member>
     <Member MemberName="ExecuteDbDataReader">
@@ -678,7 +686,7 @@
       </Parameters>
       <Docs>
         <param name="behavior"><see cref="T:System.Data.CommandBehavior" /> 的一个实例。</param>
-        <summary>对连接执行命令文本。</summary>
+        <summary>当在派生类中重写时，针对连接执行命令文本。</summary>
         <returns>表示该操作的任务。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.Data.Common.DbException">执行命令文本时出现的一个错误。</exception>
@@ -730,7 +738,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -773,15 +781,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>对连接对象执行 SQL 语句。</summary>
+        <summary>当在派生类中重写时，针对连接对象执行 SQL 语句。</summary>
         <returns>受影响的行数。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以使用<xref:System.Data.Common.DbCommand.ExecuteNonQuery%2A>执行目录操作 （例如，查询数据库的结构或创建数据库对象，如表），或通过执行 UPDATE、 INSERT 或 DELETE 语句更改数据库中的数据。  
+ 您可以使用<xref:System.Data.Common.DbCommand.ExecuteNonQuery%2A>执行目录操作 (例如, 查询数据库的结构或创建表等数据库对象), 或通过执行 UPDATE、INSERT 或 DELETE 语句来更改数据库中的数据。  
   
- 尽管<xref:System.Data.Common.DbCommand.ExecuteNonQuery%2A>不会返回任何行，任何输出参数或返回的数据填充映射到参数的值。  
+ 尽管<xref:System.Data.Common.DbCommand.ExecuteNonQuery%2A>不会返回任何行, 但映射到参数的任何输出参数或返回值都将用数据填充。  
   
  对于 UPDATE、INSERT 和 DELETE 语句，返回值为该命令所影响的行数。 对于其他所有类型的语句，返回值为 -1。  
   
@@ -801,7 +809,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -846,7 +854,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -896,7 +904,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -985,7 +993,7 @@
         <Parameter Name="behavior" Type="System.Data.CommandBehavior" />
       </Parameters>
       <Docs>
-        <param name="behavior"><see cref="T:System.Data.CommandBehavior" /> 值之一。</param>
+        <param name="behavior">用于指定命令行为的枚举值之一。</param>
         <summary>针对 <see cref="P:System.Data.Common.DbCommand.CommandText" /> 执行 <see cref="P:System.Data.Common.DbCommand.Connection" />，并使用 <see cref="T:System.Data.Common.DbDataReader" /> 值之一返回 <see cref="T:System.Data.CommandBehavior" />。</summary>
         <returns><see cref="T:System.Data.Common.DbDataReader" /> 对象。</returns>
         <remarks>To be added.</remarks>
@@ -1003,7 +1011,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 托管提供程序实施者必须调用<xref:System.Data.Common.DbCommand.ExecuteDbDataReaderAsync%2A>在<xref:System.Data.Common.DbCommand.ExecuteReaderAsync%2A>。 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 托管提供程序实现者<xref:System.Data.Common.DbCommand.ExecuteDbDataReaderAsync%2A>必须<xref:System.Data.Common.DbCommand.ExecuteReaderAsync%2A>在中调用。 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -1048,7 +1056,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 托管提供程序实施者必须调用<xref:System.Data.Common.DbCommand.ExecuteDbDataReaderAsync%2A>在<xref:System.Data.Common.DbCommand.ExecuteReaderAsync%2A>。 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 托管提供程序实现者<xref:System.Data.Common.DbCommand.ExecuteDbDataReaderAsync%2A>必须<xref:System.Data.Common.DbCommand.ExecuteReaderAsync%2A>在中调用。 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -1089,7 +1097,7 @@
         <Parameter Name="behavior" Type="System.Data.CommandBehavior" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="behavior"><see cref="T:System.Data.CommandBehavior" /> 值之一。</param>
+        <param name="behavior">指定了命令行为的枚举值之一。</param>
         <summary><see cref="Overload:System.Data.Common.DbCommand.ExecuteReader" /> 的异步版本，针对 <see cref="P:System.Data.Common.DbCommand.CommandText" /> 和 <see cref="P:System.Data.Common.DbCommand.Connection" /> 执行 <see cref="T:System.Data.Common.DbDataReader" />。  
   
 调用 <see cref="M:System.Data.Common.DbCommand.ExecuteDbDataReaderAsync(System.Data.CommandBehavior,System.Threading.CancellationToken)" />.</summary>
@@ -1098,7 +1106,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 托管提供程序实施者必须调用<xref:System.Data.Common.DbCommand.ExecuteDbDataReaderAsync%2A>在<xref:System.Data.Common.DbCommand.ExecuteReaderAsync%2A>。 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 托管提供程序实现者<xref:System.Data.Common.DbCommand.ExecuteDbDataReaderAsync%2A>必须<xref:System.Data.Common.DbCommand.ExecuteReaderAsync%2A>在中调用。 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -1147,7 +1155,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 托管提供程序实施者必须调用<xref:System.Data.Common.DbCommand.ExecuteDbDataReaderAsync%2A>在<xref:System.Data.Common.DbCommand.ExecuteReaderAsync%2A>。 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 托管提供程序实现者<xref:System.Data.Common.DbCommand.ExecuteDbDataReaderAsync%2A>必须<xref:System.Data.Common.DbCommand.ExecuteReaderAsync%2A>在中调用。 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -1188,7 +1196,7 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="behavior"><see cref="T:System.Data.CommandBehavior" /> 值之一。</param>
+        <param name="behavior">用于指定命令行为的枚举值之一。</param>
         <param name="cancellationToken">要监视取消请求的标记。</param>
         <summary>调用 <see cref="M:System.Data.Common.DbCommand.ExecuteDbDataReaderAsync(System.Data.CommandBehavior,System.Threading.CancellationToken)" />.</summary>
         <returns>表示异步操作的任务。</returns>
@@ -1196,7 +1204,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 托管提供程序实施者必须调用<xref:System.Data.Common.DbCommand.ExecuteDbDataReaderAsync%2A>在<xref:System.Data.Common.DbCommand.ExecuteReaderAsync%2A>。 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 托管提供程序实现者<xref:System.Data.Common.DbCommand.ExecuteDbDataReaderAsync%2A>必须<xref:System.Data.Common.DbCommand.ExecuteReaderAsync%2A>在中调用。 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -1239,15 +1247,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>执行查询，并返回查询所返回的结果集中第一行的第一列。 所有其他的列和行将被忽略。</summary>
+        <summary>当在派生类中重写时，执行查询，并将查询返回的结果集中第一行的第一列返回。 所有其他的列和行将被忽略。</summary>
         <returns>结果集中第一行的第一列。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Data.Common.DbCommand.ExecuteScalar%2A>方法以从数据库中检索单个值 （例如，一个聚合值）。 这需要比使用更少的代码<xref:System.Data.Common.DbCommand.ExecuteReader%2A>方法，并执行生成使用返回的数据的单个值所需操作<xref:System.Data.Common.DbDataReader>。  
+ <xref:System.Data.Common.DbCommand.ExecuteScalar%2A>使用方法从数据库中检索单个值 (例如聚合值)。 这需要比使用<xref:System.Data.Common.DbCommand.ExecuteReader%2A>方法更少的代码, 并使用<xref:System.Data.Common.DbDataReader>由返回的数据执行生成单个值所需的操作。  
   
- 如果结果集中的第一行的第一列未找到，则为 null 引用 (`Nothing`在 Visual Basic 中) 返回。 如果在数据库中的值是`null`，该查询将返回`DBNull.Value`。  
+ 如果找不到结果集中第一行的第一列, 则返回 null 引用 (`Nothing`在 Visual Basic 中)。 如果数据库中的值为`null`, 则查询返回。 `DBNull.Value`  
   
  ]]></format>
         </remarks>
@@ -1265,7 +1273,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -1310,7 +1318,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -1360,7 +1368,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -1446,12 +1454,12 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>在数据源上创建准备就绪（或已编译）的命令版本。</summary>
+        <summary>当在派生类中重写时，在数据源上创建准备就绪（或已编译）的命令版本。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.Data.Common.DbCommand.CommandType%2A>属性设置为`TableDirect`，`Prepare`不执行任何操作。 如果<xref:System.Data.Common.DbCommand.CommandType%2A>设置为`StoredProcedure`，在调用`Prepare`应该会成功，虽然它可能会不导致执行任何操作。  
+ 如果属性设置为`TableDirect`, `Prepare`则不执行任何操作。 <xref:System.Data.Common.DbCommand.CommandType%2A> 如果<xref:System.Data.Common.DbCommand.CommandType%2A>设置为`StoredProcedure`, 则对`Prepare`的调用应会成功, 但这可能会导致无操作。  
   
  ]]></format>
         </remarks>
@@ -1482,9 +1490,20 @@
       </Parameters>
       <Docs>
         <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary>在数据源上异步创建准备就绪（或已编译）的命令版本。</summary>
+        <returns>表示异步操作的 <see cref="P:System.Threading.Tasks.Task" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 此异步方法的默认实现将委托给其同步对应项, 并返回`Task`已完成的, 这可能会阻止调用线程。
+ 
+ 支持[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)的数据访问接口应使用异步 i/o 操作来重写默认实现。
+
+ 如果属性设置为`TableDirect`, `Prepare`则不执行任何操作。 <xref:System.Data.Common.DbCommand.CommandType%2A> 如果<xref:System.Data.Common.DbCommand.CommandType%2A>设置为`StoredProcedure`, 则对`Prepare`的调用应会成功, 但这可能会导致无操作。  
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="System.Data.IDbCommand.Connection">
@@ -1525,7 +1544,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关详情，请参阅<xref:System.Data.IDbCommand.Connection%2A>。  
+ 有关详细信息，请参阅 <xref:System.Data.IDbCommand.Connection%2A>。  
   
  ]]></format>
         </remarks>
@@ -1570,9 +1589,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.Data.Common.DbCommand> 实例强制转换为 <xref:System.Data.IDbCommand> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.Data.Common.DbCommand> 实例被强制转换为 <xref:System.Data.IDbCommand> 接口时使用。  
   
- 有关详情，请参阅<xref:System.Data.IDbCommand.CreateParameter%2A>。  
+ 有关详细信息，请参阅 <xref:System.Data.IDbCommand.CreateParameter%2A>。  
   
  ]]></format>
         </remarks>
@@ -1623,14 +1642,14 @@
       <Parameters />
       <Docs>
         <summary>对 <see cref="P:System.Data.IDbCommand.Connection" /> 执行 <see cref="P:System.Data.IDbCommand.CommandText" /> 并生成 <see cref="T:System.Data.IDataReader" />。</summary>
-        <returns><see cref="T:System.Data.IDataReader" /> 对象。</returns>
+        <returns>一个 <see cref="T:System.Data.IDataReader" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.Data.Common.DbCommand> 实例强制转换为 <xref:System.Data.IDbCommand> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.Data.Common.DbCommand> 实例被强制转换为 <xref:System.Data.IDbCommand> 接口时使用。  
   
- 有关详情，请参阅<xref:System.Data.IDbCommand.ExecuteReader%2A>。  
+ 有关详细信息，请参阅 <xref:System.Data.IDbCommand.ExecuteReader%2A>。  
   
  ]]></format>
         </remarks>
@@ -1671,16 +1690,16 @@
         <Parameter Name="behavior" Type="System.Data.CommandBehavior" Index="0" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="behavior"><see cref="T:System.Data.CommandBehavior" /> 值之一。</param>
+        <param name="behavior">用于指定命令行为的枚举值之一。</param>
         <summary>对 <see cref="P:System.Data.IDbCommand.Connection" /> 执行 <see cref="P:System.Data.IDbCommand.CommandText" />，并使用 <see cref="T:System.Data.CommandBehavior" /> 值之一生成 <see cref="T:System.Data.IDataReader" />。</summary>
         <returns><see cref="T:System.Data.IDataReader" /> 对象。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.Data.Common.DbCommand> 实例强制转换为 <xref:System.Data.IDbCommand> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.Data.Common.DbCommand> 实例被强制转换为 <xref:System.Data.IDbCommand> 接口时使用。  
   
- 有关详情，请参阅<xref:System.Data.IDbCommand.ExecuteReader%2A>。  
+ 有关详细信息，请参阅 <xref:System.Data.IDbCommand.ExecuteReader%2A>。  
   
  ]]></format>
         </remarks>
@@ -1725,9 +1744,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.Data.Common.DbCommand> 实例强制转换为 <xref:System.Data.IDbCommand> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.Data.Common.DbCommand> 实例被强制转换为 <xref:System.Data.IDbCommand> 接口时使用。  
   
- 有关详情，请参阅<xref:System.Data.IDbCommand.Parameters%2A>。  
+ 有关详细信息，请参阅 <xref:System.Data.IDbCommand.Parameters%2A>。  
   
  ]]></format>
         </remarks>
@@ -1772,7 +1791,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关详情，请参阅<xref:System.Data.IDbCommand.Transaction*>。  
+ 有关详细信息，请参阅 <xref:System.Data.IDbCommand.Transaction*>。  
   
  ]]></format>
         </remarks>
@@ -1864,13 +1883,13 @@
         <ReturnType>System.Data.UpdateRowSource</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>获取或设置命令结果在由 <see cref="T:System.Data.DataRow" /> 的 Update 方法使用时如何应用于 <see cref="T:System.Data.Common.DbDataAdapter" />。</summary>
-        <value><see cref="T:System.Data.UpdateRowSource" /> 值之一。 除非自动生成该命令，否则默认值为 <see langword="Both" />。 如果自动生成该命令，默认值为 <see langword="None" />。</value>
+        <summary>当在派生类中重写时，获取或设置命令结果在由 <see cref="T:System.Data.DataRow" /> 的 Update 方法使用时如何应用于 <see cref="T:System.Data.Common.DbDataAdapter" />。</summary>
+        <value>枚举值之一, 指示如何应用命令结果。 除非自动生成该命令，否则默认值为 <see langword="Both" />。 如果自动生成该命令，默认值为 <see langword="None" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 将引发<xref:System.ArgumentException>如果输入的值不是之一<xref:System.Data.UpdateRowSource>值。  
+ 如果输入<xref:System.ArgumentException>的值不是<xref:System.Data.UpdateRowSource>值之一, 则将引发。  
   
  ]]></format>
         </remarks>
