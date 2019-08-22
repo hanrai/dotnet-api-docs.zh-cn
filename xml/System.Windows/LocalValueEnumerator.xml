@@ -1,5 +1,5 @@
 <Type Name="LocalValueEnumerator" FullName="System.Windows.LocalValueEnumerator">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="87419407c964ec6edfc3c1c4babfb741dcb7db0b" /><Meta Name="ms.sourcegitcommit" Value="9dda17222b9f7d3edf130133bfb1370d5b410a4b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="09/22/2018" /><Meta Name="ms.locfileid" Value="46677308" /></Metadata><TypeSignature Language="C#" Value="public struct LocalValueEnumerator : System.Collections.IEnumerator" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e1ed5f9b05127d84bdfb01cea080c34f044d9b60" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69444442" /></Metadata><TypeSignature Language="C#" Value="public struct LocalValueEnumerator : System.Collections.IEnumerator" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit LocalValueEnumerator extends System.ValueType implements class System.Collections.IEnumerator" />
   <TypeSignature Language="DocId" Value="T:System.Windows.LocalValueEnumerator" />
   <TypeSignature Language="VB.NET" Value="Public Structure LocalValueEnumerator&#xA;Implements IEnumerator" />
@@ -24,13 +24,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一个*本地值*是通过调用直接在依赖属性设置的依赖属性的值<xref:System.Windows.DependencyObject.SetValue%2A>，或通过使用 set 访问器的更常见的做法[!INCLUDE[TLA2#tla_clr](~/includes/tla2sharptla-clr-md.md)]属性包装器调用<xref:System.Windows.DependencyObject.SetValue%2A>在内部。 其他属性系统决定因素不是本地值的示例包括设置样式，通过值或依赖项属性默认值。 有关详细信息，请参阅[依赖属性值优先级](~/docs/framework/wpf/advanced/dependency-property-value-precedence.md)。  
+ *本地值*是依赖属性的值, 该属性通过调用<xref:System.Windows.DependencyObject.SetValue%2A>, 或更常见地通过使用在内部调用<xref:System.Windows.DependencyObject.SetValue%2A>的[!INCLUDE[TLA2#tla_clr](~/includes/tla2sharptla-clr-md.md)]属性包装的 set 访问器来设置依赖属性。 其他不是本地值的属性系统 qps 的示例是通过样式或依赖属性默认值设置的值。 有关详细信息，请参阅[依赖属性值优先级](~/docs/framework/wpf/advanced/dependency-property-value-precedence.md)。  
   
- 一个<xref:System.Windows.LocalValueEnumerator>返回的<xref:System.Windows.DependencyObject.GetLocalValueEnumerator%2A>方法，并实现<xref:System.Collections.IEnumerator>接口。 公共<xref:System.Windows.LocalValueEnumerator>构造函数不存在; 因此，必须调用<xref:System.Windows.DependencyObject.GetLocalValueEnumerator%2A>以获取此类的实例。  
+ 由方法返回, 并实现<xref:System.Collections.IEnumerator>接口。 <xref:System.Windows.DependencyObject.GetLocalValueEnumerator%2A> <xref:System.Windows.LocalValueEnumerator> 公共<xref:System.Windows.LocalValueEnumerator>构造函数不存在; 因此, 必须调用<xref:System.Windows.DependencyObject.GetLocalValueEnumerator%2A>才能获取此类的实例。  
   
- 请不要修改本地值 (通过调用<xref:System.Windows.DependencyObject.SetValue%2A>或<xref:System.Windows.DependencyObject.ClearValue%2A>) 枚举本地值时。 如果您更改或清除的属性值基于枚举器返回的属性，更改或清除操作不会使失效枚举器集合中，许多都是如此<xref:System.Collections.IEnumerator>实现。 此外，枚举器视图是一个快照。 对集合的更改不保证是线程安全，并强制执行任何锁定。 其他线程仍具有可用的访问权限的本地值枚举器之外的上下文。  
+ 枚举本地值时, 不要修改本地<xref:System.Windows.DependencyObject.SetValue%2A>值<xref:System.Windows.DependencyObject.ClearValue%2A>(通过调用或)。 如果基于枚举器返回的属性更改或清除属性值, 则更改或清除操作不会使枚举器集合失效, 因为许多<xref:System.Collections.IEnumerator>实现情况都是如此。 此外, 枚举器视图也是一个快照。 不能保证对集合的更改是线程安全的, 并且不会强制实施锁。 其他线程仍可以从枚举数以外的上下文中免费访问本地值。  
   
- 如果，使用此类型在类中有操作是必须了解属性的值是否来自本地值。 例如，使用此类型在<xref:System.Windows.DependencyObject.OnPropertyChanged%2A>实现中，或你想要查询的元数据对所有本地设置的属性。  
+ 如果你在类中具有一些操作, 需要知道某个属性的值是否来自本地值, 请使用此类型。 例如, 在<xref:System.Windows.DependencyObject.OnPropertyChanged%2A>实现中使用此类型, 或在要查询所有本地设置属性的元数据的位置使用此类型。  
   
  ]]></format>
     </remarks>
@@ -65,7 +65,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性不是已定义的成员的<xref:System.Collections.IEnumerator>，但为方便起见提供。  
+ 此属性不是的已定义成员<xref:System.Collections.IEnumerator> , 但作为便利提供。  
   
  ]]></format>
         </remarks>
@@ -94,11 +94,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此版本通常可访问的属性依赖于对的集合在创建时拍摄的快照。  
+ 此属性的可访问版本依赖于在创建时创建的集合的快照。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.5/ms749010(v=vs.90)">如何： 还原依赖项属性的默认值</related>
+        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.5/ms749010(v=vs.90)">如何：还原依赖项属性的默认值</related>
       </Docs>
     </Member>
     <Member MemberName="Equals">
@@ -128,7 +128,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此实现支持引用相等性。  
+ 此实现仅支持引用相等性。  
   
  ]]></format>
         </remarks>
@@ -212,7 +212,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此实现支持引用相等性。  
+ 此实现仅支持引用相等性。  
   
  ]]></format>
         </remarks>
@@ -247,7 +247,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此实现支持引用相等性。  
+ 此实现仅支持引用相等性。  
   
  ]]></format>
         </remarks>
@@ -304,7 +304,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.Windows.LocalValueEnumerator> 实例强制转换为 <xref:System.Collections.IEnumerator> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.Windows.LocalValueEnumerator> 实例被强制转换为 <xref:System.Collections.IEnumerator> 接口时使用。  
   
  ]]></format>
         </remarks>
