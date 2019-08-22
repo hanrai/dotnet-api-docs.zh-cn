@@ -1,5 +1,5 @@
 <Type Name="SqlDataReader" FullName="System.Data.SqlClient.SqlDataReader">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="825c59f4aac86ce218dce8ccc152ed940e2c9da1" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63890436" /></Metadata><TypeSignature Language="C#" Value="public class SqlDataReader : System.Data.Common.DbDataReader, IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d568c7b2df38d8e01ab71f1da66d13fc5161a3e8" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69123478" /></Metadata><TypeSignature Language="C#" Value="public class SqlDataReader : System.Data.Common.DbDataReader, IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit SqlDataReader extends System.Data.Common.DbDataReader implements class System.Data.IDataReader, class System.Data.IDataRecord, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Data.SqlClient.SqlDataReader" />
   <TypeSignature Language="VB.NET" Value="Public Class SqlDataReader&#xA;Inherits DbDataReader&#xA;Implements IDisposable" />
@@ -45,23 +45,23 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 若要创建<xref:System.Data.SqlClient.SqlDataReader>，必须调用<xref:System.Data.SqlClient.SqlCommand.ExecuteReader%2A>方法的<xref:System.Data.SqlClient.SqlCommand>对象，而不是直接使用构造函数。  
+ 若要创建<xref:System.Data.SqlClient.SqlDataReader>, 必须<xref:System.Data.SqlClient.SqlCommand.ExecuteReader%2A>调用<xref:System.Data.SqlClient.SqlCommand>对象的方法, 而不是直接使用构造函数。  
   
- 虽然<xref:System.Data.SqlClient.SqlDataReader>正在使用中，关联<xref:System.Data.SqlClient.SqlConnection>是繁忙的服务<xref:System.Data.SqlClient.SqlDataReader>，并可以在执行任何其他操作<xref:System.Data.SqlClient.SqlConnection>而不关闭它。 这是种情况一直<xref:System.Data.SqlClient.SqlDataReader.Close%2A>方法的<xref:System.Data.SqlClient.SqlDataReader>调用。 例如，不能检索输出参数，直到调用后<xref:System.Data.SqlClient.SqlDataReader.Close%2A>。  
+ 如果正在使用, 则关联<xref:System.Data.SqlClient.SqlConnection>的忙于提供服务<xref:System.Data.SqlClient.SqlDataReader>, 并且除关闭外, <xref:System.Data.SqlClient.SqlConnection>不能在其他操作上执行任何其他操作。 <xref:System.Data.SqlClient.SqlDataReader> 在调用的<xref:System.Data.SqlClient.SqlDataReader.Close%2A>方法<xref:System.Data.SqlClient.SqlDataReader>之前, 会出现这种情况。 例如, 在调用<xref:System.Data.SqlClient.SqlDataReader.Close%2A>之后, 才能检索输出参数。  
   
- 对结果集由另一个进程或线程读取数据时所做的更改可能会对用户可见`SqlDataReader`。 但是，确切的行为与时间有关。  
+ 在读取数据时, 由其他进程或线程对结果集所做的更改可能对的用户`SqlDataReader`可见。 但是, 精确的行为取决于时间。  
   
- <xref:System.Data.SqlClient.SqlDataReader.IsClosed%2A> 并<xref:System.Data.SqlClient.SqlDataReader.RecordsAffected%2A>是后可以调用的唯一属性<xref:System.Data.SqlClient.SqlDataReader>已关闭。 尽管<xref:System.Data.SqlClient.SqlDataReader.RecordsAffected%2A>可能会访问属性时<xref:System.Data.SqlClient.SqlDataReader>存在，始终调用<xref:System.Data.SqlClient.SqlDataReader.Close%2A>返回的值之前<xref:System.Data.SqlClient.SqlDataReader.RecordsAffected%2A>以保证返回精确的值。  
+ <xref:System.Data.SqlClient.SqlDataReader.IsClosed%2A>和<xref:System.Data.SqlClient.SqlDataReader.RecordsAffected%2A>是在关闭后可调用的<xref:System.Data.SqlClient.SqlDataReader>唯一属性。 尽管可以在<xref:System.Data.SqlClient.SqlDataReader>存在时访问<xref:System.Data.SqlClient.SqlDataReader.Close%2A> <xref:System.Data.SqlClient.SqlDataReader.RecordsAffected%2A>属性, 但在返回值之前始终调用以保证准确的返回值。 <xref:System.Data.SqlClient.SqlDataReader.RecordsAffected%2A>  
   
- 使用顺序访问时 (<xref:System.Data.CommandBehavior.SequentialAccess?displayProperty=nameWithType>)、 一个<xref:System.InvalidOperationException>情况下会引发<xref:System.Data.SqlClient.SqlDataReader>高级位置和另一个读取上一列上尝试执行操作。  
+ 当使用顺序访问 (<xref:System.Data.CommandBehavior.SequentialAccess?displayProperty=nameWithType>) 时<xref:System.InvalidOperationException> , 如果该<xref:System.Data.SqlClient.SqlDataReader>位置是高级的, 并且对上一列尝试另一次读取操作, 则将引发。  
   
 > [!NOTE]
->  为了获得最佳性能，<xref:System.Data.SqlClient.SqlDataReader>可避免创建不必要的对象或对其进行不必要的数据副本。 因此，多个调用方法如<xref:System.Data.SqlClient.SqlDataReader.GetValue%2A>返回对同一个对象的引用。 如果您正在修改如由方法返回的对象的基础值要格外小心<xref:System.Data.SqlClient.SqlDataReader.GetValue%2A>。  
+>  为了获得最佳性能<xref:System.Data.SqlClient.SqlDataReader> , 应避免创建不必要的对象或生成不必要的数据副本。 因此, 多次调用方法 ( <xref:System.Data.SqlClient.SqlDataReader.GetValue%2A>如) 将返回对同一对象的引用。 如果要修改诸如<xref:System.Data.SqlClient.SqlDataReader.GetValue%2A>等方法返回的对象的基础值, 请务必小心。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>、 一个<xref:System.Data.SqlClient.SqlCommand>，和一个<xref:System.Data.SqlClient.SqlDataReader>。 该示例读取数据，将其写到控制台窗口。 然后关闭代码<xref:System.Data.SqlClient.SqlDataReader>。 <xref:System.Data.SqlClient.SqlConnection>结束时自动关闭`using`代码块。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>、一个<xref:System.Data.SqlClient.SqlCommand>和一个<xref:System.Data.SqlClient.SqlDataReader>。 该示例将读取数据, 并将其写出到控制台窗口。 然后, 该代码将<xref:System.Data.SqlClient.SqlDataReader>关闭。 <xref:System.Data.SqlClient.SqlConnection>在`using`代码块的末尾自动关闭。  
   
  [!code-csharp[Classic WebData SqlDataReader.Read Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlDataReader.Read Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlDataReader.Read Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlDataReader.Read Example/VB/source.vb#1)]  
@@ -105,17 +105,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 必须显式调用<xref:System.Data.SqlClient.SqlDataReader.Close%2A>方法时都是通过使用<xref:System.Data.SqlClient.SqlDataReader>使用关联<xref:System.Data.SqlClient.SqlConnection>用于任何其他用途。  
+ 当<xref:System.Data.SqlClient.SqlDataReader.Close%2A> 使用<xref:System.Data.SqlClient.SqlDataReader>将关联<xref:System.Data.SqlClient.SqlConnection>的用于任何其他用途时, 必须显式调用方法。  
   
- `Close`方法在输出参数、 返回值的值中填充并`RecordsAffected`，增加关闭所需的时间`SqlDataReader`，它用于处理大型或复杂的查询。 当返回值和受影响查询的记录数都不重要，若要关闭所花费的时间`SqlDataReader`可以通过调用减少<xref:System.Data.SqlClient.SqlCommand.Cancel%2A>关联的方法<xref:System.Data.SqlClient.SqlCommand>对象之前调用`Close`方法。  
+ 方法填写输出参数的值、返回值和`RecordsAffected`, 增加关闭`SqlDataReader`用于处理大型或复杂查询的的时间。 `Close` 如果返回值和查询影响的记录数不重要, 则`SqlDataReader`关闭该操作所用的时间可以通过在调用`Close`之前<xref:System.Data.SqlClient.SqlCommand.Cancel%2A>调用关联<xref:System.Data.SqlClient.SqlCommand>对象的方法来减少付款方式.  
   
 > [!CAUTION]
->  不要调用`Close`或`Dispose`连接、 DataReader 或在任何其他托管的对象上`Finalize`类的方法。 在终结器中，您应仅释放类直接拥有的非托管的资源。 如果类不拥有任何非托管资源，则不要在类定义中包含 `Finalize` 方法。 有关详细信息，请参阅[垃圾回收](~/docs/standard/garbage-collection/index.md)。  
+>  不要在类`Close`的`Dispose` `Finalize`方法中对连接、DataReader 或任何其他托管对象调用或。 在终结器中, 只应释放类直接拥有的非托管资源。 如果类不拥有任何非托管资源，则不要在类定义中包含 `Finalize` 方法。 有关详细信息, 请参阅[垃圾回收](~/docs/standard/garbage-collection/index.md)。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>、 一个`SqlCommand`，和一个<xref:System.Data.SqlClient.SqlDataReader>。 该示例读取数据，将其写到控制台窗口。 然后关闭代码<xref:System.Data.SqlClient.SqlDataReader>。 <xref:System.Data.SqlClient.SqlConnection>结束时自动关闭`using`代码块。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>、一个`SqlCommand`和一个<xref:System.Data.SqlClient.SqlDataReader>。 该示例将读取数据, 并将其写出到控制台窗口。 然后, 该代码将<xref:System.Data.SqlClient.SqlDataReader>关闭。 <xref:System.Data.SqlClient.SqlConnection>在`using`代码块的末尾自动关闭。  
   
  [!code-csharp[Classic WebData SqlDataReader.Close Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlDataReader.Close Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlDataReader.Close Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlDataReader.Close Example/VB/source.vb#1)]  
@@ -207,7 +207,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 最外面的表的深度为零。 SQL Server 的.NET Framework 数据提供程序不支持嵌套，并且始终返回零。  
+ 最外面的表的深度为零。 SQL Server 的 .NET Framework 数据提供程序不支持嵌套并始终返回零。  
   
  ]]></format>
         </remarks>
@@ -283,7 +283,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 执行的查询按其性质，不返回行 （如 DELETE 查询），设置<xref:System.Data.SqlClient.SqlDataReader.FieldCount%2A>为 0。 但是。 这不应混淆返回 0 行的查询 (例如，SELECT * FROM*表*WHERE 1 = 2） 在这种情况下<xref:System.Data.SqlClient.SqlDataReader.FieldCount%2A>表，包括隐藏的字段中返回的列数。 使用 <xref:System.Data.SqlClient.SqlDataReader.VisibleFieldCount%2A> 可排除隐藏的字段。  
+ 如果执行的查询不返回行 (如删除查询), 则将设置<xref:System.Data.SqlClient.SqlDataReader.FieldCount%2A>为0。 尽管如此. 这不应与返回0行的查询 (例如 SELECT * FROM *table* , 其中 1 = 2) 混淆, 在这种情况<xref:System.Data.SqlClient.SqlDataReader.FieldCount%2A>下, 将返回表中的列数, 包括隐藏字段。 使用 <xref:System.Data.SqlClient.SqlDataReader.VisibleFieldCount%2A> 可排除隐藏的字段。  
   
  ]]></format>
         </remarks>
@@ -337,9 +337,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是一个布尔值，或生成异常。  
+ 不执行任何转换;因此, 检索的数据必须已是布尔值, 否则将生成异常。  
   
- 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>来调用此方法之前检查 null 值。  
+ 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>以在调用此方法前检查是否有 null 值。  
   
  ]]></format>
         </remarks>
@@ -393,9 +393,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已为一个字节。  
+ 不执行任何转换;因此, 检索的数据必须已是一个字节。  
   
- 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>来调用此方法之前检查 null 值。  
+ 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>以在调用此方法前检查是否有 null 值。  
   
  ]]></format>
         </remarks>
@@ -457,11 +457,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlDataReader.GetBytes%2A> 返回字段中的可用字节数。 大多数情况下，这是该字段的确切长度。 但是，返回的数字可能小于字段的真实长度如果`GetBytes`具有用于从字段中获取字节。 这可能情况下，例如，如果<xref:System.Data.SqlClient.SqlDataReader>正在读取到缓冲区中的大型数据结构。 有关详细信息，请参阅`SequentialAccess`设置为<xref:System.Data.CommandBehavior>。  
+ <xref:System.Data.SqlClient.SqlDataReader.GetBytes%2A>返回字段中的可用字节数。 大多数情况下, 这是字段的准确长度。 但是, 如果`GetBytes`已使用从字段获取字节, 则返回的数字可能小于字段的实际长度。 例如, 如果<xref:System.Data.SqlClient.SqlDataReader>正在将大数据结构读入缓冲区, 则可能会出现这种情况。 有关详细信息, 请参阅`SequentialAccess`的<xref:System.Data.CommandBehavior>设置。  
   
- 如果传递的缓冲区，则`null`，<xref:System.Data.SqlClient.SqlDataReader.GetBytes%2A>以字节为单位，不是剩余大小基于缓冲区偏移量参数中返回整个字段的长度。  
+ 如果传递的缓冲区为`null`, <xref:System.Data.SqlClient.SqlDataReader.GetBytes%2A>则返回整个字段的长度 (以字节为单位), 而不是基于缓冲区 offset 参数的剩余大小。  
   
- 不执行任何转换;因此，检索到的数据必须已经是一个字节数组。  
+ 不执行任何转换;因此, 检索的数据必须已经是字节数组。  
   
  ]]></format>
         </remarks>
@@ -579,14 +579,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlDataReader.GetChars%2A> 返回字段中的可用字符数。 通常这是该字段的确切长度。 但是，返回的数字可能小于字段的真实长度如果`GetChars`具有用于从字段获取字符。 这可能情况下，例如，如果<xref:System.Data.SqlClient.SqlDataReader>正在读取到缓冲区中的大型数据结构。 有关详细信息，请参阅`SequentialAccess`设置为<xref:System.Data.CommandBehavior>。  
+ <xref:System.Data.SqlClient.SqlDataReader.GetChars%2A>返回字段中的可用字符数。 通常, 这是字段的准确长度。 但是, 如果`GetChars`已使用从字段获取字符, 则返回的数字可能小于字段的实际长度。 例如, 如果<xref:System.Data.SqlClient.SqlDataReader>正在将大数据结构读入缓冲区, 则可能会出现这种情况。 有关详细信息, 请参阅`SequentialAccess`的<xref:System.Data.CommandBehavior>设置。  
   
- 实际读取的字符数可能小于请求的长度，如果已到达的字段的结尾。 如果传递的缓冲区，则`null`，<xref:System.Data.SqlClient.SqlDataReader.GetChars%2A>字符，不是剩余大小基于缓冲区偏移量参数中返回整个字段的长度。  
+ 如果到达了字段的末尾, 则读取的实际字符数可以小于请求的长度。 如果传递的缓冲区为`null`, <xref:System.Data.SqlClient.SqlDataReader.GetChars%2A>则返回整个字段的长度 (字符), 而不是基于缓冲区 offset 参数的剩余大小。  
   
- 不执行任何转换;因此。 检索到的数据必须已经是字符数组。  
+ 不执行任何转换;因而. 检索的数据必须已是字符数组。  
   
 > [!NOTE]
->  <xref:System.Data.SqlClient.SqlDataReader.GetChars%2A>方法将返回 0 时`dataIndex`为负。  
+>  <xref:System.Data.SqlClient.SqlDataReader.GetChars%2A> 如果`dataIndex`为负, 则方法返回0。  
   
  ]]></format>
         </remarks>
@@ -707,7 +707,7 @@
 ## Remarks  
  返回后端数据类型的名称。  
   
- `numeric` 有关 SQL Server 中的同义词`decimal`数据类型。 `GetDataTypeName` 将返回"decimal"定义为 decimal 或 numeric 的列。  
+ `numeric`是 SQL Server `decimal`数据类型的同义词。 `GetDataTypeName`对于定义为 decimal 或 numeric 的列, 将返回 "decimal"。  
   
  ]]></format>
         </remarks>
@@ -758,9 +758,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是<xref:System.DateTime>对象。  
+ 不执行任何转换;因此, 检索的数据必须已经是<xref:System.DateTime>对象。  
   
- 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>来调用此方法之前检查 null 值。  
+ 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>以在调用此方法前检查是否有 null 值。  
   
  ]]></format>
         </remarks>
@@ -810,9 +810,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是<xref:System.DateTimeOffset>对象。  
+ 不执行任何转换;因此, 检索的数据必须已经是<xref:System.DateTimeOffset>对象。  
   
- 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>来调用此方法之前检查 null 值。  
+ 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>以在调用此方法前检查是否有 null 值。  
   
  ]]></format>
         </remarks>
@@ -867,9 +867,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是<xref:System.Decimal>对象。  
+ 不执行任何转换;因此, 检索的数据必须已经是<xref:System.Decimal>对象。  
   
- 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>来调用此方法之前检查 null 值。  
+ 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>以在调用此方法前检查是否有 null 值。  
   
  ]]></format>
         </remarks>
@@ -923,9 +923,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换。 因此，检索到的数据必须已经是双精度浮点数字。  
+ 不执行任何转换。 因此, 检索的数据必须已经是双精度浮点数。  
   
- 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>来调用此方法之前检查 null 值。  
+ 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>以在调用此方法前检查是否有 null 值。  
   
  ]]></format>
         </remarks>
@@ -972,7 +972,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 尽管此方法可用于检索显式枚举器，但在语言的支持`foreach`构造，它是直接以循环访问数据读取器中的行中使用循环构造简单得多。  
+ 尽管可以使用此方法来检索显式枚举器, 但在支持`foreach`构造的语言中, 直接使用循环构造来循环访问数据读取器中的行更为简单。  
   
  ]]></format>
         </remarks>
@@ -1070,7 +1070,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `T` 可以是以下类型之一：  
+ `T`可以是以下类型之一:  
   
 |||||  
 |-|-|-|-|  
@@ -1080,9 +1080,9 @@
 |SqlBoolean|SqlByte|SqlDateTime|SqlDecimal|  
 |SqlDouble|SqlGuid|SqlInt16|SqlInt32|  
 |SqlInt64|SqlMoney|SqlSingle|SqlString|  
-|String|UDT，可以是任何 CLR 类型标记为<xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute>。|||  
+|String|UDT, 可以是标记有<xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute>的任何 CLR 类型。|||  
   
- 有关详细信息，请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
+ 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
   
  ]]></format>
         </remarks>
@@ -1144,7 +1144,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `T` 可以是以下类型之一：  
+ `T`可以是以下类型之一:  
   
 |||||  
 |-|-|-|-|  
@@ -1154,9 +1154,9 @@
 |SqlBoolean|SqlByte|SqlDateTime|SqlDecimal|  
 |SqlDouble|SqlGuid|SqlInt16|SqlInt32|  
 |SqlInt64|SqlMoney|SqlSingle|SqlString|  
-|String|UDT，可以是任何 CLR 类型标记为<xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute>。|||  
+|String|UDT, 可以是标记有<xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute>的任何 CLR 类型。|||  
   
- 有关详细信息，请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
+ 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
   
  ]]></format>
         </remarks>
@@ -1220,9 +1220,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换。 因此，检索到的数据必须已经是单精度浮点数字。  
+ 不执行任何转换。 因此, 检索的数据必须已经是单精度浮点数。  
   
- 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>来调用此方法之前检查 null 值。  
+ 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>以在调用此方法前检查是否有 null 值。  
   
  ]]></format>
         </remarks>
@@ -1276,9 +1276,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是一个 GUID。  
+ 不执行任何转换;因此, 检索的数据必须已经是 GUID。  
   
- 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>来调用此方法之前检查 null 值。  
+ 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>以在调用此方法前检查是否有 null 值。  
   
  ]]></format>
         </remarks>
@@ -1332,9 +1332,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是 16 位有符号的整数。  
+ 不执行任何转换;因此, 检索的数据必须已经是16位有符号整数。  
   
- 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>来调用此方法之前检查 null 值。  
+ 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>以在调用此方法前检查是否有 null 值。  
   
  ]]></format>
         </remarks>
@@ -1388,9 +1388,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是 32 位有符号的整数。  
+ 不执行任何转换;因此, 检索的数据必须已经是32位有符号整数。  
   
- 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>来调用此方法之前检查 null 值。  
+ 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>以在调用此方法前检查是否有 null 值。  
   
  ]]></format>
         </remarks>
@@ -1444,9 +1444,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是 64 位有符号的整数。  
+ 不执行任何转换;因此, 检索的数据必须已经是64位有符号整数。  
   
- 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>来调用此方法之前检查 null 值。  
+ 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>以在调用此方法前检查是否有 null 值。  
   
  ]]></format>
         </remarks>
@@ -1546,11 +1546,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `GetOrdinal` 第一次执行区分大小写查找。 如果失败，第二个，则会不区分大小写的搜索 (进行不区分大小写的比较使用数据库排序规则)。 当比较受特定于区域性的大小写规则，会发生意外的结果。 例如，在土耳其语，下面的示例生成错误结果由于土耳其语中的文件系统对字母 i 不使用语言的大小写规则"文件"中。 该方法将引发`IndexOutOfRange`异常，如果找不到从零开始的列序号。  
+ `GetOrdinal`首先执行区分大小写的查找。 如果该操作失败, 则会发生第二个不区分大小写的搜索 (不区分大小写的比较是使用数据库排序规则完成的)。 当比较受区域性特定的大小写规则影响时, 可能会出现意外的结果。 例如, 在土耳其语中, 以下示例产生了错误的结果, 因为土耳其语中的文件系统不会对 "file" 中的字母 "i" 使用语言大小写规则。 如果找不到`IndexOutOfRange`基于零的列序号, 方法将引发异常。  
   
- `GetOrdinal` 不区分假名宽度。  
+ `GetOrdinal`不区分假名宽度。  
   
- 因为基于序号的查找比命名查找更有效，它是效率低下调用`GetOrdinal`在循环内。 节省时间，可以调用`GetOrdinal`一次，并且将结果分配给整数变量在循环内使用。  
+ 由于基于序号的查找比命名查找更有效, 因此在循环内调用`GetOrdinal`是低效的。 只调用`GetOrdinal`一次, 并将结果赋给整数变量以便在循环中使用, 从而节省时间。  
   
    
   
@@ -1731,43 +1731,43 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关<xref:System.Data.SqlClient.SqlDataReader.GetSchemaTable%2A>方法按以下顺序返回有关每个列的元数据：  
+ <xref:System.Data.SqlClient.SqlDataReader.GetSchemaTable%2A>对于方法, 按以下顺序返回有关每个列的元数据:  
   
-|DataReader 列|描述|  
+|DataReader 列|说明|  
 |-----------------------|-----------------|  
-|AllowDBNull|如果使用者可以将列设置为 null 值或提供程序无法确定使用者是否可以将列设置为 null 的值设置。 否则，不设置。 列可能包含 null 值，即使它不能设置为 null 值。|  
-|BaseCatalogName|包含的列的数据存储区中的目录的名称。 如果无法确定基本目录名称为 NULL。 此列的默认值为 null 值。|  
-|BaseColumnName|数据存储区中列的名称。 这可能是不同的列名称使用别名时才 ColumnName 列中返回。 如果无法确定基本列名或列数据中的行集列是派生的但并不完全相同，如果存储一个 null 值。 此列的默认值为 null 值。|  
-|BaseSchemaName|包含的列的数据存储区中的架构的名称。 如果无法确定基本架构名称，null 值。 此列的默认值为 null 值。|  
-|BaseServerName|通过使用 Microsoft SQL Server 的实例的名称<xref:System.Data.SqlClient.SqlDataReader>。|  
-|BaseTableName|表或视图中包含的列的数据存储区的名称。 如果无法确定基表名称，null 值。 此列的默认值为 null 值。|  
-|列名|列; 的名称这可能不是唯一的。 如果这不能确定，则返回 null 值。 此名称始终反映当前视图或命令文本中的列的最新重命名。|  
+|AllowDBNull|如果使用者可以将列设置为 null 值, 则设置为; 如果访问接口无法确定使用者是否可以将该列设置为 null 值, 则设置。 否则, 则不设置。 列可能包含空值, 即使它不能设置为 null 值也是如此。|  
+|BaseCatalogName|包含该列的数据存储区中的目录的名称。 如果无法确定基本目录名称, 则为 NULL。 此列的默认值为 null 值。|  
+|BaseColumnName|数据存储区中列的名称。 如果使用了别名, 则该名称可能不同于列名称返回的列名称。 如果无法确定基列名称, 或者如果行集列派生, 但与数据存储区中的列不完全相同, 则为 null 值。 此列的默认值为 null 值。|  
+|BaseSchemaName|数据存储中包含该列的架构的名称。 如果无法确定基本架构名称, 则为 null 值。 此列的默认值为 null 值。|  
+|BaseServerName|使用的 Microsoft SQL Server 实例的名称<xref:System.Data.SqlClient.SqlDataReader>。|  
+|BaseTableName|包含该列的数据存储区中的表或视图的名称。 如果无法确定基表名称, 则为 null 值。 此列的默认值为 null 值。|  
+|列名|列的名称;这可能不是唯一的。 如果无法确定此值, 则返回 null 值。 此名称始终反映当前视图或命令文本中列的最近重命名。|  
 |ColumnOrdinal|从零开始的列序号。 此列不能包含 null 值。|  
-|ColumnSize|列中值的最大可取长度。 对于使用固定长度的数据类型的列，这是数据类型的大小。 有关`nvarchar(MAX)`， `varchar(MAX)`，和`varbinary(MAX)`列存储在 SQL Server 数据库中，最大大小为 2 GB。 如果这些列存储和访问文件，最大大小限制由文件系统。 此值更改时使用`Type System Version`连接字符串中的关键字。  对新类型它们表示为下层类型。 最大值数据类型返回的正常的 4k`nvarchar`和 8000 `varchar`。 有关详细信息，请参阅[TRANSACT-SQL 参考](/sql/t-sql/language-reference)。|
-|DataTypeName|返回一个表示指定列的数据类型的字符串。|  
-|IsAliased|`true`：列名称是别名。<br /><br /> `false`：列名称不是别名。|  
-|IsAutoIncrement|`true`：列将值分配给新行以固定的增量。<br /><br /> `false`：列不会分配到新行以固定的增量值。 此列的默认值是`false`。|  
-|IsColumnSet|`true`：列是列集的成员的稀疏列。|  
+|ColumnSize|列中的值的最大可能长度。 对于使用固定长度数据类型的列, 这是数据类型的大小。 对于`nvarchar(MAX)`存储`varchar(MAX)`在 SQL Server `varbinary(MAX)`数据库中的、和列, 最大大小为2gb。 如果以文件的形式存储和访问这些列, 则文件系统会施加最大大小限制。 在连接字符串中使用关键字`Type System Version`时, 此值会发生更改。  对于新类型, 它们表示为下级类型。 MAX 数据类型返回的普通4k 为`nvarchar` , `varchar`8000。 有关详细信息, 请参阅[transact-sql 参考](/sql/t-sql/language-reference)。|
+|DataTypeName|返回表示指定列的数据类型的字符串。|  
+|IsAliased|`true`：列名是一个别名。<br /><br /> `false`：列名不是别名。|  
+|IsAutoIncrement|`true`：列按固定的增量将值分配给新行。<br /><br /> `false`：列不会以固定增量向新行赋值。 此列的默认值为`false`。|  
+|IsColumnSet|`true`：列是一个稀疏列, 它是列集的成员。|  
 |IsExpression|`true`：列是表达式。<br /><br /> `false`：列不是表达式。|  
-|IsHidden|`true`：隐藏列。<br /><br /> `false`：不会隐藏列。|  
-|IsIdentity|`true`：列是标识列。<br /><br /> `false`：列不是标识列。|  
-|IsKey|`true`：列是一组的行集中的列，合起来看，唯一标识行。 使用列集`IsKey`设置为`true`必须唯一地标识行集中的行。 没有任何要求这组列是列的最小集。 这组列可能会生成从基表主键、 唯一约束或唯一索引。<br /><br /> `false`：列不需要唯一标识行。|  
-|IsLong|`true`：该列包含二进制长对象 (BLOB)，其中包含非常长的数据。 很长数据的定义是特定于提供程序。<br /><br /> `false`：列不包含二进制长对象 (BLOB)，其中包含非常长的数据。|  
-|为只读|`true`：不能修改的列。<br /><br /> `false`：可以修改的列。|  
-|IsRowVersion|`true`：列包含无法写入到的永久行标识符，且具有行的标识到除任何有意义的值。<br /><br /> `false`：列不包含无法写入到的永久行标识符，并且除了标识行没有有意义的值。|  
-|IsUnique|`true`：列的类型是`timestamp`。<br /><br /> `false`：列的类型不是`timestamp`。|  
-|NonVersionedProviderType|而不考虑当前列的类型`Type System Version`连接字符串中指定。 返回的值是从<xref:System.Data.SqlDbType>枚举。|  
-|NumericPrecision|如果`ProviderType`是数值数据类型，这是列的最大精度。 精度取决于列的定义。 如果`ProviderType`不是数值数据类型，这是 255。|  
-|NumericScale|如果`ProviderType`DBTYPE_DECIMAL 或 DBTYPE_NUMERIC，小数点右侧的位数。 否则，这就是 255。|  
-|ProviderSpecificDataType|返回基于的列的特定于提供程序的数据类型`Type System Version`连接字符串中的关键字。|  
-|ProviderType|列的数据类型的指示符。 如果列的数据类型而异行，这必须是对象。 此列不能包含 null 值。|  
-|UdtAssemblyQualifiedName|如果列是用户定义类型 (UDT)，这是为每个 UDT 的程序集限定的名称<xref:System.Type.AssemblyQualifiedName%2A>。 如果该列不是 UDT，则为 null。|  
-|XmlSchemaCollectionDatabase|此 XML 实例的架构集合所在的位置，如果行中包含 XML 列的相关信息的数据库的名称。 此值是`null`(`Nothing`在 Visual Basic 中) 如果在当前数据库中定义的集合。 如果没有架构集合，在这种情况下，这样做也为 null`XmlSchemaCollectionName`和`XmlSchemaCollectionOwningSchema`列也均为空。|  
-|XmlSchemaCollectionName|此 XML 实例中，如果行中包含 XML 列的相关信息的架构集合的名称。 此值是`null`(`Nothing`在 Visual Basic 中) 是否存在任何关联的架构集合。 如果值为 null，`XmlSchemaCollectionDatabase`和`XmlSchemaCollectionOwningSchema`列也均为空。|  
-|XmlSchemaCollectionOwningSchema|此 XML 实例的架构集合所在的位置，如果行中包含 XML 列的相关信息所属关系架构。 此值是`null`(`Nothing`在 Visual Basic 中) 如果在当前数据库中定义的集合。 如果没有架构集合，在这种情况下，这样做也为 null`XmlSchemaCollectionDatabase`和`XmlSchemaCollectionName`列也均为空。|  
+|IsHidden|`true`：列处于隐藏状态。<br /><br /> `false`：列不隐藏。|  
+|IsIdentity|`true`：列为标识列。<br /><br /> `false`：列不是标识列。|  
+|IsKey|`true`：此列是行集中的一组列中的一组列, 这些列一起使用, 可唯一地标识行。 `IsKey`设置为`true`的一组列必须唯一标识行集中的一行。 不要求这组列是最少的一组列。 这组列可以从基表主键、唯一约束或唯一索引生成。<br /><br /> `false`：列不需要唯一地标识行。|  
+|IsLong|`true`：列包含二进制长对象 (BLOB), 其中包含非常长的数据。 非常长数据的定义是特定于提供程序的。<br /><br /> `false`：列不包含包含非常长数据的二进制长对象 (BLOB)。|  
+|为只读|`true`：无法修改列。<br /><br /> `false`：可以修改列。|  
+|IsRowVersion|`true`：列包含不能写入的持久性行标识符, 并且除了标识该行以外, 没有有意义的值。<br /><br /> `false`：此列不包含不能写入的永久性行标识符, 并且除了标识该行以外, 没有有意义的值。|  
+|IsUnique|`true`：列的类型`timestamp`为。<br /><br /> `false`：列的类型`timestamp`不是。|  
+|NonVersionedProviderType|列的类型, 而不考虑在连接`Type System Version`字符串中指定的当前。 返回的值来自<xref:System.Data.SqlDbType>枚举。|  
+|NumericPrecision|如果`ProviderType`是数值数据类型, 则这是列的最大精度。 精度取决于该列的定义。 如果`ProviderType`不是数值数据类型, 则为255。|  
+|NumericScale|如果`ProviderType`为 DBTYPE_DECIMAL 或 DBTYPE_NUMERIC, 则为小数点右侧的位数。 否则为255。|  
+|ProviderSpecificDataType|基于连接字符串中的`Type System Version`关键字, 返回列的特定于提供程序的数据类型。|  
+|ProviderType|列的数据类型的指示器。 如果列的数据类型不同于行的数据类型, 则它必须是对象。 此列不能包含 null 值。|  
+|UdtAssemblyQualifiedName|如果该列是用户定义的类型 (UDT), 则这是该 UDT 的程序集的限定名称, 其名称<xref:System.Type.AssemblyQualifiedName%2A>为。 如果列不是 UDT, 则为 null。|  
+|XmlSchemaCollectionDatabase|此 XML 实例的架构集合所在的数据库的名称, 如果该行包含有关 XML 列的信息。 如果在当前`null`数据库`Nothing`中定义了集合, 则此值为 (在 Visual Basic 中)。 如果没有架构集合, 则此方法也为 null, 在这种`XmlSchemaCollectionName`情况`XmlSchemaCollectionOwningSchema`下, 和列也为 null。|  
+|XmlSchemaCollectionName|此 XML 实例的架构集合的名称, 如果该行包含有关 XML 列的信息。 如果没有关联`null`的`Nothing`架构集合, 则此值为 (在 Visual Basic 中)。 如果该值为 null, 则`XmlSchemaCollectionDatabase`和`XmlSchemaCollectionOwningSchema`列也为 null。|  
+|XmlSchemaCollectionOwningSchema|此 XML 实例的架构集合所在的所属关系架构。如果该行包含有关 XML 列的信息, 则为。 如果在当前`null`数据库`Nothing`中定义了集合, 则此值为 (在 Visual Basic 中)。 如果没有架构集合, 则此方法也为 null, 在这种`XmlSchemaCollectionDatabase`情况`XmlSchemaCollectionName`下, 和列也为 null。|  
   
 > [!NOTE]
->  若要确保元数据列返回正确的信息，必须调用<xref:System.Data.SqlClient.SqlCommand.ExecuteReader%2A>与`behavior`参数设置为`KeyInfo`。 否则，一些架构表中的列可能返回默认情况下，为 null，或不正确数据。  
+>  若要确保 metadata 列返回正确的信息, 必须在<xref:System.Data.SqlClient.SqlCommand.ExecuteReader%2A> `behavior`参数设置为`KeyInfo`的情况下调用。 否则, 架构表中的某些列可能返回默认值、null 值或不正确的数据。  
   
  ]]></format>
         </remarks>
@@ -1816,7 +1816,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此检索到的数据必须已经是二进制结构或生成异常。  
+ 不执行任何转换;因此, 检索的数据必须已是二进制结构, 否则将生成异常。  
   
  ]]></format>
         </remarks>
@@ -1867,7 +1867,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是一个布尔值或生成异常。  
+ 不执行任何转换;因此, 检索的数据必须已是布尔值或生成的异常。  
   
  ]]></format>
         </remarks>
@@ -1918,7 +1918,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此检索到的数据必须已经是一个字节，或生成异常。  
+ 不执行任何转换;因此, 检索的数据必须已是一个字节, 否则将生成异常。  
   
  ]]></format>
         </remarks>
@@ -2055,7 +2055,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是日期/时间值，或生成异常。  
+ 不执行任何转换;因此, 检索的数据必须已经是日期/时间值, 否则将生成异常。  
   
  ]]></format>
         </remarks>
@@ -2106,7 +2106,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是一个十进制值，或生成异常。  
+ 不执行任何转换;因此, 检索的数据必须已是十进制值, 否则将生成异常。  
   
  ]]></format>
         </remarks>
@@ -2157,7 +2157,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是双精度浮点数，或生成异常。  
+ 不执行任何转换;因此, 检索的数据必须已经是双精度浮点数, 否则将生成异常。  
   
  ]]></format>
         </remarks>
@@ -2208,7 +2208,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是一个 GUID，或生成异常。  
+ 不执行任何转换;因此, 检索的数据必须已是一个 GUID, 否则会生成一个异常。  
   
  ]]></format>
         </remarks>
@@ -2259,7 +2259,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是一个 16 位有符号的整数，或生成异常。  
+ 不执行任何转换;因此, 检索到的数据必须已为16位带符号整数, 否则将生成异常。  
   
  ]]></format>
         </remarks>
@@ -2310,7 +2310,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此检索到的数据必须已经是一个 32 位有符号的整数，或生成异常。  
+ 不执行任何转换;因此, 检索的数据必须已是32位有符号整数, 否则将生成异常。  
   
  ]]></format>
         </remarks>
@@ -2361,7 +2361,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是 64 位带符号的整数，或生成异常。  
+ 不执行任何转换;因此, 检索的数据必须已经是64位有符号整数, 否则将生成异常。  
   
  ]]></format>
         </remarks>
@@ -2412,7 +2412,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是一个十进制值，或生成异常。  
+ 不执行任何转换;因此, 检索的数据必须已是十进制值, 否则将生成异常。  
   
  ]]></format>
         </remarks>
@@ -2463,7 +2463,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是单精度浮点数，或生成异常。  
+ 不执行任何转换;因此, 检索的数据必须已经是单精度浮点数, 否则将生成异常。  
   
  ]]></format>
         </remarks>
@@ -2514,7 +2514,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是一个字符串，或生成异常。  
+ 不执行任何转换;因此, 检索的数据必须已是字符串, 否则会生成异常。  
   
  ]]></format>
         </remarks>
@@ -2565,7 +2565,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlDataReader.GetSqlValue%2A> 返回的数据使用本机 SQL Server 类型。 若要检索使用.NET Framework 类型的数据，请参阅<xref:System.Data.SqlClient.SqlDataReader.GetValue%2A>。  
+ <xref:System.Data.SqlClient.SqlDataReader.GetSqlValue%2A>使用本机 SQL Server 类型返回数据。 若要使用 .NET Framework 类型检索数据, 请<xref:System.Data.SqlClient.SqlDataReader.GetValue%2A>参阅。  
   
  ]]></format>
         </remarks>
@@ -2616,7 +2616,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回一个调用，而不 CLR 类型系统中使用 SQL 类型系统中的记录中的所有列的值。 长度<xref:System.Object>数组不需要以匹配的记录中的列数。 可以将传递<xref:System.Object>数组，其中包含的记录中包含的列数少于。 数据量<xref:System.Object>数组保存复制到起始位置的列序号 0 的数组。 你还可以传递<xref:System.Object>其长度是多个结果行中包含的列数的数组。 任何剩余的列均保持不变。  
+ 使用 SQL 类型系统而不是 CLR 类型系统, 返回记录中所有列的值。 <xref:System.Object>数组的长度不需要与记录中的列数匹配。 可以传递一个<xref:System.Object>数组, 该数组包含的列数少于记录中包含的列数。 只有<xref:System.Object>数组保存的数据量会被复制到数组, 从序号为0的列开始。 还可以传递<xref:System.Object>其长度大于结果行中所含列数的数组。 其余所有列都不会。  
   
  ]]></format>
         </remarks>
@@ -2667,9 +2667,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是一个 XML 值。  
+ 不执行任何转换;因此, 检索的数据必须已经是 XML 值。  
   
- 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>来调用此方法之前检查 null 值。  
+ 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>以在调用此方法前检查是否有 null 值。  
   
  ]]></format>
         </remarks>
@@ -2721,15 +2721,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IO.Stream.ReadTimeout%2A> 默认为的值<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>; 但可以修改<xref:System.IO.Stream.ReadTimeout%2A>通过<xref:System.Data.SqlClient.SqlDataReader.GetStream%2A>。  
+ <xref:System.IO.Stream.ReadTimeout%2A>默认为的<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>值; 但你可以通过<xref:System.Data.SqlClient.SqlDataReader.GetStream%2A>进行<xref:System.IO.Stream.ReadTimeout%2A>修改。  
   
- Null 值将返回一个空 （零个字节为单位） 为<xref:System.IO.Stream>。  
+ 空值将作为空 (零字节) <xref:System.IO.Stream>返回。  
   
- <xref:System.Data.SqlClient.SqlDataReader.GetBytes%2A> 将引发<xref:System.InvalidOperationException>异常时返回的对象上使用<xref:System.Data.SqlClient.SqlDataReader.GetStream%2A>时<xref:System.Data.CommandBehavior.SequentialAccess>生效。  
+ <xref:System.Data.SqlClient.SqlDataReader.GetBytes%2A>当在中<xref:System.InvalidOperationException>使用<xref:System.Data.SqlClient.SqlDataReader.GetStream%2A>时, 如果<xref:System.Data.CommandBehavior.SequentialAccess>在返回的对象上使用, 则将引发异常。  
   
- <xref:System.Data.SqlClient.SqlException> 从引发异常<xref:System.IO.Stream>作为引发<xref:System.IO.IOException>异常; 请检查内部异常以<xref:System.Data.SqlClient.SqlException>。  
+ <xref:System.Data.SqlClient.SqlException>引发的<xref:System.IO.Stream>异常作为<xref:System.IO.IOException>异常引发; 请检查的内部异常<xref:System.Data.SqlClient.SqlException>。  
   
- 以下<xref:System.IO.Stream>成员不是可用于返回的对象<xref:System.Data.SqlClient.SqlDataReader.GetStream%2A>:  
+ 以下<xref:System.IO.Stream>成员不能用于返回的<xref:System.Data.SqlClient.SqlDataReader.GetStream%2A>对象:  
   
 -   BeginWrite  
   
@@ -2739,7 +2739,7 @@
   
 -   位置  
   
--   查找  
+-   机会  
   
 -   SetLength  
   
@@ -2749,9 +2749,9 @@
   
 -   WriteTimeout  
   
- 当连接属性`ContextConnection=true`，<xref:System.Data.SqlClient.SqlDataReader.GetStream%2A>仅支持连续两个同步的数据检索 (<xref:System.Data.CommandBehavior.SequentialAccess>) 和非连续 (<xref:System.Data.CommandBehavior.Default>) 访问。  
+ 连接属性`ContextConnection=true`时, <xref:System.Data.SqlClient.SqlDataReader.GetStream%2A>仅支持对顺序 (<xref:System.Data.CommandBehavior.SequentialAccess>) 和非顺序 (<xref:System.Data.CommandBehavior.Default>) 访问的同步数据检索。  
   
- 有关详细信息，请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
+ 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
   
  ]]></format>
         </remarks>
@@ -2820,9 +2820,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是一个字符串。  
+ 不执行任何转换;因此, 检索的数据必须已是字符串。  
   
- 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>来调用此方法之前检查 null 值。  
+ 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>以在调用此方法前检查是否有 null 值。  
   
  ]]></format>
         </remarks>
@@ -2872,15 +2872,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlException> 从引发异常<xref:System.IO.TextReader>作为引发<xref:System.IO.IOException>异常; 请检查内部异常以<xref:System.Data.SqlClient.SqlException>。  
+ <xref:System.Data.SqlClient.SqlException>引发的<xref:System.IO.TextReader>异常作为<xref:System.IO.IOException>异常引发; 请检查的内部异常<xref:System.Data.SqlClient.SqlException>。  
   
- Null 值将返回一个空 （零个字节为单位） 为<xref:System.IO.TextReader>。  
+ 空值将作为空 (零字节) <xref:System.IO.TextReader>返回。  
   
- <xref:System.Data.SqlClient.SqlDataReader.GetChars%2A> 将引发<xref:System.InvalidOperationException>异常时返回的对象上使用<xref:System.Data.SqlClient.SqlDataReader.GetTextReader%2A>时<xref:System.Data.CommandBehavior.SequentialAccess>生效。  
+ <xref:System.Data.SqlClient.SqlDataReader.GetChars%2A>当在中<xref:System.InvalidOperationException>使用<xref:System.Data.SqlClient.SqlDataReader.GetTextReader%2A>时, 如果<xref:System.Data.CommandBehavior.SequentialAccess>在返回的对象上使用, 则将引发异常。  
   
- 当连接属性`ContextConnection=true`，<xref:System.Data.SqlClient.SqlDataReader.GetTextReader%2A>仅支持连续两个同步的数据检索 (<xref:System.Data.CommandBehavior.SequentialAccess>) 和非连续 (<xref:System.Data.CommandBehavior.Default>) 访问。  
+ 连接属性`ContextConnection=true`时, <xref:System.Data.SqlClient.SqlDataReader.GetTextReader%2A>仅支持对顺序 (<xref:System.Data.CommandBehavior.SequentialAccess>) 和非顺序 (<xref:System.Data.CommandBehavior.Default>) 访问的同步数据检索。  
   
- 有关详细信息，请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
+ 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
   
  ]]></format>
         </remarks>
@@ -2949,9 +2949,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不执行任何转换;因此，检索到的数据必须已经是<xref:System.TimeSpan>对象。  
+ 不执行任何转换;因此, 检索的数据必须已经是<xref:System.TimeSpan>对象。  
   
- 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>来调用此方法之前检查 null 值。  
+ 调用<xref:System.Data.SqlClient.SqlDataReader.IsDBNull%2A>以在调用此方法前检查是否有 null 值。  
   
  ]]></format>
         </remarks>
@@ -3006,7 +3006,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlDataReader.GetValue%2A> 返回使用.NET Framework 类型的数据。  
+ <xref:System.Data.SqlClient.SqlDataReader.GetValue%2A>使用 .NET Framework 类型返回数据。  
   
  ]]></format>
         </remarks>
@@ -3060,16 +3060,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对于大多数应用程序，此方法用于检索所有列，而不是逐个都检索每个列提供一种有效方式。  
+ 对于大多数应用程序, 此方法提供了一种有效的方法来检索所有列, 而不是单独检索每个列。  
   
- 可以将传递<xref:System.Object>数组，其中包含少于得到的行中包含的列数。 数据量<xref:System.Object>数组保存复制到数组。 你还可以传递<xref:System.Object>其长度是多个结果行中包含的列数的数组。  
+ 可以传递一个<xref:System.Object>数组, 该数组包含的列数少于所产生行中包含的列数。 只有<xref:System.Object>数组保存的数据量会复制到数组中。 还可以传递<xref:System.Object>其长度大于结果行中所含列数的数组。  
   
  对于 null 数据库列，此方法返回 <xref:System.DBNull>。  
   
    
   
 ## Examples  
- 下面的示例演示了如何使用大小正确的数组中所提供的当前行中读取所有值<xref:System.Data.SqlClient.SqlDataReader>。 此外，该示例演示如何使用小于或大于可用的列数可能是一个固定大小的数组。  
+ 下面的示例演示如何使用大小正确的数组来读取所提供<xref:System.Data.SqlClient.SqlDataReader>的中的当前行的所有值。 此外, 该示例还演示了如何使用大小固定的数组, 该数组可以小于或大于可用列数。  
   
  [!code-csharp[DataWorks DataTableReader.GetValueObject#2](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks DataTableReader.GetValueObject/CS/source.cs#2)]
  [!code-vb[DataWorks DataTableReader.GetValueObject#2](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DataTableReader.GetValueObject/VB/source.vb#2)]  
@@ -3121,13 +3121,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xml.XmlReader>返回对象<xref:System.Data.SqlClient.SqlDataReader.GetXmlReader%2A>不支持异步操作。 如果您需要在异步操作<xref:System.Xml.XmlReader>，在服务器上的类型转换到 nvarchar （max） 的 XML 列，并使用<xref:System.Data.SqlClient.SqlDataReader.GetTextReader%2A>与<xref:System.Xml.XmlReader.Create%2A>。  
+ <xref:System.Xml.XmlReader> 返回的对象<xref:System.Data.SqlClient.SqlDataReader.GetXmlReader%2A>不支持异步操作。 如果需要对执行<xref:System.Xml.XmlReader>异步操作, 请在服务器上将 XML 列转换为 NVARCHAR (MAX), 并将与一起<xref:System.Xml.XmlReader.Create%2A>使用<xref:System.Data.SqlClient.SqlDataReader.GetTextReader%2A> 。  
   
- <xref:System.Data.SqlClient.SqlException> 从引发异常<xref:System.Xml.XmlReader>作为引发<xref:System.Xml.XmlException>异常; 请检查内部异常以<xref:System.Data.SqlClient.SqlException>。  
+ <xref:System.Data.SqlClient.SqlException>引发的<xref:System.Xml.XmlReader>异常作为<xref:System.Xml.XmlException>异常引发; 请检查的内部异常<xref:System.Data.SqlClient.SqlException>。  
   
- <xref:System.Data.SqlClient.SqlDataReader.GetChars%2A> 将引发<xref:System.InvalidOperationException>异常时返回的对象上使用<xref:System.Data.SqlClient.SqlDataReader.GetXmlReader%2A>时<xref:System.Data.CommandBehavior.SequentialAccess>生效。  
+ <xref:System.Data.SqlClient.SqlDataReader.GetChars%2A>当在中<xref:System.InvalidOperationException>使用<xref:System.Data.SqlClient.SqlDataReader.GetXmlReader%2A>时, 如果<xref:System.Data.CommandBehavior.SequentialAccess>在返回的对象上使用, 则将引发异常。  
   
- 有关详细信息，请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
+ 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
   
  ]]></format>
         </remarks>
@@ -3223,7 +3223,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 不能从读取<xref:System.Data.SqlClient.SqlDataReader>已关闭的实例。  
+ 不能从<xref:System.Data.SqlClient.SqlDataReader>关闭的实例读取。  
   
  ]]></format>
         </remarks>
@@ -3318,7 +3318,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 调用此方法来检查前调用的类型化的 null 列值 get 方法 (例如， <xref:System.Data.SqlClient.SqlDataReader.GetByte%2A>， <xref:System.Data.SqlClient.SqlDataReader.GetChar%2A>，依次类推) 以避免引发错误。  
+ 调用此方法可在调用类型化 get 方法 (例如<xref:System.Data.SqlClient.SqlDataReader.GetByte%2A> <xref:System.Data.SqlClient.SqlDataReader.GetChar%2A>、等) 前检查是否有空列值, 以避免引发错误。  
   
  [!code-csharp[SqlDataReader_IsDbNull#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/sqldatareader_isdbnull/cs/source.cs#1)]
  [!code-vb[SqlDataReader_IsDbNull#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/sqldatareader_isdbnull/vb/source.vb#1)]  
@@ -3372,7 +3372,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关详细信息，请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
+ 有关详细信息, 请参阅[SqlClient 流支持](~/docs/framework/data/adonet/sqlclient-streaming-support.md)。  
   
  ]]></format>
         </remarks>
@@ -3492,9 +3492,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 第一次执行区分大小写的查找。 如果失败，进行第二个的不区分大小写搜索 (进行不区分大小写的比较使用数据库排序规则)。 当比较受特定于区域性的大小写规则，会发生意外的结果。 例如，在土耳其语，下面的示例生成错误结果由于土耳其语中的文件系统对字母 i 不使用语言的大小写规则"文件"中。  
+ 首先执行区分大小写的查找。 如果该操作失败, 将进行第二个不区分大小写的搜索 (使用数据库排序规则执行不区分大小写的比较)。 当比较受区域性特定的大小写规则影响时, 可能会出现意外的结果。 例如, 在土耳其语中, 以下示例产生了错误的结果, 因为土耳其语中的文件系统不会对 "file" 中的字母 "i" 使用语言大小写规则。  
   
- 此方法是不区分假名宽度。  
+ 此方法不区分假名宽度。  
   
  ]]></format>
         </remarks>
@@ -3545,9 +3545,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 用于处理多个结果，可以通过执行 TRANSACT-SQL 批处理语句生成。  
+ 用于处理多个结果, 这些结果可通过执行批处理 Transact-sql 语句来生成。  
   
- 默认情况下，数据读取器定位在第一个结果。  
+ 默认情况下, 数据读取器定位在第一个结果上。  
   
  ]]></format>
         </remarks>
@@ -3595,7 +3595,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有关 SQL Server 的.NET Framework 数据提供程序中异步编程的详细信息，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关 SQL Server 的 .NET Framework 数据提供程序中的异步编程的详细信息, 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -3647,14 +3647,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 默认位置的<xref:System.Data.SqlClient.SqlDataReader>之前第一条记录。 因此，您必须调用<xref:System.Data.SqlClient.SqlDataReader.Read%2A>才能开始访问任何数据。  
+ 的<xref:System.Data.SqlClient.SqlDataReader>默认位置位于第一条记录之前。 因此, 您必须调用<xref:System.Data.SqlClient.SqlDataReader.Read%2A>以开始访问任何数据。  
   
- 只有一个`SqlDataReader`每个关联<xref:System.Data.SqlClient.SqlConnection>一次，可以在打开和第一个关闭之前，任何尝试打开另一个将失败。 同样，尽管`SqlDataReader`正在使用中，关联`SqlConnection`正忙于为服务它直到您调用<xref:System.Data.SqlClient.SqlDataReader.Close%2A>。  
+ 每次`SqlDataReader`只能打开<xref:System.Data.SqlClient.SqlConnection>一个关联的, 并且在关闭第一个关联时, 任何打开其他的尝试都将失败。 同样, `SqlDataReader`在使用时, 关联`SqlConnection`的忙于提供服务, 直到你调用<xref:System.Data.SqlClient.SqlDataReader.Close%2A>。  
   
    
   
 ## Examples  
- 下面的示例创建<xref:System.Data.SqlClient.SqlConnection>、 一个<xref:System.Data.SqlClient.SqlCommand>，和一个<xref:System.Data.SqlClient.SqlDataReader>。 该示例读取数据，将其写到控制台窗口。 然后关闭代码<xref:System.Data.SqlClient.SqlDataReader>。 <xref:System.Data.SqlClient.SqlConnection>结束时自动关闭`using`代码块。  
+ 下面的示例创建一个<xref:System.Data.SqlClient.SqlConnection>、一个<xref:System.Data.SqlClient.SqlCommand>和一个<xref:System.Data.SqlClient.SqlDataReader>。 该示例将读取数据, 并将其写出到控制台窗口。 然后, 该代码将<xref:System.Data.SqlClient.SqlDataReader>关闭。 <xref:System.Data.SqlClient.SqlConnection>在`using`代码块的末尾自动关闭。  
   
  [!code-csharp[Classic WebData SqlDataReader.Read Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlDataReader.Read Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlDataReader.Read Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlDataReader.Read Example/VB/source.vb#1)]  
@@ -3707,9 +3707,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果`behavior`的参数<xref:System.Data.SqlClient.SqlCommand.ExecuteReaderAsync%2A>设置为`Default`，<xref:System.Data.SqlClient.SqlDataReader.ReadAsync%2A>返回任务前读取整行。  
+ 如果的`behavior` `Default`参数设置为,<xref:System.Data.SqlClient.SqlDataReader.ReadAsync%2A>则在返回该任务之前将读取整行。 <xref:System.Data.SqlClient.SqlCommand.ExecuteReaderAsync%2A>  
   
- 有关详细信息，包括有关 SQL Server 的.NET Framework 数据提供程序中异步编程的代码示例，请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
+ 有关 SQL Server 的 .NET Framework 数据提供程序中的异步编程的详细信息 (包括代码示例), 请参阅[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)。  
   
  ]]></format>
         </remarks>
@@ -3760,9 +3760,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此属性的值是累积的。 例如，如果在批处理模式下的值插入两个记录`RecordsAffected`会有两个。  
+ 此属性的值为累积值。 例如, 如果将两个记录插入批处理模式, 则的`RecordsAffected`值将为2。  
   
- <xref:System.Data.SqlClient.SqlDataReader.IsClosed%2A> 并<xref:System.Data.SqlClient.SqlDataReader.RecordsAffected%2A>是后可以调用的唯一属性<xref:System.Data.SqlClient.SqlDataReader>已关闭。  
+ <xref:System.Data.SqlClient.SqlDataReader.IsClosed%2A>和<xref:System.Data.SqlClient.SqlDataReader.RecordsAffected%2A>是在关闭后可调用的<xref:System.Data.SqlClient.SqlDataReader>唯一属性。  
   
  ]]></format>
         </remarks>
@@ -3836,7 +3836,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此成员是显式的接口成员实现。 它只能在 <xref:System.Data.SqlClient.SqlDataReader> 实例强制转换为 <xref:System.Data.IDataRecord> 接口时使用。  
+ 此成员是显式接口成员的实现。 它只能在 <xref:System.Data.SqlClient.SqlDataReader> 实例被强制转换为 <xref:System.Data.IDataRecord> 接口时使用。  
   
  ]]></format>
         </remarks>

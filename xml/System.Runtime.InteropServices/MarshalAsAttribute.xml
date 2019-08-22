@@ -1,5 +1,5 @@
 <Type Name="MarshalAsAttribute" FullName="System.Runtime.InteropServices.MarshalAsAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="845539c7e6605b4ebfd61f20238ab82f90612d5f" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58711363" /></Metadata><TypeSignature Language="C#" Value="public sealed class MarshalAsAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5c32dc2dc8a9da4f82577863b49fcf1abfa2bcec" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69063777" /></Metadata><TypeSignature Language="C#" Value="public sealed class MarshalAsAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit MarshalAsAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.MarshalAsAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class MarshalAsAttribute&#xA;Inherits Attribute" />
@@ -45,33 +45,33 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以将此特性应用于参数、 字段或返回值。  
+ 可以将此特性应用于参数、字段或返回值。  
   
- 因为每种数据类型都有默认封送处理行为，此属性是可选的。 可以将给定的类型封送到多个类型时，此属性才有必要。 例如，封送为非托管代码的字符串<xref:System.Runtime.InteropServices.UnmanagedType.LPStr>、 一个<xref:System.Runtime.InteropServices.UnmanagedType.LPWStr>即<xref:System.Runtime.InteropServices.UnmanagedType.LPTStr>，或<xref:System.Runtime.InteropServices.UnmanagedType.BStr>。 默认情况下，公共语言运行时将封送字符串参数作为<xref:System.Runtime.InteropServices.UnmanagedType.BStr>到 COM 方法。 您可以将应用<xref:System.Runtime.InteropServices.MarshalAsAttribute>属性为单个字段或参数以使该字符串作为封送<xref:System.Runtime.InteropServices.UnmanagedType.LPStr>而不是<xref:System.Runtime.InteropServices.UnmanagedType.BStr>。 [Tlbexp.exe （类型库导出程序）](~/docs/framework/tools/tlbexp-exe-type-library-exporter.md)将传递到公共语言运行时在封送处理首选项。  
+ 此属性是可选的, 因为每个数据类型都有默认的封送处理行为。 仅当给定类型可以封送到多种类型时, 此属性才是必需的。 例如, 你可以将字符串封送<xref:System.Runtime.InteropServices.UnmanagedType.LPStr>为非托管代码<xref:System.Runtime.InteropServices.UnmanagedType.LPWStr>, 如、 <xref:System.Runtime.InteropServices.UnmanagedType.LPTStr>、或<xref:System.Runtime.InteropServices.UnmanagedType.BStr>。 默认情况下, 公共语言运行时将字符串参数<xref:System.Runtime.InteropServices.UnmanagedType.BStr>封送为 COM 方法。 您可以将<xref:System.Runtime.InteropServices.MarshalAsAttribute>特性应用于单个字段或参数, 以使该特定字符串<xref:System.Runtime.InteropServices.UnmanagedType.LPStr>作为而不<xref:System.Runtime.InteropServices.UnmanagedType.BStr>是封送。 [Tlbexp.exe (类型库导出程序)](~/docs/framework/tools/tlbexp-exe-type-library-exporter.md)将封送首选项传递到公共语言运行时。  
   
- 某些参数和返回值具有不同的默认封送处理行为与 COM 互操作一起使用时或平台调用。 默认情况下，运行时将封送字符串参数 （和值类型中的字段） 作为<xref:System.Runtime.InteropServices.UnmanagedType.LPStr>平台调用来调用方法或函数。 有关其他信息，请参阅[默认封送行为](~/docs/framework/interop/default-marshaling-behavior.md)。  
+ 与 COM 互操作或平台调用一起使用时, 某些参数和返回值具有不同的默认封送处理行为。 默认情况下, 运行时将字符串参数 (和值类型中的字段) <xref:System.Runtime.InteropServices.UnmanagedType.LPStr>封送为平台调用方法或函数。 有关其他信息, 请参阅[默认封送行为](~/docs/framework/interop/default-marshaling-behavior.md)。  
   
- 在大多数情况下，该属性只标识非托管的数据使用的格式<xref:System.Runtime.InteropServices.UnmanagedType>枚举，如下面的 C# 签名中所示：  
+ 在大多数情况下, 属性只使用<xref:System.Runtime.InteropServices.UnmanagedType>枚举标识非托管数据的格式, 如以下C#签名所示:  
   
  [!code-csharp[system.runtime.interopservices.MarshalAsAttribute#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.runtime.interopservices.MarshalAsAttribute/cs/Signature1.cs#2)]
  [!code-vb[system.runtime.interopservices.MarshalAsAttribute#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.runtime.interopservices.MarshalAsAttribute/vb/Signature1.vb#2)]  
   
- 某些<xref:System.Runtime.InteropServices.UnmanagedType>枚举成员需要的其他信息。 例如，需要其他信息时<xref:System.Runtime.InteropServices.UnmanagedType>是<xref:System.Runtime.InteropServices.UnmanagedType.LPArray>。 有关如何使用此属性与数组一起使用的完整说明，请参阅[默认封送处理数组](~/docs/framework/interop/default-marshaling-for-arrays.md)。  
+ 某些<xref:System.Runtime.InteropServices.UnmanagedType>枚举成员需要额外的信息。 例如, 当<xref:System.Runtime.InteropServices.UnmanagedType>是<xref:System.Runtime.InteropServices.UnmanagedType.LPArray>时, 需要其他信息。 有关如何将此属性与数组一起使用的完整说明, 请参阅[数组的默认封送处理](~/docs/framework/interop/default-marshaling-for-arrays.md)。  
   
- [Tlbimp.exe （类型库导入程序）](~/docs/framework/tools/tlbimp-exe-type-library-importer.md)还将此属性应用到参数、 字段和返回值以指示输入的类型库中的数据类型不是相应的托管的数据类型的默认类型。 Tlbimp.exe 始终适用<xref:System.Runtime.InteropServices.MarshalAsAttribute>到<xref:System.String>和<xref:System.Object>为清楚起见，而不考虑指定输入的类型库中的类型的类型。  
+ [Tlbimp.exe (类型库导入程序)](~/docs/framework/tools/tlbimp-exe-type-library-importer.md)还将此特性应用于参数、字段和返回值, 以指示输入类型库中的数据类型不是对应的托管数据类型的默认类型。 无论在输入类型库中<xref:System.Runtime.InteropServices.MarshalAsAttribute>指定<xref:System.String>的<xref:System.Object>类型如何, tlbimp.exe 始终将应用于和类型。  
   
 > [!NOTE]
->  <xref:System.Runtime.InteropServices.MarshalAsAttribute>不支持泛型类型的封送处理。  
+>  <xref:System.Runtime.InteropServices.MarshalAsAttribute>不支持对泛型类型进行封送处理。  
   
    
   
 ## Examples  
- 下面的示例应用<xref:System.Runtime.InteropServices.MarshalAsAttribute>字段、 方法参数和一个方法中的托管类型返回值。  
+ 下面的示例将应用<xref:System.Runtime.InteropServices.MarshalAsAttribute>于托管类型中的字段、方法参数和方法返回值。  
   
  [!code-csharp[System.Runtime.InteropServices.MarshalAsAttribute#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.runtime.interopservices.MarshalAsAttribute/cs/marshalasattribute.cs#1)]
  [!code-vb[System.Runtime.InteropServices.MarshalAsAttribute#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.runtime.interopservices.MarshalAsAttribute/vb/marshalasattribute.vb#1)]  
   
- 下面的示例应用<xref:System.Runtime.InteropServices.MarshalAsAttribute>属性为一个属性：  
+ 下面的示例将<xref:System.Runtime.InteropServices.MarshalAsAttribute>属性应用于属性:  
   
  [!code-csharp[System.Runtime.InteropServices.MarshalAsAttribute#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.runtime.interopservices.MarshalAsAttribute/cs/Signature1.cs#3)]
  [!code-vb[System.Runtime.InteropServices.MarshalAsAttribute#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.runtime.interopservices.MarshalAsAttribute/vb/Signature1.vb#3)]  
@@ -137,7 +137,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此构造函数采用一个基础的 16 位有符号的整数来表示每个<xref:System.Runtime.InteropServices.UnmanagedType>枚举成员。 [Tlbimp.exe （类型库导入程序）](~/docs/framework/tools/tlbimp-exe-type-library-importer.md)使用此构造函数。  
+ 此构造函数采用表示每个<xref:System.Runtime.InteropServices.UnmanagedType>枚举成员的基础16位有符号整数。 [Tlbimp.exe (类型库导入程序)](~/docs/framework/tools/tlbimp-exe-type-library-importer.md)使用此构造函数。  
   
  ]]></format>
         </remarks>
@@ -184,7 +184,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对于较不容易发生错误的可读代码，始终使用此构造函数。  
+ 对于不容易出错的可读代码, 请始终使用此构造函数。  
   
  ]]></format>
         </remarks>
@@ -230,7 +230,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以将此参数设置为一个介于<xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=nameWithType>枚举来指定数组的元素的类型。 如果未指定的类型，使用与托管的数组的元素类型相对应的非托管的默认类型。 例如，`ArraySubType`有关`LPWStr`COM 中的数组是<xref:System.Runtime.InteropServices.UnmanagedType.LPWStr?displayProperty=nameWithType>。 有关其他信息，请参阅[默认封送处理数组](~/docs/framework/interop/default-marshaling-for-arrays.md)。  
+ 可以将此参数设置为<xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=nameWithType>枚举中的一个值, 以指定数组元素的类型。 如果未指定类型, 则使用与托管数组的元素类型相对应的默认非托管类型。 例如, COM `ArraySubType` 中的`LPWStr`数组的为。 <xref:System.Runtime.InteropServices.UnmanagedType.LPWStr?displayProperty=nameWithType> 有关其他信息, 请参阅[数组的默认封送处理](~/docs/framework/interop/default-marshaling-for-arrays.md)。  
   
  ]]></format>
         </remarks>
@@ -313,9 +313,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用自定义封送处理程序时，此字段是可选的。  
+ 使用自定义封送拆收器时, 此字段是可选的。  
   
- 可以将此字段设置为字符串，用于提供到自定义封送处理程序的其他信息。 例如，同一封送处理程序可提供多个包装，其中使用该 cookie 来指示特定的包装器。  
+ 您可以将此字段设置为向自定义封送拆收器提供附加信息的字符串。 例如, 可以使用相同的封送拆收器来提供多个包装, 其中, cookie 用于指示特定包装。  
   
  ]]></format>
         </remarks>
@@ -365,7 +365,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 你可以使用<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>或<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalTypeRef?displayProperty=nameWithType>字段指定为特性化的参数的自定义封送处理程序类型、 字段或返回类型。 <xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>字段使你可以指定一个表示自定义封送处理程序的完全限定的名称的字符串。 它可用于后期绑定的引用，但做法不如<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalTypeRef>用于指定自定义封送处理程序。 有关创建和使用自定义封的其他信息，请参阅[自定义封送处理](https://msdn.microsoft.com/library/49f9ac47-1619-4d6e-9da6-bf06bba12079)。  
+ 您可以使用<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>或<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalTypeRef?displayProperty=nameWithType>字段指定属性化参数、字段或返回类型的自定义封送拆收器类型。 利用<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>字段, 您可以指定一个表示自定义封送拆收器的完全限定名称的字符串。 它对于后期绑定引用非常有用, 但它比<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalTypeRef>指定自定义封送拆收器更少。 有关创建和使用自定义封送拆收器的其他信息, 请参阅[自定义封送](https://msdn.microsoft.com/library/49f9ac47-1619-4d6e-9da6-bf06bba12079)。  
   
  ]]></format>
         </remarks>
@@ -416,7 +416,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 你可以使用<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalTypeRef>或<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>字段来指定为特性化的参数的自定义封送处理程序类型、 字段或返回类型。 <xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalTypeRef>字段允许更易于使用<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>通过缩短语法。 在以下示例中，第一行表示使用语法<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>和第二行表示语法使用<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalTypeRef>。  
+ 您可以使用<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalTypeRef>或<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>字段为特性化参数、字段或返回类型指定自定义封送拆收器类型。 通过缩短语法, <xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalTypeRef>字段允许更轻松<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>地使用。 在下面的示例中, 第一行使用来<xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalType>表示语法, 第二行表示语法使用。 <xref:System.Runtime.InteropServices.MarshalAsAttribute.MarshalTypeRef>  
   
 ```  
 [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Assembly, NameSpace.TypeName")]   
@@ -426,7 +426,7 @@
 [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(NameSpace.TypeName)]  
 ```  
   
- 可以设置<xref:System.Type>对象使用`typeof`在 C# 中，`GetType`在 Visual Basic 中，或`typeid`c + + 中。 有关创建和使用自定义封的其他信息，请参阅[自定义封送处理](https://msdn.microsoft.com/library/49f9ac47-1619-4d6e-9da6-bf06bba12079)。  
+ 您可以使用`typeof`中<xref:System.Type> C#的、 `GetType`在 Visual Basic 或`typeid`中C++设置对象。 有关创建和使用自定义封送拆收器的其他信息, 请参阅[自定义封送](https://msdn.microsoft.com/library/49f9ac47-1619-4d6e-9da6-bf06bba12079)。  
   
  ]]></format>
         </remarks>
@@ -472,7 +472,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 可以将此字段设置为从值<xref:System.Runtime.InteropServices.VarEnum?displayProperty=nameWithType>枚举来指定安全数组的元素的类型。 如果未指定的类型，使用托管的元素类型的默认类型 （如果作为变量传递）。 例如，`SafeArraySubType`有关`int`COM 中的数组是<xref:System.Runtime.InteropServices.VarEnum.VT_I4>。 有关其他信息，请参阅[默认封送处理数组](~/docs/framework/interop/default-marshaling-for-arrays.md)。  
+ 可以将此字段设置为<xref:System.Runtime.InteropServices.VarEnum?displayProperty=nameWithType>枚举中的一个值, 以指定安全数组的元素的类型。 如果未指定类型, 则使用托管元素类型的默认类型 (如果传递为变体)。 例如, COM `SafeArraySubType` 中的`int`数组的为。 <xref:System.Runtime.InteropServices.VarEnum.VT_I4> 有关其他信息, 请参阅[数组的默认封送处理](~/docs/framework/interop/default-marshaling-for-arrays.md)。  
   
  ]]></format>
         </remarks>
@@ -519,7 +519,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 初始化此字段的自定义类型，允许的元素`SAFEARRAY`要封送处理成功。 此字段才需要何时<xref:System.Runtime.InteropServices.MarshalAsAttribute.SafeArraySubType?displayProperty=nameWithType>可以是<xref:System.Runtime.InteropServices.VarEnum.VT_UNKNOWN?displayProperty=nameWithType>， <xref:System.Runtime.InteropServices.VarEnum.VT_DISPATCH?displayProperty=nameWithType>，或<xref:System.Runtime.InteropServices.VarEnum.VT_RECORD?displayProperty=nameWithType>。 有关其他信息，请参阅[默认封送处理数组](~/docs/framework/interop/default-marshaling-for-arrays.md)。  
+ 使用自定义类型初始化此字段, 以使的`SAFEARRAY`元素能够成功封送。 <xref:System.Runtime.InteropServices.MarshalAsAttribute.SafeArraySubType?displayProperty=nameWithType>仅当<xref:System.Runtime.InteropServices.VarEnum.VT_UNKNOWN?displayProperty=nameWithType>为、或<xref:System.Runtime.InteropServices.VarEnum.VT_DISPATCH?displayProperty=nameWithType>时,才<xref:System.Runtime.InteropServices.VarEnum.VT_RECORD?displayProperty=nameWithType>需要此字段。 有关其他信息, 请参阅[数组的默认封送处理](~/docs/framework/interop/default-marshaling-for-arrays.md)。  
   
  ]]></format>
         </remarks>
@@ -566,9 +566,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此字段是必要条件<xref:System.Runtime.InteropServices.UnmanagedType.ByValArray>并<xref:System.Runtime.InteropServices.UnmanagedType.ByValTStr>的成员<xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=nameWithType>枚举。 因为元数据的压缩的格式被限制为 0x1FFFFFFF，允许的值的范围<xref:System.Runtime.InteropServices.MarshalAsAttribute.SizeConst>是 (> = 0 和 < = 0x1FFFFFFF)。  
+ 此字段对于<xref:System.Runtime.InteropServices.UnmanagedType.ByValArray> <xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=nameWithType>枚举的和<xref:System.Runtime.InteropServices.UnmanagedType.ByValTStr>成员是必需的。 由于元数据的压缩格式限制为 0x1FFFFFFF, 因此的允许值<xref:System.Runtime.InteropServices.MarshalAsAttribute.SizeConst>范围为 (> = 0, < = 0x1FFFFFFF)。  
   
- 有关其他信息，请参阅[默认封送处理数组](~/docs/framework/interop/default-marshaling-for-arrays.md)。  
+ 有关其他信息, 请参阅[数组的默认封送处理](~/docs/framework/interop/default-marshaling-for-arrays.md)。  
   
  ]]></format>
         </remarks>
@@ -614,21 +614,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.InteropServices.MarshalAsAttribute.SizeParamIndex>字段支持托管到非托管和非托管到托管的调用。 它并没有对托管代码调用 COM 对象的任何影响。  
+ <xref:System.Runtime.InteropServices.MarshalAsAttribute.SizeParamIndex>字段支持托管到非托管和非托管的调用。 它不会对调用 COM 对象的托管代码产生任何影响。  
   
- 根据托管的类型和应用于它的属性，可以作为安全数组或 C 样式数组传递数组。  
+ 根据托管类型和应用于该类型的属性, 可以将数组作为安全数组或 C 样式数组传递。  
   
- 当数组作为 C 样式数组传递时，封送处理程序无法确定数组的大小。 因此，若要将托管的数组传递给非托管的函数或方法，必须提供两个参数：  
+ 当数组作为 C 样式数组传递时, 封送拆收器无法确定数组的大小。 因此, 若要将托管数组传递到非托管函数或方法, 必须提供两个参数:  
   
--   定义的引用或值数组。  
+-   由引用或值定义的数组。  
   
--   定义引用或值的数组大小。  
+-   按引用或值定义的数组大小。  
   
- 使用定义数组大小参数的从零开始索引<xref:System.Runtime.InteropServices.MarshalAsAttribute.SizeParamIndex>字段。  
+ 使用<xref:System.Runtime.InteropServices.MarshalAsAttribute.SizeParamIndex>字段定义数组大小参数的从零开始的索引。  
   
- 如果同时指定<xref:System.Runtime.InteropServices.MarshalAsAttribute.SizeParamIndex>并<xref:System.Runtime.InteropServices.MarshalAsAttribute.SizeConst?displayProperty=nameWithType>与<xref:System.Runtime.InteropServices.UnmanagedType.LPArray?displayProperty=nameWithType>字段，字段的值之和总大小。  
+ 如果同时<xref:System.Runtime.InteropServices.MarshalAsAttribute.SizeParamIndex>指定了<xref:System.Runtime.InteropServices.MarshalAsAttribute.SizeConst?displayProperty=nameWithType>和和字段, 则字段值的总和将产生大小总计。 <xref:System.Runtime.InteropServices.UnmanagedType.LPArray?displayProperty=nameWithType>  
   
- 有关详细信息，请参阅[默认封送处理数组](~/docs/framework/interop/default-marshaling-for-arrays.md)。  
+ 有关详细信息, 请参阅[数组的默认封送处理](~/docs/framework/interop/default-marshaling-for-arrays.md)。  
   
    
   
@@ -683,7 +683,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此值一起使用时<xref:System.Runtime.InteropServices.MarshalAsAttribute>以指示应如何在托管和非托管代码之间封送类型。 在某些情况下，可以使用此字段，某特定`UnmanagedType`枚举成员。 有关<xref:System.Runtime.InteropServices.UnmanagedType.CustomMarshaler>和<xref:System.Runtime.InteropServices.UnmanagedType.ByValArray>，必须使用其他命名的参数。  
+ 此值用于<xref:System.Runtime.InteropServices.MarshalAsAttribute>指示如何在托管代码和非托管代码之间封送类型。 在某些情况下, 可以将此字段与某些`UnmanagedType`枚举成员一起使用。 对于<xref:System.Runtime.InteropServices.UnmanagedType.CustomMarshaler> 和<xref:System.Runtime.InteropServices.UnmanagedType.ByValArray>, 必须使用其他命名参数。  
   
  ]]></format>
         </remarks>

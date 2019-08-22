@@ -1,5 +1,5 @@
 <Type Name="GroupPrincipal" FullName="System.DirectoryServices.AccountManagement.GroupPrincipal">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0048cecbccb10acd95671993ada5688afb014dd3" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63886515" /></Metadata><TypeSignature Language="C#" Value="public class GroupPrincipal : System.DirectoryServices.AccountManagement.Principal" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="36321f3023b04e9161ebe31fe2dc0127cba7cdd6" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69075242" /></Metadata><TypeSignature Language="C#" Value="public class GroupPrincipal : System.DirectoryServices.AccountManagement.Principal" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit GroupPrincipal extends System.DirectoryServices.AccountManagement.Principal" />
   <TypeSignature Language="DocId" Value="T:System.DirectoryServices.AccountManagement.GroupPrincipal" />
   <TypeSignature Language="VB.NET" Value="Public Class GroupPrincipal&#xA;Inherits Principal" />
@@ -62,7 +62,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在创建时，不保存的组主体帐户。 若要保存该帐户，调用<xref:System.DirectoryServices.AccountManagement.Principal.Save%2A>方法。  
+ 创建组主体帐户时, 不会将其保留。 若要持久保存帐户, 请<xref:System.DirectoryServices.AccountManagement.Principal.Save%2A>调用方法。  
   
  ]]></format>
         </remarks>
@@ -94,7 +94,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 在创建时，不保存的组主体帐户。 若要保存该帐户，调用<xref:System.DirectoryServices.AccountManagement.Principal.Save%2A>方法。  
+ 创建组主体帐户时, 不会将其保留。 若要持久保存帐户, 请<xref:System.DirectoryServices.AccountManagement.Principal.Save%2A>调用方法。  
   
  ]]></format>
         </remarks>
@@ -235,9 +235,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此方法不会搜索当前组以递归方式。 因此，组对象可能会返回主体对象集合中。  
+ 此方法不会以递归方式搜索当前组。 因此, 组对象可能会在主体对象集合中返回。  
   
- 上下文不返回成员。 例如，如果 AD DS 上下文基于在"CN = SpecialUsers，DC = Fabrikam，DC = com"，PrincipalFindResult 集将包含位于下的组成员"CN = NormalUsers，DC = Fabrikam，DC = com"也，即使它们属于不是作用域的一部分搜索的上下文。 返回主体集合也可能包含位于不同的存储组的成员。  
+ 返回成员, 而不考虑上下文。 例如, 如果基于 "CN = SpecialUsers, DC = Fabrikam, DC = com" 的 AD DS 上下文, 则 PrincipalFindResult 集将包括位于 "CN = NormalUsers, DC = Fabrikam, DC = com" 下的组成员, 即使它们不属于要搜索的上下文。 返回的主体集合可能还包含与组位于不同存储区中的成员。  
   
  ]]></format>
         </remarks>
@@ -271,16 +271,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返回主体的集合不包含组对象，当递归标志设置为`true`; 只返回叶节点。 例如，如果必须包含计算机对象和组对象 （与仅用户主体） 的组，以递归方式搜索返回的集合包含的计算机对象和嵌套组中的用户主体对象。 由于组对象不是一个叶，即使它为空，它则不返回在递归搜索。  当递归标志设置为`false`，则返回的集合可以包含组对象。  
+ 当递归标志设置为`true`时, 返回的主体集合不包含组对象; 只返回叶节点。 例如, 如果以递归方式搜索包含计算机对象和组对象的组, 则返回的集合将包含计算机对象和嵌套组中的用户主体对象。 由于组对象不是叶, 即使它为空, 也不会在递归搜索中返回。  当递归标志设置为`false`时, 返回的集合可以包含组对象。  
   
- 上下文不返回成员。 例如，如果 AD DS 上下文基于在"CN = SpecialUsers，DC = Fabrikam，DC = com"，PrincipalFindResult 集将包含位于下的组成员"CN = NormalUsers，DC = Fabrikam，DC = com"也，即使它们属于不是作用域的一部分搜索的上下文。 返回主体集合也可能包含位于不同的存储组的成员。  
+ 返回成员, 而不考虑上下文。 例如, 如果基于 "CN = SpecialUsers, DC = Fabrikam, DC = com" 的 AD DS 上下文, 则 PrincipalFindResult 集将包括位于 "CN = NormalUsers, DC = Fabrikam, DC = com" 下的组成员, 即使它们不属于要搜索的上下文。 返回的主体集合可能还包含与组位于不同存储区中的成员。  
   
    
   
 ## Examples  
- 下面的代码连接到 LDAP 域"fabrikam.com"与用户名设置为"管理员"和密码设置为"SecretPwd123"<xref:System.DirectoryServices.AccountManagement.PrincipalContext>构造函数。  
+ 以下代码将连接到 LDAP 域 "fabrikam.com", 并将用户名设置为 "管理员", 并在<xref:System.DirectoryServices.AccountManagement.PrincipalContext>构造函数中将密码设置为 "SecretPwd123"。  
   
- 执行搜索来查找具有名称"域管理员"组中指定的容器下<xref:System.DirectoryServices.AccountManagement.PrincipalContext>构造函数"DC = fabrikam，DC = com。" 如果找到的组，然后枚举是包括递归成员，此组的成员的所有主体  
+ 执行搜索以查找在<xref:System.DirectoryServices.AccountManagement.PrincipalContext>构造函数 "dc = fabrikam, DC = com" 中指定的容器下具有名称 "域管理员" 的组。 如果找到了组, 则会枚举作为此组成员的所有主体, 其中包括递归成员。  
   
 ```  
 PrincipalContext ctx = new PrincipalContext(ContextType.Domain,                                                                      
@@ -357,9 +357,9 @@ ctx.Dispose();
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 当此属性返回 false 时，则暂时不组启用安全性。 当<xref:System.DirectoryServices.AccountManagement.GroupPrincipal.IsSecurityGroup>属性重置为 true，更高版本中，组将具有相同的属性，如之前已设置为 false。  
+ 如果此属性返回 false, 则暂时不会启用安全组。 如果以后将属性重置为 true, 则组将具有与将其设置为 false 相同的属性。 <xref:System.DirectoryServices.AccountManagement.GroupPrincipal.IsSecurityGroup>  
   
- 如果不将该主体保持在存储区中，此属性返回 null。 持久化主体后，默认已启用安全性的设置取决于存储区。 在 AD DS 和 AD LDS 存储禁用新的主体时保存，而 SAM 时它们将始终启用新的主体。  
+ 如果主体尚未保存在存储区中, 则此属性返回 null。 保留主体后, 启用安全设置的默认设置取决于存储区。 AD DS 和 AD LDS 存储区会在保留新主体时禁用它们, 而 SAM 会在保留时启用新的主体。  
   
  ]]></format>
         </remarks>
@@ -390,18 +390,18 @@ ctx.Dispose();
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 对于 AD DS 组，<xref:System.DirectoryServices.AccountManagement.GroupPrincipal.Members%2A>属性包括由于其 primaryId 属性是组的成员的用户主体。 当组包含这些类型的成员时，则以下限制适用：  
+ 对于 AD DS 组, <xref:System.DirectoryServices.AccountManagement.GroupPrincipal.Members%2A>属性包括作为组成员的用户主体, 因为其 primaryId 属性。 当组包含这些类型的成员时, 以下限制适用:  
   
--   <xref:System.DirectoryServices.AccountManagement.PrincipalCollection.Remove*>方法不能用于删除属于由于其 primaryId 属性的组的成员。  
+-   由于 primaryId 属性的原因, 不能使用方法删除属于该组的成员。<xref:System.DirectoryServices.AccountManagement.PrincipalCollection.Remove*>  
   
--   <xref:System.DirectoryServices.AccountManagement.PrincipalCollection.Clear*>方法不能用于清除属于由于其 primaryId 属性的组的成员。  
+-   <xref:System.DirectoryServices.AccountManagement.PrincipalCollection.Clear*>方法不能用于清除属于组的成员, 因为其 primaryId 属性。  
   
    
   
 ## Examples  
- 下面的代码连接到 LDAP 域"fabrikam.com"与用户名设置为"管理员"和密码设置为"SecretPwd123"<xref:System.DirectoryServices.AccountManagement.PrincipalContext>构造函数。  
+ 以下代码将连接到 LDAP 域 "fabrikam.com", 并将用户名设置为 "管理员", 并在<xref:System.DirectoryServices.AccountManagement.PrincipalContext>构造函数中将密码设置为 "SecretPwd123"。  
   
- 执行搜索来查找具有名称"域管理员"组中指定的容器下<xref:System.DirectoryServices.AccountManagement.PrincipalContext>构造函数中，"DC = fabrikam，DC = com。" 如果找到的组，从组中删除具有名称"John Smith"的用户和已为名为"Jim Daly"的用户添加到组  
+ 执行搜索以查找在<xref:System.DirectoryServices.AccountManagement.PrincipalContext>构造函数 "DC = fabrikam, DC = com" 中指定的容器下具有名称 "域管理员" 的组。 如果找到了组, 则会从组中删除名为 "John Smith" 的用户, 并将名为 "Jim Daly" 的用户添加到该组中。  
   
 ```  
 PrincipalContext ctx = new PrincipalContext(ContextType.Domain,                                                                       

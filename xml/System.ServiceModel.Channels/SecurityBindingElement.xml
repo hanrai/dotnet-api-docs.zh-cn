@@ -1,5 +1,5 @@
 <Type Name="SecurityBindingElement" FullName="System.ServiceModel.Channels.SecurityBindingElement">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f8778cf4c01bb912f9f619e2d303240ff1602040" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58557410" /></Metadata><TypeSignature Language="C#" Value="public abstract class SecurityBindingElement : System.ServiceModel.Channels.BindingElement" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="3b77a86f79cfa37c989859a077251010dc279dcd" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69154226" /></Metadata><TypeSignature Language="C#" Value="public abstract class SecurityBindingElement : System.ServiceModel.Channels.BindingElement" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit SecurityBindingElement extends System.ServiceModel.Channels.BindingElement" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Channels.SecurityBindingElement" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class SecurityBindingElement&#xA;Inherits BindingElement" />
@@ -30,7 +30,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 此类是在 WCF 中的 SOAP 消息安全绑定元素的基类。 此抽象类有三种实现：<xref:System.ServiceModel.Channels.SymmetricSecurityBindingElement>、<xref:System.ServiceModel.Channels.AsymmetricSecurityBindingElement> 和 <xref:System.ServiceModel.Channels.TransportSecurityBindingElement>。 这些实现为在 WS-Security Policy 规范中定义的绑定建模。  
+ 此类是 WCF 中 SOAP 消息安全绑定元素的基类。 此抽象类有三种实现：<xref:System.ServiceModel.Channels.SymmetricSecurityBindingElement>、<xref:System.ServiceModel.Channels.AsymmetricSecurityBindingElement> 和 <xref:System.ServiceModel.Channels.TransportSecurityBindingElement>。 这些实现为在 WS-Security Policy 规范中定义的绑定建模。  
   
  自定义绑定包含以特定顺序排列的绑定元素集合：首先添加表示绑定堆栈顶部的元素，其次是绑定堆栈的第二个元素，依此类推。  
   
@@ -48,7 +48,7 @@
   
 6.  将任何其他自定义绑定元素添加到集合，比如 <xref:System.ServiceModel.Channels.TcpTransportBindingElement>。  
   
- 有关使用详细信息<xref:System.ServiceModel.Channels.SecurityBindingElement>，请参阅[SecurityBindingElement 身份验证模式](~/docs/framework/wcf/feature-details/securitybindingelement-authentication-modes.md)和[如何：创建自定义绑定使用 SecurityBindingElement](~/docs/framework/wcf/feature-details/how-to-create-a-custom-binding-using-the-securitybindingelement.md)。  
+ 有关使用的<xref:System.ServiceModel.Channels.SecurityBindingElement>详细信息, 请参阅[SecurityBindingElement Authentication 模式](~/docs/framework/wcf/feature-details/securitybindingelement-authentication-modes.md)和[如何:使用 SecurityBindingElement](~/docs/framework/wcf/feature-details/how-to-create-a-custom-binding-using-the-securitybindingelement.md)创建自定义绑定。  
   
 > [!NOTE]
 >  在创建了 <xref:System.ServiceModel.Channels.SecurityBindingElement> 对象后，应将其属性视为不可变。 对某些属性调用 `set` 可能会产生不可预知的效果：绑定的行为可能就好像属性保留了其旧值一样，并出现运行时错误，该错误是问题的唯一迹象。 已知具有此行为的两个属性为 <xref:System.ServiceModel.Security.Tokens.IssuedSecurityTokenParameters.KeyType%2A> 和 <xref:System.ServiceModel.Channels.SecurityBindingElement.MessageSecurityVersion%2A>。 其他某些属性可能也是如此。  
@@ -56,7 +56,7 @@
  ]]></format>
     </remarks>
     <related type="Article" href="https://msdn.microsoft.com/library/12300bf4-c730-4405-9f65-d286f68b5a43">SecurityBindingElement 身份验证模式</related>
-    <related type="Article" href="https://msdn.microsoft.com/library/203a9f9e-3a73-427c-87aa-721c56265b29">如何：创建自定义绑定使用 SecurityBindingElement</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/203a9f9e-3a73-427c-87aa-721c56265b29">如何：使用 SecurityBindingElement 创建自定义绑定</related>
   </Docs>
   <Members>
     <Member MemberName="AllowInsecureTransport">
@@ -1042,7 +1042,7 @@
       <Parameters />
       <Docs>
         <summary>创建一个非对称安全绑定元素，该元素配置为需要基于证书的客户端身份验证以及基于证书的服务器身份验证。 此身份验证模式可用于保护双工消息交换模式，它需要用带外客户端证书配置服务。</summary>
-        <returns><see cref="T:System.ServiceModel.Channels.AsymmetricSecurityBindingElement" /> 对象。</returns>
+        <returns>一个 <see cref="T:System.ServiceModel.Channels.AsymmetricSecurityBindingElement" /> 对象。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1197,7 +1197,7 @@
  否则将返回 <xref:System.ServiceModel.Channels.SymmetricSecurityBindingElement>，并且 <xref:System.ServiceModel.Channels.SymmetricSecurityBindingElement.RequireSignatureConfirmation%2A> 设置为 `false`。  
   
 > [!NOTE]
->  当需要在 [!INCLUDE[wxp](~/includes/wxp-md.md)] 上进行模拟时，请不要在安全会话中使用安全上下文令牌。 如果在模拟时使用安全上下文令牌，则会引发 <xref:System.InvalidOperationException>。 有关详细信息，请参阅[不支持的方案](~/docs/framework/wcf/feature-details/unsupported-scenarios.md)。 有关安全会话的详细信息，请参阅[安全会话](~/docs/framework/wcf/feature-details/secure-sessions.md)。  
+>  当需要在 [!INCLUDE[wxp](~/includes/wxp-md.md)] 上进行模拟时，请不要在安全会话中使用安全上下文令牌。 如果在模拟时使用安全上下文令牌，则会引发 <xref:System.InvalidOperationException>。 有关详细信息, 请参阅[不支持的方案](~/docs/framework/wcf/feature-details/unsupported-scenarios.md)。 有关安全会话的详细信息, 请参阅[安全会话](~/docs/framework/wcf/feature-details/secure-sessions.md)。  
   
    
   
@@ -1255,7 +1255,7 @@
  否则将返回 <xref:System.ServiceModel.Channels.SymmetricSecurityBindingElement>，并且 <xref:System.ServiceModel.Channels.SymmetricSecurityBindingElement.RequireSignatureConfirmation%2A> 设置为 `false`。  
   
 > [!NOTE]
->  当需要在 [!INCLUDE[wxp](~/includes/wxp-md.md)] 上进行模拟时，请不要在安全会话中使用安全上下文令牌。 如果在模拟时使用安全上下文令牌，则会引发 <xref:System.InvalidOperationException>。 有关详细信息，请参阅[不支持的方案](~/docs/framework/wcf/feature-details/unsupported-scenarios.md)。 有关安全会话的详细信息，请参阅[安全会话](~/docs/framework/wcf/feature-details/secure-sessions.md)。  
+>  当需要在 [!INCLUDE[wxp](~/includes/wxp-md.md)] 上进行模拟时，请不要在安全会话中使用安全上下文令牌。 如果在模拟时使用安全上下文令牌，则会引发 <xref:System.InvalidOperationException>。 有关详细信息, 请参阅[不支持的方案](~/docs/framework/wcf/feature-details/unsupported-scenarios.md)。 有关安全会话的详细信息, 请参阅[安全会话](~/docs/framework/wcf/feature-details/secure-sessions.md)。  
   
  ]]></format>
         </remarks>
@@ -1717,7 +1717,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Security.SecurityAlgorithmSuite>对象，其中包含指定要使用的签名、 加密、 密钥派生和其他加密操作的安全算法的许多属性。 此对象还控制用于执行上述加密操作的密钥的大小。  
+ 包含多个属性的对象,这些属性指定要用于签名、加密、密钥派生和其他加密操作的安全算法。<xref:System.ServiceModel.Security.SecurityAlgorithmSuite> 此对象还控制用于执行上述加密操作的密钥的大小。  
   
    
   
@@ -1760,7 +1760,7 @@
       </ReturnValue>
       <Docs>
         <summary>获取或设置一个值，该值指示 WCF 是否能发送和接收对安全请求的不安全响应。</summary>
-        <value><see langword="true" /> 如果 WCF 可以发送和接收对安全请求; 不安全的响应否则为<see langword="false" />。 默认值为 <see langword="false" />。</value>
+        <value><see langword="true" />如果 WCF 可以发送和接收对安全请求的不安全响应, 则为;否则为<see langword="false" />。 默认值为 <see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1909,7 +1909,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果<xref:System.ServiceModel.Channels.SecurityBindingElement.IncludeTimestamp%2A>属性是`true`; 如果`DetectReplays`是`true`，WCF 检测到重放攻击。  
+ 如果属性为`true` , 并且如果`DetectReplays`为`true`, 则 WCF 将检测重播攻击。 <xref:System.ServiceModel.Channels.SecurityBindingElement.IncludeTimestamp%2A>  
   
  ]]></format>
         </remarks>
@@ -1990,7 +1990,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 设置是本地的意义上说，它们不是派生自该服务的安全策略的设置。 您可以获取 <xref:System.ServiceModel.Channels.LocalClientSecuritySettings> 对象并使用此对象设置此绑定的安全属性。  
+ 这些设置是本地的, 因为它们不是派生自服务安全策略的设置。 您可以获取 <xref:System.ServiceModel.Channels.LocalClientSecuritySettings> 对象并使用此对象设置此绑定的安全属性。  
   
    
   
@@ -2288,11 +2288,11 @@
   
 -   <xref:System.ServiceModel.Channels.SecurityHeaderLayout.Strict>：项按照“先声明后使用”的一般原则添加到安全性标头中。  
   
--   <xref:System.ServiceModel.Channels.SecurityHeaderLayout.Lax>：项添加到安全头中任何符合 WSS 的顺序：SOAP 消息安全性的顺序添加到安全标头中。  
+-   <xref:System.ServiceModel.Channels.SecurityHeaderLayout.Lax>：项以任何符合 WSS 的顺序添加到安全标头:SOAP 消息安全性的顺序添加到安全标头中。  
   
--   <xref:System.ServiceModel.Channels.SecurityHeaderLayout.LaxTimestampFirst>：项添加到安全头中任何符合 WSS 的顺序：SOAP 消息安全，但安全头中的第一个元素必须`wsse:Timestamp`元素。  
+-   <xref:System.ServiceModel.Channels.SecurityHeaderLayout.LaxTimestampFirst>：项以任何符合 WSS 的顺序添加到安全标头:SOAP 消息安全, 只不过安全标头中的第一个元素必须是`wsse:Timestamp`元素。  
   
--   <xref:System.ServiceModel.Channels.SecurityHeaderLayout.LaxTimestampLast>：项添加到安全头中任何符合 WSS 的顺序：SOAP 消息安全，但安全头中的最后一个元素必须`wsse:Timestamp`元素。  
+-   <xref:System.ServiceModel.Channels.SecurityHeaderLayout.LaxTimestampLast>：项以任何符合 WSS 的顺序添加到安全标头:SOAP 消息安全, 只不过安全标头中的最后一个元素必须是`wsse:Timestamp`元素。  
   
  ]]></format>
         </remarks>
