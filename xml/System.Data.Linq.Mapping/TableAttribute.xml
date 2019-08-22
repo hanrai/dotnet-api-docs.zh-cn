@@ -1,5 +1,5 @@
 <Type Name="TableAttribute" FullName="System.Data.Linq.Mapping.TableAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="269173580c93d2a57455256607f1d5db0997bdd8" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63896076" /></Metadata><TypeSignature Language="C#" Value="public sealed class TableAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="12fa30ba5677d34b848e725388607ce0d6e83ffd" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69374652" /></Metadata><TypeSignature Language="C#" Value="public sealed class TableAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit TableAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Data.Linq.Mapping.TableAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class TableAttribute&#xA;Inherits Attribute" />
@@ -25,24 +25,24 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用此属性可将类指定为与数据库表或视图关联的实体类。 [!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)] 将具有类视为<xref:System.Data.Linq.Mapping.TableAttribute>类视为持久性类的属性。  
+ 使用此属性可将类指定为与数据库表或视图关联的实体类。 [!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)]将具有属性的<xref:System.Data.Linq.Mapping.TableAttribute>类视为持久性类。  
   
- [!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)] 支持仅单表映射。 也就是说，一个实体类必须映射到一个数据库表，和你不能在同一时间将数据库表映射到多个类。  
+ [!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)]仅支持单表映射。 也就是说, 必须将一个实体类只映射到一个数据库表, 并且不能同时将一个数据库表映射到多个类。  
   
- 可以使用<xref:System.Data.Linq.Mapping.TableAttribute.Name%2A>属性的<xref:System.Data.Linq.Mapping.TableAttribute>属性来指定表的名称，可以选择使用架构名称来限定表名称。 如果不通过使用指定名称<xref:System.Data.Linq.Mapping.TableAttribute.Name%2A>属性，表名称被假定为与类名称相同。  
+ 您可以使用<xref:System.Data.Linq.Mapping.TableAttribute.Name%2A> <xref:System.Data.Linq.Mapping.TableAttribute>属性的属性指定表的名称, 并且可以选择使用架构名称来限定表名称。 如果未通过使用<xref:System.Data.Linq.Mapping.TableAttribute.Name%2A>属性指定名称, 则假定表名称与类名称相同。  
   
-## <a name="schema-qualified-names"></a>架构限定的名称  
- 您可以选择使用架构名称来限定表名称。 默认情况下，左侧的第一期的令牌<xref:System.Data.Linq.Mapping.TableAttribute.Name%2A>字符串被视为架构名称。 表名称被视为名称的余下部分。 提供程序加引号作为相应的表名称。 例如， [!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)] SQL Server 提供程序可确保，则使用方括号至少所需的位置。  
+## <a name="schema-qualified-names"></a>架构限定名称  
+ 您可以选择使用架构名称来限定表名称。 默认情况下, <xref:System.Data.Linq.Mapping.TableAttribute.Name%2A>字符串中第一个句点左侧的标记被视为架构名称。 名称的其余部分被视为表名称。 提供程序会根据需要将表名称括起来。 例如, [!INCLUDE[vbtecdlinq](~/includes/vbtecdlinq-md.md)] SQL Server 提供程序可以确保至少在需要的位置使用方括号。  
   
 > [!NOTE]
->  在某些情况下，您必须显式属性由于对 SQL Server 提供程序不能自动的括号。 下表显示了一些示例。  
+>  在某些情况下, 必须显式引用属性, 因为 SQL Server 提供程序无法自动引用。 下表显示了一些示例。  
   
-|Case|示例:标识符名称|示例:在特性中的预期的字符串|否则为...|  
+|Case|示例:标识符名称|示例:特性中需要字符串|否则 ...|  
 |----------|------------------------------|--------------------------------------------|----------------|  
-|架构名称包含句点|架构："A.B"<br /><br /> 表："C"|"[A.B]。C"|假定第一个期间为单独的表名称的架构名称。|  
-|架构/表名称开头 `@`|“@SomeName”|"[@SomeName]"|假定为参数名称。|  
-|架构的开头`[`结尾 `]`|"[Schema.Table]"|"[[架构]。[表]]]"|不带引号的标识符类似于带引号的标识符。|  
-|表的前`[`结尾 `]`|"[Table]"|"[[表]]]"|不带引号的标识符类似于带引号的标识符。|  
+|架构名称包含句点|模式"A B"<br /><br /> 数据表ANSI-C|"[A. B]。ANSI-C|假定第一个句点将架构名称与表名称分隔开。|  
+|架构/表名称开头为`@`|“@SomeName”|"[@SomeName]"|假定为参数名称。|  
+|架构以开头`[`并以结尾`]`|"[Schema.Table]"|"[[架构]。[表]]] "|未加引号的标识符类似于带引号的标识符。|  
+|表以开头`[`并以结尾`]`|"[表]"|"[[Table]]]"|未加引号的标识符类似于带引号的标识符。|  
   
    
   
@@ -108,12 +108,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 如果不通过使用指定名称<xref:System.Data.Linq.Mapping.TableAttribute.Name%2A>，表名称被假定为与类名称相同。  
+ 如果未使用<xref:System.Data.Linq.Mapping.TableAttribute.Name%2A>指定名称, 则假定表名称与类名相同。  
   
 > [!NOTE]
->  您可以选择使用架构名称来限定表名 (例如，Schema3.Table5)。 默认情况下，左侧的第一期的令牌<xref:System.Data.Linq.Mapping.TableAttribute.Name%2A>字符串被视为该架构名称，并为表名称的其余部分。  
+>  您可以选择使用架构名称来限定表名 (例如, Schema3. Table5)。 默认情况下, <xref:System.Data.Linq.Mapping.TableAttribute.Name%2A>字符串中第一个句点左侧的标记被视为架构名称, 其余的标记为表名。  
   
- 在下面的示例中，默认表名`Customer`，更改为`Customers`。  
+ 在下面的示例中, 默认表名称`Customer`已更改为。 `Customers`  
   
    
   
