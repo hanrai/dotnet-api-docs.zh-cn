@@ -1,5 +1,5 @@
 <Type Name="HMACSHA1" FullName="System.Security.Cryptography.HMACSHA1">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="eb0a1b819bad452651d2b9f03012604e74538100" /><Meta Name="ms.sourcegitcommit" Value="81833381d2d0b5a8c55f71b43f00769fd38298af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/17/2019" /><Meta Name="ms.locfileid" Value="69571991" /></Metadata><TypeSignature Language="C#" Value="public class HMACSHA1 : System.Security.Cryptography.HMAC" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8eb9d1c5dc1358849f45dfd6cbfc90b627f2cea2" /><Meta Name="ms.sourcegitcommit" Value="8544f14c8194a55eb22d46721b0bbe46f345c063" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/21/2019" /><Meta Name="ms.locfileid" Value="69670295" /></Metadata><TypeSignature Language="C#" Value="public class HMACSHA1 : System.Security.Cryptography.HMAC" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit HMACSHA1 extends System.Security.Cryptography.HMAC" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.HMACSHA1" />
   <TypeSignature Language="VB.NET" Value="Public Class HMACSHA1&#xA;Inherits HMAC" />
@@ -51,7 +51,7 @@
   
  <xref:System.Security.Cryptography.HMACSHA1>接受任意大小的密钥, 并产生长度为160位的哈希序列。  
   
-   
+ 由于与 SHA1 冲突，Microsoft 建议使用 SHA256。  
   
 ## Examples  
  下面的代码示例演示如何使用<xref:System.Security.Cryptography.HMACSHA1>对象对文件进行签名, 然后再对文件进行验证。  
@@ -114,6 +114,8 @@
  <xref:System.Security.Cryptography.HMACSHA1>加密哈希算法的一种类型, 它是从 SHA1 哈希函数构建的, 并用作 HMAC 或基于哈希的消息身份验证代码。 HMAC 进程将密钥与消息数据混合, 使用哈希函数对结果进行哈希运算, 再次混合使用密钥的哈希值, 然后再次应用哈希函数。 输出哈希的长度为160位 (20 个字节)。  
   
  此构造函数使用一个随机生成的64字节的键。  
+
+ 由于与 SHA1 冲突，Microsoft 建议使用 SHA256。
   
  ]]></format>
         </remarks>
@@ -157,7 +159,7 @@
         <param name="key"><see cref="T:System.Security.Cryptography.HMACSHA1" /> 加密的机密密钥。 密钥的长度不限，但如果该密钥超过 64 个字节，就会经过散列处理（使用 SHA-1）以派生一个 64 个字节的密钥。 因此，建议的密钥大小为 64 个字节。</param>
         <param name="useManagedSha1">如果使用 SHA1 算法的托管实现（<see cref="T:System.Security.Cryptography.SHA1Managed" /> 类），则为 <see langword="true" />；如果使用非托管实现（<see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /> 类），则为 <see langword="false" />。</param>
         <summary>使用指定的密钥数据和一个指定是否使用 SHA1 算法托管版本的值，来初始化 <see cref="T:System.Security.Cryptography.HMACSHA1" /> 类的新实例。</summary>
-        <remarks>To be added.</remarks>
+        <remarks>由于 SHA1 出现冲突问题，Microsoft 建议使用基于 SHA256 或更好的安全模型。</remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -166,12 +168,12 @@
       <MemberSignature Language="DocId" Value="M:System.Security.Cryptography.HMACSHA1.#ctor(System.Byte[])" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="VB.NET" Value="Public Sub New (key As Byte())" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; HMACSHA1(cli::array &lt;System::Byte&gt; ^ key);" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1" />
-      <MemberSignature Language="F#" Value="new System.Security.Cryptography.HMACSHA1 : byte[] -&gt; System.Security.Cryptography.HMACSHA1" Usage="new System.Security.Cryptography.HMACSHA1 key" FrameworkAlternate="netframework-1.1;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="F#" Value="new System.Security.Cryptography.HMACSHA1 : byte[] -&gt; System.Security.Cryptography.HMACSHA1" Usage="new System.Security.Cryptography.HMACSHA1 key" FrameworkAlternate="netframework-1.1;netcore-2.2;netstandard-2.1" />
       <MemberSignature Language="C#" Value="public HMACSHA1 (byte[] rgbKey);" FrameworkAlternate="netframework-1.1" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(unsigned int8[] rgbKey) cil managed" FrameworkAlternate="netframework-1.1" />
       <MemberSignature Language="VB.NET" Value="Public Sub New (rgbKey As Byte())" FrameworkAlternate="netframework-1.1" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; HMACSHA1(cli::array &lt;System::Byte&gt; ^ rgbKey);" FrameworkAlternate="netframework-1.1" />
-      <MemberSignature Language="F#" Value="new System.Security.Cryptography.HMACSHA1 : byte[] -&gt; System.Security.Cryptography.HMACSHA1" Usage="new System.Security.Cryptography.HMACSHA1 rgbKey" FrameworkAlternate="netframework-1.1;netstandard-2.1" />
+      <MemberSignature Language="F#" Value="new System.Security.Cryptography.HMACSHA1 : byte[] -&gt; System.Security.Cryptography.HMACSHA1" Usage="new System.Security.Cryptography.HMACSHA1 rgbKey" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="DocId" Value="M:System.Security.Cryptography.HMACSHA1.#ctor(System.Byte[])" FrameworkAlternate="netframework-1.1" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
@@ -211,7 +213,7 @@
 > [!NOTE]
 >  此构造函数使用<xref:System.Security.Cryptography.SHA1CryptoServiceProvider>类创建算法的非托管实例。  
   
-   
+由于 SHA1 出现冲突问题，Microsoft 建议使用基于 SHA256 或更好的安全模型。   
   
 ## Examples  
  有关如何使用此构造函数的示例, 请参阅<xref:System.Security.Cryptography.HMACSHA1>类。  
@@ -355,7 +357,7 @@
         <param name="ib">字节数组中的偏移量，从该位置开始使用数据。</param>
         <param name="cb">数组中用作数据的字节数。</param>
         <summary>将写入对象的数据路由到 SHA1 哈希算法以计算基于哈希的消息验证代码 (HMAC)。</summary>
-        <remarks>To be added.</remarks>
+        <remarks>由于 SHA1 出现冲突问题，Microsoft 建议使用基于 SHA256 或更好的安全模型。</remarks>
       </Docs>
     </Member>
     <Member MemberName="HashFinal">
