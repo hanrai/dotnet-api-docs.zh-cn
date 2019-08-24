@@ -1,5 +1,5 @@
 <Type Name="DbDataReader" FullName="System.Data.Common.DbDataReader">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="40a74e42c6e035b1c1b08aac89e3c8df07bacb1a" /><Meta Name="ms.sourcegitcommit" Value="81833381d2d0b5a8c55f71b43f00769fd38298af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/17/2019" /><Meta Name="ms.locfileid" Value="69571946" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbDataReader : MarshalByRefObject, IDisposable, System.Collections.IEnumerable, System.Data.IDataReader" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="3384fad9cdecd48dd36bb5eeec5981b316e7102a" /><Meta Name="ms.sourcegitcommit" Value="a81314feefaa9d10797d6bfe39dab52ca7fd1709" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/22/2019" /><Meta Name="ms.locfileid" Value="69973175" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbDataReader : MarshalByRefObject, IDisposable, System.Collections.IEnumerable, System.Data.IDataReader" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DbDataReader extends System.MarshalByRefObject implements class System.Collections.IEnumerable, class System.Data.IDataReader, class System.Data.IDataRecord, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Data.Common.DbDataReader" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DbDataReader&#xA;Inherits MarshalByRefObject&#xA;Implements IDataReader, IDisposable, IEnumerable" />
@@ -132,6 +132,7 @@
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -322,12 +323,16 @@
       <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual System::Threading::Tasks::ValueTask DisposeAsync();" />
       <MemberSignature Language="F#" Value="abstract member DisposeAsync : unit -&gt; System.Threading.Tasks.ValueTask&#xA;override this.DisposeAsync : unit -&gt; System.Threading.Tasks.ValueTask" Usage="dbDataReader.DisposeAsync " />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:System.IAsyncDisposable.DisposeAsync</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>System.Data.Common</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -355,7 +360,7 @@
  支持[异步编程](~/docs/framework/data/adonet/asynchronous-programming.md)的数据访问接口应使用异步 i/o 操作来重写默认实现。
 
  ]]></format>
-        </remarks>        
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="FieldCount">
@@ -1076,10 +1081,10 @@ private static void GetDataTypes(String connectionString)
         <remarks>To be added.</remarks>
         <exception cref="T:System.InvalidOperationException">在数据检索期间删除或关闭连接。  
 
-- 或 - 
+或 
 在数据检索期间关闭数据读取器。  
   
-或
+- 或 -
 
 没有可读取的数据（例如尚未调用第一个 <see cref="M:System.Data.Common.DbDataReader.Read" />，或调用返回了 <see langword="false" />）。  
 
@@ -1087,7 +1092,7 @@ private static void GetDataTypes(String connectionString)
 
 读取器试图按顺序模式读取曾读取的列。  
 
-- 或 -
+或
 
 没有正在进行的异步操作。 以顺序模式运行时，这适用于所有 Get* 方法，读取流时也可对其进行调用。</exception>
         <exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
@@ -1236,15 +1241,15 @@ private static void GetDataTypes(String connectionString)
         </remarks>
         <exception cref="T:System.InvalidOperationException">在数据检索期间删除或关闭连接。  
   
-- 或 -
+或
 
 在数据检索期间关闭数据读取器。  
 
-或
+- 或 -
 
 没有可读取的数据（例如尚未调用第一个 <see cref="M:System.Data.Common.DbDataReader.Read" />，或调用返回了 <see langword="false" />）。
 
-或
+- 或 -
 
 按顺序模式尝试读取上一步骤中读取的列。  
 
@@ -1776,7 +1781,7 @@ private static void GetCredits(String connectionString)
         <remarks>To be added.</remarks>
         <exception cref="T:System.InvalidOperationException"><see cref="T:System.Data.Common.DbDataReader" /> 是关闭的。</exception>
         <exception cref="T:System.IndexOutOfRangeException">列索引超出范围。</exception>
-        <exception cref="T:System.NotSupportedException">仅限 .NET Core：所有情况。</exception>
+        <exception cref="T:System.NotSupportedException">仅限 .NET Core：不支持此成员。</exception>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET 概述</related>
       </Docs>
     </Member>
@@ -1828,7 +1833,7 @@ private static void GetCredits(String connectionString)
 
 在数据检索期间关闭数据读取器。  
 
-- 或 -
+或
 
 没有要读取的就绪数据 (例如，第一个 <see cref="M:System.Data.Common.DbDataReader.Read" /> 未被调用或返回错误)。  
 
@@ -1936,7 +1941,7 @@ private static void GetCredits(String connectionString)
 
 在数据检索期间关闭数据读取器。  
 
-- 或 -
+或
 
 没有要读取的就绪数据 (例如，第一个 <see cref="M:System.Data.Common.DbDataReader.Read" /> 未被调用或返回错误)。  
 
@@ -2228,11 +2233,11 @@ private static void GetCredits(String connectionString)
         </remarks>
         <exception cref="T:System.InvalidOperationException">在数据检索期间删除或关闭连接。  
   
-或
+- 或 -
 
 在数据检索期间关闭数据读取器。  
 
-- 或 -
+或
 
 没有要读取的就绪数据 (例如，第一个 <see cref="M:System.Data.Common.DbDataReader.Read" /> 未被调用或返回错误)。  
 
@@ -2300,11 +2305,11 @@ private static void GetCredits(String connectionString)
         </remarks>
         <exception cref="T:System.InvalidOperationException">在数据检索期间删除或关闭连接。  
   
-- 或 -
+或
 
 在数据检索期间关闭数据读取器。  
 
-- 或 -
+或
 
 没有要读取的就绪数据 (例如，第一个 <see cref="M:System.Data.Common.DbDataReader.Read" /> 未被调用或返回错误)。  
 
