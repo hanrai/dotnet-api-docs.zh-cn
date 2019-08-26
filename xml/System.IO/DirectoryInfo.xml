@@ -1,5 +1,5 @@
 <Type Name="DirectoryInfo" FullName="System.IO.DirectoryInfo">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="380506d10e50a751045aac309916343b72f2e3b4" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69243850" /></Metadata><TypeSignature Language="C#" Value="public sealed class DirectoryInfo : System.IO.FileSystemInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ceed6829b5a0a3adab04cfbb9318ee9b329320d1" /><Meta Name="ms.sourcegitcommit" Value="a81314feefaa9d10797d6bfe39dab52ca7fd1709" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/22/2019" /><Meta Name="ms.locfileid" Value="69973062" /></Metadata><TypeSignature Language="C#" Value="public sealed class DirectoryInfo : System.IO.FileSystemInfo" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit DirectoryInfo extends System.IO.FileSystemInfo" />
   <TypeSignature Language="DocId" Value="T:System.IO.DirectoryInfo" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class DirectoryInfo&#xA;Inherits FileSystemInfo" />
@@ -423,7 +423,7 @@
         <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效，例如位于未映射的驱动器上。</exception>
         <exception cref="T:System.IO.IOException">无法创建子目录。  
   
-- 或 - 
+或 
 文件或目录已具有 <paramref name="path" /> 指定的名称。</exception>
         <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
         <exception cref="T:System.Security.SecurityException">调用方没有代码访问权限来创建目录。  
@@ -503,10 +503,10 @@
         <exception cref="T:System.IO.DirectoryNotFoundException">此 <see cref="T:System.IO.DirectoryInfo" /> 对象描述的目录不存在或找不到。</exception>
         <exception cref="T:System.IO.IOException">目录不为空。  
   
-- 或 - 
+或 
 该目录是应用程序的当前工作目录。  
   
-- 或 - 
+或 
 对于目录有打开句柄，并且操作系统是 Windows XP 或更早版本。 此打开句柄可能是由于枚举目录导致的。 有关详细信息，请参阅[如何：枚举目录和文件](~/docs/standard/io/how-to-enumerate-directories-and-files.md)。</exception>
         <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
         <permission cref="T:System.Security.Permissions.FileIOPermission">用于写入目录。 关联的枚举:<see cref="F:System.Security.Permissions.FileIOPermissionAccess.Write" /></permission>
@@ -579,7 +579,7 @@
         <exception cref="T:System.IO.DirectoryNotFoundException">此 <see cref="T:System.IO.DirectoryInfo" /> 对象描述的目录不存在或找不到。</exception>
         <exception cref="T:System.IO.IOException">目录为只读。  
   
-或 
+- 或 - 
 此目录包含一个或多个文件或子目录，且 <paramref name="recursive" /> 为 <see langword="false" />。  
   
 或 
@@ -1685,11 +1685,11 @@
         <exception cref="T:System.SystemException">未能找到或修改该目录。</exception>
         <exception cref="T:System.UnauthorizedAccessException">目录为只读。  
   
- 或  
+ - 或 -  
   
  当前平台不支持此操作。  
   
- 或  
+ - 或 -  
   
  调用方没有所要求的权限。</exception>
         <exception cref="T:System.IO.IOException">打开目录时发生 I/O 错误。</exception>
@@ -1744,7 +1744,7 @@
 或 
 当前平台不支持此操作。  
   
-- 或 - 
+或 
 调用方没有所要求的权限。  
   
  </description></item></list></returns>
@@ -2820,13 +2820,13 @@
         <exception cref="T:System.ArgumentException"><paramref name="destDirName" /> 是一个空字符串 (''")。</exception>
         <exception cref="T:System.IO.IOException">尝试将目录移动到不同的卷。  
   
-- 或 - 
+或 
  <paramref name="destDirName" /> 已存在。  
   
-或 
+- 或 - 
 您无权访问此路径。  
   
-- 或 - 
+或 
 被移动的目录与目标目录同名。</exception>
         <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException">找不到此目标目录。</exception>
@@ -2933,23 +2933,33 @@
       </ReturnValue>
       <Docs>
         <summary>获取指定子目录的父目录。</summary>
-        <value>父目录; <see langword="null" />如果路径为 null 或文件路径表示根 (如 "\\"、"C:" 或 * "\\\server\share"), 则为。</value>
+        <value>父目录; <see langword="null" />如果路径为 null 或文件路径表示根 ( `\`如、 `C:\`或`\\server\share`), 则为。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 有关常见 i/o 任务的列表, 请参阅[常见 I/o 任务](~/docs/standard/io/common-i-o-tasks.md)。  
-  
-   
-  
-## Examples  
- 下面的示例演示如何引用指定目录的父目录。  
-  
- [!code-cpp[directoryinfoparent#1](~/samples/snippets/cpp/VS_Snippets_CLR/directoryinfoparent/CPP/directoryinfoparent.cpp#1)]
- [!code-csharp[directoryinfoparent#1](~/samples/snippets/csharp/VS_Snippets_CLR/directoryinfoparent/CS/directoryinfoparent.cs#1)]
- [!code-vb[directoryinfoparent#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/directoryinfoparent/VB/directoryinfoparent.vb#1)]  
-  
- ]]></format>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+> [!IMPORTANT]
+> 在 .NET Framework 中`Parent` , 返回相对路径。
+> 在 .net Core 中`Parent` , 返回完全限定的路径。
+
+若要确保各个版本之间的行为一致并使意向明确, 请在<xref:System.IO.DirectoryInfo> `Parent`返回的实例上检索以下属性之一的值。
+- <xref:System.IO.DirectoryInfo.Name>, 它返回目录的简单名称 (如`bin`)。
+- <xref:System.IO.DirectoryInfo.FullName>, 它返回目录的绝对路径。 
+
+
+有关常见 i/o 任务的列表, 请参阅[常见 I/o 任务](~/docs/standard/io/common-i-o-tasks.md)。
+
+
+## Examples
+
+下面的示例引用指定目录的父目录。
+
+[!code-cpp[directoryinfoparent#1](~/samples/snippets/cpp/VS_Snippets_CLR/directoryinfoparent/CPP/directoryinfoparent.cpp#1)]
+[!code-csharp[directoryinfoparent#1](~/samples/snippets/csharp/VS_Snippets_CLR/directoryinfoparent/CS/directoryinfoparent.cs#1)]
+[!code-vb[directoryinfoparent#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/directoryinfoparent/VB/directoryinfoparent.vb#1)]
+
+          ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
         <permission cref="T:System.Security.Permissions.FileIOPermission">用于读取文件和目录以及访问路径。 关联的枚举<see cref="T:System.Security.Permissions.FileIOPermissionAccess" />:<see cref="T:System.Security.Permissions.FileIOPermissionAccess" /></permission>
@@ -3122,9 +3132,20 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>返回用户所传递的原始路径。</summary>
+        <summary>返回传递给 <see cref="T:System.IO.DirectoryInfo" /> 构造函数的原始路径。 使用 <see cref="P:System.IO.DirectoryInfo.FullName" /> 或 <see cref="P:System.IO.DirectoryInfo.Name" /> 属性作为完整路径或文件/目录名，而不是此方法。</summary>
         <returns>用户所传递的原始路径。</returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+> [!IMPORTANT]
+> <xref:System.IO.DirectoryInfo.ToString%2A>方法返回的字符串表示传递<xref:System.IO.DirectoryInfo>给构造函数的路径。 你应根据你`ToString`的意图检索以下任一属性的值, 而不是调用方法:
+> - <xref:System.IO.DirectoryInfo.Name>, 获取目录的名称, 而不包含任何父路径信息。
+> - <xref:System.IO.DirectoryInfo.FullName>, 用于获取目录的完全限定路径。
+
+          ]]></format>
+        </remarks>
         <related type="Article" href="~/docs/standard/io/index.md">文件和流 I/O</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">如何：从文件读取文本</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">如何：向文件写入文本</related>
