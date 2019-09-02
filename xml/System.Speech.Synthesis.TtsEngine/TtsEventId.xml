@@ -1,5 +1,5 @@
 <Type Name="TtsEventId" FullName="System.Speech.Synthesis.TtsEngine.TtsEventId">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="15951a861c88febb0797f7131c3f572cfbbb4c58" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69145762" /></Metadata><TypeSignature Language="C#" Value="public enum TtsEventId" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d086651c4e8908832d504877447c6a2fa64b60b4" /><Meta Name="ms.sourcegitcommit" Value="59288d18b8fbc142a5d38d416d6fdfb982023216" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/28/2019" /><Meta Name="ms.locfileid" Value="70116528" /></Metadata><TypeSignature Language="C#" Value="public enum TtsEventId" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed TtsEventId extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Speech.Synthesis.TtsEngine.TtsEventId" />
   <TypeSignature Language="VB.NET" Value="Public Enum TtsEventId" />
@@ -30,68 +30,74 @@
    
   
 ## Examples  
- 下面<xref:System.Speech.Synthesis.TtsEngine.TtsEngineSsml>的示例是继承自的自定义语音合成实现的一部分, 并使用<xref:System.Speech.Synthesis.TtsEngine.TextFragment>、 <xref:System.Speech.Synthesis.TtsEngine.SpeechEventInfo>、 <xref:System.Speech.Synthesis.TtsEngine.FragmentState>和<xref:System.Speech.Synthesis.TtsEngine.TtsEventId>  
+ 下面<xref:System.Speech.Synthesis.TtsEngine.TtsEngineSsml>的示例是继承自的自定义语音合成实现的一部分, 并<xref:System.Speech.Synthesis.TtsEngine.TextFragment>使用、 <xref:System.Speech.Synthesis.TtsEngine.SpeechEventInfo>、 <xref:System.Speech.Synthesis.TtsEngine.FragmentState>和<xref:System.Speech.Synthesis.TtsEngine.TtsEventId>类。
   
- 的实现<xref:System.Speech.Synthesis.TtsEngine.TtsEngineSsml.Speak%2A>  
+ 的实现<xref:System.Speech.Synthesis.TtsEngine.TtsEngineSsml.Speak%2A?displayProperty=nameWithType>包括以下步骤:
   
 1.  接收实例的<xref:System.Speech.Synthesis.TtsEngine.TextFragment>数组, 并创建`Speak`要在基础合成<xref:System.Speech.Synthesis.TtsEngine.TextFragment>引擎上传递给方法的新的实例数组。  
   
-2.  <xref:System.Speech.Synthesis.TtsEngine.FragmentState.Action%2A> <xref:System.Speech.Synthesis.TtsEngine.FragmentState.Action%2A> <xref:System.Speech.Synthesis.TtsEngine.TextFragment.State%2A> 如果在<xref:System.Speech.Synthesis.TtsEngine.TtsEngineAction>每个<xref:System.Speech.Synthesis.TtsEngine.TtsEngineAction> 实例的属性返回的的属性中找到枚举<xref:System.Speech.Synthesis.TtsEngine.TextFragment.State%2A>值, 则实现  
+2.  如果每<xref:System.Speech.Synthesis.TtsEngine.FragmentState.Action%2A>个<xref:System.Speech.Synthesis.TtsEngine.TextFragment.State%2A?displayProperty=nameWithType>实例的属性等于<xref:System.Speech.Synthesis.TtsEngine.TtsEngineAction.Speak?displayProperty=nameWithType>, 则代码会执行以下操作:
   
-    -   将 Americanism 转换为要口述的文本中的 Britishisms。  
+    - 将美国英语翻译为要朗读的文本。
   
-    -   如果提供<xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.EventInterest%2A>给实现的<xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.EventInterest%2A>接口上的属性支持<xref:System.Speech.Synthesis.TtsEngine.SpeechEventInfo> WordBoundary 事件类型, 则使用实例创建事件来驱动合成器的进度计量。  
+    - 如果为实现提供的`WordBoundary` <xref:System.Speech.Synthesis.TtsEngine.SpeechEventInfo>属性支持事件类型, 则将使用实例创建事件来驱动合成器的进度计量。 <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.EventInterest%2A?displayProperty=nameWithType>  
   
-3.  然后, 将使用修改后<xref:System.Speech.Synthesis.TtsEngine.TextFragment>的数组调用语音呈现引擎。  
+3.  然后, 将使用修改后<xref:System.Speech.Synthesis.TtsEngine.TextFragment>的数组调用语音呈现引擎。
   
-```  
-private const int WordBoundaryFlag = 1 << (int)TtsEventId.WordBoundary;  
-private readonly char[] spaces = new char[] { ' ', '\t', '\r', '\n' };  
-internal struct UsVsUk  
-{  
-  internal string UK;  
-  internal string US;  
-}  
+```csharp
+private const int WordBoundaryFlag = 1 << (int)TtsEventId.WordBoundary;
+private readonly char[] spaces = new char[] { ' ', '\t', '\r', '\n' };
+internal struct UsVsUk
+{
+    internal string UK;
+    internal string US;
+}
+
+override public void Speak (TextFragment [] frags, IntPtr wfx, ITtsEngineSite site)
+{
+    TextFragment [] newFrags=new TextFragment[frags.Length];
   
-override public void Speak (TextFragment [] frags, IntPtr wfx, ITtsEngineSite site)  
-{  
-  TextFragment [] newFrags=new TextFragment[frags.Length];  
-  
-  for (int i=0;i<frags.Length;i++){  
-    newFrags[i].State=frags[i].State;  
-    //truncate  
-    newFrags[i].TextToSpeak = frags[i].TextToSpeak.Substring(frags[i].TextOffset,  
-                               frags[i].TextLength);  
-    newFrags[i].TextLength = newFrags[i].TextToSpeak.Length;  
-    newFrags[i].TextOffset = 0;  
-    if (newFrags[i].State.Action == TtsEngineAction.Speak) {  
-      //Us to UK conversion  
-      foreach (UsVsUk term in TransList) {  
-      newFrags[i].TextToSpeak.Replace(term.US, term.UK);  
-      }  
-      //Generate progress meter events if supported  
-      if ((site.EventInterest & WordBoundaryFlag) != 0) {  
-      string[] subs = newFrags[i].TextToSpeak.Split(spaces);  
-  
-      foreach (string s in subs) {  
-        int offset = newFrags[i].TextOffset;  
-        SpeechEventInfo spEvent = new SpeechEventInfo((Int16)TtsEventId.WordBoundary,   
-                (Int16)EventParameterType.Undefined,   
-                 s.Length, new IntPtr(offset));  
-        offset += s.Length;  
-        if (s.Trim().Length > 0) {  
-          SpeechEventInfo[] events = new SpeechEventInfo[1];  
-          events[0] = spEvent;  
-          site.AddEvents(events, 1);  
-        }  
-      }  
-      }  
-    }  
-  }  
-  
-  _baseSynthesize.Speak(newFrags, wfx, site);  
-  
-}  
+    for (int i=0;i<frags.Length;i++)
+    {
+        newFrags[i].State=frags[i].State;
+        //truncate
+        newFrags[i].TextToSpeak = frags[i].TextToSpeak.Substring(frags[i].TextOffset,
+                                  frags[i].TextLength);
+        newFrags[i].TextLength = newFrags[i].TextToSpeak.Length;
+        newFrags[i].TextOffset = 0;
+        if (newFrags[i].State.Action == TtsEngineAction.Speak)
+        {
+            //US to UK conversion
+            foreach (UsVsUk term in TransList)
+            {
+              newFrags[i].TextToSpeak.Replace(term.US, term.UK);
+            }
+            //Generate progress meter events if supported
+            if ((site.EventInterest & WordBoundaryFlag) != 0)
+            {
+                string[] subs = newFrags[i].TextToSpeak.Split(spaces);
+
+                foreach (string s in subs)
+                {
+                    int offset = newFrags[i].TextOffset;
+                    SpeechEventInfo spEvent = new SpeechEventInfo((Int16)TtsEventId.WordBoundary,
+                        (Int16)EventParameterType.Undefined,
+                        s.Length, new IntPtr(offset));
+                    offset += s.Length;
+                    if (s.Trim().Length > 0)
+                    {
+                        SpeechEventInfo[] events = new SpeechEventInfo[1];
+                        events[0] = spEvent;
+                        site.AddEvents(events, 1);
+                    }
+                }
+            }
+        }
+    }
+
+    _baseSynthesize.Speak(newFrags, wfx, site);
+
+}
 ```  
   
  ]]></format>

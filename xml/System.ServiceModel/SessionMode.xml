@@ -1,5 +1,5 @@
 <Type Name="SessionMode" FullName="System.ServiceModel.SessionMode">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="97ca738349a6c72e0594d9264aa297053db2a71c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69147058" /></Metadata><TypeSignature Language="C#" Value="public enum SessionMode" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="68dd7b2d0a91f3c825fe6ce3169037b7f5a9310f" /><Meta Name="ms.sourcegitcommit" Value="59288d18b8fbc142a5d38d416d6fdfb982023216" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/28/2019" /><Meta Name="ms.locfileid" Value="70116489" /></Metadata><TypeSignature Language="C#" Value="public enum SessionMode" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed SessionMode extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.SessionMode" />
   <TypeSignature Language="VB.NET" Value="Public Enum SessionMode" />
@@ -30,7 +30,7 @@
   
  如果您的服务支持会话，则可以使用 <xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType> 属性指定您的服务协定实现实例与通道会话之间的关系。  
   
- 例如, 如果将属性<xref:System.ServiceModel.ServiceContractAttribute.SessionMode%2A>设置为 "允许", <xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType>并将属性设置为<xref:System.ServiceModel.InstanceContextMode?displayProperty=nameWithType>, 则客户端可以使用支持可靠会话的绑定对相同的服务对象进行重复调用。  
+ 例如，如果 <xref:System.ServiceModel.ServiceContractAttribute.SessionMode%2A?displayProperty=nameWithType> 属性设置为 `Allowed` 而 <xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType> 属性设置为 <xref:System.ServiceModel.InstanceContextMode.PerSession?displayProperty=nameWithType>，则客户端可以使用支持可靠会话的绑定重复调用同一个服务对象。  
   
  因为会话是应用程序模型使用的通道级概念，因此协定中的 <xref:System.ServiceModel.SessionMode> 枚举和 <xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType> 属性之间存在交互，它控制着通道和特定服务对象之间的关联。  
   
@@ -38,9 +38,9 @@
   
 |InstanceContextMode 值|必需|Allowed|NotAllowed|  
 |-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|  
-|PerCall|-会话通道的行为:会话和<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个调用。<br />-无会话通道的行为:将引发异常。|-会话通道的行为:会话和<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个调用。<br />-无会话通道的行为:<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个调用的。|-会话通道的行为:将引发异常。<br />-无会话通道的行为:<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个调用的。|  
-|PerSession|-会话通道的行为:会话和<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个通道。<br />-无会话通道的行为:将引发异常。|-会话通道的行为:会话和<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个通道。<br />-无会话通道的行为:<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个调用的。|-会话通道的行为:将引发异常。<br />-无会话通道的行为:<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个调用的。|  
-|Single|-会话通道的行为:一个会话, 一个<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>用于所有调用。<br />-无会话通道的行为:将引发异常。|-会话通道的行为:会话以及<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>为每个创建的单一实例或用户指定的单一实例。<br />-无会话通道的行为:<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>为每个创建的单一实例或用户指定的单一实例的。|-会话通道的行为:将引发异常。<br />-无会话通道的行为:<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>为每个创建的单一实例或用户指定的单一实例的。|  
+|PerCall|-会话通道的行为:会话和<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个调用。<br />-无会话通道的行为:此时引发异常。|-会话通道的行为:会话和<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个调用。<br />-无会话通道的行为:<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个调用的。|-会话通道的行为:此时引发异常。<br />-无会话通道的行为:<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个调用的。|  
+|PerSession|-会话通道的行为:会话和<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个通道。<br />-无会话通道的行为:此时引发异常。|-会话通道的行为:会话和<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个通道。<br />-无会话通道的行为:<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个调用的。|-会话通道的行为:此时引发异常。<br />-无会话通道的行为:<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>每个调用的。|  
+|Single|-会话通道的行为:一个会话, 一个<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>用于所有调用。<br />-无会话通道的行为:此时引发异常。|-会话通道的行为:会话以及<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>为每个创建的单一实例或用户指定的单一实例。<br />-无会话通道的行为:<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>为每个创建的单一实例或用户指定的单一实例的。|-会话通道的行为:此时引发异常。<br />-无会话通道的行为:<xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>为每个创建的单一实例或用户指定的单一实例的。|  
   
    
   
