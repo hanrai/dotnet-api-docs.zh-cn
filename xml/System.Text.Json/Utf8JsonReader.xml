@@ -1,5 +1,5 @@
 <Type Name="Utf8JsonReader" FullName="System.Text.Json.Utf8JsonReader">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6a451999ec7e4d837eb22652c047781c5decd940" /><Meta Name="ms.sourcegitcommit" Value="cb4d218ffd5a459a5f921fe1d945c682d1e09aca" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/16/2019" /><Meta Name="ms.locfileid" Value="69540532" /></Metadata><TypeSignature Language="C#" Value="public struct Utf8JsonReader" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7e3de822fc6bc069344292addd24eba53fba3652" /><Meta Name="ms.sourcegitcommit" Value="252460010cd20c7b0dab38785e7164d932fa2768" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="zh-CN" /><Meta Name="ms.lasthandoff" Value="08/30/2019" /><Meta Name="ms.locfileid" Value="70170017" /></Metadata><TypeSignature Language="C#" Value="public struct Utf8JsonReader" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit Utf8JsonReader extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Text.Json.Utf8JsonReader" />
   <TypeSignature Language="VB.NET" Value="Public Structure Utf8JsonReader" />
@@ -366,9 +366,9 @@ JSON 令牌值表示小于 <see cref="F:System.Byte.MinValue" /> 或大于 <see 
       <Docs>
         <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTime" />。</summary>
         <returns>如果可成功解析整个 UTF-8 编码的令牌值，则为日期和时间。</returns>
-        <remarks>To be added.</remarks>
+        <remarks>此方法仅创建符合 ISO 8601-1 扩展格式的 JSON 字符串的日期时间表示形式 (请参阅[系统中的 datetime 和 DateTimeOffset 支持](~/docs/standard/datetime/system-text-json-support.md))。</remarks>
         <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
-        <exception cref="T:System.FormatException">JSON 令牌值的格式不受支持。 仅支持部分 ISO 8601 格式。</exception>
+        <exception cref="T:System.FormatException">JSON 令牌值不可作为 <see cref="T:System.DateTime" /> 读取。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetDateTimeOffset">
@@ -390,9 +390,9 @@ JSON 令牌值表示小于 <see cref="F:System.Byte.MinValue" /> 或大于 <see 
       <Docs>
         <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTimeOffset" />。</summary>
         <returns>如果可成功解析整个 UTF-8 编码的令牌值，则为日期和时间值。</returns>
-        <remarks>To be added.</remarks>
+        <remarks>此方法仅创建符合 ISO 8601-1 扩展格式的 JSON 字符串的 DateTimeOffset 表示形式 (请参阅[DateTime 和 system.object 中的 DateTimeOffset 支持](~/docs/standard/datetime/system-text-json-support.md))。</remarks>
         <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
-        <exception cref="T:System.FormatException">JSON 令牌值的格式不受支持。 仅支持部分 ISO 8601 格式。</exception>
+        <exception cref="T:System.FormatException">JSON 令牌值不可作为 <see cref="T:System.DateTimeOffset" /> 读取。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetDecimal">
@@ -544,7 +544,7 @@ JSON 令牌值表示小于 <see cref="F:System.Int16.MinValue" /> 或大于 <see
         <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
         <exception cref="T:System.FormatException">JSON 令牌值的数值格式不正确。 例如，它包含小数或采用科学记数法编写。
             
-- 或 -
+或
 
 JSON 令牌值表示小于 <see cref="F:System.Int32.MinValue" /> 或大于 <see cref="F:System.Int32.MaxValue" /> 的数字。</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
@@ -581,7 +581,7 @@ JSON 令牌值表示小于 <see cref="F:System.Int32.MinValue" /> 或大于 <see
         <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
         <exception cref="T:System.FormatException">JSON 令牌值的数值格式不正确。 例如，它包含小数或采用科学记数法编写。
             
-- 或 -
+或
 
 JSON 令牌值表示小于 <see cref="F:System.Int64.MinValue" /> 或大于 <see cref="F:System.Int64.MaxValue" /> 的数字。</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
@@ -615,7 +615,7 @@ JSON 令牌值表示小于 <see cref="F:System.Int64.MinValue" /> 或大于 <see
         <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
         <exception cref="T:System.FormatException">JSON 令牌值的数字格式不正确（例如，它包含小数值或使用科学记数法编写）。
           
-- 或 -
+或
 
 JSON 令牌值表示小于 <see cref="F:System.SByte.MinValue" /> 或大于 <see cref="F:System.SByte.MaxValue" /> 的数字。</exception>
       </Docs>
@@ -672,10 +672,18 @@ JSON 令牌值表示小于 <see cref="F:System.SByte.MinValue" /> 或大于 <see
       <Docs>
         <summary>从源中读取下一个 JSON 令牌值，并作为字符串进行反转义和转码。</summary>
         <returns>令牌值分析为字符串，如果 <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> 为 <see cref="F:System.Text.Json.JsonTokenType.Null" />，则为 <see langword="null" />。</returns>
-        <remarks>To be added.</remarks>
-        <exception cref="T:System.InvalidOperationException">JSON 令牌值不是字符串（即，不是 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。
+        <remarks>
+          <format type="text/markdown"><![CDATA[
 
-或
+## Remarks
+
+当为<xref:System.Text.Json.Utf8JsonReader.TokenType> `null` 时<xref:System.Text.Json.JsonTokenType.Null?displayProperty=nameWithType>返回。
+
+          ]]></format>
+        </remarks>
+         <exception cref="T:System.InvalidOperationException">JSON 令牌值不是字符串（即不是 <see cref="F:System.Text.Json.JsonTokenType.String" /><see cref="F:System.Text.Json.JsonTokenType.PropertyName" /> 或 <see cref="F:System.Text.Json.JsonTokenType.Null" />）。
+
+- 或 -
 
 JSON 字符串包含无效的 UTF-8 字节或无效的 UTF-16 替代项。</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
@@ -776,7 +784,7 @@ JSON 令牌值表示小于 <see cref="F:System.UInt32.MinValue" /> 或大于 <se
         <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
         <exception cref="T:System.FormatException">JSON 令牌值的数值格式不正确。 例如，它包含小数或采用科学记数法编写。
             
-或
+- 或 -
 
 JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <see cref="F:System.UInt64.MaxValue" /> 的数字。</exception>
         <altmember cref="P:System.Text.Json.Utf8JsonReader.TokenType" />
@@ -1057,7 +1065,7 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <param name="value">在此方法返回时，包含已解析的值。</param>
         <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.DateTime" />，并返回一个指示操作是否成功的值。</summary>
         <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.DateTime" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
-        <remarks>To be added.</remarks>
+        <remarks>此方法仅创建符合 ISO 8601-1 扩展格式的 JSON 字符串的日期时间表示形式 (请参阅[系统中的 datetime 和 DateTimeOffset 支持](~/docs/standard/datetime/system-text-json-support.md))。</remarks>
         <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
       </Docs>
     </Member>
@@ -1083,7 +1091,7 @@ JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <se
         <param name="value">在此方法返回时，包含已解析的值。</param>
         <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.DateTimeOffset" />，并返回一个指示操作是否成功的值。</summary>
         <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.DateTimeOffset" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
-        <remarks>To be added.</remarks>
+        <remarks>此方法仅创建符合 ISO 8601-1 扩展格式的 JSON 字符串的 DateTimeOffset 表示形式 (请参阅[DateTime 和 system.object 中的 DateTimeOffset 支持](~/docs/standard/datetime/system-text-json-support.md))。</remarks>
         <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
       </Docs>
     </Member>
